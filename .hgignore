@@ -1,0 +1,7 @@
+syntax: glob
+_ReSharper.VkToolkit/*
+VkToolkit/bin/*
+packages/*
+VkToolkit/obj/*
+VkToolkit.Tests/bin/*
+VkToolkit.Tests/obj/*
