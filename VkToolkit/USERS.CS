@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enum;
 using VkToolkit.Exception;
+using VkToolkit.Model;
 
-namespace VkToolkit.Model
+namespace VkToolkit
 {
     public class Users
     {
@@ -13,6 +15,11 @@ namespace VkToolkit.Model
         {
             _vk = vk;
         }
+
+        public IEnumerable<Profile> GetProfiles(IEnumerable<int> uids, ProfileFields fields = null)
+        {
+            throw new NotImplementedException();
+        }
         
         public Profile GetProfiles(int uid, ProfileFields fields = null)
         {
@@ -21,17 +28,15 @@ namespace VkToolkit.Model
 
             var values = new Dictionary<string, string>();
             values.Add("uid", uid + "");
-            
-            //if (fields != PersonalFields.None)
-            //{
-            //    values.Add("fields", fields.ToString().Replace(" ", ""));
-            //}
+           
+            if (fields != null)
+                values.Add("fields", fields.ToString());
 
             string url = _vk.GetApiUrl("getProfiles", values);
 
             string json = _vk.Browser.GetRawHtml(url);
             
-            if (string.CompareOrdinal(json.Substring(1, 5), "error") != 0)
+            if (string.CompareOrdinal(json.Substring(2, 5), "error") == 0)
             {
                 _vk.ThrowExceptionOnServerError(json);
             }
@@ -47,7 +52,17 @@ namespace VkToolkit.Model
             profile.FirstName   = (string) response[0]["first_name"];
             profile.LastName    = (string) response[0]["last_name"];
 
-            // todo complete this in next commit
+            if (response[0]["university"] != null)
+            {
+                profile.Education = new Education
+                {
+                    Id = (string)response[0]["university"],
+                    Name = (string)response[0]["university_name"],
+                    FacultyId = (string)response[0]["faculty"],
+                    FacultyName = (string)response[0]["faculty_name"],
+                    Graduation = (string)response[0]["graduation"]
+                };
+            }
             
             //profile.Nickname = (string) response[0]["nis"];
 
