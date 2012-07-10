@@ -7,19 +7,21 @@
         public string LastName { get; set; }
         public string Nickname { get; set; }
         public string ScreenName { get; set; }
-        public string Sex { get; set; }
+        public int? Sex { get; set; }
         public string BirthDate { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public string Timezone { get; set; }
+        public int? Timezone { get; set; }
         public string Photo { get; set; }
         public string PhotoMedium { get; set; }
         public string PhotoBig { get; set; }
-        public string HasMobile { get; set; }
+        public int? HasMobile { get; set; }
+        public string MobilePhone { get; set; }
+        public string HomePhone { get; set; }
         public string Rate { get; set; }
         public string Contacts { get; set; }
-        public string Education { get; set; }
-        public string Online { get; set; }
-        public string Counters { get; set; }
+        public Education Education { get; set; }
+        public int? Online { get; set; }
+        public Counters Counters { get; set; }
     }
 }

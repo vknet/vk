@@ -48,26 +48,58 @@ namespace VkToolkit
             var response = (JArray) obj["response"];
 
             var profile = new Profile();
-            profile.Uid         = (int)    response[0]["uid"];
+            profile.Uid         = (int) response[0]["uid"];
             profile.FirstName   = (string) response[0]["first_name"];
             profile.LastName    = (string) response[0]["last_name"];
+            profile.Nickname    = (string) response[0]["nickname"];
+            profile.ScreenName  = (string) response[0]["screen_name"];
+            profile.Sex         = (int?) response[0]["sex"];
+            profile.BirthDate   = (string) response[0]["bdate"];
+            profile.City        = (string) response[0]["city"];
+            profile.Country     = (string) response[0]["country"];
+            profile.Timezone    = (int?) response[0]["timezone"];
+            profile.Photo       = (string) response[0]["photo"];
+            profile.PhotoMedium = (string) response[0]["photo_medium"];
+            profile.PhotoBig    = (string) response[0]["photo_big"];
+            profile.HasMobile   = (int?) response[0]["has_mobile"];
+            profile.Rate        = (string) response[0]["rate"];
+            profile.MobilePhone = (string) response[0]["mobile_phone"];
+            profile.HomePhone   = (string) response[0]["home_phone"];
+            profile.Online      = (int?) response[0]["online"];
 
             if (response[0]["university"] != null)
             {
                 profile.Education = new Education
                 {
-                    Id = (string)response[0]["university"],
-                    Name = (string)response[0]["university_name"],
+                    UniversityId = (string)response[0]["university"],
+                    UniversityName = (string)response[0]["university_name"],
                     FacultyId = (string)response[0]["faculty"],
                     FacultyName = (string)response[0]["faculty_name"],
                     Graduation = (string)response[0]["graduation"]
                 };
             }
+
+            if (response[0]["counters"] != null)
+            {
+                var counters = (JObject) response[0]["counters"];
+
+                profile.Counters = new Counters
+                {
+                    Albums = (int)counters["albums"],
+                    Videos = (int)counters["videos"],
+                    Audios = (int)counters["audios"],
+                    Notes = (int)counters["notes"],
+                    Photos = (int)counters["photos"],
+                    Groups = (int)counters["groups"],
+                    Friends = (int)counters["friends"],
+                    OnlineFriends = (int)counters["online_friends"],
+                    UserPhotos = (int)counters["user_photos"],
+                    UserVideos = (int)counters["user_videos"],
+                    Followers = (int)counters["followers"],
+                    Subscriptions = (int)counters["subscriptions"]
+                };
+            }
             
-            //profile.Nickname = (string) response[0]["nis"];
-
-
-
             return profile;
         }
          

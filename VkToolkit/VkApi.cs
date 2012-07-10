@@ -8,6 +8,7 @@ using VkToolkit.Exception;
 using VkToolkit.Model;
 using VkToolkit.Utils;
 using WatiN.Core;
+using WatiN.Core.Exceptions;
 
 namespace VkToolkit
 {
@@ -54,9 +55,16 @@ namespace VkToolkit
                     "http://oauth.vk.com/oauth/authorize?client_id={0}&scope=friends&redirect_uri=http://api.vk.com/blank.html&display=popup&response_type=token&_hash=0", appId);
             browser.GoTo(url);
 
-            browser.TextField(Find.ByName("email")).TypeText(email);
-            browser.TextField(Find.ByName("pass")).TypeText(password);
-            browser.Button(Find.ById("install_allow")).Click();
+            try
+            {
+                browser.TextField(Find.ByName("email")).TypeText(email);
+                browser.TextField(Find.ByName("pass")).TypeText(password);
+                browser.Button(Find.ById("install_allow")).Click();
+            }
+            catch (ElementNotFoundException ex)
+            {
+                throw new VkApiException("Could not load a page.", ex);
+            }           
 
             const string invalidLoginOrPassword = "Invalid login or password";
             if (browser.ContainsText(invalidLoginOrPassword))
