@@ -31,14 +31,16 @@ namespace VkToolkit.Model
 
             string json = _vk.Browser.GetRawHtml(url);
             
+            if (string.CompareOrdinal(json.Substring(1, 5), "error") != 0)
+            {
+                _vk.ThrowExceptionOnServerError(json);
+            }
+
             // todo parse to json
             // and assign a values
 
             JObject obj = JObject.Parse(json);
             var response = (JArray) obj["response"];
-
-            // todo check if response is null
-            // and later throw new exception
 
             var profile = new Profile();
             profile.Uid         = (int)    response[0]["uid"];

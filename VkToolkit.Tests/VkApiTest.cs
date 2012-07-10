@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using VkToolkit.Enum;
+using VkToolkit.Exception;
 
 namespace VkToolkit.Tests
 {
@@ -76,6 +77,24 @@ namespace VkToolkit.Tests
             string output = vk.GetApiUrl("getProfiles", values);
 
             Assert.That(output, Is.EqualTo(expected));
+        }
+
+        [Test]
+        [ExpectedException(typeof(UserAuthorizationFailException), ExpectedMessage = "User authorization failed: invalid access_token.")]
+        public void ThrowExceptionOnServerError_UserAuthorizationFail_ThrowUserAuthorizationFailExcption()
+        {
+            const string json =
+                "{\"error\":{\"error_code\":5,\"error_msg\":\"User authorization failed: invalid access_token.\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"getProfiles\"},{\"key\":\"uid\",\"value\":\"1\"},{\"key\":\"access_token\",\"value\":\"sfastybdsjhdg\"}]}}";
+
+            vk.ThrowExceptionOnServerError(json);
+        }
+
+        [Test]
+        [ExpectedException(typeof(VkApiException), ExpectedMessage = "Wrong json data.")]
+        public void ThrowExceptionOnServerError_WrongJson_ThrowVkApiException()
+        {
+            const string json = "ThisIsNotJson";
+            vk.ThrowExceptionOnServerError(json);
         }
     }
 }

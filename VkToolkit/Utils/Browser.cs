@@ -9,7 +9,16 @@ namespace VkToolkit.Utils
         public string GetRawHtml(string url)
         {
             WebRequest request = WebRequest.Create(url);
-            WebResponse response = request.GetResponse();
+            WebResponse response;
+
+            try
+            {
+                response = request.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                throw new VkApiException(ex.Message, ex);
+            }
 
             Stream stream = response.GetResponseStream();
 

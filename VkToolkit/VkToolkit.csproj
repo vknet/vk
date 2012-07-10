@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Enum\ProfileFields.cs" />
     <Compile Include="Exception\AccessTokenNotSetException.cs" />
+    <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Enum\ResponseType.cs" />
     <Compile Include="Exception\VkApiAuthorizationException.cs" />

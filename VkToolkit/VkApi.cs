@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using VkToolkit.Enum;
 using VkToolkit.Exception;
 using VkToolkit.Model;
@@ -99,6 +101,33 @@ namespace VkToolkit
             sb.AppendFormat("access_token={0}", AccessToken);
             
             return sb.ToString();
+        }
+
+        internal void ThrowExceptionOnServerError(string json)
+        {
+            JObject obj;
+            try
+            {
+                obj = JObject.Parse(json);
+            }
+            catch (JsonReaderException ex)
+            {
+                throw new VkApiException("Wrong json data.", ex);
+            }
+             
+            var response = obj["error"];
+
+            var errorCode = (int) response["error_code"];
+            var message = (string) response["error_msg"];
+
+            switch (errorCode)
+            {
+                case 5:
+                    throw new UserAuthorizationFailException(message);
+                    
+                default: 
+                    throw new VkApiException("Undefined exception");
+            }
         }
     }
 }
