@@ -82,10 +82,23 @@ namespace VkToolkit
 
         }
 
-        public IEnumerable<Profile> GetMutual()
+        public IEnumerable<long> GetMutual(long targetUid, long sourceUid)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("target_uid", targetUid + "");
+            values.Add("source_uid", sourceUid + "");
+
+            string url = _vk.GetApiUrl("friends.getMutual", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var ids = (JArray)obj["response"];
+
+            return ids.Select(id => (long) id).ToList();
         }
 
 
