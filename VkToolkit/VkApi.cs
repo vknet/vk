@@ -46,8 +46,10 @@ namespace VkToolkit
         /// <param name="appId">Appliation Id</param>
         /// <param name="email">Email or Phone</param>
         /// <param name="password">Password</param>
+        /// <param name="settings">Access rights requested by your application</param>
+        /// <param name="display">Type of output page</param>
         [STAThread]
-        public void Authorize(int appId, string email, string password)
+        public void Authorize(int appId, string email, string password, Enum.Settings settings, Display display)
         {
             Email = email;
             Password = password;
@@ -56,9 +58,8 @@ namespace VkToolkit
             var browser = new IE();
             browser.ClearCookies();
 
-            string url =
-                string.Format(
-                    "http://oauth.vk.com/oauth/authorize?client_id={0}&scope=friends&redirect_uri=http://api.vk.com/blank.html&display=popup&response_type=token&_hash=0", appId);
+            // todo may be create display param as optional
+            string url = CreateAuthorizeUrl(appId, settings, display);
             browser.GoTo(url);
 
             try
@@ -114,6 +115,18 @@ namespace VkToolkit
 
             sb.AppendFormat("access_token={0}", AccessToken);
             
+            return sb.ToString();
+        }
+
+        internal string CreateAuthorizeUrl(int appId, Enum.Settings settings, Display display)
+        {
+            var sb = new StringBuilder("http://oauth.vk.com/authorize?");
+            sb.AppendFormat("client_id={0}&", appId);
+            sb.AppendFormat("scope={0}&", settings);
+            sb.Append("redirect_uri=http://oauth.vk.com/blank.html&");
+            sb.AppendFormat("display={0}&", display);
+            sb.Append("response_type=token");
+
             return sb.ToString();
         }
 

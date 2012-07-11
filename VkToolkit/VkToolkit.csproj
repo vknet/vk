@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\Display.cs" />
     <Compile Include="Enum\ProfileFields.cs" />
     <Compile Include="Enum\Settings.cs" />
     <Compile Include="Exception\AccessDeniedException.cs" />

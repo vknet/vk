@@ -117,5 +117,16 @@ namespace VkToolkit.Tests
             const string json = "ThisIsNotJson";
             vk.IfErrorThrowException(json);
         }
+
+        [Test]
+        public void CreateAuthorizeUrl_OneSettingsItem_RightUrl()
+        {
+            const string expected = "http://oauth.vk.com/authorize?client_id=123&scope=friends&redirect_uri=http://oauth.vk.com/blank.html&display=page&response_type=token";
+            string url = vk.CreateAuthorizeUrl(123, Settings.Friends, Display.Page);
+
+            Assert.That(url, Is.EqualTo(expected));
+            
+        }
+        
     }
 }
