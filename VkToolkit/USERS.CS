@@ -26,14 +26,25 @@ namespace VkToolkit
         /// <summary>
         /// Returns the application settings of the current user.
         /// </summary>
+        /// <param name="uid">User Id</param>
         /// <returns>Returns bitmask settings of the current user in the given application.
         /// 
         /// For example, if the method returns 3, it means that the user allows the application to send them notifications and have access to their list of friends.
         /// </returns>
-        public int GetUserSettings()
+        public int GetUserSettings(long uid)
         {
             IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("uid", uid + "");
+
+            string url = _vk.GetApiUrl("getUserSettings", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int)obj["response"];
         }
 
         /// <summary>

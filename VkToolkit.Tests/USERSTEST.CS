@@ -526,5 +526,28 @@ namespace VkToolkit.Tests
 
             Assert.That(balance, Is.EqualTo(350));
         }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void GetUserSettings_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        {
+            var vk = new VkApi();
+            vk.Users.GetUserSettings(vk.UserId);
+        }
+
+        [Test]
+        public void GetUserSettings_AccessToFriends_Return2()
+        {
+            const string url = "https://api.vk.com/method/getUserSettings?uid=1&access_token=token";
+            const string json = "{\"response\":2}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            var vk = new VkApi(browser.Object) { AccessToken = "token" };
+            int balance = vk.Users.GetUserSettings(1);
+
+            Assert.That(balance, Is.EqualTo(2));
+        }
     }
 }
