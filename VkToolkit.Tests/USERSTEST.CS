@@ -490,5 +490,41 @@ namespace VkToolkit.Tests
 
             Assert.That(result, Is.False);
         }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void GetUserBalance_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        {
+            var vk = new VkApi();
+            vk.Users.GetUserBalance();
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessDeniedException), ExpectedMessage = "Permission denied. You must enable votes processing in application settings")]
+        public void GetUserBalance_PermissionDenied_ThrowAccessDeniedException()
+        {
+            const string json = "{\"error\":{\"error_code\":500,\"error_msg\":\"Permission denied. You must enable votes processing in application settings\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"getUserBalance\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(It.IsAny<string>())).Returns(json);
+
+            var vk = new VkApi(browser.Object){AccessToken = "token"};
+            vk.Users.GetUserBalance();
+        }
+
+        [Test]
+        public void GetUserBalance_BalanceIs350_ReturnBalance()
+        {
+            const string url = "https://api.vk.com/method/getUserBalance?access_token=token";
+            const string json = @"{""response"":350}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            var vk = new VkApi(browser.Object) { AccessToken = "token" };
+            int balance = vk.Users.GetUserBalance();
+
+            Assert.That(balance, Is.EqualTo(350));
+        }
     }
 }

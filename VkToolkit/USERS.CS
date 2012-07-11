@@ -43,7 +43,14 @@ namespace VkToolkit
         public int GetUserBalance()
         {
             IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
+
+            string url = _vk.GetApiUrl("getUserBalance", new Dictionary<string, string>());
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int) obj["response"];
         }
 
         /// <summary>
@@ -90,7 +97,6 @@ namespace VkToolkit
             return res == "1";
         }
         
-
         public IEnumerable<Group> GetGroupsFull()
         {
             IfAccessTokenNotDefinedThrowException();

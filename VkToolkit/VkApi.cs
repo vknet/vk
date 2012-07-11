@@ -151,6 +151,7 @@ namespace VkToolkit
                 case 5:
                     throw new UserAuthorizationFailException(message, errorCode);
 
+                case 500:
                 case 260:
                     throw new AccessDeniedException(message, errorCode);
                     
