@@ -17,12 +17,6 @@ namespace VkToolkit
             _vk = vk;
         }
 
-        public IEnumerable<Profile> GetProfiles(IEnumerable<int> uids, ProfileFields fields = null)
-        {
-            IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
-        }
-
         public bool IsAppUser(string uid)
         {
             IfAccessTokenNotDefinedThrowException();
@@ -117,9 +111,50 @@ namespace VkToolkit
             
             JObject obj = JObject.Parse(json);
             var response = (JArray) obj["response"];
-            //var current = (JObject) response[0];
 
             return GetProfileFromJObject((JObject)response[0]);
+        }
+
+        public IEnumerable<Profile> GetProfiles(IEnumerable<int> uids, ProfileFields fields = null)
+        {
+            IfAccessTokenNotDefinedThrowException();
+
+            if (uids == null)
+                throw new ArgumentNullException("uids");
+
+            var uidsLst = uids.ToList();
+
+            string ids = "";
+            for (int i = 0; i < uidsLst.Count; i++)
+            {
+                ids += uidsLst[i];
+                if (i != uidsLst.Count - 1)
+                    ids += ",";
+            }
+
+            var values = new Dictionary<string, string>();
+            values.Add("uids", ids);
+
+            if (fields != null)
+                values.Add("fields", fields.ToString());
+
+            string url = _vk.GetApiUrl("getProfiles", values);
+
+            string json = _vk.Browser.GetRawHtml(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            var output = new List<Profile>();
+
+            foreach (var p in response)
+            {
+                var pro = GetProfileFromJObject((JObject) p);
+                output.Add(pro);
+            }
+            return output;
         }
 
         #region Private Methods

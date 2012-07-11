@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using VkToolkit.Enum;
@@ -254,6 +255,103 @@ namespace VkToolkit.Tests
             Assert.That(groups[1].Id, Is.EqualTo(15));
             Assert.That(groups[2].Id, Is.EqualTo(134));
             Assert.That(groups[3].Id, Is.EqualTo(1673));
+        }
+        
+        [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void GetProfiles_EmptyAccessToken_ThrowAccesTokenNotSetException()
+        {
+            var users = new Users(new VkApi());
+            users.GetProfiles(new int[] {1, 2});
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetProfiles_EmptyListOfUids_ThrowArgumentNullException()
+        {
+            var users = new Users(new VkApi{AccessToken = "token"});
+            users.GetProfiles(null);
+        }
+
+        [Test]
+        [Ignore]
+        public void GetProfiles_id1_4793858_TwoProfiles()
+        {
+            var vk = new VkApi();
+            vk.Authorize(3013395, "ihepry@gmail.com", "Ou2A8|PG5O2XH2xm", Settings.Friends, Display.Page);
+
+            vk.Users.GetProfiles(new[] { 1, 4793858 });
+
+            Assert.Fail();
+        }
+
+        [Test]
+        public void GetProfiles_TwoUidsDefaultFields_TwoProfiles()
+        {
+            const string url =
+                "https://api.vk.com/method/getProfiles?uids=1,4793858&access_token=token";
+
+            const string json =
+                "{\"response\":[{\"uid\":1,\"first_name\":\"Pavel\",\"last_name\":\"Durov\"},{\"uid\":4793858,\"first_name\":\"Anton\",\"last_name\":\"Zhidkov\"}]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetRawHtml(url)).Returns(json);
+
+            var users = new Users(new VkApi(browser.Object){AccessToken = "token"});
+
+            var lst = users.GetProfiles(new int[] {1, 4793858}).ToList();
+
+            Assert.That(lst.Count, Is.EqualTo(2));
+            Assert.That(lst[0], Is.Not.Null);
+            Assert.That(lst[0].Uid, Is.EqualTo(1));
+            Assert.That(lst[0].FirstName, Is.EqualTo("Pavel"));
+            Assert.That(lst[0].LastName, Is.EqualTo("Durov"));
+
+            Assert.That(lst[1], Is.Not.Null);
+            Assert.That(lst[1].Uid, Is.EqualTo(4793858));
+            Assert.That(lst[1].FirstName, Is.EqualTo("Anton"));
+            Assert.That(lst[1].LastName, Is.EqualTo("Zhidkov"));
+        }
+
+        [Test]
+        public void GetProfiles_TwoUidsEducationField_TwoProfiles()
+        {
+            const string url =
+                "https://api.vk.com/method/getProfiles?uids=102674754,5041431&fields=education&access_token=token";
+
+            const string json =
+                "{\"response\":[{\"uid\":102674754,\"first_name\":\"Artyom\",\"last_name\":\"Plotnikov\",\"university\":\"431\",\"university_name\":\"ВолгГТУ\",\"faculty\":\"3162\",\"faculty_name\":\"Электроники и вычислительной техники\",\"graduation\":\"2010\"},{\"uid\":5041431,\"first_name\":\"Tayfur\",\"last_name\":\"Kaseev\",\"university\":\"431\",\"university_name\":\"ВолгГТУ\",\"faculty\":\"3162\",\"faculty_name\":\"Электроники и вычислительной техники\",\"graduation\":\"2012\"}]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetRawHtml(url)).Returns(json);
+
+            var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
+
+            var lst = users.GetProfiles(new int[] {102674754, 5041431}, ProfileFields.Education).ToList();
+
+            Assert.That(lst.Count == 2);
+            Assert.That(lst[0], Is.Not.Null);
+            Assert.That(lst[0].Uid, Is.EqualTo(102674754));
+            Assert.That(lst[0].FirstName, Is.EqualTo("Artyom"));
+            Assert.That(lst[0].LastName, Is.EqualTo("Plotnikov"));
+            Assert.That(lst[0].Education, Is.Not.Null);
+            Assert.That(lst[0].Education.UniversityId, Is.EqualTo("431"));
+            Assert.That(lst[0].Education.UniversityName, Is.EqualTo("ВолгГТУ"));
+            Assert.That(lst[0].Education.FacultyId, Is.EqualTo("3162"));
+            Assert.That(lst[0].Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
+            Assert.That(lst[0].Education.Graduation, Is.EqualTo("2010"));
+
+            Assert.That(lst[1], Is.Not.Null);
+            Assert.That(lst[1].Uid, Is.EqualTo(5041431));
+            Assert.That(lst[1].FirstName, Is.EqualTo("Tayfur"));
+            Assert.That(lst[1].LastName, Is.EqualTo("Kaseev"));
+            Assert.That(lst[1].Education, Is.Not.Null);
+            Assert.That(lst[1].Education.UniversityId, Is.EqualTo("431"));
+            Assert.That(lst[1].Education.UniversityName, Is.EqualTo("ВолгГТУ"));
+            Assert.That(lst[1].Education.FacultyId, Is.EqualTo("3162"));
+            Assert.That(lst[1].Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
+            Assert.That(lst[1].Education.Graduation, Is.EqualTo("2012"));
+
         }
     }
 }
