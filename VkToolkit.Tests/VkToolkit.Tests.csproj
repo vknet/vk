@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum\ProfileFieldsTest.cs" />
+    <Compile Include="Enum\SettingsTest.cs" />
     <Compile Include="UsersTest.cs" />
     <Compile Include="VkApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
