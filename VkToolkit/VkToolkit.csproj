@@ -63,6 +63,7 @@
     <Compile Include="Enum\Order.cs" />
     <Compile Include="Enum\ProfileFields.cs" />
     <Compile Include="Enum\Settings.cs" />
+    <Compile Include="Enum\FriendStatus.cs" />
     <Compile Include="Exception\AccessDeniedException.cs" />
     <Compile Include="Exception\AccessTokenNotSetException.cs" />
     <Compile Include="Exception\UserAuthorizationFailException.cs" />

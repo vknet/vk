@@ -101,6 +101,34 @@ namespace VkToolkit
             return ids.Select(id => (long) id).ToList();
         }
 
+        public IDictionary<long, FriendStatus> AreFriends(IEnumerable<long> uids)
+        {
+            _vk.IfAccessTokenNotDefinedThrowException();
 
+            if (uids == null)
+                throw new ArgumentNullException("uids");
+
+            var values = new Dictionary<string, string>();
+            values.Add("uids", Utilities.GetEnumerationAsString(uids));
+
+            string url = _vk.GetApiUrl("friends.areFriends", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var ids = (JArray)obj["response"];
+
+            var output = new Dictionary<long, FriendStatus>();
+            foreach (var id in ids)
+            {
+                FriendStatus status = Utilities.GetFriendStatus((int) id["friend_status"]);
+                long userId = (long) id["uid"];
+
+                output.Add(userId, status);
+            }
+
+            return output;
+        }
     }
 }

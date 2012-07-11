@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enum;
@@ -116,6 +117,27 @@ namespace VkToolkit.Utils
 
                 default:
                     return GroupType.Undefined;
+            }
+        }
+
+        public static FriendStatus GetFriendStatus(int status)
+        {
+            switch (status)
+            {
+                case 0:
+                    return FriendStatus.NotFriend;
+
+                case 1:
+                    return FriendStatus.OutputRequest;
+
+                case 2:
+                    return FriendStatus.InputRequest;
+
+                case 3:
+                    return FriendStatus.Friend;
+                    
+                default:
+                    throw new ArgumentException("friend_status not defined!", "status");
             }
         }
 

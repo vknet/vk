@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using VkToolkit.Enum;
@@ -209,6 +210,42 @@ namespace VkToolkit.Tests
             var users = friends.GetMutual(2, 1).ToList();
 
             Assert.That(users.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void AreFriends_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        {
+            var f = new Friends(new VkApi());
+            f.AreFriends(new long[]{2, 3});
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AreFriends_NullInput_ThrowArgumentNullException()
+        {
+            var f = new Friends(new VkApi(){AccessToken = "token"});
+            f.AreFriends(null);
+        }
+
+        [Test]
+        public void AreFriends_FourTypes_ThrowAccessTokenNotSetException()
+        {
+            const string url = "https://api.vk.com/method/friends.areFriends?uids=24181068,22911407,155810539,3505305&access_token=token";
+            const string json = "{\"response\":[{\"uid\":24181068,\"friend_status\":0},{\"uid\":22911407,\"friend_status\":3},{\"uid\":155810539,\"friend_status\":2},{\"uid\":3505305,\"friend_status\":1}]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
+
+            var dict = friends.AreFriends(new long[] {24181068, 22911407, 155810539, 3505305});
+
+            Assert.That(dict.Count, Is.EqualTo(4));
+            Assert.That(dict[24181068], Is.EqualTo(FriendStatus.NotFriend));
+            Assert.That(dict[22911407], Is.EqualTo(FriendStatus.Friend));
+            Assert.That(dict[155810539], Is.EqualTo(FriendStatus.InputRequest));
+            Assert.That(dict[3505305], Is.EqualTo(FriendStatus.OutputRequest));
         }
     }
 }
