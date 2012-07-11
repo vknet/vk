@@ -398,8 +398,8 @@ namespace VkToolkit.Tests
             Assert.That(groups[0].Id, Is.EqualTo(29689780));
             Assert.That(groups[0].Name, Is.EqualTo("Art and Life ©"));
             Assert.That(groups[0].ScreenName, Is.EqualTo("art.and.life"));
-            Assert.That(groups[0].IsClosed, Is.EqualTo(false));
-            Assert.That(groups[0].IsAdmin, Is.EqualTo(false));
+            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsAdmin, Is.False);
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
             Assert.That(groups[0].Photo, Is.EqualTo("http://cs11003.userapi.com/g29689780/e_1bea6489.jpg"));
             Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs11003.userapi.com/g29689780/d_f50bf769.jpg"));
@@ -409,8 +409,8 @@ namespace VkToolkit.Tests
             Assert.That(groups[1].Id, Is.EqualTo(33489538));
             Assert.That(groups[1].Name, Is.EqualTo("Английский как стиль жизни. Где перевод?"));
             Assert.That(groups[1].ScreenName, Is.EqualTo("english_for_adults"));
-            Assert.That(groups[1].IsClosed, Is.EqualTo(false));
-            Assert.That(groups[1].IsAdmin, Is.EqualTo(false));
+            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
             Assert.That(groups[1].Photo, Is.EqualTo("http://cs5538.userapi.com/g33489538/e_1d36792d.jpg"));
             Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs5538.userapi.com/g33489538/d_caafe13e.jpg"));
@@ -434,8 +434,8 @@ namespace VkToolkit.Tests
             Assert.That(groups[0].Id, Is.EqualTo(29689780));
             Assert.That(groups[0].Name, Is.EqualTo("Art and Life ©"));
             Assert.That(groups[0].ScreenName, Is.EqualTo("art.and.life"));
-            Assert.That(groups[0].IsClosed, Is.EqualTo(false));
-            Assert.That(groups[0].IsAdmin, Is.EqualTo(false));
+            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsAdmin, Is.False);
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
             Assert.That(groups[0].Photo, Is.EqualTo("http://cs11003.userapi.com/g29689780/e_1bea6489.jpg"));
             Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs11003.userapi.com/g29689780/d_f50bf769.jpg"));
@@ -445,12 +445,50 @@ namespace VkToolkit.Tests
             Assert.That(groups[1].Id, Is.EqualTo(33489538));
             Assert.That(groups[1].Name, Is.EqualTo("Английский как стиль жизни. Где перевод?"));
             Assert.That(groups[1].ScreenName, Is.EqualTo("english_for_adults"));
-            Assert.That(groups[1].IsClosed, Is.EqualTo(false));
-            Assert.That(groups[1].IsAdmin, Is.EqualTo(false));
+            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
             Assert.That(groups[1].Photo, Is.EqualTo("http://cs5538.userapi.com/g33489538/e_1d36792d.jpg"));
             Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs5538.userapi.com/g33489538/d_caafe13e.jpg"));
             Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs5538.userapi.com/g33489538/a_6d6f2525.jpg"));
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void IsAppUser_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        {
+            var users = new Users(new VkApi());
+            users.IsAppUser(1);
+        }
+
+        [Test]
+        public void IsAppUser_AppIsInstalled_ReturnTrue()
+        {
+            const string url = "https://api.vk.com/method/isAppUser?uid=1234&access_token=token";
+            const string json = "{\"response\":\"1\"}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            var vk = new VkApi(browser.Object) {AccessToken = "token"};
+            bool result = vk.Users.IsAppUser(1234);
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void IsAppUser_AppNotInstalled_ReturnFalse()
+        {
+            const string url = "https://api.vk.com/method/isAppUser?uid=1234&access_token=token";
+            const string json = "{\"response\":\"0\"}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            var vk = new VkApi(browser.Object) { AccessToken = "token" };
+            bool result = vk.Users.IsAppUser(1234);
+
+            Assert.That(result, Is.False);
         }
     }
 }

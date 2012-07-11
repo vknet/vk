@@ -17,12 +17,6 @@ namespace VkToolkit
             _vk = vk;
         }
 
-        public bool IsAppUser(string uid)
-        {
-            IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
-        }
-        
         public IEnumerable<Profile> Search(string query, int count = 20, ProfileFields fields = null)
         {
             IfAccessTokenNotDefinedThrowException();
@@ -74,6 +68,28 @@ namespace VkToolkit
 
             return response.Select(i => new Group {Id = (int) i}).ToList();
         }
+
+        /// <summary>
+        /// Returns information on whether a user has installed an application or not.
+        /// </summary>
+        /// <param name="uid">User ID</param>
+        /// <returns>Returns true if the user has installed the given application, otherwise – false.</returns>
+        public bool IsAppUser(long uid)
+        {
+            IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("uid", uid + "");
+
+            string url = _vk.GetApiUrl("isAppUser", values);
+            string json = _vk.Browser.GetJson(url);
+
+            JObject obj = JObject.Parse(json);
+            var res = (string)obj["response"];
+
+            return res == "1";
+        }
+        
 
         public IEnumerable<Group> GetGroupsFull()
         {
