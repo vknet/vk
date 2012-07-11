@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System.Linq;
+using Moq;
 using NUnit.Framework;
 using VkToolkit.Enum;
 using VkToolkit.Exception;
@@ -10,18 +11,17 @@ namespace VkToolkit.Tests
     [TestFixture]
     public class UsersTest
     {
-        private Users users;
-
         [SetUp]
         public void SetUp()
         {
-            users = new Users(new VkApi());       
+        
         }
 
         [Test]
         [ExpectedException(typeof(AccessTokenNotSetException))]
         public void GetProfiles_EmptyAccessToken_ThrowAccessTokenNotSetException()
         {
+            var users = new Users(new VkApi());
             users.GetProfiles(1);
         }
 
@@ -32,7 +32,7 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(f => f.GetRawHtml(It.IsAny<string>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
 
-            users = new Users(new VkApi(mockBrowser.Object){AccessToken = "asgsstsfast"});
+            var users = new Users(new VkApi(mockBrowser.Object){AccessToken = "asgsstsfast"});
 
             users.GetProfiles(1);
         }
@@ -47,7 +47,7 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(f => f.GetRawHtml(It.IsAny<string>())).Returns(json);
 
-            users = new Users(new VkApi(mockBrowser.Object){AccessToken = "sfastybdsjhdg"});
+            var users = new Users(new VkApi(mockBrowser.Object){AccessToken = "sfastybdsjhdg"});
             users.GetProfiles(1);
         }
 
@@ -60,7 +60,7 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(m => m.GetRawHtml(It.IsAny<string>())).Returns(json);
 
-            users = new Users(new VkApi(mockBrowser.Object) {AccessToken = "token"});
+            var users = new Users(new VkApi(mockBrowser.Object) {AccessToken = "token"});
 
             // act
             var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education;
@@ -88,7 +88,7 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(m => m.GetRawHtml(It.IsAny<string>())).Returns(json);
 
-            users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
+            var users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
 
             // act
             Profile p = users.GetProfiles(4793858, ProfileFields.Counters);
@@ -120,7 +120,7 @@ namespace VkToolkit.Tests
 
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(m => m.GetRawHtml(It.IsAny<string>())).Returns(json);
-            users = new Users(new VkApi(mockBrowser.Object) {AccessToken = "token"});
+            var users = new Users(new VkApi(mockBrowser.Object) {AccessToken = "token"});
 
             // act
             Profile p = users.GetProfiles(4793858);
@@ -141,7 +141,7 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(m => m.GetRawHtml(It.IsAny<string>())).Returns(json);
 
-            users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
+            var users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
 
             // act
             Profile p = users.GetProfiles(4793858, ProfileFields.All);
@@ -151,7 +151,6 @@ namespace VkToolkit.Tests
             Assert.That(p.Uid, Is.EqualTo(4793858));
             Assert.That(p.FirstName, Is.EqualTo("Антон"));
             Assert.That(p.LastName, Is.EqualTo("Жидков"));
-
             Assert.That(p.Nickname, Is.EqualTo("[Удален]"));
             Assert.That(p.ScreenName, Is.EqualTo("azhidkov"));
             Assert.That(p.Sex, Is.EqualTo(2));
@@ -173,7 +172,6 @@ namespace VkToolkit.Tests
             Assert.That(p.Education.FacultyId, Is.EqualTo("3162"));
             Assert.That(p.Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
             Assert.That(p.Education.Graduation, Is.EqualTo("2013"));
-
             Assert.That(p.Counters, Is.Not.Null);
             Assert.That(p.Counters.Albums, Is.EqualTo(1));
             Assert.That(p.Counters.Videos, Is.EqualTo(100));
@@ -187,6 +185,64 @@ namespace VkToolkit.Tests
             Assert.That(p.Counters.UserVideos, Is.EqualTo(87));
             Assert.That(p.Counters.Followers, Is.EqualTo(1));
             Assert.That(p.Counters.Subscriptions, Is.EqualTo(1));
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void GetGropus_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        {
+            var users = new Users(new VkApi());
+            users.GetGroups(1);
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessDeniedException), ExpectedMessage = "Access to the groups list is denied due to the user's privacy settings.")]
+        public void GetGroups_AccessDenied_ThrowAccessDeniedException()
+        {
+            const string json =
+                "{\"error\":{\"error_code\":260,\"error_msg\":\"Access to the groups list is denied due to the user's privacy settings.\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"getGroups\"},{\"key\":\"uid\",\"value\":\"1\"},{\"key\":\"access_token\",\"value\":\"2f3e43eb608a87632f68d140d82f5a9efa22f772f7765eb2f49f67514987c5e\"}]}}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetRawHtml(It.IsAny<string>())).Returns(json);
+
+            var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
+
+            users.GetGroups(1);
+        }
+
+        [Test]
+        public void GetGroups_UserHaveNoGroups_EmptyList()
+        {
+            // undone: check it later
+            const string json = "{\"response\":[]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetRawHtml(It.IsAny<string>())).Returns(json); // todo refactor it use url
+
+            var users = new Users(new VkApi(browser.Object) { AccessToken = "token" });
+            var groups = users.GetGroups(4793858).ToList();
+
+            Assert.That(groups.Count, Is.EqualTo(0));
+            // undone: check json stirng
+            Assert.Fail();
+        }
+
+        [Test]
+        public void GetGroups_AccessGranted_ListOfGroups()
+        {
+            const string json = "{\"response\":[1,15,134,1673]}";
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetRawHtml(It.IsAny<string>())).Returns(json); // todo refactor it use url
+
+            var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
+
+            var groups = users.GetGroups(4793858).ToList();
+
+            Assert.That(groups.Count, Is.EqualTo(4));
+            Assert.That(groups[0].Id, Is.EqualTo(1));
+            Assert.That(groups[1].Id, Is.EqualTo(15));
+            Assert.That(groups[2].Id, Is.EqualTo(134));
+            Assert.That(groups[3].Id, Is.EqualTo(1673));
         }
     }
 }

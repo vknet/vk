@@ -111,8 +111,10 @@ namespace VkToolkit
             return sb.ToString();
         }
 
-        internal void ThrowExceptionOnServerError(string json)
+        internal void IfErrorThrowException(string json)
         {
+            if (string.CompareOrdinal(json.Substring(2, 5), "error") != 0) return;
+            
             JObject obj;
             try
             {
@@ -131,7 +133,10 @@ namespace VkToolkit
             switch (errorCode)
             {
                 case 5:
-                    throw new UserAuthorizationFailException(message);
+                    throw new UserAuthorizationFailException(message, errorCode);
+
+                case 260:
+                    throw new AccessDeniedException(message, errorCode);
                     
                 default: 
                     throw new VkApiException("Undefined exception");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enum;
 using VkToolkit.Exception;
@@ -20,6 +21,25 @@ namespace VkToolkit
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Group> GetGroups(int uid)
+        {
+            if (string.IsNullOrEmpty(_vk.AccessToken))
+                throw new AccessTokenNotSetException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("uid", uid + "");
+
+            string url = _vk.GetApiUrl("getGroups", values);
+            string json = _vk.Browser.GetRawHtml(url);
+
+            _vk.IfErrorThrowException(json);
+            
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            return response.Select(i => new Group {Id = (int) i}).ToList();
+        }
         
         public Profile GetProfiles(int uid, ProfileFields fields = null)
         {
@@ -36,14 +56,8 @@ namespace VkToolkit
 
             string json = _vk.Browser.GetRawHtml(url);
             
-            if (string.CompareOrdinal(json.Substring(2, 5), "error") == 0)
-            {
-                _vk.ThrowExceptionOnServerError(json);
-            }
-
-            // todo parse to json
-            // and assign a values
-
+            _vk.IfErrorThrowException(json);
+            
             JObject obj = JObject.Parse(json);
             var response = (JArray) obj["response"];
 
@@ -101,7 +115,6 @@ namespace VkToolkit
             }
             
             return profile;
-        }
-         
+        } 
     }
 }

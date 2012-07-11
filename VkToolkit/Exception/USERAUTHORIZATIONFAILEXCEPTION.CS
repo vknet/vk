@@ -5,11 +5,17 @@ using System.Text;
 
 namespace VkToolkit.Exception
 {
-    class UserAuthorizationFailException : VkApiException
+    class UserAuthorizationFailException : VkApiMethodInvokeException
     {
         public UserAuthorizationFailException(string message) : base(message)
         {
             
+        }
+
+        public UserAuthorizationFailException(string message, int code)
+            : base(message, code)
+        {
+
         }
     }
 }
