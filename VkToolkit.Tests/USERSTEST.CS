@@ -259,10 +259,10 @@ namespace VkToolkit.Tests
         
         [Test]
         [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetProfiles_EmptyAccessToken_ThrowAccesTokenNotSetException()
+        public void GetProfiles_Multiple_EmptyAccessToken_ThrowAccessTokenNotSetException()
         {
             var users = new Users(new VkApi());
-            users.GetProfiles(new int[] {1, 2});
+            users.GetProfiles(new long[] {1, 2});
         }
 
         [Test]
@@ -287,7 +287,7 @@ namespace VkToolkit.Tests
 
             var users = new Users(new VkApi(browser.Object){AccessToken = "token"});
 
-            var lst = users.GetProfiles(new int[] {1, 4793858}).ToList();
+            var lst = users.GetProfiles(new long[] {1, 4793858}).ToList();
 
             Assert.That(lst.Count, Is.EqualTo(2));
             Assert.That(lst[0], Is.Not.Null);
@@ -315,7 +315,7 @@ namespace VkToolkit.Tests
 
             var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
 
-            var lst = users.GetProfiles(new int[] {102674754, 5041431}, ProfileFields.Education).ToList();
+            var lst = users.GetProfiles(new long[] {102674754, 5041431}, ProfileFields.Education).ToList();
 
             Assert.That(lst.Count == 2);
             Assert.That(lst[0], Is.Not.Null);
@@ -366,11 +366,62 @@ namespace VkToolkit.Tests
         }
 
         [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void GetGroupsFull_Multiple_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        {
+            var vk = new VkApi();
+            vk.Users.GetGroupsFull(new long[]{1, 2});
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetGroupsFull_NullGids_ThrowArgumentNullException()
+        {
+            var vk = new VkApi {AccessToken = "token"};
+            vk.Users.GetGroupsFull(null);
+        }
+
+        [Test]
+        public void GetGroupsFull_Mulitple_TwoGroups()
+        {
+            const string url = "https://api.vk.com/method/getGroupsFull?gids=29689780,33489538&access_token=token";
+            const string json = "{\"response\":[{\"gid\":29689780,\"name\":\"Art and Life ©\",\"screen_name\":\"art.and.life\",\"is_closed\":0,\"type\":\"page\",\"photo\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/e_1bea6489.jpg\",\"photo_medium\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/d_f50bf769.jpg\",\"photo_big\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/a_1889c16e.jpg\"},{\"gid\":33489538,\"name\":\"Английский как стиль жизни. Где перевод?\",\"screen_name\":\"english_for_adults\",\"is_closed\":0,\"type\":\"event\",\"photo\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/e_1d36792d.jpg\",\"photo_medium\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/d_caafe13e.jpg\",\"photo_big\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/a_6d6f2525.jpg\"}]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            var vk = new VkApi(browser.Object) {AccessToken = "token"};
+            var groups = vk.Users.GetGroupsFull(new long[] { 29689780, 33489538 }).ToList();
+
+            Assert.That(groups.Count, Is.EqualTo(2));
+            Assert.That(groups[0], Is.Not.Null);
+            Assert.That(groups[0].Id, Is.EqualTo(29689780));
+            Assert.That(groups[0].Name, Is.EqualTo("Art and Life ©"));
+            Assert.That(groups[0].ScreenName, Is.EqualTo("art.and.life"));
+            Assert.That(groups[0].IsClosed, Is.EqualTo(false));
+            Assert.That(groups[0].IsAdmin, Is.EqualTo(false));
+            Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
+            Assert.That(groups[0].Photo, Is.EqualTo("http://cs11003.userapi.com/g29689780/e_1bea6489.jpg"));
+            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs11003.userapi.com/g29689780/d_f50bf769.jpg"));
+            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs11003.userapi.com/g29689780/a_1889c16e.jpg"));
+
+            Assert.That(groups[1], Is.Not.Null);
+            Assert.That(groups[1].Id, Is.EqualTo(33489538));
+            Assert.That(groups[1].Name, Is.EqualTo("Английский как стиль жизни. Где перевод?"));
+            Assert.That(groups[1].ScreenName, Is.EqualTo("english_for_adults"));
+            Assert.That(groups[1].IsClosed, Is.EqualTo(false));
+            Assert.That(groups[1].IsAdmin, Is.EqualTo(false));
+            Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
+            Assert.That(groups[1].Photo, Is.EqualTo("http://cs5538.userapi.com/g33489538/e_1d36792d.jpg"));
+            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs5538.userapi.com/g33489538/d_caafe13e.jpg"));
+            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs5538.userapi.com/g33489538/a_6d6f2525.jpg"));
+        }
+
+        [Test]
         public void GetGroupsFull_GroupsOfCurrentUser()
         {
-            var url = "https://api.vk.com/method/getGroupsFull?access_token=token";
-            var json =
-                "{\"response\":[{\"gid\":29689780,\"name\":\"Art and Life ©\",\"screen_name\":\"art.and.life\",\"is_closed\":0,\"type\":\"page\",\"photo\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/e_1bea6489.jpg\",\"photo_medium\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/d_f50bf769.jpg\",\"photo_big\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/a_1889c16e.jpg\"},{\"gid\":33489538,\"name\":\"Английский как стиль жизни. Где перевод?\",\"screen_name\":\"english_for_adults\",\"is_closed\":0,\"type\":\"event\",\"photo\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/e_1d36792d.jpg\",\"photo_medium\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/d_caafe13e.jpg\",\"photo_big\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/a_6d6f2525.jpg\"}]}";
+            const string url = "https://api.vk.com/method/getGroupsFull?access_token=token";
+            const string json = "{\"response\":[{\"gid\":29689780,\"name\":\"Art and Life ©\",\"screen_name\":\"art.and.life\",\"is_closed\":0,\"type\":\"page\",\"photo\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/e_1bea6489.jpg\",\"photo_medium\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/d_f50bf769.jpg\",\"photo_big\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/a_1889c16e.jpg\"},{\"gid\":33489538,\"name\":\"Английский как стиль жизни. Где перевод?\",\"screen_name\":\"english_for_adults\",\"is_closed\":0,\"type\":\"event\",\"photo\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/e_1d36792d.jpg\",\"photo_medium\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/d_caafe13e.jpg\",\"photo_big\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/a_6d6f2525.jpg\"}]}";
 
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json);

@@ -75,12 +75,6 @@ namespace VkToolkit
             return response.Select(i => new Group {Id = (int) i}).ToList();
         }
 
-        public IEnumerable<Group> GetGroupsFull(IEnumerable<int> gids)
-        {
-            IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Group> GetGroupsFull()
         {
             IfAccessTokenNotDefinedThrowException();
@@ -94,6 +88,27 @@ namespace VkToolkit
             var response = (JArray)obj["response"];
 
             return response.Select(g => GetGroupFromJObject((JObject) g)).ToList();
+        }
+
+        public IEnumerable<Group> GetGroupsFull(IEnumerable<long> gids)
+        {
+            IfAccessTokenNotDefinedThrowException();
+
+            if (gids == null)
+                throw new ArgumentNullException("gids");
+            
+            var values = new Dictionary<string, string>();
+            values.Add("gids", GetEnumerationAsString(gids));
+
+            string url = _vk.GetApiUrl("getGroupsFull", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            return response.Select(g => GetGroupFromJObject((JObject)g)).ToList();
         }
 
         /// <summary>
@@ -130,25 +145,15 @@ namespace VkToolkit
         /// <param name="uids">List of users' Ids.</param>
         /// <param name="fields">Fields of the profile (can be combined).</param>
         /// <returns>List of Profile objects.</returns>
-        public IEnumerable<Profile> GetProfiles(IEnumerable<int> uids, ProfileFields fields = null)
+        public IEnumerable<Profile> GetProfiles(IEnumerable<long> uids, ProfileFields fields = null)
         {
             IfAccessTokenNotDefinedThrowException();
 
             if (uids == null)
                 throw new ArgumentNullException("uids");
-
-            var uidsLst = uids.ToList();
-
-            string ids = "";
-            for (int i = 0; i < uidsLst.Count; i++)
-            {
-                ids += uidsLst[i];
-                if (i != uidsLst.Count - 1)
-                    ids += ",";
-            }
-
+            
             var values = new Dictionary<string, string>();
-            values.Add("uids", ids);
+            values.Add("uids", GetEnumerationAsString(uids));
 
             if (fields != null)
                 values.Add("fields", fields.ToString());
@@ -174,11 +179,25 @@ namespace VkToolkit
 
         #region Private Methods
 
+        private string GetEnumerationAsString(IEnumerable<long> uids)
+        {
+            var uidsLst = uids.ToList();
+            string ids = "";
+            for (int i = 0; i < uidsLst.Count; i++)
+            {
+                ids += uidsLst[i];
+                if (i != uidsLst.Count - 1)
+                    ids += ",";
+            }
+
+            return ids;
+        }
+
         private Group GetGroupFromJObject(JObject group)
         {
             var output = new Group
             {
-                Id = (int)group["gid"],
+                Id = (long) group["gid"],
                 Name = (string)group["name"],
                 Link = (string)group["link"],
                 Photo = (string)group["photo"],
@@ -210,7 +229,7 @@ namespace VkToolkit
         private Profile GetProfileFromJObject(JObject current)
         {
             var profile = new Profile();
-            profile.Uid = (int)current["uid"];
+            profile.Uid = (long)current["uid"];
             profile.FirstName = (string)current["first_name"];
             profile.LastName = (string)current["last_name"];
             profile.Nickname = (string)current["nickname"];
