@@ -42,7 +42,7 @@ namespace VkToolkit
 
             if (response.Count > 0 && response[0] is JValue)
             {
-                return response.Select(id => new Profile {Uid = (int) id}).ToList();
+                return response.Select(id => new Profile {Uid = (long) id}).ToList();
             }
 
             return response.Select(p => Utilities.GetProfileFromJObject((JObject) p)).ToList();
@@ -63,10 +63,23 @@ namespace VkToolkit
             return ids.Select(id => (long) id).ToList();
         }
 
-        public IEnumerable<Profile> GetOnline()
+        public IEnumerable<long> GetOnline(long uid)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("uid", uid + "");
+
+            string url = _vk.GetApiUrl("friends.getOnline", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var ids = (JArray)obj["response"];
+
+            return ids.Select(id => (long)id).ToList();
+
         }
 
         public IEnumerable<Profile> GetMutual()
