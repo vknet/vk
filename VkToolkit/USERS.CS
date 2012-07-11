@@ -22,6 +22,11 @@ namespace VkToolkit
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Get users' groups.
+        /// </summary>
+        /// <param name="uid">User Id</param>
+        /// <returns>List of group Ids</returns>
         public IEnumerable<Group> GetGroups(int uid)
         {
             if (string.IsNullOrEmpty(_vk.AccessToken))
@@ -41,6 +46,12 @@ namespace VkToolkit
             return response.Select(i => new Group {Id = (int) i}).ToList();
         }
         
+        /// <summary>
+        /// Get info about user.
+        /// </summary>
+        /// <param name="uid">User Id</param>
+        /// <param name="fields">Fields of the profile (can be combined).</param>
+        /// <returns>Profile object.</returns>
         public Profile GetProfiles(int uid, ProfileFields fields = null)
         {
             if (string.IsNullOrEmpty(_vk.AccessToken))

@@ -40,6 +40,12 @@ namespace VkToolkit
             Users = new Users(this);
         }
 
+        /// <summary>
+        /// Authorize application on vk.com and getting Access Token.
+        /// </summary>
+        /// <param name="appId">Appliation Id</param>
+        /// <param name="email">Email or Phone</param>
+        /// <param name="password">Password</param>
         [STAThread]
         public void Authorize(int appId, string email, string password)
         {
