@@ -79,5 +79,48 @@ namespace VkToolkit.Tests
             Assert.That(lst[2].LastName, Is.EqualTo("Дуров"));
             Assert.That(lst[2].Online, Is.EqualTo(0));
         }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        {
+            var f = new Friends(new VkApi());
+            f.GetAppUsers();
+        }
+
+        [Test]
+        public void GetAppUsers_NoOne_EmptyList()
+        {
+            const string url = "https://api.vk.com/method/friends.getAppUsers?access_token=token";
+            const string json = "{\"response\":[]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            var friends = new Friends(new VkApi(browser.Object) {AccessToken = "token"});
+
+            var users = friends.GetAppUsers().ToList();
+
+            Assert.That(users.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void GetAppUsers_TwoUsers_ListOfObjects()
+        {
+            const string url = "https://api.vk.com/method/friends.getAppUsers?access_token=token";
+            const string json = "{\"response\":[15221,17836,19194]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
+
+            var users = friends.GetAppUsers().ToList();
+
+            Assert.That(users.Count, Is.EqualTo(3));
+            Assert.That(users[0], Is.EqualTo(15221));
+            Assert.That(users[1], Is.EqualTo(17836));
+            Assert.That(users[2], Is.EqualTo(19194));
+        }
     }
 }
