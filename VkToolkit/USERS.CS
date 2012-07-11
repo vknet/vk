@@ -17,6 +17,15 @@ namespace VkToolkit
             _vk = vk;
         }
 
+        /// <summary>
+        /// Search users by query.
+        /// </summary>
+        /// <param name="query">Query</param>
+        /// <param name="itemsCount">Count of users by query.</param>
+        /// <param name="fields">Additional fields for retrieving.</param>
+        /// <param name="count">Count of records in fetch.</param>
+        /// <param name="offset">Offset of records in fetch.</param>
+        /// <returns></returns>
         public IEnumerable<Profile> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
             IfAccessTokenNotDefinedThrowException();
@@ -137,6 +146,10 @@ namespace VkToolkit
             return res == "1";
         }
         
+        /// <summary>
+        /// Returns standard information about groups of which the current user is a member
+        /// </summary>
+        /// <returns>Returns standard information about groups of which the current user is a member. </returns>
         public IEnumerable<Group> GetGroupsFull()
         {
             IfAccessTokenNotDefinedThrowException();
@@ -152,6 +165,11 @@ namespace VkToolkit
             return response.Select(g => GetGroupFromJObject((JObject) g)).ToList();
         }
 
+        /// <summary>
+        /// Returns standard information about groups from the "gids" list.
+        /// </summary>
+        /// <param name="gids">List of group IDs</param>
+        /// <returns></returns>
         public IEnumerable<Group> GetGroupsFull(IEnumerable<long> gids)
         {
             IfAccessTokenNotDefinedThrowException();
