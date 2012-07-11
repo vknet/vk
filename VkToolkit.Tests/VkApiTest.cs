@@ -41,6 +41,7 @@ namespace VkToolkit.Tests
         public void VkApi_Constructor_SetDefaultMethodCategories()
         {
             Assert.That(vk.Users, Is.Not.Null);
+            Assert.That(vk.Friends, Is.Not.Null);
             // todo continue later
         }
 

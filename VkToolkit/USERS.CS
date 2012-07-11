@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enum;
-using VkToolkit.Exception;
 using VkToolkit.Model;
+using VkToolkit.Utils;
 
 namespace VkToolkit
 {
@@ -28,7 +28,7 @@ namespace VkToolkit
         /// <returns></returns>
         public IEnumerable<Profile> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
-            IfAccessTokenNotDefinedThrowException();
+            _vk.IfAccessTokenNotDefinedThrowException();
 
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.");
@@ -54,7 +54,7 @@ namespace VkToolkit
             var output = new List<Profile>();
             for (int i = 1; i < array.Count; i++)
             {
-                Profile p = GetProfileFromJObject((JObject)array[i]);
+                Profile p = Utilities.GetProfileFromJObject((JObject)array[i]);
                 output.Add(p);
             }
 
@@ -71,7 +71,7 @@ namespace VkToolkit
         /// </returns>
         public int GetUserSettings(long uid)
         {
-            IfAccessTokenNotDefinedThrowException();
+            _vk.IfAccessTokenNotDefinedThrowException();
 
             var values = new Dictionary<string, string>();
             values.Add("uid", uid + "");
@@ -91,7 +91,7 @@ namespace VkToolkit
         /// <returns>Returns the number of votes (in one hundredths) that are on the balance of the current user in an application. </returns>
         public int GetUserBalance()
         {
-            IfAccessTokenNotDefinedThrowException();
+            _vk.IfAccessTokenNotDefinedThrowException();
 
             string url = _vk.GetApiUrl("getUserBalance", new Dictionary<string, string>());
             string json = _vk.Browser.GetJson(url);
@@ -109,7 +109,7 @@ namespace VkToolkit
         /// <returns>List of group Ids</returns>
         public IEnumerable<Group> GetGroups(int uid)
         {
-            IfAccessTokenNotDefinedThrowException();
+            _vk.IfAccessTokenNotDefinedThrowException();
 
             var values = new Dictionary<string, string>();
             values.Add("uid", uid + "");
@@ -132,7 +132,7 @@ namespace VkToolkit
         /// <returns>Returns true if the user has installed the given application, otherwise – false.</returns>
         public bool IsAppUser(long uid)
         {
-            IfAccessTokenNotDefinedThrowException();
+            _vk.IfAccessTokenNotDefinedThrowException();
 
             var values = new Dictionary<string, string>();
             values.Add("uid", uid + "");
@@ -152,7 +152,7 @@ namespace VkToolkit
         /// <returns>Returns standard information about groups of which the current user is a member. </returns>
         public IEnumerable<Group> GetGroupsFull()
         {
-            IfAccessTokenNotDefinedThrowException();
+            _vk.IfAccessTokenNotDefinedThrowException();
 
             string url = _vk.GetApiUrl("getGroupsFull", new Dictionary<string, string>());
             string json = _vk.Browser.GetJson(url);
@@ -162,7 +162,7 @@ namespace VkToolkit
             JObject obj = JObject.Parse(json);
             var response = (JArray)obj["response"];
 
-            return response.Select(g => GetGroupFromJObject((JObject) g)).ToList();
+            return response.Select(g => Utilities.GetGroupFromJObject((JObject) g)).ToList();
         }
 
         /// <summary>
@@ -172,13 +172,13 @@ namespace VkToolkit
         /// <returns></returns>
         public IEnumerable<Group> GetGroupsFull(IEnumerable<long> gids)
         {
-            IfAccessTokenNotDefinedThrowException();
+            _vk.IfAccessTokenNotDefinedThrowException();
 
             if (gids == null)
                 throw new ArgumentNullException("gids");
             
             var values = new Dictionary<string, string>();
-            values.Add("gids", GetEnumerationAsString(gids));
+            values.Add("gids", Utilities.GetEnumerationAsString(gids));
 
             string url = _vk.GetApiUrl("getGroupsFull", values);
             string json = _vk.Browser.GetJson(url);
@@ -188,7 +188,7 @@ namespace VkToolkit
             JObject obj = JObject.Parse(json);
             var response = (JArray)obj["response"];
 
-            return response.Select(g => GetGroupFromJObject((JObject)g)).ToList();
+            return response.Select(g => Utilities.GetGroupFromJObject((JObject)g)).ToList();
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace VkToolkit
         /// <returns>Profile object.</returns>
         public Profile GetProfiles(int uid, ProfileFields fields = null)
         {
-            IfAccessTokenNotDefinedThrowException();
+            _vk.IfAccessTokenNotDefinedThrowException();
 
             var values = new Dictionary<string, string>();
             values.Add("uid", uid + "");
@@ -216,7 +216,7 @@ namespace VkToolkit
             JObject obj = JObject.Parse(json);
             var response = (JArray) obj["response"];
 
-            return GetProfileFromJObject((JObject)response[0]);
+            return Utilities.GetProfileFromJObject((JObject)response[0]);
         }
 
         /// <summary>
@@ -227,13 +227,13 @@ namespace VkToolkit
         /// <returns>List of Profile objects.</returns>
         public IEnumerable<Profile> GetProfiles(IEnumerable<long> uids, ProfileFields fields = null)
         {
-            IfAccessTokenNotDefinedThrowException();
+            _vk.IfAccessTokenNotDefinedThrowException();
 
             if (uids == null)
                 throw new ArgumentNullException("uids");
             
             var values = new Dictionary<string, string>();
-            values.Add("uids", GetEnumerationAsString(uids));
+            values.Add("uids", Utilities.GetEnumerationAsString(uids));
 
             if (fields != null)
                 values.Add("fields", fields.ToString());
@@ -247,146 +247,7 @@ namespace VkToolkit
             JObject obj = JObject.Parse(json);
             var response = (JArray)obj["response"];
 
-            var output = new List<Profile>();
-
-            foreach (var p in response)
-            {
-                var pro = GetProfileFromJObject((JObject) p);
-                output.Add(pro);
-            }
-            return output;
+            return response.Select(p => Utilities.GetProfileFromJObject((JObject) p)).ToList();
         }
-
-        #region Private Methods
-
-        private string GetEnumerationAsString(IEnumerable<long> uids)
-        {
-            var uidsLst = uids.ToList();
-            string ids = "";
-            for (int i = 0; i < uidsLst.Count; i++)
-            {
-                ids += uidsLst[i];
-                if (i != uidsLst.Count - 1)
-                    ids += ",";
-            }
-
-            return ids;
-        }
-
-        private Group GetGroupFromJObject(JObject group)
-        {
-            var output = new Group
-            {
-                Id = (long) group["gid"],
-                Name = (string)group["name"],
-                Link = (string)group["link"],
-                Photo = (string)group["photo"],
-                PhotoMedium = (string)group["photo_medium"],
-                PhotoBig = (string)group["photo_big"],
-                ScreenName = (string)group["screen_name"],
-            };
-
-            var isClosed = (int?)group["is_closed"];
-            var isAdmin = (int?)group["is_admin"];
-
-            if (isClosed.HasValue)
-            {
-                output.IsClosed = isClosed.Value == 1;
-            }
-
-            if (isAdmin.HasValue)
-            {
-                output.IsAdmin = isAdmin.Value == 1;
-            }
-            else
-                output.IsAdmin = false;
-
-            output.Type = GetGroupType((string)group["type"]);
-
-            return output;
-        }
-
-        private Profile GetProfileFromJObject(JObject current)
-        {
-            var profile = new Profile();
-            profile.Uid = (long)current["uid"];
-            profile.FirstName = (string)current["first_name"];
-            profile.LastName = (string)current["last_name"];
-            profile.Nickname = (string)current["nickname"];
-            profile.ScreenName = (string)current["screen_name"];
-            profile.Sex = (int?)current["sex"];
-            profile.BirthDate = (string)current["bdate"];
-            profile.City = (string)current["city"];
-            profile.Country = (string)current["country"];
-            profile.Timezone = (int?)current["timezone"];
-            profile.Photo = (string)current["photo"];
-            profile.PhotoMedium = (string)current["photo_medium"];
-            profile.PhotoBig = (string)current["photo_big"];
-            profile.HasMobile = (int?)current["has_mobile"];
-            profile.Rate = (string)current["rate"];
-            profile.MobilePhone = (string)current["mobile_phone"];
-            profile.HomePhone = (string)current["home_phone"];
-            profile.Online = (int?)current["online"];
-
-            if (current["university"] != null)
-            {
-                profile.Education = new Education
-                {
-                    UniversityId = (string)current["university"],
-                    UniversityName = (string)current["university_name"],
-                    FacultyId = (string)current["faculty"],
-                    FacultyName = (string)current["faculty_name"],
-                    Graduation = (string)current["graduation"]
-                };
-            }
-
-            if (current["counters"] != null)
-            {
-                var counters = (JObject)current["counters"];
-
-                profile.Counters = new Counters
-                {
-                    Albums = (int)counters["albums"],
-                    Videos = (int)counters["videos"],
-                    Audios = (int)counters["audios"],
-                    Notes = (int)counters["notes"],
-                    Photos = (int)counters["photos"],
-                    Groups = (int)counters["groups"],
-                    Friends = (int)counters["friends"],
-                    OnlineFriends = (int)counters["online_friends"],
-                    UserPhotos = (int)counters["user_photos"],
-                    UserVideos = (int)counters["user_videos"],
-                    Followers = (int)counters["followers"],
-                    Subscriptions = (int)counters["subscriptions"]
-                };
-            }
-
-            return profile;
-        }
-
-        private void IfAccessTokenNotDefinedThrowException()
-        {
-            if (string.IsNullOrEmpty(_vk.AccessToken))
-                throw new AccessTokenNotSetException();
-        }
-
-        internal GroupType GetGroupType(string type)
-        {
-            switch (type)
-            {
-                case "page":
-                    return GroupType.Page;
-
-                case "event":
-                    return GroupType.Event;
-
-                case "group":
-                    return GroupType.Group;
-
-                default:
-                    return GroupType.Undefined;
-            }
-        }
-        #endregion
     }
 }

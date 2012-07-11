@@ -5,9 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enum;
 using VkToolkit.Exception;
-using VkToolkit.Model;
 using VkToolkit.Utils;
-using WatiN.Core;
 using WatiN.Core.Exceptions;
 
 namespace VkToolkit
@@ -25,6 +23,7 @@ namespace VkToolkit
         public int UserId { get; private set; }      // todo string -> int
 
         public Users Users { get; private set; }
+        public Friends Friends { get; private set; }
 
         private const string MethodPrefix = "https://api.vk.com/method/";
         internal static string InvalidLoginOrPassword = "Invalid login or password";
@@ -41,6 +40,7 @@ namespace VkToolkit
             
             // set function's categories
             Users = new Users(this);
+            Friends = new Friends(this);
         }
 
         /// <summary>
@@ -159,5 +159,13 @@ namespace VkToolkit
                     throw new VkApiException("Undefined exception");
             }
         }
+
+        #region Private Methods
+        internal void IfAccessTokenNotDefinedThrowException()
+        {
+            if (string.IsNullOrEmpty(AccessToken))
+                throw new AccessTokenNotSetException();
+        }
+        #endregion
     }
 }

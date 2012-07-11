@@ -340,23 +340,7 @@ namespace VkToolkit.Tests
             Assert.That(lst[1].Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
             Assert.That(lst[1].Education.Graduation, Is.EqualTo("2012"));
         }
-
-        [Test]
-        public void GetGroupType_IterateAllValues_Success()
-        {
-            var vk = new VkApi();
-
-            GroupType page = vk.Users.GetGroupType("page");
-            GroupType eventType = vk.Users.GetGroupType("event");
-            GroupType group = vk.Users.GetGroupType("group");
-            GroupType undefined = vk.Users.GetGroupType("NotExistentType");
-
-            Assert.That(page, Is.EqualTo(GroupType.Page));
-            Assert.That(eventType, Is.EqualTo(GroupType.Event));
-            Assert.That(group, Is.EqualTo(GroupType.Group));
-            Assert.That(undefined, Is.EqualTo(GroupType.Undefined));
-        }
-
+        
         [Test]
         [ExpectedException(typeof(AccessTokenNotSetException))]
         public void GetGroupsFull_EmptyAccessToken_ThrowAccessTokenNotSetException()

@@ -33,8 +33,6 @@ namespace VkToolkit.Enum
             | Sex | BirthDay | City | Country | Timezone | Photo | PhotoMedium | PhotoBig | HasMobile
             | Rate | Contacts | Education | Online | Counters;
 
-
-
         private ProfileFields(int value, string name)
         {
             _value = value;

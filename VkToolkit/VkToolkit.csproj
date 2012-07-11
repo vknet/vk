@@ -60,12 +60,14 @@
   <ItemGroup>
     <Compile Include="Enum\Display.cs" />
     <Compile Include="Enum\GroupType.cs" />
+    <Compile Include="Enum\Order.cs" />
     <Compile Include="Enum\ProfileFields.cs" />
     <Compile Include="Enum\Settings.cs" />
     <Compile Include="Exception\AccessDeniedException.cs" />
     <Compile Include="Exception\AccessTokenNotSetException.cs" />
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
+    <Compile Include="Friends.cs" />
     <Compile Include="Model\Counters.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Profile.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Browser.cs" />
     <Compile Include="Utils\IBrowser.cs" />
+    <Compile Include="Utils\Utilities.cs" />
     <Compile Include="VkApi.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
