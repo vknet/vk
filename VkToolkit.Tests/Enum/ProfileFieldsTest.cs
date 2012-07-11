@@ -7,6 +7,22 @@ namespace VkToolkit.Tests.Enum
     public class ProfileFieldsTest
     {
         [Test]
+        public void ToString_OneProfileField()
+        {
+            var f = ProfileFields.Country;
+            Assert.That(f.ToString(), Is.EqualTo("country"));
+        }
+
+        [Test]
+        public void ToString_DuplicateFields_NoDuplicates()
+        {
+            var fields = ProfileFields.City | ProfileFields.FirstName | ProfileFields.City;
+            const string expected = "city,first_name";
+
+            Assert.That(fields.ToString(), Is.EqualTo(expected));
+        }
+
+        [Test]
         public void ToString_MultipleItems()
         {
             var fio = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex;

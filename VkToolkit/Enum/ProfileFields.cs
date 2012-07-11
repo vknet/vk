@@ -54,7 +54,10 @@ namespace VkToolkit.Enum
                 }
             }
             else
-                _fields.Add(f1);
+            {
+                if (!_fields.Any(m => m._value == f1._value))
+                    _fields.Add(f1);
+            }
             
 
             if (f2._fields != null && f2._fields.Count != 0)
@@ -66,7 +69,10 @@ namespace VkToolkit.Enum
                 }
             }
             else
-                _fields.Add(f2);
+            {
+                if (!_fields.Any(m => m._value == f2._value))
+                    _fields.Add(f2);
+            }
         }
 
         public static ProfileFields operator | (ProfileFields f1, ProfileFields f2)
