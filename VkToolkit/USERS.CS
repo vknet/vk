@@ -19,6 +19,54 @@ namespace VkToolkit
 
         public IEnumerable<Profile> GetProfiles(IEnumerable<int> uids, ProfileFields fields = null)
         {
+            IfAccessTokenNotDefinedThrowException();
+            throw new NotImplementedException();
+        }
+
+        public bool IsAppUser(string uid)
+        {
+            IfAccessTokenNotDefinedThrowException();
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Group> GetGroupsFull()
+        {
+            IfAccessTokenNotDefinedThrowException();
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Group> GetGroupsFull(IEnumerable<int> gids)
+        {
+            IfAccessTokenNotDefinedThrowException();
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Profile> Search(string query, int count = 20, ProfileFields fields = null)
+        {
+            IfAccessTokenNotDefinedThrowException();
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns the application settings of the current user.
+        /// </summary>
+        /// <returns>Returns bitmask settings of the current user in the given application.
+        /// 
+        /// For example, if the method returns 3, it means that the user allows the application to send them notifications and have access to their list of friends.
+        /// </returns>
+        public int GetUserSettings()
+        {
+            IfAccessTokenNotDefinedThrowException();
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns the balance of the current user in the given application in one hundredths of a vote.
+        /// </summary>
+        /// <returns>Returns the number of votes (in one hundredths) that are on the balance of the current user in an application. </returns>
+        public int GetUserBalance()
+        {
+            IfAccessTokenNotDefinedThrowException();
             throw new NotImplementedException();
         }
 
@@ -29,8 +77,7 @@ namespace VkToolkit
         /// <returns>List of group Ids</returns>
         public IEnumerable<Group> GetGroups(int uid)
         {
-            if (string.IsNullOrEmpty(_vk.AccessToken))
-                throw new AccessTokenNotSetException();
+            IfAccessTokenNotDefinedThrowException();
 
             var values = new Dictionary<string, string>();
             values.Add("uid", uid + "");
@@ -54,8 +101,7 @@ namespace VkToolkit
         /// <returns>Profile object.</returns>
         public Profile GetProfiles(int uid, ProfileFields fields = null)
         {
-            if (string.IsNullOrEmpty(_vk.AccessToken))
-                throw new AccessTokenNotSetException();
+            IfAccessTokenNotDefinedThrowException();
 
             var values = new Dictionary<string, string>();
             values.Add("uid", uid + "");
@@ -71,42 +117,50 @@ namespace VkToolkit
             
             JObject obj = JObject.Parse(json);
             var response = (JArray) obj["response"];
+            //var current = (JObject) response[0];
 
+            return GetProfileFromJObject((JObject)response[0]);
+        }
+
+        #region Private Methods
+
+        private Profile GetProfileFromJObject(JObject current)
+        {
             var profile = new Profile();
-            profile.Uid         = (int) response[0]["uid"];
-            profile.FirstName   = (string) response[0]["first_name"];
-            profile.LastName    = (string) response[0]["last_name"];
-            profile.Nickname    = (string) response[0]["nickname"];
-            profile.ScreenName  = (string) response[0]["screen_name"];
-            profile.Sex         = (int?) response[0]["sex"];
-            profile.BirthDate   = (string) response[0]["bdate"];
-            profile.City        = (string) response[0]["city"];
-            profile.Country     = (string) response[0]["country"];
-            profile.Timezone    = (int?) response[0]["timezone"];
-            profile.Photo       = (string) response[0]["photo"];
-            profile.PhotoMedium = (string) response[0]["photo_medium"];
-            profile.PhotoBig    = (string) response[0]["photo_big"];
-            profile.HasMobile   = (int?) response[0]["has_mobile"];
-            profile.Rate        = (string) response[0]["rate"];
-            profile.MobilePhone = (string) response[0]["mobile_phone"];
-            profile.HomePhone   = (string) response[0]["home_phone"];
-            profile.Online      = (int?) response[0]["online"];
+            profile.Uid = (int)current["uid"];
+            profile.FirstName = (string)current["first_name"];
+            profile.LastName = (string)current["last_name"];
+            profile.Nickname = (string)current["nickname"];
+            profile.ScreenName = (string)current["screen_name"];
+            profile.Sex = (int?)current["sex"];
+            profile.BirthDate = (string)current["bdate"];
+            profile.City = (string)current["city"];
+            profile.Country = (string)current["country"];
+            profile.Timezone = (int?)current["timezone"];
+            profile.Photo = (string)current["photo"];
+            profile.PhotoMedium = (string)current["photo_medium"];
+            profile.PhotoBig = (string)current["photo_big"];
+            profile.HasMobile = (int?)current["has_mobile"];
+            profile.Rate = (string)current["rate"];
+            profile.MobilePhone = (string)current["mobile_phone"];
+            profile.HomePhone = (string)current["home_phone"];
+            profile.Online = (int?)current["online"];
 
-            if (response[0]["university"] != null)
+            if (current["university"] != null)
             {
                 profile.Education = new Education
                 {
-                    UniversityId = (string)response[0]["university"],
-                    UniversityName = (string)response[0]["university_name"],
-                    FacultyId = (string)response[0]["faculty"],
-                    FacultyName = (string)response[0]["faculty_name"],
-                    Graduation = (string)response[0]["graduation"]
+                    UniversityId = (string)current["university"],
+                    UniversityName = (string)current["university_name"],
+                    FacultyId = (string)current["faculty"],
+                    FacultyName = (string)current["faculty_name"],
+                    Graduation = (string)current["graduation"]
                 };
             }
 
-            if (response[0]["counters"] != null)
+            if (current["counters"] != null)
             {
-                var counters = (JObject) response[0]["counters"];
+                var counters = (JObject)current["counters"];
 
                 profile.Counters = new Counters
                 {
@@ -124,8 +178,15 @@ namespace VkToolkit
                     Subscriptions = (int)counters["subscriptions"]
                 };
             }
-            
+
             return profile;
-        } 
+        }
+
+        private void IfAccessTokenNotDefinedThrowException()
+        {
+            if (string.IsNullOrEmpty(_vk.AccessToken))
+                throw new AccessTokenNotSetException();
+        }
+        #endregion
     }
 }
