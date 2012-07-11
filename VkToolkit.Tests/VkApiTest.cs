@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Moq;
 using NUnit.Framework;
 using VkToolkit.Enum;
 using VkToolkit.Exception;
+using VkToolkit.Utils;
+using Settings = VkToolkit.Enum.Settings;
 
 namespace VkToolkit.Tests
 {
@@ -13,11 +14,14 @@ namespace VkToolkit.Tests
     {
         private VkApi vk;
         private IDictionary<string, string> values;
+
+        const string ReturnUrl =
+                "http://oauth.vk.com/blank.html#access_token=token&expires_in=86400&user_id=4793858";
             
         [SetUp]
         public void SetUp()
         {
-            vk = new VkApi {AccessToken = "533bacf01e11"};
+            vk = new VkApi {AccessToken = "token"};
             values = new Dictionary<string, string>();
         }
 
@@ -46,7 +50,7 @@ namespace VkToolkit.Tests
         public void GetApiUrl_GetProfile_RightUrl()
         {
             values.Add("uid", "66748");
-            const string expected = "https://api.vk.com/method/getProfiles?uid=66748&access_token=533bacf01e11";
+            const string expected = "https://api.vk.com/method/getProfiles?uid=66748&access_token=token";
 
             var output = vk.GetApiUrl("getProfiles", values);
 
@@ -60,7 +64,7 @@ namespace VkToolkit.Tests
             vk.ResponseType = ResponseType.Xml;
             values.Add("uid", "66748");
 
-            const string expected = "https://api.vk.com/method/getProfiles.xml?uid=66748&access_token=533bacf01e11";
+            const string expected = "https://api.vk.com/method/getProfiles.xml?uid=66748&access_token=token";
 
             string output = vk.GetApiUrl("getProfiles", values);
            
@@ -73,7 +77,7 @@ namespace VkToolkit.Tests
             ProfileFields fields = ProfileFields.FirstName | ProfileFields.ScreenName | ProfileFields.Education;
             values.Add("uid", "66748");
             values.Add("fields", fields.ToString().Replace(" ", ""));
-            const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,screen_name,education&access_token=533bacf01e11";
+            const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,screen_name,education&access_token=token";
 
             string output = vk.GetApiUrl("getProfiles", values);
 
@@ -126,6 +130,35 @@ namespace VkToolkit.Tests
 
             Assert.That(url, Is.EqualTo(expected));
             
+        }
+
+        [Test]
+        public void Authorize_RightInput_AccessToken()
+        {
+            const string email = "test@test.com";
+            const string password = "pwd1234";
+            
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.ContainsText("Login success")).Returns(true);
+            browser.Setup(m => m.Uri).Returns(new Uri(ReturnUrl));
+            
+            var vk = new VkApi(browser.Object);
+            vk.Authorize(123, email, password, Settings.Friends, Display.Page);
+
+            Assert.That(vk.AppId, Is.EqualTo(123));
+            Assert.That(vk.Email, Is.EqualTo(email));
+            Assert.That(vk.Password, Is.EqualTo(password));
+            Assert.That(vk.AccessToken, Is.EqualTo("token"));
+            Assert.That(vk.ExpiresIn, Is.EqualTo("86400"));
+            Assert.That(vk.UserId, Is.EqualTo(4793858));
+
+            browser.Verify(m => m.ClearCookies(), Times.Once());
+            browser.Verify(m => m.Close(), Times.Once());
+            browser.Verify(m => m.GoTo(It.IsAny<string>()), Times.Once());
+            browser.Verify(m => m.Authorize(email, password));
+            browser.Verify(m => m.ContainsText(It.IsAny<string>()), Times.Exactly(2));
+            browser.Verify(m => m.ContainsText(vk.LoginSuccessed), Times.Once());
+            browser.Verify(m => m.ContainsText(vk.InvalidLoginOrPassword), Times.Once());
         }
         
     }

@@ -27,6 +27,9 @@ namespace VkToolkit
         public Users Users { get; private set; }
 
         private const string MethodPrefix = "https://api.vk.com/method/";
+        internal string InvalidLoginOrPassword = "Invalid login or password";
+        internal string LoginSuccessed = "Login success";
+
         internal IBrowser Browser;
 
         public VkApi(IBrowser browser = null)
@@ -55,34 +58,28 @@ namespace VkToolkit
             Password = password;
             AppId = appId;
 
-            var browser = new IE();
-            browser.ClearCookies();
+            Browser.ClearCookies();
 
-            // todo may be create display param as optional
             string url = CreateAuthorizeUrl(appId, settings, display);
-            browser.GoTo(url);
+            Browser.GoTo(url);
 
             try
             {
-                browser.TextField(Find.ByName("email")).TypeText(email);
-                browser.TextField(Find.ByName("pass")).TypeText(password);
-                browser.Button(Find.ById("install_allow")).Click();
+                Browser.Authorize(email, password);
             }
             catch (ElementNotFoundException ex)
             {
                 throw new VkApiException("Could not load a page.", ex);
             }           
+            
+            if (Browser.ContainsText(InvalidLoginOrPassword))
+                throw new VkApiAuthorizationException(InvalidLoginOrPassword, email, password);
 
-            const string invalidLoginOrPassword = "Invalid login or password";
-            if (browser.ContainsText(invalidLoginOrPassword))
-                throw new VkApiAuthorizationException(invalidLoginOrPassword, email, password);
-
-            if (!browser.ContainsText("Login success"))
+            if (!Browser.ContainsText(LoginSuccessed))
                 throw new VkApiException();
 
             // parse values from url
-            Uri successUrl = browser.Uri;
-
+            Uri successUrl = Browser.Uri;
             string[] parts = successUrl.Fragment.Split('&');
 
             AccessToken = parts[0].Split('=')[1];
@@ -97,7 +94,7 @@ namespace VkToolkit
                 throw new VkApiException("UserId is not integer value.", ex);
             }
             
-            browser.Close();
+            Browser.Close();
         }
 
         public string GetApiUrl(string method, IDictionary<string, string> values)

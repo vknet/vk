@@ -1,11 +1,31 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using VkToolkit.Exception;
+using WatiN.Core;
+using WatiN.Core.Constraints;
 
 namespace VkToolkit.Utils
 {
     public class Browser : IBrowser
     {
+        private IE _browser;
+
+        private IE Ie
+        {
+            get { return _browser ?? (_browser = new IE()); }
+        }
+        
+        public Browser()
+        {
+            
+        }
+
+        public Uri Uri
+        {
+            get { return Ie.Uri; }
+        }
+
         public string GetRawHtml(string url)
         {
             WebRequest request = WebRequest.Create(url);
@@ -27,6 +47,43 @@ namespace VkToolkit.Utils
 
             var sr = new StreamReader(stream);
             return sr.ReadToEnd();
+        }
+
+        public void ClearCookies()
+        {
+            Ie.ClearCookies();
+        }
+
+        public void GoTo(string url)
+        {
+            Ie.GoTo(url);
+        }
+
+        public void Close()
+        {
+            Ie.Close();
+        }
+
+        public void Authorize(string email, string password)
+        {
+            Ie.TextField(Find.ByName("email")).TypeText(email);
+            Ie.TextField(Find.ByName("pass")).TypeText(password);
+            Ie.Button(Find.ById("install_allow")).Click();
+        }
+
+        public TextField TextField(Constraint findBy)
+        {
+            return Ie.TextField(findBy);
+        }
+
+        public Button Button(Constraint findBy)
+        {
+            return Ie.Button(findBy);
+        }
+
+        public bool ContainsText(string text)
+        {
+            return Ie.ContainsText(text);
         }
     }
 }

@@ -274,18 +274,6 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        [Ignore]
-        public void GetProfiles_id1_4793858_TwoProfiles()
-        {
-            var vk = new VkApi();
-            vk.Authorize(3013395, "ihepry@gmail.com", "Ou2A8|PG5O2XH2xm", Settings.Friends, Display.Page);
-
-            vk.Users.GetProfiles(new[] { 1, 4793858 });
-
-            Assert.Fail();
-        }
-
-        [Test]
         public void GetProfiles_TwoUidsDefaultFields_TwoProfiles()
         {
             const string url =
