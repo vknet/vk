@@ -22,27 +22,27 @@ namespace VkToolkit.Tests
 
         [Test]
         [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetProfiles_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        public void Get_EmptyAccessToken_ThrowAccessTokenNotSetException()
         {
             var users = new Users(new VkApi());
-            users.GetProfiles(1);
+            users.Get(1);
         }
 
         [Test]
         [ExpectedException(typeof(VkApiException), ExpectedMessage = "The remote name could not be resolved: 'api.vk.com'")]
-        public void GetProfiles_NotAccessToInternet_ThrowVkApiException()
+        public void Get_NotAccessToInternet_ThrowVkApiException()
         {   
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(f => f.GetJson(It.IsAny<string>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
 
             var users = new Users(new VkApi(mockBrowser.Object){AccessToken = "asgsstsfast"});
 
-            users.GetProfiles(1);
+            users.Get(1);
         }
 
         [Test]
         [ExpectedException(typeof(UserAuthorizationFailException), ExpectedMessage = "User authorization failed: invalid access_token.")]
-        public void GetProfiles_WrongAccesToken_Throw_ThrowUserAuthorizationException()
+        public void Get_WrongAccesToken_Throw_ThrowUserAuthorizationException()
         {
             const string json =
                 "{\"error\":{\"error_code\":5,\"error_msg\":\"User authorization failed: invalid access_token.\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"getProfiles\"},{\"key\":\"uid\",\"value\":\"1\"},{\"key\":\"access_token\",\"value\":\"sfastybdsjhdg\"}]}}";
@@ -52,11 +52,11 @@ namespace VkToolkit.Tests
             mockBrowser.Setup(f => f.GetJson(url)).Returns(json);
 
             var users = new Users(new VkApi(mockBrowser.Object){AccessToken = "token"});
-            users.GetProfiles(1);
+            users.Get(1);
         }
 
         [Test]
-        public void GetProfiles_WithSomeFields_FirstNameLastNameEducation()
+        public void Get_WithSomeFields_FirstNameLastNameEducation()
         {
             const string json =
                 "{\"response\":[{\"uid\":1,\"first_name\":\"Павел\",\"last_name\":\"Дуров\",\"university\":\"1\",\"university_name\":\"СПбГУ\",\"faculty\":\"0\",\"faculty_name\":\"\",\"graduation\":\"0\"}]}";
@@ -70,7 +70,7 @@ namespace VkToolkit.Tests
 
             // act
             var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education;
-            Profile p = users.GetProfiles(1, fields);
+            Profile p = users.Get(1, fields);
 
             // assert
             Assert.That(p, Is.Not.Null);
@@ -98,7 +98,7 @@ namespace VkToolkit.Tests
             var users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
 
             // act
-            Profile p = users.GetProfiles(4793858, ProfileFields.Counters);
+            Profile p = users.Get(4793858, ProfileFields.Counters);
 
             // assert
             Assert.That(p, Is.Not.Null);
@@ -131,7 +131,7 @@ namespace VkToolkit.Tests
             var users = new Users(new VkApi(mockBrowser.Object) {AccessToken = "token"});
 
             // act
-            Profile p = users.GetProfiles(4793858);
+            Profile p = users.Get(4793858);
 
             // assert
             Assert.That(p.Uid, Is.EqualTo(4793858));
@@ -154,7 +154,7 @@ namespace VkToolkit.Tests
             var users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
 
             // act
-            Profile p = users.GetProfiles(4793858, ProfileFields.All);
+            Profile p = users.Get(4793858, ProfileFields.All);
 
             // assert
             Assert.That(p, Is.Not.Null);
@@ -259,22 +259,22 @@ namespace VkToolkit.Tests
         
         [Test]
         [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetProfiles_Multiple_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        public void Get_Multiple_EmptyAccessToken_ThrowAccessTokenNotSetException()
         {
             var users = new Users(new VkApi());
-            users.GetProfiles(new long[] {1, 2});
+            users.Get(new long[] {1, 2});
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void GetProfiles_EmptyListOfUids_ThrowArgumentNullException()
+        public void Get_EmptyListOfUids_ThrowArgumentNullException()
         {
             var users = new Users(new VkApi{AccessToken = "token"});
-            users.GetProfiles(null);
+            users.Get(null);
         }
 
         [Test]
-        public void GetProfiles_TwoUidsDefaultFields_TwoProfiles()
+        public void Get_TwoUidsDefaultFields_TwoProfiles()
         {
             const string url =
                 "https://api.vk.com/method/getProfiles?uids=1,4793858&access_token=token";
@@ -287,7 +287,7 @@ namespace VkToolkit.Tests
 
             var users = new Users(new VkApi(browser.Object){AccessToken = "token"});
 
-            var lst = users.GetProfiles(new long[] {1, 4793858}).ToList();
+            var lst = users.Get(new long[] {1, 4793858}).ToList();
 
             Assert.That(lst.Count, Is.EqualTo(2));
             Assert.That(lst[0], Is.Not.Null);
@@ -302,7 +302,7 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        public void GetProfiles_TwoUidsEducationField_TwoProfiles()
+        public void Get_TwoUidsEducationField_TwoProfiles()
         {
             const string url =
                 "https://api.vk.com/method/getProfiles?uids=102674754,5041431&fields=education&access_token=token";
@@ -315,7 +315,7 @@ namespace VkToolkit.Tests
 
             var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
 
-            var lst = users.GetProfiles(new long[] {102674754, 5041431}, ProfileFields.Education).ToList();
+            var lst = users.Get(new long[] {102674754, 5041431}, ProfileFields.Education).ToList();
 
             Assert.That(lst.Count == 2);
             Assert.That(lst[0], Is.Not.Null);

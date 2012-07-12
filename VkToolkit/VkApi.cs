@@ -52,7 +52,7 @@ namespace VkToolkit
         /// <param name="settings">Access rights requested by your application</param>
         /// <param name="display">Type of output page</param>
         [STAThread]
-        public void Authorize(int appId, string email, string password, Enum.Settings settings, Display display)
+        public void Authorize(int appId, string email, string password, Settings settings, Display display)
         {
             Email = email;
             Password = password;
@@ -151,6 +151,8 @@ namespace VkToolkit
                 case 5:
                     throw new UserAuthorizationFailException(message, errorCode);
 
+                case 7:
+                case 15:
                 case 500:
                 case 260:
                     throw new AccessDeniedException(message, errorCode);

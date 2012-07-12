@@ -49,7 +49,7 @@ namespace VkToolkit.Tests
         [Ignore]
         public void Invoke_Users_GetProfile_From_VkApi_NotNull()
         {
-            Assert.That(vk.Users.GetProfiles(0), Is.Not.Null);
+            Assert.That(vk.Users.Get(0), Is.Not.Null);
         }
 
         [Test]
