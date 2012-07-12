@@ -120,6 +120,14 @@ namespace VkToolkit.Utils
             }
         }
 
+        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            dt = dt.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dt;
+        }
+
         public static FriendStatus GetFriendStatus(int status)
         {
             switch (status)
