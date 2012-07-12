@@ -143,7 +143,7 @@ namespace VkToolkit.Tests
         public void Authorize_NoInternet_ThrowVkApiException()
         {
             var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.Authorize(Email, Password)).Throws(new ElementNotFoundException("","", "", null));
+            browser.Setup(m => m.Authorize(Email, Password)).Throws(new VkApiException("Could not load a page."));
 
             var vk = new VkApi(browser.Object);
             vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
@@ -205,10 +205,9 @@ namespace VkToolkit.Tests
             browser.Verify(m => m.Close(), Times.Once());
             browser.Verify(m => m.GoTo(It.IsAny<string>()), Times.Once());
             browser.Verify(m => m.Authorize(Email, Password));
-            browser.Verify(m => m.ContainsText(It.IsAny<string>()), Times.Exactly(2));
-            browser.Verify(m => m.ContainsText(VkApi.LoginSuccessed), Times.Once());
+            browser.Verify(m => m.ContainsText(It.IsAny<string>()), Times.Exactly(3));
+            browser.Verify(m => m.ContainsText(VkApi.LoginSuccessed), Times.Exactly(2));
             browser.Verify(m => m.ContainsText(VkApi.InvalidLoginOrPassword), Times.Once());
         }
-        
     }
 }

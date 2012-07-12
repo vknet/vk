@@ -1,6 +1,6 @@
 ﻿namespace VkToolkit.Exception
 {
-    public class AccessTokenNotSetException : VkApiException
+    public class AccessTokenInvalidException : VkApiException
     {
          
     }

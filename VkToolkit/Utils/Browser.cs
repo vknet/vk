@@ -4,6 +4,7 @@ using System.Net;
 using VkToolkit.Exception;
 using WatiN.Core;
 using WatiN.Core.Constraints;
+using WatiN.Core.Exceptions;
 
 namespace VkToolkit.Utils
 {
@@ -66,9 +67,16 @@ namespace VkToolkit.Utils
 
         public void Authorize(string email, string password)
         {
-            Ie.TextField(Find.ByName("email")).TypeText(email);
-            Ie.TextField(Find.ByName("pass")).TypeText(password);
-            Ie.Button(Find.ById("install_allow")).Click();
+            try
+            {
+                Ie.TextField(Find.ByName("email")).TypeText(email);
+                Ie.TextField(Find.ByName("pass")).TypeText(password);
+                Ie.Button(Find.ById("install_allow")).Click();
+            }
+            catch (ElementNotFoundException ex)
+            {
+                throw new VkApiException("Could not load a page.", ex);
+            }
         }
 
         public TextField TextField(Constraint findBy)
@@ -84,6 +92,18 @@ namespace VkToolkit.Utils
         public bool ContainsText(string text)
         {
             return Ie.ContainsText(text);
+        }
+
+        public void GainAccess()
+        {
+            try
+            {
+                Ie.Button(Find.ById("install_allow")).Click();
+            }
+            catch (ElementNotFoundException ex)
+            {
+                throw new VkApiException("Could not load a page.", ex);
+            }
         }
     }
 }

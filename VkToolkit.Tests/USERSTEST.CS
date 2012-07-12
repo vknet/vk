@@ -21,8 +21,8 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void Get_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new Users(new VkApi());
             users.Get(1);
@@ -86,7 +86,7 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        public void GetProfile_CountersFields_CountersObject()
+        public void Get_CountersFields_CountersObject()
         {
             const string json =
                 "{\"response\":[{\"uid\":4793858,\"first_name\":\"Антон\",\"last_name\":\"Жидков\",\"counters\":{\"albums\":1,\"videos\":100,\"audios\":153,\"notes\":3,\"photos\":54,\"groups\":40,\"friends\":371,\"online_friends\":44,\"user_photos\":164,\"user_videos\":87,\"followers\":1,\"subscriptions\":1}}]}";
@@ -121,7 +121,7 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        public void GetProfile_DefaultFields_UidFirstNameLastName()
+        public void Get_DefaultFields_UidFirstNameLastName()
         {
             const string json = "{\"response\":[{\"uid\":4793858,\"first_name\":\"Антон\",\"last_name\":\"Жидков\"}]}";
             const string url = "https://api.vk.com/method/getProfiles?uid=4793858&access_token=token";
@@ -198,8 +198,8 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetGropus_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetGropus_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new Users(new VkApi());
             users.GetGroups(1);
@@ -258,8 +258,8 @@ namespace VkToolkit.Tests
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void Get_Multiple_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void Get_Multiple_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new Users(new VkApi());
             users.Get(new long[] {1, 2});
@@ -274,7 +274,7 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        public void Get_TwoUidsDefaultFields_TwoProfiles()
+        public void Get_Mutliple_TwoUidsDefaultFields_TwoProfiles()
         {
             const string url =
                 "https://api.vk.com/method/getProfiles?uids=1,4793858&access_token=token";
@@ -342,16 +342,16 @@ namespace VkToolkit.Tests
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetGroupsFull_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetGroupsFull_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
             vk.Users.GetGroupsFull();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetGroupsFull_Multiple_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetGroupsFull_Multiple_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
             vk.Users.GetGroupsFull(new long[]{1, 2});
@@ -438,8 +438,8 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void IsAppUser_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void IsAppUser_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new Users(new VkApi());
             users.IsAppUser(1);
@@ -476,8 +476,8 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetUserBalance_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetUserBalance_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
             vk.Users.GetUserBalance();
@@ -512,8 +512,8 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetUserSettings_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetUserSettings_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
             vk.Users.GetUserSettings(vk.UserId);
@@ -529,14 +529,14 @@ namespace VkToolkit.Tests
             browser.Setup(m => m.GetJson(url)).Returns(json);
 
             var vk = new VkApi(browser.Object) { AccessToken = "token" };
-            int balance = vk.Users.GetUserSettings(1);
+            int settings = vk.Users.GetUserSettings(1);
 
-            Assert.That(balance, Is.EqualTo(2));
+            Assert.That(settings, Is.EqualTo(2));
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void Search_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void Search_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
             int count;

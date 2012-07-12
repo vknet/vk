@@ -62,18 +62,15 @@ namespace VkToolkit
 
             string url = CreateAuthorizeUrl(appId, settings, display);
             Browser.GoTo(url);
+            Browser.Authorize(email, password);
 
-            try
-            {
-                Browser.Authorize(email, password);
-            }
-            catch (ElementNotFoundException ex)
-            {
-                throw new VkApiException("Could not load a page.", ex);
-            }           
-            
             if (Browser.ContainsText(InvalidLoginOrPassword))
                 throw new VkApiAuthorizationException(InvalidLoginOrPassword, email, password);
+
+            // we run our application at first time
+            // we need gain access
+            if (!Browser.ContainsText(LoginSuccessed))
+                Browser.GainAccess();
 
             if (!Browser.ContainsText(LoginSuccessed))
                 throw new VkApiException();
@@ -158,7 +155,7 @@ namespace VkToolkit
                     throw new AccessDeniedException(message, errorCode);
                     
                 default: 
-                    throw new VkApiException("Undefined exception");
+                    throw new VkApiException(message);
             }
         }
 
@@ -166,7 +163,7 @@ namespace VkToolkit
         internal void IfAccessTokenNotDefinedThrowException()
         {
             if (string.IsNullOrEmpty(AccessToken))
-                throw new AccessTokenNotSetException();
+                throw new AccessTokenInvalidException();
         }
         #endregion
     }

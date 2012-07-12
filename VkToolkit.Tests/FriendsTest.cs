@@ -18,8 +18,8 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void Get_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new Friends(new VkApi());
             f.Get(1);
@@ -82,8 +82,8 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new Friends(new VkApi());
             f.GetAppUsers();
@@ -116,17 +116,17 @@ namespace VkToolkit.Tests
 
             var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
 
-            var users = friends.GetAppUsers().ToList();
+            var ids = friends.GetAppUsers().ToList();
 
-            Assert.That(users.Count, Is.EqualTo(3));
-            Assert.That(users[0], Is.EqualTo(15221));
-            Assert.That(users[1], Is.EqualTo(17836));
-            Assert.That(users[2], Is.EqualTo(19194));
+            Assert.That(ids.Count, Is.EqualTo(3));
+            Assert.That(ids[0], Is.EqualTo(15221));
+            Assert.That(ids[1], Is.EqualTo(17836));
+            Assert.That(ids[2], Is.EqualTo(19194));
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetOnline_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new Friends(new VkApi());
             f.GetOnline(1);
@@ -159,19 +159,19 @@ namespace VkToolkit.Tests
 
             var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
 
-            var users = friends.GetOnline(1).ToList();
+            var ids = friends.GetOnline(1).ToList();
 
-            Assert.That(users.Count, Is.EqualTo(5));
-            Assert.That(users[0], Is.EqualTo(5));
-            Assert.That(users[1], Is.EqualTo(467));
-            Assert.That(users[2], Is.EqualTo(2943));
-            Assert.That(users[3], Is.EqualTo(4424));
-            Assert.That(users[4], Is.EqualTo(13033));
+            Assert.That(ids.Count, Is.EqualTo(5));
+            Assert.That(ids[0], Is.EqualTo(5));
+            Assert.That(ids[1], Is.EqualTo(467));
+            Assert.That(ids[2], Is.EqualTo(2943));
+            Assert.That(ids[3], Is.EqualTo(4424));
+            Assert.That(ids[4], Is.EqualTo(13033));
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void GetMutual_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new Friends(new VkApi());
             f.GetMutual(2, 3);
@@ -213,8 +213,8 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenNotSetException))]
-        public void AreFriends_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new Friends(new VkApi());
             f.AreFriends(new long[]{2, 3});
@@ -229,7 +229,7 @@ namespace VkToolkit.Tests
         }
 
         [Test]
-        public void AreFriends_FourTypes_ThrowAccessTokenNotSetException()
+        public void AreFriends_FourTypes_RightFriendStatuses()
         {
             const string url = "https://api.vk.com/method/friends.areFriends?uids=24181068,22911407,155810539,3505305&access_token=token";
             const string json = "{\"response\":[{\"uid\":24181068,\"friend_status\":0},{\"uid\":22911407,\"friend_status\":3},{\"uid\":155810539,\"friend_status\":2},{\"uid\":3505305,\"friend_status\":1}]}";

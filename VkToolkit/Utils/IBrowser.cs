@@ -13,6 +13,7 @@ namespace VkToolkit.Utils
         void GoTo(string url);
         void Close();
         void Authorize(string email, string password);
+        void GainAccess();
 
         // special functions
         TextField TextField(WatiN.Core.Constraints.Constraint findBy);

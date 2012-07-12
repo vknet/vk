@@ -197,7 +197,7 @@ namespace VkToolkit
         /// <param name="uid">User Id</param>
         /// <param name="fields">Fields of the profile (can be combined).</param>
         /// <returns>Profile object.</returns>
-        public Profile Get(int uid, ProfileFields fields = null)
+        public Profile Get(long uid, ProfileFields fields = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
 

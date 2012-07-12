@@ -65,7 +65,7 @@
     <Compile Include="Enum\Settings.cs" />
     <Compile Include="Enum\FriendStatus.cs" />
     <Compile Include="Exception\AccessDeniedException.cs" />
-    <Compile Include="Exception\AccessTokenNotSetException.cs" />
+    <Compile Include="Exception\AccessTokenInvalidException.cs" />
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Friends.cs" />
