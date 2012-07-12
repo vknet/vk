@@ -69,8 +69,11 @@
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Friends.cs" />
+    <Compile Include="Model\Comments.cs" />
     <Compile Include="Model\Counters.cs" />
+    <Compile Include="Model\Geo.cs" />
     <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\Place.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Enum\ResponseType.cs" />
     <Compile Include="Exception\VkApiAuthorizationException.cs" />
