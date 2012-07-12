@@ -17,6 +17,15 @@ namespace VkToolkit
             _vk = vk;
         }
 
+        /// <summary>
+        /// Returns a list of identifiers of the current user's friends or advanced information about the user's friends (when using the fields parameter).
+        /// </summary>
+        /// <param name="uid">User id</param>
+        /// <param name="fields">Profile fields that are necessary to obtain</param>
+        /// <param name="count">Count of records to fetch</param>
+        /// <param name="offset">Recors offset</param>
+        /// <param name="order">Friends order(only for standalone desktop applications) </param>
+        /// <returns>List of users</returns>
         public IEnumerable<Profile> Get(int uid, ProfileFields fields = null, int? count = null, int? offset = null, Order order = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -48,6 +57,10 @@ namespace VkToolkit
             return response.Select(p => Utilities.GetProfileFromJObject((JObject) p)).ToList();
         }
 
+        /// <summary>
+        /// Returns a list of identifiers of the current user's friends that have installed the given application.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<long> GetAppUsers()
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -63,6 +76,11 @@ namespace VkToolkit
             return ids.Select(id => (long) id).ToList();
         }
 
+        /// <summary>
+        /// Get list of ids of the user.
+        /// </summary>
+        /// <param name="uid">User id</param>
+        /// <returns>List of ids.</returns>
         public IEnumerable<long> GetOnline(long uid)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -82,6 +100,12 @@ namespace VkToolkit
 
         }
 
+        /// <summary>
+        /// Get list of ids of mutual friends for both users.
+        /// </summary>
+        /// <param name="targetUid">Target user id</param>
+        /// <param name="sourceUid">Source user id</param>
+        /// <returns></returns>
         public IEnumerable<long> GetMutual(long targetUid, long sourceUid)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -101,6 +125,11 @@ namespace VkToolkit
             return ids.Select(id => (long) id).ToList();
         }
 
+        /// <summary>
+        /// Get info about friends status between current user and another users.
+        /// </summary>
+        /// <param name="uids">List of ids of another users</param>
+        /// <returns>Dictionary, key is user id and value is friend status.</returns>
         public IDictionary<long, FriendStatus> AreFriends(IEnumerable<long> uids)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
