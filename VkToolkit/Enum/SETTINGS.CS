@@ -38,11 +38,11 @@ namespace VkToolkit.Enum
         public static readonly Settings Docs        = new Settings(131072, "docs");
         public static readonly Settings Groups      = new Settings(262144, "groups");
         public static readonly Settings Notifications = new Settings(524288, "notifications");
-        public static readonly Settings Stats       = new Settings(1048576, "stats");
+        public static readonly Settings Statistic       = new Settings(1048576, "stats");
         
         public static readonly Settings All = Notify | Friends | Photos | Audio | Video
             | Docs | Notes | Pages | Status | Wall | Offers | Questions | Groups
-            | Messages | Notifications | Stats | Ads;
+            | Messages | Notifications | Statistic | Ads;
 
         private Settings(int value, string name)
         {

@@ -42,6 +42,7 @@ namespace VkToolkit.Tests
         {
             Assert.That(vk.Users, Is.Not.Null);
             Assert.That(vk.Friends, Is.Not.Null);
+            Assert.That(vk.Status, Is.Not.Null);
             // todo continue later
         }
 

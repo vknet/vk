@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VkToolkit.Categories;
 using VkToolkit.Enum;
 using VkToolkit.Exception;
 using VkToolkit.Utils;
-using WatiN.Core.Exceptions;
 
 namespace VkToolkit
 {
@@ -24,6 +24,7 @@ namespace VkToolkit
 
         public Users Users { get; private set; }
         public Friends Friends { get; private set; }
+        public StatusCategory Status { get; private set; }
 
         private const string MethodPrefix = "https://api.vk.com/method/";
         internal static string InvalidLoginOrPassword = "Invalid login or password";
@@ -41,6 +42,7 @@ namespace VkToolkit
             // set function's categories
             Users = new Users(this);
             Friends = new Friends(this);
+            Status = new StatusCategory(this);
         }
 
         /// <summary>
@@ -93,6 +95,7 @@ namespace VkToolkit
             Uri successUrl = Browser.Uri;
             string[] parts = successUrl.Fragment.Split('&');
 
+            // todo IndexOutOfRangeException
             AccessToken = parts[0].Split('=')[1];
             ExpiresIn = parts[1].Split('=')[1];
             try
@@ -164,10 +167,12 @@ namespace VkToolkit
                 case 5:
                     throw new UserAuthorizationFailException(message, errorCode);
 
+                
                 case 7:
                 case 15:
-                case 500:
+                case 221:
                 case 260:
+                case 500:
                     throw new AccessDeniedException(message, errorCode);
                     
                 default: 

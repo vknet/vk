@@ -9,6 +9,26 @@ namespace VkToolkit.Utils
 {
     public static class Utilities
     {
+        public static Audio GetAudioFromJObject(JObject audio)
+        {
+            // todo case when album id is not null
+            var output = new Audio
+                             {
+                                 Id = (long)audio["aid"],
+                                 OwnerId = (long)audio["owner_id"],
+                                 Duration = (int)audio["duration"],
+                                 Artist = (string)audio["artist"],
+                                 Title = (string)audio["title"],
+                                 Url = (string)audio["url"],
+                                 Performer = (string) audio["performer"]
+                             };
+
+            if (audio["lyrics_id"] != null)
+                output.LyricsId = Convert.ToInt64((string) audio["lyrics_id"]);
+            
+            return output;
+        }
+
         public static Profile GetProfileFromJObject(JObject current)
         {
             var profile = new Profile

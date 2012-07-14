@@ -47,7 +47,7 @@ namespace VkToolkit.Tests.Enum
             Assert.That(Settings.Docs.Value, Is.EqualTo(131072));
             Assert.That(Settings.Groups.Value, Is.EqualTo(262144));
             Assert.That(Settings.Notifications.Value, Is.EqualTo(524288));
-            Assert.That(Settings.Stats.Value, Is.EqualTo(1048576));
+            Assert.That(Settings.Statistic.Value, Is.EqualTo(1048576));
         }
 
         [Test]
