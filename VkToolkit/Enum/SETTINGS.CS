@@ -6,35 +6,48 @@ namespace VkToolkit.Enum
     public sealed class Settings
     {
         private readonly string _name;
-        private readonly int _value;
+        private int _value;
+        public int Value
+        { 
+            get
+            {
+                return _scopes != null && _scopes.Any()
+                           ? _scopes.Sum(s => s.Value)
+                           : _value;
+            } 
+            
+            private set { _value = value; }
+        }
         private readonly IList<Settings> _scopes;
 
-        public static readonly Settings Notify = new Settings(1, "notify");
-        public static readonly Settings Friends = new Settings(2, "friends");
-        public static readonly Settings Photos = new Settings(3, "photos");
-        public static readonly Settings Audio = new Settings(4, "audio");
-        public static readonly Settings Video = new Settings(5, "video");
-        public static readonly Settings Docs = new Settings(6, "docs");
-        public static readonly Settings Notes = new Settings(7, "notes");
-        public static readonly Settings Pages = new Settings(8, "pages");
-        public static readonly Settings Status = new Settings(9, "status");
-        public static readonly Settings Wall = new Settings(10, "wall");
-        public static readonly Settings Offers = new Settings(11, "offers");
-        public static readonly Settings Questions = new Settings(12, "questions");
-        public static readonly Settings Groups = new Settings(13, "groups");
-        public static readonly Settings Messages = new Settings(14, "messages");
-        public static readonly Settings Notifications = new Settings(15, "notifications");
-        public static readonly Settings Stats = new Settings(16, "stats");
-        public static readonly Settings Ads = new Settings(17, "ads");
-        public static readonly Settings Offline = new Settings(18, "offline");
+        public static readonly Settings Notify      = new Settings(1, "notify");
+        public static readonly Settings Friends     = new Settings(2, "friends");
+        public static readonly Settings Photos      = new Settings(4, "photos");
+        public static readonly Settings Audio       = new Settings(8, "audio");
+        public static readonly Settings Video       = new Settings(16, "video");
+        public static readonly Settings Offers      = new Settings(32, "offers");
+        public static readonly Settings Questions   = new Settings(64, "questions");
+        public static readonly Settings Pages       = new Settings(128, "pages");
+        public static readonly Settings AddLinkToLeftMenu = new Settings(256, "");
+        public static readonly Settings AddLinkToWallPost = new Settings(512, "");
+        public static readonly Settings Status      = new Settings(1024, "status");
+        public static readonly Settings Notes       = new Settings(2048, "notes");
+        public static readonly Settings Messages    = new Settings(4096, "messages");
+        public static readonly Settings Wall        = new Settings(8192, "wall");
+        public static readonly Settings Ads         = new Settings(32768, "ads");
+        public static readonly Settings Docs        = new Settings(131072, "docs");
+        public static readonly Settings Groups      = new Settings(262144, "groups");
+        public static readonly Settings Notifications = new Settings(524288, "notifications");
+        public static readonly Settings Stats       = new Settings(1048576, "stats");
+        
         public static readonly Settings All = Notify | Friends | Photos | Audio | Video
             | Docs | Notes | Pages | Status | Wall | Offers | Questions | Groups
-            | Messages | Notifications | Stats | Ads | Offline;
+            | Messages | Notifications | Stats | Ads;
 
         private Settings(int value, string name)
         {
             _name = name;
-            _value = value;
+            Value = value;
         }
 
         private Settings(Settings s1, Settings s2)
@@ -45,13 +58,13 @@ namespace VkToolkit.Enum
             {
                 foreach (var s in s1._scopes)
                 {
-                    if (!_scopes.Any(m => m._value == s._value))
+                    if (!_scopes.Any(m => m.Value == s.Value))
                         _scopes.Add(s);
                 }
             }
             else
             {
-                if (!_scopes.Any(m => m._value == s1._value))
+                if (!_scopes.Any(m => m.Value == s1.Value))
                     _scopes.Add(s1);
             }
 
@@ -59,13 +72,13 @@ namespace VkToolkit.Enum
             {
                 foreach (var s in s2._scopes)
                 {
-                    if (!_scopes.Any(m => m._value == s._value))
+                    if (!_scopes.Any(m => m.Value == s.Value))
                         _scopes.Add(s);
                 }
             }
             else
             {
-                if (!_scopes.Any(m => m._value == s2._value))
+                if (!_scopes.Any(m => m.Value == s2.Value))
                     _scopes.Add(s2);
             }
         }
@@ -83,6 +96,8 @@ namespace VkToolkit.Enum
             string output = "";
             for (int i = 0; i < _scopes.Count; i++)
             {
+                if (string.IsNullOrEmpty(_scopes[i]._name)) continue;
+                    
                 output += _scopes[i]._name;
                 if (i != _scopes.Count - 1)
                     output += ",";
