@@ -25,6 +25,8 @@ namespace VkToolkit
         public Users Users { get; private set; }
         public Friends Friends { get; private set; }
         public StatusCategory Status { get; private set; }
+        public MessagesCategory Messages { get; private set; }
+        public GroupsCategory Groups { get; private set; }
 
         private const string MethodPrefix = "https://api.vk.com/method/";
         internal static string InvalidLoginOrPassword = "Invalid login or password";
@@ -43,6 +45,8 @@ namespace VkToolkit
             Users = new Users(this);
             Friends = new Friends(this);
             Status = new StatusCategory(this);
+            Messages = new MessagesCategory(this);
+            Groups = new GroupsCategory(this);
         }
 
         /// <summary>
@@ -166,7 +170,6 @@ namespace VkToolkit
             {
                 case 5:
                     throw new UserAuthorizationFailException(message, errorCode);
-
                 
                 case 7:
                 case 15:
