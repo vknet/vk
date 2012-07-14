@@ -58,14 +58,25 @@ namespace VkToolkit
             Password = password;
             AppId = appId;
 
-            Browser.ClearCookies();
-
             string url = CreateAuthorizeUrl(appId, settings, display);
+
+            Browser.ClearCookies();
             Browser.GoTo(url);
-            Browser.Authorize(email, password);
+            try
+            {
+                Browser.Authorize(email, password);
+            }
+            catch(VkApiException)
+            {
+                Browser.Close();
+                throw;
+            }
 
             if (Browser.ContainsText(InvalidLoginOrPassword))
+            {
+                Browser.Close();
                 throw new VkApiAuthorizationException(InvalidLoginOrPassword, email, password);
+            }
 
             // we run our application at first time
             // we need gain access
@@ -73,7 +84,10 @@ namespace VkToolkit
                 Browser.GainAccess();
 
             if (!Browser.ContainsText(LoginSuccessed))
+            {
+                Browser.Close();
                 throw new VkApiException();
+            }
 
             // parse values from url
             Uri successUrl = Browser.Uri;
@@ -90,8 +104,10 @@ namespace VkToolkit
                 UserId = -1;
                 throw new VkApiException("UserId is not integer value.", ex);
             }
-            
-            Browser.Close();
+            finally
+            {
+                Browser.Close();    
+            }
         }
 
         public string GetApiUrl(string method, IDictionary<string, string> values)
