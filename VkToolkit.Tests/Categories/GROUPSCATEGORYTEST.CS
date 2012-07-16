@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using VkToolkit.Categories;
+using VkToolkit.Enum;
 using VkToolkit.Exception;
 using VkToolkit.Utils;
 
@@ -159,7 +162,8 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-            Assert.Fail();
+            var groups = new GroupsCategory(new VkApi());
+            groups.GetById(1);
         }
 
         [Test]
@@ -182,5 +186,168 @@ namespace VkToolkit.Tests.Categories
         {
             Assert.Fail();
         }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+        {
+            var groups = new GroupsCategory(new VkApi());
+            groups.GetById(2);
+        }
+
+        [Test]
+        public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
+        {
+            const string url = "https://api.vk.com/method/groups.getById?gid=17683660&access_token=token";
+            const string json =
+                "{\"response\":[{\"gid\":17683660,\"name\":\"Творческие каникулы ART CAMP с 21 по 29 июля\",\"screen_name\":\"club17683660\",\"is_closed\":0,\"type\":\"event\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/e_f700c806.jpg\",\"photo_medium\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/d_26f909c0.jpg\",\"photo_big\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/a_54e3c8fb.jpg\"}]}";
+
+            var cat = GetMockedGroupCategory(url, json);
+            var g = cat.GetById(17683660);
+
+            Assert.That(g.Id, Is.EqualTo(17683660));
+            Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
+            Assert.That(g.ScreenName, Is.EqualTo("club17683660"));
+            Assert.That(g.IsClosed, Is.False);
+            Assert.That(g.IsAdmin, Is.False);
+            Assert.That(g.Type, Is.EqualTo(GroupType.Event));
+            Assert.That(g.IsMember, Is.False);
+            Assert.That(g.Photo, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+            Assert.That(g.PhotoMedium, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+            Assert.That(g.PhotoBig, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidParamException))]
+        public void GetById_InvalidGid_ThrowInvalidParamException()
+        {
+            const string url = "https://api.vk.com/method/groups.getById?gid=-1&access_token=token";
+            const string json =
+                "{\"error\":{\"error_code\":125,\"error_msg\":\"Invalid group id\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"groups.getById\"},{\"key\":\"gid\",\"value\":\"17683660,637247\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
+            var cat = GetMockedGroupCategory(url, json);
+
+            cat.GetById(-1);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidParamException))]
+        public void GetById_Multiple_InvalidGids_ThrowInvalidParamException()
+        {
+            const string url = "https://api.vk.com/method/groups.getById?gids=-1&access_token=token";
+            const string json = "{\"error\":{\"error_code\":125,\"error_msg\":\"Invalid group id\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"groups.getById\"},{\"key\":\"gids\",\"value\":\"-1\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
+
+            var cat = GetMockedGroupCategory(url, json);
+
+            cat.GetById(new long[]{-1});
+        }
+
+        [Test]
+        public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
+        {
+            const string url = "https://api.vk.com/method/groups.getById?gids=17683660,637247&access_token=token";
+            const string json =
+                "{\"response\":[{\"gid\":17683660,\"name\":\"Творческие каникулы ART CAMP с 21 по 29 июля\",\"screen_name\":\"club17683660\",\"is_closed\":0,\"type\":\"event\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/e_f700c806.jpg\",\"photo_medium\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/d_26f909c0.jpg\",\"photo_big\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/a_54e3c8fb.jpg\"},{\"gid\":637247,\"name\":\"Чак Паланик - Сумасшедший гений литературы\",\"screen_name\":\"club637247\",\"is_closed\":1,\"type\":\"group\",\"is_admin\":0,\"is_member\":1,\"photo\":\"http:\\/\\/cs11418.userapi.com\\/g637247\\/c_f597d0f8.jpg\",\"photo_medium\":\"http:\\/\\/cs11418.userapi.com\\/g637247\\/b_898ae7f1.jpg\",\"photo_big\":\"http:\\/\\/cs11418.userapi.com\\/g637247\\/a_6be98c68.jpg\"}]}";
+
+            var cat = GetMockedGroupCategory(url, json);
+            var groups = cat.GetById(new long[] {17683660, 637247}).ToList();
+
+            Assert.That(groups.Count == 2);
+            Assert.That(groups[0].Id, Is.EqualTo(17683660));
+            Assert.That(groups[0].Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
+            Assert.That(groups[0].ScreenName, Is.EqualTo("club17683660"));
+            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsAdmin, Is.False);
+            Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
+            Assert.That(groups[0].IsMember, Is.False);
+            Assert.That(groups[0].Photo, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+
+            Assert.That(groups[1].Id, Is.EqualTo(637247));
+            Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
+            Assert.That(groups[1].ScreenName, Is.EqualTo("club637247"));
+            Assert.That(groups[1].IsClosed, Is.True);
+            Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
+            Assert.That(groups[1].IsAdmin, Is.False);
+            Assert.That(groups[1].IsMember, Is.True);
+            Assert.That(groups[1].Photo, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
+            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
+            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
+
+        }
+
+        [Test]
+        public void GetById_Multiple_NormalCaseAllFields_ReturnTwoItems()
+        {
+            const string url =
+                "https://api.vk.com/method/groups.getById?gids=17683660,637247&fields=city,country,place,description,wiki_page,start_date,end_date&access_token=token";
+            const string json =
+                "{\"response\":[{\"gid\":17683660,\"name\":\"Творческие каникулы ART CAMP с 21 по 29 июля\",\"screen_name\":\"club17683660\",\"is_closed\":0,\"city\":95,\"country\":1,\"description\":\"Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21...\",\"start_date\":\"1342850400\",\"type\":\"event\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/e_f700c806.jpg\",\"photo_medium\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/d_26f909c0.jpg\",\"photo_big\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/a_54e3c8fb.jpg\"},{\"gid\":637247,\"name\":\"Чак Паланик - Сумасшедший гений литературы\",\"screen_name\":\"club637247\",\"is_closed\":1,\"city\":95,\"country\":1,\"description\":\"Кто он, этот неординарный и талантливый человек? Его творчество спо...\",\"wiki_page\":\"Chuk Palahniuk\",\"start_date\":\"0\",\"type\":\"group\",\"is_admin\":0,\"is_member\":1,\"photo\":\"http:\\/\\/cs11418.userapi.com\\/g637247\\/c_f597d0f8.jpg\",\"photo_medium\":\"http:\\/\\/cs11418.userapi.com\\/g637247\\/b_898ae7f1.jpg\",\"photo_big\":\"http:\\/\\/cs11418.userapi.com\\/g637247\\/a_6be98c68.jpg\"}]}";
+
+            var category = GetMockedGroupCategory(url, json);
+
+            var groups = category.GetById(new long[] { 17683660, 637247 }, GroupsFields.All).ToList();
+
+            Assert.That(groups.Count, Is.EqualTo(2));
+            Assert.That(groups[0].Id, Is.EqualTo(17683660));
+            Assert.That(groups[0].Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
+            Assert.That(groups[0].ScreenName, Is.EqualTo("club17683660"));
+            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsAdmin, Is.False);
+            Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
+            Assert.That(groups[0].IsMember, Is.False);
+            Assert.That(groups[0].Photo, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+            Assert.That(groups[0].CityId, Is.EqualTo(95));
+            Assert.That(groups[0].CountryId, Is.EqualTo(1));
+            Assert.That(groups[0].Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21..."));
+            Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
+
+            Assert.That(groups[1].Id, Is.EqualTo(637247));
+            Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
+            Assert.That(groups[1].ScreenName, Is.EqualTo("club637247"));
+            Assert.That(groups[1].IsClosed, Is.True);
+            Assert.That(groups[1].IsAdmin, Is.False);
+            Assert.That(groups[1].WikiPage, Is.EqualTo("Chuk Palahniuk"));
+            Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
+            Assert.That(groups[1].IsMember, Is.True);
+            Assert.That(groups[1].Photo, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
+            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
+            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
+            Assert.That(groups[1].CityId, Is.EqualTo(95));
+            Assert.That(groups[1].CountryId, Is.EqualTo(1));
+            Assert.That(groups[1].Description, Is.EqualTo("Кто он, этот неординарный и талантливый человек? Его творчество спо..."));
+            Assert.That(groups[1].StartDate, Is.Null);
+        }
+
+        [Test]
+        public void GetById_NormalCaseAllFields_ReturnTwoItems()
+        {
+            const string url =
+                "https://api.vk.com/method/groups.getById?gid=17683660&fields=city,country,place,description,wiki_page,start_date,end_date&access_token=token";
+            const string json =
+                "{\"response\":[{\"gid\":17683660,\"name\":\"Творческие каникулы ART CAMP с 21 по 29 июля\",\"screen_name\":\"club17683660\",\"is_closed\":0,\"city\":95,\"country\":1,\"description\":\"Творческие каникулы ART CAMP с 21 по 29 июля<br>....\",\"start_date\":\"1342850400\",\"type\":\"event\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/e_f700c806.jpg\",\"photo_medium\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/d_26f909c0.jpg\",\"photo_big\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/a_54e3c8fb.jpg\"}]}";
+
+            var category = GetMockedGroupCategory(url, json);
+
+            var g = category.GetById(17683660,GroupsFields.All);
+
+            Assert.That(g.Id, Is.EqualTo(17683660));
+            Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
+            Assert.That(g.ScreenName, Is.EqualTo("club17683660"));
+            Assert.That(g.IsClosed, Is.False);
+            Assert.That(g.IsAdmin, Is.False);
+            Assert.That(g.Type, Is.EqualTo(GroupType.Event));
+            Assert.That(g.IsMember, Is.False);
+            Assert.That(g.Photo, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+            Assert.That(g.PhotoMedium, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+            Assert.That(g.PhotoBig, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+            Assert.That(g.CityId, Is.EqualTo(95));
+            Assert.That(g.CountryId, Is.EqualTo(1));
+            Assert.That(g.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
+            Assert.That(g.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
+        }
+
     }
 }

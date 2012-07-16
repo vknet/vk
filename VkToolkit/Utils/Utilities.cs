@@ -100,16 +100,33 @@ namespace VkToolkit.Utils
                 PhotoMedium = (string)group["photo_medium"],
                 PhotoBig = (string)group["photo_big"],
                 ScreenName = (string)group["screen_name"],
+                Description = (string)group["description"],
+                WikiPage = (string)group["wiki_page"]
             };
 
             var isClosed = (int?)group["is_closed"];
             var isAdmin = (int?)group["is_admin"];
+            var isMember = (int?) group["is_member"];
+
+            output.CityId = (long?)group["city"];
+            output.CountryId = (long?)group["country"];
+
+            long datetime;
+            if (long.TryParse((string)group["start_date"], out datetime) && datetime > 0)
+                output.StartDate = UnixTimeStampToDateTime(datetime);
 
             if (isClosed.HasValue)
             {
                 output.IsClosed = isClosed.Value == 1;
             }
 
+            if (isMember.HasValue)
+            {
+                output.IsMember = isMember.Value == 1;
+            }
+            //else
+            //    output.IsMember = false;
+            
             if (isAdmin.HasValue)
             {
                 output.IsAdmin = isAdmin.Value == 1;
@@ -140,7 +157,7 @@ namespace VkToolkit.Utils
             }
         }
 
-        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        public static DateTime UnixTimeStampToDateTime(long unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
             DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);

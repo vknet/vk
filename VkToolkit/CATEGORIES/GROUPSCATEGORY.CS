@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
+using VkToolkit.Enum;
+using VkToolkit.Model;
+using VkToolkit.Utils;
 
 namespace VkToolkit.Categories
 {
@@ -48,26 +52,65 @@ namespace VkToolkit.Categories
 
         public void Get()
         {
+            _vk.IfAccessTokenNotDefinedThrowException();
             throw new NotImplementedException();
         }
 
-        public void GetById()
+        public IEnumerable<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("gids", Utilities.GetEnumerationAsString(gids));
+
+            if (fields != null)
+                values.Add("fields", fields.ToString());
+
+            string url = _vk.GetApiUrl("groups.getById", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            return response.Select(g => Utilities.GetGroupFromJObject((JObject)g)).ToList();
+        }
+
+        public Group GetById(long gid, GroupsFields fields = null)
+        {
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("gid", gid + "");
+
+            if (fields != null)
+                values.Add("fields", fields.ToString());
+
+            string url = _vk.GetApiUrl("groups.getById", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+            
+            JObject obj = JObject.Parse(json);
+            return Utilities.GetGroupFromJObject((JObject)obj["response"][0]);
         }
 
         public void IsMember()
         {
+            _vk.IfAccessTokenNotDefinedThrowException();
             throw new NotImplementedException();
         }
 
         public void GetMembers()
         {
+            _vk.IfAccessTokenNotDefinedThrowException();
             throw new NotImplementedException();
         }
 
         public void Search()
         {
+            _vk.IfAccessTokenNotDefinedThrowException();
             throw new NotImplementedException();
         }
     }

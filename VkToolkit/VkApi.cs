@@ -163,20 +163,23 @@ namespace VkToolkit
              
             var response = obj["error"];
 
-            var errorCode = (int) response["error_code"];
+            var code = (int) response["error_code"];
             var message = (string) response["error_msg"];
 
-            switch (errorCode)
+            switch (code)
             {
                 case 5:
-                    throw new UserAuthorizationFailException(message, errorCode);
+                    throw new UserAuthorizationFailException(message, code);
+
+                case 125:
+                    throw new InvalidParamException(message, code);
                 
                 case 7:
                 case 15:
                 case 221:
                 case 260:
                 case 500:
-                    throw new AccessDeniedException(message, errorCode);
+                    throw new AccessDeniedException(message, code);
                     
                 default: 
                     throw new VkApiException(message);
