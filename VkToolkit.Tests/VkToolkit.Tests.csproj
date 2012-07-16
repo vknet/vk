@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="Categories\GroupsCategoryTest.cs" />
     <Compile Include="Categories\StatusCategoryTest.cs" />
+    <Compile Include="Enum\GroupsFieldsTest.cs" />
+    <Compile Include="Enum\GroupsFiltersTest.cs" />
     <Compile Include="Enum\ProfileFieldsTest.cs" />
     <Compile Include="Enum\SettingsTest.cs" />
     <Compile Include="FriendsTest.cs" />

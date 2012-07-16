@@ -93,6 +93,5 @@ namespace VkToolkit.Enum
 
             return output;
         }
-
     }
 }
