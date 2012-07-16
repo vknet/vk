@@ -74,7 +74,6 @@ namespace VkToolkit.Categories
             _vk.IfErrorThrowException(json);
 
             JObject obj = JObject.Parse(json);
-
             return (int)obj["response"] == 1;
         }
     }

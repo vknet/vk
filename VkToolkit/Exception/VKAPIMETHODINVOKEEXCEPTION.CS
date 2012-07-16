@@ -3,6 +3,12 @@
     public class VkApiMethodInvokeException : VkApiException
     {
         public int ErrorCode { get; private set; }
+
+        public VkApiMethodInvokeException()
+        {
+            
+        }
+
         public VkApiMethodInvokeException(string message) : base(message)
         {
             

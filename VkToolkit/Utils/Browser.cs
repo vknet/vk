@@ -29,7 +29,7 @@ namespace VkToolkit.Utils
 
         public string GetJson(string url)
         {
-            WebRequest request = WebRequest.Create(url);
+            WebRequest request = WebRequest.Create(new Uri(url));
             WebResponse response;
 
             try
@@ -57,7 +57,7 @@ namespace VkToolkit.Utils
 
         public void GoTo(string url)
         {
-            Ie.GoTo(url);
+            Ie.GoTo(new Uri(url));
         }
 
         public void Close()

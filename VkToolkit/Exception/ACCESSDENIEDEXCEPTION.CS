@@ -2,6 +2,11 @@
 {
     public class AccessDeniedException : VkApiMethodInvokeException
     {
+        public AccessDeniedException()
+        {
+            
+        }
+
         public AccessDeniedException(string message) : base(message)
         {
             

@@ -1,4 +1,6 @@
-﻿namespace VkToolkit.Model
+﻿using System;
+
+namespace VkToolkit.Model
 {
     public class Audio
     {
@@ -7,7 +9,7 @@
         public string Artist { get; set; }
         public string Title { get; set; }
         public int Duration { get; set; }
-        public string Url { get; set; }
+        public Uri Url { get; set; }
         public long? LyricsId { get; set; }
         public long? AlbumId { get; set; }
         public string Performer { get; set; }

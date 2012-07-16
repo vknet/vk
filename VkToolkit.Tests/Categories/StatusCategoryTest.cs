@@ -51,7 +51,7 @@ namespace VkToolkit.Tests.Categories
         public void Set_AccessDenied_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/status.set?text=test&access_token=token";
-            const string json = "{\"error\":{\"error_code\":7,\"error_msg\":\"Permission to perform this action is denied\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"status.set\"},{\"key\":\"text\",\"value\":\"test\"},{\"key\":\"access_token\",\"value\":\"bf0403a1ef4f5ca4bf52913da3bf60deb0bbf4dbf4d25a1a7dba6b3476c3192\"}]}}";
+            const string json = "{\"error\":{\"error_code\":7,\"error_msg\":\"Permission to perform this action is denied\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"status.set\"},{\"key\":\"text\",\"value\":\"test\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
 
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json);
@@ -157,7 +157,7 @@ namespace VkToolkit.Tests.Categories
             Assert.That(s.Audio.Artist, Is.EqualTo("Тараканы!"));
             Assert.That(s.Audio.Title, Is.EqualTo("Собачье Сердце"));
             Assert.That(s.Audio.Duration, Is.EqualTo(230));
-            Assert.That(s.Audio.Url, Is.EqualTo("http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
+            Assert.That(s.Audio.Url.OriginalString, Is.EqualTo("http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
             Assert.That(s.Audio.Performer, Is.EqualTo("Тараканы!"));
             Assert.That(s.Audio.LyricsId, Is.EqualTo(7985406));
             Assert.That(s.Audio.AlbumId, Is.Null);

@@ -19,7 +19,7 @@ namespace VkToolkit.Utils
                                  Duration = (int)audio["duration"],
                                  Artist = (string)audio["artist"],
                                  Title = (string)audio["title"],
-                                 Url = (string)audio["url"],
+                                 Url = new Uri((string)audio["url"]),
                                  Performer = (string) audio["performer"]
                              };
 
