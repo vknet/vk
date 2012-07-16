@@ -6,7 +6,7 @@ namespace VkToolkit.Enum
     /// <summary>
     /// Описание полей, используемых в параметре fields в методах Groups.get и Groups.getById. 
     /// </summary>
-    public class GroupsFields
+    public sealed class GroupsFields
     {
         private readonly string _name;
         private readonly int _value;

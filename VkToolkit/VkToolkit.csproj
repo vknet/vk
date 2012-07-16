@@ -64,6 +64,7 @@
     <Compile Include="Enum\Display.cs" />
     <Compile Include="Enum\GroupsFields.cs" />
     <Compile Include="Enum\GroupsFilters.cs" />
+    <Compile Include="Enum\GroupsSort.cs" />
     <Compile Include="Enum\GroupType.cs" />
     <Compile Include="Enum\Order.cs" />
     <Compile Include="Enum\ProfileFields.cs" />

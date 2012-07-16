@@ -177,7 +177,71 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetMembers_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-            Assert.Fail();
+            var groups = new GroupsCategory(new VkApi());
+            int totalCount;
+            groups.GetMembers(1, out totalCount);
+        }
+
+        [Test]
+        public void GetMembers_NormalCase_ListOfUsesIds()
+        {
+            const string url = "https://api.vk.com/method/groups.getMembers?gid=17683660&access_token=token";
+            const string json =
+                "{\"response\":{\"count\":861,\"users\":[116446865,485839,23483719,3428459,153698746,16080868,5054657,38690458]}}";
+
+            var groups = GetMockedGroupCategory(url, json);
+
+            int totalCount;
+            var ids = groups.GetMembers(17683660, out totalCount).ToList();
+
+            Assert.That(totalCount, Is.EqualTo(861));
+            Assert.That(ids.Count, Is.EqualTo(8));
+
+            Assert.That(ids[0], Is.EqualTo(116446865));
+            Assert.That(ids[1], Is.EqualTo(485839));
+            Assert.That(ids[2], Is.EqualTo(23483719));
+            Assert.That(ids[3], Is.EqualTo(3428459));
+            Assert.That(ids[4], Is.EqualTo(153698746));
+            Assert.That(ids[5], Is.EqualTo(16080868));
+            Assert.That(ids[6], Is.EqualTo(5054657));
+            Assert.That(ids[7], Is.EqualTo(38690458));
+        }
+
+        [Test]
+        public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
+        {
+            const string url = "https://api.vk.com/method/groups.getMembers?gid=17683660&count=7&offset=15&sort=id_asc&access_token=token";
+            const string json =
+                "{\"response\":{\"count\":861,\"users\":[1129147,1137997,1201582,1205554,1220166,1238937,1239796]}}";
+
+            var groups = GetMockedGroupCategory(url, json);
+            int totalCount;
+            var ids = groups.GetMembers(17683660, out totalCount, 7, 15, GroupsSort.IdAsc).ToList();
+
+            Assert.That(totalCount, Is.EqualTo(861));
+            Assert.That(ids.Count, Is.EqualTo(7));
+
+            Assert.That(ids[0], Is.EqualTo(1129147));
+            Assert.That(ids[1], Is.EqualTo(1137997));
+            Assert.That(ids[2], Is.EqualTo(1201582));
+            Assert.That(ids[3], Is.EqualTo(1205554));
+            Assert.That(ids[4], Is.EqualTo(1220166));
+            Assert.That(ids[5], Is.EqualTo(1238937));
+            Assert.That(ids[6], Is.EqualTo(1239796));
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidParamException))]
+        public void GetMembers_InvalidGid_ThrowInvalidParamException()
+        {
+            const string url = "https://api.vk.com/method/groups.getMembers?gid=-1&access_token=token";
+            const string json =
+                "{\"error\":{\"error_code\":125,\"error_msg\":\"Invalid group id\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"groups.getMembers\"},{\"key\":\"gid\",\"value\":\"-1\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
+
+            var groups = GetMockedGroupCategory(url, json);
+
+            int totalCount;
+            groups.GetMembers(-1, out totalCount);
         }
 
         [Test]
@@ -194,7 +258,7 @@ namespace VkToolkit.Tests.Categories
             var groups = new GroupsCategory(new VkApi());
             groups.GetById(2);
         }
-
+       
         [Test]
         public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
         {
@@ -330,7 +394,6 @@ namespace VkToolkit.Tests.Categories
                 "{\"response\":[{\"gid\":17683660,\"name\":\"Творческие каникулы ART CAMP с 21 по 29 июля\",\"screen_name\":\"club17683660\",\"is_closed\":0,\"city\":95,\"country\":1,\"description\":\"Творческие каникулы ART CAMP с 21 по 29 июля<br>....\",\"start_date\":\"1342850400\",\"type\":\"event\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/e_f700c806.jpg\",\"photo_medium\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/d_26f909c0.jpg\",\"photo_big\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/a_54e3c8fb.jpg\"}]}";
 
             var category = GetMockedGroupCategory(url, json);
-
             var g = category.GetById(17683660,GroupsFields.All);
 
             Assert.That(g.Id, Is.EqualTo(17683660));

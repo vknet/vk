@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace VkToolkit.Enum
 {
-    public class GroupsFilters
+    public sealed class GroupsFilters
     {
         private readonly string _name;
         private readonly int _value;

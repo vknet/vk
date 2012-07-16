@@ -96,13 +96,39 @@ namespace VkToolkit.Categories
             return Utilities.GetGroupFromJObject((JObject)obj["response"][0]);
         }
 
-        public void IsMember()
+        public IEnumerable<long> GetMembers(long gid, out int itemsCount, int? count = null, int? offset = null, GroupsSort sort = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
+
+
+            var values = new Dictionary<string, string>();
+            values.Add("gid", gid + "");
+
+            if (count.HasValue && count.Value > 0 && count.Value < 1000)
+                values.Add("count", count.Value + "");
+
+            if (offset.HasValue && offset.Value > 0)
+                values.Add("offset", offset + "");
+
+            if (sort != null)
+                values.Add("sort", sort.ToString());
+
+            string url = _vk.GetApiUrl("groups.getMembers", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = obj["response"];
+
+            itemsCount = (int)response["count"];
+
+            var ids = (JArray)response["users"];
+
+            return ids.Select(id => (long)id).ToList();
         }
 
-        public void GetMembers()
+        public void IsMember()
         {
             _vk.IfAccessTokenNotDefinedThrowException();
             throw new NotImplementedException();
