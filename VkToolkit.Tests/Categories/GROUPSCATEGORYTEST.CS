@@ -2,7 +2,6 @@
 using Moq;
 using NUnit.Framework;
 using VkToolkit.Categories;
-using VkToolkit.Enum;
 using VkToolkit.Exception;
 using VkToolkit.Utils;
 
@@ -147,6 +146,41 @@ namespace VkToolkit.Tests.Categories
 
             var groups = GetMockedGroupCategory(url, json);
             groups.Leave(1);
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetMembers_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+        {
+            Assert.Fail();
         }
     }
 }

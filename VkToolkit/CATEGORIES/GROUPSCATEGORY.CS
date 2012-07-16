@@ -45,5 +45,30 @@ namespace VkToolkit.Categories
             JObject obj = JObject.Parse(json);
             return (int)obj["response"] == 1;
         }
+
+        public void Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetById()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void IsMember()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetMembers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Search()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
