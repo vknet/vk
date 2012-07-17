@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -13,9 +12,6 @@ namespace VkToolkit.Tests.Categories
     [TestFixture]
     public class GroupsCategoryTest
     {   
-        // join
-        // уже есть в группе
-
         [SetUp]
         public void SetUp()
         {
@@ -369,7 +365,116 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-            Assert.Fail();
+            int totalCount;
+            var groups = new GroupsCategory(new VkApi());
+            groups.Search("Music", out totalCount);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidParamException), ExpectedMessage = "Query can not be null or empty!")]
+        public void Search_EmptyQuery_ThrowInvalidParamException()
+        {
+            int totalCount;
+            var groups = new GroupsCategory(new VkApi(){AccessToken = "token"});
+            groups.Search("   ", out totalCount);
+        }
+
+        [Test]
+        public void Search_DefaultCase_ListOfGroups()
+        {
+            const string url = "https://api.vk.com/method/groups.search?q=Music&access_token=token";
+            const string json =
+                "{\"response\":[78152,{\"gid\":339767,\"name\":\"A-ONE HIP-HOP MUSIC CHANNEL\",\"screen_name\":\"a1tv\",\"is_closed\":0,\"type\":\"group\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs9365.userapi.com\\/g339767\\/e_a590d16b.jpg\",\"photo_medium\":\"http:\\/\\/cs9365.userapi.com\\/g339767\\/d_f653c773.jpg\",\"photo_big\":\"http:\\/\\/cs9365.userapi.com\\/g339767\\/a_4653ba99.jpg\"},{\"gid\":27895931,\"name\":\"MUSIC 2012\",\"screen_name\":\"exclusive_muzic\",\"is_closed\":0,\"type\":\"group\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs410222.userapi.com\\/g27895931\\/e_d8c8a46f.jpg\",\"photo_medium\":\"http:\\/\\/cs410222.userapi.com\\/g27895931\\/d_2869e827.jpg\",\"photo_big\":\"http:\\/\\/cs410222.userapi.com\\/g27895931\\/a_32935e91.jpg\"}]}";
+
+            int totalCount;
+            var category = GetMockedGroupCategory(url, json);
+            var groups = category.Search("Music", out totalCount).ToList();
+
+            Assert.That(groups.Count, Is.EqualTo(2));
+            Assert.That(totalCount, Is.EqualTo(78152));
+
+            Assert.That(groups[1].Id, Is.EqualTo(27895931));
+            Assert.That(groups[1].Name, Is.EqualTo("MUSIC 2012"));
+            Assert.That(groups[1].ScreenName, Is.EqualTo("exclusive_muzic"));
+            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
+            Assert.That(groups[1].IsAdmin, Is.False);
+            Assert.That(groups[1].IsMember, Is.False);
+            Assert.That(groups[1].Photo, Is.EqualTo("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg"));
+            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs410222.userapi.com/g27895931/d_2869e827.jpg"));
+            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs410222.userapi.com/g27895931/a_32935e91.jpg"));
+
+            Assert.That(groups[0].Id, Is.EqualTo(339767));
+            Assert.That(groups[0].Name, Is.EqualTo("A-ONE HIP-HOP MUSIC CHANNEL"));
+            Assert.That(groups[0].ScreenName, Is.EqualTo("a1tv"));
+            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].Type, Is.EqualTo(GroupType.Group));
+            Assert.That(groups[0].IsAdmin, Is.False);
+            Assert.That(groups[0].IsMember, Is.False);
+            Assert.That(groups[0].Photo, Is.EqualTo("http://cs9365.userapi.com/g339767/e_a590d16b.jpg"));
+            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs9365.userapi.com/g339767/d_f653c773.jpg"));
+            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs9365.userapi.com/g339767/a_4653ba99.jpg"));
+        }
+
+        [Test]
+        public void Search_DefaulCaseAllParams_ListOfGroups()
+        {
+            const string url = "https://api.vk.com/method/groups.search?q=Music&offset=20&count=3&access_token=token";
+            const string json = "{\"response\":[78152,{\"gid\":26442631,\"name\":\"Music Quotes. First Public.\",\"screen_name\":\"music_quotes_public\",\"is_closed\":0,\"type\":\"page\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs303205.userapi.com\\/g26442631\\/e_bcb8704f.jpg\",\"photo_medium\":\"http:\\/\\/cs303205.userapi.com\\/g26442631\\/d_a3627c6f.jpg\",\"photo_big\":\"http:\\/\\/cs303205.userapi.com\\/g26442631\\/a_32dd770f.jpg\"},{\"gid\":23727386,\"name\":\"Classical Music Humor\",\"screen_name\":\"mushumor\",\"is_closed\":0,\"type\":\"page\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs10650.userapi.com\\/g23727386\\/e_8006da42.jpg\",\"photo_medium\":\"http:\\/\\/cs10650.userapi.com\\/g23727386\\/d_cbea0559.jpg\",\"photo_big\":\"http:\\/\\/cs10650.userapi.com\\/g23727386\\/a_7743aab2.jpg\"},{\"gid\":23995866,\"name\":\"E:\\\\music\\\\\",\"screen_name\":\"e_music\",\"is_closed\":0,\"type\":\"page\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs9913.userapi.com\\/g23995866\\/e_319d8573.jpg\",\"photo_medium\":\"http:\\/\\/cs9913.userapi.com\\/g23995866\\/d_166572a9.jpg\",\"photo_big\":\"http:\\/\\/cs9913.userapi.com\\/g23995866\\/a_fc553960.jpg\"}]}";
+            int totalCount;
+            var category = GetMockedGroupCategory(url, json);
+            var groups = category.Search("Music", out totalCount, 20, 3).ToList();
+
+            Assert.That(groups.Count, Is.EqualTo(3));
+            Assert.That(totalCount, Is.EqualTo(78152));
+
+            Assert.That(groups[2].Id, Is.EqualTo(23995866));
+            Assert.That(groups[2].Name, Is.EqualTo(@"E:\music\"));
+            Assert.That(groups[2].ScreenName, Is.EqualTo("e_music"));
+            Assert.That(groups[2].IsClosed, Is.False);
+            Assert.That(groups[2].Type, Is.EqualTo(GroupType.Page));
+            Assert.That(groups[2].IsAdmin, Is.False);
+            Assert.That(groups[2].IsMember, Is.False);
+            Assert.That(groups[2].Photo, Is.EqualTo("http://cs9913.userapi.com/g23995866/e_319d8573.jpg"));
+            Assert.That(groups[2].PhotoMedium, Is.EqualTo("http://cs9913.userapi.com/g23995866/d_166572a9.jpg"));
+            Assert.That(groups[2].PhotoBig, Is.EqualTo("http://cs9913.userapi.com/g23995866/a_fc553960.jpg"));
+
+            Assert.That(groups[1].Id, Is.EqualTo(23727386));
+            Assert.That(groups[1].Name, Is.EqualTo("Classical Music Humor"));
+            Assert.That(groups[1].ScreenName, Is.EqualTo("mushumor"));
+            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].Type, Is.EqualTo(GroupType.Page));
+            Assert.That(groups[1].IsAdmin, Is.False);
+            Assert.That(groups[1].IsMember, Is.False);
+            Assert.That(groups[1].Photo, Is.EqualTo("http://cs10650.userapi.com/g23727386/e_8006da42.jpg"));
+            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg"));
+            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg"));
+
+            Assert.That(groups[0].Id, Is.EqualTo(26442631));
+            Assert.That(groups[0].Name, Is.EqualTo("Music Quotes. First Public."));
+            Assert.That(groups[0].ScreenName, Is.EqualTo("music_quotes_public"));
+            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
+            Assert.That(groups[0].IsAdmin, Is.False);
+            Assert.That(groups[0].IsMember, Is.False);
+            Assert.That(groups[0].Photo, Is.EqualTo("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg"));
+            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg"));
+            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"));
+        }
+
+        [Test]
+        public void Search_GroupsNotFounded_EmptyList()
+        {
+            const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&offset=20&count=3&access_token=token";
+            const string json = "{\"response\":[0]}";
+
+            var category = GetMockedGroupCategory(url, json);
+
+            int totalCount;
+            var groups = category.Search("ThisQueryDoesNotExistAtAll", out totalCount, 20, 3).ToList();
+
+            Assert.That(groups.Count, Is.EqualTo(0));
+            Assert.That(totalCount, Is.EqualTo(0));
         }
 
         [Test]

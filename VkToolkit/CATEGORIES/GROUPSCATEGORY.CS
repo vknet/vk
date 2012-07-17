@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enum;
+using VkToolkit.Exception;
 using VkToolkit.Model;
 using VkToolkit.Utils;
 
@@ -170,15 +171,43 @@ namespace VkToolkit.Categories
             _vk.IfErrorThrowException(json);
 
             JObject obj = JObject.Parse(json);
-            var response = (int)obj["response"];
-
-            return response == 1;
+            return (int)obj["response"] == 1;
         }
 
-        public void Search()
+        public IEnumerable<Group> Search(string query, out int totalCount, int? offset = null, int? count = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
+
+            if (string.IsNullOrWhiteSpace(query))
+                throw new InvalidParamException("Query can not be null or empty!");
+
+            var values = new Dictionary<string, string>();
+            values.Add("q", query);
+            if (offset.HasValue && offset.Value > 0)
+                values.Add("offset", offset.Value + "");
+            if (count.HasValue && count.Value > 0)
+                values.Add("count", count.Value + "");
+
+            string url = _vk.GetApiUrl("groups.search", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+
+            var array = (JArray) obj["response"];
+
+            totalCount = (int) array[0];
+
+            var output = new List<Group>();
+            for (int i = 1; i < array.Count; i++)
+            {
+                Group g = Utilities.GetGroupFromJObject((JObject) array[i]);
+                output.Add(g);
+            }
+            return output;
+                throw new NotImplementedException();
         }
+
     }
 }
