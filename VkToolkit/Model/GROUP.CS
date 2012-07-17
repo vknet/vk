@@ -1,5 +1,5 @@
 ﻿using System;
-using VkToolkit.Enum;
+using VkToolkit.Enums;
 
 namespace VkToolkit.Model
 {

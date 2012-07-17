@@ -12,6 +12,7 @@ namespace VkToolkit.Categories
 
         public void Get()
         {
+            _vk.IfAccessTokenNotDefinedThrowException();
             throw new NotImplementedException();
         }
     }

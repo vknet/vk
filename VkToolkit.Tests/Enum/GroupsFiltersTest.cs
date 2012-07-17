@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using VkToolkit.Enum;
+using VkToolkit.Enums;
 
 namespace VkToolkit.Tests.Enum
 {

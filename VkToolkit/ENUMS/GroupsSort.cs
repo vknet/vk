@@ -1,4 +1,4 @@
-﻿namespace VkToolkit.Enum
+﻿namespace VkToolkit.Enums
 {
     public sealed class GroupsSort
     {

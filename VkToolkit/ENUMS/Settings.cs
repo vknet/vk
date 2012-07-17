@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace VkToolkit.Enum
+namespace VkToolkit.Enums
 {
     public sealed class Settings
     {

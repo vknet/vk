@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using VkToolkit.Enum;
+using VkToolkit.Enums;
 using VkToolkit.Exception;
 using VkToolkit.Utils;
-using WatiN.Core.Exceptions;
-using Settings = VkToolkit.Enum.Settings;
+using Settings = VkToolkit.Enums.Settings;
 
 namespace VkToolkit.Tests
 {

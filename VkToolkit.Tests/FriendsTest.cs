@@ -2,7 +2,7 @@
 using System.Linq;
 using Moq;
 using NUnit.Framework;
-using VkToolkit.Enum;
+using VkToolkit.Enums;
 using VkToolkit.Exception;
 using VkToolkit.Utils;
 

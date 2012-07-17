@@ -1,35 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace VkToolkit.Enum
+namespace VkToolkit.Enums
 {
-    /// <summary>
-    /// Описание полей, используемых в параметре fields в методах Groups.get и Groups.getById. 
-    /// </summary>
-    public sealed class GroupsFields
+    public sealed class GroupsFilters
     {
         private readonly string _name;
         private readonly int _value;
-        private readonly IList<GroupsFields> _fields;
+        private readonly IList<GroupsFilters> _fields;
 
-        public static readonly GroupsFields City        = new GroupsFields(1, "city");
-        public static readonly GroupsFields Country     = new GroupsFields(2, "country");
-        public static readonly GroupsFields Place       = new GroupsFields(4, "place");
-        public static readonly GroupsFields Description = new GroupsFields(8, "description");
-        public static readonly GroupsFields WikiPage    = new GroupsFields(16, "wiki_page");
-        public static readonly GroupsFields StartDate   = new GroupsFields(32, "start_date");
-        public static readonly GroupsFields EndDate     = new GroupsFields(62, "end_date");
-        public static readonly GroupsFields All = City | Country | Place | Description | WikiPage | StartDate | EndDate;
+        public static readonly GroupsFilters Admin = new GroupsFilters(1, "admin");
+        public static readonly GroupsFilters Groups = new GroupsFilters(2, "groups");
+        public static readonly GroupsFilters Publics = new GroupsFilters(4, "publics");
+        public static readonly GroupsFilters Events = new GroupsFilters(8, "events");
+        public static readonly GroupsFilters All = Admin | Groups | Publics | Events;
 
-        private GroupsFields(int value, string name)
+        private GroupsFilters(int value, string name)
         {
-            _name = name;
             _value = value;
+            _name = name;
         }
 
-        private GroupsFields(GroupsFields f1, GroupsFields f2)
+        private GroupsFilters(GroupsFilters f1, GroupsFilters f2)
         {
-            _fields = new List<GroupsFields>();
+            _fields = new List<GroupsFilters>();
 
             if (f1._fields != null && f1._fields.Count != 0)
             {
@@ -61,9 +55,9 @@ namespace VkToolkit.Enum
             }
         }
 
-        public static GroupsFields operator | (GroupsFields f1, GroupsFields f2)
+        public static GroupsFilters operator | (GroupsFilters f1, GroupsFilters f2)
         {
-            return new GroupsFields(f1, f2);
+            return new GroupsFilters(f1, f2);
         }
 
         public override string ToString()

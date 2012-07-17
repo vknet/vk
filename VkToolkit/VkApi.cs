@@ -4,7 +4,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Categories;
-using VkToolkit.Enum;
+using VkToolkit.Enums;
 using VkToolkit.Exception;
 using VkToolkit.Utils;
 
@@ -137,7 +137,7 @@ namespace VkToolkit
             return sb.ToString();
         }
 
-        internal string CreateAuthorizeUrl(int appId, Enum.Settings settings, Display display)
+        internal string CreateAuthorizeUrl(int appId, Settings settings, Display display)
         {
             var sb = new StringBuilder("http://oauth.vk.com/authorize?");
             sb.AppendFormat("client_id={0}&", appId);

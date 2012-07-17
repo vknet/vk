@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using VkToolkit.Enum;
+using VkToolkit.Enums;
 using VkToolkit.Utils;
 
 namespace VkToolkit.Tests.Utils

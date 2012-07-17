@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.Serialization;
 
 namespace VkToolkit.Exception
 {
+    [Serializable]
     class UserAuthorizationFailException : VkApiMethodInvokeException
     {
         public UserAuthorizationFailException(string message) : base(message)
@@ -17,5 +16,7 @@ namespace VkToolkit.Exception
         {
 
         }
+
+        protected UserAuthorizationFailException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }
