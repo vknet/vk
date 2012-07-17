@@ -45,6 +45,7 @@ namespace VkToolkit.Tests
             Assert.That(vk.Status, Is.Not.Null);
             Assert.That(vk.Messages, Is.Not.Null);
             Assert.That(vk.Groups, Is.Not.Null);
+            Assert.That(vk.Audio, Is.Not.Null);
             // todo continue later
         }
 

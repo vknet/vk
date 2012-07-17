@@ -27,6 +27,7 @@ namespace VkToolkit
         public StatusCategory Status { get; private set; }
         public MessagesCategory Messages { get; private set; }
         public GroupsCategory Groups { get; private set; }
+        public AudioCategory Audio { get; private set; }
 
         private const string MethodPrefix = "https://api.vk.com/method/";
         internal static string InvalidLoginOrPassword = "Invalid login or password";
@@ -47,6 +48,7 @@ namespace VkToolkit
             Status = new StatusCategory(this);
             Messages = new MessagesCategory(this);
             Groups = new GroupsCategory(this);
+            Audio = new AudioCategory(this);
         }
 
         /// <summary>
