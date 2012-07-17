@@ -147,10 +147,17 @@ namespace VkToolkit
             return sb.ToString();
         }
 
+        #region Private & Internal Methods
+        internal void IfAccessTokenNotDefinedThrowException()
+        {
+            if (string.IsNullOrEmpty(AccessToken))
+                throw new AccessTokenInvalidException();
+        }
+
         internal void IfErrorThrowException(string json)
         {
             if (string.CompareOrdinal(json.Substring(2, 5), "error") != 0) return;
-            
+
             JObject obj;
             try
             {
@@ -160,38 +167,32 @@ namespace VkToolkit
             {
                 throw new VkApiException("Wrong json data.", ex);
             }
-             
+
             var response = obj["error"];
 
-            var code = (int) response["error_code"];
-            var message = (string) response["error_msg"];
+            var code = (int)response["error_code"];
+            var message = (string)response["error_msg"];
 
             switch (code)
             {
                 case 5:
                     throw new UserAuthorizationFailException(message, code);
 
-                case 113:
+                case 113:   // Invalid user id.
                 case 125:
                     throw new InvalidParamException(message, code);
-                
-                case 7:
+
+                case 7:     // Permission to perform this action is denied by user.
                 case 15:
                 case 221:
-                case 260:
+                case 203:   // Access to the group is denied.
+                case 260:   // Access to the groups list is denied due to the user's privacy settings.
                 case 500:
                     throw new AccessDeniedException(message, code);
-                    
-                default: 
+
+                default:
                     throw new VkApiException(message);
             }
-        }
-
-        #region Private Methods
-        internal void IfAccessTokenNotDefinedThrowException()
-        {
-            if (string.IsNullOrEmpty(AccessToken))
-                throw new AccessTokenInvalidException();
         }
         #endregion
     }

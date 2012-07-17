@@ -155,7 +155,69 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-            Assert.Fail();
+            var groups = new GroupsCategory(new VkApi());
+            groups.Get(1);
+        }
+
+        [Test]
+        public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
+        {
+            const string url = "https://api.vk.com/method/groups.get?uid=4793858&extended=0&access_token=token";
+            const string json = "{\"response\":[29689780,33489538,16108331,40724899,36346468]}";
+
+            var category = GetMockedGroupCategory(url, json);
+            var groups = category.Get(4793858).ToList();
+
+            Assert.That(groups.Count, Is.EqualTo(5));
+            Assert.That(groups[0].Id, Is.EqualTo(29689780));
+            Assert.That(groups[1].Id, Is.EqualTo(33489538));
+            Assert.That(groups[2].Id, Is.EqualTo(16108331));
+            Assert.That(groups[3].Id, Is.EqualTo(40724899));
+            Assert.That(groups[4].Id, Is.EqualTo(36346468));
+        }
+
+        [Test]
+        public void Get_NormalCaseAllFields_ReturnFullGroupInfo()
+        {
+            const string url =
+                "https://api.vk.com/method/groups.get?uid=1&extended=1&filter=events&fields=city,country,place,description,wiki_page,start_date,end_date&access_token=token";
+
+            const string json =
+                "{\"response\":[92,{\"gid\":1153959,\"name\":\"The middle of spring\",\"screen_name\":\"club1153959\",\"is_closed\":0,\"city\":10,\"country\":1,\"description\":\"Попади в не реальную сказку пришествия...\",\"start_date\":\"1208700030\",\"type\":\"event\",\"is_admin\":0,\"is_member\":1,\"photo\":\"http:\\/\\/cs1122.userapi.com\\/g1153959\\/c_6d43acf8.jpg\",\"photo_medium\":\"http:\\/\\/cs1122.userapi.com\\/g1153959\\/b_5bad925c.jpg\",\"photo_big\":\"http:\\/\\/cs1122.userapi.com\\/g1153959\\/a_3c9f63ea.jpg\"},{\"gid\":1181795,\"name\":\"Геннадий Бачинский\",\"screen_name\":\"club1181795\",\"is_closed\":0,\"city\":1,\"country\":1,\"description\":\"В связи с небольшим количеством...\",\"start_date\":\"1200380400\",\"type\":\"event\",\"is_admin\":0,\"is_member\":1,\"photo\":\"http:\\/\\/cs1122.userapi.com\\/g1181795\\/c_efd67aca.jpg\",\"photo_medium\":\"http:\\/\\/cs1122.userapi.com\\/g1181795\\/b_369a1c47.jpg\",\"photo_big\":\"http:\\/\\/cs1122.userapi.com\\/g1181795\\/a_c58272b3.jpg\"}]}";
+
+            var category = GetMockedGroupCategory(url, json);
+            var groups = category.Get(1, true, GroupsFilters.Events, GroupsFields.All).ToList();
+
+            Assert.That(groups[1].Id, Is.EqualTo(1181795));
+            Assert.That(groups[1].Name, Is.EqualTo("Геннадий Бачинский"));
+            Assert.That(groups[1].ScreenName, Is.EqualTo("club1181795"));
+            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].CityId, Is.EqualTo(1));
+            Assert.That(groups[1].CountryId, Is.EqualTo(1));
+            Assert.That(groups[1].Description, Is.EqualTo("В связи с небольшим количеством..."));
+            Assert.That(groups[1].StartDate, Is.EqualTo(new DateTime(2008, 1, 15, 11, 0, 0)));
+            Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
+            Assert.That(groups[1].IsAdmin, Is.False);
+            Assert.That(groups[1].IsMember, Is.True);
+            Assert.That(groups[1].Photo, Is.EqualTo("http://cs1122.userapi.com/g1181795/c_efd67aca.jpg"));
+            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs1122.userapi.com/g1181795/b_369a1c47.jpg"));
+            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"));
+
+            Assert.That(groups.Count, Is.EqualTo(2));
+            Assert.That(groups[0].Id, Is.EqualTo(1153959));
+            Assert.That(groups[0].Name, Is.EqualTo("The middle of spring"));
+            Assert.That(groups[0].ScreenName, Is.EqualTo("club1153959"));
+            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].CityId, Is.EqualTo(10));
+            Assert.That(groups[0].CountryId, Is.EqualTo(1));
+            Assert.That(groups[0].Description, Is.EqualTo("Попади в не реальную сказку пришествия..."));
+            Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2008, 04, 20, 19, 0, 30)));
+            Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
+            Assert.That(groups[0].IsAdmin, Is.False);
+            Assert.That(groups[0].IsMember, Is.True);
+            Assert.That(groups[0].Photo, Is.EqualTo("http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg"));
+            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs1122.userapi.com/g1153959/b_5bad925c.jpg"));
+            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
         }
 
         [Test]

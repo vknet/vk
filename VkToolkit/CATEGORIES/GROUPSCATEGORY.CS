@@ -50,10 +50,38 @@ namespace VkToolkit.Categories
             return (int)obj["response"] == 1;
         }
 
-        public void Get()
+        public IEnumerable<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("uid", uid + "");
+            values.Add("extended", extended ? "1" : "0");
+            if (filters != null)
+                values.Add("filter", filters.ToString());
+            if (fields != null)
+                values.Add("fields", fields.ToString());
+
+            string url = _vk.GetApiUrl("groups.get", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray) obj["response"];
+
+            if (!extended)
+                return response.Select(t => new Group {Id = (int) t}).ToList();
+
+            
+            var output = new List<Group>();
+            for (int i = 1; i < response.Count; i++)
+            {
+                Group g = Utilities.GetGroupFromJObject((JObject)response[i]);
+                output.Add(g);
+            }
+
+            return output;
         }
 
         public IEnumerable<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
