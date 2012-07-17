@@ -128,10 +128,23 @@ namespace VkToolkit.Categories
             return ids.Select(id => (long)id).ToList();
         }
 
-        public void IsMember()
+        public bool IsMember(long gid, long uid)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("gid", gid + "");
+            values.Add("uid", uid + "");
+
+            string url = _vk.GetApiUrl("groups.isMember", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (int)obj["response"];
+
+            return response == 1;
         }
 
         public void Search()

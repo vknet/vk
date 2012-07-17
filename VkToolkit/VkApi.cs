@@ -171,6 +171,7 @@ namespace VkToolkit
                 case 5:
                     throw new UserAuthorizationFailException(message, code);
 
+                case 113:
                 case 125:
                     throw new InvalidParamException(message, code);
                 

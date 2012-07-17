@@ -170,7 +170,66 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-            Assert.Fail();
+            var g = new GroupsCategory(new VkApi());
+            g.IsMember(2, 1);
+        }
+
+        [Test]
+        [ExpectedException(typeof(UserAuthorizationFailException), ExpectedMessage = "User authorization failed: access_token was given to another ip address.")]
+        public void IsMemeber_UserAuthorizationFail_ThrowUserAuthorizationFailException()
+        {
+            const string url = "https://api.vk.com/method/groups.isMember?gid=637247&uid=4793858&access_token=token";
+            const string json =
+                "{\"error\":{\"error_code\":5,\"error_msg\":\"User authorization failed: access_token was given to another ip address.\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"groups.getMembers\"},{\"key\":\"gid\",\"value\":\"637247\"},{\"key\":\"uid\",\"value\":\"4793858\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
+
+            var groups = GetMockedGroupCategory(url, json);
+
+            groups.IsMember(637247, 4793858);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidParamException), ExpectedMessage = "Invalid group id")]
+        public void IsMember_WrongGid_ThrowInvalidParamException()
+        {
+            const string url = "https://api.vk.com/method/groups.isMember?gid=-1&uid=4793858&access_token=token";
+            const string json =
+                "{\"error\":{\"error_code\":125,\"error_msg\":\"Invalid group id\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"groups.isMember\"},{\"key\":\"gid\",\"value\":\"-1\"},{\"key\":\"uid\",\"value\":\"4793858\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
+
+            var groups = GetMockedGroupCategory(url, json);
+            groups.IsMember(-1, 4793858);
+        }
+
+        [Test]
+        public void IsMember_WrongUid_ReturnFalse()
+        {
+            const string url = "https://api.vk.com/method/groups.isMember?gid=637247&uid=-1&access_token=token";
+            const string json = "{\"response\":0}";
+
+            var groups = GetMockedGroupCategory(url, json);
+            bool result = groups.IsMember(637247, -1);
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void IsMemeber_UserIsAMember_ReturnTrue()
+        {
+            const string url = "https://api.vk.com/method/groups.isMember?gid=637247&uid=4793858&access_token=token";
+            const string json = "{\"response\":1}";
+
+            var groups = GetMockedGroupCategory(url, json);
+            bool result = groups.IsMember(637247, 4793858);
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void IsMemeber_UserNotAMember_ReturnFalse()
+        {
+            const string url = "https://api.vk.com/method/groups.isMember?gid=17683660&uid=4793858&access_token=token";
+            const string json = "{\"response\":0}";
+
+            var groups = GetMockedGroupCategory(url, json);
+            bool result = groups.IsMember(17683660, 4793858);
+            Assert.That(result, Is.False);
         }
 
         [Test]
@@ -411,6 +470,5 @@ namespace VkToolkit.Tests.Categories
             Assert.That(g.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
             Assert.That(g.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
         }
-
     }
 }
