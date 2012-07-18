@@ -57,7 +57,14 @@ namespace VkToolkit.Utils
 
         public void GoTo(string url)
         {
-            Ie.GoTo(new Uri(url));
+            try
+            {
+                Ie.GoTo(new Uri(url));
+            }
+            catch(WatiN.Core.Exceptions.TimeoutException ex)
+            {
+                throw new VkApiException(ex.Message, ex);
+            }
         }
 
         public void Close()

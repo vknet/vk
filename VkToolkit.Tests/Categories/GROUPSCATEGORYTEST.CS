@@ -620,7 +620,7 @@ namespace VkToolkit.Tests.Categories
                 "{\"response\":[{\"gid\":17683660,\"name\":\"Творческие каникулы ART CAMP с 21 по 29 июля\",\"screen_name\":\"club17683660\",\"is_closed\":0,\"city\":95,\"country\":1,\"description\":\"Творческие каникулы ART CAMP с 21 по 29 июля<br>....\",\"start_date\":\"1342850400\",\"type\":\"event\",\"is_admin\":0,\"is_member\":0,\"photo\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/e_f700c806.jpg\",\"photo_medium\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/d_26f909c0.jpg\",\"photo_big\":\"http:\\/\\/cs407631.userapi.com\\/g17683660\\/a_54e3c8fb.jpg\"}]}";
 
             var category = GetMockedGroupCategory(url, json);
-            var g = category.GetById(17683660,GroupsFields.All);
+            var g = category.GetById(17683660, GroupsFields.All);
 
             Assert.That(g.Id, Is.EqualTo(17683660));
             Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));

@@ -21,7 +21,7 @@ namespace VkToolkit.Tests
         private const string Email = "test@test.com";
         private const string Password = "pwd1234";
         private const int AppId = 123;
-            
+
         [SetUp]
         public void SetUp()
         {

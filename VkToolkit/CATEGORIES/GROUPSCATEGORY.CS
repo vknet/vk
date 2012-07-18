@@ -18,6 +18,12 @@ namespace VkToolkit.Categories
             _vk = vk;
         }
 
+        /// <summary>
+        /// Данный метод позволяет вступить в группу, публичную страницу, а также подтверждать об участии во встрече.
+        /// </summary>
+        /// <param name="gid">ID группы</param>
+        /// <param name="notSure">True - Возможно пойду. False - Точно пойду. По умолчанию false.</param>
+        /// <returns>В случае успешного вступления в группу метод вернёт true, иначе false.</returns>
         public bool Join(long gid, bool notSure = false)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -35,6 +41,11 @@ namespace VkToolkit.Categories
             return (int)obj["response"] == 1;
         }
 
+        /// <summary>
+        /// Данный метод позволяет выходить из группы, публичной страницы, или встречи.
+        /// </summary>
+        /// <param name="gid">ID группы</param>
+        /// <returns>В случае успешного выхода из группы метод вернёт true, иначе false.</returns>
         public bool Leave(long gid)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -51,6 +62,14 @@ namespace VkToolkit.Categories
             return (int)obj["response"] == 1;
         }
 
+        /// <summary>
+        /// Возвращает список групп указанного пользователя.
+        /// </summary>
+        /// <param name="uid">ID пользователя</param>
+        /// <param name="extended">Возвращать полную информацию?</param>
+        /// <param name="filters">Список фильтров сообществ</param>
+        /// <param name="fields">Список полей информации о группах</param>
+        /// <returns>Список групп</returns>
         public IEnumerable<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -85,6 +104,12 @@ namespace VkToolkit.Categories
             return output;
         }
 
+        /// <summary>
+        /// Возвращает информацию о нескольких группах.
+        /// </summary>
+        /// <param name="gids">Список групп</param>
+        /// <param name="fields">Список полей информации о группах</param>
+        /// <returns>Список групп</returns>
         public IEnumerable<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -106,6 +131,12 @@ namespace VkToolkit.Categories
             return response.Select(g => Utilities.GetGroupFromJObject((JObject)g)).ToList();
         }
 
+        /// <summary>
+        /// Возвращает информацию о заданной группе.
+        /// </summary>
+        /// <param name="gid">ID группы</param>
+        /// <param name="fields">Список полей информации о группах</param>
+        /// <returns>Список групп</returns>
         public Group GetById(long gid, GroupsFields fields = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -125,7 +156,16 @@ namespace VkToolkit.Categories
             return Utilities.GetGroupFromJObject((JObject)obj["response"][0]);
         }
 
-        public IEnumerable<long> GetMembers(long gid, out int itemsCount, int? count = null, int? offset = null, GroupsSort sort = null)
+        /// <summary>
+        /// Возвращает список участников группы.
+        /// </summary>
+        /// <param name="gid">ID группы</param>
+        /// <param name="totalCount">Общее количество участников</param>
+        /// <param name="count">Количество участников которое необходимо получить</param>
+        /// <param name="offset">Смещение</param>
+        /// <param name="sort">Сортировка ID пользователей</param>
+        /// <returns>ID пользователей состоящих в группе</returns>
+        public IEnumerable<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
 
@@ -150,13 +190,19 @@ namespace VkToolkit.Categories
             JObject obj = JObject.Parse(json);
             var response = obj["response"];
 
-            itemsCount = (int)response["count"];
+            totalCount = (int)response["count"];
 
             var ids = (JArray)response["users"];
 
             return ids.Select(id => (long)id).ToList();
         }
 
+        /// <summary>
+        /// Возвращает информацию о том является ли пользователь участником заданной группы.
+        /// </summary>
+        /// <param name="gid">ID группы</param>
+        /// <param name="uid">ID пользователя</param>
+        /// <returns>True если пользователь состоит в группе, иначе False</returns>
         public bool IsMember(long gid, long uid)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -174,6 +220,14 @@ namespace VkToolkit.Categories
             return (int)obj["response"] == 1;
         }
 
+        /// <summary>
+        /// Осуществляет поиск групп по заданной подстроке.
+        /// </summary>
+        /// <param name="query">Поисковый запрос</param>
+        /// <param name="totalCount">Общее количество групп удовлетворяющих запросу</param>
+        /// <param name="offset">Смещение</param>
+        /// <param name="count">Количество в выбоке</param>
+        /// <returns>Список объектов групп</returns>
         public IEnumerable<Group> Search(string query, out int totalCount, int? offset = null, int? count = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
