@@ -182,6 +182,7 @@ namespace VkToolkit
 
                 case 113:   // Invalid user id.
                 case 125:
+                case 100:   // One of the parameters specified was missing or invalid.
                     throw new InvalidParamException(message, code);
 
                 case 7:     // Permission to perform this action is denied by user.
@@ -191,7 +192,7 @@ namespace VkToolkit
                 case 260:   // Access to the groups list is denied due to the user's privacy settings.
                 case 500:
                     throw new AccessDeniedException(message, code);
-
+                case 202:
                 default:
                     throw new VkApiException(message);
             }

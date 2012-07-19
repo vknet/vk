@@ -23,5 +23,6 @@
         public Education Education { get; set; }
         public int? Online { get; set; }
         public Counters Counters { get; set; }
+        public string NameGen { get; set; }
     }
 }

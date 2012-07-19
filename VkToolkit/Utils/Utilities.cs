@@ -7,8 +7,17 @@ using VkToolkit.Model;
 
 namespace VkToolkit.Utils
 {
-    public static class Utilities
+    internal static class Utilities
     {
+        public static Lyrics GetLyrics(JObject lyrics)
+        {
+            var output = new Lyrics
+                             {
+                                 Id = (long) lyrics["lyrics_id"],
+                                 Text = (string) lyrics["text"]
+                             };
+            return output;
+        }
         public static Audio GetAudioFromJObject(JObject audio)
         {
             // todo case when album id is not null
@@ -25,6 +34,9 @@ namespace VkToolkit.Utils
 
             if (audio["lyrics_id"] != null)
                 output.LyricsId = Convert.ToInt64((string) audio["lyrics_id"]);
+
+            if (audio["album"] != null)
+                output.AlbumId = Convert.ToInt64((string) audio["album"]);
             
             return output;
         }
@@ -33,7 +45,6 @@ namespace VkToolkit.Utils
         {
             var profile = new Profile
             {
-                Uid = (long) current["uid"],
                 FirstName = (string) current["first_name"],
                 LastName = (string) current["last_name"],
                 Nickname = (string) current["nickname"],
@@ -50,8 +61,25 @@ namespace VkToolkit.Utils
                 Rate = (string) current["rate"],
                 MobilePhone = (string) current["mobile_phone"],
                 HomePhone = (string) current["home_phone"],
-                Online = (int?) current["online"]
+                Online = (int?) current["online"],
+                NameGen = (string) current["name_gen"]
             };
+
+            if (current["uid"] != null)
+                profile.Uid = (long) current["uid"];
+            else if (current["id"] != null)
+            {
+                long id;
+                profile.Uid = long.TryParse((string)current["id"], out id) ? id : 0;
+            }
+
+            if (current["name"] != null)
+            {
+                // split for name and surname
+                string[] parts = ((string) current["name"]).Split(' ');
+                profile.FirstName = parts[0];
+                profile.LastName = parts[1];
+            }
 
             if (current["university"] != null)
             {
@@ -160,7 +188,7 @@ namespace VkToolkit.Utils
         public static DateTime UnixTimeStampToDateTime(long unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
-            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             dt = dt.AddSeconds(unixTimeStamp).ToLocalTime();
             return dt;
         }
@@ -186,7 +214,7 @@ namespace VkToolkit.Utils
             }
         }
 
-        public static string GetEnumerationAsString(IEnumerable<long> uids)
+        public static string GetEnumerationAsString<T>(IEnumerable<T> uids)
         {
             var uidsLst = uids.ToList();
             string ids = "";

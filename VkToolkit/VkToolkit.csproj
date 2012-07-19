@@ -32,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
@@ -64,6 +65,7 @@
     <Compile Include="Categories\AudioCategory.cs" />
     <Compile Include="Categories\GroupsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
+    <Compile Include="Enums\AudioSort.cs" />
     <Compile Include="Enums\Display.cs" />
     <Compile Include="Enums\GroupsFields.cs" />
     <Compile Include="Enums\GroupsFilters.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Model\Counters.cs" />
     <Compile Include="Model\Geo.cs" />
     <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\Lyrics.cs" />
     <Compile Include="Model\Place.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Enums\ResponseType.cs" />

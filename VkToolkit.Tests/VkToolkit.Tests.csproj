@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\AudioCategoryTest.cs" />
     <Compile Include="Categories\GroupsCategoryTest.cs" />
     <Compile Include="Categories\StatusCategoryTest.cs" />
     <Compile Include="Enum\GroupsFieldsTest.cs" />
