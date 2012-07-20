@@ -11,7 +11,7 @@
         public string BirthDate { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public int? Timezone { get; set; }
+        public double? Timezone { get; set; }
         public string Photo { get; set; }
         public string PhotoMedium { get; set; }
         public string PhotoBig { get; set; }

@@ -43,27 +43,26 @@ namespace VkToolkit.Utils
 
         public static Profile GetProfileFromJObject(JObject current)
         {
-            var profile = new Profile
-            {
-                FirstName = (string) current["first_name"],
-                LastName = (string) current["last_name"],
-                Nickname = (string) current["nickname"],
-                ScreenName = (string) current["screen_name"],
-                Sex = (int?) current["sex"],
-                BirthDate = (string) current["bdate"],
-                City = (string) current["city"],
-                Country = (string) current["country"],
-                Timezone = (int?) current["timezone"],
-                Photo = (string) current["photo"],
-                PhotoMedium = (string) current["photo_medium"],
-                PhotoBig = (string) current["photo_big"],
-                HasMobile = (int?) current["has_mobile"],
-                Rate = (string) current["rate"],
-                MobilePhone = (string) current["mobile_phone"],
-                HomePhone = (string) current["home_phone"],
-                Online = (int?) current["online"],
-                NameGen = (string) current["name_gen"]
-            };
+            var profile = new Profile();
+
+            profile.FirstName = (string) current["first_name"];
+            profile.LastName = (string) current["last_name"];
+            profile.Nickname = (string) current["nickname"];
+            profile.ScreenName = (string) current["screen_name"];
+            profile.Sex = (int?) current["sex"];
+            profile.BirthDate = (string) current["bdate"];
+            profile.City = (string) current["city"];
+            profile.Country = (string) current["country"];
+            profile.Timezone = (double?) current["timezone"];
+            profile.Photo = (string) current["photo"];
+            profile.PhotoMedium = (string) current["photo_medium"];
+            profile.PhotoBig = (string) current["photo_big"];
+            profile.HasMobile = (int?) current["has_mobile"];
+            profile.Rate = (string) current["rate"];
+            profile.MobilePhone = (string) current["mobile_phone"];
+            profile.HomePhone = (string) current["home_phone"];
+            profile.Online = (int?) current["online"];
+            profile.NameGen = (string) current["name_gen"];
 
             if (current["uid"] != null)
                 profile.Uid = (long) current["uid"];
