@@ -59,8 +59,9 @@ namespace VkToolkit
         /// <param name="password">Password</param>
         /// <param name="settings">Access rights requested by your application</param>
         /// <param name="display">Type of output page</param>
+        /// <param name="isVisible">Is browser window visible?</param>
         [STAThread]
-        public void Authorize(int appId, string email, string password, Settings settings, Display display)
+        public void Authorize(int appId, string email, string password, Settings settings, Display display, bool isVisible = true)
         {
             Email = email;
             Password = password;
@@ -68,6 +69,7 @@ namespace VkToolkit
 
             string url = CreateAuthorizeUrl(appId, settings, display);
 
+            Browser.Visible = isVisible;
             Browser.ClearCookies();
             Browser.GoTo(url);
             try

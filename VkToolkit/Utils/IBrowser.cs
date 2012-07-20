@@ -7,6 +7,7 @@ namespace VkToolkit.Utils
     {
         // properties
         Uri Uri { get; }
+        bool Visible { get; set; }
 
         string GetJson(string url);
         void ClearCookies();

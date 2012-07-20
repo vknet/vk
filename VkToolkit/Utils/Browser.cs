@@ -27,6 +27,12 @@ namespace VkToolkit.Utils
             get { return Ie.Uri; }
         }
 
+        public bool Visible
+        {
+            get { return Ie.Visible; }
+            set { Ie.Visible = value; }
+        }
+
         public string GetJson(string url)
         {
             WebRequest request = WebRequest.Create(new Uri(url));
