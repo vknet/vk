@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enums;
@@ -17,17 +16,45 @@ namespace VkToolkit.Categories
             _vk = vk;
         }
 
+        /// <summary>
+        /// Возвращает список аудиозаписей группы.
+        /// </summary>
+        /// <param name="gid">id группы, которой принадлежат аудиозаписи. </param>
+        /// <param name="albumId">id альбома, аудиозаписи которого необходимо вернуть (по умолчанию возвращаются аудиозаписи из всех альбомов).</param>
+        /// <param name="aids">перечисленные через запятую id аудиозаписей, входящие в выборку по gid.</param>
+        /// <param name="count">количество возвращаемых аудиозаписей.</param>
+        /// <param name="offset">смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
+        /// <returns>Список объектов класса Audio.</returns>
         public IEnumerable<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null,  int? count = null, int? offset = null)
         {
             Profile user;
             return InternalGet("gid", gid, out user, albumId, aids, false, count, offset);
         }
 
+        /// <summary>
+        /// Возвращает список аудиозаписей пользователя.
+        /// </summary>
+        /// <param name="uid">id пользователя, которому принадлежат аудиозаписи</param>
+        /// <param name="user">базовая информация о владельце аудиозаписей</param>
+        /// <param name="albumId">id альбома, аудиозаписи которого необходимо вернуть (по умолчанию возвращаются аудиозаписи из всех альбомов).</param>
+        /// <param name="aids">перечисленные через запятую id аудиозаписей, входящие в выборку по uid</param>
+        /// <param name="count">количество возвращаемых аудиозаписей.</param>
+        /// <param name="offset">смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
+        /// <returns>Список объектов класса Audio.</returns>
         public IEnumerable<Audio> Get(long uid, out Profile user, long? albumId = null, IEnumerable<long> aids = null,  int? count = null, int? offset = null)
         {
             return InternalGet("uid", uid, out user, albumId, aids, true, count, offset);
         }
 
+        /// <summary>
+        /// Возвращает список аудиозаписей пользователя.
+        /// </summary>
+        /// <param name="uid">id пользователя, которому принадлежат аудиозаписи</param>
+        /// <param name="albumId">id альбома, аудиозаписи которого необходимо вернуть (по умолчанию возвращаются аудиозаписи из всех альбомов).</param>
+        /// <param name="aids">перечисленные через запятую id аудиозаписей, входящие в выборку по uid</param>
+        /// <param name="count">количество возвращаемых аудиозаписей.</param>
+        /// <param name="offset">смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
+        /// <returns>Список объектов класса Audio.</returns>
         public IEnumerable<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
             Profile user;
@@ -76,6 +103,11 @@ namespace VkToolkit.Categories
             return output;
         }
 
+        /// <summary>
+        /// Возвращает информацию об аудиозаписях. 
+        /// </summary>
+        /// <param name="audios">перечисленные идентификаторов – идущие через знак подчеркивания id пользователей, которым принадлежат аудиозаписи, и id самих аудиозаписей.</param>
+        /// <returns>Список объектов класса Audio.</returns>
         public IEnumerable<Audio> GetById(IEnumerable<string> audios)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -97,6 +129,11 @@ namespace VkToolkit.Categories
             return response.Select(it => Utilities.GetAudioFromJObject((JObject) it)).ToList();
         }
 
+        /// <summary>
+        /// Возвращает количество аудиозаписей пользователя или группы.
+        /// </summary>
+        /// <param name="oid">id владельца аудиозаписей. Если необходимо получить количество аудиозаписей группы, в этом параметре должно стоять значение, равное -id группы.</param>
+        /// <returns>Количество аудиозаписей.</returns>
         public int GetCount(long oid)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -116,6 +153,11 @@ namespace VkToolkit.Categories
             return int.TryParse(response, out count) ? count : 0;
         }
 
+        /// <summary>
+        /// Возвращает текст аудиозаписи.
+        /// </summary>
+        /// <param name="id">id текста аудиозаписи</param>
+        /// <returns>Текст аудиозаписи и его id</returns>
         public Lyrics GetLyrics(long id)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -134,6 +176,10 @@ namespace VkToolkit.Categories
             return Utilities.GetLyrics(response);
         }
 
+        /// <summary>
+        /// Возвращает адрес сервера для загрузки аудиозаписей. 
+        /// </summary>
+        /// <returns>Адрес сервера для загрузки аудиозаписей</returns>
         public string GetUploadServer()
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -147,6 +193,17 @@ namespace VkToolkit.Categories
             return (string)obj["response"]["upload_url"];
         }
 
+        /// <summary>
+        /// Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
+        /// </summary>
+        /// <param name="query">строка поискового запроса</param>
+        /// <param name="totalCount">Общее количество аудиозаписей удовлетворяющих запросу</param>
+        /// <param name="autoComplete">Если этот параметр равен true, возможные ошибки в поисковом запросе будут исправлены. Например, при поисковом запросе <strong>Иуфдуы</strong> поиск будет осуществляться по строке <strong>Beatles</strong></param>
+        /// <param name="sort">Вид сортировки</param>
+        /// <param name="findLyrics">Будет ли производиться только по тем аудиозаписям, которые содержат тексты.</param>
+        /// <param name="count">количество возвращаемых аудиозаписей (максимум 200).</param>
+        /// <param name="offset">смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
+        /// <returns>Список объектов класса Audio.</returns>
         public IEnumerable<Audio> Search(string query, out int totalCount, bool? autoComplete = null, AudioSort? sort = null, bool? findLyrics = null, int? count = null, int? offset = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -187,6 +244,13 @@ namespace VkToolkit.Categories
             return output;
         }
 
+        /// <summary>
+        /// Копирует аудиозапись на страницу пользователя или группы. 
+        /// </summary>
+        /// <param name="aid">id аудиозаписи</param>
+        /// <param name="oid">id владельца аудиозаписи</param>
+        /// <param name="gid">id группы, в которую следует копировать аудиозапись</param>
+        /// <returns>идентификатор созданной аудиозаписи</returns>
         public long Add(long aid, long oid, long? gid = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -206,6 +270,12 @@ namespace VkToolkit.Categories
             return (long)obj["response"];
         }
 
+        /// <summary>
+        /// Удаляет аудиозапись со страницы пользователя или группы.
+        /// </summary>
+        /// <param name="aid">id аудиозаписи</param>
+        /// <param name="oid">id владельца аудиозаписи</param>
+        /// <returns>При успешном удалении аудиозаписи сервер вернет true</returns>
         public bool Delete(long aid, long oid)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -223,6 +293,16 @@ namespace VkToolkit.Categories
             return (int)obj["response"] == 1;
         }
 
+        /// <summary>
+        /// Редактирует данные аудиозаписи на странице пользователя или группы. 
+        /// </summary>
+        /// <param name="aid">id аудиозаписи</param>
+        /// <param name="oid">id владельца аудиозаписи. Если редактируемая аудиозапись находится на странице группы, в этом параметре должно стоять значение, равное -id группы.</param>
+        /// <param name="artist">название исполнителя аудиозаписи.</param>
+        /// <param name="title">название аудиозаписи.</param>
+        /// <param name="text">текст аудиозаписи, если введен.</param>
+        /// <param name="noSearch">true - скрывает аудиозапись из поиска по аудиозаписям, false (по умолчанию) - не скрывает.</param>
+        /// <returns> id текста, введенного пользователем</returns>
         public long Edit(long aid, long oid, string artist, string title, string text, bool noSearch = false)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -253,6 +333,12 @@ namespace VkToolkit.Categories
             return (long) obj["response"];
         }
 
+        /// <summary>
+        /// Восстанавливает удаленную аудиозапись пользователя после удаления.
+        /// </summary>
+        /// <param name="audioId">id удаленной аудиозаписи</param>
+        /// <param name="ownerId">id владельца аудиозаписи</param>
+        /// <returns>Удаленная аудиозапись.</returns>
         public Audio Restore(long audioId, long? ownerId = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
@@ -273,6 +359,14 @@ namespace VkToolkit.Categories
             return Utilities.GetAudioFromJObject(response);
         }
 
+        /// <summary>
+        /// Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы которых переданы параметрами after и before.
+        /// </summary>
+        /// <param name="audioId">id аудиозаписи, порядок которой изменяется</param>
+        /// <param name="ownerId">id владельца изменяемой аудиозаписи</param>
+        /// <param name="after">id аудиозаписи, после которой нужно поместить аудиозапись. Если аудиозапись переносится в начало, параметр может быть равен нулю.</param>
+        /// <param name="before">id аудиозаписи, перед которой нужно поместить аудиозапись. Если аудиозапись переносится в конец, параметр может быть равен нулю.</param>
+        /// <returns>При успешном изменении порядка аудиозаписи сервер вернет true</returns>
         public bool Reorder(long audioId, long ownerId, long after, long before)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
