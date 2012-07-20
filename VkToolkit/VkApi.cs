@@ -20,7 +20,7 @@ namespace VkToolkit
         public string SecureKey { get; private set; }
         public string AccessToken { get; internal set; }
         public string ExpiresIn { get; private set; }   // todo string -> int
-        public int UserId { get; private set; }      // todo string -> int
+        public long UserId { get; private set; }      // todo string -> int
 
         public Users Users { get; private set; }
         public Friends Friends { get; private set; }
