@@ -78,6 +78,7 @@
     <Compile Include="Exception\AccessDeniedException.cs" />
     <Compile Include="Exception\AccessTokenInvalidException.cs" />
     <Compile Include="Exception\InvalidParamException.cs" />
+    <Compile Include="Exception\TooManyRequestsException.cs" />
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Friends.cs" />
