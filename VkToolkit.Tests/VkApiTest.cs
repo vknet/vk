@@ -149,7 +149,7 @@ namespace VkToolkit.Tests
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.Authorize(Email, Password)).Throws(new VkApiException("Could not load a page."));
 
-            var vk = new VkApi(browser.Object);
+            var vk = new VkApi{Browser = browser.Object};
             vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
         }
 
@@ -160,7 +160,7 @@ namespace VkToolkit.Tests
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.ContainsText(VkApi.InvalidLoginOrPassword)).Returns(true);
 
-            var vk = new VkApi(browser.Object);
+            var vk = new VkApi{Browser = browser.Object};
             vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
         }
 
@@ -171,7 +171,7 @@ namespace VkToolkit.Tests
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.ContainsText(VkApi.LoginSuccessed)).Returns(false);
 
-            var vk = new VkApi(browser.Object);
+            var vk = new VkApi{Browser = browser.Object};
             vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
         }
 
@@ -184,7 +184,7 @@ namespace VkToolkit.Tests
             browser.Setup(m => m.ContainsText(VkApi.LoginSuccessed)).Returns(true);
             browser.Setup(m => m.Uri).Returns(new Uri(badUrl));
 
-            var vk = new VkApi(browser.Object);
+            var vk = new VkApi{Browser = browser.Object};
             vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
         }
 
@@ -195,7 +195,7 @@ namespace VkToolkit.Tests
             browser.Setup(m => m.ContainsText(VkApi.LoginSuccessed)).Returns(true);
             browser.Setup(m => m.Uri).Returns(new Uri(ReturnUrl));
             
-            var vk = new VkApi(browser.Object);
+            var vk = new VkApi{Browser = browser.Object};
             vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
 
             Assert.That(vk.AppId, Is.EqualTo(AppId));

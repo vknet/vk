@@ -36,12 +36,11 @@ namespace VkToolkit
 
         internal IBrowser Browser;
 
-        public VkApi(IBrowser browser = null)
+        public VkApi()
         {
             // set default values
             ResponseType = ResponseType.Json;
-
-            Browser = browser ?? new Utils.Browser(); // undone add test
+            Browser = new Browser();
             
             // set function's categories
             Users = new UsersCategory(this);
@@ -78,7 +77,7 @@ namespace VkToolkit
             {
                 Browser.Authorize(email, password);
             }
-            catch(VkApiException)
+            catch (VkApiException)
             {
                 Browser.Close();
                 throw;
@@ -119,7 +118,7 @@ namespace VkToolkit
             }
             finally
             {
-                Browser.Close();    
+                Browser.Close();
             }
         }
 

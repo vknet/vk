@@ -16,6 +16,14 @@ namespace VkToolkit.Tests.Categories
         {
         }
 
+        private StatusCategory GetMockedStatusCategory(string url, string json)
+        {
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            return new StatusCategory(new VkApi { AccessToken = "token", Browser = browser.Object });
+        }
+
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
@@ -31,10 +39,7 @@ namespace VkToolkit.Tests.Categories
             const string url = "https://api.vk.com/method/status.get?uid=1&access_token=token";
             const string json = "{\"error\":{\"error_code\":7,\"error_msg\":\"Permission to perform this action is denied\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"status.get\"},{\"key\":\"uid\",\"value\":\"4793858\"},{\"key\":\"access_token\",\"value\":\"bf0403a1ef4f5ca4bf52913da3bf60deb0bbf4dbf4d25a1a7dba6b3476c3192\"}]}}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var status = new StatusCategory(new VkApi(browser.Object) {AccessToken = "token"});
+            var status = GetMockedStatusCategory(url, json);
             status.Get(1);
         }
 
@@ -53,10 +58,7 @@ namespace VkToolkit.Tests.Categories
             const string url = "https://api.vk.com/method/status.set?text=test&access_token=token";
             const string json = "{\"error\":{\"error_code\":7,\"error_msg\":\"Permission to perform this action is denied\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"status.set\"},{\"key\":\"text\",\"value\":\"test\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var status = new StatusCategory(new VkApi(browser.Object) {AccessToken = "token"});
+            var status = GetMockedStatusCategory(url, json);
             status.Set("test");
         }
 
@@ -75,11 +77,7 @@ namespace VkToolkit.Tests.Categories
             const string url = "https://api.vk.com/method/status.set?audio=0_0&access_token=token";
             const string json = "{\"error\":{\"error_code\":221,\"error_msg\":\"User disabled track name broadcast\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"status.set\"},{\"key\":\"audio\",\"value\":\"0_0\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var status = new StatusCategory(new VkApi(browser.Object) { AccessToken = "token" });
-
+            var status = GetMockedStatusCategory(url, json);
             var audio = new Audio {Id = 0, OwnerId = 0};
             status.Set("test test test", audio);
         }
@@ -90,11 +88,7 @@ namespace VkToolkit.Tests.Categories
             const string url = "https://api.vk.com/method/status.set?text=test test test&access_token=token";
             const string json = "{\"response\":1}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var status = new StatusCategory(new VkApi(browser.Object) { AccessToken = "token" });
-
+            var status = GetMockedStatusCategory(url, json);
             bool result = status.Set("test test test");
 
             Assert.That(result, Is.True);
@@ -106,10 +100,7 @@ namespace VkToolkit.Tests.Categories
             const string url = "https://api.vk.com/method/status.set?audio=4793858_158073513&access_token=token";
             const string json = "{\"response\":1}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var status = new StatusCategory(new VkApi(browser.Object) { AccessToken = "token" });
+            var status = GetMockedStatusCategory(url, json);
 
             var audio = new Audio { Id = 158073513, OwnerId = 4793858 };
             bool result = status.Set("test test test", audio);
@@ -123,11 +114,7 @@ namespace VkToolkit.Tests.Categories
             const string url = "https://api.vk.com/method/status.get?uid=1&access_token=token";
             const string json = "{\"response\":{\"text\":\"it's work!!!\"}}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var status = new StatusCategory(new VkApi(browser.Object) {AccessToken = "token"});
-
+            var status = GetMockedStatusCategory(url, json);
             Status s = status.Get(1);
 
             Assert.That(s, Is.Not.Null);
@@ -142,11 +129,7 @@ namespace VkToolkit.Tests.Categories
             const string json =
                 "{\"response\":{\"text\":\"Тараканы! &ndash; Собачье Сердце\",\"audio\":{\"aid\":158073513,\"owner_id\":4793858,\"artist\":\"Тараканы!\",\"title\":\"Собачье Сердце\",\"duration\":230,\"url\":\"http:\\/\\/cs4838.vkontakte.ru\\/u4198300\\/audio\\/3ada410d4830.mp3\",\"performer\":\"Тараканы!\",\"lyrics_id\":\"7985406\"}}}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var status = new StatusCategory(new VkApi(browser.Object) { AccessToken = "token" });
-
+            var status = GetMockedStatusCategory(url, json);
             Status s = status.Get(1);
 
             Assert.That(s, Is.Not.Null);

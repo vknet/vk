@@ -17,6 +17,14 @@ namespace VkToolkit.Tests
              
         }
 
+        public Friends GetMockedFriendsCategory(string url, string json)
+        {
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            return new Friends(new VkApi { AccessToken = "token", Browser = browser.Object });
+        }
+
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
@@ -33,11 +41,7 @@ namespace VkToolkit.Tests
             const string json =
                 "{\"response\":[2,5,6,7,12]}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var friends = new Friends((new VkApi(browser.Object) { AccessToken = "token" }));
-
+            var friends = GetMockedFriendsCategory(url, json);
             var users = friends.Get(1).ToList();
 
             Assert.That(users.Count, Is.EqualTo(5));
@@ -57,11 +61,7 @@ namespace VkToolkit.Tests
             const string json =
                 "{\"response\":[{\"uid\":2,\"first_name\":\"Александра\",\"last_name\":\"Владимирова\",\"online\":0},{\"uid\":5,\"first_name\":\"Илья\",\"last_name\":\"Перекопский\",\"online\":0},{\"uid\":6,\"first_name\":\"Николай\",\"last_name\":\"Дуров\",\"online\":0}]}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var friends = new Friends(new VkApi(browser.Object) {AccessToken = "token"});
-
+            var friends = GetMockedFriendsCategory(url, json);
             var lst = friends.Get(1, ProfileFields.FirstName | ProfileFields.LastName, 3).ToList();
 
             Assert.That(lst.Count, Is.EqualTo(3));
@@ -95,10 +95,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/friends.getAppUsers?access_token=token";
             const string json = "{\"response\":[]}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var friends = new Friends(new VkApi(browser.Object) {AccessToken = "token"});
+            var friends = GetMockedFriendsCategory(url, json);
 
             var users = friends.GetAppUsers().ToList();
 
@@ -111,11 +108,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/friends.getAppUsers?access_token=token";
             const string json = "{\"response\":[15221,17836,19194]}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
-
+            var friends = GetMockedFriendsCategory(url, json);
             var ids = friends.GetAppUsers().ToList();
 
             Assert.That(ids.Count, Is.EqualTo(3));
@@ -138,11 +131,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/friends.getOnline?uid=1&access_token=token";
             const string json = "{\"response\":[]}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
-
+            var friends = GetMockedFriendsCategory(url, json);
             var users = friends.GetOnline(1).ToList();
 
             Assert.That(users.Count, Is.EqualTo(0));
@@ -154,11 +143,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/friends.getOnline?uid=1&access_token=token";
             const string json = "{\"response\":[5,467,2943,4424,13033]}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
-
+            var friends = GetMockedFriendsCategory(url, json);
             var ids = friends.GetOnline(1).ToList();
 
             Assert.That(ids.Count, Is.EqualTo(5));
@@ -183,11 +168,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/friends.getMutual?target_uid=2&source_uid=1&access_token=token";
             const string json = "{\"response\":[3,31,43]}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
-            
+            var friends = GetMockedFriendsCategory(url, json);
             var ids = friends.GetMutual(2, 1).ToList();
 
             Assert.That(ids.Count, Is.EqualTo(3));
@@ -202,10 +183,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/friends.getMutual?target_uid=2&source_uid=1&access_token=token";
             const string json = "{\"response\":[]}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
+            var friends = GetMockedFriendsCategory(url, json);
 
             var users = friends.GetMutual(2, 1).ToList();
 
@@ -234,11 +212,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/friends.areFriends?uids=24181068,22911407,155810539,3505305&access_token=token";
             const string json = "{\"response\":[{\"uid\":24181068,\"friend_status\":0},{\"uid\":22911407,\"friend_status\":3},{\"uid\":155810539,\"friend_status\":2},{\"uid\":3505305,\"friend_status\":1}]}";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            var friends = new Friends(new VkApi(browser.Object) { AccessToken = "token" });
-
+            var friends = GetMockedFriendsCategory(url, json);
             var dict = friends.AreFriends(new long[] {24181068, 22911407, 155810539, 3505305});
 
             Assert.That(dict.Count, Is.EqualTo(4));
