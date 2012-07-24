@@ -53,7 +53,6 @@ namespace VkToolkit.Utils
             profile.BirthDate = (string) current["bdate"];
             profile.City = (string) current["city"];
             profile.Country = (string) current["country"];
-            profile.Timezone = (double?) current["timezone"];
             profile.Photo = (string) current["photo"];
             profile.PhotoMedium = (string) current["photo_medium"];
             profile.PhotoBig = (string) current["photo_big"];
@@ -63,6 +62,12 @@ namespace VkToolkit.Utils
             profile.HomePhone = (string) current["home_phone"];
             profile.Online = (int?) current["online"];
             profile.NameGen = (string) current["name_gen"];
+
+            if (current["timezone"] != null)
+            {
+                double timezone;
+                profile.Timezone = double.TryParse(current["timezone"].ToString(), out timezone) ? timezone : 0;
+            }
 
             if (current["uid"] != null)
                 profile.Uid = (long) current["uid"];
