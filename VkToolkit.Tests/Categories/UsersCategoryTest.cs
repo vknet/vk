@@ -2,15 +2,16 @@
 using System.Linq;
 using Moq;
 using NUnit.Framework;
+using VkToolkit.Categories;
 using VkToolkit.Enums;
 using VkToolkit.Exception;
 using VkToolkit.Model;
 using VkToolkit.Utils;
 
-namespace VkToolkit.Tests
+namespace VkToolkit.Tests.Categories
 {
     [TestFixture]
-    public class UsersTest
+    public class UsersCategoryTest
     {
         private const string Query = "Masha Ivanova";
 
@@ -24,7 +25,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var users = new Users(new VkApi());
+            var users = new UsersCategory(new VkApi());
             users.Get(1);
         }
 
@@ -35,7 +36,7 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(f => f.GetJson(It.IsAny<string>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
 
-            var users = new Users(new VkApi(mockBrowser.Object){AccessToken = "asgsstsfast"});
+            var users = new UsersCategory(new VkApi(mockBrowser.Object){AccessToken = "asgsstsfast"});
 
             users.Get(1);
         }
@@ -51,7 +52,7 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(f => f.GetJson(url)).Returns(json);
 
-            var users = new Users(new VkApi(mockBrowser.Object){AccessToken = "token"});
+            var users = new UsersCategory(new VkApi(mockBrowser.Object){AccessToken = "token"});
             users.Get(1);
         }
 
@@ -66,15 +67,15 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(m => m.GetJson(url)).Returns(json);
 
-            var users = new Users(new VkApi(mockBrowser.Object) {AccessToken = "token"});
+            var users = new UsersCategory(new VkApi(mockBrowser.Object) {AccessToken = "token"});
 
             // act
             var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education;
-            Profile p = users.Get(1, fields);
+            User p = users.Get(1, fields);
 
             // assert
             Assert.That(p, Is.Not.Null);
-            Assert.That(p.Uid, Is.EqualTo(1));
+            Assert.That(p.Id, Is.EqualTo(1));
             Assert.That(p.FirstName, Is.EqualTo("Павел"));
             Assert.That(p.LastName, Is.EqualTo("Дуров"));
             Assert.That(p.Education, Is.Not.Null);
@@ -95,14 +96,14 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(m => m.GetJson(url)).Returns(json);
 
-            var users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
+            var users = new UsersCategory(new VkApi(mockBrowser.Object) { AccessToken = "token" });
 
             // act
-            Profile p = users.Get(4793858, ProfileFields.Counters);
+            User p = users.Get(4793858, ProfileFields.Counters);
 
             // assert
             Assert.That(p, Is.Not.Null);
-            Assert.That(p.Uid, Is.EqualTo(4793858));
+            Assert.That(p.Id, Is.EqualTo(4793858));
             Assert.That(p.FirstName, Is.EqualTo("Антон"));
             Assert.That(p.LastName, Is.EqualTo("Жидков"));
             Assert.That(p.Counters, Is.Not.Null);
@@ -128,13 +129,13 @@ namespace VkToolkit.Tests
 
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(m => m.GetJson(url)).Returns(json);
-            var users = new Users(new VkApi(mockBrowser.Object) {AccessToken = "token"});
+            var users = new UsersCategory(new VkApi(mockBrowser.Object) {AccessToken = "token"});
 
             // act
-            Profile p = users.Get(4793858);
+            User p = users.Get(4793858);
 
             // assert
-            Assert.That(p.Uid, Is.EqualTo(4793858));
+            Assert.That(p.Id, Is.EqualTo(4793858));
             Assert.That(p.FirstName, Is.EqualTo("Антон"));
             Assert.That(p.LastName, Is.EqualTo("Жидков"));
         }
@@ -151,14 +152,14 @@ namespace VkToolkit.Tests
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(m => m.GetJson(url)).Returns(json);
 
-            var users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
+            var users = new UsersCategory(new VkApi(mockBrowser.Object) { AccessToken = "token" });
 
             // act
-            Profile p = users.Get(4793858, ProfileFields.All);
+            User p = users.Get(4793858, ProfileFields.All);
 
             // assert
             Assert.That(p, Is.Not.Null);
-            Assert.That(p.Uid, Is.EqualTo(4793858));
+            Assert.That(p.Id, Is.EqualTo(4793858));
             Assert.That(p.FirstName, Is.EqualTo("Антон"));
             Assert.That(p.LastName, Is.EqualTo("Жидков"));
             Assert.That(p.Nickname, Is.EqualTo("[Удален]"));
@@ -201,7 +202,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetGropus_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var users = new Users(new VkApi());
+            var users = new UsersCategory(new VkApi());
             users.GetGroups(1);
         }
 
@@ -216,7 +217,7 @@ namespace VkToolkit.Tests
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json);
 
-            var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
+            var users = new UsersCategory(new VkApi(browser.Object) {AccessToken = "token"});
 
             users.GetGroups(1);
         }
@@ -231,7 +232,7 @@ namespace VkToolkit.Tests
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json); 
 
-            var users = new Users(new VkApi(browser.Object) { AccessToken = "token" });
+            var users = new UsersCategory(new VkApi(browser.Object) { AccessToken = "token" });
             var groups = users.GetGroups(4793858).ToList();
 
             Assert.That(groups.Count, Is.EqualTo(0));
@@ -246,7 +247,7 @@ namespace VkToolkit.Tests
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json); // todo refactor it use url
 
-            var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
+            var users = new UsersCategory(new VkApi(browser.Object) {AccessToken = "token"});
 
             var groups = users.GetGroups(4793858).ToList();
 
@@ -261,7 +262,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_Multiple_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var users = new Users(new VkApi());
+            var users = new UsersCategory(new VkApi());
             users.Get(new long[] {1, 2});
         }
 
@@ -269,7 +270,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Get_EmptyListOfUids_ThrowArgumentNullException()
         {
-            var users = new Users(new VkApi{AccessToken = "token"});
+            var users = new UsersCategory(new VkApi{AccessToken = "token"});
             users.Get(null);
         }
 
@@ -285,18 +286,18 @@ namespace VkToolkit.Tests
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json);
 
-            var users = new Users(new VkApi(browser.Object){AccessToken = "token"});
+            var users = new UsersCategory(new VkApi(browser.Object){AccessToken = "token"});
 
             var lst = users.Get(new long[] {1, 4793858}).ToList();
 
             Assert.That(lst.Count, Is.EqualTo(2));
             Assert.That(lst[0], Is.Not.Null);
-            Assert.That(lst[0].Uid, Is.EqualTo(1));
+            Assert.That(lst[0].Id, Is.EqualTo(1));
             Assert.That(lst[0].FirstName, Is.EqualTo("Pavel"));
             Assert.That(lst[0].LastName, Is.EqualTo("Durov"));
 
             Assert.That(lst[1], Is.Not.Null);
-            Assert.That(lst[1].Uid, Is.EqualTo(4793858));
+            Assert.That(lst[1].Id, Is.EqualTo(4793858));
             Assert.That(lst[1].FirstName, Is.EqualTo("Anton"));
             Assert.That(lst[1].LastName, Is.EqualTo("Zhidkov"));
         }
@@ -313,13 +314,13 @@ namespace VkToolkit.Tests
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json);
 
-            var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
+            var users = new UsersCategory(new VkApi(browser.Object) {AccessToken = "token"});
 
             var lst = users.Get(new long[] {102674754, 5041431}, ProfileFields.Education).ToList();
 
             Assert.That(lst.Count == 2);
             Assert.That(lst[0], Is.Not.Null);
-            Assert.That(lst[0].Uid, Is.EqualTo(102674754));
+            Assert.That(lst[0].Id, Is.EqualTo(102674754));
             Assert.That(lst[0].FirstName, Is.EqualTo("Artyom"));
             Assert.That(lst[0].LastName, Is.EqualTo("Plotnikov"));
             Assert.That(lst[0].Education, Is.Not.Null);
@@ -330,7 +331,7 @@ namespace VkToolkit.Tests
             Assert.That(lst[0].Education.Graduation, Is.EqualTo("2010"));
 
             Assert.That(lst[1], Is.Not.Null);
-            Assert.That(lst[1].Uid, Is.EqualTo(5041431));
+            Assert.That(lst[1].Id, Is.EqualTo(5041431));
             Assert.That(lst[1].FirstName, Is.EqualTo("Tayfur"));
             Assert.That(lst[1].LastName, Is.EqualTo("Kaseev"));
             Assert.That(lst[1].Education, Is.Not.Null);
@@ -441,7 +442,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void IsAppUser_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var users = new Users(new VkApi());
+            var users = new UsersCategory(new VkApi());
             users.IsAppUser(1);
         }
 
@@ -586,7 +587,7 @@ namespace VkToolkit.Tests
             Assert.That(count, Is.EqualTo(26953));
             Assert.That(lst.Count, Is.EqualTo(3));
             Assert.That(lst[0], Is.Not.Null);
-            Assert.That(lst[0].Uid, Is.EqualTo(165614770));
+            Assert.That(lst[0].Id, Is.EqualTo(165614770));
             Assert.That(lst[0].FirstName, Is.EqualTo("Маша"));
             Assert.That(lst[0].LastName, Is.EqualTo("Иванова"));
             Assert.That(lst[0].Education, Is.Not.Null);
@@ -597,7 +598,7 @@ namespace VkToolkit.Tests
             Assert.That(lst[0].Education.Graduation, Is.EqualTo("0"));
 
             Assert.That(lst[1], Is.Not.Null);
-            Assert.That(lst[1].Uid, Is.EqualTo(174063570));
+            Assert.That(lst[1].Id, Is.EqualTo(174063570));
             Assert.That(lst[1].FirstName, Is.EqualTo("Маша"));
             Assert.That(lst[1].LastName, Is.EqualTo("Иванова"));
             Assert.That(lst[1].Education, Is.Not.Null);
@@ -608,7 +609,7 @@ namespace VkToolkit.Tests
             Assert.That(lst[1].Education.Graduation, Is.EqualTo("0"));
 
             Assert.That(lst[2], Is.Not.Null);
-            Assert.That(lst[2].Uid, Is.EqualTo(76817368));
+            Assert.That(lst[2].Id, Is.EqualTo(76817368));
             Assert.That(lst[2].FirstName, Is.EqualTo("Маша"));
             Assert.That(lst[2].LastName, Is.EqualTo("Иванова"));
             Assert.That(lst[2].Education, Is.Not.Null);
@@ -635,17 +636,17 @@ namespace VkToolkit.Tests
             Assert.That(count, Is.EqualTo(26953));
             Assert.That(lst.Count, Is.EqualTo(3));
             Assert.That(lst[0], Is.Not.Null);
-            Assert.That(lst[0].Uid, Is.EqualTo(449928));
+            Assert.That(lst[0].Id, Is.EqualTo(449928));
             Assert.That(lst[0].FirstName, Is.EqualTo("Маша"));
             Assert.That(lst[0].LastName, Is.EqualTo("Иванова"));
 
             Assert.That(lst[1], Is.Not.Null);
-            Assert.That(lst[1].Uid, Is.EqualTo(70145254));
+            Assert.That(lst[1].Id, Is.EqualTo(70145254));
             Assert.That(lst[1].FirstName, Is.EqualTo("Маша"));
             Assert.That(lst[1].LastName, Is.EqualTo("Шаблинская-Иванова"));
 
             Assert.That(lst[2], Is.Not.Null);
-            Assert.That(lst[2].Uid, Is.EqualTo(62899425));
+            Assert.That(lst[2].Id, Is.EqualTo(62899425));
             Assert.That(lst[2].FirstName, Is.EqualTo("Masha"));
             Assert.That(lst[2].LastName, Is.EqualTo("Ivanova"));
         }

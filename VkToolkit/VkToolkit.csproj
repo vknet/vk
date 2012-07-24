@@ -90,14 +90,14 @@
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Lyrics.cs" />
     <Compile Include="Model\Place.cs" />
-    <Compile Include="Model\Profile.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Enums\ResponseType.cs" />
     <Compile Include="Exception\VkApiAuthorizationException.cs" />
     <Compile Include="Exception\VkApiException.cs" />
     <Compile Include="Model\Education.cs" />
     <Compile Include="Categories\StatusCategory.cs" />
     <Compile Include="Model\Status.cs" />
-    <Compile Include="Users.cs" />
+    <Compile Include="Categories\UsersCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Browser.cs" />
     <Compile Include="Utils\IBrowser.cs" />

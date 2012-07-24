@@ -41,11 +41,11 @@ namespace VkToolkit.Tests
             var users = friends.Get(1).ToList();
 
             Assert.That(users.Count, Is.EqualTo(5));
-            Assert.That(users[0].Uid, Is.EqualTo(2));
-            Assert.That(users[1].Uid, Is.EqualTo(5));
-            Assert.That(users[2].Uid, Is.EqualTo(6));
-            Assert.That(users[3].Uid, Is.EqualTo(7));
-            Assert.That(users[4].Uid, Is.EqualTo(12));
+            Assert.That(users[0].Id, Is.EqualTo(2));
+            Assert.That(users[1].Id, Is.EqualTo(5));
+            Assert.That(users[2].Id, Is.EqualTo(6));
+            Assert.That(users[3].Id, Is.EqualTo(7));
+            Assert.That(users[4].Id, Is.EqualTo(12));
 
         }
 
@@ -65,17 +65,17 @@ namespace VkToolkit.Tests
             var lst = friends.Get(1, ProfileFields.FirstName | ProfileFields.LastName, 3).ToList();
 
             Assert.That(lst.Count, Is.EqualTo(3));
-            Assert.That(lst[0].Uid, Is.EqualTo(2));
+            Assert.That(lst[0].Id, Is.EqualTo(2));
             Assert.That(lst[0].FirstName, Is.EqualTo("Александра"));
             Assert.That(lst[0].LastName, Is.EqualTo("Владимирова"));
             Assert.That(lst[0].Online, Is.EqualTo(0));
 
-            Assert.That(lst[1].Uid, Is.EqualTo(5));
+            Assert.That(lst[1].Id, Is.EqualTo(5));
             Assert.That(lst[1].FirstName, Is.EqualTo("Илья"));
             Assert.That(lst[1].LastName, Is.EqualTo("Перекопский"));
             Assert.That(lst[1].Online, Is.EqualTo(0));
 
-            Assert.That(lst[2].Uid, Is.EqualTo(6));
+            Assert.That(lst[2].Id, Is.EqualTo(6));
             Assert.That(lst[2].FirstName, Is.EqualTo("Николай"));
             Assert.That(lst[2].LastName, Is.EqualTo("Дуров"));
             Assert.That(lst[2].Online, Is.EqualTo(0));

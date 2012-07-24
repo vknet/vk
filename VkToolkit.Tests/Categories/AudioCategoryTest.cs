@@ -244,14 +244,14 @@ namespace VkToolkit.Tests.Categories
             const string json =
                 "{\"response\":[{\"id\":\"4793858\",\"photo\":\"http:\\/\\/cs9215.userapi.com\\/u4793858\\/e_1b975695.jpg\",\"name\":\"Антон Жидков\",\"name_gen\":\"Антона\"},{\"aid\":157633898,\"owner_id\":4793858,\"artist\":\"Марш Люфтваффе(немецкая народная песня)\",\"title\":\"Was wollen wir trinken!\",\"duration\":298,\"url\":\"http:\\/\\/cs4696.vkontakte.ru\\/u78355164\\/audio\\/e9a8e73e283b.mp3\",\"lyrics_id\":\"7257154\"},{\"aid\":157469004,\"owner_id\":4793858,\"artist\":\"Титаник-гитара=)\",\"title\":\"титаник\",\"duration\":227,\"url\":\"http:\\/\\/cs4770.vkontakte.ru\\/u12282005\\/audio\\/946096f61144.mp3\",\"lyrics_id\":\"5540676\"},{\"aid\":157187769,\"owner_id\":4793858,\"artist\":\"И.В.Сталин\",\"title\":\"Речь И.В.Сталина 7 ноября 1941\",\"duration\":185,\"url\":\"http:\\/\\/cs1338.vkontakte.ru\\/u3201669\\/audio\\/7d67c7278b65.mp3\"}]}";
 
-            Profile user;
+            User user;
             var category = GetMockedAudioCategory(url, json);
             var audios = category.Get(4793858, out user,null,null,3,5).ToList();
 
             Assert.That(audios.Count, Is.EqualTo(3));
 
             Assert.That(user, Is.Not.Null);
-            Assert.That(user.Uid, Is.EqualTo(4793858));
+            Assert.That(user.Id, Is.EqualTo(4793858));
             Assert.That(user.Photo, Is.EqualTo("http://cs9215.userapi.com/u4793858/e_1b975695.jpg"));
             Assert.That(user.FirstName, Is.EqualTo("Антон"));
             Assert.That(user.LastName, Is.EqualTo("Жидков"));

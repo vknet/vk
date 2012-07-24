@@ -6,13 +6,13 @@ using VkToolkit.Enums;
 using VkToolkit.Model;
 using VkToolkit.Utils;
 
-namespace VkToolkit
+namespace VkToolkit.Categories
 {
-    public class Users
+    public class UsersCategory
     {
         private readonly VkApi _vk;
 
-        public Users(VkApi vk)
+        public UsersCategory(VkApi vk)
         {
             _vk = vk;
         }
@@ -26,7 +26,7 @@ namespace VkToolkit
         /// <param name="count">Count of records in fetch.</param>
         /// <param name="offset">Offset of records in fetch.</param>
         /// <returns></returns>
-        public IEnumerable<Profile> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
+        public IEnumerable<User> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
 
@@ -51,10 +51,10 @@ namespace VkToolkit
 
             itemsCount = (int) array[0];
 
-            var output = new List<Profile>();
+            var output = new List<User>();
             for (int i = 1; i < array.Count; i++)
             {
-                Profile p = Utilities.GetProfileFromJObject((JObject)array[i]);
+                User p = Utilities.GetProfileFromJObject((JObject)array[i]);
                 output.Add(p);
             }
 
@@ -196,8 +196,8 @@ namespace VkToolkit
         /// </summary>
         /// <param name="uid">User Id</param>
         /// <param name="fields">Fields of the profile (can be combined).</param>
-        /// <returns>Profile object.</returns>
-        public Profile Get(long uid, ProfileFields fields = null)
+        /// <returns>User object.</returns>
+        public User Get(long uid, ProfileFields fields = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
 
@@ -224,8 +224,8 @@ namespace VkToolkit
         /// </summary>
         /// <param name="uids">List of users' Ids.</param>
         /// <param name="fields">Fields of the profile (can be combined).</param>
-        /// <returns>List of Profile objects.</returns>
-        public IEnumerable<Profile> Get(IEnumerable<long> uids, ProfileFields fields = null)
+        /// <returns>List of User objects.</returns>
+        public IEnumerable<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
 

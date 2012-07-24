@@ -26,7 +26,7 @@ namespace VkToolkit
         /// <param name="offset">Recors offset</param>
         /// <param name="order">Friends order(only for standalone desktop applications) </param>
         /// <returns>List of users</returns>
-        public IEnumerable<Profile> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, Order order = null)
+        public IEnumerable<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, Order order = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
 
@@ -51,7 +51,7 @@ namespace VkToolkit
 
             if (response.Count > 0 && response[0] is JValue)
             {
-                return response.Select(id => new Profile {Uid = (long) id}).ToList();
+                return response.Select(id => new User {Id = (long) id}).ToList();
             }
 
             return response.Select(p => Utilities.GetProfileFromJObject((JObject) p)).ToList();

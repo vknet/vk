@@ -22,7 +22,7 @@ namespace VkToolkit
         public string ExpiresIn { get; private set; }   // todo string -> int
         public long UserId { get; private set; }      // todo string -> int
 
-        public Users Users { get; private set; }
+        public UsersCategory Users { get; private set; }
         public Friends Friends { get; private set; }
         public StatusCategory Status { get; private set; }
         public MessagesCategory Messages { get; private set; }
@@ -44,7 +44,7 @@ namespace VkToolkit
             Browser = browser ?? new Utils.Browser(); // undone add test
             
             // set function's categories
-            Users = new Users(this);
+            Users = new UsersCategory(this);
             Friends = new Friends(this);
             Status = new StatusCategory(this);
             Messages = new MessagesCategory(this);

@@ -27,7 +27,7 @@ namespace VkToolkit.Categories
         /// <returns>Список объектов класса Audio.</returns>
         public IEnumerable<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null,  int? count = null, int? offset = null)
         {
-            Profile user;
+            User user;
             return InternalGet("gid", gid, out user, albumId, aids, false, count, offset);
         }
 
@@ -41,7 +41,7 @@ namespace VkToolkit.Categories
         /// <param name="count">количество возвращаемых аудиозаписей.</param>
         /// <param name="offset">смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
         /// <returns>Список объектов класса Audio.</returns>
-        public IEnumerable<Audio> Get(long uid, out Profile user, long? albumId = null, IEnumerable<long> aids = null,  int? count = null, int? offset = null)
+        public IEnumerable<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null,  int? count = null, int? offset = null)
         {
             return InternalGet("uid", uid, out user, albumId, aids, true, count, offset);
         }
@@ -57,11 +57,11 @@ namespace VkToolkit.Categories
         /// <returns>Список объектов класса Audio.</returns>
         public IEnumerable<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
-            Profile user;
+            User user;
             return InternalGet("uid", uid, out user, albumId, aids, false, count, offset);
         }
 
-        private IEnumerable<Audio> InternalGet(string paramId, long id, out Profile user, long? albumId = null, IEnumerable<long> aids = null, bool? needUser = null, int? count = null, int? offset = null)
+        private IEnumerable<Audio> InternalGet(string paramId, long id, out User user, long? albumId = null, IEnumerable<long> aids = null, bool? needUser = null, int? count = null, int? offset = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
 

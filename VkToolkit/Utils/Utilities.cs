@@ -41,9 +41,9 @@ namespace VkToolkit.Utils
             return output;
         }
 
-        public static Profile GetProfileFromJObject(JObject current)
+        public static User GetProfileFromJObject(JObject current)
         {
-            var profile = new Profile();
+            var profile = new User();
 
             profile.FirstName = (string) current["first_name"];
             profile.LastName = (string) current["last_name"];
@@ -70,11 +70,11 @@ namespace VkToolkit.Utils
             }
 
             if (current["uid"] != null)
-                profile.Uid = (long) current["uid"];
+                profile.Id = (long) current["uid"];
             else if (current["id"] != null)
             {
                 long id;
-                profile.Uid = long.TryParse((string)current["id"], out id) ? id : 0;
+                profile.Id = long.TryParse((string)current["id"], out id) ? id : 0;
             }
 
             if (current["name"] != null)

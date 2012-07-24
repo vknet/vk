@@ -1,8 +1,8 @@
 ﻿namespace VkToolkit.Model
 {
-    public class Profile
+    public class User
     {
-        public long Uid { get; set; }
+        public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Nickname { get; set; }
