@@ -6,13 +6,13 @@ using VkToolkit.Enums;
 using VkToolkit.Model;
 using VkToolkit.Utils;
 
-namespace VkToolkit
+namespace VkToolkit.Categories
 {
-    public class Friends
+    public class FriendsCategory
     {
         private readonly VkApi _vk;
 
-        public Friends(VkApi vk)
+        public FriendsCategory(VkApi vk)
         {
             _vk = vk;
         }

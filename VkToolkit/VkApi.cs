@@ -23,7 +23,7 @@ namespace VkToolkit
         public long UserId { get; private set; }      // todo string -> int
 
         public UsersCategory Users { get; private set; }
-        public Friends Friends { get; private set; }
+        public FriendsCategory Friends { get; private set; }
         public StatusCategory Status { get; private set; }
         public MessagesCategory Messages { get; private set; }
         public GroupsCategory Groups { get; private set; }
@@ -44,7 +44,7 @@ namespace VkToolkit
             
             // set function's categories
             Users = new UsersCategory(this);
-            Friends = new Friends(this);
+            Friends = new FriendsCategory(this);
             Status = new StatusCategory(this);
             Messages = new MessagesCategory(this);
             Groups = new GroupsCategory(this);

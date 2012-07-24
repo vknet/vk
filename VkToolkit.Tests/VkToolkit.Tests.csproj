@@ -60,7 +60,7 @@
     <Compile Include="Enum\GroupsFiltersTest.cs" />
     <Compile Include="Enum\ProfileFieldsTest.cs" />
     <Compile Include="Enum\SettingsTest.cs" />
-    <Compile Include="FriendsTest.cs" />
+    <Compile Include="Categories\FriendsCategoryTest.cs" />
     <Compile Include="Categories\UsersCategoryTest.cs" />
     <Compile Include="Utils\UtilitiesTest.cs" />
     <Compile Include="VkApiTest.cs" />

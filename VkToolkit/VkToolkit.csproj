@@ -82,7 +82,7 @@
     <Compile Include="Exception\TooManyRequestsException.cs" />
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
-    <Compile Include="Friends.cs" />
+    <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\Audio.cs" />
     <Compile Include="Model\Comments.cs" />
     <Compile Include="Model\Counters.cs" />

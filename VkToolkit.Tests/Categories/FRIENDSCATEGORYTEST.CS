@@ -2,14 +2,15 @@
 using System.Linq;
 using Moq;
 using NUnit.Framework;
+using VkToolkit.Categories;
 using VkToolkit.Enums;
 using VkToolkit.Exception;
 using VkToolkit.Utils;
 
-namespace VkToolkit.Tests
+namespace VkToolkit.Tests.Categories
 {
     [TestFixture]
-    public class FriendsTest
+    public class FriendsCategoryTest
     {
         [SetUp]
         public void SetUp()
@@ -17,19 +18,19 @@ namespace VkToolkit.Tests
              
         }
 
-        public Friends GetMockedFriendsCategory(string url, string json)
+        public FriendsCategory GetMockedFriendsCategory(string url, string json)
         {
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json);
 
-            return new Friends(new VkApi { AccessToken = "token", Browser = browser.Object });
+            return new FriendsCategory(new VkApi { AccessToken = "token", Browser = browser.Object });
         }
 
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new Friends(new VkApi());
+            var f = new FriendsCategory(new VkApi());
             f.Get(1);
         }
 
@@ -85,7 +86,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new Friends(new VkApi());
+            var f = new FriendsCategory(new VkApi());
             f.GetAppUsers();
         }
 
@@ -121,7 +122,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new Friends(new VkApi());
+            var f = new FriendsCategory(new VkApi());
             f.GetOnline(1);
         }
 
@@ -158,7 +159,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new Friends(new VkApi());
+            var f = new FriendsCategory(new VkApi());
             f.GetMutual(2, 3);
         }
 
@@ -194,7 +195,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new Friends(new VkApi());
+            var f = new FriendsCategory(new VkApi());
             f.AreFriends(new long[]{2, 3});
         }
 
@@ -202,7 +203,7 @@ namespace VkToolkit.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void AreFriends_NullInput_ThrowArgumentNullException()
         {
-            var f = new Friends(new VkApi(){AccessToken = "token"});
+            var f = new FriendsCategory(new VkApi(){AccessToken = "token"});
             f.AreFriends(null);
         }
 
