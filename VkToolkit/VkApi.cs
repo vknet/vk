@@ -20,7 +20,7 @@ namespace VkToolkit
         public string SecureKey { get; private set; }
         public string AccessToken { get; internal set; }
         public string ExpiresIn { get; private set; }   // todo string -> int
-        public long UserId { get; private set; }      // todo string -> int
+        public long UserId { get; private set; }
 
         public UsersCategory Users { get; private set; }
         public FriendsCategory Friends { get; private set; }
@@ -32,6 +32,7 @@ namespace VkToolkit
 
         private const string MethodPrefix = "https://api.vk.com/method/";
         internal static string InvalidLoginOrPassword = "Invalid login or password";
+        internal static string InvalidLoginOrPasswordRu = "Указан неверный логин или пароль";
         internal static string LoginSuccessed = "Login success";
 
         internal IBrowser Browser;
@@ -59,33 +60,20 @@ namespace VkToolkit
         /// <param name="email">Email or Phone</param>
         /// <param name="password">Password</param>
         /// <param name="settings">Access rights requested by your application</param>
-        /// <param name="display">Type of output page</param>
-        /// <param name="isVisible">Is browser window visible?</param>
         [STAThread]
-        public void Authorize(int appId, string email, string password, Settings settings, Display display, bool isVisible = true)
+        public void Authorize(int appId, string email, string password, Settings settings)
         {
             Email = email;
             Password = password;
             AppId = appId;
 
-            string url = CreateAuthorizeUrl(appId, settings, display);
-
-            Browser.Visible = isVisible;
-            Browser.ClearCookies();
+            string url = CreateAuthorizeUrl(appId, settings, Display.Wap);
+            
             Browser.GoTo(url);
-            try
-            {
-                Browser.Authorize(email, password);
-            }
-            catch (VkApiException)
-            {
-                Browser.Close();
-                throw;
-            }
+            Browser.Authorize(email, password);
 
-            if (Browser.ContainsText(InvalidLoginOrPassword))
+            if (Browser.ContainsText(InvalidLoginOrPassword) || Browser.ContainsText(InvalidLoginOrPasswordRu))
             {
-                Browser.Close();
                 throw new VkApiAuthorizationException(InvalidLoginOrPassword, email, password);
             }
 
@@ -96,12 +84,11 @@ namespace VkToolkit
 
             if (!Browser.ContainsText(LoginSuccessed))
             {
-                Browser.Close();
                 throw new VkApiException();
             }
 
             // parse values from url
-            Uri successUrl = Browser.Uri;
+            Uri successUrl = Browser.Url;
             string[] parts = successUrl.Fragment.Split('&');
 
             // todo IndexOutOfRangeException
@@ -115,10 +102,6 @@ namespace VkToolkit
             {
                 UserId = -1;
                 throw new VkApiException("UserId is not integer value.", ex);
-            }
-            finally
-            {
-                Browser.Close();
             }
         }
 

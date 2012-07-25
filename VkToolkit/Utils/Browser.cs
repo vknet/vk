@@ -1,38 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Text;
+using HtmlAgilityPack;
 using VkToolkit.Exception;
-using WatiN.Core;
-using WatiN.Core.Constraints;
-using WatiN.Core.Exceptions;
+using System.Web;
 
 namespace VkToolkit.Utils
 {
     public class Browser : IBrowser
     {
-        private IE _browser;
+        private readonly HtmlDocument _html;
+        private readonly CookieContainer _cookies;
+        private string _referer;
 
-        private IE Ie
-        {
-            get { return _browser ?? (_browser = new IE()); }
-        }
-        
         public Browser()
         {
-            
+            _html = new HtmlDocument();
+            _cookies = new CookieContainer();
         }
 
-        public Uri Uri
-        {
-            get { return Ie.Uri; }
-        }
-
-        public bool Visible
-        {
-            get { return Ie.Visible; }
-            set { Ie.Visible = value; }
-        }
-
+        public Uri Url { get; private set; }
+        
         public string GetJson(string url)
         {
             WebRequest request = WebRequest.Create(new Uri(url));
@@ -55,68 +46,165 @@ namespace VkToolkit.Utils
             var sr = new StreamReader(stream);
             return sr.ReadToEnd();
         }
-
-        public void ClearCookies()
-        {
-            Ie.ClearCookies();
-        }
-
+        
         public void GoTo(string url)
         {
-            try
-            {
-                Ie.GoTo(new Uri(url));
-            }
-            catch(WatiN.Core.Exceptions.TimeoutException ex)
-            {
-                throw new VkApiException(ex.Message, ex);
-            }
-        }
+            Url = new Uri(url);
 
-        public void Close()
-        {
-            Ie.Close();
+            var req = (HttpWebRequest) WebRequest.Create(url);
+            HttpWebResponse resp = GetResponse(req);
+
+            _referer = resp.ResponseUri.OriginalString;
+            _html.Load(resp.GetResponseStream(), Encoding.UTF8);
         }
 
         public void Authorize(string email, string password)
         {
-            try
+            var inputs = new Dictionary<string, string>();
+            var form = GetFormNode();
+            foreach (HtmlNode node in form.SelectNodes("//input"))
             {
-                Ie.TextField(Find.ByName("email")).TypeText(email);
-                Ie.TextField(Find.ByName("pass")).TypeText(password);
-                Ie.Button(Find.ById("install_allow")).Click();
+                HtmlAttribute nameAttribute = node.Attributes["name"];
+                HtmlAttribute valueAttribute = node.Attributes["value"];
+
+                string name = nameAttribute != null ? nameAttribute.Value : string.Empty;
+                string value = valueAttribute != null ? valueAttribute.Value : string.Empty;
+
+                if (string.IsNullOrEmpty(name)) continue;
+                if (name == "email") value = email;
+                if (name == "pass") value = password;
+
+                inputs.Add(name, HttpUtility.UrlEncode(value));
             }
-            catch (ElementNotFoundException ex)
+
+            string actionUrl = form.Attributes["action"] != null ? form.Attributes["action"].Value : Url.OriginalString;
+
+            string uri = string.Join("&", inputs.Select(x => string.Format("{0}={1}", x.Key, x.Value)));
+            byte[] bytes = Encoding.UTF8.GetBytes(uri);
+
+            var req = (HttpWebRequest) WebRequest.Create(actionUrl);
+            req.CookieContainer = new CookieContainer();
+            req.Method = "POST";
+            req.ContentType = "application/x-www-form-urlencoded";
+            req.ContentLength = bytes.Length;
+            req.GetRequestStream().Write(bytes, 0, bytes.Length);
+            req.AllowAutoRedirect = false;
+
+            HttpWebResponse resp = GetResponse(req);
+            _html.Load(resp.GetResponseStream(), Encoding.UTF8);
+            Url = resp.ResponseUri;
+            
+            SaveCookies(resp.Cookies);
+
+            if ((int)resp.StatusCode == 302) // redirect
             {
-                throw new VkApiException("Could not load a page.", ex);
+                Redirect(resp.Headers["Location"]);
             }
+            //else
+            //    throw new VkApiException("Redirect expected!");
         }
-
-        public TextField TextField(Constraint findBy)
+        
+        public void GainAccess()
         {
-            return Ie.TextField(findBy);
-        }
+            var inputs = new Dictionary<string, string>();
+            var form = GetFormNode();
 
-        public Button Button(Constraint findBy)
-        {
-            return Ie.Button(findBy);
+            foreach (HtmlNode node in form.SelectNodes("//input"))
+            {
+                HtmlAttribute nameAttribute = node.Attributes["name"];
+                HtmlAttribute valueAttribute = node.Attributes["value"];
+
+                string name = nameAttribute != null ? nameAttribute.Value : string.Empty;
+                string value = valueAttribute != null ? valueAttribute.Value : string.Empty;
+
+                // skip submit button
+                if (string.IsNullOrEmpty(name)) continue;
+                inputs.Add(name, HttpUtility.UrlEncode(value));
+            }
+
+            string actionUrl = form.Attributes["action"] != null ? form.Attributes["action"].Value : Url.OriginalString;
+
+            string uri = string.Join("&", inputs.Select(x => string.Format("{0}={1}", x.Key, x.Value)));
+            byte[] bytes = Encoding.UTF8.GetBytes(uri);
+
+            var req = (HttpWebRequest)WebRequest.Create(actionUrl);
+            req.Referer = _referer;
+            req.CookieContainer = _cookies;
+            req.CookieContainer = new CookieContainer();
+            req.Method = "POST";
+            req.ContentType = "application/x-www-form-urlencoded";
+            req.ContentLength = bytes.Length;
+            req.GetRequestStream().Write(bytes, 0, bytes.Length);
+            req.AllowAutoRedirect = false;
+
+            HttpWebResponse resp = GetResponse(req);
+            _html.Load(resp.GetResponseStream(), Encoding.UTF8);
+            Url = resp.ResponseUri;
+
+            if ((int)resp.StatusCode == 302) // redirect
+            {
+                Redirect(resp.Headers["Location"]);
+            }
         }
 
         public bool ContainsText(string text)
         {
-            return Ie.ContainsText(text);
+            if (_html == null || _html.DocumentNode == null)
+                return false;
+
+            HtmlNode bodyNode = _html.DocumentNode.SelectSingleNode("//body");
+            if (bodyNode == null)
+                return false;
+
+            string body = bodyNode.InnerText;
+            return body.Contains(text);
         }
 
-        public void GainAccess()
+        #region Private Methods
+
+        private void SaveCookies(CookieCollection cookies)
         {
-            try
+            foreach (Cookie c in cookies)
             {
-                Ie.Button(Find.ById("install_allow")).Click();
-            }
-            catch (ElementNotFoundException ex)
-            {
-                throw new VkApiException("Could not load a page.", ex);
+                _cookies.Add(c);
             }
         }
+
+        private HttpWebResponse GetResponse(HttpWebRequest req)
+        {
+            HttpWebResponse resp;
+            try
+            {
+                resp = (HttpWebResponse)req.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                throw new VkApiException("Check your internet connection.", ex);
+            }
+
+            return resp;
+        }
+        private void Redirect(string url)
+        {
+            var req = (HttpWebRequest)WebRequest.Create(url);
+            req.CookieContainer = _cookies;
+            req.Method = "GET";
+            req.ContentType = "text/html";
+
+            HttpWebResponse resp = GetResponse(req);
+            
+            _html.Load(resp.GetResponseStream(), Encoding.UTF8);
+            Url = resp.ResponseUri;
+        }
+
+        private HtmlNode GetFormNode()
+        {
+            HtmlNode.ElementsFlags.Remove("form");
+            HtmlNode form = _html.DocumentNode.SelectSingleNode("//form");
+            if (form == null)
+                throw new VkApiException("Form element not found.");
+            return form;
+        }
+        #endregion
     }
 }

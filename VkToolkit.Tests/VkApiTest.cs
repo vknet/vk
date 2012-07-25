@@ -139,7 +139,6 @@ namespace VkToolkit.Tests
             string url = vk.CreateAuthorizeUrl(123, Settings.Friends, Display.Page);
 
             Assert.That(url, Is.EqualTo(expected));
-            
         }
 
         [Test]
@@ -150,7 +149,7 @@ namespace VkToolkit.Tests
             browser.Setup(m => m.Authorize(Email, Password)).Throws(new VkApiException("Could not load a page."));
 
             var vk = new VkApi{Browser = browser.Object};
-            vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
+            vk.Authorize(AppId, Email, Password, Settings.Friends);
         }
 
         [Test]
@@ -161,7 +160,7 @@ namespace VkToolkit.Tests
             browser.Setup(m => m.ContainsText(VkApi.InvalidLoginOrPassword)).Returns(true);
 
             var vk = new VkApi{Browser = browser.Object};
-            vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
+            vk.Authorize(AppId, Email, Password, Settings.Friends);
         }
 
         [Test]
@@ -172,7 +171,7 @@ namespace VkToolkit.Tests
             browser.Setup(m => m.ContainsText(VkApi.LoginSuccessed)).Returns(false);
 
             var vk = new VkApi{Browser = browser.Object};
-            vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
+            vk.Authorize(AppId, Email, Password, Settings.Friends);
         }
 
         [Test]
@@ -182,10 +181,10 @@ namespace VkToolkit.Tests
             const string badUrl = "http://oauth.vk.com/blank.html#access_token=token&expires_in=86400&user_id=4793858sd";
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.ContainsText(VkApi.LoginSuccessed)).Returns(true);
-            browser.Setup(m => m.Uri).Returns(new Uri(badUrl));
+            browser.Setup(m => m.Url).Returns(new Uri(badUrl));
 
             var vk = new VkApi{Browser = browser.Object};
-            vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
+            vk.Authorize(AppId, Email, Password, Settings.Friends);
         }
 
         [Test]
@@ -193,10 +192,10 @@ namespace VkToolkit.Tests
         {   
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.ContainsText(VkApi.LoginSuccessed)).Returns(true);
-            browser.Setup(m => m.Uri).Returns(new Uri(ReturnUrl));
+            browser.Setup(m => m.Url).Returns(new Uri(ReturnUrl));
             
             var vk = new VkApi{Browser = browser.Object};
-            vk.Authorize(AppId, Email, Password, Settings.Friends, Display.Page);
+            vk.Authorize(AppId, Email, Password, Settings.Friends);
 
             Assert.That(vk.AppId, Is.EqualTo(AppId));
             Assert.That(vk.Email, Is.EqualTo(Email));
@@ -204,9 +203,7 @@ namespace VkToolkit.Tests
             Assert.That(vk.AccessToken, Is.EqualTo("token"));
             Assert.That(vk.ExpiresIn, Is.EqualTo("86400"));
             Assert.That(vk.UserId, Is.EqualTo(4793858));
-
-            browser.Verify(m => m.ClearCookies(), Times.Once());
-            browser.Verify(m => m.Close(), Times.Once());
+            
             browser.Verify(m => m.GoTo(It.IsAny<string>()), Times.Once());
             browser.Verify(m => m.Authorize(Email, Password));
             browser.Verify(m => m.ContainsText(It.IsAny<string>()), Times.Exactly(3));
