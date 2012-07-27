@@ -7,6 +7,7 @@ namespace VkToolkit.Model
         public Type Type { get; set; }
         internal Audio Audio;
         internal Photo Photo;
+        internal Video Video;
 
         public object Instance
         {
@@ -16,6 +17,8 @@ namespace VkToolkit.Model
                     return Audio;
                 if (Type == typeof(Photo))
                     return Photo;
+                if (Type == typeof(Video))
+                    return Video;
 
                 return null;
             }

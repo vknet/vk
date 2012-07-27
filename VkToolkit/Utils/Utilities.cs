@@ -38,11 +38,13 @@ namespace VkToolkit.Utils
                     break;
 
                 case "posted_photo":
-                    throw new NotImplementedException();
+                    output.Type = typeof (Photo);
+                    output.Photo = GetPhoto((JObject)att["posted_photo"]);
                     break;
 
                 case "video":
-                    throw new NotImplementedException();
+                    output.Type = typeof (Video);
+                    output.Video = GetVideo((JObject) att["video"]);
                     break;
 
                 case "doc":
@@ -76,6 +78,26 @@ namespace VkToolkit.Utils
                 default:
                     throw new InvalidParamException("The type of attachment is not defined.");
             }
+            return output;
+        }
+
+        public static Video GetVideo(JObject video)
+        {
+            var output = new Video();
+            output.Id = (long?) video["vid"];
+            output.OwnerId = (long?) video["owner_id"];
+            output.Title = (string) video["title"];
+            output.Description = (string) video["description"];
+            output.Duration = (int?) video["duration"];
+            output.Link = (string) video["video-4363_136089719"];
+
+            if (video["image"] != null)
+                output.Image = new Uri((string)video["image"]);
+            if (video["date"] != null)
+                output.Date = UnixTimeStampToDateTime((long) video["date"]);
+            if (video["player"] != null)
+                output.Player = new Uri((string)video["player"]);
+
             return output;
         }
 
