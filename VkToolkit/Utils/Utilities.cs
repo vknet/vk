@@ -74,12 +74,49 @@ namespace VkToolkit.Utils
                     break;
 
                 case "page":
-                    throw new NotImplementedException();
+                    output.Type = typeof (Page);
+                    output.Page = GetPage((JObject) att["page"]);
                     break;
 
                 default:
                     throw new InvalidParamException("The type of attachment is not defined.");
             }
+
+            return output;
+        }
+
+        public static Page GetPage(JObject page)
+        {
+            var output = new Page();
+            output.Id = (long?) page["pid"];
+            output.GroupId = (long?) page["group_id"];
+            output.CreatorId = (long?) page["creator_id"];
+            output.Title = (string) page["title"];
+            output.Source = (string) page["source"];
+
+            if (page["current_user_can_edit"] != null)
+            {
+                output.CurrentUserCanEdit = (int)page["current_user_can_edit"] == 1;
+            }
+            else
+                output.CurrentUserCanEdit = false;
+
+            if (page["current_user_can_edit_access"] != null)
+                output.CurrentUserCanEditAccess = (int)page["current_user_can_edit_access"] == 1;
+            else
+                output.CurrentUserCanEditAccess = false;
+
+            output.WhoCanView = (int?) page["who_can_view"];
+            output.WhoCanEdit = (int?) page["who_can_edit"];
+            output.EditorId = (long?) page["editor_id"];
+            output.Parent = (string) page["parent"];
+            output.Parent2 = (string) page["parent2"];
+
+            if (page["edited"] != null)
+                output.Edited = UnixTimeStampToDateTime((long) page["edited"]);
+
+            if (page["created"] != null)
+                output.Created = UnixTimeStampToDateTime((long) page["created"]);
 
             return output;
         }

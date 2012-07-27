@@ -10,6 +10,7 @@ namespace VkToolkit.Model
         internal Video Video;
         internal Document Document;
         internal Note Note;
+        internal Page Page;
 
         public object Instance
         {
@@ -25,6 +26,8 @@ namespace VkToolkit.Model
                     return Document;
                 if (Type == typeof(Note))
                     return Note;
+                if (Type == typeof(Page))
+                    return Page;
 
                 return null;
             }
