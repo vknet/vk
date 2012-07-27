@@ -5,6 +5,7 @@ using NUnit.Framework;
 using VkToolkit.Categories;
 using VkToolkit.Enums;
 using VkToolkit.Exception;
+using VkToolkit.Model;
 using VkToolkit.Utils;
 
 namespace VkToolkit.Tests.Categories
@@ -48,6 +49,35 @@ namespace VkToolkit.Tests.Categories
             Assert.That(totalCount, Is.EqualTo(137));
             Assert.That(records.Count == 3);
 
+            Assert.That(records[1].Attachment.Type == typeof(Audio));
+            //var audio = (Audio) records[1].Attachment.GetAttachment();
+            dynamic audio = records[1].Attachment.Instanse;
+            
+            Assert.That(audio.Id, Is.EqualTo(154701206));
+            Assert.That(audio.OwnerId, Is.EqualTo(4793858));
+            Assert.That(audio.Performer, Is.EqualTo("Мук"));
+            Assert.That(audio.Title, Is.EqualTo("Дорогою добра"));
+            Assert.That(audio.Duration, Is.EqualTo(130));
+
+
+            Assert.That(records[1].Id, Is.EqualTo(617));
+            Assert.That(records[1].FromId, Is.EqualTo(4793858));
+            Assert.That(records[1].ToId, Is.EqualTo(4793858));
+            Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 18, 37, 46)));
+            Assert.That(records[1].Text, Is.Null.Or.Empty);
+            Assert.That(records[1].Comments.Count == 0);
+            Assert.That(records[1].Comments.CanPost, Is.True);
+            Assert.That(records[1].Likes.Count, Is.EqualTo(0));
+            Assert.That(records[1].Likes.UserLikes, Is.False);
+            Assert.That(records[1].Likes.CanLike, Is.True);
+            Assert.That(records[1].Likes.CanPublish, Is.False);
+            Assert.That(records[1].Reposts.Count, Is.EqualTo(0));
+            Assert.That(records[1].Reposts.UserReposted, Is.False);
+            Assert.That(records[1].PostSource.Type, Is.EqualTo("vk"));
+            Assert.That(records[1].Online, Is.False);
+            Assert.That(records[1].ReplyCount, Is.EqualTo(0));
+            //Assert.That(records[1]., Is.EqualTo());
+            
             Assert.That(records[2].Id, Is.EqualTo(616));
             Assert.That(records[2].ReplyCount, Is.EqualTo(0));
             Assert.That(records[2].Online, Is.False);

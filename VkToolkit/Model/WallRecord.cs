@@ -20,5 +20,6 @@ namespace VkToolkit.Model
         public bool? Online { get; set; }
         public int? ReplyCount { get; set; }
         public PostSource PostSource { get; set; }
+        public Attachment Attachment { get; set; }
     }
 }

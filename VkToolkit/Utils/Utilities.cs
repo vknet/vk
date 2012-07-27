@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enums;
+using VkToolkit.Exception;
 using VkToolkit.Model;
 
 namespace VkToolkit.Utils
@@ -23,11 +24,56 @@ namespace VkToolkit.Utils
         {
             // UNDONE Complete it later
             var output = new Attachment();
-            switch ((string) att["type"])
+            var type = (string) att["type"];
+            switch (type)
             {
                 case "audio":
+                    output.Type = typeof (Audio);
                     output.Audio = GetAudioFromJObject((JObject)att["audio"]);
                     break;
+
+                case "photo":
+                    throw new NotImplementedException();
+                    break;
+
+                case "posted_photo":
+                    throw new NotImplementedException();
+                    break;
+
+                case "video":
+                    throw new NotImplementedException();
+                    break;
+
+                case "doc":
+                    throw new NotImplementedException();
+                    break;
+
+                case "graffiti":
+                    throw new NotImplementedException();
+                    break;
+
+                case "link":
+                    throw new NotImplementedException();
+                    break;
+
+                case "note":
+                    throw new NotImplementedException();
+                    break;
+
+                case "app":
+                    throw new NotImplementedException();
+                    break;
+
+                case "poll":
+                    throw new NotImplementedException();
+                    break;
+
+                case "page":
+                    throw new NotImplementedException();
+                    break;
+
+                default:
+                    throw new InvalidParamException("The type of attachment is not defined.");
             }
             return output;
         }
@@ -84,6 +130,11 @@ namespace VkToolkit.Utils
                 };
             }
 
+            if (wall["attachment"] != null)
+            {
+                output.Attachment = GetAttachment((JObject) wall["attachment"]);
+            }
+
             return output;
         }
 
@@ -97,9 +148,11 @@ namespace VkToolkit.Utils
                                  Duration = (int)audio["duration"],
                                  Artist = (string)audio["artist"],
                                  Title = (string)audio["title"],
-                                 Url = new Uri((string)audio["url"]),
                                  Performer = (string) audio["performer"]
                              };
+
+            if (audio["url"] != null)
+                output.Url = new Uri((string) audio["url"]);
 
             if (audio["lyrics_id"] != null)
                 output.LyricsId = Convert.ToInt64((string) audio["lyrics_id"]);
