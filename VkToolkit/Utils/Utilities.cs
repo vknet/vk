@@ -48,7 +48,8 @@ namespace VkToolkit.Utils
                     break;
 
                 case "doc":
-                    throw new NotImplementedException();
+                    output.Type = typeof (Document);
+                    output.Document = GetDocument((JObject)att["doc"]);
                     break;
 
                 case "graffiti":
@@ -78,6 +79,20 @@ namespace VkToolkit.Utils
                 default:
                     throw new InvalidParamException("The type of attachment is not defined.");
             }
+
+            return output;
+        }
+
+        public static Document GetDocument(JObject doc)
+        {
+            var output = new Document();
+            output.Id = (long?) doc["did"];
+            output.OwnerId = (long?) doc["owner_id"];
+            output.Title = (string) doc["title"];
+            output.Size = (long?) doc["size"];
+            output.Ext = (string) doc["ext"];
+            output.Url = (string) doc["url"];
+
             return output;
         }
 
