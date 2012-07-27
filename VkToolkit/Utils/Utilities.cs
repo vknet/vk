@@ -61,7 +61,8 @@ namespace VkToolkit.Utils
                     break;
 
                 case "note":
-                    throw new NotImplementedException();
+                    output.Type = typeof (Note);
+                    output.Note = GetNote((JObject) att["note"]);
                     break;
 
                 case "app":
@@ -79,6 +80,27 @@ namespace VkToolkit.Utils
                 default:
                     throw new InvalidParamException("The type of attachment is not defined.");
             }
+
+            return output;
+        }
+
+        // TODO TEST IT!!!!!
+        public static Note GetNote(JObject note)
+        {
+            var output = new Note();
+            output.Id = (long?) note["nid"];
+            output.UserId = (long?) note["uid"];
+            output.Title = (string) note["title"];
+            output.Text = (string) note["text"];
+
+            if (note["date"] != null)
+                output.Date = UnixTimeStampToDateTime((long) note["date"]);
+
+            if (note["ncom"] != null)
+                output.CommentsCount = (int?) note["ncom"];
+
+            if (note["read_ncom"] != null)
+                output.ReadCommentsCount = (int?) note["read_ncom"];
 
             return output;
         }
