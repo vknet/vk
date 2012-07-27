@@ -29,13 +29,13 @@ namespace VkToolkit.Enums
             {
                 foreach (var f in f1._fields)
                 {
-                    if (!_fields.Any(m => m._value == f._value))
+                    if (_fields.All(m => m._value != f._value))
                         _fields.Add(f);
                 }
             }
             else
             {
-                if (!_fields.Any(m => m._value == f1._value))
+                if (_fields.All(m => m._value != f1._value))
                     _fields.Add(f1);
             }
 
@@ -44,13 +44,13 @@ namespace VkToolkit.Enums
             {
                 foreach (var f in f2._fields)
                 {
-                    if (!_fields.Any(m => m._value == f._value))
+                    if (_fields.All(m => m._value != f._value))
                         _fields.Add(f);
                 }
             }
             else
             {
-                if (!_fields.Any(m => m._value == f2._value))
+                if (_fields.All(m => m._value != f2._value))
                     _fields.Add(f2);
             }
         }

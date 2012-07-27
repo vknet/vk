@@ -65,6 +65,7 @@
     <Compile Include="Enums\ProfileFields.cs" />
     <Compile Include="Enums\Settings.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
+    <Compile Include="Enums\WallFilter.cs" />
     <Compile Include="Exception\AccessDeniedException.cs" />
     <Compile Include="Exception\AccessTokenInvalidException.cs" />
     <Compile Include="Exception\InvalidParamException.cs" />
@@ -72,13 +73,17 @@
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Categories\FriendsCategory.cs" />
+    <Compile Include="Model\Attachment.cs" />
     <Compile Include="Model\Audio.cs" />
     <Compile Include="Model\Comments.cs" />
     <Compile Include="Model\Counters.cs" />
     <Compile Include="Model\Geo.cs" />
     <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\Like.cs" />
     <Compile Include="Model\Lyrics.cs" />
     <Compile Include="Model\Place.cs" />
+    <Compile Include="Model\PostSource.cs" />
+    <Compile Include="Model\Reposts.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Enums\ResponseType.cs" />
     <Compile Include="Exception\VkApiAuthorizationException.cs" />
@@ -87,6 +92,7 @@
     <Compile Include="Categories\StatusCategory.cs" />
     <Compile Include="Model\Status.cs" />
     <Compile Include="Categories\UsersCategory.cs" />
+    <Compile Include="Model\WallRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Browser.cs" />
     <Compile Include="Utils\IBrowser.cs" />

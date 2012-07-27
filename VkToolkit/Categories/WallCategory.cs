@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using VkToolkit.Enums;
+using VkToolkit.Model;
+using VkToolkit.Utils;
 
 namespace VkToolkit.Categories
 {
@@ -10,9 +15,38 @@ namespace VkToolkit.Categories
             _vk = vk;
         }
 
-        public void Get()
+        public IEnumerable<WallRecord> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All/*, bool isExtended = false*/)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("owner_id", ownerId + "");
+            if (count.HasValue && count.Value > 0)
+                values.Add("count", count.Value + "");
+            if (offset.HasValue && offset.Value > 0)
+                values.Add("offset", offset.Value + "");
+            values.Add("filter", filter.ToString().ToLowerInvariant());
+            // TODO add it later
+            //if (isExtended)
+            //    values.Add("extended", "1");
+
+            string url = _vk.GetApiUrl("wall.get", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var array = (JArray)obj["response"];
+
+            totalCount = (int) array[0];
+
+            var output = new List<WallRecord>();
+            for (int i = 1; i < array.Count; i++ )
+            {
+                WallRecord record = Utilities.GetWallRecord((JObject) array[i]);
+                output.Add(record);
+            }
+            return output;
         }
 
         public void GetComments()

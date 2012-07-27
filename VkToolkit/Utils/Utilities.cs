@@ -18,6 +18,75 @@ namespace VkToolkit.Utils
                              };
             return output;
         }
+
+        public static Attachment GetAttachment(JObject att)
+        {
+            // UNDONE Complete it later
+            var output = new Attachment();
+            switch ((string) att["type"])
+            {
+                case "audio":
+                    output.Audio = GetAudioFromJObject((JObject)att["audio"]);
+                    break;
+            }
+            return output;
+        }
+
+        public static WallRecord GetWallRecord(JObject wall)
+        {
+            var output = new WallRecord();
+
+            output.Id = (long?) wall["id"];
+            output.FromId = (long?) wall["from_id"];
+            output.ToId = (long?) wall["to_id"];
+            output.Date = UnixTimeStampToDateTime((long) wall["date"]);
+            output.Text = (string) wall["text"];
+            output.CopyOwnerId = (long?) wall["copy_owner_id"];
+            output.CopyPostId = (long?) wall["copy_post_id"];
+            output.ReplyCount = (int?) wall["reply_count"];
+
+            if (wall["online"] != null)
+                output.Online = (int) wall["online"] == 1;
+            else
+                output.Online = false;
+
+            if (wall["post_source"] != null)
+            {
+                output.PostSource = new PostSource {Type = (string) wall["post_source"]["type"]};
+            }
+
+            if (wall["comments"] != null)
+            {
+                output.Comments = new Comments
+                {
+                    Count = (int) wall["comments"]["count"],
+                    CanPost = (int) wall["comments"]["can_post"] == 1
+                };
+            }
+
+            if (wall["likes"] != null)
+            {
+                output.Likes = new Like
+                {
+                    Count = (int) wall["likes"]["count"],
+                    UserLikes = (int) wall["likes"]["user_likes"] == 1,
+                    CanLike = (int) wall["likes"]["can_like"] == 1,
+                    CanPublish = (int) wall["likes"]["can_publish"] == 1
+                };
+            }
+
+            if (wall["reposts"] != null)
+            {
+                output.Reposts = new Reposts
+                {
+                    Count = (int)wall["reposts"]["count"],
+                    UserReposted = (int)wall["reposts"]["user_reposted"] == 1
+                };
+            }
+
+            return output;
+        }
+
         public static Audio GetAudioFromJObject(JObject audio)
         {
             // todo case when album id is not null
