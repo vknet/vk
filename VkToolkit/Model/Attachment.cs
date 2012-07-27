@@ -7,12 +7,15 @@ namespace VkToolkit.Model
         public Type Type { get; set; }
         internal Audio Audio;
 
-        public object GetAttachment()
+        public object Instance
         {
-            if (Type == typeof(Audio))
+            get
+            {
+                if (Type == typeof(Audio))
                 return Audio;
 
-            return null;
+                return null;
+            }
         }
     }
 }
