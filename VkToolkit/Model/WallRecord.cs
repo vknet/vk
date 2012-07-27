@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VkToolkit.Model
 {
@@ -21,5 +22,6 @@ namespace VkToolkit.Model
         public int? ReplyCount { get; set; }
         public PostSource PostSource { get; set; }
         public Attachment Attachment { get; set; }
+        public IEnumerable<Attachment> Attachments { get; set; }
     }
 }

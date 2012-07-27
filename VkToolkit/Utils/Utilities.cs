@@ -33,7 +33,8 @@ namespace VkToolkit.Utils
                     break;
 
                 case "photo":
-                    throw new NotImplementedException();
+                    output.Type = typeof (Photo);
+                    output.Photo = GetPhoto((JObject)att["photo"]);
                     break;
 
                 case "posted_photo":
@@ -134,6 +135,44 @@ namespace VkToolkit.Utils
             {
                 output.Attachment = GetAttachment((JObject) wall["attachment"]);
             }
+
+            if (wall["attachments"] != null)
+            {
+                var arr = (JArray) wall["attachments"];
+                output.Attachments = arr.Select(attach => GetAttachment((JObject)attach)).ToList();
+            }
+
+            return output;
+        }
+
+        public static Photo GetPhoto(JObject audio)
+        {
+            var output = new Photo();
+            output.Id = (long?)audio["pid"];
+            output.AlbumId = (long?) audio["aid"];
+            output.OwnerId = (long?) audio["owner_id"];
+            output.Text = (string) audio["text"];
+            output.Width = (int?) audio["width"];
+            output.Height = (int?) audio["height"];
+            output.AccessKey = (string) audio["access_key"];
+
+            if (audio["src"] != null)
+                output.Src = new Uri((string) audio["src"]);
+
+            if (audio["src_small"] != null)
+                output.SrcSmall = new Uri((string)audio["src_small"]);
+
+            if (audio["src_big"] != null)
+                output.SrcBig = new Uri((string)audio["src_big"]);
+
+            if (audio["created"] != null)
+                output.Created = UnixTimeStampToDateTime((long) audio["created"]);
+
+            if (audio["src_xbig"] != null)
+                output.SrcXBig = new Uri((string)audio["src_xbig"]);
+
+            if (audio["src_xxbig"] != null)
+                output.SrcXxBig = new Uri((string)audio["src_xxbig"]);
 
             return output;
         }

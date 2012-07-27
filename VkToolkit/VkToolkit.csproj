@@ -81,6 +81,7 @@
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Like.cs" />
     <Compile Include="Model\Lyrics.cs" />
+    <Compile Include="Model\Photo.cs" />
     <Compile Include="Model\Place.cs" />
     <Compile Include="Model\PostSource.cs" />
     <Compile Include="Model\Reposts.cs" />
