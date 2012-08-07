@@ -206,7 +206,7 @@ namespace VkToolkit.Tests
             
             browser.Verify(m => m.GoTo(It.IsAny<string>()), Times.Once());
             browser.Verify(m => m.Authorize(Email, Password));
-            browser.Verify(m => m.ContainsText(It.IsAny<string>()), Times.Exactly(3));
+            browser.Verify(m => m.ContainsText(It.IsAny<string>()), Times.Exactly(4));
             browser.Verify(m => m.ContainsText(VkApi.LoginSuccessed), Times.Exactly(2));
             browser.Verify(m => m.ContainsText(VkApi.InvalidLoginOrPassword), Times.Once());
         }

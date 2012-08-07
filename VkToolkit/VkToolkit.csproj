@@ -77,10 +77,13 @@
     <Compile Include="Model\Audio.cs" />
     <Compile Include="Model\Comments.cs" />
     <Compile Include="Model\Counters.cs" />
+    <Compile Include="Model\Document.cs" />
     <Compile Include="Model\Geo.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\Like.cs" />
     <Compile Include="Model\Lyrics.cs" />
+    <Compile Include="Model\Note.cs" />
+    <Compile Include="Model\Page.cs" />
     <Compile Include="Model\Photo.cs" />
     <Compile Include="Model\Place.cs" />
     <Compile Include="Model\PostSource.cs" />
@@ -93,6 +96,7 @@
     <Compile Include="Categories\StatusCategory.cs" />
     <Compile Include="Model\Status.cs" />
     <Compile Include="Categories\UsersCategory.cs" />
+    <Compile Include="Model\Video.cs" />
     <Compile Include="Model\WallRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Browser.cs" />

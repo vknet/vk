@@ -17,7 +17,7 @@ namespace VkToolkit.Tests.Categories
             var mock = new Mock<IBrowser>();
             mock.Setup(m => m.GetJson(url)).Returns(json);
 
-            return new AudioCategory(new VkApi() {AccessToken = "token", Browser = mock.Object});
+            return new AudioCategory(new VkApi {AccessToken = "token", Browser = mock.Object});
 
         }
 
