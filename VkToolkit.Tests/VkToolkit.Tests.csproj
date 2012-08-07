@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Categories\AudioCategoryTest.cs" />
     <Compile Include="Categories\GroupsCategoryTest.cs" />
+    <Compile Include="Categories\MessagesCategoryTest.cs" />
     <Compile Include="Categories\StatusCategoryTest.cs" />
     <Compile Include="Categories\WallCategoryTest.cs" />
     <Compile Include="Enum\GroupsFieldsTest.cs" />
