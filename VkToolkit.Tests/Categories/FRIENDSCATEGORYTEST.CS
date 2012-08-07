@@ -203,7 +203,7 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(ArgumentNullException))]
         public void AreFriends_NullInput_ThrowArgumentNullException()
         {
-            var f = new FriendsCategory(new VkApi(){AccessToken = "token"});
+            var f = new FriendsCategory(new VkApi{AccessToken = "token"});
             f.AreFriends(null);
         }
 

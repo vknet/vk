@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using VkToolkit.Model;
 
 namespace VkToolkit.Categories
 {
@@ -111,14 +114,33 @@ namespace VkToolkit.Categories
             throw new NotImplementedException();
         }
 
-        public void GetLongPollServer()
+        public LongPollServerResponse GetLongPollServer()
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            string url = _vk.GetApiUrl("messages.getLongPollServer", new Dictionary<string, string>());
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = obj["response"];
+
+            var result = new LongPollServerResponse
+            {
+                Key = (string) response["key"],
+                Server = (string) response["server"],
+                Ts = (long) response["ts"]
+            };
+
+            return result;
         }
 
         public void GetLongPollHistory()
         {
             throw new NotImplementedException();
+
+
         }
     }
 }
