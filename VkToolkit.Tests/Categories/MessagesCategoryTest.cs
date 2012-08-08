@@ -354,7 +354,37 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Send_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
+            var cat = new MessagesCategory(new VkApi());
+            cat.Send(1, false, "Привет, Паша!");
+        }
 
+        [Test]
+        public void Send_DefaultFields_MessageId()
+        {
+            url = "https://api.vk.com/method/messages.send?uid=7550525&message=Test+from+vk.net+%3b)+%23+2&title=Test+title&access_token=token";
+            json = "{\"response\":4457}";
+
+            long id = Cat.Send(7550525, false, "Test from vk.net ;) # 2", "Test title");
+
+            Assert.That(id, Is.EqualTo(4457));
+        }
+
+        [Test]
+        public void Send_RussianText_MessageId()
+        {
+            url = "https://api.vk.com/method/messages.send?uid=7550525&message=%d0%97%d0%b0%d0%b8%d0%b1%d0%b8%d1%81%d1%8c+%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d0%b5%d1%82+%23+2+--++%d0%b5%d1%89%d0%b5+%d1%80%d0%b0%d0%b7%d0%be%d0%ba&title=%d0%a2%d0%b0%d0%b9%d1%82%d0%bb&access_token=token";
+            json = "{\"response\":4464}";
+
+            long id = Cat.Send(7550525, false, "Заибись работает # 2 --  еще разок", "Тайтл");
+
+            Assert.That(id, Is.EqualTo(4464));
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidParamException), ExpectedMessage = "Message can not be null.")]
+        public void Send_EmptyMessage_ThrowInvalidParamException()
+        {
+            Cat.Send(1, false, "");
         }
 
         [Test]

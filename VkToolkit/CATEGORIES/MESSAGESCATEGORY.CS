@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enums;
 using VkToolkit.Exception;
@@ -243,10 +244,54 @@ namespace VkToolkit.Categories
 
             return lst;
         }
-
-        public void Send()
+        
+        public long Send(long id, bool isChat, string message, string title = "", Attachment attch = null, IEnumerable<long> forwardMessagedIds = null, bool fromChat = false, double? latitude = null, double? longitude = null, string guid = null)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            if (string.IsNullOrEmpty(message))
+                throw new InvalidParamException("Message can not be null.");
+
+            var values = new Dictionary<string, string>();
+            values.Add(isChat ? "chat_id" : "uid", id + "");
+            values.Add("message", HttpUtility.UrlEncode(message));
+
+            // UNDONE Yet not work with attachments. Fix it later.
+
+            if (forwardMessagedIds != null)
+            {
+                var ids = forwardMessagedIds.ToList();
+                if (ids.Any())
+                {
+                    values.Add("forward_messages", Utilities.GetEnumerationAsString(ids));
+                }
+            }
+
+            if (!string.IsNullOrEmpty(title))
+                values.Add("title", HttpUtility.UrlEncode(title));
+
+            if (fromChat)
+                values.Add("type", "1");
+
+            if (latitude.HasValue && latitude.Value > 0)
+                values.Add("lat", latitude.ToString());
+
+            if (longitude.HasValue && longitude.Value > 0)
+                values.Add("long", longitude.ToString());
+            
+            //values.Add("guid", guid ?? Guid.NewGuid().ToString());
+            if (!string.IsNullOrEmpty(guid))
+                values.Add("guid", HttpUtility.UrlEncode(guid));
+
+            string url = _vk.GetApiUrl("messages.send", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (long)obj["response"];
+
+            return response;
         }
 
         public void Delete()
