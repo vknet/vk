@@ -308,6 +308,7 @@ namespace VkToolkit.Utils
             msg.ChatId = (long?) current["chat_id"];
             msg.UsersCount = (int?) current["users_count"];
             msg.AdminId = (long?) current["admin_id"];
+            msg.FromUserId = (long?) current["from_id"];
 
             if (current["deleted"] != null)
                 msg.IsDeleted = (int) current["deleted"] == 1;

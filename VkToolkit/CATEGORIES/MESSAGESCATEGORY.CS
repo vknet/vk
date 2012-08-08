@@ -20,7 +20,6 @@ namespace VkToolkit.Categories
             _vk.IfAccessTokenNotDefinedThrowException();
 
             var values = new Dictionary<string, string>();
-
             values.Add("out", (int) type + "");
 
             if (offset.HasValue && offset.Value > 0)
@@ -58,13 +57,44 @@ namespace VkToolkit.Categories
 
             return lst;
         }
-
-        public void GetDialogs()
+        
+        public IEnumerable<Message> GetHistory(int id, bool isChat, out int totalCount, int? offset = null, int? count = null, bool? inReverse = null, long? startMessageId = null)
         {
-            throw new NotImplementedException();
-        }
+            _vk.IfAccessTokenNotDefinedThrowException();
 
-        public void GetHistory()
+            var values = new Dictionary<string, string>();
+            values.Add(isChat ? "chat_id" : "uid", id + "");
+            if (offset.HasValue && offset.Value > 0)
+                values.Add("offset", offset + "");
+
+            if (count.HasValue && count.Value > 0)
+                values.Add("count", count + "");
+            if (startMessageId.HasValue && startMessageId > 0)
+                values.Add("start_mid", startMessageId + "");
+            if (inReverse.HasValue && inReverse.Value)
+                values.Add("rev", "1");
+
+            string url = _vk.GetApiUrl("messages.getHistory", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            totalCount = (int)response[0];
+
+            var lst = new List<Message>();
+            for (int i = 1; i < response.Count; i++)
+            {
+                var msg = Utilities.GetMessage((JObject)response[i]);
+                lst.Add(msg);
+            }
+
+            return lst;
+        }
+        
+        public void GetDialogs()
         {
             throw new NotImplementedException();
         }

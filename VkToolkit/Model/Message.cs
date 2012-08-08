@@ -20,5 +20,6 @@ namespace VkToolkit.Model
         public int? UsersCount { get; set; }
         public long? AdminId { get; set; }
         public bool? IsDeleted { get; set; }
+        public long? FromUserId { get; set; }
     }
 }
