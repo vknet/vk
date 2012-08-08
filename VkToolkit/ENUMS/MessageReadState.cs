@@ -2,6 +2,6 @@
 {
     public enum MessageReadState
     {
-        NotReaded, Readed
+        Unreaded = 0, Readed = 1
     }
 }

@@ -2,6 +2,6 @@
 {
     public enum MessageType
     {
-        Recived, Sended
+        Recived = 0, Sended = 1
     }
 }

@@ -61,6 +61,9 @@
     <Compile Include="Enums\GroupsFilters.cs" />
     <Compile Include="Enums\GroupsSort.cs" />
     <Compile Include="Enums\GroupType.cs" />
+    <Compile Include="Enums\MessageReadState.cs" />
+    <Compile Include="Enums\MessagesFilter.cs" />
+    <Compile Include="Enums\MessageType.cs" />
     <Compile Include="Enums\Order.cs" />
     <Compile Include="Enums\ProfileFields.cs" />
     <Compile Include="Enums\Settings.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="Model\Like.cs" />
     <Compile Include="Model\LongPollServerResponse.cs" />
     <Compile Include="Model\Lyrics.cs" />
+    <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Page.cs" />
     <Compile Include="Model\Photo.cs" />

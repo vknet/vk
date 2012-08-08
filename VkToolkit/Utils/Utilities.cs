@@ -298,6 +298,68 @@ namespace VkToolkit.Utils
             return output;
         }
 
+        public static Message GetMessage(JObject current)
+        {
+            var msg = new Message();
+            msg.Id = (long?) current["mid"];
+            msg.UserId = (long?) current["uid"];
+            msg.Title = (string) current["title"];
+            msg.Body = (string) current["body"];
+            msg.ChatId = (long?) current["chat_id"];
+            msg.UsersCount = (int?) current["users_count"];
+            msg.AdminId = (long?) current["admin_id"];
+
+            if (current["deleted"] != null)
+                msg.IsDeleted = (int) current["deleted"] == 1;
+
+            if (current["date"] != null)
+                msg.Date = UnixTimeStampToDateTime((long) current["date"]);
+
+            if (current["read_state"] != null)
+            {
+                int state = (int) current["read_state"];
+                switch (state)
+                {
+                    case 0:
+                        msg.ReadState = MessageReadState.Unreaded;
+                        break;
+
+                    case 1:
+                        msg.ReadState = MessageReadState.Readed;
+                        break;
+                }
+            }
+
+            if (current["out"] != null)
+            {
+                int type = (int) current["out"];
+                switch (type)
+                {
+                    case 0:
+                        msg.Type = MessageType.Recived;
+                        break;
+
+                    case 1:
+                        msg.Type = MessageType.Sended;
+                        break;
+                }
+            }
+
+            if (current["attachments"] != null)
+            {
+                var arr = (JArray)current["attachments"];
+                msg.Attachments = arr.Select(attach => GetAttachment((JObject)attach)).ToList();
+            }
+
+            if (current["fwd_messages"] != null)
+                throw new NotImplementedException();
+
+            if (current["chat_active"] != null)
+                throw new NotImplementedException();
+
+            return msg;
+        }
+
         public static User GetProfileFromJObject(JObject current)
         {
             var profile = new User();
@@ -452,6 +514,12 @@ namespace VkToolkit.Utils
             var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             dt = dt.AddSeconds(unixTimeStamp).ToLocalTime();
             return dt;
+        }
+
+        public static long DateTimeToUnixTimeStamp(DateTime date)
+        {
+            TimeSpan span = DateTime.Now - date;
+            return (long) span.TotalSeconds;
         }
 
         public static FriendStatus GetFriendStatus(int status)

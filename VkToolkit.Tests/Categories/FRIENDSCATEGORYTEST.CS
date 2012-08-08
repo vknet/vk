@@ -51,7 +51,6 @@ namespace VkToolkit.Tests.Categories
             Assert.That(users[2].Id, Is.EqualTo(6));
             Assert.That(users[3].Id, Is.EqualTo(7));
             Assert.That(users[4].Id, Is.EqualTo(12));
-
         }
 
         [Test]
