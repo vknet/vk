@@ -130,10 +130,40 @@ namespace VkToolkit.Categories
 
             return lst;
         }
-
-        public void GetDialogs()
+        
+        public IEnumerable<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+         
+            var values = new Dictionary<string, string>();
+            values.Add("uid", userId + "");
+            if (chatId.HasValue && chatId.Value > 0)
+                values.Add("chat_id", chatId + "");
+            if (count.HasValue && count > 0)
+                values.Add("count", count + "");
+            if (offset.HasValue && offset.Value > 0)
+                values.Add("offset", offset + "");
+            if (previewLength.HasValue && previewLength.Value > 0)
+                values.Add("preview_length", previewLength + "");
+
+            string url = _vk.GetApiUrl("messages.getDialogs", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            totalCount = (int)response[0];
+
+            var lst = new List<Message>();
+            for (int i = 1; i < response.Count; i++)
+            {
+                var msg = Utilities.GetMessage((JObject)response[i]);
+                lst.Add(msg);
+            }
+
+            return lst;
         }
 
         public void SearchDialogs()

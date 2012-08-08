@@ -75,9 +75,32 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            int totalCount;
+            cat.GetDialogs(1, out totalCount);
         }
 
+        [Test]
+        public void GetDialogs_NormalCase_Messages()
+        {
+            const string url = "https://api.vk.com/method/messages.getDialogs?uid=7712873&access_token=token";
+            const string json = "{\"response\":[18,{\"mid\":2105,\"date\":1285442252,\"out\":0,\"uid\":77128,\"read_state\":1,\"title\":\"Re(15): Привет!\",\"body\":\"не..не зеленая точно...\"}]}";
+
+            var cat = GetMockedMessagesCategory(url, json);
+
+            int totalCount;
+            var msgs = cat.GetDialogs(77128, out totalCount, null, 3).ToList();
+            Assert.That(totalCount, Is.EqualTo(18));
+            Assert.That(msgs.Count, Is.EqualTo(1));
+            Assert.That(msgs[0].Id, Is.EqualTo(2105));
+            Assert.That(msgs[0].Date, Is.EqualTo(1285442252));
+            Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Recived));
+            Assert.That(msgs[0].UserId, Is.EqualTo(77128));
+            Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
+            Assert.That(msgs[0].Title, Is.EqualTo("Re(15): Привет!"));
+            Assert.That(msgs[0].Body, Is.EqualTo("не..не зеленая точно..."));
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetHistory_AccessTokenInvalid_ThrowAccessTokenInvalidException()
