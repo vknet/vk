@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enums;
 using VkToolkit.Model;
@@ -58,7 +59,7 @@ namespace VkToolkit.Categories
             return lst;
         }
         
-        public IEnumerable<Message> GetHistory(int id, bool isChat, out int totalCount, int? offset = null, int? count = null, bool? inReverse = null, long? startMessageId = null)
+        public IEnumerable<Message> GetHistory(long id, bool isChat, out int totalCount, int? offset = null, int? count = null, bool? inReverse = null, long? startMessageId = null)
         {
             _vk.IfAccessTokenNotDefinedThrowException();
 
@@ -94,12 +95,43 @@ namespace VkToolkit.Categories
             return lst;
         }
         
-        public void GetDialogs()
+        public Message GetById(long messageId, int? previewLength = null)
         {
-            throw new NotImplementedException();
+            int totalCount;
+
+            return GetById(new long[] {messageId}, out totalCount, previewLength).FirstOrDefault();
         }
 
-        public void GetById()
+        public IEnumerable<Message> GetById(IEnumerable<long> messageIds, out int totalCount, int? previewLength = null)
+        {
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("mids", Utilities.GetEnumerationAsString(messageIds));
+            if (previewLength.HasValue && previewLength.Value > 0)
+                values.Add("preview_length", previewLength + "");
+
+            string url = _vk.GetApiUrl("messages.getById", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            totalCount = (int)response[0];
+
+            var lst = new List<Message>();
+            for (int i = 1; i < response.Count; i++)
+            {
+                var msg = Utilities.GetMessage((JObject)response[i]);
+                lst.Add(msg);
+            }
+
+            return lst;
+        }
+
+        public void GetDialogs()
         {
             throw new NotImplementedException();
         }

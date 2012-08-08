@@ -5,6 +5,7 @@ using NUnit.Framework;
 using VkToolkit.Categories;
 using VkToolkit.Enums;
 using VkToolkit.Exception;
+using VkToolkit.Model;
 using VkToolkit.Utils;
 
 namespace VkToolkit.Tests.Categories
@@ -129,7 +130,74 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
+            var cat = new MessagesCategory(new VkApi());
+            cat.GetById(1);
+        }
 
+        [Test]
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+        {
+            var cat = new MessagesCategory(new VkApi());
+            int totalCount;
+            cat.GetById(new long[]{1, 3, 5}, out totalCount);
+        }
+
+        [Test]
+        public void GetById_NormalCase_Message()
+        {
+            const string json = "{\"response\":[1,{\"mid\":1,\"date\":1197929120,\"out\":0,\"uid\":684559,\"read_state\":1,\"title\":\" ... \",\"body\":\"Привеееет!!!!!!!!!!!\"}]}";
+            const string url = "https://api.vk.com/method/messages.getById?mids=1&access_token=token";
+
+            var cat = GetMockedMessagesCategory(url, json);
+
+            Message msg = cat.GetById(1);
+
+            Assert.That(msg.Id, Is.EqualTo(1));
+            Assert.That(msg.Date, Is.EqualTo(new DateTime(2007, 12, 18, 2, 5, 20)));
+            Assert.That(msg.Type, Is.EqualTo(MessageType.Recived));
+            Assert.That(msg.UserId, Is.EqualTo(684559));
+            Assert.That(msg.ReadState, Is.EqualTo(MessageReadState.Readed));
+            Assert.That(msg.Title, Is.EqualTo(" ... "));
+            Assert.That(msg.Body, Is.EqualTo("Привеееет!!!!!!!!!!!"));
+        }
+
+        [Test]
+        public void GetById_Multiple_NormalCase_Messages()
+        {
+            const string json = "{\"response\":[3,{\"mid\":1,\"date\":1197929120,\"out\":0,\"uid\":684559,\"read_state\":1,\"title\":\" ... \",\"body\":\"Привеееет!!!!!!!!!!!\"},{\"mid\":3,\"date\":1198616980,\"out\":1,\"uid\":684559,\"read_state\":1,\"title\":\"Re: Как там зачетная неделя продвигаетсо?)\",\"body\":\"Парят и парят во все дыры)... у тебя как?\"},{\"mid\":5,\"date\":1198617408,\"out\":0,\"uid\":684559,\"read_state\":1,\"title\":\"Re(2): Как там зачетная неделя продвигаетсо?)\",\"body\":\"Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)\"}]}";
+            const string url = "https://api.vk.com/method/messages.getById?mids=1,3,5&access_token=token";
+
+            var cat = GetMockedMessagesCategory(url, json);
+
+            int totalCount;
+            var msgs = cat.GetById(new long[] {1, 3, 5}, out totalCount).ToList();
+
+            Assert.That(totalCount, Is.EqualTo(3));
+            Assert.That(msgs.Count, Is.EqualTo(3));
+
+            Assert.That(msgs[2].Id, Is.EqualTo(5));
+            Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2007, 12, 26, 1, 16, 48)));
+            Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Recived));
+            Assert.That(msgs[2].UserId, Is.EqualTo(684559));
+            Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
+            Assert.That(msgs[2].Title, Is.EqualTo("Re(2): Как там зачетная неделя продвигаетсо?)"));
+            Assert.That(msgs[2].Body, Is.EqualTo("Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)"));
+
+            Assert.That(msgs[1].Id, Is.EqualTo(3));
+            Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2007, 12, 26, 1, 9, 40)));
+            Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Sended));
+            Assert.That(msgs[1].UserId, Is.EqualTo(684559));
+            Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
+            Assert.That(msgs[1].Title, Is.EqualTo("Re: Как там зачетная неделя продвигаетсо?)"));
+            Assert.That(msgs[1].Body, Is.EqualTo("Парят и парят во все дыры)... у тебя как?"));
+            Assert.That(msgs[0].Id, Is.EqualTo(1));
+            Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2007, 12, 18, 2, 5, 20)));
+            Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Recived));
+            Assert.That(msgs[0].UserId, Is.EqualTo(684559));
+            Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
+            Assert.That(msgs[0].Title, Is.EqualTo(" ... "));
+            Assert.That(msgs[0].Body, Is.EqualTo("Привеееет!!!!!!!!!!!"));
         }
 
         [Test]
