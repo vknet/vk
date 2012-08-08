@@ -210,9 +210,38 @@ namespace VkToolkit.Categories
             return result;
         }
 
-        public IEnumerable<Message> Search(string query, int? count = null, int? offset = null)
+        public IEnumerable<Message> Search(string query, out int totalCount, int? count = null, int? offset = null)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            if (string.IsNullOrEmpty(query))
+                throw new InvalidParamException("Query can not be null or empty.");
+
+            var values = new Dictionary<string, string>();
+            values.Add("q", query);
+            if (count.HasValue && count.Value > 0)
+                values.Add("count", count + "");
+            if (offset.HasValue && offset.Value > 0)
+                values.Add("offset", offset.Value + "");
+
+            string url = _vk.GetApiUrl("messages.search", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            totalCount = (int)response[0];
+
+            var lst = new List<Message>();
+            for (int i = 1; i < response.Count; i++)
+            {
+                var msg = Utilities.GetMessage((JObject)response[i]);
+                lst.Add(msg);
+            }
+
+            return lst;
         }
 
         public void Send()

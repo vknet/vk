@@ -18,7 +18,7 @@ namespace VkToolkit.Tests.Categories
 
         public MessagesCategory Cat
         {
-            get { return GetMockedMessagesCategory(url, json); }
+            get { return GetMockedMessagesCategory(); }
         }
 
         [SetUp]
@@ -28,7 +28,7 @@ namespace VkToolkit.Tests.Categories
             json = "";
         }
         
-        private MessagesCategory GetMockedMessagesCategory(string url, string json)
+        private MessagesCategory GetMockedMessagesCategory()
         {
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json);
@@ -53,7 +53,7 @@ namespace VkToolkit.Tests.Categories
 
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(It.IsAny<string>())).Returns(json);
-            var cat = new MessagesCategory(new VkApi() {AccessToken = "token", Browser = browser.Object});
+            var cat = new MessagesCategory(new VkApi {AccessToken = "token", Browser = browser.Object});
 
             int totalCount;
             var msgs = cat.Get(MessageType.Recived, out totalCount, 3, 5, MessagesFilter.FromFriends, 100, new DateTime(2012, 7, 1)).ToList();
@@ -295,9 +295,61 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            int totalCount;
+            cat.Search("привет", out totalCount);
         }
 
+        [Test]
+        public void Search_NormalCase_Messages()
+        {
+            url = "https://api.vk.com/method/messages.search?q=привет&count=3&access_token=token";
+            json = "{\"response\":[680,{\"mid\":4442,\"date\":1343764972,\"out\":0,\"uid\":1016149,\"read_state\":1,\"title\":\"...\",\"body\":\"Привет, Антон! Как дела?\"},{\"mid\":4415,\"date\":1342169208,\"out\":1,\"uid\":245242,\"read_state\":1,\"title\":\" ... \",\"body\":\"привет))\"},{\"mid\":4414,\"date\":1342169192,\"out\":0,\"uid\":245242,\"read_state\":1,\"title\":\" ... \",\"body\":\"привет, антон))\"}]}";
+
+            int totalCount;
+            var msgs = Cat.Search("привет", out totalCount, 3).ToList();
+
+            Assert.That(totalCount, Is.EqualTo(680));
+            Assert.That(msgs.Count, Is.EqualTo(3));
+
+            Assert.That(msgs[2].Id, Is.EqualTo(4414));
+            Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2012, 7, 13, 12, 46, 32)));
+            Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Recived));
+            Assert.That(msgs[2].UserId, Is.EqualTo(245242));
+            Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
+            Assert.That(msgs[2].Title, Is.EqualTo(" ... "));
+            Assert.That(msgs[2].Body, Is.EqualTo("привет, антон))"));
+
+            Assert.That(msgs[1].Id, Is.EqualTo(4415));
+            Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2012, 7, 13, 12, 46, 48)));
+            Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Sended));
+            Assert.That(msgs[1].UserId, Is.EqualTo(245242));
+            Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
+            Assert.That(msgs[1].Title, Is.EqualTo(" ... "));
+            Assert.That(msgs[1].Body, Is.EqualTo("привет))"));
+            
+            Assert.That(msgs[0].Id, Is.EqualTo(4442));
+            Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2012, 8, 1, 0, 2, 52)));
+            Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Recived));
+            Assert.That(msgs[0].UserId, Is.EqualTo(1016149));
+            Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
+            Assert.That(msgs[0].Title, Is.EqualTo("..."));
+            Assert.That(msgs[0].Body, Is.EqualTo("Привет, Антон! Как дела?"));
+        }
+
+        [Test]
+        public void Search_NotExistedQuery_EmptyList()
+        {
+            url = "https://api.vk.com/method/messages.search?q=fsjkadoivhjioashdpfisd&count=3&access_token=token";
+            json = "{\"response\":[0]}";
+
+            int totalCount;
+            var msgs = Cat.Search("fsjkadoivhjioashdpfisd", out totalCount, 3).ToList();
+
+            Assert.That(totalCount, Is.EqualTo(0));
+            Assert.That(msgs.Count, Is.EqualTo(0));
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Send_AccessTokenInvalid_ThrowAccessTokenInvalidException()
