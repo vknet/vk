@@ -210,7 +210,7 @@ namespace VkToolkit.Categories
             return result;
         }
 
-        public void Search()
+        public IEnumerable<Message> Search(string query, int? count = null, int? offset = null)
         {
             throw new NotImplementedException();
         }

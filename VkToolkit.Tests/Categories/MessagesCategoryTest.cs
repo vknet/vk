@@ -13,6 +13,21 @@ namespace VkToolkit.Tests.Categories
     [TestFixture]
     public class MessagesCategoryTest
     {
+        public string json;
+        public string url;
+
+        public MessagesCategory Cat
+        {
+            get { return GetMockedMessagesCategory(url, json); }
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            url = "";
+            json = "";
+        }
+        
         private MessagesCategory GetMockedMessagesCategory(string url, string json)
         {
             var browser = new Mock<IBrowser>();
@@ -33,8 +48,8 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void Get_NormalCaseAllFields_Messages()
         {
-            const string url = "https://api.vk.com/method/messages.get?out=0&offset=5&count=3&filters=4&preview_length=100&time_offset=3281341&access_token=token";
-            const string json = "{\"response\":[2217,{\"mid\":4434,\"date\":1342169928,\"out\":0,\"uid\":245242,\"read_state\":0,\"title\":\" ... \",\"body\":\"собирлись больше\"},{\"mid\":4433,\"date\":1342169920,\"out\":0,\"uid\":245242,\"read_state\":0,\"title\":\" ... \",\"body\":\"не особо\"},{\"mid\":4431,\"date\":1342169360,\"out\":0,\"uid\":245242,\"read_state\":1,\"title\":\" ... \",\"body\":\"наверное точно для демографии))\"}]}";
+            url = "https://api.vk.com/method/messages.get?out=0&offset=5&count=3&filters=4&preview_length=100&time_offset=3281341&access_token=token";
+            json = "{\"response\":[2217,{\"mid\":4434,\"date\":1342169928,\"out\":0,\"uid\":245242,\"read_state\":0,\"title\":\" ... \",\"body\":\"собирлись больше\"},{\"mid\":4433,\"date\":1342169920,\"out\":0,\"uid\":245242,\"read_state\":0,\"title\":\" ... \",\"body\":\"не особо\"},{\"mid\":4431,\"date\":1342169360,\"out\":0,\"uid\":245242,\"read_state\":1,\"title\":\" ... \",\"body\":\"наверное точно для демографии))\"}]}";
 
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(It.IsAny<string>())).Returns(json);
@@ -83,13 +98,12 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void GetDialogs_NormalCase_Messages()
         {
-            const string url = "https://api.vk.com/method/messages.getDialogs?uid=77128&count=3&access_token=token";
-            const string json = "{\"response\":[18,{\"mid\":2105,\"date\":1285442252,\"out\":0,\"uid\":77128,\"read_state\":1,\"title\":\"Re(15): Привет!\",\"body\":\"не..не зеленая точно...\"}]}";
-
-            var cat = GetMockedMessagesCategory(url, json);
+            url = "https://api.vk.com/method/messages.getDialogs?uid=77128&count=3&access_token=token";
+            json = "{\"response\":[18,{\"mid\":2105,\"date\":1285442252,\"out\":0,\"uid\":77128,\"read_state\":1,\"title\":\"Re(15): Привет!\",\"body\":\"не..не зеленая точно...\"}]}";
 
             int totalCount;
-            var msgs = cat.GetDialogs(77128, out totalCount, null, 3).ToList();
+            var msgs = Cat.GetDialogs(77128, out totalCount, null, 3).ToList();
+
             Assert.That(totalCount, Is.EqualTo(18));
             Assert.That(msgs.Count, Is.EqualTo(1));
             Assert.That(msgs[0].Id, Is.EqualTo(2105));
@@ -113,13 +127,11 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void GetHistory_NormalCaseAllFields_Messages()
         {
-            const string url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&count=3&rev=1&access_token=token";
-            const string json = "{\"response\":[18,{\"body\":\"Таких литовкиных и сычевых\",\"mid\":2093,\"uid\":4793858,\"from_id\":4793858,\"date\":1285439088,\"read_state\":1,\"out\":1},{\"body\":\"в одноклассниках и в майле есть.\",\"mid\":2094,\"uid\":7712,\"from_id\":7712,\"date\":1285439216,\"read_state\":1,\"out\":0},{\"body\":\"думаю пива предложит попить\",\"mid\":2095,\"uid\":4793858,\"from_id\":4793858,\"date\":1285439644,\"read_state\":1,\"out\":1}]}";
-
-            var cat = GetMockedMessagesCategory(url, json);
-
+            url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&count=3&rev=1&access_token=token";
+            json = "{\"response\":[18,{\"body\":\"Таких литовкиных и сычевых\",\"mid\":2093,\"uid\":4793858,\"from_id\":4793858,\"date\":1285439088,\"read_state\":1,\"out\":1},{\"body\":\"в одноклассниках и в майле есть.\",\"mid\":2094,\"uid\":7712,\"from_id\":7712,\"date\":1285439216,\"read_state\":1,\"out\":0},{\"body\":\"думаю пива предложит попить\",\"mid\":2095,\"uid\":4793858,\"from_id\":4793858,\"date\":1285439644,\"read_state\":1,\"out\":1}]}";
+            
             int totalCount;
-            var msgs = cat.GetHistory(7712, false, out totalCount, 5, 3, true).ToList();
+            var msgs = Cat.GetHistory(7712, false, out totalCount, 5, 3, true).ToList();
 
             Assert.That(msgs[2].Body, Is.EqualTo("думаю пива предложит попить"));
             Assert.That(msgs[2].Id, Is.EqualTo(2095));
@@ -169,12 +181,10 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void GetById_NormalCase_Message()
         {
-            const string json = "{\"response\":[1,{\"mid\":1,\"date\":1197929120,\"out\":0,\"uid\":684559,\"read_state\":1,\"title\":\" ... \",\"body\":\"Привеееет!!!!!!!!!!!\"}]}";
-            const string url = "https://api.vk.com/method/messages.getById?mids=1&access_token=token";
+            json = "{\"response\":[1,{\"mid\":1,\"date\":1197929120,\"out\":0,\"uid\":684559,\"read_state\":1,\"title\":\" ... \",\"body\":\"Привеееет!!!!!!!!!!!\"}]}";
+            url = "https://api.vk.com/method/messages.getById?mids=1&access_token=token";
 
-            var cat = GetMockedMessagesCategory(url, json);
-
-            Message msg = cat.GetById(1);
+            Message msg = Cat.GetById(1);
 
             Assert.That(msg.Id, Is.EqualTo(1));
             Assert.That(msg.Date, Is.EqualTo(new DateTime(2007, 12, 18, 2, 5, 20)));
@@ -188,13 +198,11 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void GetById_Multiple_NormalCase_Messages()
         {
-            const string json = "{\"response\":[3,{\"mid\":1,\"date\":1197929120,\"out\":0,\"uid\":684559,\"read_state\":1,\"title\":\" ... \",\"body\":\"Привеееет!!!!!!!!!!!\"},{\"mid\":3,\"date\":1198616980,\"out\":1,\"uid\":684559,\"read_state\":1,\"title\":\"Re: Как там зачетная неделя продвигаетсо?)\",\"body\":\"Парят и парят во все дыры)... у тебя как?\"},{\"mid\":5,\"date\":1198617408,\"out\":0,\"uid\":684559,\"read_state\":1,\"title\":\"Re(2): Как там зачетная неделя продвигаетсо?)\",\"body\":\"Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)\"}]}";
-            const string url = "https://api.vk.com/method/messages.getById?mids=1,3,5&access_token=token";
-
-            var cat = GetMockedMessagesCategory(url, json);
-
+            json = "{\"response\":[3,{\"mid\":1,\"date\":1197929120,\"out\":0,\"uid\":684559,\"read_state\":1,\"title\":\" ... \",\"body\":\"Привеееет!!!!!!!!!!!\"},{\"mid\":3,\"date\":1198616980,\"out\":1,\"uid\":684559,\"read_state\":1,\"title\":\"Re: Как там зачетная неделя продвигаетсо?)\",\"body\":\"Парят и парят во все дыры)... у тебя как?\"},{\"mid\":5,\"date\":1198617408,\"out\":0,\"uid\":684559,\"read_state\":1,\"title\":\"Re(2): Как там зачетная неделя продвигаетсо?)\",\"body\":\"Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)\"}]}";
+            url = "https://api.vk.com/method/messages.getById?mids=1,3,5&access_token=token";
+            
             int totalCount;
-            var msgs = cat.GetById(new long[] {1, 3, 5}, out totalCount).ToList();
+            var msgs = Cat.GetById(new long[] {1, 3, 5}, out totalCount).ToList();
 
             Assert.That(totalCount, Is.EqualTo(3));
             Assert.That(msgs.Count, Is.EqualTo(3));
@@ -234,12 +242,10 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
         {
-            const string url = "https://api.vk.com/method/messages.searchDialogs?q=привет&access_token=token";
-            const string json = "{\"response\":[]}";
-
-            var cat = GetMockedMessagesCategory(url, json);
-
-            var response = cat.SearchDialogs("привет");
+            url = "https://api.vk.com/method/messages.searchDialogs?q=привет&access_token=token";
+            json = "{\"response\":[]}";
+            
+            var response = Cat.SearchDialogs("привет");
 
             Assert.That(response.Chats.Count, Is.EqualTo(0));
             Assert.That(response.Users.Count, Is.EqualTo(0));
@@ -248,10 +254,10 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void SearchDialogs_NastyaQuery_TwoProfiles()
         {
-            const string url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&access_token=token";
-            const string json = "{\"response\":[{\"type\":\"profile\",\"uid\":7503978,\"first_name\":\"Настя\",\"last_name\":\"Иванова\"},{\"type\":\"profile\",\"uid\":68274561,\"first_name\":\"Настя\",\"last_name\":\"Петрова\"}]}";
+            url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&access_token=token";
+            json = "{\"response\":[{\"type\":\"profile\",\"uid\":7503978,\"first_name\":\"Настя\",\"last_name\":\"Иванова\"},{\"type\":\"profile\",\"uid\":68274561,\"first_name\":\"Настя\",\"last_name\":\"Петрова\"}]}";
 
-            var response = GetMockedMessagesCategory(url, json).SearchDialogs("Настя");
+            var response = Cat.SearchDialogs("Настя");
             Assert.That(response.Users.Count, Is.EqualTo(2));
             Assert.That(response.Chats.Count, Is.EqualTo(0));
             Assert.That(response.Users.ElementAt(0).Id, Is.EqualTo(7503978));
@@ -265,10 +271,10 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void SearchDialogs_ProfileAndChat_Response()
         {
-            const string url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&access_token=token";
-            const string json = "{\"response\":[{\"type\":\"profile\",\"uid\":1708231,\"first_name\":\"Григорий\",\"last_name\":\"Клюшников\"},{\"type\":\"chat\",\"chat_id\":109,\"title\":\"Андрей, Григорий\",\"users\":[66748,6492,1708231]}]}";
+            url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&access_token=token";
+            json = "{\"response\":[{\"type\":\"profile\",\"uid\":1708231,\"first_name\":\"Григорий\",\"last_name\":\"Клюшников\"},{\"type\":\"chat\",\"chat_id\":109,\"title\":\"Андрей, Григорий\",\"users\":[66748,6492,1708231]}]}";
 
-            var response = GetMockedMessagesCategory(url, json).SearchDialogs("Маша");
+            var response = Cat.SearchDialogs("Маша");
 
             Assert.That(response.Users.Count, Is.EqualTo(1));
             Assert.That(response.Chats.Count, Is.EqualTo(1));
@@ -407,10 +413,10 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void GetLongPollServer_NormalCase_LongPollServerResponse()
         {
-            const string url = "https://api.vk.com/method/messages.getLongPollServer?access_token=token";
-            const string json = "{\"response\":{\"key\":\"6f4120988efaf3a7d398054b5bb5d019c5844bz3\",\"server\":\"im46.vk.com\\/im1858\",\"ts\":1627957305}}";
+            url = "https://api.vk.com/method/messages.getLongPollServer?access_token=token";
+            json = "{\"response\":{\"key\":\"6f4120988efaf3a7d398054b5bb5d019c5844bz3\",\"server\":\"im46.vk.com\\/im1858\",\"ts\":1627957305}}";
 
-            var response = GetMockedMessagesCategory(url, json).GetLongPollServer();
+            var response = Cat.GetLongPollServer();
 
             Assert.That(response.Key, Is.EqualTo("6f4120988efaf3a7d398054b5bb5d019c5844bz3"));
             Assert.That(response.Server, Is.EqualTo("im46.vk.com/im1858"));
