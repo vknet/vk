@@ -78,6 +78,7 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\Attachment.cs" />
     <Compile Include="Model\Audio.cs" />
+    <Compile Include="Model\Chat.cs" />
     <Compile Include="Model\Comments.cs" />
     <Compile Include="Model\Counters.cs" />
     <Compile Include="Model\Document.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Model\LongPollServerResponse.cs" />
     <Compile Include="Model\Lyrics.cs" />
     <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\MessagesSearchResponse.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Page.cs" />
     <Compile Include="Model\Photo.cs" />

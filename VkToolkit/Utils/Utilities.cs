@@ -361,6 +361,28 @@ namespace VkToolkit.Utils
             return msg;
         }
 
+        public static Chat GetChat(JObject el)
+        {
+            var chat = new Chat();
+            chat.Id = (long?) el["chat_id"];
+            chat.Title = (string) el["title"];
+            if (el["users"] != null)
+                chat.UserIds = JArrayToIEnumerable<long>((JArray)el["users"]);
+
+            return chat;
+        }
+
+        //public static IEnumerable<long> JArrayToIEnumerable(JArray array)
+        //{
+        //    //return (from JObject el in array select (long) el).ToList();
+        //    return array.Select(x => (long) x).ToList();
+        //}
+
+        public static IEnumerable<T> JArrayToIEnumerable<T>(JArray array)
+        {
+            return array.Select(el => el as dynamic).Select(item => (T) item).ToList();
+        }
+
         public static User GetProfileFromJObject(JObject current)
         {
             var profile = new User();

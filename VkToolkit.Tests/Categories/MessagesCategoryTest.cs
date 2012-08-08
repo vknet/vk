@@ -83,7 +83,7 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void GetDialogs_NormalCase_Messages()
         {
-            const string url = "https://api.vk.com/method/messages.getDialogs?uid=7712873&access_token=token";
+            const string url = "https://api.vk.com/method/messages.getDialogs?uid=77128&count=3&access_token=token";
             const string json = "{\"response\":[18,{\"mid\":2105,\"date\":1285442252,\"out\":0,\"uid\":77128,\"read_state\":1,\"title\":\"Re(15): Привет!\",\"body\":\"не..не зеленая точно...\"}]}";
 
             var cat = GetMockedMessagesCategory(url, json);
@@ -93,7 +93,7 @@ namespace VkToolkit.Tests.Categories
             Assert.That(totalCount, Is.EqualTo(18));
             Assert.That(msgs.Count, Is.EqualTo(1));
             Assert.That(msgs[0].Id, Is.EqualTo(2105));
-            Assert.That(msgs[0].Date, Is.EqualTo(1285442252));
+            Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2010, 9, 26, 0, 17, 32)));
             Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Recived));
             Assert.That(msgs[0].UserId, Is.EqualTo(77128));
             Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
@@ -227,7 +227,62 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void SearchDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
+            var cat = new MessagesCategory(new VkApi());
+            cat.SearchDialogs("hello");
+        }
 
+        [Test]
+        public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
+        {
+            const string url = "https://api.vk.com/method/messages.searchDialogs?q=привет&access_token=token";
+            const string json = "{\"response\":[]}";
+
+            var cat = GetMockedMessagesCategory(url, json);
+
+            var response = cat.SearchDialogs("привет");
+
+            Assert.That(response.Chats.Count, Is.EqualTo(0));
+            Assert.That(response.Users.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void SearchDialogs_NastyaQuery_TwoProfiles()
+        {
+            const string url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&access_token=token";
+            const string json = "{\"response\":[{\"type\":\"profile\",\"uid\":7503978,\"first_name\":\"Настя\",\"last_name\":\"Иванова\"},{\"type\":\"profile\",\"uid\":68274561,\"first_name\":\"Настя\",\"last_name\":\"Петрова\"}]}";
+
+            var response = GetMockedMessagesCategory(url, json).SearchDialogs("Настя");
+            Assert.That(response.Users.Count, Is.EqualTo(2));
+            Assert.That(response.Chats.Count, Is.EqualTo(0));
+            Assert.That(response.Users.ElementAt(0).Id, Is.EqualTo(7503978));
+            Assert.That(response.Users.ElementAt(0).FirstName, Is.EqualTo("Настя"));
+            Assert.That(response.Users.ElementAt(0).LastName, Is.EqualTo("Иванова"));
+            Assert.That(response.Users.ElementAt(1).Id, Is.EqualTo(68274561));
+            Assert.That(response.Users.ElementAt(1).FirstName, Is.EqualTo("Настя"));
+            Assert.That(response.Users.ElementAt(1).LastName, Is.EqualTo("Петрова"));
+        }
+
+        [Test]
+        public void SearchDialogs_ProfileAndChat_Response()
+        {
+            const string url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&access_token=token";
+            const string json = "{\"response\":[{\"type\":\"profile\",\"uid\":1708231,\"first_name\":\"Григорий\",\"last_name\":\"Клюшников\"},{\"type\":\"chat\",\"chat_id\":109,\"title\":\"Андрей, Григорий\",\"users\":[66748,6492,1708231]}]}";
+
+            var response = GetMockedMessagesCategory(url, json).SearchDialogs("Маша");
+
+            Assert.That(response.Users.Count, Is.EqualTo(1));
+            Assert.That(response.Chats.Count, Is.EqualTo(1));
+
+            Assert.That(response.Users[0].Id, Is.EqualTo(1708231));
+            Assert.That(response.Users[0].FirstName, Is.EqualTo("Григорий"));
+            Assert.That(response.Users[0].LastName, Is.EqualTo("Клюшников"));
+
+            Assert.That(response.Chats[0].Id, Is.EqualTo(109));
+            Assert.That(response.Chats[0].Title, Is.EqualTo("Андрей, Григорий"));
+            Assert.That(response.Chats[0].UserIds.Count(), Is.EqualTo(3));
+            Assert.That(response.Chats[0].UserIds.ElementAt(0), Is.EqualTo(66748));
+            Assert.That(response.Chats[0].UserIds.ElementAt(1), Is.EqualTo(6492));
+            Assert.That(response.Chats[0].UserIds.ElementAt(2), Is.EqualTo(1708231));
         }
 
         [Test]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enums;
+using VkToolkit.Exception;
 using VkToolkit.Model;
 using VkToolkit.Utils;
 
@@ -166,9 +167,47 @@ namespace VkToolkit.Categories
             return lst;
         }
 
-        public void SearchDialogs()
+        public MessagesSearchResponse SearchDialogs(string query, ProfileFields fields = null)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            if (string.IsNullOrEmpty(query))
+                throw new InvalidParamException("Query can not be null or empty.");
+
+            var values = new Dictionary<string, string>();
+            values.Add("q", query);
+            if (fields != null)
+                values.Add("fields", fields.ToString());
+
+            string url = _vk.GetApiUrl("messages.searchDialogs", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            var result = new MessagesSearchResponse();
+            if (response.Count == 0) return result;
+
+            foreach (JObject el in response)
+            {
+                var type = (string) el["type"];
+                if (type == "profile")
+                {
+                    User user = Utilities.GetProfileFromJObject(el);
+                    result.Users.Add(user);
+                    continue;
+                }
+
+                if (type == "chat")
+                {
+                    Chat chat = Utilities.GetChat(el);
+                    result.Chats.Add(chat);
+                    continue;
+                }
+            }
+            return result;
         }
 
         public void Search()

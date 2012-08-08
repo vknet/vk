@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using VkToolkit.Enums;
 using VkToolkit.Utils;
+using Newtonsoft.Json.Linq;
 
 namespace VkToolkit.Tests.Utils
 {
@@ -26,6 +28,43 @@ namespace VkToolkit.Tests.Utils
             Assert.That(eventType, Is.EqualTo(GroupType.Event));
             Assert.That(group, Is.EqualTo(GroupType.Group));
             Assert.That(undefined, Is.EqualTo(GroupType.Undefined));
+        }
+
+        [Test]
+        public void JArrayToArray_JArray_LongArray()
+        {
+            string json =
+                "{\"response\":[{\"type\":\"profile\",\"uid\":1708231,\"first_name\":\"Григорий\",\"last_name\":\"Клюшников\"},{\"type\":\"chat\",\"chat_id\":109,\"title\":\"Андрей, Григорий\",\"users\":[66748,6492,1708231]}]}";
+
+            JObject obj = JObject.Parse(json);
+
+            var response = (JArray)obj["response"];
+
+            var arr = (JArray) response[1]["users"];
+
+            var result = Utilities.JArrayToIEnumerable<long>(arr).ToList();
+            
+            Assert.That(result.Count, Is.EqualTo(3));
+            Assert.That(result[0], Is.EqualTo(66748));
+            Assert.That(result[1], Is.EqualTo(6492));
+            Assert.That(result[2], Is.EqualTo(1708231));
+        }
+
+        [Test]
+        public void JArrayToArray_JArray_StringArray()
+        {
+            string json = "{\"response\":[{\"type\":\"profile\",\"uid\":1708231,\"first_name\":\"Григорий\",\"last_name\":\"Клюшников\"},{\"type\":\"chat\",\"chat_id\":109,\"title\":\"Андрей, Григорий\",\"users\":[66748,6492,1708231]}]}";
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+            var arr = (JArray)response[1]["users"];
+
+            var result = Utilities.JArrayToIEnumerable<string>(arr).ToList();
+
+            Assert.That(result.Count, Is.EqualTo(3));
+            Assert.That(result[0], Is.EqualTo("66748"));
+            Assert.That(result[1], Is.EqualTo("6492"));
+            Assert.That(result[2], Is.EqualTo("1708231"));
         }
 
         [Test]
