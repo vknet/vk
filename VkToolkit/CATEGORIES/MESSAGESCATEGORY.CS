@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json.Linq;
@@ -101,7 +102,7 @@ namespace VkToolkit.Categories
         {
             int totalCount;
 
-            return GetById(new long[] {messageId}, out totalCount, previewLength).FirstOrDefault();
+            return GetById(new [] {messageId}, out totalCount, previewLength).FirstOrDefault();
         }
 
         public IEnumerable<Message> GetById(IEnumerable<long> messageIds, out int totalCount, int? previewLength = null)
@@ -294,9 +295,41 @@ namespace VkToolkit.Categories
             return response;
         }
 
-        public void Delete()
+        public bool Delete(long messageId)
         {
-            throw new NotImplementedException();
+            var result =  Delete(new [] {messageId});
+            return result[messageId];
+        }
+
+        public IDictionary<long, bool> Delete(IEnumerable<long> messageIds)
+        {
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            if (messageIds == null)
+                throw new InvalidParamException("Param messageIds can not be null.");
+            var ids = messageIds.ToList();
+            if (ids.Count == 0)
+                throw new InvalidParamException("Param messageIds has no one element.");
+
+            var values = new Dictionary<string, string>();
+            values.Add("mids", Utilities.GetEnumerationAsString(ids));
+
+            string url = _vk.GetApiUrl("messages.delete", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JObject)obj["response"];
+
+            var dict = new Dictionary<long, bool>();
+            foreach (long id in messageIds)
+            {
+                bool result = (int) response[id.ToString(CultureInfo.InvariantCulture)] == 1;
+                dict.Add(id, result);
+            }
+            
+            return dict;
         }
 
         public void DeleteDialog()

@@ -391,9 +391,52 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            cat.Delete(1);
         }
 
+        [Test]
+        [ExpectedException(typeof(AccessTokenInvalidException))]
+        public void Delete_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+        {
+            var cat = new MessagesCategory(new VkApi());
+            cat.Delete(new long[] { 1 });
+        }
+
+        [Test]
+        public void Delete_Id4446_True()
+        {
+            json = "{\"response\":{\"4446\":1}}";
+            url = "https://api.vk.com/method/messages.delete?mids=4446&access_token=token";
+
+            bool result = Cat.Delete(4446);
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void Delete_Multipre_4457And4464_True()
+        {
+            url = "https://api.vk.com/method/messages.delete?mids=4457,4464&access_token=token";
+            json = "{\"response\":{\"4457\":1,\"4464\":1}}";
+
+            var dict = Cat.Delete((new long[] {4457, 4464}));
+
+            Assert.That(dict.Count, Is.EqualTo(2));
+            Assert.That(dict[4457], Is.True);
+            Assert.That(dict[4464], Is.True);
+        }
+
+        [Test]
+        [ExpectedException(typeof(VkApiException))]
+        public void Delete_Id999999_False()
+        {
+            url = "https://api.vk.com/method/messages.delete?mids=999999&access_token=token";
+            json = "{\"error\":{\"error_code\":1,\"error_msg\":\"Unknown error occured\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"messages.delete\"},{\"key\":\"mids\",\"value\":\"999999\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
+
+            Cat.Delete(999999);
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void DeleteDialog_AccessTokenInvalid_ThrowAccessTokenInvalidException()
