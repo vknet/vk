@@ -357,9 +357,25 @@ namespace VkToolkit.Categories
             throw new NotImplementedException();
         }
 
-        public void GetLastActivity()
+        public LastActivity GetLastActivity(long userId)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("uid", userId + "");
+
+            string url = _vk.GetApiUrl("messages.getLastActivity", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JObject)obj["response"];
+
+            var activity = Utilities.GetLastActivity(response);
+            activity.UserId = userId;
+
+            return activity;
         }
 
         public void GetChat()

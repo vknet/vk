@@ -84,6 +84,7 @@
     <Compile Include="Model\Document.cs" />
     <Compile Include="Model\Geo.cs" />
     <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\LastActivity.cs" />
     <Compile Include="Model\Like.cs" />
     <Compile Include="Model\LongPollServerResponse.cs" />
     <Compile Include="Model\Lyrics.cs" />

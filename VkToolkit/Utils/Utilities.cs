@@ -383,6 +383,17 @@ namespace VkToolkit.Utils
             return array.Select(el => el as dynamic).Select(item => (T) item).ToList();
         }
 
+        public static LastActivity GetLastActivity(JObject activity)
+        {
+            var result = new LastActivity();
+            if (activity["online"] != null)
+                result.IsOnline = (int) activity["online"] == 1;
+
+            if (activity["time"] != null)
+                result.Time = UnixTimeStampToDateTime((long) activity["time"]);
+            return result;
+        }
+
         public static User GetProfileFromJObject(JObject current)
         {
             var profile = new User();

@@ -476,7 +476,21 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetLastActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
+            var cat = new MessagesCategory(new VkApi());
+            cat.GetLastActivity(1);
+        }
 
+        [Test]
+        public void GetLastActivity_NormalCast_LastActivityObject()
+        {
+            json = "{\"response\":{\"online\":0,\"time\":1344484645}}";
+            url = "https://api.vk.com/method/messages.getLastActivity?uid=77128&access_token=token";
+
+            var activity = Cat.GetLastActivity(77128);
+
+            Assert.That(activity.UserId, Is.EqualTo(77128));
+            Assert.That(activity.IsOnline, Is.False);
+            Assert.That(activity.Time, Is.EqualTo(new DateTime(2012, 8, 9, 7, 57, 25)));
         }
 
         [Test]
