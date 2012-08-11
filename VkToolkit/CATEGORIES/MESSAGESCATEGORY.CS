@@ -353,8 +353,26 @@ namespace VkToolkit.Categories
             return (int)obj["response"] == 1;
         }
 
-        public void MarkAsNew()
+        public bool MarkAsNew(long messageId)
         {
+            return MarkAsNew(new [] {messageId});
+        }
+
+        public bool MarkAsNew(IEnumerable<long> messageIds)
+        {
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("mids", Utilities.GetEnumerationAsString(messageIds));
+
+            string url = _vk.GetApiUrl("messages.markAsNew", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int)obj["response"] == 1;
+
             throw new NotImplementedException();
         }
 
