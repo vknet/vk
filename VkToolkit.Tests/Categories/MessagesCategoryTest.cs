@@ -441,9 +441,32 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void DeleteDialog_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            cat.DeleteDialog(111, false);
         }
 
+        [Test]
+        public void DeleteDialog_UserId_DeleteAllMessages()
+        {
+            url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&access_token=token";
+            json = "{\"response\":1}";
+
+            bool result = Cat.DeleteDialog(4460019, false);
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void DeleteDialog_WithAllInputParams_DeleteTwoMessages()
+        {
+            url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&offset=2&limit=2&access_token=token";
+            json = "{\"response\":1}";
+
+            bool result = Cat.DeleteDialog(4460019, false, 2, 2);
+
+            Assert.That(result, Is.True);
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Restore_AccessTokenInvalid_ThrowAccessTokenInvalidException()

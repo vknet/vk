@@ -295,6 +295,26 @@ namespace VkToolkit.Categories
             return response;
         }
 
+        public bool DeleteDialog(long id, bool isChat, int? offset = null, int? limit = null)
+        {
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add(isChat ? "chat_id" : "uid", id + "");
+            if (offset.HasValue && offset.Value > 0)
+                values.Add("offset", offset + "");
+            if (limit.HasValue && limit.Value > 0)
+                values.Add("limit", limit + "");
+
+            string url = _vk.GetApiUrl("messages.deleteDialog", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int)obj["response"] == 1;
+        }
+
         public bool Delete(long messageId)
         {
             var result =  Delete(new [] {messageId});
@@ -330,11 +350,6 @@ namespace VkToolkit.Categories
             }
             
             return dict;
-        }
-
-        public void DeleteDialog()
-        {
-            throw new NotImplementedException();
         }
 
         public bool Restore(long messageId)
@@ -488,8 +503,6 @@ namespace VkToolkit.Categories
         public void GetLongPollHistory()
         {
             throw new NotImplementedException();
-
-
         }
     }
 }
