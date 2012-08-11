@@ -372,13 +372,27 @@ namespace VkToolkit.Categories
 
             JObject obj = JObject.Parse(json);
             return (int)obj["response"] == 1;
-
-            throw new NotImplementedException();
         }
 
-        public void MarkAsRead()
+        public bool MarkAsRead(long messageId)
         {
-            throw new NotImplementedException();
+            return MarkAsRead(new [] {messageId});
+        }
+
+        public bool MarkAsRead(IEnumerable<long> messageIds)
+        {
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("mids", Utilities.GetEnumerationAsString(messageIds));
+
+            string url = _vk.GetApiUrl("messages.markAsRead", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int)obj["response"] == 1;
         }
 
         public bool SetActivity(long id, bool isChat)

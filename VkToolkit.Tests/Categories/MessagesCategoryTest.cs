@@ -497,7 +497,30 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void MarkAsRead_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
+            var cat = new MessagesCategory(new VkApi());
+            cat.MarkAsRead(1);
+        }
 
+        [Test]
+        public void MarkAsRead_NormalCase_True()
+        {
+            url = "https://api.vk.com/method/messages.markAsRead?mids=1&access_token=token";
+            json = "{\"response\":1}";
+
+            bool result = Cat.MarkAsRead(1);
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void MarkAsRead_Multiple_NormalCase_True()
+        {
+            url = "https://api.vk.com/method/messages.markAsRead?mids=2,3&access_token=token";
+            json = "{\"response\":1}";
+
+            bool result = Cat.MarkAsRead(new long[]{2, 3});
+
+            Assert.That(result, Is.True);
         }
 
         [Test]
