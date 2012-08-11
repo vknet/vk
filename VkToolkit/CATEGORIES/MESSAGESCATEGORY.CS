@@ -587,7 +587,7 @@ namespace VkToolkit.Categories
             return result;
         }
 
-        public void GetLongPollHistory()
+        internal void GetLongPollHistory()
         {
             throw new NotImplementedException();
         }
