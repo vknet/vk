@@ -651,9 +651,54 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetChatUsers_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            cat.GetChatUsers(2);
         }
 
+        [Test]
+        public void GetChatUsers_ChatId_UserIds()
+        {
+            url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&access_token=token";
+            json = "{\"response\":[4793858,5041431,10657891]}";
+
+            var users = Cat.GetChatUsers(2).ToList();
+
+            Assert.That(users.Count, Is.EqualTo(3));
+            Assert.That(users[0], Is.EqualTo(4793858));
+            Assert.That(users[1], Is.EqualTo(5041431));
+            Assert.That(users[2], Is.EqualTo(10657891));
+        }
+
+        [Test]
+        public void GetChatUsers_ChatIdWithFields_Users()
+        {
+            url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&fields=education&access_token=token";
+            json = "{\"response\":[{\"uid\":4793858,\"first_name\":\"Антон\",\"last_name\":\"Жидков\",\"university\":0,\"university_name\":\"\",\"faculty\":0,\"faculty_name\":\"\",\"graduation\":0,\"invited_by\":4793858},{\"uid\":5041431,\"first_name\":\"Тайфур\",\"last_name\":\"Касеев\",\"university\":431,\"university_name\":\"ВолгГТУ\",\"faculty\":3162,\"faculty_name\":\"Электроники и вычислительной техники\",\"graduation\":2012,\"invited_by\":4793858},{\"uid\":10657891,\"first_name\":\"Максим\",\"last_name\":\"Денисов\",\"university\":431,\"university_name\":\"ВолгГТУ\",\"faculty\":3162,\"faculty_name\":\"Электроники и вычислительной техники\",\"graduation\":2011,\"invited_by\":4793858}]}";
+
+            var users = Cat.GetChatUsers(2, ProfileFields.Education).ToList();
+
+            Assert.That(users.Count, Is.EqualTo(3));
+            Assert.That(users[0].Id, Is.EqualTo(4793858));
+            Assert.That(users[0].FirstName, Is.EqualTo("Антон"));
+            Assert.That(users[0].LastName, Is.EqualTo("Жидков"));
+            Assert.That(users[0].Education, Is.Null);
+            Assert.That(users[0].InvitedBy, Is.EqualTo(4793858));
+
+            Assert.That(users[1].Id, Is.EqualTo(5041431));
+            Assert.That(users[1].FirstName, Is.EqualTo("Тайфур"));
+            Assert.That(users[1].LastName, Is.EqualTo("Касеев"));
+            Assert.That(users[1].Education.UniversityId, Is.EqualTo(431));
+            Assert.That(users[1].InvitedBy, Is.EqualTo(4793858));
+
+            Assert.That(users[2].Id, Is.EqualTo(10657891));
+            Assert.That(users[2].FirstName, Is.EqualTo("Максим"));
+            Assert.That(users[2].LastName, Is.EqualTo("Денисов"));
+            Assert.That(users[2].Education.UniversityId, Is.EqualTo(431));
+            Assert.That(users[2].Education.FacultyId, Is.EqualTo(3162));
+            Assert.That(users[2].Education.Graduation, Is.EqualTo(2011));
+            Assert.That(users[2].InvitedBy, Is.EqualTo(4793858));
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void AddChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()

@@ -505,9 +505,32 @@ namespace VkToolkit.Categories
             return (int)obj["response"] == 1;
         }
 
-        public void GetChatUsers()
+        public IEnumerable<long> GetChatUsers (long chatId)
         {
-            throw new NotImplementedException();
+            var users = GetChatUsers(chatId, null);
+            return users.Select(x => x.Id);
+        }
+
+        public IEnumerable<User> GetChatUsers(long chatId, ProfileFields fields)
+        {
+            _vk.IfAccessTokenNotDefinedThrowException();
+            var values = new Dictionary<string, string>();
+            values.Add("chat_id", chatId + "");
+            if (fields != null)
+                values.Add("fields", fields.ToString());
+
+            string url = _vk.GetApiUrl("messages.getChatUsers", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var arr = (JArray)obj["response"];
+
+            if (fields != null)
+                return arr.Select(x => Utilities.GetProfileFromJObject((JObject) x));
+
+            return arr.Select(x => new User {Id = (long) x});
         }
 
         public void AddChatUser()

@@ -81,11 +81,11 @@ namespace VkToolkit.Tests.Categories
             Assert.That(p.FirstName, Is.EqualTo("Павел"));
             Assert.That(p.LastName, Is.EqualTo("Дуров"));
             Assert.That(p.Education, Is.Not.Null);
-            Assert.That(p.Education.UniversityId, Is.EqualTo("1"));
+            Assert.That(p.Education.UniversityId, Is.EqualTo(1));
             Assert.That(p.Education.UniversityName, Is.EqualTo("СПбГУ"));
-            Assert.That(p.Education.FacultyId, Is.EqualTo("0"));
+            Assert.That(p.Education.FacultyId, Is.Null);
             Assert.That(p.Education.FacultyName, Is.EqualTo(""));
-            Assert.That(p.Education.Graduation, Is.EqualTo("0"));
+            Assert.That(p.Education.Graduation, Is.Null);
         }
 
         [Test]
@@ -171,11 +171,11 @@ namespace VkToolkit.Tests.Categories
             Assert.That(p.HomePhone, Is.EqualTo("87-98-12"));
             Assert.That(p.Online, Is.EqualTo(1));
             Assert.That(p.Education, Is.Not.Null);
-            Assert.That(p.Education.UniversityId, Is.EqualTo("431"));
+            Assert.That(p.Education.UniversityId, Is.EqualTo(431));
             Assert.That(p.Education.UniversityName, Is.EqualTo("ВолгГТУ"));
-            Assert.That(p.Education.FacultyId, Is.EqualTo("3162"));
+            Assert.That(p.Education.FacultyId, Is.EqualTo(3162));
             Assert.That(p.Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
-            Assert.That(p.Education.Graduation, Is.EqualTo("2013"));
+            Assert.That(p.Education.Graduation, Is.EqualTo(2013));
             Assert.That(p.Counters, Is.Not.Null);
             Assert.That(p.Counters.Albums, Is.EqualTo(1));
             Assert.That(p.Counters.Videos, Is.EqualTo(100));
@@ -298,22 +298,22 @@ namespace VkToolkit.Tests.Categories
             Assert.That(lst[0].FirstName, Is.EqualTo("Artyom"));
             Assert.That(lst[0].LastName, Is.EqualTo("Plotnikov"));
             Assert.That(lst[0].Education, Is.Not.Null);
-            Assert.That(lst[0].Education.UniversityId, Is.EqualTo("431"));
+            Assert.That(lst[0].Education.UniversityId, Is.EqualTo(431));
             Assert.That(lst[0].Education.UniversityName, Is.EqualTo("ВолгГТУ"));
-            Assert.That(lst[0].Education.FacultyId, Is.EqualTo("3162"));
+            Assert.That(lst[0].Education.FacultyId, Is.EqualTo(3162));
             Assert.That(lst[0].Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
-            Assert.That(lst[0].Education.Graduation, Is.EqualTo("2010"));
+            Assert.That(lst[0].Education.Graduation, Is.EqualTo(2010));
 
             Assert.That(lst[1], Is.Not.Null);
             Assert.That(lst[1].Id, Is.EqualTo(5041431));
             Assert.That(lst[1].FirstName, Is.EqualTo("Tayfur"));
             Assert.That(lst[1].LastName, Is.EqualTo("Kaseev"));
             Assert.That(lst[1].Education, Is.Not.Null);
-            Assert.That(lst[1].Education.UniversityId, Is.EqualTo("431"));
+            Assert.That(lst[1].Education.UniversityId, Is.EqualTo(431));
             Assert.That(lst[1].Education.UniversityName, Is.EqualTo("ВолгГТУ"));
-            Assert.That(lst[1].Education.FacultyId, Is.EqualTo("3162"));
+            Assert.That(lst[1].Education.FacultyId, Is.EqualTo(3162));
             Assert.That(lst[1].Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
-            Assert.That(lst[1].Education.Graduation, Is.EqualTo("2012"));
+            Assert.That(lst[1].Education.Graduation, Is.EqualTo(2012));
         }
         
         [Test]
@@ -541,34 +541,19 @@ namespace VkToolkit.Tests.Categories
             Assert.That(lst[0].Id, Is.EqualTo(165614770));
             Assert.That(lst[0].FirstName, Is.EqualTo("Маша"));
             Assert.That(lst[0].LastName, Is.EqualTo("Иванова"));
-            Assert.That(lst[0].Education, Is.Not.Null);
-            Assert.That(lst[0].Education.UniversityId, Is.EqualTo("0"));
-            Assert.That(lst[0].Education.UniversityName, Is.EqualTo(""));
-            Assert.That(lst[0].Education.FacultyId, Is.EqualTo("0"));
-            Assert.That(lst[0].Education.FacultyName, Is.EqualTo(""));
-            Assert.That(lst[0].Education.Graduation, Is.EqualTo("0"));
+            Assert.That(lst[0].Education, Is.Null);
 
             Assert.That(lst[1], Is.Not.Null);
             Assert.That(lst[1].Id, Is.EqualTo(174063570));
             Assert.That(lst[1].FirstName, Is.EqualTo("Маша"));
             Assert.That(lst[1].LastName, Is.EqualTo("Иванова"));
-            Assert.That(lst[1].Education, Is.Not.Null);
-            Assert.That(lst[1].Education.UniversityId, Is.EqualTo("0"));
-            Assert.That(lst[1].Education.UniversityName, Is.EqualTo(""));
-            Assert.That(lst[1].Education.FacultyId, Is.EqualTo("0"));
-            Assert.That(lst[1].Education.FacultyName, Is.EqualTo(""));
-            Assert.That(lst[1].Education.Graduation, Is.EqualTo("0"));
+            Assert.That(lst[1].Education, Is.Null);
 
             Assert.That(lst[2], Is.Not.Null);
             Assert.That(lst[2].Id, Is.EqualTo(76817368));
             Assert.That(lst[2].FirstName, Is.EqualTo("Маша"));
             Assert.That(lst[2].LastName, Is.EqualTo("Иванова"));
-            Assert.That(lst[2].Education, Is.Not.Null);
-            Assert.That(lst[2].Education.UniversityId, Is.EqualTo("0"));
-            Assert.That(lst[2].Education.UniversityName, Is.EqualTo(""));
-            Assert.That(lst[2].Education.FacultyId, Is.EqualTo("0"));
-            Assert.That(lst[2].Education.FacultyName, Is.EqualTo(""));
-            Assert.That(lst[2].Education.Graduation, Is.EqualTo("0"));
+            Assert.That(lst[2].Education, Is.Null);
         }
 
         [Test]

@@ -418,6 +418,7 @@ namespace VkToolkit.Utils
             profile.HomePhone = (string) current["home_phone"];
             profile.Online = (int?) current["online"];
             profile.NameGen = (string) current["name_gen"];
+            profile.InvitedBy = (long?) current["invited_by"];
 
             if (current["timezone"] != null)
             {
@@ -441,16 +442,24 @@ namespace VkToolkit.Utils
                 profile.LastName = parts[1];
             }
 
-            if (current["university"] != null)
+            if (current["university"] != null && current["university"].ToString() != "0")
             {
-                profile.Education = new Education
-                {
-                    UniversityId = (string)current["university"],
-                    UniversityName = (string)current["university_name"],
-                    FacultyId = (string)current["faculty"],
-                    FacultyName = (string)current["faculty_name"],
-                    Graduation = (string)current["graduation"]
-                };
+                profile.Education = new Education();
+
+                long univerId;
+                if (long.TryParse(current["university"].ToString(), out univerId) && univerId != 0)
+                    profile.Education.UniversityId = univerId;
+                
+                long facultyId;
+                if (long.TryParse(current["faculty"].ToString(), out facultyId) && facultyId != 0) 
+                    profile.Education.FacultyId = facultyId;
+
+                int graduation;
+                if (current["graduation"] != null && int.TryParse(current["graduation"].ToString(), out graduation) && graduation != 0)
+                    profile.Education.Graduation = graduation;
+
+                profile.Education.UniversityName = (string)current["university_name"];
+                profile.Education.FacultyName = (string) current["faculty_name"];
             }
 
             if (current["counters"] != null)

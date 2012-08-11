@@ -24,5 +24,6 @@
         public int? Online { get; set; }
         public Counters Counters { get; set; }
         public string NameGen { get; set; }
+        public long? InvitedBy { get; set; }
     }
 }
