@@ -352,9 +352,21 @@ namespace VkToolkit.Categories
             throw new NotImplementedException();
         }
 
-        public void SetActivity()
+        public bool SetActivity(long id, bool isChat)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+            
+            var values = new Dictionary<string, string>();
+            values.Add(isChat ? "chat_id" : "uid", id + "");
+            values.Add("type", "typing");
+
+            string url = _vk.GetApiUrl("messages.setActivity", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int)obj["response"] == 1;
         }
 
         public LastActivity GetLastActivity(long userId)

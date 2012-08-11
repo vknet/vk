@@ -469,9 +469,21 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void SetActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            cat.SetActivity(1, false);
         }
 
+        [Test]
+        public void SetActivity_NormalCase_True()
+        {
+            json = "{\"response\":1}";
+            url = "https://api.vk.com/method/messages.setActivity?uid=7550525&type=typing&access_token=token";
+
+            bool result = Cat.SetActivity(7550525, false);
+
+            Assert.That(result, Is.True);
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetLastActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
