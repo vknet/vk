@@ -590,15 +590,46 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            cat.GetChat(1);
         }
 
+        [Test]
+        public void GetChat_NormalCase_ChatObject()
+        {
+            url = "https://api.vk.com/method/messages.getChat?chat_id=2&access_token=token";
+            json = "{\"response\":{\"type\":\"chat\",\"chat_id\":2,\"title\":\"test chat's title\",\"admin_id\":\"4793858\",\"users\":[4793858,5041431,10657891]}}";
+
+            Chat chat = Cat.GetChat(2);
+
+            Assert.That(chat.Id, Is.EqualTo(2));
+            Assert.That(chat.Title, Is.EqualTo("test chat's title"));
+            Assert.That(chat.AdminId, Is.EqualTo(4793858));
+            Assert.That(chat.UserIds.Count(), Is.EqualTo(3));
+            Assert.That(chat.UserIds.ElementAt(0), Is.EqualTo(4793858));
+            Assert.That(chat.UserIds.ElementAt(1), Is.EqualTo(5041431));
+            Assert.That(chat.UserIds.ElementAt(2), Is.EqualTo(10657891));
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void CreateChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            cat.CreateChat(new long[] { 1, 2 }, "hi, friends");
         }
+
+        [Test]
+        public void CreateChat_NormalCase_ChatId()
+        {
+            url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test+chat%27s+title&access_token=token";
+            json = "{\"response\":3}";
+
+            long chatId = Cat.CreateChat(new long[] { 5041431, 10657891 }, "test chat's title");
+
+            Assert.That(chatId, Is.EqualTo(3));
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void EditChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()

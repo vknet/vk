@@ -448,14 +448,41 @@ namespace VkToolkit.Categories
             return activity;
         }
 
-        public void GetChat()
+        public Chat GetChat(long chatId)
         {
-            throw new NotImplementedException();
-        }
+            _vk.IfAccessTokenNotDefinedThrowException();
+            var values = new Dictionary<string, string>();
+            values.Add("chat_id", chatId + "");
 
-        public void CreateChat()
+            string url = _vk.GetApiUrl("messages.getChat", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+
+            Chat chat = Utilities.GetChat((JObject)obj["response"]);
+            return chat;
+        }
+        
+        public long CreateChat(IEnumerable<long> userIds, string title)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            if (string.IsNullOrEmpty(title))
+                throw new InvalidParamException("Title can not be empty or null.");
+
+            var values = new Dictionary<string, string>();
+            values.Add("uids", Utilities.GetEnumerationAsString(userIds));
+            values.Add("title", HttpUtility.UrlEncode(title));
+
+            string url = _vk.GetApiUrl("messages.createChat", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (long) obj["response"];
         }
 
         public void EditChat()

@@ -369,6 +369,9 @@ namespace VkToolkit.Utils
             if (el["users"] != null)
                 chat.UserIds = JArrayToIEnumerable<long>((JArray)el["users"]);
 
+            if (el["admin_id"] != null)
+                chat.AdminId = Convert.ToInt64((string)el["admin_id"]);
+
             return chat;
         }
 
