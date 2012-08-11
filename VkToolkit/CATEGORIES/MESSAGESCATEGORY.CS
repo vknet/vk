@@ -485,9 +485,24 @@ namespace VkToolkit.Categories
             return (long) obj["response"];
         }
 
-        public void EditChat()
+        public bool EditChat(long chatId, string title)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+            
+            if (string.IsNullOrEmpty(title))
+                throw new InvalidParamException("Title can not be empty or null.");
+
+            var values = new Dictionary<string, string>();
+            values.Add("chat_id", chatId + "");
+            values.Add("title", HttpUtility.UrlEncode(title));
+
+            string url = _vk.GetApiUrl("messages.editChat", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int)obj["response"] == 1;
         }
 
         public void GetChatUsers()

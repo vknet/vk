@@ -634,7 +634,17 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void EditChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
+            var cat = new MessagesCategory(new VkApi());
+            cat.EditChat(2, "new title");
+        }
 
+        [Test]
+        public void EditChat_NormalCase_True()
+        {
+            json = "{\"response\":1}";
+            url = "https://api.vk.com/method/messages.editChat?chat_id=2&title=new+title&access_token=token";
+
+            bool result = Cat.EditChat(2, "new title");
         }
 
         [Test]
