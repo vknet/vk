@@ -533,14 +533,36 @@ namespace VkToolkit.Categories
             return arr.Select(x => new User {Id = (long) x});
         }
 
-        public void AddChatUser()
+        public bool AddChatUser(long chatId, long userId)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+            var values = new Dictionary<string, string>();
+            values.Add("chat_id", chatId + "");
+            values.Add("uid", userId + "");
+
+            string url = _vk.GetApiUrl("messages.addChatUser", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int)obj["response"] == 1;
         }
 
-        public void RemoveChatUser()
+        public bool RemoveChatUser(long chatId, long userId)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+            var values = new Dictionary<string, string>();
+            values.Add("chat_id", chatId + "");
+            values.Add("uid", userId + "");
+
+            string url = _vk.GetApiUrl("messages.removeChatUser", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int)obj["response"] == 1;
         }
 
         public LongPollServerResponse GetLongPollServer()

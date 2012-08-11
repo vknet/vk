@@ -703,14 +703,38 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void AddChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            cat.AddChatUser(2, 2);
         }
 
+        [Test]
+        public void AddChatUser_NormalCase_True()
+        {
+            json = "{\"response\":1}";
+            url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&uid=7550525&access_token=token";
+
+            bool result = Cat.AddChatUser(2, 7550525);
+
+            Assert.That(result, Is.True);
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void RemoveChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
+            var cat = new MessagesCategory(new VkApi());
+            cat.RemoveChatUser(2, 2);
+        }
 
+        [Test]
+        public void RemoveChatUser_NormalCase_True()
+        {
+            json = "{\"response\":1}";
+            url = "https://api.vk.com/method/messages.removeChatUser?chat_id=2&uid=7550525&access_token=token";
+
+            bool result = Cat.RemoveChatUser(2, 7550525);
+
+            Assert.That(result, Is.True);
         }
 
         [Test]
