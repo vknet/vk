@@ -448,9 +448,21 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Restore_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-
+            var cat = new MessagesCategory(new VkApi());
+            cat.Restore(1);
         }
 
+        [Test]
+        public void Restore_NormalCase_True()
+        {
+            json = "{\"response\":1}";
+            url = "https://api.vk.com/method/messages.restore?mid=134&access_token=token";
+
+            bool result = Cat.Restore(134);
+
+            Assert.That(result, Is.True);
+        }
+        
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void MarkAsNew_AccessTokenInvalid_ThrowAccessTokenInvalidException()

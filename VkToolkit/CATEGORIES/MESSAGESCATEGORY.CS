@@ -337,9 +337,20 @@ namespace VkToolkit.Categories
             throw new NotImplementedException();
         }
 
-        public void Restore()
+        public bool Restore(long messageId)
         {
-            throw new NotImplementedException();
+            _vk.IfAccessTokenNotDefinedThrowException();
+
+            var values = new Dictionary<string, string>();
+            values.Add("mid", messageId + "");
+
+            string url = _vk.GetApiUrl("messages.restore", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            return (int)obj["response"] == 1;
         }
 
         public void MarkAsNew()
