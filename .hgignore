@@ -5,3 +5,6 @@ packages/*
 VkToolkit/obj/*
 VkToolkit.Tests/bin/*
 VkToolkit.Tests/obj/*
+*.suo
+_ReSharper.VkToolkit.WP7/*
+*.csproj.user

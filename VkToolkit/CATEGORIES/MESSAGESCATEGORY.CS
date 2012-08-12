@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 using Newtonsoft.Json.Linq;
 using VkToolkit.Enums;
 using VkToolkit.Exception;
 using VkToolkit.Model;
 using VkToolkit.Utils;
+
+#if WINDOWS_PHONE
+using System.Net;
+#else
+using System.Web;
+#endif
 
 namespace VkToolkit.Categories
 {
@@ -343,7 +348,7 @@ namespace VkToolkit.Categories
             var response = (JObject)obj["response"];
 
             var dict = new Dictionary<long, bool>();
-            foreach (long id in messageIds)
+            foreach (long id in ids)
             {
                 bool result = (int) response[id.ToString(CultureInfo.InvariantCulture)] == 1;
                 dict.Add(id, result);

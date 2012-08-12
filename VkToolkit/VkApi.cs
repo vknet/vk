@@ -60,7 +60,6 @@ namespace VkToolkit
         /// <param name="email">Email or Phone</param>
         /// <param name="password">Password</param>
         /// <param name="settings">Access rights requested by your application</param>
-        [STAThread]
         public void Authorize(int appId, string email, string password, Settings settings)
         {
             Email = email;

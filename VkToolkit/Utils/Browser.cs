@@ -6,7 +6,11 @@ using System.Net;
 using System.Text;
 using HtmlAgilityPack;
 using VkToolkit.Exception;
+#if WINDOWS_PHONE
+
+#else
 using System.Web;
+#endif
 
 namespace VkToolkit.Utils
 {
@@ -94,7 +98,7 @@ namespace VkToolkit.Utils
             _html.Load(resp.GetResponseStream(), Encoding.UTF8);
             Url = resp.ResponseUri;
             
-            SaveCookies(resp.Cookies);
+            SaveCookies(Url, resp.Cookies);
 
             if ((int)resp.StatusCode == 302) // redirect
             {
@@ -162,11 +166,11 @@ namespace VkToolkit.Utils
 
         #region Private Methods
 
-        private void SaveCookies(CookieCollection cookies)
+        private void SaveCookies(Uri url, CookieCollection cookies)
         {
             foreach (Cookie c in cookies)
             {
-                _cookies.Add(c);
+                _cookies.Add(url, c);
             }
         }
 

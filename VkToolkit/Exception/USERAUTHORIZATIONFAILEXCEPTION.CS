@@ -3,7 +3,9 @@ using System.Runtime.Serialization;
 
 namespace VkToolkit.Exception
 {
+#if WINDOWS
     [Serializable]
+#endif
     class UserAuthorizationFailException : VkApiMethodInvokeException
     {
         public UserAuthorizationFailException(string message) : base(message)
@@ -16,7 +18,8 @@ namespace VkToolkit.Exception
         {
 
         }
-
+#if WINDOWS
         protected UserAuthorizationFailException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+#endif
     }
 }

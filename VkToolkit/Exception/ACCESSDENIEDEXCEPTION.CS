@@ -3,7 +3,9 @@ using System.Runtime.Serialization;
 
 namespace VkToolkit.Exception
 {
+#if WINDOWS
     [Serializable]
+#endif
     public class AccessDeniedException : VkApiMethodInvokeException
     {
         public AccessDeniedException() { }
@@ -16,6 +18,8 @@ namespace VkToolkit.Exception
 
         public AccessDeniedException(string message, int code, System.Exception ex) : base(message, code, ex) { }
 
+#if WINDOWS
         protected AccessDeniedException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+#endif
     }
 }

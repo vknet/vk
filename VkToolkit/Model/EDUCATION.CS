@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
     public class Education
     {
