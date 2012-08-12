@@ -31,10 +31,9 @@ namespace VkToolkit.Tests.Utils
         }
 
         [Test]
-        public void JArrayToArray_JArray_LongArray()
+        public void JArrayToIEnumerable_JArray_LongArray()
         {
-            string json =
-                "{\"response\":[{\"type\":\"profile\",\"uid\":1708231,\"first_name\":\"Григорий\",\"last_name\":\"Клюшников\"},{\"type\":\"chat\",\"chat_id\":109,\"title\":\"Андрей, Григорий\",\"users\":[66748,6492,1708231]}]}";
+            string json = "{\"response\":[{\"type\":\"profile\",\"uid\":1708231,\"first_name\":\"Григорий\",\"last_name\":\"Клюшников\"},{\"type\":\"chat\",\"chat_id\":109,\"title\":\"Андрей, Григорий\",\"users\":[66748,6492,1708231]}]}";
 
             JObject obj = JObject.Parse(json);
 
@@ -51,7 +50,7 @@ namespace VkToolkit.Tests.Utils
         }
 
         [Test]
-        public void JArrayToArray_JArray_StringArray()
+        public void JArrayToIEnumerable_JArray_StringArray()
         {
             string json = "{\"response\":[{\"type\":\"profile\",\"uid\":1708231,\"first_name\":\"Григорий\",\"last_name\":\"Клюшников\"},{\"type\":\"chat\",\"chat_id\":109,\"title\":\"Андрей, Григорий\",\"users\":[66748,6492,1708231]}]}";
 

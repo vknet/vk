@@ -367,24 +367,31 @@ namespace VkToolkit.Utils
             chat.Id = (long?) el["chat_id"];
             chat.Title = (string) el["title"];
             if (el["users"] != null)
+            {
+#if WINDOWS_PHONE
+                chat.UserIds = JArrayToIEnumerable((JArray)el["users"]);
+#else
                 chat.UserIds = JArrayToIEnumerable<long>((JArray)el["users"]);
-
+#endif
+            }
+            
             if (el["admin_id"] != null)
                 chat.AdminId = Convert.ToInt64((string)el["admin_id"]);
 
             return chat;
         }
-
-        //public static IEnumerable<long> JArrayToIEnumerable(JArray array)
-        //{
-        //    //return (from JObject el in array select (long) el).ToList();
-        //    return array.Select(x => (long) x).ToList();
-        //}
-
+        
+#if WINDOWS_PHONE
+        public static IEnumerable<long> JArrayToIEnumerable(JArray array)
+        {
+            return array.Select(el => (long) el).ToList();
+        }
+#else
         public static IEnumerable<T> JArrayToIEnumerable<T>(JArray array)
         {
-            return array.Select(el => el as dynamic).Select(item => (T) item).ToList();
+            return array.Select(el => el as dynamic).Select(item => (T)item).ToList();
         }
+#endif
 
         public static LastActivity GetLastActivity(JObject activity)
         {

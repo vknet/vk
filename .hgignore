@@ -8,3 +8,4 @@ VkToolkit.Tests/obj/*
 *.suo
 _ReSharper.VkToolkit.WP7/*
 *.csproj.user
+*.sln.DotSettings.user
