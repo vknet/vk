@@ -27,8 +27,8 @@ namespace VkToolkit
         public Users Users { get; private set; }
 
         private const string MethodPrefix = "https://api.vk.com/method/";
-        internal string InvalidLoginOrPassword = "Invalid login or password";
-        internal string LoginSuccessed = "Login success";
+        internal static string InvalidLoginOrPassword = "Invalid login or password";
+        internal static string LoginSuccessed = "Login success";
 
         internal IBrowser Browser;
 

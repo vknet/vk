@@ -115,6 +115,12 @@ namespace VkToolkit
             return GetProfileFromJObject((JObject)response[0]);
         }
 
+        /// <summary>
+        /// Get info about users.
+        /// </summary>
+        /// <param name="uids">List of users' Ids.</param>
+        /// <param name="fields">Fields of the profile (can be combined).</param>
+        /// <returns>List of Profile objects.</returns>
         public IEnumerable<Profile> GetProfiles(IEnumerable<int> uids, ProfileFields fields = null)
         {
             IfAccessTokenNotDefinedThrowException();
