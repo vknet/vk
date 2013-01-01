@@ -31,7 +31,7 @@ namespace VkToolkit.Tests
         public void GetProfiles_NotAccessToInternet_ThrowVkApiException()
         {   
             var mockBrowser = new Mock<IBrowser>();
-            mockBrowser.Setup(f => f.GetRawHtml(It.IsAny<string>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
+            mockBrowser.Setup(f => f.GetJson(It.IsAny<string>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
 
             var users = new Users(new VkApi(mockBrowser.Object){AccessToken = "asgsstsfast"});
 
@@ -47,7 +47,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/getProfiles?uid=1&access_token=token";
 
             var mockBrowser = new Mock<IBrowser>();
-            mockBrowser.Setup(f => f.GetRawHtml(url)).Returns(json);
+            mockBrowser.Setup(f => f.GetJson(url)).Returns(json);
 
             var users = new Users(new VkApi(mockBrowser.Object){AccessToken = "token"});
             users.GetProfiles(1);
@@ -62,7 +62,7 @@ namespace VkToolkit.Tests
                 "https://api.vk.com/method/getProfiles?uid=1&fields=first_name,last_name,education&access_token=token";
 
             var mockBrowser = new Mock<IBrowser>();
-            mockBrowser.Setup(m => m.GetRawHtml(url)).Returns(json);
+            mockBrowser.Setup(m => m.GetJson(url)).Returns(json);
 
             var users = new Users(new VkApi(mockBrowser.Object) {AccessToken = "token"});
 
@@ -91,7 +91,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/getProfiles?uid=4793858&fields=counters&access_token=token";
 
             var mockBrowser = new Mock<IBrowser>();
-            mockBrowser.Setup(m => m.GetRawHtml(url)).Returns(json);
+            mockBrowser.Setup(m => m.GetJson(url)).Returns(json);
 
             var users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
 
@@ -125,7 +125,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/getProfiles?uid=4793858&access_token=token";
 
             var mockBrowser = new Mock<IBrowser>();
-            mockBrowser.Setup(m => m.GetRawHtml(url)).Returns(json);
+            mockBrowser.Setup(m => m.GetJson(url)).Returns(json);
             var users = new Users(new VkApi(mockBrowser.Object) {AccessToken = "token"});
 
             // act
@@ -147,7 +147,7 @@ namespace VkToolkit.Tests
                 
 
             var mockBrowser = new Mock<IBrowser>();
-            mockBrowser.Setup(m => m.GetRawHtml(url)).Returns(json);
+            mockBrowser.Setup(m => m.GetJson(url)).Returns(json);
 
             var users = new Users(new VkApi(mockBrowser.Object) { AccessToken = "token" });
 
@@ -212,7 +212,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/getGroups?uid=1&access_token=token";
 
             var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetRawHtml(url)).Returns(json);
+            browser.Setup(m => m.GetJson(url)).Returns(json);
 
             var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
 
@@ -227,7 +227,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/getGroups?uid=4793858&access_token=token";
 
             var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetRawHtml(url)).Returns(json); 
+            browser.Setup(m => m.GetJson(url)).Returns(json); 
 
             var users = new Users(new VkApi(browser.Object) { AccessToken = "token" });
             var groups = users.GetGroups(4793858).ToList();
@@ -244,7 +244,7 @@ namespace VkToolkit.Tests
             const string url = "https://api.vk.com/method/getGroups?uid=4793858&access_token=token";
 
             var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetRawHtml(url)).Returns(json); // todo refactor it use url
+            browser.Setup(m => m.GetJson(url)).Returns(json); // todo refactor it use url
 
             var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
 
@@ -283,7 +283,7 @@ namespace VkToolkit.Tests
                 "{\"response\":[{\"uid\":1,\"first_name\":\"Pavel\",\"last_name\":\"Durov\"},{\"uid\":4793858,\"first_name\":\"Anton\",\"last_name\":\"Zhidkov\"}]}";
 
             var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetRawHtml(url)).Returns(json);
+            browser.Setup(m => m.GetJson(url)).Returns(json);
 
             var users = new Users(new VkApi(browser.Object){AccessToken = "token"});
 
@@ -311,7 +311,7 @@ namespace VkToolkit.Tests
                 "{\"response\":[{\"uid\":102674754,\"first_name\":\"Artyom\",\"last_name\":\"Plotnikov\",\"university\":\"431\",\"university_name\":\"ВолгГТУ\",\"faculty\":\"3162\",\"faculty_name\":\"Электроники и вычислительной техники\",\"graduation\":\"2010\"},{\"uid\":5041431,\"first_name\":\"Tayfur\",\"last_name\":\"Kaseev\",\"university\":\"431\",\"university_name\":\"ВолгГТУ\",\"faculty\":\"3162\",\"faculty_name\":\"Электроники и вычислительной техники\",\"graduation\":\"2012\"}]}";
 
             var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetRawHtml(url)).Returns(json);
+            browser.Setup(m => m.GetJson(url)).Returns(json);
 
             var users = new Users(new VkApi(browser.Object) {AccessToken = "token"});
 
@@ -339,7 +339,67 @@ namespace VkToolkit.Tests
             Assert.That(lst[1].Education.FacultyId, Is.EqualTo("3162"));
             Assert.That(lst[1].Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
             Assert.That(lst[1].Education.Graduation, Is.EqualTo("2012"));
+        }
 
+        [Test]
+        public void GetGroupType_IterateAllValues_Success()
+        {
+            var vk = new VkApi();
+
+            GroupType page = vk.Users.GetGroupType("page");
+            GroupType eventType = vk.Users.GetGroupType("event");
+            GroupType group = vk.Users.GetGroupType("group");
+            GroupType undefined = vk.Users.GetGroupType("NotExistentType");
+
+            Assert.That(page, Is.EqualTo(GroupType.Page));
+            Assert.That(eventType, Is.EqualTo(GroupType.Event));
+            Assert.That(group, Is.EqualTo(GroupType.Group));
+            Assert.That(undefined, Is.EqualTo(GroupType.Undefined));
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void GetGroupsFull_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        {
+            var vk = new VkApi();
+            vk.Users.GetGroupsFull();
+        }
+
+        [Test]
+        public void GetGroupsFull_GroupsOfCurrentUser()
+        {
+            var url = "https://api.vk.com/method/getGroupsFull?access_token=token";
+            var json =
+                "{\"response\":[{\"gid\":29689780,\"name\":\"Art and Life ©\",\"screen_name\":\"art.and.life\",\"is_closed\":0,\"type\":\"page\",\"photo\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/e_1bea6489.jpg\",\"photo_medium\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/d_f50bf769.jpg\",\"photo_big\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/a_1889c16e.jpg\"},{\"gid\":33489538,\"name\":\"Английский как стиль жизни. Где перевод?\",\"screen_name\":\"english_for_adults\",\"is_closed\":0,\"type\":\"event\",\"photo\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/e_1d36792d.jpg\",\"photo_medium\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/d_caafe13e.jpg\",\"photo_big\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/a_6d6f2525.jpg\"}]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            var vk = new VkApi(browser.Object){AccessToken = "token"};
+            var groups = vk.Users.GetGroupsFull().ToList();
+
+            Assert.That(groups.Count, Is.EqualTo(2));
+            Assert.That(groups[0], Is.Not.Null);
+            Assert.That(groups[0].Id, Is.EqualTo(29689780));
+            Assert.That(groups[0].Name, Is.EqualTo("Art and Life ©"));
+            Assert.That(groups[0].ScreenName, Is.EqualTo("art.and.life"));
+            Assert.That(groups[0].IsClosed, Is.EqualTo(false));
+            Assert.That(groups[0].IsAdmin, Is.EqualTo(false));
+            Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
+            Assert.That(groups[0].Photo, Is.EqualTo("http://cs11003.userapi.com/g29689780/e_1bea6489.jpg"));
+            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs11003.userapi.com/g29689780/d_f50bf769.jpg"));
+            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs11003.userapi.com/g29689780/a_1889c16e.jpg"));
+
+            Assert.That(groups[1], Is.Not.Null);
+            Assert.That(groups[1].Id, Is.EqualTo(33489538));
+            Assert.That(groups[1].Name, Is.EqualTo("Английский как стиль жизни. Где перевод?"));
+            Assert.That(groups[1].ScreenName, Is.EqualTo("english_for_adults"));
+            Assert.That(groups[1].IsClosed, Is.EqualTo(false));
+            Assert.That(groups[1].IsAdmin, Is.EqualTo(false));
+            Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
+            Assert.That(groups[1].Photo, Is.EqualTo("http://cs5538.userapi.com/g33489538/e_1d36792d.jpg"));
+            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs5538.userapi.com/g33489538/d_caafe13e.jpg"));
+            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs5538.userapi.com/g33489538/a_6d6f2525.jpg"));
         }
     }
 }

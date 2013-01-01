@@ -8,7 +8,7 @@ namespace VkToolkit.Utils
         // properties
         Uri Uri { get; }
 
-        string GetRawHtml(string path);
+        string GetJson(string url);
         void ClearCookies();
         void GoTo(string url);
         void Close();

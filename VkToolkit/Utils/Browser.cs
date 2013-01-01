@@ -26,7 +26,7 @@ namespace VkToolkit.Utils
             get { return Ie.Uri; }
         }
 
-        public string GetRawHtml(string url)
+        public string GetJson(string url)
         {
             WebRequest request = WebRequest.Create(url);
             WebResponse response;

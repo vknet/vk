@@ -22,19 +22,7 @@ namespace VkToolkit
             IfAccessTokenNotDefinedThrowException();
             throw new NotImplementedException();
         }
-
-        public IEnumerable<Group> GetGroupsFull()
-        {
-            IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Group> GetGroupsFull(IEnumerable<int> gids)
-        {
-            IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
-        }
-
+        
         public IEnumerable<Profile> Search(string query, int count = 20, ProfileFields fields = null)
         {
             IfAccessTokenNotDefinedThrowException();
@@ -77,7 +65,7 @@ namespace VkToolkit
             values.Add("uid", uid + "");
 
             string url = _vk.GetApiUrl("getGroups", values);
-            string json = _vk.Browser.GetRawHtml(url);
+            string json = _vk.Browser.GetJson(url);
 
             _vk.IfErrorThrowException(json);
             
@@ -86,7 +74,28 @@ namespace VkToolkit
 
             return response.Select(i => new Group {Id = (int) i}).ToList();
         }
-        
+
+        public IEnumerable<Group> GetGroupsFull(IEnumerable<int> gids)
+        {
+            IfAccessTokenNotDefinedThrowException();
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Group> GetGroupsFull()
+        {
+            IfAccessTokenNotDefinedThrowException();
+
+            string url = _vk.GetApiUrl("getGroupsFull", new Dictionary<string, string>());
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var response = (JArray)obj["response"];
+
+            return response.Select(g => GetGroupFromJObject((JObject) g)).ToList();
+        }
+
         /// <summary>
         /// Get info about user.
         /// </summary>
@@ -105,7 +114,7 @@ namespace VkToolkit
 
             string url = _vk.GetApiUrl("getProfiles", values);
 
-            string json = _vk.Browser.GetRawHtml(url);
+            string json = _vk.Browser.GetJson(url);
             
             _vk.IfErrorThrowException(json);
             
@@ -146,7 +155,7 @@ namespace VkToolkit
 
             string url = _vk.GetApiUrl("getProfiles", values);
 
-            string json = _vk.Browser.GetRawHtml(url);
+            string json = _vk.Browser.GetJson(url);
 
             _vk.IfErrorThrowException(json);
 
@@ -164,6 +173,39 @@ namespace VkToolkit
         }
 
         #region Private Methods
+
+        private Group GetGroupFromJObject(JObject group)
+        {
+            var output = new Group
+            {
+                Id = (int)group["gid"],
+                Name = (string)group["name"],
+                Link = (string)group["link"],
+                Photo = (string)group["photo"],
+                PhotoMedium = (string)group["photo_medium"],
+                PhotoBig = (string)group["photo_big"],
+                ScreenName = (string)group["screen_name"],
+            };
+
+            var isClosed = (int?)group["is_closed"];
+            var isAdmin = (int?)group["is_admin"];
+
+            if (isClosed.HasValue)
+            {
+                output.IsClosed = isClosed.Value == 1;
+            }
+
+            if (isAdmin.HasValue)
+            {
+                output.IsAdmin = isAdmin.Value == 1;
+            }
+            else
+                output.IsAdmin = false;
+
+            output.Type = GetGroupType((string)group["type"]);
+
+            return output;
+        }
 
         private Profile GetProfileFromJObject(JObject current)
         {
@@ -227,6 +269,24 @@ namespace VkToolkit
         {
             if (string.IsNullOrEmpty(_vk.AccessToken))
                 throw new AccessTokenNotSetException();
+        }
+
+        internal GroupType GetGroupType(string type)
+        {
+            switch (type)
+            {
+                case "page":
+                    return GroupType.Page;
+
+                case "event":
+                    return GroupType.Event;
+
+                case "group":
+                    return GroupType.Group;
+
+                default:
+                    return GroupType.Undefined;
+            }
         }
         #endregion
     }
