@@ -12,6 +12,8 @@ namespace VkToolkit.Tests
     [TestFixture]
     public class UsersTest
     {
+        private const string Query = "Masha Ivanova";
+
         [SetUp]
         public void SetUp()
         {
@@ -233,8 +235,6 @@ namespace VkToolkit.Tests
             var groups = users.GetGroups(4793858).ToList();
 
             Assert.That(groups.Count, Is.EqualTo(0));
-            // undone: check json stirng
-            Assert.Fail();
         }
 
         [Test]
@@ -421,7 +421,7 @@ namespace VkToolkit.Tests
         public void GetGroupsFull_GroupsOfCurrentUser()
         {
             const string url = "https://api.vk.com/method/getGroupsFull?access_token=token";
-            const string json = "{\"response\":[{\"gid\":29689780,\"name\":\"Art and Life ©\",\"screen_name\":\"art.and.life\",\"is_closed\":0,\"type\":\"page\",\"photo\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/e_1bea6489.jpg\",\"photo_medium\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/d_f50bf769.jpg\",\"photo_big\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/a_1889c16e.jpg\"},{\"gid\":33489538,\"name\":\"Английский как стиль жизни. Где перевод?\",\"screen_name\":\"english_for_adults\",\"is_closed\":0,\"type\":\"event\",\"photo\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/e_1d36792d.jpg\",\"photo_medium\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/d_caafe13e.jpg\",\"photo_big\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/a_6d6f2525.jpg\"}]}";
+            const string json = "{\"response\":[{\"gid\":29689780,\"name\":\"Art and Life ©\",\"screen_name\":\"art.and.life\",\"is_closed\":0,\"is_admin\":1,\"type\":\"page\",\"photo\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/e_1bea6489.jpg\",\"photo_medium\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/d_f50bf769.jpg\",\"photo_big\":\"http:\\/\\/cs11003.userapi.com\\/g29689780\\/a_1889c16e.jpg\"},{\"gid\":33489538,\"name\":\"Английский как стиль жизни. Где перевод?\",\"screen_name\":\"english_for_adults\",\"is_closed\":0,\"type\":\"event\",\"photo\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/e_1d36792d.jpg\",\"photo_medium\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/d_caafe13e.jpg\",\"photo_big\":\"http:\\/\\/cs5538.userapi.com\\/g33489538\\/a_6d6f2525.jpg\"}]}";
 
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json);
@@ -435,7 +435,7 @@ namespace VkToolkit.Tests
             Assert.That(groups[0].Name, Is.EqualTo("Art and Life ©"));
             Assert.That(groups[0].ScreenName, Is.EqualTo("art.and.life"));
             Assert.That(groups[0].IsClosed, Is.False);
-            Assert.That(groups[0].IsAdmin, Is.False);
+            Assert.That(groups[0].IsAdmin, Is.True);
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
             Assert.That(groups[0].Photo, Is.EqualTo("http://cs11003.userapi.com/g29689780/e_1bea6489.jpg"));
             Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs11003.userapi.com/g29689780/d_f50bf769.jpg"));
@@ -548,6 +548,122 @@ namespace VkToolkit.Tests
             int balance = vk.Users.GetUserSettings(1);
 
             Assert.That(balance, Is.EqualTo(2));
+        }
+
+        [Test]
+        [ExpectedException(typeof(AccessTokenNotSetException))]
+        public void Search_EmptyAccessToken_ThrowAccessTokenNotSetException()
+        {
+            var vk = new VkApi();
+            int count;
+            vk.Users.Search(Query, out count);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Query can not be null or empty.")]
+        public void Search_EmptyQuery_ThrowArgumentException()
+        {
+            int count;
+            var vk = new VkApi {AccessToken = "token"};
+            vk.Users.Search("", out count);
+        }
+
+        [Test]
+        public void Search_BadQuery_EmptyList()
+        {
+            const string url = "https://api.vk.com/method/users.search?q=fa'sosjvsoidf&count=20&access_token=token";
+            const string json = "{\"response\":[0]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            int count;
+            var vk = new VkApi(browser.Object) { AccessToken = "token" };
+            var lst = vk.Users.Search("fa'sosjvsoidf", out count).ToList();
+
+            Assert.That(count, Is.EqualTo(0));
+            Assert.That(lst, Is.Not.Null);
+            Assert.That(lst.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Search_EducationField_ListofProfileObjects()
+        {
+            const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&fields=education&offset=123&count=3&access_token=token";
+            const string json = "{\"response\":[26953,{\"uid\":165614770,\"first_name\":\"Маша\",\"last_name\":\"Иванова\",\"university\":\"0\",\"university_name\":\"\",\"faculty\":\"0\",\"faculty_name\":\"\",\"graduation\":\"0\"},{\"uid\":174063570,\"first_name\":\"Маша\",\"last_name\":\"Иванова\",\"university\":\"0\",\"university_name\":\"\",\"faculty\":\"0\",\"faculty_name\":\"\",\"graduation\":\"0\"},{\"uid\":76817368,\"first_name\":\"Маша\",\"last_name\":\"Иванова\",\"university\":\"0\",\"university_name\":\"\",\"faculty\":\"0\",\"faculty_name\":\"\",\"graduation\":\"0\"}]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            int count;
+            var vk = new VkApi(browser.Object) {AccessToken = "token"};
+            var lst = vk.Users.Search(Query, out count, ProfileFields.Education, 3, 123).ToList();
+
+            Assert.That(count, Is.EqualTo(26953));
+            Assert.That(lst.Count, Is.EqualTo(3));
+            Assert.That(lst[0], Is.Not.Null);
+            Assert.That(lst[0].Uid, Is.EqualTo(165614770));
+            Assert.That(lst[0].FirstName, Is.EqualTo("Маша"));
+            Assert.That(lst[0].LastName, Is.EqualTo("Иванова"));
+            Assert.That(lst[0].Education, Is.Not.Null);
+            Assert.That(lst[0].Education.UniversityId, Is.EqualTo("0"));
+            Assert.That(lst[0].Education.UniversityName, Is.EqualTo(""));
+            Assert.That(lst[0].Education.FacultyId, Is.EqualTo("0"));
+            Assert.That(lst[0].Education.FacultyName, Is.EqualTo(""));
+            Assert.That(lst[0].Education.Graduation, Is.EqualTo("0"));
+
+            Assert.That(lst[1], Is.Not.Null);
+            Assert.That(lst[1].Uid, Is.EqualTo(174063570));
+            Assert.That(lst[1].FirstName, Is.EqualTo("Маша"));
+            Assert.That(lst[1].LastName, Is.EqualTo("Иванова"));
+            Assert.That(lst[1].Education, Is.Not.Null);
+            Assert.That(lst[1].Education.UniversityId, Is.EqualTo("0"));
+            Assert.That(lst[1].Education.UniversityName, Is.EqualTo(""));
+            Assert.That(lst[1].Education.FacultyId, Is.EqualTo("0"));
+            Assert.That(lst[1].Education.FacultyName, Is.EqualTo(""));
+            Assert.That(lst[1].Education.Graduation, Is.EqualTo("0"));
+
+            Assert.That(lst[2], Is.Not.Null);
+            Assert.That(lst[2].Uid, Is.EqualTo(76817368));
+            Assert.That(lst[2].FirstName, Is.EqualTo("Маша"));
+            Assert.That(lst[2].LastName, Is.EqualTo("Иванова"));
+            Assert.That(lst[2].Education, Is.Not.Null);
+            Assert.That(lst[2].Education.UniversityId, Is.EqualTo("0"));
+            Assert.That(lst[2].Education.UniversityName, Is.EqualTo(""));
+            Assert.That(lst[2].Education.FacultyId, Is.EqualTo("0"));
+            Assert.That(lst[2].Education.FacultyName, Is.EqualTo(""));
+            Assert.That(lst[2].Education.Graduation, Is.EqualTo("0"));
+        }
+
+        [Test]
+        public void Search_DefaultFields_ListOfProfileObjects()
+        {
+            const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&count=20&access_token=token";
+            const string json = "{\"response\":[26953,{\"uid\":449928,\"first_name\":\"Маша\",\"last_name\":\"Иванова\"},{\"uid\":70145254,\"first_name\":\"Маша\",\"last_name\":\"Шаблинская-Иванова\"},{\"uid\":62899425,\"first_name\":\"Masha\",\"last_name\":\"Ivanova\"}]}";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(url)).Returns(json);
+
+            int count;
+            var vk = new VkApi(browser.Object) { AccessToken = "token" };
+            var lst = vk.Users.Search(Query, out count).ToList();
+
+            Assert.That(count, Is.EqualTo(26953));
+            Assert.That(lst.Count, Is.EqualTo(3));
+            Assert.That(lst[0], Is.Not.Null);
+            Assert.That(lst[0].Uid, Is.EqualTo(449928));
+            Assert.That(lst[0].FirstName, Is.EqualTo("Маша"));
+            Assert.That(lst[0].LastName, Is.EqualTo("Иванова"));
+
+            Assert.That(lst[1], Is.Not.Null);
+            Assert.That(lst[1].Uid, Is.EqualTo(70145254));
+            Assert.That(lst[1].FirstName, Is.EqualTo("Маша"));
+            Assert.That(lst[1].LastName, Is.EqualTo("Шаблинская-Иванова"));
+
+            Assert.That(lst[2], Is.Not.Null);
+            Assert.That(lst[2].Uid, Is.EqualTo(62899425));
+            Assert.That(lst[2].FirstName, Is.EqualTo("Masha"));
+            Assert.That(lst[2].LastName, Is.EqualTo("Ivanova"));
         }
     }
 }

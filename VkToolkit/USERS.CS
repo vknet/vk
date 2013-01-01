@@ -17,10 +17,39 @@ namespace VkToolkit
             _vk = vk;
         }
 
-        public IEnumerable<Profile> Search(string query, int count = 20, ProfileFields fields = null)
+        public IEnumerable<Profile> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
             IfAccessTokenNotDefinedThrowException();
-            throw new NotImplementedException();
+
+            if (string.IsNullOrEmpty(query))
+                throw new ArgumentException("Query can not be null or empty.");
+
+            var values = new Dictionary<string, string>();
+            values.Add("q", query);
+            if (fields != null)
+                values.Add("fields", fields.ToString());
+            if (offset > 0)
+                values.Add("offset", offset + "");
+            values.Add("count", count + "");
+
+            string url = _vk.GetApiUrl("users.search", values);
+            string json = _vk.Browser.GetJson(url);
+
+            _vk.IfErrorThrowException(json);
+
+            JObject obj = JObject.Parse(json);
+            var array = (JArray)obj["response"];
+
+            itemsCount = (int) array[0];
+
+            var output = new List<Profile>();
+            for (int i = 1; i < array.Count; i++)
+            {
+                Profile p = GetProfileFromJObject((JObject)array[i]);
+                output.Add(p);
+            }
+
+            return output;
         }
 
         /// <summary>
