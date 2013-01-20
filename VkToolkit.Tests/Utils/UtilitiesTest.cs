@@ -41,14 +41,19 @@ namespace VkToolkit.Tests.Utils
 
             var arr = (JArray) response[1]["users"];
 
+#if !WINDOWS_PHONE
             var result = Utilities.JArrayToIEnumerable<long>(arr).ToList();
-            
+#elif WINDOWS_PHONE
+            var result = Utilities.JArrayToIEnumerable(arr).ToList();
+#endif
+
             Assert.That(result.Count, Is.EqualTo(3));
             Assert.That(result[0], Is.EqualTo(66748));
             Assert.That(result[1], Is.EqualTo(6492));
             Assert.That(result[2], Is.EqualTo(1708231));
         }
 
+#if !WINDOWS_PHONE
         [Test]
         public void JArrayToIEnumerable_JArray_StringArray()
         {
@@ -65,6 +70,7 @@ namespace VkToolkit.Tests.Utils
             Assert.That(result[1], Is.EqualTo("6492"));
             Assert.That(result[2], Is.EqualTo("1708231"));
         }
+#endif
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]

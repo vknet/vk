@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !(SILVERLIGHT || WINDOWS_PHONE)
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,11 +7,7 @@ using System.Net;
 using System.Text;
 using HtmlAgilityPack;
 using VkToolkit.Exception;
-#if WINDOWS_PHONE
-
-#else
 using System.Web;
-#endif
 
 namespace VkToolkit.Utils
 {
@@ -212,3 +209,5 @@ namespace VkToolkit.Utils
         #endregion
     }
 }
+
+#endif

@@ -41,7 +41,9 @@ namespace VkToolkit
         {
             // set default values
             ResponseType = ResponseType.Json;
+#if ! WINDOWS_PHONE
             Browser = new Browser();
+#endif
             
             // set function's categories
             Users = new UsersCategory(this);

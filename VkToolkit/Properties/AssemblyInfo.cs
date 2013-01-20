@@ -36,3 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: InternalsVisibleTo("VkToolkit.Tests")]
+[assembly: InternalsVisibleTo("VkToolkit.WP7.Tests")]
