@@ -1,106 +1,105 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using VkToolkit.Enums;
 using VkToolkit.Model;
 using VkToolkit.Utils;
 
 namespace VkToolkit.Categories
 {
+    using System.Linq;
+
     public class WallCategory
     {
         private readonly VkApi _vk;
+
         public WallCategory(VkApi vk)
         {
             _vk = vk;
         }
 
-        public IEnumerable<WallRecord> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All/*, bool isExtended = false*/)
+        public List<WallRecord> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All/*, bool isExtended = false*/)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
-            var values = new Dictionary<string, string>();
-            values.Add("owner_id", ownerId + "");
-            if (count.HasValue && count.Value > 0)
-                values.Add("count", count.Value + "");
-            if (offset.HasValue && offset.Value > 0)
-                values.Add("offset", offset.Value + "");
-            values.Add("filter", filter.ToString().ToLowerInvariant());
-            // TODO add it later
+            var parameters = new VkParameters
+                {
+                    { "owner_id", ownerId },
+                    { "count", count },
+                    { "offset", offset },
+                    { "filter", filter.ToString().ToLowerInvariant() }
+                };
+            // TODO: add it later
             //if (isExtended)
             //    values.Add("extended", "1");
 
-            string url = _vk.GetApiUrl("wall.get", values);
-            string json = _vk.Browser.GetJson(url);
+            VkResponseArray response = _vk.Call("wall.get", parameters);
 
-            _vk.IfErrorThrowException(json);
+            totalCount = response[0];
 
-            JObject obj = JObject.Parse(json);
-            var array = (JArray)obj["response"];
-
-            totalCount = (int) array[0];
-
-            var output = new List<WallRecord>();
-            for (int i = 1; i < array.Count; i++ )
-            {
-                WallRecord record = Utilities.GetWallRecord((JObject) array[i]);
-                output.Add(record);
-            }
-            return output;
+            return response.Skip(1).ToListOf(r => (WallRecord)r);
         }
 
         public void GetComments()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void GetById()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void Post()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void Edit()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void Delete()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void Restore()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void AddComment()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void DeleteComment()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void RestoreComment()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void AddLike()
         {
+            // TODO:
             throw new NotImplementedException();
         }
 
         public void DeleteLike()
         {
+            // TODO:
             throw new NotImplementedException();
         }
     }

@@ -36,9 +36,12 @@ namespace VkToolkit.Tests.Enum
         public void ToString_All()
         {
             ProfileFields all = ProfileFields.All;
-            const string expected = "uid,first_name,last_name,nickname,screen_name,sex," +
-                              "bdate,city,country,timezone,photo,photo_medium," +
-                              "photo_big,has_mobile,rate,contacts,education,online,counters";
+            const string expected = 
+                "uid,first_name,last_name,nickname,screen_name,sex,bdate,city,country,timezone," + 
+                "photo_50,photo_100,photo_200_orig,has_mobile,contacts,education,online,counters,relation,last_seen," + 
+                "status,can_write_private_message,can_see_all_posts,can_see_audio,can_post,universities,schools," + 
+                "verified,connections,site,relatives,activities,interests,music,movies,tv,books,games,quotes,about," + 
+                "lang,personal,photo_400_orig,photo_max,photo_max_orig";
 
             string s = all.ToString();
 

@@ -2,6 +2,8 @@
 {
     public enum WallFilter
     {
-        Owner, Others, All
+        Owner, 
+        Others, 
+        All
     }
 }

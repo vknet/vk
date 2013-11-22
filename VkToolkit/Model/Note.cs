@@ -1,4 +1,5 @@
 ﻿using System;
+using VkToolkit.Utils;
 
 namespace VkToolkit.Model
 {
@@ -11,5 +12,21 @@ namespace VkToolkit.Model
         public DateTime? Date { get; set; }
         public int? CommentsCount { get; set; }
         public int? ReadCommentsCount { get; set; }
+
+        internal static Note FromJson(VkResponse note)
+        {
+            // TODO: TEST IT!!!!!
+            var result = new Note();
+
+            result.Id = note["nid"];
+            result.UserId = note["uid"];
+            result.Title = note["title"];
+            result.Text = note["text"];
+            result.Date = note["date"];
+            result.CommentsCount = note["ncom"];
+            result.ReadCommentsCount = note["read_ncom"];
+
+            return result;
+        }
     }
 }

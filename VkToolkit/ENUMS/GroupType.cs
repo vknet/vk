@@ -2,6 +2,9 @@
 {
     public enum GroupType
     {
-        Page, Group, Event, Undefined
+        Page, 
+        Group, 
+        Event, 
+        Undefined
     }
 }

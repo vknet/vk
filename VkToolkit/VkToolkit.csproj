@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VkToolkit</RootNamespace>
     <AssemblyName>VkToolkit</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,22 +33,19 @@
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.4\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net20\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -55,19 +53,25 @@
     <Compile Include="Categories\GroupsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
     <Compile Include="Categories\WallCategory.cs" />
+    <Compile Include="Enums\Attitude.cs" />
     <Compile Include="Enums\AudioSort.cs" />
     <Compile Include="Enums\Display.cs" />
     <Compile Include="Enums\GroupsFields.cs" />
     <Compile Include="Enums\GroupsFilters.cs" />
     <Compile Include="Enums\GroupsSort.cs" />
     <Compile Include="Enums\GroupType.cs" />
+    <Compile Include="Enums\LifeMain.cs" />
     <Compile Include="Enums\MessageReadState.cs" />
     <Compile Include="Enums\MessagesFilter.cs" />
     <Compile Include="Enums\MessageType.cs" />
     <Compile Include="Enums\Order.cs" />
+    <Compile Include="Enums\PeopleMain.cs" />
+    <Compile Include="Enums\PoliticalPreferences.cs" />
     <Compile Include="Enums\ProfileFields.cs" />
+    <Compile Include="Enums\RelationType.cs" />
     <Compile Include="Enums\Settings.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
+    <Compile Include="Enums\Sex.cs" />
     <Compile Include="Enums\WallFilter.cs" />
     <Compile Include="Exception\AccessDeniedException.cs" />
     <Compile Include="Exception\AccessTokenInvalidException.cs" />
@@ -76,6 +80,16 @@
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Categories\FriendsCategory.cs" />
+    <Compile Include="Model\Connections.cs" />
+    <Compile Include="Model\Relative.cs" />
+    <Compile Include="Model\School.cs" />
+    <Compile Include="Model\StandInLife.cs" />
+    <Compile Include="Model\University.cs" />
+    <Compile Include="Utils\Cookies.cs" />
+    <Compile Include="Utils\WebCallResult.cs" />
+    <Compile Include="Model\Coordinates.cs" />
+    <Compile Include="Utils\WebCall.cs" />
+    <Compile Include="Utils\VkParameters.cs" />
     <Compile Include="Model\Attachment.cs" />
     <Compile Include="Model\Audio.cs" />
     <Compile Include="Model\Chat.cs" />
@@ -109,8 +123,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Browser.cs" />
     <Compile Include="Utils\IBrowser.cs" />
+    <Compile Include="Utils\VkResponseArray.cs" />
+    <Compile Include="Utils\VkResponse.cs" />
     <Compile Include="Utils\Utilities.cs" />
+    <Compile Include="Utils\VkResponseEx.cs" />
+    <Compile Include="Utils\WebForm.cs" />
     <Compile Include="VkApi.cs" />
+    <Compile Include="Utils\VkErrors.cs" />
+    <Compile Include="Utils\VkAuthorization.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

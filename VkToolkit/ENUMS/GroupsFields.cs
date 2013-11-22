@@ -3,6 +3,8 @@ using System.Linq;
 
 namespace VkToolkit.Enums
 {
+    using VkToolkit.Utils;
+
     /// <summary>
     /// Описание полей, используемых в параметре fields в методах Groups.get и Groups.getById. 
     /// </summary>
@@ -35,13 +37,13 @@ namespace VkToolkit.Enums
             {
                 foreach (var f in f1._fields)
                 {
-                    if (!_fields.Any(m => m._value == f._value))
+                    if (_fields.All(m => m._value != f._value))
                         _fields.Add(f);
                 }
             }
             else
             {
-                if (!_fields.Any(m => m._value == f1._value))
+                if (_fields.All(m => m._value != f1._value))
                     _fields.Add(f1);
             }
 
@@ -50,13 +52,13 @@ namespace VkToolkit.Enums
             {
                 foreach (var f in f2._fields)
                 {
-                    if (!_fields.Any(m => m._value == f._value))
+                    if (_fields.All(m => m._value != f._value))
                         _fields.Add(f);
                 }
             }
             else
             {
-                if (!_fields.Any(m => m._value == f2._value))
+                if (_fields.All(m => m._value != f2._value))
                     _fields.Add(f2);
             }
         }
@@ -71,15 +73,7 @@ namespace VkToolkit.Enums
             if (_fields == null || _fields.Count == 0)
                 return _name;
 
-            string output = "";
-            for (int i = 0; i < _fields.Count; i++)
-            {
-                output += _fields[i]._name;
-                if (i != _fields.Count - 1)
-                    output += ",";
-            }
-
-            return output;
+            return _fields.Select(f => f._name).JoinNonEmpty();
         }
     }
 }

@@ -40,7 +40,15 @@ namespace VkToolkit.Tests.Categories
             const string url =
                 "https://api.vk.com/method/friends.get?uid=1&access_token=token";
             const string json =
-                "{\"response\":[2,5,6,7,12]}";
+                @"{
+                    'response': [
+                      2,
+                      5,
+                      6,
+                      7,
+                      12
+                    ]
+                  }";
 
             var friends = GetMockedFriendsCategory(url, json);
             var users = friends.Get(1).ToList();
@@ -59,7 +67,28 @@ namespace VkToolkit.Tests.Categories
             const string url =
                 "https://api.vk.com/method/friends.get?uid=1&fields=first_name,last_name&count=3&access_token=token";
             const string json =
-                "{\"response\":[{\"uid\":2,\"first_name\":\"Александра\",\"last_name\":\"Владимирова\",\"online\":0},{\"uid\":5,\"first_name\":\"Илья\",\"last_name\":\"Перекопский\",\"online\":0},{\"uid\":6,\"first_name\":\"Николай\",\"last_name\":\"Дуров\",\"online\":0}]}";
+                @"{
+                    'response': [
+                      {
+                        'uid': 2,
+                        'first_name': 'Александра',
+                        'last_name': 'Владимирова',
+                        'online': 0
+                      },
+                      {
+                        'uid': 5,
+                        'first_name': 'Илья',
+                        'last_name': 'Перекопский',
+                        'online': 0
+                      },
+                      {
+                        'uid': 6,
+                        'first_name': 'Николай',
+                        'last_name': 'Дуров',
+                        'online': 0
+                      }
+                    ]
+                  }";
 
             var friends = GetMockedFriendsCategory(url, json);
             var lst = friends.Get(1, ProfileFields.FirstName | ProfileFields.LastName, 3).ToList();
@@ -68,17 +97,17 @@ namespace VkToolkit.Tests.Categories
             Assert.That(lst[0].Id, Is.EqualTo(2));
             Assert.That(lst[0].FirstName, Is.EqualTo("Александра"));
             Assert.That(lst[0].LastName, Is.EqualTo("Владимирова"));
-            Assert.That(lst[0].Online, Is.EqualTo(0));
+            Assert.That(lst[0].Online, Is.EqualTo(false));
 
             Assert.That(lst[1].Id, Is.EqualTo(5));
             Assert.That(lst[1].FirstName, Is.EqualTo("Илья"));
             Assert.That(lst[1].LastName, Is.EqualTo("Перекопский"));
-            Assert.That(lst[1].Online, Is.EqualTo(0));
+            Assert.That(lst[1].Online, Is.EqualTo(false));
 
             Assert.That(lst[2].Id, Is.EqualTo(6));
             Assert.That(lst[2].FirstName, Is.EqualTo("Николай"));
             Assert.That(lst[2].LastName, Is.EqualTo("Дуров"));
-            Assert.That(lst[2].Online, Is.EqualTo(0));
+            Assert.That(lst[2].Online, Is.EqualTo(false));
         }
 
         [Test]
@@ -93,7 +122,10 @@ namespace VkToolkit.Tests.Categories
         public void GetAppUsers_NoOne_EmptyList()
         {
             const string url = "https://api.vk.com/method/friends.getAppUsers?access_token=token";
-            const string json = "{\"response\":[]}";
+            const string json =
+                @"{
+                    'response': []
+                  }";
 
             var friends = GetMockedFriendsCategory(url, json);
 
@@ -106,7 +138,14 @@ namespace VkToolkit.Tests.Categories
         public void GetAppUsers_ThreeUsers_ListOfObjects()
         {
             const string url = "https://api.vk.com/method/friends.getAppUsers?access_token=token";
-            const string json = "{\"response\":[15221,17836,19194]}";
+            const string json =
+                @"{
+                    'response': [
+                      15221,
+                      17836,
+                      19194
+                    ]
+                  }";
 
             var friends = GetMockedFriendsCategory(url, json);
             var ids = friends.GetAppUsers().ToList();
@@ -129,7 +168,10 @@ namespace VkToolkit.Tests.Categories
         public void GetOnline_NoOne_EmptyList()
         {
             const string url = "https://api.vk.com/method/friends.getOnline?uid=1&access_token=token";
-            const string json = "{\"response\":[]}";
+            const string json =
+                @"{
+                    'response': []
+                  }";
 
             var friends = GetMockedFriendsCategory(url, json);
             var users = friends.GetOnline(1).ToList();
@@ -141,7 +183,16 @@ namespace VkToolkit.Tests.Categories
         public void GetOnline_FiveUsers_ListOfObjects()
         {
             const string url = "https://api.vk.com/method/friends.getOnline?uid=1&access_token=token";
-            const string json = "{\"response\":[5,467,2943,4424,13033]}";
+            const string json =
+                @"{
+                    'response': [
+                      5,
+                      467,
+                      2943,
+                      4424,
+                      13033
+                    ]
+                  }";
 
             var friends = GetMockedFriendsCategory(url, json);
             var ids = friends.GetOnline(1).ToList();
@@ -166,7 +217,14 @@ namespace VkToolkit.Tests.Categories
         public void GetMutual_ThreeUsers_ListOfObjects()
         {
             const string url = "https://api.vk.com/method/friends.getMutual?target_uid=2&source_uid=1&access_token=token";
-            const string json = "{\"response\":[3,31,43]}";
+            const string json =
+                @"{
+                    'response': [
+                      3,
+                      31,
+                      43
+                    ]
+                  }";
 
             var friends = GetMockedFriendsCategory(url, json);
             var ids = friends.GetMutual(2, 1).ToList();
@@ -181,7 +239,10 @@ namespace VkToolkit.Tests.Categories
         public void GetMutual_NoOne_EmptyList()
         {
             const string url = "https://api.vk.com/method/friends.getMutual?target_uid=2&source_uid=1&access_token=token";
-            const string json = "{\"response\":[]}";
+            const string json =
+                @"{
+                    'response': []
+                  }";
 
             var friends = GetMockedFriendsCategory(url, json);
 
@@ -202,7 +263,7 @@ namespace VkToolkit.Tests.Categories
         [ExpectedException(typeof(ArgumentNullException))]
         public void AreFriends_NullInput_ThrowArgumentNullException()
         {
-            var f = new FriendsCategory(new VkApi{AccessToken = "token"});
+            var f = new FriendsCategory(new VkApi { AccessToken = "token" });
             f.AreFriends(null);
         }
 
@@ -210,7 +271,27 @@ namespace VkToolkit.Tests.Categories
         public void AreFriends_FourTypes_RightFriendStatuses()
         {
             const string url = "https://api.vk.com/method/friends.areFriends?uids=24181068,22911407,155810539,3505305&access_token=token";
-            const string json = "{\"response\":[{\"uid\":24181068,\"friend_status\":0},{\"uid\":22911407,\"friend_status\":3},{\"uid\":155810539,\"friend_status\":2},{\"uid\":3505305,\"friend_status\":1}]}";
+            const string json =
+                @"{
+                    'response': [
+                      {
+                        'uid': 24181068,
+                        'friend_status': 0
+                      },
+                      {
+                        'uid': 22911407,
+                        'friend_status': 3
+                      },
+                      {
+                        'uid': 155810539,
+                        'friend_status': 2
+                      },
+                      {
+                        'uid': 3505305,
+                        'friend_status': 1
+                      }
+                    ]
+                  }";
 
             var friends = GetMockedFriendsCategory(url, json);
             var dict = friends.AreFriends(new long[] {24181068, 22911407, 155810539, 3505305});

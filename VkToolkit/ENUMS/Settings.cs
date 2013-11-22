@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using VkToolkit.Utils;
+
 namespace VkToolkit.Enums
 {
     public sealed class Settings
@@ -11,9 +13,7 @@ namespace VkToolkit.Enums
         { 
             get
             {
-                return _scopes != null && _scopes.Any()
-                           ? _scopes.Sum(s => s.Value)
-                           : _value;
+                return _scopes != null && _scopes.Any() ? _scopes.Sum(s => s.Value) : _value;
             } 
             
             private set { _value = value; }
@@ -58,13 +58,13 @@ namespace VkToolkit.Enums
             {
                 foreach (var s in s1._scopes)
                 {
-                    if (!_scopes.Any(m => m.Value == s.Value))
+                    if (_scopes.All(m => m.Value != s.Value))
                         _scopes.Add(s);
                 }
             }
             else
             {
-                if (!_scopes.Any(m => m.Value == s1.Value))
+                if (_scopes.All(m => m.Value != s1.Value))
                     _scopes.Add(s1);
             }
 
@@ -72,13 +72,13 @@ namespace VkToolkit.Enums
             {
                 foreach (var s in s2._scopes)
                 {
-                    if (!_scopes.Any(m => m.Value == s.Value))
+                    if (_scopes.All(m => m.Value != s.Value))
                         _scopes.Add(s);
                 }
             }
             else
             {
-                if (!_scopes.Any(m => m.Value == s2.Value))
+                if (_scopes.All(m => m.Value != s2.Value))
                     _scopes.Add(s2);
             }
         }
@@ -93,17 +93,7 @@ namespace VkToolkit.Enums
             if (_scopes == null || _scopes.Count == 0)
                 return _name;
 
-            string output = "";
-            for (int i = 0; i < _scopes.Count; i++)
-            {
-                if (string.IsNullOrEmpty(_scopes[i]._name)) continue;
-                    
-                output += _scopes[i]._name;
-                if (i != _scopes.Count - 1)
-                    output += ",";
-            }
-
-            return output;
+            return _scopes.Select(s => s._name).JoinNonEmpty();
         }
     }
 }

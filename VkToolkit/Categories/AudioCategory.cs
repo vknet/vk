@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
 using VkToolkit.Enums;
 using VkToolkit.Exception;
 using VkToolkit.Model;
@@ -11,6 +10,7 @@ namespace VkToolkit.Categories
     public class AudioCategory
     {
         private readonly VkApi _vk;
+
         public AudioCategory(VkApi vk)
         {
             _vk = vk;
@@ -25,7 +25,7 @@ namespace VkToolkit.Categories
         /// <param name="count">количество возвращаемых аудиозаписей.</param>
         /// <param name="offset">смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
         /// <returns>Список объектов класса Audio.</returns>
-        public IEnumerable<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null,  int? count = null, int? offset = null)
+        public List<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null,  int? count = null, int? offset = null)
         {
             User user;
             return InternalGet("gid", gid, out user, albumId, aids, false, count, offset);
@@ -41,7 +41,7 @@ namespace VkToolkit.Categories
         /// <param name="count">количество возвращаемых аудиозаписей.</param>
         /// <param name="offset">смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
         /// <returns>Список объектов класса Audio.</returns>
-        public IEnumerable<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null,  int? count = null, int? offset = null)
+        public List<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null,  int? count = null, int? offset = null)
         {
             return InternalGet("uid", uid, out user, albumId, aids, true, count, offset);
         }
@@ -55,52 +55,36 @@ namespace VkToolkit.Categories
         /// <param name="count">количество возвращаемых аудиозаписей.</param>
         /// <param name="offset">смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
         /// <returns>Список объектов класса Audio.</returns>
-        public IEnumerable<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
+        public List<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
             User user;
             return InternalGet("uid", uid, out user, albumId, aids, false, count, offset);
         }
 
-        private IEnumerable<Audio> InternalGet(string paramId, long id, out User user, long? albumId = null, IEnumerable<long> aids = null, bool? needUser = null, int? count = null, int? offset = null)
+        private List<Audio> InternalGet(string paramId, long id, out User user, long? albumId = null, IEnumerable<long> aids = null, bool? needUser = null, int? count = null, int? offset = null)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters
+                {
+                    { paramId, id },
+                    { "album_id", albumId },
+                    { "aids", aids },
+                    { "need_user", needUser },
+                    { "count", count },
+                    { "offset", offset }
+                };
 
-            var values = new Dictionary<string, string>();
-            values.Add(paramId, id + "");
-            if (albumId.HasValue && albumId.Value > 0)
-                values.Add("album_id", albumId + "");
-            if (aids != null)
-                values.Add("aids", Utilities.GetEnumerationAsString(aids));
-            if (needUser.HasValue && needUser.Value)
-                values.Add("need_user", "1");
-            else
-                user = null;
-            if (count.HasValue && count.Value > 0)
-                values.Add("count", count.Value + "");
-            if (offset.HasValue && offset.Value > 0)
-                values.Add("offset", offset.Value + "");
+            VkResponseArray response = _vk.Call("audio.get", parameters);
 
-            string url = _vk.GetApiUrl("audio.get", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            var response = (JArray)obj["response"];
+            IEnumerable<VkResponse> items = response.ToList();
 
             user = null;
-            var output = new List<Audio>();
-            foreach (var t in response)
+            if (needUser.HasValue && needUser.Value && items.Any())
             {
-                if (user == null && needUser.HasValue && needUser.Value)
-                {
-                    user = Utilities.GetProfileFromJObject((JObject) t);
-                    continue;
-                }
-                Audio audio = Utilities.GetAudioFromJObject((JObject) t);
-                output.Add(audio);
+                user = items.First();
+                items = items.Skip(1);
             }
-            return output;
+
+            return items.ToListOf(r => (Audio)r);
         }
 
         /// <summary>
@@ -108,25 +92,14 @@ namespace VkToolkit.Categories
         /// </summary>
         /// <param name="audios">Перечисленные идентификаторов – идущие через знак подчеркивания id пользователей, которым принадлежат аудиозаписи, и id самих аудиозаписей.</param>
         /// <returns>Список объектов класса Audio.</returns>
-        public IEnumerable<Audio> GetById(IEnumerable<string> audios)
+        public List<Audio> GetById(IEnumerable<string> audios)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
             if (audios == null)
                 throw new InvalidParamException("audios param is null.");
 
-            var values = new Dictionary<string, string>();
-            values.Add("audios", Utilities.GetEnumerationAsString(audios));
+            var parameters = new VkParameters { { "audios", audios } };
 
-            string url = _vk.GetApiUrl("audio.getById", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            var response = (JArray)obj["response"];
-
-            return response.Select(it => Utilities.GetAudioFromJObject((JObject) it)).ToList();
+            return _vk.Call("audio.getById", parameters);
         }
 
         /// <summary>
@@ -136,21 +109,9 @@ namespace VkToolkit.Categories
         /// <returns>Количество аудиозаписей.</returns>
         public int GetCount(long ownerId)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "oid", ownerId } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("oid", ownerId + "");
-
-            string url = _vk.GetApiUrl("audio.getCount", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            var response = (string) obj["response"];
-
-            int count;
-            return int.TryParse(response, out count) ? count : 0;
+            return _vk.Call("audio.getCount", parameters);
         }
 
         /// <summary>
@@ -160,20 +121,9 @@ namespace VkToolkit.Categories
         /// <returns>Текст аудиозаписи и его id</returns>
         public Lyrics GetLyrics(long id)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "lyrics_id", id } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("lyrics_id", id + "");
-
-            string url = _vk.GetApiUrl("audio.getLyrics", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            var response = (JObject)obj["response"];
-
-            return Utilities.GetLyrics(response);
+            return _vk.Call("audio.getLyrics", parameters);
         }
 
         /// <summary>
@@ -182,15 +132,9 @@ namespace VkToolkit.Categories
         /// <returns>Адрес сервера для загрузки аудиозаписей</returns>
         public string GetUploadServer()
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var response = _vk.Call("audio.getUploadServer", VkParameters.Empty);
 
-            string url = _vk.GetApiUrl("audio.getUploadServer", new Dictionary<string, string>());
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            return (string)obj["response"]["upload_url"];
+            return response["upload_url"];
         }
 
         /// <summary>
@@ -204,44 +148,26 @@ namespace VkToolkit.Categories
         /// <param name="count">Количество возвращаемых аудиозаписей (максимум 200).</param>
         /// <param name="offset">Смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
         /// <returns>Список объектов класса Audio.</returns>
-        public IEnumerable<Audio> Search(string query, out int totalCount, bool? autoComplete = null, AudioSort? sort = null, bool? findLyrics = null, int? count = null, int? offset = null)
+        public List<Audio> Search(string query, out int totalCount, bool? autoComplete = null, AudioSort? sort = null, bool? findLyrics = null, int? count = null, int? offset = null)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
             if (string.IsNullOrEmpty(query))
                 throw new InvalidParamException("Query is null or empty.");
 
-            var values = new Dictionary<string, string>();
-            values.Add("q", query);
-            if (autoComplete.HasValue && autoComplete.Value)
-                values.Add("auto_complete", "1");
-            if (sort.HasValue)
-                values.Add("sort", (int)sort + "");
-            if (findLyrics.HasValue && findLyrics.Value)
-                values.Add("lyrics", "1");
-            if (count.HasValue && count.Value > 0)
-                values.Add("count", count + "");
-            if (offset.HasValue && offset.Value > 0)
-                values.Add("offset", offset + "");
+            var parameters = new VkParameters
+                {
+                    { "q", query },
+                    { "auto_complete", autoComplete },
+                    { "sort", sort },
+                    { "lyrics", findLyrics },
+                    { "count", count },
+                    { "offset", offset }
+                };
 
-            string url = _vk.GetApiUrl("audio.search", values);
-            string json = _vk.Browser.GetJson(url);
+            VkResponseArray response = _vk.Call("audio.search", parameters);
 
-            _vk.IfErrorThrowException(json);
+            totalCount = response[0];
 
-            JObject obj = JObject.Parse(json);
-            var array = (JArray)obj["response"];
-
-            totalCount = (int) array[0];
-
-            var output = new List<Audio>();
-            for (int i = 1; i < array.Count; i++)
-            {
-                Audio audio = Utilities.GetAudioFromJObject((JObject) array[i]);
-                output.Add(audio);
-
-            }
-            return output;
+            return response.Skip(1).ToListOf(r => (Audio)r);
         }
 
         /// <summary>
@@ -253,21 +179,9 @@ namespace VkToolkit.Categories
         /// <returns>идентификатор созданной аудиозаписи</returns>
         public long Add(long audioId, long ownerId, long? groupId = null)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId }, { "gid", groupId } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("aid", audioId + "");
-            values.Add("oid", ownerId + "");
-            if (groupId.HasValue)
-                values.Add("gid", groupId + "");
-
-            string url = _vk.GetApiUrl("audio.add", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            return (long)obj["response"];
+            return _vk.Call("audio.add", parameters);
         }
 
         /// <summary>
@@ -278,19 +192,9 @@ namespace VkToolkit.Categories
         /// <returns>При успешном удалении аудиозаписи сервер вернет true</returns>
         public bool Delete(long audioId, long ownerId)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("aid", audioId + "");
-            values.Add("oid", ownerId + "");
-
-            string url = _vk.GetApiUrl("audio.delete", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            return (int)obj["response"] == 1;
+            return _vk.Call("audio.delete", parameters);
         }
 
         /// <summary>
@@ -305,8 +209,6 @@ namespace VkToolkit.Categories
         /// <returns>id текста, введенного пользователем</returns>
         public long Edit(long audioId, long ownerId, string artist, string title, string text, bool noSearch = false)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
             if (artist == null)
                 throw new InvalidParamException("artist parameter is null.");
 
@@ -316,21 +218,17 @@ namespace VkToolkit.Categories
             if (text == null)
                 throw new InvalidParamException("text parameter is null.");
 
-            var values = new Dictionary<string, string>();
-            values.Add("aid", audioId + "");
-            values.Add("oid", ownerId + "");
-            values.Add("artist", artist);
-            values.Add("title", title);
-            values.Add("text", text);
-            values.Add("no_search", noSearch ? "1" : "0");
+            var parameters = new VkParameters
+                {
+                    { "aid", audioId }, 
+                    { "oid", ownerId }, 
+                    { "artist", artist }, 
+                    { "title", title }, 
+                    { "text", text }, 
+                    { "no_search", noSearch }
+                };
 
-            string url = _vk.GetApiUrl("audio.edit", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            return (long) obj["response"];
+            return _vk.Call("audio.edit", parameters);
         }
 
         /// <summary>
@@ -341,22 +239,9 @@ namespace VkToolkit.Categories
         /// <returns>Удаленная аудиозапись.</returns>
         public Audio Restore(long audioId, long? ownerId = null)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("aid", audioId + "");
-            if (ownerId.HasValue)
-                values.Add("oid",ownerId + "");
-
-            string url = _vk.GetApiUrl("audio.restore", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            var response = (JObject) obj["response"];
-
-            return Utilities.GetAudioFromJObject(response);
+            return _vk.Call("audio.restore", parameters);
         }
 
         /// <summary>
@@ -369,21 +254,9 @@ namespace VkToolkit.Categories
         /// <returns>При успешном изменении порядка аудиозаписи сервер вернет true</returns>
         public bool Reorder(long audioId, long ownerId, long after, long before)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId }, { "after", after }, { "before", before } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("aid", audioId + "");
-            values.Add("oid", ownerId + "");
-            values.Add("after", after + "");
-            values.Add("before", before + "");
-
-            string url = _vk.GetApiUrl("audio.reorder", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            return (int)obj["response"] == 1;
+            return _vk.Call("audio.reorder", parameters);
         }
     }
 }

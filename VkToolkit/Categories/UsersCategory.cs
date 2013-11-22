@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
 using VkToolkit.Enums;
 using VkToolkit.Model;
 using VkToolkit.Utils;
@@ -26,39 +25,20 @@ namespace VkToolkit.Categories
         /// <param name="count">Count of records in fetch.</param>
         /// <param name="offset">Offset of records in fetch.</param>
         /// <returns></returns>
-        public IEnumerable<User> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
+        public List<User> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.");
 
-            var values = new Dictionary<string, string>();
-            values.Add("q", query);
-            if (fields != null)
-                values.Add("fields", fields.ToString());
+            var parameters = new VkParameters { { "q", query }, { "fields", fields }, { "count", count } };
             if (offset > 0)
-                values.Add("offset", offset + "");
-            values.Add("count", count + "");
+                parameters.Add("offset", offset);
 
-            string url = _vk.GetApiUrl("users.search", values);
-            string json = _vk.Browser.GetJson(url);
+            VkResponseArray response = _vk.Call("users.search", parameters);
 
-            _vk.IfErrorThrowException(json);
+            itemsCount = response[0];
 
-            JObject obj = JObject.Parse(json);
-            var array = (JArray)obj["response"];
-
-            itemsCount = (int) array[0];
-
-            var output = new List<User>();
-            for (int i = 1; i < array.Count; i++)
-            {
-                User p = Utilities.GetProfileFromJObject((JObject)array[i]);
-                output.Add(p);
-            }
-
-            return output;
+            return response.Skip(1).ToListOf(r => (User)r);
         }
 
         /// <summary>
@@ -71,18 +51,9 @@ namespace VkToolkit.Categories
         /// </returns>
         public int GetUserSettings(long uid)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "uid", uid } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("uid", uid + "");
-
-            string url = _vk.GetApiUrl("getUserSettings", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            return (int)obj["response"];
+            return _vk.Call("getUserSettings", parameters);
         }
 
         /// <summary>
@@ -91,15 +62,7 @@ namespace VkToolkit.Categories
         /// <returns>Returns the number of votes (in one hundredths) that are on the balance of the current user in an application. </returns>
         public int GetUserBalance()
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
-            string url = _vk.GetApiUrl("getUserBalance", new Dictionary<string, string>());
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            return (int) obj["response"];
+            return _vk.Call("getUserBalance", VkParameters.Empty);
         }
 
         /// <summary>
@@ -107,62 +70,34 @@ namespace VkToolkit.Categories
         /// </summary>
         /// <param name="uid">User Id</param>
         /// <returns>List of group Ids</returns>
-        public IEnumerable<Group> GetGroups(int uid)
+        public List<Group> GetGroups(int uid)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "uid", uid } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("uid", uid + "");
+            var response = _vk.Call("getGroups", parameters);
 
-            string url = _vk.GetApiUrl("getGroups", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-            
-            JObject obj = JObject.Parse(json);
-            var response = (JArray)obj["response"];
-
-            return response.Select(i => new Group {Id = (int) i}).ToList();
+            return response.ToListOf(id => new Group { Id = id });
         }
 
         /// <summary>
         /// Returns information on whether a user has installed an application or not.
         /// </summary>
-        /// <param name="uid">User ID</param>
+        /// <param name="uid">User Id</param>
         /// <returns>Returns true if the user has installed the given application, otherwise – false.</returns>
         public bool IsAppUser(long uid)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "uid", uid } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("uid", uid + "");
-
-            string url = _vk.GetApiUrl("isAppUser", values);
-            string json = _vk.Browser.GetJson(url);
-
-            JObject obj = JObject.Parse(json);
-            var res = (string)obj["response"];
-
-            return res == "1";
+            return _vk.Call("isAppUser", parameters);
         }
         
         /// <summary>
         /// Returns standard information about groups of which the current user is a member
         /// </summary>
         /// <returns>Returns standard information about groups of which the current user is a member. </returns>
-        public IEnumerable<Group> GetGroupsFull()
+        public List<Group> GetGroupsFull()
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
-            string url = _vk.GetApiUrl("getGroupsFull", new Dictionary<string, string>());
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            var response = (JArray)obj["response"];
-
-            return response.Select(g => Utilities.GetGroupFromJObject((JObject) g)).ToList();
+            return _vk.Call("getGroupsFull", VkParameters.Empty);
         }
 
         /// <summary>
@@ -170,25 +105,14 @@ namespace VkToolkit.Categories
         /// </summary>
         /// <param name="gids">List of group IDs</param>
         /// <returns></returns>
-        public IEnumerable<Group> GetGroupsFull(IEnumerable<long> gids)
+        public List<Group> GetGroupsFull(IEnumerable<long> gids)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
             if (gids == null)
                 throw new ArgumentNullException("gids");
             
-            var values = new Dictionary<string, string>();
-            values.Add("gids", Utilities.GetEnumerationAsString(gids));
+            var parameters = new VkParameters { { "gids", gids } };
 
-            string url = _vk.GetApiUrl("getGroupsFull", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            var response = (JArray)obj["response"];
-
-            return response.Select(g => Utilities.GetGroupFromJObject((JObject)g)).ToList();
+            return _vk.Call("getGroupsFull", parameters);
         }
 
         /// <summary>
@@ -199,24 +123,11 @@ namespace VkToolkit.Categories
         /// <returns>User object.</returns>
         public User Get(long uid, ProfileFields fields = null)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "uid", uid }, { "fields", fields } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("uid", uid + "");
-           
-            if (fields != null)
-                values.Add("fields", fields.ToString());
+            VkResponseArray response = _vk.Call("getProfiles", parameters);
 
-            string url = _vk.GetApiUrl("getProfiles", values);
-
-            string json = _vk.Browser.GetJson(url);
-            
-            _vk.IfErrorThrowException(json);
-            
-            JObject obj = JObject.Parse(json);
-            var response = (JArray) obj["response"];
-
-            return Utilities.GetProfileFromJObject((JObject)response[0]);
+            return response[0];
         }
 
         /// <summary>
@@ -225,29 +136,14 @@ namespace VkToolkit.Categories
         /// <param name="uids">List of users' Ids.</param>
         /// <param name="fields">Fields of the profile (can be combined).</param>
         /// <returns>List of User objects.</returns>
-        public IEnumerable<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
+        public List<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
             if (uids == null)
                 throw new ArgumentNullException("uids");
             
-            var values = new Dictionary<string, string>();
-            values.Add("uids", Utilities.GetEnumerationAsString(uids));
+            var parameters = new VkParameters { { "uids", uids }, { "fields", fields } };
 
-            if (fields != null)
-                values.Add("fields", fields.ToString());
-
-            string url = _vk.GetApiUrl("getProfiles", values);
-
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            var response = (JArray)obj["response"];
-
-            return response.Select(p => Utilities.GetProfileFromJObject((JObject) p)).ToList();
+            return _vk.Call("getProfiles", parameters);
         }
     }
 }

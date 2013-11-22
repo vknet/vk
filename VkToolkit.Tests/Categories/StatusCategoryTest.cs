@@ -37,7 +37,31 @@ namespace VkToolkit.Tests.Categories
         public void Get_AccessDenied_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/status.get?uid=1&access_token=token";
-            const string json = "{\"error\":{\"error_code\":7,\"error_msg\":\"Permission to perform this action is denied\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"status.get\"},{\"key\":\"uid\",\"value\":\"4793858\"},{\"key\":\"access_token\",\"value\":\"bf0403a1ef4f5ca4bf52913da3bf60deb0bbf4dbf4d25a1a7dba6b3476c3192\"}]}}";
+            const string json =
+                @"{
+                    'error': {
+                      'error_code': 7,
+                      'error_msg': 'Permission to perform this action is denied',
+                      'request_params': [
+                        {
+                          'key': 'oauth',
+                          'value': '1'
+                        },
+                        {
+                          'key': 'method',
+                          'value': 'status.get'
+                        },
+                        {
+                          'key': 'uid',
+                          'value': '4793858'
+                        },
+                        {
+                          'key': 'access_token',
+                          'value': 'bf0403a1ef4f5ca4bf52913da3bf60deb0bbf4dbf4d25a1a7dba6b3476c3192'
+                        }
+                      ]
+                    }
+                  }";
 
             var status = GetMockedStatusCategory(url, json);
             status.Get(1);
@@ -56,7 +80,31 @@ namespace VkToolkit.Tests.Categories
         public void Set_AccessDenied_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/status.set?text=test&access_token=token";
-            const string json = "{\"error\":{\"error_code\":7,\"error_msg\":\"Permission to perform this action is denied\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"status.set\"},{\"key\":\"text\",\"value\":\"test\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
+            const string json =
+                @"{
+                    'error': {
+                      'error_code': 7,
+                      'error_msg': 'Permission to perform this action is denied',
+                      'request_params': [
+                        {
+                          'key': 'oauth',
+                          'value': '1'
+                        },
+                        {
+                          'key': 'method',
+                          'value': 'status.set'
+                        },
+                        {
+                          'key': 'text',
+                          'value': 'test'
+                        },
+                        {
+                          'key': 'access_token',
+                          'value': 'token'
+                        }
+                      ]
+                    }
+                  }";
 
             var status = GetMockedStatusCategory(url, json);
             status.Set("test");
@@ -75,7 +123,31 @@ namespace VkToolkit.Tests.Categories
         public void Set_UserDisabledTrackNameBroadcast_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/status.set?audio=0_0&access_token=token";
-            const string json = "{\"error\":{\"error_code\":221,\"error_msg\":\"User disabled track name broadcast\",\"request_params\":[{\"key\":\"oauth\",\"value\":\"1\"},{\"key\":\"method\",\"value\":\"status.set\"},{\"key\":\"audio\",\"value\":\"0_0\"},{\"key\":\"access_token\",\"value\":\"token\"}]}}";
+            const string json =
+                @"{
+                    'error': {
+                      'error_code': 221,
+                      'error_msg': 'User disabled track name broadcast',
+                      'request_params': [
+                        {
+                          'key': 'oauth',
+                          'value': '1'
+                        },
+                        {
+                          'key': 'method',
+                          'value': 'status.set'
+                        },
+                        {
+                          'key': 'audio',
+                          'value': '0_0'
+                        },
+                        {
+                          'key': 'access_token',
+                          'value': 'token'
+                        }
+                      ]
+                    }
+                  }";
 
             var status = GetMockedStatusCategory(url, json);
             var audio = new Audio {Id = 0, OwnerId = 0};
@@ -86,7 +158,10 @@ namespace VkToolkit.Tests.Categories
         public void Set_SimpleText_ReturnTrue()
         {
             const string url = "https://api.vk.com/method/status.set?text=test test test&access_token=token";
-            const string json = "{\"response\":1}";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
 
             var status = GetMockedStatusCategory(url, json);
             bool result = status.Set("test test test");
@@ -98,7 +173,10 @@ namespace VkToolkit.Tests.Categories
         public void Set_Audio_ReturnTrue()
         {
             const string url = "https://api.vk.com/method/status.set?audio=4793858_158073513&access_token=token";
-            const string json = "{\"response\":1}";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
 
             var status = GetMockedStatusCategory(url, json);
 
@@ -112,13 +190,18 @@ namespace VkToolkit.Tests.Categories
         public void Get_SimpleText_ReturnStatus()
         {
             const string url = "https://api.vk.com/method/status.get?uid=1&access_token=token";
-            const string json = "{\"response\":{\"text\":\"it's work!!!\"}}";
+            const string json =
+                @"{
+                    'response': {
+                      'text': 'it really work!!!'
+                    }
+                  }";
 
             var status = GetMockedStatusCategory(url, json);
             Status s = status.Get(1);
 
             Assert.That(s, Is.Not.Null);
-            Assert.That(s.Text, Is.EqualTo("it's work!!!"));
+            Assert.That(s.Text, Is.EqualTo("it really work!!!"));
             Assert.That(s.Audio, Is.Null);
         }
 
@@ -127,13 +210,27 @@ namespace VkToolkit.Tests.Categories
         {
             const string url = "https://api.vk.com/method/status.get?uid=1&access_token=token";
             const string json =
-                "{\"response\":{\"text\":\"Тараканы! &ndash; Собачье Сердце\",\"audio\":{\"aid\":158073513,\"owner_id\":4793858,\"artist\":\"Тараканы!\",\"title\":\"Собачье Сердце\",\"duration\":230,\"url\":\"http:\\/\\/cs4838.vkontakte.ru\\/u4198300\\/audio\\/3ada410d4830.mp3\",\"performer\":\"Тараканы!\",\"lyrics_id\":\"7985406\"}}}";
+                @"{
+                    'response': {
+                      'text': 'Тараканы! &ndash; Собачье Сердце',
+                      'audio': {
+                        'aid': 158073513,
+                        'owner_id': 4793858,
+                        'artist': 'Тараканы!',
+                        'title': 'Собачье Сердце',
+                        'duration': 230,
+                        'url': 'http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3',
+                        'performer': 'Тараканы!',
+                        'lyrics_id': '7985406'
+                      }
+                    }
+                  }";
 
             var status = GetMockedStatusCategory(url, json);
             Status s = status.Get(1);
 
             Assert.That(s, Is.Not.Null);
-            Assert.That(s.Text, Is.EqualTo("Тараканы! &ndash; Собачье Сердце"));
+            Assert.That(s.Text, Is.EqualTo("Тараканы! – Собачье Сердце"));
             Assert.That(s.Audio, Is.Not.Null);
             Assert.That(s.Audio.Id, Is.EqualTo(158073513));
             Assert.That(s.Audio.OwnerId, Is.EqualTo(4793858));

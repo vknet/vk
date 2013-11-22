@@ -1,11 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkToolkit", "VkToolkit\VkToolkit.csproj", "{8B031A92-84D4-4418-8551-18F1AFEECC6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkToolkit.Tests", "VkToolkit.Tests\VkToolkit.Tests.csproj", "{C54A0446-430F-4471-8779-E9F01728C478}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{863BC8C7-D49B-49B7-BBE7-61C48F355A5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,8 +24,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C54A0446-430F-4471-8779-E9F01728C478} = {863BC8C7-D49B-49B7-BBE7-61C48F355A5D}
 	EndGlobalSection
 EndGlobal

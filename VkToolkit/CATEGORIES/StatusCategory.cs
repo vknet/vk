@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using VkToolkit.Model;
 
 namespace VkToolkit.Categories
 {
+    using VkToolkit.Utils;
+
     public class StatusCategory
     {
         private readonly VkApi _vk;
@@ -21,28 +21,9 @@ namespace VkToolkit.Categories
         /// <returns></returns>
         public Status Get(long uid)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
+            var parameters = new VkParameters { { "uid", uid } };
 
-            var values = new Dictionary<string, string>();
-            values.Add("uid", uid + "");
-
-            string url = _vk.GetApiUrl("status.get", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            var response = obj["response"];
-
-            var status = new Status();
-            
-            status.Text = (string)response["text"];
-            if (response["audio"] != null)
-            {
-                status.Audio = Utils.Utilities.GetAudioFromJObject((JObject) response["audio"]);
-            }
-            
-            return status;
+            return _vk.Call("status.get", parameters);
         }
 
         /// <summary>
@@ -53,28 +34,16 @@ namespace VkToolkit.Categories
         /// <returns>True if status has been installed, false otherwise.</returns>
         public bool Set(string text, Audio audio = null)
         {
-            _vk.IfAccessTokenNotDefinedThrowException();
-
             if (text == null)
                 throw new ArgumentNullException("text");
 
-            var values = new Dictionary<string, string>();
+            var parameters = new VkParameters();
             if (audio != null)
-            {   
-                values.Add("audio", string.Format("{0}_{1}", audio.OwnerId, audio.Id));
-            }
+                parameters.Add("audio", string.Format("{0}_{1}", audio.OwnerId, audio.Id));
             else
-            {
-                values.Add("text", text);
-            }
+                parameters.Add("text", text);
 
-            string url = _vk.GetApiUrl("status.set", values);
-            string json = _vk.Browser.GetJson(url);
-
-            _vk.IfErrorThrowException(json);
-
-            JObject obj = JObject.Parse(json);
-            return (int)obj["response"] == 1;
+            return _vk.Call("status.set", parameters);
         }
     }
 }

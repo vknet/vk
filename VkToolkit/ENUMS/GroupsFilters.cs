@@ -3,6 +3,8 @@ using System.Linq;
 
 namespace VkToolkit.Enums
 {
+    using VkToolkit.Utils;
+
     public sealed class GroupsFilters
     {
         private readonly string _name;
@@ -65,15 +67,7 @@ namespace VkToolkit.Enums
             if (_fields == null || _fields.Count == 0)
                 return _name;
 
-            string output = "";
-            for (int i = 0; i < _fields.Count; i++)
-            {
-                output += _fields[i]._name;
-                if (i != _fields.Count - 1)
-                    output += ",";
-            }
-
-            return output;
+            return _fields.Select(f => f._name).JoinNonEmpty();
         }
     }
 }

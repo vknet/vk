@@ -9,3 +9,4 @@ VkToolkit.Tests/obj/*
 _ReSharper.VkToolkit.WP7/*
 *.csproj.user
 *.sln.DotSettings.user
+*.DotSettings

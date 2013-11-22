@@ -16,6 +16,5 @@
         {
             return _name;
         }
-
     }
 }
