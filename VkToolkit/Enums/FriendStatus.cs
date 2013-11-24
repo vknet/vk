@@ -1,10 +1,28 @@
 ﻿namespace VkToolkit.Enums
 {
+    /// <summary>
+    /// Состояние дружбы с пользователями.
+    /// </summary>
     public enum FriendStatus
     {
-        NotFriend = 0,      // пользователь не является другом
-        OutputRequest = 1,  // отправлена заявка/подписка пользователю 
-        InputRequest = 2,   // имеется входящая заявка/подписка от пользователя
-        Friend = 3          // пользователь является другом
+        /// <summary>
+        /// Пользователь не является другом.
+        /// </summary>
+        NotFriend = 0,
+
+        /// <summary>
+        /// Пользователю отправлена заявка/подписка.
+        /// </summary>
+        OutputRequest = 1,
+
+        /// <summary>
+        /// Имеется входящая заявка/подписка от пользователя.
+        /// </summary>
+        InputRequest = 2,
+
+        /// <summary>
+        /// Пользователь является другом.
+        /// </summary>
+        Friend = 3
     }
 }

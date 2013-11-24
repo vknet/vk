@@ -3,7 +3,6 @@
 namespace VkToolkit.Utils
 {
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -47,44 +46,36 @@ namespace VkToolkit.Utils
         public static string PreetyPrintJson(string json)
         {
             // DELME: 
-            try
-            {
-                var jObject = JObject.Parse(json);
-                var preety = jObject.ToString();
-                preety = preety.Replace('"', '\'');
-                var result = new StringBuilder();
+            var jObject = JObject.Parse(json);
+            var preety = jObject.ToString();
+            preety = preety.Replace('"', '\'');
+            var result = new StringBuilder();
 
-                result.AppendLine("            const string json =");
-                result.Append("                @\"");
-                using (var reader = new StringReader(preety))
+            result.AppendLine("            const string json =");
+            result.Append("                @\"");
+            using (var reader = new StringReader(preety))
+            {
+                bool isFirst = true;
+                for (; ; )
                 {
-                    bool isFirst = true;
-                    for (; ; )
+                    string line = reader.ReadLine();
+                    if (line == null)
+                        break;
+
+                    if (!isFirst)
                     {
-                        string line = reader.ReadLine();
-                        if (line == null)
-                            break;
-
-                        if (!isFirst)
-                        {
-                            result.AppendLine();
-                            result.Append("                  ");
-                        }
-
-                        result.Append(line);
-
-                        isFirst = false;
+                        result.AppendLine();
+                        result.Append("                  ");
                     }
+
+                    result.Append(line);
+
+                    isFirst = false;
                 }
-                result.Append("\";");
-
-                return result.ToString();
             }
-            catch (System.Exception)
-            {
-            }
+            result.Append("\";");
 
-            return string.Empty;
+            return result.ToString();
         }
     }
 }
