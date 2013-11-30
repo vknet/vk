@@ -2,13 +2,34 @@
 {
     using VkToolkit.Utils;
 
+    /// <summary>
+    /// Информация о месте, в котором была сделана запись.
+    /// </summary>
     public class Place
     {
+        /// <summary>
+        /// Идентификатор места.
+        /// </summary>
         public long Id { get; set; }
+        /// <summary>
+        /// Название места.
+        /// </summary>
         public string Title { get; set; }
+        /// <summary>
+        /// Идентификатор типа места.
+        /// </summary>
         public long TypeId { get; set; }
+        /// <summary>
+        /// Идентификатор страны, в котором находится место.
+        /// </summary>
         public long CountryId { get; set; }
+        /// <summary>
+        /// Идентификатор города.
+        /// </summary>
         public long CityId { get; set; }
+        /// <summary>
+        /// Адрес места в городе.
+        /// </summary>
         public string Address { get; set; }
 
         internal static Place FromJson(VkResponse place)

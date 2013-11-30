@@ -91,6 +91,15 @@ namespace VkToolkit.Tests.Categories
                               'created': 1337542384,
                               'access_key': 'e377d6e0b55e299741'
                             }
+                          },
+                          {
+                            'type': 'link',
+                            'link': {
+                              'url': 'http://vk.com/link',
+                              'title': 'Любой заголово',
+                              'description': 'Любое описание',
+                              'image_src': 'http://vk.com/images/any.gif'
+                            }
                           }
                         ],
                         'comments': {
@@ -106,12 +115,7 @@ namespace VkToolkit.Tests.Categories
                         'reposts': {
                           'count': 0,
                           'user_reposted': 0
-                        },
-                        'post_source': {
-                          'type': 'api'
-                        },
-                        'online': 0,
-                        'reply_count': 0
+                        }
                       },
                       {
                         'id': 617,
@@ -159,12 +163,7 @@ namespace VkToolkit.Tests.Categories
                         'reposts': {
                           'count': 0,
                           'user_reposted': 0
-                        },
-                        'post_source': {
-                          'type': 'vk'
-                        },
-                        'online': 0,
-                        'reply_count': 0
+                        }
                       },
                       {
                         'id': 616,
@@ -185,12 +184,7 @@ namespace VkToolkit.Tests.Categories
                         'reposts': {
                           'count': 0,
                           'user_reposted': 0
-                        },
-                        'post_source': {
-                          'type': 'vk'
-                        },
-                        'online': 0,
-                        'reply_count': 0
+                        }
                       }
                     ]
                   }";
@@ -207,10 +201,8 @@ namespace VkToolkit.Tests.Categories
             
             Assert.That(audio.Id, Is.EqualTo(154701206));
             Assert.That(audio.OwnerId, Is.EqualTo(4793858));
-            Assert.That(audio.Performer, Is.EqualTo("Мук"));
             Assert.That(audio.Title, Is.EqualTo("Дорогою добра"));
             Assert.That(audio.Duration, Is.EqualTo(130));
-
 
             Assert.That(records[1].Id, Is.EqualTo(617));
             Assert.That(records[1].FromId, Is.EqualTo(4793858));
@@ -225,14 +217,8 @@ namespace VkToolkit.Tests.Categories
             Assert.That(records[1].Likes.CanPublish, Is.False);
             Assert.That(records[1].Reposts.Count, Is.EqualTo(0));
             Assert.That(records[1].Reposts.UserReposted, Is.False);
-            Assert.That(records[1].PostSource.Type, Is.EqualTo("vk"));
-            Assert.That(records[1].Online, Is.False);
-            Assert.That(records[1].ReplyCount, Is.EqualTo(0));
-            //Assert.That(records[1]., Is.EqualTo());
             
             Assert.That(records[2].Id, Is.EqualTo(616));
-            Assert.That(records[2].ReplyCount, Is.EqualTo(0));
-            Assert.That(records[2].Online, Is.False);
             Assert.That(records[2].FromId, Is.EqualTo(4793858));
             Assert.That(records[2].ToId, Is.EqualTo(4793858));
             Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 11, 32, 37)));
@@ -245,7 +231,6 @@ namespace VkToolkit.Tests.Categories
             Assert.That(records[2].Likes.CanPublish, Is.False);
             Assert.That(records[2].Reposts.Count, Is.EqualTo(0));
             Assert.That(records[2].Reposts.UserReposted, Is.False);
-            Assert.That(records[2].PostSource.Type, Is.EqualTo("vk"));
 
             Assert.That(records[0].Id, Is.EqualTo(619));
             Assert.That(records[0].FromId, Is.EqualTo(4793858));
@@ -262,9 +247,6 @@ namespace VkToolkit.Tests.Categories
             Assert.That(records[0].Likes.CanPublish, Is.False);
             Assert.That(records[0].Reposts.Count, Is.EqualTo(0));
             Assert.That(records[0].Reposts.UserReposted, Is.False);
-            Assert.That(records[0].PostSource.Type, Is.EqualTo("api"));
-            Assert.That(records[0].Online, Is.False);
-            Assert.That(records[0].ReplyCount, Is.EqualTo(0));
 
             Assert.That(records[0].Attachment.Type == typeof(Photo));
             var photo = (Photo) records[0].Attachment.Instance;
@@ -281,13 +263,15 @@ namespace VkToolkit.Tests.Categories
             Assert.That(photo.AccessKey, Is.EqualTo("e377d6e0b55e299741"));
             //Assert.That(records[0]., Is.EqualTo());
 
-            Assert.That(records[0].Attachments.Count(), Is.EqualTo(1));
+            Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));
             var attach1 = (Photo) records[0].Attachments.ElementAt(0).Instance;
             Assert.That(attach1.Id, Is.EqualTo(283337039));
+            var attach2 = (Link)records[0].Attachments.ElementAt(1).Instance;
+            Assert.That(attach2.Url, Is.EqualTo(new Uri("http://vk.com/link")));
 
             Assert.That(records[1].Attachments.Count(), Is.EqualTo(1));
-            var attach2 = (Audio)records[1].Attachments.ElementAt(0).Instance;
-            Assert.That(attach2.Id, Is.EqualTo(154701206));
+            var attach3 = (Audio)records[1].Attachments.ElementAt(0).Instance;
+            Assert.That(attach3.Id, Is.EqualTo(154701206));
         }
 
         [Test]

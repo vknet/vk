@@ -3,9 +3,18 @@ using VkToolkit.Utils;
 
 namespace VkToolkit.Model
 {
+    /// <summary>
+    /// Координаты места, в котором была сделана запись.
+    /// </summary>
     public class Coordinates
     {
+        /// <summary>
+        /// Географическая широта.
+        /// </summary>
         public double Latitude { get; set; }
+        /// <summary>
+        /// Географическая долгота.
+        /// </summary>
         public double Longitude { get; set; }
 
         internal static Coordinates FromJson(VkResponse coordinates)

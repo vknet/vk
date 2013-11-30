@@ -2,19 +2,28 @@
 
 namespace VkToolkit.Model
 {
+    /// <summary>
+    /// Информация о числе людей, которые скопировали запись на свою страницу. 
+    /// </summary>
     public class Reposts
     {
+        /// <summary>
+        /// Число людей, которые скопировали запись на свою страницу.
+        /// </summary>
         public int Count { get; set; }
+        /// <summary>
+        /// Признак опубликовал ли текущий пользователь запись на своей странице.
+        /// </summary>
         public bool UserReposted { get; set; }
 
-        internal static Reposts FromJson(VkResponse resposts)
+        internal static Reposts FromJson(VkResponse response)
         {
-            var result = new Reposts();
+            var reposts = new Reposts();
 
-            result.Count = resposts["count"];
-            result.UserReposted = resposts["user_reposted"];
+            reposts.Count = response["count"];
+            reposts.UserReposted = response["user_reposted"];
 
-            return result;
+            return reposts;
         }
     }
 }

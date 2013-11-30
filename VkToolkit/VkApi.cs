@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json.Linq;
-using VkToolkit.Categories;
-using VkToolkit.Enums;
-using VkToolkit.Exception;
-using VkToolkit.Utils;
-
-namespace VkToolkit
+﻿namespace VkToolkit
 {
+    using System.Diagnostics;
+    using System.Collections.Generic;
+    using System.Text;
+    using Newtonsoft.Json.Linq;
+    using VkToolkit.Categories;
+    using VkToolkit.Enums;
+    using VkToolkit.Exception;
+    using VkToolkit.Utils;
+
     public class VkApi
     {
         internal const string InvalidAuthorization = "Invalid authorization";
@@ -68,7 +69,7 @@ namespace VkToolkit
 
             VkErrors.IfErrorThrowException(answer);
 
-//Trace.WriteLine(Utilities.PreetyPrintJson(answer));
+Trace.WriteLine(Utilities.PreetyPrintJson(answer));
 
             var json = JObject.Parse(answer);
 

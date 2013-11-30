@@ -5,16 +5,53 @@ using VkToolkit.Utils;
 
 namespace VkToolkit.Model
 {
+    /// <summary>
+    /// Информация о приложенных к записи объектах. 
+    /// </summary>
+    /// <remarks>
+    /// Пока не поддерживаются:
+    /// - graffiti - графити;
+    /// - app – изображение, загруженное сторонним приложением;
+    /// - poll – голосование.
+    /// </remarks>
     public class Attachment
     {
+        /// <summary>
+        /// Информация о типе вложения.
+        /// </summary>
         public Type Type { get; set; }
-        internal Audio Audio;
+        /// <summary>
+        /// Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
+        /// </summary>
         internal Photo Photo;
+        /// <summary>
+        /// Видеозапись.
+        /// </summary>
         internal Video Video;
+        /// <summary>
+        /// Аудиозапись.
+        /// </summary>
+        internal Audio Audio;
+        /// <summary>
+        /// Документ.
+        /// </summary>
         internal Document Document;
+        /// <summary>
+        /// Заметка.
+        /// </summary>
         internal Note Note;
+        /// <summary>
+        /// Wiki страница.
+        /// </summary>
         internal Page Page;
+        /// <summary>
+        /// Ссылка на Web-страницу.
+        /// </summary>
+        internal Link Link;
 
+        /// <summary>
+        /// Экземпляр самого прикрепления.
+        /// </summary>
         public object Instance
         {
             get
@@ -31,42 +68,44 @@ namespace VkToolkit.Model
                     return Note;
                 if (Type == typeof(Page))
                     return Page;
+                if (Type == typeof(Link))
+                    return Link;
 
                 return null;
             }
         }
 
-        internal static Attachment FromJson(VkResponse attachment)
+        internal static Attachment FromJson(VkResponse response)
         {
             // TODO: Complete it later
-            var result = new Attachment();
+            var attachment = new Attachment();
 
-            string type = attachment["type"];
+            string type = response["type"];
             switch (type)
             {
                 case "audio":
-                    result.Type = typeof(Audio);
-                    result.Audio = attachment["audio"];
+                    attachment.Type = typeof(Audio);
+                    attachment.Audio = response["audio"];
                     break;
 
                 case "photo":
-                    result.Type = typeof(Photo);
-                    result.Photo = attachment["photo"];
+                    attachment.Type = typeof(Photo);
+                    attachment.Photo = response["photo"];
                     break;
 
                 case "posted_photo":
-                    result.Type = typeof(Photo);
-                    result.Photo = attachment["posted_photo"];
+                    attachment.Type = typeof(Photo);
+                    attachment.Photo = response["posted_photo"];
                     break;
 
                 case "video":
-                    result.Type = typeof(Video);
-                    result.Video = attachment["video"];
+                    attachment.Type = typeof(Video);
+                    attachment.Video = response["video"];
                     break;
 
                 case "doc":
-                    result.Type = typeof(Document);
-                    result.Document = attachment["doc"];
+                    attachment.Type = typeof(Document);
+                    attachment.Document = response["doc"];
                     break;
 
                 case "graffiti":
@@ -74,12 +113,13 @@ namespace VkToolkit.Model
                     throw new NotImplementedException();
 
                 case "link":
-                    // TODO:
-                    throw new NotImplementedException();
+                    attachment.Type = typeof(Link);
+                    attachment.Link = response["link"];
+                    break;
 
                 case "note":
-                    result.Type = typeof(Note);
-                    result.Note = attachment["note"];
+                    attachment.Type = typeof(Note);
+                    attachment.Note = response["note"];
                     break;
 
                 case "app":
@@ -91,15 +131,15 @@ namespace VkToolkit.Model
                     throw new NotImplementedException();
 
                 case "page":
-                    result.Type = typeof(Page);
-                    result.Page = attachment["page"];
+                    attachment.Type = typeof(Page);
+                    attachment.Page = response["page"];
                     break;
 
                 default:
                     throw new InvalidParamException("The type of attachment is not defined.");
             }
 
-            return result;            
+            return attachment;            
         }
     }
 }

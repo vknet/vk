@@ -238,7 +238,6 @@ namespace VkToolkit.Tests.Categories
             Assert.That(s.Audio.Title, Is.EqualTo("Собачье Сердце"));
             Assert.That(s.Audio.Duration, Is.EqualTo(230));
             Assert.That(s.Audio.Url.OriginalString, Is.EqualTo("http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
-            Assert.That(s.Audio.Performer, Is.EqualTo("Тараканы!"));
             Assert.That(s.Audio.LyricsId, Is.EqualTo(7985406));
             Assert.That(s.Audio.AlbumId, Is.Null);
         }

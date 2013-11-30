@@ -11,3 +11,5 @@ _ReSharper.VkToolkit.WP7/*
 *.sln.DotSettings.user
 *.DotSettings
 *.user
+VkToolkitFunctionalTests/bin/*
+VkToolkitFunctionalTests/obj/*

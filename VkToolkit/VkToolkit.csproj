@@ -81,6 +81,7 @@
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\Connections.cs" />
+    <Compile Include="Model\Link.cs" />
     <Compile Include="Model\Relative.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
@@ -99,7 +100,7 @@
     <Compile Include="Model\Geo.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\LastActivity.cs" />
-    <Compile Include="Model\Like.cs" />
+    <Compile Include="Model\Likes.cs" />
     <Compile Include="Model\LongPollServerResponse.cs" />
     <Compile Include="Model\Lyrics.cs" />
     <Compile Include="Model\Message.cs" />
@@ -108,7 +109,6 @@
     <Compile Include="Model\Page.cs" />
     <Compile Include="Model\Photo.cs" />
     <Compile Include="Model\Place.cs" />
-    <Compile Include="Model\PostSource.cs" />
     <Compile Include="Model\Reposts.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Enums\ResponseType.cs" />

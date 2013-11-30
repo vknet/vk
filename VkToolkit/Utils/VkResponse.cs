@@ -157,6 +157,11 @@ namespace VkToolkit.Utils
             return response == null ? null : Document.FromJson(response);
         }
 
+        public static implicit operator Link(VkResponse response)
+        {
+            return response == null ? null : Link.FromJson(response);
+        }
+
         public static implicit operator Education(VkResponse response)
         {
             return response == null ? null : Education.FromJson(response);
@@ -182,9 +187,9 @@ namespace VkToolkit.Utils
             return response == null ? null : LastActivity.FromJson(response);
         }
 
-        public static implicit operator Like(VkResponse response)
+        public static implicit operator Likes(VkResponse response)
         {
-            return response == null ? null : Like.FromJson(response);
+            return response == null ? null : Likes.FromJson(response);
         }
 
         public static implicit operator LongPollServerResponse(VkResponse response)
@@ -220,11 +225,6 @@ namespace VkToolkit.Utils
         public static implicit operator Place(VkResponse response)
         {
             return response == null ? null : Place.FromJson(response);
-        }
-
-        public static implicit operator PostSource(VkResponse response)
-        {
-            return response == null ? null : PostSource.FromJson(response);
         }
 
         public static implicit operator Reposts(VkResponse response)
