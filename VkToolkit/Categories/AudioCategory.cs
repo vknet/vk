@@ -21,15 +21,19 @@ namespace VkToolkit.Categories
         /// </summary>
         /// <param name="gid">Идентификатор группы, у которой необходимо получить аудиозаписи.</param>
         /// <param name="albumId">Идентификатор альбома, аудиозаписи которого необходимо вернуть (по умолчанию возвращаются аудиозаписи из всех альбомов).</param>
-        /// <param name="aids">Список идентификаторов аудиозаписей группы, по которым необходимо получить информацию.</param>
+        /// <param name="aids">
+        /// Список идентификаторов аудиозаписей группы, по которым необходимо получить информацию.
+        /// Если список не указан (null), то ограничение на идентификаторы аудиозаписей на накладываются.
+        /// </param>
         /// <param name="count">Требуемое количество аудиозаписей.</param>
-        /// <param name="offset">Смещение относительно первой найденной аудиозаписи (для выборки определенного подмножества).</param>
+        /// <param name="offset">Смещение относительно первой найденной аудиозаписи (для выборки определенного подмножества аудиозаписей).</param>
         /// <returns>
         /// В случае успеха возвращает затребованный список аудиозаписей группы.
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// </remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/pages.php?o=-1&p=audio.get"/>.
+        /// </remarks>       
         public List<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
             User user;
@@ -50,6 +54,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/pages.php?o=-1&p=audio.get"/>.
         /// </remarks>
         public List<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
@@ -67,6 +72,7 @@ namespace VkToolkit.Categories
         /// <returns>В случае успеха возвращает затребованный список аудиозаписей пользователя.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/pages.php?o=-1&p=audio.get"/>.
         /// </remarks>
         public List<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
