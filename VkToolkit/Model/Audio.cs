@@ -46,21 +46,20 @@ namespace VkToolkit.Model
         /// </summary>
         public long? AlbumId { get; set; }
 
-        internal static Audio FromJson(VkResponse audio)
+        internal static Audio FromJson(VkResponse response)
         {
-            // TODO: case when album id is not null
-            var result = new Audio();
+            var audio = new Audio();
 
-            result.Id = audio["aid"];
-            result.OwnerId = audio["owner_id"];
-            result.Artist = audio["artist"];
-            result.Title = audio["title"];
-            result.Duration = audio["duration"];
-            result.Url = audio["url"];
-            result.LyricsId = audio["lyrics_id"];
-            result.AlbumId = audio["album"];
+            audio.Id = response["aid"];
+            audio.OwnerId = response["owner_id"];
+            audio.Artist = response["artist"];
+            audio.Title = response["title"];
+            audio.Duration = response["duration"];
+            audio.Url = response["url"];
+            audio.LyricsId = response["lyrics_id"];
+            audio.AlbumId = response["album"];
 
-            return result;
+            return audio;
         }
     }
 }

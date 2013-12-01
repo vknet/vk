@@ -190,7 +190,7 @@ namespace VkToolkit.Tests.Categories
                   }";
 
             int totalCount;
-            var records = GetMockedWallCategory(url, json).Get(1, out totalCount, 3, 5, WallFilter.Owner).ToList();
+            var records = GetMockedWallCategory(url, json).Get(1, out totalCount, 3, 5, WallFilter.Owner);
 
             Assert.That(totalCount, Is.EqualTo(137));
             Assert.That(records.Count == 3);
@@ -276,10 +276,102 @@ namespace VkToolkit.Tests.Categories
 
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
-        [Ignore]
         public void GetComments_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-            _defaultWall.GetComments();
+            int totalCount;
+            _defaultWall.GetComments(12312, 12345, out totalCount, CommentsSort.Ascending, true);
+        }
+
+        [Test]
+        public void GetComments_ReturnLikesAndAttachments()
+        {
+            const string url = "https://api.vk.com/method/wall.getComments?owner_id=12312&post_id=12345&sort=ascending&need_likes=1&preview_length=0&v=4.4&access_token=token";
+
+            const string json =
+                @"{
+                    'response': [
+                      2,
+                      {
+                        'cid': 3809,
+                        'uid': 6733856,
+                        'from_id': 6733856,
+                        'date': 1385099144,
+                        'text': 'Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!',
+                        'likes': {
+                          'count': 1
+                        }
+                      },
+                      {
+                        'cid': 3810,
+                        'uid': 3073863,
+                        'from_id': 3073863,
+                        'date': 1385101266,
+                        'text': 'C днем рождения малышку и родителей!!!',
+                        'likes': {
+                          'count': 1
+                        },
+                        'attachments': [
+                          {
+                            'type': 'photo',
+                            'photo': {
+                              'pid': 315467755,
+                              'aid': -5,
+                              'owner_id': 3073863,
+                              'src': 'http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg',
+                              'src_big': 'http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg',
+                              'src_small': 'http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg',
+                              'width': 510,
+                              'height': 383,
+                              'text': '',
+                              'created': 1385101231,
+                              'access_key': 'ade2532c6a39c12be6'
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }";
+
+            int totalCount;
+            var comments = GetMockedWallCategory(url, json).GetComments(12312, 12345, out totalCount, CommentsSort.Ascending, true);
+
+            Assert.That(totalCount, Is.EqualTo(2));
+            Assert.That(comments.Count, Is.EqualTo(2));
+
+            var comment0 = comments[0];
+            Assert.That(comment0.Id, Is.EqualTo(3809));
+            Assert.That(comment0.UserId, Is.EqualTo(6733856));
+            Assert.That(comment0.Date, Is.EqualTo(new DateTime(2013, 11, 22, 09, 45, 44)));
+            Assert.That(comment0.Text, Is.EqualTo("Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!"));
+            Assert.That(comment0.Likes, Is.Not.Null);
+            Assert.That(comment0.Likes.Count, Is.EqualTo(1));
+
+            var comment1 = comments[1];
+            Assert.That(comment1.Id, Is.EqualTo(3810));
+            Assert.That(comment1.UserId, Is.EqualTo(3073863));
+            Assert.That(comment1.Date, Is.EqualTo(new DateTime(2013, 11, 22, 10, 21, 06)));
+            Assert.That(comment1.Text, Is.EqualTo("C днем рождения малышку и родителей!!!"));
+            Assert.That(comment1.Likes, Is.Not.Null);
+            Assert.That(comment1.Likes.Count, Is.EqualTo(1));
+
+            var attachment = comment1.Attachment;
+            Assert.That(attachment, Is.Not.Null);            
+            Assert.That(attachment.Type, Is.EqualTo(typeof (Photo)));
+            
+            var photo = attachment.Photo;
+            Assert.That(photo.Id, Is.EqualTo(315467755));
+            Assert.That(photo.AlbumId, Is.EqualTo(-5));
+            Assert.That(photo.OwnerId, Is.EqualTo(3073863));
+            Assert.That(photo.Src, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg")));
+            Assert.That(photo.SrcBig, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg")));
+            Assert.That(photo.SrcSmall, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg")));
+            Assert.That(photo.SrcXBig, Is.Null);
+            Assert.That(photo.SrcXxBig, Is.Null);
+            Assert.That(photo.Width, Is.EqualTo(510));
+            Assert.That(photo.Height, Is.EqualTo(383));
+            Assert.That(photo.Text, Is.EqualTo(string.Empty));
+            Assert.That(photo.Created, Is.EqualTo(new DateTime(2013, 11, 22, 10, 20, 31)));
+            Assert.That(photo.AccessKey, Is.EqualTo("ade2532c6a39c12be6"));
         }
 
         [Test]

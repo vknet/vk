@@ -192,6 +192,11 @@ namespace VkToolkit.Utils
             return response == null ? null : Likes.FromJson(response);
         }
 
+        public static implicit operator Comment(VkResponse response)
+        {
+            return response == null ? null : Comment.FromJson(response);
+        }
+
         public static implicit operator LongPollServerResponse(VkResponse response)
         {
             return response == null ? null : LongPollServerResponse.FromJson(response);
@@ -215,6 +220,11 @@ namespace VkToolkit.Utils
         public static implicit operator Page(VkResponse response)
         {
             return response == null ? null : Page.FromJson(response);
+        }
+
+        public static implicit operator Album(VkResponse response)
+        {
+            return response == null ? null : Album.FromJson(response);
         }
 
         public static implicit operator Photo(VkResponse response)

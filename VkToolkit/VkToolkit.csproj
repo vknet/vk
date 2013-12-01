@@ -55,6 +55,7 @@
     <Compile Include="Categories\WallCategory.cs" />
     <Compile Include="Enums\Attitude.cs" />
     <Compile Include="Enums\AudioSort.cs" />
+    <Compile Include="Enums\CommentsSort.cs" />
     <Compile Include="Enums\Display.cs" />
     <Compile Include="Enums\GroupsFields.cs" />
     <Compile Include="Enums\GroupsFilters.cs" />
@@ -80,6 +81,8 @@
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Categories\FriendsCategory.cs" />
+    <Compile Include="Model\Album.cs" />
+    <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />
     <Compile Include="Model\Link.cs" />
     <Compile Include="Model\Relative.cs" />

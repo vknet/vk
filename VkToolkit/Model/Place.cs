@@ -22,11 +22,19 @@
         /// <summary>
         /// Идентификатор страны, в котором находится место.
         /// </summary>
-        public long CountryId { get; set; }
+        public long? CountryId { get; set; }
+        /// <summary>
+        /// Страна, в которой находится место.
+        /// </summary>
+        public string Country { get; set; }
         /// <summary>
         /// Идентификатор города.
         /// </summary>
-        public long CityId { get; set; }
+        public long? CityId { get; set; }
+        /// <summary>
+        /// Город, в котором находится место.
+        /// </summary>
+        public string City { get; set; }
         /// <summary>
         /// Адрес места в городе.
         /// </summary>
@@ -41,7 +49,9 @@
             result.Title = place["title"];
             result.TypeId = place["type"];
             result.CountryId = place["country_id"];
+            result.Country = place["country"];
             result.CityId = place["city_id"];
+            result.City = place["city"];
             result.Address = place["address"];
 
             return result;

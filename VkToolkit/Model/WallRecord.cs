@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-using VkToolkit.Utils;
-
+﻿
 namespace VkToolkit.Model
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+
+    using VkToolkit.Utils;
 
     /// <summary>
     /// Запись со стены пользователя или группы.
@@ -15,7 +15,7 @@ namespace VkToolkit.Model
         /// <summary>
         /// Идентификатор записи на стене.
         /// </summary>
-        public long? Id { get; set; }
+        public long Id { get; set; }
         /// <summary>
         /// Идентификатор владельца записи.
         /// </summary>

@@ -13,6 +13,7 @@ namespace VkToolkit.Model
     /// - graffiti - графити;
     /// - app – изображение, загруженное сторонним приложением;
     /// - poll – голосование.
+    /// - album
     /// </remarks>
     public class Attachment
     {
@@ -48,6 +49,10 @@ namespace VkToolkit.Model
         /// Ссылка на Web-страницу.
         /// </summary>
         internal Link Link;
+        /// <summary>
+        /// Альбом с фотографиями.
+        /// </summary>
+        internal Album Album;
 
         /// <summary>
         /// Экземпляр самого прикрепления.
@@ -69,6 +74,8 @@ namespace VkToolkit.Model
                 if (Type == typeof(Page))
                     return Page;
                 if (Type == typeof(Link))
+                    return Link;
+                if (Type == typeof(Album))
                     return Link;
 
                 return null;
@@ -133,6 +140,11 @@ namespace VkToolkit.Model
                 case "page":
                     attachment.Type = typeof(Page);
                     attachment.Page = response["page"];
+                    break;
+                
+                case "album":
+                    attachment.Type = typeof(Album);
+                    attachment.Album = response["album"];
                     break;
 
                 default:

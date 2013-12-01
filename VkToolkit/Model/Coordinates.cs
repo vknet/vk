@@ -25,11 +25,11 @@ namespace VkToolkit.Model
                 throw new VkApiException("Coordinates must have latitude and longitude!");
 
             double latitude;
-            if (!double.TryParse(latitudeWithLongitude[0], out latitude))
+            if (!double.TryParse(latitudeWithLongitude[0].Replace(".", ","), out latitude))
                 throw new VkApiException("Invalid latitude!");
 
             double longitude;
-            if (!double.TryParse(latitudeWithLongitude[1], out longitude))
+            if (!double.TryParse(latitudeWithLongitude[1].Replace(".", ","), out longitude))
                 throw new VkApiException("Invalid longitude!");
 
             var result = new Coordinates { Latitude = latitude, Longitude = longitude };

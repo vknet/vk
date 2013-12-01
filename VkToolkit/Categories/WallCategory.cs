@@ -30,6 +30,10 @@ namespace VkToolkit.Categories
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений.</param>
         /// <param name="filter">Типы сообщений, которые необходимо получить (по умолчанию возвращаются все сообщения).</param>
         /// <returns>В случае успеха возвращается запрошенный список записей со стены.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/pages?oid=-1&p=wall.get"/>.
+        /// </remarks>
         public List<WallRecord> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
             var parameters = new VkParameters
@@ -47,10 +51,45 @@ namespace VkToolkit.Categories
             return response.Skip(1).ToListOf(r => (WallRecord)r);
         }
 
-        public void GetComments()
+        /// <summary>
+        /// Возвращает список комментариев к записи на стене пользователя. 
+        /// </summary>
+        /// <param name="ownerId">Идентификатор пользователя, на чьей стене находится запись, к которой необходимо получить комментарии.</param>
+        /// <param name="postId">Идентификатор записи на стене пользователя.</param>
+        /// <param name="totalCount">Общее количество комментариев к записи.</param>
+        /// <param name="sort">Порядок сортировки комментариев (по умолчанию хронологический).</param>
+        /// <param name="needLikes">Признак нужно ли возвращать поле Likes в комментариях.</param>
+        /// <param name="count">Количество комментариев, которое необходимо получить (но не более 100).</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества комментариев.</param>
+        /// <param name="previewLength">Количество символов, по которому нужно обрезать комментарии. Если указано 0, то комментарии не образеютяс. 
+        /// Обратите внимание, что комментарии обрезаются по словам.</param>
+        /// <remarks>
+        /// <returns>
+        /// Список комментариев к записи на стене пользователя.
+        /// </returns>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/pages?oid=-1&p=wall.getComments"/>.
+        /// </remarks>       
+        public List<Comment> GetComments(long ownerId, long postId, out int totalCount, CommentsSort sort = CommentsSort.Ascending, bool needLikes = false, int? count = null, 
+            int? offset = null, int previewLength = 0)
         {
-            // TODO:
-            throw new NotImplementedException();
+            var parameters = new VkParameters
+                {
+                    { "owner_id", ownerId },
+                    { "post_id", postId },
+                    { "sort", sort.ToString().ToLowerInvariant() },
+                    { "need_likes", needLikes },
+                    { "count", count },
+                    { "offset", offset },
+                    { "preview_length", previewLength },
+                    { "v", "4.4" }
+                };
+
+            VkResponseArray response = _vk.Call("wall.getComments", parameters);
+
+            totalCount = response[0];
+
+            return response.Skip(1).ToListOf(c => (Comment)c);
         }
 
         public void GetById()

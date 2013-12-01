@@ -22,7 +22,7 @@ namespace VkToolkit.Model
         /// <summary>
         /// Признак может ли текущий пользователь опубликовать у себя запись.
         /// </summary>
-        public bool CanPublish { get; set; }
+        public bool? CanPublish { get; set; }
 
         internal static Likes FromJson(VkResponse like)
         {
