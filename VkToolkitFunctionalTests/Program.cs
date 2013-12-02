@@ -1,6 +1,8 @@
 ﻿namespace VkToolkitFunctionalTests
 {
     using System;
+    using System.Collections.Generic;
+    using System.Xml.Schema;
 
     using VkToolkit;
     using VkToolkit.Enums;
@@ -11,16 +13,14 @@
 
         private static void GetWallRecords(VkApi api)
         {
+
             int totalCount;
-            var wallRecords = api.Wall.Get(12312, out totalCount);
+            var wallRecords = api.Wall.Get(1, out totalCount);
+            var posts = new List<string>();
             foreach (var wallRecord in wallRecords)
-            {
-                if (wallRecord.Comments.Count > 0)
-                {
-                    int totalCommentsCount;
-                    var comments = api.Wall.GetComments(12312, wallRecord.Id, out totalCommentsCount, CommentsSort.Ascending, true);
-                }
-            }
+                posts.Add("1_" + wallRecord.Id);
+
+            var records = api.Wall.GetById(posts);
         }
 
         public static void Main(string[] args)

@@ -92,10 +92,22 @@ namespace VkToolkit.Categories
             return response.Skip(1).ToListOf(c => (Comment)c);
         }
 
-        public void GetById()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="posts">
+        /// Список строковых идентификаторов записий в формате - идентификатор пользователя (группы), знак подчеркивания и идентификатор записи.
+        /// Примеры возможных значений идентификаторов: "93388_21539", "93388_20904", "2943_4276".
+        /// </param>
+        /// <returns></returns>
+        public List<WallRecord> GetById(IEnumerable<string> posts)
         {
-            // TODO:
-            throw new NotImplementedException();
+            if (posts == null)
+                throw new ArgumentNullException("posts");
+
+            var parameters = new VkParameters { { "posts", posts } };
+
+            return _vk.Call("wall.getById", parameters);
         }
 
         public void Post()

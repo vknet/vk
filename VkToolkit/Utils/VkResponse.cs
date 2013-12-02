@@ -267,6 +267,11 @@ namespace VkToolkit.Utils
             return response == null ? null : WallRecord.FromJson(response);
         }
 
+        public static implicit operator List<WallRecord>(VkResponse response)
+        {
+            return response.ToListOf(r => (WallRecord)r);
+        }
+
         public static implicit operator FriendStatus(VkResponse response)
         {
             if (response == null)
