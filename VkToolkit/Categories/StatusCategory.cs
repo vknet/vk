@@ -3,8 +3,12 @@ using VkToolkit.Model;
 
 namespace VkToolkit.Categories
 {
+    using VkToolkit.Enums;
     using VkToolkit.Utils;
 
+    /// <summary>
+    /// Методы для работы со статусом пользователя или сообщества.
+    /// </summary>
     public class StatusCategory
     {
         private readonly VkApi _vk;
@@ -15,10 +19,18 @@ namespace VkToolkit.Categories
         }
 
         /// <summary>
-        /// Obtains the status of a user. 
+        /// Получает статус пользователя или сообщества.
         /// </summary>
-        /// <param name="uid">User id</param>
-        /// <returns></returns>
+        /// <param name="uid">
+        /// Идентификатор пользователя или сообщества, информацию о статусе которого нужно получить.
+        /// </param>
+        /// <returns>
+        /// В случае успеха возвращается статус пользователдя или сообщества.
+        /// </returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/status.get"/>.
+        /// </remarks>
         public Status Get(long uid)
         {
             var parameters = new VkParameters { { "uid", uid } };
@@ -39,7 +51,11 @@ namespace VkToolkit.Categories
         /// Для успешной трансляции необходимо, чтобы она была включена пользователем, в противном случае будет возвращена 
         /// ошибка 221 ("User disabled track name broadcast"). При указании параметра audio параметр text игнорируется.
         /// </param>
-        /// <returns>True, если статус был установлен, false в противном случае.</returns>
+        /// <returns>Возвращает true, если статус был успешно установлен, false в противном случае.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/status.set"/>.
+        /// </remarks>
         public bool Set(string text, Audio audio = null)
         {
             if (text == null)
@@ -63,9 +79,16 @@ namespace VkToolkit.Categories
         /// Для успешной трансляции необходимо, чтобы она была включена пользователем, в противном случае будет возвращена 
         /// ошибка 221 ("User disabled track name broadcast"). При указании параметра audio параметр text игнорируется.
         /// </param>
-        /// <returns>True, если статус был установлен, false в противном случае.</returns>
+        /// <returns>Возвращает true, если статус был успешно установлен, false в противном случае.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/status.set"/>.
+        /// </remarks>
         public bool Set(Audio audio)
         {
+            if (audio == null)
+                throw new ArgumentNullException("audio");
+
             var parameters = new VkParameters
                 {
                     { "audio", string.Format("{0}_{1}", audio.OwnerId, audio.Id) }

@@ -31,8 +31,7 @@ namespace VkToolkit.Categories
         /// <param name="filter">Типы сообщений, которые необходимо получить (по умолчанию возвращаются все сообщения).</param>
         /// <returns>В случае успеха возвращается запрошенный список записей со стены.</returns>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/pages?oid=-1&p=wall.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/wall.get"/>.
         /// </remarks>
         public List<WallRecord> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
@@ -63,12 +62,11 @@ namespace VkToolkit.Categories
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества комментариев.</param>
         /// <param name="previewLength">Количество символов, по которому нужно обрезать комментарии. Если указано 0, то комментарии не образеютяс. 
         /// Обратите внимание, что комментарии обрезаются по словам.</param>
-        /// <remarks>
         /// <returns>
         /// Список комментариев к записи на стене пользователя.
         /// </returns>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/pages?oid=-1&p=wall.getComments"/>.
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/wall.getComments"/>.
         /// </remarks>       
         public List<Comment> GetComments(long ownerId, long postId, out int totalCount, CommentsSort sort = CommentsSort.Ascending, bool needLikes = false, int? count = null, 
             int? offset = null, int previewLength = 0)
@@ -93,13 +91,18 @@ namespace VkToolkit.Categories
         }
 
         /// <summary>
-        /// 
+        /// Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
         /// </summary>
         /// <param name="posts">
         /// Список строковых идентификаторов записий в формате - идентификатор пользователя (группы), знак подчеркивания и идентификатор записи.
         /// Примеры возможных значений идентификаторов: "93388_21539", "93388_20904", "2943_4276".
         /// </param>
-        /// <returns></returns>
+        /// <returns>
+        /// После успешного выполнения возвращает список объектов записей со стены. 
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/wall.getById"/>.
+        /// </remarks>       
         public List<WallRecord> GetById(IEnumerable<string> posts)
         {
             if (posts == null)

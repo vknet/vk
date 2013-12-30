@@ -7,6 +7,9 @@ using VkToolkit.Utils;
 
 namespace VkToolkit.Categories
 {
+    /// <summary>
+    /// Методы для работы с сообществами (группами).
+    /// </summary>
     public class GroupsCategory
     {
         private readonly VkApi _vk;
@@ -22,6 +25,10 @@ namespace VkToolkit.Categories
         /// <param name="gid">Id группы</param>
         /// <param name="notSure">True - Возможно пойду. False - Точно пойду. По умолчанию false.</param>
         /// <returns>В случае успешного вступления в группу метод вернёт true, иначе false.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.join"/>.
+        /// </remarks>
         public bool Join(long gid, bool notSure = false)
         {
             var parameters = new VkParameters { { "gid", gid }, { "not_sure", notSure } };
@@ -34,6 +41,10 @@ namespace VkToolkit.Categories
         /// </summary>
         /// <param name="gid">Id группы</param>
         /// <returns>В случае успешного выхода из группы метод вернёт true, иначе false.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.leave"/>.
+        /// </remarks>
         public bool Leave(long gid)
         {
             var parameters = new VkParameters { { "gid", gid } };
@@ -49,6 +60,9 @@ namespace VkToolkit.Categories
         /// <param name="filters">Список фильтров сообществ</param>
         /// <param name="fields">Список полей информации о группах</param>
         /// <returns>Список групп</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.get"/>.
+        /// </remarks>
         public List<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null)
         {
             var parameters = new VkParameters { { "uid", uid }, { "extended", extended }, { "filter", filters }, { "fields", fields } };
@@ -68,6 +82,9 @@ namespace VkToolkit.Categories
         /// <param name="gids">Список групп</param>
         /// <param name="fields">Список полей информации о группах</param>
         /// <returns>Список групп</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.getById"/>.
+        /// </remarks>
         public List<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
         {
             var parameters = new VkParameters { { "gids", gids }, { "fields", fields } };
@@ -81,6 +98,9 @@ namespace VkToolkit.Categories
         /// <param name="gid">Id группы</param>
         /// <param name="fields">Список полей информации о группах</param>
         /// <returns>Список групп</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.getById"/>.
+        /// </remarks>
         public Group GetById(long gid, GroupsFields fields = null)
         {
             var parameters = new VkParameters { { "gid", gid }, { "fields", fields } };
@@ -97,6 +117,9 @@ namespace VkToolkit.Categories
         /// <param name="offset">Смещение</param>
         /// <param name="sort">Сортировка Id пользователей</param>
         /// <returns>Id пользователей состоящих в группе</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.getMembers"/>.
+        /// </remarks>
         public List<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null)
         {
             var parameters = new VkParameters { { "gid", gid }, { "offset", offset }, { "sort", sort } };
@@ -117,6 +140,9 @@ namespace VkToolkit.Categories
         /// <param name="gid">Id группы</param>
         /// <param name="uid">Id пользователя</param>
         /// <returns>True если пользователь состоит в группе, иначе False</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.isMember"/>.
+        /// </remarks>
         public bool IsMember(long gid, long uid)
         {
             var parameters = new VkParameters { { "gid", gid }, { "uid", uid } };
@@ -132,6 +158,9 @@ namespace VkToolkit.Categories
         /// <param name="offset">Смещение</param>
         /// <param name="count">Количество в выбоке</param>
         /// <returns>Список объектов групп</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.search"/>.
+        /// </remarks>
         public List<Group> Search(string query, out int totalCount, int? offset = null, int? count = null)
         {
             if (string.IsNullOrEmpty(query))

@@ -3,10 +3,22 @@ using VkToolkit.Utils;
 
 namespace VkToolkit.Model
 {    
+    /// <summary>
+    /// Информация о последней активности пользователя.
+    /// </summary>
     public class LastActivity
     {
-        public long? UserId { get; set; }
+        /// <summary>
+        /// Идентификатор пользователя.
+        /// </summary>
+        public long UserId { get; set; }
+        /// <summary>
+        /// Текущий статус пользователя (true - в сети, false - не в сети).
+        /// </summary>
         public bool? IsOnline { get; set; }
+        /// <summary>
+        /// Дата последней активности пользователя.
+        /// </summary>
         public DateTime? Time { get; set; }
 
         internal static LastActivity FromJson(VkResponse activity)

@@ -7,6 +7,9 @@ using VkToolkit.Utils;
 
 namespace VkToolkit.Categories
 {
+    /// <summary>
+    /// Методы для работы с друзьями.
+    /// </summary>
     public class FriendsCategory
     {
         private readonly VkApi _vk;
@@ -27,6 +30,9 @@ namespace VkToolkit.Categories
         /// <returns>Список друзей пользователя с заполненными полями (указанными в параметре <paramref name="fields"/>).
         /// Если значение поля <paramref name="fields"/> не указано, то у возвращаемых друзей заполняется только поле Id.
         /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.get"/>.
+        /// </remarks>       
         public List<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, Order order = null)
         {
             var parameters = new VkParameters
@@ -52,6 +58,10 @@ namespace VkToolkit.Categories
         /// <returns>
         /// Список идентификаторов друзей текущего пользователя, которые установили данное приложение.
         /// </returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.getAppUsers"/>.
+        /// </remarks>       
         public List<long> GetAppUsers()
         {
             return _vk.Call("friends.getAppUsers", VkParameters.Empty);
@@ -66,6 +76,10 @@ namespace VkToolkit.Categories
         /// <returns>
         /// В случае успеха список идентификаторов друзей пользователя, которые сейчас находятся на сайте.
         /// </returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.getOnline"/>.
+        /// </remarks>       
         public List<long> GetOnline(long uid)
         {
             var parameters = new VkParameters { { "uid", uid } };
@@ -81,6 +95,10 @@ namespace VkToolkit.Categories
         /// <returns>
         /// В случае успеха возвращает список идентификаторов (id) общих друзей между пользователями с идентификаторами <paramref name="targetUid"/> и <paramref name="sourceUid"/>.
         /// </returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.getMutual"/>.
+        /// </remarks>       
         public List<long> GetMutual(long targetUid, long sourceUid)
         {
             var parameters = new VkParameters { { "target_uid", targetUid }, { "source_uid", sourceUid } };
@@ -94,6 +112,10 @@ namespace VkToolkit.Categories
         /// </summary>
         /// <param name="uids">Список проверяемых идентификаторов пользователей.</param>
         /// <returns>Метод возвращает словарь, ключом которого является идентификатор пользователя (uid), а значением значение типа <see cref="FriendStatus"/>.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.areFriends"/>.
+        /// </remarks>       
         public IDictionary<long, FriendStatus> AreFriends(IEnumerable<long> uids)
         {
             if (uids == null)

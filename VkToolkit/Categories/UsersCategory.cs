@@ -7,6 +7,9 @@ using VkToolkit.Utils;
 
 namespace VkToolkit.Categories
 {
+    /// <summary>
+    /// Методы для работы с информацией о пользователях.
+    /// </summary>
     public class UsersCategory
     {
         private readonly VkApi _vk;
@@ -17,14 +20,21 @@ namespace VkToolkit.Categories
         }
 
         /// <summary>
-        /// Search users by query.
+        /// Возвращает список пользователей в соответствии с заданным критерием поиска.
         /// </summary>
-        /// <param name="query">Query</param>
-        /// <param name="itemsCount">Count of users by query.</param>
-        /// <param name="fields">Additional fields for retrieving.</param>
-        /// <param name="count">Count of records in fetch.</param>
-        /// <param name="offset">Offset of records in fetch.</param>
-        /// <returns></returns>
+        /// <param name="query">Строка поискового запроса. Например, Вася Бабич.</param>
+        /// <param name="itemsCount">Общее количество пользователей, удовлетворяющих условиям запроса.</param>
+        /// <param name="fields">Список дополнительных полей, которые необходимо вернуть.</param>
+        /// <param name="count">Количество возвращаемых пользователей. 
+        /// Обратите внимание — даже при использовании параметра offset для получения информации доступны только первые 1000 результатов.         
+        /// </param>
+        /// <param name="offset">Смещение относительно первого найденного пользователя для выборки определенного подмножества.</param>
+        /// <returns>
+        /// После успешного выполнения возвращает список объектов пользователей, найденных в соответствии с заданными критериями. 
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/users.search"/>.
+        /// </remarks>
         public List<User> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
             if (string.IsNullOrEmpty(query))
@@ -42,13 +52,19 @@ namespace VkToolkit.Categories
         }
 
         /// <summary>
-        /// Returns the application settings of the current user.
+        /// Получает настройки текущего пользователя в данном приложении. .
         /// </summary>
-        /// <param name="uid">User Id</param>
-        /// <returns>Returns bitmask settings of the current user in the given application.
+        /// <param name="uid">идентификатор пользователя, информацию о настройках которого необходимо получить.</param>
+        /// <returns>После успешного выполнения возвращает битовую маску настроек текущего пользователя в данном приложении. 
         /// 
-        /// For example, if the method returns 3, it means that the user allows the application to send them notifications and have access to their list of friends.
+        /// Пример:
+        /// Если Вы хотите получить права на Доступ к друзьям и Доступ к статусам пользователя, то Ваша битовая маска будет 
+        /// равна: 2 + 1024 = 1026. 
+        /// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к друзьям — Вы можете сделать 1026 & 2. 
         /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/getUserSettings"/>.
+        /// </remarks>
         public int GetUserSettings(long uid)
         {
             var parameters = new VkParameters { { "uid", uid } };
@@ -57,19 +73,13 @@ namespace VkToolkit.Categories
         }
 
         /// <summary>
-        /// Returns the balance of the current user in the given application in one hundredths of a vote.
+        /// Возвращает список сообществ указанного пользователя. 
         /// </summary>
-        /// <returns>Returns the number of votes (in one hundredths) that are on the balance of the current user in an application. </returns>
-        public int GetUserBalance()
-        {
-            return _vk.Call("getUserBalance", VkParameters.Empty);
-        }
-
-        /// <summary>
-        /// Get users' groups.
-        /// </summary>
-        /// <param name="uid">User Id</param>
-        /// <returns>List of group Ids</returns>
+        /// <param name="uid">Идентификатор пользователя, информацию о сообществах которого требуется получить.</param>
+        /// <returns>После успешного выполнения возвращает список сообществ, в которых состоит пользователь. </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/getGroups"/>.
+        /// </remarks>
         public List<Group> GetGroups(int uid)
         {
             var parameters = new VkParameters { { "uid", uid } };
@@ -80,10 +90,15 @@ namespace VkToolkit.Categories
         }
 
         /// <summary>
-        /// Returns information on whether a user has installed an application or not.
+        /// Возвращает информацию о том, установил ли пользователь приложение.
         /// </summary>
-        /// <param name="uid">User Id</param>
-        /// <returns>Returns true if the user has installed the given application, otherwise – false.</returns>
+        /// <param name="uid">Идентификатор пользователя.</param>
+        /// <returns>После успешного выполнения возвращает true в случае, если пользователь установил у себя данное приложение, 
+        /// иначе false. 
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/isAppUser"/>.
+        /// </remarks>
         public bool IsAppUser(long uid)
         {
             var parameters = new VkParameters { { "uid", uid } };
@@ -92,37 +107,53 @@ namespace VkToolkit.Categories
         }
         
         /// <summary>
-        /// Returns standard information about groups of which the current user is a member
+        /// Возвращает список сообществ данного пользователя. 
         /// </summary>
-        /// <returns>Returns standard information about groups of which the current user is a member. </returns>
+        /// <returns> 
+        /// В случае успеха возвращается список сообществ данного пользователя.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/getGroupsFull"/>.
+        /// </remarks>
         public List<Group> GetGroupsFull()
         {
+            // TODO: заменить на groups.get
             return _vk.Call("getGroupsFull", VkParameters.Empty);
         }
 
         /// <summary>
-        /// Returns standard information about groups from the "gids" list.
+        /// Возвращает стандартную информацию об указанных сообществах.
         /// </summary>
-        /// <param name="gids">List of group IDs</param>
-        /// <returns></returns>
+        /// <param name="gids">Список идентификаторов сообществ, о которых необходимо получить информацию</param>
+        /// <returns>
+        /// Список объектов, содержащих информацию о запрошенных сообществах.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/getGroupsFull"/>.
+        /// </remarks>
         public List<Group> GetGroupsFull(IEnumerable<long> gids)
         {
             if (gids == null)
                 throw new ArgumentNullException("gids");
             
+            // TODO: заменить на groups.get
             var parameters = new VkParameters { { "gids", gids } };
 
             return _vk.Call("getGroupsFull", parameters);
         }
 
         /// <summary>
-        /// Get info about user.
+        /// Возвращает расширенную информацию о пользователе.
         /// </summary>
-        /// <param name="uid">User Id</param>
-        /// <param name="fields">Fields of the profile (can be combined).</param>
-        /// <returns>User object.</returns>
+        /// <param name="uid">Идентификатор пользователя.</param>
+        /// <param name="fields">Поля профиля, которые необходимо возвратить.</param>
+        /// <returns>Объект, содержащий запрошенную информацию о пользователе.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/getProfiles"/>.
+        /// </remarks>
         public User Get(long uid, ProfileFields fields = null)
         {
+            // TODO: заменить на users.get
             var parameters = new VkParameters { { "uid", uid }, { "fields", fields } };
 
             VkResponseArray response = _vk.Call("getProfiles", parameters);
@@ -131,11 +162,14 @@ namespace VkToolkit.Categories
         }
 
         /// <summary>
-        /// Get info about users.
+        /// Возвращает расширенную информацию о пользователе.
         /// </summary>
-        /// <param name="uids">List of users' Ids.</param>
-        /// <param name="fields">Fields of the profile (can be combined).</param>
-        /// <returns>List of User objects.</returns>
+        /// <param name="uids">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
+        /// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
+        /// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/getProfiles"/>.
+        /// </remarks>
         public List<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
         {
             if (uids == null)

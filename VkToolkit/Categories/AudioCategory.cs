@@ -7,6 +7,9 @@ using VkToolkit.Utils;
 
 namespace VkToolkit.Categories
 {
+    /// <summary>
+    /// Методы для работы с аудиозаписями.
+    /// </summary>
     public class AudioCategory
     {
         private readonly VkApi _vk;
@@ -32,7 +35,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/pages.php?o=-1&p=audio.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.get"/>.
         /// </remarks>       
         public List<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
@@ -54,7 +57,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/pages.php?o=-1&p=audio.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.get"/>.
         /// </remarks>
         public List<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
@@ -72,7 +75,7 @@ namespace VkToolkit.Categories
         /// <returns>В случае успеха возвращает затребованный список аудиозаписей пользователя.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/pages.php?o=-1&p=audio.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.get"/>.
         /// </remarks>
         public List<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
@@ -119,6 +122,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getById"/>.
         /// </remarks>
         public List<Audio> GetById(IEnumerable<string> audios)
         {
@@ -143,6 +147,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getById"/>.
         /// </remarks>
         public List<Audio> GetById(params string [] audios)
         {
@@ -158,6 +163,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getCount"/>.
         /// </remarks>
         public int GetCount(long ownerId)
         {
@@ -173,6 +179,7 @@ namespace VkToolkit.Categories
         /// <returns>В случае успеха возвращает найденный текст адиозаписи. В качестве переводов строк в тексте используется \n. </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getLyrics"/>.
         /// </remarks>
         public Lyrics GetLyrics(long lyricsId)
         {
@@ -189,6 +196,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getUploadServer"/>.
         /// </remarks>
         public string GetUploadServer()
         {
@@ -208,6 +216,10 @@ namespace VkToolkit.Categories
         /// <param name="count">Количество возвращаемых аудиозаписей (максимум 200).</param>
         /// <param name="offset">Смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
         /// <returns>Список объектов класса Audio.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.search"/>.
+        /// </remarks>
         public List<Audio> Search(string query, out int totalCount, bool? autoComplete = null, AudioSort? sort = null, bool? findLyrics = null, int? count = null, int? offset = null)
         {
             if (string.IsNullOrEmpty(query))
@@ -236,7 +248,11 @@ namespace VkToolkit.Categories
         /// <param name="audioId">id аудиозаписи</param>
         /// <param name="ownerId">id владельца аудиозаписи</param>
         /// <param name="groupId">id группы, в которую следует копировать аудиозапись. Если параметр не указан, аудиозапись копируется не в группу, а на страницу текущего пользователя. </param>
-        /// <returns>идентификатор созданной аудиозаписи</returns>
+        /// <returns>Идентификатор созданной аудиозаписи</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.add"/>.
+        /// </remarks>
         public long Add(long audioId, long ownerId, long? groupId = null)
         {
             var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId }, { "gid", groupId } };
@@ -250,6 +266,10 @@ namespace VkToolkit.Categories
         /// <param name="audioId">id аудиозаписи</param>
         /// <param name="ownerId">id владельца аудиозаписи</param>
         /// <returns>При успешном удалении аудиозаписи сервер вернет true</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.delete"/>.
+        /// </remarks>
         public bool Delete(long audioId, long ownerId)
         {
             var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId } };
@@ -267,6 +287,10 @@ namespace VkToolkit.Categories
         /// <param name="text">Текст аудиозаписи, если введен.</param>
         /// <param name="noSearch">true - скрывает аудиозапись из поиска по аудиозаписям, false (по умолчанию) - не скрывает.</param>
         /// <returns>id текста, введенного пользователем</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.edit"/>.
+        /// </remarks>
         public long Edit(long audioId, long ownerId, string artist, string title, string text, bool noSearch = false)
         {
             if (artist == null)
@@ -297,6 +321,10 @@ namespace VkToolkit.Categories
         /// <param name="audioId">id удаленной аудиозаписи</param>
         /// <param name="ownerId">id владельца аудиозаписи</param>
         /// <returns>Удаленная аудиозапись.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.restore"/>.
+        /// </remarks>
         public Audio Restore(long audioId, long? ownerId = null)
         {
             var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId } };
@@ -312,6 +340,10 @@ namespace VkToolkit.Categories
         /// <param name="after">id аудиозаписи, после которой нужно поместить аудиозапись. Если аудиозапись переносится в начало, параметр может быть равен нулю.</param>
         /// <param name="before">id аудиозаписи, перед которой нужно поместить аудиозапись. Если аудиозапись переносится в конец, параметр может быть равен нулю.</param>
         /// <returns>При успешном изменении порядка аудиозаписи сервер вернет true</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.reorder"/>.
+        /// </remarks>
         public bool Reorder(long audioId, long ownerId, long after, long before)
         {
             var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId }, { "after", after }, { "before", before } };
