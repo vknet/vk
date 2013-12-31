@@ -328,7 +328,7 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       92,
                       {
-                        'gid': 1153959,
+                        'id': 1153959,
                         'name': 'The middle of spring',
                         'screen_name': 'club1153959',
                         'is_closed': 0,
@@ -344,7 +344,7 @@ namespace VkToolkit.Tests.Categories
                         'photo_200': 'http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg'
                       },
                       {
-                        'gid': 1181795,
+                        'id': 1181795,
                         'name': 'Геннадий Бачинский',
                         'screen_name': 'club1181795',
                         'is_closed': 0,
@@ -683,7 +683,7 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       78152,
                       {
-                        'gid': 339767,
+                        'id': 339767,
                         'name': 'A-ONE HIP-HOP MUSIC CHANNEL',
                         'screen_name': 'a1tv',
                         'is_closed': 0,
@@ -695,7 +695,7 @@ namespace VkToolkit.Tests.Categories
                         'photo_200': 'http://cs9365.userapi.com/g339767/a_4653ba99.jpg'
                       },
                       {
-                        'gid': 27895931,
+                        'id': 27895931,
                         'name': 'MUSIC 2012',
                         'screen_name': 'exclusive_muzic',
                         'is_closed': 0,
@@ -748,7 +748,7 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       78152,
                       {
-                        'gid': 26442631,
+                        'id': 26442631,
                         'name': 'Music Quotes. First Public.',
                         'screen_name': 'music_quotes_public',
                         'is_closed': 0,
@@ -760,7 +760,7 @@ namespace VkToolkit.Tests.Categories
                         'photo_200': 'http://cs303205.userapi.com/g26442631/a_32dd770f.jpg'
                       },
                       {
-                        'gid': 23727386,
+                        'id': 23727386,
                         'name': 'Classical Music Humor',
                         'screen_name': 'mushumor',
                         'is_closed': 0,
@@ -772,7 +772,7 @@ namespace VkToolkit.Tests.Categories
                         'photo_200': 'http://cs10650.userapi.com/g23727386/a_7743aab2.jpg'
                       },
                       {
-                        'gid': 23995866,
+                        'id': 23995866,
                         'name': 'E:\\music\\',
                         'screen_name': 'e_music',
                         'is_closed': 0,
@@ -863,7 +863,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': [
                       {
-                        'gid': 17683660,
+                        'id': 17683660,
                         'name': 'Творческие каникулы ART CAMP с 21 по 29 июля',
                         'screen_name': 'club17683660',
                         'is_closed': 0,
@@ -972,7 +972,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': [
                       {
-                        'gid': 17683660,
+                        'id': 17683660,
                         'name': 'Творческие каникулы ART CAMP с 21 по 29 июля',
                         'screen_name': 'club17683660',
                         'is_closed': 0,
@@ -984,7 +984,7 @@ namespace VkToolkit.Tests.Categories
                         'photo_200': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
                       },
                       {
-                        'gid': 637247,
+                        'id': 637247,
                         'name': 'Чак Паланик - Сумасшедший гений литературы',
                         'screen_name': 'club637247',
                         'is_closed': 1,
@@ -1035,7 +1035,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': [
                       {
-                        'gid': 17683660,
+                        'id': 17683660,
                         'name': 'Творческие каникулы ART CAMP с 21 по 29 июля',
                         'screen_name': 'club17683660',
                         'is_closed': 0,
@@ -1051,7 +1051,7 @@ namespace VkToolkit.Tests.Categories
                         'photo_200': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
                       },
                       {
-                        'gid': 637247,
+                        'id': 637247,
                         'name': 'Чак Паланик - Сумасшедший гений литературы',
                         'screen_name': 'club637247',
                         'is_closed': 1,
@@ -1116,7 +1116,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': [
                       {
-                        'gid': 17683660,
+                        'id': 17683660,
                         'name': 'Творческие каникулы ART CAMP с 21 по 29 июля',
                         'screen_name': 'club17683660',
                         'is_closed': 0,

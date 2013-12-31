@@ -695,7 +695,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': [
                       {
-                        'gid': 29689780,
+                        'id': 29689780,
                         'name': 'Art and Life ©',
                         'screen_name': 'art.and.life',
                         'is_closed': 0,
@@ -705,7 +705,7 @@ namespace VkToolkit.Tests.Categories
                         'photo_big': 'http://cs11003.userapi.com/g29689780/a_1889c16e.jpg'
                       },
                       {
-                        'gid': 33489538,
+                        'id': 33489538,
                         'name': 'Английский как стиль жизни. Где перевод?',
                         'screen_name': 'english_for_adults',
                         'is_closed': 0,
@@ -747,7 +747,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': [
                       {
-                        'gid': 29689780,
+                        'id': 29689780,
                         'name': 'Art and Life ©',
                         'screen_name': 'art.and.life',
                         'is_closed': 0,
@@ -758,7 +758,7 @@ namespace VkToolkit.Tests.Categories
                         'photo_big': 'http://cs11003.userapi.com/g29689780/a_1889c16e.jpg'
                       },
                       {
-                        'gid': 33489538,
+                        'id': 33489538,
                         'name': 'Английский как стиль жизни. Где перевод?',
                         'screen_name': 'english_for_adults',
                         'is_closed': 0,

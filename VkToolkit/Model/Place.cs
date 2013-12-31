@@ -4,7 +4,8 @@
 
     /// <summary>
     /// Информация о месте, в котором была сделана запись.
-    /// См. описание <see cref="http://vk.com/pages?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D1%8F_geo"/>.
+    /// См. описание <see cref="http://vk.com/pages?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D1%8F_geo"/>
+    /// и <see cref="http://vk.com/dev/fields_groups"/>. Раздел place.
     /// </summary>
     public class Place
     {
@@ -18,6 +19,16 @@
         /// Название места, которое можно получить с помощью метода <see cref="PlacesCategory.GetById"/>.
         /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// Географическая широта, заданная в градусах (от -90 до 90).
+        /// </summary>
+        public int? Latitude { get; set; }
+
+        /// <summary>
+        /// Географическая долгота, заданная в градусах (от -90 до 90).
+        /// </summary>
+        public int? Longitude  { get; set; }
 
         /// <summary>
         /// Идентификатор типа места, информацию о котором можно получить с помощью метода <see cref="PlacesCategory.GetTypes"/>.
@@ -60,16 +71,17 @@
 
         internal static Place FromJson(VkResponse response)
         {
-            // TODO: TEST IT!!!!!
             var place = new Place();
 
             place.Id = response["place_id"];
             place.Title = response["title"];
+            place.Latitude = response["latitude"];
+            place.Longitude = response["longitude"];            
             place.TypeId = response["type"];
             place.CountryId = response["country_id"];
             place.CityId = response["city_id"];
             place.Address = response["address"];
-            place.ShowMap = response["◾showmap"];
+            place.ShowMap = response["showmap"];
 
             place.Country = response["country"]; // установлено экcпериментальным путем
             place.City = response["city"]; // установлено экcпериментальным путем

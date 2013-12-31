@@ -2,18 +2,18 @@
 {
     using System;
 
+    using VkToolkit.Categories;
     using VkToolkit.Enums;
     using VkToolkit.Utils;
 
     /// <summary>
     /// Информация о сообществе (группе).
     /// См. описание <see cref="http://vk.com/dev/fields_groups"/>.
-    /// TODO: Доделать позже.
     /// </summary>
     public class Group
     {
         /// <summary>
-        /// Идентификатор сообщества (положительное число).
+        /// Идентификатор сообщества.
         /// </summary>
         public long Id { get; set; }
 
@@ -63,26 +63,107 @@
         /// Идентификатор города, указанного в информации о сообществе. Возвращается идентификатор города, который можно использовать для 
         /// получения его названия с помощью метода <see cref="PlacesCategory.GetCityById"/>. Если город не указан, возвращается 0. 
         /// </summary>
-        public long? City { get; set; }
+        public long? CityId { get; set; }
 
         /// <summary>
         /// Идентификатор страны, указанной в информации о сообществе. Возвращается идентификатор страны, который можно использовать для 
         /// получения ее названия с помощью метода <see cref="PlacesCategory.GetCountryById"/>. Если страна не указана, возвращается 0.
         /// </summary>
-        public long? Country { get; set; }
-
-        public string Link { get; set; }
-
-        // additional information
-        public long? CityId { get; set; }
-
         public long? CountryId { get; set; }
 
+        /// <summary>
+        /// Место, указанное в информации о сообществе.
+        /// </summary>
+        public Place Place { get; set; }
+
+        /// <summary>
+        /// Текст описания сообщества. 
+        /// </summary>
         public string Description { get; set; }
 
+        /// <summary>
+        /// Название главной вики-страницы сообщества.
+        /// </summary>
+        public string WikiPage { get; set; }
+
+        /// <summary>
+        /// Количество участников сообщества. 
+        /// </summary>
+        public int? MembersCount { get; set; }
+
+        /// <summary>
+        /// Счетчики сообщества.
+        /// </summary>
+        public Counters Counters { get; set; }
+
+        /// <summary>
+        /// Время начала встречи (возвращаются только для встреч).
+        /// </summary>
         public DateTime? StartDate { get; set; }
 
-        public string WikiPage { get; set; }
+        /// <summary>
+        /// Время окончания встречи (возвращаются только для встреч).
+        /// </summary>
+        public DateTime? EndDate { get; set; }
+
+        /// <summary>
+        /// Информация о том, может ли текущий пользователь оставлять записи на стене сообщества (true - может, false - не может).
+        /// </summary>
+        public bool CanPost { get; set; }
+
+        /// <summary>
+        /// Информация о том, разрешено видеть чужие записи на стене группы (true - разрешено, false - не разрешено).
+        /// </summary>
+        public bool CanSeelAllPosts { get; set; }
+
+        /// <summary>
+        /// Информация о том, может ли текущий пользователь загружать документы в группу (true, если пользователь может 
+        /// загружать документы, false – если не может).
+        /// </summary>
+        public bool CanUploadDocuments { get; set; }
+
+        /// <summary>
+        /// Информация о том, может ли текущий пользователь создать тему обсуждения в группе, используя метод <see cref="BoardCategory.AddTopic"/>. 
+        /// (true, если пользователь может создать обсуждение, false – если не может). 
+        /// </summary>
+        public bool CanCreateTopic { get; set; }
+
+        /// <summary>
+        /// Строка состояния публичной страницы. У групп возвращается строковое значение, открыта ли группа или нет, 
+        /// а у событий дата начала. 
+        /// </summary>
+        public string Activity { get; set; }
+
+        /// <summary>
+        /// Статус сообщества. Возвращается строка, содержащая текст статуса, расположенного на странице сообщества под его названием. 
+        /// </summary>
+        public string Status { get; set; }
+
+        /// <summary>
+        /// Информация из блока контактов публичной страницы.
+        /// </summary>
+        public string Contacts { get; set; }
+
+        /// <summary>
+        /// Информация из блока ссылок сообщества.
+        /// </summary>
+        public string Links { get; set; }
+
+        /// <summary>
+        /// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById"/>,
+        /// передав идентификатор в виде – {group_id}_{post_id}.
+        /// </summary>
+        public long? FixedPostId { get; set; }
+
+        /// <summary>
+        /// Возвращает информацию о том, является ли сообщество верифицированным.
+        /// </summary>
+        public bool IsVerified { get; set; }
+
+        /// <summary>
+        /// Адрес сайта из поля «веб-сайт» в описании сообщества.
+        /// </summary>
+        public string Site { get; set; }
 
         #region Методы
 
@@ -90,7 +171,7 @@
         {
             var group = new Group();
 
-            group.Id = response["gid"];
+            group.Id = response["id"];
             group.Name = response["name"];
             group.ScreenName = response["screen_name"];
             group.IsClosed = response["is_closed"];
@@ -100,12 +181,27 @@
             group.Type = GetGroupType(response["type"]);
             group.PhotoPreviews = response;
 
-            group.Link = response["link"];
-            group.Description = response["description"];
-            group.WikiPage = response["wiki_page"];
+            // опциональные поля
             group.CityId = response["city"];
             group.CountryId = response["country"];
+            group.Place = response["place"];
+            group.Description = response["description"];
+            group.WikiPage = response["wiki_page"];
+            group.MembersCount = response["members_count"];
+            group.Counters = response["counters"];
             group.StartDate = response["start_date"];
+            group.EndDate = response["end_date"];
+            group.CanPost = response["can_post"];
+            group.CanSeelAllPosts = response["can_see_all_posts"];
+            group.CanUploadDocuments = response["can_upload_doc"];
+            group.CanCreateTopic = response["can_create_topic"];
+            group.Activity = response["activity"];
+            group.Status = response["status"];
+            group.Contacts = response["contacts"];
+            group.Links = response["links"];
+            group.FixedPostId = response["fixed_post"];
+            group.IsVerified = response["verified"];
+            group.Site = response["site"];
 
             return group;
         }
