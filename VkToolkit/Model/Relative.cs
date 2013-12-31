@@ -2,25 +2,40 @@
 {
     using VkToolkit.Utils;
 
+    /// <summary>
+    /// Информация о родственнике.
+    /// См. описание <see cref="http://vk.com/dev/fields"/>. Раздел relatives.
+    /// </summary>
     public class Relative
     {
         /// <summary>
         /// Идентификатор родственника.
         /// </summary>
         public long Id { get; set; }
+
         /// <summary>
-        /// Тип родственника.
+        /// Тип родственника (sibling и т.п.)
         /// </summary>
         public string Type { get; set; }
 
-        internal static Relative FromJson(VkResponse relative)
+        /// <summary>
+        /// Имя родственника, если он не является пользователем ВКонтакте.
+        /// </summary>
+        public string Name { get; set; }
+
+        #region Методы
+
+        internal static Relative FromJson(VkResponse response)
         {
-            var result = new Relative();
+            var relative = new Relative();
 
-            result.Id = relative["uid"];
-            result.Type = relative["type"];
+            relative.Id = response["id"];
+            relative.Type = response["type"];
+            relative.Name = response["name"];
 
-            return result;
+            return relative;
         }
+
+        #endregion
     }
 }

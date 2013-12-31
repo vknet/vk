@@ -339,9 +339,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'event',
                         'is_admin': 0,
                         'is_member': 1,
-                        'photo': 'http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg',
-                        'photo_medium': 'http://cs1122.userapi.com/g1153959/b_5bad925c.jpg',
-                        'photo_big': 'http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg'
+                        'photo_50': 'http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg',
+                        'photo_100': 'http://cs1122.userapi.com/g1153959/b_5bad925c.jpg',
+                        'photo_200': 'http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg'
                       },
                       {
                         'gid': 1181795,
@@ -355,9 +355,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'event',
                         'is_admin': 0,
                         'is_member': 1,
-                        'photo': 'http://cs1122.userapi.com/g1181795/c_efd67aca.jpg',
-                        'photo_medium': 'http://cs1122.userapi.com/g1181795/b_369a1c47.jpg',
-                        'photo_big': 'http://cs1122.userapi.com/g1181795/a_c58272b3.jpg'
+                        'photo_50': 'http://cs1122.userapi.com/g1181795/c_efd67aca.jpg',
+                        'photo_100': 'http://cs1122.userapi.com/g1181795/b_369a1c47.jpg',
+                        'photo_200': 'http://cs1122.userapi.com/g1181795/a_c58272b3.jpg'
                       }
                     ]
                   }";
@@ -368,7 +368,7 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[1].Id, Is.EqualTo(1181795));
             Assert.That(groups[1].Name, Is.EqualTo("Геннадий Бачинский"));
             Assert.That(groups[1].ScreenName, Is.EqualTo("club1181795"));
-            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[1].CityId, Is.EqualTo(1));
             Assert.That(groups[1].CountryId, Is.EqualTo(1));
             Assert.That(groups[1].Description, Is.EqualTo("В связи с небольшим количеством..."));
@@ -376,15 +376,15 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
             Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].IsMember, Is.True);
-            Assert.That(groups[1].Photo, Is.EqualTo("http://cs1122.userapi.com/g1181795/c_efd67aca.jpg"));
-            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs1122.userapi.com/g1181795/b_369a1c47.jpg"));
-            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs1122.userapi.com/g1181795/c_efd67aca.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs1122.userapi.com/g1181795/b_369a1c47.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"));
 
             Assert.That(groups.Count, Is.EqualTo(2));
             Assert.That(groups[0].Id, Is.EqualTo(1153959));
             Assert.That(groups[0].Name, Is.EqualTo("The middle of spring"));
             Assert.That(groups[0].ScreenName, Is.EqualTo("club1153959"));
-            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[0].CityId, Is.EqualTo(10));
             Assert.That(groups[0].CountryId, Is.EqualTo(1));
             Assert.That(groups[0].Description, Is.EqualTo("Попади в не реальную сказку пришествия..."));
@@ -392,9 +392,9 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
             Assert.That(groups[0].IsAdmin, Is.False);
             Assert.That(groups[0].IsMember, Is.True);
-            Assert.That(groups[0].Photo, Is.EqualTo("http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg"));
-            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs1122.userapi.com/g1153959/b_5bad925c.jpg"));
-            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs1122.userapi.com/g1153959/b_5bad925c.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
         }
 
         [Test]
@@ -690,9 +690,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'group',
                         'is_admin': 0,
                         'is_member': 0,
-                        'photo': 'http://cs9365.userapi.com/g339767/e_a590d16b.jpg',
-                        'photo_medium': 'http://cs9365.userapi.com/g339767/d_f653c773.jpg',
-                        'photo_big': 'http://cs9365.userapi.com/g339767/a_4653ba99.jpg'
+                        'photo_50': 'http://cs9365.userapi.com/g339767/e_a590d16b.jpg',
+                        'photo_100': 'http://cs9365.userapi.com/g339767/d_f653c773.jpg',
+                        'photo_200': 'http://cs9365.userapi.com/g339767/a_4653ba99.jpg'
                       },
                       {
                         'gid': 27895931,
@@ -702,9 +702,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'group',
                         'is_admin': 0,
                         'is_member': 0,
-                        'photo': 'http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg',
-                        'photo_medium': 'http://cs410222.userapi.com/g27895931/d_2869e827.jpg',
-                        'photo_big': 'http://cs410222.userapi.com/g27895931/a_32935e91.jpg'
+                        'photo_50': 'http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg',
+                        'photo_100': 'http://cs410222.userapi.com/g27895931/d_2869e827.jpg',
+                        'photo_200': 'http://cs410222.userapi.com/g27895931/a_32935e91.jpg'
                       }
                     ]
                   }";
@@ -719,24 +719,24 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[1].Id, Is.EqualTo(27895931));
             Assert.That(groups[1].Name, Is.EqualTo("MUSIC 2012"));
             Assert.That(groups[1].ScreenName, Is.EqualTo("exclusive_muzic"));
-            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
             Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].IsMember, Is.False);
-            Assert.That(groups[1].Photo, Is.EqualTo("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg"));
-            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs410222.userapi.com/g27895931/d_2869e827.jpg"));
-            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs410222.userapi.com/g27895931/a_32935e91.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs410222.userapi.com/g27895931/d_2869e827.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs410222.userapi.com/g27895931/a_32935e91.jpg"));
 
             Assert.That(groups[0].Id, Is.EqualTo(339767));
             Assert.That(groups[0].Name, Is.EqualTo("A-ONE HIP-HOP MUSIC CHANNEL"));
             Assert.That(groups[0].ScreenName, Is.EqualTo("a1tv"));
-            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Group));
             Assert.That(groups[0].IsAdmin, Is.False);
             Assert.That(groups[0].IsMember, Is.False);
-            Assert.That(groups[0].Photo, Is.EqualTo("http://cs9365.userapi.com/g339767/e_a590d16b.jpg"));
-            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs9365.userapi.com/g339767/d_f653c773.jpg"));
-            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs9365.userapi.com/g339767/a_4653ba99.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs9365.userapi.com/g339767/e_a590d16b.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs9365.userapi.com/g339767/d_f653c773.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs9365.userapi.com/g339767/a_4653ba99.jpg"));
         }
 
         [Test]
@@ -755,9 +755,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'page',
                         'is_admin': 0,
                         'is_member': 0,
-                        'photo': 'http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg',
-                        'photo_medium': 'http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg',
-                        'photo_big': 'http://cs303205.userapi.com/g26442631/a_32dd770f.jpg'
+                        'photo_50': 'http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg',
+                        'photo_100': 'http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg',
+                        'photo_200': 'http://cs303205.userapi.com/g26442631/a_32dd770f.jpg'
                       },
                       {
                         'gid': 23727386,
@@ -767,9 +767,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'page',
                         'is_admin': 0,
                         'is_member': 0,
-                        'photo': 'http://cs10650.userapi.com/g23727386/e_8006da42.jpg',
-                        'photo_medium': 'http://cs10650.userapi.com/g23727386/d_cbea0559.jpg',
-                        'photo_big': 'http://cs10650.userapi.com/g23727386/a_7743aab2.jpg'
+                        'photo_50': 'http://cs10650.userapi.com/g23727386/e_8006da42.jpg',
+                        'photo_100': 'http://cs10650.userapi.com/g23727386/d_cbea0559.jpg',
+                        'photo_200': 'http://cs10650.userapi.com/g23727386/a_7743aab2.jpg'
                       },
                       {
                         'gid': 23995866,
@@ -779,9 +779,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'page',
                         'is_admin': 0,
                         'is_member': 0,
-                        'photo': 'http://cs9913.userapi.com/g23995866/e_319d8573.jpg',
-                        'photo_medium': 'http://cs9913.userapi.com/g23995866/d_166572a9.jpg',
-                        'photo_big': 'http://cs9913.userapi.com/g23995866/a_fc553960.jpg'
+                        'photo_50': 'http://cs9913.userapi.com/g23995866/e_319d8573.jpg',
+                        'photo_100': 'http://cs9913.userapi.com/g23995866/d_166572a9.jpg',
+                        'photo_200': 'http://cs9913.userapi.com/g23995866/a_fc553960.jpg'
                       }
                     ]
                   }";
@@ -796,35 +796,35 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[2].Id, Is.EqualTo(23995866));
             Assert.That(groups[2].Name, Is.EqualTo(@"E:\music\"));
             Assert.That(groups[2].ScreenName, Is.EqualTo("e_music"));
-            Assert.That(groups[2].IsClosed, Is.False);
+            Assert.That(groups[2].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[2].Type, Is.EqualTo(GroupType.Page));
             Assert.That(groups[2].IsAdmin, Is.False);
             Assert.That(groups[2].IsMember, Is.False);
-            Assert.That(groups[2].Photo, Is.EqualTo("http://cs9913.userapi.com/g23995866/e_319d8573.jpg"));
-            Assert.That(groups[2].PhotoMedium, Is.EqualTo("http://cs9913.userapi.com/g23995866/d_166572a9.jpg"));
-            Assert.That(groups[2].PhotoBig, Is.EqualTo("http://cs9913.userapi.com/g23995866/a_fc553960.jpg"));
+            Assert.That(groups[2].PhotoPreviews.Photo50, Is.EqualTo("http://cs9913.userapi.com/g23995866/e_319d8573.jpg"));
+            Assert.That(groups[2].PhotoPreviews.Photo100, Is.EqualTo("http://cs9913.userapi.com/g23995866/d_166572a9.jpg"));
+            Assert.That(groups[2].PhotoPreviews.Photo200, Is.EqualTo("http://cs9913.userapi.com/g23995866/a_fc553960.jpg"));
 
             Assert.That(groups[1].Id, Is.EqualTo(23727386));
             Assert.That(groups[1].Name, Is.EqualTo("Classical Music Humor"));
             Assert.That(groups[1].ScreenName, Is.EqualTo("mushumor"));
-            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Page));
             Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].IsMember, Is.False);
-            Assert.That(groups[1].Photo, Is.EqualTo("http://cs10650.userapi.com/g23727386/e_8006da42.jpg"));
-            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg"));
-            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs10650.userapi.com/g23727386/e_8006da42.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg"));
 
             Assert.That(groups[0].Id, Is.EqualTo(26442631));
             Assert.That(groups[0].Name, Is.EqualTo("Music Quotes. First Public."));
             Assert.That(groups[0].ScreenName, Is.EqualTo("music_quotes_public"));
-            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
             Assert.That(groups[0].IsAdmin, Is.False);
             Assert.That(groups[0].IsMember, Is.False);
-            Assert.That(groups[0].Photo, Is.EqualTo("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg"));
-            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg"));
-            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"));
         }
 
         [Test]
@@ -870,9 +870,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'event',
                         'is_admin': 0,
                         'is_member': 0,
-                        'photo': 'http://cs407631.userapi.com/g17683660/e_f700c806.jpg',
-                        'photo_medium': 'http://cs407631.userapi.com/g17683660/d_26f909c0.jpg',
-                        'photo_big': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
+                        'photo_50': 'http://cs407631.userapi.com/g17683660/e_f700c806.jpg',
+                        'photo_100': 'http://cs407631.userapi.com/g17683660/d_26f909c0.jpg',
+                        'photo_200': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
                       }
                     ]
                   }";
@@ -883,13 +883,13 @@ namespace VkToolkit.Tests.Categories
             Assert.That(g.Id, Is.EqualTo(17683660));
             Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
             Assert.That(g.ScreenName, Is.EqualTo("club17683660"));
-            Assert.That(g.IsClosed, Is.False);
+            Assert.That(g.IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(g.IsAdmin, Is.False);
             Assert.That(g.Type, Is.EqualTo(GroupType.Event));
             Assert.That(g.IsMember, Is.False);
-            Assert.That(g.Photo, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-            Assert.That(g.PhotoMedium, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-            Assert.That(g.PhotoBig, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+            Assert.That(g.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+            Assert.That(g.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+            Assert.That(g.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
         }
 
         [Test]
@@ -979,9 +979,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'event',
                         'is_admin': 0,
                         'is_member': 0,
-                        'photo': 'http://cs407631.userapi.com/g17683660/e_f700c806.jpg',
-                        'photo_medium': 'http://cs407631.userapi.com/g17683660/d_26f909c0.jpg',
-                        'photo_big': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
+                        'photo_50': 'http://cs407631.userapi.com/g17683660/e_f700c806.jpg',
+                        'photo_100': 'http://cs407631.userapi.com/g17683660/d_26f909c0.jpg',
+                        'photo_200': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
                       },
                       {
                         'gid': 637247,
@@ -991,9 +991,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'group',
                         'is_admin': 0,
                         'is_member': 1,
-                        'photo': 'http://cs11418.userapi.com/g637247/c_f597d0f8.jpg',
-                        'photo_medium': 'http://cs11418.userapi.com/g637247/b_898ae7f1.jpg',
-                        'photo_big': 'http://cs11418.userapi.com/g637247/a_6be98c68.jpg'
+                        'photo_50': 'http://cs11418.userapi.com/g637247/c_f597d0f8.jpg',
+                        'photo_100': 'http://cs11418.userapi.com/g637247/b_898ae7f1.jpg',
+                        'photo_200': 'http://cs11418.userapi.com/g637247/a_6be98c68.jpg'
                       }
                     ]
                   }";
@@ -1005,24 +1005,24 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[0].Id, Is.EqualTo(17683660));
             Assert.That(groups[0].Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
             Assert.That(groups[0].ScreenName, Is.EqualTo("club17683660"));
-            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[0].IsAdmin, Is.False);
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
             Assert.That(groups[0].IsMember, Is.False);
-            Assert.That(groups[0].Photo, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 
             Assert.That(groups[1].Id, Is.EqualTo(637247));
             Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
             Assert.That(groups[1].ScreenName, Is.EqualTo("club637247"));
-            Assert.That(groups[1].IsClosed, Is.True);
+            Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Closed));
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
             Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].IsMember, Is.True);
-            Assert.That(groups[1].Photo, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
-            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
-            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
 
         }
 
@@ -1046,9 +1046,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'event',
                         'is_admin': 0,
                         'is_member': 0,
-                        'photo': 'http://cs407631.userapi.com/g17683660/e_f700c806.jpg',
-                        'photo_medium': 'http://cs407631.userapi.com/g17683660/d_26f909c0.jpg',
-                        'photo_big': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
+                        'photo_50': 'http://cs407631.userapi.com/g17683660/e_f700c806.jpg',
+                        'photo_100': 'http://cs407631.userapi.com/g17683660/d_26f909c0.jpg',
+                        'photo_200': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
                       },
                       {
                         'gid': 637247,
@@ -1063,9 +1063,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'group',
                         'is_admin': 0,
                         'is_member': 1,
-                        'photo': 'http://cs11418.userapi.com/g637247/c_f597d0f8.jpg',
-                        'photo_medium': 'http://cs11418.userapi.com/g637247/b_898ae7f1.jpg',
-                        'photo_big': 'http://cs11418.userapi.com/g637247/a_6be98c68.jpg'
+                        'photo_50': 'http://cs11418.userapi.com/g637247/c_f597d0f8.jpg',
+                        'photo_100': 'http://cs11418.userapi.com/g637247/b_898ae7f1.jpg',
+                        'photo_200': 'http://cs11418.userapi.com/g637247/a_6be98c68.jpg'
                       }
                     ]
                   }";
@@ -1078,13 +1078,13 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[0].Id, Is.EqualTo(17683660));
             Assert.That(groups[0].Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
             Assert.That(groups[0].ScreenName, Is.EqualTo("club17683660"));
-            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[0].IsAdmin, Is.False);
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
             Assert.That(groups[0].IsMember, Is.False);
-            Assert.That(groups[0].Photo, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+            Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
             Assert.That(groups[0].CityId, Is.EqualTo(95));
             Assert.That(groups[0].CountryId, Is.EqualTo(1));
             Assert.That(groups[0].Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21..."));
@@ -1093,14 +1093,14 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[1].Id, Is.EqualTo(637247));
             Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
             Assert.That(groups[1].ScreenName, Is.EqualTo("club637247"));
-            Assert.That(groups[1].IsClosed, Is.True);
+            Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Closed));
             Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].WikiPage, Is.EqualTo("Chuk Palahniuk"));
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
             Assert.That(groups[1].IsMember, Is.True);
-            Assert.That(groups[1].Photo, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
-            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
-            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
+            Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
             Assert.That(groups[1].CityId, Is.EqualTo(95));
             Assert.That(groups[1].CountryId, Is.EqualTo(1));
             Assert.That(groups[1].Description, Is.EqualTo("Кто он, этот неординарный и талантливый человек? Его творчество спо..."));
@@ -1127,9 +1127,9 @@ namespace VkToolkit.Tests.Categories
                         'type': 'event',
                         'is_admin': 0,
                         'is_member': 0,
-                        'photo': 'http://cs407631.userapi.com/g17683660/e_f700c806.jpg',
-                        'photo_medium': 'http://cs407631.userapi.com/g17683660/d_26f909c0.jpg',
-                        'photo_big': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
+                        'photo_50': 'http://cs407631.userapi.com/g17683660/e_f700c806.jpg',
+                        'photo_100': 'http://cs407631.userapi.com/g17683660/d_26f909c0.jpg',
+                        'photo_200': 'http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg'
                       }
                     ]
                   }";
@@ -1140,13 +1140,13 @@ namespace VkToolkit.Tests.Categories
             Assert.That(g.Id, Is.EqualTo(17683660));
             Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
             Assert.That(g.ScreenName, Is.EqualTo("club17683660"));
-            Assert.That(g.IsClosed, Is.False);
+            Assert.That(g.IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(g.IsAdmin, Is.False);
             Assert.That(g.Type, Is.EqualTo(GroupType.Event));
             Assert.That(g.IsMember, Is.False);
-            Assert.That(g.Photo, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-            Assert.That(g.PhotoMedium, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-            Assert.That(g.PhotoBig, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+            Assert.That(g.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+            Assert.That(g.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+            Assert.That(g.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
             Assert.That(g.CityId, Is.EqualTo(95));
             Assert.That(g.CountryId, Is.EqualTo(1));
             Assert.That(g.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));

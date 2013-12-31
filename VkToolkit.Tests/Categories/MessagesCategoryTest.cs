@@ -54,28 +54,28 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       2217,
                       {
-                        'mid': 4434,
+                        'id': 4434,
                         'date': 1342169928,
                         'out': 0,
-                        'uid': 245242,
+                        'user_id': 245242,
                         'read_state': 0,
                         'title': ' ... ',
                         'body': 'собирлись больше'
                       },
                       {
-                        'mid': 4433,
+                        'id': 4433,
                         'date': 1342169920,
                         'out': 0,
-                        'uid': 245242,
+                        'user_id': 245242,
                         'read_state': 0,
                         'title': ' ... ',
                         'body': 'не особо'
                       },
                       {
-                        'mid': 4431,
+                        'id': 4431,
                         'date': 1342169360,
                         'out': 0,
-                        'uid': 245242,
+                        'user_id': 245242,
                         'read_state': 1,
                         'title': ' ... ',
                         'body': 'наверное точно для демографии))'
@@ -136,10 +136,10 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       18,
                       {
-                        'mid': 2105,
+                        'id': 2105,
                         'date': 1285442252,
                         'out': 0,
-                        'uid': 77128,
+                        'user_id': 77128,
                         'read_state': 1,
                         'title': 'Re(15): Привет!',
                         'body': 'не..не зеленая точно...'
@@ -180,8 +180,8 @@ namespace VkToolkit.Tests.Categories
                       18,
                       {
                         'body': 'Таких литовкиных и сычевых',
-                        'mid': 2093,
-                        'uid': 4793858,
+                        'id': 2093,
+                        'user_id': 4793858,
                         'from_id': 4793858,
                         'date': 1285439088,
                         'read_state': 1,
@@ -189,8 +189,8 @@ namespace VkToolkit.Tests.Categories
                       },
                       {
                         'body': 'в одноклассниках и в майле есть.',
-                        'mid': 2094,
-                        'uid': 7712,
+                        'id': 2094,
+                        'user_id': 7712,
                         'from_id': 7712,
                         'date': 1285439216,
                         'read_state': 1,
@@ -198,8 +198,8 @@ namespace VkToolkit.Tests.Categories
                       },
                       {
                         'body': 'думаю пива предложит попить',
-                        'mid': 2095,
-                        'uid': 4793858,
+                        'id': 2095,
+                        'user_id': 4793858,
                         'from_id': 4793858,
                         'date': 1285439644,
                         'read_state': 1,
@@ -214,7 +214,6 @@ namespace VkToolkit.Tests.Categories
             Assert.That(msgs[2].Body, Is.EqualTo("думаю пива предложит попить"));
             Assert.That(msgs[2].Id, Is.EqualTo(2095));
             Assert.That(msgs[2].UserId, Is.EqualTo(4793858));
-            Assert.That(msgs[2].FromUserId, Is.EqualTo(4793858));
             Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2010, 9, 25, 22, 34, 4)));
             Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
             Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Sended));
@@ -225,7 +224,6 @@ namespace VkToolkit.Tests.Categories
             Assert.That(msgs[0].Id, Is.EqualTo(2093));
             Assert.That(msgs[0].Body, Is.EqualTo("Таких литовкиных и сычевых"));
             Assert.That(msgs[0].UserId, Is.EqualTo(4793858));
-            Assert.That(msgs[0].FromUserId, Is.EqualTo(4793858));
             Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2010, 9, 25, 22, 24, 48)));
             Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
             Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Sended));
@@ -233,7 +231,6 @@ namespace VkToolkit.Tests.Categories
             Assert.That(msgs[1].Body, Is.EqualTo("в одноклассниках и в майле есть."));
             Assert.That(msgs[1].Id, Is.EqualTo(2094));
             Assert.That(msgs[1].UserId, Is.EqualTo(7712));
-            Assert.That(msgs[1].FromUserId, Is.EqualTo(7712));
             Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2010, 9, 25, 22, 26, 56)));
             Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
             Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Received));
@@ -265,10 +262,10 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       1,
                       {
-                        'mid': 1,
+                        'id': 1,
                         'date': 1197929120,
                         'out': 0,
-                        'uid': 684559,
+                        'user_id': 684559,
                         'read_state': 1,
                         'title': ' ... ',
                         'body': 'Привеееет!!!!!!!!!!!'
@@ -296,28 +293,28 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       3,
                       {
-                        'mid': 1,
+                        'id': 1,
                         'date': 1197929120,
                         'out': 0,
-                        'uid': 684559,
+                        'user_id': 684559,
                         'read_state': 1,
                         'title': ' ... ',
                         'body': 'Привеееет!!!!!!!!!!!'
                       },
                       {
-                        'mid': 3,
+                        'id': 3,
                         'date': 1198616980,
                         'out': 1,
-                        'uid': 684559,
+                        'user_id': 684559,
                         'read_state': 1,
                         'title': 'Re: Как там зачетная неделя продвигаетсо?)',
                         'body': 'Парят и парят во все дыры)... у тебя как?'
                       },
                       {
-                        'mid': 5,
+                        'id': 5,
                         'date': 1198617408,
                         'out': 0,
-                        'uid': 684559,
+                        'user_id': 684559,
                         'read_state': 1,
                         'title': 'Re(2): Как там зачетная неделя продвигаетсо?)',
                         'body': 'Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)'
@@ -426,7 +423,7 @@ namespace VkToolkit.Tests.Categories
                       },
                       {
                         'type': 'chat',
-                        'chat_id': 109,
+                        'id': 109,
                         'title': 'Андрей, Григорий',
                         'users': [
                           66748,
@@ -448,10 +445,10 @@ namespace VkToolkit.Tests.Categories
 
             Assert.That(response.Chats[0].Id, Is.EqualTo(109));
             Assert.That(response.Chats[0].Title, Is.EqualTo("Андрей, Григорий"));
-            Assert.That(response.Chats[0].UserIds.Count(), Is.EqualTo(3));
-            Assert.That(response.Chats[0].UserIds.ElementAt(0), Is.EqualTo(66748));
-            Assert.That(response.Chats[0].UserIds.ElementAt(1), Is.EqualTo(6492));
-            Assert.That(response.Chats[0].UserIds.ElementAt(2), Is.EqualTo(1708231));
+            Assert.That(response.Chats[0].Users.Count(), Is.EqualTo(3));
+            Assert.That(response.Chats[0].Users.ElementAt(0), Is.EqualTo(66748));
+            Assert.That(response.Chats[0].Users.ElementAt(1), Is.EqualTo(6492));
+            Assert.That(response.Chats[0].Users.ElementAt(2), Is.EqualTo(1708231));
         }
 
         [Test]
@@ -472,28 +469,28 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       680,
                       {
-                        'mid': 4442,
+                        'id': 4442,
                         'date': 1343764972,
                         'out': 0,
-                        'uid': 1016149,
+                        'user_id': 1016149,
                         'read_state': 1,
                         'title': '...',
                         'body': 'Привет, Антон! Как дела?'
                       },
                       {
-                        'mid': 4415,
+                        'id': 4415,
                         'date': 1342169208,
                         'out': 1,
-                        'uid': 245242,
+                        'user_id': 245242,
                         'read_state': 1,
                         'title': ' ... ',
                         'body': 'привет))'
                       },
                       {
-                        'mid': 4414,
+                        'id': 4414,
                         'date': 1342169192,
                         'out': 0,
-                        'uid': 245242,
+                        'user_id': 245242,
                         'read_state': 1,
                         'title': ' ... ',
                         'body': 'привет, антон))'
@@ -873,7 +870,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': {
                       'type': 'chat',
-                      'chat_id': 2,
+                      'id': 2,
                       'title': 'test chat title',
                       'admin_id': '4793858',
                       'users': [
@@ -889,10 +886,10 @@ namespace VkToolkit.Tests.Categories
             Assert.That(chat.Id, Is.EqualTo(2));
             Assert.That(chat.Title, Is.EqualTo("test chat title"));
             Assert.That(chat.AdminId, Is.EqualTo(4793858));
-            Assert.That(chat.UserIds.Count(), Is.EqualTo(3));
-            Assert.That(chat.UserIds.ElementAt(0), Is.EqualTo(4793858));
-            Assert.That(chat.UserIds.ElementAt(1), Is.EqualTo(5041431));
-            Assert.That(chat.UserIds.ElementAt(2), Is.EqualTo(10657891));
+            Assert.That(chat.Users.Count(), Is.EqualTo(3));
+            Assert.That(chat.Users.ElementAt(0), Is.EqualTo(4793858));
+            Assert.That(chat.Users.ElementAt(1), Is.EqualTo(5041431));
+            Assert.That(chat.Users.ElementAt(2), Is.EqualTo(10657891));
         }
         
         [Test]

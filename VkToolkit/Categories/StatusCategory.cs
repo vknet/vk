@@ -1,9 +1,9 @@
-﻿using System;
-using VkToolkit.Model;
-
-namespace VkToolkit.Categories
+﻿namespace VkToolkit.Categories
 {
+    using System;
+
     using VkToolkit.Enums;
+    using VkToolkit.Model;
     using VkToolkit.Utils;
 
     /// <summary>
@@ -29,7 +29,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/status.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/status.get"/>.
         /// </remarks>
         public Status Get(long uid)
         {
@@ -54,7 +54,7 @@ namespace VkToolkit.Categories
         /// <returns>Возвращает true, если статус был успешно установлен, false в противном случае.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/status.set"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/status.set"/>.
         /// </remarks>
         public bool Set(string text, Audio audio = null)
         {
@@ -82,17 +82,14 @@ namespace VkToolkit.Categories
         /// <returns>Возвращает true, если статус был успешно установлен, false в противном случае.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/status.set"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/status.set"/>.
         /// </remarks>
         public bool Set(Audio audio)
         {
             if (audio == null)
                 throw new ArgumentNullException("audio");
 
-            var parameters = new VkParameters
-                {
-                    { "audio", string.Format("{0}_{1}", audio.OwnerId, audio.Id) }
-                };
+            var parameters = new VkParameters { { "audio", string.Format("{0}_{1}", audio.OwnerId, audio.Id) } };
 
             return _vk.Call("status.set", parameters);
         }

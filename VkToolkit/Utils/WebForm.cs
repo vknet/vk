@@ -1,20 +1,23 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Collections.Generic;
-using System.Web;
-
-using HtmlAgilityPack;
-
-using VkToolkit.Exception;
-
-namespace VkToolkit.Utils
+﻿namespace VkToolkit.Utils
 {
-    internal class WebForm 
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Web;
+
+    using HtmlAgilityPack;
+
+    using VkToolkit.Exception;
+
+    internal class WebForm
     {
-        private readonly HtmlDocument _html;        
+        private readonly HtmlDocument _html;
+
         private readonly Dictionary<string, string> _inputs;
+
         private string _lastName;
+
         private readonly string _originalUrl;
 
         public Cookies Cookies { get; private set; }
@@ -23,7 +26,7 @@ namespace VkToolkit.Utils
         {
             Cookies = result.Cookies;
             _originalUrl = result.RequestUrl.OriginalString;
-            
+
             _html = new HtmlDocument();
             result.LoadResultTo(_html);
 
@@ -84,7 +87,7 @@ namespace VkToolkit.Utils
         private Dictionary<string, string> ParseInputs()
         {
             var inputs = new Dictionary<string, string>();
-            
+
             var form = GetFormNode();
             foreach (var node in form.SelectNodes("//input"))
             {

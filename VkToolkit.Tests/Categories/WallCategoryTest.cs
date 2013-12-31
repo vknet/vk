@@ -62,16 +62,16 @@ namespace VkToolkit.Tests.Categories
                         'attachment': {
                           'type': 'photo',
                           'photo': {
-                            'pid': 283337039,
-                            'aid': -7,
+                            'id': 283337039,
+                            'album_id': -7,
                             'owner_id': 50915841,
-                            'src': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
-                            'src_big': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
-                            'src_small': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
+                            'photo_130': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
+                            'photo_604': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
+                            'photo_75': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
                             'width': 450,
                             'height': 320,
                             'text': '',
-                            'created': 1337542384,
+                            'date': 1337542384,
                             'access_key': 'e377d6e0b55e299741'
                           }
                         },
@@ -79,16 +79,16 @@ namespace VkToolkit.Tests.Categories
                           {
                             'type': 'photo',
                             'photo': {
-                              'pid': 283337039,
-                              'aid': -7,
+                              'id': 283337039,
+                              'album_id': -7,
                               'owner_id': 50915841,
-                              'src': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
-                              'src_big': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
-                              'src_small': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
+                              'photo_130': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
+                              'photo_604': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
+                              'photo_75': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
                               'width': 450,
                               'height': 320,
                               'text': '',
-                              'created': 1337542384,
+                              'date': 1337542384,
                               'access_key': 'e377d6e0b55e299741'
                             }
                           },
@@ -131,7 +131,7 @@ namespace VkToolkit.Tests.Categories
                         'attachment': {
                           'type': 'audio',
                           'audio': {
-                            'aid': 154701206,
+                            'id': 154701206,
                             'owner_id': 4793858,
                             'performer': 'Мук',
                             'title': 'Дорогою добра',
@@ -142,7 +142,7 @@ namespace VkToolkit.Tests.Categories
                           {
                             'type': 'audio',
                             'audio': {
-                              'aid': 154701206,
+                              'id': 154701206,
                               'owner_id': 4793858,
                               'performer': 'Мук',
                               'title': 'Дорогою добра',
@@ -253,14 +253,13 @@ namespace VkToolkit.Tests.Categories
             Assert.That(photo.Id, Is.EqualTo(283337039));
             Assert.That(photo.AlbumId, Is.EqualTo(-7));
             Assert.That(photo.OwnerId, Is.EqualTo(50915841));
-            Assert.That(photo.Src.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg"));
-            Assert.That(photo.SrcBig.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg"));
-            Assert.That(photo.SrcSmall.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg"));
+            Assert.That(photo.Photo130.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg"));
+            Assert.That(photo.Photo604.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg"));
+            Assert.That(photo.Photo75.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg"));
             Assert.That(photo.Width, Is.EqualTo(450));
             Assert.That(photo.Height, Is.EqualTo(320));
             Assert.That(photo.Text, Is.Null.Or.Empty);
             Assert.That(photo.Created, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
-            Assert.That(photo.AccessKey, Is.EqualTo("e377d6e0b55e299741"));
             //Assert.That(records[0]., Is.EqualTo());
 
             Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));
@@ -292,8 +291,7 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       2,
                       {
-                        'cid': 3809,
-                        'uid': 6733856,
+                        'id': 3809,
                         'from_id': 6733856,
                         'date': 1385099144,
                         'text': 'Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!',
@@ -302,8 +300,7 @@ namespace VkToolkit.Tests.Categories
                         }
                       },
                       {
-                        'cid': 3810,
-                        'uid': 3073863,
+                        'id': 3810,
                         'from_id': 3073863,
                         'date': 1385101266,
                         'text': 'C днем рождения малышку и родителей!!!',
@@ -314,16 +311,16 @@ namespace VkToolkit.Tests.Categories
                           {
                             'type': 'photo',
                             'photo': {
-                              'pid': 315467755,
-                              'aid': -5,
+                              'id': 315467755,
+                              'album_id': -5,
                               'owner_id': 3073863,
-                              'src': 'http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg',
-                              'src_big': 'http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg',
-                              'src_small': 'http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg',
+                              'photo_130': 'http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg',
+                              'photo_604': 'http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg',
+                              'photo_75': 'http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg',
                               'width': 510,
                               'height': 383,
                               'text': '',
-                              'created': 1385101231,
+                              'date': 1385101231,
                               'access_key': 'ade2532c6a39c12be6'
                             }
                           }
@@ -340,7 +337,7 @@ namespace VkToolkit.Tests.Categories
 
             var comment0 = comments[0];
             Assert.That(comment0.Id, Is.EqualTo(3809));
-            Assert.That(comment0.UserId, Is.EqualTo(6733856));
+            Assert.That(comment0.FromId, Is.EqualTo(6733856));
             Assert.That(comment0.Date, Is.EqualTo(new DateTime(2013, 11, 22, 09, 45, 44)));
             Assert.That(comment0.Text, Is.EqualTo("Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!"));
             Assert.That(comment0.Likes, Is.Not.Null);
@@ -348,7 +345,7 @@ namespace VkToolkit.Tests.Categories
 
             var comment1 = comments[1];
             Assert.That(comment1.Id, Is.EqualTo(3810));
-            Assert.That(comment1.UserId, Is.EqualTo(3073863));
+            Assert.That(comment1.FromId, Is.EqualTo(3073863));
             Assert.That(comment1.Date, Is.EqualTo(new DateTime(2013, 11, 22, 10, 21, 06)));
             Assert.That(comment1.Text, Is.EqualTo("C днем рождения малышку и родителей!!!"));
             Assert.That(comment1.Likes, Is.Not.Null);
@@ -362,16 +359,15 @@ namespace VkToolkit.Tests.Categories
             Assert.That(photo.Id, Is.EqualTo(315467755));
             Assert.That(photo.AlbumId, Is.EqualTo(-5));
             Assert.That(photo.OwnerId, Is.EqualTo(3073863));
-            Assert.That(photo.Src, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg")));
-            Assert.That(photo.SrcBig, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg")));
-            Assert.That(photo.SrcSmall, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg")));
-            Assert.That(photo.SrcXBig, Is.Null);
-            Assert.That(photo.SrcXxBig, Is.Null);
+            Assert.That(photo.Photo130, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg")));
+            Assert.That(photo.Photo604, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg")));
+            Assert.That(photo.Photo75, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg")));
+            Assert.That(photo.Photo807, Is.Null);
+            Assert.That(photo.Photo1280, Is.Null);
             Assert.That(photo.Width, Is.EqualTo(510));
             Assert.That(photo.Height, Is.EqualTo(383));
             Assert.That(photo.Text, Is.EqualTo(string.Empty));
             Assert.That(photo.Created, Is.EqualTo(new DateTime(2013, 11, 22, 10, 20, 31)));
-            Assert.That(photo.AccessKey, Is.EqualTo("ade2532c6a39c12be6"));
         }
 
         [Test]
@@ -405,12 +401,12 @@ namespace VkToolkit.Tests.Categories
                         'attachment': {
                           'type': 'photo',
                           'photo': {
-                            'pid': 283337039,
-                            'aid': -7,
+                            'id': 283337039,
+                            'album_id': -7,
                             'owner_id': 50915841,
-                            'src': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
-                            'src_big': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
-                            'src_small': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
+                            'photo_130': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
+                            'photo_604': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
+                            'photo_75': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
                             'width': 450,
                             'height': 320,
                             'text': '',
@@ -422,16 +418,16 @@ namespace VkToolkit.Tests.Categories
                           {
                             'type': 'photo',
                             'photo': {
-                              'pid': 283337039,
-                              'aid': -7,
+                              'id': 283337039,
+                              'album_id': -7,
                               'owner_id': 50915841,
-                              'src': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
-                              'src_big': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
-                              'src_small': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
+                              'photo_130': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
+                              'photo_604': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
+                              'photo_75': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
                               'width': 450,
                               'height': 320,
                               'text': '',
-                              'created': 1337542384,
+                              'date': 1337542384,
                               'access_key': 'e377d6e0b55e299741'
                             }
                           },
@@ -485,7 +481,7 @@ namespace VkToolkit.Tests.Categories
                           {
                             'type': 'audio',
                             'audio': {
-                              'aid': 154701206,
+                              'id': 154701206,
                               'owner_id': 4793858,
                               'performer': 'Мук',
                               'title': 'Дорогою добра',
@@ -594,14 +590,13 @@ namespace VkToolkit.Tests.Categories
             Assert.That(photo.Id, Is.EqualTo(283337039));
             Assert.That(photo.AlbumId, Is.EqualTo(-7));
             Assert.That(photo.OwnerId, Is.EqualTo(50915841));
-            Assert.That(photo.Src.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg"));
-            Assert.That(photo.SrcBig.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg"));
-            Assert.That(photo.SrcSmall.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg"));
+            Assert.That(photo.Photo130.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg"));
+            Assert.That(photo.Photo604.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg"));
+            Assert.That(photo.Photo75.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg"));
             Assert.That(photo.Width, Is.EqualTo(450));
             Assert.That(photo.Height, Is.EqualTo(320));
             Assert.That(photo.Text, Is.Null.Or.Empty);
             Assert.That(photo.Created, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
-            Assert.That(photo.AccessKey, Is.EqualTo("e377d6e0b55e299741"));
             //Assert.That(records[0]., Is.EqualTo());
 
             Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));

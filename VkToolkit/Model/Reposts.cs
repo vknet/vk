@@ -1,20 +1,24 @@
-﻿using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using VkToolkit.Utils;
+
     /// <summary>
-    /// Информация о числе людей, которые скопировали запись на свою страницу. 
+    /// Информация о репостах записи. 
+    /// См. описание <see cref="http://vk.com/dev/post"/>. Раздел reposts.
     /// </summary>
     public class Reposts
     {
         /// <summary>
-        /// Число людей, которые скопировали запись на свою страницу.
+        /// Число пользователей, скопировавших запись.
         /// </summary>
         public int Count { get; set; }
+
         /// <summary>
-        /// Признак опубликовал ли текущий пользователь запись на своей странице.
+        /// Наличие репоста от текущего пользователя .
         /// </summary>
         public bool UserReposted { get; set; }
+
+        #region Методы
 
         internal static Reposts FromJson(VkResponse response)
         {
@@ -25,5 +29,7 @@ namespace VkToolkit.Model
 
             return reposts;
         }
+
+        #endregion
     }
 }

@@ -1,9 +1,10 @@
-﻿using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using VkToolkit.Utils;
+
     /// <summary>
     /// Информация о количестве комментариев к записи.
+    /// См. описание <see cref="http://vk.com/dev/post"/>. Раздел comments.
     /// </summary>
     public class Comments
     {
@@ -11,10 +12,13 @@ namespace VkToolkit.Model
         /// Количество комментариев к записи.
         /// </summary>
         public int Count { get; set; }
+
         /// <summary>
         /// Признак может ли текущий пользователь добавить комментарий к записи.
         /// </summary>
         public bool CanPost { get; set; }
+
+        #region Методы
 
         internal static Comments FromJson(VkResponse response)
         {
@@ -25,5 +29,7 @@ namespace VkToolkit.Model
 
             return comments;
         }
+
+        #endregion
     }
 }

@@ -159,7 +159,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': [
                       {
-                        'aid': 158073513,
+                        'id': 158073513,
                         'owner_id': 4793858,
                         'artist': 'Тараканы!',
                         'title': 'Собачье Сердце',
@@ -168,14 +168,14 @@ namespace VkToolkit.Tests.Categories
                         'lyrics_id': '7985406'
                       },
                       {
-                        'aid': 63937759,
+                        'id': 63937759,
                         'owner_id': 2,
                         'artist': 'Madonna',
                         'title': 'Celebration',
                         'duration': 215,
                         'url': 'http://cs4246.vkontakte.ru/u2877745/audio/befc415b7853.mp3',
                         'lyrics_id': '2195871',
-                        'album': '26758146'
+                        'album_id': '26758146'
                       }
                     ]
                   }";
@@ -243,7 +243,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': [
                       {
-                        'aid': 158947216,
+                        'id': 158947216,
                         'owner_id': 4793858,
                         'artist': 'Дядя Женя',
                         'title': 'Вопреки законам природы',
@@ -252,7 +252,7 @@ namespace VkToolkit.Tests.Categories
                         'lyrics_id': '4002932'
                       },
                       {
-                        'aid': 158945986,
+                        'id': 158945986,
                         'owner_id': 4793858,
                         'artist': 'Дядя Женя',
                         'title': 'Финал: Без правил',
@@ -291,7 +291,7 @@ namespace VkToolkit.Tests.Categories
                 @"{
                     'response': [
                       {
-                        'aid': 111400889,
+                        'id': 111400889,
                         'owner_id': -28622822,
                         'artist': 'Дискотека Авария (www.primemusic.ru)',
                         'title': 'Недетское Время',
@@ -299,7 +299,7 @@ namespace VkToolkit.Tests.Categories
                         'url': 'http://cs5002.vkontakte.ru/u40615612/audio/9f34e8775a94.mp3'
                       },
                       {
-                        'aid': 111400883,
+                        'id': 111400883,
                         'owner_id': -28622822,
                         'artist': 'Дискотека Авария',
                         'title': 'Нано Техно (NEW 2011)',
@@ -340,7 +340,7 @@ namespace VkToolkit.Tests.Categories
                         'name': 'Антон Жидков'
                       },
                       {
-                        'aid': 157633898,
+                        'id': 157633898,
                         'owner_id': 4793858,
                         'artist': 'Марш Люфтваффе(немецкая народная песня)',
                         'title': 'Was wollen wir trinken!',
@@ -349,7 +349,7 @@ namespace VkToolkit.Tests.Categories
                         'lyrics_id': '7257154'
                       },
                       {
-                        'aid': 157469004,
+                        'id': 157469004,
                         'owner_id': 4793858,
                         'artist': 'Титаник-гитара=)',
                         'title': 'титаник',
@@ -358,7 +358,7 @@ namespace VkToolkit.Tests.Categories
                         'lyrics_id': '5540676'
                       },
                       {
-                        'aid': 157187769,
+                        'id': 157187769,
                         'owner_id': 4793858,
                         'artist': 'И.В.Сталин',
                         'title': 'Речь И.В.Сталина 7 ноября 1941',
@@ -376,7 +376,7 @@ namespace VkToolkit.Tests.Categories
 
             Assert.That(user, Is.Not.Null);
             Assert.That(user.Id, Is.EqualTo(4793858));
-            Assert.That(user.Photo50, Is.EqualTo("http://cs9215.userapi.com/u4793858/e_1b975695.jpg"));
+            Assert.That(user.PhotoPreviews.Photo50, Is.EqualTo("http://cs9215.userapi.com/u4793858/e_1b975695.jpg"));
             Assert.That(user.FirstName, Is.EqualTo("Антон"));
             Assert.That(user.LastName, Is.EqualTo("Жидков"));
 
@@ -450,34 +450,34 @@ namespace VkToolkit.Tests.Categories
                     'response': [
                       84673,
                       {
-                        'aid': 141104180,
+                        'id': 141104180,
                         'owner_id': 2289065,
                         'artist': '2560 The BEATLES (цикл передач на РАДИО СВОБОДА)',
                         'title': 'Джон, Пол, Ждордж, Ринго - работа для кино',
                         'duration': 3180,
                         'url': 'http://cs5045.vkontakte.ru/u17922696/audio/7af351f23650.mp3',
                         'lyrics_id': '23484916',
-                        'album': '24110176'
+                        'album_id': '24110176'
                       },
                       {
-                        'aid': 141104155,
+                        'id': 141104155,
                         'owner_id': 2289065,
                         'artist': '2556 The BEATLES (цикл передач на РАДИО СВОБОДА)',
                         'title': 'БИТЛЗ. Песни, подаренные другим',
                         'duration': 3179,
                         'url': 'http://cs5045.vkontakte.ru/u17922696/audio/5f36b4e2c652.mp3',
                         'lyrics_id': '23484936',
-                        'album': '24110176'
+                        'album_id': '24110176'
                       },
                       {
-                        'aid': 141104164,
+                        'id': 141104164,
                         'owner_id': 2289065,
                         'artist': '2558 The BEATLES (цикл передач на РАДИО СВОБОДА)',
                         'title': 'Музыка БИТЛЗ у других исполнителей',
                         'duration': 3179,
                         'url': 'http://cs5045.vkontakte.ru/u17922696/audio/6768fd4bfece.mp3',
                         'lyrics_id': '23484929',
-                        'album': '24110176'
+                        'album_id': '24110176'
                       }
                     ]
                   }";
@@ -829,7 +829,7 @@ namespace VkToolkit.Tests.Categories
             const string json =
                 @"{
                     'response': {
-                      'aid': 159209928,
+                      'id': 159209928,
                       'owner_id': 4793858,
                       'artist': '2560 The BEATLES (цикл передач на РАДИО СВОБОДА)',
                       'title': 'Джон, Пол, Ждордж, Ринго - работа для кино',

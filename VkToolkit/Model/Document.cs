@@ -1,28 +1,71 @@
-﻿using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using VkToolkit.Utils;
+
+    /// <summary>
+    /// Информация о документе.
+    /// См. описание <see cref="http://vk.com/dev/doc"/>.
+    /// </summary>
     public class Document
     {
+        /// <summary>
+        /// Идентификатор документа.
+        /// </summary>
         public long? Id { get; set; }
+
+        /// <summary>
+        /// Идентификатор пользователя, загрузившего документ.
+        /// </summary>
         public long? OwnerId { get; set; }
+
+        /// <summary>
+        /// Название документа.
+        /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// Размер документа в байтах.
+        /// </summary>
         public long? Size { get; set; }
+
+        /// <summary>
+        /// Расширение документа.
+        /// </summary>
         public string Ext { get; set; }
+
+        /// <summary>
+        /// Адрес документа, по которому его можно загрузить.
+        /// </summary>
         public string Url { get; set; }
 
-        internal static Document FromJson(VkResponse document)
+        /// <summary>
+        /// Адрес изображения с размером 100x75px (если файл графический).
+        /// </summary>
+        public string Photo100 { get; set; }
+
+        /// <summary>
+        /// Адрес изображения с размером 130x100px (если файл графический).
+        /// </summary>
+        public string Photo130 { get; set; }
+
+        #region Методы
+
+        internal static Document FromJson(VkResponse response)
         {
-            var result = new Document();
+            var document = new Document();
 
-            result.Id = document["did"];
-            result.OwnerId = document["owner_id"];
-            result.Title = document["title"];
-            result.Size = document["size"];
-            result.Ext = document["ext"];
-            result.Url = document["url"];
+            document.Id = response["did"];
+            document.OwnerId = response["owner_id"];
+            document.Title = response["title"];
+            document.Size = response["size"];
+            document.Ext = response["ext"];
+            document.Url = response["url"];
+            document.Photo100 = response["photo_100"];
+            document.Photo130 = response["photo_130"];
 
-            return result;
+            return document;
         }
+
+        #endregion
     }
 }

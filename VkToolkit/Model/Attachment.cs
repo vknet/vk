@@ -1,58 +1,65 @@
-﻿using System;
-
-using VkToolkit.Exception;
-using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using System;
+
+    using VkToolkit.Exception;
+    using VkToolkit.Utils;
+
     /// <summary>
     /// Информация о приложенных к записи объектах. 
+    /// TODO: Доделать.
     /// </summary>
     /// <remarks>
     /// Пока не поддерживаются:
     /// - graffiti - графити;
     /// - app – изображение, загруженное сторонним приложением;
     /// - poll – голосование.
-    /// - album
     /// </remarks>
     public class Attachment
     {
-        /// <summary>
-        /// Информация о типе вложения.
-        /// </summary>
-        public Type Type { get; set; }
-        /// <summary>
-        /// Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
-        /// </summary>
-        internal Photo Photo;
-        /// <summary>
-        /// Видеозапись.
-        /// </summary>
-        internal Video Video;
-        /// <summary>
-        /// Аудиозапись.
-        /// </summary>
-        internal Audio Audio;
-        /// <summary>
-        /// Документ.
-        /// </summary>
-        internal Document Document;
-        /// <summary>
-        /// Заметка.
-        /// </summary>
-        internal Note Note;
-        /// <summary>
-        /// Wiki страница.
-        /// </summary>
-        internal Page Page;
-        /// <summary>
-        /// Ссылка на Web-страницу.
-        /// </summary>
-        internal Link Link;
+        #region Поля
+
         /// <summary>
         /// Альбом с фотографиями.
         /// </summary>
         internal Album Album;
+
+        /// <summary>
+        /// Аудиозапись.
+        /// </summary>
+        internal Audio Audio;
+
+        /// <summary>
+        /// Документ.
+        /// </summary>
+        internal Document Document;
+
+        /// <summary>
+        /// Ссылка на Web-страницу.
+        /// </summary>
+        internal Link Link;
+
+        /// <summary>
+        /// Заметка.
+        /// </summary>
+        internal Note Note;
+
+        /// <summary>
+        /// Wiki страница.
+        /// </summary>
+        internal Page Page;
+
+        /// <summary>
+        /// Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
+        /// </summary>
+        internal Photo Photo;
+
+        /// <summary>
+        /// Видеозапись.
+        /// </summary>
+        internal Video Video;
+
+        #endregion
 
         /// <summary>
         /// Экземпляр самого прикрепления.
@@ -76,11 +83,18 @@ namespace VkToolkit.Model
                 if (Type == typeof(Link))
                     return Link;
                 if (Type == typeof(Album))
-                    return Link;
+                    return Album;
 
                 return null;
             }
         }
+
+        /// <summary>
+        /// Информация о типе вложения.
+        /// </summary>
+        public Type Type { get; set; }
+
+        #region Методы
 
         internal static Attachment FromJson(VkResponse response)
         {
@@ -141,7 +155,7 @@ namespace VkToolkit.Model
                     attachment.Type = typeof(Page);
                     attachment.Page = response["page"];
                     break;
-                
+
                 case "album":
                     attachment.Type = typeof(Album);
                     attachment.Album = response["album"];
@@ -151,7 +165,9 @@ namespace VkToolkit.Model
                     throw new InvalidParamException("The type of attachment is not defined.");
             }
 
-            return attachment;            
+            return attachment;
         }
+
+        #endregion
     }
 }

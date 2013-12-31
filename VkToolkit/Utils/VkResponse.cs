@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Newtonsoft.Json.Linq;
-
-using VkToolkit.Enums;
-using VkToolkit.Model;
-
-namespace VkToolkit.Utils
+﻿namespace VkToolkit.Utils
 {
+    using System;
+    using System.Collections.Generic;
     using System.Web;
+
+    using Newtonsoft.Json.Linq;
+
+    using VkToolkit.Enums;
+    using VkToolkit.Model;
 
     internal class VkResponse
     {
@@ -212,6 +211,11 @@ namespace VkToolkit.Utils
             return response == null ? null : Message.FromJson(response);
         }
 
+        public static implicit operator List<Message>(VkResponse response)
+        {
+            return response.ToListOf(g => (Message)g);
+        }
+
         public static implicit operator Note(VkResponse response)
         {
             return response == null ? null : Note.FromJson(response);
@@ -262,14 +266,14 @@ namespace VkToolkit.Utils
             return response == null ? null : Video.FromJson(response);
         }
 
-        public static implicit operator WallRecord(VkResponse response)
+        public static implicit operator Post(VkResponse response)
         {
-            return response == null ? null : WallRecord.FromJson(response);
+            return response == null ? null : Post.FromJson(response);
         }
 
-        public static implicit operator List<WallRecord>(VkResponse response)
+        public static implicit operator List<Post>(VkResponse response)
         {
-            return response.ToListOf(r => (WallRecord)r);
+            return response.ToListOf(r => (Post)r);
         }
 
         public static implicit operator FriendStatus(VkResponse response)
@@ -387,6 +391,48 @@ namespace VkToolkit.Utils
         public static implicit operator Connections(VkResponse response)
         {
             return response == null ? null : Connections.FromJson(response);
+        }
+
+        public static implicit operator GroupPublicity?(VkResponse response)
+        {
+            if (response == null)
+                return null;
+
+            return Utilities.NullableEnumFrom<GroupPublicity>(response);
+        }
+
+        public static implicit operator AdminLevel?(VkResponse response)
+        {
+            if (response == null)
+                return null;
+
+            return Utilities.NullableEnumFrom<AdminLevel>(response);
+        }
+
+        public static implicit operator Genre?(VkResponse response)
+        {
+            if (response == null)
+                return null;
+
+            return Utilities.NullableEnumFrom<Genre>(response);
+        }
+
+        public static implicit operator Previews(VkResponse response)
+        {
+            return response == null ? null : Previews.FromJson(response);
+        }
+
+        public static implicit operator PageAccessKind?(VkResponse response)
+        {
+            if (response == null)
+                return null;
+
+            return Utilities.NullableEnumFrom<PageAccessKind>(response);
+        }
+
+        public static implicit operator PostSource(VkResponse response)
+        {
+            return response == null ? null : PostSource.FromJson(response);
         }
 
         #endregion

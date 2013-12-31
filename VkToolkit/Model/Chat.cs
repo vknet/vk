@@ -1,26 +1,55 @@
-﻿using System.Collections.Generic;
-
-using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using System.Collections.Generic;
+
+    using VkToolkit.Utils;
+
+    /// <summary>
+    /// Информация о беседе (мультидиалоге, чате).
+    /// См. описание <see cref="http://vk.com/dev/chat_object"/>.
+    /// </summary>
     public class Chat
     {
-        public long? Id { get; set; }
-        public long? AdminId { get; set; }
+        /// <summary>
+        /// Идентификатор беседы.
+        /// </summary>
+        public long Id { get; set; }
+
+        /// <summary>
+        /// Тип диалога.
+        /// </summary>
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Название беседы.
+        /// </summary>
         public string Title { get; set; }
-        public List<long> UserIds { get; set; }
 
-        internal static Chat FromJson(VkResponse chat)
+        /// <summary>
+        /// Идентификатор пользователя, который является создателем беседы.
+        /// </summary>
+        public long? AdminId { get; set; }
+
+        /// <summary>
+        /// Список идентификаторов участников беседы.
+        /// </summary>
+        public List<long> Users { get; set; }
+
+        #region Методы
+
+        internal static Chat FromJson(VkResponse response)
         {
-            var result = new Chat();
+            var chat = new Chat();
 
-            result.Id = chat["chat_id"];
-            result.Title = chat["title"];
-            result.UserIds = chat["users"];
-            result.AdminId = chat["admin_id"];
+            chat.Id = response["id"];
+            chat.Type = response["type"];
+            chat.Title = response["title"];
+            chat.AdminId = response["admin_id"];
+            chat.Users = response["users"];
 
-            return result;            
+            return chat;
         }
+
+        #endregion
     }
 }

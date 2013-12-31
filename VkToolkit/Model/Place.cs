@@ -4,57 +4,79 @@
 
     /// <summary>
     /// Информация о месте, в котором была сделана запись.
+    /// См. описание <see cref="http://vk.com/pages?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D1%8F_geo"/>.
     /// </summary>
     public class Place
     {
         /// <summary>
-        /// Идентификатор места.
+        /// Идентификатор места, который используется в методах <see cref="PlacesCategory.GetById"/>, <see cref="PlacesCategory.GetCheckins"/> и 
+        /// <see cref="PlacesCategory.Checkin"/>.
         /// </summary>
         public long Id { get; set; }
+
         /// <summary>
-        /// Название места.
+        /// Название места, которое можно получить с помощью метода <see cref="PlacesCategory.GetById"/>.
         /// </summary>
         public string Title { get; set; }
+
         /// <summary>
-        /// Идентификатор типа места.
+        /// Идентификатор типа места, информацию о котором можно получить с помощью метода <see cref="PlacesCategory.GetTypes"/>.
         /// </summary>
         public long TypeId { get; set; }
+
         /// <summary>
-        /// Идентификатор страны, в котором находится место.
+        /// Идентификатор страны, название которой можно получить с помощью метода <see cref="PlacesCategory.GetCountryById"/>. 
         /// </summary>
         public long? CountryId { get; set; }
+
+        /// <summary>
+        /// Идентификатор города, название которого можно получить с помощью метода <see cref="PlacesCategory.GetCityById"/>.
+        /// </summary>
+        public long? CityId { get; set; }
+
+        /// <summary>
+        /// Строка с указанием адреса места в городе. 
+        /// </summary>
+        public string Address { get; set; }
+       
+        /// <summary>
+        /// Данный параметр указывается, если местоположение является прикреплённой картой. 
+        /// </summary>
+        public bool ShowMap { get; set; }
+
+        // ------ Установлено в результате экспериментов ------
+
         /// <summary>
         /// Страна, в которой находится место.
         /// </summary>
         public string Country { get; set; }
-        /// <summary>
-        /// Идентификатор города.
-        /// </summary>
-        public long? CityId { get; set; }
+
         /// <summary>
         /// Город, в котором находится место.
         /// </summary>
         public string City { get; set; }
-        /// <summary>
-        /// Адрес места в городе.
-        /// </summary>
-        public string Address { get; set; }
 
-        internal static Place FromJson(VkResponse place)
+        #region Методы
+
+        internal static Place FromJson(VkResponse response)
         {
             // TODO: TEST IT!!!!!
-            var result = new Place();
+            var place = new Place();
 
-            result.Id = place["place_id"];
-            result.Title = place["title"];
-            result.TypeId = place["type"];
-            result.CountryId = place["country_id"];
-            result.Country = place["country"];
-            result.CityId = place["city_id"];
-            result.City = place["city"];
-            result.Address = place["address"];
+            place.Id = response["place_id"];
+            place.Title = response["title"];
+            place.TypeId = response["type"];
+            place.CountryId = response["country_id"];
+            place.CityId = response["city_id"];
+            place.Address = response["address"];
+            place.ShowMap = response["◾showmap"];
 
-            return result;
+            place.Country = response["country"]; // установлено экcпериментальным путем
+            place.City = response["city"]; // установлено экcпериментальным путем
+
+            return place;
         }
+
+        #endregion
     }
 }

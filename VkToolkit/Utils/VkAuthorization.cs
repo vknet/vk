@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using VkToolkit.Exception;
-
-namespace VkToolkit.Utils
+﻿namespace VkToolkit.Utils
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using VkToolkit.Exception;
+
     public class VkAuthorization
     {
         private readonly List<NameValue> _decodedAnswer;
@@ -61,6 +61,7 @@ namespace VkToolkit.Utils
         internal class NameValue
         {
             public string Name { get; set; }
+
             public string Value { get; set; }
 
             public NameValue(string name, string value)
@@ -96,6 +97,5 @@ namespace VkToolkit.Utils
             var query = urlQuery.StartsWith("#") ? urlQuery.Substring(1) : urlQuery;
             return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Split('=')).Select(s => new NameValue(s[0], s[1])).ToList();
         }
-
     }
 }

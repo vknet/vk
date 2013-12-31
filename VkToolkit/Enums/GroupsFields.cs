@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace VkToolkit.Enums
+﻿namespace VkToolkit.Enums
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using VkToolkit.Utils;
 
     /// <summary>
@@ -11,16 +11,25 @@ namespace VkToolkit.Enums
     public sealed class GroupsFields
     {
         private readonly string _name;
+
         private readonly int _value;
+
         private readonly IList<GroupsFields> _fields;
 
-        public static readonly GroupsFields City        = new GroupsFields(1, "city");
-        public static readonly GroupsFields Country     = new GroupsFields(2, "country");
-        public static readonly GroupsFields Place       = new GroupsFields(4, "place");
+        public static readonly GroupsFields City = new GroupsFields(1, "city");
+
+        public static readonly GroupsFields Country = new GroupsFields(2, "country");
+
+        public static readonly GroupsFields Place = new GroupsFields(4, "place");
+
         public static readonly GroupsFields Description = new GroupsFields(8, "description");
-        public static readonly GroupsFields WikiPage    = new GroupsFields(16, "wiki_page");
-        public static readonly GroupsFields StartDate   = new GroupsFields(32, "start_date");
-        public static readonly GroupsFields EndDate     = new GroupsFields(62, "end_date");
+
+        public static readonly GroupsFields WikiPage = new GroupsFields(16, "wiki_page");
+
+        public static readonly GroupsFields StartDate = new GroupsFields(32, "start_date");
+
+        public static readonly GroupsFields EndDate = new GroupsFields(62, "end_date");
+
         public static readonly GroupsFields All = City | Country | Place | Description | WikiPage | StartDate | EndDate;
 
         private GroupsFields(int value, string name)
@@ -47,7 +56,6 @@ namespace VkToolkit.Enums
                     _fields.Add(f1);
             }
 
-
             if (f2._fields != null && f2._fields.Count != 0)
             {
                 foreach (var f in f2._fields)
@@ -63,7 +71,7 @@ namespace VkToolkit.Enums
             }
         }
 
-        public static GroupsFields operator | (GroupsFields f1, GroupsFields f2)
+        public static GroupsFields operator |(GroupsFields f1, GroupsFields f2)
         {
             return new GroupsFields(f1, f2);
         }

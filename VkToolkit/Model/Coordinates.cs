@@ -1,10 +1,13 @@
-﻿using VkToolkit.Exception;
-using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using VkToolkit.Exception;
+    using VkToolkit.Utils;
+
     /// <summary>
     /// Координаты места, в котором была сделана запись.
+    /// См. описание <see cref="http://vk.com/pages?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D1%8F_geo"/>.
+    /// Официальная страница <see cref="http://vk.com/dev/post"/>, описывающая запись на стене и объект Geo в нем, почему то 
+    /// молчит о том, что возвращаются географические координаты.
     /// </summary>
     public class Coordinates
     {
@@ -12,15 +15,18 @@ namespace VkToolkit.Model
         /// Географическая широта.
         /// </summary>
         public double Latitude { get; set; }
+
         /// <summary>
         /// Географическая долгота.
         /// </summary>
         public double Longitude { get; set; }
 
-        internal static Coordinates FromJson(VkResponse coordinates)
+        #region Методы
+
+        internal static Coordinates FromJson(VkResponse response)
         {
             // TODO: TEST IT!!!!!
-            var latitudeWithLongitude = ((string)coordinates).Split(' ');
+            var latitudeWithLongitude = ((string)response).Split(' ');
             if (latitudeWithLongitude.Length != 2)
                 throw new VkApiException("Coordinates must have latitude and longitude!");
 
@@ -32,9 +38,11 @@ namespace VkToolkit.Model
             if (!double.TryParse(latitudeWithLongitude[1].Replace(".", ","), out longitude))
                 throw new VkApiException("Invalid longitude!");
 
-            var result = new Coordinates { Latitude = latitude, Longitude = longitude };
+            var coordinates = new Coordinates { Latitude = latitude, Longitude = longitude };
 
-            return result;
+            return coordinates;
         }
+
+        #endregion
     }
 }

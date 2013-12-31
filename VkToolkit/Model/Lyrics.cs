@@ -1,20 +1,35 @@
-﻿using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using VkToolkit.Utils;
+
+    /// <summary>
+    /// Текст аудиозаписи.
+    /// См. описание <see cref="http://vk.com/dev/audio.getLyrics"/>.
+    /// </summary>
     public class Lyrics
     {
+        /// <summary>
+        /// Идентификатор текста аудиозаписи.
+        /// </summary>
         public long Id { get; set; }
+
+        /// <summary>
+        /// Тест аудиозаписи. В качестве переводов строк в тексте используется '\n'. 
+        /// </summary>
         public string Text { get; set; }
 
-        internal static Lyrics FromJson(VkResponse lyrics)
+        #region Методы
+
+        internal static Lyrics FromJson(VkResponse re)
         {
-            var result = new Lyrics();
+            var lyrics = new Lyrics();
 
-            result.Id = lyrics["lyrics_id"];
-            result.Text = lyrics["text"];
+            lyrics.Id = re["lyrics_id"];
+            lyrics.Text = re["text"];
 
-            return result;
+            return lyrics;
         }
+
+        #endregion
     }
 }

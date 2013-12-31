@@ -1,9 +1,9 @@
-﻿using System.Text;
-
-using VkToolkit.Enums;
-
-namespace VkToolkit.Utils
+﻿namespace VkToolkit.Utils
 {
+    using System.Text;
+
+    using VkToolkit.Enums;
+
     public class Browser : IBrowser
     {
         public string GetJson(string url)

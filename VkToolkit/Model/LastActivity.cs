@@ -1,10 +1,12 @@
-﻿using System;
-using VkToolkit.Utils;
+﻿namespace VkToolkit.Model
+{
+    using System;
 
-namespace VkToolkit.Model
-{    
+    using VkToolkit.Utils;
+
     /// <summary>
     /// Информация о последней активности пользователя.
+    /// См. описание <see cref="http://vk.com/dev/messages.getLastActivity"/>.
     /// </summary>
     public class LastActivity
     {
@@ -12,23 +14,29 @@ namespace VkToolkit.Model
         /// Идентификатор пользователя.
         /// </summary>
         public long UserId { get; set; }
+
         /// <summary>
         /// Текущий статус пользователя (true - в сети, false - не в сети).
         /// </summary>
         public bool? IsOnline { get; set; }
+
         /// <summary>
         /// Дата последней активности пользователя.
         /// </summary>
         public DateTime? Time { get; set; }
 
-        internal static LastActivity FromJson(VkResponse activity)
+        #region Методы
+
+        internal static LastActivity FromJson(VkResponse re)
         {
-            var result = new LastActivity();
+            var lastActivity = new LastActivity();
 
-            result.IsOnline = activity["online"];
-            result.Time = activity["time"];
+            lastActivity.IsOnline = re["online"];
+            lastActivity.Time = re["time"];
 
-            return result;            
+            return lastActivity;
         }
+
+        #endregion
     }
 }

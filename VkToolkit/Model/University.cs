@@ -2,70 +2,92 @@
 {
     using VkToolkit.Utils;
 
+    /// <summary>
+    /// Высшее учебное заведение, в котором учился пользователь.
+    /// См. описание <see cref="http://vk.com/dev/fields"/>. Раздел universities.
+    /// </summary>
     public class University
     {
         /// <summary>
-        /// Идентификатор ВУЗа.
+        /// Идентификатор университета.
         /// </summary>
         public long? Id { get; set; }
+
         /// <summary>
-        /// Идентификатор страны, в которой расположен ВУЗ.
+        /// Идентификатор страны, в которой расположен университет.
         /// </summary>
         public long? Country { get; set; }
+
         /// <summary>
-        /// Идентификатор города, в котором расположен ВУЗ.
+        /// Идентификатор города, в котором расположен университет.
         /// </summary>
         public long? City { get; set; }
+
         /// <summary>
-        /// Наименование ВУЗа.
+        /// Наименование университета.
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         /// Идентификатор факультета.
         /// </summary>
         public long? Faculty { get; set; }
+
         /// <summary>
         /// Название факультета.
         /// </summary>
         public string FacultyName { get; set; }
+
         /// <summary>
         /// Идентификатор кафедры.
         /// </summary>
         public int? Chair { get; set; }
+
         /// <summary>
-        /// Название кафедры.
+        /// Наименование кафедры.
         /// </summary>
         public string ChairName { get; set; }
+
         /// <summary>
         /// Год окончания обучения.
         /// </summary>
         public int? Graduation { get; set; }
+
+        // ------ Установлено в результате экспериментов ------
+
         /// <summary>
         /// Форма обучения.
         /// </summary>
         public string EducationForm { get; set; }
+
         /// <summary>
-        /// Статус пользователя в ВУЗе.
+        /// Статус пользователя в университете.
         /// </summary>
         public string EducationStatus { get; set; }
 
-        internal static University FromJson(VkResponse status)
+        #region Методы
+
+        internal static University FromJson(VkResponse response)
         {
-            var result = new University();
+            var university = new University();
 
-            result.Id = status["id"];
-            result.Country = status["country"];
-            result.City = status["city"];
-            result.Name = status["name"];
-            result.Faculty = status["faculty"];
-            result.FacultyName = status["faculty_name"];
-            result.Chair = status["chair"];
-            result.ChairName = status["chair_name"];
-            result.Graduation = status["graduation"];
-            result.EducationForm = status["education_form"];
-            result.EducationStatus = status["education_status"];
+            university.Id = response["id"];
+            university.Country = response["country"];
+            university.City = response["city"];
+            university.Name = response["name"];
+            university.Faculty = response["faculty"];
+            university.FacultyName = response["faculty_name"];
+            university.Chair = response["chair"];
+            university.ChairName = response["chair_name"];
+            university.Graduation = response["graduation"];
 
-            return result;
+            // установлено экcпериментальным путем
+            university.EducationForm = response["education_form"];
+            university.EducationStatus = response["education_status"];
+
+            return university;
         }
+
+        #endregion
     }
 }

@@ -1,20 +1,26 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace VkToolkit.Enums
+﻿namespace VkToolkit.Enums
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using VkToolkit.Utils;
 
     public sealed class GroupsFilters
     {
         private readonly string _name;
+
         private readonly int _value;
+
         private readonly IList<GroupsFilters> _fields;
 
         public static readonly GroupsFilters Admin = new GroupsFilters(1, "admin");
+
         public static readonly GroupsFilters Groups = new GroupsFilters(2, "groups");
+
         public static readonly GroupsFilters Publics = new GroupsFilters(4, "publics");
+
         public static readonly GroupsFilters Events = new GroupsFilters(8, "events");
+
         public static readonly GroupsFilters All = Admin | Groups | Publics | Events;
 
         private GroupsFilters(int value, string name)
@@ -41,7 +47,6 @@ namespace VkToolkit.Enums
                     _fields.Add(f1);
             }
 
-
             if (f2._fields != null && f2._fields.Count != 0)
             {
                 foreach (var f in f2._fields)
@@ -57,7 +62,7 @@ namespace VkToolkit.Enums
             }
         }
 
-        public static GroupsFilters operator | (GroupsFilters f1, GroupsFilters f2)
+        public static GroupsFilters operator |(GroupsFilters f1, GroupsFilters f2)
         {
             return new GroupsFilters(f1, f2);
         }

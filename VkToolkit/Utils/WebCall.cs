@@ -1,12 +1,14 @@
-﻿using System.Net;
-using System.Text;
-using VkToolkit.Exception;
-
-namespace VkToolkit.Utils
+﻿namespace VkToolkit.Utils
 {
+    using System.Net;
+    using System.Text;
+
+    using VkToolkit.Exception;
+
     internal class WebCall
     {
         private HttpWebRequest Request { get; set; }
+
         private WebCallResult Result { get; set; }
 
         private WebCall(string url, Cookies cookies)

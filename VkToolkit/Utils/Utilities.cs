@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace VkToolkit.Utils
+﻿namespace VkToolkit.Utils
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -56,7 +55,7 @@ namespace VkToolkit.Utils
             using (var reader = new StringReader(preety))
             {
                 bool isFirst = true;
-                for (; ; )
+                for (;;)
                 {
                     string line = reader.ReadLine();
                     if (line == null)

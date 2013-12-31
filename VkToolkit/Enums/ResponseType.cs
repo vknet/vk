@@ -2,7 +2,8 @@
 {
     public enum ResponseType
     {
-        Xml, 
+        Xml,
+
         Json
     }
 }

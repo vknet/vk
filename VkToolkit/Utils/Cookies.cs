@@ -25,10 +25,12 @@
 
         private void BugFixCookieDomain()
         {
-            var table = (Hashtable)Container.GetType().InvokeMember("m_domainTable", BindingFlags.NonPublic | BindingFlags.GetField | 
-                BindingFlags.Instance, null, Container, new object[] { });
+            var table =
+                (Hashtable)
+                    Container.GetType()
+                        .InvokeMember("m_domainTable", BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance, null, Container, new object[] { });
 
-            foreach (string key in table.Keys.OfType<string>().ToList())
+            foreach (var key in table.Keys.OfType<string>().ToList())
             {
                 if (key[0] == '.')
                 {

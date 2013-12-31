@@ -53,10 +53,13 @@
     <Compile Include="Categories\GroupsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
     <Compile Include="Categories\WallCategory.cs" />
+    <Compile Include="Enums\AdminLevel.cs" />
     <Compile Include="Enums\Attitude.cs" />
     <Compile Include="Enums\AudioSort.cs" />
     <Compile Include="Enums\CommentsSort.cs" />
     <Compile Include="Enums\Display.cs" />
+    <Compile Include="Enums\Genre.cs" />
+    <Compile Include="Enums\GroupPublicity.cs" />
     <Compile Include="Enums\GroupsFields.cs" />
     <Compile Include="Enums\GroupsFilters.cs" />
     <Compile Include="Enums\GroupsSort.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="Enums\MessagesFilter.cs" />
     <Compile Include="Enums\MessageType.cs" />
     <Compile Include="Enums\Order.cs" />
+    <Compile Include="Enums\PageAccessKind.cs" />
     <Compile Include="Enums\PeopleMain.cs" />
     <Compile Include="Enums\PoliticalPreferences.cs" />
     <Compile Include="Enums\ProfileFields.cs" />
@@ -85,6 +89,8 @@
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />
     <Compile Include="Model\Link.cs" />
+    <Compile Include="Model\PostSource.cs" />
+    <Compile Include="Model\Previews.cs" />
     <Compile Include="Model\Relative.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
@@ -107,7 +113,7 @@
     <Compile Include="Model\LongPollServerResponse.cs" />
     <Compile Include="Model\Lyrics.cs" />
     <Compile Include="Model\Message.cs" />
-    <Compile Include="Model\MessagesSearchResponse.cs" />
+    <Compile Include="Model\SearchDialogsResponse.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Page.cs" />
     <Compile Include="Model\Photo.cs" />
@@ -122,7 +128,7 @@
     <Compile Include="Model\Status.cs" />
     <Compile Include="Categories\UsersCategory.cs" />
     <Compile Include="Model\Video.cs" />
-    <Compile Include="Model\WallRecord.cs" />
+    <Compile Include="Model\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Browser.cs" />
     <Compile Include="Utils\IBrowser.cs" />

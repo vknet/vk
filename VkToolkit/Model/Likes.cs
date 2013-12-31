@@ -1,39 +1,47 @@
-﻿using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using VkToolkit.Utils;
+
     /// <summary>
-    /// Информация о числе людей, которым понравилась запись.
+    /// Информация о лайках к записи.
+    /// См. описание <see cref="http://vk.com/dev/post"/>. Раздел likes.
     /// </summary>
     public class Likes
     {
         /// <summary>
-        /// Число людей которым понравилась запись.
+        /// Число пользователей, которым понравилась запись.
         /// </summary>
         public int Count { get; set; }
+
         /// <summary>
         /// Признак понравилась ли запись текущему пользователю.
         /// </summary>
         public bool UserLikes { get; set; }
+
         /// <summary>
-        /// Признак может ли текущий пользователь добавить запись в список "Мне нравится".
+        /// Признак может ли текущий пользователь поставить отметку "Мне нравится".
         /// </summary>
         public bool CanLike { get; set; }
+
         /// <summary>
-        /// Признак может ли текущий пользователь опубликовать у себя запись.
+        /// Признак может ли текущий пользователь сделать репост записи (опубликовать у себя запись).
         /// </summary>
         public bool? CanPublish { get; set; }
 
-        internal static Likes FromJson(VkResponse like)
+        #region Методы
+
+        internal static Likes FromJson(VkResponse response)
         {
-            var result = new Likes();
+            var likes = new Likes();
 
-            result.Count = like["count"];
-            result.UserLikes = like["user_likes"];
-            result.CanLike = like["can_like"];
-            result.CanPublish = like["can_publish"];
+            likes.Count = response["count"];
+            likes.UserLikes = response["user_likes"];
+            likes.CanLike = response["can_like"];
+            likes.CanPublish = response["can_publish"];
 
-            return result;
+            return likes;
         }
+
+        #endregion
     }
 }

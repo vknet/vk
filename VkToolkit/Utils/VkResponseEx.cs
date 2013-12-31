@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace VkToolkit.Utils
+﻿namespace VkToolkit.Utils
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     internal static class VkResponseEx
     {
-        public static List<T> ToListOf<T>(this VkResponse response, Func<VkResponse, T> selector) 
+        public static List<T> ToListOf<T>(this VkResponse response, Func<VkResponse, T> selector)
         {
             if (response == null)
                 return new List<T>();
@@ -21,7 +21,7 @@ namespace VkToolkit.Utils
         public static List<T> ToListOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector)
         {
             if (responses == null)
-                return  new List<T>();
+                return new List<T>();
 
             return responses.Select(selector).ToList();
         }

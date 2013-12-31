@@ -1,9 +1,11 @@
 ﻿namespace VkToolkit
 {
-    using System.Diagnostics;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Text;
+
     using Newtonsoft.Json.Linq;
+
     using VkToolkit.Categories;
     using VkToolkit.Enums;
     using VkToolkit.Exception;
@@ -14,16 +16,23 @@
         internal const string InvalidAuthorization = "Invalid authorization";
 
         public UsersCategory Users { get; private set; }
+
         public FriendsCategory Friends { get; private set; }
+
         public StatusCategory Status { get; private set; }
+
         public MessagesCategory Messages { get; private set; }
+
         public GroupsCategory Groups { get; private set; }
+
         public AudioCategory Audio { get; private set; }
+
         public WallCategory Wall { get; private set; }
 
         internal IBrowser Browser { get; set; }
 
         internal string AccessToken { get; set; }
+
         public long UserId { get; set; }
 
         public VkApi()
@@ -69,7 +78,7 @@
 
             VkErrors.IfErrorThrowException(answer);
 
-Trace.WriteLine(Utilities.PreetyPrintJson(answer));
+            Trace.WriteLine(Utilities.PreetyPrintJson(answer));
 
             var json = JObject.Parse(answer);
 

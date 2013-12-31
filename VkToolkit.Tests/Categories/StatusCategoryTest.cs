@@ -214,7 +214,7 @@ namespace VkToolkit.Tests.Categories
                     'response': {
                       'text': 'Тараканы! &ndash; Собачье Сердце',
                       'audio': {
-                        'aid': 158073513,
+                        'id': 158073513,
                         'owner_id': 4793858,
                         'artist': 'Тараканы!',
                         'title': 'Собачье Сердце',

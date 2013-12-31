@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using VkToolkit.Enums;
-using VkToolkit.Model;
-using VkToolkit.Utils;
-
-namespace VkToolkit.Categories
+﻿namespace VkToolkit.Categories
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
+
+    using VkToolkit.Enums;
+    using VkToolkit.Model;
+    using VkToolkit.Utils;
 
     /// <summary>
     /// Методы для работы со стеной пользователя.
@@ -31,23 +31,17 @@ namespace VkToolkit.Categories
         /// <param name="filter">Типы сообщений, которые необходимо получить (по умолчанию возвращаются все сообщения).</param>
         /// <returns>В случае успеха возвращается запрошенный список записей со стены.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/wall.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/wall.get"/>.
         /// </remarks>
-        public List<WallRecord> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
+        public List<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
-            var parameters = new VkParameters
-                {
-                    { "owner_id", ownerId },
-                    { "count", count },
-                    { "offset", offset },
-                    { "filter", filter.ToString().ToLowerInvariant() }
-                };
+            var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
 
             VkResponseArray response = _vk.Call("wall.get", parameters);
 
             totalCount = response[0];
 
-            return response.Skip(1).ToListOf(r => (WallRecord)r);
+            return response.Skip(1).ToListOf(r => (Post)r);
         }
 
         /// <summary>
@@ -66,22 +60,29 @@ namespace VkToolkit.Categories
         /// Список комментариев к записи на стене пользователя.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/wall.getComments"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/wall.getComments"/>.
         /// </remarks>       
-        public List<Comment> GetComments(long ownerId, long postId, out int totalCount, CommentsSort sort = CommentsSort.Ascending, bool needLikes = false, int? count = null, 
-            int? offset = null, int previewLength = 0)
+        public List<Comment> GetComments(
+            long ownerId,
+            long postId,
+            out int totalCount,
+            CommentsSort sort = CommentsSort.Ascending,
+            bool needLikes = false,
+            int? count = null,
+            int? offset = null,
+            int previewLength = 0)
         {
             var parameters = new VkParameters
-                {
-                    { "owner_id", ownerId },
-                    { "post_id", postId },
-                    { "sort", sort.ToString().ToLowerInvariant() },
-                    { "need_likes", needLikes },
-                    { "count", count },
-                    { "offset", offset },
-                    { "preview_length", previewLength },
-                    { "v", "4.4" }
-                };
+                             {
+                                 { "owner_id", ownerId },
+                                 { "post_id", postId },
+                                 { "sort", sort.ToString().ToLowerInvariant() },
+                                 { "need_likes", needLikes },
+                                 { "count", count },
+                                 { "offset", offset },
+                                 { "preview_length", previewLength },
+                                 { "v", "4.4" }
+                             };
 
             VkResponseArray response = _vk.Call("wall.getComments", parameters);
 
@@ -101,9 +102,9 @@ namespace VkToolkit.Categories
         /// После успешного выполнения возвращает список объектов записей со стены. 
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/wall.getById"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/wall.getById"/>.
         /// </remarks>       
-        public List<WallRecord> GetById(IEnumerable<string> posts)
+        public List<Post> GetById(IEnumerable<string> posts)
         {
             if (posts == null)
                 throw new ArgumentNullException("posts");

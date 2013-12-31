@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
-using Newtonsoft.Json.Linq;
-
-namespace VkToolkit.Utils
+﻿namespace VkToolkit.Utils
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using Newtonsoft.Json.Linq;
+
     internal class VkResponseArray : IEnumerable<VkResponse>
     {
         private readonly JArray _array;
@@ -26,10 +26,7 @@ namespace VkToolkit.Utils
 
         public int Count
         {
-            get
-            {
-                return _array.Count;
-            }
+            get { return _array.Count; }
         }
 
         public IEnumerator<VkResponse> GetEnumerator()

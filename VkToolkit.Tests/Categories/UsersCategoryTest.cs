@@ -319,7 +319,7 @@ namespace VkToolkit.Tests.Categories
                         'about': 'отличный мужик',
                         'relatives': [
                           {
-                            'uid': 1,
+                            'id': 1,
                             'type': 'sibling'
                           },
                         ],
@@ -361,11 +361,11 @@ namespace VkToolkit.Tests.Categories
             Assert.That(p.City, Is.EqualTo(10));
             Assert.That(p.Country, Is.EqualTo(1));
             Assert.That(p.Timezone, Is.EqualTo(3));
-            Assert.That(p.Photo50, Is.EqualTo("http://cs9215.userapi.com/u4793858/e_1b975695.jpg"));
-            Assert.That(p.Photo100, Is.EqualTo("http://cs9215.userapi.com/u4793858/b_8ba11bd6.jpg"));
-            Assert.That(p.Photo200, Is.EqualTo("http://cs9215.userapi.com/u4793858/a_33cbff34.jpg"));
-            Assert.IsNull(p.Photo400);
-            Assert.That(p.PhotoMax, Is.EqualTo("http://cs9215.userapi.com/u4793858/a_33cbff34.jpg"));
+            Assert.That(p.PhotoPreviews.Photo50, Is.EqualTo("http://cs9215.userapi.com/u4793858/e_1b975695.jpg"));
+            Assert.That(p.PhotoPreviews.Photo100, Is.EqualTo("http://cs9215.userapi.com/u4793858/b_8ba11bd6.jpg"));
+            Assert.That(p.PhotoPreviews.Photo200, Is.EqualTo("http://cs9215.userapi.com/u4793858/a_33cbff34.jpg"));
+            Assert.IsNull(p.PhotoPreviews.Photo400);
+            Assert.That(p.PhotoPreviews.PhotoMax, Is.EqualTo("http://cs9215.userapi.com/u4793858/a_33cbff34.jpg"));
             Assert.That(p.HasMobile, Is.EqualTo(true));
             Assert.That(p.MobilePhone, Is.EqualTo("+79191234567"));
             Assert.That(p.HomePhone, Is.EqualTo("87-98-12"));
@@ -725,23 +725,17 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[0].Id, Is.EqualTo(29689780));
             Assert.That(groups[0].Name, Is.EqualTo("Art and Life ©"));
             Assert.That(groups[0].ScreenName, Is.EqualTo("art.and.life"));
-            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[0].IsAdmin, Is.False);
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
-            Assert.That(groups[0].Photo, Is.EqualTo("http://cs11003.userapi.com/g29689780/e_1bea6489.jpg"));
-            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs11003.userapi.com/g29689780/d_f50bf769.jpg"));
-            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs11003.userapi.com/g29689780/a_1889c16e.jpg"));
 
             Assert.That(groups[1], Is.Not.Null);
             Assert.That(groups[1].Id, Is.EqualTo(33489538));
             Assert.That(groups[1].Name, Is.EqualTo("Английский как стиль жизни. Где перевод?"));
             Assert.That(groups[1].ScreenName, Is.EqualTo("english_for_adults"));
-            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
-            Assert.That(groups[1].Photo, Is.EqualTo("http://cs5538.userapi.com/g33489538/e_1d36792d.jpg"));
-            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs5538.userapi.com/g33489538/d_caafe13e.jpg"));
-            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs5538.userapi.com/g33489538/a_6d6f2525.jpg"));
         }
 
         [Test]
@@ -784,23 +778,17 @@ namespace VkToolkit.Tests.Categories
             Assert.That(groups[0].Id, Is.EqualTo(29689780));
             Assert.That(groups[0].Name, Is.EqualTo("Art and Life ©"));
             Assert.That(groups[0].ScreenName, Is.EqualTo("art.and.life"));
-            Assert.That(groups[0].IsClosed, Is.False);
+            Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[0].IsAdmin, Is.True);
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
-            Assert.That(groups[0].Photo, Is.EqualTo("http://cs11003.userapi.com/g29689780/e_1bea6489.jpg"));
-            Assert.That(groups[0].PhotoMedium, Is.EqualTo("http://cs11003.userapi.com/g29689780/d_f50bf769.jpg"));
-            Assert.That(groups[0].PhotoBig, Is.EqualTo("http://cs11003.userapi.com/g29689780/a_1889c16e.jpg"));
 
             Assert.That(groups[1], Is.Not.Null);
             Assert.That(groups[1].Id, Is.EqualTo(33489538));
             Assert.That(groups[1].Name, Is.EqualTo("Английский как стиль жизни. Где перевод?"));
             Assert.That(groups[1].ScreenName, Is.EqualTo("english_for_adults"));
-            Assert.That(groups[1].IsClosed, Is.False);
+            Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
             Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
-            Assert.That(groups[1].Photo, Is.EqualTo("http://cs5538.userapi.com/g33489538/e_1d36792d.jpg"));
-            Assert.That(groups[1].PhotoMedium, Is.EqualTo("http://cs5538.userapi.com/g33489538/d_caafe13e.jpg"));
-            Assert.That(groups[1].PhotoBig, Is.EqualTo("http://cs5538.userapi.com/g33489538/a_6d6f2525.jpg"));
         }
 
         [Test]

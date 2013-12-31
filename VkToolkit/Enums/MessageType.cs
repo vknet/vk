@@ -8,7 +8,8 @@
         /// <summary>
         /// Полученное сообщение.
         /// </summary>
-        Received = 0, 
+        Received = 0,
+
         /// <summary>
         /// Отправленное сообщение.
         /// </summary>

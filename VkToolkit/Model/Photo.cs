@@ -1,91 +1,103 @@
-﻿using System;
-
-using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using System;
+
+    using VkToolkit.Utils;
+
     /// <summary>
     /// Фотография.
+    /// См. описание <see cref="http://vk.com/dev/photo"/>.
     /// </summary>
     public class Photo
     {
         /// <summary>
-        /// Идентификатор изображения.
+        /// Идентификатор фотографии.
         /// </summary>
         public long? Id { get; set; }
+
         /// <summary>
-        /// Идентификатор альбома, в котором находится изображение.
+        /// Идентификатор альбома, в котором находится фотография.
         /// </summary>
         public long? AlbumId { get; set; }
+
         /// <summary>
-        /// Идентификатор владельца альбома.
+        /// Идентификатор владельца фотографии.
         /// </summary>
         public long? OwnerId { get; set; }
+
         /// <summary>
-        /// TODO: Неизвестно ???
+        /// Url фотографии с максимальным размером 75x75px.
         /// </summary>
-        public long? UserId { get; set; }
+        public Uri Photo75 { get; set; }
+
         /// <summary>
-        /// Url фотографии.
+        /// Url фотографии с максимальным размером 130x130px.
         /// </summary>
-        public Uri Src { get; set; }
+        public Uri Photo130 { get; set; }
+
         /// <summary>
-        /// Url маленькой фотографии.
+        /// Url фотографии с максимальным размером 604x604px.
         /// </summary>
-        public Uri SrcSmall { get; set; }
+        public Uri Photo604 { get; set; }
+
         /// <summary>
-        /// Url большой картинки фотографии.
+        /// Url фотографии с максимальным размером 807x807px.
         /// </summary>
-        public Uri SrcBig { get; set; }
+        public Uri Photo807 { get; set; }
+
         /// <summary>
-        /// Url очень большой фотографии.
+        /// Url фотографии с максимальным размером 1280x1024px. 
         /// </summary>
-        public Uri SrcXBig { get; set; }
+        public Uri Photo1280 { get; set; }
+
         /// <summary>
-        /// Url самой большой фотографии.
+        /// Url фотографии с максимальным размером  2560x2048px.
         /// </summary>
-        public Uri SrcXxBig { get; set; }
+        public Uri Photo2560 { get; set; }
+
         /// <summary>
-        /// Время создания превьюшки.
-        /// </summary>
-        public string Text { get; set; }
-        /// <summary>
-        /// Время создания фотографии.
-        /// </summary>
-        public DateTime? Created { get; set; }
-        /// <summary>
-        /// Ширина изображения.
+        /// Ширина оригинала фотографии в пикселах
         /// </summary>
         public int? Width { get; set; }
+
         /// <summary>
-        /// Высота изображения.
+        /// Высота оригинала фотографии в пикселах. 
         /// </summary>
         public int? Height { get; set; }
+
         /// <summary>
-        /// Ключ доступа к фотографии.
+        /// Текст описания фотографии. 
         /// </summary>
-        public string AccessKey { get; set; }
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Дата добавления фотографии.
+        /// </summary>
+        public DateTime? Created { get; set; }
+
+        #region Методы
 
         internal static Photo FromJson(VkResponse response)
         {
             var photo = new Photo();
 
-            photo.Id = response["pid"];
-            photo.AlbumId = response["aid"];
+            photo.Id = response["id"];
+            photo.AlbumId = response["album_id"];
             photo.OwnerId = response["owner_id"];
-            photo.UserId = response["user_id"];
-            photo.Text = response["text"];
+            photo.Photo75 = response["photo_75"];
+            photo.Photo130 = response["photo_130"];
+            photo.Photo604 = response["photo_604"];
+            photo.Photo807 = response["photo_807"];
+            photo.Photo1280 = response["photo_1280 "];
+            photo.Photo2560 = response["photo_2560"];
             photo.Width = response["width"];
             photo.Height = response["height"];
-            photo.AccessKey = response["access_key"];
-            photo.Src = response["src"];
-            photo.SrcSmall = response["src_small"];
-            photo.SrcBig = response["src_big"];
-            photo.Created = response["created"];
-            photo.SrcXBig = response["src_xbig"];
-            photo.SrcXxBig = response["src_xxbig"];
+            photo.Text = response["text"];
+            photo.Created = response["date"];
 
             return photo;
         }
+
+        #endregion
     }
 }

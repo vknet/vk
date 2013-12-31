@@ -9,7 +9,8 @@
         {
         }
 
-        public VkParameters(IDictionary<string, string> parameters) : base(parameters)
+        public VkParameters(IDictionary<string, string> parameters)
+            : base(parameters)
         {
         }
 
@@ -18,7 +19,7 @@
             get { return new VkParameters(); }
         }
 
-        public void Add<T>(string name, T value) 
+        public void Add<T>(string name, T value)
         {
             if (value == null)
                 return;
@@ -53,7 +54,7 @@
             Add(name, nullableValue.Value);
         }
 
-        public void Add(string name, DateTime? nullableDateTime) 
+        public void Add(string name, DateTime? nullableDateTime)
         {
             if (!nullableDateTime.HasValue)
                 return;

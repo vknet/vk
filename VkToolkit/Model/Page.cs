@@ -1,47 +1,117 @@
-﻿using System;
-
-using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using VkToolkit.Enums;
+    using VkToolkit.Utils;
+
+    /// <summary>
+    /// Информация о вики-странице сообщества. 
+    /// См. описание <see cref="http://vk.com/dev/pages.get"/>.
+    /// </summary>
     public class Page
     {
+        /// <summary>
+        /// Идентификатор страницы.
+        /// </summary>
         public long? Id { get; set; }
+
+        /// <summary>
+        /// Идентификатор сообщества.
+        /// </summary>
         public long? GroupId { get; set; }
+
+        /// <summary>
+        /// Идентификатор создателя страницы.
+        /// </summary>
         public long? CreatorId { get; set; }
+
+        /// <summary>
+        /// Название страницы.
+        /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// Текст страницы в вики-формате.
+        /// </summary>
         public string Source { get; set; }
+
+        /// <summary>
+        /// Указывает, может ли текущий пользователь редактировать текст страницы.
+        /// </summary>
         public bool CurrentUserCanEdit { get; set; }
+
+        /// <summary>
+        /// Указывает, может ли текущий пользователь изменять права доступа на страницу.
+        /// </summary>
         public bool CurrentUserCanEditAccess { get; set; }
 
-        public int? WhoCanView { get; set; } // TODO: int -> enum
-        public int? WhoCanEdit { get; set; } // TODO: int -> enum
+        /// <summary>
+        /// Указывает, кто может просматривать вики-страницу.
+        /// </summary>
+        public PageAccessKind? WhoCanView { get; set; } 
+
+        /// <summary>
+        /// Указывает, кто может редактировать вики-страницу.
+        /// </summary>
+        public PageAccessKind? WhoCanEdit { get; set; } 
+
+        /// <summary>
+        /// Идентификатор пользователя, который редактировал страницу последним.
+        /// </summary>
         public long? EditorId { get; set; }
-        public DateTime? Edited { get; set; }
-        public DateTime? Created { get; set; }
+
+        /// <summary>
+        /// Дата последнего изменения (в виде строки).
+        /// </summary>
+        public string Edited { get; set; }
+
+        /// <summary>
+        /// Дата создания страницы (в виде строки).
+        /// </summary>
+        public string Created { get; set; }
+
+        /// <summary>
+        /// Заголовок родительской страницы для навигации, если есть.
+        /// </summary>
         public string Parent { get; set; }
+
+        /// <summary>
+        /// Заголовок второй родительской страницы для навигации, если есть.
+        /// </summary>
         public string Parent2 { get; set; }
 
-        internal static Page FromJson(VkResponse page)
+        // ------ Установлено в результате экспериментов ------
+
+        /// <summary>
+        /// Html-текст страницы.
+        /// </summary>
+        public string Html { get; set; }
+
+        #region Методы
+
+        internal static Page FromJson(VkResponse response)
         {
-            var result = new Page();
+            var page = new Page();
 
-            result.Id = page["pid"];
-            result.GroupId = page["group_id"];
-            result.CreatorId = page["creator_id"];
-            result.Title = page["title"];
-            result.Source = page["source"];
-            result.CurrentUserCanEdit = page["current_user_can_edit"];
-            result.CurrentUserCanEditAccess = page["current_user_can_edit_access"];
-            result.WhoCanView = page["who_can_view"];
-            result.WhoCanEdit = page["who_can_edit"];
-            result.EditorId = page["editor_id"];
-            result.Parent = page["parent"];
-            result.Parent2 = page["parent2"];
-            result.Edited = page["edited"];
-            result.Created = page["created"];
+            page.Id = response["pid"];
+            page.GroupId = response["group_id"];
+            page.CreatorId = response["creator_id"];
+            page.Title = response["title"];
+            page.Source = response["source"];
+            page.CurrentUserCanEdit = response["current_user_can_edit"];
+            page.CurrentUserCanEditAccess = response["current_user_can_edit_access"];
+            page.WhoCanView = response["who_can_view"];
+            page.WhoCanEdit = response["who_can_edit"];
+            page.EditorId = response["editor_id"];
+            page.Edited = response["edited"];
+            page.Created = response["created"];
+            page.Parent = response["parent"];
+            page.Parent2 = response["parent2"];
 
-            return result;            
-        }       
+            page.Html = response["html"]; // установлено экcпериментальным путем
+
+            return page;
+        }
+
+        #endregion
     }
 }

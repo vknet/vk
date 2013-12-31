@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using VkToolkit.Enums;
-using VkToolkit.Model;
-using VkToolkit.Utils;
-
-namespace VkToolkit.Categories
+﻿namespace VkToolkit.Categories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using VkToolkit.Enums;
+    using VkToolkit.Model;
+    using VkToolkit.Utils;
+
     /// <summary>
     /// Методы для работы с друзьями.
     /// </summary>
@@ -31,24 +32,17 @@ namespace VkToolkit.Categories
         /// Если значение поля <paramref name="fields"/> не указано, то у возвращаемых друзей заполняется только поле Id.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.get"/>.
         /// </remarks>       
         public List<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, Order order = null)
         {
-            var parameters = new VkParameters
-                {
-                    { "uid", uid }, 
-                    { "fields", fields }, 
-                    { "count", count }, 
-                    { "offset", offset }, 
-                    { "order", order }
-                };
+            var parameters = new VkParameters { { "uid", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order } };
 
             var response = _vk.Call("friends.get", parameters);
 
             if (fields != null)
                 return response;
-            
+
             return response.ToListOf(id => new User { Id = id });
         }
 
@@ -60,7 +54,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.getAppUsers"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getAppUsers"/>.
         /// </remarks>       
         public List<long> GetAppUsers()
         {
@@ -78,7 +72,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.getOnline"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getOnline"/>.
         /// </remarks>       
         public List<long> GetOnline(long uid)
         {
@@ -97,7 +91,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.getMutual"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getMutual"/>.
         /// </remarks>       
         public List<long> GetMutual(long targetUid, long sourceUid)
         {
@@ -114,7 +108,7 @@ namespace VkToolkit.Categories
         /// <returns>Метод возвращает словарь, ключом которого является идентификатор пользователя (uid), а значением значение типа <see cref="FriendStatus"/>.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/friends.areFriends"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.areFriends"/>.
         /// </remarks>       
         public IDictionary<long, FriendStatus> AreFriends(IEnumerable<long> uids)
         {

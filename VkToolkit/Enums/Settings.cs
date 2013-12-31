@@ -1,48 +1,65 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using VkToolkit.Utils;
-
-namespace VkToolkit.Enums
+﻿namespace VkToolkit.Enums
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using VkToolkit.Utils;
+
     public sealed class Settings
     {
         private readonly string _name;
+
         private int _value;
+
         public int Value
-        { 
-            get
-            {
-                return _scopes != null && _scopes.Any() ? _scopes.Sum(s => s.Value) : _value;
-            } 
-            
+        {
+            get { return _scopes != null && _scopes.Any() ? _scopes.Sum(s => s.Value) : _value; }
+
             private set { _value = value; }
         }
+
         private readonly IList<Settings> _scopes;
 
-        public static readonly Settings Notify      = new Settings(1, "notify");
-        public static readonly Settings Friends     = new Settings(2, "friends");
-        public static readonly Settings Photos      = new Settings(4, "photos");
-        public static readonly Settings Audio       = new Settings(8, "audio");
-        public static readonly Settings Video       = new Settings(16, "video");
-        public static readonly Settings Offers      = new Settings(32, "offers");
-        public static readonly Settings Questions   = new Settings(64, "questions");
-        public static readonly Settings Pages       = new Settings(128, "pages");
+        public static readonly Settings Notify = new Settings(1, "notify");
+
+        public static readonly Settings Friends = new Settings(2, "friends");
+
+        public static readonly Settings Photos = new Settings(4, "photos");
+
+        public static readonly Settings Audio = new Settings(8, "audio");
+
+        public static readonly Settings Video = new Settings(16, "video");
+
+        public static readonly Settings Offers = new Settings(32, "offers");
+
+        public static readonly Settings Questions = new Settings(64, "questions");
+
+        public static readonly Settings Pages = new Settings(128, "pages");
+
         public static readonly Settings AddLinkToLeftMenu = new Settings(256, "");
+
         public static readonly Settings AddLinkToWallPost = new Settings(512, "");
-        public static readonly Settings Status      = new Settings(1024, "status");
-        public static readonly Settings Notes       = new Settings(2048, "notes");
-        public static readonly Settings Messages    = new Settings(4096, "messages");
-        public static readonly Settings Wall        = new Settings(8192, "wall");
-        public static readonly Settings Ads         = new Settings(32768, "ads");
-        public static readonly Settings Docs        = new Settings(131072, "docs");
-        public static readonly Settings Groups      = new Settings(262144, "groups");
+
+        public static readonly Settings Status = new Settings(1024, "status");
+
+        public static readonly Settings Notes = new Settings(2048, "notes");
+
+        public static readonly Settings Messages = new Settings(4096, "messages");
+
+        public static readonly Settings Wall = new Settings(8192, "wall");
+
+        public static readonly Settings Ads = new Settings(32768, "ads");
+
+        public static readonly Settings Docs = new Settings(131072, "docs");
+
+        public static readonly Settings Groups = new Settings(262144, "groups");
+
         public static readonly Settings Notifications = new Settings(524288, "notifications");
-        public static readonly Settings Statistic       = new Settings(1048576, "stats");
-        
-        public static readonly Settings All = Notify | Friends | Photos | Audio | Video
-            | Docs | Notes | Pages | Status | Wall | Offers | Questions | Groups
-            | Messages | Notifications | Statistic | Ads;
+
+        public static readonly Settings Statistic = new Settings(1048576, "stats");
+
+        public static readonly Settings All = Notify | Friends | Photos | Audio | Video | Docs | Notes | Pages | Status | Wall | Offers | Questions | Groups | Messages
+                                              | Notifications | Statistic | Ads;
 
         private Settings(int value, string name)
         {
@@ -83,7 +100,7 @@ namespace VkToolkit.Enums
             }
         }
 
-        public static Settings operator | (Settings s1, Settings s2)
+        public static Settings operator |(Settings s1, Settings s2)
         {
             return new Settings(s1, s2);
         }

@@ -12,10 +12,12 @@
         /// Непрочитанные сообщения.
         /// </summary>
         Unread = 1,
+
         /// <summary>
         /// Сообщения не из чата.
         /// </summary>
         NotFromChat = 2,
+
         /// <summary>
         /// Сообщения от друзей. 
         /// </summary>

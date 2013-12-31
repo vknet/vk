@@ -1,63 +1,80 @@
-﻿using VkToolkit.Utils;
-
-namespace VkToolkit.Model
+﻿namespace VkToolkit.Model
 {
+    using VkToolkit.Utils;
+
+    /// <summary>
+    /// Информация о высшем учебном заведении пользователя.
+    /// См. описание <see cref="http://vk.com/dev/fields"/>. Раздел education.
+    /// </summary>
     public class Education
     {
         /// <summary>
-        /// Идентификатор ВУЗа.
+        /// Идентификатор университета.
         /// </summary>
         public long? UniversityId { get; set; }
+
         /// <summary>
         /// Название ВУЗа.
         /// </summary>
         public string UniversityName { get; set; }
+
         /// <summary>
         /// Идентификатор факультета.
         /// </summary>
         public long? FacultyId { get; set; }
+
         /// <summary>
         /// Название факультета.
         /// </summary>
         public string FacultyName { get; set; }
+
         /// <summary>
         /// Год окончания.
         /// </summary>
         public int? Graduation { get; set; }
+
+        // ------ Установлено в результате экспериментов ------
+
         /// <summary>
         /// Форма обучения.
         /// </summary>
         public string EducationForm { get; set; }
+
         /// <summary>
-        /// Текущий статус пользователя в ВУЗе.
+        /// Текущий статус пользователя в высшем учебном заведении.
         /// </summary>
         public string EducationStatus { get; set; }
 
-        internal static Education FromJson(VkResponse user)
+        #region Методы
+
+        internal static Education FromJson(VkResponse response)
         {
-            if (user["university"] == "0")
+            if (response["university"] == "0")
                 return null;
 
-            var result = new Education();
+            var education = new Education();
 
-            result.UniversityId = user["university"];
-            result.FacultyId = user["faculty"];
-            result.Graduation = user["graduation"];
-            result.UniversityName = user["university_name"];
-            result.FacultyName = user["faculty_name"];
-            result.EducationForm = user["education_form"];
-            result.EducationStatus = user["education_status"];
+            education.UniversityId = response["university"];
+            education.UniversityName = response["university_name"];
+            education.FacultyId = response["faculty"];
+            education.FacultyName = response["faculty_name"];
+            education.Graduation = response["graduation"];
 
-            if (result.UniversityId.HasValue && result.UniversityId == 0)
-                result.UniversityId = null;
+            if (education.UniversityId.HasValue && education.UniversityId == 0)
+                education.UniversityId = null;
 
-            if (result.FacultyId.HasValue && result.FacultyId == 0)
-                result.FacultyId = null;
+            if (education.FacultyId.HasValue && education.FacultyId == 0)
+                education.FacultyId = null;
 
-            if (result.Graduation.HasValue && result.Graduation == 0)
-                result.Graduation = null;
+            if (education.Graduation.HasValue && education.Graduation == 0)
+                education.Graduation = null;
 
-            return result;
+            education.EducationForm = response["education_form"]; // установлено экcпериментальным путем
+            education.EducationStatus = response["education_status"]; // установлено экcпериментальным путем
+
+            return education;
         }
+
+        #endregion
     }
 }

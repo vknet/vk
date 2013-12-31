@@ -1,10 +1,28 @@
 ﻿namespace VkToolkit.Enums
 {
+    /// <summary>
+    /// Тип сообщества
+    /// </summary>
     public enum GroupType
     {
-        Page, 
-        Group, 
-        Event, 
+        /// <summary>
+        /// Публичная страница.
+        /// </summary>
+        Page,
+
+        /// <summary>
+        /// Группа.
+        /// </summary>
+        Group,
+
+        /// <summary>
+        /// Мероприятие.
+        /// </summary>
+        Event,
+
+        /// <summary>
+        /// Не определено.
+        /// </summary>
         Undefined
     }
 }

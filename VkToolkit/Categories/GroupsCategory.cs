@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using VkToolkit.Enums;
-using VkToolkit.Exception;
-using VkToolkit.Model;
-using VkToolkit.Utils;
-
-namespace VkToolkit.Categories
+﻿namespace VkToolkit.Categories
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using VkToolkit.Enums;
+    using VkToolkit.Exception;
+    using VkToolkit.Model;
+    using VkToolkit.Utils;
+
     /// <summary>
     /// Методы для работы с сообществами (группами).
     /// </summary>
@@ -27,7 +28,7 @@ namespace VkToolkit.Categories
         /// <returns>В случае успешного вступления в группу метод вернёт true, иначе false.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.join"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.join"/>.
         /// </remarks>
         public bool Join(long gid, bool notSure = false)
         {
@@ -43,7 +44,7 @@ namespace VkToolkit.Categories
         /// <returns>В случае успешного выхода из группы метод вернёт true, иначе false.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.leave"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.leave"/>.
         /// </remarks>
         public bool Leave(long gid)
         {
@@ -61,7 +62,7 @@ namespace VkToolkit.Categories
         /// <param name="fields">Список полей информации о группах</param>
         /// <returns>Список групп</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.get"/>.
         /// </remarks>
         public List<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null)
         {
@@ -71,7 +72,7 @@ namespace VkToolkit.Categories
 
             if (!extended)
                 return response.Select(id => new Group { Id = id }).ToList();
-            
+
             // в первой записи количество членов группы
             return response.Skip(1).ToListOf(r => (Group)r);
         }
@@ -83,7 +84,7 @@ namespace VkToolkit.Categories
         /// <param name="fields">Список полей информации о группах</param>
         /// <returns>Список групп</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.getById"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getById"/>.
         /// </remarks>
         public List<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
         {
@@ -99,7 +100,7 @@ namespace VkToolkit.Categories
         /// <param name="fields">Список полей информации о группах</param>
         /// <returns>Список групп</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.getById"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getById"/>.
         /// </remarks>
         public Group GetById(long gid, GroupsFields fields = null)
         {
@@ -118,7 +119,7 @@ namespace VkToolkit.Categories
         /// <param name="sort">Сортировка Id пользователей</param>
         /// <returns>Id пользователей состоящих в группе</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.getMembers"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getMembers"/>.
         /// </remarks>
         public List<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null)
         {
@@ -141,7 +142,7 @@ namespace VkToolkit.Categories
         /// <param name="uid">Id пользователя</param>
         /// <returns>True если пользователь состоит в группе, иначе False</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.isMember"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.isMember"/>.
         /// </remarks>
         public bool IsMember(long gid, long uid)
         {
@@ -159,7 +160,7 @@ namespace VkToolkit.Categories
         /// <param name="count">Количество в выбоке</param>
         /// <returns>Список объектов групп</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/groups.search"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.search"/>.
         /// </remarks>
         public List<Group> Search(string query, out int totalCount, int? offset = null, int? count = null)
         {

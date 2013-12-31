@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using VkToolkit.Enums;
-using VkToolkit.Exception;
-using VkToolkit.Model;
-using VkToolkit.Utils;
-
-namespace VkToolkit.Categories
+﻿namespace VkToolkit.Categories
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using VkToolkit.Enums;
+    using VkToolkit.Exception;
+    using VkToolkit.Model;
+    using VkToolkit.Utils;
+
     /// <summary>
     /// Методы для работы с аудиозаписями.
     /// </summary>
@@ -35,7 +36,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.get"/>.
         /// </remarks>       
         public List<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
@@ -57,7 +58,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.get"/>.
         /// </remarks>
         public List<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
@@ -75,7 +76,7 @@ namespace VkToolkit.Categories
         /// <returns>В случае успеха возвращает затребованный список аудиозаписей пользователя.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.get"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.get"/>.
         /// </remarks>
         public List<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
@@ -83,17 +84,25 @@ namespace VkToolkit.Categories
             return InternalGet("uid", uid, out user, albumId, aids, false, count, offset);
         }
 
-        private List<Audio> InternalGet(string paramId, long id, out User user, long? albumId = null, IEnumerable<long> aids = null, bool? needUser = null, int? count = null, int? offset = null)
+        private List<Audio> InternalGet(
+            string paramId,
+            long id,
+            out User user,
+            long? albumId = null,
+            IEnumerable<long> aids = null,
+            bool? needUser = null,
+            int? count = null,
+            int? offset = null)
         {
             var parameters = new VkParameters
-                {
-                    { paramId, id },
-                    { "album_id", albumId },
-                    { "aids", aids },
-                    { "need_user", needUser },
-                    { "count", count },
-                    { "offset", offset }
-                };
+                             {
+                                 { paramId, id },
+                                 { "album_id", albumId },
+                                 { "aids", aids },
+                                 { "need_user", needUser },
+                                 { "count", count },
+                                 { "offset", offset }
+                             };
 
             VkResponseArray response = _vk.Call("audio.get", parameters);
 
@@ -122,7 +131,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getById"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getById"/>.
         /// </remarks>
         public List<Audio> GetById(IEnumerable<string> audios)
         {
@@ -147,9 +156,9 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getById"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getById"/>.
         /// </remarks>
-        public List<Audio> GetById(params string [] audios)
+        public List<Audio> GetById(params string[] audios)
         {
             return GetById((IEnumerable<string>)audios);
         }
@@ -163,7 +172,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getCount"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getCount"/>.
         /// </remarks>
         public int GetCount(long ownerId)
         {
@@ -179,7 +188,7 @@ namespace VkToolkit.Categories
         /// <returns>В случае успеха возвращает найденный текст адиозаписи. В качестве переводов строк в тексте используется \n. </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getLyrics"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getLyrics"/>.
         /// </remarks>
         public Lyrics GetLyrics(long lyricsId)
         {
@@ -196,7 +205,7 @@ namespace VkToolkit.Categories
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.getUploadServer"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getUploadServer"/>.
         /// </remarks>
         public string GetUploadServer()
         {
@@ -218,22 +227,29 @@ namespace VkToolkit.Categories
         /// <returns>Список объектов класса Audio.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.search"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.search"/>.
         /// </remarks>
-        public List<Audio> Search(string query, out int totalCount, bool? autoComplete = null, AudioSort? sort = null, bool? findLyrics = null, int? count = null, int? offset = null)
+        public List<Audio> Search(
+            string query,
+            out int totalCount,
+            bool? autoComplete = null,
+            AudioSort? sort = null,
+            bool? findLyrics = null,
+            int? count = null,
+            int? offset = null)
         {
             if (string.IsNullOrEmpty(query))
                 throw new InvalidParamException("Query is null or empty.");
 
             var parameters = new VkParameters
-                {
-                    { "q", query },
-                    { "auto_complete", autoComplete },
-                    { "sort", sort },
-                    { "lyrics", findLyrics },
-                    { "count", count },
-                    { "offset", offset }
-                };
+                             {
+                                 { "q", query },
+                                 { "auto_complete", autoComplete },
+                                 { "sort", sort },
+                                 { "lyrics", findLyrics },
+                                 { "count", count },
+                                 { "offset", offset }
+                             };
 
             VkResponseArray response = _vk.Call("audio.search", parameters);
 
@@ -251,7 +267,7 @@ namespace VkToolkit.Categories
         /// <returns>Идентификатор созданной аудиозаписи</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.add"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.add"/>.
         /// </remarks>
         public long Add(long audioId, long ownerId, long? groupId = null)
         {
@@ -268,7 +284,7 @@ namespace VkToolkit.Categories
         /// <returns>При успешном удалении аудиозаписи сервер вернет true</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.delete"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.delete"/>.
         /// </remarks>
         public bool Delete(long audioId, long ownerId)
         {
@@ -289,7 +305,7 @@ namespace VkToolkit.Categories
         /// <returns>id текста, введенного пользователем</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.edit"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.edit"/>.
         /// </remarks>
         public long Edit(long audioId, long ownerId, string artist, string title, string text, bool noSearch = false)
         {
@@ -303,14 +319,14 @@ namespace VkToolkit.Categories
                 throw new InvalidParamException("text parameter is null.");
 
             var parameters = new VkParameters
-                {
-                    { "aid", audioId }, 
-                    { "oid", ownerId }, 
-                    { "artist", artist }, 
-                    { "title", title }, 
-                    { "text", text }, 
-                    { "no_search", noSearch }
-                };
+                             {
+                                 { "aid", audioId },
+                                 { "oid", ownerId },
+                                 { "artist", artist },
+                                 { "title", title },
+                                 { "text", text },
+                                 { "no_search", noSearch }
+                             };
 
             return _vk.Call("audio.edit", parameters);
         }
@@ -323,7 +339,7 @@ namespace VkToolkit.Categories
         /// <returns>Удаленная аудиозапись.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.restore"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.restore"/>.
         /// </remarks>
         public Audio Restore(long audioId, long? ownerId = null)
         {
@@ -342,7 +358,7 @@ namespace VkToolkit.Categories
         /// <returns>При успешном изменении порядка аудиозаписи сервер вернет true</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/methods#/dev/audio.reorder"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.reorder"/>.
         /// </remarks>
         public bool Reorder(long audioId, long ownerId, long after, long before)
         {

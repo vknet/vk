@@ -1,7 +1,7 @@
-﻿using VkToolkit.Enums;
-
-namespace VkToolkit.Utils
+﻿namespace VkToolkit.Utils
 {
+    using VkToolkit.Enums;
+
     public interface IBrowser
     {
         string GetJson(string url);
