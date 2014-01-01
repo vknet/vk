@@ -16,57 +16,57 @@
         /// <summary>
         /// Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
         /// </summary>
-        internal Photo Photo;
+        public Photo Photo { get; set; }
 
         /// <summary>
         /// Видеозапись.
         /// </summary>
-        internal Video Video;
+        public Video Video { get; set; }
 
         /// <summary>
         /// Аудиозапись.
         /// </summary>
-        internal Audio Audio;
+        public Audio Audio { get; set; }
 
         /// <summary>
         /// Документ.
         /// </summary>
-        internal Document Document;
+        public Document Document { get; set; }
 
         /// <summary>
         /// Документ.
         /// </summary>
-        internal Graffiti Graffiti;
+        public Graffiti Graffiti { get; set; }
 
         /// <summary>
         /// Ссылка на Web-страницу.
         /// </summary>
-        internal Link Link;
+        public Link Link { get; set; }
 
         /// <summary>
         /// Заметка.
         /// </summary>
-        internal Note Note;
+        public Note Note { get; set; }
 
         /// <summary>
         /// Контент приложения.
         /// </summary>
-        internal ApplicationContent ApplicationContent;
+        public ApplicationContent ApplicationContent { get; set; }
 
         /// <summary>
         /// Опрос.
         /// </summary>
-        internal Poll Poll;
+        public Poll Poll { get; set; }
 
         /// <summary>
         /// Wiki страница.
         /// </summary>
-        internal Page Page;
+        public Page Page { get; set; }
 
         /// <summary>
         /// Альбом с фотографиями.
         /// </summary>
-        internal Album Album;
+        public Album Album { get; set; }
 
         #endregion
 

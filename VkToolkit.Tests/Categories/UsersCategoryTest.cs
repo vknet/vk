@@ -222,7 +222,7 @@ namespace VkToolkit.Tests.Categories
                         'first_name': 'Антон',
                         'last_name': 'Жидков',
                         'nickname': '[Удален]',
-                        'screen_name': 'azhidkov',
+                        'domain': 'azhidkov',
                         'sex': 2,
                         'bdate': '30.9',
                         'city': '10',
@@ -355,7 +355,7 @@ namespace VkToolkit.Tests.Categories
             Assert.That(p.FirstName, Is.EqualTo("Антон"));
             Assert.That(p.LastName, Is.EqualTo("Жидков"));
             Assert.That(p.Nickname, Is.EqualTo("[Удален]"));
-            Assert.That(p.ScreenName, Is.EqualTo("azhidkov"));
+            Assert.That(p.Domain, Is.EqualTo("azhidkov"));
             Assert.That(p.Sex, Is.EqualTo(Sex.Male));
             Assert.That(p.BirthDate, Is.EqualTo("30.9"));
             Assert.That(p.City, Is.EqualTo(10));

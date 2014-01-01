@@ -86,12 +86,14 @@
         /// </summary>
         public int? DocumentsCount { get; set; }
 
-        // ------ Установлено в результате экспериментов ------
+        #region Поля, установленные экспериментально
 
         /// <summary>
         /// Количество публичных страниц, на которые подписан пользователь.
         /// </summary>
         public int? Pages { get; set; }
+
+        #endregion
 
         #region Методы
 

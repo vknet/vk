@@ -3,16 +3,19 @@
     using System;
     using System.Collections.Generic;
 
+    using VkToolkit.Categories;
     using VkToolkit.Enums;
     using VkToolkit.Exception;
     using VkToolkit.Utils;
 
     /// <summary>
     /// Информация о пользователя.
-    /// См. описание <see cref="http://vk.com/dev/fields"/>.
+    /// См. описание <see cref="http://vk.com/dev/fields"/> и <see cref="http://vk.com/pages?oid=-1&p=users.get"/>.
     /// </summary>
     public class User
     {
+        #region Стандартные поля
+
         /// <summary>
         /// Идентификатор пользователя.
         /// </summary>
@@ -28,20 +31,14 @@
         /// </summary>
         public string LastName { get; set; }
 
+        #endregion
+
+        #region Опциональные поля
+
         /// <summary>
         /// Пол пользователя.
         /// </summary>
         public Sex Sex { get; set; }
-
-        /// <summary>
-        /// Прозвище (ник) пользователя.
-        /// </summary>
-        public string Nickname { get; set; }
-
-        /// <summary>
-        /// Короткий адрес страницы пользователя. Если он не назначен, то "id"+uid, например, id35828305.
-        /// </summary>
-        public string ScreenName { get; set; }
 
         /// <summary>
         /// Дата рождения пользователя. Возвращается в формате DD.MM.YYYY или DD.MM (если год рождения скрыт).
@@ -62,17 +59,31 @@
         public long? Country { get; set; }
 
         /// <summary>
-        /// Часовой пояс пользователя.
-        /// </summary>
-        public int? Timezone { get; set; }
-
-        /// <summary>
         /// Информация о ссылках на предпросмотр фотографий пользователя.
         /// </summary>
         public Previews PhotoPreviews { get; set; }
 
         /// <summary>
-        /// Признак указал ли пользователь номер своего мобильного телефона.
+        /// Признак находится ли пользователь сейчас на сайте.
+        /// </summary>
+        public bool? Online { get; set; }
+
+        /// <summary>
+        /// Идентификаторы списков друзей, в которых состоит пользователь. Поле доступно только для метода 
+        /// <see cref="FriendsCategory.Get"/>. Получить информацию об идентификаторах и названиях списков друзей можно с 
+        /// помощью метода <see cref="FriendsCategory.GetLists"/>. Если пользователь не состоит ни в одном списке друзей, данное 
+        /// поле принимает значение null.
+        /// </summary>
+        public List<long> FriendLists { get; set; }
+
+        /// <summary>
+        /// Короткий адрес страницы пользователя. Возвращается строка, содержащая короткий адрес страницы (возвращается только 
+        /// сам поддомен, например, andrew). Если он не назначен, то "id"+uid, например, id35828305.
+        /// </summary>
+        public string Domain { get; set; }
+
+        /// <summary>
+        /// Информация о том, известен ли номер мобильного телефона пользователя (true - известен, false - не известен).
         /// </summary>
         public bool? HasMobile { get; set; }
 
@@ -82,24 +93,34 @@
         public string MobilePhone { get; set; }
 
         /// <summary>
-        /// Идентификатор языка, установленный в настройках.
+        /// Номер домашнего телефона (если нет записи или скрыт, то null).
         /// </summary>
-        public long? Language { get; set; }
+        public string HomePhone { get; set; }
 
         /// <summary>
-        /// Признак находится ли пользователь сейчас на сайте.
+        /// Данные о подключенных сервисах пользователя, таких как: skype, facebook, twitter, instagram.
         /// </summary>
-        public bool? Online { get; set; }
+        public Connections Connections { get; set; }
 
         /// <summary>
-        /// Признак использует ли пользователь мобильное приложение либо мобильную версию сайта.
+        /// Возвращает указанный в профиле сайт пользователя.
         /// </summary>
-        public bool? OnlineMobile { get; set; }
+        public string Site { get; set; }
 
         /// <summary>
-        /// Если пользователь зашёл через приложение, то Id приложения иначе null.
+        /// Сведения об образовании пользователя.
         /// </summary>
-        public long? OnlineApp { get; set; }
+        public Education Education { get; set; }
+
+        /// <summary>
+        /// Список высших учебных заведений, в которых учился пользователь.
+        /// </summary>
+        public List<University> Universities { get; set; }
+
+        /// <summary>
+        /// Школы, в которых учился пользователь.
+        /// </summary>
+        public List<School> Schools { get; set; }
 
         /// <summary>
         /// Признак разрешено ли оставлять записи на стене у пользователя.
@@ -122,21 +143,6 @@
         public bool CanWritePrivateMessage { get; set; }
 
         /// <summary>
-        /// Номер домашнего телефона (если нет записи или скрыт, то null).
-        /// </summary>
-        public string HomePhone { get; set; }
-
-        /// <summary>
-        /// Данные о подключенных сервисах пользователя, таких как: skype, facebook, twitter, instagram.
-        /// </summary>
-        public Connections Connections { get; set; }
-
-        /// <summary>
-        /// Сайт пользователя.
-        /// </summary>
-        public string Site { get; set; }
-
-        /// <summary>
         /// Строка со статусом пользователя.
         /// </summary>
         public string Status { get; set; }
@@ -147,14 +153,57 @@
         public DateTime? LastSeen { get; set; }
 
         /// <summary>
-        /// Сведения об образовании пользователя.
+        /// Общее количество друзей с текущим пользователем.
         /// </summary>
-        public Education Education { get; set; }
+        public int? CommonCount { get; set; }
 
         /// <summary>
         /// Семейное положение.
         /// </summary>
         public RelationType Relation { get; set; }
+
+        /// <summary>
+        /// Родственники пользователя.
+        /// </summary>
+        public List<Relative> Relatives { get; set; }
+
+        /// <summary>
+        /// Различные счетчики пользователя.
+        /// </summary>
+        public Counters Counters { get; set; }
+
+        #endregion
+
+        #region Дополнительные поля из http://vk.com/pages?oid=-1&p=users.get
+
+        /// <summary>
+        /// Прозвище (ник) пользователя.
+        /// </summary>
+        public string Nickname { get; set; }
+
+        /// <summary>
+        /// Часовой пояс пользователя.
+        /// </summary>
+        public int? Timezone { get; set; }
+
+        #endregion
+
+        #region Поля, установленные экспериментально
+
+        /// <summary>
+        /// Идентификатор языка, установленный в настройках.
+        /// </summary>
+        public long? Language { get; set; }
+
+        /// <summary>
+        /// Признак использует ли пользователь мобильное приложение либо мобильную версию сайта.
+        /// </summary>
+        public bool? OnlineMobile { get; set; }
+
+        /// <summary>
+        /// Если пользователь зашёл через приложение, то Id приложения иначе null.
+        /// </summary>
+        public long? OnlineApp { get; set; }
 
         /// <summary>
         /// Партнер в семейных отношениях.
@@ -202,24 +251,9 @@
         public string Games { get; set; }
 
         /// <summary>
-        /// Высшие учебные заведения, в которых учился текущий пользователь.
-        /// </summary>
-        public List<University> Universities { get; set; }
-
-        /// <summary>
-        /// Школы, в которых учился пользователь.
-        /// </summary>
-        public List<School> Schools { get; set; }
-
-        /// <summary>
         /// Информация пользователя о себе.
         /// </summary>
         public string About { get; set; }
-
-        /// <summary>
-        /// Родственники пользователя.
-        /// </summary>
-        public List<Relative> Relatives { get; set; }
 
         /// <summary>
         /// Избранные пользователем цитаты.
@@ -227,20 +261,19 @@
         public string Quotes { get; set; }
 
         /// <summary>
-        /// Различные счетчики пользователя.
-        /// </summary>
-        public Counters Counters { get; set; }
-
-        /// <summary>
         /// Идентификатор пользователя, пригласившего пользователя в беседу (для GetChatUsers).
         /// </summary>
         public long? InvitedBy { get; set; }
+
+        #endregion
 
         #region Методы
 
         internal static User FromJson(VkResponse response)
         {
             var user = new User();
+
+            // ---- стандартные поля ----
 
             if (response["uid"] != null)
                 user.Id = response["uid"];
@@ -261,31 +294,44 @@
                 user.LastName = parts[1];
             }
 
+            // ---- дополнительные поля ----
+
             user.Sex = response["sex"];
-            user.Nickname = response["nickname"];
-            user.ScreenName = response["screen_name"];
             user.BirthDate = response["bdate"];
             user.City = response["city"];
             user.Country = response["country"];
-            user.Timezone = response["timezone"];
             user.PhotoPreviews = response;
+            user.Online = response["online"];
+            user.FriendLists = response["lists"];
+            user.Domain = response["domain"];
             user.HasMobile = response["has_mobile"];
             user.MobilePhone = response["mobile_phone"];
-            user.Language = response["language"];
-            user.Online = response["online"];
-            user.OnlineMobile = response["online_mobile"];
-            user.OnlineApp = response["online_app"];
+            user.HomePhone = response["home_phone"];
+            user.Connections = response;
+            user.Site = response["site"];
+            user.Education = response;
+            user.Universities = response["universities"];
+            user.Schools = response["schools"];
             user.CanPost = response["can_post"];
             user.CanSeeAllPosts = response["can_see_all_posts"];
             user.CanSeeAudio = response["can_see_audio"];
             user.CanWritePrivateMessage = response["can_write_private_message"];
-            user.HomePhone = response["home_phone"];
-            user.Connections = response;
-            user.Site = response["site"];
             user.Status = response["status"];
             user.LastSeen = response["last_seen"] != null ? response["last_seen"]["time"] : null;
-            user.Education = response;
+            user.CommonCount = response["common_count"];
             user.Relation = response["relation"];
+            user.Relatives = response["relatives"];
+            user.Counters = response["counters"];
+
+            // -- дополнительные поля из http://vk.com/pages?oid=-1&p=users.get
+
+            user.Nickname = response["nickname"];
+            user.Timezone = response["timezone"];
+
+            // поля, установленные экспериментально
+            user.Language = response["language"];
+            user.OnlineMobile = response["online_mobile"];
+            user.OnlineApp = response["online_app"];
             user.RelationPartner = response["relation_partner"];
             user.StandInLife = response["personal"];
             user.Interests = response["interests"];
@@ -295,12 +341,8 @@
             user.Tv = response["tv"];
             user.Books = response["books"];
             user.Games = response["games"];
-            user.Universities = response["universities"];
-            user.Schools = response["schools"];
             user.About = response["about"];
-            user.Relatives = response["relatives"];
             user.Quotes = response["quotes"];
-            user.Counters = response["counters"];
             user.InvitedBy = response["invited_by"];
 
             return user;

@@ -55,12 +55,14 @@
             get { return Attachments.FirstOrDefault(); }
         }
 
-        // ------ Установлено в результате экспериментов ------
+        #region Поля, установленные экспериментально
 
         /// <summary>
         /// Информация о числе людей, которым понравился данный комментарий.
         /// </summary>
         public Likes Likes { get; set; }
+
+        #endregion
 
         #region Методы
 

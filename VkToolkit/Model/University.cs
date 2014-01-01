@@ -53,7 +53,7 @@
         /// </summary>
         public int? Graduation { get; set; }
 
-        // ------ Установлено в результате экспериментов ------
+        #region Поля, установленные экспериментально
 
         /// <summary>
         /// Форма обучения.
@@ -64,6 +64,8 @@
         /// Статус пользователя в университете.
         /// </summary>
         public string EducationStatus { get; set; }
+
+        #endregion
 
         #region Методы
 

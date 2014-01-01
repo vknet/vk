@@ -79,12 +79,14 @@
         /// </summary>
         public string Parent2 { get; set; }
 
-        // ------ Установлено в результате экспериментов ------
+        #region Поля, установленные экспериментально
 
         /// <summary>
         /// Html-текст страницы.
         /// </summary>
         public string Html { get; set; }
+
+        #endregion
 
         #region Методы
 
