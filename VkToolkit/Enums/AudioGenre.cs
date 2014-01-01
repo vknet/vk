@@ -3,7 +3,7 @@
     /// <summary>
     /// Идентификаторы жанров музыки.
     /// </summary>
-    public enum Genre
+    public enum AudioGenre
     {
         Rock = 1,
 

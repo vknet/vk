@@ -58,7 +58,7 @@
     <Compile Include="Enums\AudioSort.cs" />
     <Compile Include="Enums\CommentsSort.cs" />
     <Compile Include="Enums\Display.cs" />
-    <Compile Include="Enums\Genre.cs" />
+    <Compile Include="Enums\AudioGenre.cs" />
     <Compile Include="Enums\GroupPublicity.cs" />
     <Compile Include="Enums\GroupsFields.cs" />
     <Compile Include="Enums\GroupsFilters.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Enums\MessageReadState.cs" />
     <Compile Include="Enums\MessagesFilter.cs" />
     <Compile Include="Enums\MessageType.cs" />
-    <Compile Include="Enums\Order.cs" />
+    <Compile Include="Enums\FriendsOrder.cs" />
     <Compile Include="Enums\PageAccessKind.cs" />
     <Compile Include="Enums\PeopleMain.cs" />
     <Compile Include="Enums\PoliticalPreferences.cs" />

@@ -55,7 +55,7 @@
         /// <summary>
         /// Жанр аудиозаписи.
         /// </summary>
-        public Genre? Genre { get; set; }
+        public AudioGenre? Genre { get; set; }
 
         #region Методы
 

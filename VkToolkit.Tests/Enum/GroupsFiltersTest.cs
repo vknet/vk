@@ -16,7 +16,7 @@ namespace VkToolkit.Tests.Enum
         [Test]
         public void ToString_DuplicateFields_NoDuplicates()
         {
-            var g = GroupsFilters.Admin | GroupsFilters.Events | GroupsFilters.Admin;
+            var g = GroupsFilters.Administrator | GroupsFilters.Events | GroupsFilters.Administrator;
 
             string result = g.ToString();
 
@@ -30,7 +30,7 @@ namespace VkToolkit.Tests.Enum
 
             string result = g.ToString();
 
-            Assert.That(result, Is.EqualTo("admin,groups,publics,events"));
+            Assert.That(result, Is.EqualTo("admin,editor,moder,groups,publics,events"));
         }
     }
 }

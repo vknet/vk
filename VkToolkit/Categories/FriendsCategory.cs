@@ -34,7 +34,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.get"/>.
         /// </remarks>       
-        public List<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, Order order = null)
+        public List<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null)
         {
             var parameters = new VkParameters { { "uid", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order } };
 

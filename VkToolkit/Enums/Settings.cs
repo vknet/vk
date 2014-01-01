@@ -5,6 +5,10 @@
 
     using VkToolkit.Utils;
 
+    /// <summary>
+    /// Права доступа приложений.
+    /// См. описание <see cref="http://vk.com/pages?oid=-1&p=%D0%9F%D1%80%D0%B0%D0%B2%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B0_%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9"/>.
+    /// </summary>
     public sealed class Settings
     {
         private readonly string _name;
@@ -20,46 +24,107 @@
 
         private readonly IList<Settings> _scopes;
 
-        public static readonly Settings Notify = new Settings(1, "notify");
+        /// <summary>
+        /// Пользователь разрешил отправлять ему уведомления.
+        /// </summary>
+        public static readonly Settings Notify = new Settings(1 << 0, "notify");
 
-        public static readonly Settings Friends = new Settings(2, "friends");
+        /// <summary>
+        /// Доступ к друзьям. 
+        /// </summary>
+        public static readonly Settings Friends = new Settings(1 << 1, "friends");
 
-        public static readonly Settings Photos = new Settings(4, "photos");
+        /// <summary>
+        /// Доступ к фотографиям. 
+        /// </summary>
+        public static readonly Settings Photos = new Settings(1 << 2, "photos");
 
-        public static readonly Settings Audio = new Settings(8, "audio");
+        /// <summary>
+        /// Доступ к аудиозаписям. 
+        /// </summary>
+        public static readonly Settings Audio = new Settings(1 << 3, "audio");
 
-        public static readonly Settings Video = new Settings(16, "video");
+        /// <summary>
+        /// Доступ к видеозаписям. 
+        /// </summary>
+        public static readonly Settings Video = new Settings(1 << 4, "video");
 
-        public static readonly Settings Offers = new Settings(32, "offers");
+        /// <summary>
+        /// Доступ к документам.
+        /// </summary>
+        public static readonly Settings Documents = new Settings(1 << 5, "docs");
 
-        public static readonly Settings Questions = new Settings(64, "questions");
+        /// <summary>
+        /// Доступ заметкам пользователя. 
+        /// </summary>
+        public static readonly Settings Notes = new Settings(1 << 6, "notes");
 
-        public static readonly Settings Pages = new Settings(128, "pages");
+        /// <summary>
+        /// Доступ к wiki-страницам. 
+        /// </summary>
+        public static readonly Settings Pages = new Settings(1 << 7, "pages");
 
-        public static readonly Settings AddLinkToLeftMenu = new Settings(256, "");
+        /// <summary>
+        /// Доступ к статусу пользователя. 
+        /// </summary>
+        public static readonly Settings Status = new Settings(1 << 8, "status");
 
-        public static readonly Settings AddLinkToWallPost = new Settings(512, "");
+        /// <summary>
+        /// Доступ к обычным и расширенным методам работы со стеной.
+        /// </summary>
+        public static readonly Settings Wall = new Settings(1 << 9, "wall");
 
-        public static readonly Settings Status = new Settings(1024, "status");
+        /// <summary>
+        /// Доступ к группам пользователя. 
+        /// </summary>
+        public static readonly Settings Groups = new Settings(1 << 10, "groups");
 
-        public static readonly Settings Notes = new Settings(2048, "notes");
+        /// <summary>
+        /// Доступ к расширенным методам работы с сообщениями. 
+        /// </summary>
+        public static readonly Settings Messages = new Settings(1 << 11, "messages");
 
-        public static readonly Settings Messages = new Settings(4096, "messages");
+        /// <summary>
+        /// Доступ к оповещениям об ответах пользователю. 
+        /// </summary>
+        public static readonly Settings Notifications = new Settings(1 << 12, "notifications");
 
-        public static readonly Settings Wall = new Settings(8192, "wall");
+        /// <summary>
+        /// Доступ к статистике групп и приложений пользователя, администратором которых он является. 
+        /// </summary>
+        public static readonly Settings Statistic = new Settings(1 << 13, "stats");
 
-        public static readonly Settings Ads = new Settings(32768, "ads");
+        /// <summary>
+        /// Доступ к расширенным методам работы с рекламным API. 
+        /// </summary>
+        public static readonly Settings Ads = new Settings(1 << 14, "ads");
 
-        public static readonly Settings Docs = new Settings(131072, "docs");
+        /// <summary>
+        /// Доступ к API в любое время со стороннего сервера. 
+        /// </summary>
+        public static readonly Settings Offline = new Settings(1 << 15, "offline");
 
-        public static readonly Settings Groups = new Settings(262144, "groups");
+        /// <summary>
+        /// Возможность осуществлять запросы к API без HTTPS.
+        /// Внимание, данная возможность находится на этапе тестирования и может быть изменена. 
+        /// </summary>
+        public static readonly Settings NoHttps = new Settings(1 << 16, "nohttps");
 
-        public static readonly Settings Notifications = new Settings(524288, "notifications");
+        /// <summary>
+        /// Пустая настройка для тестирования.
+        /// </summary>
+        internal static readonly Settings Empty1 = new Settings(1 << 17, "");
 
-        public static readonly Settings Statistic = new Settings(1048576, "stats");
+        /// <summary>
+        /// Пустая настройка для тестирования.
+        /// </summary>
+        internal static readonly Settings Empty2 = new Settings(1 << 18, "");
 
-        public static readonly Settings All = Notify | Friends | Photos | Audio | Video | Docs | Notes | Pages | Status | Wall | Offers | Questions | Groups | Messages
-                                              | Notifications | Statistic | Ads;
+        /// <summary>
+        /// Доступ ко всем возможным операциям (без Offline и NoHttps).
+        /// </summary>
+        public static readonly Settings All = Notify | Friends | Photos | Audio | Video | Documents | Notes | Pages | Status | Wall | Groups | Messages | Notifications
+                                              | Statistic | Ads;
 
         private Settings(int value, string name)
         {

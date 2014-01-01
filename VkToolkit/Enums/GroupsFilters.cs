@@ -5,23 +5,57 @@
 
     using VkToolkit.Utils;
 
+    /// <summary>
+    /// Фильтры сообществ пользователя.
+    /// </summary>
     public sealed class GroupsFilters
     {
+        /// <summary>
+        /// Строковое значение фильтра.
+        /// </summary>
         private readonly string _name;
 
+        /// <summary>
+        /// Числовое значение фильтра.
+        /// </summary>
         private readonly int _value;
 
+        /// <summary>
+        /// Выбранные фильтры.
+        /// </summary>
         private readonly IList<GroupsFilters> _fields;
 
-        public static readonly GroupsFilters Admin = new GroupsFilters(1, "admin");
+        /// <summary>
+        /// Вернуть все сообщества, в которых пользователь является администратором.
+        /// </summary>
+        public static readonly GroupsFilters Administrator = new GroupsFilters(1 << 0, "admin");
 
-        public static readonly GroupsFilters Groups = new GroupsFilters(2, "groups");
+        /// <summary>
+        /// Вернуть все сообщества, в которых пользователь является администратором или редактором.
+        /// </summary>
+        public static readonly GroupsFilters Editor = new GroupsFilters(1 << 1, "editor");
 
-        public static readonly GroupsFilters Publics = new GroupsFilters(4, "publics");
+        /// <summary>
+        /// Вернуть все сообщества, в которых пользователь является администратором, редактором или модератором.
+        /// </summary>
+        public static readonly GroupsFilters Moderator = new GroupsFilters(1 << 2, "moder");
 
-        public static readonly GroupsFilters Events = new GroupsFilters(8, "events");
+        /// <summary>
+        /// Вернуть все группы, в которые входит пользователь.
+        /// </summary>
+        public static readonly GroupsFilters Groups = new GroupsFilters(1 << 3, "groups");
 
-        public static readonly GroupsFilters All = Admin | Groups | Publics | Events;
+        /// <summary>
+        /// Вернуть все публичные страницы пользователя ???
+        /// </summary>
+        public static readonly GroupsFilters Publics = new GroupsFilters(1 << 4, "publics");
+
+        /// <summary>
+        /// Вернуть все события, в которых участвует пользователь является.
+        /// </summary>
+        public static readonly GroupsFilters Events = new GroupsFilters(1 << 5, "events");
+
+        public static readonly GroupsFilters All = Administrator | Editor | Moderator | Groups | Publics | Events;
 
         private GroupsFilters(int value, string name)
         {

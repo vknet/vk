@@ -409,12 +409,12 @@
             return Utilities.NullableEnumFrom<AdminLevel>(response);
         }
 
-        public static implicit operator Genre?(VkResponse response)
+        public static implicit operator AudioGenre?(VkResponse response)
         {
             if (response == null)
                 return null;
 
-            return Utilities.NullableEnumFrom<Genre>(response);
+            return Utilities.NullableEnumFrom<AudioGenre>(response);
         }
 
         public static implicit operator Previews(VkResponse response)
