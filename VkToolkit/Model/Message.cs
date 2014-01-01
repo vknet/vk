@@ -123,7 +123,7 @@
             message.ContainsEmojiSmiles = response["emoji"];
             message.IsImportant = response["important"];
             message.IsDeleted = response["deleted"];
- 
+
             // дополнительные поля бесед
 
             message.ChatId = response["chat_id"];

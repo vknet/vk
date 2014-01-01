@@ -47,12 +47,12 @@
         /// <summary>
         /// Указывает, кто может просматривать вики-страницу.
         /// </summary>
-        public PageAccessKind? WhoCanView { get; set; } 
+        public PageAccessKind? WhoCanView { get; set; }
 
         /// <summary>
         /// Указывает, кто может редактировать вики-страницу.
         /// </summary>
-        public PageAccessKind? WhoCanEdit { get; set; } 
+        public PageAccessKind? WhoCanEdit { get; set; }
 
         /// <summary>
         /// Идентификатор пользователя, который редактировал страницу последним.

@@ -46,12 +46,12 @@
         /// Идентификатор записи, в ответ на которую была оставлена текущая.
         /// </summary>
         public long? ReplyPostId { get; set; }
-        
+
         /// <summary>
         /// true, если запись была создана с опцией «Только для друзей», false в противном случае.
         /// </summary>
         public bool FriendsOnly { get; set; }
-        
+
         /// <summary>
         /// Информация о комментариях к записи.
         /// </summary>
@@ -179,9 +179,9 @@
             post.CopyHistory = response["copy_history"];
 
             // далее идут поля, установленные экcпериментальным путем
-            post.CopyCommenterId = response["copy_commenter_id"]; 
-            post.CopyCommentId = response["copy_comment_id"]; 
-            post.CanDelete = response["can_delete"]; 
+            post.CopyCommenterId = response["copy_commenter_id"];
+            post.CopyCommentId = response["copy_comment_id"];
+            post.CanDelete = response["can_delete"];
 
             return post;
         }

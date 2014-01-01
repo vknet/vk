@@ -321,7 +321,7 @@ namespace VkToolkit.Tests.Categories
         public void Get_NormalCaseAllFields_ReturnFullGroupInfo()
         {
             const string url =
-                "https://api.vk.com/method/groups.get?uid=1&extended=1&filter=events&fields=city,country,place,description,wiki_page,start_date,end_date&access_token=token";
+                "https://api.vk.com/method/groups.get?uid=1&extended=1&filter=events&fields=city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_create_topic,activity,status,contacts,links,fixed_post,verified,site&access_token=token";
 
             const string json =
                 @"{
@@ -1030,7 +1030,7 @@ namespace VkToolkit.Tests.Categories
         public void GetById_Multiple_NormalCaseAllFields_ReturnTwoItems()
         {
             const string url =
-                "https://api.vk.com/method/groups.getById?gids=17683660,637247&fields=city,country,place,description,wiki_page,start_date,end_date&access_token=token";
+                "https://api.vk.com/method/groups.getById?gids=17683660,637247&fields=city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_create_topic,activity,status,contacts,links,fixed_post,verified,site&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -1111,7 +1111,7 @@ namespace VkToolkit.Tests.Categories
         public void GetById_NormalCaseAllFields_ReturnTwoItems()
         {
             const string url =
-                "https://api.vk.com/method/groups.getById?gid=17683660&fields=city,country,place,description,wiki_page,start_date,end_date&access_token=token";
+                "https://api.vk.com/method/groups.getById?gid=17683660&fields=city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_create_topic,activity,status,contacts,links,fixed_post,verified,site&access_token=token";
             const string json =
                 @"{
                     'response': [

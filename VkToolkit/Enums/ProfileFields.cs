@@ -14,6 +14,7 @@
         private readonly IList<ProfileFields> _fields;
 
         //public static readonly ProfileFields None = new ProfileFields(0, "none");
+
         public static readonly ProfileFields Uid = new ProfileFields(1, "uid");
 
         public static readonly ProfileFields FirstName = new ProfileFields(2, "first_name");

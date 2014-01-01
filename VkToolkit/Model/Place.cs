@@ -28,7 +28,7 @@
         /// <summary>
         /// Географическая долгота, заданная в градусах (от -90 до 90).
         /// </summary>
-        public int? Longitude  { get; set; }
+        public int? Longitude { get; set; }
 
         /// <summary>
         /// Идентификатор типа места, информацию о котором можно получить с помощью метода <see cref="PlacesCategory.GetTypes"/>.
@@ -49,7 +49,7 @@
         /// Строка с указанием адреса места в городе. 
         /// </summary>
         public string Address { get; set; }
-       
+
         /// <summary>
         /// Данный параметр указывается, если местоположение является прикреплённой картой. 
         /// </summary>
@@ -78,7 +78,7 @@
             place.Id = response["place_id"];
             place.Title = response["title"];
             place.Latitude = response["latitude"];
-            place.Longitude = response["longitude"];            
+            place.Longitude = response["longitude"];
             place.TypeId = response["type"];
             place.CountryId = response["country_id"];
             place.CityId = response["city_id"];

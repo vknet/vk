@@ -35,11 +35,6 @@
         /// </summary>
         public string Instagram { get; set; }
 
-        /// <summary>
-        /// Аккаунт в Live Journal.
-        /// </summary>
-        public string LiveJournal { get; set; }
-
         #region Методы
 
         internal static Connections FromJson(VkResponse response)
@@ -51,7 +46,6 @@
             connections.FacebookName = response["facebook_name"];
             connections.Twitter = response["twitter"];
             connections.Instagram = response["instagram"];
-            connections.LiveJournal = response["livejounal"];
 
             return connections;
         }

@@ -1,7 +1,7 @@
 ﻿namespace VkToolkit.Enums
 {
     /// <summary>
-    /// Идентификаторы жанров.
+    /// Идентификаторы жанров музыки.
     /// </summary>
     public enum Genre
     {

@@ -123,7 +123,6 @@
     <Compile Include="Model\Place.cs" />
     <Compile Include="Model\Reposts.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Enums\ResponseType.cs" />
     <Compile Include="Exception\VkApiAuthorizationException.cs" />
     <Compile Include="Exception\VkApiException.cs" />
     <Compile Include="Model\Education.cs" />
