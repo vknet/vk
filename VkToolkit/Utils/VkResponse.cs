@@ -435,6 +435,21 @@
             return response == null ? null : PostSource.FromJson(response);
         }
 
+        public static implicit operator Graffiti(VkResponse response)
+        {
+            return response == null ? null : Graffiti.FromJson(response);
+        }
+
+        public static implicit operator ApplicationContent(VkResponse response)
+        {
+            return response == null ? null : ApplicationContent.FromJson(response);
+        }
+
+        public static implicit operator Poll(VkResponse response)
+        {
+            return response == null ? null : Poll.FromJson(response);
+        }
+
         #endregion
     }
 }

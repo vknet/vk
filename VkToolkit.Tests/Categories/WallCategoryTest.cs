@@ -259,7 +259,7 @@ namespace VkToolkit.Tests.Categories
             Assert.That(photo.Width, Is.EqualTo(450));
             Assert.That(photo.Height, Is.EqualTo(320));
             Assert.That(photo.Text, Is.Null.Or.Empty);
-            Assert.That(photo.Created, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
+            Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
             //Assert.That(records[0]., Is.EqualTo());
 
             Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));
@@ -367,7 +367,7 @@ namespace VkToolkit.Tests.Categories
             Assert.That(photo.Width, Is.EqualTo(510));
             Assert.That(photo.Height, Is.EqualTo(383));
             Assert.That(photo.Text, Is.EqualTo(string.Empty));
-            Assert.That(photo.Created, Is.EqualTo(new DateTime(2013, 11, 22, 10, 20, 31)));
+            Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2013, 11, 22, 10, 20, 31)));
         }
 
         [Test]
@@ -596,7 +596,7 @@ namespace VkToolkit.Tests.Categories
             Assert.That(photo.Width, Is.EqualTo(450));
             Assert.That(photo.Height, Is.EqualTo(320));
             Assert.That(photo.Text, Is.Null.Or.Empty);
-            Assert.That(photo.Created, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
+            Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
             //Assert.That(records[0]., Is.EqualTo());
 
             Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));

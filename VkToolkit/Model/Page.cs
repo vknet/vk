@@ -67,7 +67,7 @@
         /// <summary>
         /// Дата создания страницы (в виде строки).
         /// </summary>
-        public string Created { get; set; }
+        public string CreateTime { get; set; }
 
         /// <summary>
         /// Заголовок родительской страницы для навигации, если есть.
@@ -103,7 +103,7 @@
             page.WhoCanEdit = response["who_can_edit"];
             page.EditorId = response["editor_id"];
             page.Edited = response["edited"];
-            page.Created = response["created"];
+            page.CreateTime = response["created"];
             page.Parent = response["parent"];
             page.Parent2 = response["parent2"];
 

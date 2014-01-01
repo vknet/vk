@@ -86,9 +86,12 @@
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\Album.cs" />
+    <Compile Include="Model\ApplicationContent.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />
+    <Compile Include="Model\Graffiti.cs" />
     <Compile Include="Model\Link.cs" />
+    <Compile Include="Model\Poll.cs" />
     <Compile Include="Model\PostSource.cs" />
     <Compile Include="Model\Previews.cs" />
     <Compile Include="Model\Relative.cs" />

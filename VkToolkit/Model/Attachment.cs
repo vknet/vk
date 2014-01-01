@@ -6,23 +6,22 @@
     using VkToolkit.Utils;
 
     /// <summary>
-    /// Информация о приложенных к записи объектах. 
-    /// TODO: Доделать.
+    /// Информация о медиавложении в записи.
+    /// См. описание <see cref="http://vk.com/dev/attachments_w"/>. 
     /// </summary>
-    /// <remarks>
-    /// Пока не поддерживаются:
-    /// - graffiti - графити;
-    /// - app – изображение, загруженное сторонним приложением;
-    /// - poll – голосование.
-    /// </remarks>
     public class Attachment
     {
         #region Поля
 
         /// <summary>
-        /// Альбом с фотографиями.
+        /// Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
         /// </summary>
-        internal Album Album;
+        internal Photo Photo;
+
+        /// <summary>
+        /// Видеозапись.
+        /// </summary>
+        internal Video Video;
 
         /// <summary>
         /// Аудиозапись.
@@ -35,6 +34,11 @@
         internal Document Document;
 
         /// <summary>
+        /// Документ.
+        /// </summary>
+        internal Graffiti Graffiti;
+
+        /// <summary>
         /// Ссылка на Web-страницу.
         /// </summary>
         internal Link Link;
@@ -45,19 +49,24 @@
         internal Note Note;
 
         /// <summary>
+        /// Контент приложения.
+        /// </summary>
+        internal ApplicationContent ApplicationContent;
+
+        /// <summary>
+        /// Опрос.
+        /// </summary>
+        internal Poll Poll;
+
+        /// <summary>
         /// Wiki страница.
         /// </summary>
         internal Page Page;
 
         /// <summary>
-        /// Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
+        /// Альбом с фотографиями.
         /// </summary>
-        internal Photo Photo;
-
-        /// <summary>
-        /// Видеозапись.
-        /// </summary>
-        internal Video Video;
+        internal Album Album;
 
         #endregion
 
@@ -68,20 +77,26 @@
         {
             get
             {
-                if (Type == typeof(Audio))
-                    return Audio;
                 if (Type == typeof(Photo))
                     return Photo;
                 if (Type == typeof(Video))
                     return Video;
+                if (Type == typeof(Audio))
+                    return Audio;
                 if (Type == typeof(Document))
                     return Document;
-                if (Type == typeof(Note))
-                    return Note;
-                if (Type == typeof(Page))
-                    return Page;
+                if (Type == typeof(Graffiti))
+                    return Graffiti;
                 if (Type == typeof(Link))
                     return Link;
+                if (Type == typeof(Note))
+                    return Note;
+                if (Type == typeof(ApplicationContent))
+                    return ApplicationContent;
+                if (Type == typeof(Poll))
+                    return Poll;
+                if (Type == typeof(Page))
+                    return Page;
                 if (Type == typeof(Album))
                     return Album;
 
@@ -104,24 +119,20 @@
             string type = response["type"];
             switch (type)
             {
-                case "audio":
-                    attachment.Type = typeof(Audio);
-                    attachment.Audio = response["audio"];
-                    break;
-
                 case "photo":
-                    attachment.Type = typeof(Photo);
-                    attachment.Photo = response["photo"];
-                    break;
-
                 case "posted_photo":
                     attachment.Type = typeof(Photo);
-                    attachment.Photo = response["posted_photo"];
+                    attachment.Photo = response[type];
                     break;
 
                 case "video":
                     attachment.Type = typeof(Video);
                     attachment.Video = response["video"];
+                    break;
+
+                case "audio":
+                    attachment.Type = typeof(Audio);
+                    attachment.Audio = response["audio"];
                     break;
 
                 case "doc":
@@ -130,8 +141,9 @@
                     break;
 
                 case "graffiti":
-                    // TODO:
-                    throw new NotImplementedException();
+                    attachment.Type = typeof(Graffiti);
+                    attachment.Graffiti = response["graffiti"];
+                    break;
 
                 case "link":
                     attachment.Type = typeof(Link);
@@ -144,12 +156,14 @@
                     break;
 
                 case "app":
-                    // TODO:
-                    throw new NotImplementedException();
+                    attachment.Type = typeof(ApplicationContent);
+                    attachment.ApplicationContent = response["app"];
+                    break;
 
                 case "poll":
-                    // TODO:
-                    throw new NotImplementedException();
+                    attachment.Type = typeof(Poll);
+                    attachment.Poll = response["poll"];
+                    break;
 
                 case "page":
                     attachment.Type = typeof(Page);

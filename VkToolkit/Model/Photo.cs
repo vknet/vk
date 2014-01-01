@@ -6,7 +6,8 @@
 
     /// <summary>
     /// Фотография.
-    /// См. описание <see cref="http://vk.com/dev/photo"/>.
+    /// См. описание <see cref="http://vk.com/dev/photo"/> и <see cref="http://vk.com/dev/attachments_w"/> раздел 
+    /// "Альбом с фотографиями".
     /// </summary>
     public class Photo
     {
@@ -73,7 +74,12 @@
         /// <summary>
         /// Дата добавления фотографии.
         /// </summary>
-        public DateTime? Created { get; set; }
+        public DateTime? CreateTime { get; set; }
+
+        /// <summary>
+        /// Ключ доступа.
+        /// </summary>
+        public string AccessKey { get; set; }
 
         #region Методы
 
@@ -93,7 +99,10 @@
             photo.Width = response["width"];
             photo.Height = response["height"];
             photo.Text = response["text"];
-            photo.Created = response["date"];
+            photo.CreateTime = response["date"];
+
+            // из описания альбом с фотографиями
+            photo.AccessKey = response["access_key"];
 
             return photo;
         }
