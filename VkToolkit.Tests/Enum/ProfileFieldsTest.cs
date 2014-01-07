@@ -37,16 +37,31 @@ namespace VkToolkit.Tests.Enum
         {
             ProfileFields all = ProfileFields.All;
             const string expected = 
-                "uid,first_name,last_name,nickname,screen_name,sex,bdate,city,country,timezone," + 
-                "photo_50,photo_100,photo_200_orig,has_mobile,contacts,education,online,counters,relation,last_seen," + 
-                "status,can_write_private_message,can_see_all_posts,can_see_audio,can_post,universities,schools," + 
-                "verified,connections,site,relatives,activities,interests,music,movies,tv,books,games,quotes,about," + 
-                "lang,personal,photo_400_orig,photo_max,photo_max_orig";
+                "uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig," + 
+                "photo_400_orig,photo_max,photo_max_orig,online,lists,screen_name,has_mobile,contacts,connections," + 
+                "site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message," + 
+                "status,last_seen,common_count,relation,relatives,counters,nickname,timezone";
 
             string s = all.ToString();
 
             Assert.That(s, Is.EqualTo(expected));
         }
-         
+
+        [Test]
+        public void ToString_All_Undocumented()
+        {
+            ProfileFields all = ProfileFields.AllUndocumented;
+            const string expected =
+                "uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig," +
+                "photo_400_orig,photo_max,photo_max_orig,online,lists,screen_name,has_mobile,contacts,connections," +
+                "site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message," + 
+                "status,last_seen,common_count,relation,relatives,counters,nickname,timezone,lang,online_mobile,online_app," + 
+                "relation_partner,personal,interests,music,activities,movies,tv,books,games,about,quotes,invited_by";
+
+            string s = all.ToString();
+
+            Assert.That(s, Is.EqualTo(expected));
+        }
+ 
     }
 }

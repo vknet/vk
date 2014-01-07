@@ -212,7 +212,7 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void GetProfile_AllFields_FullProfile()
         {
-            const string url = "https://api.vk.com/method/getProfiles?uid=4793858&fields=uid,first_name,last_name,nickname,screen_name,sex,bdate,city,country,timezone,photo_50,photo_100,photo_200_orig,has_mobile,contacts,education,online,counters,relation,last_seen,status,can_write_private_message,can_see_all_posts,can_see_audio,can_post,universities,schools,verified,connections,site,relatives,activities,interests,music,movies,tv,books,games,quotes,about,lang,personal,photo_400_orig,photo_max,photo_max_orig&access_token=token";
+            const string url = "https://api.vk.com/method/getProfiles?uid=4793858&fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,screen_name,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&access_token=token";
 
            const string json =
                 @"{

@@ -60,7 +60,7 @@ namespace VkToolkit.Tests
         [Test]
         public void GetApiUrl_GetProfile_WithFields()
         {
-            ProfileFields fields = ProfileFields.FirstName | ProfileFields.ScreenName | ProfileFields.Education;
+            ProfileFields fields = ProfileFields.FirstName | ProfileFields.Domain | ProfileFields.Education;
             values.Add("uid", "66748");
             values.Add("fields", fields.ToString().Replace(" ", ""));
             const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,screen_name,education&access_token=token";
