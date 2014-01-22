@@ -1,10 +1,10 @@
 ﻿namespace VkToolkit.Categories
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using VkToolkit.Enums;
-    using VkToolkit.Exception;
     using VkToolkit.Model;
     using VkToolkit.Utils;
 
@@ -18,6 +18,91 @@
         public AudioCategory(VkApi vk)
         {
             _vk = vk;
+        }
+
+        /// <summary>
+        /// Возвращает количество аудиозаписей пользователя или группы.
+        /// </summary>
+        /// <param name="ownerId">
+        /// Идентификатор владельца аудиозаписей (пользователь или сообщество). 
+        /// Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — 
+        /// например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1) 
+        /// </param>
+        /// <returns>
+        /// Возвращает число, равное количеству аудиозаписей на странице пользователя или группы.
+        /// </returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getCount"/>.
+        /// </remarks>
+        public int GetCount(long ownerId)
+        {
+            var parameters = new VkParameters { { "owner_id", ownerId }, { "v", VkApi.Version } };
+
+            return _vk.Call("audio.getCount", parameters);
+        }
+
+        /// <summary>
+        /// Возвращает текст аудиозаписи по идентификатору текста аудиозаписи (<see cref="Audio.LyricsId"/>).
+        /// Параметр <see cref="lyricsId"/> может быть получен с помощью методов <see cref="Get(long,out VkToolkit.Model.User,System.Nullable{long},System.Collections.Generic.IEnumerable{long},System.Nullable{int},System.Nullable{int})"/>,
+        /// <see cref="GetById(System.Collections.Generic.IEnumerable{string})"/> или <see cref="Search"/>.
+        /// </summary>
+        /// <param name="lyricsId">Идентификатор текста аудиозаписи, информацию о котором необходимо вернуть.</param>
+        /// <returns>В случае успеха возвращает найденный текст адиозаписи. В качестве переводов строк в тексте используется \n. </returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getLyrics"/>.
+        /// </remarks>
+        public Lyrics GetLyrics(long lyricsId)
+        {
+            var parameters = new VkParameters { { "lyrics_id", lyricsId }, { "v", VkApi.Version } };
+
+            return _vk.Call("audio.getLyrics", parameters);
+        }
+
+        /// <summary>
+        /// Возвращает информацию об аудиозаписях. 
+        /// </summary>
+        /// <param name="audios">
+        /// Список строковых идентификаторов аудиозаписей в формате - {owner_id}_{audio_id}.
+        /// Если аудиозапись принадлежит группе, то в качестве первого параметра используется -id группы. 
+        /// Примеры возможных значений идентификаторов: "2_67859194", "-683495_39822725", "2_63937759".
+        /// </param>
+        /// <returns>
+        /// В случае успеха возвращает информацию о запрошенных аудиозаписях пользователя (группы).
+        /// </returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getById"/>.
+        /// </remarks>
+        public List<Audio> GetById(IEnumerable<string> audios)
+        {
+            if (audios == null)
+                throw new ArgumentNullException("audios");
+
+            var parameters = new VkParameters { { "audios", audios } };
+
+            return _vk.Call("audio.getById", parameters);
+        }
+
+        /// <summary>
+        /// Возвращает информацию об аудиозаписях. 
+        /// </summary>
+        /// <param name="audios">
+        /// Список строковых идентификаторов аудиозаписей в формате - {owner_id}_{audio_id}.
+        /// Если аудиозапись принадлежит группе, то в качестве первого параметра используется -id группы. 
+        /// Примеры возможных значений идентификаторов: "2_67859194", "-683495_39822725", "2_63937759".
+        /// </param>
+        /// <returns>
+        /// В случае успеха возвращает информацию о запрошенных аудиозаписях пользователя (группы).
+        /// </returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getById"/>.
+        /// </remarks>
+        public List<Audio> GetById(params string[] audios)
+        {
+            return GetById((IEnumerable<string>)audios);
         }
 
         /// <summary>
@@ -119,85 +204,6 @@
         }
 
         /// <summary>
-        /// Возвращает информацию об аудиозаписях. 
-        /// </summary>
-        /// <param name="audios">
-        /// Список строковых идентификаторов аудиозаписей в формате - идентификатор пользователя (группы), знак подчеркивания и идентификатор аудиозаписи.
-        /// Если аудиозапись принадлежит группе, то в качестве первого параметра используется -id группы. 
-        /// Примеры возможных значений идентификаторов: "2_67859194", "-683495_39822725", "2_63937759".
-        /// </param>
-        /// <returns>
-        /// В случае успеха возвращает информацию о запрошенных аудиозаписях пользователя (группы).
-        /// </returns>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getById"/>.
-        /// </remarks>
-        public List<Audio> GetById(IEnumerable<string> audios)
-        {
-            if (audios == null)
-                throw new InvalidParamException("audios param is null.");
-
-            var parameters = new VkParameters { { "audios", audios } };
-
-            return _vk.Call("audio.getById", parameters);
-        }
-
-        /// <summary>
-        /// Возвращает информацию об аудиозаписях. 
-        /// </summary>
-        /// <param name="audios">
-        /// Список строковых идентификаторов аудиозаписей в формате - идентификатор пользователя (группы), знак подчеркивания и идентификатор аудиозаписи.
-        /// Если аудиозапись принадлежит группе, то в качестве первого параметра используется -id группы. 
-        /// Примеры возможных значений идентификаторов: "2_67859194", "-683495_39822725", "2_63937759".
-        /// </param>
-        /// <returns>
-        /// В случае успеха возвращает информацию о запрошенных аудиозаписях пользователя (группы).
-        /// </returns>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getById"/>.
-        /// </remarks>
-        public List<Audio> GetById(params string[] audios)
-        {
-            return GetById((IEnumerable<string>)audios);
-        }
-
-        /// <summary>
-        /// Возвращает количество аудиозаписей пользователя или группы.
-        /// </summary>
-        /// <param name="ownerId">Идентификатор владельца аудиозаписей. Если необходимо получить количество аудиозаписей группы, в этом параметре должно быть передано значение, равное -id группы.</param>
-        /// <returns>
-        /// Возвращает число, равное количеству аудиозаписей на странице пользователя или группы.
-        /// </returns>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getCount"/>.
-        /// </remarks>
-        public int GetCount(long ownerId)
-        {
-            var parameters = new VkParameters { { "oid", ownerId } };
-
-            return _vk.Call("audio.getCount", parameters);
-        }
-
-        /// <summary>
-        /// Возвращает текст аудиозаписи идентификатору текста аудиозаписи (<see cref="Audio.LyricsId"/>).
-        /// </summary>
-        /// <param name="lyricsId">Идентификатор текста аудиозаписи.</param>
-        /// <returns>В случае успеха возвращает найденный текст адиозаписи. В качестве переводов строк в тексте используется \n. </returns>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getLyrics"/>.
-        /// </remarks>
-        public Lyrics GetLyrics(long lyricsId)
-        {
-            var parameters = new VkParameters { { "lyrics_id", lyricsId } };
-
-            return _vk.Call("audio.getLyrics", parameters);
-        }
-
-        /// <summary>
         /// Возвращает адрес сервера для загрузки аудиозаписей. 
         /// </summary>
         /// <returns>
@@ -239,7 +245,7 @@
             int? offset = null)
         {
             if (string.IsNullOrEmpty(query))
-                throw new InvalidParamException("Query is null or empty.");
+                throw new ArgumentException("Query is null or empty.", "query");
 
             var parameters = new VkParameters
                              {
@@ -310,13 +316,13 @@
         public long Edit(long audioId, long ownerId, string artist, string title, string text, bool noSearch = false)
         {
             if (artist == null)
-                throw new InvalidParamException("artist parameter is null.");
+                throw new ArgumentNullException("artist", "Artist parameter can not be null.");
 
             if (title == null)
-                throw new InvalidParamException("title parameter is null.");
+                throw new ArgumentNullException("title", "Title parameter can not be null.");
 
             if (text == null)
-                throw new InvalidParamException("text parameter is null.");
+                throw new ArgumentNullException("text", "Text parameter can not be null.");
 
             var parameters = new VkParameters
                              {

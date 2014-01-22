@@ -13,7 +13,6 @@ namespace VkToolkit.Categories
     using System.Linq;
 
     using VkToolkit.Enums;
-    using VkToolkit.Exception;
     using VkToolkit.Model;
     using VkToolkit.Utils;
 
@@ -208,7 +207,7 @@ namespace VkToolkit.Categories
         public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null)
         {
             if (string.IsNullOrEmpty(query))
-                throw new InvalidParamException("Query can not be null or empty.");
+                throw new ArgumentException("Query can not be null or empty.", "query");
 
             var parameters = new VkParameters { { "q", query }, { "fields", fields } };
 
@@ -242,7 +241,7 @@ namespace VkToolkit.Categories
         public List<Message> Search(string query, out int totalCount, int? count = null, int? offset = null)
         {
             if (string.IsNullOrEmpty(query))
-                throw new InvalidParamException("Query can not be null or empty.");
+                throw new ArgumentException("Query can not be null or empty.", "query");
 
             var parameters = new VkParameters { { "q", query }, { "count", count + "" }, { "offset", offset } };
 
@@ -288,7 +287,7 @@ namespace VkToolkit.Categories
             string guid = null)
         {
             if (string.IsNullOrEmpty(message))
-                throw new InvalidParamException("Message can not be null.");
+                throw new ArgumentException("Message can not be null.", "message");
 
             var parameters = new VkParameters
                              {
@@ -347,11 +346,11 @@ namespace VkToolkit.Categories
         public IDictionary<long, bool> Delete(IEnumerable<long> messageIds)
         {
             if (messageIds == null)
-                throw new InvalidParamException("Param messageIds can not be null.");
+                throw new ArgumentNullException("messageIds", "Parameter messageIds can not be null.");
 
             var ids = messageIds.ToList();
             if (ids.Count == 0)
-                throw new InvalidParamException("Param messageIds has no one element.");
+                throw new ArgumentException("Parameter messageIds has no elements.", "messageIds");
 
             var parameters = new VkParameters { { "mids", ids } };
 
@@ -558,7 +557,7 @@ namespace VkToolkit.Categories
         public long CreateChat(IEnumerable<long> userIds, string title)
         {
             if (string.IsNullOrEmpty(title))
-                throw new InvalidParamException("Title can not be empty or null.");
+                throw new ArgumentException("Title can not be empty or null.", "userIds");
 
             var parameters = new VkParameters { { "uids", userIds }, { "title", HttpUtility.UrlEncode(title) } };
 
@@ -580,7 +579,7 @@ namespace VkToolkit.Categories
         public bool EditChat(long chatId, string title)
         {
             if (string.IsNullOrEmpty(title))
-                throw new InvalidParamException("Title can not be empty or null.");
+                throw new ArgumentException("Title can not be empty or null.", "title");
 
             var parameters = new VkParameters { { "chat_id", chatId }, { "title", HttpUtility.UrlEncode(title) } };
 

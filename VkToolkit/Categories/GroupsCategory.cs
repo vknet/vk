@@ -1,10 +1,10 @@
 ﻿namespace VkToolkit.Categories
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using VkToolkit.Enums;
-    using VkToolkit.Exception;
     using VkToolkit.Model;
     using VkToolkit.Utils;
 
@@ -165,7 +165,7 @@
         public List<Group> Search(string query, out int totalCount, int? offset = null, int? count = null)
         {
             if (string.IsNullOrEmpty(query))
-                throw new InvalidParamException("Query can not be null or empty!");
+                throw new ArgumentException("query");
 
             var parameters = new VkParameters { { "q", query }, { "offset", offset }, { "count", count } };
 

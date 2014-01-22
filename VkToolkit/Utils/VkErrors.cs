@@ -36,7 +36,7 @@
                 case 125: // Invalid group id.
                 case 100: // One of the parameters specified was missing or invalid.
                 case 120: // Invalid message.
-                    throw new InvalidParamException(message, code);
+                    throw new InvalidParameterException(message, code);
 
                 case 6: // Too many requests per second.
                     throw new TooManyRequestsException(message, code);

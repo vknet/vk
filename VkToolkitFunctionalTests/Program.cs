@@ -13,6 +13,7 @@
 
         private static void GetWallRecords(VkApi api)
         {
+            api.Audio.GetCount(20);
 
             int totalCount;
             var wallRecords = api.Wall.Get(1, out totalCount);
@@ -36,7 +37,7 @@
                 var api = new VkApi();
                 var login = args[0];
                 var password = args[1];
-                api.Authorize(1, login, password, Settings.Wall);
+                api.Authorize(1, login, password, Settings.Wall | Settings.Audio);
                 
                 GetWallRecords(api);
             }

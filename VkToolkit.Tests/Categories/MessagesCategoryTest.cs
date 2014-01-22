@@ -584,8 +584,8 @@ namespace VkToolkit.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParamException), ExpectedMessage = "Message can not be null.")]
-        public void Send_EmptyMessage_ThrowInvalidParamException()
+        [ExpectedException(typeof(ArgumentException))]
+        public void Send_EmptyMessage_ThrowsInvalidParameterException()
         {
             Cat.Send(1, false, "");
         }

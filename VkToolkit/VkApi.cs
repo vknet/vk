@@ -13,6 +13,8 @@
 
     public class VkApi
     {
+        public const string Version = "5.5";
+
         internal const string InvalidAuthorization = "Invalid authorization";
 
         public UsersCategory Users { get; private set; }
@@ -78,7 +80,9 @@
 
             VkErrors.IfErrorThrowException(answer);
 
+#if DEBUG
             Trace.WriteLine(Utilities.PreetyPrintJson(answer));
+#endif
 
             var json = JObject.Parse(answer);
 

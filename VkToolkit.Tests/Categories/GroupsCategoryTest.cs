@@ -454,8 +454,8 @@ namespace VkToolkit.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParamException), ExpectedMessage = "Invalid group id")]
-        public void IsMember_WrongGid_ThrowInvalidParamException()
+        [ExpectedException(typeof(InvalidParameterException), ExpectedMessage = "Invalid group id")]
+        public void IsMember_WrongGid_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/groups.isMember?gid=-1&uid=4793858&access_token=token";
             const string json =
@@ -619,8 +619,8 @@ namespace VkToolkit.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParamException))]
-        public void GetMembers_InvalidGid_ThrowInvalidParamException()
+        [ExpectedException(typeof(InvalidParameterException))]
+        public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/groups.getMembers?gid=-1&access_token=token";
             const string json =
@@ -665,8 +665,8 @@ namespace VkToolkit.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParamException), ExpectedMessage = "Query can not be null or empty!")]
-        public void Search_EmptyQuery_ThrowInvalidParamException()
+        [ExpectedException(typeof(ArgumentException))]
+        public void Search_EmptyQuery_ThrowsArgumentException()
         {
             int totalCount;
 
@@ -893,8 +893,8 @@ namespace VkToolkit.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParamException))]
-        public void GetById_InvalidGid_ThrowInvalidParamException()
+        [ExpectedException(typeof(InvalidParameterException))]
+        public void GetById_InvalidGid_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/groups.getById?gid=-1&access_token=token";
             const string json =
@@ -929,8 +929,8 @@ namespace VkToolkit.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParamException))]
-        public void GetById_Multiple_InvalidGids_ThrowInvalidParamException()
+        [ExpectedException(typeof(InvalidParameterException))]
+        public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/groups.getById?gids=-1&access_token=token";
             const string json =

@@ -176,7 +176,7 @@
                     break;
 
                 default:
-                    throw new InvalidParamException("The type of attachment is not defined.");
+                    throw new InvalidParameterException("The type of attachment is not defined.");
             }
 
             return attachment;
