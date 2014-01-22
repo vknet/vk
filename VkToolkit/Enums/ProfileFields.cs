@@ -110,7 +110,7 @@
         /// <summary>
         /// Для получения поля <see cref="User.Domain"/>. 
         /// </summary>
-        public static readonly ProfileFields Domain = new ProfileFields(1L << 16, "screen_name");
+        public static readonly ProfileFields Domain = new ProfileFields(1L << 16, "domain");
 
         /// <summary>
         /// Для получения поля <see cref="User.HasMobile"/>. 
