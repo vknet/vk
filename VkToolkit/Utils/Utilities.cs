@@ -42,6 +42,17 @@
             return response.Select(selector).ToList();
         }
 
+        public static void ThrowIfNumberIsNegative(int? number, string paramName, string message)
+        {
+            if (!number.HasValue) return;
+            ThrowIfNumberIsNegative(number.Value, paramName, message);
+        }
+
+        public static void ThrowIfNumberIsNegative(int number, string paramName, string message)
+        {
+            if (number <= 0) throw new ArgumentException(message, paramName);
+        }
+
         public static string PreetyPrintJson(string json)
         {
             // DELME: 

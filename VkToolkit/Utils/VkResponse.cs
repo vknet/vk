@@ -455,6 +455,11 @@
             return response == null ? null : Country.FromJson(response);
         }
 
+        public static implicit operator Region(VkResponse response)
+        {
+            return response == null ? null : Region.FromJson(response);
+        }
+
         #endregion
     }
 }

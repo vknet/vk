@@ -27,11 +27,8 @@ namespace VkToolkit.Categories
         /// </remarks>
         public List<Country> GetCountries(bool needAll = true, string codes = "", int? count = null, int? offset = null)
         {
-            if (offset.HasValue && offset <= 0)
-                throw new ArgumentException("Отступ должен быть положительным числом.", "offset");
-            if (count.HasValue && count <= 0)
-                throw new ArgumentException(
-                    "Количество стран, которое необходимо вернуть должно быть положительным числом", "count");
+            Utilities.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
+            Utilities.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом");
 
             var parameters = new VkParameters { { "code", codes }, { "offset", offset }, { "count", count }, { "need_all", needAll } };
 
@@ -39,10 +36,18 @@ namespace VkToolkit.Categories
             return response.ToListOf<Country>(x => x);
         }
 
-        public void GetRegions(int countryId, string query, int offset, int count)
+        // TODO Add comment
+        public List<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null)
         {
-            // TODO: DatabaseCategory.GetRegions
-            throw new NotImplementedException();
+            Utilities.ThrowIfNumberIsNegative(countryId, "countryId", "Идентификатор страны должен быть положительным числом.");
+            Utilities.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
+            Utilities.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом");
+
+            var parameters = new VkParameters { { "country_id", countryId }, { "q", query }, { "offset", offset }, { "count", count } };
+
+            VkResponseArray response = _vk.Call("database.getRegions", parameters, true);
+            
+            return response.ToListOf<Region>(r => r);
         }
 
         public void GetStreetsById(params int[] streetIds)

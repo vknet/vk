@@ -81,6 +81,7 @@
             VkErrors.IfErrorThrowException(answer);
 
 #if DEBUG
+            Trace.WriteLine(string.Format("            const string url = \"{0}\";", url));
             Trace.WriteLine(Utilities.PreetyPrintJson(answer));
 #endif
 

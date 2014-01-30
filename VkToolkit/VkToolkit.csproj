@@ -96,6 +96,7 @@
     <Compile Include="Model\Poll.cs" />
     <Compile Include="Model\PostSource.cs" />
     <Compile Include="Model\Previews.cs" />
+    <Compile Include="Model\Region.cs" />
     <Compile Include="Model\Relative.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
