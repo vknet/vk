@@ -23,15 +23,19 @@ namespace VkToolkit.Categories
         /// <param name="count">Количество стран, которое необходимо вернуть. </param>
         /// <remarks>
         /// Если не заданы параметры needAll и code, то возвращается краткий список стран, расположенных наиболее близко к стране текущего пользователя. Если задан параметр needAll, то будет возвращен список всех стран. Если задан параметр code, то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCountries"/>.
         /// </remarks>
-        public List<Country> GetCountries(bool needAll, string codes, int offset, int count)
+        public List<Country> GetCountries(bool needAll = true, string codes = "", int? count = null, int? offset = null)
         {
-            // TODO: Сделать проверки вход. значений
-            // TODO: Сделать этот метод с необязательными параметрами
+            if (offset.HasValue && offset <= 0)
+                throw new ArgumentException("Отступ должен быть положительным числом.", "offset");
+            if (count.HasValue && count <= 0)
+                throw new ArgumentException(
+                    "Количество стран, которое необходимо вернуть должно быть положительным числом", "count");
+
             var parameters = new VkParameters { { "code", codes }, { "offset", offset }, { "count", count }, { "need_all", needAll } };
 
             VkResponseArray response = _vk.Call("database.getCountries", parameters, true);
-
             return response.ToListOf<Country>(x => x);
         }
 

@@ -46,7 +46,7 @@ namespace VkToolkit.Tests.Categories
 
              var db = GetMockedDatabaseCategory(url, json);
 
-             List<Country> countries = db.GetCountries(true, "", 5, 3);
+             List<Country> countries = db.GetCountries(true, "", 3, 5);
 
              Assert.That(countries.Count, Is.EqualTo(3));
 
