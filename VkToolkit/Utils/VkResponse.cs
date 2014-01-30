@@ -450,6 +450,11 @@
             return response == null ? null : Poll.FromJson(response);
         }
 
+        public static implicit operator Country(VkResponse response)
+        {
+            return response == null ? null : Country.FromJson(response);
+        }
+
         #endregion
     }
 }

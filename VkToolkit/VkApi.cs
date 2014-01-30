@@ -17,17 +17,15 @@
 
         internal const string InvalidAuthorization = "Invalid authorization";
 
-        public UsersCategory Users { get; private set; }
-
-        public FriendsCategory Friends { get; private set; }
-
-        public StatusCategory Status { get; private set; }
-
-        public MessagesCategory Messages { get; private set; }
-
-        public GroupsCategory Groups { get; private set; }
-
-        public AudioCategory Audio { get; private set; }
+        #region Categories Definition
+        public UsersCategory        Users { get; private set; }
+        public FriendsCategory      Friends { get; private set; }
+        public StatusCategory       Status { get; private set; }
+        public MessagesCategory     Messages { get; private set; }
+        public GroupsCategory       Groups { get; private set; }
+        public AudioCategory        Audio { get; private set; }
+        public DatabaseCategory     Database { get; private set; }
+        #endregion
 
         public WallCategory Wall { get; private set; }
 
@@ -49,6 +47,7 @@
             Groups = new GroupsCategory(this);
             Audio = new AudioCategory(this);
             Wall = new WallCategory(this);
+            Database = new DatabaseCategory(this);
         }
 
         /// <summary>
@@ -70,9 +69,10 @@
 
         #region Private & Internal Methods
 
-        internal VkResponse Call(string methodName, VkParameters parameters)
+        internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {
-            IfNotAuthorizedThrowException();
+            if (!skipAuthorization)
+                IfNotAuthorizedThrowException();
 
             var url = GetApiUrl(methodName, parameters);
 

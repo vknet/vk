@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories\AudioCategory.cs" />
+    <Compile Include="Categories\DatabaseCategory.cs" />
     <Compile Include="Categories\GroupsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
     <Compile Include="Categories\WallCategory.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Model\ApplicationContent.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />
+    <Compile Include="Model\Country.cs" />
     <Compile Include="Model\Graffiti.cs" />
     <Compile Include="Model\Link.cs" />
     <Compile Include="Model\Poll.cs" />
