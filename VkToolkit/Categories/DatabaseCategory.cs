@@ -56,10 +56,15 @@ namespace VkToolkit.Categories
             throw new NotImplementedException();
         }
 
-        public void GetCountriesById(params int[] countryIds)
+        // TODO: add comment DatabaseCategory.GetCountriesById
+        public List<Country> GetCountriesById(params int[] countryIds)
         {
-            // TODO: DatabaseCategory.GetCountriesById
-            throw new NotImplementedException();
+            var parameters = new VkParameters();
+            parameters.Add<int>("country_ids", countryIds);
+
+            VkResponseArray response = _vk.Call("database.getCountriesById", parameters, true);
+
+            return response.ToListOf<Country>(c => c);
         }
 
         public void GetCities(int countryId, int regionId, string query, bool needAll, int offset, int count)

@@ -173,5 +173,47 @@ namespace VkToolkit.Tests.Categories
              Assert.That(countries[2].Id, Is.EqualTo(25));
              Assert.That(countries[2].Title, Is.EqualTo("Ангола"));
          }
+
+        [Test]
+        public void GetCountriesById_EmptyList()
+        {
+            var db = new DatabaseCategory(new VkApi());
+
+            List<Country> countries = db.GetCountriesById();
+
+            Assert.That(countries, Is.Not.Null);
+            Assert.That(countries.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void GetCountriesById_1And65_RussiaAndGermany()
+        {
+            const string url = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&access_token=";
+            const string json =
+                @"{
+                    'response': [
+                      {
+                        'cid': 1,
+                        'name': 'Россия'
+                      },
+                      {
+                        'cid': 65,
+                        'name': 'Германия'
+                      }
+                    ]
+                  }";
+
+            DatabaseCategory db = GetMockedDatabaseCategory(url, json);
+
+            List<Country> countries = db.GetCountriesById(1, 65);
+
+            Assert.That(countries.Count, Is.EqualTo(2));
+
+            Assert.That(countries[0].Id, Is.EqualTo(1));
+            Assert.That(countries[0].Title, Is.EqualTo("Россия"));
+
+            Assert.That(countries[1].Id, Is.EqualTo(65));
+            Assert.That(countries[1].Title, Is.EqualTo("Германия"));
+        }
     }
 }

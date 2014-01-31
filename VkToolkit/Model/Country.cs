@@ -23,7 +23,7 @@ namespace VkToolkit.Model
             var country = new Country();
 
             country.Id = response["cid"];
-            country.Title = response["title"];
+            country.Title = response["title"] ?? response["name"];
 
             return country;
         }

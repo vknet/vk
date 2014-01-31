@@ -24,6 +24,22 @@ namespace VkToolkit.Tests
             vk = new VkApi { AccessToken = "token" };
             values = new Dictionary<string, string>();
         }
+        
+        [Test]
+        public void GetApiUrl_IntArray()
+        {
+            int[] arr = new[] {1, 65};
+
+            //var parameters = new VkParameters { { "country_ids", arr } };
+            var parameters = new VkParameters();
+            parameters.Add<int>("country_ids", arr);
+
+            const string expected = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&access_token=token";
+
+            string url = vk.GetApiUrl("database.getCountriesById", parameters);
+
+            Assert.That(url, Is.EqualTo(expected));
+        }
 
         [Test]
         public void VkApi_Constructor_SetDefaultMethodCategories()
@@ -35,6 +51,7 @@ namespace VkToolkit.Tests
             Assert.That(vk.Groups, Is.Not.Null);
             Assert.That(vk.Audio, Is.Not.Null);
             Assert.That(vk.Wall, Is.Not.Null);
+            Assert.That(vk.Database, Is.Not.Null);
             // TODO: continue later
         }
 
@@ -63,7 +80,7 @@ namespace VkToolkit.Tests
             ProfileFields fields = ProfileFields.FirstName | ProfileFields.Domain | ProfileFields.Education;
             values.Add("uid", "66748");
             values.Add("fields", fields.ToString().Replace(" ", ""));
-            const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,screen_name,education&access_token=token";
+            const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,domain,education&access_token=token";
 
             string output = vk.GetApiUrl("getProfiles", values);
 
