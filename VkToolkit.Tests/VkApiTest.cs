@@ -52,6 +52,7 @@ namespace VkToolkit.Tests
             Assert.That(vk.Audio, Is.Not.Null);
             Assert.That(vk.Wall, Is.Not.Null);
             Assert.That(vk.Database, Is.Not.Null);
+            Assert.That(vk.Utils, Is.Not.Null);
             // TODO: continue later
         }
 

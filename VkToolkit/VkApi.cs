@@ -25,9 +25,9 @@
         public GroupsCategory       Groups { get; private set; }
         public AudioCategory        Audio { get; private set; }
         public DatabaseCategory     Database { get; private set; }
+        public UtilsCategory        Utils { get; private set; }
+        public WallCategory         Wall { get; private set; }
         #endregion
-
-        public WallCategory Wall { get; private set; }
 
         internal IBrowser Browser { get; set; }
 
@@ -48,6 +48,7 @@
             Audio = new AudioCategory(this);
             Wall = new WallCategory(this);
             Database = new DatabaseCategory(this);
+            Utils = new UtilsCategory(this);
         }
 
         /// <summary>

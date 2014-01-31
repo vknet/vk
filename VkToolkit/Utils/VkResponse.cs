@@ -57,6 +57,16 @@
             return (long)response._token;
         }
 
+        public static implicit operator float(VkResponse response)
+        {
+            return (float) response._token;
+        }
+
+        public static implicit operator float?(VkResponse response)
+        {
+            return response != null ? (float?) response._token : null;
+        }
+
         public static implicit operator long?(VkResponse response)
         {
             return response != null ? (long?)response._token : null;
@@ -458,6 +468,17 @@
         public static implicit operator Region(VkResponse response)
         {
             return response == null ? null : Region.FromJson(response);
+        }
+
+        public static implicit operator LinkAccessType(VkResponse response)
+        {
+            return response == null ? null : LinkAccessType.FromJson(response);
+        }
+
+        public static implicit operator VkObject(VkResponse response)
+        {
+            // TODO Возможно сделать так для всех
+            return response == null || response._token == null || !response._token.HasValues ? null : VkObject.FromJson(response);
         }
 
         #endregion

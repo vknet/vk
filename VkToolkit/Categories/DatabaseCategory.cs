@@ -27,8 +27,8 @@ namespace VkToolkit.Categories
         /// </remarks>
         public List<Country> GetCountries(bool needAll = true, string codes = "", int? count = null, int? offset = null)
         {
-            Utilities.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
-            Utilities.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
+            VkErrors.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом");
 
             var parameters = new VkParameters { { "code", codes }, { "offset", offset }, { "count", count }, { "need_all", needAll } };
 
@@ -39,9 +39,9 @@ namespace VkToolkit.Categories
         // TODO Add comment
         public List<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null)
         {
-            Utilities.ThrowIfNumberIsNegative(countryId, "countryId", "Идентификатор страны должен быть положительным числом.");
-            Utilities.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
-            Utilities.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом");
+            VkErrors.ThrowIfNumberIsNegative(countryId, "countryId", "Идентификатор страны должен быть положительным числом.");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
+            VkErrors.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом");
 
             var parameters = new VkParameters { { "country_id", countryId }, { "q", query }, { "offset", offset }, { "count", count } };
 

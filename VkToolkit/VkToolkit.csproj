@@ -53,6 +53,7 @@
     <Compile Include="Categories\DatabaseCategory.cs" />
     <Compile Include="Categories\GroupsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
+    <Compile Include="Categories\UtilsCategory.cs" />
     <Compile Include="Categories\WallCategory.cs" />
     <Compile Include="Enums\AdminLevel.cs" />
     <Compile Include="Enums\Attitude.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Enums\GroupsSort.cs" />
     <Compile Include="Enums\GroupType.cs" />
     <Compile Include="Enums\LifeMain.cs" />
+    <Compile Include="Enums\LinkAccessType.cs" />
     <Compile Include="Enums\MessageReadState.cs" />
     <Compile Include="Enums\MessagesFilter.cs" />
     <Compile Include="Enums\MessageType.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Enums\Settings.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
     <Compile Include="Enums\Sex.cs" />
+    <Compile Include="Enums\VkObjectType.cs" />
     <Compile Include="Enums\WallFilter.cs" />
     <Compile Include="Exception\AccessDeniedException.cs" />
     <Compile Include="Exception\AccessTokenInvalidException.cs" />
@@ -101,6 +104,7 @@
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\University.cs" />
+    <Compile Include="Model\VkObject.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\WebCallResult.cs" />
     <Compile Include="Model\Coordinates.cs" />
