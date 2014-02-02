@@ -12,8 +12,7 @@ namespace VkToolkit.Tests.Categories
     [TestFixture]
     public class DatabaseCategoryTest
     {
-        // TODO: Добавить больше тестов на методы
-        DatabaseCategory _db = new DatabaseCategory(new VkApi());
+        //DatabaseCategory _db = new DatabaseCategory(new VkApi());
 
         private DatabaseCategory GetMockedDatabaseCategory(string url, string json)
         {
@@ -551,12 +550,13 @@ namespace VkToolkit.Tests.Categories
         }
 
         [Test]
+        [Ignore("undone")]
         public void GetFaculties_SuchUniversityDoesNotExist()
         {
-            const string url = "https://api.vk.com/method/database.getFaculties?university_id=999999&access_token=";
-            var db = _db;
-
-            List<Faculty> faculties = db.GetFaculties(999999);
+//            const string url = "https://api.vk.com/method/database.getFaculties?university_id=999999&access_token=";
+//            var db = _db;
+//
+//            List<Faculty> faculties = db.GetFaculties(999999);
 
             Assert.Fail("undone");
         }

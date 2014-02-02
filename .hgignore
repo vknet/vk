@@ -13,3 +13,5 @@ _ReSharper.VkToolkit.WP7/*
 *.user
 VkToolkitFunctionalTests/bin/*
 VkToolkitFunctionalTests/obj/*
+bin/*
+obj/*

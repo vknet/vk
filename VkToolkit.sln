@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkToolkit", "VkToolkit\VkToolkit.csproj", "{8B031A92-84D4-4418-8551-18F1AFEECC6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkToolkit.Tests", "VkToolkit.Tests\VkToolkit.Tests.csproj", "{C54A0446-430F-4471-8779-E9F01728C478}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkToolkitFunctionalTests", "VkToolkitFunctionalTests\VkToolkitFunctionalTests.csproj", "{4316A539-A6D0-4710-82F2-EFF40EF05413}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkApiRunner", "VkApiRunner\VkApiRunner.csproj", "{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +27,10 @@ Global
 		{4316A539-A6D0-4710-82F2-EFF40EF05413}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4316A539-A6D0-4710-82F2-EFF40EF05413}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4316A539-A6D0-4710-82F2-EFF40EF05413}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
