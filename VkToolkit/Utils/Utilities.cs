@@ -42,6 +42,11 @@
             return response.Select(selector).ToList();
         }
 
+        public static string PreetyPrintApiUrl(string url)
+        {
+            return string.Format("            const string url = \"{0}\";", url);
+        }
+
         public static string PreetyPrintJson(string json)
         {
             // DELME: 
