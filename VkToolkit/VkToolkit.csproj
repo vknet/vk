@@ -91,9 +91,11 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\ApplicationContent.cs" />
+    <Compile Include="Model\City.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />
     <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\Faculty.cs" />
     <Compile Include="Model\Graffiti.cs" />
     <Compile Include="Model\Link.cs" />
     <Compile Include="Model\Poll.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Model\Relative.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
+    <Compile Include="Model\Street.cs" />
     <Compile Include="Model\University.cs" />
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Utils\Cookies.cs" />

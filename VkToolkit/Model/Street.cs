@@ -1,0 +1,34 @@
+﻿using VkToolkit.Utils;
+
+namespace VkToolkit.Model
+{
+    /// <summary>
+    /// Улица
+    /// </summary>
+    public class Street
+    {
+        /// <summary>
+        /// Идентификатор улицы
+        /// </summary>
+        public long Id { get; set; }
+
+        /// <summary>
+        /// Название улицы
+        /// </summary>
+        public string Title { get; set; }
+
+        #region Internal Methods
+
+        internal static Street FromJson(VkResponse response)
+        {
+            var street = new Street();
+
+            street.Id = response["sid"];
+            street.Title = response["name"];
+
+            return street;
+        }
+
+        #endregion
+    }
+}

@@ -481,6 +481,21 @@
             return response == null || response._token == null || !response._token.HasValues ? null : VkObject.FromJson(response);
         }
 
+        public static implicit operator City(VkResponse response)
+        {
+            return response == null ? null : City.FromJson(response);
+        }
+
+        public static implicit operator Street(VkResponse response)
+        {
+            return response == null ? null : Street.FromJson(response);
+        }
+
+        public static implicit operator Faculty(VkResponse response)
+        {
+            return response == null ? null : Faculty.FromJson(response);
+        }
+
         #endregion
     }
 }

@@ -72,7 +72,7 @@
             school.Id = response["id"];
             school.Country = response["country"];
             school.City = response["city"];
-            school.Name = response["name"];
+            school.Name = response["name"] ?? response["title"];
             school.YearFrom = response["year_from"];
             school.YearTo = response["year_to"];
             school.YearGraduated = response["year_graduated"];

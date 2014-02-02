@@ -76,7 +76,7 @@
             university.Id = response["id"];
             university.Country = response["country"];
             university.City = response["city"];
-            university.Name = response["name"];
+            university.Name = response["name"] ?? response["title"];
             university.Faculty = response["faculty"];
             university.FacultyName = response["faculty_name"];
             university.Chair = response["chair"];
