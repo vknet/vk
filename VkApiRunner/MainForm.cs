@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using VkToolkit;
 using VkToolkit.Enums;
+using VkToolkit.Exception;
 using VkToolkit.Utils;
 
 namespace VkApiRunner
@@ -40,11 +41,19 @@ namespace VkApiRunner
             string login = ConfigurationManager.AppSettings["login"];
             string password = ConfigurationManager.AppSettings["password"];
 
-            btnRun.Enabled = btnGetTest.Enabled = false;
-
             // Authorize on vk server
             var api = new VkApi();
-            api.Authorize(appId, login, password, Settings.All);
+            try
+            {
+                api.Authorize(appId, login, password, Settings.All);
+            }
+            catch (VkApiException)
+            {
+                MessageBox.Show("Ошибка авторизации. Проверьте данные в app.config.", "Ошибка приложения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            btnRun.Enabled = btnGetTest.Enabled = false;
 
             // Combine parameters
             var parameters = new VkParameters();
