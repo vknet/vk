@@ -41,6 +41,8 @@ namespace VkApiRunner
             string login = ConfigurationManager.AppSettings["login"];
             string password = ConfigurationManager.AppSettings["password"];
 
+            btnRun.Enabled = btnGetTest.Enabled = false;
+
             // Authorize on vk server
             var api = new VkApi();
             try
@@ -50,10 +52,9 @@ namespace VkApiRunner
             catch (VkApiException)
             {
                 MessageBox.Show("Ошибка авторизации. Проверьте данные в app.config.", "Ошибка приложения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnRun.Enabled = btnGetTest.Enabled = true;
                 return;
             }
-
-            btnRun.Enabled = btnGetTest.Enabled = false;
 
             // Combine parameters
             var parameters = new VkParameters();
