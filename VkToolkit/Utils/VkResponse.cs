@@ -12,6 +12,7 @@
     internal class VkResponse
     {
         private readonly JToken _token;
+        public string RawJson { get; set; }
 
         public VkResponse(JToken token)
         {

@@ -75,9 +75,9 @@
             if (!skipAuthorization)
                 IfNotAuthorizedThrowException();
 
-            var url = GetApiUrl(methodName, parameters);
+            string url = GetApiUrl(methodName, parameters);
 
-            var answer = Browser.GetJson(url);
+            string answer = Browser.GetJson(url);
 
 #if DEBUG
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
@@ -85,11 +85,11 @@
 #endif
             VkErrors.IfErrorThrowException(answer);
 
-            var json = JObject.Parse(answer);
+            JObject json = JObject.Parse(answer);
 
             var rawResponse = json["response"];
 
-            return new VkResponse(rawResponse);
+            return new VkResponse(rawResponse) {RawJson = answer};
         }
 
         internal string GetApiUrl(string methodName, IDictionary<string, string> values)

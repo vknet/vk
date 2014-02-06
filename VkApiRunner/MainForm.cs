@@ -16,6 +16,21 @@ namespace VkApiRunner
         public MainForm()
         {
             InitializeComponent();
+
+#if DEBUG
+            tbMethodName.Text = "audio.getPopular";
+            tbParamName1.Text = "only_eng";
+            tbParamValue1.Text = "0";
+
+            tbParamName2.Text = "genre_id";
+            tbParamValue2.Text = "3";
+
+            tbParamName3.Text = "offset";
+            tbParamValue3.Text = "2";
+
+            tbParamName4.Text = "count";
+            tbParamValue4.Text = "3";
+#endif
         }
 
         private void btnRun_Click(object sender, EventArgs e)
@@ -86,7 +101,7 @@ namespace VkApiRunner
                 return;
             }
 
-            tbJson.Text = response.ToString();
+            tbJson.Text = response.RawJson;
 
             _apiUrl = api.GetApiUrl(methodName, parameters);
             llVkApiUrl.Text = _apiUrl.Length > 80 ? _apiUrl.Substring(0, 80) + "..." : _apiUrl;
@@ -96,8 +111,8 @@ namespace VkApiRunner
 
         private void llVkApiUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(llVkApiUrl.Text))
-                Process.Start(llVkApiUrl.Text);
+            if (!string.IsNullOrEmpty(_apiUrl))
+                Process.Start(_apiUrl);
         }
 
         private void btnGetTest_Click(object sender, EventArgs e)
