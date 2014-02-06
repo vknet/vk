@@ -497,6 +497,11 @@
             return response == null ? null : Faculty.FromJson(response);
         }
 
+        public static implicit operator AudioAlbum(VkResponse response)
+        {
+            return response == null ? null : AudioAlbum.FromJson(response);
+        }
+
         #endregion
     }
 }

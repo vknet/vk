@@ -26,6 +26,18 @@
             return (T)(object)value;
         }
 
+        /// <summary>
+        /// Получение идентификатора.
+        /// 
+        /// Применять когда id может быть задано как строкой так и числом в json'e.
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        public static long? GetNullableLongId(VkResponse response)
+        {
+            return response != null ? System.Convert.ToInt64(response.ToString()) : (long?)null;
+        }
+
         public static string JoinNonEmpty<T>(this IEnumerable<T> collection, string separator = ",")
         {
             if (collection == null)

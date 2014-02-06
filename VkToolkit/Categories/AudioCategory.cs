@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using VkToolkit.Enums;
-    using VkToolkit.Model;
-    using VkToolkit.Utils;
+    using Enums;
+    using Model;
+    using Utils;
 
     /// <summary>
     /// Методы для работы с аудиозаписями.
@@ -371,6 +371,164 @@
             var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId }, { "after", after }, { "before", before } };
 
             return _vk.Call("audio.reorder", parameters);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
+        public long AddAlbum(string title, long? groupId = null)
+        {
+            VkErrors.ThrowIfNullOrEmpty(title);
+            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+
+            var parameters = new VkParameters
+                {
+                    {"title", title},
+                    {"group_id", groupId}
+                };
+
+            VkResponse response = _vk.Call("audio.addAlbum", parameters);
+            return response["album_id"];
+        }
+
+        // todo add comment
+        public bool EditAlbum(string title, long albumId, long? groupId = null)
+        {
+            VkErrors.ThrowIfNullOrEmpty(title);
+            VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
+            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+
+            var parameters = new VkParameters
+                {
+                    {"title", title},
+                    {"group_id", groupId},
+                    {"album_id", albumId}
+                };
+
+            VkResponse response = _vk.Call("audio.editAlbum", parameters);
+
+            return response;
+        }
+
+        // todo add comment
+        public bool DeleteAlbum(long albumId, long? groupId = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
+            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+
+            var parameters = new VkParameters
+                {
+                    {"album_id", albumId},
+                    {"group_id", groupId}
+
+                };
+
+            return _vk.Call("audio.deleteAlbum", parameters);
+        }
+
+        // todo add comment
+        public List<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, int? count = null, int? offset = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+
+            var parameters = new VkParameters
+                {
+                    {"only_eng", onlyEng},
+                    {"genre_id", genre},
+                    {"offset", offset},
+                    {"count", count}
+                };
+
+            VkResponseArray response = _vk.Call("audio.getPopular", parameters);
+
+            return response.ToListOf<Audio>(x => x);
+        }
+
+        // todo add comment
+        public List<AudioAlbum> GetAlbums(long ownerid, int? count = null, int? offset = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(ownerid, "ownerid");
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"owner_id", ownerid},
+                    {"count", count},
+                    {"offset", offset}
+                };
+
+            VkResponseArray response = _vk.Call("audio.getAlbums", parameters);
+
+            return response.Skip(1).ToListOf<AudioAlbum>(x => x);
+        }
+
+        // todo add comment
+        public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
+            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+
+            var parameters = new VkParameters
+                {
+                    {"album_id", albumId},
+                    {"group_id", groupId}
+                };
+            parameters.Add("audio_ids", audioIds);
+
+            VkResponse response = _vk.Call("audio.moveToAlbum", parameters);
+
+            return response;
+        }
+
+        // todo add comment
+        public List<Audio> GetRecommendations(long? userId = null, int? count = null, int? offset = null, bool shuffle = true, string targetAudio = "")
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+
+            var parameters = new VkParameters
+                {
+                    {"target_audio", targetAudio},
+                    {"user_id", userId},
+                    {"offset", offset},
+                    {"count", count},
+                    {"shuffle", shuffle}
+                };
+
+            VkResponseArray response = _vk.Call("audio.getRecommendations", parameters);
+
+            return response.ToListOf<Audio>(x => x);
+        }
+
+        // todo add comment
+        public List<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
+        {
+            VkErrors.ThrowIfNullOrEmpty(audio);
+
+            var parameters = new VkParameters
+                {
+                    {"audio", audio}
+                };
+            parameters.Add("target_ids", targetIds);
+
+            VkResponseArray response = _vk.Call("audio.setBroadcast", parameters);
+
+            return response.ToListOf<long>(x => x);
+        }
+
+        /// <summary>
+        /// НЕ РЕАЛИЗОВАН!
+        /// </summary>
+        public void GetBroadcastList()
+        {
+            // TODO Audio.GetBroadcastList - реализовать когда будет больше тестовых данных
+            throw new NotImplementedException();
         }
     }
 }

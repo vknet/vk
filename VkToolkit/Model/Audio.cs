@@ -2,8 +2,8 @@
 {
     using System;
 
-    using VkToolkit.Enums;
-    using VkToolkit.Utils;
+    using Enums;
+    using Utils;
 
     /// <summary>
     /// Аудиозапись пользователя или группы.
@@ -63,15 +63,17 @@
         {
             var audio = new Audio();
 
-            audio.Id = response["id"];
+            VkResponse id = response["id"] ?? response["aid"];
+
+            audio.Id = Convert.ToInt64(id.ToString());
             audio.OwnerId = response["owner_id"];
             audio.Artist = response["artist"];
             audio.Title = response["title"];
             audio.Duration = response["duration"];
             audio.Url = response["url"];
-            audio.LyricsId = response["lyrics_id"];
-            audio.AlbumId = response["album_id"];
-            audio.Genre = response["genre_id"];
+            audio.LyricsId = Utilities.GetNullableLongId(response["lyrics_id"]);
+            audio.AlbumId = Utilities.GetNullableLongId(response["album_id"]);
+            audio.Genre = response["genre_id"] ?? response["genre"];
 
             return audio;
         }

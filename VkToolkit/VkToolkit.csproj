@@ -91,6 +91,7 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\ApplicationContent.cs" />
+    <Compile Include="Model\AudioAlbum.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />
