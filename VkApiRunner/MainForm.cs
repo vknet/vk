@@ -73,7 +73,18 @@ namespace VkApiRunner
 
             string methodName = tbMethodName.Text.Trim();
 
-            var response =  api.Call(methodName, parameters);
+            VkResponse response;
+            try
+            {
+                response = api.Call(methodName, parameters);
+            }
+            catch (VkApiException ex)
+            {
+                MessageBox.Show(ex.InnerException != null ? ex.InnerException.Message : ex.Message, "Ошибка приложения",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnRun.Enabled = btnGetTest.Enabled = true;
+                return;
+            }
 
             tbJson.Text = response.ToString();
 
