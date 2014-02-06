@@ -374,11 +374,14 @@
         }
 
         /// <summary>
-        /// 
+        /// Создает пустой альбом аудиозаписей.
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
+        /// <param name="title">название альбома</param>
+        /// <param name="groupId">идентификатор сообщества (если альбом нужно создать в сообществе)</param>
+        /// <returns>Идентификатор созданного альбома</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.addAlbum"/>.
+        /// </remarks>
         public long AddAlbum(string title, long? groupId = null)
         {
             VkErrors.ThrowIfNullOrEmpty(title);
@@ -394,7 +397,16 @@
             return response["album_id"];
         }
 
-        // todo add comment
+        /// <summary>
+        /// Редактирует название альбома аудиозаписей.
+        /// </summary>
+        /// <param name="title">новое название для альбома</param>
+        /// <param name="albumId">дентификатор альбома</param>
+        /// <param name="groupId">идентификатор сообщества, которому принадлежит альбом</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.editAlbum"/>.
+        /// </remarks>
         public bool EditAlbum(string title, long albumId, long? groupId = null)
         {
             VkErrors.ThrowIfNullOrEmpty(title);
@@ -413,7 +425,15 @@
             return response;
         }
 
-        // todo add comment
+        /// <summary>
+        /// Удаляет альбом аудиозаписей.
+        /// </summary>
+        /// <param name="albumId">идентификатор альбома</param>
+        /// <param name="groupId">идентификатор сообщества, которому принадлежит альбом</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.deleteAlbum"/>.
+        /// </remarks>
         public bool DeleteAlbum(long albumId, long? groupId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
@@ -429,7 +449,17 @@
             return _vk.Call("audio.deleteAlbum", parameters);
         }
 
-        // todo add comment
+        /// <summary>
+        /// Возвращает список аудиозаписей из раздела "Популярное".
+        /// </summary>
+        /// <param name="onlyEng">true – возвращать только зарубежные аудиозаписи. false – возвращать все аудиозаписи. (по умолчанию) </param>
+        /// <param name="genre">идентификатор жанра </param>
+        /// <param name="count">количество возвращаемых аудиозаписей</param>
+        /// <param name="offset">смещение, необходимое для выборки определенного подмножества аудиозаписей</param>
+        /// <returns>Список аудиозаписей из раздела "Популярное"</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getPopular"/>.
+        /// </remarks>
         public List<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(offset, "offset");
@@ -448,7 +478,16 @@
             return response.ToListOf<Audio>(x => x);
         }
 
-        // todo add comment
+        /// <summary>
+        /// Возвращает список альбомов аудиозаписей пользователя или группы.
+        /// </summary>
+        /// <param name="ownerid">идентификатор пользователя или сообщества, у которого необходимо получить список альбомов с аудио. </param>
+        /// <param name="count">количество альбомов, которое необходимо вернуть</param>
+        /// <param name="offset">смещение, необходимое для выборки определенного подмножества альбомов</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getAlbums"/>.
+        /// </remarks>
         public List<AudioAlbum> GetAlbums(long ownerid, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(ownerid, "ownerid");
@@ -467,7 +506,16 @@
             return response.Skip(1).ToListOf<AudioAlbum>(x => x);
         }
 
-        // todo add comment
+        /// <summary>
+        /// Перемещает аудиозаписи в альбом.
+        /// </summary>
+        /// <param name="albumId">идентификатор альбома, в который нужно переместить аудиозаписи</param>
+        /// <param name="audioIds">идентификаторы аудиозаписей, которые требуется переместить</param>
+        /// <param name="groupId">идентификатор сообщества, в котором размещены аудиозаписи. Если параметр не указан, работа ведется с аудиозаписями текущего пользователя</param>
+        /// <returns>После успешного выполнения возвращает true</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.moveToAlbum"/>.
+        /// </remarks>
         public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
@@ -485,7 +533,18 @@
             return response;
         }
 
-        // todo add comment
+        /// <summary>
+        /// Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи.
+        /// </summary>
+        /// <param name="userId">идентификатор пользователя для получения списка рекомендаций на основе его набора аудиозаписей (по умолчанию — идентификатор текущего пользователя)</param>
+        /// <param name="count">количество возвращаемых аудиозаписей</param>
+        /// <param name="offset">смещение относительно первой найденной аудиозаписи для выборки определенного подмножества</param>
+        /// <param name="shuffle">true — включен случайный порядок</param>
+        /// <param name="targetAudio">идентификатор аудиозаписи, на основе которой будет строиться список рекомендаций. Используется вместо параметра uid. Идентификатор представляет из себя разделённые знаком подчеркивания id пользователя, которому принадлежит аудиозапись, и id самой аудиозаписи. Если аудиозапись принадлежит сообществу, то в качестве первого параметра используется -id сообщества. </param>
+        /// <returns>Список рекомендуемых аудиозаписей</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getRecommendations"/>.
+        /// </remarks>
         public List<Audio> GetRecommendations(long? userId = null, int? count = null, int? offset = null, bool shuffle = true, string targetAudio = "")
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
@@ -506,7 +565,12 @@
             return response.ToListOf<Audio>(x => x);
         }
 
-        // todo add comment
+        /// <summary>
+        /// Транслирует аудиозапись в статус пользователю или сообществу.
+        /// </summary>
+        /// <param name="audio">идентификатор аудиозаписи, которая будет отображаться в статусе, в формате owner_id_audio_id. Например, 1_190442705. Если параметр не указан, аудиостатус указанных сообществ и пользователя будет удален</param>
+        /// <param name="targetIds">перечисленные через запятую идентификаторы сообществ и пользователя, которым будет транслироваться аудиозапись. Идентификаторы сообществ должны быть заданы в формате "-gid", где gid - идентификатор сообщества. Например, 1,-34384434. По умолчанию аудиозапись транслируется текущему пользователю. </param>
+        /// <returns>В случае успешного выполнения возвращает массив идентификаторов сообществ и пользователя, которым был установлен или удален аудиостатус.</returns>
         public List<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
         {
             VkErrors.ThrowIfNullOrEmpty(audio);
