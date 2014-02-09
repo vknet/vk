@@ -302,5 +302,52 @@ namespace VkToolkit.Tests.Categories
             Assert.That(dict[155810539], Is.EqualTo(FriendStatus.InputRequest));
             Assert.That(dict[3505305], Is.EqualTo(FriendStatus.OutputRequest));
         }
+
+        [Test]
+        public void AddList_OnlyName_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/friends.addList?name=тестовая метка&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'lid': 1
+                    }
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            long id = cat.AddList("тестовая метка");
+
+            Assert.That(id, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void AddList_WithUserIds_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/friends.addList?name=тестовая метка&user_ids=1,2&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'lid': 2
+                    }
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            long id = cat.AddList("тестовая метка", new long[] {1, 2});
+
+            Assert.That(id, Is.EqualTo(2));
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddList_NameIsEmpty_ThrowException()
+        {
+            FriendsCategory cat = GetMockedFriendsCategory("", "");
+
+            cat.AddList("");
+        }
     }
+
+    
 }

@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using VkToolkit.Enums;
-    using VkToolkit.Model;
-    using VkToolkit.Utils;
+    using Enums;
+    using Model;
+    using Utils;
 
     /// <summary>
     /// Методы для работы с друзьями.
@@ -120,6 +120,46 @@
             VkResponseArray ids = _vk.Call("friends.areFriends", parameters);
 
             return ids.ToDictionary(r => (long)r["uid"], r => (FriendStatus)r["friend_status"]);
+        }
+
+        /// <summary>
+        /// Создает новый список друзей у текущего пользователя.
+        /// </summary>
+        /// <param name="name">название создаваемого списка друзей.</param>
+        /// <returns>После успешного выполнения возвращает идентификатор созданного списка друзей.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
+        ///  Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.addList"/>.
+        /// </remarks>
+        /// 
+        public long AddList(string name)
+        {
+            return AddList(name, null);
+        }
+
+        /// <summary>
+        /// Создает новый список друзей у текущего пользователя.
+        /// </summary>
+        /// <param name="name">название создаваемого списка друзей.</param>
+        /// <param name="userIds">идентификаторы пользователей, которых необходимо поместить в созданный список. </param>
+        /// <returns>После успешного выполнения возвращает идентификатор созданного списка друзей.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
+        ///  Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.addList"/>.
+        /// </remarks>
+        public long AddList(string name, IEnumerable<long> userIds)
+        {
+            VkErrors.ThrowIfNullOrEmpty(name);
+
+            var parameters = new VkParameters
+                {
+                    {"name", name}
+                };
+            parameters.Add("user_ids", userIds);
+
+            VkResponse response = _vk.Call("friends.addList", parameters);
+
+            return response["lid"];
         }
     }
 }
