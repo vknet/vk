@@ -404,5 +404,29 @@ namespace VkToolkit.Tests.Categories
             Assert.That(list[1].Id, Is.EqualTo(2));
             Assert.That(list[1].Name, Is.EqualTo("лист 3"));
         }
+
+        [Test]
+        public void EditList_EditName_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/friends.editList?name=new тестовая метка&list_id=2&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            bool result = cat.EditList(2, "new тестовая метка");
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void EditList_ListIdIsNegative_ThrowException()
+        {
+            FriendsCategory cat = GetMockedFriendsCategory("", "");
+            cat.EditList(-1);
+        }
     }
 }

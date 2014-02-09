@@ -194,5 +194,35 @@
 
             return response.ToListOf<FriendList>(x => x);
         }
+
+        /// <summary>
+        /// Редактирует существующий список друзей текущего пользователя.
+        /// </summary>
+        /// <param name="listId">идентификатор списка друзей</param>
+        /// <param name="name">название списка друзей</param>
+        /// <param name="userIds">идентификаторы пользователей, включенных в список</param>
+        /// <param name="addUserIds">идентификаторы пользователей, которых необходимо добавить в список. (в случае если не передан user_ids) </param>
+        /// <param name="deleteUserIds">идентификаторы пользователей, которых необходимо изъять из списка. (в случае если не передан user_ids) </param>
+        /// <returns></returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.editList"/>.
+        /// </remarks>
+        public bool EditList(long listId, string name = null, IEnumerable<long> userIds = null, IEnumerable<long> addUserIds = null, IEnumerable<long> deleteUserIds = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(listId, "listId");
+
+            var parameters = new VkParameters
+                {
+                    {"name", name},
+                    {"list_id", listId}
+                };
+            parameters.Add("user_ids", userIds);
+            parameters.Add("add_user_ids", addUserIds);
+            parameters.Add("delete_user_ids", deleteUserIds);
+
+            VkResponse response = _vk.Call("friends.editList", parameters);
+
+            return response;
+        }
     }
 }
