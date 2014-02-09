@@ -161,5 +161,21 @@
 
             return response["lid"];
         }
+
+        /// <summary>
+        /// Удаляет существующий список друзей текущего пользователя.
+        /// </summary>
+        /// <param name="listId">идентификатор списка друзей, который необходимо удалить</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
+        public bool DeleteList(long listId)
+        {
+            VkErrors.ThrowIfNumberIsNegative(listId, "listId");
+
+            var parameters = new VkParameters {{"list_id", listId}};
+
+            VkResponse response = _vk.Call("friends.deleteList", parameters);
+
+            return response;
+        }
     }
 }

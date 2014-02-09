@@ -347,6 +347,30 @@ namespace VkToolkit.Tests.Categories
 
             cat.AddList("");
         }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void DeleteList_IdIsNegative_ThrowException()
+        {
+            FriendsCategory cat = GetMockedFriendsCategory("", "");
+            cat.DeleteList(-1);
+        }
+
+        [Test]
+        public void DeleteList_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/friends.deleteList?list_id=2&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            bool result = cat.DeleteList(2);
+
+            Assert.That(result, Is.True);
+        }
     }
 
     
