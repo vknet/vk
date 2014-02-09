@@ -203,7 +203,7 @@
         /// <param name="userIds">идентификаторы пользователей, включенных в список</param>
         /// <param name="addUserIds">идентификаторы пользователей, которых необходимо добавить в список. (в случае если не передан user_ids) </param>
         /// <param name="deleteUserIds">идентификаторы пользователей, которых необходимо изъять из списка. (в случае если не передан user_ids) </param>
-        /// <returns></returns>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.editList"/>.
         /// </remarks>
@@ -223,6 +223,18 @@
             VkResponse response = _vk.Call("friends.editList", parameters);
 
             return response;
+        }
+
+        /// <summary>
+        /// Отмечает все входящие заявки на добавление в друзья как просмотренные
+        /// </summary>
+        /// <returns>После успешного выполнения возвращает true.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.deleteAllRequests"/>.
+        /// </remarks>
+        public bool DeleteAllRequests()
+        {
+            return _vk.Call("friends.deleteAllRequests", VkParameters.Empty);
         }
     }
 }

@@ -428,5 +428,21 @@ namespace VkToolkit.Tests.Categories
             FriendsCategory cat = GetMockedFriendsCategory("", "");
             cat.EditList(-1);
         }
+
+        [Test]
+        public void DeleteAllRequests_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/friends.deleteAllRequests?access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            bool result = cat.DeleteAllRequests();
+
+            Assert.That(result, Is.True);
+        }
     }
 }
