@@ -145,7 +145,7 @@
         /// <returns>После успешного выполнения возвращает идентификатор созданного списка друзей.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        ///  Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.addList"/>.
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.addList"/>.
         /// </remarks>
         public long AddList(string name, IEnumerable<long> userIds)
         {
@@ -167,6 +167,9 @@
         /// </summary>
         /// <param name="listId">идентификатор списка друзей, который необходимо удалить</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.deleteList"/>.
+        /// </remarks>
         public bool DeleteList(long listId)
         {
             VkErrors.ThrowIfNumberIsNegative(listId, "listId");
@@ -176,6 +179,20 @@
             VkResponse response = _vk.Call("friends.deleteList", parameters);
 
             return response;
+        }
+
+        /// <summary>
+        /// Возвращает список меток друзей текущего пользователя.
+        /// </summary>
+        /// <returns>После успешного выполнения возвращает массив объектов <see cref="FriendList"/></returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getLists"/>.
+        /// </remarks>
+        public List<FriendList> GetLists()
+        {
+            VkResponseArray response = _vk.Call("friends.getLists", VkParameters.Empty);
+
+            return response.ToListOf<FriendList>(x => x);
         }
     }
 }

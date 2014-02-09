@@ -97,6 +97,7 @@
     <Compile Include="Model\Connections.cs" />
     <Compile Include="Model\Country.cs" />
     <Compile Include="Model\Faculty.cs" />
+    <Compile Include="Model\FriendList.cs" />
     <Compile Include="Model\Graffiti.cs" />
     <Compile Include="Model\Link.cs" />
     <Compile Include="Model\Poll.cs" />

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
 using VkToolkit.Categories;
 using VkToolkit.Enums;
 using VkToolkit.Exception;
+using VkToolkit.Model;
 using VkToolkit.Utils;
 
 namespace VkToolkit.Tests.Categories
@@ -371,7 +373,36 @@ namespace VkToolkit.Tests.Categories
 
             Assert.That(result, Is.True);
         }
-    }
 
-    
+        [Test]
+        public void GetLists_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/friends.getLists?access_token=token";
+            const string json =
+                @"{
+                    'response': [
+                      {
+                        'name': 'тестовая метка',
+                        'lid': 1
+                      },
+                      {
+                        'name': 'лист 3',
+                        'lid': 2
+                      }
+                    ]
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            List<FriendList> list = cat.GetLists();
+
+            Assert.That(list.Count, Is.EqualTo(2));
+
+            Assert.That(list[0].Id, Is.EqualTo(1));
+            Assert.That(list[0].Name, Is.EqualTo("тестовая метка"));
+
+            Assert.That(list[1].Id, Is.EqualTo(2));
+            Assert.That(list[1].Name, Is.EqualTo("лист 3"));
+        }
+    }
 }

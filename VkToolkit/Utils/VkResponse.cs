@@ -502,6 +502,11 @@
             return response == null ? null : AudioAlbum.FromJson(response);
         }
 
+        public static implicit operator FriendList(VkResponse response)
+        {
+            return response == null ? null : FriendList.FromJson(response);
+        }
+
         #endregion
     }
 }
