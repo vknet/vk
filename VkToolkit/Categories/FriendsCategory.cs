@@ -236,5 +236,31 @@
         {
             return _vk.Call("friends.deleteAllRequests", VkParameters.Empty);
         }
+
+        // todo add comment
+        public AddFriendStatus Add(long userId, string text = "")
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            
+            var parameters = new VkParameters
+                {
+                    {"user_id", userId},
+                    {"text", text}
+                };
+
+            VkResponse response = _vk.Call("friends.add", parameters);
+            return response;
+        }
+
+        // todo add comment
+        public DeleteFriendStatus Delete(long userId)
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+
+            var parameters = new VkParameters {{"user_id", userId}};
+
+            VkResponse response = _vk.Call("friends.delete", parameters);
+            return response;
+        }
     }
 }

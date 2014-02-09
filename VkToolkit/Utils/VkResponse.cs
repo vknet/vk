@@ -295,6 +295,22 @@
             return Utilities.EnumFrom<FriendStatus>(response);
         }
 
+        public static implicit operator AddFriendStatus(VkResponse response)
+        {
+            if (response == null)
+                return AddFriendStatus.Unknown;
+
+            return Utilities.EnumFrom<AddFriendStatus>(response);
+        }
+
+        public static implicit operator DeleteFriendStatus(VkResponse response)
+        {
+            if (response == null)
+                return DeleteFriendStatus.Unknown;
+
+            return Utilities.EnumFrom<DeleteFriendStatus>(response);
+        }
+
         public static implicit operator MessageType?(VkResponse response)
         {
             if (response == null)
