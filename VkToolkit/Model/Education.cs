@@ -50,8 +50,8 @@
         #region Методы
 
         internal static Education FromJson(VkResponse response)
-        {
-            if (response["university"] == "0")
+        {   
+            if (response["university"] == null || response["university"].ToString() == "0")
                 return null;
 
             var education = new Education();

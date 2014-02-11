@@ -10,6 +10,13 @@
 
     internal static class Utilities
     {
+        public static DateTime FromUnixTime(long ticks)
+        {
+            var startUnixTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            startUnixTime = startUnixTime.AddSeconds(ticks).ToLocalTime();
+            return startUnixTime;
+        }
+
         public static T EnumFrom<T>(int value)
         {
             if (!Enum.IsDefined(typeof(T), value))

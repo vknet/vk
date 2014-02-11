@@ -32,7 +32,7 @@
             var lastActivity = new LastActivity();
 
             lastActivity.IsOnline = re["online"];
-            lastActivity.Time = re["time"];
+            lastActivity.Time = Utilities.FromUnixTime(re["time"]);
 
             return lastActivity;
         }

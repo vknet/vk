@@ -275,8 +275,8 @@
 
             // ---- стандартные поля ----
 
-            string id = response["uid"] ?? response["id"];
-            user.Id = Convert.ToInt64(id);
+            VkResponse id = response["uid"] ?? response["id"];
+            user.Id = Convert.ToInt64(id.ToString());
 
             user.FirstName = response["first_name"];
             user.LastName = response["last_name"];

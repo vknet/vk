@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using VkToolkit.Categories;
@@ -14,8 +13,6 @@ namespace VkToolkit.Tests.Categories
     [TestFixture]
     public class DatabaseCategoryTest
     {
-        //DatabaseCategory _db = new DatabaseCategory(new VkApi());
-
         private DatabaseCategory GetMockedDatabaseCategory(string url, string json)
         {
             var mock = new Mock<IBrowser>();

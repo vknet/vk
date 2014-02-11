@@ -113,7 +113,7 @@
 
             message.Id = response["id"];
             message.UserId = response["user_id"];
-            message.Date = response["date"];
+            message.Date = Utilities.FromUnixTime(response["date"]);
             message.ReadState = response["read_state"];
             message.Type = response["out"];
             message.Title = response["title"];

@@ -64,11 +64,9 @@ namespace VkToolkit.Categories
         /// </remarks>
         public DateTime GetServerTime()
         {
-            int ticks = _vk.Call("utils.getServerTime", VkParameters.Empty, true);
+            long ticks = _vk.Call("utils.getServerTime", VkParameters.Empty, true);
 
-            var startUnixTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            startUnixTime = startUnixTime.AddSeconds(ticks).ToLocalTime();
-            return startUnixTime;
+            return Utilities.FromUnixTime(ticks);
         }
     }
 }

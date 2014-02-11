@@ -1,5 +1,6 @@
 ﻿namespace VkToolkit.Model
 {
+    using System;
     using System.Collections.Generic;
 
     using VkToolkit.Utils;
@@ -44,7 +45,7 @@
             chat.Id = response["id"];
             chat.Type = response["type"];
             chat.Title = response["title"];
-            chat.AdminId = response["admin_id"];
+            chat.AdminId = Utilities.GetNullableLongId(response["admin_id"]);
             chat.Users = response["users"];
 
             return chat;

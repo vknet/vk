@@ -10,6 +10,8 @@ using VkToolkit.Utils;
 
 namespace VkToolkit.Tests.Categories
 {
+    using System.Collections.Generic;
+
     [TestFixture]
     public class MessagesCategoryTest
     {
@@ -397,7 +399,8 @@ namespace VkToolkit.Tests.Categories
                     ]
                   }";
 
-            var response = Cat.SearchDialogs("Настя");
+            SearchDialogsResponse response = Cat.SearchDialogs("Настя");
+
             Assert.That(response.Users.Count, Is.EqualTo(2));
             Assert.That(response.Chats.Count, Is.EqualTo(0));
             Assert.That(response.Users.ElementAt(0).Id, Is.EqualTo(7503978));
@@ -434,7 +437,7 @@ namespace VkToolkit.Tests.Categories
                     ]
                   }";
 
-            var response = Cat.SearchDialogs("Маша");
+            SearchDialogsResponse response = Cat.SearchDialogs("Маша");
 
             Assert.That(response.Users.Count, Is.EqualTo(1));
             Assert.That(response.Chats.Count, Is.EqualTo(1));
@@ -499,7 +502,7 @@ namespace VkToolkit.Tests.Categories
                   }";
 
             int totalCount;
-            var msgs = Cat.Search("привет", out totalCount, 3).ToList();
+            List<Message> msgs = Cat.Search("привет", out totalCount, 3).ToList();
 
             Assert.That(totalCount, Is.EqualTo(680));
             Assert.That(msgs.Count, Is.EqualTo(3));
@@ -847,7 +850,7 @@ namespace VkToolkit.Tests.Categories
                     }
                   }";
 
-            var activity = Cat.GetLastActivity(77128);
+            LastActivity activity = Cat.GetLastActivity(77128);
 
             Assert.That(activity.UserId, Is.EqualTo(77128));
             Assert.That(activity.IsOnline, Is.False);
@@ -1006,7 +1009,7 @@ namespace VkToolkit.Tests.Categories
                     ]
                   }";
 
-            var users = Cat.GetChatUsers(2, ProfileFields.Education).ToList();
+            List<User> users = Cat.GetChatUsers(2, ProfileFields.Education).ToList();
 
             Assert.That(users.Count, Is.EqualTo(3));
             Assert.That(users[0].Id, Is.EqualTo(4793858));
