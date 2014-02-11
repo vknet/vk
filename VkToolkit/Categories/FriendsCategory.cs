@@ -237,7 +237,20 @@
             return _vk.Call("friends.deleteAllRequests", VkParameters.Empty);
         }
 
-        // todo add comment
+        /// <summary>
+        /// Одобряет или создает заявку на добавление в друзья.
+        /// </summary>
+        /// <param name="userId">идентификатор пользователя, которому необходимо отправить заявку, либо заявку от которого необходимо одобрить.</param>
+        /// <param name="text">текст сопроводительного сообщения для заявки на добавление в друзья. Максимальная длина сообщения — 500 символов.</param>
+        /// <returns>
+        /// После успешного выполнения возвращает одно из следующих значений:
+        /// 1 — заявка на добавление данного пользователя в друзья отправлена;
+        /// 2 — заявка на добавление в друзья от данного пользователя одобрена;
+        /// 4 — повторная отправка заявки.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.add"/>.
+        /// </remarks>
         public AddFriendStatus Add(long userId, string text = "")
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
@@ -252,7 +265,19 @@
             return response;
         }
 
-        // todo add comment
+        /// <summary>
+        /// Удаляет пользователя из списка друзей или отклоняет заявку в друзья.
+        /// </summary>
+        /// <param name="userId">идентификатор пользователя, которого необходимо удалить из списка друзей, либо заявку от которого необходимо отклонить.</param>
+        /// <returns>
+        /// После успешного выполнения возвращает одно из следующих значений:
+        /// 1 — пользователь удален из списка друзей;
+        /// 2 — заявка на добавление в друзья от данного пользователя отклонена;
+        /// 3 — рекомендация добавить в друзья данного пользователя удалена.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.delete"/>.
+        /// </remarks>
         public DeleteFriendStatus Delete(long userId)
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
@@ -261,6 +286,62 @@
 
             VkResponse response = _vk.Call("friends.delete", parameters);
             return response;
+        }
+
+        // todo add comment
+        // todo add tests
+        public bool Edit(long userId, IEnumerable<long> listIds)
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+
+            var parameters = new VkParameters { { "user_id", userId } };
+            parameters.Add("list_ids", listIds);
+
+            VkResponse response = _vk.Call("friends.edit", parameters);
+
+            throw new NotImplementedException();
+
+            return response;
+        }
+
+        // todo add comment
+        // todo add tests
+        public List<long> GetRecent(int? count = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+
+            var parameters = new VkParameters { { "count", count } };
+
+            VkResponseArray response = _vk.Call("friends.getRecent", parameters);
+
+            throw new NotImplementedException();
+
+            return response.ToListOf<long>(x => x);
+        }
+
+        // todo add comment
+        // todo add testes
+        public List<long> GetRequests(int? count = null, int? offset = null, bool extended = false, bool needMutual = false, bool @out = false, bool sort = false, bool suggested = false)
+        {
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"offset", offset},
+                    {"count", count},
+                    {"extended", extended},
+                    {"need_mutual", needMutual},
+                    {"out", @out},
+                    {"sort", sort},
+                    {"suggested", suggested}
+                };
+
+            VkResponseArray response = _vk.Call("friends.getRequests", parameters);
+
+            throw new NotImplementedException();
+
+            return response.ToListOf<long>(x => x);
         }
     }
 }

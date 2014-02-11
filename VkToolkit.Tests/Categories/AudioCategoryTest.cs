@@ -1334,5 +1334,17 @@ namespace VkToolkit.Tests.Categories
             Assert.That(ids[0], Is.EqualTo(234695118));
             Assert.That(ids[1], Is.EqualTo(-65968880));
         }
+
+        [Test]
+        public void GetRequests_IsNeedMutual_NormalCase()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Test]
+        public void GetRequests_IsNotNeedMutual_NormalCase()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
