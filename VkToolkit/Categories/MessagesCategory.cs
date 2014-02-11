@@ -9,6 +9,7 @@ namespace VkToolkit.Categories
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Linq;
 
@@ -49,7 +50,7 @@ namespace VkToolkit.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.get"/>.
         /// </remarks>
-        public List<Message> Get(
+        public ReadOnlyCollection<Message> Get(
             MessageType type,
             out int totalCount,
             int? count = null,
@@ -72,7 +73,7 @@ namespace VkToolkit.Categories
 
             totalCount = response[0];
 
-            return response.Skip(1).ToListOf(r => (Message)r);
+            return response.Skip(1).ToReadOnlyCollectionOf<Message>(r => r);
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace VkToolkit.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getHistory"/>.
         /// </remarks>
-        public List<Message> GetHistory(
+        public ReadOnlyCollection<Message> GetHistory(
             long id,
             bool isChat,
             out int totalCount,
@@ -122,7 +123,7 @@ namespace VkToolkit.Categories
 
             totalCount = response[0];
 
-            return response.Skip(1).ToListOf(r => (Message)r);
+            return response.Skip(1).ToReadOnlyCollectionOf<Message>(r => r);
         }
 
         /// <summary>
@@ -137,7 +138,7 @@ namespace VkToolkit.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getById"/>.
         /// </remarks>
-        public List<Message> GetById(IEnumerable<long> messageIds, out int totalCount, int? previewLength = null)
+        public ReadOnlyCollection<Message> GetById(IEnumerable<long> messageIds, out int totalCount, int? previewLength = null)
         {
             var parameters = new VkParameters { { "mids", messageIds }, { "preview_length", previewLength } };
 
@@ -145,7 +146,7 @@ namespace VkToolkit.Categories
 
             totalCount = response[0];
 
-            return response.Skip(1).ToListOf(r => (Message)r);
+            return response.Skip(1).ToReadOnlyCollectionOf<Message>(r => r);
         }
 
         /// <summary>
@@ -181,7 +182,7 @@ namespace VkToolkit.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getDialogs"/>.
         /// </remarks>
-        public List<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
+        public ReadOnlyCollection<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
         {
             var parameters = new VkParameters { { "uid", userId }, { "chat_id", chatId }, { "count", count }, { "offset", offset }, { "preview_length", previewLength } };
 
@@ -189,7 +190,7 @@ namespace VkToolkit.Categories
 
             totalCount = response[0];
 
-            return response.Skip(1).ToListOf(r => (Message)r);
+            return response.Skip(1).ToReadOnlyCollectionOf<Message>(r => r);
         }
 
         /// <summary>
@@ -238,7 +239,7 @@ namespace VkToolkit.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.search"/>.
         /// </remarks>
-        public List<Message> Search(string query, out int totalCount, int? count = null, int? offset = null)
+        public ReadOnlyCollection<Message> Search(string query, out int totalCount, int? count = null, int? offset = null)
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.", "query");
@@ -249,7 +250,7 @@ namespace VkToolkit.Categories
 
             totalCount = response[0];
 
-            return response.Skip(1).ToListOf(r => (Message)r);
+            return response.Skip(1).ToReadOnlyCollectionOf<Message>(r => r);
         }
 
         /// <summary>
@@ -617,10 +618,10 @@ namespace VkToolkit.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getChatUsers"/>.
         /// </remarks>
-        public List<long> GetChatUsers(long chatId)
+        public ReadOnlyCollection<long> GetChatUsers(long chatId)
         {
             var users = GetChatUsers(chatId, null);
-            return users.Select(x => x.Id).ToList();
+            return users.Select(x => x.Id).ToReadOnlyCollection();
         }
 
         /// <summary>
