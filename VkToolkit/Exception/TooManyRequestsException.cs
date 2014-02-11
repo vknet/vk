@@ -3,9 +3,7 @@
     using System;
     using System.Runtime.Serialization;
 
-#if WINDOWS
     [Serializable]
-#endif
     public class TooManyRequestsException : VkApiMethodInvokeException
     {
         public TooManyRequestsException()
@@ -27,11 +25,9 @@
         {
         }
 
-#if WINDOWS
         protected TooManyRequestsException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
-#endif
     }
 }

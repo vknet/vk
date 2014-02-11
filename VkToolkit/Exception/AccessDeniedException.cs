@@ -3,9 +3,8 @@
     using System;
     using System.Runtime.Serialization;
 
-#if WINDOWS
+
     [Serializable]
-#endif
     public class AccessDeniedException : VkApiMethodInvokeException
     {
         public AccessDeniedException()
@@ -32,11 +31,9 @@
         {
         }
 
-#if WINDOWS
         protected AccessDeniedException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
-#endif
     }
 }

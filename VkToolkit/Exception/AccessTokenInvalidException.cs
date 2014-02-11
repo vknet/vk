@@ -3,9 +3,7 @@
     using System;
     using System.Runtime.Serialization;
 
-#if WINDOWS
     [Serializable]
-#endif
     public class AccessTokenInvalidException : VkApiException
     {
         public AccessTokenInvalidException()
@@ -22,11 +20,9 @@
         {
         }
 
-#if WINDOWS
         protected AccessTokenInvalidException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
-#endif
     }
 }

@@ -3,9 +3,7 @@
     using System;
     using System.Runtime.Serialization;
 
-#if WINDOWS
     [Serializable]
-#endif
     public class InvalidParameterException : VkApiMethodInvokeException
     {
         public InvalidParameterException()
@@ -32,11 +30,9 @@
         {
         }
 
-#if WINDOWS
         protected InvalidParameterException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
-#endif
     }
 }
