@@ -16,13 +16,23 @@ namespace VkToolkit.Utils
                 throw new ArgumentNullException("str");
         }
 
-        public static void ThrowIfNumberIsNegative(long? number, string paramName, string message = "")
+        public static void ThrowIfNumberIsNegative(long? number, string paramName)
+        {
+            ThrowIfNumberIsNegative(number, paramName, string.Empty);
+        }
+
+        public static void ThrowIfNumberIsNegative(long number, string paramName)
+        {
+            ThrowIfNumberIsNegative(number, paramName, string.Empty);
+        }
+
+        public static void ThrowIfNumberIsNegative(long? number, string paramName, string message)
         {
             if (!number.HasValue) return;
             ThrowIfNumberIsNegative(number.Value, paramName, message);
         }
 
-        public static void ThrowIfNumberIsNegative(long number, string paramName, string message = "")
+        public static void ThrowIfNumberIsNegative(long number, string paramName, string message)
         {
             if (number <= 0) throw new ArgumentException(message, paramName);
         }
