@@ -13,7 +13,7 @@
 
     public class VkApi
     {
-        public const string Version = "5.5";
+        public static readonly string Version = "5.5";
 
         internal const string InvalidAuthorization = "Invalid authorization";
 

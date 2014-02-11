@@ -10,6 +10,7 @@ using VkToolkit.Utils;
 namespace VkToolkit.Tests.Categories
 {
     using System;
+    using System.Collections.ObjectModel;
 
     [TestFixture]
     public class AudioCategoryTest
@@ -1293,7 +1294,7 @@ namespace VkToolkit.Tests.Categories
 
             AudioCategory cat = GetMockedAudioCategory(url, json);
 
-            List<Audio> result = cat.GetRecommendations(targetAudio: "2314852_190922480", count: 2);
+            ReadOnlyCollection<Audio> result = cat.GetRecommendations(targetAudio: "2314852_190922480", count: 2);
 
             Assert.That(result.Count, Is.EqualTo(2));
 

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
     using Enums;
@@ -545,7 +546,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getRecommendations"/>.
         /// </remarks>
-        public List<Audio> GetRecommendations(long? userId = null, int? count = null, int? offset = null, bool shuffle = true, string targetAudio = "")
+        public ReadOnlyCollection<Audio> GetRecommendations(long? userId = null, int? count = null, int? offset = null, bool shuffle = true, string targetAudio = "")
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
             VkErrors.ThrowIfNumberIsNegative(offset, "offset");
@@ -562,7 +563,7 @@
 
             VkResponseArray response = _vk.Call("audio.getRecommendations", parameters);
 
-            return response.ToListOf<Audio>(x => x);
+            return response.ToReadOnlyCollectionOf<Audio>(x => x);
         }
 
         /// <summary>
