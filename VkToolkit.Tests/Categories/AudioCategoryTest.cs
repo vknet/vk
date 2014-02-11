@@ -1180,7 +1180,7 @@ namespace VkToolkit.Tests.Categories
 
             AudioCategory cat = GetMockedAudioCategory(url, json);
 
-            List<Audio> result = cat.GetPopular(genre: AudioGenre.RapAndHipHop, count: 3, offset: 2);
+            ReadOnlyCollection<Audio> result = cat.GetPopular(genre: AudioGenre.RapAndHipHop, count: 3, offset: 2);
 
             Assert.That(result.Count, Is.EqualTo(3));
 

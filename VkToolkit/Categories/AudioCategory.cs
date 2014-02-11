@@ -76,14 +76,15 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getById"/>.
         /// </remarks>
-        public List<Audio> GetById(IEnumerable<string> audios)
+        public ReadOnlyCollection<Audio> GetById(IEnumerable<string> audios)
         {
             if (audios == null)
                 throw new ArgumentNullException("audios");
 
             var parameters = new VkParameters { { "audios", audios } };
+            VkResponseArray response = _vk.Call("audio.getById", parameters);
 
-            return _vk.Call("audio.getById", parameters);
+            return response.ToReadOnlyCollectionOf<Audio>(x => x);
         }
 
         /// <summary>
@@ -101,7 +102,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getById"/>.
         /// </remarks>
-        public List<Audio> GetById(params string[] audios)
+        public ReadOnlyCollection<Audio> GetById(params string[] audios)
         {
             return GetById((IEnumerable<string>)audios);
         }
@@ -236,7 +237,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.search"/>.
         /// </remarks>
-        public List<Audio> Search(
+        public ReadOnlyCollection<Audio> Search(
             string query,
             out int totalCount,
             bool? autoComplete = null,
@@ -262,7 +263,7 @@
 
             totalCount = response[0];
 
-            return response.Skip(1).ToListOf(r => (Audio)r);
+            return response.Skip(1).ToReadOnlyCollectionOf<Audio>(r => r);
         }
 
         /// <summary>
@@ -461,7 +462,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getPopular"/>.
         /// </remarks>
-        public List<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, int? count = null, int? offset = null)
+        public ReadOnlyCollection<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(offset, "offset");
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -476,7 +477,7 @@
 
             VkResponseArray response = _vk.Call("audio.getPopular", parameters);
 
-            return response.ToListOf<Audio>(x => x);
+            return response.ToReadOnlyCollectionOf<Audio>(x => x);
         }
 
         /// <summary>
@@ -489,7 +490,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.getAlbums"/>.
         /// </remarks>
-        public List<AudioAlbum> GetAlbums(long ownerid, int? count = null, int? offset = null)
+        public ReadOnlyCollection<AudioAlbum> GetAlbums(long ownerid, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(ownerid, "ownerid");
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -504,7 +505,7 @@
 
             VkResponseArray response = _vk.Call("audio.getAlbums", parameters);
 
-            return response.Skip(1).ToListOf<AudioAlbum>(x => x);
+            return response.Skip(1).ToReadOnlyCollectionOf<AudioAlbum>(x => x);
         }
 
         /// <summary>
