@@ -6,7 +6,7 @@
     using System.Net;
     using System.Reflection;
 
-    internal class Cookies
+    internal sealed class Cookies
     {
         public CookieContainer Container { get; private set; }
 

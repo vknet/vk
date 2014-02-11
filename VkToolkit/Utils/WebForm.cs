@@ -10,7 +10,7 @@
 
     using VkToolkit.Exception;
 
-    internal class WebForm
+    internal sealed class WebForm
     {
         private readonly HtmlDocument _html;
 

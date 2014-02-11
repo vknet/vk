@@ -3,10 +3,8 @@
     using System;
     using System.Runtime.Serialization;
 
-#if WINDOWS
     [Serializable]
-#endif
-    internal class UserAuthorizationFailException : VkApiMethodInvokeException
+    public class UserAuthorizationFailException : VkApiMethodInvokeException
     {
         public UserAuthorizationFailException(string message)
             : base(message)
@@ -18,11 +16,9 @@
         {
         }
 
-#if WINDOWS
         protected UserAuthorizationFailException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
-#endif
     }
 }

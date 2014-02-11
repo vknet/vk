@@ -5,7 +5,7 @@
 
     using VkToolkit.Exception;
 
-    internal class WebCall
+    internal sealed class WebCall
     {
         private HttpWebRequest Request { get; set; }
 

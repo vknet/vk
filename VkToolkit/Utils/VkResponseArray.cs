@@ -6,7 +6,7 @@
 
     using Newtonsoft.Json.Linq;
 
-    internal class VkResponseArray : IEnumerable<VkResponse>
+    internal sealed class VkResponseArray : IEnumerable<VkResponse>
     {
         private readonly JArray _array;
 

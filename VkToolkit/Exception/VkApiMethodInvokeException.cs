@@ -3,9 +3,7 @@
     using System;
     using System.Runtime.Serialization;
 
-#if WINDOWS
     [Serializable]
-#endif
     public class VkApiMethodInvokeException : VkApiException
     {
         public int ErrorCode { get; private set; }
@@ -19,12 +17,11 @@
         {
         }
 
-#if WINDOWS
+
         protected VkApiMethodInvokeException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
-#endif
 
         public VkApiMethodInvokeException(string message, Exception ex)
             : base(message, ex)

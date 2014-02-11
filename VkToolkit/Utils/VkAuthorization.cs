@@ -58,7 +58,7 @@
             return _decodedAnswer.Where(i => i.Name == fieldName).Select(i => i.Value).FirstOrDefault();
         }
 
-        internal class NameValue
+        internal sealed class NameValue
         {
             public string Name { get; set; }
 

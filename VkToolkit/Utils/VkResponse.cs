@@ -9,7 +9,7 @@
     using VkToolkit.Enums;
     using VkToolkit.Model;
 
-    internal class VkResponse
+    internal sealed class VkResponse
     {
         private readonly JToken _token;
         public string RawJson { get; set; }

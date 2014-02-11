@@ -7,7 +7,7 @@
 
     using HtmlAgilityPack;
 
-    internal class WebCallResult
+    internal sealed class WebCallResult
     {
         public Uri RequestUrl { get; private set; }
 

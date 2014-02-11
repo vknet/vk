@@ -7,7 +7,7 @@ namespace VkToolkit.Utils
 
     using VkToolkit.Exception;
 
-    internal class VkErrors
+    internal sealed class VkErrors
     {
         public static void ThrowIfNullOrEmpty(string str)
         {
