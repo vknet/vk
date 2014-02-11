@@ -9,6 +9,8 @@ using VkToolkit.Utils;
 
 namespace VkToolkit.Tests.Categories
 {
+    using System.Collections.ObjectModel;
+
     [TestFixture]
     public class DatabaseCategoryTest
     {
@@ -71,7 +73,7 @@ namespace VkToolkit.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            List<University> universities = db.GetUniversities(1, 10, "ВолгГТУ");
+            ReadOnlyCollection<University> universities = db.GetUniversities(1, 10, "ВолгГТУ");
 
             Assert.That(universities.Count, Is.EqualTo(1));
             Assert.That(universities[0].Id, Is.EqualTo(431));
@@ -91,7 +93,7 @@ namespace VkToolkit.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            List<University> univers = db.GetUniversities(1, 1, "ThisUniverDoesNotExist");
+            ReadOnlyCollection<University> univers = db.GetUniversities(1, 1, "ThisUniverDoesNotExist");
 
             Assert.That(univers.Count, Is.EqualTo(0));
         }
@@ -120,7 +122,7 @@ namespace VkToolkit.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            List<Street> streets = db.GetStreetsById(1, 89, 437);
+            ReadOnlyCollection<Street> streets = db.GetStreetsById(1, 89, 437);
 
             Assert.That(streets.Count, Is.EqualTo(3));
 
@@ -162,7 +164,7 @@ namespace VkToolkit.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            List<City> cities = db.GetCitiesById();
+            ReadOnlyCollection<City> cities = db.GetCitiesById();
 
             Assert.That(cities.Count, Is.EqualTo(0));
         }
@@ -191,7 +193,7 @@ namespace VkToolkit.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            List<City> cities = db.GetCitiesById(1, 2, 10);
+            ReadOnlyCollection<City> cities = db.GetCitiesById(1, 2, 10);
 
             Assert.That(cities.Count, Is.EqualTo(3));
 
@@ -229,9 +231,9 @@ namespace VkToolkit.Tests.Categories
                     ]
                   }";
 
-            var db = new DatabaseCategory(new VkApi());
+            var db = GetMockedDatabaseCategory(url, json);
 
-            List<City> cities = db.GetCities(1, count:3);
+            ReadOnlyCollection<City> cities = db.GetCities(1, count: 3);
 
             Assert.That(cities.Count, Is.EqualTo(3));
 
@@ -255,6 +257,7 @@ namespace VkToolkit.Tests.Categories
         }
 
         [Test]
+        [Ignore("undone")]
         public void GetCities_GetGermanyCities()
         {
             Assert.Fail("undone");
@@ -350,7 +353,7 @@ namespace VkToolkit.Tests.Categories
 
             DatabaseCategory db = GetMockedDatabaseCategory(url, json);
 
-            List<Region> regions = db.GetRegions(1, count:3, offset:5);
+            ReadOnlyCollection<Region> regions = db.GetRegions(1, count: 3, offset: 5);
 
             Assert.That(regions.Count, Is.EqualTo(3));
 
@@ -400,7 +403,7 @@ namespace VkToolkit.Tests.Categories
                   }";
 
             var db = GetMockedDatabaseCategory(url, json);
-            List<Country> countries = db.GetCountries(codes: "ru, de");
+            ReadOnlyCollection<Country> countries = db.GetCountries(codes: "ru, de");
 
             Assert.That(countries.Count, Is.EqualTo(2));
 
@@ -436,7 +439,7 @@ namespace VkToolkit.Tests.Categories
 
              var db = GetMockedDatabaseCategory(url, json);
 
-             List<Country> countries = db.GetCountries(true, "", 3, 5);
+             ReadOnlyCollection<Country> countries = db.GetCountries(true, "", 3, 5);
 
              Assert.That(countries.Count, Is.EqualTo(3));
 
@@ -453,9 +456,15 @@ namespace VkToolkit.Tests.Categories
         [Test]
         public void GetCountriesById_EmptyList()
         {
-            var db = new DatabaseCategory(new VkApi());
+            const string url = "https://api.vk.com/method/database.getCountriesById?access_token=";
+            const string json =
+                @"{
+                    'response': []
+                  }";
 
-            List<Country> countries = db.GetCountriesById();
+            DatabaseCategory db = this.GetMockedDatabaseCategory(url, json);
+
+            ReadOnlyCollection<Country> countries = db.GetCountriesById();
 
             Assert.That(countries, Is.Not.Null);
             Assert.That(countries.Count, Is.EqualTo(0));
@@ -481,7 +490,7 @@ namespace VkToolkit.Tests.Categories
 
             DatabaseCategory db = GetMockedDatabaseCategory(url, json);
 
-            List<Country> countries = db.GetCountriesById(1, 65);
+            ReadOnlyCollection<Country> countries = db.GetCountriesById(1, 65);
 
             Assert.That(countries.Count, Is.EqualTo(2));
 
@@ -505,7 +514,7 @@ namespace VkToolkit.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            List<School> schools = db.GetSchools(1, 10, "SchoolDoesNotExist");
+            ReadOnlyCollection<School> schools = db.GetSchools(1, 10, "SchoolDoesNotExist");
 
             Assert.That(schools.Count, Is.EqualTo(0));
         }
@@ -535,7 +544,7 @@ namespace VkToolkit.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            List<School> schools = db.GetSchools(1, 10, count:3);
+            ReadOnlyCollection<School> schools = db.GetSchools(1, 10, count: 3);
 
             Assert.That(schools.Count, Is.EqualTo(3));
 
@@ -586,7 +595,7 @@ namespace VkToolkit.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            List<Faculty> faculties = db.GetFaculties(431, 3, 2);
+            ReadOnlyCollection<Faculty> faculties = db.GetFaculties(431, 3, 2);
 
             Assert.That(faculties.Count, Is.EqualTo(3));
 

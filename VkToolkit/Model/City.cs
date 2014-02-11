@@ -2,6 +2,8 @@
 
 namespace VkToolkit.Model
 {
+    using System;
+
     /// <summary>
     /// Город
     /// </summary>
@@ -34,7 +36,8 @@ namespace VkToolkit.Model
         {
             var city = new City();
 
-            city.Id = response["cid"];
+            string id = response["cid"].ToString();
+            city.Id = Convert.ToInt64(id);
             city.Title = response["title"] ?? response["name"];
             city.Area = response["area"];
             city.Region = response["region"];
