@@ -476,5 +476,17 @@ namespace VkToolkit.Tests.Categories
 
             Assert.That(status, Is.EqualTo(DeleteFriendStatus.RequestRejected));
         }
+
+        [Test]
+        public void GetRequests_IsNeedMutual_NormalCase()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Test]
+        public void GetRequests_IsNotNeedMutual_NormalCase()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

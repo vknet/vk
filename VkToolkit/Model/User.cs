@@ -275,10 +275,8 @@
 
             // ---- стандартные поля ----
 
-            if (response["uid"] != null)
-                user.Id = response["uid"];
-            if (response["id"] != null)
-                user.Id = response["id"];
+            string id = response["uid"] ?? response["id"];
+            user.Id = Convert.ToInt64(id);
 
             user.FirstName = response["first_name"];
             user.LastName = response["last_name"];

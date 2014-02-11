@@ -124,7 +124,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.get"/>.
         /// </remarks>       
-        public List<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
+        public ReadOnlyCollection<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
             User user;
             return InternalGet("gid", gid, out user, albumId, aids, false, count, offset);
@@ -146,7 +146,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.get"/>.
         /// </remarks>
-        public List<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
+        public ReadOnlyCollection<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
             return InternalGet("uid", uid, out user, albumId, aids, true, count, offset);
         }
@@ -164,13 +164,13 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/audio.get"/>.
         /// </remarks>
-        public List<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
+        public ReadOnlyCollection<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
             User user;
             return InternalGet("uid", uid, out user, albumId, aids, false, count, offset);
         }
 
-        private List<Audio> InternalGet(
+        private ReadOnlyCollection<Audio> InternalGet(
             string paramId,
             long id,
             out User user,
@@ -201,7 +201,7 @@
                 items = items.Skip(1);
             }
 
-            return items.ToListOf(r => (Audio)r);
+            return items.ToReadOnlyCollectionOf<Audio>(r => r);
         }
 
         /// <summary>
@@ -572,7 +572,7 @@
         /// <param name="audio">идентификатор аудиозаписи, которая будет отображаться в статусе, в формате owner_id_audio_id. Например, 1_190442705. Если параметр не указан, аудиостатус указанных сообществ и пользователя будет удален</param>
         /// <param name="targetIds">перечисленные через запятую идентификаторы сообществ и пользователя, которым будет транслироваться аудиозапись. Идентификаторы сообществ должны быть заданы в формате "-gid", где gid - идентификатор сообщества. Например, 1,-34384434. По умолчанию аудиозапись транслируется текущему пользователю. </param>
         /// <returns>В случае успешного выполнения возвращает массив идентификаторов сообществ и пользователя, которым был установлен или удален аудиостатус.</returns>
-        public List<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
+        public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
         {
             VkErrors.ThrowIfNullOrEmpty(audio);
 
@@ -584,7 +584,7 @@
 
             VkResponseArray response = _vk.Call("audio.setBroadcast", parameters);
 
-            return response.ToListOf<long>(x => x);
+            return response.ToReadOnlyCollectionOf<long>(x => x);
         }
 
         /// <summary>

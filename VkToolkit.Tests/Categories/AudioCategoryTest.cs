@@ -389,7 +389,7 @@ namespace VkToolkit.Tests.Categories
 
             User user;
             var category = GetMockedAudioCategory(url, json);
-            var audios = category.Get(4793858, out user, null, null, 3, 5);
+            ReadOnlyCollection<Audio> audios = category.Get(4793858, out user, null, null, 3, 5);
 
             Assert.That(audios.Count, Is.EqualTo(3));
 
@@ -1316,7 +1316,7 @@ namespace VkToolkit.Tests.Categories
         }
 
         [Test]
-        public void SetBroadcast()
+        public void SetBroadcast_NormalCase()
         {
             const string url = "https://api.vk.com/method/audio.setBroadcast?audio=210002_66529476&target_ids=234695118,-65968880&access_token=token";
             const string json =
@@ -1329,23 +1329,11 @@ namespace VkToolkit.Tests.Categories
 
             AudioCategory cat = GetMockedAudioCategory(url, json);
 
-            List<long> ids = cat.SetBroadcast("210002_66529476", new long[] {234695118, -65968880});
+            ReadOnlyCollection<long> ids = cat.SetBroadcast("210002_66529476", new long[] {234695118, -65968880});
 
             Assert.That(ids.Count, Is.EqualTo(2));
             Assert.That(ids[0], Is.EqualTo(234695118));
             Assert.That(ids[1], Is.EqualTo(-65968880));
-        }
-
-        [Test]
-        public void GetRequests_IsNeedMutual_NormalCase()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Test]
-        public void GetRequests_IsNotNeedMutual_NormalCase()
-        {
-            throw new NotImplementedException();
         }
     }
 }
