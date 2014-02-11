@@ -243,7 +243,7 @@ namespace VkToolkit.Categories
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.", "query");
 
-            var parameters = new VkParameters { { "q", query }, { "count", count + "" }, { "offset", offset } };
+            var parameters = new VkParameters { { "q", query }, { "count", count }, { "offset", offset } };
 
             VkResponseArray response = _vk.Call("messages.search", parameters);
 
