@@ -2,10 +2,10 @@
 using System.Configuration;
 using System.Diagnostics;
 using System.Windows.Forms;
-using VkToolkit;
-using VkToolkit.Enums;
-using VkToolkit.Exception;
-using VkToolkit.Utils;
+using VkNet;
+using VkNet.Enums;
+using VkNet.Exception;
+using VkNet.Utils;
 
 namespace VkApiRunner
 {

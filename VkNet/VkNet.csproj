@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8B031A92-84D4-4418-8551-18F1AFEECC6C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VkNet</RootNamespace>
+    <AssemblyName>VkNet</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net20\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Categories\AudioCategory.cs" />
+    <Compile Include="Categories\DatabaseCategory.cs" />
+    <Compile Include="Categories\GroupsCategory.cs" />
+    <Compile Include="Categories\MessagesCategory.cs" />
+    <Compile Include="Categories\UtilsCategory.cs" />
+    <Compile Include="Categories\WallCategory.cs" />
+    <Compile Include="Enums\AddFriendStatus.cs" />
+    <Compile Include="Enums\AdminLevel.cs" />
+    <Compile Include="Enums\Attitude.cs" />
+    <Compile Include="Enums\AudioSort.cs" />
+    <Compile Include="Enums\CommentsSort.cs" />
+    <Compile Include="Enums\DeleteFriendStatus.cs" />
+    <Compile Include="Enums\Display.cs" />
+    <Compile Include="Enums\AudioGenre.cs" />
+    <Compile Include="Enums\GroupPublicity.cs" />
+    <Compile Include="Enums\GroupsFields.cs" />
+    <Compile Include="Enums\GroupsFilters.cs" />
+    <Compile Include="Enums\GroupsSort.cs" />
+    <Compile Include="Enums\GroupType.cs" />
+    <Compile Include="Enums\LifeMain.cs" />
+    <Compile Include="Enums\LinkAccessType.cs" />
+    <Compile Include="Enums\MessageReadState.cs" />
+    <Compile Include="Enums\MessagesFilter.cs" />
+    <Compile Include="Enums\MessageType.cs" />
+    <Compile Include="Enums\FriendsOrder.cs" />
+    <Compile Include="Enums\PageAccessKind.cs" />
+    <Compile Include="Enums\PeopleMain.cs" />
+    <Compile Include="Enums\PoliticalPreferences.cs" />
+    <Compile Include="Enums\ProfileFields.cs" />
+    <Compile Include="Enums\RelationType.cs" />
+    <Compile Include="Enums\Settings.cs" />
+    <Compile Include="Enums\FriendStatus.cs" />
+    <Compile Include="Enums\Sex.cs" />
+    <Compile Include="Enums\VkObjectType.cs" />
+    <Compile Include="Enums\WallFilter.cs" />
+    <Compile Include="Exception\AccessDeniedException.cs" />
+    <Compile Include="Exception\AccessTokenInvalidException.cs" />
+    <Compile Include="Exception\InvalidParameterException.cs" />
+    <Compile Include="Exception\TooManyRequestsException.cs" />
+    <Compile Include="Exception\UserAuthorizationFailException.cs" />
+    <Compile Include="Exception\VkApiMethodInvokeException.cs" />
+    <Compile Include="Categories\FriendsCategory.cs" />
+    <Compile Include="Model\Album.cs" />
+    <Compile Include="Model\ApplicationContent.cs" />
+    <Compile Include="Model\AudioAlbum.cs" />
+    <Compile Include="Model\City.cs" />
+    <Compile Include="Model\Comment.cs" />
+    <Compile Include="Model\Connections.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\Faculty.cs" />
+    <Compile Include="Model\FriendList.cs" />
+    <Compile Include="Model\Graffiti.cs" />
+    <Compile Include="Model\Link.cs" />
+    <Compile Include="Model\Poll.cs" />
+    <Compile Include="Model\PostSource.cs" />
+    <Compile Include="Model\Previews.cs" />
+    <Compile Include="Model\Region.cs" />
+    <Compile Include="Model\Relative.cs" />
+    <Compile Include="Model\School.cs" />
+    <Compile Include="Model\StandInLife.cs" />
+    <Compile Include="Model\Street.cs" />
+    <Compile Include="Model\University.cs" />
+    <Compile Include="Model\VkObject.cs" />
+    <Compile Include="Utils\Cookies.cs" />
+    <Compile Include="Utils\WebCallResult.cs" />
+    <Compile Include="Model\Coordinates.cs" />
+    <Compile Include="Utils\WebCall.cs" />
+    <Compile Include="Utils\VkParameters.cs" />
+    <Compile Include="Model\Attachment.cs" />
+    <Compile Include="Model\Audio.cs" />
+    <Compile Include="Model\Chat.cs" />
+    <Compile Include="Model\Comments.cs" />
+    <Compile Include="Model\Counters.cs" />
+    <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\Geo.cs" />
+    <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\LastActivity.cs" />
+    <Compile Include="Model\Likes.cs" />
+    <Compile Include="Model\LongPollServerResponse.cs" />
+    <Compile Include="Model\Lyrics.cs" />
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\SearchDialogsResponse.cs" />
+    <Compile Include="Model\Note.cs" />
+    <Compile Include="Model\Page.cs" />
+    <Compile Include="Model\Photo.cs" />
+    <Compile Include="Model\Place.cs" />
+    <Compile Include="Model\Reposts.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Exception\VkApiAuthorizationException.cs" />
+    <Compile Include="Exception\VkApiException.cs" />
+    <Compile Include="Model\Education.cs" />
+    <Compile Include="Categories\StatusCategory.cs" />
+    <Compile Include="Model\Status.cs" />
+    <Compile Include="Categories\UsersCategory.cs" />
+    <Compile Include="Model\Video.cs" />
+    <Compile Include="Model\Post.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Browser.cs" />
+    <Compile Include="Utils\IBrowser.cs" />
+    <Compile Include="Utils\VkResponseArray.cs" />
+    <Compile Include="Utils\VkResponse.cs" />
+    <Compile Include="Utils\Utilities.cs" />
+    <Compile Include="Utils\VkResponseEx.cs" />
+    <Compile Include="Utils\WebForm.cs" />
+    <Compile Include="VkApi.cs" />
+    <Compile Include="Utils\VkErrors.cs" />
+    <Compile Include="Utils\VkAuthorization.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

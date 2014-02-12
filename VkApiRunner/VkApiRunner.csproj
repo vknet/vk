@@ -92,9 +92,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VkToolkit\VkToolkit.csproj">
+    <ProjectReference Include="..\VkNet\VkNet.csproj">
       <Project>{8b031a92-84d4-4418-8551-18f1afeecc6c}</Project>
-      <Name>VkToolkit</Name>
+      <Name>VkNet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
