@@ -1,10 +1,10 @@
 ﻿namespace VkNet.Model
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
     /// Комментарий к записи.
@@ -45,7 +45,7 @@
         /// <summary>
         /// Объект, содержащий информацию о медиавложениях в комментарии. См. описание формата медиавложений. 
         /// </summary>
-        public List<Attachment> Attachments { get; set; }
+        public Collection<Attachment> Attachments { get; set; }
 
         /// <summary>
         /// Первое приложение к комментарию.

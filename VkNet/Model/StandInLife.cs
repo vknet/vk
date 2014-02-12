@@ -1,9 +1,9 @@
 ﻿namespace VkNet.Model
 {
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;    
 
-    using VkNet.Enums;
-    using VkNet.Utils;
+    using Enums;
+    using Utils;
 
     /// <summary>
     /// Жизненная позиция (Personal).
@@ -19,7 +19,7 @@
         /// <summary>
         /// Языки, на которых говорит пользователь.
         /// </summary>
-        public List<string> Languages { get; set; }
+        public Collection<string> Languages { get; set; }
 
         /// <summary>
         /// Мировоззрение пользователя.

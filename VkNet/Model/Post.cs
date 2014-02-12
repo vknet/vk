@@ -1,10 +1,10 @@
 ﻿namespace VkNet.Model
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
+    using System.Collections.ObjectModel;
 
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
     /// Запись со стены пользователя или сообщества.
@@ -80,7 +80,7 @@
         /// <summary>
         /// Информация о вложениях записи (фотографии ссылки и т.п.).
         /// </summary>
-        public List<Attachment> Attachments { get; set; }
+        public Collection<Attachment> Attachments { get; set; }
 
         /// <summary>
         /// Первое вложение.
@@ -128,7 +128,7 @@
         /// <summary>
         /// Массив, содержащий историю репостов для записи. Возвращается только в том случае, если запись является репостом. 
         /// </summary>
-        public List<Post> CopyHistory { get; set; }
+        public Collection<Post> CopyHistory { get; set; }
 
         #region Поля, установленные экспериментально
 

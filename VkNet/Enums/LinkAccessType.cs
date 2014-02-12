@@ -1,6 +1,6 @@
 ﻿namespace VkNet.Enums
 {
-    using Utils;s
+    using Utils;
 
     /// <summary>
     /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.

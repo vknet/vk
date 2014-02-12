@@ -926,6 +926,7 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
+        [Ignore("undone")]
         public void EditChat_NormalCase_True()
         {
             url = "https://api.vk.com/method/messages.editChat?chat_id=2&title=new+title&access_token=token";

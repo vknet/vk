@@ -1,9 +1,8 @@
 ﻿namespace VkNet.Model
 {
-    using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
     /// Информация о беседе (мультидиалоге, чате).
@@ -34,7 +33,7 @@
         /// <summary>
         /// Список идентификаторов участников беседы.
         /// </summary>
-        public List<long> Users { get; set; }
+        public Collection<long> Users { get; set; }
 
         #region Методы
 

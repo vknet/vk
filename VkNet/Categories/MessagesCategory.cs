@@ -597,16 +597,16 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getChatUsers"/>.
         /// </remarks>
-        public List<User> GetChatUsers(long chatId, ProfileFields fields)
+        public ReadOnlyCollection<User> GetChatUsers(long chatId, ProfileFields fields)
         {
             var parameters = new VkParameters { { "chat_id", chatId }, { "fields", fields } };
 
             var response = _vk.Call("messages.getChatUsers", parameters);
 
             if (fields != null)
-                return response;
+                return response.ToReadOnlyCollectionOf<User>(x => x);
 
-            return response.ToListOf(x => new User { Id = (long)x });
+            return response.ToReadOnlyCollectionOf(x => new User { Id = (long)x });
         }
 
         /// <summary>

@@ -1,7 +1,9 @@
-﻿namespace VkNet.Model
+﻿
+
+namespace VkNet.Model
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     using Categories;
     using Enums;
@@ -74,7 +76,7 @@
         /// помощью метода <see cref="FriendsCategory.GetLists"/>. Если пользователь не состоит ни в одном списке друзей, данное 
         /// поле принимает значение null.
         /// </summary>
-        public List<long> FriendLists { get; set; }
+        public Collection<long> FriendLists { get; set; }
 
         /// <summary>
         /// Короткий адрес страницы пользователя. Возвращается строка, содержащая короткий адрес страницы (возвращается только 
@@ -115,12 +117,12 @@
         /// <summary>
         /// Список высших учебных заведений, в которых учился пользователь.
         /// </summary>
-        public List<University> Universities { get; set; }
+        public Collection<University> Universities { get; set; }
 
         /// <summary>
         /// Школы, в которых учился пользователь.
         /// </summary>
-        public List<School> Schools { get; set; }
+        public Collection<School> Schools { get; set; }
 
         /// <summary>
         /// Признак разрешено ли оставлять записи на стене у пользователя.
@@ -165,7 +167,7 @@
         /// <summary>
         /// Родственники пользователя.
         /// </summary>
-        public List<Relative> Relatives { get; set; }
+        public Collection<Relative> Relatives { get; set; }
 
         /// <summary>
         /// Различные счетчики пользователя.

@@ -1,13 +1,15 @@
-﻿namespace VkNet.Utils
+﻿
+
+namespace VkNet.Utils
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Web;
 
     using Newtonsoft.Json.Linq;
 
-    using VkNet.Enums;
-    using VkNet.Model;
+    using Enums;
+    using Model;
 
     internal sealed class VkResponse
     {
@@ -110,9 +112,9 @@
             return response != null ? new Uri(response) : null;
         }
 
-        public static implicit operator List<long>(VkResponse response)
+        public static implicit operator Collection<long>(VkResponse response)
         {
-            return response == null ? null : response.ToListOf(i => (long)i);
+            return response == null ? null : response.ToCollectionOf<long>(i => i);
         }
 
         public override string ToString()
@@ -127,19 +129,24 @@
             return response == null ? null : Attachment.FromJson(response);
         }
 
-        public static implicit operator List<Attachment>(VkResponse response)
+        public static implicit operator Collection<Attachment>(VkResponse response)
         {
-            return response.ToListOf(r => (Attachment)r);
+            return response.ToCollectionOf<Attachment>(r => r);
         }
+
+//        public static implicit operator List<Attachment>(VkResponse response)
+//        {
+//            return response.ToListOf(r => (Attachment)r);
+//        }
 
         public static implicit operator Audio(VkResponse response)
         {
             return response == null ? null : Audio.FromJson(response);
         }
 
-        public static implicit operator List<Audio>(VkResponse response)
+        public static implicit operator Collection<Audio>(VkResponse response)
         {
-            return response.ToListOf(a => (Audio)a);
+            return response.ToCollectionOf<Audio>(a => a);
         }
 
         public static implicit operator Chat(VkResponse response)
@@ -187,9 +194,9 @@
             return response == null ? null : Group.FromJson(response);
         }
 
-        public static implicit operator List<Group>(VkResponse response)
+        public static implicit operator Collection<Group>(VkResponse response)
         {
-            return response.ToListOf(g => (Group)g);
+            return response.ToCollectionOf<Group>(g => g);
         }
 
         public static implicit operator LastActivity(VkResponse response)
@@ -222,9 +229,9 @@
             return response == null ? null : Message.FromJson(response);
         }
 
-        public static implicit operator List<Message>(VkResponse response)
+        public static implicit operator Collection<Message>(VkResponse response)
         {
-            return response.ToListOf(g => (Message)g);
+            return response.ToCollectionOf<Message>(g => g);
         }
 
         public static implicit operator Note(VkResponse response)
@@ -267,9 +274,9 @@
             return response == null ? null : User.FromJson(response);
         }
 
-        public static implicit operator List<User>(VkResponse response)
+        public static implicit operator Collection<User>(VkResponse response)
         {
-            return response.ToListOf(g => (User)g);
+            return response.ToCollectionOf<User>(g => g);
         }
 
         public static implicit operator Video(VkResponse response)
@@ -282,9 +289,9 @@
             return response == null ? null : Post.FromJson(response);
         }
 
-        public static implicit operator List<Post>(VkResponse response)
+        public static implicit operator Collection<Post>(VkResponse response)
         {
-            return response.ToListOf(r => (Post)r);
+            return response.ToCollectionOf<Post>(r => r);
         }
 
         public static implicit operator FriendStatus(VkResponse response)
@@ -343,9 +350,9 @@
             return Utilities.EnumFrom<RelationType>(response);
         }
 
-        public static implicit operator List<string>(VkResponse response)
+        public static implicit operator Collection<string>(VkResponse response)
         {
-            return response.ToListOf(s => (string)s);
+            return response.ToCollectionOf<string>(s => s);
         }
 
         public static implicit operator StandInLife(VkResponse response)
@@ -390,9 +397,9 @@
             return response == null ? null : School.FromJson(response);
         }
 
-        public static implicit operator List<School>(VkResponse response)
+        public static implicit operator Collection<School>(VkResponse response)
         {
-            return response.ToListOf(g => (School)g);
+            return response.ToCollectionOf<School>(g => g);
         }
 
         public static implicit operator University(VkResponse response)
@@ -400,9 +407,9 @@
             return response == null ? null : University.FromJson(response);
         }
 
-        public static implicit operator List<University>(VkResponse response)
+        public static implicit operator Collection<University>(VkResponse response)
         {
-            return response.ToListOf(g => (University)g);
+            return response.ToCollectionOf<University>(g => g);
         }
 
         public static implicit operator Relative(VkResponse response)
@@ -410,9 +417,9 @@
             return response == null ? null : Relative.FromJson(response);
         }
 
-        public static implicit operator List<Relative>(VkResponse response)
+        public static implicit operator Collection<Relative>(VkResponse response)
         {
-            return response.ToListOf(g => (Relative)g);
+            return response.ToCollectionOf<Relative>(g => g);
         }
 
         public static implicit operator Connections(VkResponse response)

@@ -1,10 +1,10 @@
 ﻿namespace VkNet.Model
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
-    using VkNet.Enums;
-    using VkNet.Utils;
+    using Enums;
+    using Utils;
 
     /// <summary>
     /// Личное сообщение пользователя.
@@ -52,12 +52,12 @@
         /// <summary>
         /// Массив медиа-вложений (прикреплений).
         /// </summary>
-        public List<Attachment> Attachments { get; set; }
+        public Collection<Attachment> Attachments { get; set; }
 
         /// <summary>
         /// Массив пересланных сообщений (если есть).
         /// </summary>
-        public List<Message> ForwardedMessages { get; set; }
+        public Collection<Message> ForwardedMessages { get; set; }
 
         /// <summary>
         /// Содержатся ли в сообщении emoji-смайлы.
@@ -86,7 +86,7 @@
         /// <summary>
         /// Идентификаторы участников беседы.
         /// </summary>
-        public List<long> ChatActiveIds { get; set; }
+        public Collection<long> ChatActiveIds { get; set; }
 
         /// <summary>
         /// Количество участников беседы.
