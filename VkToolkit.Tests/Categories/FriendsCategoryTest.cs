@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -394,7 +394,7 @@ namespace VkToolkit.Tests.Categories
 
             FriendsCategory cat = GetMockedFriendsCategory(url, json);
 
-            List<FriendList> list = cat.GetLists();
+            ReadOnlyCollection<FriendList> list = cat.GetLists();
 
             Assert.That(list.Count, Is.EqualTo(2));
 

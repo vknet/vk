@@ -1,21 +1,21 @@
-﻿#if WINDOWS_PHONE
-using System.Net;
+﻿namespace VkToolkit.Categories
+{
+#if WINDOWS_PHONE
+    using System.Net;
 #else
-using System.Web;
+    using System.Web;
 
 #endif
 
-namespace VkToolkit.Categories
-{
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Linq;
 
-    using VkToolkit.Enums;
-    using VkToolkit.Model;
-    using VkToolkit.Utils;
+    using Enums;
+    using Model;
+    using Utils;
 
     /// <summary>
     /// Методы для работы с сообщениями.

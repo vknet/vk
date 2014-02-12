@@ -2,11 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
-    using VkToolkit.Enums;
-    using VkToolkit.Model;
-    using VkToolkit.Utils;
+    using Enums;
+    using Model;
+    using Utils;
 
     /// <summary>
     /// Методы для работы со стеной пользователя.
@@ -33,7 +34,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/wall.get"/>.
         /// </remarks>
-        public List<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
+        public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
             var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
 
@@ -41,7 +42,7 @@
 
             totalCount = response[0];
 
-            return response.Skip(1).ToListOf(r => (Post)r);
+            return response.Skip(1).ToReadOnlyCollectionOf<Post>(r => r);
         }
 
         /// <summary>
@@ -62,7 +63,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/wall.getComments"/>.
         /// </remarks>       
-        public List<Comment> GetComments(
+        public ReadOnlyCollection<Comment> GetComments(
             long ownerId,
             long postId,
             out int totalCount,
@@ -88,7 +89,7 @@
 
             totalCount = response[0];
 
-            return response.Skip(1).ToListOf(c => (Comment)c);
+            return response.Skip(1).ToReadOnlyCollectionOf<Comment>(c => c);
         }
 
         /// <summary>
@@ -104,14 +105,16 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/wall.getById"/>.
         /// </remarks>       
-        public List<Post> GetById(IEnumerable<string> posts)
+        public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts)
         {
             if (posts == null)
                 throw new ArgumentNullException("posts");
 
             var parameters = new VkParameters { { "posts", posts } };
 
-            return _vk.Call("wall.getById", parameters);
+            VkResponseArray response = _vk.Call("wall.getById", parameters);
+
+            return response.ToReadOnlyCollectionOf<Post>(x => x);
         }
 
         public void Post()

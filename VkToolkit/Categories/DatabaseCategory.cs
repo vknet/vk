@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using VkToolkit.Model;
-using VkToolkit.Utils;
-
-namespace VkToolkit.Categories
+﻿namespace VkToolkit.Categories
 {
+    using System.Linq;
     using System.Collections.ObjectModel;
+
+    using Model;
+    using Utils;
 
     public class DatabaseCategory
     {

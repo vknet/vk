@@ -1,12 +1,14 @@
-﻿namespace VkToolkit.Categories
+﻿using System.Collections.ObjectModel;
+
+namespace VkToolkit.Categories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using VkToolkit.Enums;
-    using VkToolkit.Model;
-    using VkToolkit.Utils;
+    using Enums;
+    using Model;
+    using Utils;
 
     /// <summary>
     /// Методы для работы с информацией о пользователях.
@@ -36,7 +38,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.search"/>.
         /// </remarks>
-        public List<User> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
+        public ReadOnlyCollection<User> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.");
@@ -49,7 +51,7 @@
 
             itemsCount = response[0];
 
-            return response.Skip(1).ToListOf(r => (User)r);
+            return response.Skip(1).ToReadOnlyCollectionOf<User>(r => r);
         }
 
         /// <summary>
@@ -81,13 +83,13 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getGroups"/>.
         /// </remarks>
-        public List<Group> GetGroups(int uid)
+        public ReadOnlyCollection<Group> GetGroups(int uid)
         {
             var parameters = new VkParameters { { "uid", uid } };
 
             var response = _vk.Call("getGroups", parameters);
 
-            return response.ToListOf(id => new Group { Id = id });
+            return response.ToReadOnlyCollectionOf(id => new Group { Id = id });
         }
 
         /// <summary>
@@ -116,10 +118,11 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getGroupsFull"/>.
         /// </remarks>
-        public List<Group> GetGroupsFull()
+        public ReadOnlyCollection<Group> GetGroupsFull()
         {
             // TODO: заменить на groups.get
-            return _vk.Call("getGroupsFull", VkParameters.Empty);
+            VkResponseArray response = _vk.Call("getGroupsFull", VkParameters.Empty);
+            return response.ToReadOnlyCollectionOf<Group>(x => x);
         }
 
         /// <summary>
@@ -132,7 +135,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getGroupsFull"/>.
         /// </remarks>
-        public List<Group> GetGroupsFull(IEnumerable<long> gids)
+        public ReadOnlyCollection<Group> GetGroupsFull(IEnumerable<long> gids)
         {
             if (gids == null)
                 throw new ArgumentNullException("gids");
@@ -140,7 +143,9 @@
             // TODO: заменить на groups.get
             var parameters = new VkParameters { { "gids", gids } };
 
-            return _vk.Call("getGroupsFull", parameters);
+            VkResponseArray response = _vk.Call("getGroupsFull", parameters);
+
+            return response.ToReadOnlyCollectionOf<Group>(x => x);
         }
 
         /// <summary>
@@ -171,14 +176,16 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
-        public List<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
+        public ReadOnlyCollection<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
         {
             if (uids == null)
                 throw new ArgumentNullException("uids");
 
             var parameters = new VkParameters { { "uids", uids }, { "fields", fields } };
 
-            return _vk.Call("getProfiles", parameters);
+            VkResponseArray response = _vk.Call("getProfiles", parameters);
+
+            return response.ToReadOnlyCollectionOf<User>(x => x);
         }
     }
 }

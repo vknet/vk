@@ -1,10 +1,11 @@
-﻿using System;
-using VkToolkit.Enums;
-using VkToolkit.Model;
-using VkToolkit.Utils;
-
-namespace VkToolkit.Categories
+﻿namespace VkToolkit.Categories
 {
+    using System;
+
+    using Enums;
+    using Model;
+    using Utils;
+
     /// <summary>
     /// Служебные методы
     /// </summary>

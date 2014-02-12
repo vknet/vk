@@ -1,4 +1,6 @@
-﻿namespace VkToolkit.Categories
+﻿using System.Collections.ObjectModel;
+
+namespace VkToolkit.Categories
 {
     using System;
     using System.Collections.Generic;
@@ -34,16 +36,16 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.get"/>.
         /// </remarks>       
-        public List<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null)
+        public ReadOnlyCollection<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null)
         {
             var parameters = new VkParameters { { "uid", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order } };
 
             var response = _vk.Call("friends.get", parameters);
 
             if (fields != null)
-                return response;
+                return response.ToReadOnlyCollectionOf<User>(x => x);
 
-            return response.ToListOf(id => new User { Id = id });
+            return response.ToReadOnlyCollectionOf(id => new User { Id = id });
         }
 
         /// <summary>
@@ -56,9 +58,10 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getAppUsers"/>.
         /// </remarks>       
-        public List<long> GetAppUsers()
+        public ReadOnlyCollection<long> GetAppUsers()
         {
-            return _vk.Call("friends.getAppUsers", VkParameters.Empty);
+            VkResponseArray response = _vk.Call("friends.getAppUsers", VkParameters.Empty);
+            return response.ToReadOnlyCollectionOf<long>(x => x);
         }
 
         /// <summary>
@@ -74,11 +77,12 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getOnline"/>.
         /// </remarks>       
-        public List<long> GetOnline(long uid)
+        public ReadOnlyCollection<long> GetOnline(long uid)
         {
             var parameters = new VkParameters { { "uid", uid } };
 
-            return _vk.Call("friends.getOnline", parameters);
+            VkResponseArray response = _vk.Call("friends.getOnline", parameters);
+            return response.ToReadOnlyCollectionOf<long>(x => x);
         }
 
         /// <summary>
@@ -93,11 +97,12 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getMutual"/>.
         /// </remarks>       
-        public List<long> GetMutual(long targetUid, long sourceUid)
+        public ReadOnlyCollection<long> GetMutual(long targetUid, long sourceUid)
         {
             var parameters = new VkParameters { { "target_uid", targetUid }, { "source_uid", sourceUid } };
 
-            return _vk.Call("friends.getMutual", parameters);
+            VkResponseArray response = _vk.Call("friends.getMutual", parameters);
+            return response.ToReadOnlyCollectionOf<long>(x => x);
         }
 
         /// <summary>
@@ -188,11 +193,11 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getLists"/>.
         /// </remarks>
-        public List<FriendList> GetLists()
+        public ReadOnlyCollection<FriendList> GetLists()
         {
             VkResponseArray response = _vk.Call("friends.getLists", VkParameters.Empty);
 
-            return response.ToListOf<FriendList>(x => x);
+            return response.ToReadOnlyCollectionOf<FriendList>(x => x);
         }
 
         /// <summary>
@@ -306,7 +311,7 @@
 
         // todo add comment
         // todo add tests
-        public List<long> GetRecent(int? count = null)
+        public ReadOnlyCollection<long> GetRecent(int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
 
@@ -316,12 +321,12 @@
 
             throw new NotImplementedException();
 
-            return response.ToListOf<long>(x => x);
+            return response.ToReadOnlyCollectionOf<long>(x => x);
         }
 
         // todo add comment
         // todo add testes
-        public List<long> GetRequests(int? count = null, int? offset = null, bool extended = false, bool needMutual = false, bool @out = false, bool sort = false, bool suggested = false)
+        public ReadOnlyCollection<long> GetRequests(int? count = null, int? offset = null, bool extended = false, bool needMutual = false, bool @out = false, bool sort = false, bool suggested = false)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
             VkErrors.ThrowIfNumberIsNegative(offset, "offset");
@@ -341,7 +346,7 @@
 
             throw new NotImplementedException();
 
-            return response.ToListOf<long>(x => x);
+            return response.ToReadOnlyCollectionOf<long>(x => x);
         }
     }
 }
