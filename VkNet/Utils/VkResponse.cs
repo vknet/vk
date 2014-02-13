@@ -90,8 +90,11 @@
 
         public static implicit operator DateTime?(VkResponse response)
         {
-            string dateStringValue = response;
-            if (dateStringValue == null)
+            if (response == null)
+                return null;
+
+            string dateStringValue = response.ToString();
+            if (string.IsNullOrEmpty(dateStringValue))
                 return null;
 
             long unixTimeStamp;

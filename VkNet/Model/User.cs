@@ -317,7 +317,7 @@ namespace VkNet.Model
             user.CanSeeAudio = response["can_see_audio"];
             user.CanWritePrivateMessage = response["can_write_private_message"];
             user.Status = response["status"];
-            user.LastSeen = response["last_seen"] != null ? Utilities.FromUnixTime(response["last_seen"]["time"]) : (DateTime?) null;
+            user.LastSeen = response["last_seen"] != null ? response["last_seen"]["time"] : null;
             user.CommonCount = response["common_count"];
             user.Relation = response["relation"];
             user.Relatives = response["relatives"];
