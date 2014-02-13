@@ -158,7 +158,7 @@
             post.Id = response["id"];
             post.ToId = response["to_id"];
             post.FromId = response["from_id"];
-            post.Date = response["date"];
+            post.Date = Utilities.FromUnixTime(response["date"]);
             post.Text = response["text"];
             post.ReplyOwnerId = response["reply_owner_id"];
             post.ReplyPostId = response["reply_post_id"];

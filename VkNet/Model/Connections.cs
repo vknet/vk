@@ -42,7 +42,7 @@
             var connections = new Connections();
 
             connections.Skype = response["skype"];
-            connections.FacebookId = response["facebook"];
+            connections.FacebookId = Utilities.GetNullableLongId(response["facebook"]);
             connections.FacebookName = response["facebook_name"];
             connections.Twitter = response["twitter"];
             connections.Instagram = response["instagram"];

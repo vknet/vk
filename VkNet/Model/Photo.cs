@@ -99,7 +99,7 @@
             photo.Width = response["width"];
             photo.Height = response["height"];
             photo.Text = response["text"];
-            photo.CreateTime = response["date"];
+            photo.CreateTime = Utilities.FromUnixTime(response["date"]);
 
             // из описания альбом с фотографиями
             photo.AccessKey = response["access_key"];

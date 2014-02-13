@@ -345,7 +345,8 @@
             if (response == null)
                 return RelationType.Unknown;
 
-            return Utilities.EnumFrom<RelationType>(response);
+            int value = Convert.ToInt32(response.ToString());
+            return Utilities.EnumFrom<RelationType>(value);
         }
 
         public static implicit operator Collection<string>(VkResponse response)

@@ -105,7 +105,9 @@
         {
             var parameters = new VkParameters { { "uid", uid } };
 
-            return _vk.Call("isAppUser", parameters);
+            VkResponse response = _vk.Call("isAppUser", parameters);
+
+            return 1 == Convert.ToInt32(response.ToString());
         }
 
         /// <summary>

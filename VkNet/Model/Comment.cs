@@ -72,7 +72,7 @@
 
             comment.Id = response["id"];
             comment.FromId = response["from_id"];
-            comment.Date = response["date"];
+            comment.Date = Utilities.FromUnixTime(response["date"]);
             comment.Text = response["text"];
             comment.ReplyToUserId = response["reply_to_user"];
             comment.ReplyToCommentId = response["reply_to_comment"];
