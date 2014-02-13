@@ -19,12 +19,11 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void CheckLink_NullAsLink()
         {
             var utils = GetMockedUtilsCategory("", "");
 
-            utils.CheckLink(null);
+            ExceptionAssert.Throws<ArgumentNullException>(() => utils.CheckLink(null));
         }
 
         [Test]
@@ -43,7 +42,7 @@ namespace VkNet.Tests.Categories
 
             LinkAccessType type = utils.CheckLink("http://www.kreml.ru/‎");
 
-            Assert.That(type, Is.EqualTo(LinkAccessType.Banned));
+            type.ShouldEqual(LinkAccessType.Banned);
         }
 
         [Test]
@@ -61,7 +60,7 @@ namespace VkNet.Tests.Categories
             var utils = GetMockedUtilsCategory(url, json);
             LinkAccessType type = utils.CheckLink("hsfasfsf");
 
-            Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
+            type.ShouldEqual(LinkAccessType.NotBanned);
         }
 
         [Test]
@@ -80,7 +79,7 @@ namespace VkNet.Tests.Categories
 
             LinkAccessType type = utils.CheckLink("http://www.google.com");
 
-            Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
+            type.ShouldEqual(LinkAccessType.NotBanned);
         }
 
          [Test]
@@ -98,7 +97,7 @@ namespace VkNet.Tests.Categories
 
              DateTime time = utils.GetServerTime();
 
-             Assert.That(time, Is.EqualTo(expected));
+             time.ShouldEqual(expected);
          }
 
         [Test]
@@ -114,7 +113,7 @@ namespace VkNet.Tests.Categories
 
             VkObject obj = utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
 
-            Assert.That(obj, Is.Null);
+            obj.ShouldBeNull();
         }
 
         [Test]
@@ -133,9 +132,10 @@ namespace VkNet.Tests.Categories
 
             VkObject obj = utils.ResolveScreenName("azhidkov");
 
-            Assert.That(obj, Is.Not.Null);
-            Assert.That(obj.Id, Is.EqualTo(186085938));
-            Assert.That(obj.Type, Is.EqualTo(VkObjectType.User));
+            // assert
+            obj.ShouldNotBeNull();
+            obj.Id.ShouldEqual(186085938);
+            obj.Type.ShouldEqual(VkObjectType.User);
         }
 
         [Test]
@@ -154,18 +154,18 @@ namespace VkNet.Tests.Categories
 
             VkObject obj = utils.ResolveScreenName("mdk");
 
-            Assert.That(obj, Is.Not.Null);
-            Assert.That(obj.Type, Is.EqualTo(VkObjectType.Group));
-            Assert.That(obj.Id, Is.EqualTo(10639516));
+            // assert
+            obj.ShouldNotBeNull();
+            obj.Type.ShouldEqual(VkObjectType.Group);
+            obj.Id.ShouldEqual(10639516);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void ResolveScreenName_EmptyStringName_ThrowException()
         {
             var utils = GetMockedUtilsCategory("", "");
 
-            utils.ResolveScreenName(string.Empty);
+            ExceptionAssert.Throws<ArgumentNullException>(() => utils.ResolveScreenName(string.Empty));
         }
     }
 }

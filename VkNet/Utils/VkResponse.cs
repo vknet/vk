@@ -1,6 +1,4 @@
-﻿
-
-namespace VkNet.Utils
+﻿namespace VkNet.Utils
 {
     using System;
     using System.Collections.ObjectModel;

@@ -56,11 +56,11 @@
 
             var education = new Education();
 
-            education.UniversityId = response["university"];
+            education.UniversityId = Utilities.GetNullableLongId(response["university"]);
             education.UniversityName = response["university_name"];
-            education.FacultyId = response["faculty"];
+            education.FacultyId = Utilities.GetNullableLongId(response["faculty"]);
             education.FacultyName = response["faculty_name"];
-            education.Graduation = response["graduation"];
+            education.Graduation = (int?) Utilities.GetNullableLongId(response["graduation"]);
 
             if (education.UniversityId.HasValue && education.UniversityId == 0)
                 education.UniversityId = null;

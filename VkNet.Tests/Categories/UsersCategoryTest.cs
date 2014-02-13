@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -212,7 +213,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetProfile_AllFields_FullProfile()
         {
-            const string url = "https://api.vk.com/method/getProfiles?uid=4793858&fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,screen_name,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&access_token=token";
+            const string url = "https://api.vk.com/method/getProfiles?uid=4793858&fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&access_token=token";
 
            const string json =
                 @"{
@@ -636,7 +637,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Get(new long[] {102674754, 5041431}, ProfileFields.Education).ToList();
+            ReadOnlyCollection<User> lst = users.Get(new long[] {102674754, 5041431}, ProfileFields.Education);
 
             Assert.That(lst.Count == 2);
             Assert.That(lst[0], Is.Not.Null);
