@@ -19,6 +19,15 @@
             _token = token;
         }
 
+        public bool ContainsKey(string key)
+        {
+            if (!(_token is JObject))
+                return false;
+
+            var token = _token[key];
+            return token != null;
+        }
+
         public VkResponse this[object key]
         {
             get

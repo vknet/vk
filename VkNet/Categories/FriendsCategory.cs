@@ -292,8 +292,15 @@
             return response;
         }
 
-        // todo add comment
-        // todo add tests
+        /// <summary>
+        /// Редактирует списки друзей для выбранного друга.
+        /// </summary>
+        /// <param name="userId">идентификатор пользователя (из числа друзей), для которого необходимо отредактировать списки друзей</param>
+        /// <param name="listIds">идентификаторы списков друзей, в которые нужно добавить пользователя</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.edit"/>.
+        /// </remarks>
         public bool Edit(long userId, IEnumerable<long> listIds)
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
@@ -303,28 +310,47 @@
 
             VkResponse response = _vk.Call("friends.edit", parameters);
 
-            throw new NotImplementedException();
-
             return response;
         }
 
-        // todo add comment
-        // todo add tests
+        /// <summary>
+        /// Возвращает список идентификаторов недавно добавленных друзей текущего пользователя
+        /// </summary>
+        /// <param name="count">максимальное количество недавно добавленных друзей, которое необходимо получить</param>
+        /// <returns>Идентификаторы недавно добавленных друзей текущего пользователя</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getRecent"/>.
+        /// </remarks>
         public ReadOnlyCollection<long> GetRecent(int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
 
             var parameters = new VkParameters { { "count", count } };
-
             VkResponseArray response = _vk.Call("friends.getRecent", parameters);
-
-            throw new NotImplementedException();
 
             return response.ToReadOnlyCollectionOf<long>(x => x);
         }
 
-        // todo add comment
-        // todo add testes
+        
+        /// <summary>
+        /// Возвращает информацию о полученных или отправленных заявках на добавление в друзья для текущего пользователя
+        /// </summary>
+        /// <param name="count">максимальное количество заявок на добавление в друзья, которые необходимо получить (не более 1000)</param>
+        /// <param name="offset">смещение, необходимое для выборки определенного подмножества заявок на добавление в друзья</param>
+        /// <param name="extended">определяет, требуется ли возвращать в ответе сообщения от пользователей, подавших заявку на добавление в друзья. И отправителя рекомендации при suggested=true. </param>
+        /// <param name="needMutual">определяет, требуется ли возвращать в ответе список общих друзей, если они есть. Обратите внимание, что при использовании need_mutual будет возвращено не более 20 заявок. </param>
+        /// <param name="out">false — возвращать полученные заявки в друзья (по умолчанию), true — возвращать отправленные пользователем заявки. </param>
+        /// <param name="sort">false — сортировать по дате добавления, true — сортировать по количеству общих друзей. (Если out = true, данный параметр не учитывается). </param>
+        /// <param name="suggested">true — возвращать рекомендованных другими пользователями друзей, false — возвращать заявки в друзья (по умолчанию). </param>
+        /// <returns>
+        /// - Если не установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по времени подачи заявки список идентификаторов (id) пользователей (кому или от кого пришла заявка).
+        /// 
+        /// - Если установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по времени подачи заявки массив объектов, содержащих информацию о заявках на добавление в друзья. Каждый из объектов содержит поле uid, являющийся идентификатором пользователя. При наличии общих друзей, в объекте будет содержаться поле mutual, в котором будет находиться список идентификаторов общих друзей.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getRequests"/>.
+        /// </remarks>
+        // todo add more tests on out, suggested and mutual params
         public ReadOnlyCollection<long> GetRequests(int? count = null, int? offset = null, bool extended = false, bool needMutual = false, bool @out = false, bool sort = false, bool suggested = false)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -343,7 +369,12 @@
 
             VkResponseArray response = _vk.Call("friends.getRequests", parameters);
 
-            throw new NotImplementedException();
+            // Проверка возвращается ли список объектов или идентификаторы пользователя
+            if (response.Count > 0 && response[0].ContainsKey("uid"))
+            {
+                var users = response.ToReadOnlyCollectionOf<User>(x => x);
+                return users.Select(u => u.Id).ToReadOnlyCollection();
+            }
 
             return response.ToReadOnlyCollectionOf<long>(x => x);
         }

@@ -5,7 +5,7 @@ namespace VkNet.Utils
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    using VkNet.Exception;
+    using Exception;
 
     internal sealed class VkErrors
     {
@@ -34,7 +34,7 @@ namespace VkNet.Utils
 
         public static void ThrowIfNumberIsNegative(long number, string paramName, string message)
         {
-            if (number <= 0) throw new ArgumentException(message, paramName);
+            if (number < 0) throw new ArgumentException(message, paramName);
         }
 
         public static void IfErrorThrowException(string json)

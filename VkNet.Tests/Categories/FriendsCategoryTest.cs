@@ -478,15 +478,96 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        public void GetRequests_IsNeedMutual_NormalCase()
+        public void GetRequests_Extended_NormalCase()
         {
-            throw new NotImplementedException();
+            const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&extended=1&need_mutual=1&out=0&sort=0&suggested=0&access_token=token";
+            const string json =
+            @"{
+                    'response': [
+                      {
+                        'uid': 242508111
+                      }
+                    ]
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            ReadOnlyCollection<long> ids = cat.GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
+
+            ids.Count.ShouldEqual(1);
+            ids[0].ShouldEqual(242508111);
         }
 
         [Test]
-        public void GetRequests_IsNotNeedMutual_NormalCase()
+        public void GetRequests_Basic_NormalCase()
         {
-            throw new NotImplementedException();
+            const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&extended=0&need_mutual=0&out=0&sort=0&suggested=0&access_token=token";
+            const string json =
+                @"{
+                    'response': [
+                      242508111
+                    ]
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            ReadOnlyCollection<long> ids = cat.GetRequests(offset: 0, count: 3);
+
+            ids.Count.ShouldEqual(1);
+            ids[0].ShouldEqual(242508111);
+        }
+
+        [Test]
+        public void GetRequest_EmptyCollection()
+        {
+            const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&extended=1&need_mutual=1&out=0&sort=0&suggested=0&access_token=token";
+            const string json =
+                @"{
+                    'response': []
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            ReadOnlyCollection<long> ids = cat.GetRequests(offset: 0, count: 3, extended:true, needMutual:true);
+
+            ids.ShouldNotBeNull();
+            ids.Count.ShouldEqual(0);
+        }
+
+        [Test]
+        public void GetRecent_OneItem()
+        {
+            const string url = "https://api.vk.com/method/friends.getRecent?count=3&access_token=token";
+            const string json =
+                @"{
+                    'response': [
+                      242508111
+                    ]
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            ReadOnlyCollection<long> ids = cat.GetRecent(3);
+
+            ids.ShouldNotBeNull();
+            ids.Count.ShouldEqual(1);
+            ids[0].ShouldEqual(242508111);
+        }
+
+        [Test]
+        public void Edit_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/friends.edit?user_id=242508111&list_ids=2&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            bool result = cat.Edit(242508111, new long[] {2});
+
+            result.ShouldBeTrue();
         }
     }
 }
