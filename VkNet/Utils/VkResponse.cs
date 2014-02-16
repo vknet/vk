@@ -352,6 +352,14 @@
             return Utilities.EnumFrom<Sex>(response);
         }
 
+        public static implicit operator BanReason(VkResponse response)
+        {
+            if (response == null)
+                return BanReason.Other;
+
+            return Utilities.EnumFrom<BanReason>(response);
+        }
+
         public static implicit operator RelationType(VkResponse response)
         {
             if (response == null)
@@ -539,6 +547,11 @@
         public static implicit operator FriendList(VkResponse response)
         {
             return response == null ? null : FriendList.FromJson(response);
+        }
+
+        public static implicit operator BanInfo(VkResponse response)
+        {
+            return response == null ? null : BanInfo.FromJson(response);
         }
 
         #endregion

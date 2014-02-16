@@ -169,6 +169,11 @@
         /// </summary>
         public string Site { get; set; }
 
+        /// <summary>
+        /// Идентификатор пользователя пригласившего в группу
+        /// </summary>
+        public long? InvitedBy { get; set; }
+
         #endregion
 
         #region Методы
@@ -177,7 +182,7 @@
         {
             var group = new Group();
 
-            group.Id = response["id"];
+            group.Id = response["id"] ?? response["gid"];
             group.Name = response["name"];
             group.ScreenName = response["screen_name"];
             group.IsClosed = response["is_closed"];
@@ -208,6 +213,7 @@
             group.FixedPostId = response["fixed_post"];
             group.IsVerified = response["verified"];
             group.Site = response["site"];
+            group.InvitedBy = response["invited_by"];
 
             return group;
         }

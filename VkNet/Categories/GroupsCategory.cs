@@ -178,5 +178,112 @@
 
             return response.Skip(1).ToReadOnlyCollectionOf<Group>(r => r);
         }
+
+        /// <summary>
+        /// Данный метод возвращает список приглашений в сообщества и встречи.
+        /// </summary>
+        /// <param name="count">количество приглашений, которое необходимо вернуть</param>
+        /// <param name="offset">смещение, необходимое для выборки определённого подмножества приглашений</param>
+        /// <returns>После успешного выполнения возвращает список объектов сообществ с дополнительным полем InvitedBy, содержащим идентификатор пользователя, который отправил приглашение.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getInvites"/>.
+        /// </remarks>
+        public ReadOnlyCollection<Group> GetInvites(int? count = null, int? offset = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"count", count},
+                    {"offset", offset}
+                };
+            VkResponseArray response = _vk.Call("groups.getInvites", parameters);
+
+            return response.Skip(1).ToReadOnlyCollectionOf<Group>(x => x);
+        }
+
+        /// <summary>
+        /// Добавляет пользователя в черный список группы
+        /// </summary>
+        /// <param name="groupId">идентификатор группы</param>
+        /// <param name="userId">идентификатор пользователя, которого нужно добавить в черный список</param>
+        /// <param name="endDate">дата завершения срока действия бана. Если параметр не указан пользователь будет заблокирован навсегда. </param>
+        /// <param name="reason">причина бана <see cref="BanReason"/></param>
+        /// <param name="comment">текст комментария к бану</param>
+        /// <param name="commentVisible">true – текст комментария будет отображаться пользователю. false – текст комментария не доступен пользователю. (по умолчанию)</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.banUser"/>.
+        /// </remarks>
+        public bool BanUser(long groupId, long userId, DateTime? endDate = null, BanReason? reason = null,
+                            string comment = "", bool commentVisible = false)
+        {
+            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+
+            var parameters = new VkParameters
+                {
+                    {"group_id", groupId},
+                    {"user_id", userId},
+                    {"end_date", Utilities.ToUnixTime(endDate)},
+                    {"comment", comment},
+                    {"comment_visible", commentVisible}
+                };
+            parameters.Add("reason", reason);
+
+            return _vk.Call("groups.banUser", parameters);
+        }
+
+        /// <summary>
+        /// Возвращает список забаненных пользователей в сообществе
+        /// </summary>
+        /// <param name="groupId">идентификатор сообщества</param>
+        /// <param name="count">количество записей, которое необходимо вернуть</param>
+        /// <param name="offset">смещение, необходимое для выборки определенного подмножества черного списка</param>
+        /// <returns>После успешного выполнения возвращает список объектов пользователей с дополнительным полем <see cref="BanInfo"/></returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getBanned"/>.
+        /// </remarks>
+        public ReadOnlyCollection<User> GetBanned(long groupId, int? count = null, int? offset = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"group_id", groupId},
+                    {"offset", offset},
+                    {"count", count}
+                };
+
+            VkResponseArray response = _vk.Call("groups.getBanned", parameters);
+
+            return response.Skip(1).ToReadOnlyCollectionOf<User>(x => x);
+        }
+
+        /// <summary>
+        /// Убирает пользователя из черного списка сообщества.
+        /// </summary>
+        /// <param name="groupId">идентификатор сообщества</param>
+        /// <param name="userId">идентификатор пользователя, которого нужно убрать из черного списка</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.unbanUser"/>.
+        /// </remarks>
+        public bool UnbanUser(long groupId, long userId)
+        {
+            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+
+            var parameters = new VkParameters
+                {
+                    {"group_id", groupId},
+                    {"user_id", userId}
+                };
+
+            return _vk.Call("groups.unbanUser", parameters);
+        }
     }
 }
