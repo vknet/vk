@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Categories\AudioCategory.cs" />
     <Compile Include="Categories\DatabaseCategory.cs" />
+    <Compile Include="Categories\FaveCategory.cs" />
     <Compile Include="Categories\GroupsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
     <Compile Include="Categories\UtilsCategory.cs" />
