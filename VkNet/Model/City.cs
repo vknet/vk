@@ -36,8 +36,8 @@ namespace VkNet.Model
         {
             var city = new City();
 
-            string id = response["cid"].ToString();
-            city.Id = Convert.ToInt64(id);
+            VkResponse id = response["cid"] ?? response["id"];
+            city.Id = Convert.ToInt64(id.ToString());
             city.Title = response["title"] ?? response["name"];
             city.Area = response["area"];
             city.Region = response["region"];

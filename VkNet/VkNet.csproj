@@ -75,6 +75,7 @@
     <Compile Include="Enums\MessagesFilter.cs" />
     <Compile Include="Enums\MessageType.cs" />
     <Compile Include="Enums\FriendsOrder.cs" />
+    <Compile Include="Enums\NameCase.cs" />
     <Compile Include="Enums\PageAccessKind.cs" />
     <Compile Include="Enums\PeopleMain.cs" />
     <Compile Include="Enums\PoliticalPreferences.cs" />

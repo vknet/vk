@@ -42,6 +42,7 @@
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.");
 
+            // TODO добавить параметр v и протестировать
             var parameters = new VkParameters { { "q", query }, { "fields", fields }, { "count", count } };
             if (offset > 0)
                 parameters.Add("offset", offset);
@@ -68,7 +69,7 @@
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getUserSettings"/>.
         /// </remarks>
         public int GetUserSettings(long uid)
-        {
+        {   
             var parameters = new VkParameters { { "uid", uid } };
 
             return _vk.Call("getUserSettings", parameters);
@@ -84,6 +85,7 @@
         /// </remarks>
         public ReadOnlyCollection<Group> GetGroups(int uid)
         {
+            // TODO: Заменить на groups.get
             var parameters = new VkParameters { { "uid", uid } };
 
             var response = _vk.Call("getGroups", parameters);
@@ -94,18 +96,18 @@
         /// <summary>
         /// Возвращает информацию о том, установил ли пользователь приложение.
         /// </summary>
-        /// <param name="uid">Идентификатор пользователя.</param>
+        /// <param name="userId">Идентификатор пользователя.</param>
         /// <returns>После успешного выполнения возвращает true в случае, если пользователь установил у себя данное приложение, 
         /// иначе false. 
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/isAppUser"/>.
         /// </remarks>
-        public bool IsAppUser(long uid)
-        {
-            var parameters = new VkParameters { { "uid", uid } };
+        public bool IsAppUser(long userId)
+        {   
+            var parameters = new VkParameters { { "user_id", userId }, {"v", _vk.Version} };
 
-            VkResponse response = _vk.Call("isAppUser", parameters);
+            VkResponse response = _vk.Call("users.isAppUser", parameters);
 
             return 1 == Convert.ToInt32(response.ToString());
         }
@@ -158,15 +160,16 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
-        public User Get(long uid, ProfileFields fields = null)
-        {
-            // TODO: заменить на users.get
-            var parameters = new VkParameters { { "uid", uid }, { "fields", fields } };
-
-            VkResponseArray response = _vk.Call("getProfiles", parameters);
-
-            return response[0];
-        }
+//        [Obsolete]
+//        public User Get(long uid, ProfileFields fields = null)
+//        {
+//            // TODO: заменить на users.get
+//            var parameters = new VkParameters { { "uid", uid }, { "fields", fields } };
+//
+//            VkResponseArray response = _vk.Call("getProfiles", parameters);
+//
+//            return response[0];
+//        }
 
         /// <summary>
         /// Возвращает расширенную информацию о пользователе.
@@ -177,14 +180,29 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
-        public ReadOnlyCollection<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
+//        [Obsolete]
+//        public ReadOnlyCollection<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
+//        {
+//            // TODO: заменить на users.get
+//            if (uids == null)
+//                throw new ArgumentNullException("uids");
+//
+//            var parameters = new VkParameters { { "uids", uids }, { "fields", fields } };
+//
+//            VkResponseArray response = _vk.Call("getProfiles", parameters);
+//
+//            return response.ToReadOnlyCollectionOf<User>(x => x);
+//        }
+
+        public ReadOnlyCollection<User> Get(IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
         {
-            if (uids == null)
-                throw new ArgumentNullException("uids");
+            if (userIds == null)
+                throw new ArgumentNullException("userIds");
 
-            var parameters = new VkParameters { { "uids", uids }, { "fields", fields } };
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, {"v", _vk.Version} };
+            parameters.Add("user_ids", userIds);
 
-            VkResponseArray response = _vk.Call("getProfiles", parameters);
+            VkResponseArray response = _vk.Call("users.get", parameters);
 
             return response.ToReadOnlyCollectionOf<User>(x => x);
         }

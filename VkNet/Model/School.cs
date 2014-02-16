@@ -69,9 +69,9 @@
         {
             var school = new School();
 
-            school.Id = response["id"];
-            school.Country = response["country"];
-            school.City = response["city"];
+            school.Id = Utilities.GetNullableLongId(response["id"]);
+            school.Country = Utilities.GetNullableLongId(response["country"]);
+            school.City = Utilities.GetNullableLongId(response["city"]);
             school.Name = response["name"] ?? response["title"];
             school.YearFrom = response["year_from"];
             school.YearTo = response["year_to"];

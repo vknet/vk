@@ -22,7 +22,7 @@ namespace VkNet.Model
         {
             var country = new Country();
 
-            country.Id = response["cid"];
+            country.Id = response["cid"] ?? response["id"];
             country.Title = response["title"] ?? response["name"];
 
             return country;
