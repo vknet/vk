@@ -125,101 +125,91 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [Ignore("Obsolete test. Old api version")]
         public void Get_CountersFields_CountersObject()
         {
-            const string url = "https://api.vk.com/method/getProfiles?uid=4793858&fields=counters&access_token=token";
-
+            const string url = "https://api.vk.com/method/users.get?fields=counters&v=5.9&user_ids=1&access_token=token";
             const string json =
                 @"{
                     'response': [
                       {
-                        'uid': 4793858,
-                        'first_name': 'Антон',
-                        'last_name': 'Жидков',
+                        'id': 1,
+                        'first_name': 'Павел',
+                        'last_name': 'Дуров',
                         'counters': {
                           'albums': 1,
-                          'videos': 100,
-                          'audios': 153,
-                          'notes': 3,
-                          'photos': 54,
-                          'groups': 40,
-                          'friends': 371,
-                          'online_friends': 44,
-                          'mutual_friends': 2,
-                          'user_photos': 164,
-                          'user_videos': 87,
-                          'followers': 1,
-                          'subscriptions': 1,
-                          'pages': 1
+                          'videos': 8,
+                          'audios': 0,
+                          'notes': 6,
+                          'photos': 153,
+                          'friends': 689,
+                          'online_friends': 85,
+                          'mutual_friends': 0,
+                          'followers': 5937280,
+                          'subscriptions': 0,
+                          'pages': 51
                         }
                       }
                     ]
                   }";
 
+
             var users = GetMockedUsersCategory(url, json);
             // act
-            User p = users.Get(4793858, ProfileFields.Counters);
+            User p = users.Get(1, ProfileFields.Counters);
 
             // assert
             Assert.That(p, Is.Not.Null);
-            Assert.That(p.Id, Is.EqualTo(4793858));
-            Assert.That(p.FirstName, Is.EqualTo("Антон"));
-            Assert.That(p.LastName, Is.EqualTo("Жидков"));
+            Assert.That(p.Id, Is.EqualTo(1));
+            Assert.That(p.FirstName, Is.EqualTo("Павел"));
+            Assert.That(p.LastName, Is.EqualTo("Дуров"));
             Assert.That(p.Counters, Is.Not.Null);
             Assert.That(p.Counters.Albums, Is.EqualTo(1));
-            Assert.That(p.Counters.Videos, Is.EqualTo(100));
-            Assert.That(p.Counters.Audios, Is.EqualTo(153));
-            Assert.That(p.Counters.Notes, Is.EqualTo(3));
-            Assert.That(p.Counters.Photos, Is.EqualTo(54));
-            Assert.That(p.Counters.Groups, Is.EqualTo(40));
-            Assert.That(p.Counters.Friends, Is.EqualTo(371));
-            Assert.That(p.Counters.OnlineFriends, Is.EqualTo(44));
-            Assert.That(p.Counters.MutualFriends, Is.EqualTo(2));
-            Assert.That(p.Counters.UserPhotos, Is.EqualTo(164));
-            Assert.That(p.Counters.UserVideos, Is.EqualTo(87));
-            Assert.That(p.Counters.Followers, Is.EqualTo(1));
-            Assert.That(p.Counters.Subscriptions, Is.EqualTo(1));
-            Assert.That(p.Counters.Pages, Is.EqualTo(1));
+            Assert.That(p.Counters.Videos, Is.EqualTo(8));
+            Assert.That(p.Counters.Audios, Is.EqualTo(0));
+            Assert.That(p.Counters.Notes, Is.EqualTo(6));
+            Assert.That(p.Counters.Photos, Is.EqualTo(153));
+            Assert.That(p.Counters.Friends, Is.EqualTo(689));
+            Assert.That(p.Counters.OnlineFriends, Is.EqualTo(85));
+            Assert.That(p.Counters.MutualFriends, Is.EqualTo(0));
+            Assert.That(p.Counters.Followers, Is.EqualTo(5937280));
+            Assert.That(p.Counters.Subscriptions, Is.EqualTo(0));
+            Assert.That(p.Counters.Pages, Is.EqualTo(51));
         }
 
         [Test]
-        [Ignore("Obsolete test. Old api version")]
         public void Get_DefaultFields_UidFirstNameLastName()
         {
-            const string url = "https://api.vk.com/method/getProfiles?uid=4793858&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?v=5.9&user_ids=1&access_token=token";
             const string json =
-                @"{
+            @"{
                     'response': [
                       {
-                        'uid': 4793858,
-                        'first_name': 'Антон',
-                        'last_name': 'Жидков'
+                        'id': 1,
+                        'first_name': 'Павел',
+                        'last_name': 'Дуров'
                       }
                     ]
                   }";
 
-            var users = GetMockedUsersCategory(url, json);
+            UsersCategory users = GetMockedUsersCategory(url, json);
 
             // act
-            User p = users.Get(4793858);
+            User p = users.Get(1);
 
             // assert
-            Assert.That(p.Id, Is.EqualTo(4793858));
-            Assert.That(p.FirstName, Is.EqualTo("Антон"));
-            Assert.That(p.LastName, Is.EqualTo("Жидков"));
+            Assert.That(p.Id, Is.EqualTo(1));
+            Assert.That(p.FirstName, Is.EqualTo("Павел"));
+            Assert.That(p.LastName, Is.EqualTo("Дуров"));
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetGropus_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new UsersCategory(new VkApi());
-            users.GetGroups(1);
+            ExceptionAssert.Throws<AccessTokenInvalidException>(() => users.GetGroups(1));
         }
 
         [Test]
-        [ExpectedException(typeof(AccessDeniedException), ExpectedMessage = "Access to the groups list is denied due to the user privacy settings.")]
         public void GetGroups_AccessDenied_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/getGroups?uid=1&access_token=token";
@@ -251,7 +241,8 @@ namespace VkNet.Tests.Categories
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-            users.GetGroups(1);
+            var ex = ExceptionAssert.Throws<AccessDeniedException>(() => users.GetGroups(1));
+            ex.Message.ShouldEqual("Access to the groups list is denied due to the user privacy settings.");
         }
 
         [Test]
@@ -332,7 +323,6 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-
             var users = GetMockedUsersCategory(url, json);
             ReadOnlyCollection<User> lst = users.Get(new long[] {1, 672});
 
@@ -348,57 +338,57 @@ namespace VkNet.Tests.Categories
             Assert.That(lst[1].LastName, Is.EqualTo("Смирнова"));
         }
 
-        [Test, Ignore("Obsolete")]
+        [Test]
         public void Get_TwoUidsEducationField_TwoProfiles()
         {
-            const string url =
-                "https://api.vk.com/method/getProfiles?uids=102674754,5041431&fields=education&access_token=token";
-
+            const string url = "https://api.vk.com/method/users.get?fields=education&v=5.9&user_ids=1,5041431&access_token=token";
             const string json =
                 @"{
                     'response': [
                       {
-                        'uid': 102674754,
-                        'first_name': 'Artyom',
-                        'last_name': 'Plotnikov',
-                        'university': '431',
-                        'university_name': 'ВолгГТУ',
-                        'faculty': '3162',
-                        'faculty_name': 'Электроники и вычислительной техники',
-                        'graduation': '2010'
+                        'id': 1,
+                        'first_name': 'Павел',
+                        'last_name': 'Дуров',
+                        'university': 1,
+                        'university_name': 'СПбГУ',
+                        'faculty': 0,
+                        'faculty_name': '',
+                        'graduation': 2006
                       },
                       {
-                        'uid': 5041431,
-                        'first_name': 'Tayfur',
-                        'last_name': 'Kaseev',
-                        'university': '431',
+                        'id': 5041431,
+                        'first_name': 'Тайфур',
+                        'last_name': 'Касеев',
+                        'university': 431,
                         'university_name': 'ВолгГТУ',
-                        'faculty': '3162',
+                        'faculty': 3162,
                         'faculty_name': 'Электроники и вычислительной техники',
-                        'graduation': '2012'
+                        'graduation': 2012,
+                        'education_form': 'Дневное отделение',
+                        'education_status': 'Студент (специалист)'
                       }
                     ]
                   }";
 
-            var users = GetMockedUsersCategory(url, json);
-            ReadOnlyCollection<User> lst = users.Get(new long[] {102674754, 5041431}, ProfileFields.Education);
+            UsersCategory users = GetMockedUsersCategory(url, json);
+            ReadOnlyCollection<User> lst = users.Get(new long[] {1, 5041431}, ProfileFields.Education);
 
             Assert.That(lst.Count == 2);
             Assert.That(lst[0], Is.Not.Null);
-            Assert.That(lst[0].Id, Is.EqualTo(102674754));
-            Assert.That(lst[0].FirstName, Is.EqualTo("Artyom"));
-            Assert.That(lst[0].LastName, Is.EqualTo("Plotnikov"));
+            Assert.That(lst[0].Id, Is.EqualTo(1));
+            Assert.That(lst[0].FirstName, Is.EqualTo("Павел"));
+            Assert.That(lst[0].LastName, Is.EqualTo("Дуров"));
             Assert.That(lst[0].Education, Is.Not.Null);
-            Assert.That(lst[0].Education.UniversityId, Is.EqualTo(431));
-            Assert.That(lst[0].Education.UniversityName, Is.EqualTo("ВолгГТУ"));
-            Assert.That(lst[0].Education.FacultyId, Is.EqualTo(3162));
-            Assert.That(lst[0].Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
-            Assert.That(lst[0].Education.Graduation, Is.EqualTo(2010));
+            Assert.That(lst[0].Education.UniversityId, Is.EqualTo(1));
+            Assert.That(lst[0].Education.UniversityName, Is.EqualTo("СПбГУ"));
+            Assert.That(lst[0].Education.FacultyId, Is.Null);
+            Assert.That(lst[0].Education.FacultyName, Is.Null.Or.Empty);
+            Assert.That(lst[0].Education.Graduation, Is.EqualTo(2006));
 
             Assert.That(lst[1], Is.Not.Null);
             Assert.That(lst[1].Id, Is.EqualTo(5041431));
-            Assert.That(lst[1].FirstName, Is.EqualTo("Tayfur"));
-            Assert.That(lst[1].LastName, Is.EqualTo("Kaseev"));
+            Assert.That(lst[1].FirstName, Is.EqualTo("Тайфур"));
+            Assert.That(lst[1].LastName, Is.EqualTo("Касеев"));
             Assert.That(lst[1].Education, Is.Not.Null);
             Assert.That(lst[1].Education.UniversityId, Is.EqualTo(431));
             Assert.That(lst[1].Education.UniversityName, Is.EqualTo("ВолгГТУ"));
@@ -408,27 +398,24 @@ namespace VkNet.Tests.Categories
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetGroupsFull_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
-            vk.Users.GetGroupsFull();
+            ExceptionAssert.Throws<AccessTokenInvalidException>(() => vk.Users.GetGroupsFull());
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetGroupsFull_Multiple_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
-            vk.Users.GetGroupsFull(new long[]{1, 2});
+            ExceptionAssert.Throws<AccessTokenInvalidException>(() => vk.Users.GetGroupsFull(new long[]{1, 2}));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetGroupsFull_NullGids_ThrowArgumentNullException()
         {
             var vk = new VkApi { AccessToken = "token" };
-            vk.Users.GetGroupsFull(null);
+            ExceptionAssert.Throws<ArgumentNullException>(() => vk.Users.GetGroupsFull(null));
         }
 
         [Test]
