@@ -154,46 +154,35 @@
         /// <summary>
         /// Возвращает расширенную информацию о пользователе.
         /// </summary>
-        /// <param name="uid">Идентификатор пользователя.</param>
+        /// <param name="userId">Идентификатор пользователя.</param>
         /// <param name="fields">Поля профиля, которые необходимо возвратить.</param>
+        /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Объект, содержащий запрошенную информацию о пользователе.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
-//        [Obsolete]
-//        public User Get(long uid, ProfileFields fields = null)
-//        {
-//            // TODO: заменить на users.get
-//            var parameters = new VkParameters { { "uid", uid }, { "fields", fields } };
-//
-//            VkResponseArray response = _vk.Call("getProfiles", parameters);
-//
-//            return response[0];
-//        }
+        public User Get(long userId, ProfileFields fields = null,
+                                            NameCase nameCase = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "v", _vk.Version }, { "user_ids", userId } };
+
+            VkResponseArray response = _vk.Call("users.get", parameters);
+
+            return response[0];
+        }
 
         /// <summary>
         /// Возвращает расширенную информацию о пользователе.
         /// </summary>
-        /// <param name="uids">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
+        /// <param name="userIds">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
         /// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
+        /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
-//        [Obsolete]
-//        public ReadOnlyCollection<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
-//        {
-//            // TODO: заменить на users.get
-//            if (uids == null)
-//                throw new ArgumentNullException("uids");
-//
-//            var parameters = new VkParameters { { "uids", uids }, { "fields", fields } };
-//
-//            VkResponseArray response = _vk.Call("getProfiles", parameters);
-//
-//            return response.ToReadOnlyCollectionOf<User>(x => x);
-//        }
-
         public ReadOnlyCollection<User> Get(IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
         {
             if (userIds == null)

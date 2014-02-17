@@ -179,6 +179,16 @@ namespace VkNet.Model
         /// </summary>
         public BanInfo BanInfo { get; set; }
 
+        /// <summary>
+        /// Является ли пользователь заблокированным
+        /// </summary>
+        public bool IsDeactivated { get; set; }
+
+        /// <summary>
+        /// Причина блокирования аккаунта
+        /// </summary>
+        public string DeactiveReason { get; set; }
+
         #endregion
 
         #region Дополнительные поля из http://vk.com/pages?oid=-1&p=users.get
@@ -350,6 +360,8 @@ namespace VkNet.Model
             user.Quotes = response["quotes"];
             user.InvitedBy = response["invited_by"];
             user.BanInfo = response["ban_info"];
+            user.DeactiveReason = response["deactivated"];
+            user.IsDeactivated = !string.IsNullOrEmpty(user.DeactiveReason);
 
             return user;
         }
