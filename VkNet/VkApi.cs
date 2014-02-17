@@ -12,7 +12,7 @@
 
     public class VkApi
     {
-        public static readonly string Version = "5.5";
+        public string Version { get; internal set; }
 
         internal const string InvalidAuthorization = "Invalid authorization";
 
@@ -50,6 +50,8 @@
             Database = new DatabaseCategory(this);
             Utils = new UtilsCategory(this);
             Fave = new FaveCategory(this);
+
+            Version = "5.9";
         }
 
         /// <summary>
