@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Categories\AudioCategory.cs" />
     <Compile Include="Categories\DatabaseCategory.cs" />
+    <Compile Include="Categories\FaveCategory.cs" />
     <Compile Include="Categories\GroupsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
     <Compile Include="Categories\UtilsCategory.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Enums\AdminLevel.cs" />
     <Compile Include="Enums\Attitude.cs" />
     <Compile Include="Enums\AudioSort.cs" />
+    <Compile Include="Enums\BanReason.cs" />
     <Compile Include="Enums\CommentsSort.cs" />
     <Compile Include="Enums\DeleteFriendStatus.cs" />
     <Compile Include="Enums\Display.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\ApplicationContent.cs" />
     <Compile Include="Model\AudioAlbum.cs" />
+    <Compile Include="Model\BanInfo.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />

@@ -53,6 +53,8 @@ namespace VkNet.Tests
             Assert.That(vk.Wall, Is.Not.Null);
             Assert.That(vk.Database, Is.Not.Null);
             Assert.That(vk.Utils, Is.Not.Null);
+
+            vk.Fave.ShouldNotBeNull();
             // TODO: continue later
         }
 

@@ -39,11 +39,11 @@ namespace VkNet.Model
         {
             var previews = new Previews();
 
-            previews.Photo50 = response["photo_50"];
-            previews.Photo100 = response["photo_100"];
+            previews.Photo50 = response["photo_50"] ?? response["photo"];
+            previews.Photo100 = response["photo_100"] ?? response["photo_medium"];
             previews.Photo200 = response["photo_200"] ?? response["photo_200_orig"];
             previews.Photo400 = response["photo_400_orig"];
-            previews.PhotoMax = response["photo_max"] ?? response["photo_max_orig"] ?? previews.Photo400 ?? previews.Photo200 ?? previews.Photo100 ?? previews.Photo50;
+            previews.PhotoMax = response["photo_max"] ?? response["photo_max_orig"] ?? response["photo_big"] ?? previews.Photo400 ?? previews.Photo200 ?? previews.Photo100 ?? previews.Photo50;
 
             return previews;
         }

@@ -30,7 +30,7 @@ namespace VkNet.Tests
 
         public static T ShouldEqual<T>(this T actual, object expected)
         {
-            Assert.That(expected, Is.EqualTo(actual));
+            Assert.That(actual, Is.EqualTo(expected));
             return actual;
         }
     }

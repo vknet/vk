@@ -174,6 +174,11 @@ namespace VkNet.Model
         /// </summary>
         public Counters Counters { get; set; }
 
+        /// <summary>
+        /// Информация о блокировке пользователя
+        /// </summary>
+        public BanInfo BanInfo { get; set; }
+
         #endregion
 
         #region Дополнительные поля из http://vk.com/pages?oid=-1&p=users.get
@@ -344,6 +349,7 @@ namespace VkNet.Model
             user.About = response["about"];
             user.Quotes = response["quotes"];
             user.InvitedBy = response["invited_by"];
+            user.BanInfo = response["ban_info"];
 
             return user;
         }

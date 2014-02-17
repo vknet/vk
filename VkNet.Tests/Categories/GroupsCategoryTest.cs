@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
@@ -1151,6 +1153,141 @@ namespace VkNet.Tests.Categories
             Assert.That(g.CountryId, Is.EqualTo(1));
             Assert.That(g.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
             Assert.That(g.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
+        }
+
+        [Test]
+        public void GetInvites_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/groups.getInvites?count=3&offset=0&access_token=token";
+            const string json =
+            @"{
+                    'response': [
+                      1,
+                      {
+                        'gid': 66528333,
+                        'name': 'группа 123',
+                        'screen_name': 'club66528333',
+                        'is_closed': 1,
+                        'type': 'group',
+                        'is_admin': 0,
+                        'is_member': 0,
+                        'photo': 'http://vk.com/images/community_50.gif',
+                        'photo_medium': 'http://vk.com/images/community_100.gif',
+                        'photo_big': 'http://vk.com/images/question_a.gif',
+                        'invited_by': 242508789
+                      }
+                    ]
+                  }";
+
+            GroupsCategory cat = GetMockedGroupCategory(url, json);
+
+            ReadOnlyCollection<Group> groups = cat.GetInvites(3, 0);
+
+            groups.ShouldNotBeNull();
+            groups.Count.ShouldEqual(1);
+
+            groups[0].Id.ShouldEqual(66528333);
+            groups[0].Name.ShouldEqual("группа 123");
+            groups[0].ScreenName.ShouldEqual("club66528333");
+            groups[0].IsClosed.ShouldEqual(GroupPublicity.Closed);
+            groups[0].Type.ShouldEqual(GroupType.Group);
+            groups[0].IsAdmin.ShouldBeFalse();
+            groups[0].IsMember.ShouldEqual(false);
+            groups[0].PhotoPreviews.Photo50.ShouldEqual("http://vk.com/images/community_50.gif");
+            groups[0].PhotoPreviews.Photo100.ShouldEqual("http://vk.com/images/community_100.gif");
+            groups[0].PhotoPreviews.PhotoMax.ShouldEqual("http://vk.com/images/question_a.gif");
+            groups[0].InvitedBy.ShouldEqual(242508789);
+        }
+
+        [Test]
+        public void GetInivites_NotInvites()
+        {
+            const string url = "https://api.vk.com/method/groups.getInvites?count=3&offset=0&access_token=token";
+            const string json =
+                @"{
+                    'response': [
+                      0
+                    ]
+                  }";
+
+            GroupsCategory cat = GetMockedGroupCategory(url, json);
+
+            ReadOnlyCollection<Group> groups = cat.GetInvites(3, 0);
+
+            groups.ShouldNotBeNull();
+            groups.Count.ShouldEqual(0);
+        }
+
+        [Test]
+        public void BanUser_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/groups.banUser?group_id=6596823&user_id=242506753&comment=просто комментарий&comment_visible=1&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            GroupsCategory cat = GetMockedGroupCategory(url, json);
+
+            bool result = cat.BanUser(6596823, 242506753, comment: "просто комментарий", commentVisible: true);
+
+            result.ShouldBeTrue();
+        }
+
+        [Test]
+        public void GetBanned_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/groups.getBanned?group_id=65968111&count=3&access_token=token";
+            const string json =
+            @"{
+                    'response': [
+                      1,
+                      {
+                        'uid': 242508345,
+                        'first_name': 'Маша',
+                        'last_name': 'Иванова',
+                        'ban_info': {
+                          'admin_id': 234695672,
+                          'date': 1392543301,
+                          'reason': 1,
+                          'comment': 'просто комментарий',
+                          'end_date': 1392802497
+                        }
+                      }
+                    ]
+                  }";
+
+            GroupsCategory cat = GetMockedGroupCategory(url, json);
+
+            ReadOnlyCollection<User> users = cat.GetBanned(65968111, 3);
+
+            users.ShouldNotBeNull();
+            users.Count.ShouldEqual(1);
+
+            users[0].Id = 242508345;
+            users[0].FirstName = "Маша";
+            users[0].LastName = "Иванова";
+            users[0].BanInfo.AdminId.ShouldEqual(234695672);
+            users[0].BanInfo.Date.ShouldEqual(new DateTime(2014, 2, 16, 13, 35, 1));
+            users[0].BanInfo.Reason.ShouldEqual(BanReason.Spam);
+            users[0].BanInfo.Comment.ShouldEqual("просто комментарий");
+            users[0].BanInfo.EndDate.ShouldEqual(new DateTime(2014, 2, 19, 13, 34, 57));
+        }
+
+        [Test]
+        public void UnbanUser_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/groups.unbanUser?group_id=65960&user_id=242508&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            GroupsCategory cat = GetMockedGroupCategory(url, json);
+
+            bool result = cat.UnbanUser(65960, 242508);
+
+            result.ShouldBeTrue();
         }
     }
 }

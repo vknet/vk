@@ -26,6 +26,7 @@
         public DatabaseCategory     Database { get; private set; }
         public UtilsCategory        Utils { get; private set; }
         public WallCategory         Wall { get; private set; }
+        public FaveCategory         Fave { get; private set; }
         #endregion
 
         internal IBrowser Browser { get; set; }
@@ -48,6 +49,7 @@
             Wall = new WallCategory(this);
             Database = new DatabaseCategory(this);
             Utils = new UtilsCategory(this);
+            Fave = new FaveCategory(this);
         }
 
         /// <summary>

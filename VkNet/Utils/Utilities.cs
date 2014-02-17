@@ -17,6 +17,14 @@
             return startUnixTime;
         }
 
+        public static long? ToUnixTime(DateTime? time)
+        {
+            if (!time.HasValue) return null;
+
+            double totalSeconds = (time.Value - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
+            return System.Convert.ToInt64(totalSeconds);
+        }
+
         public static T EnumFrom<T>(int value)
         {
             if (!Enum.IsDefined(typeof(T), value))
