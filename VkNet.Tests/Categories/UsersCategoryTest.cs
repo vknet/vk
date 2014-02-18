@@ -655,9 +655,9 @@ namespace VkNet.Tests.Categories
             u.Country.Id.ShouldEqual(1);
             u.Country.Title.ShouldEqual("Россия");
             u.Timezone.ShouldEqual(3);
-            u.PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
-            u.PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
-            u.PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
+            u.PhotoPreviews.Photo50.ShouldEqual("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg");
+            u.PhotoPreviews.Photo100.ShouldEqual("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg");
+            u.PhotoPreviews.Photo200.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
             u.PhotoPreviews.Photo400.ShouldEqual("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg");
             u.PhotoPreviews.PhotoMax.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
             u.HasMobile.HasValue.ShouldBeTrue();
@@ -834,9 +834,9 @@ namespace VkNet.Tests.Categories
             u.Country.Id.ShouldEqual(1);
             u.Country.Title.ShouldEqual("Россия");
             u.Timezone.ShouldEqual(3);
-            u.PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
-            u.PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
-            u.PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
+            u.PhotoPreviews.Photo50.ShouldEqual("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg");
+            u.PhotoPreviews.Photo100.ShouldEqual("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg");
+            u.PhotoPreviews.Photo200.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
             u.PhotoPreviews.Photo400.ShouldEqual("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg");
             u.PhotoPreviews.PhotoMax.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
             u.HasMobile.HasValue.ShouldBeTrue();
@@ -966,7 +966,7 @@ namespace VkNet.Tests.Categories
             result[0].Id.ShouldEqual(32295218);
             result[0].Name.ShouldEqual("LIVE Экспресс");
             result[0].ScreenName.ShouldEqual("liveexp");
-            result[0].IsClosed.ShouldEqual(false);
+            result[0].IsClosed.ShouldEqual(GroupPublicity.Public);
             result[0].Type.ShouldEqual(GroupType.Page);
             result[0].IsAdmin.ShouldBeFalse();
             result[0].IsMember.ShouldEqual(false);
@@ -977,7 +977,7 @@ namespace VkNet.Tests.Categories
             result[1].Id.ShouldEqual(43694972);
             result[1].Name.ShouldEqual("Sophie Ellis-Bextor");
             result[1].ScreenName.ShouldEqual("sophieellisbextor");
-            result[1].IsClosed.ShouldEqual(false);
+            result[1].IsClosed.ShouldEqual(GroupPublicity.Public);
             result[1].Type.ShouldEqual(GroupType.Page);
             result[1].IsAdmin.ShouldEqual(false);
             result[1].IsMember.ShouldEqual(false);
