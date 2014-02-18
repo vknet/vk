@@ -14,12 +14,12 @@ namespace VkNet.Tests.Categories
     [TestFixture]
     public class AudioCategoryTest
     {
-        private AudioCategory GetMockedAudioCategory(string url, string json)
+        private AudioCategory GetMockedAudioCategory(string url, string json, string version = "5.9")
         {
             var mock = new Mock<IBrowser>();
             mock.Setup(m => m.GetJson(url.Replace('\'', '"'))).Returns(json);
             
-            return new AudioCategory(new VkApi { AccessToken = "token", Browser = mock.Object });
+            return new AudioCategory(new VkApi { AccessToken = "token", Browser = mock.Object, Version = version});
         }
 
         #region GetCount
@@ -41,7 +41,7 @@ namespace VkNet.Tests.Categories
                     response: 0
                   }";
 
-            var audio = GetMockedAudioCategory(url, json);
+            var audio = GetMockedAudioCategory(url, json, "5.5");
             int count = audio.GetCount(1);
 
             Assert.That(count, Is.EqualTo(0));
@@ -56,7 +56,7 @@ namespace VkNet.Tests.Categories
                     response: 158
                   }";
 
-            var audio = GetMockedAudioCategory(url, json);
+            var audio = GetMockedAudioCategory(url, json, "5.5");
             int count = audio.GetCount(1);
 
             Assert.That(count, Is.EqualTo(158));
@@ -71,7 +71,7 @@ namespace VkNet.Tests.Categories
                     response: 4
                   }";
 
-            var audio = GetMockedAudioCategory(url, json);
+            var audio = GetMockedAudioCategory(url, json, "5.5");
             int count = audio.GetCount(-1158263);
 
             Assert.That(count, Is.EqualTo(4));
@@ -101,7 +101,7 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            var audio = GetMockedAudioCategory(url, json);
+            var audio = GetMockedAudioCategory(url, json, "5.5");
             Lyrics lyrics = audio.GetLyrics(2662381);
 
             Assert.That(lyrics.Id, Is.EqualTo(2662381));
@@ -120,7 +120,7 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            var audio = GetMockedAudioCategory(url, json);
+            var audio = GetMockedAudioCategory(url, json, "5.5");
             Lyrics lyrics = audio.GetLyrics(-1);
 
             Assert.That(lyrics.Id, Is.EqualTo(-1));
@@ -1028,11 +1028,11 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        //[ExpectedException(typeof(ArgumentException))]
         public void AddAlbum_GroupIdIsNegative_ThrowException()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-            cat.AddAlbum("test title", 0);
+            ExceptionAssert.Throws<ArgumentException>(() => cat.AddAlbum("test title", 0));
         }
 
         [Test]

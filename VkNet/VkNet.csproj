@@ -77,11 +77,13 @@
     <Compile Include="Enums\MessagesFilter.cs" />
     <Compile Include="Enums\MessageType.cs" />
     <Compile Include="Enums\FriendsOrder.cs" />
+    <Compile Include="Enums\NameCase.cs" />
     <Compile Include="Enums\PageAccessKind.cs" />
     <Compile Include="Enums\PeopleMain.cs" />
     <Compile Include="Enums\PoliticalPreferences.cs" />
     <Compile Include="Enums\ProfileFields.cs" />
     <Compile Include="Enums\RelationType.cs" />
+    <Compile Include="Enums\ReportType.cs" />
     <Compile Include="Enums\Settings.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
     <Compile Include="Enums\Sex.cs" />

@@ -68,102 +68,50 @@
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getUserSettings"/>.
         /// </remarks>
         public int GetUserSettings(long uid)
-        {
+        {   
             var parameters = new VkParameters { { "uid", uid } };
 
             return _vk.Call("getUserSettings", parameters);
         }
 
         /// <summary>
-        /// Возвращает список сообществ указанного пользователя. 
-        /// </summary>
-        /// <param name="uid">Идентификатор пользователя, информацию о сообществах которого требуется получить.</param>
-        /// <returns>После успешного выполнения возвращает список сообществ, в которых состоит пользователь. </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getGroups"/>.
-        /// </remarks>
-        public ReadOnlyCollection<Group> GetGroups(int uid)
-        {
-            var parameters = new VkParameters { { "uid", uid } };
-
-            var response = _vk.Call("getGroups", parameters);
-
-            return response.ToReadOnlyCollectionOf(id => new Group { Id = id });
-        }
-
-        /// <summary>
         /// Возвращает информацию о том, установил ли пользователь приложение.
         /// </summary>
-        /// <param name="uid">Идентификатор пользователя.</param>
+        /// <param name="userId">Идентификатор пользователя.</param>
         /// <returns>После успешного выполнения возвращает true в случае, если пользователь установил у себя данное приложение, 
         /// иначе false. 
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/isAppUser"/>.
         /// </remarks>
-        public bool IsAppUser(long uid)
-        {
-            var parameters = new VkParameters { { "uid", uid } };
+        public bool IsAppUser(long userId)
+        {   
+            var parameters = new VkParameters { { "user_id", userId }, {"v", _vk.Version} };
 
-            VkResponse response = _vk.Call("isAppUser", parameters);
+            VkResponse response = _vk.Call("users.isAppUser", parameters);
 
             return 1 == Convert.ToInt32(response.ToString());
         }
 
-        /// <summary>
-        /// Возвращает список сообществ данного пользователя. 
-        /// </summary>
-        /// <returns> 
-        /// В случае успеха возвращается список сообществ данного пользователя.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getGroupsFull"/>.
-        /// </remarks>
-        public ReadOnlyCollection<Group> GetGroupsFull()
-        {
-            // TODO: заменить на groups.get
-            VkResponseArray response = _vk.Call("getGroupsFull", VkParameters.Empty);
-            return response.ToReadOnlyCollectionOf<Group>(x => x);
-        }
-
-        /// <summary>
-        /// Возвращает стандартную информацию об указанных сообществах.
-        /// </summary>
-        /// <param name="gids">Список идентификаторов сообществ, о которых необходимо получить информацию</param>
-        /// <returns>
-        /// Список объектов, содержащих информацию о запрошенных сообществах.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getGroupsFull"/>.
-        /// </remarks>
-        public ReadOnlyCollection<Group> GetGroupsFull(IEnumerable<long> gids)
-        {
-            if (gids == null)
-                throw new ArgumentNullException("gids");
-
-            // TODO: заменить на groups.get
-            var parameters = new VkParameters { { "gids", gids } };
-
-            VkResponseArray response = _vk.Call("getGroupsFull", parameters);
-
-            return response.ToReadOnlyCollectionOf<Group>(x => x);
-        }
 
         /// <summary>
         /// Возвращает расширенную информацию о пользователе.
         /// </summary>
-        /// <param name="uid">Идентификатор пользователя.</param>
+        /// <param name="userId">Идентификатор пользователя.</param>
         /// <param name="fields">Поля профиля, которые необходимо возвратить.</param>
+        /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Объект, содержащий запрошенную информацию о пользователе.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
-        public User Get(long uid, ProfileFields fields = null)
+        public User Get(long userId, ProfileFields fields = null,
+                                            NameCase nameCase = null)
         {
-            // TODO: заменить на users.get
-            var parameters = new VkParameters { { "uid", uid }, { "fields", fields } };
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
 
-            VkResponseArray response = _vk.Call("getProfiles", parameters);
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "v", _vk.Version }, { "user_ids", userId } };
+
+            VkResponseArray response = _vk.Call("users.get", parameters);
 
             return response[0];
         }
@@ -171,22 +119,86 @@
         /// <summary>
         /// Возвращает расширенную информацию о пользователе.
         /// </summary>
-        /// <param name="uids">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
+        /// <param name="userIds">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
         /// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
+        /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
-        public ReadOnlyCollection<User> Get(IEnumerable<long> uids, ProfileFields fields = null)
+        public ReadOnlyCollection<User> Get(IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
         {
-            if (uids == null)
-                throw new ArgumentNullException("uids");
+            if (userIds == null)
+                throw new ArgumentNullException("userIds");
 
-            var parameters = new VkParameters { { "uids", uids }, { "fields", fields } };
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, {"v", _vk.Version} };
+            parameters.Add("user_ids", userIds);
 
-            VkResponseArray response = _vk.Call("getProfiles", parameters);
+            VkResponseArray response = _vk.Call("users.get", parameters);
 
             return response.ToReadOnlyCollectionOf<User>(x => x);
+        }
+
+        // todo add comment
+        // todo add tests for subscriptions for users
+        public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"user_id", userId},
+                    {"extended", true},
+                    {"offset", offset},
+                    {"count", count},
+                    {"v", _vk.Version}
+                };
+
+            VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
+            throw new NotImplementedException();
+
+            return response.Skip(1).ToReadOnlyCollectionOf<Group>(x => x);
+        }
+
+        // todo add comment
+        public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"user_id", userId},
+                    {"offset", offset},
+                    {"count", count},
+                    {"fields", fields},
+                    {"name_case", nameCase},
+                    {"v", _vk.Version}
+                };
+
+            VkResponseArray response = _vk.Call("users.getFollowers", parameters);
+
+            throw new NotImplementedException();
+        }
+
+        // todo add comment
+        public bool Report(long userId, ReportType type, string comment = "")
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+
+            var parameters = new VkParameters
+                {
+                    {"user_id", userId},
+                    {"type", type},
+                    {"comment", comment}
+                };
+
+            throw new NotImplementedException();
+
+            return _vk.Call("users.report", parameters);
         }
     }
 }

@@ -12,7 +12,7 @@
 
     public class VkApi
     {
-        public static readonly string Version = "5.5";
+        public string Version { get; internal set; }
 
         internal const string InvalidAuthorization = "Invalid authorization";
 
@@ -33,7 +33,7 @@
 
         internal string AccessToken { get; set; }
 
-        public long UserId { get; set; }
+        public long ?UserId { get; set; }
 
         public VkApi()
         {
@@ -50,6 +50,8 @@
             Database = new DatabaseCategory(this);
             Utils = new UtilsCategory(this);
             Fave = new FaveCategory(this);
+
+            Version = "5.9";
         }
 
         /// <summary>
@@ -67,6 +69,17 @@
 
             AccessToken = authorization.AccessToken;
             UserId = authorization.UserId;
+        }
+
+        /// <summary>
+        /// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
+        /// </summary>
+        /// <param name="accessToken">Маркер доступа, полученный извне.</param>
+        /// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
+        public void Authorize(string accessToken, long ?userId = null)
+        {
+            AccessToken = accessToken;
+            UserId = userId;
         }
 
         #region Private & Internal Methods

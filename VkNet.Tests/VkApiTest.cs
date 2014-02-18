@@ -59,13 +59,6 @@ namespace VkNet.Tests
         }
 
         [Test]
-        [Ignore]
-        public void Invoke_Users_GetProfile_From_VkApi_NotNull()
-        {
-            Assert.That(vk.Users.Get(vk.UserId), Is.Not.Null);
-        }
-
-        [Test]
         public void GetApiUrl_GetProfile_RightUrl()
         {
             values.Add("uid", "66748");

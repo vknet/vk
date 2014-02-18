@@ -52,13 +52,13 @@ namespace VkNet.Model
         /// Идентификатор города, указанного на странице пользователя в разделе «Контакты».
         /// Если город не указан, или основная информация страницы скрыта настройками приватности, то 0.
         /// </summary>
-        public long? City { get; set; }
+        public City City { get; set; }
 
         /// <summary>
         /// Идентификатор страны, указанной на странице пользователя в разделе «Контакты». 
         /// Если страна не указана или основная информация страницы скрыта настройками приватности, то 0.
         /// </summary>
-        public long? Country { get; set; }
+        public Country Country { get; set; }
 
         /// <summary>
         /// Информация о ссылках на предпросмотр фотографий пользователя.
@@ -178,6 +178,16 @@ namespace VkNet.Model
         /// Информация о блокировке пользователя
         /// </summary>
         public BanInfo BanInfo { get; set; }
+
+        /// <summary>
+        /// Является ли пользователь заблокированным
+        /// </summary>
+        public bool IsDeactivated { get; set; }
+
+        /// <summary>
+        /// Причина блокирования аккаунта
+        /// </summary>
+        public string DeactiveReason { get; set; }
 
         #endregion
 
@@ -303,8 +313,8 @@ namespace VkNet.Model
 
             user.Sex = response["sex"];
             user.BirthDate = response["bdate"];
-            user.City = Utilities.GetNullableLongId(response["city"]);
-            user.Country = Utilities.GetNullableLongId(response["country"]);
+            user.City =response["city"];
+            user.Country = response["country"];
             user.PhotoPreviews = response;
             user.Online = response["online"];
             user.FriendLists = response["lists"];
@@ -350,6 +360,8 @@ namespace VkNet.Model
             user.Quotes = response["quotes"];
             user.InvitedBy = response["invited_by"];
             user.BanInfo = response["ban_info"];
+            user.DeactiveReason = response["deactivated"];
+            user.IsDeactivated = !string.IsNullOrEmpty(user.DeactiveReason);
 
             return user;
         }
