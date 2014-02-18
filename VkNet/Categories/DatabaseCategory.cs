@@ -6,6 +6,9 @@
     using Model;
     using Utils;
 
+    /// <summary>
+    /// Методы для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+    /// </summary>
     public class DatabaseCategory
     {
         private readonly VkApi _vk;
@@ -18,18 +21,21 @@
         /// <summary>
         /// Возвращает список стран.
         /// </summary>
-        /// <param name="needAll">Флаг - вернуть список всех стран</param>
-        /// <param name="codes">Перечисленные через запятую двухбуквенные коды стран в стандарте ISO 3166-1 alpha-2 <see cref="http://vk.com/dev/country_codes" /></param>
-        /// <param name="offset">Отступ, необходимый для выбора определенного подмножества стран. </param>
-        /// <param name="count">Количество стран, которое необходимо вернуть. </param>
+        /// <param name="needAll">Флаг - вернуть список всех стран.</param>
+        /// <param name="codes">Перечисленные через запятую двухбуквенные коды стран в стандарте ISO 3166-1 alpha-2 
+        /// <see cref="http://vk.com/dev/country_codes"/>.</param>
+        /// <param name="offset">Отступ, необходимый для выбора определенного подмножества стран.</param>
+        /// <param name="count">Количество стран, которое необходимо вернуть.</param>
         /// <remarks>
-        /// Если не заданы параметры needAll и code, то возвращается краткий список стран, расположенных наиболее близко к стране текущего пользователя. Если задан параметр needAll, то будет возвращен список всех стран. Если задан параметр code, то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
+        /// Если не заданы параметры needAll и code, то возвращается краткий список стран, расположенных наиболее близко к стране 
+        /// текущего пользователя. Если задан параметр needAll, то будет возвращен список всех стран. Если задан параметр code, 
+        /// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCountries"/>.
         /// </remarks>
         public ReadOnlyCollection<Country> GetCountries(bool needAll = true, string codes = "", int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
-            VkErrors.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом");
+            VkErrors.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом.");
 
             var parameters = new VkParameters { { "code", codes }, { "offset", offset }, { "count", count }, { "need_all", needAll } };
 
@@ -40,11 +46,11 @@
         /// <summary>
         /// Возвращает список регионов.
         /// </summary>
-        /// <param name="countryId">идентификатор страны</param>
-        /// <param name="query">строка поискового запроса</param>
-        /// <param name="count">количество регионов, которое необходимо вернуть</param>
-        /// <param name="offset">отступ, необходимый для выбора определенного подмножества регионов</param>
-        /// <returns>список регионов</returns>
+        /// <param name="countryId">Идентификатор страны.</param>
+        /// <param name="query">Строка поискового запроса.</param>
+        /// <param name="count">Количество регионов, которое необходимо вернуть.</param>
+        /// <param name="offset">Отступ, необходимый для выбора определенного подмножества регионов.</param>
+        /// <returns>Список регионов.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getRegions"/>.
         /// </remarks>
@@ -52,7 +58,7 @@
         {
             VkErrors.ThrowIfNumberIsNegative(countryId, "countryId", "Идентификатор страны должен быть положительным числом.");
             VkErrors.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
-            VkErrors.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом");
+            VkErrors.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом.");
 
             var parameters = new VkParameters { { "country_id", countryId }, { "q", query }, { "offset", offset }, { "count", count } };
 
@@ -64,8 +70,8 @@
         /// <summary>
         /// Возвращает информацию об улицах по их идентификаторам.
         /// </summary>
-        /// <param name="streetIds">Идентификаторы улиц</param>
-        /// <returns>Информация об улицах</returns>
+        /// <param name="streetIds">Идентификаторы улиц.</param>
+        /// <returns>Информация об улицах.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getStreetsById"/>.
         /// </remarks>
@@ -79,10 +85,10 @@
         }
 
         /// <summary>
-        /// Возвращает информацию о странах по их идентификаторам
+        /// Возвращает информацию о странах по их идентификаторам.
         /// </summary>
-        /// <param name="countryIds">идентификаторы стран</param>
-        /// <returns>Информация о странах</returns>
+        /// <param name="countryIds">Идентификаторы стран.</param>
+        /// <returns>Информация о странах.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCountriesById"/>.
         /// </remarks>
@@ -99,16 +105,19 @@
         /// <summary>
         /// Возвращает список городов.
         /// </summary>
-        /// <param name="countryId">идентификатор страны</param>
-        /// <param name="regionId">идентификатор региона</param>
-        /// <param name="query">строка поискового запроса. Например, Санкт.</param>
+        /// <param name="countryId">Идентификатор страны.</param>
+        /// <param name="regionId">Идентификатор региона.</param>
+        /// <param name="query">Строка поискового запроса. Например, Санкт.</param>
         /// <param name="needAll">true – возвращать все города. false – возвращать только основные города.</param>
-        /// <param name="count">количество городов, которые необходимо вернуть.</param>
-        /// <param name="offset">отступ, необходимый для получения определенного подмножества городов.</param>
+        /// <param name="count">Количество городов, которые необходимо вернуть.</param>
+        /// <param name="offset">Отступ, необходимый для получения определенного подмножества городов.</param>
         /// <returns>Cписок городов</returns>
         /// <remarks>
-        /// Возвращает массив объектов city, каждый из которых содержит поля cid и title. При наличии информации о регионе и/или области, в которых находится данный город, в объекте могут дополнительно включаться поля area и region. Если не задан параметр q, то будет возвращен список самых крупных городов в заданной стране. Если задан параметр q, то будет возвращен список городов, которые релевантны поисковому запросу.
-        /// 
+        /// Возвращает коллекцию городов, каждый из которых содержит поля <see cref="City.Id"/> и <see cref="City.Title"/>. 
+        /// При наличии информации о регионе и/или области, в которых находится данный город, в объекте могут дополнительно 
+        /// включаться поля <see cref="City.Area"/> и <see cref="City.Region"/>. 
+        /// Если не задан параметр <paramref name="query"/>, то будет возвращен список самых крупных городов в заданной стране. 
+        /// Если задан параметр <paramref name="query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCities"/>.
         /// </remarks>
         public ReadOnlyCollection<City> GetCities(int countryId, int? regionId = null, string query = "", bool? needAll = false, int? count = null, int? offset = null)
@@ -135,11 +144,11 @@
         /// <summary>
         /// Возвращает информацию о городах по их идентификаторам.
         /// </summary>
-        /// <param name="cityIds">идентификаторы городов. </param>
-        /// <returns>Информация о городах</returns>
+        /// <param name="cityIds">Идентификаторы городов.</param>
+        /// <returns>Информация о городах.</returns>
         /// <remarks>
-        /// Идентификаторы (id) могут быть получены с помощью методов users.get, places.getById, places.search, places.getCheckins.
-        /// 
+        /// Идентификаторы городов могут быть получены с помощью методов <see cref="UsersCategory.Get(long,VkNet.Enums.ProfileFields,VkNet.Enums.NameCase)"/>"/>, 
+        /// places.getById, places.search, places.getCheckins.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCitiesById"/>. 
         /// </remarks>
         public ReadOnlyCollection<City> GetCitiesById(params int[] cityIds)
@@ -154,12 +163,12 @@
         /// <summary>
         /// Возвращает список высших учебных заведений.
         /// </summary>
-        /// <param name="countryId">идентификатор страны, учебные заведения которой необходимо вернуть.</param>
-        /// <param name="cityId">идентификатор города, учебные заведения которого необходимо вернуть.</param>
-        /// <param name="query">строка поискового запроса. Например, СПБ.</param>
-        /// <param name="offset">отступ, необходимый для получения определенного подмножества учебных заведений. </param>
-        /// <param name="count">количество учебных заведений, которое необходимо вернуть. </param>
-        /// <returns></returns>
+        /// <param name="countryId">Идентификатор страны, учебные заведения которой необходимо вернуть.</param>
+        /// <param name="cityId">Идентификатор города, учебные заведения которого необходимо вернуть.</param>
+        /// <param name="query">Строка поискового запроса. Например, СПБ.</param>
+        /// <param name="offset">Отступ, необходимый для получения определенного подмножества учебных заведений.</param>
+        /// <param name="count">Количество учебных заведений, которое необходимо вернуть.</param>
+        /// <returns>Список высших учебных заведений, удовлетворяющих заданным условиям.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getUniversities"/>.
         /// </remarks>
@@ -186,11 +195,11 @@
         /// <summary>
         /// Возвращает список школ.
         /// </summary>
-        /// <param name="countryId">идентификатор страны, школы которого необходимо вернуть.</param>
-        /// <param name="cityId">идентификатор города, школы которого необходимо вернуть. </param>
-        /// <param name="query">строка поискового запроса. Например, гимназия.</param>
-        /// <param name="offset">отступ, необходимый для получения определенного подмножества школ.</param>
-        /// <param name="count">количество школ, которое необходимо вернуть. </param>
+        /// <param name="countryId">Идентификатор страны, школы которой необходимо вернуть.</param>
+        /// <param name="cityId">Идентификатор города, школы которого необходимо вернуть. </param>
+        /// <param name="query">Строка поискового запроса. Например, гимназия.</param>
+        /// <param name="offset">Отступ, необходимый для получения определенного подмножества школ.</param>
+        /// <param name="count">Количество школ, которое необходимо вернуть. </param>
         /// <returns>Cписок школ.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getSchools"/>.
@@ -218,10 +227,10 @@
         /// <summary>
         /// Возвращает список факультетов.
         /// </summary>
-        /// <param name="universityId">идентификатор университета, факультеты которого необходимо получить. </param>
-        /// <param name="count">отступ, необходимый для получения определенного подмножества факультетов. </param>
-        /// <param name="offset">количество факультетов которое необходимо получить. </param>
-        /// <returns>Cписок факультетов</returns>
+        /// <param name="universityId">Идентификатор университета, факультеты которого необходимо получить.</param>
+        /// <param name="count">Отступ, необходимый для получения определенного подмножества факультетов.</param>
+        /// <param name="offset">Количество факультетов которое необходимо получить.</param>
+        /// <returns>Cписок факультетов.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getFaculties"/>.
         /// </remarks>
