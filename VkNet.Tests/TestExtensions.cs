@@ -28,7 +28,7 @@ namespace VkNet.Tests
             return obj;
         }
 
-        public static T ShouldEqual<T>(this T actual, object expected)
+        public static T ShouldEqual<T>(this T actual, T expected)
         {
             Assert.That(actual, Is.EqualTo(expected));
             return actual;

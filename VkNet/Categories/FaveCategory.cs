@@ -1,7 +1,12 @@
-﻿using System;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+
+    using Model;
+    using Utils;
+
     public class FaveCategory
     {
         private readonly VkApi _vk;
@@ -11,14 +16,35 @@ namespace VkNet.Categories
             _vk = vk;
         }
 
-        public void GetUsers()
+        public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"count", count},
+                    {"offset", offset}
+                };
+
+            VkResponseArray response = _vk.Call("fave.getUsers", parameters);
+
+            return response.ToReadOnlyCollectionOf<User>(x => x);
         }
 
-        public void GetPhotos()
+        public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"count", count},
+                    {"offset", offset}
+                };
+
+            VkResponseArray response = _vk.Call("fave.getPhotos", parameters);
+            return response.ToReadOnlyCollectionOf<Photo>(x => x);
         }
 
         public void GetPosts()

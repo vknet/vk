@@ -81,6 +81,9 @@
         /// </summary>
         public string AccessKey { get; set; }
 
+        public long? UserId { get; set; }
+        public long? PostId { get; set; }
+
         #region Методы
 
         internal static Photo FromJson(VkResponse response)
@@ -94,12 +97,15 @@
             photo.Photo130 = response["photo_130"];
             photo.Photo604 = response["photo_604"];
             photo.Photo807 = response["photo_807"];
-            photo.Photo1280 = response["photo_1280 "];
+            photo.Photo1280 = response["photo_1280"];
             photo.Photo2560 = response["photo_2560"];
             photo.Width = response["width"];
             photo.Height = response["height"];
             photo.Text = response["text"];
-            photo.CreateTime = Utilities.FromUnixTime(response["date"]);
+            photo.CreateTime = response["date"];
+
+            photo.UserId = Utilities.GetNullableLongId(response["user_id"]);
+            photo.PostId = Utilities.GetNullableLongId(response["post_id"]);
 
             // из описания альбом с фотографиями
             photo.AccessKey = response["access_key"];
