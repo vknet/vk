@@ -42,7 +42,6 @@
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.");
 
-            // TODO добавить параметр v и протестировать
             var parameters = new VkParameters { { "q", query }, { "fields", fields }, { "count", count } };
             if (offset > 0)
                 parameters.Add("offset", offset);
@@ -76,24 +75,6 @@
         }
 
         /// <summary>
-        /// Возвращает список сообществ указанного пользователя. 
-        /// </summary>
-        /// <param name="uid">Идентификатор пользователя, информацию о сообществах которого требуется получить.</param>
-        /// <returns>После успешного выполнения возвращает список сообществ, в которых состоит пользователь. </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getGroups"/>.
-        /// </remarks>
-        public ReadOnlyCollection<Group> GetGroups(int uid)
-        {
-            // TODO: Заменить на groups.get
-            var parameters = new VkParameters { { "uid", uid } };
-
-            var response = _vk.Call("getGroups", parameters);
-
-            return response.ToReadOnlyCollectionOf(id => new Group { Id = id });
-        }
-
-        /// <summary>
         /// Возвращает информацию о том, установил ли пользователь приложение.
         /// </summary>
         /// <param name="userId">Идентификатор пользователя.</param>
@@ -112,44 +93,6 @@
             return 1 == Convert.ToInt32(response.ToString());
         }
 
-        /// <summary>
-        /// Возвращает список сообществ данного пользователя. 
-        /// </summary>
-        /// <returns> 
-        /// В случае успеха возвращается список сообществ данного пользователя.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getGroupsFull"/>.
-        /// </remarks>
-        public ReadOnlyCollection<Group> GetGroupsFull()
-        {
-            // TODO: заменить на groups.get
-            VkResponseArray response = _vk.Call("getGroupsFull", VkParameters.Empty);
-            return response.ToReadOnlyCollectionOf<Group>(x => x);
-        }
-
-        /// <summary>
-        /// Возвращает стандартную информацию об указанных сообществах.
-        /// </summary>
-        /// <param name="gids">Список идентификаторов сообществ, о которых необходимо получить информацию</param>
-        /// <returns>
-        /// Список объектов, содержащих информацию о запрошенных сообществах.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getGroupsFull"/>.
-        /// </remarks>
-        public ReadOnlyCollection<Group> GetGroupsFull(IEnumerable<long> gids)
-        {
-            if (gids == null)
-                throw new ArgumentNullException("gids");
-
-            // TODO: заменить на groups.get
-            var parameters = new VkParameters { { "gids", gids } };
-
-            VkResponseArray response = _vk.Call("getGroupsFull", parameters);
-
-            return response.ToReadOnlyCollectionOf<Group>(x => x);
-        }
 
         /// <summary>
         /// Возвращает расширенную информацию о пользователе.
