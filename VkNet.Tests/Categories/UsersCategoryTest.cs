@@ -203,91 +203,6 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        public void GetGropus_EmptyAccessToken_ThrowAccessTokenInvalidException()
-        {
-            var users = new UsersCategory(new VkApi());
-            ExceptionAssert.Throws<AccessTokenInvalidException>(() => users.GetGroups(1));
-        }
-
-        [Test]
-        public void GetGroups_AccessDenied_ThrowAccessDeniedException()
-        {
-            const string url = "https://api.vk.com/method/getGroups?uid=1&access_token=token";
-
-            const string json =
-                @"{
-                    'error': {
-                      'error_code': 260,
-                      'error_msg': 'Access to the groups list is denied due to the user privacy settings.',
-                      'request_params': [
-                        {
-                          'key': 'oauth',
-                          'value': '1'
-                        },
-                        {
-                          'key': 'method',
-                          'value': 'getGroups'
-                        },
-                        {
-                          'key': 'uid',
-                          'value': '1'
-                        },
-                        {
-                          'key': 'access_token',
-                          'value': '2f3e43eb608a87632f68d140d82f5a9efa22f772f7765eb2f49f67514987c5e'
-                        }
-                      ]
-                    }
-                  }";
-
-            var users = GetMockedUsersCategory(url, json);
-            var ex = ExceptionAssert.Throws<AccessDeniedException>(() => users.GetGroups(1));
-            ex.Message.ShouldEqual("Access to the groups list is denied due to the user privacy settings.");
-        }
-
-        [Test]
-        public void GetGroups_UserHaveNoGroups_EmptyList()
-        {
-            // undone: check it later
-            const string url = "https://api.vk.com/method/getGroups?uid=4793858&access_token=token";
-
-            const string json =
-                @"{
-                    'response': []
-                  }";
-
-            var users = GetMockedUsersCategory(url, json);
-            var groups = users.GetGroups(4793858).ToList();
-
-            Assert.That(groups.Count, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void GetGroups_AccessGranted_ListOfGroups()
-        {
-            const string url = "https://api.vk.com/method/getGroups?uid=4793858&access_token=token";
-
-            const string json =
-                @"{
-                    'response': [
-                      1,
-                      15,
-                      134,
-                      1673
-                    ]
-                  }";
-
-            var users = GetMockedUsersCategory(url, json);
-            var groups = users.GetGroups(4793858).ToList();
-
-            Assert.That(groups.Count, Is.EqualTo(4));
-            Assert.That(groups[0].Id, Is.EqualTo(1));
-            Assert.That(groups[1].Id, Is.EqualTo(15));
-            Assert.That(groups[2].Id, Is.EqualTo(134));
-            Assert.That(groups[3].Id, Is.EqualTo(1673));
-        }
-        
-        [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_Multiple_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
@@ -396,133 +311,7 @@ namespace VkNet.Tests.Categories
             Assert.That(lst[1].Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
             Assert.That(lst[1].Education.Graduation, Is.EqualTo(2012));
         }
-        
-        [Test]
-        public void GetGroupsFull_EmptyAccessToken_ThrowAccessTokenInvalidException()
-        {
-            var vk = new VkApi();
-            ExceptionAssert.Throws<AccessTokenInvalidException>(() => vk.Users.GetGroupsFull());
-        }
-
-        [Test]
-        public void GetGroupsFull_Multiple_EmptyAccessToken_ThrowAccessTokenInvalidException()
-        {
-            var vk = new VkApi();
-            ExceptionAssert.Throws<AccessTokenInvalidException>(() => vk.Users.GetGroupsFull(new long[]{1, 2}));
-        }
-
-        [Test]
-        public void GetGroupsFull_NullGids_ThrowArgumentNullException()
-        {
-            var vk = new VkApi { AccessToken = "token" };
-            ExceptionAssert.Throws<ArgumentNullException>(() => vk.Users.GetGroupsFull(null));
-        }
-
-        [Test]
-        public void GetGroupsFull_Mulitple_TwoGroups()
-        {
-            const string url = "https://api.vk.com/method/getGroupsFull?gids=29689780,33489538&access_token=token";
-
-            const string json =
-                @"{
-                    'response': [
-                      {
-                        'id': 29689780,
-                        'name': 'Art and Life ©',
-                        'screen_name': 'art.and.life',
-                        'is_closed': 0,
-                        'type': 'page',
-                        'photo': 'http://cs11003.userapi.com/g29689780/e_1bea6489.jpg',
-                        'photo_medium': 'http://cs11003.userapi.com/g29689780/d_f50bf769.jpg',
-                        'photo_big': 'http://cs11003.userapi.com/g29689780/a_1889c16e.jpg'
-                      },
-                      {
-                        'id': 33489538,
-                        'name': 'Английский как стиль жизни. Где перевод?',
-                        'screen_name': 'english_for_adults',
-                        'is_closed': 0,
-                        'type': 'event',
-                        'photo': 'http://cs5538.userapi.com/g33489538/e_1d36792d.jpg',
-                        'photo_medium': 'http://cs5538.userapi.com/g33489538/d_caafe13e.jpg',
-                        'photo_big': 'http://cs5538.userapi.com/g33489538/a_6d6f2525.jpg'
-                      }
-                    ]
-                  }";
-
-            var users = GetMockedUsersCategory(url, json);
-            var groups = users.GetGroupsFull(new long[] { 29689780, 33489538 }).ToList();
-
-            Assert.That(groups.Count, Is.EqualTo(2));
-            Assert.That(groups[0], Is.Not.Null);
-            Assert.That(groups[0].Id, Is.EqualTo(29689780));
-            Assert.That(groups[0].Name, Is.EqualTo("Art and Life ©"));
-            Assert.That(groups[0].ScreenName, Is.EqualTo("art.and.life"));
-            Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-            Assert.That(groups[0].IsAdmin, Is.False);
-            Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
-
-            Assert.That(groups[1], Is.Not.Null);
-            Assert.That(groups[1].Id, Is.EqualTo(33489538));
-            Assert.That(groups[1].Name, Is.EqualTo("Английский как стиль жизни. Где перевод?"));
-            Assert.That(groups[1].ScreenName, Is.EqualTo("english_for_adults"));
-            Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
-            Assert.That(groups[1].IsAdmin, Is.False);
-            Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
-        }
-
-        [Test]
-        public void GetGroupsFull_GroupsOfCurrentUser()
-        {
-            const string url = "https://api.vk.com/method/getGroupsFull?access_token=token";
-
-            const string json =
-                @"{
-                    'response': [
-                      {
-                        'id': 29689780,
-                        'name': 'Art and Life ©',
-                        'screen_name': 'art.and.life',
-                        'is_closed': 0,
-                        'is_admin': 1,
-                        'type': 'page',
-                        'photo': 'http://cs11003.userapi.com/g29689780/e_1bea6489.jpg',
-                        'photo_medium': 'http://cs11003.userapi.com/g29689780/d_f50bf769.jpg',
-                        'photo_big': 'http://cs11003.userapi.com/g29689780/a_1889c16e.jpg'
-                      },
-                      {
-                        'id': 33489538,
-                        'name': 'Английский как стиль жизни. Где перевод?',
-                        'screen_name': 'english_for_adults',
-                        'is_closed': 0,
-                        'type': 'event',
-                        'photo': 'http://cs5538.userapi.com/g33489538/e_1d36792d.jpg',
-                        'photo_medium': 'http://cs5538.userapi.com/g33489538/d_caafe13e.jpg',
-                        'photo_big': 'http://cs5538.userapi.com/g33489538/a_6d6f2525.jpg'
-                      }
-                    ]
-                  }";
-
-            var users = GetMockedUsersCategory(url, json);
-            var groups = users.GetGroupsFull().ToList();
-
-            Assert.That(groups.Count, Is.EqualTo(2));
-            Assert.That(groups[0], Is.Not.Null);
-            Assert.That(groups[0].Id, Is.EqualTo(29689780));
-            Assert.That(groups[0].Name, Is.EqualTo("Art and Life ©"));
-            Assert.That(groups[0].ScreenName, Is.EqualTo("art.and.life"));
-            Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-            Assert.That(groups[0].IsAdmin, Is.True);
-            Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
-
-            Assert.That(groups[1], Is.Not.Null);
-            Assert.That(groups[1].Id, Is.EqualTo(33489538));
-            Assert.That(groups[1].Name, Is.EqualTo("Английский как стиль жизни. Где перевод?"));
-            Assert.That(groups[1].ScreenName, Is.EqualTo("english_for_adults"));
-            Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
-            Assert.That(groups[1].IsAdmin, Is.False);
-            Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
-        }
-
+       
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void IsAppUser_EmptyAccessToken_ThrowAccessTokenInvalidException()
@@ -1130,6 +919,227 @@ namespace VkNet.Tests.Categories
             user.LastName.ShouldEqual("Жидков");
             user.DeactiveReason.ShouldEqual("deleted");
             user.IsDeactivated.ShouldBeTrue();
+        }
+
+        [Test]
+        public void GetSubscriptions_Extended()
+        {
+            const string url = "https://api.vk.com/method/users.getSubscriptions?user_id=1&extended=1&offset=3&count=2&v=5.9&access_token=token";
+            const string json =
+            @"{
+                    'response': {
+                      'count': 51,
+                      'items': [
+                        {
+                          'id': 32295218,
+                          'name': 'LIVE Экспресс',
+                          'screen_name': 'liveexp',
+                          'is_closed': 0,
+                          'type': 'page',
+                          'is_admin': 0,
+                          'is_member': 0,
+                          'photo_50': 'http://cs412129.vk.me/v412129558/6cea/T3jVq9A5hN4.jpg',
+                          'photo_100': 'http://cs412129.vk.me/v412129558/6ce9/Rs47ldlt4Ko.jpg',
+                          'photo_200': 'http://cs412129.vk.me/v412129604/1238/RhEgZqrsv-w.jpg'
+                        },
+                        {
+                          'id': 43694972,
+                          'name': 'Sophie Ellis-Bextor',
+                          'screen_name': 'sophieellisbextor',
+                          'is_closed': 0,
+                          'type': 'page',
+                          'is_admin': 0,
+                          'is_member': 0,
+                          'photo_50': 'http://cs417031.vk.me/v417031989/59cb/65zF-xnOQsk.jpg',
+                          'photo_100': 'http://cs417031.vk.me/v417031989/59ca/eOJ7ER_eJok.jpg',
+                          'photo_200': 'http://cs417031.vk.me/v417031989/59c8/zI9aAlI-PHc.jpg'
+                        }
+                      ]
+                    }
+                  }";
+
+            UsersCategory cat = GetMockedUsersCategory(url, json);
+
+            ReadOnlyCollection<Group> result = cat.GetSubscriptions(1, 2, 3);
+
+            result.Count.ShouldEqual(2);
+            result[0].Id.ShouldEqual(32295218);
+            result[0].Name.ShouldEqual("LIVE Экспресс");
+            result[0].ScreenName.ShouldEqual("liveexp");
+            result[0].IsClosed.ShouldEqual(false);
+            result[0].Type.ShouldEqual(GroupType.Page);
+            result[0].IsAdmin.ShouldBeFalse();
+            result[0].IsMember.ShouldEqual(false);
+            result[0].PhotoPreviews.Photo50.ShouldEqual("http://cs412129.vk.me/v412129558/6cea/T3jVq9A5hN4.jpg");
+            result[0].PhotoPreviews.Photo100.ShouldEqual("http://cs412129.vk.me/v412129558/6ce9/Rs47ldlt4Ko.jpg");
+            result[0].PhotoPreviews.Photo200.ShouldEqual("http://cs412129.vk.me/v412129604/1238/RhEgZqrsv-w.jpg");
+
+            result[1].Id.ShouldEqual(43694972);
+            result[1].Name.ShouldEqual("Sophie Ellis-Bextor");
+            result[1].ScreenName.ShouldEqual("sophieellisbextor");
+            result[1].IsClosed.ShouldEqual(false);
+            result[1].Type.ShouldEqual(GroupType.Page);
+            result[1].IsAdmin.ShouldEqual(false);
+            result[1].IsMember.ShouldEqual(false);
+            result[1].PhotoPreviews.Photo50.ShouldEqual("http://cs417031.vk.me/v417031989/59cb/65zF-xnOQsk.jpg");
+            result[1].PhotoPreviews.Photo100.ShouldEqual("http://cs417031.vk.me/v417031989/59ca/eOJ7ER_eJok.jpg");
+            result[1].PhotoPreviews.Photo200.ShouldEqual("http://cs417031.vk.me/v417031989/59c8/zI9aAlI-PHc.jpg");
+        }
+
+        [Test]
+        public void GetFollowers_WithoutFields()
+        {
+            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 5937503,
+                      'items': [
+                        5984118,
+                        179652233
+                      ]
+                    }
+                  }";
+
+            UsersCategory cat = GetMockedUsersCategory(url, json);
+
+            ReadOnlyCollection<User> result = cat.GetFollowers(1, 2, 3);
+
+            result.ShouldNotBeNull();
+            result.Count.ShouldEqual(2);
+            result[0].Id.ShouldEqual(5984118);
+            result[1].Id.ShouldEqual(179652233);
+        }
+
+        [Test]
+        public void GetFollowers_()
+        {
+            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&v=5.9&access_token=token";
+            const string json =
+            @"{
+                    'response': {
+                      'count': 5937505,
+                      'items': [
+                        {
+                          'id': 243663122,
+                          'first_name': 'Ивана',
+                          'last_name': 'Радюна',
+                          'sex': 2,
+                          'nickname': '',
+                          'domain': 'id243663122',
+                          'bdate': '27.8.1985',
+                          'city': {
+                            'id': 18632,
+                            'title': 'Вороново'
+                          },
+                          'country': {
+                            'id': 3,
+                            'title': 'Беларусь'
+                          },
+                          'timezone': 3,
+                          'photo_50': 'http://cs606327.vk.me/v606327122/35ac/R57FNUr34iw.jpg',
+                          'photo_100': 'http://cs606327.vk.me/v606327122/35ab/HUsGNVxBoQU.jpg',
+                          'photo_200': 'http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg',
+                          'photo_max': 'http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg',
+                          'photo_200_orig': 'http://cs606327.vk.me/v606327122/35a9/3GW5bsTOvCA.jpg',
+                          'photo_max_orig': 'http://cs606327.vk.me/v606327122/35a9/3GW5bsTOvCA.jpg',
+                          'has_mobile': 1,
+                          'online': 1,
+                          'online_mobile': 1,
+                          'can_post': 0,
+                          'can_see_all_posts': 1,
+                          'can_see_audio': 1,
+                          'can_write_private_message': 1,
+                          'mobile_phone': '',
+                          'home_phone': '',
+                          'site': '',
+                          'status': 'Пусть ветер гудит в проводах пусть будет осенняя влага пусть люди забудут о нас,но ни забудем друг друга.',
+                          'last_seen': {
+                            'time': 1392710539,
+                            'platform': 1
+                          },
+                          'common_count': 0,
+                          'university': 0,
+                          'university_name': '',
+                          'faculty': 0,
+                          'faculty_name': '',
+                          'graduation': 0,
+                          'relation': 6,
+                          'universities': [],
+                          'schools': [],
+                          'relatives': []
+                        },
+                        {
+                          'id': 239897398,
+                          'first_name': 'Софійки',
+                          'last_name': 'Довгалюк',
+                          'sex': 1,
+                          'nickname': '',
+                          'domain': 'id239897398',
+                          'bdate': '16.6.2000',
+                          'city': {
+                            'id': 1559,
+                            'title': 'Тернополь'
+                          },
+                          'country': {
+                            'id': 2,
+                            'title': 'Украина'
+                          },
+                          'timezone': 1,
+                          'photo_50': 'http://cs310121.vk.me/v310121398/8023/LMm-uoyk1-M.jpg',
+                          'photo_100': 'http://cs310121.vk.me/v310121398/8022/KajnVK0lvFA.jpg',
+                          'photo_200': 'http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg',
+                          'photo_max': 'http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg',
+                          'photo_200_orig': 'http://cs310121.vk.me/v310121398/8020/N2DK1JeENJM.jpg',
+                          'photo_400_orig': 'http://cs310121.vk.me/v310121398/801f/FSWGaDlq3L4.jpg',
+                          'photo_max_orig': 'http://cs310121.vk.me/v310121398/801f/FSWGaDlq3L4.jpg',
+                          'has_mobile': 1,
+                          'online': 1,
+                          'can_post': 0,
+                          'can_see_all_posts': 1,
+                          'can_see_audio': 1,
+                          'can_write_private_message': 1,
+                          'mobile_phone': '**********',
+                          'home_phone': '*****',
+                          'skype': 'немає',
+                          'site': '',
+                          'status': 'Не варто ображатися на людей за те, що вони не виправдали наших очікувань... ми самі винні, що чекали від них більше, ніж варто було!',
+                          'last_seen': {
+                            'time': 1392710474,
+                            'platform': 7
+                          },
+                          'common_count': 0,
+                          'university': 0,
+                          'university_name': '',
+                          'faculty': 0,
+                          'faculty_name': '',
+                          'graduation': 0,
+                          'relation': 0,
+                          'universities': [],
+                          'schools': [],
+                          'relatives': [
+                            {
+                              'id': 222462523,
+                              'type': 'sibling'
+                            },
+                            {
+                              'id': 207105159,
+                              'type': 'sibling'
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }";
+
+            UsersCategory cat = GetMockedUsersCategory(url, json);
+
+            ReadOnlyCollection<User> result = cat.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen);
+
+            result.ShouldNotBeNull();
+            result.Count.ShouldEqual(2);
+
+            Assert.Fail("undone");
         }
     }
 }

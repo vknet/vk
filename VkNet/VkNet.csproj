@@ -83,6 +83,7 @@
     <Compile Include="Enums\PoliticalPreferences.cs" />
     <Compile Include="Enums\ProfileFields.cs" />
     <Compile Include="Enums\RelationType.cs" />
+    <Compile Include="Enums\ReportType.cs" />
     <Compile Include="Enums\Settings.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
     <Compile Include="Enums\Sex.cs" />

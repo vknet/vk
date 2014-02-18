@@ -138,5 +138,67 @@
 
             return response.ToReadOnlyCollectionOf<User>(x => x);
         }
+
+        // todo add comment
+        // todo add tests for subscriptions for users
+        public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"user_id", userId},
+                    {"extended", true},
+                    {"offset", offset},
+                    {"count", count},
+                    {"v", _vk.Version}
+                };
+
+            VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
+            throw new NotImplementedException();
+
+            return response.Skip(1).ToReadOnlyCollectionOf<Group>(x => x);
+        }
+
+        // todo add comment
+        public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"user_id", userId},
+                    {"offset", offset},
+                    {"count", count},
+                    {"fields", fields},
+                    {"name_case", nameCase},
+                    {"v", _vk.Version}
+                };
+
+            VkResponseArray response = _vk.Call("users.getFollowers", parameters);
+
+            throw new NotImplementedException();
+        }
+
+        // todo add comment
+        public bool Report(long userId, ReportType type, string comment = "")
+        {
+            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+
+            var parameters = new VkParameters
+                {
+                    {"user_id", userId},
+                    {"type", type},
+                    {"comment", comment}
+                };
+
+            throw new NotImplementedException();
+
+            return _vk.Call("users.report", parameters);
+        }
     }
 }
