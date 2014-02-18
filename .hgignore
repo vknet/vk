@@ -15,3 +15,4 @@ VkToolkitFunctionalTests/bin/*
 VkToolkitFunctionalTests/obj/*
 bin/*
 obj/*
+.nuget/*
