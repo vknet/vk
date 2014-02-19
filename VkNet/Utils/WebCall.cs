@@ -28,6 +28,20 @@
             return call.MakeRequest();
         }
 
+        public static WebCallResult PostCall(string url, string parameters)
+        {
+            var call = new WebCall(url, new Cookies());
+            call.Request.Method = "POST";
+            call.Request.ContentType = "application/x-www-form-urlencoded";
+            var data = Encoding.UTF8.GetBytes(parameters);
+            call.Request.ContentLength = data.Length;
+
+            using (var requestStream = call.Request.GetRequestStream())
+                requestStream.Write(data, 0, data.Length);                
+
+            return call.MakeRequest();
+        }
+
         public static WebCallResult Post(WebForm form)
         {
             var call = new WebCall(form.ActionUrl, form.Cookies);
