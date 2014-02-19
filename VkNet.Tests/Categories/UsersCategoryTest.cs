@@ -1012,11 +1012,11 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        public void GetFollowers_()
+        public void GetFollowers_WithAllFields()
         {
             const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&v=5.9&access_token=token";
             const string json =
-            @"{
+                @"{
                     'response': {
                       'count': 5937505,
                       'items': [
@@ -1139,7 +1139,94 @@ namespace VkNet.Tests.Categories
             result.ShouldNotBeNull();
             result.Count.ShouldEqual(2);
 
-            Assert.Fail("undone");
+            result[0].Id.ShouldEqual(243663122);
+            result[0].FirstName.ShouldEqual("Ивана");
+            result[0].LastName.ShouldEqual("Радюна");
+            result[0].Sex.ShouldEqual(Sex.Male);
+            result[0].Nickname.ShouldEqual(string.Empty);
+            result[0].Domain.ShouldEqual("id243663122");
+            result[0].BirthDate.ShouldEqual("27.8.1985");
+            result[0].City.Id.ShouldEqual(18632);
+            result[0].City.Title.ShouldEqual("Вороново");
+            result[0].Country.Id.ShouldEqual(3);
+            result[0].Country.Title.ShouldEqual("Беларусь");
+            result[0].Timezone.ShouldEqual(3);
+            result[0].PhotoPreviews.Photo50.ShouldEqual("http://cs606327.vk.me/v606327122/35ac/R57FNUr34iw.jpg");
+            result[0].PhotoPreviews.Photo100.ShouldEqual("http://cs606327.vk.me/v606327122/35ab/HUsGNVxBoQU.jpg");
+            result[0].PhotoPreviews.Photo200.ShouldEqual("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg");
+            result[0].PhotoPreviews.PhotoMax.ShouldEqual("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg");
+            result[0].HasMobile.ShouldEqual(true);
+            result[0].Online.ShouldEqual(true);
+            result[0].OnlineMobile.ShouldEqual(true);
+            result[0].CanPost.ShouldEqual(false);
+            result[0].CanSeeAllPosts.ShouldEqual(true);
+            result[0].CanSeeAudio.ShouldEqual(true);
+            result[0].CanWritePrivateMessage.ShouldEqual(true);
+            result[0].MobilePhone.ShouldEqual(string.Empty);
+            result[0].HomePhone.ShouldEqual(string.Empty);
+            result[0].Site.ShouldEqual(string.Empty);
+            result[0].Status.ShouldEqual("Пусть ветер гудит в проводах пусть будет осенняя влага пусть люди забудут о нас,но ни забудем друг друга.");
+            result[0].LastSeen.ShouldEqual(new DateTime(2014, 2, 18, 12, 2, 19));
+            result[0].CommonCount.ShouldEqual(0);
+            result[0].Universities.Count.ShouldEqual(0);
+            result[0].Relation.ShouldEqual(RelationType.InActiveSearch);
+            result[0].Schools.Count.ShouldEqual(0);
+            result[0].Relatives.Count.ShouldEqual(0);
+
+            result[1].Id.ShouldEqual(239897398);
+            result[1].FirstName.ShouldEqual("Софійки");
+            result[1].LastName.ShouldEqual("Довгалюк");
+            result[1].Sex.ShouldEqual(Sex.Female);
+            result[1].Nickname.ShouldEqual(string.Empty);
+            result[1].Domain.ShouldEqual("id239897398");
+            result[1].BirthDate.ShouldEqual("16.6.2000");
+            result[1].City.Id.ShouldEqual(1559);
+            result[1].City.Title.ShouldEqual("Тернополь");
+            result[1].Country.Id.ShouldEqual(2);
+            result[1].Country.Title.ShouldEqual("Украина");
+            result[1].Timezone.ShouldEqual(1);
+            result[1].PhotoPreviews.Photo50.ShouldEqual("http://cs310121.vk.me/v310121398/8023/LMm-uoyk1-M.jpg");
+            result[1].PhotoPreviews.Photo100.ShouldEqual("http://cs310121.vk.me/v310121398/8022/KajnVK0lvFA.jpg");
+            result[1].PhotoPreviews.Photo200.ShouldEqual("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg");
+            result[1].PhotoPreviews.PhotoMax.ShouldEqual("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg");
+            result[1].HasMobile.ShouldEqual(true);
+            result[1].Online.ShouldEqual(true);
+            result[1].CanPost.ShouldEqual(false);
+            result[1].CanSeeAllPosts.ShouldEqual(true);
+            result[1].CanSeeAudio.ShouldEqual(true);
+            result[1].CanWritePrivateMessage.ShouldEqual(true);
+            result[1].MobilePhone.ShouldEqual("**********");
+            result[1].HomePhone.ShouldEqual("*****");
+            result[1].Connections.Skype.ShouldEqual("немає");
+            result[1].Site.ShouldEqual(string.Empty);
+            result[1].Status.ShouldEqual("Не варто ображатися на людей за те, що вони не виправдали наших очікувань... ми самі винні, що чекали від них більше, ніж варто було!");
+            result[1].LastSeen.ShouldEqual(new DateTime(2014, 2, 18, 12, 1, 14));
+            result[1].CommonCount.ShouldEqual(0);
+            result[1].Universities.Count.ShouldEqual(0);
+            result[1].Relation.ShouldEqual(RelationType.Unknown);
+            result[1].Schools.Count.ShouldEqual(0);
+            result[1].Relatives.Count.ShouldEqual(2);
+            result[1].Relatives[0].Id.ShouldEqual(222462523);
+            result[1].Relatives[0].Type.ShouldEqual("sibling");
+
+            result[1].Relatives[1].Id.ShouldEqual(207105159);
+            result[1].Relatives[1].Type.ShouldEqual("sibling");
+        }
+
+        [Test]
+        public void Report_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/users.report?user_id=243663122&type=insult&comment=комментарий&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            UsersCategory cat = GetMockedUsersCategory(url, json);
+
+            bool result = cat.Report(243663122, ReportType.Insult, "комментарий");
+
+            result.ShouldBeTrue();
         }
     }
 }

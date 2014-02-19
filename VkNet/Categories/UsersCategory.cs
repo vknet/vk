@@ -139,8 +139,18 @@
             return response.ToReadOnlyCollectionOf<User>(x => x);
         }
 
-        // todo add comment
+        
         // todo add tests for subscriptions for users
+        /// <summary>
+        /// Возвращает список идентификаторов пользователей и групп, которые входят в список подписок пользователя.
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя, подписки которого необходимо получить</param>
+        /// <param name="count">Количество подписок, которые необходимо вернуть</param>
+        /// <param name="offset">Смещение необходимое для выборки определенного подмножества подписок</param>
+        /// <returns>Пока возвращается только список групп.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.getSubscriptions"/>.
+        /// </remarks>
         public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
@@ -157,12 +167,22 @@
                 };
 
             VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
-            throw new NotImplementedException();
-
-            return response.Skip(1).ToReadOnlyCollectionOf<Group>(x => x);
+            
+            return response.ToReadOnlyCollectionOf<Group>(x => x);
         }
 
-        // todo add comment
+        /// <summary>
+        /// Возвращает список идентификаторов пользователей, которые являются подписчиками пользователя.
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя</param>
+        /// <param name="count">Количество подписчиков, информацию о которых нужно получить</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества подписчиков</param>
+        /// <param name="fields">Список дополнительных полей, которые необходимо вернуть</param>
+        /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+        /// <returns>Список подписчиков</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.getFollowers"/>.
+        /// </remarks>
         public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
@@ -181,10 +201,25 @@
 
             VkResponseArray response = _vk.Call("users.getFollowers", parameters);
 
-            throw new NotImplementedException();
+            // проверка: возвращается массив объектов или только идентификаторы пользователей
+            if (response.Count > 0 && response[0].ContainsKey("id"))
+            {
+                return response.ToReadOnlyCollectionOf<User>(x => x);
+            }
+
+            return response.ToReadOnlyCollectionOf(x => new User{Id = x});
         }
 
-        // todo add comment
+        /// <summary>
+        /// Позволяет пожаловаться на пользователя.
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя, на которого осуществляется жалоба</param>
+        /// <param name="type">Тип жалобы</param>
+        /// <param name="comment">Комментарий к жалобе на пользователя</param>
+        /// <returns>В случае успешной жалобы метод вернет true.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.report"/>.
+        /// </remarks>
         public bool Report(long userId, ReportType type, string comment = "")
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
@@ -193,10 +228,9 @@
                 {
                     {"user_id", userId},
                     {"type", type},
-                    {"comment", comment}
+                    {"comment", comment},
+                    {"v", _vk.Version}
                 };
-
-            throw new NotImplementedException();
 
             return _vk.Call("users.report", parameters);
         }
