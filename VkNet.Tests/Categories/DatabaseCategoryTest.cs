@@ -459,7 +459,7 @@ namespace VkNet.Tests.Categories
                     'response': []
                   }";
 
-            DatabaseCategory db = this.GetMockedDatabaseCategory(url, json);
+            DatabaseCategory db = GetMockedDatabaseCategory(url, json);
 
             ReadOnlyCollection<Country> countries = db.GetCountriesById();
 

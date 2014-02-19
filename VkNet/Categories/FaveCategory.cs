@@ -2,11 +2,13 @@
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Linq;
-
+    
     using Model;
     using Utils;
 
+    /// <summary>
+    /// Категория работы с закладками
+    /// </summary>
     public class FaveCategory
     {
         private readonly VkApi _vk;
@@ -16,6 +18,15 @@
             _vk = vk;
         }
 
+        /// <summary>
+        /// Возвращает список пользователей, добавленных текущим пользователем в закладки.
+        /// </summary>
+        /// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
+        /// <returns>После успешного выполнения возвращает список объектов пользователей.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getUsers"/>.
+        /// </remarks>
         public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -24,7 +35,8 @@
             var parameters = new VkParameters
                 {
                     {"count", count},
-                    {"offset", offset}
+                    {"offset", offset},
+                    {"v", _vk.Version}
                 };
 
             VkResponseArray response = _vk.Call("fave.getUsers", parameters);
@@ -32,6 +44,15 @@
             return response.ToReadOnlyCollectionOf<User>(x => x);
         }
 
+        /// <summary>
+        /// Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне нравится".
+        /// </summary>
+        /// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
+        /// <returns>После успешного выполнения возвращает список объектов фотографий.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getPhotos"/>.
+        /// </remarks>
         public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -40,26 +61,90 @@
             var parameters = new VkParameters
                 {
                     {"count", count},
-                    {"offset", offset}
+                    {"offset", offset},
+                    {"v", _vk.Version}
                 };
 
             VkResponseArray response = _vk.Call("fave.getPhotos", parameters);
             return response.ToReadOnlyCollectionOf<Photo>(x => x);
         }
 
-        public void GetPosts()
+        /// <summary>
+        /// Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
+        /// </summary>
+        /// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
+        /// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getPosts"/>.
+        /// </remarks>
+        public ReadOnlyCollection<Post> GetPosts(int? count = null, int? offset = null)//, bool extended = false)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"count", count},
+                    {"offset", offset},
+                    //{"extended", extended},
+                    {"v", _vk.Version}
+                };
+
+            VkResponseArray response = _vk.Call("fave.getPosts", parameters);
+            return response.ToReadOnlyCollectionOf<Post>(x => x);
         }
 
-        public void GetVideos()
+        /// <summary>
+        /// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
+        /// </summary>
+        /// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
+        /// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getVideos"/>.
+        /// </remarks>
+        public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"count", count},
+                    {"offset", offset},
+                    {"v", _vk.Version}
+                };
+
+            VkResponseArray response = _vk.Call("fave.getVideos", parameters);
+
+            return response.ToReadOnlyCollectionOf<Video>(x => x);
         }
 
-        public void GetLinks()
+        /// <summary>
+        /// Возвращает ссылки, добавленные в закладки текущим пользователем.
+        /// </summary>
+        /// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
+        /// <returns>После успешного выполнения возвращает общее количество ссылок и массив объектов Link.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getLinks"/>.
+        /// </remarks>
+        public ReadOnlyCollection<Link> GetLinks(int? count = null, int? offset = null)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
+            var parameters = new VkParameters
+                {
+                    {"count", count},
+                    {"offset", offset},
+                    {"v", _vk.Version}
+                };
+
+            VkResponseArray response = _vk.Call("fave.getLinks", parameters);
+
+            return response.ToReadOnlyCollectionOf<Link>(x => x);
         }
     }
 }

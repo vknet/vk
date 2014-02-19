@@ -90,7 +90,7 @@
             result.Link = video["link"];
             result.Photo130 = video["photo_130"];
             result.Photo320 = video["photo_320"];
-            result.Photo320 = video["photo_640"];
+            result.Photo640 = video["photo_640"];
             result.Date = video["date"];
             result.ViewsCount = video["views"];
             result.CommentsCount = video["comments"];

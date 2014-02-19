@@ -22,7 +22,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetUsers_OneItem()
         {
-            const string url = "https://api.vk.com/method/fave.getUsers?count=3&offset=1&access_token=token&v=5.5";
+            const string url = "https://api.vk.com/method/fave.getUsers?count=3&offset=1&v=5.9&access_token=token";
             const string json =
             @"{
                     'response': {
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetPhotos_NormalCase()
         {
-            const string url = "https://api.vk.com/method/fave.getPhotos?count=3&offset=1&access_token=token&v=5.5";
+            const string url = "https://api.vk.com/method/fave.getPhotos?count=3&offset=1&v=5.9&access_token=token";
             const string json =
             @"{
                     'response': {
@@ -124,7 +124,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetVideos_NormalCase()
         {
-            const string url = "https://api.vk.com/method/fave.getVideos?count=3&offset=1&access_token=token&v=5.5";
+            const string url = "https://api.vk.com/method/fave.getVideos?count=3&offset=1&v=5.9&access_token=token";
             const string json =
             @"{
                     'response': {
@@ -146,15 +146,29 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            Assert.Fail("undone");
+            FaveCategory cat = GetMockedFaveCategory(url, json);
+
+            ReadOnlyCollection<Video> videos = cat.GetVideos(3, 1);
+
+            videos.Count.ShouldEqual(1);
+
+            videos[0].Id.ShouldEqual(164841344);
+            videos[0].OwnerId.ShouldEqual(1);
+            videos[0].Title.ShouldEqual("This is SPARTA");
+            videos[0].Duration.ShouldEqual(16);
+            videos[0].Date.ShouldEqual(new DateTime(2013, 4, 21, 1, 57, 55));
+            videos[0].ViewsCount.ShouldEqual(215502);
+            videos[0].CommentsCount.ShouldEqual(2559);
+            videos[0].Photo130.ShouldEqual(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg"));
+            videos[0].Photo320.ShouldEqual(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg"));
         }
 
-        [Test]
+        [Test, Ignore("undone")]
         public void GetPosts_NotExtended()
         {
-            const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&access_token=token&v=5.5";
+            const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&v=5.9&access_token=token";
             const string json =
-            @"{
+                @"{
                     'response': {
                       'count': 3,
                       'items': [
@@ -251,10 +265,46 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            Assert.Fail("undone");
+            FaveCategory cat = GetMockedFaveCategory(url, json);
+
+            ReadOnlyCollection<Post> posts = cat.GetPosts(3, 1);
+
+            posts.Count.ShouldEqual(2);
+
+            posts[0].Id.ShouldEqual(45611);
+            posts[0].FromId.ShouldEqual(1);
+            posts[0].ToId.ShouldEqual(1);
+            posts[0].Date.ShouldEqual(new DateTime(2014, 1, 21, 3, 35, 4));
+            posts[0].PostType.ShouldEqual("post");
+            posts[0].Text.ShouldEqual("ВКонтакте взял новую высоту — 60 миллионов человек за сутки.");   
+            posts[0].PostSource.Type.ShouldEqual("vk");
+            posts[0].Comments.CanPost.ShouldEqual(false);
+            posts[0].Comments.Count.ShouldEqual(0);
+            posts[0].Likes.Count.ShouldEqual(81167);
+            posts[0].Likes.UserLikes.ShouldEqual(true);
+            posts[0].Likes.CanLike.ShouldEqual(false);
+            posts[0].Likes.CanPublish.ShouldEqual(true);
+            posts[0].Reposts.UserReposted.ShouldEqual(false);
+            posts[0].Reposts.Count.ShouldEqual(4364);
+            posts[0].Attachments.Count.ShouldEqual(1);
+            
+            var photo = posts[0].Attachments[0].Instance as Photo;
+            photo.ShouldNotBeNull();
+            photo.Id.ShouldEqual(320624027);
+            photo.AlbumId.ShouldEqual(-7);
+            photo.OwnerId.ShouldEqual(1);
+            photo.Photo75.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945b/6JwHSc5wLGg.jpg"));
+            photo.Photo130.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945c/xxlEPKAyYXM.jpg"));
+            photo.Photo604.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945d/jvCKTR8CAHg.jpg"));
+            photo.Photo807.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945e/UUCwCY799wQ.jpg"));
+            photo.Width.ShouldEqual(609);
+            photo.Height.ShouldEqual(556);
+            photo.Text.ShouldEqual(string.Empty);
+            photo.CreateTime.ShouldEqual(new DateTime(2014, 1, 21, 3, 36, 5));
+            photo.AccessKey.ShouldEqual("82b124d82eba43d66d");
         }
 
-        [Test]
+        [Test, Ignore("undone - add method for extended return value")]
         public void GetPosts_Extended()
         {
             const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&extended=1&access_token=token&v=5.5";
