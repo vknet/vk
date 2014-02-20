@@ -8,7 +8,11 @@
     {
         public string GetJson(string url)
         {
-            return WebCall.MakeCall(url).Response;
+            var separatorPosition = url.IndexOf('?');
+            string methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
+            string parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
+
+            return WebCall.PostCall(methodUrl, parameters).Response;
         }
 
         public VkAuthorization Authorize(int appId, string email, string password, Settings settings)
