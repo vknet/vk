@@ -27,6 +27,7 @@
         public UtilsCategory        Utils { get; private set; }
         public WallCategory         Wall { get; private set; }
         public FaveCategory         Fave { get; private set; }
+        public VideoCategory        Video { get; private set; }
         #endregion
 
         internal IBrowser Browser { get; set; }
@@ -50,6 +51,7 @@
             Database = new DatabaseCategory(this);
             Utils = new UtilsCategory(this);
             Fave = new FaveCategory(this);
+            Video = new VideoCategory(this);
 
             Version = "5.9";
         }

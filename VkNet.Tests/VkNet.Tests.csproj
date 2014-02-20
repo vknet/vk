@@ -52,6 +52,7 @@
     <Compile Include="Categories\MessagesCategoryTest.cs" />
     <Compile Include="Categories\StatusCategoryTest.cs" />
     <Compile Include="Categories\UtilsCategoryTest.cs" />
+    <Compile Include="Categories\VideoCategoryTest.cs" />
     <Compile Include="Categories\WallCategoryTest.cs" />
     <Compile Include="Enum\FriendStatusTest.cs" />
     <Compile Include="Enum\GroupsFieldsTest.cs" />

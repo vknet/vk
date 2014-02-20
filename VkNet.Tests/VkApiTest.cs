@@ -55,6 +55,7 @@ namespace VkNet.Tests
             Assert.That(vk.Utils, Is.Not.Null);
 
             vk.Fave.ShouldNotBeNull();
+            vk.Video.ShouldNotBeNull();
             // TODO: continue later
         }
 
