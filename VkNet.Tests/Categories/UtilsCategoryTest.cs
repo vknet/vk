@@ -139,6 +139,28 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
+        public void ResolveScreenName_ObjectIdIsVeryBig_User()
+        {
+            const string url = "https://api.vk.com/method/utils.resolveScreenName?screen_name=azhidkov&access_token=";
+            const string json =
+                @"{
+                    'response': {
+                      'type': 'user',
+                      'object_id': 922337203685471.0
+                    }
+                  }";
+
+            var utils = GetMockedUtilsCategory(url, json);
+
+            VkObject obj = utils.ResolveScreenName("azhidkov");
+
+            // assert
+            obj.ShouldNotBeNull();
+            obj.Id.ShouldEqual(922337203685471);
+            obj.Type.ShouldEqual(VkObjectType.User);
+        }
+
+        [Test]
         public void ResolveScreenName_Group()
         {
             const string url = "https://api.vk.com/method/utils.resolveScreenName?screen_name=mdk&access_token=";
