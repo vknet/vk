@@ -130,7 +130,7 @@
             if (count.HasValue && count.Value > 0 && count.Value < 1000)
                 parameters.Add("count", count);
 
-            var response = _vk.Call("groups.getMembers", parameters);
+            var response = _vk.Call("groups.getMembers", parameters, true);
 
             totalCount = response["count"];
 
