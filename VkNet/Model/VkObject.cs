@@ -1,9 +1,10 @@
 ﻿using System;
-using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model
 {
+    using Enums;
+    using Utils;
+
     /// <summary>
     /// Определяет тип объекта
     /// </summary>
@@ -12,7 +13,7 @@ namespace VkNet.Model
         /// <summary>
         /// Идентификатор объекта
         /// </summary>
-        public float Id { get; set; }
+        public long? Id { get; set; }
 
         /// <summary>
         /// Тип объекта
@@ -22,8 +23,8 @@ namespace VkNet.Model
         internal static VkObject FromJson(VkResponse response)
         {
             var obj = new VkObject();
-
-            obj.Id = response["object_id"];
+            
+            obj.Id = Utilities.GetNullableLongId(response["object_id"]);
 
             string type = response["type"];
             switch (type)
