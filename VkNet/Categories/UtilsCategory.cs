@@ -28,7 +28,7 @@
         /// </remarks>
         public LinkAccessType CheckLink(string url)
         {
-            VkErrors.ThrowIfNullOrEmpty(url);
+            VkErrors.ThrowIfNullOrEmpty(() => url);
 
             var parameters = new VkParameters { {"url", url} };
 
@@ -46,7 +46,7 @@
         /// </remarks>
         public VkObject ResolveScreenName(string screenName)
         {
-            VkErrors.ThrowIfNullOrEmpty(screenName);
+            VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
             var parameters = new VkParameters {{"screen_name", screenName}};
 

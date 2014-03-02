@@ -153,7 +153,7 @@
         /// </remarks>
         public long AddList(string name, IEnumerable<long> userIds)
         {
-            VkErrors.ThrowIfNullOrEmpty(name);
+            VkErrors.ThrowIfNullOrEmpty(() => name);
 
             var parameters = new VkParameters
                 {

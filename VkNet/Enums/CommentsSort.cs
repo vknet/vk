@@ -1,18 +1,32 @@
-﻿namespace VkNet.Enums
+﻿using System;
+
+namespace VkNet.Enums
 {
     /// <summary>
     /// Порядок сортировки комментариев к записи.
     /// </summary>
-    public enum CommentsSort
+    public class CommentsSort
     {
+        private readonly string _name;
+
+        private CommentsSort(string name)
+        {
+            _name = name;
+        }
+
+        public override string ToString()
+        {
+            return _name;
+        }
+
         /// <summary>
         /// В хронологическом порядке.
         /// </summary>
-        Ascending,
+        public static CommentsSort Asc = new CommentsSort("asc");
 
         /// <summary>
         /// В порядке, обратном хронологическому.
         /// </summary>
-        Descending
+        public static CommentsSort Desc = new CommentsSort("desc");
     }
 }

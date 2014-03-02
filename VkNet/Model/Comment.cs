@@ -3,6 +3,7 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Diagnostics;
 
     using Utils;
 
@@ -10,6 +11,7 @@
     /// Комментарий к записи.
     /// См. описание <see cref="http://vk.com/devcomment_object"/>.
     /// </summary>
+    [DebuggerDisplay("Id = {Id}, Text = {Text}, Date = {Date}")]
     public class Comment
     {
         /// <summary>

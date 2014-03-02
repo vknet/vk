@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 namespace VkNet.Utils
 {
@@ -9,11 +10,49 @@ namespace VkNet.Utils
 
     internal sealed class VkErrors
     {
-        public static void ThrowIfNullOrEmpty(string str)
+//        public static void ThrowIfNullOrEmpty(string str)
+//        {   
+//            if (string.IsNullOrEmpty(str))
+//                throw new ArgumentNullException("str");
+//        }
+
+        public static void ThrowIfNullOrEmpty(Expression<Func<string>>  expr)
         {
-            // TODO сделать определение имени передаваемой переменной
-            if (string.IsNullOrEmpty(str))
-                throw new ArgumentNullException("str");
+            var body = expr.Body as MemberExpression;
+            if (body != null)
+            {
+                string paramName = body.Member.Name;
+                string value = expr.Compile()();
+
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException(paramName);
+            }
+        }
+
+        public static void ThrowIfNumberIsNegative(Expression<Func<long?>> expr)
+        {
+            var body = expr.Body as MemberExpression;
+            if (body != null)
+            {
+                string name = body.Member.Name;
+                Func<long?> func = expr.Compile();
+                long? value = func();
+                
+                if (value.HasValue && value < 0) throw new ArgumentException("Отрицательное значение.", name);
+            }
+        }
+
+        public static void ThrowIfNumberIsNegative(Expression<Func<long>> expr)
+        {
+            var body = expr.Body as MemberExpression;
+            if (body != null)
+            {
+                string name = body.Member.Name;
+                Func<long> func = expr.Compile();
+                long value = func();
+
+                if (value < 0) throw new ArgumentException("Отрицательное значение.", name);
+            }
         }
 
         public static void ThrowIfNumberIsNegative(long? number, string paramName)

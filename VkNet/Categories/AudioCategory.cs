@@ -386,7 +386,7 @@
         /// </remarks>
         public long AddAlbum(string title, long? groupId = null)
         {
-            VkErrors.ThrowIfNullOrEmpty(title);
+            VkErrors.ThrowIfNullOrEmpty(() => title);
             VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
 
             var parameters = new VkParameters
@@ -411,7 +411,7 @@
         /// </remarks>
         public bool EditAlbum(string title, long albumId, long? groupId = null)
         {
-            VkErrors.ThrowIfNullOrEmpty(title);
+            VkErrors.ThrowIfNullOrEmpty(() => title);
             VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
             VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
 
@@ -575,7 +575,7 @@
         /// <returns>В случае успешного выполнения возвращает массив идентификаторов сообществ и пользователя, которым был установлен или удален аудиостатус.</returns>
         public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
         {
-            VkErrors.ThrowIfNullOrEmpty(audio);
+            VkErrors.ThrowIfNullOrEmpty(() => audio);
 
             var parameters = new VkParameters
                 {

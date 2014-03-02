@@ -278,7 +278,7 @@ namespace VkNet.Tests.Categories
         public void GetComments_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             int totalCount;
-            _defaultWall.GetComments(12312, 12345, out totalCount, CommentsSort.Ascending, true);
+            _defaultWall.GetComments(12312, 12345, out totalCount, CommentsSort.Asc, true);
         }
 
         [Test]
@@ -330,7 +330,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             int totalCount;
-            var comments = GetMockedWallCategory(url, json).GetComments(12312, 12345, out totalCount, CommentsSort.Ascending, true);
+            var comments = GetMockedWallCategory(url, json).GetComments(12312, 12345, out totalCount, CommentsSort.Asc, true);
 
             Assert.That(totalCount, Is.EqualTo(2));
             Assert.That(comments.Count, Is.EqualTo(2));

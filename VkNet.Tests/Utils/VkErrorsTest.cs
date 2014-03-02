@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 using VkNet.Exception;
 using VkNet.Utils;
@@ -8,6 +9,36 @@ namespace VkNet.Tests.Utils
     [TestFixture]
     public class VkErrorsTest
     {
+        [Test]
+        public void ThrowIfNullOrEmpty_EmptyString_ThrowException()
+        {
+            string param = string.Empty;
+
+            var ex = ExceptionAssert.Throws<ArgumentNullException>(() => VkErrors.ThrowIfNullOrEmpty(() => param));
+
+            ex.Message.ShouldEqual("Значение не может быть неопределенным.\r\nИмя параметра: param");
+        }
+
+        [Test]
+        public void ThrowIfNumberIsNegative_ExpressionVersion_NullabeLong()
+        {
+            long? paramName = -1;
+
+            var ex = ExceptionAssert.Throws<ArgumentException>(() => VkErrors.ThrowIfNumberIsNegative(() => paramName));
+
+            ex.Message.ShouldEqual("Отрицательное значение.\r\nИмя параметра: paramName");
+        }
+
+        [Test]
+        public void ThrowIfNumberIsNegative_ExpressionVersion_Long()
+        {
+            long paramName = -1;
+
+            var ex = ExceptionAssert.Throws<ArgumentException>(() => VkErrors.ThrowIfNumberIsNegative(() => paramName));
+
+            ex.Message.ShouldEqual("Отрицательное значение.\r\nИмя параметра: paramName");
+        }
+
         [Test]
         public void IfErrorThrowException_NormalCase_NothingExceptions()
         {

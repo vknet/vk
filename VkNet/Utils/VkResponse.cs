@@ -556,6 +556,11 @@
             return response == null ? null : BanInfo.FromJson(response);
         }
 
+        public static implicit operator VideoAlbum(VkResponse response)
+        {
+            return response == null ? null : VideoAlbum.FromJson(response);
+        }
+
         #endregion
     }
 }

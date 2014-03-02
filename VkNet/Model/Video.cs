@@ -76,6 +76,14 @@
         /// </summary>
         public Uri Player { get; set; }
 
+        public bool? CanComment { get; set; }
+
+        public bool? CanRepost { get; set; }
+
+        public Likes Likes { get; set; }
+
+        public bool? Repeat { get; set; }
+
         #region Методы
 
         internal static Video FromJson(VkResponse video)
@@ -95,6 +103,11 @@
             result.ViewsCount = video["views"];
             result.CommentsCount = video["comments"];
             result.Player = video["player"];
+
+            result.CanComment = video["can_comment"];
+            result.CanRepost = video["can_repost"];
+            result.Repeat = video["repeat"];
+            result.Likes = video["likes"];
 
             return result;
         }

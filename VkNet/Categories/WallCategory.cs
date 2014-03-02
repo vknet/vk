@@ -67,7 +67,7 @@
             long ownerId,
             long postId,
             out int totalCount,
-            CommentsSort sort = CommentsSort.Ascending,
+            CommentsSort sort = null,
             bool needLikes = false,
             int? count = null,
             int? offset = null,
