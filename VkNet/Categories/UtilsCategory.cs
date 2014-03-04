@@ -1,6 +1,7 @@
 ﻿namespace VkNet.Categories
 {
     using System;
+    using JetBrains.Annotations;
 
     using Enums;
     using Model;
@@ -26,6 +27,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
+        [Pure]
         public LinkAccessType CheckLink(string url)
         {
             VkErrors.ThrowIfNullOrEmpty(() => url);
@@ -44,6 +46,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/utils.resolveScreenName"/>.
         /// </remarks>
+        [Pure]
         public VkObject ResolveScreenName(string screenName)
         {
             VkErrors.ThrowIfNullOrEmpty(() => screenName);
@@ -63,6 +66,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/utils.getServerTime"/>.
         /// </remarks>
+        [Pure]
         public DateTime GetServerTime()
         {
             long ticks = _vk.Call("utils.getServerTime", VkParameters.Empty, true);
