@@ -123,6 +123,7 @@
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
+    <Compile Include="Utils\VkFilter.cs" />
     <Compile Include="Utils\WebCallResult.cs" />
     <Compile Include="Model\Coordinates.cs" />
     <Compile Include="Utils\WebCall.cs" />
