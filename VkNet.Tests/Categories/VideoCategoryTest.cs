@@ -504,5 +504,198 @@ namespace VkNet.Tests.Categories
              comments[1].Text.ShouldEqual("Я опять на странице Дурова, опять передаю привет Маме, Бабушке и своим друзьям! Дела у меня очень отлично!");
          }
 
+        [Test]
+        public void Search_NormalCase_ListOfVideos()
+        {
+            const string url = "https://api.vk.com/method/video.search?q=саша грей&sort=2&hd=0&adult=1&filters=long&search_own=0&offset=1&count=5&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 1425,
+                      'items': [
+                        {
+                          'id': 166671614,
+                          'owner_id': -59205334,
+                          'title': 'Fucking Machines Sasha Grey | Саша Грей | Саша Грэй  | Порно | Секс | Эротика | Секс машина |  Садо-мазо  | БДСМ',
+                          'duration': 1934,
+                          'description': 'beauty 18+\n\n\'Качественное и эксклюзивное порно  у нас\'\n\n>>>>>>> http://vk.com/mastofmastur<<<<<<',
+                          'date': 1384706962,
+                          'views': 11579,
+                          'comments': 12,
+                          'photo_130': 'http://cs505118.vk.me/u7160710/video/s_08382000.jpg',
+                          'photo_320': 'http://cs505118.vk.me/u7160710/video/l_a02ed037.jpg',
+                          'album_id': 50100051,
+                          'player': 'http://vk.com/video_ext.php?oid=-59205334&id=166671614&hash=d609a7775bbb2e7d'
+                        },
+                        {
+                          'id': 165458571,
+                          'owner_id': -49956637,
+                          'title': 'домашнее частное порно порно модель саша грей on-line любовь порно с сюжетом лесби порка стендап stand up клип группа',
+                          'duration': 1139,
+                          'description': 'секс знакомства подписывайся,знакомься,общайся,тут русские шлюхи,проститутки подпишись у нас http://vk.com/tyt_sex',
+                          'date': 1371702618,
+                          'views': 12817,
+                          'comments': 5,
+                          'photo_130': 'http://cs527502.vk.me/u65226705/video/s_1d867e81.jpg',
+                          'photo_320': 'http://cs527502.vk.me/u65226705/video/l_ba2e1aff.jpg',
+                          'player': 'http://vk.com/video_ext.php?oid=-49956637&id=165458571&hash=dc6995a7cc9aed92'
+                        },
+                        {
+                          'id': 166728490,
+                          'owner_id': -54257090,
+                          'title': 'Саша Грей | Sasha Grey #13',
+                          'duration': 1289,
+                          'description': 'Взято со страницы Саша Грей | Sasha Grey | 18+: http://vk.com/sashagreyphotos\nЭротика: http://vk.com/gentleerotica',
+                          'date': 1386961568,
+                          'views': 8730,
+                          'comments': 12,
+                          'photo_130': 'http://cs535107.vk.me/u146564541/video/s_2d874147.jpg',
+                          'photo_320': 'http://cs535107.vk.me/u146564541/video/l_cb794198.jpg',
+                          'player': 'http://vk.com/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac'
+                        }
+                      ]
+                    }
+                  }";
+
+            var cat = GetMockedVideoCategory(url, json);
+
+            ReadOnlyCollection<Video> result = cat.Search("саша грей", VideoSort.Relevance, false, true, VideoFilters.Long, false, 5, 1);
+
+            result.Count.ShouldEqual(3);
+
+            result[0].Id.ShouldEqual(166671614);
+            result[0].OwnerId.ShouldEqual(-59205334);
+            result[0].Title.ShouldEqual("Fucking Machines Sasha Grey | Саша Грей | Саша Грэй  | Порно | Секс | Эротика | Секс машина |  Садо-мазо  | БДСМ");
+            result[0].Duration.ShouldEqual(1934);
+            result[0].Description.ShouldEqual("beauty 18+\n\n\'Качественное и эксклюзивное порно  у нас\'\n\n>>>>>>> http://vk.com/mastofmastur<<<<<<");
+            result[0].Date.ShouldEqual(new DateTime(2013, 11, 17, 20, 49, 22));
+            result[0].ViewsCount.ShouldEqual(11579);
+            result[0].CommentsCount.ShouldEqual(12);
+            result[0].Photo130.ShouldEqual(new Uri("http://cs505118.vk.me/u7160710/video/s_08382000.jpg"));
+            result[0].Photo320.ShouldEqual(new Uri("http://cs505118.vk.me/u7160710/video/l_a02ed037.jpg"));
+            result[0].AlbumId.ShouldEqual(50100051);
+            result[0].Player.ShouldEqual(new Uri("http://vk.com/video_ext.php?oid=-59205334&id=166671614&hash=d609a7775bbb2e7d"));
+            
+            result[1].Id.ShouldEqual(165458571);
+            result[1].OwnerId.ShouldEqual(-49956637);
+            result[1].Title.ShouldEqual("домашнее частное порно порно модель саша грей on-line любовь порно с сюжетом лесби порка стендап stand up клип группа");
+            result[1].Duration.ShouldEqual(1139);
+            result[1].Description.ShouldEqual("секс знакомства подписывайся,знакомься,общайся,тут русские шлюхи,проститутки подпишись у нас http://vk.com/tyt_sex");
+            result[1].Date.ShouldEqual(new DateTime(2013, 6, 20, 8, 30, 18));
+            result[1].ViewsCount.ShouldEqual(12817);
+            result[1].CommentsCount.ShouldEqual(5);
+            result[1].Photo130.ShouldEqual(new Uri("http://cs527502.vk.me/u65226705/video/s_1d867e81.jpg"));
+            result[1].Photo320.ShouldEqual(new Uri("http://cs527502.vk.me/u65226705/video/l_ba2e1aff.jpg"));
+            result[1].Player.ShouldEqual(new Uri("http://vk.com/video_ext.php?oid=-49956637&id=165458571&hash=dc6995a7cc9aed92"));
+            
+            result[2].Id.ShouldEqual(166728490);
+            result[2].OwnerId.ShouldEqual(-54257090);
+            result[2].Title.ShouldEqual("Саша Грей | Sasha Grey #13");
+            result[2].Duration.ShouldEqual(1289);
+            result[2].Description.ShouldEqual("Взято со страницы Саша Грей | Sasha Grey | 18+: http://vk.com/sashagreyphotos\nЭротика: http://vk.com/gentleerotica");
+            result[2].Date.ShouldEqual(new DateTime(2013, 12, 13, 23, 6, 8));
+            result[2].ViewsCount.ShouldEqual(8730);
+            result[2].CommentsCount.ShouldEqual(12);
+            result[2].Photo130.ShouldEqual(new Uri("http://cs535107.vk.me/u146564541/video/s_2d874147.jpg"));
+            result[2].Photo320.ShouldEqual(new Uri("http://cs535107.vk.me/u146564541/video/l_cb794198.jpg"));
+            result[2].Player.ShouldEqual(new Uri("http://vk.com/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac"));
+        }
+
+        [Test]
+        public void CreateComment_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/video.createComment?video_id=166613182&owner_id=1&message=забавное видео&from_group=0&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': 35634
+                  }";
+
+            VideoCategory cat = GetMockedVideoCategory(url, json);
+
+            long id = cat.CreateComment(166613182, "забавное видео", 1);
+
+            id.ShouldEqual(35634);
+        }
+
+        [Test]
+        public void DeleteComment_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/video.deleteComment?comment_id=35634&owner_id=1&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            VideoCategory cat = GetMockedVideoCategory(url, json);
+
+            bool result = cat.DeleteComment(35634, 1);
+
+            result.ShouldBeTrue();
+        }
+
+        [Test]
+        public void RestoreComment_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/video.restoreComment?comment_id=35634&owner_id=1&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            VideoCategory cat = GetMockedVideoCategory(url, json);
+
+            bool result = cat.RestoreComment(35634, 1);
+
+            result.ShouldBeTrue();
+        }
+
+        [Test]
+        public void EditComment_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/video.editComment?comment_id=35634&message=суперское видео&owner_id=1&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            VideoCategory cat = GetMockedVideoCategory(url, json);
+
+            bool result = cat.EditComment(35634, "суперское видео", 1);
+
+            result.ShouldBeTrue();
+        }
+
+        [Test]
+        public void Report_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/video.report?video_id=166613182&owner_id=1&reason=4&comment=коммент&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            VideoCategory cat = GetMockedVideoCategory(url, json);
+
+            bool result = cat.Report(166613182, VideoReportType.DrugPropaganda, 1, "коммент");
+
+            result.ShouldBeTrue();
+        }
+
+        [Test]
+        public void ReportComment_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/video.reportComment?comment_id=35637&owner_id=1&reason=5&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            VideoCategory cat = GetMockedVideoCategory(url, json);
+
+            bool result = cat.ReportComment(35637, 1, VideoReportType.AdultMaterial);
+
+            result.ShouldBeTrue();
+        }
+
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="Enum\SettingsTest.cs" />
     <Compile Include="Categories\FriendsCategoryTest.cs" />
     <Compile Include="Categories\UsersCategoryTest.cs" />
+    <Compile Include="Enum\VideoFiltersTest.cs" />
     <Compile Include="TestExtensions.cs" />
     <Compile Include="VkApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -84,6 +84,8 @@
 
         public bool? Repeat { get; set; }
 
+        public long? AlbumId { get; set; }
+
         #region Методы
 
         internal static Video FromJson(VkResponse video)
@@ -108,6 +110,7 @@
             result.CanRepost = video["can_repost"];
             result.Repeat = video["repeat"];
             result.Likes = video["likes"];
+            result.AlbumId = Utilities.GetNullableLongId(video["album_id"]);
 
             return result;
         }

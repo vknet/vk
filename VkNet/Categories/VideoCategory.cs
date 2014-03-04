@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using VkNet.Enums;
-using VkNet.Model;
-using VkNet.Utils;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using JetBrains.Annotations;
+
+    using Enums;
+    using Model;
+    using Utils;
+
     public class VideoCategory
     {
         private readonly VkApi _vk;
@@ -16,9 +18,9 @@ namespace VkNet.Categories
             _vk = vk;
         }
 
+        [Pure]
         public ReadOnlyCollection<Video> Get(long? ownerId = null, long? albumId = null, VideoWidth width = VideoWidth.Medium160, int? count = null, int? offset = null, bool extended = false)
         {
-            VkErrors.ThrowIfNumberIsNegative(ownerId, "ownerId");
             VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
             VkErrors.ThrowIfNumberIsNegative(count, "count");
             VkErrors.ThrowIfNumberIsNegative(offset, "offset");
@@ -47,8 +49,7 @@ namespace VkNet.Categories
         public long Add(long videoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
-            VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-
+            
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
@@ -69,8 +70,7 @@ namespace VkNet.Categories
         public bool Delete(long videoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
-            VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-
+            
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
@@ -84,8 +84,7 @@ namespace VkNet.Categories
         public bool Restore(long videoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
-            VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-
+            
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
@@ -96,11 +95,31 @@ namespace VkNet.Categories
             return _vk.Call("video.restore", parameters);
         }
 
-        public void Search()
+        [Pure]
+        public ReadOnlyCollection<Video> Search(string query, VideoSort sort, bool isHd = false, bool isAdult = false, VideoFilters filters = null, bool isSearchOwn = false, int? count = null, int? offset = null)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNullOrEmpty(() => query);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
+
+            var parameters = new VkParameters
+                {
+                    {"q", query},
+                    {"sort", sort},
+                    {"hd", isHd},
+                    {"adult", isAdult},
+                    {"filters", filters},
+                    {"search_own", isSearchOwn},
+                    {"offset", offset},
+                    {"count", count},
+                    {"v", _vk.Version}
+                };
+
+            VkResponseArray response = _vk.Call("video.search", parameters);
+            return response.ToReadOnlyCollectionOf<Video>(x => x);
         }
 
+        [Pure]
         public ReadOnlyCollection<Video> GetUserVideos(long userId, int? count = null, int? offset = null)
         {
             throw new NotImplementedException("Метод некорректно работает на самом сервере вконтакте");
@@ -122,6 +141,7 @@ namespace VkNet.Categories
             return response.ToReadOnlyCollectionOf<Video>(x => x);
         }
 
+        [Pure]
         public ReadOnlyCollection<VideoAlbum> GetAlbums(long ownerId, int? count = null, int? offset = null, bool extended = false)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -178,8 +198,7 @@ namespace VkNet.Categories
         public bool DeleteAlbum(long albumId, long? groupId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
-            VkErrors.ThrowIfNumberIsNegative(() => groupId);
-
+           
             var parameters = new VkParameters
                 {
                     {"group_id", groupId},
@@ -204,6 +223,7 @@ namespace VkNet.Categories
             return _vk.Call("video.moveToAlbum", parameters);
         }
 
+        [Pure]
         public ReadOnlyCollection<Comment> GetComments(long videoId, long? ownerId = null, bool needLikes = false, int? count = null, int? offset = null, CommentsSort sort = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -226,28 +246,77 @@ namespace VkNet.Categories
             return response.ToReadOnlyCollectionOf<Comment>(x => x);
         }
 
-        public void CreateComment()
+        public long CreateComment(Attachment attach)
         {
+            // todo сделать версию с прикладыванием приложения
             throw new NotImplementedException();
         }
 
-        public void DeleteComment()
+        public long CreateComment(long videoId, string message, long? ownerId, bool isFromGroup = false)
         {
+            VkErrors.ThrowIfNullOrEmpty(() => message);
+            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+            
+            var parameters = new VkParameters
+                {
+                    {"video_id", videoId},
+                    {"owner_id", ownerId},
+                    {"message", message},
+                    {"from_group", isFromGroup},
+                    {"v", _vk.Version}
+                };
+
+            return _vk.Call("video.createComment", parameters);
+        }
+
+        public bool DeleteComment(long commentId, long? ownerId)
+        {
+            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+            
+            var parameters = new VkParameters { { "comment_id", commentId }, { "owner_id", ownerId }, {"v", _vk.Version} };
+
+            return _vk.Call("video.deleteComment", parameters);
+        }
+
+        public bool RestoreComment(long commentId, long? ownerId)
+        {
+            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+            
+            var parameters = new VkParameters { { "comment_id", commentId }, { "owner_id", ownerId }, { "v", _vk.Version } };
+
+            return _vk.Call("video.restoreComment", parameters);
+        }
+
+        public bool EditComment(Attachment attach)
+        {
+            // todo add version with attachment
             throw new NotImplementedException();
         }
 
-        public void RestoreComment()
+        public bool EditComment(long commentId, string message, long? ownerId)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNullOrEmpty(() => message);
+            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+            
+            var parameters = new VkParameters
+                {
+                    {"comment_id", commentId},
+                    {"message", message},
+                    {"owner_id", ownerId},
+                    {"v", _vk.Version}
+                };
+
+            return _vk.Call("video.editComment", parameters);
         }
 
-        public void EditComment()
+        public void GetTags(long videoId, long? ownerId)
         {
-            throw new NotImplementedException();
-        }
+            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+            
+            var parameters = new VkParameters { { "video_id", videoId }, { "owner_id", ownerId }, {"v", _vk.Version} };
 
-        public void GetTags()
-        {
+            VkResponseArray response = _vk.Call("video.getTags", parameters);
+
             throw new NotImplementedException();
         }
 
@@ -266,14 +335,36 @@ namespace VkNet.Categories
             throw new NotImplementedException();
         }
 
-        public void Report()
+        public bool Report(long videoId, VideoReportType reason, long? ownerId, string comment = null, string searchQuery = null)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+
+            var parameters = new VkParameters
+                {
+                    {"video_id", videoId},
+                    {"owner_id", ownerId},
+                    {"reason", reason},
+                    {"comment", comment},
+                    {"search_query", searchQuery},
+                    {"v", _vk.Version}
+                };
+
+            return _vk.Call("video.report", parameters);
         }
 
-        public void ReportComment()
+        public bool ReportComment(long commentId, long ownerId, VideoReportType reason)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+
+            var parameters = new VkParameters
+                {
+                    {"comment_id", commentId},
+                    {"owner_id", ownerId},
+                    {"reason", reason},
+                    {"v", _vk.Version}
+                };
+
+            return _vk.Call("video.reportComment", parameters);
         }
     }
 }
