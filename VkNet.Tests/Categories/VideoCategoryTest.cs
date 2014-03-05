@@ -697,5 +697,49 @@ namespace VkNet.Tests.Categories
             result.ShouldBeTrue();
         }
 
+        [Test]
+        public void Edit_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/video.edit?video_id=167538&owner_id=23469&name=Новое название&desc=Новое описание&repeat=0&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            VideoCategory cat = GetMockedVideoCategory(url, json);
+
+            bool result = cat.Edit(167538, 23469, "Новое название", "Новое описание");
+
+            result.ShouldBeTrue();
+        }
+
+        [Test]
+        public void Save_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/video.save?name=Название из ютуба&description=Описание из ютуба&is_private=0&wallpost=1&link=https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA&repeat=0&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'upload_url': 'http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043',
+                      'video_id': 1673994,
+                      'owner_id': 2346958,
+                      'title': 'Название из ютуба',
+                      'description': 'Описание из ютуба',
+                      'access_key': 'f2ec9f3982f05bc'
+                    }
+                  }";
+
+            VideoCategory cat = GetMockedVideoCategory(url, json);
+
+            Video v = cat.Save("Название из ютуба", "Описание из ютуба", isPostToWall: true, link: "https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA");
+
+            v.Id.ShouldEqual(1673994);
+            v.OwnerId.ShouldEqual(2346958);
+            v.Title.ShouldEqual("Название из ютуба");
+            v.Description.ShouldEqual("Описание из ютуба");
+            v.AccessKey.ShouldEqual("f2ec9f3982f05bc");
+            v.UploadUrl.ShouldEqual(new Uri("http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043"));
+        }
+
     }
 }

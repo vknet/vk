@@ -41,9 +41,23 @@
             return response.ToReadOnlyCollectionOf<Video>(x => x);
         }
 
-        public void Edit()
+        public bool Edit(long videoId, long? ownerId = null, string name = null, string desc = null, string privacyView = null, string privacyComment = null, bool isRepeat = false)
         {
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+
+            var parameters = new VkParameters
+                {
+                    {"video_id", videoId},
+                    {"owner_id", ownerId},
+                    {"name", name},
+                    {"desc", desc},
+                    {"privacy_view", privacyView},
+                    {"privacy_comment", privacyComment},
+                    {"repeat", isRepeat},
+                    {"v", _vk.Version}
+                };
+
+            return _vk.Call("video.edit", parameters);
         }
 
         public long Add(long videoId, long? ownerId = null)
@@ -62,9 +76,22 @@
             return response;
         }
 
-        public void Save()
+        public Video Save(string name = "", string description = "", bool isPrivate = false, bool isPostToWall = false, string link = "", long? groupId = null, long? albumId = null, bool isRepeat = false)
         {
-            throw new NotImplementedException();
+            var parameters = new VkParameters
+                {
+                    {"name", name},
+                    {"description", description},
+                    {"is_private", isPrivate},
+                    {"wallpost", isPostToWall},
+                    {"link", link},
+                    {"group_id", groupId},
+                    {"album_id", albumId},
+                    {"repeat", isRepeat},
+                    {"v", _vk.Version}
+                };
+
+            return _vk.Call("video.save", parameters);
         }
 
         public bool Delete(long videoId, long? ownerId = null)
@@ -309,6 +336,8 @@
             return _vk.Call("video.editComment", parameters);
         }
 
+        // todo add unit test
+        [Pure]
         public void GetTags(long videoId, long? ownerId)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -320,18 +349,63 @@
             throw new NotImplementedException();
         }
 
-        public void PutTag()
+        // todo add unit tests
+        public long PutTag(long videoId, long userId, long? ownerId, string taggedName)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+
+            var parameters = new VkParameters
+                {
+                    {"user_id", userId},
+                    {"video_id", videoId},
+                    {"owner_id", ownerId},
+                    {"tagged_name", taggedName},
+                    {"v", _vk.Version}
+                };
+
+            return _vk.Call("video.putTag", parameters);
+
             throw new NotImplementedException();
         }
 
-        public void RemoveTag()
+        // todo add unit test
+        public bool RemoveTag(long tagId, long videoId, long? ownerId)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => tagId);
+            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+
+            var parameters = new VkParameters
+                {
+                    {"tag_id", tagId},
+                    {"video_id", videoId},
+                    {"owner_id", ownerId},
+                    {"v", _vk.Version}
+                };
+
+            return _vk.Call("video.removeTag", parameters);
+
             throw new NotImplementedException();
         }
 
-        public void GetNewTags()
+        // todo add unit test + parse new fields
+        [Pure]
+        public ReadOnlyCollection<Video> GetNewTags(int? count = null, int? offset = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
+
+            var parameters = new VkParameters
+                {
+                    {"count", count},
+                    {"offset", offset},
+                    {"v", _vk.Version}
+                };
+
+            VkResponseArray response = _vk.Call("video.getNewTags", parameters);
+
+            return response.ToReadOnlyCollectionOf<Video>(x => x);
+
             throw new NotImplementedException();
         }
 

@@ -1,13 +1,16 @@
-﻿namespace VkNet.Model
+﻿using System.Diagnostics;
+
+namespace VkNet.Model
 {
     using System;
 
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
     /// Видеозапись пользователя или группы.
     /// См. описание <see cref="http://vk.com/dev/video_object"/>.
     /// </summary>
+    [DebuggerDisplay("Id = {Id}, TItle = {Title}")]
     public class Video
     {
         /// <summary>
@@ -86,13 +89,17 @@
 
         public long? AlbumId { get; set; }
 
+        public Uri UploadUrl { get; set; }
+
+        public string AccessKey { get; set; }
+
         #region Методы
 
         internal static Video FromJson(VkResponse video)
         {
             var result = new Video();
 
-            result.Id = video["id"];
+            result.Id = video["id"] ?? video["video_id"];
             result.OwnerId = video["owner_id"];
             result.Title = video["title"];
             result.Description = video["description"];
@@ -111,6 +118,8 @@
             result.Repeat = video["repeat"];
             result.Likes = video["likes"];
             result.AlbumId = Utilities.GetNullableLongId(video["album_id"]);
+            result.UploadUrl = video["upload_url"];
+            result.AccessKey = video["access_key"];
 
             return result;
         }
