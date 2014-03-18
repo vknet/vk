@@ -54,6 +54,7 @@
     <Compile Include="Categories\UtilsCategoryTest.cs" />
     <Compile Include="Categories\VideoCategoryTest.cs" />
     <Compile Include="Categories\WallCategoryTest.cs" />
+    <Compile Include="Documentation\VkDocParserTest.cs" />
     <Compile Include="Enum\CommentsSortTest.cs" />
     <Compile Include="Enum\FriendStatusTest.cs" />
     <Compile Include="Enum\GroupsFieldsTest.cs" />

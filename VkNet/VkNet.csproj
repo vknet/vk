@@ -25,6 +25,7 @@
     <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <RegisterForComInterop>false</RegisterForComInterop>
+    <DocumentationFile>bin\Debug\VkNet.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,6 +59,11 @@
     <Compile Include="Categories\UtilsCategory.cs" />
     <Compile Include="Categories\VideoCategory.cs" />
     <Compile Include="Categories\WallCategory.cs" />
+    <Compile Include="Documentation\VkDocMethod.cs" />
+    <Compile Include="Documentation\VkDocMethodParam.cs" />
+    <Compile Include="Documentation\VkDocParser.cs" />
+    <Compile Include="Documentation\VkDocProperty.cs" />
+    <Compile Include="Documentation\VkDocType.cs" />
     <Compile Include="Enums\AddFriendStatus.cs" />
     <Compile Include="Enums\AdminLevel.cs" />
     <Compile Include="Enums\Attitude.cs" />
