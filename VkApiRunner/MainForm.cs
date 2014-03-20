@@ -17,20 +17,6 @@ namespace VkApiRunner
         {
             InitializeComponent();
 
-#if DEBUG
-            tbMethodName.Text = "audio.getPopular";
-            tbParamName1.Text = "only_eng";
-            tbParamValue1.Text = "0";
-
-            tbParamName2.Text = "genre_id";
-            tbParamValue2.Text = "3";
-
-            tbParamName3.Text = "offset";
-            tbParamValue3.Text = "2";
-
-            tbParamName4.Text = "count";
-            tbParamValue4.Text = "3";
-#endif
         }
 
         private void btnRun_Click(object sender, EventArgs e)
@@ -123,6 +109,22 @@ namespace VkApiRunner
             unitTestForm.ResultJson = tbJson.Text;
 
             unitTestForm.ShowDialog();
+        }
+
+        private void btnGetDoc_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Doc file (*.xml)|*.xml";
+            dialog.Multiselect = false;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var gen = new DocGenFramework();
+                string xml = DocGenFramework.ReadFile(dialog.FileName);
+                gen.Parse(xml);
+
+                var doc = new DocForm(gen.Types);
+                doc.Show();
+            }
         }
     }
 }

@@ -58,6 +58,7 @@
             this.btnGetTest = new System.Windows.Forms.Button();
             this.llVkApiUrl = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnGetDoc = new System.Windows.Forms.Button();
             this.pnlParams.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -311,11 +312,22 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Json:";
             // 
+            // btnGetDoc
+            // 
+            this.btnGetDoc.Location = new System.Drawing.Point(410, 337);
+            this.btnGetDoc.Name = "btnGetDoc";
+            this.btnGetDoc.Size = new System.Drawing.Size(75, 23);
+            this.btnGetDoc.TabIndex = 8;
+            this.btnGetDoc.Text = "Doc";
+            this.btnGetDoc.UseVisualStyleBackColor = true;
+            this.btnGetDoc.Click += new System.EventHandler(this.btnGetDoc_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(666, 375);
+            this.Controls.Add(this.btnGetDoc);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.llVkApiUrl);
             this.Controls.Add(this.btnGetTest);
@@ -368,6 +380,7 @@
         private System.Windows.Forms.Button btnGetTest;
         private System.Windows.Forms.LinkLabel llVkApiUrl;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnGetDoc;
     }
 }
 

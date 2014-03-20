@@ -1,0 +1,25 @@
+﻿! Метод <#CATEGORY_NAME#>.<#METHOD_NAME#>
+*Пространство имен:* VkToolkit.Categories
+!! Синтаксис
+----
+{code:c#}
+public <#RETURN_VALUE#> <#METHOD_SIGNATURE#>
+{code:c#}
+!! Описание
+----
+<#METHOD_DESC#>
+!! Параметры
+----
+<#PARAMS_LIST#>
+!! Возвращаемое значение
+----
+<#METHOD_RESULT#>
+!! См. также
+----
+* <#METHOD_REMARKS#>
+!! Пример
+----
+* <#EXAMPLE_DESC#>
+{code:c#}
+<#EXAMPLE_CODE#>
+{code:c#}
