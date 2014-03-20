@@ -59,6 +59,7 @@
     <Compile Include="Categories\UtilsCategory.cs" />
     <Compile Include="Categories\VideoCategory.cs" />
     <Compile Include="Categories\WallCategory.cs" />
+    <Compile Include="Documentation\VkDocEnumItem.cs" />
     <Compile Include="Documentation\VkDocMethod.cs" />
     <Compile Include="Documentation\VkDocMethodParam.cs" />
     <Compile Include="Documentation\VkDocParser.cs" />

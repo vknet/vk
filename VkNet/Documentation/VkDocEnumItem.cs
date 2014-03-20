@@ -2,8 +2,8 @@
 {
     using System.Diagnostics;
 
-    [DebuggerDisplay("Name = {ShortName} - {Summary}")]
-    internal class VkDocProperty
+    [DebuggerDisplay("{Summary} ({ShortName})")]
+    internal class VkDocEnumItem
     {
         public VkDocType Type { get; set; }
         public string FullName { get; set; }

@@ -48,11 +48,13 @@ namespace VkNet.Tests.Documentation
             var types = parser.Parse(xml);
 
             types.Count.ShouldEqual(2);
-            types[0].Name.ShouldEqual("VkNet.Categories.AudioCategory");
+            types[0].FullName.ShouldEqual("VkNet.Categories.AudioCategory");
+            types[0].ShortName.ShouldEqual("AudioCategory");
             types[0].Summary.ShouldEqual("Методы для работы с аудиозаписями.");
             types[0].Methods.Count.ShouldEqual(1);
 
-            types[1].Name.ShouldEqual("VkNet.Categories.DatabaseCategory");
+            types[1].FullName.ShouldEqual("VkNet.Categories.DatabaseCategory");
+            types[1].ShortName.ShouldEqual("DatabaseCategory");
             types[1].Summary.ShouldEqual("Методы для получения справочной информации (страны, города, школы, учебные заведения и т.п.).");
             types[1].Methods.Count.ShouldEqual(0);
 
@@ -118,7 +120,8 @@ namespace VkNet.Tests.Documentation
             var types = parser.Parse(xml);
 
             types.Count.ShouldEqual(1);
-            types[0].Name.ShouldEqual("VkNet.Model.Post");
+            types[0].FullName.ShouldEqual("VkNet.Model.Post");
+            types[0].ShortName.ShouldEqual("Post");
             types[0].Summary.ShouldEqual(@"Запись со стены пользователя или сообщества.
             См. описание <see cref=""!:http://vk.com/dev/post"" />.");
             types[0].Methods.Count.ShouldEqual(0);
@@ -203,7 +206,8 @@ namespace VkNet.Tests.Documentation
             var types = parser.Parse(xml);
 
             types.Count.ShouldEqual(1);
-            types[0].Name.ShouldEqual("VkNet.Categories.AudioCategory");
+            types[0].FullName.ShouldEqual("VkNet.Categories.AudioCategory");
+            types[0].ShortName.ShouldEqual("AudioCategory");
             types[0].Summary.ShouldEqual("Методы для работы с аудиозаписями.");
             types[0].Methods.Count.ShouldEqual(2);
 
@@ -211,7 +215,7 @@ namespace VkNet.Tests.Documentation
             first.FullName.ShouldEqual("VkNet.Categories.AudioCategory.GetFromGroup(System.Int64,System.Nullable{System.Int64},System.Collections.Generic.IEnumerable{System.Int64},System.Nullable{System.Int32},System.Nullable{System.Int32})");
 
             first.ShortName.ShouldEqual("GetFromGroup");
-            first.Signature.ShouldEqual("GetFromGroup(System.Int64,System.Nullable{System.Int64},System.Collections.Generic.IEnumerable{System.Int64},System.Nullable{System.Int32},System.Nullable{System.Int32})");
+            first.Signature.ShouldEqual("GetFromGroup(long, long?, IEnumerable<long>, int?, int?)");
 
             first.Remarks.ShouldEqual(@"Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref=""F:VkNet.Enums.Settings.Audio"" />.
             Страница документации ВКонтакте <see cref=""!:http://vk.com/dev/audio.get"" />.");

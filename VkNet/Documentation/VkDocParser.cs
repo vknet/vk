@@ -67,15 +67,15 @@
             foreach (VkDocType type in Types)
             {
                 VkDocType t = type;
-                List<VkDocMethod> mtds = Methods.Where(m => m.FullName.StartsWith(t.Name)).ToList();
+                List<VkDocMethod> mtds = Methods.Where(m => m.FullName.StartsWith(t.FullName)).ToList();
                 t.Methods = mtds;
                 mtds.ForEach(x => x.Type = t);
 
-                List<VkDocProperty> prpts = Properties.Where(m => m.FullName.StartsWith(t.Name)).ToList();
+                List<VkDocProperty> prpts = Properties.Where(m => m.FullName.StartsWith(t.FullName)).ToList();
                 t.Properties = prpts;
                 prpts.ForEach(x => x.Type = t);
 
-                List<VkDocEnumItem> items = EnumItems.Where(m => m.FullName.StartsWith(t.Name)).ToList();
+                List<VkDocEnumItem> items = EnumItems.Where(m => m.FullName.StartsWith(t.FullName)).ToList();
                 t.EnumItems = items;
                 items.ForEach(x => x.Type = t);
             }
@@ -168,7 +168,7 @@
         [Pure]
         private VkDocType GetVkDocType(XmlReader xml)
         {
-            var type = new VkDocType {Name = GetMemberName(xml, "T:")};
+            var type = new VkDocType {FullName = GetMemberName(xml, "T:")};
 
             while (xml.Read())
             {
