@@ -9,6 +9,9 @@
     using Model;
     using Utils;
 
+    /// <summary>
+    /// Методы для работы с видео.
+    /// </summary>
     public class VideoCategory
     {
         private readonly VkApi _vk;

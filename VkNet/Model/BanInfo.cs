@@ -4,12 +4,34 @@ using VkNet.Utils;
 
 namespace VkNet.Model
 {
+    /// <summary>
+    /// Информация о блокировке пользователя
+    /// </summary>
     public class BanInfo
     {
+        /// <summary>
+        /// Идентификатор администратора группы заблокировавший пользователя
+        /// </summary>
         public long? AdminId { get; set; }
+
+        /// <summary>
+        /// Дата блокировки
+        /// </summary>
         public DateTime? Date { get; set; }
+
+        /// <summary>
+        /// Комментарий
+        /// </summary>
         public string Comment { get; set; }
+
+        /// <summary>
+        /// Дата окончания блокировки
+        /// </summary>
         public DateTime? EndDate { get; set; }
+
+        /// <summary>
+        /// Причина блокировки
+        /// </summary>
         public BanReason Reason { get; set; }
 
         internal static BanInfo FromJson(VkResponse response)

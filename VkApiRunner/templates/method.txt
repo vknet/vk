@@ -1,5 +1,5 @@
 ﻿! Метод <#CATEGORY_NAME#>.<#METHOD_NAME#>
-*Пространство имен:* VkToolkit.Categories
+*Пространство имен:* VkNet.Categories
 !! Синтаксис
 ----
 {code:c#}
