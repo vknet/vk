@@ -7,7 +7,7 @@
 
     /// <summary>
     /// Информация о медиавложении в записи.
-    /// См. описание <see cref="http://vk.com/dev/attachments_w"/>. 
+    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. 
     /// </summary>
     public class Attachment
     {

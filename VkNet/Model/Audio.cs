@@ -7,7 +7,7 @@
 
     /// <summary>
     /// Аудиозапись пользователя или группы.
-    /// См. описание <see cref="http://vk.com/dev/audio_object"/>.
+    /// См. описание <see href="http://vk.com/dev/audio_object"/>.
     /// </summary>
     public class Audio
     {

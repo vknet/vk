@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Информация о статусе пользователя.
-    /// См. описание <see cref="http://vk.com/dev/status.get"/>.
+    /// См. описание <see href="http://vk.com/dev/status.get"/>.
     /// </summary>
     public class Status
     {

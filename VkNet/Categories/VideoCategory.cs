@@ -9,10 +9,17 @@
     using Model;
     using Utils;
 
+    /// <summary>
+    /// Методы для работы с видеофайлами.
+    /// </summary>
     public class VideoCategory
     {
         private readonly VkApi _vk;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VideoCategory"/>.
+        /// </summary>
+        /// <param name="vk">API для работы с ВКонтакте.</param>
         public VideoCategory(VkApi vk)
         {
             _vk = vk;
@@ -540,11 +547,17 @@
 
             return _vk.Call("video.editComment", parameters);
         }
-
-        // todo add unit test
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="videoId"></param>
+        /// <param name="ownerId"></param>
         [Pure]
         public void GetTags(long videoId, long? ownerId)
         {
+            // todo add unit test
+
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
             
             var parameters = new VkParameters { { "video_id", videoId }, { "owner_id", ownerId }, {"v", _vk.Version} };

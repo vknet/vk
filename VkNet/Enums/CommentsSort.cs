@@ -12,6 +12,10 @@
             _name = name;
         }
 
+        /// <summary>
+        /// Преобразует порядок сортировки в строку.
+        /// </summary>
+        /// <returns>Строка, соответствующая порядку сортировки.</returns>
         public override string ToString()
         {
             return _name;

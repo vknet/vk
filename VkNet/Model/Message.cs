@@ -8,7 +8,7 @@
 
     /// <summary>
     /// Личное сообщение пользователя.
-    /// См. описание <see cref="http://vk.com/dev/message"/>.
+    /// См. описание <see href="http://vk.com/dev/message"/>.
     /// </summary>
     public class Message
     {

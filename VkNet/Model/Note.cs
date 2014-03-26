@@ -6,7 +6,7 @@
 
     /// <summary>
     /// Заметка пользователя.
-    /// См. описание <see cref="http://vk.com/dev/note"/>.
+    /// См. описание <see href="http://vk.com/dev/note"/>.
     /// </summary>
     public class Note
     {

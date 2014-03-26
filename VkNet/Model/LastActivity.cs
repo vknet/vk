@@ -6,7 +6,7 @@
 
     /// <summary>
     /// Информация о последней активности пользователя.
-    /// См. описание <see cref="http://vk.com/dev/messages.getLastActivity"/>.
+    /// См. описание <see href="http://vk.com/dev/messages.getLastActivity"/>.
     /// </summary>
     public class LastActivity
     {

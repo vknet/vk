@@ -24,6 +24,10 @@
     {
         private readonly VkApi _vk;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="MessagesCategory"/>.
+        /// </summary>
+        /// <param name="vk">API для работы с ВКонтакте.</param>
         public MessagesCategory(VkApi vk)
         {
             _vk = vk;
@@ -48,7 +52,7 @@
         /// <returns>Список сообщений, удовлетворяющий условиям фильтрации.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.get"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
         /// </remarks>
         public ReadOnlyCollection<Message> Get(
             MessageType type,
@@ -80,9 +84,9 @@
         /// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы. 
         /// </summary>
         /// <param name="id">
-        /// Если параметр <see cref="isChat"/> равен false, то задает идентификатор пользователя, историю переписки 
+        /// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, историю переписки 
         /// с которым необходимо вернуть.
-        /// Если параметр <see cref="isChat"/> равен true, то задает идентификатор беседы, историю переписки в которой 
+        /// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, историю переписки в которой 
         /// необходимо вернуть.
         /// </param>
         /// <param name="isChat">Признак нужно ли вернуть историю сообщений для беседы (true) или для указанного пользователя.</param>
@@ -99,7 +103,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getHistory"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory"/>.
         /// </remarks>
         public ReadOnlyCollection<Message> GetHistory(
             long id,
@@ -136,7 +140,7 @@
         /// <returns>Запрошенные сообщения.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getById"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
         /// </remarks>
         public ReadOnlyCollection<Message> GetById(IEnumerable<long> messageIds, out int totalCount, int? previewLength = null)
         {
@@ -158,7 +162,7 @@
         /// <returns>Запрошенное сообщение, null если сообщение с заданным идентификатором не найдено.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getById"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
         /// </remarks>
         public Message GetById(long messageId, int? previewLength = null)
         {
@@ -180,7 +184,7 @@
         /// <returns>Список диалогов текущего пользователя.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getDialogs"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getDialogs"/>.
         /// </remarks>
         public ReadOnlyCollection<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
         {
@@ -203,7 +207,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.searchDialogs"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.searchDialogs"/>.
         /// </remarks>
         public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null)
         {
@@ -237,7 +241,7 @@
         /// <returns>Список личных сообщений пользователя, удовлетворяющих условиям запроса.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.search"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search"/>.
         /// </remarks>
         public ReadOnlyCollection<Message> Search(string query, out int totalCount, int? count = null, int? offset = null)
         {
@@ -257,11 +261,11 @@
         /// Посылает личное сообщение.
         /// </summary>
         /// <param name="id">
-        /// Если параметр <see cref="isChat"/> равен false, то задает идентификатор пользователя, которому необходимо послать сообщение.
-        /// Если параметр <see cref="isChat"/> равен true, то задает идентификатор беседы, к которой будет относиться сообщение.
+        /// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, которому необходимо послать сообщение.
+        /// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, к которой будет относиться сообщение.
         /// </param>
         /// <param name="isChat">Признак посылается ли сообщение в беседу (true) или указанному пользователю (false).</param>
-        /// <param name="message">Текст личного cообщения (является обязательным, если не задан параметр <see cref="attachment"/>).</param>
+        /// <param name="message">Текст личного cообщения (является обязательным, если не задан параметр <paramref name="attachment"/>).</param>
         /// <param name="title">Заголовок сообщения.</param>
         /// <param name="attachment">Медиа-приложение к личному сообщению.</param>
         /// <param name="forwardMessagedIds">Идентификаторы пересылаемых сообщений. Перечисленные сообщения отправителя будут отображаться 
@@ -273,7 +277,7 @@
         /// <returns>Возвращается идентификатор отправленного сообщения.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.send"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.send"/>.
         /// </remarks>
         public long Send(
             long id,
@@ -311,8 +315,8 @@
         /// Удаляет все личные сообщения в диалоге. 
         /// </summary>
         /// <param name="id">
-        /// Если параметр <see cref="isChat"/> равен false, то задает идентификатор пользователя, из диалога с которым необходимо удалить свои личные сообщения.
-        /// Если параметр <see cref="isChat"/> равен true, то задает идентификатор беседы, из которой необходимо удалить свои личные сообщения.
+        /// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, из диалога с которым необходимо удалить свои личные сообщения.
+        /// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, из которой необходимо удалить свои личные сообщения.
         /// </param>
         /// <param name="isChat">Признак удаляются ли сообщения из беседы (true) или из диалога с указанным пользователем (false).</param>
         /// <param name="offset">Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются все сообщения,
@@ -322,7 +326,7 @@
         /// <returns>Признак удалось ли удалить сообщения.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.deleteDialog"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.deleteDialog"/>.
         /// </remarks>
         public bool DeleteDialog(long id, bool isChat, int? offset = null, int? limit = null)
         {
@@ -342,7 +346,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.delete"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete"/>.
         /// </remarks>
         public IDictionary<long, bool> Delete(IEnumerable<long> messageIds)
         {
@@ -378,7 +382,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.delete"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete"/>.
         /// </remarks>
         public bool Delete(long messageId)
         {
@@ -392,7 +396,7 @@
         /// <param name="messageId">Идентификатор сообщения, которое нужно восстановить.</param>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.restore"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.restore"/>.
         /// </remarks>
         public bool Restore(long messageId)
         {
@@ -412,7 +416,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.markAsNew"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsNew"/>.
         /// </remarks>
         public bool MarkAsNew(IEnumerable<long> messageIds)
         {
@@ -432,7 +436,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.markAsNew"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsNew"/>.
         /// </remarks>
         public bool MarkAsNew(long messageId)
         {
@@ -450,7 +454,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.markAsRead"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsRead"/>.
         /// </remarks>
         public bool MarkAsRead(IEnumerable<long> messageIds)
         {
@@ -470,7 +474,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.markAsRead"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsRead"/>.
         /// </remarks>
         public bool MarkAsRead(long messageId)
         {
@@ -489,7 +493,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.setActivity"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.setActivity"/>.
         /// </remarks>
         public bool SetActivity(long userId)
         {
@@ -509,7 +513,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getLastActivity"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLastActivity"/>.
         /// </remarks>
         public LastActivity GetLastActivity(long userId)
         {
@@ -534,7 +538,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getChat"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChat"/>.
         /// </remarks>
         public Chat GetChat(long chatId)
         {
@@ -553,7 +557,7 @@
         /// <returns>После успешного выполнения возвращает идентификатор созданной беседы.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.createChat"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.createChat"/>.
         /// </remarks>
         public long CreateChat(IEnumerable<long> userIds, string title)
         {
@@ -575,7 +579,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.editChat"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.editChat"/>.
         /// </remarks>
         public bool EditChat(long chatId, string title)
         {
@@ -595,7 +599,7 @@
         /// <returns>После успешного выполнения возвращает список идентификаторов участников беседы.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getChatUsers"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChatUsers"/>.
         /// </remarks>
         public ReadOnlyCollection<User> GetChatUsers(long chatId, ProfileFields fields)
         {
@@ -616,7 +620,7 @@
         /// <returns>После успешного выполнения возвращает список идентификаторов участников беседы.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getChatUsers"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChatUsers"/>.
         /// </remarks>
         public ReadOnlyCollection<long> GetChatUsers(long chatId)
         {
@@ -634,7 +638,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.addChatUser"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.addChatUser"/>.
         /// </remarks>
         public bool AddChatUser(long chatId, long userId)
         {
@@ -657,7 +661,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.removeChatUser"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.removeChatUser"/>.
         /// </remarks>
         public bool RemoveChatUser(long chatId, long userId)
         {
@@ -676,7 +680,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getLongPollServer"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLongPollServer"/>.
         /// </remarks>
         public LongPollServerResponse GetLongPollServer()
         {
@@ -691,7 +695,7 @@
         /// </summary>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/messages.getLongPollHistory"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLongPollHistory"/>.
         /// </remarks>
         internal void GetLongPollHistory()
         {

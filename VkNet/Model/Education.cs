@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Информация о высшем учебном заведении пользователя.
-    /// См. описание <see cref="http://vk.com/dev/fields"/>. Раздел education.
+    /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел education.
     /// </summary>
     public class Education
     {

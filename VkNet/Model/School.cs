@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Школа, в которой учился пользователь.
-    /// См. описание <see cref="http://vk.com/dev/fields"/>. Раздел schools.
+    /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел schools.
     /// </summary>
     public class School
     {

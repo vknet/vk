@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Высшее учебное заведение, в котором учился пользователь.
-    /// См. описание <see cref="http://vk.com/dev/fields"/>. Раздел universities.
+    /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел universities.
     /// </summary>
     public class University
     {

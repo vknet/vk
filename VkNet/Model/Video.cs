@@ -8,7 +8,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Видеозапись пользователя или группы.
-    /// См. описание <see cref="http://vk.com/dev/video_object"/>.
+    /// См. описание <see href="http://vk.com/dev/video_object"/>.
     /// </summary>
     [DebuggerDisplay("Id = {Id}, TItle = {Title}")]
     public class Video

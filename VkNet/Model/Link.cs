@@ -6,7 +6,7 @@
 
     /// <summary>
     /// Ссылка на Web-страницу.
-    /// См. описание <see cref="http://vk.com/dev/attachments_w"/>. Раздел "Ссылка".
+    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Ссылка".
     /// </summary>
     public class Link
     {

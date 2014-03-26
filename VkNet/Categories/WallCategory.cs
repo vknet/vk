@@ -16,6 +16,10 @@
     {
         private readonly VkApi _vk;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="WallCategory"/>.
+        /// </summary>
+        /// <param name="vk">API для работы с ВКонтакте.</param>
         public WallCategory(VkApi vk)
         {
             _vk = vk;
@@ -32,7 +36,7 @@
         /// <param name="filter">Типы сообщений, которые необходимо получить (по умолчанию возвращаются все сообщения).</param>
         /// <returns>В случае успеха возвращается запрошенный список записей со стены.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/wall.get"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>.
         /// </remarks>
         public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
@@ -61,7 +65,7 @@
         /// Список комментариев к записи на стене пользователя.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/wall.getComments"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments"/>.
         /// </remarks>       
         public ReadOnlyCollection<Comment> GetComments(
             long ownerId,
@@ -103,7 +107,7 @@
         /// После успешного выполнения возвращает список объектов записей со стены. 
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/wall.getById"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById"/>.
         /// </remarks>       
         public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts)
         {

@@ -6,7 +6,7 @@
 
     /// <summary>
     /// Альбом с фотографиями пользователя.
-    /// См. описание <see cref="http://vk.com/dev/attachments_w"/>. Раздел "Альбом с фотографиями".
+    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Альбом с фотографиями".
     /// </summary>
     public class Album
     {

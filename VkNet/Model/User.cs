@@ -12,7 +12,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Информация о пользователя.
-    /// См. описание <see cref="http://vk.com/dev/fields"/> и <see cref="http://vk.com/pages?oid=-1&p=users.get"/>.
+    /// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&p=users.get"/>.
     /// </summary>
     public class User
     {

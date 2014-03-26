@@ -6,12 +6,16 @@
     using Utils;
 
     /// <summary>
-    /// Категория работы с закладками
+    /// Категория работы с закладками.
     /// </summary>
     public class FaveCategory
     {
         private readonly VkApi _vk;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="FaveCategory"/>.
+        /// </summary>
+        /// <param name="vk">API для работы с ВКонтакте.</param>
         public FaveCategory(VkApi vk)
         {
             _vk = vk;
@@ -24,7 +28,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает список объектов пользователей.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getUsers"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getUsers"/>.
         /// </remarks>
         public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
         {
@@ -50,7 +54,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает список объектов фотографий.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getPhotos"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPhotos"/>.
         /// </remarks>
         public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null)
         {
@@ -75,7 +79,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getPosts"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts"/>.
         /// </remarks>
         public ReadOnlyCollection<Post> GetPosts(int? count = null, int? offset = null)//, bool extended = false)
         {
@@ -101,7 +105,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getVideos"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos"/>.
         /// </remarks>
         public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
         {
@@ -127,7 +131,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает общее количество ссылок и массив объектов Link.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getLinks"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks"/>.
         /// </remarks>
         public ReadOnlyCollection<Link> GetLinks(int? count = null, int? offset = null)
         {

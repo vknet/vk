@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Информация о лайках к записи.
-    /// См. описание <see cref="http://vk.com/dev/post"/>. Раздел likes.
+    /// См. описание <see href="http://vk.com/dev/post"/>. Раздел likes.
     /// </summary>
     public class Likes
     {

@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Ответ при поиске диалогов по строке поиска.
-    /// См. описание <see cref="http://vk.com/dev/messages.searchDialogs"/>.
+    /// См. описание <see href="http://vk.com/dev/messages.searchDialogs"/>.
     /// </summary>
     public class SearchDialogsResponse
     {

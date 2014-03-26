@@ -8,7 +8,7 @@
 
     /// <summary>
     /// Информация о сообществе (группе).
-    /// См. описание <see cref="http://vk.com/dev/fields_groups"/>.
+    /// См. описание <see href="http://vk.com/dev/fields_groups"/>.
     /// </summary>
     public class Group
     {

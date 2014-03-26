@@ -9,7 +9,7 @@
 
     /// <summary>
     /// Описание дополнительных полей сообщества, используемых в параметре fields (например, в методе <see cref="GroupsCategory.Get"/>).
-    /// См. описание <see cref="http://vk.com/dev/groups.get"/>.
+    /// См. описание <see href="http://vk.com/dev/groups.get"/>.
     /// </summary>
     public sealed class GroupsFields
     {

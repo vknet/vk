@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Опрос.
-    /// См. описание <see cref="http://vk.com/dev/attachments_w"/>. Раздел "Опрос".
+    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Опрос".
     /// </summary>
     public class Poll
     {

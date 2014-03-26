@@ -13,6 +13,10 @@
     {
         private readonly VkApi _vk;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="DatabaseCategory"/>.
+        /// </summary>
+        /// <param name="vk">API для работы с ВКонтакте.</param>
         public DatabaseCategory(VkApi vk)
         {
             _vk = vk;
@@ -23,14 +27,14 @@
         /// </summary>
         /// <param name="needAll">Флаг - вернуть список всех стран.</param>
         /// <param name="codes">Перечисленные через запятую двухбуквенные коды стран в стандарте ISO 3166-1 alpha-2 
-        /// <see cref="http://vk.com/dev/country_codes"/>.</param>
+        /// <see href="http://vk.com/dev/country_codes"/>.</param>
         /// <param name="offset">Отступ, необходимый для выбора определенного подмножества стран.</param>
         /// <param name="count">Количество стран, которое необходимо вернуть.</param>
         /// <remarks>
         /// Если не заданы параметры needAll и code, то возвращается краткий список стран, расположенных наиболее близко к стране 
         /// текущего пользователя. Если задан параметр needAll, то будет возвращен список всех стран. Если задан параметр code, 
         /// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCountries"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCountries"/>.
         /// </remarks>
         public ReadOnlyCollection<Country> GetCountries(bool needAll = true, string codes = "", int? count = null, int? offset = null)
         {
@@ -52,7 +56,7 @@
         /// <param name="offset">Отступ, необходимый для выбора определенного подмножества регионов.</param>
         /// <returns>Список регионов.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getRegions"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getRegions"/>.
         /// </remarks>
         public ReadOnlyCollection<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null)
         {
@@ -73,7 +77,7 @@
         /// <param name="streetIds">Идентификаторы улиц.</param>
         /// <returns>Информация об улицах.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getStreetsById"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getStreetsById"/>.
         /// </remarks>
         public ReadOnlyCollection<Street> GetStreetsById(params int[] streetIds)
         {
@@ -90,7 +94,7 @@
         /// <param name="countryIds">Идентификаторы стран.</param>
         /// <returns>Информация о странах.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCountriesById"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCountriesById"/>.
         /// </remarks>
         public ReadOnlyCollection<Country> GetCountriesById(params int[] countryIds)
         {
@@ -118,7 +122,7 @@
         /// включаться поля <see cref="City.Area"/> и <see cref="City.Region"/>. 
         /// Если не задан параметр <paramref name="query"/>, то будет возвращен список самых крупных городов в заданной стране. 
         /// Если задан параметр <paramref name="query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCities"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCities"/>.
         /// </remarks>
         public ReadOnlyCollection<City> GetCities(int countryId, int? regionId = null, string query = "", bool? needAll = false, int? count = null, int? offset = null)
         {
@@ -149,7 +153,7 @@
         /// <remarks>
         /// Идентификаторы городов могут быть получены с помощью методов <see cref="UsersCategory.Get(long,VkNet.Enums.ProfileFields,VkNet.Enums.NameCase)"/>"/>, 
         /// places.getById, places.search, places.getCheckins.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCitiesById"/>. 
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCitiesById"/>. 
         /// </remarks>
         public ReadOnlyCollection<City> GetCitiesById(params int[] cityIds)
         {
@@ -170,7 +174,7 @@
         /// <param name="count">Количество учебных заведений, которое необходимо вернуть.</param>
         /// <returns>Список высших учебных заведений, удовлетворяющих заданным условиям.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getUniversities"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getUniversities"/>.
         /// </remarks>
         public ReadOnlyCollection<University> GetUniversities(int countryId, int cityId, string query = "", int? count = null, int? offset = null)
         {
@@ -202,7 +206,7 @@
         /// <param name="count">Количество школ, которое необходимо вернуть. </param>
         /// <returns>Cписок школ.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getSchools"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getSchools"/>.
         /// </remarks>
         public ReadOnlyCollection<School> GetSchools(int countryId, int cityId, string query = "", int? offset = null, int? count = null)
         {
@@ -232,7 +236,7 @@
         /// <param name="offset">Количество факультетов которое необходимо получить.</param>
         /// <returns>Cписок факультетов.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getFaculties"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getFaculties"/>.
         /// </remarks>
         public ReadOnlyCollection<Faculty> GetFaculties(long universityId, int? count = null, int? offset = null)
         {

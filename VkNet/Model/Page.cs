@@ -5,7 +5,7 @@
 
     /// <summary>
     /// Информация о вики-странице сообщества. 
-    /// См. описание <see cref="http://vk.com/dev/pages.get"/>.
+    /// См. описание <see href="http://vk.com/dev/pages.get"/>.
     /// </summary>
     public class Page
     {

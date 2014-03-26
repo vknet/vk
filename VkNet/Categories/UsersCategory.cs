@@ -35,7 +35,7 @@
         /// После успешного выполнения возвращает список объектов пользователей, найденных в соответствии с заданными критериями. 
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.search"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search"/>.
         /// </remarks>
         public ReadOnlyCollection<User> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
@@ -65,7 +65,7 @@
         /// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к друзьям — Вы можете сделать 1026 & 2. 
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getUserSettings"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/getUserSettings"/>.
         /// </remarks>
         public int GetUserSettings(long uid)
         {   
@@ -82,7 +82,7 @@
         /// иначе false. 
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/isAppUser"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/isAppUser"/>.
         /// </remarks>
         public bool IsAppUser(long userId)
         {   
@@ -102,7 +102,7 @@
         /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Объект, содержащий запрошенную информацию о пользователе.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
         public User Get(long userId, ProfileFields fields = null,
                                             NameCase nameCase = null)
@@ -124,7 +124,7 @@
         /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
         public ReadOnlyCollection<User> Get(IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
         {
@@ -149,7 +149,7 @@
         /// <param name="offset">Смещение необходимое для выборки определенного подмножества подписок</param>
         /// <returns>Пока возвращается только список групп.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.getSubscriptions"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions"/>.
         /// </remarks>
         public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
         {
@@ -181,7 +181,7 @@
         /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Список подписчиков</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.getFollowers"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getFollowers"/>.
         /// </remarks>
         public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
         {
@@ -218,7 +218,7 @@
         /// <param name="comment">Комментарий к жалобе на пользователя</param>
         /// <returns>В случае успешной жалобы метод вернет true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.report"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.report"/>.
         /// </remarks>
         public bool Report(long userId, ReportType type, string comment = "")
         {

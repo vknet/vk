@@ -8,7 +8,7 @@
 
     /// <summary>
     /// Запись со стены пользователя или сообщества.
-    /// См. описание <see cref="http://vk.com/dev/post"/>.
+    /// См. описание <see href="http://vk.com/dev/post"/>.
     /// </summary>
     public class Post
     {

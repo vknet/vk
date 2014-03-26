@@ -29,7 +29,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/status.get"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.get"/>.
         /// </remarks>
         public Status Get(long uid)
         {
@@ -54,7 +54,7 @@
         /// <returns>Возвращает true, если статус был успешно установлен, false в противном случае.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/status.set"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
         /// </remarks>
         public bool Set(string text, Audio audio = null)
         {
@@ -82,7 +82,7 @@
         /// <returns>Возвращает true, если статус был успешно установлен, false в противном случае.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/status.set"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
         /// </remarks>
         public bool Set(Audio audio)
         {

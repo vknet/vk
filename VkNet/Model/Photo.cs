@@ -6,7 +6,7 @@
 
     /// <summary>
     /// Фотография.
-    /// См. описание <see cref="http://vk.com/dev/photo"/> и <see cref="http://vk.com/dev/attachments_w"/> раздел 
+    /// См. описание <see href="http://vk.com/dev/photo"/> и <see href="http://vk.com/dev/attachments_w"/> раздел 
     /// "Альбом с фотографиями".
     /// </summary>
     public class Photo
