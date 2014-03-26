@@ -86,7 +86,7 @@
         /// </remarks>
         public bool IsAppUser(long userId)
         {   
-            var parameters = new VkParameters { { "user_id", userId }, {"v", _vk.Version} };
+            var parameters = new VkParameters { { "user_id", userId }, {"v", _vk.ApiVersion} };
 
             VkResponse response = _vk.Call("users.isAppUser", parameters);
 
@@ -109,7 +109,7 @@
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
 
-            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "v", _vk.Version }, { "user_ids", userId } };
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "v", _vk.ApiVersion }, { "user_ids", userId } };
 
             VkResponseArray response = _vk.Call("users.get", parameters);
 
@@ -131,7 +131,7 @@
             if (userIds == null)
                 throw new ArgumentNullException("userIds");
 
-            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, {"v", _vk.Version} };
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, {"v", _vk.ApiVersion} };
             parameters.Add("user_ids", userIds);
 
             VkResponseArray response = _vk.Call("users.get", parameters);
@@ -163,7 +163,7 @@
                     {"extended", true},
                     {"offset", offset},
                     {"count", count},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
@@ -196,7 +196,7 @@
                     {"count", count},
                     {"fields", fields},
                     {"name_case", nameCase},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("users.getFollowers", parameters);
@@ -229,7 +229,7 @@
                     {"user_id", userId},
                     {"type", type},
                     {"comment", comment},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("users.report", parameters);

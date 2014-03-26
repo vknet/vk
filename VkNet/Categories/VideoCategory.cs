@@ -53,7 +53,7 @@
                     {"count", count},
                     {"offset", offset},
                     {"extended", extended},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("video.get", parameters);
@@ -88,7 +88,7 @@
                     {"privacy_view", privacyView},
                     {"privacy_comment", privacyComment},
                     {"repeat", isRepeat},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.edit", parameters);
@@ -111,7 +111,7 @@
                 {
                     {"video_id", videoId},
                     {"owner_id", ownerId},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponse response = _vk.Call("video.add", parameters);
@@ -146,7 +146,7 @@
                     {"group_id", groupId},
                     {"album_id", albumId},
                     {"repeat", isRepeat},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.save", parameters);
@@ -169,7 +169,7 @@
                 {
                     {"video_id", videoId},
                     {"owner_id", ownerId},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.delete", parameters);
@@ -192,7 +192,7 @@
                 {
                     {"video_id", videoId},
                     {"owner_id", ownerId},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.restore", parameters);
@@ -230,7 +230,7 @@
                     {"search_own", isSearchOwn},
                     {"offset", offset},
                     {"count", count},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("video.search", parameters);
@@ -261,7 +261,7 @@
                     {"user_id", userId},
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("video.getUserVideos", parameters);
@@ -292,7 +292,7 @@
                     {"count", count},
                     {"offset", offset},
                     {"extended", extended},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("video.getAlbums", parameters);
@@ -318,7 +318,7 @@
                 {
                     {"group_id", groupId},
                     {"title", title},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
             
             VkResponse response = _vk.Call("video.addAlbum", parameters);
@@ -347,7 +347,7 @@
                     {"album_id", albumId},
                     {"title", title},
                     {"group_id", groupId},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.editAlbum", parameters);
@@ -370,7 +370,7 @@
                 {
                     {"group_id", groupId},
                     {"album_id", albumId},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.deleteAlbum", parameters);
@@ -395,7 +395,7 @@
 
             var parameters = new VkParameters { { "album_id", albumId }, { "group_id", groupId } };
             parameters.Add("video_ids", videoIds);
-            parameters.Add("v", _vk.Version);
+            parameters.Add("v", _vk.ApiVersion);
 
             return _vk.Call("video.moveToAlbum", parameters);
         }
@@ -428,7 +428,7 @@
                     {"count", count},
                     {"offset", offset},
                     {"sort", sort},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponse response = _vk.Call("video.getComments", parameters);
@@ -469,7 +469,7 @@
                     {"owner_id", ownerId},
                     {"message", message},
                     {"from_group", isFromGroup},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.createComment", parameters);
@@ -488,7 +488,7 @@
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
             
-            var parameters = new VkParameters { { "comment_id", commentId }, { "owner_id", ownerId }, {"v", _vk.Version} };
+            var parameters = new VkParameters { { "comment_id", commentId }, { "owner_id", ownerId }, {"v", _vk.ApiVersion} };
 
             return _vk.Call("video.deleteComment", parameters);
         }
@@ -506,7 +506,7 @@
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
             
-            var parameters = new VkParameters { { "comment_id", commentId }, { "owner_id", ownerId }, { "v", _vk.Version } };
+            var parameters = new VkParameters { { "comment_id", commentId }, { "owner_id", ownerId }, { "v", _vk.ApiVersion } };
 
             return _vk.Call("video.restoreComment", parameters);
         }
@@ -542,7 +542,7 @@
                     {"comment_id", commentId},
                     {"message", message},
                     {"owner_id", ownerId},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.editComment", parameters);
@@ -560,7 +560,7 @@
 
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
             
-            var parameters = new VkParameters { { "video_id", videoId }, { "owner_id", ownerId }, {"v", _vk.Version} };
+            var parameters = new VkParameters { { "video_id", videoId }, { "owner_id", ownerId }, {"v", _vk.ApiVersion} };
 
             VkResponseArray response = _vk.Call("video.getTags", parameters);
 
@@ -579,7 +579,7 @@
                     {"video_id", videoId},
                     {"owner_id", ownerId},
                     {"tagged_name", taggedName},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.putTag", parameters);
@@ -598,7 +598,7 @@
                     {"tag_id", tagId},
                     {"video_id", videoId},
                     {"owner_id", ownerId},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.removeTag", parameters);
@@ -617,7 +617,7 @@
                 {
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("video.getNewTags", parameters);
@@ -650,7 +650,7 @@
                     {"reason", reason},
                     {"comment", comment},
                     {"search_query", searchQuery},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.report", parameters);
@@ -675,7 +675,7 @@
                     {"comment_id", commentId},
                     {"owner_id", ownerId},
                     {"reason", reason},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("video.reportComment", parameters);

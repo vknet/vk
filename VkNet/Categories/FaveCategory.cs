@@ -39,7 +39,7 @@
                 {
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getUsers", parameters);
@@ -65,7 +65,7 @@
                 {
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getPhotos", parameters);
@@ -91,7 +91,7 @@
                     {"count", count},
                     {"offset", offset},
                     //{"extended", extended},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getPosts", parameters);
@@ -116,7 +116,7 @@
                 {
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getVideos", parameters);
@@ -142,7 +142,7 @@
                 {
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getLinks", parameters);

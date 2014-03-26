@@ -42,7 +42,7 @@
         /// </remarks>
         public int GetCount(long ownerId)
         {
-            var parameters = new VkParameters { { "owner_id", ownerId }, { "v", _vk.Version } };
+            var parameters = new VkParameters { { "owner_id", ownerId }, { "v", _vk.ApiVersion } };
 
             return _vk.Call("audio.getCount", parameters);
         }
@@ -60,7 +60,7 @@
         /// </remarks>
         public Lyrics GetLyrics(long lyricsId)
         {
-            var parameters = new VkParameters { { "lyrics_id", lyricsId }, { "v", _vk.Version } };
+            var parameters = new VkParameters { { "lyrics_id", lyricsId }, { "v", _vk.ApiVersion } };
 
             return _vk.Call("audio.getLyrics", parameters);
         }

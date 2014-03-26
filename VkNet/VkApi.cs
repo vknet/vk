@@ -10,37 +10,86 @@
     using Exception;
     using Utils;
 
+    /// <summary>
+    /// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями, 
+    /// группами и т.п.).
+    /// </summary>
     public class VkApi
     {
-        public string Version { get; internal set; }
+        /// <summary>
+        /// Используемая версия API ВКонтакте.
+        /// </summary>
+        public string ApiVersion { get; internal set; }
 
         internal const string InvalidAuthorization = "Invalid authorization";
 
         #region Categories Definition
-        public UsersCategory        Users { get; private set; }
-        public FriendsCategory      Friends { get; private set; }
-        public StatusCategory       Status { get; private set; }
-        public MessagesCategory     Messages { get; private set; }
-        public GroupsCategory       Groups { get; private set; }
-        public AudioCategory        Audio { get; private set; }
-        public DatabaseCategory     Database { get; private set; }
-        public UtilsCategory        Utils { get; private set; }
-        public WallCategory         Wall { get; private set; }
-        public FaveCategory         Fave { get; private set; }
-        public VideoCategory        Video { get; private set; }
+        
+        /// <summary>
+        /// API для работы с пользователями.
+        /// </summary>
+        public UsersCategory Users { get; private set; }        
+        /// <summary>
+        /// API для работы с друзьями.
+        /// </summary>
+        public FriendsCategory Friends { get; private set; }
+        /// <summary>
+        /// API для работы со статусом пользователя или сообщества.
+        /// </summary>
+        public StatusCategory Status { get; private set; }
+        /// <summary>
+        /// API для работы с сообщениями.
+        /// </summary>
+        public MessagesCategory Messages { get; private set; }
+        /// <summary>
+        /// API для работы с .
+        /// </summary>
+        public GroupsCategory Groups { get; private set; }
+        /// <summary>
+        /// API для работы с аудиозаписями.
+        /// </summary>
+        public AudioCategory Audio { get; private set; }
+        /// <summary>
+        /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+        /// </summary>
+        public DatabaseCategory Database { get; private set; }
+        /// <summary>
+        /// API для работы со служебными методами.
+        /// </summary>
+        public UtilsCategory Utils { get; private set; }
+        /// <summary>
+        /// API для работы со стеной пользователя.
+        /// </summary>
+        public WallCategory Wall { get; private set; }
+        /// <summary>
+        /// API для работы с закладками.
+        /// </summary>
+        public FaveCategory Fave { get; private set; }
+        /// <summary>
+        /// API для работы с видеофайлами.
+        /// </summary>
+        public VideoCategory Video { get; private set; }
+        
         #endregion
 
         internal IBrowser Browser { get; set; }
 
         internal string AccessToken { get; set; }
 
+        /// <summary>
+        /// Идентификатор пользователя, от имени которого была проведена авторизация.
+        /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,VkNet.Enums.Settings)"/>, 
+        /// то возвращается null.
+        /// </summary>
         public long ?UserId { get; set; }
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkApi"/>.
+        /// </summary>
         public VkApi()
         {
             Browser = new Browser();
 
-            // set function's categories
             Users = new UsersCategory(this);
             Friends = new FriendsCategory(this);
             Status = new StatusCategory(this);
@@ -53,7 +102,7 @@
             Fave = new FaveCategory(this);
             Video = new VideoCategory(this);
 
-            Version = "5.9";
+            ApiVersion = "5.9";
         }
 
         /// <summary>
