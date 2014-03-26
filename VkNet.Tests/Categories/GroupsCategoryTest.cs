@@ -537,15 +537,6 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
-        public void GetMembers_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-        {
-            var groups = new GroupsCategory(new VkApi());
-            int totalCount;
-            groups.GetMembers(1, out totalCount);
-        }
-
-        [Test]
         public void GetMembers_NormalCase_ListOfUsesIds()
         {
             const string url = "https://api.vk.com/method/groups.getMembers?gid=17683660&access_token=token";

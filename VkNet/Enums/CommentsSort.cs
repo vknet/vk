@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VkNet.Enums
+﻿namespace VkNet.Enums
 {
     /// <summary>
     /// Порядок сортировки комментариев к записи.

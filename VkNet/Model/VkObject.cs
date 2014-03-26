@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VkNet.Model
+﻿namespace VkNet.Model
 {
     using Enums;
     using Utils;
