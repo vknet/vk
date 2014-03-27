@@ -6,6 +6,9 @@
 
     using VkNet.Exception;
 
+    /// <summary>
+    /// Информация об авторизации приложения на действия.
+    /// </summary>
     public class VkAuthorization
     {
         private readonly List<NameValue> _decodedAnswer;
@@ -15,31 +18,53 @@
             _decodedAnswer = Decode(responseUrl);
         }
 
+        /// <summary>
+        /// Извлекает из URL, на которую произошло перенаправление при авторизации, информацию об авторизации.
+        /// </summary>
+        /// <param name="responseUrl">
+        /// URL, на которую произошло перенаправление при авторизации.
+        /// </param>
+        /// <returns>Информация об авторизации.</returns>
         public static VkAuthorization From(Uri responseUrl)
         {
             return new VkAuthorization(responseUrl);
         }
 
+        /// <summary>
+        /// Возвращает признак была ли авторизация успешной.
+        /// </summary>
         public bool IsAuthorized
         {
             get { return AccessToken != null; }
         }
 
+        /// <summary>
+        /// Проверяет требуется ли получения у авторизации на запрошенные приложением действия (при установке приложения пользователю).
+        /// </summary>
         public bool IsAuthorizationRequired
         {
             get { return GetFieldValue("__q_hash") != null; }
         }
 
+        /// <summary>
+        /// Маркер доступа, который необходимо использовать для доступа к API ВКонтакте.
+        /// </summary>
         public string AccessToken
         {
             get { return GetFieldValue("access_token"); }
         }
 
+        /// <summary>
+        /// Время истечения срока действия маркера доступа.
+        /// </summary>
         public string ExpiresIn
         {
             get { return GetFieldValue("expires_in"); }
         }
 
+        /// <summary>
+        /// Идентификатор пользователя, у которого работает приложение (от имени которого был произведен вход).
+        /// </summary>
         public long UserId
         {
             get

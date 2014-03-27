@@ -3,41 +3,70 @@
     using System;
     using System.Runtime.Serialization;
 
+    /// <summary>
+    /// Базовый класс, для всех исключений, которые могут произойти при вызове методов API ВКонтакте.
+    /// </summary>
     [Serializable]
     public class VkApiMethodInvokeException : VkApiException
     {
+        /// <summary>
+        /// Код ошибки, полученный от сервера ВКонтакте.
+        /// </summary>
         public int ErrorCode { get; private set; }
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/>.
+        /// </summary>
         public VkApiMethodInvokeException()
         {
         }
 
-        public VkApiMethodInvokeException(string message)
-            : base(message)
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> с указанным описанием.
+        /// </summary>
+        /// <param name="message">Описание исключения.</param>
+        public VkApiMethodInvokeException(string message) : base(message)
+        {
+        }
+        
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> с указанным описанием и внутренним исключением.
+        /// </summary>
+        /// <param name="message">Описание исключения.</param>
+        /// <param name="innerException">Внутреннее исключение.</param>
+        public VkApiMethodInvokeException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
-
-        protected VkApiMethodInvokeException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
-
-        public VkApiMethodInvokeException(string message, Exception ex)
-            : base(message, ex)
-        {
-        }
-
-        public VkApiMethodInvokeException(string message, int code)
-            : base(message)
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> с указанным описанием и кодом ошибки.
+        /// </summary>
+        /// <param name="message">Описание исключения.</param>
+        /// <param name="code">Код ошибки, полученный от сервера ВКонтакте.</param>
+        public VkApiMethodInvokeException(string message, int code) : base(message)
         {
             ErrorCode = code;
         }
 
-        public VkApiMethodInvokeException(string message, int code, Exception ex)
-            : base(message, ex)
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> с указанным описанием, кодом ошибки и внутренним исключением.
+        /// </summary>
+        /// <param name="message">Описание исключения.</param>
+        /// <param name="code">Код ошибки, полученный от сервера ВКонтакте.</param>
+        /// <param name="innerException">Внутреннее исключение.</param>
+        public VkApiMethodInvokeException(string message, int code, Exception innerException) : base(message, innerException)
         {
             ErrorCode = code;
+        }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> на основе ранее сериализованных данных.
+        /// </summary>
+        /// <param name="info">Содержит все данные, необходимые для десериализации.</param>
+        /// <param name="context">Описывает источник и назначение данного сериализованного потока и предоставляет дополнительный, 
+        /// определяемый вызывающим, контекст.</param>
+        protected VkApiMethodInvokeException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
         }
     }
 }

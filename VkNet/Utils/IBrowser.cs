@@ -20,11 +20,13 @@
         /// Если приложение с идентификатором <paramref name="appId"/> не было установлено у пользователя, имеющего 
         /// логин <paramref name="email"/>, то производится его установка с разрешениями <paramref name="settings"/>.
         /// </summary>
-        /// <param name="appId">Идентификатор приложения, от имени </param>
+        /// <param name="appId">Идентификатор авторизуемого приложения.</param>
         /// <param name="email">Логин пользователя ВКонтакте (его почта).</param>
         /// <param name="password">Пароль пользователя.</param>
         /// <param name="settings">Запрашиваемые для работы разрешения.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Информация об авторизации приложения.
+        /// </returns>
         VkAuthorization Authorize(int appId, string email, string password, Settings settings);
     }
 }

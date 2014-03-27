@@ -116,7 +116,7 @@
         {
             var authorization = Browser.Authorize(appId, email, password, settings);
             if (!authorization.IsAuthorized)
-                throw new VkApiAuthorizationException(InvalidAuthorization);
+                throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
 
             AccessToken = authorization.AccessToken;
             UserId = authorization.UserId;
