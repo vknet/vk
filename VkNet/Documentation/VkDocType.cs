@@ -6,7 +6,7 @@
     /// <summary>
     /// Класс для описания типа объекта
     /// </summary>
-    [DebuggerDisplay("Name = {Name}, MethodsCount = {Methods.Count}, Props = {Properties.Count}")]
+    [DebuggerDisplay("Name = {FullName}, MethodsCount = {Methods.Count}, Props = {Properties.Count}")]
     internal class VkDocType
     {
         public string FullName { get; set; }
