@@ -43,6 +43,8 @@
             // 
             // lbMethods
             // 
+            this.lbMethods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lbMethods.FormattingEnabled = true;
             this.lbMethods.Location = new System.Drawing.Point(13, 217);
             this.lbMethods.Name = "lbMethods";
@@ -51,6 +53,9 @@
             // 
             // txtDoc
             // 
+            this.txtDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDoc.Location = new System.Drawing.Point(297, 22);
             this.txtDoc.Multiline = true;
             this.txtDoc.Name = "txtDoc";
