@@ -13,11 +13,7 @@
     {
         private readonly VkApi _vk;
 
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="StatusCategory"/>.
-        /// </summary>
-        /// <param name="vk">API для работы с ВКонтакте.</param>
-        public StatusCategory(VkApi vk)
+        internal StatusCategory(VkApi vk)
         {
             _vk = vk;
         }

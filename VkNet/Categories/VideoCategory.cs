@@ -16,11 +16,7 @@
     {
         private readonly VkApi _vk;
 
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VideoCategory"/>.
-        /// </summary>
-        /// <param name="vk">API для работы с ВКонтакте.</param>
-        public VideoCategory(VkApi vk)
+        internal VideoCategory(VkApi vk)
         {
             _vk = vk;
         }

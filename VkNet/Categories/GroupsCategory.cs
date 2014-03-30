@@ -16,11 +16,7 @@
     {
         private readonly VkApi _vk;
 
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="GroupsCategory"/>.
-        /// </summary>
-        /// <param name="vk">API для работы с ВКонтакте.</param>
-        public GroupsCategory(VkApi vk)
+        internal GroupsCategory(VkApi vk)
         {
             _vk = vk;
         }

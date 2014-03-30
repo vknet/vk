@@ -16,11 +16,7 @@
     {
         private readonly VkApi _vk;
 
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="AudioCategory"/>.
-        /// </summary>
-        /// <param name="vk">API для работы с ВКонтакте.</param>
-        public AudioCategory(VkApi vk)
+        internal AudioCategory(VkApi vk)
         {
             _vk = vk;
         }

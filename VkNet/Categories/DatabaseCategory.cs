@@ -13,11 +13,7 @@
     {
         private readonly VkApi _vk;
 
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="DatabaseCategory"/>.
-        /// </summary>
-        /// <param name="vk">API для работы с ВКонтакте.</param>
-        public DatabaseCategory(VkApi vk)
+        internal DatabaseCategory(VkApi vk)
         {
             _vk = vk;
         }

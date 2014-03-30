@@ -12,11 +12,7 @@
     {
         private readonly VkApi _vk;
 
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="FaveCategory"/>.
-        /// </summary>
-        /// <param name="vk">API для работы с ВКонтакте.</param>
-        public FaveCategory(VkApi vk)
+        internal FaveCategory(VkApi vk)
         {
             _vk = vk;
         }
