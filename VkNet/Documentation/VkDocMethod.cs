@@ -43,7 +43,6 @@ namespace VkNet.Documentation
 //                   .Replace(",", ", ");
 
                 return InsertParameters(raw.ToString());
-
             } 
         }
 
