@@ -32,6 +32,12 @@
             _name = name;
         }
 
+        /// <summary>
+        /// Возвращает порядок сортировки членов группы в виде строки.
+        /// </summary>
+        /// <returns>
+        /// Порядок сортировки членов группы в виде строки.
+        /// </returns>
         public override string ToString()
         {
             return _name;

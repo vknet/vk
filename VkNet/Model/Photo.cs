@@ -6,9 +6,10 @@
 
     /// <summary>
     /// Фотография.
-    /// См. описание <see href="http://vk.com/dev/photo"/> и <see href="http://vk.com/dev/attachments_w"/> раздел 
-    /// "Альбом с фотографиями".
     /// </summary>
+    /// <remarks>
+    /// См. описание <see href="http://vk.com/dev/photo"/> и <see href="http://vk.com/dev/attachments_w"/> раздел "Альбом с фотографиями".
+    /// </remarks>
     public class Photo
     {
         /// <summary>
@@ -81,7 +82,14 @@
         /// </summary>
         public string AccessKey { get; set; }
 
+        /// <summary>
+        /// Идентификатор пользователя, загрузившего фото (если фотография размещена в сообществе). Для фотографий, размещенных от имени сообщества.
+        /// </summary>
         public long? UserId { get; set; }
+
+        /// <summary>
+        /// Идентификатор записи, у которой данная фотография является прикреплением???
+        /// </summary>
         public long? PostId { get; set; }
 
         #region Методы

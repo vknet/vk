@@ -9,7 +9,7 @@
     public class Poll
     {
         /// <summary>
-        /// Идентификатор опроса для получения информации о нем через метод <see cref="PollsCategory.GetById"/>.
+        /// Идентификатор опроса.
         /// </summary>
         public long Id { get; set; }
 

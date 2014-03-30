@@ -6,10 +6,14 @@ namespace VkNet.Model
 
     using Utils;
 
+    using VkNet.Categories;
+
     /// <summary>
     /// Видеозапись пользователя или группы.
-    /// См. описание <see href="http://vk.com/dev/video_object"/>.
     /// </summary>
+    /// <remarks>
+    /// См. описание <see href="http://vk.com/dev/video_object"/>.
+    /// </remarks>
     [DebuggerDisplay("Id = {Id}, Title = {Title}")]
     public class Video
     {
@@ -79,18 +83,39 @@ namespace VkNet.Model
         /// </summary>
         public Uri Player { get; set; }
 
+        /// <summary>
+        /// Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
+        /// </summary>
         public bool? CanComment { get; set; }
 
+        /// <summary>
+        /// Признак может ли текущий пользователь сделать репост данной видеозаписи.
+        /// </summary>
         public bool? CanRepost { get; set; }
 
+        /// <summary>
+        /// Информация о лайках к видеозаписи.
+        /// </summary>
         public Likes Likes { get; set; }
 
+        /// <summary>
+        /// Признак является ли видеозапись зацикленной.
+        /// </summary>
         public bool? Repeat { get; set; }
 
+        /// <summary>
+        /// Идентификатор видеоальбома <see cref="VideoAlbum"/>, к которому относится видеозапись.
+        /// </summary>
         public long? AlbumId { get; set; }
 
+        /// <summary>
+        /// Url, по которому необходимо выполнить загрузку видеов (см. метод <see cref="VideoCategory.Save"/>).
+        /// </summary>
         public Uri UploadUrl { get; set; }
 
+        /// <summary>
+        /// Ключ доступа.
+        /// </summary>
         public string AccessKey { get; set; }
 
         /// <summary>

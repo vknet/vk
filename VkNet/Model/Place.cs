@@ -1,22 +1,21 @@
 ﻿namespace VkNet.Model
 {
+    using VkNet.Categories;
     using VkNet.Utils;
 
     /// <summary>
     /// Информация о месте, в котором была сделана запись.
-    /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/>
-    /// и <see href="http://vk.com/dev/fields_groups"/>. Раздел place.
+    /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/> и <see href="http://vk.com/dev/fields_groups"/>. Раздел place.
     /// </summary>
     public class Place
     {
         /// <summary>
-        /// Идентификатор места, который используется в методах <see cref="PlacesCategory.GetById"/>, <see cref="PlacesCategory.GetCheckins"/> и 
-        /// <see cref="PlacesCategory.Checkin"/>.
+        /// Идентификатор места.
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// Название места, которое можно получить с помощью метода <see cref="PlacesCategory.GetById"/>.
+        /// Название места.
         /// </summary>
         public string Title { get; set; }
 
@@ -31,17 +30,17 @@
         public int? Longitude { get; set; }
 
         /// <summary>
-        /// Идентификатор типа места, информацию о котором можно получить с помощью метода <see cref="PlacesCategory.GetTypes"/>.
+        /// Идентификатор типа места, информацию о котором можно получить с помощью метода <see cref="DatabaseCategory.GetPlaceTypes"/> (пока не реализовано).
         /// </summary>
         public long TypeId { get; set; }
 
         /// <summary>
-        /// Идентификатор страны, название которой можно получить с помощью метода <see cref="PlacesCategory.GetCountryById"/>. 
+        /// Идентификатор страны, название которой можно получить с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>. 
         /// </summary>
         public long? CountryId { get; set; }
 
         /// <summary>
-        /// Идентификатор города, название которого можно получить с помощью метода <see cref="PlacesCategory.GetCityById"/>.
+        /// Идентификатор города, название которого можно получить с помощью метода <see cref="DatabaseCategory.GetCitiesById"/>.
         /// </summary>
         public long? CityId { get; set; }
 

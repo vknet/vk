@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace VkNet.Utils
 {
+    /// <summary>
+    /// Базовый класс для фильтров.
+    /// </summary>
     public abstract class VkFilter
     {
         /// <summary>
@@ -20,12 +23,22 @@ namespace VkNet.Utils
         /// </summary>
         protected readonly IList<VkFilter> Fields;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkFilter"/>.
+        /// </summary>
+        /// <param name="value">Числовое значение фильтра.</param>
+        /// <param name="name">Строковое значение фильтра.</param>
         protected VkFilter(int value, string name)
         {
             Name = name;
             Value = value;
         }
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkFilter"/>, объединяя два фильтра.
+        /// </summary>
+        /// <param name="left">Левый фильтр.</param>
+        /// <param name="right">Правый фильтр.</param>
         protected VkFilter(VkFilter left, VkFilter right)
         {
             Fields = new List<VkFilter>();
@@ -59,6 +72,12 @@ namespace VkNet.Utils
             }
         }
 
+        /// <summary>
+        /// Возвращает фильтр в виде строки.
+        /// </summary>
+        /// <returns>
+        /// Строка со строковыми значениями фильтров, разделенными запятыми.
+        /// </returns>
         public override string ToString()
         {
             if (Fields == null || Fields.Count == 0)

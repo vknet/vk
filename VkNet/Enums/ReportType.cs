@@ -1,7 +1,7 @@
 ﻿namespace VkNet.Enums
 {
     /// <summary>
-    /// Тип жалобы
+    /// Тип жалобы.
     /// </summary>
     public class ReportType
     {
@@ -12,28 +12,34 @@
             _name = name;
         }
 
+        /// <summary>
+        /// Возвращает тип жалобы в виде строки.
+        /// </summary>
+        /// <returns>
+        /// Строка, содержащая тип жалобы.
+        /// </returns>
         public override string ToString()
         {
             return _name;
         }
 
         /// <summary>
-        /// Порнография
+        /// Порнография.
         /// </summary>
         public static readonly ReportType Porn = new ReportType("porn");
 
         /// <summary>
-        /// Рассылка спама
+        /// Рассылка спама.
         /// </summary>
         public static readonly ReportType Spam = new ReportType("spam");
 
         /// <summary>
-        /// Оскорбительное поведение
+        /// Оскорбительное поведение.
         /// </summary>
         public static readonly ReportType Insult = new ReportType("insult");
 
         /// <summary>
-        /// Рекламная страница, засоряющая поиск
+        /// Рекламная страница, засоряющая поиск.
         /// </summary>
         public static readonly ReportType Advertisment = new ReportType("advertisment");
     }

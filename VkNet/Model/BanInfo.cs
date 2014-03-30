@@ -4,13 +4,40 @@ using VkNet.Utils;
 
 namespace VkNet.Model
 {
+    /// <summary>
+    /// Информация о забанненом (добавленном в черный список) пользователе сообщества.
+    /// </summary>
+    /// <remarks>
+    /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned"/>.
+    /// </remarks>
     public class BanInfo
     {
+        /// <summary>
+        /// Идентификатор администратора, который добавил пользователя в черный список.
+        /// </summary>
         public long? AdminId { get; set; }
+
+        /// <summary>
+        /// Дата добавления пользователя в черный список.
+        /// </summary>
         public DateTime? Date { get; set; }
+
+        /// <summary>
+        /// Текст комментария к бану.
+        /// </summary>
         public string Comment { get; set; }
+
+        /// <summary>
+        /// Дата, когда пользователь будет разбанен.
+        /// </summary>
         public DateTime? EndDate { get; set; }
+
+        /// <summary>
+        /// Причина добавления пользователя в черный список.
+        /// </summary>
         public BanReason Reason { get; set; }
+
+        #region Методы
 
         internal static BanInfo FromJson(VkResponse response)
         {
@@ -24,5 +51,7 @@ namespace VkNet.Model
 
             return info;
         }
+
+        #endregion
     }
 }
