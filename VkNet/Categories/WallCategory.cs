@@ -121,57 +121,122 @@
             return response.ToReadOnlyCollectionOf<Post>(x => x);
         }
 
+        /// <summary>
+        /// Публикует новую запись на своей или чужой стене. 
+        /// Данный метод позволяет создать новую запись на стене, а также опубликовать предложенную новость или отложенную запись. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.post"/>.
+        /// </remarks>
         public void Post()
         {
             // TODO:
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Редактирует запись на стене. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.edit"/>.
+        /// </remarks>
         public void Edit()
         {
             // TODO:
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Удаляет запись со стены. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.delete"/>.
+        /// </remarks>
         public void Delete()
         {
             // TODO:
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Восстанавливает удаленную запись на стене пользователя или сообщества. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restore"/>.
+        /// </remarks>
         public void Restore()
         {
             // TODO:
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Добавляет комментарий к записи на стене пользователя или сообщества. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addComment"/>.
+        /// </remarks>
         public void AddComment()
         {
             // TODO:
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Удаляет комментарий текущего пользователя к записи на своей или чужой стене. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteComment"/>.
+        /// </remarks>
         public void DeleteComment()
         {
             // TODO:
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restoreComment"/>.
+        /// </remarks>
         public void RestoreComment()
         {
             // TODO:
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Добавляет запись на стене пользователя или сообщества в список Мне нравится, а также создает копию понравившейся записи на 
+        /// стене текущего пользователя при необходимости. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addLike"/>.
+        /// </remarks>
         public void AddLike()
         {
-            // TODO:
+            // TODO: ДАННЫЙ МЕТОД УСТАРЕЛ.
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Удаляет запись на стене пользователя из списка Мне нравится. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteLike"/>.
+        /// </remarks>
         public void DeleteLike()
         {
-            // TODO:
+            // TODO: ДАННЫЙ МЕТОД УСТАРЕЛ.
             throw new NotImplementedException();
         } 
     }
