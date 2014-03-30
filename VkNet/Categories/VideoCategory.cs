@@ -462,7 +462,7 @@
         public bool MoveToAlbum(IEnumerable<long> videoIds, long albumId, long? groupId = null)
         {
             if (videoIds == null)
-                throw new ArgumentNullException("Не указаны идентификаторы видеозаписей.", "videoIds");
+                throw new ArgumentNullException("videoIds", "Не указаны идентификаторы видеозаписей.");
 
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
 

@@ -81,13 +81,15 @@
                              {
                                  { "owner_id", ownerId },
                                  { "post_id", postId },
-                                 { "sort", sort.ToString().ToLowerInvariant() },
                                  { "need_likes", needLikes },
                                  { "count", count },
                                  { "offset", offset },
                                  { "preview_length", previewLength },
-                                 { "v", "4.4" }
+                                 { "v", _vk.ApiVersion }
                              };
+
+            if (sort != null)
+                parameters.Add("sort", sort.ToString().ToLowerInvariant());
 
             VkResponseArray response = _vk.Call("wall.getComments", parameters);
 
