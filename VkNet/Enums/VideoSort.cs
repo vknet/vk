@@ -5,9 +5,19 @@
     /// </summary>
     public enum VideoSort
     {
-        // todo add comments
+        /// <summary>
+        /// По дате добавления видеозаписи.
+        /// </summary>
         AddedDate = 0,
+        
+        /// <summary>
+        /// По длительности видеозаписи.
+        /// </summary>
         Duration = 1,
+
+        /// <summary>
+        /// По релевантности видеозаписи запросу.
+        /// </summary>
         Relevance = 2
     }
 }

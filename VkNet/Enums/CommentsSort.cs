@@ -22,12 +22,12 @@
         }
 
         /// <summary>
-        /// В хронологическом порядке.
+        /// В хронологическом порядке (от старых к новым).
         /// </summary>
         public static CommentsSort Asc = new CommentsSort("asc");
 
         /// <summary>
-        /// В порядке, обратном хронологическому.
+        /// В порядке, обратном хронологическому (от новых к старым).
         /// </summary>
         public static CommentsSort Desc = new CommentsSort("desc");
     }

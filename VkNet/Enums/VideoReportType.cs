@@ -1,42 +1,42 @@
 ﻿namespace VkNet.Enums
 {
     /// <summary>
-    /// Тип жалобы
+    /// Тип жалобы.
     /// </summary>
     public enum VideoReportType
     {
         /// <summary>
-        /// todo add comment
+        /// Это спам.
         /// </summary>
         Spam = 0,
 
         /// <summary>
-        /// todo add comment
+        /// Детская порнография.
         /// </summary>
         ChildPornography = 1,
 
         /// <summary>
-        /// todo add comment
+        /// Экстремизм.
         /// </summary>
         Extremism = 2,
 
         /// <summary>
-        /// todo add comment
+        /// Насилие.
         /// </summary>
         Violence = 3,
 
         /// <summary>
-        /// todo add comment
+        /// Пропаганда наркотиков.
         /// </summary>
         DrugPropaganda = 4,
 
         /// <summary>
-        /// todo add comment
+        /// Материал для взрослых.
         /// </summary>
         AdultMaterial  = 5,
 
         /// <summary>
-        /// todo add comment
+        /// Оскорбление.
         /// </summary>
         Abuse = 6,
     }

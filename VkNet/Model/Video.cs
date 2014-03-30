@@ -10,7 +10,7 @@ namespace VkNet.Model
     /// Видеозапись пользователя или группы.
     /// См. описание <see href="http://vk.com/dev/video_object"/>.
     /// </summary>
-    [DebuggerDisplay("Id = {Id}, TItle = {Title}")]
+    [DebuggerDisplay("Id = {Id}, Title = {Title}")]
     public class Video
     {
         /// <summary>
@@ -93,6 +93,11 @@ namespace VkNet.Model
 
         public string AccessKey { get; set; }
 
+        /// <summary>
+        /// Отметка к видеозаписи.
+        /// </summary>
+        public Tag Tag { get; set; }
+
         #region Методы
 
         internal static Video FromJson(VkResponse video)
@@ -120,6 +125,8 @@ namespace VkNet.Model
             result.AlbumId = Utilities.GetNullableLongId(video["album_id"]);
             result.UploadUrl = video["upload_url"];
             result.AccessKey = video["access_key"];
+
+            result.Tag = video;
 
             return result;
         }
