@@ -12,7 +12,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Информация о пользователя.
-    /// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&p=users.get"/>.
+    /// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&amp;p=users.get"/>.
     /// </summary>
     public class User
     {
@@ -338,7 +338,7 @@ namespace VkNet.Model
             user.Relatives = response["relatives"];
             user.Counters = response["counters"];
 
-            // -- дополнительные поля из http://vk.com/pages?oid=-1&p=users.get
+            // -- дополнительные поля из http://vk.com/pages?oid=-1p=users.get
 
             user.Nickname = response["nickname"];
             user.Timezone = response["timezone"];

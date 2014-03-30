@@ -45,7 +45,7 @@
 
         }
 
-        private GroupsFilters(GroupsFilters f1, GroupsFilters f2) : base(f1, f2)
+        private GroupsFilters(GroupsFilters left, GroupsFilters right) : base(left, right)
         {
             
         }

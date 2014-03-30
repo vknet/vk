@@ -8,7 +8,7 @@
 
     /// <summary>
     /// Требуемые для получения поля профиля.
-    /// См. описание <see href="http://vk.com/pages?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D0%B5%D0%B9_%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%B0_fields"/>.
+    /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/>.
     /// </summary>
     public sealed class ProfileFields
     {
@@ -335,11 +335,23 @@
             }
         }
 
-        public static ProfileFields operator |(ProfileFields f1, ProfileFields f2)
+        /// <summary>
+        /// Оператор объединения полей профиля.
+        /// </summary>
+        /// <param name="left">Левое поле выражения объединения.</param>
+        /// <param name="right">Правое поле выражения объединения.</param>
+        /// <returns>Результат объединения.</returns>
+        public static ProfileFields operator |(ProfileFields left, ProfileFields right)
         {
-            return new ProfileFields(f1, f2);
+            return new ProfileFields(left, right);
         }
 
+        /// <summary>
+        /// Возвращает поля профиля в виде строки.
+        /// </summary>
+        /// <returns>
+        /// Строка с полями профиля, разделенными запятыми.
+        /// </returns>
         public override string ToString()
         {
             if (_fields == null || _fields.Count == 0)

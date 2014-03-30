@@ -26,13 +26,13 @@ namespace VkNet.Utils
             Value = value;
         }
 
-        protected VkFilter(VkFilter f1, VkFilter f2)
+        protected VkFilter(VkFilter left, VkFilter right)
         {
             Fields = new List<VkFilter>();
 
-            if (f1.Fields != null && f1.Fields.Count != 0)
+            if (left.Fields != null && left.Fields.Count != 0)
             {
-                foreach (var f in f1.Fields)
+                foreach (var f in left.Fields)
                 {
                     if (Fields.All(m => m.Value != f.Value))
                         Fields.Add(f);
@@ -40,13 +40,13 @@ namespace VkNet.Utils
             }
             else
             {
-                if (Fields.All(m => m.Value != f1.Value))
-                    Fields.Add(f1);
+                if (Fields.All(m => m.Value != left.Value))
+                    Fields.Add(left);
             }
 
-            if (f2.Fields != null && f2.Fields.Count != 0)
+            if (right.Fields != null && right.Fields.Count != 0)
             {
-                foreach (var f in f2.Fields)
+                foreach (var f in right.Fields)
                 {
                     if (Fields.All(m => m.Value != f.Value))
                         Fields.Add(f);
@@ -54,8 +54,8 @@ namespace VkNet.Utils
             }
             else
             {
-                if (Fields.All(m => m.Value != f2.Value))
-                    Fields.Add(f2);
+                if (Fields.All(m => m.Value != right.Value))
+                    Fields.Add(right);
             }
         }
 

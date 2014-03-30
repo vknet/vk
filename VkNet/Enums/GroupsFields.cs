@@ -179,11 +179,23 @@
             }
         }
 
-        public static GroupsFields operator |(GroupsFields f1, GroupsFields f2)
+        /// <summary>
+        /// Оператор объединения дополнительных полей сообщества.
+        /// </summary>
+        /// <param name="left">Левое поле выражения объединения.</param>
+        /// <param name="right">Правое поле выражения объединения.</param>
+        /// <returns>Результат объединения.</returns>
+        public static GroupsFields operator |(GroupsFields left, GroupsFields right)
         {
-            return new GroupsFields(f1, f2);
+            return new GroupsFields(left, right);
         }
 
+        /// <summary>
+        /// Возвращает описание дополнительных полей сообщества в виде строки.
+        /// </summary>
+        /// <returns>
+        /// Строка с дополнительными полями сообщества, разделенными запятыми.
+        /// </returns>
         public override string ToString()
         {
             if (_fields == null || _fields.Count == 0)
