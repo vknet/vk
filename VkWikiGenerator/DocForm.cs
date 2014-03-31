@@ -8,22 +8,18 @@
 
     internal partial class DocForm : Form
     {
-        private readonly IList<VkDocType> _types;
-
         public DocForm(IEnumerable<VkDocType> types)
         {
-            _types = new List<VkDocType>(types);
             InitializeComponent();
 
-            lbTypes.SelectedIndexChanged += TypeChanged;
-            lbMethods.SelectedIndexChanged += MethodChanged;
+            var typesList = new List<VkDocType>(types);
 
-            lbTypes.DataSource = _types;
+            lbTypes.DataSource = typesList;
             lbTypes.SelectedIndex = 0;
 
-            if (_types.Count > 0)
+            if (typesList.Count > 0)
             {
-                lbMethods.DataSource = _types[0].Methods;
+                lbMethods.DataSource = typesList[0].Methods;
                 if (lbMethods.Items.Count > 0)
                     lbMethods.SelectedIndex = 0;
             }
@@ -34,7 +30,7 @@
             var method = lbMethods.SelectedItem as VkDocMethod;
             if (method != null)
             {
-                string doc = DocGenFramework.GenerateVkMethod(method);
+                string doc = DocGenFramework.GenerateWikiMethod(method);
                 txtDoc.Text = doc;
             }
             else

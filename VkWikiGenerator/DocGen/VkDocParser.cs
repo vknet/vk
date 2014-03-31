@@ -8,15 +8,33 @@
     using JetBrains.Annotations;
 
     /// <summary>
-    /// Класс для разбора xml с информацией о классах и методах библиотеки
+    /// Класс для разбора xml с информацией о классах и методах библиотеки, который генерируется компилятором при сборке.
     /// </summary>
     internal class VkDocParser
     {
+        /// <summary>
+        /// Типы сборки.
+        /// </summary>
         public List<VkDocType> Types { get; private set; }
+        
+        /// <summary>
+        /// Методы.
+        /// </summary>
         public List<VkDocMethod> Methods { get; private set; }
+        
+        /// <summary>
+        /// Свойства.
+        /// </summary>
         public List<VkDocProperty> Properties { get; private set; }
+        
+        /// <summary>
+        /// Элементы перечислений.
+        /// </summary>
         public List<VkDocEnumItem> EnumItems { get; private set; }
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkDocParser"/>.
+        /// </summary>
         public VkDocParser()
         {
             Types = new List<VkDocType>();
@@ -24,15 +42,12 @@
             Properties = new List<VkDocProperty>();
             EnumItems = new List<VkDocEnumItem>();
         }
-
-        private void Clear()
-        {
-            Types.Clear();
-            Methods.Clear();
-            Properties.Clear();
-            EnumItems.Clear();
-        }
-            
+         
+        /// <summary>
+        /// Запускает разбор xml с документацией.
+        /// </summary>
+        /// <param name="content">xml с документацией.</param>
+        /// <returns>Список типов сборки.</returns>
         [Pure]
         public IList<VkDocType> Parse(string content)
         {
@@ -68,20 +83,28 @@
             foreach (VkDocType type in Types)
             {
                 VkDocType t = type;
-                List<VkDocMethod> mtds = Methods.Where(m => m.FullName.StartsWith(t.FullName)).ToList();
-                t.Methods = mtds;
-                mtds.ForEach(x => x.Type = t);
+                List<VkDocMethod> methods = Methods.Where(m => m.FullName.StartsWith(t.FullName)).ToList();
+                t.Methods = methods;
+                methods.ForEach(x => x.Type = t);
 
-                List<VkDocProperty> prpts = Properties.Where(m => m.FullName.StartsWith(t.FullName)).ToList();
-                t.Properties = prpts;
-                prpts.ForEach(x => x.Type = t);
+                List<VkDocProperty> properties = Properties.Where(m => m.FullName.StartsWith(t.FullName)).ToList();
+                t.Properties = properties;
+                properties.ForEach(x => x.Type = t);
 
-                List<VkDocEnumItem> items = EnumItems.Where(m => m.FullName.StartsWith(t.FullName)).ToList();
-                t.EnumItems = items;
-                items.ForEach(x => x.Type = t);
+                List<VkDocEnumItem> enumItems = EnumItems.Where(m => m.FullName.StartsWith(t.FullName)).ToList();
+                t.EnumItems = enumItems;
+                enumItems.ForEach(x => x.Type = t);
             }
 
             return Types;
+        }
+
+        private void Clear()
+        {
+            Types.Clear();
+            Methods.Clear();
+            Properties.Clear();
+            EnumItems.Clear();
         }
 
         [Pure]
@@ -95,9 +118,7 @@
                     break;
 
                 if (xml.NodeType == XmlNodeType.Element && xml.Name == "summary")
-                {
                     item.Summary = xml.ReadInnerXml().Trim();
-                }
             }
 
             return item;
@@ -114,9 +135,7 @@
                     break;
 
                 if (xml.NodeType == XmlNodeType.Element && xml.Name == "summary")
-                {
                     prop.Summary = xml.ReadInnerXml().Trim();
-                }
             }
 
             return prop;
@@ -197,6 +216,7 @@
 
             return param;
         }
+
         [Pure]
         private string GetMemberName(XmlReader xml)
         {

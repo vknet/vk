@@ -5,37 +5,67 @@
     using System.IO;
     using System.Text;
 
+    /// <summary>
+    /// Генератор документации.
+    /// </summary>
     internal class DocGenFramework
     {
-        public IList<VkDocType> Types { get; private set; }
-        public VkDocParser Parser { get; private set; }
+        /// <summary>
+        /// Парсер документации.
+        /// </summary>
+        private VkDocParser _parser;
 
+        /// <summary>
+        /// Типы сборки.
+        /// </summary>
+        public IList<VkDocType> Types { get; private set; }
+
+        /// <summary>
+        /// Разбирает xml с документацией.
+        /// </summary>
+        /// <param name="xml">xml с документацией сборки.</param>
         public void Parse(string xml)
         {
-            Parser = new VkDocParser();
-            Types = Parser.Parse(xml);
+            _parser = new VkDocParser();
+            Types = _parser.Parse(xml);
         }
 
+        /// <summary>
+        /// Считывает файл по данному пути.
+        /// </summary>
+        /// <param name="path">
+        /// Путь к файлу.
+        /// </param>
+        /// <returns>
+        /// Содержимое файла.
+        /// </returns>
         public static string ReadFile(string path)
         {
             return File.ReadAllText(path);
         }
 
-        public static string GenerateVkMethod(VkDocMethod method)
+        /// <summary>
+        /// Генерирует Wiki-описание метода.
+        /// </summary>
+        /// <param name="method">Метод, для которого необходимо получить описание.</param>
+        /// <returns>
+        /// Wiki-описание метода.
+        /// </returns>
+        public static string GenerateWikiMethod(VkDocMethod method)
         {
             if (method == null) return string.Empty;
 
-            var tmpl = new StringBuilder(ReadFile(@"templates\method.txt"));
+            var template = new StringBuilder(ReadFile(@"templates\method.txt"));
 
-            if (string.IsNullOrEmpty(tmpl.ToString())) 
+            if (string.IsNullOrEmpty(template.ToString())) 
                 throw new IOException("Method template not found.");
 
-            tmpl.Replace(Placeholder.MethodName, method.ShortName);
-            tmpl.Replace(Placeholder.CategoryName, method.Type.ShortName.Replace("Category", string.Empty));
-            tmpl.Replace(Placeholder.MethodDesc, method.Summary);
-            tmpl.Replace(Placeholder.MethodResult, method.Returns);
-            tmpl.Replace(Placeholder.MethodRamarks, method.Remarks);
-            tmpl.Replace(Placeholder.MethodSignature, method.Signature);
+            template.Replace(Placeholder.MethodName, method.ShortName);
+            template.Replace(Placeholder.CategoryName, method.Type.ShortName.Replace("Category", string.Empty));
+            template.Replace(Placeholder.MethodDesc, method.Summary);
+            template.Replace(Placeholder.MethodResult, method.Returns);
+            template.Replace(Placeholder.MethodRamarks, method.Remarks);
+            template.Replace(Placeholder.MethodSignature, method.Signature);
 
             var parameters = new StringBuilder();
             if (method.Params.Count == 0)
@@ -46,13 +76,12 @@
             {
                 parameters.Append("|| Параметр || Описание ||").AppendLine();
                 foreach (var p in method.Params)
-                {
                     parameters.AppendFormat("| {0} | {1} |{2}", p.Name, p.Description, Environment.NewLine);
-                }
             }
-            tmpl.Replace(Placeholder.ParamsList, parameters.ToString());
+
+            template.Replace(Placeholder.ParamsList, parameters.ToString());
             
-            return tmpl.ToString();
+            return template.ToString();
         }
 
     }

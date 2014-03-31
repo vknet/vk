@@ -93,9 +93,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="templates\method.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="unit_test_template.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

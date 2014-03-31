@@ -4,18 +4,54 @@
     using System.Collections.Generic;
     using System.Text;
 
+    /// <summary>
+    /// Описание метода типа.
+    /// </summary>
     internal class VkDocMethod
     {
+        /// <summary>
+        /// Имя типа, к которому относится метод.
+        /// </summary>
         public VkDocType Type { get; set; }
+
+        /// <summary>
+        /// Короткое имя.
+        /// </summary>
         public string ShortName { get { return VkDocParser.GetShortName(FullName); } }
+
+        /// <summary>
+        /// Полное имя.
+        /// </summary>
         public string FullName { get; set; }
+
+        /// <summary>
+        /// Информация о параметрах метода.
+        /// </summary>
         public IList<VkDocMethodParam> Params { get; private set; }
 
+        /// <summary>
+        /// Пояснение к методу.
+        /// </summary>
         public string Summary { get; set; }
+        
+        /// <summary>
+        /// Возвращаемое методом значение.
+        /// </summary>
         public string Returns { get; set; }
+
+        /// <summary>
+        /// Замечание к методу.
+        /// </summary>
         public string Remarks { get; set; }
+
+        /// <summary>
+        /// Пример использования метода.
+        /// </summary>
         public string Example { get; set; }
 
+        /// <summary>
+        /// Сигнатура метода.
+        /// </summary>
         public string Signature 
         { 
             get
@@ -24,7 +60,8 @@
                     return string.Empty;
 
                 int pos = FullName.IndexOf(ShortName, StringComparison.InvariantCulture);
-                if (pos == -1) return string.Empty;
+                if (pos == -1) 
+                    return string.Empty;
 
                 // заменяем типы CLR
                 var raw = new StringBuilder(FullName.Substring(pos));
@@ -84,11 +121,18 @@
             return fullType.Substring(pos + 1);
         }
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkDocMethod"/>.
+        /// </summary>
         public VkDocMethod()
         {
             Params = new List<VkDocMethodParam>();
         }
 
+        /// <summary>
+        /// Преобразует описание метода в строку.
+        /// </summary>
+        /// <returns>Строковое представление описания метода.</returns>
         public override string ToString()
         {
             return ShortName;

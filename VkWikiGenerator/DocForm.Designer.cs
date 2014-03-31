@@ -40,6 +40,7 @@
             this.lbTypes.Name = "lbTypes";
             this.lbTypes.Size = new System.Drawing.Size(278, 173);
             this.lbTypes.TabIndex = 0;
+            this.lbTypes.SelectedIndexChanged += new System.EventHandler(this.TypeChanged);
             // 
             // lbMethods
             // 
@@ -50,6 +51,7 @@
             this.lbMethods.Name = "lbMethods";
             this.lbMethods.Size = new System.Drawing.Size(277, 160);
             this.lbMethods.TabIndex = 1;
+            this.lbMethods.SelectedIndexChanged += new System.EventHandler(this.MethodChanged);
             // 
             // txtDoc
             // 
