@@ -36,6 +36,18 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getCount"/>.
         /// </remarks>
+        /// <example>
+        /// Получим количество аудиозаписей Павла Дурова.
+        /// <code>
+        /// int count = vk.Audio.GetCount(1);
+        /// </code>
+        /// </example>
+        /// <example>
+        /// Получим количество аудиозаписей в группе с id равным 2.
+        /// <code>
+        /// int count = vk.Audio.GetCount(-2);
+        /// </code>
+        /// </example>
         public int GetCount(long ownerId)
         {
             var parameters = new VkParameters { { "owner_id", ownerId }, { "v", _vk.ApiVersion } };

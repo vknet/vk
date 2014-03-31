@@ -17,9 +17,3 @@ public <#RETURN_VALUE#> <#METHOD_SIGNATURE#>
 !! См. также
 ----
 * <#METHOD_REMARKS#>
-!! Пример
-----
-* <#EXAMPLE_DESC#>
-{code:c#}
-<#EXAMPLE_CODE#>
-{code:c#}

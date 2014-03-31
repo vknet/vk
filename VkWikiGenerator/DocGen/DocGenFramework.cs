@@ -82,9 +82,37 @@
             }
 
             template.Replace(Placeholder.ParamsList, parameters.ToString());
+
+            if (!string.IsNullOrEmpty(method.Example))
+            {
+                var example = TrimLines(method.Example).Replace("<code>", "{code:c#}").Replace("</code>", "{code:c#}");
+                template
+                    .AppendLine()
+                    .AppendLine("!! Пример")
+                    .AppendLine("----")
+                    .Append("* ")
+                    .AppendLine(example);
+            }
             
             return template.ToString();
         }
 
+        private static string TrimLines(string multiLinesStr)
+        {
+            var result = new StringBuilder();
+            using (var reader = new StringReader(multiLinesStr))
+            {
+                for (;;)
+                {
+                    var line = reader.ReadLine();
+                    if (line == null)
+                        break;
+                        
+                    result.AppendLine(line.Trim());
+                }                
+            }
+
+            return result.ToString();
+        }
     }
 }
