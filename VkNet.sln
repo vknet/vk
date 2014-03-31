@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet", "VkNet\VkNet.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet.Tests", "VkNet.Tests\VkNet.Tests.csproj", "{C54A0446-430F-4471-8779-E9F01728C478}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNetFunctionalTests", "VkNetFunctionalTests\VkNetFunctionalTests.csproj", "{4316A539-A6D0-4710-82F2-EFF40EF05413}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkApiRunner", "VkApiRunner\VkApiRunner.csproj", "{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkWikiGenerator", "VkWikiGenerator\VkWikiGenerator.csproj", "{68AF3A88-D51B-4653-A837-8A9EB11DE726}"
@@ -27,10 +25,6 @@ Global
 		{C54A0446-430F-4471-8779-E9F01728C478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C54A0446-430F-4471-8779-E9F01728C478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C54A0446-430F-4471-8779-E9F01728C478}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4316A539-A6D0-4710-82F2-EFF40EF05413}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4316A539-A6D0-4710-82F2-EFF40EF05413}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4316A539-A6D0-4710-82F2-EFF40EF05413}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4316A539-A6D0-4710-82F2-EFF40EF05413}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Release|Any CPU.ActiveCfg = Release|Any CPU
