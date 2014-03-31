@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Moq;
-using NUnit.Framework;
-using VkNet.Categories;
-using VkNet.Enums;
-using VkNet.Exception;
-using VkNet.Model;
-using VkNet.Utils;
-
-namespace VkNet.Tests.Categories
+﻿namespace VkNet.Tests.Categories
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using Moq;
+    using NUnit.Framework;
+    using VkNet.Categories;
+    using VkNet.Enums;
+    using VkNet.Exception;
+    using VkNet.Model;
+    using VkNet.Utils;
+    using VkNet.Utils.Tests;
+
     [TestFixture]
     public class FriendsCategoryTest
     {

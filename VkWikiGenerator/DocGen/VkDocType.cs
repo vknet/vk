@@ -1,4 +1,4 @@
-﻿namespace VkNet.Documentation
+﻿namespace VkWikiGenerator.DocGen
 {
     using System.Collections.Generic;
     using System.Diagnostics;

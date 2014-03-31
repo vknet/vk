@@ -1,9 +1,10 @@
-﻿namespace VkNet.Documentation
+﻿namespace VkWikiGenerator.DocGen
 {
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Xml;
+
     using JetBrains.Annotations;
 
     /// <summary>

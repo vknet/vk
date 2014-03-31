@@ -4,11 +4,10 @@
     using System.Linq;
     using System.Windows.Forms;
 
+    using VkWikiGenerator.DocGen;
+
     internal static class Program
     {
-        /// <summary>
-        ///     The main entry point for the application.
-        /// </summary>
         [STAThread]
         private static void Main()
         {
@@ -16,7 +15,7 @@
             Application.SetCompatibleTextRenderingDefault(false);
 
             var gen = new DocGenFramework();
-            string xml = DocGenFramework.ReadFile("Vk.Net.xml");
+            string xml = DocGenFramework.ReadFile("VkNet.xml");
             gen.Parse(xml);
 
             Application.Run(new DocForm(gen.Types.OrderBy(t => t.FullName)));

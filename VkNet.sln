@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkApiRunner", "VkApiRunner\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkWikiGenerator", "VkWikiGenerator\VkWikiGenerator.csproj", "{68AF3A88-D51B-4653-A837-8A9EB11DE726}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkWikiGenerator.Tests", "VkWikiGenerator.Tests\VkWikiGenerator.Tests.csproj", "{D35F2463-D924-4299-A584-E41C874762D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet.Utils", "VkNet.Utils\VkNet.Utils.csproj", "{B229B508-0403-46ED-BC78-A10AE3CC9DE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{68AF3A88-D51B-4653-A837-8A9EB11DE726}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68AF3A88-D51B-4653-A837-8A9EB11DE726}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68AF3A88-D51B-4653-A837-8A9EB11DE726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D35F2463-D924-4299-A584-E41C874762D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D35F2463-D924-4299-A584-E41C874762D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D35F2463-D924-4299-A584-E41C874762D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D35F2463-D924-4299-A584-E41C874762D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B229B508-0403-46ED-BC78-A10AE3CC9DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B229B508-0403-46ED-BC78-A10AE3CC9DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B229B508-0403-46ED-BC78-A10AE3CC9DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B229B508-0403-46ED-BC78-A10AE3CC9DE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿namespace VkNet.Documentation
+﻿namespace VkWikiGenerator.DocGen
 {
     internal class VkDocMethodParam
     {

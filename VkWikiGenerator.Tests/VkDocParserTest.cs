@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
-using VkNet.Documentation;
-
-namespace VkNet.Tests.Documentation
+﻿namespace VkWikiGenerator.Tests
 {
+    using System.Collections.Generic;
+
+    using NUnit.Framework;
+
+    using VkNet.Utils.Tests;
+
+    using VkWikiGenerator.DocGen;
+
     [TestFixture]
     public class VkDocParserTest
     {

@@ -1,11 +1,9 @@
-﻿namespace VkWikiGenerator
+﻿namespace VkWikiGenerator.DocGen
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
-
-    using VkNet.Documentation;
 
     internal class DocGenFramework
     {

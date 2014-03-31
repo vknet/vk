@@ -46,6 +46,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
     <Reference Include="WatiN.Core">
       <HintPath>..\packages\WatiN.2.1.0\lib\net35\WatiN.Core.dll</HintPath>
     </Reference>
@@ -60,7 +61,13 @@
     <Compile Include="DocForm.Designer.cs">
       <DependentUpon>DocForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DocGenFramework.cs" />
+    <Compile Include="DocGen\DocGenFramework.cs" />
+    <Compile Include="DocGen\VkDocEnumItem.cs" />
+    <Compile Include="DocGen\VkDocMethod.cs" />
+    <Compile Include="DocGen\VkDocMethodParam.cs" />
+    <Compile Include="DocGen\VkDocParser.cs" />
+    <Compile Include="DocGen\VkDocProperty.cs" />
+    <Compile Include="DocGen\VkDocType.cs" />
     <Compile Include="Placeholder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,9 +1,8 @@
-﻿using System.Text;
-
-namespace VkNet.Documentation
+﻿namespace VkWikiGenerator.DocGen
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
 
     internal class VkDocMethod
     {

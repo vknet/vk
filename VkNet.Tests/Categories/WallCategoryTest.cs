@@ -284,7 +284,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetComments_ReturnLikesAndAttachments()
         {
-            const string url = "https://api.vk.com/method/wall.getComments?owner_id=12312&post_id=12345&sort=asc&need_likes=1&preview_length=0&v=4.4&access_token=token";
+            const string url = "https://api.vk.com/method/wall.getComments?owner_id=12312&post_id=12345&need_likes=1&preview_length=0&v=5.9&sort=asc&access_token=token";
             const string json =
                 @"{
                     'response': [

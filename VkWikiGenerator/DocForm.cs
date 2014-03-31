@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Windows.Forms;
 
-    using VkNet.Documentation;
+    using VkWikiGenerator.DocGen;
 
     internal partial class DocForm : Form
     {
