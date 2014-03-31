@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     /// <summary>
@@ -50,6 +51,28 @@
         public string Example { get; set; }
 
         /// <summary>
+        /// Пространство имен.
+        /// </summary>
+        public string Namespace { get { return Type.Namespace; } }
+
+        /// <summary>
+        /// Тип возвращаемого методом значения.
+        /// </summary>
+        public string ReturnType
+        {
+            get
+            {
+                var type = System.Type.GetType(string.Format("{0},{1}", Type.FullName, Type.AssemblyName));
+                if (type == null)
+                    return string.Empty;
+
+                var returnTypeName = type.GetMethods().First(i => i.Name == ShortName).ReturnType.FullName;
+                var normalizedTypeName = NormalizeTypeName(returnTypeName);
+                return VkDocParser.GetShortName(normalizedTypeName);
+            }
+        }
+
+        /// <summary>
         /// Сигнатура метода.
         /// </summary>
         public string Signature 
@@ -64,21 +87,9 @@
                     return string.Empty;
 
                 // заменяем типы CLR
-                var raw = new StringBuilder(FullName.Substring(pos));
-                raw.Replace("System.Nullable{System.Int32}", "int?")
-                   .Replace("System.Int32@", "out int")
-                   .Replace("System.Int64@", "out long")
-                   .Replace("System.Nullable{System.Int64}", "long?")
-                   .Replace("System.Int64", "long")
-                   .Replace("System.Int32", "int")
-                   .Replace("System.String", "string")
-                   .Replace("System.Boolean", "bool")
-                   .Replace("System.Collections.Generic.", string.Empty)
-                   .Replace("{", "<")
-                   .Replace("}", ">");
-//                   .Replace(",", ", ");
+                var normalizedTypeName = NormalizeTypeName(FullName.Substring(pos));
 
-                return InsertParameters(raw.ToString());
+                return InsertParameters(normalizedTypeName);
             } 
         }
 
@@ -136,6 +147,22 @@
         public override string ToString()
         {
             return ShortName;
+        }
+
+        private string NormalizeTypeName(string typeName)
+        {
+            return typeName
+                    .Replace("System.Nullable{System.Int32}", "int?")
+                    .Replace("System.Int32@", "out int")
+                    .Replace("System.Int64@", "out long")
+                    .Replace("System.Nullable{System.Int64}", "long?")
+                    .Replace("System.Int64", "long")
+                    .Replace("System.Int32", "int")
+                    .Replace("System.String", "string")
+                    .Replace("System.Boolean", "bool")
+                    .Replace("System.Collections.Generic.", string.Empty)
+                    .Replace("{", "<")
+                    .Replace("}", ">");
         }
     }
 }

@@ -66,6 +66,8 @@
             template.Replace(Placeholder.MethodResult, method.Returns);
             template.Replace(Placeholder.MethodRamarks, method.Remarks);
             template.Replace(Placeholder.MethodSignature, method.Signature);
+            template.Replace(Placeholder.Namespace, method.Namespace);
+            template.Replace(Placeholder.ReturnType, method.ReturnType);
 
             var parameters = new StringBuilder();
             if (method.Params.Count == 0)

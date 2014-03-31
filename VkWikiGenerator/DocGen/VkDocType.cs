@@ -42,8 +42,18 @@
         /// <summary>
         /// Элементы перечисления типа.
         /// </summary>
-        public List<VkDocEnumItem> EnumItems { get; set; } 
-        
+        public List<VkDocEnumItem> EnumItems { get; set; }
+
+        /// <summary>
+        /// Пространство имен.
+        /// </summary>
+        public string Namespace { get { return VkDocParser.GetNamespace(FullName); } }
+
+        /// <summary>
+        /// Имя сборки, в которой находится тип.
+        /// </summary>
+        public string AssemblyName { get { return "VkNet"; } }
+
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="VkDocType"/>.
         /// </summary>

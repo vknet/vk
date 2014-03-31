@@ -65,8 +65,12 @@
                         if (string.IsNullOrEmpty(name)) continue;
 
                         if (name.StartsWith("T:"))
-                            Types.Add(GetVkDocType(xml));
-                        
+                        {
+                            var vkDocType = GetVkDocType(xml);
+                            if (!vkDocType.FullName.StartsWith("JetBrains.Annotations"))
+                                Types.Add(vkDocType);
+                        }
+
                         if (name.StartsWith("M:"))
                             Methods.Add(GetVkDocMethod(xml));
                         
@@ -245,6 +249,18 @@
             if (pos == -1) return fullName;
 
             return fullName.Substring(pos + 1);
+        }
+
+        [Pure]
+        internal static string GetNamespace(string fullName)
+        {
+            if (string.IsNullOrEmpty(fullName)) return string.Empty;
+
+            int position = fullName.LastIndexOf('.');
+            if (position == -1)
+                return string.Empty;
+
+            return fullName.Substring(0, position);
         }
     }
 }

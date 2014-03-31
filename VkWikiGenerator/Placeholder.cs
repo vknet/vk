@@ -14,5 +14,7 @@
         public const string ExampleDesc = "<#EXAMPLE_DESC#>";
         public const string ExampleCode = "<#EXAMPLE_CODE#>";
         public const string MethodSignature = "<#METHOD_SIGNATURE#>";
+        public const string Namespace = "<#NAMESPACE#>";
+        public const string ReturnType = "<#RETURN_VALUE#>";
     }
 }
