@@ -1,39 +1,39 @@
 ﻿namespace VkNet.Enums
 {
     /// <summary>
-    /// Падеж
+    /// Падеж.
     /// </summary>
     public class NameCase
     {
         private readonly string _name;
 
         /// <summary>
-        /// Именительный
+        /// Именительный.
         /// </summary>
         public static readonly NameCase Nom = new NameCase("nom");
 
         /// <summary>
-        /// Родительный
+        /// Родительный.
         /// </summary>
         public static readonly NameCase Gen = new NameCase("gen");
 
         /// <summary>
-        /// Дательный
+        /// Дательный.
         /// </summary>
         public static readonly NameCase Dat = new NameCase("dat");
 
         /// <summary>
-        /// Винительный
+        /// Винительный.
         /// </summary>
         public static readonly NameCase Acc = new NameCase("acc");
 
         /// <summary>
-        /// Творительный
+        /// Творительный.
         /// </summary>
         public static readonly NameCase Ins = new NameCase("ins");
 
         /// <summary>
-        /// Предложный
+        /// Предложный.
         /// </summary>
         public static readonly NameCase Abl = new NameCase("abl");
 
@@ -42,6 +42,10 @@
             _name = name;
         }
 
+        /// <summary>
+        /// Возвращает строковое название падежа.
+        /// </summary>
+        /// <returns>Строковое название падежа в виде строки.</returns>
         public override string ToString()
         {
             return _name;

@@ -16,7 +16,7 @@
     {
         private readonly VkApi _vk;
 
-        public GroupsCategory(VkApi vk)
+        internal GroupsCategory(VkApi vk)
         {
             _vk = vk;
         }
@@ -29,7 +29,7 @@
         /// <returns>В случае успешного вступления в группу метод вернёт true, иначе false.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.join"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.join"/>.
         /// </remarks>
         public bool Join(long gid, bool notSure = false)
         {
@@ -45,7 +45,7 @@
         /// <returns>В случае успешного выхода из группы метод вернёт true, иначе false.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.leave"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.leave"/>.
         /// </remarks>
         public bool Leave(long gid)
         {
@@ -63,7 +63,7 @@
         /// <param name="fields">Список полей информации о группах</param>
         /// <returns>Список групп</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.get"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get"/>.
         /// </remarks>
         public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null)
         {
@@ -85,7 +85,7 @@
         /// <param name="fields">Список полей информации о группах</param>
         /// <returns>Список групп</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getById"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
         /// </remarks>
         public ReadOnlyCollection<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
         {
@@ -102,7 +102,7 @@
         /// <param name="fields">Список полей информации о группах</param>
         /// <returns>Список групп</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getById"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
         /// </remarks>
         public Group GetById(long gid, GroupsFields fields = null)
         {
@@ -121,7 +121,7 @@
         /// <param name="sort">Сортировка Id пользователей</param>
         /// <returns>Id пользователей состоящих в группе</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getMembers"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers"/>.
         /// </remarks>
         public ReadOnlyCollection<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null)
         {
@@ -145,7 +145,7 @@
         /// <param name="uid">Id пользователя</param>
         /// <returns>True если пользователь состоит в группе, иначе False</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.isMember"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
         /// </remarks>
         public bool IsMember(long gid, long uid)
         {
@@ -163,7 +163,7 @@
         /// <param name="count">Количество в выбоке</param>
         /// <returns>Список объектов групп</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.search"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search"/>.
         /// </remarks>
         public ReadOnlyCollection<Group> Search(string query, out int totalCount, int? offset = null, int? count = null)
         {
@@ -186,7 +186,7 @@
         /// <param name="offset">смещение, необходимое для выборки определённого подмножества приглашений</param>
         /// <returns>После успешного выполнения возвращает список объектов сообществ с дополнительным полем InvitedBy, содержащим идентификатор пользователя, который отправил приглашение.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getInvites"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvites"/>.
         /// </remarks>
         public ReadOnlyCollection<Group> GetInvites(int? count = null, int? offset = null)
         {
@@ -204,17 +204,18 @@
         }
 
         /// <summary>
-        /// Добавляет пользователя в черный список группы
+        /// Добавляет пользователя в черный список группы.
         /// </summary>
-        /// <param name="groupId">идентификатор группы</param>
-        /// <param name="userId">идентификатор пользователя, которого нужно добавить в черный список</param>
-        /// <param name="endDate">дата завершения срока действия бана. Если параметр не указан пользователь будет заблокирован навсегда. </param>
-        /// <param name="reason">причина бана <see cref="BanReason"/></param>
-        /// <param name="comment">текст комментария к бану</param>
-        /// <param name="commentVisible">true – текст комментария будет отображаться пользователю. false – текст комментария не доступен пользователю. (по умолчанию)</param>
+        /// <param name="groupId">Идентификатор группы.</param>
+        /// <param name="userId">Идентификатор пользователя, которого нужно добавить в черный список.</param>
+        /// <param name="endDate">Дата завершения срока действия бана. Если параметр не указан пользователь будет заблокирован навсегда.</param>
+        /// <param name="reason">Причина бана <see cref="BanReason"/>.</param>
+        /// <param name="comment">Текст комментария к бану.</param>
+        /// <param name="commentVisible">true – текст комментария будет отображаться пользователю. false – текст комментария не доступен 
+        /// пользователю (по умолчанию).</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.banUser"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.banUser"/>.
         /// </remarks>
         public bool BanUser(long groupId, long userId, DateTime? endDate = null, BanReason? reason = null,
                             string comment = "", bool commentVisible = false)
@@ -243,7 +244,7 @@
         /// <param name="offset">смещение, необходимое для выборки определенного подмножества черного списка</param>
         /// <returns>После успешного выполнения возвращает список объектов пользователей с дополнительным полем <see cref="BanInfo"/></returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.getBanned"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned"/>.
         /// </remarks>
         public ReadOnlyCollection<User> GetBanned(long groupId, int? count = null, int? offset = null)
         {
@@ -270,7 +271,7 @@
         /// <param name="userId">идентификатор пользователя, которого нужно убрать из черного списка</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/groups.unbanUser"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.unbanUser"/>.
         /// </remarks>
         public bool UnbanUser(long groupId, long userId)
         {

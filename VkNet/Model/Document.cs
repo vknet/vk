@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Информация о документе.
-    /// См. описание <see cref="http://vk.com/dev/doc"/>.
+    /// См. описание <see href="http://vk.com/dev/doc"/>.
     /// </summary>
     public class Document
     {

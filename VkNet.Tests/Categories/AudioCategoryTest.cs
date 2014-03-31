@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories
             var mock = new Mock<IBrowser>();
             mock.Setup(m => m.GetJson(url.Replace('\'', '"'))).Returns(json);
             
-            return new AudioCategory(new VkApi { AccessToken = "token", Browser = mock.Object, Version = version});
+            return new AudioCategory(new VkApi { AccessToken = "token", Browser = mock.Object, ApiVersion = version});
         }
 
         #region GetCount

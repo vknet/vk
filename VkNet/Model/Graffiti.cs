@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Граффити.
-    /// См. описание <see cref="http://vk.com/dev/attachments_w"/>. Раздел "Граффити".
+    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Граффити".
     /// </summary>
     public class Graffiti
     {

@@ -5,7 +5,7 @@
     /// <summary>
     /// Объект, с помощью которого можно подключиться к серверу быстрых сообщений для мгновенного 
     /// получения приходящих сообщений и других событий.  
-    /// См. описание <see cref="http://vk.com/dev/messages.getLongPollServer"/>.
+    /// См. описание <see href="http://vk.com/dev/messages.getLongPollServer"/>.
     /// </summary>
     public class LongPollServerResponse
     {

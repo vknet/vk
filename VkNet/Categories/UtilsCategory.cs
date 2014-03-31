@@ -8,13 +8,13 @@
     using Utils;
 
     /// <summary>
-    /// Служебные методы
+    /// Служебные методы.
     /// </summary>
     public class UtilsCategory
     {
         private readonly VkApi _vk;
 
-        public UtilsCategory(VkApi vk)
+        internal UtilsCategory(VkApi vk)
         {
             _vk = vk;
         }
@@ -25,7 +25,7 @@
         /// <param name="url">Внешняя ссылка, которую необходимо проверить.</param>
         /// <returns>Статус ссылки</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/utils.checkLink"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
         [Pure]
         public LinkAccessType CheckLink([NotNull]string url)
@@ -44,7 +44,7 @@
         /// <param name="screenName">Короткое имя</param>
         /// <returns>Тип объекта</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/utils.resolveScreenName"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.resolveScreenName"/>.
         /// </remarks>
         [Pure]
         public VkObject ResolveScreenName([NotNull]string screenName)
@@ -64,7 +64,7 @@
         /// </summary>
         /// <returns>Время на сервере ВКонтакте в unixtime</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/utils.getServerTime"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.getServerTime"/>.
         /// </remarks>
         [Pure]
         public DateTime GetServerTime()

@@ -33,10 +33,13 @@
         public static readonly GroupsFilters Publics = new GroupsFilters(1 << 4, "publics");
 
         /// <summary>
-        /// Вернуть все события, в которых участвует пользователь является.
+        /// Вернуть все события, в которых участвует пользователь.
         /// </summary>
         public static readonly GroupsFilters Events = new GroupsFilters(1 << 5, "events");
 
+        /// <summary>
+        /// Вернуть все сообщества, в которых задействован пользователь.
+        /// </summary>
         public static readonly GroupsFilters All = Administrator | Editor | Moderator | Groups | Publics | Events;
 
         private GroupsFilters(int value, string name)
@@ -45,14 +48,20 @@
 
         }
 
-        private GroupsFilters(GroupsFilters f1, GroupsFilters f2) : base(f1, f2)
+        private GroupsFilters(GroupsFilters left, GroupsFilters right) : base(left, right)
         {
             
         }
 
-        public static GroupsFilters operator |(GroupsFilters f1, GroupsFilters f2)
+        /// <summary>
+        /// Оператор объединения фильтров сообществ пользователя.
+        /// </summary>
+        /// <param name="left">Левое поле выражения объединения.</param>
+        /// <param name="right">Правое поле выражения объединения.</param>
+        /// <returns>Результат объединения.</returns>
+        public static GroupsFilters operator |(GroupsFilters left, GroupsFilters right)
         {
-            return new GroupsFilters(f1, f2);
+            return new GroupsFilters(left, right);
         }
     }
 }

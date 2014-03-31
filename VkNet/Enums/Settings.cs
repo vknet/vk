@@ -7,7 +7,7 @@
 
     /// <summary>
     /// Права доступа приложений.
-    /// См. описание <see cref="http://vk.com/pages?oid=-1&p=%D0%9F%D1%80%D0%B0%D0%B2%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B0_%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9"/>.
+    /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Права_доступа_приложений"/>.
     /// </summary>
     public sealed class Settings
     {
@@ -15,6 +15,9 @@
 
         private int _value;
 
+        /// <summary>
+        /// Объединенные права доступа.
+        /// </summary>
         public int Value
         {
             get { return _scopes != null && _scopes.Any() ? _scopes.Sum(s => s.Value) : _value; }
@@ -165,11 +168,23 @@
             }
         }
 
-        public static Settings operator |(Settings s1, Settings s2)
+        /// <summary>
+        /// Оператор объединения прав доступа.
+        /// </summary>
+        /// <param name="left">Левое поле выражения объединения.</param>
+        /// <param name="right">Правое поле выражения объединения.</param>
+        /// <returns>Результат объединения.</returns>
+        public static Settings operator |(Settings left, Settings right)
         {
-            return new Settings(s1, s2);
+            return new Settings(left, right);
         }
 
+        /// <summary>
+        /// Возвращает права доступа в виде строки.
+        /// </summary>
+        /// <returns>
+        /// Строка с правами доступа, разделенными запятыми.
+        /// </returns>
         public override string ToString()
         {
             if (_scopes == null || _scopes.Count == 0)

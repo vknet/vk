@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using Moq;
+
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Exception;

@@ -6,13 +6,13 @@
     using Utils;
 
     /// <summary>
-    /// Категория работы с закладками
+    /// Категория работы с закладками.
     /// </summary>
     public class FaveCategory
     {
         private readonly VkApi _vk;
 
-        public FaveCategory(VkApi vk)
+        internal FaveCategory(VkApi vk)
         {
             _vk = vk;
         }
@@ -24,7 +24,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает список объектов пользователей.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getUsers"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getUsers"/>.
         /// </remarks>
         public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
         {
@@ -35,7 +35,7 @@
                 {
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getUsers", parameters);
@@ -50,7 +50,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает список объектов фотографий.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getPhotos"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPhotos"/>.
         /// </remarks>
         public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null)
         {
@@ -61,7 +61,7 @@
                 {
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getPhotos", parameters);
@@ -75,7 +75,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getPosts"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts"/>.
         /// </remarks>
         public ReadOnlyCollection<Post> GetPosts(int? count = null, int? offset = null)//, bool extended = false)
         {
@@ -87,7 +87,7 @@
                     {"count", count},
                     {"offset", offset},
                     //{"extended", extended},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getPosts", parameters);
@@ -101,7 +101,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getVideos"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos"/>.
         /// </remarks>
         public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
         {
@@ -112,7 +112,7 @@
                 {
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getVideos", parameters);
@@ -127,7 +127,7 @@
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
         /// <returns>После успешного выполнения возвращает общее количество ссылок и массив объектов Link.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/fave.getLinks"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks"/>.
         /// </remarks>
         public ReadOnlyCollection<Link> GetLinks(int? count = null, int? offset = null)
         {
@@ -138,7 +138,7 @@
                 {
                     {"count", count},
                     {"offset", offset},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("fave.getLinks", parameters);

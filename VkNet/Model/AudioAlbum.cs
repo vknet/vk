@@ -2,11 +2,30 @@
 
 namespace VkNet.Model
 {
+    /// <summary>
+    /// Информация об аудиоальбоме.
+    /// </summary>
+    /// <remarks>
+    /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getAlbums"/>.
+    /// </remarks>
     public class AudioAlbum
     {
+        /// <summary>
+        /// Идентификатор владельца альбома.
+        /// </summary>
         public long? OwnerId { get; set; }
+
+        /// <summary>
+        /// Идентификатор альбома.
+        /// </summary>
         public long? AlbumId { get; set; }
+
+        /// <summary>
+        /// Название альбома.
+        /// </summary>
         public string Title { get; set; }
+
+        #region Методы
 
         internal static AudioAlbum FromJson(VkResponse response)
         {
@@ -18,5 +37,7 @@ namespace VkNet.Model
 
             return album;
         }
+
+        #endregion
     }
 }

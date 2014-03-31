@@ -561,6 +561,11 @@
             return response == null ? null : VideoAlbum.FromJson(response);
         }
 
+        public static implicit operator Tag(VkResponse response)
+        {
+            return response == null ? null : Tag.FromJson(response);
+        }
+
         #endregion
     }
 }

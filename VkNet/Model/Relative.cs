@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Информация о родственнике.
-    /// См. описание <see cref="http://vk.com/dev/fields"/>. Раздел relatives.
+    /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел relatives.
     /// </summary>
     public class Relative
     {

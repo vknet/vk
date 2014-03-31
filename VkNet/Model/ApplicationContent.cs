@@ -4,7 +4,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Контент приложения.
-    /// См. описание <see cref="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".
+    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".
     /// </summary>
     public class ApplicationContent
     {

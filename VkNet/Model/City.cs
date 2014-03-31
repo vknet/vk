@@ -5,29 +5,36 @@ namespace VkNet.Model
     using System;
 
     /// <summary>
-    /// Город
+    /// Город.
     /// </summary>
+    /// <remarks>
+    /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCities"/>.
+    /// </remarks>
     public class City
     {
         /// <summary>
-        /// Идентификатор города
+        /// Идентификатор города.
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// Название города
+        /// Название города.
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// Район
+        /// Район.
         /// </summary>
         public string Area { get; set; }
 
         /// <summary>
-        /// Область
+        /// Область.
         /// </summary>
         public string Region { get; set; }
+
+        /// <summary>
+        /// Является ли город основным.
+        /// </summary>
         public bool Important { get; set; }
 
         #region Inernal Methods

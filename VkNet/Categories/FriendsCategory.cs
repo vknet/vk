@@ -16,7 +16,7 @@
     {
         private readonly VkApi _vk;
 
-        public FriendsCategory(VkApi vk)
+        internal FriendsCategory(VkApi vk)
         {
             _vk = vk;
         }
@@ -33,7 +33,7 @@
         /// Если значение поля <paramref name="fields"/> не указано, то у возвращаемых друзей заполняется только поле Id.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.get"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get"/>.
         /// </remarks>       
         public ReadOnlyCollection<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null)
         {
@@ -55,7 +55,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getAppUsers"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getAppUsers"/>.
         /// </remarks>       
         public ReadOnlyCollection<long> GetAppUsers()
         {
@@ -74,7 +74,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getOnline"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getOnline"/>.
         /// </remarks>       
         public ReadOnlyCollection<long> GetOnline(long uid)
         {
@@ -94,7 +94,7 @@
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getMutual"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getMutual"/>.
         /// </remarks>       
         public ReadOnlyCollection<long> GetMutual(long targetUid, long sourceUid)
         {
@@ -112,7 +112,7 @@
         /// <returns>Метод возвращает словарь, ключом которого является идентификатор пользователя (uid), а значением значение типа <see cref="FriendStatus"/>.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.areFriends"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.areFriends"/>.
         /// </remarks>       
         public IDictionary<long, FriendStatus> AreFriends(IEnumerable<long> uids)
         {
@@ -133,7 +133,7 @@
         /// <returns>После успешного выполнения возвращает идентификатор созданного списка друзей.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        ///  Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.addList"/>.
+        ///  Страница документации ВКонтакте <see href="http://vk.com/dev/friends.addList"/>.
         /// </remarks>
         /// 
         public long AddList(string name)
@@ -144,12 +144,12 @@
         /// <summary>
         /// Создает новый список друзей у текущего пользователя.
         /// </summary>
-        /// <param name="name">название создаваемого списка друзей.</param>
-        /// <param name="userIds">идентификаторы пользователей, которых необходимо поместить в созданный список. </param>
+        /// <param name="name">Название создаваемого списка друзей.</param>
+        /// <param name="userIds">Идентификаторы пользователей, которых необходимо поместить в созданный список.</param>
         /// <returns>После успешного выполнения возвращает идентификатор созданного списка друзей.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.addList"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.addList"/>.
         /// </remarks>
         public long AddList(string name, IEnumerable<long> userIds)
         {
@@ -172,7 +172,7 @@
         /// <param name="listId">идентификатор списка друзей, который необходимо удалить</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.deleteList"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.deleteList"/>.
         /// </remarks>
         public bool DeleteList(long listId)
         {
@@ -190,7 +190,7 @@
         /// </summary>
         /// <returns>После успешного выполнения возвращает массив объектов <see cref="FriendList"/></returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getLists"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getLists"/>.
         /// </remarks>
         public ReadOnlyCollection<FriendList> GetLists()
         {
@@ -209,7 +209,7 @@
         /// <param name="deleteUserIds">идентификаторы пользователей, которых необходимо изъять из списка. (в случае если не передан user_ids) </param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.editList"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.editList"/>.
         /// </remarks>
         public bool EditList(long listId, string name = null, IEnumerable<long> userIds = null, IEnumerable<long> addUserIds = null, IEnumerable<long> deleteUserIds = null)
         {
@@ -234,7 +234,7 @@
         /// </summary>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.deleteAllRequests"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.deleteAllRequests"/>.
         /// </remarks>
         public bool DeleteAllRequests()
         {
@@ -253,7 +253,7 @@
         /// 4 — повторная отправка заявки.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.add"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.add"/>.
         /// </remarks>
         public AddFriendStatus Add(long userId, string text = "")
         {
@@ -280,7 +280,7 @@
         /// 3 — рекомендация добавить в друзья данного пользователя удалена.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.delete"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.delete"/>.
         /// </remarks>
         public DeleteFriendStatus Delete(long userId)
         {
@@ -299,7 +299,7 @@
         /// <param name="listIds">идентификаторы списков друзей, в которые нужно добавить пользователя</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.edit"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.edit"/>.
         /// </remarks>
         public bool Edit(long userId, IEnumerable<long> listIds)
         {
@@ -319,7 +319,7 @@
         /// <param name="count">максимальное количество недавно добавленных друзей, которое необходимо получить</param>
         /// <returns>Идентификаторы недавно добавленных друзей текущего пользователя</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getRecent"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getRecent"/>.
         /// </remarks>
         public ReadOnlyCollection<long> GetRecent(int? count = null)
         {
@@ -335,20 +335,28 @@
         /// <summary>
         /// Возвращает информацию о полученных или отправленных заявках на добавление в друзья для текущего пользователя
         /// </summary>
-        /// <param name="count">максимальное количество заявок на добавление в друзья, которые необходимо получить (не более 1000)</param>
-        /// <param name="offset">смещение, необходимое для выборки определенного подмножества заявок на добавление в друзья</param>
-        /// <param name="extended">определяет, требуется ли возвращать в ответе сообщения от пользователей, подавших заявку на добавление в друзья. И отправителя рекомендации при suggested=true. </param>
-        /// <param name="needMutual">определяет, требуется ли возвращать в ответе список общих друзей, если они есть. Обратите внимание, что при использовании need_mutual будет возвращено не более 20 заявок. </param>
-        /// <param name="out">false — возвращать полученные заявки в друзья (по умолчанию), true — возвращать отправленные пользователем заявки. </param>
-        /// <param name="sort">false — сортировать по дате добавления, true — сортировать по количеству общих друзей. (Если out = true, данный параметр не учитывается). </param>
-        /// <param name="suggested">true — возвращать рекомендованных другими пользователями друзей, false — возвращать заявки в друзья (по умолчанию). </param>
+        /// <param name="count">Максимальное количество заявок на добавление в друзья, которые необходимо получить (не более 1000)</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества заявок на добавление в друзья</param>
+        /// <param name="extended">Определяет, требуется ли возвращать в ответе сообщения от пользователей, подавших заявку на добавление 
+        /// в друзья. И отправителя рекомендации при suggested=true.</param>
+        /// <param name="needMutual">Определяет, требуется ли возвращать в ответе список общих друзей, если они есть. Обратите внимание, 
+        /// что при использовании need_mutual будет возвращено не более 20 заявок.</param>
+        /// <param name="out">false — возвращать полученные заявки в друзья (по умолчанию), true — возвращать отправленные пользователем 
+        /// заявки.</param>
+        /// <param name="sort">false — сортировать по дате добавления, true — сортировать по количеству общих друзей. (Если out = true, 
+        /// данный параметр не учитывается).</param>
+        /// <param name="suggested">true — возвращать рекомендованных другими пользователями друзей, false — возвращать заявки в друзья 
+        /// (по умолчанию).</param>
         /// <returns>
-        /// - Если не установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по времени подачи заявки список идентификаторов (id) пользователей (кому или от кого пришла заявка).
-        /// 
-        /// - Если установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по времени подачи заявки массив объектов, содержащих информацию о заявках на добавление в друзья. Каждый из объектов содержит поле uid, являющийся идентификатором пользователя. При наличии общих друзей, в объекте будет содержаться поле mutual, в котором будет находиться список идентификаторов общих друзей.
+        /// - Если не установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по 
+        /// времени подачи заявки список идентификаторов (id) пользователей (кому или от кого пришла заявка).
+        /// - Если установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по 
+        /// времени подачи заявки массив объектов, содержащих информацию о заявках на добавление в друзья. Каждый из объектов содержит 
+        /// поле uid, являющийся идентификатором пользователя. При наличии общих друзей, в объекте будет содержаться поле mutual, в 
+        /// котором будет находиться список идентификаторов общих друзей.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/friends.getRequests"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getRequests"/>.
         /// </remarks>
         // todo add more tests on out, suggested and mutual params
         public ReadOnlyCollection<long> GetRequests(int? count = null, int? offset = null, bool extended = false, bool needMutual = false, bool @out = false, bool sort = false, bool suggested = false)

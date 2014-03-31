@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Информация о репостах записи. 
-    /// См. описание <see cref="http://vk.com/dev/post"/>. Раздел reposts.
+    /// См. описание <see href="http://vk.com/dev/post"/>. Раздел reposts.
     /// </summary>
     public class Reposts
     {

@@ -168,6 +168,8 @@ namespace VkNet.Tests.Documentation
             Список идентификаторов аудиозаписей группы, по которым необходимо получить информацию.
             Если список не указан (null), то ограничение на идентификаторы аудиозаписей на накладываются.
             </param>            
+            <param name=""count"">Требуемое количество аудиозаписей.</param>
+            <param name=""offset"">Смещение относительно первой найденной аудиозаписи (для выборки определенного подмножества аудиозаписей).</param>
             <returns>
             В случае успеха возвращает затребованный список аудиозаписей группы.
             </returns>
@@ -215,13 +217,13 @@ namespace VkNet.Tests.Documentation
             first.FullName.ShouldEqual("VkNet.Categories.AudioCategory.GetFromGroup(System.Int64,System.Nullable{System.Int64},System.Collections.Generic.IEnumerable{System.Int64},System.Nullable{System.Int32},System.Nullable{System.Int32})");
 
             first.ShortName.ShouldEqual("GetFromGroup");
-            first.Signature.ShouldEqual("GetFromGroup(long, long?, IEnumerable<long>, int?, int?)");
+            first.Signature.ShouldEqual("GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids, int? count = null, int? offset = null)");
 
             first.Remarks.ShouldEqual(@"Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref=""F:VkNet.Enums.Settings.Audio"" />.
             Страница документации ВКонтакте <see cref=""!:http://vk.com/dev/audio.get"" />.");
             first.Returns.ShouldEqual("В случае успеха возвращает затребованный список аудиозаписей группы.");
             first.Summary.ShouldEqual("Возвращает список аудиозаписей группы.");
-            first.Params.Count.ShouldEqual(3);
+            first.Params.Count.ShouldEqual(5);
             first.Params[0].Name.ShouldEqual("gid");
             first.Params[0].Description.ShouldEqual("Идентификатор группы, у которой необходимо получить аудиозаписи.");
             first.Params[1].Name.ShouldEqual("albumId");
@@ -229,6 +231,10 @@ namespace VkNet.Tests.Documentation
             first.Params[2].Name.ShouldEqual("aids");
             first.Params[2].Description.ShouldEqual(@"Список идентификаторов аудиозаписей группы, по которым необходимо получить информацию.
             Если список не указан (null), то ограничение на идентификаторы аудиозаписей на накладываются.");
+            first.Params[3].Name.ShouldEqual("count");
+            first.Params[3].Description.ShouldEqual("Требуемое количество аудиозаписей.");
+            first.Params[4].Name.ShouldEqual("offset");
+            first.Params[4].Description.ShouldEqual("Смещение относительно первой найденной аудиозаписи (для выборки определенного подмножества аудиозаписей).");
 
             // add tests for name and shortname
 

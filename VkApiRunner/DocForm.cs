@@ -23,7 +23,8 @@ namespace VkApiRunner
             if (_types.Count > 0)
             {
                 lbMethods.DataSource = _types[0].Methods;
-                lbMethods.SelectedIndex = 0;
+                if (lbMethods.Items.Count > 0)
+                    lbMethods.SelectedIndex = 0;
             }
         }
 

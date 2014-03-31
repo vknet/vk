@@ -6,11 +6,15 @@ namespace VkNet.Model
 
     using Utils;
 
+    using VkNet.Categories;
+
     /// <summary>
     /// Видеозапись пользователя или группы.
-    /// См. описание <see cref="http://vk.com/dev/video_object"/>.
     /// </summary>
-    [DebuggerDisplay("Id = {Id}, TItle = {Title}")]
+    /// <remarks>
+    /// См. описание <see href="http://vk.com/dev/video_object"/>.
+    /// </remarks>
+    [DebuggerDisplay("Id = {Id}, Title = {Title}")]
     public class Video
     {
         /// <summary>
@@ -79,19 +83,45 @@ namespace VkNet.Model
         /// </summary>
         public Uri Player { get; set; }
 
+        /// <summary>
+        /// Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
+        /// </summary>
         public bool? CanComment { get; set; }
 
+        /// <summary>
+        /// Признак может ли текущий пользователь сделать репост данной видеозаписи.
+        /// </summary>
         public bool? CanRepost { get; set; }
 
+        /// <summary>
+        /// Информация о лайках к видеозаписи.
+        /// </summary>
         public Likes Likes { get; set; }
 
+        /// <summary>
+        /// Признак является ли видеозапись зацикленной.
+        /// </summary>
         public bool? Repeat { get; set; }
 
+        /// <summary>
+        /// Идентификатор видеоальбома <see cref="VideoAlbum"/>, к которому относится видеозапись.
+        /// </summary>
         public long? AlbumId { get; set; }
 
+        /// <summary>
+        /// Url, по которому необходимо выполнить загрузку видеов (см. метод <see cref="VideoCategory.Save"/>).
+        /// </summary>
         public Uri UploadUrl { get; set; }
 
+        /// <summary>
+        /// Ключ доступа.
+        /// </summary>
         public string AccessKey { get; set; }
+
+        /// <summary>
+        /// Отметка к видеозаписи.
+        /// </summary>
+        public Tag Tag { get; set; }
 
         #region Методы
 
@@ -120,6 +150,8 @@ namespace VkNet.Model
             result.AlbumId = Utilities.GetNullableLongId(video["album_id"]);
             result.UploadUrl = video["upload_url"];
             result.AccessKey = video["access_key"];
+
+            result.Tag = video;
 
             return result;
         }

@@ -4,12 +4,12 @@
 
     /// <summary>
     /// Опрос.
-    /// См. описание <see cref="http://vk.com/dev/attachments_w"/>. Раздел "Опрос".
+    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Опрос".
     /// </summary>
     public class Poll
     {
         /// <summary>
-        /// Идентификатор опроса для получения информации о нем через метод <see cref="PollsCategory.GetById"/>.
+        /// Идентификатор опроса.
         /// </summary>
         public long Id { get; set; }
 

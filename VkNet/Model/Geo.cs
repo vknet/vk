@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Информация о географическом месте, в котором была сделана запись. 
-    /// См. описание <see cref="http://vk.com/pages?oid=-1&p=%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D0%BE%D0%BB%D1%8F_geo"/>.
+    /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/>.
     /// </summary>
     public class Geo
     {

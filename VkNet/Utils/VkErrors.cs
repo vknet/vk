@@ -120,12 +120,13 @@ namespace VkNet.Utils
                 case 260: // Access to the groups list is denied due to the user's privacy settings.
                 case 500: // Permission denied. You must enable votes processing in application settings.
                     throw new AccessDeniedException(message, code);
-
+/*
                 case 1: // Unknown error occurred.
                 case 2: // Application is disabled. Enable your application or use test mode.
                 case 10: // Internal server error.
                 case 103: // Out of limits.
                 case 202:
+ */ 
                 default:
                     throw new VkApiException(message);
             }

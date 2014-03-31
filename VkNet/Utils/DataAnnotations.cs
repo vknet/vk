@@ -16,6 +16,12 @@
 
 using System;
 
+// warning CS1591: Missing XML comment for publicly visible type or member 'Xxx.Yyy'
+#pragma warning disable 1591
+
+// warning CS1574: XML comment on 'Xxx.Yyy' has cref attribute 'Nnn.Mmm' that could not be resolved
+#pragma warning disable 1574
+
 namespace JetBrains.Annotations
 {
     /// <summary>

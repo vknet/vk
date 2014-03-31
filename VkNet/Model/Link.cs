@@ -6,7 +6,7 @@
 
     /// <summary>
     /// Ссылка на Web-страницу.
-    /// См. описание <see cref="http://vk.com/dev/attachments_w"/>. Раздел "Ссылка".
+    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Ссылка".
     /// </summary>
     public class Link
     {
@@ -31,8 +31,7 @@
         public string Image { get; set; }
 
         /// <summary>
-        /// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы, который может быть получен 
-        /// используя метод <see cref="PagesCategory.Get"/>. Идентификатор возвращается в формате "owner_id_page_id". 
+        /// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы. Идентификатор возвращается в формате "owner_id_page_id". 
         /// </summary>
         public string PreviewPage { get; set; }
 

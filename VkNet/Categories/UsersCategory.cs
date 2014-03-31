@@ -16,7 +16,7 @@
     {
         private readonly VkApi _vk;
 
-        public UsersCategory(VkApi vk)
+        internal UsersCategory(VkApi vk)
         {
             _vk = vk;
         }
@@ -35,7 +35,7 @@
         /// После успешного выполнения возвращает список объектов пользователей, найденных в соответствии с заданными критериями. 
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.search"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search"/>.
         /// </remarks>
         public ReadOnlyCollection<User> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
@@ -62,10 +62,10 @@
         /// Пример:
         /// Если Вы хотите получить права на Доступ к друзьям и Доступ к статусам пользователя, то Ваша битовая маска будет 
         /// равна: 2 + 1024 = 1026. 
-        /// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к друзьям — Вы можете сделать 1026 & 2. 
+        /// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к друзьям — Вы можете сделать 1026 &amp; 2. 
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getUserSettings"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/getUserSettings"/>.
         /// </remarks>
         public int GetUserSettings(long uid)
         {   
@@ -82,11 +82,11 @@
         /// иначе false. 
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/isAppUser"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/isAppUser"/>.
         /// </remarks>
         public bool IsAppUser(long userId)
         {   
-            var parameters = new VkParameters { { "user_id", userId }, {"v", _vk.Version} };
+            var parameters = new VkParameters { { "user_id", userId }, {"v", _vk.ApiVersion} };
 
             VkResponse response = _vk.Call("users.isAppUser", parameters);
 
@@ -102,14 +102,14 @@
         /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Объект, содержащий запрошенную информацию о пользователе.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
         public User Get(long userId, ProfileFields fields = null,
                                             NameCase nameCase = null)
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
 
-            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "v", _vk.Version }, { "user_ids", userId } };
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "v", _vk.ApiVersion }, { "user_ids", userId } };
 
             VkResponseArray response = _vk.Call("users.get", parameters);
 
@@ -124,14 +124,14 @@
         /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/getProfiles"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
         public ReadOnlyCollection<User> Get(IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
         {
             if (userIds == null)
                 throw new ArgumentNullException("userIds");
 
-            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, {"v", _vk.Version} };
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, {"v", _vk.ApiVersion} };
             parameters.Add("user_ids", userIds);
 
             VkResponseArray response = _vk.Call("users.get", parameters);
@@ -149,7 +149,7 @@
         /// <param name="offset">Смещение необходимое для выборки определенного подмножества подписок</param>
         /// <returns>Пока возвращается только список групп.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.getSubscriptions"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions"/>.
         /// </remarks>
         public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
         {
@@ -163,7 +163,7 @@
                     {"extended", true},
                     {"offset", offset},
                     {"count", count},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
@@ -181,7 +181,7 @@
         /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Список подписчиков</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.getFollowers"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getFollowers"/>.
         /// </remarks>
         public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
         {
@@ -196,7 +196,7 @@
                     {"count", count},
                     {"fields", fields},
                     {"name_case", nameCase},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             VkResponseArray response = _vk.Call("users.getFollowers", parameters);
@@ -218,7 +218,7 @@
         /// <param name="comment">Комментарий к жалобе на пользователя</param>
         /// <returns>В случае успешной жалобы метод вернет true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see cref="http://vk.com/dev/users.report"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.report"/>.
         /// </remarks>
         public bool Report(long userId, ReportType type, string comment = "")
         {
@@ -229,7 +229,7 @@
                     {"user_id", userId},
                     {"type", type},
                     {"comment", comment},
-                    {"v", _vk.Version}
+                    {"v", _vk.ApiVersion}
                 };
 
             return _vk.Call("users.report", parameters);

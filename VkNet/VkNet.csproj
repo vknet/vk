@@ -128,6 +128,7 @@
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\Street.cs" />
+    <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\University.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />

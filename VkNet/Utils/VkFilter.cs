@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace VkNet.Utils
 {
+    /// <summary>
+    /// Базовый класс для фильтров.
+    /// </summary>
     public abstract class VkFilter
     {
         /// <summary>
@@ -20,19 +23,29 @@ namespace VkNet.Utils
         /// </summary>
         protected readonly IList<VkFilter> Fields;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkFilter"/>.
+        /// </summary>
+        /// <param name="value">Числовое значение фильтра.</param>
+        /// <param name="name">Строковое значение фильтра.</param>
         protected VkFilter(int value, string name)
         {
             Name = name;
             Value = value;
         }
 
-        protected VkFilter(VkFilter f1, VkFilter f2)
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkFilter"/>, объединяя два фильтра.
+        /// </summary>
+        /// <param name="left">Левый фильтр.</param>
+        /// <param name="right">Правый фильтр.</param>
+        protected VkFilter(VkFilter left, VkFilter right)
         {
             Fields = new List<VkFilter>();
 
-            if (f1.Fields != null && f1.Fields.Count != 0)
+            if (left.Fields != null && left.Fields.Count != 0)
             {
-                foreach (var f in f1.Fields)
+                foreach (var f in left.Fields)
                 {
                     if (Fields.All(m => m.Value != f.Value))
                         Fields.Add(f);
@@ -40,13 +53,13 @@ namespace VkNet.Utils
             }
             else
             {
-                if (Fields.All(m => m.Value != f1.Value))
-                    Fields.Add(f1);
+                if (Fields.All(m => m.Value != left.Value))
+                    Fields.Add(left);
             }
 
-            if (f2.Fields != null && f2.Fields.Count != 0)
+            if (right.Fields != null && right.Fields.Count != 0)
             {
-                foreach (var f in f2.Fields)
+                foreach (var f in right.Fields)
                 {
                     if (Fields.All(m => m.Value != f.Value))
                         Fields.Add(f);
@@ -54,11 +67,17 @@ namespace VkNet.Utils
             }
             else
             {
-                if (Fields.All(m => m.Value != f2.Value))
-                    Fields.Add(f2);
+                if (Fields.All(m => m.Value != right.Value))
+                    Fields.Add(right);
             }
         }
 
+        /// <summary>
+        /// Возвращает фильтр в виде строки.
+        /// </summary>
+        /// <returns>
+        /// Строка со строковыми значениями фильтров, разделенными запятыми.
+        /// </returns>
         public override string ToString()
         {
             if (Fields == null || Fields.Count == 0)

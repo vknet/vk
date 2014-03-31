@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VkNet.Enums
+﻿namespace VkNet.Enums
 {
     /// <summary>
     /// Порядок сортировки комментариев к записи.
@@ -14,18 +12,22 @@ namespace VkNet.Enums
             _name = name;
         }
 
+        /// <summary>
+        /// Преобразует порядок сортировки в строку.
+        /// </summary>
+        /// <returns>Строка, соответствующая порядку сортировки.</returns>
         public override string ToString()
         {
             return _name;
         }
 
         /// <summary>
-        /// В хронологическом порядке.
+        /// В хронологическом порядке (от старых к новым).
         /// </summary>
         public static CommentsSort Asc = new CommentsSort("asc");
 
         /// <summary>
-        /// В порядке, обратном хронологическому.
+        /// В порядке, обратном хронологическому (от новых к старым).
         /// </summary>
         public static CommentsSort Desc = new CommentsSort("desc");
     }

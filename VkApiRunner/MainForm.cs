@@ -9,6 +9,8 @@ using VkNet.Utils;
 
 namespace VkApiRunner
 {
+    using System.Linq;
+
     public partial class MainForm : Form
     {
         private string _apiUrl;
@@ -122,7 +124,7 @@ namespace VkApiRunner
                 string xml = DocGenFramework.ReadFile(dialog.FileName);
                 gen.Parse(xml);
 
-                var doc = new DocForm(gen.Types);
+                var doc = new DocForm(gen.Types.OrderBy(t => t.FullName));
                 doc.Show();
             }
         }

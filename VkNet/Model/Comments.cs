@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Информация о количестве комментариев к записи.
-    /// См. описание <see cref="http://vk.com/dev/post"/>. Раздел comments.
+    /// См. описание <see href="http://vk.com/dev/post"/>. Раздел comments.
     /// </summary>
     public class Comments
     {
