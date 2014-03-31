@@ -112,21 +112,5 @@ namespace VkApiRunner
 
             unitTestForm.ShowDialog();
         }
-
-        private void btnGetDoc_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Doc file (*.xml)|*.xml";
-            dialog.Multiselect = false;
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                var gen = new DocGenFramework();
-                string xml = DocGenFramework.ReadFile(dialog.FileName);
-                gen.Parse(xml);
-
-                var doc = new DocForm(gen.Types.OrderBy(t => t.FullName));
-                doc.Show();
-            }
-        }
     }
 }

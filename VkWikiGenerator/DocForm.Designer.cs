@@ -1,4 +1,4 @@
-﻿namespace VkApiRunner
+﻿namespace VkWikiGenerator
 {
     partial class DocForm
     {

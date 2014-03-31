@@ -40,3 +40,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: InternalsVisibleTo("VkNet.Tests")]
 [assembly: InternalsVisibleTo("VkApiRunner")]
+[assembly: InternalsVisibleTo("VkWikiGenerator")]

@@ -1,4 +1,4 @@
-﻿namespace CodeplexWikiBot
+﻿namespace VkWikiGenerator.Bot
 {
     using WatiN.Core;
 

@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using VkNet.Documentation;
-
-namespace VkApiRunner
+﻿namespace VkWikiGenerator
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+
+    using VkNet.Documentation;
+
     internal class DocGenFramework
     {
         public IList<VkDocType> Types { get; private set; }

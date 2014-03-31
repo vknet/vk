@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNetFunctionalTests", "VkN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkApiRunner", "VkApiRunner\VkApiRunner.csproj", "{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeplexWikiBot", "CodeplexWikiBot\CodeplexWikiBot.csproj", "{ED935BAA-89C0-47A7-B1C3-9994E33F1CBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkWikiGenerator", "VkWikiGenerator\VkWikiGenerator.csproj", "{68AF3A88-D51B-4653-A837-8A9EB11DE726}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ED935BAA-89C0-47A7-B1C3-9994E33F1CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED935BAA-89C0-47A7-B1C3-9994E33F1CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED935BAA-89C0-47A7-B1C3-9994E33F1CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED935BAA-89C0-47A7-B1C3-9994E33F1CBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68AF3A88-D51B-4653-A837-8A9EB11DE726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68AF3A88-D51B-4653-A837-8A9EB11DE726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68AF3A88-D51B-4653-A837-8A9EB11DE726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68AF3A88-D51B-4653-A837-8A9EB11DE726}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

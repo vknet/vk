@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using VkNet.Documentation;
-
-namespace VkApiRunner
+﻿namespace VkWikiGenerator
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Windows.Forms;
+
+    using VkNet.Documentation;
+
     internal partial class DocForm : Form
     {
         private readonly IList<VkDocType> _types;

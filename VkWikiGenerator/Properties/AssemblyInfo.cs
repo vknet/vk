@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CodeplexWikiBot")]
+[assembly: AssemblyTitle("VkWikiGenerator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CodeplexWikiBot")]
+[assembly: AssemblyProduct("VkWikiGenerator")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("83aadae0-fd0a-4c7a-9cb9-7cf963ed32ab")]
+[assembly: Guid("a005c423-c27a-4359-9e54-55ee925e4187")]
 
 // Version information for an assembly consists of the following four values:
 //
