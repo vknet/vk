@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using JetBrains.Annotations;
+
+namespace VkNet.Categories
 {
     using System.Linq;
     using System.Collections.ObjectModel;
@@ -32,6 +34,7 @@
         /// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCountries"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Country> GetCountries(bool needAll = true, string codes = "", int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
@@ -54,6 +57,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getRegions"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(countryId, "countryId", "Идентификатор страны должен быть положительным числом.");
@@ -75,6 +79,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getStreetsById"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Street> GetStreetsById(params int[] streetIds)
         {
             var parameters = new VkParameters();
@@ -92,6 +97,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCountriesById"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Country> GetCountriesById(params int[] countryIds)
         {
             var parameters = new VkParameters();
@@ -120,6 +126,7 @@
         /// Если задан параметр <paramref name="query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCities"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<City> GetCities(int countryId, int? regionId = null, string query = "", bool? needAll = false, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(countryId, "countryId");
@@ -151,6 +158,7 @@
         /// places.getById, places.search, places.getCheckins.
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getCitiesById"/>. 
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<City> GetCitiesById(params int[] cityIds)
         {
             var parameters = new VkParameters();
@@ -172,6 +180,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getUniversities"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<University> GetUniversities(int countryId, int cityId, string query = "", int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(countryId, "countryId");
@@ -204,6 +213,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getSchools"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<School> GetSchools(int countryId, int cityId, string query = "", int? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(countryId, "countryId");
@@ -234,6 +244,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see cref="http://vk.com/dev/database.getFaculties"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Faculty> GetFaculties(long universityId, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(universityId, "universityId");

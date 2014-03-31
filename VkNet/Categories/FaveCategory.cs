@@ -1,6 +1,5 @@
 ﻿namespace VkNet.Categories
 {
-    using System;
     using System.Collections.ObjectModel;
     
     using Model;
