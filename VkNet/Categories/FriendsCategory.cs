@@ -120,7 +120,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.areFriends"/>.
         /// </remarks>
         [Pure]
-        public IDictionary<long, FriendStatus> AreFriends([NotNull]IEnumerable<long> uids)
+        public IDictionary<long, FriendStatus> AreFriends([NotNull] IEnumerable<long> uids)
         {
             if (uids == null)
                 throw new ArgumentNullException("uids");

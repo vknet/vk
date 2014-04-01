@@ -212,7 +212,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.searchDialogs"/>.
         /// </remarks>
         [Pure]
-        public SearchDialogsResponse SearchDialogs([NotNull]string query, ProfileFields fields = null)
+        public SearchDialogsResponse SearchDialogs([NotNull] string query, ProfileFields fields = null)
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.", "query");
@@ -247,7 +247,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<Message> Search([NotNull]string query, out int totalCount, int? count = null, int? offset = null)
+        public ReadOnlyCollection<Message> Search([NotNull] string query, out int totalCount, int? count = null, int? offset = null)
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.", "query");
@@ -565,7 +565,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.createChat"/>.
         /// </remarks>
-        public long CreateChat(IEnumerable<long> userIds, [NotNull]string title)
+        public long CreateChat(IEnumerable<long> userIds, [NotNull] string title)
         {
             if (string.IsNullOrEmpty(title))
                 throw new ArgumentException("Title can not be empty or null.", "userIds");
@@ -587,7 +587,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.editChat"/>.
         /// </remarks>
-        public bool EditChat(long chatId, [NotNull]string title)
+        public bool EditChat(long chatId, [NotNull] string title)
         {
             if (string.IsNullOrEmpty(title))
                 throw new ArgumentException("Title can not be empty or null.", "title");

@@ -172,7 +172,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<Group> Search([NotNull]string query, out int totalCount, int? offset = null, int? count = null)
+        public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, int? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => query);
             

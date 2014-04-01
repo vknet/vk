@@ -39,7 +39,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<User> Search([NotNull]string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
+        public ReadOnlyCollection<User> Search([NotNull] string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.");
@@ -132,7 +132,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<User> Get([NotNull]IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
+        public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
         {
             if (userIds == null)
                 throw new ArgumentNullException("userIds");

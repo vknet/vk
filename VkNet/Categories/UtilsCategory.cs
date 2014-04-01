@@ -28,7 +28,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
         [Pure]
-        public LinkAccessType CheckLink([NotNull]string url)
+        public LinkAccessType CheckLink([NotNull] string url)
         {
             VkErrors.ThrowIfNullOrEmpty(() => url);
 
@@ -47,7 +47,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.resolveScreenName"/>.
         /// </remarks>
         [Pure]
-        public VkObject ResolveScreenName([NotNull]string screenName)
+        public VkObject ResolveScreenName([NotNull] string screenName)
         {
             VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
