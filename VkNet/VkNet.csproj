@@ -18,23 +18,24 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <RegisterForComInterop>false</RegisterForComInterop>
-    <DocumentationFile>bin\Debug\VkNet.XML</DocumentationFile>
+    <DocumentationFile>..\Debug\VkNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Release\</OutputPath>
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>..\Release\VkNet.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
@@ -59,12 +60,6 @@
     <Compile Include="Categories\UtilsCategory.cs" />
     <Compile Include="Categories\VideoCategory.cs" />
     <Compile Include="Categories\WallCategory.cs" />
-    <Compile Include="Documentation\VkDocEnumItem.cs" />
-    <Compile Include="Documentation\VkDocMethod.cs" />
-    <Compile Include="Documentation\VkDocMethodParam.cs" />
-    <Compile Include="Documentation\VkDocParser.cs" />
-    <Compile Include="Documentation\VkDocProperty.cs" />
-    <Compile Include="Documentation\VkDocType.cs" />
     <Compile Include="Enums\AddFriendStatus.cs" />
     <Compile Include="Enums\AdminLevel.cs" />
     <Compile Include="Enums\Attitude.cs" />

@@ -16,3 +16,5 @@ VkToolkitFunctionalTests/obj/*
 bin/*
 obj/*
 .nuget/*
+Debug/*
+Release/*

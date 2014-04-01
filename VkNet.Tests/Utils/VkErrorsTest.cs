@@ -6,6 +6,8 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Utils
 {
+    using VkNet.Utils.Tests;
+
     [TestFixture]
     public class VkErrorsTest
     {

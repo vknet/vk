@@ -8,6 +8,8 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
+    using VkNet.Utils.Tests;
+
     public class UtilsCategoryTest
     {
         private UtilsCategory GetMockedUtilsCategory(string url, string json)

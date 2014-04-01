@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Moq;
-using NUnit.Framework;
-using VkNet.Enums;
-using VkNet.Exception;
-using VkNet.Utils;
-
-namespace VkNet.Tests
+﻿namespace VkNet.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using Moq;
+    using NUnit.Framework;
+    using VkNet.Enums;
+    using VkNet.Exception;
+    using VkNet.Utils;
+    using VkNet.Utils.Tests;
+
     [TestFixture]
     public class VkApiTest
     {

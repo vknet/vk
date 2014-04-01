@@ -1,0 +1,19 @@
+﻿! Метод <#CATEGORY_NAME#>.<#METHOD_NAME#>
+*Пространство имен:* <#NAMESPACE#>
+!! Синтаксис
+----
+{code:c#}
+public <#RETURN_VALUE#> <#METHOD_SIGNATURE#>
+{code:c#}
+!! Описание
+----
+<#METHOD_DESC#>
+!! Параметры
+----
+<#PARAMS_LIST#>
+!! Возвращаемое значение
+----
+<#METHOD_RESULT#>
+!! См. также
+----
+* <#METHOD_REMARKS#>

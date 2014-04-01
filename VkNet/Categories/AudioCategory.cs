@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using JetBrains.Annotations;
 
     using Enums;
     using Model;
@@ -37,7 +36,18 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getCount"/>.
         /// </remarks>
-        [Pure]
+        /// <example>
+        /// Получим количество аудиозаписей Павла Дурова.
+        /// <code>
+        /// int count = vk.Audio.GetCount(1);
+        /// </code>
+        /// </example>
+        /// <example>
+        /// Получим количество аудиозаписей в группе с id равным 2.
+        /// <code>
+        /// int count = vk.Audio.GetCount(-2);
+        /// </code>
+        /// </example>
         public int GetCount(long ownerId)
         {
             var parameters = new VkParameters { { "owner_id", ownerId }, { "v", _vk.ApiVersion } };
@@ -56,7 +66,6 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getLyrics"/>.
         /// </remarks>
-        [Pure]
         public Lyrics GetLyrics(long lyricsId)
         {
             var parameters = new VkParameters { { "lyrics_id", lyricsId }, { "v", _vk.ApiVersion } };
@@ -79,7 +88,6 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById"/>.
         /// </remarks>
-        [Pure]
         public ReadOnlyCollection<Audio> GetById(IEnumerable<string> audios)
         {
             if (audios == null)
@@ -106,7 +114,6 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById"/>.
         /// </remarks>
-        [Pure]
         public ReadOnlyCollection<Audio> GetById(params string[] audios)
         {
             return GetById((IEnumerable<string>)audios);
@@ -130,7 +137,6 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
         /// </remarks>       
-        [Pure]
         public ReadOnlyCollection<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
             User user;
@@ -153,7 +159,6 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
         /// </remarks>
-        [Pure]
         public ReadOnlyCollection<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
             return InternalGet("uid", uid, out user, albumId, aids, true, count, offset);
@@ -172,14 +177,12 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
         /// </remarks>
-        [Pure]
         public ReadOnlyCollection<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
         {
             User user;
             return InternalGet("uid", uid, out user, albumId, aids, false, count, offset);
         }
 
-        [Pure]
         private ReadOnlyCollection<Audio> InternalGet(
             string paramId,
             long id,
@@ -224,7 +227,6 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getUploadServer"/>.
         /// </remarks>
-        [Pure]
         public string GetUploadServer()
         {
             var response = _vk.Call("audio.getUploadServer", VkParameters.Empty);
@@ -247,9 +249,8 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
         /// </remarks>
-        [Pure]
         public ReadOnlyCollection<Audio> Search(
-            [NotNull]string query,
+            string query,
             out int totalCount,
             bool? autoComplete = null,
             AudioSort? sort = null,
@@ -473,7 +474,6 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getPopular"/>.
         /// </remarks>
-        [Pure]
         public ReadOnlyCollection<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(offset, "offset");
@@ -504,7 +504,6 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getAlbums"/>.
         /// </remarks>
-        [Pure]
         public ReadOnlyCollection<AudioAlbum> GetAlbums(long ownerid, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(ownerid, "ownerid");
@@ -565,7 +564,6 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getRecommendations"/>.
         /// </remarks>
-        [Pure]
         public ReadOnlyCollection<Audio> GetRecommendations(long? userId = null, int? count = null, int? offset = null, bool shuffle = true, string targetAudio = "")
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
@@ -595,7 +593,7 @@
         /// Идентификаторы сообществ должны быть заданы в формате "-gid", где gid - идентификатор сообщества. Например, 1,-34384434. По умолчанию аудиозапись 
         /// транслируется текущему пользователю.</param>
         /// <returns>В случае успешного выполнения возвращает массив идентификаторов сообществ и пользователя, которым был установлен или удален аудиостатус.</returns>
-        public ReadOnlyCollection<long> SetBroadcast([NotNull]string audio, IEnumerable<long> targetIds)
+        public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
         {
             VkErrors.ThrowIfNullOrEmpty(() => audio);
 

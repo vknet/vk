@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +27,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -54,8 +54,6 @@
     <Compile Include="Categories\UtilsCategoryTest.cs" />
     <Compile Include="Categories\VideoCategoryTest.cs" />
     <Compile Include="Categories\WallCategoryTest.cs" />
-    <Compile Include="Documentation\VkDocMethodTest.cs" />
-    <Compile Include="Documentation\VkDocParserTest.cs" />
     <Compile Include="Enum\CommentsSortTest.cs" />
     <Compile Include="Enum\FriendStatusTest.cs" />
     <Compile Include="Enum\GroupsFieldsTest.cs" />
@@ -66,13 +64,16 @@
     <Compile Include="Categories\FriendsCategoryTest.cs" />
     <Compile Include="Categories\UsersCategoryTest.cs" />
     <Compile Include="Enum\VideoFiltersTest.cs" />
-    <Compile Include="TestExtensions.cs" />
     <Compile Include="VkApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\VkErrorsTest.cs" />
     <Compile Include="Utils\VkAuthorizationTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VkNet.Utils\VkNet.Utils.csproj">
+      <Project>{b229b508-0403-46ed-bc78-a10ae3cc9de6}</Project>
+      <Name>VkNet.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VkNet\VkNet.csproj">
       <Project>{8B031A92-84D4-4418-8551-18F1AFEECC6C}</Project>
       <Name>VkNet</Name>
@@ -82,9 +83,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
