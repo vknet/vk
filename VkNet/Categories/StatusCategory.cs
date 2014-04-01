@@ -1,6 +1,7 @@
 ﻿namespace VkNet.Categories
 {
     using System;
+    using JetBrains.Annotations;
 
     using Enums;
     using Model;
@@ -31,6 +32,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.get"/>.
         /// </remarks>
+        [Pure]
         public Status Get(long uid)
         {
             var parameters = new VkParameters { { "uid", uid } };
@@ -56,7 +58,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
         /// </remarks>
-        public bool Set(string text, Audio audio = null)
+        public bool Set([NotNull]string text, Audio audio = null)
         {
             if (text == null)
                 throw new ArgumentNullException("text");
@@ -84,7 +86,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
         /// </remarks>
-        public bool Set(Audio audio)
+        public bool Set([NotNull]Audio audio)
         {
             if (audio == null)
                 throw new ArgumentNullException("audio");

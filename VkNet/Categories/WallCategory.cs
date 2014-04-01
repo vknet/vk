@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using JetBrains.Annotations;
 
     using Enums;
     using Model;
@@ -34,6 +35,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
             var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
@@ -62,7 +64,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments"/>.
-        /// </remarks>       
+        /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Comment> GetComments(
             long ownerId,
             long postId,
@@ -106,7 +109,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById"/>.
-        /// </remarks>       
+        /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts)
         {
             if (posts == null)

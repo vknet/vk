@@ -1,9 +1,8 @@
-﻿using JetBrains.Annotations;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
     using System.Linq;
     using System.Collections.ObjectModel;
+    using JetBrains.Annotations;
 
     using Model;
     using Utils;

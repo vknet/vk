@@ -12,6 +12,7 @@
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Linq;
+    using JetBrains.Annotations;
 
     using Enums;
     using Model;
@@ -50,6 +51,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Message> Get(
             MessageType type,
             out int totalCount,
@@ -101,6 +103,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Message> GetHistory(
             long id,
             bool isChat,
@@ -138,6 +141,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Message> GetById(IEnumerable<long> messageIds, out int totalCount, int? previewLength = null)
         {
             var parameters = new VkParameters { { "mids", messageIds }, { "preview_length", previewLength } };
@@ -160,6 +164,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
         /// </remarks>
+        [Pure]
         public Message GetById(long messageId, int? previewLength = null)
         {
             int totalCount;
@@ -182,6 +187,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getDialogs"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
         {
             var parameters = new VkParameters { { "uid", userId }, { "chat_id", chatId }, { "count", count }, { "offset", offset }, { "preview_length", previewLength } };
@@ -205,7 +211,8 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.searchDialogs"/>.
         /// </remarks>
-        public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null)
+        [Pure]
+        public SearchDialogsResponse SearchDialogs([NotNull]string query, ProfileFields fields = null)
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.", "query");
@@ -239,7 +246,8 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search"/>.
         /// </remarks>
-        public ReadOnlyCollection<Message> Search(string query, out int totalCount, int? count = null, int? offset = null)
+        [Pure]
+        public ReadOnlyCollection<Message> Search([NotNull]string query, out int totalCount, int? count = null, int? offset = null)
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.", "query");
@@ -511,6 +519,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLastActivity"/>.
         /// </remarks>
+        [Pure]
         public LastActivity GetLastActivity(long userId)
         {
             var parameters = new VkParameters { { "user_id", userId } };
@@ -536,6 +545,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChat"/>.
         /// </remarks>
+        [Pure]
         public Chat GetChat(long chatId)
         {
             var parameters = new VkParameters { { "chat_id", chatId } };
@@ -555,7 +565,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.createChat"/>.
         /// </remarks>
-        public long CreateChat(IEnumerable<long> userIds, string title)
+        public long CreateChat(IEnumerable<long> userIds, [NotNull]string title)
         {
             if (string.IsNullOrEmpty(title))
                 throw new ArgumentException("Title can not be empty or null.", "userIds");
@@ -577,7 +587,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.editChat"/>.
         /// </remarks>
-        public bool EditChat(long chatId, string title)
+        public bool EditChat(long chatId, [NotNull]string title)
         {
             if (string.IsNullOrEmpty(title))
                 throw new ArgumentException("Title can not be empty or null.", "title");
@@ -597,6 +607,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChatUsers"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<User> GetChatUsers(long chatId, ProfileFields fields)
         {
             var parameters = new VkParameters { { "chat_id", chatId }, { "fields", fields } };
@@ -618,6 +629,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChatUsers"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<long> GetChatUsers(long chatId)
         {
             var users = GetChatUsers(chatId, null);
@@ -678,6 +690,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLongPollServer"/>.
         /// </remarks>
+        [Pure]
         public LongPollServerResponse GetLongPollServer()
         {
             return _vk.Call("messages.getLongPollServer", VkParameters.Empty);

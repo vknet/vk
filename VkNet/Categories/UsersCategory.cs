@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using JetBrains.Annotations;
 
     using Enums;
     using Model;
@@ -37,7 +38,8 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search"/>.
         /// </remarks>
-        public ReadOnlyCollection<User> Search(string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
+        [Pure]
+        public ReadOnlyCollection<User> Search([NotNull]string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0)
         {
             if (string.IsNullOrEmpty(query))
                 throw new ArgumentException("Query can not be null or empty.");
@@ -67,6 +69,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/getUserSettings"/>.
         /// </remarks>
+        [Pure]
         public int GetUserSettings(long uid)
         {   
             var parameters = new VkParameters { { "uid", uid } };
@@ -84,6 +87,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/isAppUser"/>.
         /// </remarks>
+        [Pure]
         public bool IsAppUser(long userId)
         {   
             var parameters = new VkParameters { { "user_id", userId }, {"v", _vk.ApiVersion} };
@@ -104,6 +108,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
+        [Pure]
         public User Get(long userId, ProfileFields fields = null,
                                             NameCase nameCase = null)
         {
@@ -126,7 +131,8 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
-        public ReadOnlyCollection<User> Get(IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
+        [Pure]
+        public ReadOnlyCollection<User> Get([NotNull]IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
         {
             if (userIds == null)
                 throw new ArgumentNullException("userIds");
@@ -151,6 +157,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
@@ -183,6 +190,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getFollowers"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");

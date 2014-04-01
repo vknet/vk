@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using JetBrains.Annotations;
 
     using Enums;
     using Model;
@@ -65,6 +66,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null)
         {
             var parameters = new VkParameters { { "uid", uid }, { "extended", extended }, { "filter", filters }, { "fields", fields } };
@@ -87,6 +89,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
         {
             var parameters = new VkParameters { { "gids", gids }, { "fields", fields } };
@@ -104,6 +107,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
         /// </remarks>
+        [Pure]
         public Group GetById(long gid, GroupsFields fields = null)
         {
             var parameters = new VkParameters { { "gid", gid }, { "fields", fields } };
@@ -123,6 +127,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null)
         {
             var parameters = new VkParameters { { "gid", gid }, { "offset", offset }, { "sort", sort } };
@@ -147,6 +152,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
         /// </remarks>
+        [Pure]
         public bool IsMember(long gid, long uid)
         {
             var parameters = new VkParameters { { "gid", gid }, { "uid", uid } };
@@ -165,11 +171,11 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search"/>.
         /// </remarks>
-        public ReadOnlyCollection<Group> Search(string query, out int totalCount, int? offset = null, int? count = null)
+        [Pure]
+        public ReadOnlyCollection<Group> Search([NotNull]string query, out int totalCount, int? offset = null, int? count = null)
         {
-            if (string.IsNullOrEmpty(query))
-                throw new ArgumentException("query");
-
+            VkErrors.ThrowIfNullOrEmpty(() => query);
+            
             var parameters = new VkParameters { { "q", query }, { "offset", offset }, { "count", count } };
 
             VkResponseArray response = _vk.Call("groups.search", parameters);
@@ -188,6 +194,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvites"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Group> GetInvites(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -246,6 +253,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<User> GetBanned(long groupId, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");

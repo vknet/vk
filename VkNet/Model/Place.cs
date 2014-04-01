@@ -1,7 +1,7 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Categories;
-    using VkNet.Utils;
+    using Categories;
+    using Utils;
 
     /// <summary>
     /// Информация о месте, в котором была сделана запись.

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using JetBrains.Annotations;
 
     using Enums;
     using Model;
@@ -34,7 +35,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get"/>.
-        /// </remarks>       
+        /// </remarks>
+        [Pure]
         public ReadOnlyCollection<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null)
         {
             var parameters = new VkParameters { { "uid", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order } };
@@ -56,7 +58,8 @@
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getAppUsers"/>.
-        /// </remarks>       
+        /// </remarks>      
+        [Pure] 
         public ReadOnlyCollection<long> GetAppUsers()
         {
             VkResponseArray response = _vk.Call("friends.getAppUsers", VkParameters.Empty);
@@ -75,7 +78,8 @@
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getOnline"/>.
-        /// </remarks>       
+        /// </remarks>
+        [Pure]
         public ReadOnlyCollection<long> GetOnline(long uid)
         {
             var parameters = new VkParameters { { "uid", uid } };
@@ -95,7 +99,8 @@
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getMutual"/>.
-        /// </remarks>       
+        /// </remarks>
+        [Pure]  
         public ReadOnlyCollection<long> GetMutual(long targetUid, long sourceUid)
         {
             var parameters = new VkParameters { { "target_uid", targetUid }, { "source_uid", sourceUid } };
@@ -113,8 +118,9 @@
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.areFriends"/>.
-        /// </remarks>       
-        public IDictionary<long, FriendStatus> AreFriends(IEnumerable<long> uids)
+        /// </remarks>
+        [Pure]
+        public IDictionary<long, FriendStatus> AreFriends([NotNull]IEnumerable<long> uids)
         {
             if (uids == null)
                 throw new ArgumentNullException("uids");
@@ -135,7 +141,6 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
         ///  Страница документации ВКонтакте <see href="http://vk.com/dev/friends.addList"/>.
         /// </remarks>
-        /// 
         public long AddList(string name)
         {
             return AddList(name, null);
@@ -192,6 +197,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getLists"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<FriendList> GetLists()
         {
             VkResponseArray response = _vk.Call("friends.getLists", VkParameters.Empty);
@@ -321,6 +327,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getRecent"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<long> GetRecent(int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -359,6 +366,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getRequests"/>.
         /// </remarks>
         // todo add more tests on out, suggested and mutual params
+        [Pure]
         public ReadOnlyCollection<long> GetRequests(int? count = null, int? offset = null, bool extended = false, bool needMutual = false, bool @out = false, bool sort = false, bool suggested = false)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");

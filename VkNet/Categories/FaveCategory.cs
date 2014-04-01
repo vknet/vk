@@ -1,6 +1,7 @@
 ﻿namespace VkNet.Categories
 {
     using System.Collections.ObjectModel;
+    using JetBrains.Annotations;
     
     using Model;
     using Utils;
@@ -26,6 +27,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getUsers"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -52,6 +54,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPhotos"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -77,6 +80,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Post> GetPosts(int? count = null, int? offset = null)//, bool extended = false)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -103,6 +107,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -129,6 +134,7 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks"/>.
         /// </remarks>
+        [Pure]
         public ReadOnlyCollection<Link> GetLinks(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
