@@ -659,7 +659,7 @@
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Search_EmptyQuery_ThrowsArgumentException()
         {
             int totalCount;
