@@ -83,15 +83,15 @@
 
             template.Replace(Placeholder.ParamsList, parameters.ToString());
 
-            if (!string.IsNullOrEmpty(method.Example))
+            if (method.Examples.Count > 0)
+                template.AppendLine().AppendLine("!! Пример").AppendLine("----");
+
+            foreach (var example in method.Examples)
             {
-                var example = TrimLines(method.Example).Replace("<code>", "{code:c#}").Replace("</code>", "{code:c#}");
+                var wikiExample = TrimLines(example).Replace("<code>", "{code:c#}").Replace("</code>", "{code:c#}");
                 template
-                    .AppendLine()
-                    .AppendLine("!! Пример")
-                    .AppendLine("----")
                     .Append("* ")
-                    .AppendLine(example);
+                    .AppendLine(wikiExample);
             }
             
             return template.ToString();

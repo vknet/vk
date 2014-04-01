@@ -181,9 +181,7 @@
                 }
 
                 if (xml.NodeType == XmlNodeType.Element && xml.Name == "example")
-                {
-                    method.Example = xml.ReadInnerXml().Trim();
-                }
+                    method.Examples.Add(xml.ReadInnerXml().Trim());
             }
 
             return method;

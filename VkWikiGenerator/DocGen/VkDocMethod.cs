@@ -48,7 +48,7 @@
         /// <summary>
         /// Пример использования метода.
         /// </summary>
-        public string Example { get; set; }
+        public List<string> Examples { get; set; }
 
         /// <summary>
         /// Пространство имен.
@@ -138,6 +138,7 @@
         public VkDocMethod()
         {
             Params = new List<VkDocMethodParam>();
+            Examples = new List<string>();
         }
 
         /// <summary>

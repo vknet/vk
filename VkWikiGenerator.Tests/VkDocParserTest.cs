@@ -1,6 +1,7 @@
 ﻿namespace VkWikiGenerator.Tests
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using NUnit.Framework;
 
@@ -244,7 +245,7 @@
 
             VkDocMethod second = types[0].Methods[1];
 
-            second.Example.ShouldEqual(@"<code>
+            second.Examples.First().ShouldEqual(@"<code>
                 [LocalizationRequiredAttribute(true)]
                 public class Foo
                 {
