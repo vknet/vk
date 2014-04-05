@@ -1,0 +1,11 @@
+packages/
+*.suo
+*.DotSettings
+*.user
+_ReSharper.*/
+bin/
+obj/
+.nuget/
+Debug/
+Release/
+
