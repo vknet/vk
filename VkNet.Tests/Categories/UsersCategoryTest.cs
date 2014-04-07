@@ -11,6 +11,7 @@
     using VkNet.Model;
     using VkNet.Utils;
     using VkNet.Utils.Tests;
+    using System.Collections.Generic;
 
     [TestFixture]
     public class UsersCategoryTest
@@ -216,7 +217,8 @@
         public void Get_EmptyListOfUids_ThrowArgumentNullException()
         {
             var users = new UsersCategory(new VkApi { AccessToken = "token" });
-            users.Get(null);
+            IEnumerable<long> userIds = null;
+            users.Get(userIds);
         }
 
         [Test]
@@ -1228,6 +1230,93 @@
             bool result = cat.Report(243663122, ReportType.Insult, "комментарий");
 
             result.ShouldBeTrue();
+        }
+
+        [Test]
+        public void Get_DmAndDurov_ListOfUsers()
+        {
+            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=5.9&access_token=token";
+            const string json =
+            @"{
+                    'response': [
+                      {
+                        'id': 53083705,
+                        'first_name': 'Дмитрия',
+                        'last_name': 'Медведева',
+                        'sex': 2,
+                        'city': {
+                          'id': 1,
+                          'title': 'Москва'
+                        }
+                      },
+                      {
+                        'id': 1,
+                        'first_name': 'Павла',
+                        'last_name': 'Дурова',
+                        'sex': 2,
+                        'city': {
+                          'id': 2,
+                          'title': 'Санкт-Петербург'
+                        }
+                      }
+                    ]
+                  }";
+
+            UsersCategory cat = GetMockedUsersCategory(url, json);
+
+            var screenNames = new [] {"dm", "durov"};
+            ProfileFields fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
+            ReadOnlyCollection<User> users = cat.Get(screenNames, fields, NameCase.Gen);
+
+            users.Count.ShouldEqual(2);
+            users[0].Id.ShouldEqual(53083705);
+            users[0].FirstName.ShouldEqual("Дмитрия");
+            users[0].LastName.ShouldEqual("Медведева");
+            users[0].Sex.ShouldEqual(Sex.Male);
+            users[0].City.Id.ShouldEqual(1);
+            users[0].City.Title.ShouldEqual("Москва");
+
+            users[1].Id.ShouldEqual(1);
+            users[1].FirstName.ShouldEqual("Павла");
+            users[1].LastName.ShouldEqual("Дурова");
+            users[1].Sex.ShouldEqual(Sex.Male);
+            users[1].City.Id.ShouldEqual(2);
+            users[1].City.Title.ShouldEqual("Санкт-Петербург");
+        }
+
+        [Test]
+        public void Get_Dimon_SingleUser()
+        {
+            const string url = "https://api.vk.com/method/users.get?user_ids=dm&fields=first_name,last_name,sex,city&name_case=gen&v=5.9&access_token=token";
+            const string json =
+            @"{
+                    'response': [
+                      {
+                        'id': 53083705,
+                        'first_name': 'Дмитрия',
+                        'last_name': 'Медведева',
+                        'sex': 2,
+                        'city': {
+                          'id': 1,
+                          'title': 'Москва'
+                        }
+                      }
+                    ]
+                  }";
+
+            UsersCategory cat = GetMockedUsersCategory(url, json);
+
+            ProfileFields fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
+            User user = cat.Get("dm", fields, NameCase.Gen);
+
+            user.ShouldNotBeNull();
+
+            user.Id.ShouldEqual(53083705);
+            user.FirstName.ShouldEqual("Дмитрия");
+            user.LastName.ShouldEqual("Медведева");
+            user.Sex.ShouldEqual(Sex.Male);
+            user.City.Id.ShouldEqual(1);
+            user.City.Title.ShouldEqual("Москва");
         }
     }
 }

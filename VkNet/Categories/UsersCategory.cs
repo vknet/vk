@@ -122,14 +122,14 @@
         }
 
         /// <summary>
-        /// Возвращает расширенную информацию о пользователе.
+        /// Возвращает расширенную информацию о пользователях.
         /// </summary>
         /// <param name="userIds">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
         /// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
         /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
         /// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
         /// </remarks>
         [Pure]
         public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
@@ -145,8 +145,55 @@
             return response.ToReadOnlyCollectionOf<User>(x => x);
         }
 
+        /// <summary>
+        /// Возвращает расширенную информацию о пользователях.
+        /// </summary>
+        /// <param name="screenNames">Короткие имена пользователей, о которых необходимо получить информацию.</param>
+        /// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
+        /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+        /// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
+        /// </remarks>
+        [Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
+        public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null)
+        {
+            if (screenNames == null)
+                throw new ArgumentNullException("screenNames");
+
+            var parameters = new VkParameters
+                {
+                    { "user_ids", screenNames }, 
+                    { "fields", fields }, 
+                    { "name_case", nameCase }, 
+                    { "v", _vk.ApiVersion }
+                };
+
+            VkResponseArray response = _vk.Call("users.get", parameters);
+            return response.ToReadOnlyCollectionOf<User>(x => x);
+        }
+
+        /// <summary>
+        /// Возвращает расширенную информацию о пользователе.
+        /// </summary>
+        /// <param name="screenName">Короткое имя пользователя</param>
+        /// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
+        /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+        /// <returns>Объект <see cref="User"/> с запрошенной информацией о пользователе.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
+        /// </remarks>
+        [Pure, CanBeNull, ContractAnnotation("screenName:null => halt")]
+        public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null)
+        {
+            VkErrors.ThrowIfNullOrEmpty(() => screenName);
+
+            ReadOnlyCollection<User> users = Get(new[] {screenName}, fields, nameCase);
+            return users.Count > 0 ? users[0] : null;
+        }
+
         
-        // todo add tests for subscriptions for users
+            // todo add tests for subscriptions for users
         /// <summary>
         /// Возвращает список идентификаторов пользователей и групп, которые входят в список подписок пользователя.
         /// </summary>
