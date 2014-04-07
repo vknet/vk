@@ -1,4 +1,6 @@
-﻿namespace VkNet
+﻿using System.Threading.Tasks;
+
+namespace VkNet
 {
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -134,6 +136,29 @@
         }
 
         #region Private & Internal Methods
+
+        // todo refactor this shit
+        internal async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
+        {
+            if (!skipAuthorization)
+                IfNotAuthorizedThrowException();
+
+            string url = GetApiUrl(methodName, parameters);
+
+            string answer = await Browser.GetJsonAsync(url);
+
+#if DEBUG
+            Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
+            Trace.WriteLine(Utilities.PreetyPrintJson(answer));
+#endif
+            VkErrors.IfErrorThrowException(answer);
+
+            JObject json = JObject.Parse(answer);
+
+            var rawResponse = json["response"];
+
+            return new VkResponse(rawResponse) { RawJson = answer };
+        }
 
         internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {

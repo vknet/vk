@@ -1,7 +1,11 @@
-﻿namespace VkNet.Utils
+﻿using System;
+using System.Threading.Tasks;
+
+namespace VkNet.Utils
 {
     using System.Net;
     using System.Text;
+    using System.Net.Http;
 
     using VkNet.Exception;
 
@@ -26,6 +30,19 @@
             var call = new WebCall(url, new Cookies());
 
             return call.MakeRequest();
+        }
+
+        public static async Task<string> PostCallAsync(string url, string parameters)
+        {
+            var content = new StringContent(parameters);
+            string output = string.Empty;
+            using (var client = new HttpClient())
+            {   
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                output = await response.Content.ReadAsStringAsync();
+            }
+
+            return output;
         }
 
         public static WebCallResult PostCall(string url, string parameters)

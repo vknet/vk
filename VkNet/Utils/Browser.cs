@@ -1,4 +1,6 @@
-﻿namespace VkNet.Utils
+﻿using System.Threading.Tasks;
+
+namespace VkNet.Utils
 {
     using System.Net;
     using System.Text;
@@ -18,6 +20,16 @@
             string parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
 
             return WebCall.PostCall(methodUrl, parameters).Response;
+        }
+
+        public async Task<string> GetJsonAsync(string url)
+        {
+            // todo refactor this shit
+            var separatorPosition = url.IndexOf('?');
+            string methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
+            string parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
+
+            return await WebCall.PostCallAsync(url, parameters);
         }
 
         public VkAuthorization Authorize(int appId, string email, string password, Settings settings)

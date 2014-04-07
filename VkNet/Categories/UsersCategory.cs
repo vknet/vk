@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using System.Threading.Tasks;
+
+namespace VkNet.Categories
 {
     using System;
     using System.Collections.Generic;
@@ -172,6 +174,27 @@
             VkResponseArray response = _vk.Call("users.get", parameters);
             return response.ToReadOnlyCollectionOf<User>(x => x);
         }
+
+        // todo start shit
+        [Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
+        public async Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null)
+        {
+            if (screenNames == null)
+                throw new ArgumentNullException("screenNames");
+
+            var parameters = new VkParameters
+                {
+                    { "user_ids", screenNames }, 
+                    { "fields", fields }, 
+                    { "name_case", nameCase }, 
+                    { "v", _vk.ApiVersion }
+                };
+
+            VkResponseArray response = await _vk.CallAsync("users.get", parameters);
+            return response.ToReadOnlyCollectionOf<User>(x => x);
+        }
+
+        // todo end shit
 
         /// <summary>
         /// Возвращает расширенную информацию о пользователе.

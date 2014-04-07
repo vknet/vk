@@ -1,12 +1,13 @@
 ﻿namespace VkNet.Utils
 {
-    using VkNet.Enums;
+    using System.Threading.Tasks;
+    using Enums;
 
     /// <summary>
     /// Интерфейс браузера, с помощью которого осуществляется сетевое взаимодействие.
     /// Интерфейс введен с целью обеспечения возможности выполнения модульного тестирования.
     /// </summary>
-    public interface IBrowser
+    internal interface IBrowser
     {
         /// <summary>
         /// Выполняет JSON-запрос к ВКонтакте.
@@ -14,6 +15,13 @@
         /// <param name="url">URL, в котором закодированы параметры запроса.</param>
         /// <returns>Результат выполнения запроса, полученный от сервера в формате JSON.</returns>
         string GetJson(string url);
+
+        /// <summary>
+        /// Выполняет асинхронный JSON-запрос к ВКонтакте.
+        /// </summary>
+        /// <param name="url">URL, в котором закодированы параметры запроса.</param>
+        /// <returns></returns>
+        Task<string> GetJsonAsync(string url);
 
         /// <summary>
         /// Выполняет авторизацию ВКонтакте. 
