@@ -1,8 +1,5 @@
 ﻿namespace VkNet.Enums
-{
-    using System.Collections.Generic;
-    using System.Linq;
-
+{   
     using Model;
     using Utils;
 
@@ -10,23 +7,8 @@
     /// Требуемые для получения поля профиля.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/>.
     /// </summary>
-    public sealed class ProfileFields
+    public sealed class ProfileFields : VkFilter
     {
-        /// <summary>
-        /// Имя поля.
-        /// </summary>
-        private readonly string _name;
-
-        /// <summary>
-        /// Флаговое значение поля.
-        /// </summary>
-        private readonly long _value;
-
-        /// <summary>
-        /// Список полей.
-        /// </summary>
-        private readonly IList<ProfileFields> _fields;
-
         /// <summary>
         /// Для получения поля <see cref="User.Id"/>. Это поле возвращается всегда, поэтому его можно не указывать.
         /// </summary>
@@ -296,43 +278,14 @@
         public static readonly ProfileFields AllUndocumented = All | Language | OnlineMobile | OnlineApp | RelationPartner | 
             StandInLife | Interests | Music | Activities | Movies | Tv | Books | Games | About | Quotes | InvitedBy;
 
-        private ProfileFields(long value, string name)
+        private ProfileFields(long value, string name) : base(value, name)
         {
-            _value = value;
-            _name = name;
+            
         }
 
-        private ProfileFields(ProfileFields f1, ProfileFields f2)
+        private ProfileFields(ProfileFields left, ProfileFields right) : base(left, right)
         {
-            _fields = new List<ProfileFields>();
-
-            if (f1._fields != null && f1._fields.Count != 0)
-            {
-                foreach (var f in f1._fields)
-                {
-                    if (_fields.All(m => m._value != f._value))
-                        _fields.Add(f);
-                }
-            }
-            else
-            {
-                if (_fields.All(m => m._value != f1._value))
-                    _fields.Add(f1);
-            }
-
-            if (f2._fields != null && f2._fields.Count != 0)
-            {
-                foreach (var f in f2._fields)
-                {
-                    if (_fields.All(m => m._value != f._value))
-                        _fields.Add(f);
-                }
-            }
-            else
-            {
-                if (_fields.All(m => m._value != f2._value))
-                    _fields.Add(f2);
-            }
+            
         }
 
         /// <summary>
@@ -344,20 +297,6 @@
         public static ProfileFields operator |(ProfileFields left, ProfileFields right)
         {
             return new ProfileFields(left, right);
-        }
-
-        /// <summary>
-        /// Возвращает поля профиля в виде строки.
-        /// </summary>
-        /// <returns>
-        /// Строка с полями профиля, разделенными запятыми.
-        /// </returns>
-        public override string ToString()
-        {
-            if (_fields == null || _fields.Count == 0)
-                return _name;
-
-            return _fields.Select(f => f._name).JoinNonEmpty();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace VkNet.Utils
         /// <summary>
         /// Числовое значение фильтра.
         /// </summary>
-        protected readonly int Value;
+        protected readonly long Value;
 
         /// <summary>
         /// Выбранные фильтры.
@@ -28,7 +28,7 @@ namespace VkNet.Utils
         /// </summary>
         /// <param name="value">Числовое значение фильтра.</param>
         /// <param name="name">Строковое значение фильтра.</param>
-        protected VkFilter(int value, string name)
+        protected VkFilter(long value, string name)
         {
             Name = name;
             Value = value;
