@@ -11,7 +11,7 @@ namespace VkNet.Utils
     /// Браузер, через который производится сетевое взаимодействие с ВКонтакте.
     /// Сетевое взаимодействие выполняется с помощью <see cref="HttpWebRequest"/>. 
     /// </summary>
-    internal class Browser : IBrowser
+    public class Browser : IBrowser
     {
         public string GetJson(string url)
         {
