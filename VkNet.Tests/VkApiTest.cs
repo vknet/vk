@@ -97,5 +97,28 @@
             vk.Browser = browser.Object;
             vk.Authorize(AppId, Email, Password, Settings.Friends);
         }
+
+        [Test]
+        public void Call_NotMoreThen3CallsPerSecond()
+        {
+            int invocationCount = 0;
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(It.IsAny<string>()))
+                   .Returns(@"{ ""response"": 2 }")
+                   .Callback(() => invocationCount++);
+
+            var api = new VkApi {Browser = browser.Object};
+
+            var start = DateTime.Now;
+            while (true)
+            {
+                api.Call("someMethod", VkParameters.Empty, true);
+
+                if ((DateTime.Now - start).Seconds > 1)
+                    break;
+            }
+
+            browser.Verify(m => m.GetJson(It.IsAny<string>()), Times.AtMost(3));
+        }
     }
 }
