@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests.Categories
+﻿using System.Threading.Tasks;
+
+namespace VkNet.Tests.Categories
 {
     using System;
     using System.Collections.ObjectModel;
@@ -28,6 +30,7 @@
         {
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(url)).Returns(json);
+            browser.Setup(m => m.GetJsonAsync(url)).Returns(Task.FromResult(json));
 
             return new UsersCategory(new VkApi { AccessToken = "token", Browser = browser.Object, ApiVersion = "5.9"});
         }
@@ -1318,5 +1321,61 @@
             user.City.Id.ShouldEqual(1);
             user.City.Title.ShouldEqual("Москва");
         }
+
+        #region Async methods
+
+        [Test]
+        public async Task Async_GetAsync_DmAndDurov_ListOfUsers()
+        {
+            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=5.9&access_token=token";
+            const string json =
+            @"{
+                    'response': [
+                      {
+                        'id': 53083705,
+                        'first_name': 'Дмитрия',
+                        'last_name': 'Медведева',
+                        'sex': 2,
+                        'city': {
+                          'id': 1,
+                          'title': 'Москва'
+                        }
+                      },
+                      {
+                        'id': 1,
+                        'first_name': 'Павла',
+                        'last_name': 'Дурова',
+                        'sex': 2,
+                        'city': {
+                          'id': 2,
+                          'title': 'Санкт-Петербург'
+                        }
+                      }
+                    ]
+                  }";
+
+            UsersCategory cat = GetMockedUsersCategory(url, json);
+
+            var screenNames = new[] { "dm", "durov" };
+            ProfileFields fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
+            ReadOnlyCollection<User> users = await cat.GetAsync(screenNames, fields, NameCase.Gen);
+
+            users.Count.ShouldEqual(2);
+            users[0].Id.ShouldEqual(53083705);
+            users[0].FirstName.ShouldEqual("Дмитрия");
+            users[0].LastName.ShouldEqual("Медведева");
+            users[0].Sex.ShouldEqual(Sex.Male);
+            users[0].City.Id.ShouldEqual(1);
+            users[0].City.Title.ShouldEqual("Москва");
+
+            users[1].Id.ShouldEqual(1);
+            users[1].FirstName.ShouldEqual("Павла");
+            users[1].LastName.ShouldEqual("Дурова");
+            users[1].Sex.ShouldEqual(Sex.Male);
+            users[1].City.Id.ShouldEqual(2);
+            users[1].City.Title.ShouldEqual("Санкт-Петербург");
+        }
+
+        #endregion
     }
 }
