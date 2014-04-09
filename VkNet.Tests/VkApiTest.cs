@@ -99,6 +99,56 @@
         }
 
         [Test]
+        public void Call_CaptchaNeedeVkException()
+        {
+            const string url = "https://api.vk.com/method/messages.send?uid=1&message=hello10&type=0&access_token=token";
+            const string json =
+                @"{
+                    'error': {
+                      'error_code': 14,
+                      'error_msg': 'Captcha needed',
+                      'request_params': [
+                        {
+                          'key': 'oauth',
+                          'value': '1'
+                        },
+                        {
+                          'key': 'method',
+                          'value': 'messages.send'
+                        },
+                        {
+                          'key': 'uid',
+                          'value': '242508553'
+                        },
+                        {
+                          'key': 'message',
+                          'value': 'hello10'
+                        },
+                        {
+                          'key': 'type',
+                          'value': '0'
+                        },
+                        {
+                          'key': 'access_token',
+                          'value': '1fe7889c3395722934b1'
+                        }
+                      ],
+                      'captcha_sid': '548747100691',
+                      'captcha_img': 'http://api.vk.com/captcha.php?sid=548747100284&s=1'
+                    }
+                  }";
+
+            var browser = new Mock<IBrowser>();
+            browser.Setup(m => m.GetJson(It.IsAny<string>())).Returns(json);
+
+            var api = new VkApi {Browser = browser.Object};
+
+            api.Call("messages.send", VkParameters.Empty, true);
+
+            Assert.Fail("undone");
+        }
+
+        [Test]
         public void Call_NotMoreThen3CallsPerSecond()
         {
             int invocationCount = 0;
@@ -109,16 +159,20 @@
 
             var api = new VkApi {Browser = browser.Object};
 
-            var start = DateTime.Now;
+            var start = DateTimeOffset.Now;
             while (true)
             {
                 api.Call("someMethod", VkParameters.Empty, true);
 
-                if ((DateTime.Now - start).Seconds > 1)
+                int total = (int)(DateTimeOffset.Now - start).TotalMilliseconds;
+                if (total > 999)
                     break;
+                
             }
 
-            browser.Verify(m => m.GetJson(It.IsAny<string>()), Times.AtMost(3));
+            // Не больше 4 раз, т.к. 4-ый раз вызывается через 1002 мс после первого вызова, а total выходит через 1040 мс
+            // переписать тест, когда придумаю более подходящий метод проверки
+            browser.Verify(m => m.GetJson(It.IsAny<string>()), Times.AtMost(4));
         }
     }
 }

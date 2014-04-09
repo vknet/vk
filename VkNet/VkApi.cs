@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace VkNet
 {
@@ -24,6 +25,8 @@ namespace VkNet
         public string ApiVersion { get; internal set; }
 
         internal const string InvalidAuthorization = "Invalid authorization";
+        internal const int MinInterval = 1000/3 + 1;
+        private DateTimeOffset? _lastInvokeTime;
 
         #region Categories Definition
         
@@ -137,6 +140,7 @@ namespace VkNet
 
         #region Private & Internal Methods
 
+#if DEBUG
         // todo refactor this shit
         internal async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {
@@ -159,16 +163,26 @@ namespace VkNet
 
             return new VkResponse(rawResponse) { RawJson = answer };
         }
-
+#endif
+        
         internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {
             if (!skipAuthorization)
                 IfNotAuthorizedThrowException();
 
+            // проверка на не более 3-х запросов в секунду
+            if (_lastInvokeTime != null)
+            {
+                TimeSpan span = DateTimeOffset.Now - _lastInvokeTime.Value;
+                if (span.TotalMilliseconds < MinInterval)
+                    System.Threading.Thread.Sleep(MinInterval - (int)span.TotalMilliseconds);
+            }
+
             string url = GetApiUrl(methodName, parameters);
-
+            
             string answer = Browser.GetJson(url);
-
+            _lastInvokeTime = DateTimeOffset.Now;
+            
 #if DEBUG
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
             Trace.WriteLine(Utilities.PreetyPrintJson(answer));
