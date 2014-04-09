@@ -252,6 +252,8 @@
         /// </summary>
         /// <param name="userId">идентификатор пользователя, которому необходимо отправить заявку, либо заявку от которого необходимо одобрить.</param>
         /// <param name="text">текст сопроводительного сообщения для заявки на добавление в друзья. Максимальная длина сообщения — 500 символов.</param>
+        /// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
+        /// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
         /// <returns>
         /// После успешного выполнения возвращает одно из следующих значений:
         /// 1 — заявка на добавление данного пользователя в друзья отправлена;
@@ -261,14 +263,16 @@
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.add"/>.
         /// </remarks>
-        public AddFriendStatus Add(long userId, string text = "")
+        public AddFriendStatus Add(long userId, string text = "", long? captchaSid = null, string captchaKey = null)
         {
             VkErrors.ThrowIfNumberIsNegative(userId, "userId");
             
             var parameters = new VkParameters
                 {
                     {"user_id", userId},
-                    {"text", text}
+                    {"text", text},
+                    {"captcha_sid", captchaSid},
+                    {"captcha_key", captchaKey}
                 };
 
             VkResponse response = _vk.Call("friends.add", parameters);

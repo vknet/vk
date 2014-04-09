@@ -463,6 +463,22 @@
         }
 
         [Test]
+        public void Add_WithCaptcha_NormalCase()
+        {
+            const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&captcha_sid=1247329&captcha_key=hug2z&access_token=token";
+            const string json =
+                @"{
+                    'response': 1
+                  }";
+
+            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+
+            AddFriendStatus status = cat.Add(242508, "hello, user!", captchaSid:1247329, captchaKey:"hug2z");
+
+            Assert.That(status, Is.EqualTo(AddFriendStatus.Sended));
+        }
+
+        [Test]
         public void Delete_NormalCase()
         {
             const string url = "https://api.vk.com/method/friends.delete?user_id=24250&access_token=token";

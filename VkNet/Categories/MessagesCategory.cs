@@ -278,6 +278,8 @@
         /// <param name="latitude">Широта при добавлении местоположения.</param>
         /// <param name="longitude">Долгота при добавлении местоположения.</param>
         /// <param name="guid">Уникальный строковой идентификатор, предназначенный для предотвращения повторной отправки одинакового сообщения.</param>
+        /// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
+        /// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
         /// <returns>Возвращается идентификатор отправленного сообщения.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
@@ -293,7 +295,9 @@
             bool fromChat = false,
             double? latitude = null,
             double? longitude = null,
-            string guid = null)
+            string guid = null,
+            long? captchaSid = null,
+            string captchaKey = null)
         {
             if (string.IsNullOrEmpty(message))
                 throw new ArgumentException("Message can not be null.", "message");
@@ -307,7 +311,10 @@
                                  { "type", fromChat },
                                  { "lat", latitude },
                                  { "long", longitude },
-                                 { "guid", HttpUtility.UrlEncode(guid) }
+                                 { "guid", HttpUtility.UrlEncode(guid) },
+                                 { "captcha_sid", captchaSid},
+                                 { "captcha_key", captchaKey}
+
                              };
 
             // TODO: Yet not work with attachments. Fix it later.
