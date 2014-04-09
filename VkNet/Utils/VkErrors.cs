@@ -97,6 +97,11 @@ namespace VkNet.Utils
 
             switch (code)
             {
+                case 14:
+                    var sid = Convert.ToInt64((string)response["captcha_sid"]);
+                    var img = Convert.ToString(response["captcha_img"]);
+                    throw new CaptchaNeededException(sid, img);
+
                 case 5:
                     throw new UserAuthorizationFailException(message, code);
 

@@ -99,7 +99,7 @@
         }
 
         [Test]
-        public void Call_CaptchaNeedeVkException()
+        public void Call_ThrowsCaptchaNeededException()
         {
             const string url = "https://api.vk.com/method/messages.send?uid=1&message=hello10&type=0&access_token=token";
             const string json =
@@ -143,9 +143,10 @@
 
             var api = new VkApi {Browser = browser.Object};
 
-            api.Call("messages.send", VkParameters.Empty, true);
+            var ex = ExceptionAssert.Throws<CaptchaNeededException>(() => api.Call("messages.send", VkParameters.Empty, true));
 
-            Assert.Fail("undone");
+            ex.Sid.ShouldEqual(548747100691);
+            ex.Img.ShouldEqual(new Uri("http://api.vk.com/captcha.php?sid=548747100284&s=1"));
         }
 
         [Test]

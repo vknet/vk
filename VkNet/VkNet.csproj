@@ -101,6 +101,7 @@
     <Compile Include="Enums\WallFilter.cs" />
     <Compile Include="Exception\AccessDeniedException.cs" />
     <Compile Include="Exception\AccessTokenInvalidException.cs" />
+    <Compile Include="Exception\CaptchaNeededException.cs" />
     <Compile Include="Exception\InvalidParameterException.cs" />
     <Compile Include="Exception\TooManyRequestsException.cs" />
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
