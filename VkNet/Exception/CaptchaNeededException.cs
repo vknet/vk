@@ -8,7 +8,14 @@
     [Serializable]
     public class CaptchaNeededException : VkApiException
     {
+        /// <summary>
+        /// Идентификатор капчи
+        /// </summary>
         public long Sid { get; private set; }
+
+        /// <summary>
+        /// Url-адрес до изображения с капчей
+        /// </summary>
         public Uri Img { get; private set; }
 
 

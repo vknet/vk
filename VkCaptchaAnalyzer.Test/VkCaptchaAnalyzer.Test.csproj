@@ -53,6 +53,30 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="CaptchaImgs\1.jpg" />
+    <Content Include="CaptchaImgs\de4q.jpg" />
+    <Content Include="CaptchaImgs\dz7s.jpg" />
+    <Content Include="CaptchaImgs\hhc4.jpg" />
+    <Content Include="CaptchaImgs\hmss.jpg" />
+    <Content Include="CaptchaImgs\hsvdc.jpg" />
+    <Content Include="CaptchaImgs\q27h.jpg" />
+    <Content Include="CaptchaImgs\q2vh7.jpg" />
+    <Content Include="CaptchaImgs\qmqy.jpg" />
+    <Content Include="CaptchaImgs\qzump.jpg" />
+    <Content Include="CaptchaImgs\skspn.jpg" />
+    <Content Include="CaptchaImgs\sypyz.jpg" />
+    <Content Include="CaptchaImgs\syvp.jpg" />
+    <Content Include="CaptchaImgs\sz74.jpg" />
+    <Content Include="CaptchaImgs\v4sy.jpg" />
+    <Content Include="CaptchaImgs\v7qx.jpg" />
+    <Content Include="CaptchaImgs\vadk2.jpg" />
+    <Content Include="CaptchaImgs\vcv2.jpg" />
+    <Content Include="CaptchaImgs\vx7dm.jpg" />
+    <Content Include="CaptchaImgs\vzey.jpg" />
+    <Content Include="CaptchaImgs\vznx.jpg" />
+    <Content Include="CaptchaImgs\zs5k.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
