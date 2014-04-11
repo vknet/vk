@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Enums;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -106,7 +107,7 @@ namespace VkNet.Categories
 		/// <param name="chatID">Идентификатор чата, для которого следует отключить уведомления.</param>
 		/// <param name="userID">Идентификатор пользователя, для которого следует отключить уведомления.</param>
 		/// <param name="sound">Включить звук в данном диалоге. (параметр работает только если указан <paramref name="userID"/> или <paramref name="chatID"/> )</param>
-		/// <returns></returns>
+		/// <returns>Возвращает результат выполнения метода.</returns>
 		[Pure]
 		public bool SetSilenceMode([NotNull] string token, int? time = null, int? chatID = null, int? userID = null, bool? sound = null)
 		{
@@ -125,6 +126,58 @@ namespace VkNet.Categories
 			return _vk.Call("account.setSilenceMode", parameters);
 		}
 
+		/// <summary>
+		/// Добавляет пользователя в черный список. 
+		/// </summary>
+		/// <param name="userID">Идентификатор пользователя, которого нужно добавить в черный список. (положительное число)</param>
+		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <remarks>Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: <see cref="Settings.Friends"/>.</remarks>
+		[Pure]
+		public bool BanUser(int userID)
+		{
+			if(userID <= 0)
+				throw new ArgumentException("User ID should be greater than 0.", "userID");
+			return _vk.Call("account.banUser", new VkParameters() { { "user_id", userID } });
+		}
+
+		/// <summary>
+		/// Убирает пользователя из черного списка. 
+		/// </summary>
+		/// <param name="userID">Идентификатор пользователя, которого нужно убрать из черного списка. (положительное число)</param>
+		/// <returns>Возвращает результат выполнения метода.</returns>
+		[Pure]
+		public bool UnbanUser(int userID)
+		{
+			if (userID <= 0)
+				throw new ArgumentException("User ID should be greater than 0.", "userID");
+			return _vk.Call("account.unbanUser", new VkParameters() { { "user_id", userID } });
+		}
+
+
+		/// <summary>
+		/// Возвращает список пользователей, находящихся в черном списке. 
+		/// </summary>
+		/// <param name="total">Возвращает общее количество находящихся в черном списке пользователей.</param>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества черного списка. (положительное число) </param>
+		/// <param name="count">Количество записей, которое необходимо вернуть. (положительное число, по умолчанию - 20, максимальное значение - 200) </param>
+		/// <returns>Возвращает набор объектов пользователей, находящихся в черном списке. </returns>
+		[Pure]
+		public IEnumerable<User> GetBanned(out int total, int? offset = null, int? count = null)
+		{
+			VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+			VkErrors.ThrowIfNumberIsNegative(count, "count");
+
+			var parameters = new VkParameters()
+								{
+									{"offset", offset},
+									{"count", count}
+								};
+			var response = _vk.Call("account.getBanned", parameters);
+
+			total = response["count"];
+
+			return response["items"].ToListOf<User>(vkResponse => vkResponse);
+		}
 
 	}
 }

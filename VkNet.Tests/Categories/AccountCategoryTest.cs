@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -171,7 +172,7 @@ namespace VkNet.Tests.Categories
 
 
 		[Test]
-		public void RegisterDevice_SetsCorrectly_ReturnTrue()
+		public void RegisterDevice_CorrectParameters_ReturnTrue()
 		{
 			const string url = "https://api.vk.com/method/account.registerDevice?token=tokenVal&device_model=deviceModelVal&system_version=systemVersionVal&access_token=token";
 			const string json = @"{ 'response': 1 }";
@@ -181,7 +182,7 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void RegisterDevice_SetsCorrectly_ReturnFalse()
+		public void RegisterDevice_CorrectParameters_ReturnFalse()
 		{
 			const string url = "https://api.vk.com/method/account.registerDevice?token=tokenVal&device_model=deviceModelVal&system_version=systemVersionVal&access_token=token";
 			const string json = @"{ 'response': 0 }";
@@ -252,7 +253,7 @@ namespace VkNet.Tests.Categories
 
 
 		[Test]
-		public void UnregisterDevice_SetsCorrectly_ReturnTrue()
+		public void UnregisterDevice_CorrectParameters_ReturnTrue()
 		{
 			const string url = "https://api.vk.com/method/account.unregisterDevice?token=tokenVal&access_token=token";
 			const string json = @"{ 'response': 1 }";
@@ -262,7 +263,7 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void UnregisterDevice_SetsCorrectly_ReturnFalse()
+		public void UnregisterDevice_CorrectParameters_ReturnFalse()
 		{
 			const string url = "https://api.vk.com/method/account.unregisterDevice?token=tokenVal&access_token=token";
 			const string json = @"{ 'response': 0 }";
@@ -290,7 +291,6 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetSilenceMode_NullOrEmptyToken_ThrowArgumentNullException()
 		{
-			var mock = new Mock<IBrowser>(MockBehavior.Strict);
 			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
 
 			// ReSharper disable AssignNullToNotNullAttribute
@@ -346,7 +346,237 @@ namespace VkNet.Tests.Categories
 
 		#endregion
 
+		#region BanUser
+
+		[Test]
+		[ExpectedException(typeof(AccessTokenInvalidException))]
+		public void BanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var account = new AccountCategory(new VkApi());
+			// ReSharper disable AssignNullToNotNullAttribute
+			account.BanUser(42);
+			// ReSharper restore AssignNullToNotNullAttribute
+		}
+
+		[Test]
+		public void BanUser_IncorrectUserID_ThrowArgumentException()
+		{
+			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+
+			// ReSharper disable AssignNullToNotNullAttribute
+			Assert.That(() => account.BanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userID"));
+			Assert.That(() => account.BanUser(0), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userID"));
+			// ReSharper restore AssignNullToNotNullAttribute
+		}
+
+
+		[Test]
+		public void BanUser_CorrectParameters_ReturnTrue()
+		{
+			const string url = "https://api.vk.com/method/account.banUser?user_id=4&access_token=token";
+			const string json = @"{ 'response': 1 }";
+			var account = GetMockedAccountCategory(url, json);
+
+			Assert.That(account.BanUser(4), Is.True); // 
+		}
+
+		[Test]
+		public void BanUser_CorrectParameters_ReturnFalse()
+		{
+			const string url = "https://api.vk.com/method/account.banUser?user_id=1&access_token=token";
+			const string json = @"{ 'response': 0 }";
+			var account = GetMockedAccountCategory(url, json);
+
+			Assert.That(account.BanUser(1), Is.False); // Нельзя просто так взять и забанить Дурова
+		}
+
+		#endregion
+
+		#region UnbanUser
+
+		[Test]
+		[ExpectedException(typeof(AccessTokenInvalidException))]
+		public void UnbanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var account = new AccountCategory(new VkApi());
+			// ReSharper disable AssignNullToNotNullAttribute
+			account.UnbanUser(42);
+			// ReSharper restore AssignNullToNotNullAttribute
+		}
+
+		[Test]
+		public void UnbanUser_IncorrectUserID_ThrowArgumentException()
+		{
+			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+
+			// ReSharper disable AssignNullToNotNullAttribute
+			Assert.That(() => account.UnbanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userID"));
+			Assert.That(() => account.UnbanUser(0), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userID"));
+			// ReSharper restore AssignNullToNotNullAttribute
+		}
+
+
+		[Test]
+		public void UnbanUser_CorrectParameters_ReturnTrue()
+		{
+			const string url = "https://api.vk.com/method/account.unbanUser?user_id=4&access_token=token";
+			const string json = @"{ 'response': 1 }";
+			var account = GetMockedAccountCategory(url, json);
+
+			Assert.That(account.UnbanUser(4), Is.True); 
+		}
+
+		[Test]
+		public void UnbanUser_CorrectParameters_ReturnFalse()
+		{
+			const string url = "https://api.vk.com/method/account.unbanUser?user_id=1&access_token=token";
+			const string json = @"{ 'response': 0 }";
+			var account = GetMockedAccountCategory(url, json);
+
+			Assert.That(account.UnbanUser(1), Is.False);
+		}
+
+		#endregion
+
+		#region GetBanned
+
+		[Test]
+		[ExpectedException(typeof(AccessTokenInvalidException))]
+		public void GetBanned_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var account = new AccountCategory(new VkApi());
+			// ReSharper disable AssignNullToNotNullAttribute
+			int res;
+			account.GetBanned(out res);
+			// ReSharper restore AssignNullToNotNullAttribute
+		}
+
+		[Test]
+		public void GetBanned_IncorrectParameters_ThrowArgumentException()
+		{
+			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+
+			int buf;
+			// ReSharper disable AssignNullToNotNullAttribute
+			Assert.That(() => account.GetBanned(out buf, offset: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("offset"));
+			Assert.That(() => account.GetBanned(out buf, count: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("count"));
+			// ReSharper restore AssignNullToNotNullAttribute
+		}
+
+
+		[Test]
+		public void GetBanned_WithDefaultParameters()
+		{
+			const string url = "https://api.vk.com/method/account.getBanned?access_token=token";
+			const string json = @"{ 'response': {
+									count: 10,
+									items: [{
+									id: 247704457,
+									first_name: 'Твой',
+									last_name: 'День-Рождения',
+									deactivated: 'banned'
+									}, {
+									id: 205041002,
+									first_name: 'Ваш',
+									last_name: 'День-Рождения',
+									deactivated: 'banned'
+									}]
+									}}";
+			var account = GetMockedAccountCategory(url, json);
+
+			int total;
+			var items = account.GetBanned(out total);
+			Assert.That(total, Is.EqualTo(10));
+			Assert.That(items, Has.Count.EqualTo(2));
+			Assert.That(items.First().Id, Is.EqualTo(247704457));
+			Assert.That(items.First().FirstName, Is.EqualTo("Твой"));
+			Assert.That(items.First().LastName, Is.EqualTo("День-Рождения"));
+			Assert.That(items.First().DeactiveReason, Is.EqualTo("banned"));
+		}
+
+		[Test]
+		public void GetBanned_WithCorrectCountParameter()
+		{
+			const string url = "https://api.vk.com/method/account.getBanned?count=2&access_token=token";
+			const string json = @"{ 'response': {
+									count: 10,
+									items: [{
+									id: 247704457,
+									first_name: 'Твой',
+									last_name: 'День-Рождения',
+									deactivated: 'banned'
+									}, {
+									id: 205041002,
+									first_name: 'Ваш',
+									last_name: 'День-Рождения',
+									deactivated: 'banned'
+									}]
+									}}";
+			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
+			
+			int total;
+			account.Item1.GetBanned(out total, count: 2);
+			account.Item2.VerifyAll();
+		}
+
+		[Test]
+		public void GetBanned_WithCorrectOffsetParameter()
+		{
+			const string url = "https://api.vk.com/method/account.getBanned?offset=10&access_token=token";
+			const string json = @"{ 'response': {
+									count: 10,
+									items: [{
+									id: 247704457,
+									first_name: 'Твой',
+									last_name: 'День-Рождения',
+									deactivated: 'banned'
+									}, {
+									id: 205041002,
+									first_name: 'Ваш',
+									last_name: 'День-Рождения',
+									deactivated: 'banned'
+									}]
+									}}";
+			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
+
+			int total;
+			account.Item1.GetBanned(out total, offset: 10);
+			account.Item2.VerifyAll();
+		}
+
+		[Test]
+		public void GetBanned_WhenThereIsNoBannedUsers()
+		{
+			const string url = "https://api.vk.com/method/account.getBanned?access_token=token";
+			const string json = @"{ 'response': {
+									count: 0,
+									items: []
+									}}";
+			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
+
+			int total;
+			Assert.That(account.Item1.GetBanned(out total), Has.Count.EqualTo(0));
+			Assert.That(total, Is.EqualTo(0));
+		}
+
+		[Test]
+		public void GetBanned_WhenThereIsSomeBannedUsersButNotInTheOffsetRange()
+		{
+			const string url = "https://api.vk.com/method/account.getBanned?offset=50&access_token=token";
+			const string json = @"{ 'response': {
+									count: 5,
+									items: []
+									}}";
+			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
+
+			int total;
+			Assert.That(account.Item1.GetBanned(out total, offset: 50), Has.Count.EqualTo(0));
+			Assert.That(total, Is.EqualTo(5));
+		}
+
+		#endregion
 
 
 	}
+
 }
