@@ -175,6 +175,7 @@ namespace VkNet.Categories
             return response.ToReadOnlyCollectionOf<User>(x => x);
         }
 
+#if DEBUG
         // todo start shit
         [Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
         public async Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null)
@@ -193,6 +194,7 @@ namespace VkNet.Categories
             VkResponseArray response = await _vk.CallAsync("users.get", parameters);
             return response.ToReadOnlyCollectionOf<User>(x => x);
         }
+#endif
 
         // todo end shit
 

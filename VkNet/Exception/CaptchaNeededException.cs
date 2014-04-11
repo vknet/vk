@@ -14,7 +14,7 @@
         public long Sid { get; private set; }
 
         /// <summary>
-        /// Url-адрес до изображения с капчей
+        /// Url-адрес изображения с капчей
         /// </summary>
         public Uri Img { get; private set; }
 
