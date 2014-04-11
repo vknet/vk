@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
     <Compile Include="Categories\DatabaseCategory.cs" />
     <Compile Include="Categories\FaveCategory.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Enums\Settings.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
     <Compile Include="Enums\Sex.cs" />
+    <Compile Include="Enums\SubscribeFilter.cs" />
     <Compile Include="Enums\VideoFilters.cs" />
     <Compile Include="Enums\VideoReportType.cs" />
     <Compile Include="Enums\VideoSort.cs" />
