@@ -153,9 +153,7 @@ namespace VkNet.Tests.Categories
 		public void RegisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			// ReSharper disable AssignNullToNotNullAttribute
 			account.RegisterDevice("tokenVal", null, null);
-			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
 		[Test]
@@ -234,9 +232,7 @@ namespace VkNet.Tests.Categories
 		public void UnregisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			// ReSharper disable AssignNullToNotNullAttribute
 			account.UnregisterDevice("tokenVal");
-			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
 		[Test]
@@ -283,9 +279,7 @@ namespace VkNet.Tests.Categories
 		public void SetSilenceMode_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			// ReSharper disable AssignNullToNotNullAttribute
 			account.SetSilenceMode("tokenVal");
-			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
 		[Test]
@@ -353,9 +347,7 @@ namespace VkNet.Tests.Categories
 		public void BanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			// ReSharper disable AssignNullToNotNullAttribute
 			account.BanUser(42);
-			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
 		[Test]
@@ -399,9 +391,7 @@ namespace VkNet.Tests.Categories
 		public void UnbanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			// ReSharper disable AssignNullToNotNullAttribute
 			account.UnbanUser(42);
-			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
 		[Test]
@@ -445,10 +435,8 @@ namespace VkNet.Tests.Categories
 		public void GetBanned_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			// ReSharper disable AssignNullToNotNullAttribute
 			int res;
 			account.GetBanned(out res);
-			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
 		[Test]
@@ -457,10 +445,9 @@ namespace VkNet.Tests.Categories
 			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
 
 			int buf;
-			// ReSharper disable AssignNullToNotNullAttribute
 			Assert.That(() => account.GetBanned(out buf, offset: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("offset"));
 			Assert.That(() => account.GetBanned(out buf, count: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("count"));
-			// ReSharper restore AssignNullToNotNullAttribute
+			
 		}
 
 
@@ -576,6 +563,107 @@ namespace VkNet.Tests.Categories
 
 		#endregion
 
+		#region GetInfo
+
+		[Test]
+		[ExpectedException(typeof(AccessTokenInvalidException))]
+		public void GetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var account = new AccountCategory(new VkApi());
+			// ReSharper disable AssignNullToNotNullAttribute
+			account.GetInfo();
+			// ReSharper restore AssignNullToNotNullAttribute
+		}
+
+		[Test]
+		public void GetInfo_WhenServerReturnsEmptyResponse()
+		{
+			const string url = "https://api.vk.com/method/account.getInfo?access_token=token";
+			const string json = @"{ 'response': { } }";
+			var account = GetMockedAccountCategory(url, json);
+
+			var info = account.GetInfo();
+			Assert.That(info, Is.Not.Null);
+
+			Assert.That(info.Country,		Is.Null);
+			Assert.That(info.HttpsRequired, Is.Null);
+			Assert.That(info.Intro,			Is.Null);
+			Assert.That(info.Language,		Is.Null);
+		}
+
+		[Test]
+		public void GetInfo_WhenServerReturnsAllFields()
+		{
+			const string url = "https://api.vk.com/method/account.getInfo?access_token=token";
+			const string json = @"{ 'response': {
+										country: 'RU',
+										https_required: 1,
+										intro: 10,
+										lang: 0
+										}}";
+			var account = GetMockedAccountCategory(url, json);
+
+			var info = account.GetInfo();
+			Assert.That(info, Is.Not.Null);
+
+			Assert.That(info.Country, Is.EqualTo("RU"));
+			Assert.That(info.HttpsRequired, Is.EqualTo(true));
+			Assert.That(info.Intro, Is.EqualTo(10));
+			Assert.That(info.Language, Is.EqualTo(0));
+		}
+
+		#endregion
+
+		#region SetInfo
+
+		[Test]
+		[ExpectedException(typeof(AccessTokenInvalidException))]
+		public void SetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var account = new AccountCategory(new VkApi());
+			account.SetInfo(10);
+		}
+
+		[Test]
+		public void SetInfo_IncorrectUserID_ThrowArgumentException()
+		{
+			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+
+			Assert.That(() => account.SetInfo(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("intro"));
+		}
+
+		[Test]
+		public void SetInfo_ReturnTrue()
+		{
+			const string url = "https://api.vk.com/method/account.setInfo?access_token=token";
+			const string json = @"{ 'response': 1 }";
+			var account = GetMockedAccountCategory(url, json);
+
+			Assert.That(account.SetInfo(), Is.True);
+		}
+
+		[Test]
+		public void SetInfo_ReturnFalse()
+		{
+			const string url = "https://api.vk.com/method/account.setInfo?access_token=token";
+			const string json = @"{ 'response': 0 }";
+			var account = GetMockedAccountCategory(url, json);
+
+			Assert.That(account.SetInfo(), Is.False);
+		}
+
+		[Test]
+		public void SetInfo_WithIntroParameter_ReturnFalse()
+		{
+			const string url = "https://api.vk.com/method/account.setInfo?intro=10&access_token=token";
+			const string json = @"{ 'response': 1 }";
+			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
+
+			account.Item1.SetInfo(10);
+			account.Item2.VerifyAll();
+		}
+
+		#endregion
 
 	}
 

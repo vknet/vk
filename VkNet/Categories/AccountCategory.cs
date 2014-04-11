@@ -179,5 +179,28 @@ namespace VkNet.Categories
 			return response["items"].ToListOf<User>(vkResponse => vkResponse);
 		}
 
+		/// <summary>
+		/// Возвращает информацию о текущем аккаунте. 
+		/// </summary>
+		[Pure]
+		public AccountInfo GetInfo()
+		{
+			return _vk.Call("account.getInfo", VkParameters.Empty);
+		}
+
+
+		/// <summary>
+		/// Позволяет редактировать информацию о текущем аккаунте. 
+		/// </summary>
+		/// <param name="intro">Битовая маска, отвечающая за прохождение обучения в мобильных клиентах. (положительное число)</param>
+		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <remarks>Если параметр <paramref name="intro"/> не установлен, он сбрасывается на 0.</remarks>
+		[Pure]
+		public bool SetInfo(int? intro = null)
+		{
+			VkErrors.ThrowIfNumberIsNegative(intro, "intro");
+			return _vk.Call("account.setInfo", new VkParameters(){{"intro", intro}});
+		}
+
 	}
 }

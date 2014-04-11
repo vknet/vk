@@ -109,6 +109,7 @@
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Categories\FriendsCategory.cs" />
+    <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\ApplicationContent.cs" />
     <Compile Include="Model\AudioAlbum.cs" />
