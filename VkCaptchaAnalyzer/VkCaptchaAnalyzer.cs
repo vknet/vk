@@ -1,9 +1,10 @@
-﻿using JetBrains.Annotations;
+﻿using AForge.Imaging.Filters;
 
 namespace VkCaptchaAnalyzer
 {
     using System.Drawing;
-    using System;
+    
+    using JetBrains.Annotations;
 
     public class VkCaptchaAnalyzer
     {
@@ -25,7 +26,8 @@ namespace VkCaptchaAnalyzer
 
         public static Bitmap Inverse(Bitmap img)
         {
-            throw new NotImplementedException();
+            IFilter filter = new Invert();
+            return filter.Apply(img);
         }
     }
 }
