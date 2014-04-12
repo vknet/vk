@@ -25,7 +25,6 @@ namespace VkNet.Categories
 		/// <param name="name">Короткое название приложения (до 17 символов).</param>
 		/// <returns>Возвращает результат установки короткого названия.</returns>
 		/// <remarks>Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied).</remarks>
-		[Pure]
 		public bool SetNameInMenu([NotNull] string name)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => name);
@@ -37,7 +36,6 @@ namespace VkNet.Categories
 		/// Помечает текущего пользователя как online на 15 минут. 
 		/// </summary>
 		/// <returns>Возвращает значение, показывающее, успешно ли выполнился метод.</returns>
-		[Pure]
 		public bool SetOnline(bool? voip = null)
 		{
 			var parameters = new VkParameters { { "voip", voip } };
@@ -48,7 +46,6 @@ namespace VkNet.Categories
 		/// Помечает текущего пользователя как offline.
 		/// </summary>
 		/// <returns>Возвращает значение, показывающее, успешно ли выполнился метод.</returns>
-		[Pure]
 		public bool SetOffline()
 		{
 			return _vk.Call("account.setOffline", VkParameters.Empty);
@@ -85,7 +82,6 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="token">Идентификатор устройства.</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
-		[Pure]
 		public bool UnregisterDevice([NotNull] string token)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => token);
@@ -108,7 +104,6 @@ namespace VkNet.Categories
 		/// <param name="userID">Идентификатор пользователя, для которого следует отключить уведомления.</param>
 		/// <param name="sound">Включить звук в данном диалоге. (параметр работает только если указан <paramref name="userID"/> или <paramref name="chatID"/> )</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
-		[Pure]
 		public bool SetSilenceMode([NotNull] string token, int? time = null, int? chatID = null, int? userID = null, bool? sound = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => token);
@@ -132,7 +127,6 @@ namespace VkNet.Categories
 		/// <param name="userID">Идентификатор пользователя, которого нужно добавить в черный список. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: <see cref="Settings.Friends"/>.</remarks>
-		[Pure]
 		public bool BanUser(int userID)
 		{
 			if(userID <= 0)
@@ -145,7 +139,6 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="userID">Идентификатор пользователя, которого нужно убрать из черного списка. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
-		[Pure]
 		public bool UnbanUser(int userID)
 		{
 			if (userID <= 0)
@@ -195,7 +188,6 @@ namespace VkNet.Categories
 		/// <param name="intro">Битовая маска, отвечающая за прохождение обучения в мобильных клиентах. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>Если параметр <paramref name="intro"/> не установлен, он сбрасывается на 0.</remarks>
-		[Pure]
 		public bool SetInfo(int? intro = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(intro, "intro");
