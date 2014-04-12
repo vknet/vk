@@ -5,7 +5,9 @@ using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
+using VkNet.Model;
 using VkNet.Utils;
+using VkNet.Utils.Tests;
 
 namespace VkNet.Tests.Categories
 {
@@ -22,7 +24,7 @@ namespace VkNet.Tests.Categories
 			var mock = new Mock<IBrowser>(MockBehavior.Strict);
 			mock.Setup(m => m.GetJson(url)).Returns(json);
 			return new Tuple<AccountCategory, Mock<IBrowser>>(
-				new AccountCategory(new VkApi { AccessToken = "token", Browser = mock.Object, ApiVersion = version })
+				new AccountCategory(new VkApi { AccessToken = "token", Browser = mock.Object, ApiVersion = version, UserId = 10})
 				, mock);
 		}
 
@@ -570,9 +572,7 @@ namespace VkNet.Tests.Categories
 		public void GetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			// ReSharper disable AssignNullToNotNullAttribute
 			account.GetInfo();
-			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
 		[Test]
@@ -661,6 +661,117 @@ namespace VkNet.Tests.Categories
 
 			account.Item1.SetInfo(10);
 			account.Item2.VerifyAll();
+		}
+
+		#endregion
+
+		#region GetProfileInfo
+
+		[Test]
+		[ExpectedException(typeof(AccessTokenInvalidException))]
+		public void GetProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var account = new AccountCategory(new VkApi());
+			account.GetProfileInfo();
+
+		}
+
+		[Test]
+		public void GetProfileInfo_WhenServerReturnAllFields()
+		{
+			const string url = "https://api.vk.com/method/account.getProfileInfo?access_token=token";
+			const string json = @"{ 'response': {
+											first_name: 'Анна',
+											last_name: 'Каренина',
+											maiden_name: 'Облонская',
+											sex: 1,
+											relation: 5,
+											relation_partner: {
+												id: 42,
+												first_name: 'Алексей',
+												last_name: 'Каренин'
+											},
+											bdate: '01.2',
+											bdate_visibility: 2,
+											home_town: 'Санкт-Петербург',
+											country: {
+												id: 1,
+												title: 'Российская империя'
+											},
+											city: {
+												id: 2,
+												title: 'Санкт-Петербург'
+											},
+											name_request: {
+												id: 56789,
+												status: 'processing',
+												first_name: 'Анюта',
+												last_name: 'Вронская'
+											}
+											} }";
+			var account = GetMockedAccountCategory(url, json);
+			
+			var info = account.GetProfileInfo();
+			Assert.That(info, Is.Not.Null);
+
+			Assert.That(info.FirstName, Is.EqualTo("Анна"));
+			Assert.That(info.LastName, Is.EqualTo("Каренина"));
+			Assert.That(info.MaidenName, Is.EqualTo("Облонская"));
+			Assert.That(info.Sex, Is.EqualTo(Sex.Female));
+			Assert.That(info.Relation, Is.EqualTo(RelationType.ItsComplex));
+			Assert.That(info.RelationPartner, Is.Not.Null);
+				Assert.That(info.RelationPartner.FirstName, Is.EqualTo("Алексей"));
+				Assert.That(info.RelationPartner.LastName, Is.EqualTo("Каренин"));
+				Assert.That(info.RelationPartner.Id, Is.EqualTo(42));
+			Assert.That(info.BirthDate, Is.EqualTo("01.2"));
+			Assert.That(info.BirthdayVisibility, Is.EqualTo(BirthdayVisibility.OnlyDayAndMonth));
+			Assert.That(info.HomeTown, Is.EqualTo("Санкт-Петербург"));
+			Assert.That(info.Country.Title, Is.EqualTo("Российская империя"));
+			Assert.That(info.City.Title, Is.EqualTo("Санкт-Петербург"));
+			Assert.That(info.ChangeNameRequest, Is.Not.Null);
+			Assert.That(info.ChangeNameRequest.FirstName, Is.EqualTo("Анюта"));
+			Assert.That(info.ChangeNameRequest.LastName, Is.EqualTo("Вронская"));
+			Assert.That(info.ChangeNameRequest.Id, Is.EqualTo(56789));
+			Assert.That(info.ChangeNameRequest.Status, Is.EqualTo(ChangeNameStatus.Processing));
+			Assert.That(info.ChangeNameRequest.RepeatDate, Is.Null);
+
+		}
+
+		[Test]
+		public void GetProfileInfo_WhenServerReturnSomeFields()
+		{
+			const string url = "https://api.vk.com/method/account.getProfileInfo?access_token=token";
+			const string json = @"{ 'response': {
+											first_name: 'Анна',
+											last_name: 'Каренина',
+											maiden_name: 'Облонская',
+											sex: 1,
+											relation: 3,
+											bdate_visibility: 0,
+											country: {
+												id: 1,
+												title: 'Российская империя'
+											},
+											city: {
+												id: 2,
+												title: 'Санкт-Петербург'
+											}
+											} }";
+			var account = GetMockedAccountCategory(url, json);
+			
+			var info = account.GetProfileInfo();
+			Assert.That(info, Is.Not.Null);
+
+			Assert.That(info.FirstName, Is.EqualTo("Анна"));
+			Assert.That(info.LastName, Is.EqualTo("Каренина"));
+			Assert.That(info.MaidenName, Is.EqualTo("Облонская"));
+			Assert.That(info.Sex, Is.EqualTo(Sex.Female));
+			Assert.That(info.Relation, Is.EqualTo(RelationType.Engaged));
+			Assert.That(info.RelationPartner, Is.Null);
+			Assert.That(info.BirthdayVisibility, Is.EqualTo(BirthdayVisibility.Invisible));
+			Assert.That(info.Country.Title, Is.EqualTo("Российская империя"));
+			Assert.That(info.City.Title, Is.EqualTo("Санкт-Петербург"));
+			Assert.That(info.ChangeNameRequest, Is.Null);
 		}
 
 		#endregion

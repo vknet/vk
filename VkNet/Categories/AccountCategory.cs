@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 using JetBrains.Annotations;
+using Newtonsoft.Json.Linq;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Utils;
@@ -94,7 +97,7 @@ namespace VkNet.Categories
 			return _vk.Call("account.unregisterDevice", parameters);
 		}
 
-		
+
 		/// <summary>
 		/// Отключает push-уведомления на заданный промежуток времени.
 		/// </summary>
@@ -194,5 +197,28 @@ namespace VkNet.Categories
 			return _vk.Call("account.setInfo", new VkParameters(){{"intro", intro}});
 		}
 
+
+		/// <summary>
+		/// Возвращает информацию о текущем профиле.
+		/// </summary>
+		/// <returns>Информация о текущем профиле в виде <see cref="Model.User"/></returns>
+		[Pure]
+		public User GetProfileInfo()
+		{
+			var info = _vk.Call("account.getProfileInfo", VkParameters.Empty);
+			
+			//TODO: проверить эту гадость на корректность работы во разных ситуациях, или убрать, заменив в User свойство Id на Nullable
+			// Внедрение Id пользователя в ответ с сервера
+			if (!(info.ContainsKey("uid") || info.ContainsKey("id")) && _vk.UserId.HasValue)
+			{
+				string modifiedAnswer = Regex.Replace(info.RawJson, @"'response': {", @"'response': { id: " + _vk.UserId.Value + @", ", RegexOptions.IgnoreCase & RegexOptions.Multiline);
+				Trace.WriteLine(Utilities.PreetyPrintJson(info.RawJson));
+				JObject json = JObject.Parse(modifiedAnswer);
+				var rawResponse = json["response"];
+			    return new VkResponse(rawResponse) { RawJson = modifiedAnswer };
+			}
+
+			return info;
+		}
 	}
 }
