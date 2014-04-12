@@ -375,7 +375,7 @@
             Assert.That(groups[1].CityId, Is.EqualTo(1));
             Assert.That(groups[1].CountryId, Is.EqualTo(1));
             Assert.That(groups[1].Description, Is.EqualTo("В связи с небольшим количеством..."));
-            Assert.That(groups[1].StartDate, Is.EqualTo(new DateTime(2008, 1, 15, 11, 0, 0)));
+            Assert.That(groups[1].StartDate, Is.EqualTo(new DateTime(2008, 1, 15, 7, 0, 0, DateTimeKind.Utc).ToLocalTime()));
             Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
             Assert.That(groups[1].IsAdmin, Is.False);
             Assert.That(groups[1].IsMember, Is.True);
@@ -391,7 +391,7 @@
             Assert.That(groups[0].CityId, Is.EqualTo(10));
             Assert.That(groups[0].CountryId, Is.EqualTo(1));
             Assert.That(groups[0].Description, Is.EqualTo("Попади в не реальную сказку пришествия..."));
-            Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2008, 04, 20, 18, 0, 30)));
+            Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2008, 04, 20, 14, 0, 30, DateTimeKind.Utc).ToLocalTime()));
             Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
             Assert.That(groups[0].IsAdmin, Is.False);
             Assert.That(groups[0].IsMember, Is.True);

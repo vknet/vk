@@ -106,7 +106,7 @@
             photos[0].Photo1280.ShouldEqual(new Uri("http://cs9591.vk.me/u00001/136592355/z_a8fd75ba.jpg"));
             photos[0].Photo2560.ShouldEqual(new Uri("http://cs9591.vk.me/u00001/136592355/w_62aef149.jpg"));
             photos[0].Text.ShouldEqual("");
-            photos[0].CreateTime.ShouldEqual(new DateTime(2011, 6, 9, 18, 14, 50));
+            photos[0].CreateTime.ShouldEqual(new DateTime(2011, 6, 9, 14, 14, 50, DateTimeKind.Utc).ToLocalTime());
 
             photos[1].Id.ShouldEqual(319770573);
             photos[1].AlbumId.ShouldEqual(-7);
