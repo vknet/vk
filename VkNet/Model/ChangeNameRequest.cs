@@ -12,27 +12,27 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор заявки, необходимый для её отмены (только если <see cref="ChangeNameRequest.Status"/> равен <see cref="ChangeNameStatus.Processing"/>)
 		/// </summary>
-		public int Id { get; private set; }
+		public int? Id { get; set; }
 
 		/// <summary>
 		/// Статус заявки
 		/// </summary>
-		public ChangeNameStatus? Status { get; private set; }
+		public ChangeNameStatus? Status { get; set; }
 
 		/// <summary>
 		/// Дата, после которой возможна повторная подача заявки.
 		/// </summary>
-		public string RepeatDate { get; private set; }
+		public string RepeatDate { get; set; }
 
 		/// <summary>
 		/// Имя пользователя, указанное в заявке
 		/// </summary>
-		public string FirstName { get; private set; }
+		public string FirstName { get; set; }
 
 		/// <summary>
 		/// Фамилия пользователя, указанная в заявке.
 		/// </summary>
-		public string LastName { get; private set; }
+		public string LastName { get; set; }
 
 
 		#region Методы

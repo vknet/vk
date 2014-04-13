@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
@@ -220,5 +221,95 @@ namespace VkNet.Categories
 
 			return info;
 		}
+
+
+		/// <summary>
+		/// Редактирует информацию текущего профиля. 
+		/// </summary>
+		/// <param name="cancelRequestId">Идентификатор заявки на смену имени, которую необходимо отменить.</param>
+		/// <returns>Результат отмены заявки.</returns>
+		/// <remarks>Метод вынесен как отдельный, потому что если в запросе передан параметр <paramref name="cancelRequestId"/>, все остальные параметры игнорируются.</remarks>
+		public bool SaveProfileInfo(int cancelRequestId)
+		{
+			VkErrors.ThrowIfNumberIsNegative(cancelRequestId, "cancelRequestId");
+			return _vk.Call("account.saveProfileInfo", new VkParameters() { { "cancel_request_id", cancelRequestId } })["changed"]
+			;
+		}
+
+		/// <summary>
+		///  Редактирует информацию текущего профиля.
+		/// </summary>
+		/// <param name="firstName">Имя пользователя</param>
+		/// <param name="lastName">Фамилия пользователя</param>
+		/// <param name="maidenName">Девичья фамилия пользователя</param>
+		/// <param name="sex">Пол пользователя</param>
+		/// <param name="relation">Семейное положение пользователя</param>
+		/// <param name="relationPartnerId">Идентификатор пользователя, с которым связано семейное положение</param>
+		/// <param name="birthDate">Дата рождения пользователя</param>
+		/// <param name="birthDateVisibility">Видимость даты рождения</param>
+		/// <param name="homeTown">Родной город пользователя</param>
+		/// <param name="countryId">Идентификатор страны пользователя</param>
+		/// <param name="cityId">Идентификатор города пользователя</param>
+		/// <returns>Результат выполнения операции.</returns>
+		/// <remarks> Если передаются <paramref name="firstName"/> или <paramref name="lastName"/>, рекомендуется 
+		/// использовать перегрузку с соотвествующим out параметром типа <see cref="ChangeNameRequest"/> для получения объекта заявки на смену имени.</remarks>
+		public bool SaveProfileInfo(string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
+			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
+			string homeTown = null, long? countryId = null, long? cityId = null)
+		{
+			ChangeNameRequest request;
+			return SaveProfileInfo(out request, firstName, lastName, maidenName, sex, relation, relationPartnerId, birthDate, birthDateVisibility,
+				homeTown,countryId, cityId);
+		}
+
+		/// <summary>
+		///  Редактирует информацию текущего профиля.
+		/// </summary>
+		/// <param name="changeNameRequest">Если в параметрах передавалось имя или фамилия пользователя, 
+		/// в этом параметре будет возвращен объект типа <see cref="ChangeNameRequest"/>, содержащий информацию о заявке на смену имени.</param>
+		/// <param name="firstName">Имя пользователя</param>
+		/// <param name="lastName">Фамилия пользователя</param>
+		/// <param name="maidenName">Девичья фамилия пользователя</param>
+		/// <param name="sex">Пол пользователя</param>
+		/// <param name="relation">Семейное положение пользователя</param>
+		/// <param name="relationPartnerId">Идентификатор пользователя, с которым связано семейное положение</param>
+		/// <param name="birthDate">Дата рождения пользователя</param>
+		/// <param name="birthDateVisibility">Видимость даты рождения</param>
+		/// <param name="homeTown">Родной город пользователя</param>
+		/// <param name="countryId">Идентификатор страны пользователя</param>
+		/// <param name="cityId">Идентификатор города пользователя</param>
+		/// <returns>Результат выполнения операции.</returns>
+		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
+			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
+			string homeTown = null, long? countryId = null, long? cityId = null)
+		{
+			VkErrors.ThrowIfNumberIsNegative(relationPartnerId, "relationPartnerId");
+			VkErrors.ThrowIfNumberIsNegative(countryId, "countryId");
+			VkErrors.ThrowIfNumberIsNegative(cityId, "cityId");
+			
+			changeNameRequest = null;
+			
+			VkParameters parameters = new VkParameters
+									{
+										{"first_name", firstName},
+										{"last_name", lastName},
+										{"maiden_name", maidenName},
+										{"sex", ((sex ?? Sex.Unknown) ==  Sex.Unknown) ? null : sex},
+										{"relation", relation},
+										{"relation_partner_id", relationPartnerId},
+										{"bdate", birthDate != null ? birthDate.Value.ToString("dd.MM.yyyy") : null},
+										{"bdate_visibility", birthDateVisibility},
+										{"home_town", homeTown},
+										{"country_id", countryId},
+										{"city_id", cityId}
+									};
+
+			var response = _vk.Call("account.saveProfileInfo", parameters);
+
+			changeNameRequest = response["name_request"];
+			return response["changed"];
+
+		}
+
 	}
 }

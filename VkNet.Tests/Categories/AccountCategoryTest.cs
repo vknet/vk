@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories
 			var mock = new Mock<IBrowser>(MockBehavior.Strict);
 			mock.Setup(m => m.GetJson(url)).Returns(json);
 			return new Tuple<AccountCategory, Mock<IBrowser>>(
-				new AccountCategory(new VkApi { AccessToken = "token", Browser = mock.Object, ApiVersion = version, UserId = 10})
+				new AccountCategory(new VkApi { AccessToken = "token", Browser = mock.Object, ApiVersion = version, UserId = 10 })
 				, mock);
 		}
 
@@ -333,7 +333,7 @@ namespace VkNet.Tests.Categories
 				const string json = @"{ 'response': 0 }";
 				var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
 
-				account.Item1.SetSilenceMode("tokenVal", -1, userID: 10, sound:false);
+				account.Item1.SetSilenceMode("tokenVal", -1, userID: 10, sound: false);
 				account.Item2.VerifyAll();
 			}
 
@@ -415,7 +415,7 @@ namespace VkNet.Tests.Categories
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategory(url, json);
 
-			Assert.That(account.UnbanUser(4), Is.True); 
+			Assert.That(account.UnbanUser(4), Is.True);
 		}
 
 		[Test]
@@ -449,7 +449,7 @@ namespace VkNet.Tests.Categories
 			int buf;
 			Assert.That(() => account.GetBanned(out buf, offset: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("offset"));
 			Assert.That(() => account.GetBanned(out buf, count: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("count"));
-			
+
 		}
 
 
@@ -502,7 +502,7 @@ namespace VkNet.Tests.Categories
 									}]
 									}}";
 			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
-			
+
 			int total;
 			account.Item1.GetBanned(out total, count: 2);
 			account.Item2.VerifyAll();
@@ -585,10 +585,10 @@ namespace VkNet.Tests.Categories
 			var info = account.GetInfo();
 			Assert.That(info, Is.Not.Null);
 
-			Assert.That(info.Country,		Is.Null);
+			Assert.That(info.Country, Is.Null);
 			Assert.That(info.HttpsRequired, Is.Null);
-			Assert.That(info.Intro,			Is.Null);
-			Assert.That(info.Language,		Is.Null);
+			Assert.That(info.Intro, Is.Null);
+			Assert.That(info.Language, Is.Null);
 		}
 
 		[Test]
@@ -710,7 +710,7 @@ namespace VkNet.Tests.Categories
 											}
 											} }";
 			var account = GetMockedAccountCategory(url, json);
-			
+
 			var info = account.GetProfileInfo();
 			Assert.That(info, Is.Not.Null);
 
@@ -720,9 +720,9 @@ namespace VkNet.Tests.Categories
 			Assert.That(info.Sex, Is.EqualTo(Sex.Female));
 			Assert.That(info.Relation, Is.EqualTo(RelationType.ItsComplex));
 			Assert.That(info.RelationPartner, Is.Not.Null);
-				Assert.That(info.RelationPartner.FirstName, Is.EqualTo("Алексей"));
-				Assert.That(info.RelationPartner.LastName, Is.EqualTo("Каренин"));
-				Assert.That(info.RelationPartner.Id, Is.EqualTo(42));
+			Assert.That(info.RelationPartner.FirstName, Is.EqualTo("Алексей"));
+			Assert.That(info.RelationPartner.LastName, Is.EqualTo("Каренин"));
+			Assert.That(info.RelationPartner.Id, Is.EqualTo(42));
 			Assert.That(info.BirthDate, Is.EqualTo("01.2"));
 			Assert.That(info.BirthdayVisibility, Is.EqualTo(BirthdayVisibility.OnlyDayAndMonth));
 			Assert.That(info.HomeTown, Is.EqualTo("Санкт-Петербург"));
@@ -758,7 +758,7 @@ namespace VkNet.Tests.Categories
 											}
 											} }";
 			var account = GetMockedAccountCategory(url, json);
-			
+
 			var info = account.GetProfileInfo();
 			Assert.That(info, Is.Not.Null);
 
@@ -775,6 +775,97 @@ namespace VkNet.Tests.Categories
 		}
 
 		#endregion
+
+		#region SaveProfileInfo
+
+		[Test]
+		public void SaveProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var account = new AccountCategory(new VkApi());
+			ChangeNameRequest request;
+			Assert.That(() => account.SaveProfileInfo(firstName: null), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => account.SaveProfileInfo(out request), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => account.SaveProfileInfo(10), Throws.InstanceOf<AccessTokenInvalidException>());
+
+		}
+
+		[Test]
+		public void SaveProfileInfo_ResultWasParsedCorrectly_AndEmptyParametersIsProcessedCorrectly()
+		{
+			string url = "https://api.vk.com/method/account.saveProfileInfo?access_token=token";
+			string json = @"{ 'response': { changed: 0 } }";
+
+			var account = GetMockedAccountCategory(url, json);
+			Assert.That(account.SaveProfileInfo(), Is.False);				//First overload 
+			ChangeNameRequest request;
+			Assert.That(account.SaveProfileInfo(out request), Is.False);	//Second overload
+			Assert.That(request, Is.Null);
+
+			url = "https://api.vk.com/method/account.saveProfileInfo?access_token=token";
+			json = @"{ 'response':{
+							changed: 1,
+							name_request: {
+								status: 'success'
+							}
+						} }";
+			account = GetMockedAccountCategory(url, json);
+			request = null;
+			Assert.That(account.SaveProfileInfo(), Is.True);				//First overload
+			Assert.That(account.SaveProfileInfo(out request), Is.True);		//Second overload
+			Assert.That(request, Is.Not.Null);
+			Assert.That(request.Status, Is.EqualTo(ChangeNameStatus.Success));
+
+		}
+
+
+		[Test]
+		public void SaveProfileInfo_AllPArameters_UrlIsCreatedCorrectly()
+		{
+			const string url = "https://api.vk.com/method/account.saveProfileInfo?first_name=fn&last_name=ln&maiden_name=mn&sex=1&relation=4&relation_partner_id=10" +
+								"&bdate=15.11.1984&bdate_visibility=1&home_town=ht&country_id=1&city_id=2&access_token=token";
+			const string json = @"{ 'response': { changed: 1 } }";
+			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
+
+			ChangeNameRequest request;
+			account.Item1.SaveProfileInfo(				"fn", "ln", "mn", Sex.Female, RelationType.Married, 10, new DateTime(1984, 11, 15), BirthdayVisibility.Full, "ht", 1, 2);
+			account.Item1.SaveProfileInfo(out request,	"fn", "ln", "mn", Sex.Female, RelationType.Married, 10, new DateTime(1984, 11, 15), BirthdayVisibility.Full, "ht", 1, 2);
+
+			account.Item2.Verify(browser => browser.GetJson(url), Times.Exactly(2));
+		}
+
+		[Test]
+		public void SaveProfileInfo_DateIsParsedCorrectly()
+		{
+			string url = "https://api.vk.com/method/account.saveProfileInfo?bdate=15.11.1984&access_token=token";
+			const string json = @"{ 'response': { changed: 1 } }";
+			var account = GetMockedAccountCategory(url, json);
+			account.SaveProfileInfo(birthDate: new DateTime(1984, 11, 15));
+
+			url = "https://api.vk.com/method/account.saveProfileInfo?bdate=08.09.2014&access_token=token";
+			account = GetMockedAccountCategory(url, json);
+			account.SaveProfileInfo(birthDate: new DateTime(2014, 9, 8));
+
+		}
+
+		[Test]
+		public void SaveProfileInfo_CancelChangeNameRequest_NegativeRequestId_ThrowArgumentException()
+		{
+			var account = GetMockedAccountCategory("", "");
+			Assert.That(() => account.SaveProfileInfo(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("cancelRequestId"));
+		}
+
+		[Test]
+		public void SaveProfileInfo_CancelChangeNameRequest_UrlIsGeneratedCorrectly()
+		{
+			const string url = "https://api.vk.com/method/account.saveProfileInfo?cancel_request_id=42&access_token=token";
+			const string json = @"{ 'response': { changed: 1 } }";
+			var account = GetMockedAccountCategory(url, json);
+			Assert.That(account.SaveProfileInfo(42), Is.True);
+		}
+
+		#endregion
+
+
 
 	}
 
