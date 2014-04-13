@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using VkNet.Enums;
+using VkNet.Utils.Tests;
 
 namespace VkNet.Tests.Enum
 {
@@ -46,6 +47,25 @@ namespace VkNet.Tests.Enum
             Assert.That(Settings.Ads.Value, Is.EqualTo(16384));
             Assert.That(Settings.Offline.Value, Is.EqualTo(32768));
             Assert.That(Settings.NoHttps.Value, Is.EqualTo(65536));
+
+            Settings.Notify.Value.ShouldEqual(1);
+            Settings.Friends.Value.ShouldEqual(2);
+            Settings.Photos.Value.ShouldEqual(4);
+            Settings.Audio.Value.ShouldEqual(8);
+            Settings.Video.Value.ShouldEqual(16);
+            Settings.Documents.Value.ShouldEqual(131072);
+            Settings.Notes.Value.ShouldEqual(2048);
+            Settings.Pages.Value.ShouldEqual(128);
+            Settings.AddLinkToLeftMenu.Value.ShouldEqual(256);
+            Settings.Status.Value.ShouldEqual(1024);
+            Settings.Wall.Value.ShouldEqual(8192);
+            Settings.Groups.Value.ShouldEqual(262144);
+            Settings.Messages.Value.ShouldEqual(4096);
+            Settings.Email.Value.ShouldEqual(4194304);
+            Settings.Notifications.Value.ShouldEqual(524288);
+            Settings.Statistic.Value.ShouldEqual(1048576);
+            Settings.Ads.Value.ShouldEqual(32768);
+            Settings.Offline.Value.ShouldEqual(65536);
         }
 
         [Test]
