@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
+    <Compile Include="Enums\CountersFilter.cs" />
     <Compile Include="Categories\DatabaseCategory.cs" />
     <Compile Include="Categories\FaveCategory.cs" />
     <Compile Include="Categories\GroupsCategory.cs" />

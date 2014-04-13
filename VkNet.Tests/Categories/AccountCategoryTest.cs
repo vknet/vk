@@ -28,6 +28,70 @@ namespace VkNet.Tests.Categories
 				, mock);
 		}
 
+		#region GetCounters
+
+		[Test]
+		[ExpectedException(typeof(AccessTokenInvalidException))]
+		public void GetCounters_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var account = new AccountCategory(new VkApi());
+			account.GetCounters(CountersFilter.All);
+		}
+
+		[Test]
+		public void GetCounters_WhenServerReturnsEmptyResponse()
+		{
+			const string url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&access_token=token";
+			const string json = @"{ 'response': [] }";
+			var account = GetMockedAccountCategory(url, json);
+
+			var counters = account.GetCounters(CountersFilter.All);
+			Assert.That(counters, Is.Not.Null);
+
+			Assert.That(counters.Friends, Is.Null);
+			Assert.That(counters.Messages, Is.Null);
+			Assert.That(counters.Photos, Is.Null);
+			Assert.That(counters.Videos, Is.Null);
+			Assert.That(counters.Notes, Is.Null);
+			Assert.That(counters.Gifts, Is.Null);
+			Assert.That(counters.Events, Is.Null);
+			Assert.That(counters.Groups, Is.Null);
+			Assert.That(counters.Notifications, Is.Null);
+		}
+
+		[Test]
+		public void GetCounters_WhenServerReturnsAllFields()
+		{
+			const string url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&access_token=token";
+			const string json = @"{ 'response': {
+										friends:1,											
+										messages: 2,
+										photos: 3,
+										videos: 4,
+										notes: 5,
+										gifts: 6,
+										events: 7,
+										groups: 8,
+										notifications: 9
+								} }";
+			var account = GetMockedAccountCategory(url, json);
+
+			var counters = account.GetCounters(CountersFilter.All);
+			Assert.That(counters, Is.Not.Null);
+
+			Assert.That(counters.Friends,	Is.EqualTo(1));
+			Assert.That(counters.Messages,	Is.EqualTo(2));
+			Assert.That(counters.Photos,	Is.EqualTo(3));
+			Assert.That(counters.Videos,	Is.EqualTo(4));
+			Assert.That(counters.Notes,		Is.EqualTo(5));
+			Assert.That(counters.Gifts,		Is.EqualTo(6));
+			Assert.That(counters.Events,	Is.EqualTo(7));
+			Assert.That(counters.Groups,	Is.EqualTo(8));
+			Assert.That(counters.Notifications, Is.EqualTo(9));
+		}
+
+		#endregion
+
 
 		#region SetNameInMenu
 
