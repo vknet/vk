@@ -74,7 +74,11 @@ namespace VkNet
         /// API для работы с видеофайлами.
         /// </summary>
         public VideoCategory Video { get; private set; }
-        
+		/// <summary>
+		/// API для работы с аккаунтом пользователя.
+		/// </summary>
+		public AccountCategory Account { get; private set; }
+
         #endregion
 
         internal IBrowser Browser { get; set; }
@@ -106,6 +110,7 @@ namespace VkNet
             Utils = new UtilsCategory(this);
             Fave = new FaveCategory(this);
             Video = new VideoCategory(this);
+			Account = new AccountCategory(this);
 
             ApiVersion = "5.9";
         }
