@@ -147,8 +147,7 @@ namespace VkNet.Categories
 		/// <remarks>Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: <see cref="Settings.Friends"/>.</remarks>
 		public bool BanUser(int userID)
 		{
-			if(userID <= 0)
-				throw new ArgumentException("User ID should be greater than 0.", "userID");
+            VkErrors.ThrowIfNumberIsNegative(userID, "userID", "User ID should be greater than 0.");
 			return _vk.Call("account.banUser", new VkParameters() { { "user_id", userID } });
 		}
 
@@ -159,8 +158,8 @@ namespace VkNet.Categories
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		public bool UnbanUser(int userID)
 		{
-			if (userID <= 0)
-				throw new ArgumentException("User ID should be greater than 0.", "userID");
+            VkErrors.ThrowIfNumberIsNegative(userID, "userID", "User ID should be greater than 0.");
+			
 			return _vk.Call("account.unbanUser", new VkParameters() { { "user_id", userID } });
 		}
 
@@ -178,7 +177,7 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(offset, "offset");
 			VkErrors.ThrowIfNumberIsNegative(count, "count");
 
-			var parameters = new VkParameters()
+			var parameters = new VkParameters
 								{
 									{"offset", offset},
 									{"count", count}
