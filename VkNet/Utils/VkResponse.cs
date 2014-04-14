@@ -566,6 +566,16 @@
             return response == null ? null : Tag.FromJson(response);
         }
 
+		public static implicit operator AccountInfo(VkResponse response)
+		{
+			return response == null ? null : AccountInfo.FromJson(response);
+		}
+
+		public static implicit operator ChangeNameRequest(VkResponse response)
+		{
+			return response == null ? null : ChangeNameRequest.FromJson(response);
+		}
+
         #endregion
     }
 }

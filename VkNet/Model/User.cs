@@ -284,9 +284,33 @@ namespace VkNet.Model
 
         #endregion
 
-        #region Методы
+		#region Поля, доступные через запрос https://vk.com/dev/account.getProfileInfo
 
-        internal static User FromJson(VkResponse response)
+		/// <summary>
+		/// Девичья фамилия (только для женского пола)
+		/// </summary>
+	    public string MaidenName { get; set; }
+
+		/// <summary>
+		/// Видимость даты рождения.
+		/// </summary>
+		public BirthdayVisibility BirthdayVisibility { get; set; }
+
+		/// <summary>
+		/// Родной город пользователя.
+		/// </summary>
+		public string HomeTown { get; set; }
+
+		/// <summary>
+		/// Информация о заявке на смену имени.
+		/// </summary>
+		public ChangeNameRequest ChangeNameRequest { get; set; }
+
+		#endregion
+
+		#region Методы
+
+		internal static User FromJson(VkResponse response)
         {
             var user = new User();
 
@@ -362,6 +386,12 @@ namespace VkNet.Model
             user.BanInfo = response["ban_info"];
             user.DeactiveReason = response["deactivated"];
             user.IsDeactivated = !string.IsNullOrEmpty(user.DeactiveReason);
+
+			//Поля, доступные через запрос https://vk.com/dev/account.getProfileInfo
+			user.MaidenName = response["maiden_name"];
+			user.BirthdayVisibility = (BirthdayVisibility)(response["bdate_visibility"] ?? 0);
+			user.HomeTown = response["home_town"];
+			user.ChangeNameRequest = response["name_request"];
 
             return user;
         }

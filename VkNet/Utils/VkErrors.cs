@@ -116,7 +116,8 @@ namespace VkNet.Utils
                     throw new TooManyRequestsException(message, code);
 
                 case 7: // Permission to perform this action is denied by user.
-                case 15: // Access denied: groups list of this user are under privacy.
+				case 15: // Access denied: 1) groups list of this user are under privacy.	2) cannot blacklist yourself	
+				case 148: // Access to the menu of the user denied
                 case 170: // Access to user's friends list denied.
                 case 201: // Access denied.
                 case 203: // Access to the group is denied.

@@ -47,6 +47,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\AccountCategoryTest.cs" />
     <Compile Include="Categories\AudioCategoryTest.cs" />
     <Compile Include="Categories\DatabaseCategoryTest.cs" />
     <Compile Include="Categories\FaveCategoryTest.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Categories\UtilsCategoryTest.cs" />
     <Compile Include="Categories\VideoCategoryTest.cs" />
     <Compile Include="Categories\WallCategoryTest.cs" />
+    <Compile Include="Enum\BirthdayVisibilityTest.cs" />
     <Compile Include="Enum\CommentsSortTest.cs" />
     <Compile Include="Enum\FriendStatusTest.cs" />
     <Compile Include="Enum\GroupsFieldsTest.cs" />

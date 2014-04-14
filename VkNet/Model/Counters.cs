@@ -94,9 +94,33 @@
 
         #endregion
 
-        #region Методы
+		#region	  Счетчики из метода https://vk.com/dev/account.getCounters
 
-        internal static Counters FromJson(VkResponse response)
+	    /// <summary>
+	    /// Количество сообщений
+	    /// </summary>
+	    public int? Messages { get; set; }
+
+		/// <summary>
+		/// Количество подарков
+		/// </summary>
+		public int? Gifts { get; set; }
+
+		/// <summary>
+		/// Количество событий
+		/// </summary>
+		public int? Events { get; set; }
+
+		/// <summary>
+		/// Количество уведомлений
+		/// </summary>
+		public int? Notifications { get; set; }
+
+		#endregion
+
+		#region Методы
+
+		internal static Counters FromJson(VkResponse response)
         {
             var counters = new Counters();
 
@@ -117,6 +141,15 @@
             counters.DocumentsCount = response["docs"];
 
             counters.Pages = response["pages"]; // установлено экcпериментальным путем
+
+			#region Метод https://vk.com/dev/account.getCounters
+			counters.Messages = response["messages"];
+			counters.Gifts = response["gifts"];
+			counters.Events = response["events"];
+			counters.Notifications = response["notifications"];
+			#endregion
+
+
 
             return counters;
         }

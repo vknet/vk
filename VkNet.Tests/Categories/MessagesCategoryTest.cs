@@ -155,7 +155,7 @@ namespace VkNet.Tests.Categories
             Assert.That(totalCount, Is.EqualTo(18));
             Assert.That(msgs.Count, Is.EqualTo(1));
             Assert.That(msgs[0].Id, Is.EqualTo(2105));
-            Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2010, 9, 25, 23, 17, 32)));
+            Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2010, 9, 25, 19, 17, 32, DateTimeKind.Utc).ToLocalTime()));
             Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Received));
             Assert.That(msgs[0].UserId, Is.EqualTo(77128));
             Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
@@ -216,7 +216,7 @@ namespace VkNet.Tests.Categories
             Assert.That(msgs[2].Body, Is.EqualTo("думаю пива предложит попить"));
             Assert.That(msgs[2].Id, Is.EqualTo(2095));
             Assert.That(msgs[2].UserId, Is.EqualTo(4793858));
-            Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2010, 9, 25, 22, 34, 4)));
+			Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2010, 9, 25, 18, 34, 4, DateTimeKind.Utc).ToLocalTime()));
             Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
             Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Sended));
             
@@ -226,14 +226,14 @@ namespace VkNet.Tests.Categories
             Assert.That(msgs[0].Id, Is.EqualTo(2093));
             Assert.That(msgs[0].Body, Is.EqualTo("Таких литовкиных и сычевых"));
             Assert.That(msgs[0].UserId, Is.EqualTo(4793858));
-            Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2010, 9, 25, 22, 24, 48)));
+            Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2010, 9, 25, 18, 24, 48, DateTimeKind.Utc).ToLocalTime()));
             Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
             Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Sended));
             
             Assert.That(msgs[1].Body, Is.EqualTo("в одноклассниках и в майле есть."));
             Assert.That(msgs[1].Id, Is.EqualTo(2094));
             Assert.That(msgs[1].UserId, Is.EqualTo(7712));
-            Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2010, 9, 25, 22, 26, 56)));
+			Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2010, 9, 25, 18, 26, 56, DateTimeKind.Utc).ToLocalTime()));
             Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
             Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Received));
         }

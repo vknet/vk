@@ -55,7 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
+    <Compile Include="Enums\CountersFilter.cs" />
     <Compile Include="Categories\DatabaseCategory.cs" />
     <Compile Include="Categories\FaveCategory.cs" />
     <Compile Include="Categories\GroupsCategory.cs" />
@@ -68,6 +70,8 @@
     <Compile Include="Enums\Attitude.cs" />
     <Compile Include="Enums\AudioSort.cs" />
     <Compile Include="Enums\BanReason.cs" />
+    <Compile Include="Enums\BirthdayVisibility.cs" />
+    <Compile Include="Enums\ChangeNameStatus.cs" />
     <Compile Include="Enums\CommentsSort.cs" />
     <Compile Include="Enums\DeleteFriendStatus.cs" />
     <Compile Include="Enums\Display.cs" />
@@ -93,6 +97,7 @@
     <Compile Include="Enums\Settings.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
     <Compile Include="Enums\Sex.cs" />
+    <Compile Include="Enums\SubscribeFilter.cs" />
     <Compile Include="Enums\VideoFilters.cs" />
     <Compile Include="Enums\VideoReportType.cs" />
     <Compile Include="Enums\VideoSort.cs" />
@@ -107,10 +112,12 @@
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Categories\FriendsCategory.cs" />
+    <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\ApplicationContent.cs" />
     <Compile Include="Model\AudioAlbum.cs" />
     <Compile Include="Model\BanInfo.cs" />
+    <Compile Include="Model\ChangeNameRequest.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />
