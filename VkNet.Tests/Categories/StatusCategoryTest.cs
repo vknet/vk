@@ -4,6 +4,7 @@ using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
 using VkNet.Model;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories

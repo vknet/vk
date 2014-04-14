@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests.Categories
+﻿using VkNet.Model.Attachments;
+
+namespace VkNet.Tests.Categories
 {
     using System;
     using System.Collections.ObjectModel;
@@ -274,7 +276,7 @@
 
             posts[0].Id.ShouldEqual(45611);
             posts[0].FromId.ShouldEqual(1);
-            posts[0].ToId.ShouldEqual(1);
+            posts[0].OwnerId.ShouldEqual(1);
             posts[0].Date.ShouldEqual(new DateTime(2014, 1, 21, 3, 35, 4));
             posts[0].PostType.ShouldEqual("post");
             posts[0].Text.ShouldEqual("ВКонтакте взял новую высоту — 60 миллионов человек за сутки.");   

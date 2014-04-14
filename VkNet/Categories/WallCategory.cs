@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
 {
@@ -204,21 +205,38 @@ namespace VkNet.Categories
 			return response.ToReadOnlyCollectionOf<Post>(x => x);
 		}
 
-        /// <summary>
-        /// Публикует новую запись на своей или чужой стене. 
-        /// Данный метод позволяет создать новую запись на стене, а также опубликовать предложенную новость или отложенную запись. 
-        /// </summary>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.post"/>.
-        /// </remarks>
-        public void Post()
-        {
-            // TODO:
-            throw new NotImplementedException();
-        }
 
-        /// <summary>
+		/// <summary>
+		/// Публикует новую запись на своей или чужой стене. 
+		/// Данный метод позволяет создать новую запись на стене, а также опубликовать предложенную новость или отложенную запись. 
+		/// </summary>
+
+        /// <param name="ownerId"></param>
+        /// <param name="friendsOnly"></param>
+        /// <param name="fromGroup"></param>
+        /// <param name="message"></param>
+        /// <param name="attachments"></param>
+        /// <param name="services"></param>
+        /// <param name="signed"></param>
+        /// <param name="publishDate"></param>
+        /// <param name="lat"></param>
+        /// <param name="long"></param>
+        /// <param name="placeId"></param>
+        /// <param name="postId"></param>
+        /// <returns>Идентификатор созданной записи</returns>
+        /// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.post"/>.
+		/// </remarks>
+        public long Post(long ownerId, bool friendsOnly = false, bool fromGroup = false,
+			string message = null, IEnumerable<Attachment> attachments = null, 
+			string services = null, bool signed = false, DateTime? publishDate = null,
+			double? lat = null, double? @long = null, long? placeId = null, long? postId = null)
+		{
+			throw new NotImplementedException();
+		}
+
+	    /// <summary>
         /// Редактирует запись на стене. 
         /// </summary>
         /// <remarks>

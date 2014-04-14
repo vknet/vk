@@ -1,26 +1,20 @@
-﻿namespace VkNet.Model
+﻿using System;
+using VkNet.Utils;
+
+namespace VkNet.Model.Attachments
 {
-    using System;
-
-    using VkNet.Utils;
-
-    /// <summary>
+	/// <summary>
     /// Заметка пользователя.
     /// См. описание <see href="http://vk.com/dev/note"/>.
     /// </summary>
-    public class Note
+    public class Note : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор заметки.
-        /// </summary>
-        public long? Id { get; set; }
-
-        /// <summary>
-        /// Идентификатор владельца заметки.
-        /// </summary>
-        public long? UserId { get; set; }
-
-        /// <summary>
+		static Note()
+		{
+			type = "note";
+		}
+		
+		/// <summary>
         /// Заголовок заметки.
         /// </summary>
         public string Title { get; set; }
@@ -53,7 +47,7 @@
             var note = new Note();
 
             note.Id = response["id"];
-            note.UserId = response["user_id"];
+            note.OwnerId = response["owner_id"];
             note.Title = response["title"];
             note.Text = response["text"];
             note.Date = response["date"];

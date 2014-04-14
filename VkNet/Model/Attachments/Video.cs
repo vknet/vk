@@ -1,31 +1,23 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using VkNet.Categories;
+using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model.Attachments
 {
-    using System;
-
-    using Utils;
-
-    using VkNet.Categories;
-
-    /// <summary>
+	/// <summary>
     /// Видеозапись пользователя или группы.
     /// </summary>
     /// <remarks>
     /// См. описание <see href="http://vk.com/dev/video_object"/>.
     /// </remarks>
     [DebuggerDisplay("Id = {Id}, Title = {Title}")]
-    public class Video
+    public class Video : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор видеозаписи.
-        /// </summary>
-        public long? Id { get; set; }
-
-        /// <summary>
-        /// Идентификатор владельца видеозаписи.
-        /// </summary>
-        public long? OwnerId { get; set; }
+		static Video()
+		{
+			type = "video";
+		}
 
         /// <summary>
         /// Название видеозаписи.

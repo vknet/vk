@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using VkNet.Model.Attachments;
+
+namespace VkNet.Categories
 {
     using System.Collections.ObjectModel;
     using JetBrains.Annotations;

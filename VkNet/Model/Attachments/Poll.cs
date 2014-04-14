@@ -1,17 +1,17 @@
-﻿namespace VkNet.Model
-{
-    using VkNet.Utils;
+﻿using VkNet.Utils;
 
-    /// <summary>
+namespace VkNet.Model.Attachments
+{
+	/// <summary>
     /// Опрос.
     /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Опрос".
     /// </summary>
-    public class Poll
+    public class Poll : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор опроса.
-        /// </summary>
-        public long Id { get; set; }
+      	static Poll()
+      	{
+      		type = "poll";
+      	}
 
         /// <summary>
         /// Вопрос, заданный в голосовании.
@@ -25,6 +25,7 @@
             var poll = new Poll();
 
             poll.Id = response["id"];
+	        poll.OwnerId = response["owner_id"];
             poll.Question = response["question"];
 
             return poll;

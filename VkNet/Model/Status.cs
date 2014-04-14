@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model
+﻿using VkNet.Model.Attachments;
+
+namespace VkNet.Model
 {
     using VkNet.Utils;
 

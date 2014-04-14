@@ -8,6 +8,7 @@ using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
@@ -73,7 +74,7 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 619,
                         'from_id': 4793858,
-                        'to_id': 4793858,
+                        'owner_id': 4793858,
                         'date': 1341145268,
                         'text': 'Фильмы ужасов, основанные на реальных событиях.',
                         'copy_owner_id': 50915841,
@@ -145,7 +146,7 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 617,
                         'from_id': 4793858,
-                        'to_id': 4793858,
+                        'owner_id': 4793858,
                         'date': 1339684666,
                         'text': '',
                         'media': {
@@ -193,7 +194,7 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 616,
                         'from_id': 4793858,
-                        'to_id': 4793858,
+                        'owner_id': 4793858,
                         'date': 1339227157,
                         'text': 'Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было.',
                         'comments': {
@@ -231,7 +232,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(records[1].Id, Is.EqualTo(617));
 			Assert.That(records[1].FromId, Is.EqualTo(4793858));
-			Assert.That(records[1].ToId, Is.EqualTo(4793858));
+			Assert.That(records[1].OwnerId, Is.EqualTo(4793858));
 			Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 18, 37, 46)));
 			Assert.That(records[1].Text, Is.Null.Or.Empty);
 			Assert.That(records[1].Comments.Count == 0);
@@ -245,7 +246,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(records[2].Id, Is.EqualTo(616));
 			Assert.That(records[2].FromId, Is.EqualTo(4793858));
-			Assert.That(records[2].ToId, Is.EqualTo(4793858));
+			Assert.That(records[2].OwnerId, Is.EqualTo(4793858));
 			Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 11, 32, 37)));
 			Assert.That(records[2].Text,
 						Is.EqualTo("Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было."));
@@ -260,7 +261,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(records[0].Id, Is.EqualTo(619));
 			Assert.That(records[0].FromId, Is.EqualTo(4793858));
-			Assert.That(records[0].ToId, Is.EqualTo(4793858));
+			Assert.That(records[0].OwnerId, Is.EqualTo(4793858));
 			Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 16, 21, 8)));
 			Assert.That(records[0].Text, Is.EqualTo("Фильмы ужасов, основанные на реальных событиях."));
 			Assert.That(records[0].CopyOwnerId, Is.EqualTo(50915841));
@@ -501,7 +502,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(attachment, Is.Not.Null);
 			Assert.That(attachment.Type, Is.EqualTo(typeof(Photo)));
 
-			var photo = attachment.Photo;
+			var photo = (Photo) attachment.Instance;
 			Assert.That(photo.Id, Is.EqualTo(315467755));
 			Assert.That(photo.AlbumId, Is.EqualTo(-5));
 			Assert.That(photo.OwnerId, Is.EqualTo(3073863));
@@ -537,7 +538,7 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 619,
                         'from_id': 4793858,
-                        'to_id': 4793858,
+                        'owner_id': 4793858,
                         'date': 1341145268,
                         'text': 'Фильмы ужасов, основанные на реальных событиях.',
                         'copy_owner_id': 50915841,
@@ -609,7 +610,7 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 617,
                         'from_id': 4793858,
-                        'to_id': 4793858,
+                        'owner_id': 4793858,
                         'date': 1339684666,
                         'text': '',
                         'media': {
@@ -657,7 +658,7 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 616,
                         'from_id': 4793858,
-                        'to_id': 4793858,
+                        'owner_id': 4793858,
                         'date': 1339227157,
                         'text': 'Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было.',
                         'comments': {
@@ -693,7 +694,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(records[1].Id, Is.EqualTo(617));
 			Assert.That(records[1].FromId, Is.EqualTo(4793858));
-			Assert.That(records[1].ToId, Is.EqualTo(4793858));
+			Assert.That(records[1].OwnerId, Is.EqualTo(4793858));
 			Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 18, 37, 46)));
 			Assert.That(records[1].Text, Is.Null.Or.Empty);
 			Assert.That(records[1].Comments.Count == 0);
@@ -707,7 +708,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(records[2].Id, Is.EqualTo(616));
 			Assert.That(records[2].FromId, Is.EqualTo(4793858));
-			Assert.That(records[2].ToId, Is.EqualTo(4793858));
+			Assert.That(records[2].OwnerId, Is.EqualTo(4793858));
 			Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 11, 32, 37)));
 			Assert.That(records[2].Text,
 						Is.EqualTo("Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было."));
@@ -722,7 +723,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(records[0].Id, Is.EqualTo(619));
 			Assert.That(records[0].FromId, Is.EqualTo(4793858));
-			Assert.That(records[0].ToId, Is.EqualTo(4793858));
+			Assert.That(records[0].OwnerId, Is.EqualTo(4793858));
 			Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 16, 21, 8)));
 			Assert.That(records[0].Text, Is.EqualTo("Фильмы ужасов, основанные на реальных событиях."));
 			Assert.That(records[0].CopyOwnerId, Is.EqualTo(50915841));
@@ -774,7 +775,7 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 619,
                         'from_id': 4793858,
-                        'to_id': 4793858,
+                        'owner_id': 4793858,
                         'date': 1341145268,
                         'text': 'Фильмы ужасов, основанные на реальных событиях.',
                         'copy_owner_id': 50915841,
@@ -846,7 +847,7 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 617,
                         'from_id': 4793858,
-                        'to_id': 4793858,
+                        'owner_id': 4793858,
                         'date': 1339684666,
                         'text': '',
                         'media': {
@@ -894,7 +895,7 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 616,
                         'from_id': 4793858,
-                        'to_id': 4793858,
+                        'owner_id': 4793858,
                         'date': 1339227157,
                         'text': 'Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было.',
                         'comments': {
@@ -937,7 +938,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(records[1].Id, Is.EqualTo(617));
 			Assert.That(records[1].FromId, Is.EqualTo(4793858));
-			Assert.That(records[1].ToId, Is.EqualTo(4793858));
+			Assert.That(records[1].OwnerId, Is.EqualTo(4793858));
 			Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 18, 37, 46)));
 			Assert.That(records[1].Text, Is.Null.Or.Empty);
 			Assert.That(records[1].Comments.Count == 0);
@@ -951,7 +952,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(records[2].Id, Is.EqualTo(616));
 			Assert.That(records[2].FromId, Is.EqualTo(4793858));
-			Assert.That(records[2].ToId, Is.EqualTo(4793858));
+			Assert.That(records[2].OwnerId, Is.EqualTo(4793858));
 			Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 11, 32, 37)));
 			Assert.That(records[2].Text, Is.EqualTo("Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было."));
 			Assert.That(records[2].Comments.Count, Is.EqualTo(0));
@@ -965,7 +966,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(records[0].Id, Is.EqualTo(619));
 			Assert.That(records[0].FromId, Is.EqualTo(4793858));
-			Assert.That(records[0].ToId, Is.EqualTo(4793858));
+			Assert.That(records[0].OwnerId, Is.EqualTo(4793858));
 			Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 16, 21, 8)));
 			Assert.That(records[0].Text, Is.EqualTo("Фильмы ужасов, основанные на реальных событиях."));
 			Assert.That(records[0].CopyOwnerId, Is.EqualTo(50915841));
@@ -1012,7 +1013,7 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void Post_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.Post();
+			//_defaultWall.Post();
 		}
 
 		[Test]

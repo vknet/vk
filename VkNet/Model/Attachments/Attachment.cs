@@ -1,11 +1,10 @@
-﻿namespace VkNet.Model
+﻿using System;
+using VkNet.Exception;
+using VkNet.Utils;
+
+namespace VkNet.Model.Attachments
 {
-    using System;
-
-    using VkNet.Exception;
-    using VkNet.Utils;
-
-    /// <summary>
+	/// <summary>
     /// Информация о медиавложении в записи.
     /// См. описание <see href="http://vk.com/dev/attachments_w"/>. 
     /// </summary>
@@ -16,57 +15,57 @@
         /// <summary>
         /// Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
         /// </summary>
-        public Photo Photo { get; set; }
+        private Photo Photo { get; set; }
 
         /// <summary>
         /// Видеозапись.
         /// </summary>
-        public Video Video { get; set; }
+        private Video Video { get; set; }
 
         /// <summary>
         /// Аудиозапись.
         /// </summary>
-        public Audio Audio { get; set; }
+        private Audio Audio { get; set; }
 
         /// <summary>
         /// Документ.
         /// </summary>
-        public Document Document { get; set; }
+        private Document Document { get; set; }
 
         /// <summary>
         /// Документ.
         /// </summary>
-        public Graffiti Graffiti { get; set; }
+        private Graffiti Graffiti { get; set; }
 
         /// <summary>
         /// Ссылка на Web-страницу.
         /// </summary>
-        public Link Link { get; set; }
+        private Link Link { get; set; }
 
         /// <summary>
         /// Заметка.
         /// </summary>
-        public Note Note { get; set; }
+        private Note Note { get; set; }
 
         /// <summary>
         /// Контент приложения.
         /// </summary>
-        public ApplicationContent ApplicationContent { get; set; }
+        private ApplicationContent ApplicationContent { get; set; }
 
         /// <summary>
         /// Опрос.
         /// </summary>
-        public Poll Poll { get; set; }
+        private Poll Poll { get; set; }
 
         /// <summary>
         /// Wiki страница.
         /// </summary>
-        public Page Page { get; set; }
+        private Page Page { get; set; }
 
         /// <summary>
         /// Альбом с фотографиями.
         /// </summary>
-        public Album Album { get; set; }
+        private Album Album { get; set; }
 
         #endregion
 
