@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using System.Text;
+
+namespace VkNet.Categories
 {
     using System;
     using System.Collections.Generic;
@@ -143,7 +145,7 @@
         /// </summary>
         /// <param name="posts">
         /// Список строковых идентификаторов записий в формате - идентификатор пользователя (группы), знак подчеркивания и идентификатор записи.
-        /// Примеры возможных значений идентификаторов: "93388_21539", "93388_20904", "2943_4276".
+        /// Примеры возможных значений идентификаторов: "93388_21539", "93388_20904", "-2943_4276".
         /// </param>
         /// <returns>
         /// После успешного выполнения возвращает список объектов записей со стены. 
@@ -152,7 +154,8 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts)
+		[Obsolete]
+		public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts)
         {
             if (posts == null)
                 throw new ArgumentNullException("posts");
@@ -163,6 +166,43 @@
 
             return response.ToReadOnlyCollectionOf<Post>(x => x);
         }
+
+		/// <summary>
+		/// Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
+		/// </summary>
+		/// <param name="posts">
+		/// Список идентификаторов записей. Key - идентификатор пользователя (группы), Value - идентификатор записи (положительное число).
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов записей со стены. 
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById"/>.
+		/// </remarks>
+		[Pure]
+		//TODO: добавить Extended версию и параметр copy_history_depth
+		public ReadOnlyCollection<Post> GetById(IEnumerable<KeyValuePair<long, long>> posts)
+		{
+			if (posts == null)
+				throw new ArgumentNullException("posts");
+			var pairs = posts as KeyValuePair<long, long>[] ?? posts.ToArray();
+			if (!pairs.Any())
+				throw new ArgumentException("Posts collection must have more then 0 elements.", "posts");
+
+			var builder = new StringBuilder();
+			foreach (var pair in pairs)
+			{
+				if(builder.Length != 0)
+					builder.AppendFormat(",");
+				builder.AppendFormat("{0}_{1}", pair.Key, pair.Value);
+			}
+			
+			var parameters = new VkParameters { { "posts", builder.ToString() } };
+
+			VkResponseArray response = _vk.Call("wall.getById", parameters);
+
+			return response.ToReadOnlyCollectionOf<Post>(x => x);
+		}
 
         /// <summary>
         /// Публикует новую запись на своей или чужой стене. 
