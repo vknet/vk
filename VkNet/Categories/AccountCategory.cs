@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Text.RegularExpressions;
-using JetBrains.Annotations;
-using Newtonsoft.Json.Linq;
-using VkNet.Enums;
-using VkNet.Model;
-using VkNet.Utils;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Text.RegularExpressions;
+    using JetBrains.Annotations;
+    using Newtonsoft.Json.Linq;
+
+    using Enums;
+    using Model;
+    using Utils;
+
 	/// <summary>
 	/// Методы этого класса позволяют производить действия с аккаунтом пользователя.
 	/// </summary>
@@ -142,25 +142,28 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Добавляет пользователя в черный список. 
 		/// </summary>
-		/// <param name="userID">Идентификатор пользователя, которого нужно добавить в черный список. (положительное число)</param>
+		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в черный список. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: <see cref="Settings.Friends"/>.</remarks>
-		public bool BanUser(int userID)
+		public bool BanUser(int userId)
 		{
-            VkErrors.ThrowIfNumberIsNegative(userID, "userID", "User ID should be greater than 0.");
-			return _vk.Call("account.banUser", new VkParameters() { { "user_id", userID } });
+            if (userId <= 0)
+                throw new ArgumentException("User ID should be greater than 0.", "userId");
+            
+			return _vk.Call("account.banUser", new VkParameters { { "user_id", userId } });
 		}
 
 		/// <summary>
 		/// Убирает пользователя из черного списка. 
 		/// </summary>
-		/// <param name="userID">Идентификатор пользователя, которого нужно убрать из черного списка. (положительное число)</param>
+		/// <param name="userId">Идентификатор пользователя, которого нужно убрать из черного списка. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
-		public bool UnbanUser(int userID)
+		public bool UnbanUser(int userId)
 		{
-            VkErrors.ThrowIfNumberIsNegative(userID, "userID", "User ID should be greater than 0.");
-			
-			return _vk.Call("account.unbanUser", new VkParameters() { { "user_id", userID } });
+            if (userId <= 0)
+                throw new ArgumentException("User ID should be greater than 0.", "userId");
+
+			return _vk.Call("account.unbanUser", new VkParameters() { { "user_id", userId } });
 		}
 
 
