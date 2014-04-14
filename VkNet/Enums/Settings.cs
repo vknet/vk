@@ -53,85 +53,75 @@
         public static readonly Settings Video = new Settings(1 << 4, "video");
 
         /// <summary>
-        /// Доступ к документам.
-        /// </summary>
-        public static readonly Settings Documents = new Settings(1 << 5, "docs");
-
-        /// <summary>
-        /// Доступ заметкам пользователя. 
-        /// </summary>
-        public static readonly Settings Notes = new Settings(1 << 6, "notes");
-
-        /// <summary>
         /// Доступ к wiki-страницам. 
         /// </summary>
         public static readonly Settings Pages = new Settings(1 << 7, "pages");
 
         /// <summary>
+        /// Добавление ссылки на приложение в меню слева.
+        /// </summary>
+        public static readonly Settings AddLinkToLeftMenu = new Settings(1 << 8, "");
+
+        /// <summary>
         /// Доступ к статусу пользователя. 
         /// </summary>
-        public static readonly Settings Status = new Settings(1 << 8, "status");
+        public static readonly Settings Status = new Settings(1 << 10, "status");
 
         /// <summary>
-        /// Доступ к обычным и расширенным методам работы со стеной.
+        /// Доступ заметкам пользователя. 
         /// </summary>
-        public static readonly Settings Wall = new Settings(1 << 9, "wall");
-
-        /// <summary>
-        /// Доступ к группам пользователя. 
-        /// </summary>
-        public static readonly Settings Groups = new Settings(1 << 10, "groups");
+        public static readonly Settings Notes = new Settings(1 << 11, "notes");
 
         /// <summary>
         /// Доступ к расширенным методам работы с сообщениями. 
         /// </summary>
-        public static readonly Settings Messages = new Settings(1 << 11, "messages");
+        public static readonly Settings Messages = new Settings(1 << 12, "messages");
 
         /// <summary>
-        /// Доступ к оповещениям об ответах пользователю. 
+        /// Доступ к обычным и расширенным методам работы со стеной.
         /// </summary>
-        public static readonly Settings Notifications = new Settings(1 << 12, "notifications");
-
-        /// <summary>
-        /// Доступ к статистике групп и приложений пользователя, администратором которых он является. 
-        /// </summary>
-        public static readonly Settings Statistic = new Settings(1 << 13, "stats");
+        public static readonly Settings Wall = new Settings(1 << 13, "wall");
 
         /// <summary>
         /// Доступ к расширенным методам работы с рекламным API. 
         /// </summary>
-        public static readonly Settings Ads = new Settings(1 << 14, "ads");
+        public static readonly Settings Ads = new Settings(1 << 15, "ads");
 
         /// <summary>
         /// Доступ к API в любое время со стороннего сервера. 
         /// </summary>
-        public static readonly Settings Offline = new Settings(1 << 15, "offline");
+        public static readonly Settings Offline = new Settings(1 << 16, "offline");
+
+        /// <summary>
+        /// Доступ к документам.
+        /// </summary>
+        public static readonly Settings Documents = new Settings(1 << 17, "docs");
 
         /// <summary>
         /// Возможность осуществлять запросы к API без HTTPS.
         /// Внимание, данная возможность находится на этапе тестирования и может быть изменена. 
         /// </summary>
-        public static readonly Settings NoHttps = new Settings(1 << 16, "nohttps");
+        //public static readonly Settings NoHttps = new Settings(1 << 16, "nohttps");
 
         /// <summary>
-        /// Пустая настройка для тестирования.
+        /// Доступ к группам пользователя. 
         /// </summary>
-        internal static readonly Settings Empty1 = new Settings(1 << 17, "");
+        public static readonly Settings Groups = new Settings(1 << 18, "groups");
 
         /// <summary>
-        /// Пустая настройка для тестирования.
+        /// Доступ к оповещениям об ответах пользователю. 
         /// </summary>
-        internal static readonly Settings Empty2 = new Settings(1 << 18, "");
+        public static readonly Settings Notifications = new Settings(1 << 19, "notifications");
+
+        /// <summary>
+        /// Доступ к статистике групп и приложений пользователя, администратором которых он является. 
+        /// </summary>
+        public static readonly Settings Statistic = new Settings(1 << 20, "stats");
 
         /// <summary>
         /// Доступ к email пользователя. Доступно только для сайтов.
         /// </summary>
-        public static readonly Settings Email = new Settings(0 << 2, "email");
-
-        /// <summary>
-        /// Добавление ссылки на приложение в меню слева.
-        /// </summary>
-        public static readonly Settings AddLinkToLeftMenu = new Settings(0 << 2, "");
+        public static readonly Settings Email = new Settings(1 << 22, "email");
 
         /// <summary>
         /// Доступ ко всем возможным операциям (без Offline и NoHttps).
