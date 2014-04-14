@@ -406,14 +406,26 @@ namespace VkNet.Tests.Categories
 
 	    #endregion
 
+	    #region Wall.GetComments
 
-        [Test]
+	    [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetComments_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             int totalCount;
             _defaultWall.GetComments(12312, 12345, out totalCount, CommentsSort.Asc, true);
         }
+
+		[Test]
+		public void GetComments_IncorrectParameters_ThrowArgumentException()
+		{
+			int id;
+			Assert.That(() => _defaultWall.GetComments(1,-1, out id), Throws.ArgumentException.And.Property("ParamName").EqualTo("postId"));
+			Assert.That(() => _defaultWall.GetComments(1, 1, out id, count: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("count"));
+			Assert.That(() => _defaultWall.GetComments(1, 1, out id, offset: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("offset"));
+			Assert.That(() => _defaultWall.GetComments(1, 1, out id, previewLength: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("previewLength"));
+
+		}
 
         [Test]
         public void GetComments_ReturnLikesAndAttachments()
@@ -503,7 +515,11 @@ namespace VkNet.Tests.Categories
             Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2013, 11, 22, 10, 20, 31)));
         }
 
-        [Test]
+	    #endregion
+
+	    #region Wall.GetById
+
+	    [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
@@ -743,7 +759,9 @@ namespace VkNet.Tests.Categories
             Assert.That(attach3.Id, Is.EqualTo(154701206));
         }
 
-        [Test]
+	    #endregion
+
+	    [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         [Ignore]
         public void Post_AccessTokenInvalid_ThrowAccessTokenInvalidException()

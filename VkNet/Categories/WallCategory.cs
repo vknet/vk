@@ -112,7 +112,12 @@
             int? offset = null,
             int previewLength = 0)
         {
-            var parameters = new VkParameters
+            VkErrors.ThrowIfNumberIsNegative(postId, "postId");
+			VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+			VkErrors.ThrowIfNumberIsNegative(count, "count");
+			VkErrors.ThrowIfNumberIsNegative(previewLength, "previewLength");
+
+			var parameters = new VkParameters
                              {
                                  { "owner_id", ownerId },
                                  { "post_id", postId },
