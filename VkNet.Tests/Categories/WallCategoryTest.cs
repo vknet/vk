@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -29,20 +30,43 @@ namespace VkNet.Tests.Categories
             return new WallCategory(new VkApi { AccessToken = "token", Browser = mock.Object });
         }
 
-        [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
-        public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-        {
-            int totalCount;
-            _defaultWall.Get(1, out totalCount);
-        }
+	    #region Wall.Get
 
-        [Test]
-        public void Get_DefaultFields_ReturnBasicInfo()
-        {
-            const string url = "https://api.vk.com/method/wall.get?owner_id=1&count=3&offset=5&filter=owner&access_token=token";
-            const string json =
-                @"{
+	    [Test]
+	    [ExpectedException(typeof (AccessTokenInvalidException))]
+	    public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+	    {
+		    int totalCount;
+		    _defaultWall.Get(1, out totalCount);
+
+			ReadOnlyCollection<Post> posts;
+			ReadOnlyCollection<User> profiles;
+			ReadOnlyCollection<Group> groups;
+			_defaultWall.GetExtended(1, out posts, out profiles, out groups);
+	    }
+
+		[Test]
+		public void Get_IncorrectParameters_ThrowArgumentException()
+		{
+			int totalCount;
+			Assert.That(() => _defaultWall.Get(1, out totalCount, count: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("count"));
+			Assert.That(() => _defaultWall.Get(1, out totalCount, offset: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("offset"));
+			Assert.That(() => _defaultWall.Get(1, out totalCount, filter: WallFilter.Suggests), Throws.ArgumentException.And.Property("ParamName").EqualTo("ownerId"));
+
+			ReadOnlyCollection<Post> posts;
+			ReadOnlyCollection<User> profiles;
+			ReadOnlyCollection<Group> groups;
+			Assert.That(() => _defaultWall.GetExtended(1, out posts, out profiles, out groups, count: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("count"));
+			Assert.That(() => _defaultWall.GetExtended(1, out posts, out profiles, out groups, offset: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("offset"));
+			Assert.That(() => _defaultWall.GetExtended(1, out posts, out profiles, out groups, filter: WallFilter.Suggests), Throws.ArgumentException.And.Property("ParamName").EqualTo("ownerId"));
+		}
+
+	    [Test]
+	    public void Get_DefaultFields_ReturnBasicInfo()
+	    {
+		    const string url =
+			    "https://api.vk.com/method/wall.get?owner_id=1&count=3&offset=5&filter=owner&access_token=token";
+		    const string json = @"{
                     'response': [
                       137,
                       {
@@ -189,89 +213,199 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            int totalCount;
-            var records = GetMockedWallCategory(url, json).Get(1, out totalCount, 3, 5, WallFilter.Owner);
+		    int totalCount;
+		    var records = GetMockedWallCategory(url, json).Get(1, out totalCount, 3, 5, WallFilter.Owner);
 
-            Assert.That(totalCount, Is.EqualTo(137));
-            Assert.That(records.Count == 3);
+		    Assert.That(totalCount, Is.EqualTo(137));
+		    Assert.That(records.Count == 3);
 
-            Assert.That(records[1].Attachment.Type == typeof(Audio));
-            //var audio = (Audio) records[1].Attachment.GetAttachment();
-            var audio = (Audio)records[1].Attachment.Instance;
-            
-            Assert.That(audio.Id, Is.EqualTo(154701206));
-            Assert.That(audio.OwnerId, Is.EqualTo(4793858));
-            Assert.That(audio.Title, Is.EqualTo("Дорогою добра"));
-            Assert.That(audio.Duration, Is.EqualTo(130));
+		    Assert.That(records[1].Attachment.Type == typeof (Audio));
+		    //var audio = (Audio) records[1].Attachment.GetAttachment();
+		    var audio = (Audio) records[1].Attachment.Instance;
 
-            Assert.That(records[1].Id, Is.EqualTo(617));
-            Assert.That(records[1].FromId, Is.EqualTo(4793858));
-            Assert.That(records[1].ToId, Is.EqualTo(4793858));
-            Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 18, 37, 46)));
-            Assert.That(records[1].Text, Is.Null.Or.Empty);
-            Assert.That(records[1].Comments.Count == 0);
-            Assert.That(records[1].Comments.CanPost, Is.True);
-            Assert.That(records[1].Likes.Count, Is.EqualTo(0));
-            Assert.That(records[1].Likes.UserLikes, Is.False);
-            Assert.That(records[1].Likes.CanLike, Is.True);
-            Assert.That(records[1].Likes.CanPublish, Is.False);
-            Assert.That(records[1].Reposts.Count, Is.EqualTo(0));
-            Assert.That(records[1].Reposts.UserReposted, Is.False);
-            
-            Assert.That(records[2].Id, Is.EqualTo(616));
-            Assert.That(records[2].FromId, Is.EqualTo(4793858));
-            Assert.That(records[2].ToId, Is.EqualTo(4793858));
-            Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 11, 32, 37)));
-            Assert.That(records[2].Text, Is.EqualTo("Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было."));
-            Assert.That(records[2].Comments.Count, Is.EqualTo(0));
-            Assert.That(records[2].Comments.CanPost, Is.True);
-            Assert.That(records[2].Likes.Count, Is.EqualTo(1));
-            Assert.That(records[2].Likes.UserLikes, Is.False);
-            Assert.That(records[2].Likes.CanLike, Is.True);
-            Assert.That(records[2].Likes.CanPublish, Is.False);
-            Assert.That(records[2].Reposts.Count, Is.EqualTo(0));
-            Assert.That(records[2].Reposts.UserReposted, Is.False);
+		    Assert.That(audio.Id, Is.EqualTo(154701206));
+		    Assert.That(audio.OwnerId, Is.EqualTo(4793858));
+		    Assert.That(audio.Title, Is.EqualTo("Дорогою добра"));
+		    Assert.That(audio.Duration, Is.EqualTo(130));
 
-            Assert.That(records[0].Id, Is.EqualTo(619));
-            Assert.That(records[0].FromId, Is.EqualTo(4793858));
-            Assert.That(records[0].ToId, Is.EqualTo(4793858));
-            Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 16, 21, 8)));
-            Assert.That(records[0].Text, Is.EqualTo("Фильмы ужасов, основанные на реальных событиях."));
-            Assert.That(records[0].CopyOwnerId, Is.EqualTo(50915841));
-            Assert.That(records[0].CopyPostId, Is.EqualTo(1374));
-            Assert.That(records[0].Comments.Count, Is.EqualTo(0));
-            Assert.That(records[0].Comments.CanPost, Is.True);
-            Assert.That(records[0].Likes.Count, Is.EqualTo(1));
-            Assert.That(records[0].Likes.UserLikes, Is.True);
-            Assert.That(records[0].Likes.CanLike, Is.False);
-            Assert.That(records[0].Likes.CanPublish, Is.False);
-            Assert.That(records[0].Reposts.Count, Is.EqualTo(0));
-            Assert.That(records[0].Reposts.UserReposted, Is.False);
+		    Assert.That(records[1].Id, Is.EqualTo(617));
+		    Assert.That(records[1].FromId, Is.EqualTo(4793858));
+		    Assert.That(records[1].ToId, Is.EqualTo(4793858));
+		    Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 18, 37, 46)));
+		    Assert.That(records[1].Text, Is.Null.Or.Empty);
+		    Assert.That(records[1].Comments.Count == 0);
+		    Assert.That(records[1].Comments.CanPost, Is.True);
+		    Assert.That(records[1].Likes.Count, Is.EqualTo(0));
+		    Assert.That(records[1].Likes.UserLikes, Is.False);
+		    Assert.That(records[1].Likes.CanLike, Is.True);
+		    Assert.That(records[1].Likes.CanPublish, Is.False);
+		    Assert.That(records[1].Reposts.Count, Is.EqualTo(0));
+		    Assert.That(records[1].Reposts.UserReposted, Is.False);
 
-            Assert.That(records[0].Attachment.Type == typeof(Photo));
-            var photo = (Photo) records[0].Attachment.Instance;
-            Assert.That(photo.Id, Is.EqualTo(283337039));
-            Assert.That(photo.AlbumId, Is.EqualTo(-7));
-            Assert.That(photo.OwnerId, Is.EqualTo(50915841));
-            Assert.That(photo.Photo130.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg"));
-            Assert.That(photo.Photo604.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg"));
-            Assert.That(photo.Photo75.OriginalString, Is.EqualTo("http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg"));
-            Assert.That(photo.Width, Is.EqualTo(450));
-            Assert.That(photo.Height, Is.EqualTo(320));
-            Assert.That(photo.Text, Is.Null.Or.Empty);
-            Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
-            //Assert.That(records[0]., Is.EqualTo());
+		    Assert.That(records[2].Id, Is.EqualTo(616));
+		    Assert.That(records[2].FromId, Is.EqualTo(4793858));
+		    Assert.That(records[2].ToId, Is.EqualTo(4793858));
+		    Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 11, 32, 37)));
+		    Assert.That(records[2].Text,
+						Is.EqualTo("Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было."));
+		    Assert.That(records[2].Comments.Count, Is.EqualTo(0));
+		    Assert.That(records[2].Comments.CanPost, Is.True);
+		    Assert.That(records[2].Likes.Count, Is.EqualTo(1));
+		    Assert.That(records[2].Likes.UserLikes, Is.False);
+		    Assert.That(records[2].Likes.CanLike, Is.True);
+		    Assert.That(records[2].Likes.CanPublish, Is.False);
+		    Assert.That(records[2].Reposts.Count, Is.EqualTo(0));
+		    Assert.That(records[2].Reposts.UserReposted, Is.False);
 
-            Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));
-            var attach1 = (Photo) records[0].Attachments.ElementAt(0).Instance;
-            Assert.That(attach1.Id, Is.EqualTo(283337039));
-            var attach2 = (Link)records[0].Attachments.ElementAt(1).Instance;
-            Assert.That(attach2.Url, Is.EqualTo(new Uri("http://vk.com/link")));
+		    Assert.That(records[0].Id, Is.EqualTo(619));
+		    Assert.That(records[0].FromId, Is.EqualTo(4793858));
+		    Assert.That(records[0].ToId, Is.EqualTo(4793858));
+		    Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 16, 21, 8)));
+		    Assert.That(records[0].Text, Is.EqualTo("Фильмы ужасов, основанные на реальных событиях."));
+		    Assert.That(records[0].CopyOwnerId, Is.EqualTo(50915841));
+		    Assert.That(records[0].CopyPostId, Is.EqualTo(1374));
+		    Assert.That(records[0].Comments.Count, Is.EqualTo(0));
+		    Assert.That(records[0].Comments.CanPost, Is.True);
+		    Assert.That(records[0].Likes.Count, Is.EqualTo(1));
+		    Assert.That(records[0].Likes.UserLikes, Is.True);
+		    Assert.That(records[0].Likes.CanLike, Is.False);
+		    Assert.That(records[0].Likes.CanPublish, Is.False);
+		    Assert.That(records[0].Reposts.Count, Is.EqualTo(0));
+		    Assert.That(records[0].Reposts.UserReposted, Is.False);
 
-            Assert.That(records[1].Attachments.Count(), Is.EqualTo(1));
-            var attach3 = (Audio)records[1].Attachments.ElementAt(0).Instance;
-            Assert.That(attach3.Id, Is.EqualTo(154701206));
-        }
+		    Assert.That(records[0].Attachment.Type == typeof (Photo));
+		    var photo = (Photo) records[0].Attachment.Instance;
+		    Assert.That(photo.Id, Is.EqualTo(283337039));
+		    Assert.That(photo.AlbumId, Is.EqualTo(-7));
+		    Assert.That(photo.OwnerId, Is.EqualTo(50915841));
+		    Assert.That(photo.Photo130.OriginalString,
+						Is.EqualTo("http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg"));
+		    Assert.That(photo.Photo604.OriginalString,
+						Is.EqualTo("http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg"));
+		    Assert.That(photo.Photo75.OriginalString,
+						Is.EqualTo("http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg"));
+		    Assert.That(photo.Width, Is.EqualTo(450));
+		    Assert.That(photo.Height, Is.EqualTo(320));
+		    Assert.That(photo.Text, Is.Null.Or.Empty);
+		    Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
+		    //Assert.That(records[0]., Is.EqualTo());
+
+		    Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));
+		    var attach1 = (Photo) records[0].Attachments.ElementAt(0).Instance;
+		    Assert.That(attach1.Id, Is.EqualTo(283337039));
+		    var attach2 = (Link) records[0].Attachments.ElementAt(1).Instance;
+		    Assert.That(attach2.Url, Is.EqualTo(new Uri("http://vk.com/link")));
+
+		    Assert.That(records[1].Attachments.Count(), Is.EqualTo(1));
+		    var attach3 = (Audio) records[1].Attachments.ElementAt(0).Instance;
+		    Assert.That(attach3.Id, Is.EqualTo(154701206));
+	    }
+
+	    [Test]
+	    public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
+	    {
+		    const string url =
+			    "https://api.vk.com/method/wall.get?owner_id=10&count=1&offset=1&filter=owner&extended=1&access_token=token";
+		    const string json =
+			    @"{
+                    'response': {
+							count: 42,
+							items: [{
+								id: 41,
+								from_id: 10,
+								owner_id: 10,
+								date: 1394002266,
+								post_type: 'post',
+								text: '',
+								copy_history: [{
+									id: 93530,
+									owner_id: -29246653,
+									from_id: -29246653,
+									date: 1393956845,
+									post_type: 'post',
+									text: '',
+									attachments: [{
+										type: 'photo',
+										photo: {
+										id: 323086640,
+										album_id: -7,
+										owner_id: -29246653,
+										user_id: 100,
+										photo_75: 'http://cs413130.vk.me/v413130344/9563/Dr-sxoSsoBs.jpg',
+										photo_130: 'http://cs413130.vk.me/v413130344/9564/k2jeOxwxgr4.jpg',
+										photo_604: 'http://cs413130.vk.me/v413130344/9565/jCLiluawfXE.jpg',
+										width: 604,
+										height: 348,
+										text: '',
+										date: 1393956845,
+										post_id: 93530
+										}
+									}],
+									post_source: {
+										type: 'api'
+									}
+								}],
+								can_delete: 1,
+								post_source: {
+									type: 'api'
+								},
+								comments: {
+									count: 0,
+									can_post: 1
+								},
+								likes: {
+									count: 1,
+									user_likes: 0,
+									can_like: 1,
+									can_publish: 0
+								},
+								reposts: {
+									count: 0,
+									user_reposted: 0
+								}
+							}],
+
+							profiles: [{
+							id: 10,
+							first_name: 'Иван',
+							last_name: 'Иванов',
+							sex: 2,
+							online: 0
+							}],
+
+							groups: [{
+							id: 29246653,
+							name: 'Корпорация Зла',
+							screen_name: 'evil_incorparate',
+							is_closed: 0,
+							type: 'page',
+							is_admin: 0,
+							is_member: 1,
+							photo_50: 'http://cs409529.vk.me/v409529400/98d2/3OMudmIl7gY.jpg',
+							photo_100: 'http://cs409529.vk.me/v409529400/98d1/dFkKFf-xWIw.jpg',
+							photo_200: 'http://cs409529.vk.me/v409529400/98cd/xHrEeHMSXQQ.jpg'
+							}]
+							}
+                  }";
+
+			ReadOnlyCollection<Post> posts;
+			ReadOnlyCollection<User> profiles;
+			ReadOnlyCollection<Group> groups;
+			var count = GetMockedWallCategory(url, json).GetExtended(10, out posts, out profiles, out groups, 1, 1, WallFilter.Owner);
+			Assert.That(count, Is.EqualTo(42));
+
+			Assert.That(posts.Count, Is.EqualTo(1));
+			Assert.That(posts[0].Id, Is.EqualTo(41));
+
+			Assert.That(profiles.Count, Is.EqualTo(1));
+			Assert.That(profiles[0].Id, Is.EqualTo(10));
+
+			Assert.That(groups.Count, Is.EqualTo(1));
+		    Assert.That(groups[0].Id, Is.EqualTo(29246653));
+	    }
+
+	    #endregion
+
 
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]

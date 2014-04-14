@@ -25,7 +25,7 @@
         /// <summary>
         /// Возвращает список записей со стены пользователя или сообщества. 
         /// </summary>
-        /// <param name="ownerId">Идентификатор поьзователя. Чтобы получить записи со стены группы (публичной страницы, встречи), укажите её идентификатор 
+        /// <param name="ownerId">Идентификатор пользователя. Чтобы получить записи со стены группы (публичной страницы, встречи), укажите её идентификатор 
         /// со знаком "минус": например, owner_id=-1 соответствует группе с идентификатором 1.</param>
         /// <param name="totalCount">Общее количество записей на стене.</param>
         /// <param name="count">Количество сообщений, которое необходимо получить (но не более 100).</param>
@@ -38,14 +38,50 @@
         [Pure]
         public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
-            var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+			VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+			if (filter == WallFilter.Suggests && ownerId >= 0)
+		        throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 
-            VkResponseArray response = _vk.Call("wall.get", parameters);
+	        var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
+			VkResponseArray response = _vk.Call("wall.get", parameters);
 
             totalCount = response[0];
-
-            return response.Skip(1).ToReadOnlyCollectionOf<Post>(r => r);
+			return response.Skip(1).ToReadOnlyCollectionOf<Post>(r => r);
         }
+
+	    /// <summary>
+	    /// Возвращает три  коллекции в out параметрах <paramref name="wallPosts"/>, <paramref name="profiles"/> и <paramref name="groups"/>. 
+	    /// </summary>
+	    /// <param name="ownerId">Идентификатор пользователя. Чтобы получить записи со стены группы (публичной страницы, встречи), укажите её идентификатор 
+	    /// со знаком "минус": например, owner_id=-1 соответствует группе с идентификатором 1.</param>
+	    /// <param name="wallPosts">Коллекция записей на стене.</param>
+		/// <param name="profiles">Коллекция профилей, так или иначе связанных с полученными в <paramref name="wallPosts"/> записями.</param>
+		/// <param name="groups">Коллекция групп, так или иначе связанных с полученными в <paramref name="wallPosts"/> записями.</param>
+	    /// <param name="count">Количество сообщений, которое необходимо получить (но не более 100).</param>
+	    /// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений.</param>
+	    /// <param name="filter">Типы сообщений, которые необходимо получить (по умолчанию возвращаются все сообщения).</param>
+	    /// <returns>В случае успеха возвращается количество записей на стене.</returns>
+	    /// <remarks>
+	    /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>, для случая, когда параметр extended = 1.
+	    /// </remarks>
+	    [Pure]
+		public int GetExtended(long ownerId, out ReadOnlyCollection<Post> wallPosts, out ReadOnlyCollection<User> profiles, out ReadOnlyCollection<Group> groups, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
+		{			   
+			VkErrors.ThrowIfNumberIsNegative(count, "count");
+			VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+			if (filter == WallFilter.Suggests && ownerId >= 0)
+				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
+
+			var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() }, {"extended", 1} };
+			var response = _vk.Call("wall.get", parameters);
+
+		    wallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r);
+			profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r);
+			groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r);
+		    return response["count"];
+		}
+
 
         /// <summary>
         /// Возвращает список комментариев к записи на стене пользователя. 
