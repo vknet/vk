@@ -7,17 +7,15 @@ namespace VkNet.Model.Attachments
     /// Информация о вики-странице сообщества. 
     /// См. описание <see href="http://vk.com/dev/pages.get"/>.
     /// </summary>
-    public class Page
+    public class Page : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор страницы.
-        /// </summary>
-        public long? Id { get; set; }
-
         /// <summary>
         /// Идентификатор сообщества.
         /// </summary>
-        public long? GroupId { get; set; }
+        public long? GroupId {
+	        get { return OwnerId; }
+	        set { OwnerId = value; }
+        }
 
         /// <summary>
         /// Идентификатор создателя страницы.

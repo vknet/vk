@@ -1007,14 +1007,59 @@ namespace VkNet.Tests.Categories
 
 		#endregion
 
+		#region Wall.Post
 
 		[Test]
 		[ExpectedException(typeof(AccessTokenInvalidException))]
-		[Ignore]
 		public void Post_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			//_defaultWall.Post();
+			_defaultWall.Post(message: "message");
 		}
+
+		[Test]
+		public void Post_IncorrectParameters_MessageAttachmentsAndUrlAreNullOrEmpty_ThrowException()
+		{
+			Assert.That(() => _defaultWall.Post(message: null, mediaAttachments: null, url: null), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Post(message: null, mediaAttachments: null, url: string.Empty), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Post(message: null, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: null), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Post(message: null, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: null, url: null), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: null, url: string.Empty), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: null), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);	
+		}
+
+		[Test]
+		public void Post_IncorrectParameters_ThrowException()
+		{
+			Assert.That(() => _defaultWall.Post(message: "message", placeId: -1), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Post(message: "message", postId: -1), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Post(message: "message", lat: 90.1), Throws.TypeOf<ArgumentOutOfRangeException>());
+			Assert.That(() => _defaultWall.Post(message: "message", lat: -90.1), Throws.TypeOf<ArgumentOutOfRangeException>());
+			Assert.That(() => _defaultWall.Post(message: "message", @long: 180.1), Throws.TypeOf<ArgumentOutOfRangeException>());
+			Assert.That(() => _defaultWall.Post(message: "message", @long: -180.1), Throws.TypeOf<ArgumentOutOfRangeException>());
+		}
+
+		[Test]
+		public void Post_UrlIsGeneratedCorrectly()
+		{
+			const string url = "https://api.vk.com/method/wall.post?owner_id=10&friends_only=1&from_group=1&message=message&" +
+								"attachments=audio10_20,link&services=twitter&signed=1&publish_date=1388620800&" +
+								"lat=45&long=135&place_id=100&post_id=500&access_token=token";
+			const string json =
+                @"{
+                    'response': {
+						   post_id: 42
+					} }";
+
+			Assert.That(GetMockedWallCategory(url, json).Post(
+				10, true, true, "message", new[] { new Audio { Id = 20, OwnerId = 10 } }, "link",
+				"twitter", true, new DateTime(2014, 1, 2, 0,0,0, DateTimeKind.Utc).ToLocalTime(), 45, 135, 100, 500), Is.EqualTo(42));
+
+		}
+
+
+		#endregion
 
 		[Test]
 		[ExpectedException(typeof(AccessTokenInvalidException))]
