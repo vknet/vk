@@ -422,8 +422,8 @@ namespace VkNet.Tests.Categories
 			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
 
 			// ReSharper disable AssignNullToNotNullAttribute
-			Assert.That(() => account.BanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userID"));
-			Assert.That(() => account.BanUser(0), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userID"));
+			Assert.That(() => account.BanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userId"));
+			Assert.That(() => account.BanUser(0), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userId"));
 			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
@@ -466,8 +466,8 @@ namespace VkNet.Tests.Categories
 			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
 
 			// ReSharper disable AssignNullToNotNullAttribute
-			Assert.That(() => account.UnbanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userID"));
-			Assert.That(() => account.UnbanUser(0), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userID"));
+			Assert.That(() => account.UnbanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userId"));
+			Assert.That(() => account.UnbanUser(0), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userId"));
 			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
