@@ -578,6 +578,11 @@ namespace VkNet.Utils
 			return response == null ? null : ChangeNameRequest.FromJson(response);
 		}
 
+		public static implicit operator RepostResult(VkResponse response)
+		{
+			return response == null ? null : RepostResult.FromJson(response);
+		}
+
         #endregion
     }
 }

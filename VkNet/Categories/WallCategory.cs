@@ -161,6 +161,9 @@ namespace VkNet.Categories
             if (posts == null)
                 throw new ArgumentNullException("posts");
 
+			if (!posts.Any())
+				throw new ArgumentException("Posts collection was empty.", "posts");
+
             var parameters = new VkParameters { { "posts", posts } };
 
             VkResponseArray response = _vk.Call("wall.getById", parameters);
@@ -268,6 +271,31 @@ namespace VkNet.Categories
 							};
 			return  _vk.Call("wall.post", parameters)["post_id"];
 		}
+
+
+	    /// <summary>
+		/// Копирует объект на стену пользователя или сообщества. 
+	    /// </summary>
+		/// <param name="object">Строковый идентификатор объекта, который необходимо разместить на стене, например, wall66748_3675 или wall-1_340364.</param>
+		/// <param name="message">Сопроводительный текст, который будет добавлен к записи с объектом.</param>
+		/// <param name="groupID">Идентификатор сообщества, на стене которого будет размещена запись с объектом. 
+		/// Если не указан, запись будет размещена на стене текущего пользователя. </param>
+	    /// <returns>Результат выполнения копирвоания и информация о скопированном объекте.</returns>
+	    public RepostResult Repost(string @object, string message = null, long? groupID = null)
+	    {
+			VkErrors.ThrowIfNullOrEmpty(() => @object);
+			VkErrors.ThrowIfNumberIsNegative(groupID, "groupId");
+
+		    VkParameters parameters = new VkParameters
+									{
+										{"object", @object},
+										{"message", message},
+										{"group_id", groupID}
+									};
+		    return _vk.Call("wall.repost", parameters);
+
+	    }
+
 
 	    /// <summary>
         /// Редактирует запись на стене. 

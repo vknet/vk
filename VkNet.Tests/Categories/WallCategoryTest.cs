@@ -531,6 +531,16 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
+		public void GetById_IncorrectParameters_ThrowException()
+		{
+			Assert.That(() => _defaultWall.GetById((IEnumerable<string>) null), Throws.TypeOf<ArgumentNullException>());
+			Assert.That(() => _defaultWall.GetById(Enumerable.Empty<string>()), Throws.TypeOf<ArgumentException>());
+
+			Assert.That(() => _defaultWall.GetById((IEnumerable<KeyValuePair<long, long>>) null), Throws.TypeOf<ArgumentNullException>());
+			Assert.That(() => _defaultWall.GetById(Enumerable.Empty<KeyValuePair<long, long>>()), Throws.TypeOf<ArgumentException>());
+		}
+
+		[Test]
 		public void GetById_ReturnWallRecords_ObsoleteOverload()
 		{
 			const string url = "https://api.vk.com/method/wall.getById?posts=1_619,1_617,1_616&access_token=token";
@@ -1060,6 +1070,66 @@ namespace VkNet.Tests.Categories
 
 		}
 
+
+		#endregion
+
+
+		#region Wall.Repost
+		
+		[Test]
+		[ExpectedException(typeof(AccessTokenInvalidException))]
+		public void Repost_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			_defaultWall.Repost("id");
+		}
+
+		[Test]
+		public void Repost_IncorrectParameters_ThrowException()
+		{
+			Assert.That(() => _defaultWall.Repost(null), Throws.TypeOf<ArgumentNullException>());
+			Assert.That(() => _defaultWall.Repost(string.Empty), Throws.TypeOf<ArgumentNullException>());
+			Assert.That(() => _defaultWall.Repost("id", groupID: -1), Throws.ArgumentException);
+		}
+
+
+		[Test]
+		public void Repost_UrlIsGeneratedCorrectly()
+		{
+			const string url = "https://api.vk.com/method/wall.repost?object=id&message=example&group_id=50&access_token=token";
+			const string json =
+                @"{
+                    'response': {
+						success: 1,
+						post_id: 2587,
+						reposts_count: 21,
+						likes_count: 105
+					} }";
+
+			GetMockedWallCategory(url, json).Repost("id", "example", 50);
+		}
+
+
+		[Test]
+		public void Repost_ReturnCorrectResults()
+		{
+			const string url = "https://api.vk.com/method/wall.repost?object=id&access_token=token";
+			const string json =
+                @"{
+                    'response': {
+						success: 1,
+						post_id: 2587,
+						reposts_count: 21,
+						likes_count: 105
+					} }";
+
+			var result = GetMockedWallCategory(url, json).Repost("id");
+
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Success, Is.True);
+			Assert.That(result.PostId, Is.EqualTo(2587));
+			Assert.That(result.RepostsCount, Is.EqualTo(21));
+			Assert.That(result.LikesCount, Is.EqualTo(105));
+		}
 
 		#endregion
 

@@ -132,6 +132,7 @@
     <Compile Include="Model\Previews.cs" />
     <Compile Include="Model\Region.cs" />
     <Compile Include="Model\Relative.cs" />
+    <Compile Include="Model\RepostResult.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\Street.cs" />
