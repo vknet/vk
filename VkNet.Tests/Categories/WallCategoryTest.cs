@@ -11,6 +11,7 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.Tests;
 
 namespace VkNet.Tests.Categories
 {
@@ -1105,7 +1106,13 @@ namespace VkNet.Tests.Categories
 						likes_count: 105
 					} }";
 
-			GetMockedWallCategory(url, json).Repost("id", "example", 50);
+			RepostResult result = GetMockedWallCategory(url, json).Repost("id", "example", 50);
+
+		    result.ShouldNotBeNull();
+		    result.Success.ShouldBeTrue();
+		    result.PostId.ShouldEqual(2587);
+		    result.RepostsCount.ShouldEqual(21);
+		    result.LikesCount.ShouldEqual(105);
 		}
 
 
