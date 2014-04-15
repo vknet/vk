@@ -523,11 +523,10 @@ namespace VkNet.Tests.Categories
 		#region Wall.GetById
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.GetById(new[] { "93388_21539", "93388_20904", "2943_4276" });
-			_defaultWall.GetById(new[] { new KeyValuePair<long, long>(10, 20), new KeyValuePair<long, long>(10, 20) });
+			Assert.That(() => _defaultWall.GetById(new[] { "93388_21539", "93388_20904", "2943_4276" }), Throws.TypeOf<AccessTokenInvalidException>());
+			Assert.That(() => _defaultWall.GetById(new[] { new KeyValuePair<long, long>(10, 20), new KeyValuePair<long, long>(10, 20) }), Throws.TypeOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
