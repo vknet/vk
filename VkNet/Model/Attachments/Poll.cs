@@ -10,7 +10,7 @@ namespace VkNet.Model.Attachments
     {
       	static Poll()
       	{
-      		type = "poll";
+      		RegisterType(typeof (Poll), "poll");
       	}
 
         /// <summary>

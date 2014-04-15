@@ -11,7 +11,7 @@ namespace VkNet.Model.Attachments
     {
 		static Note()
 		{
-			type = "note";
+			RegisterType(typeof (Note), "note");
 		}
 		
 		/// <summary>

@@ -12,7 +12,7 @@ namespace VkNet.Model.Attachments
     {
 		static Audio()
 		{
-			type = "audio";
+			RegisterType(typeof (Audio), "audio");
 		}
 
 		/// <summary>

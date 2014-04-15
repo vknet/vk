@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
@@ -5,7 +8,7 @@ namespace VkNet.Model.Attachments
 	/// </summary>
 	public abstract class MediaAttachment
 	{
-		protected static string type;
+		private static readonly IDictionary<Type, string> Types = new Dictionary<Type, string>();  
 
 		/// <summary>
 		/// Идентификатор приложенного объекта.
@@ -19,7 +22,18 @@ namespace VkNet.Model.Attachments
 
 		public override string ToString()
 		{
-			return string.Format("{0}{1}_{2}", type, OwnerId, Id);
+			return string.Format("{0}{1}_{2}", MatchType(GetType()), OwnerId, Id);
+		}
+
+		protected static void RegisterType(Type type, string match)
+		{
+			Types.Add(type, match);
+		}
+
+		private static string MatchType(Type type)
+		{
+			return Types[type];
+
 		}
 	}
 }

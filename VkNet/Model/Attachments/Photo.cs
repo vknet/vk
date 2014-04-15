@@ -13,7 +13,7 @@ namespace VkNet.Model.Attachments
     {
 		static Photo()
 		{
-			type = "photo";
+			RegisterType(typeof (Photo), "photo");
 		}
 
         /// <summary>

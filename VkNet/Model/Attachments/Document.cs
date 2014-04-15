@@ -10,7 +10,7 @@ namespace VkNet.Model.Attachments
     {
 		static Document()
 		{
-			type = "doc";
+			RegisterType(typeof (Document), "doc");
 		}
 
 		/// <summary>

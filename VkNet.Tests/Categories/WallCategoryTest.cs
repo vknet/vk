@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -1008,6 +1009,7 @@ namespace VkNet.Tests.Categories
 		#endregion
 
 		#region Wall.Post
+		//TODO: Проверить покрытие кода тестами
 
 		[Test]
 		[ExpectedException(typeof(AccessTokenInvalidException))]
@@ -1052,9 +1054,9 @@ namespace VkNet.Tests.Categories
 						   post_id: 42
 					} }";
 
-			Assert.That(GetMockedWallCategory(url, json).Post(
-				10, true, true, "message", new[] { new Audio { Id = 20, OwnerId = 10 } }, "link",
-				"twitter", true, new DateTime(2014, 1, 2, 0,0,0, DateTimeKind.Utc).ToLocalTime(), 45, 135, 100, 500), Is.EqualTo(42));
+			var result = GetMockedWallCategory(url, json).Post(10, true, true, "message", new[] { new Audio { Id = 20, OwnerId = 10 } }, "link",
+													"twitter", true, new DateTime(2014, 1, 2, 0,0,0, DateTimeKind.Utc).ToLocalTime(), 45, 135, 100, 500);
+			Assert.That(result, Is.EqualTo(42));
 
 		}
 

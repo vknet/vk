@@ -16,7 +16,7 @@ namespace VkNet.Model.Attachments
     {
 		static Video()
 		{
-			type = "video";
+			RegisterType(typeof(Video), "video");
 		}
 
         /// <summary>

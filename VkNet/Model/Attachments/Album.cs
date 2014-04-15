@@ -11,7 +11,7 @@ namespace VkNet.Model.Attachments
 	{
 		static Album()
 		{
-			type = "album";
+			RegisterType(typeof (Album), "album");
 		}
 
 		/// <summary>
