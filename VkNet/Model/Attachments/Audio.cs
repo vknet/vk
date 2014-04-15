@@ -1,28 +1,21 @@
-﻿namespace VkNet.Model
+﻿using System;
+using VkNet.Enums;
+using VkNet.Utils;
+
+namespace VkNet.Model.Attachments
 {
-    using System;
-
-    using Enums;
-    using Utils;
-
-    /// <summary>
+	/// <summary>
     /// Аудиозапись пользователя или группы.
     /// См. описание <see href="http://vk.com/dev/audio_object"/>.
     /// </summary>
-    public class Audio
+    public class Audio : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор аудиозаписи.
-        /// </summary>
-        public long Id { get; set; }
+		static Audio()
+		{
+			RegisterType(typeof (Audio), "audio");
+		}
 
-        /// <summary>
-        /// Идентификатор владельца аудиозаписи (пользователя или группы).
-        /// Для сообщества (группы) идентификатор отрицательный.
-        /// </summary>
-        public long OwnerId { get; set; }
-
-        /// <summary>
+		/// <summary>
         /// Исполнитель аудиозаписи.
         /// </summary>
         public string Artist { get; set; }

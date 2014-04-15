@@ -1,10 +1,9 @@
-﻿namespace VkNet.Model
+﻿using System;
+using VkNet.Utils;
+
+namespace VkNet.Model.Attachments
 {
-    using System;
-
-    using VkNet.Utils;
-
-    /// <summary>
+	/// <summary>
     /// Ссылка на Web-страницу.
     /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Ссылка".
     /// </summary>
@@ -35,7 +34,12 @@
         /// </summary>
         public string PreviewPage { get; set; }
 
-        #region Методы
+		public override string ToString()
+		{
+			return Url.ToString();
+		}
+
+		#region Методы
 
         internal static Link FromJson(VkResponse response)
         {

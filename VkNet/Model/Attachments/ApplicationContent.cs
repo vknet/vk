@@ -1,8 +1,8 @@
-namespace VkNet.Model
-{
-    using VkNet.Utils;
+using VkNet.Utils;
 
-    /// <summary>
+namespace VkNet.Model.Attachments
+{
+	/// <summary>
     /// Контент приложения.
     /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".
     /// </summary>

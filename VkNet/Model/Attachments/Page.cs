@@ -1,23 +1,21 @@
-﻿namespace VkNet.Model
-{
-    using VkNet.Enums;
-    using VkNet.Utils;
+﻿using VkNet.Enums;
+using VkNet.Utils;
 
-    /// <summary>
+namespace VkNet.Model.Attachments
+{
+	/// <summary>
     /// Информация о вики-странице сообщества. 
     /// См. описание <see href="http://vk.com/dev/pages.get"/>.
     /// </summary>
-    public class Page
+    public class Page : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор страницы.
-        /// </summary>
-        public long? Id { get; set; }
-
         /// <summary>
         /// Идентификатор сообщества.
         /// </summary>
-        public long? GroupId { get; set; }
+        public long? GroupId {
+	        get { return OwnerId; }
+	        set { OwnerId = value; }
+        }
 
         /// <summary>
         /// Идентификатор создателя страницы.
@@ -95,7 +93,7 @@
             var page = new Page();
 
             page.Id = response["pid"];
-            page.GroupId = response["group_id"];
+            page.GroupId = response["group_id"] ?? response["gid"];
             page.CreatorId = response["creator_id"];
             page.Title = response["title"];
             page.Source = response["source"];
@@ -113,6 +111,11 @@
 
             return page;
         }
+
+		public override string ToString()
+		{
+			return string.Format("page{0}_{1}", GroupId, Id);
+		}
 
         #endregion
     }

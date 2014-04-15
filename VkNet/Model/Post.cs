@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model
+﻿using VkNet.Model.Attachments;
+
+namespace VkNet.Model
 {
     using System;
     using System.Linq;
@@ -22,7 +24,7 @@
         /// <summary>
         /// Идентификатор владельца стены, на которой размещена запись.
         /// </summary>
-        public long? ToId { get; set; }
+        public long? OwnerId { get; set; }
 
         /// <summary>
         /// Идентификатор автора записи.
@@ -158,7 +160,7 @@
             var post = new Post();
 
             post.Id = response["id"];
-            post.ToId = response["to_id"];
+            post.OwnerId = response["owner_id"];
             post.FromId = response["from_id"];
             post.Date = response["date"];
             post.Text = response["text"];

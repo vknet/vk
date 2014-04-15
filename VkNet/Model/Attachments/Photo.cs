@@ -1,31 +1,25 @@
-﻿namespace VkNet.Model
+﻿using System;
+using VkNet.Utils;
+
+namespace VkNet.Model.Attachments
 {
-    using System;
-
-    using VkNet.Utils;
-
-    /// <summary>
+	/// <summary>
     /// Фотография.
     /// </summary>
     /// <remarks>
     /// См. описание <see href="http://vk.com/dev/photo"/> и <see href="http://vk.com/dev/attachments_w"/> раздел "Альбом с фотографиями".
     /// </remarks>
-    public class Photo
+    public class Photo : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор фотографии.
-        /// </summary>
-        public long? Id { get; set; }
+		static Photo()
+		{
+			RegisterType(typeof (Photo), "photo");
+		}
 
         /// <summary>
         /// Идентификатор альбома, в котором находится фотография.
         /// </summary>
         public long? AlbumId { get; set; }
-
-        /// <summary>
-        /// Идентификатор владельца фотографии.
-        /// </summary>
-        public long? OwnerId { get; set; }
 
         /// <summary>
         /// Url фотографии с максимальным размером 75x75px.

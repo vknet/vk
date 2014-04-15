@@ -1,24 +1,19 @@
-﻿namespace VkNet.Model
-{
-    using VkNet.Utils;
+﻿using VkNet.Utils;
 
-    /// <summary>
+namespace VkNet.Model.Attachments
+{
+	/// <summary>
     /// Информация о документе.
     /// См. описание <see href="http://vk.com/dev/doc"/>.
     /// </summary>
-    public class Document
+    public class Document : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор документа.
-        /// </summary>
-        public long? Id { get; set; }
+		static Document()
+		{
+			RegisterType(typeof (Document), "doc");
+		}
 
-        /// <summary>
-        /// Идентификатор пользователя, загрузившего документ.
-        /// </summary>
-        public long? OwnerId { get; set; }
-
-        /// <summary>
+		/// <summary>
         /// Название документа.
         /// </summary>
         public string Title { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace VkNet.Utils
+﻿using VkNet.Model.Attachments;
+
+namespace VkNet.Utils
 {
     using System;
     using System.Collections.ObjectModel;
@@ -574,6 +576,11 @@
 		public static implicit operator ChangeNameRequest(VkResponse response)
 		{
 			return response == null ? null : ChangeNameRequest.FromJson(response);
+		}
+
+		public static implicit operator RepostResult(VkResponse response)
+		{
+			return response == null ? null : RepostResult.FromJson(response);
 		}
 
         #endregion

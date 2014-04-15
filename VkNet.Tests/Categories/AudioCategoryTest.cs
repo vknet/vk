@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests.Categories
+﻿using VkNet.Model.Attachments;
+
+namespace VkNet.Tests.Categories
 {
     using System;
     using System.Collections.ObjectModel;
