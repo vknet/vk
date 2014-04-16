@@ -142,6 +142,11 @@
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
+    <Compile Include="Utils\implicitCastGenerator1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>implicitCastGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils\VkFilter.cs" />
     <Compile Include="Utils\WebCallResult.cs" />
     <Compile Include="Model\Coordinates.cs" />
@@ -188,7 +193,14 @@
     <Compile Include="Utils\VkAuthorization.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Utils\implicitCastGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>implicitCastGenerator1.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

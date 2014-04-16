@@ -46,17 +46,7 @@ namespace VkNet.Tests.Categories
 			var account = GetMockedAccountCategory(url, json);
 
 			var counters = account.GetCounters(CountersFilter.All);
-			Assert.That(counters, Is.Not.Null);
-
-			Assert.That(counters.Friends, Is.Null);
-			Assert.That(counters.Messages, Is.Null);
-			Assert.That(counters.Photos, Is.Null);
-			Assert.That(counters.Videos, Is.Null);
-			Assert.That(counters.Notes, Is.Null);
-			Assert.That(counters.Gifts, Is.Null);
-			Assert.That(counters.Events, Is.Null);
-			Assert.That(counters.Groups, Is.Null);
-			Assert.That(counters.Notifications, Is.Null);
+			Assert.That(counters, Is.Null);
 		}
 
 		[Test]
@@ -647,12 +637,7 @@ namespace VkNet.Tests.Categories
 			var account = GetMockedAccountCategory(url, json);
 
 			var info = account.GetInfo();
-			Assert.That(info, Is.Not.Null);
-
-			Assert.That(info.Country, Is.Null);
-			Assert.That(info.HttpsRequired, Is.Null);
-			Assert.That(info.Intro, Is.Null);
-			Assert.That(info.Language, Is.Null);
+			Assert.That(info, Is.Null);
 		}
 
 		[Test]
