@@ -1,4 +1,5 @@
-﻿using VkNet.Model.Attachments;
+﻿using VkNet.Enums.Filters;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
 {
@@ -42,7 +43,7 @@ namespace VkNet.Categories
         /// <param name="totalCount">Общее количество сообщений, удовлетворяющих условиям фильтрации.</param>
         /// <param name="count">Количество сообщений, которое необходимо получить (но не более 100).</param>
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений.</param>
-        /// <param name="filter">Фильтр возвращаемых сообщений: Если установлен флаг <see cref="MessagesFilter.FromFriends"/>, то 
+        /// <param name="filter">Фильтр возвращаемых сообщений: Если установлен флаг <see cref="MessagesFilter.Important"/>, то 
         /// флаги <see cref="MessagesFilter.Unread"/> и <see cref="MessagesFilter.NotFromChat"/> не учитываются.</param>
         /// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. 
         /// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются). 

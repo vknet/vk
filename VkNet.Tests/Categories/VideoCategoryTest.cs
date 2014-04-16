@@ -1,4 +1,5 @@
-﻿using VkNet.Model.Attachments;
+﻿using VkNet.Enums.Filters;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Categories
 {

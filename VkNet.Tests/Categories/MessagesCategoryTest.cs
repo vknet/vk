@@ -4,6 +4,7 @@ using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
+using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils;
@@ -32,7 +33,7 @@ namespace VkNet.Tests.Categories
         
         private MessagesCategory GetMockedMessagesCategory()
         {
-            var browser = new Mock<IBrowser>();
+            var browser = new Mock<IBrowser>(MockBehavior.Strict);
             browser.Setup(m => m.GetJson(url)).Returns(json);
 
             return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser.Object });
@@ -50,7 +51,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_NormalCaseAllFields_Messages()
         {
-            url = "https://api.vk.com/method/messages.get?out=0&offset=5&count=3&filters=4&preview_length=100&time_offset=41712634&access_token=token";
+            url = "https://api.vk.com/method/messages.get?out=0&offset=5&count=3&filters=8&preview_length=100&time_offset=41712634&access_token=token";
             json =
                 @"{
                     'response': [
@@ -90,7 +91,7 @@ namespace VkNet.Tests.Categories
             var cat = new MessagesCategory(new VkApi {AccessToken = "token", Browser = browser.Object});
 
             int totalCount;
-            var msgs = cat.Get(MessageType.Received, out totalCount, 3, 5, MessagesFilter.FromFriends, 100, new DateTime(2012, 7, 1)).ToList();
+            var msgs = cat.Get(MessageType.Received, out totalCount, 3, 5, MessagesFilter.Important, 100, new DateTime(2012, 7, 1)).ToList();
             
             Assert.That(totalCount, Is.EqualTo(2217));
             Assert.That(msgs.Count, Is.EqualTo(3));

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using VkNet.Enums.Filters;
 
 namespace VkNet.Categories
 {

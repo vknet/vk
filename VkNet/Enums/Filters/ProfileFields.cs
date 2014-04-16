@@ -1,268 +1,268 @@
-﻿namespace VkNet.Enums
-{   
-    using Model;
-    using Utils;
+﻿using VkNet.Model;
+using VkNet.Utils;
 
-    /// <summary>
+namespace VkNet.Enums.Filters
+{
+	/// <summary>
     /// Требуемые для получения поля профиля.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/>.
     /// </summary>
-    public sealed class ProfileFields : VkFilter
+    public sealed class ProfileFields : Filter<ProfileFields>
     {
         /// <summary>
         /// Для получения поля <see cref="User.Id"/>. Это поле возвращается всегда, поэтому его можно не указывать.
         /// </summary>
-        public static readonly ProfileFields Uid = new ProfileFields(1L << 0, "uid");
+        public static readonly ProfileFields Uid = RegisterPossibleValue(1L << 0, "uid");
 
         /// <summary>
         /// Для получения поля <see cref="User.FirstName"/>. Это поле возвращается всегда, поэтому его можно не указывать.
         /// </summary>
-        public static readonly ProfileFields FirstName = new ProfileFields(1L << 1, "first_name");
+        public static readonly ProfileFields FirstName = RegisterPossibleValue(1L << 1, "first_name");
 
         /// <summary>
         /// Для получения поля <see cref="User.LastName"/>. Это поле возвращается всегда, поэтому его можно не указывать.
         /// </summary>
-        public static readonly ProfileFields LastName = new ProfileFields(1L << 2, "last_name");
+        public static readonly ProfileFields LastName = RegisterPossibleValue(1L << 2, "last_name");
 
         /// <summary>
         /// Для получения поля <see cref="User.Sex"/>. 
         /// </summary>
-        public static readonly ProfileFields Sex = new ProfileFields(1L << 3, "sex");
+        public static readonly ProfileFields Sex = RegisterPossibleValue(1L << 3, "sex");
 
         /// <summary>
         /// Для получения поля <see cref="User.BirthDate"/>. 
         /// </summary>
-        public static readonly ProfileFields BirthDate = new ProfileFields(1L << 4, "bdate");
+        public static readonly ProfileFields BirthDate = RegisterPossibleValue(1L << 4, "bdate");
 
         /// <summary>
         /// Для получения поля <see cref="User.City"/>. 
         /// </summary>
-        public static readonly ProfileFields City = new ProfileFields(1L << 5, "city");
+        public static readonly ProfileFields City = RegisterPossibleValue(1L << 5, "city");
 
         /// <summary>
         /// Для получения поля <see cref="User.Country"/>. 
         /// </summary>
-        public static readonly ProfileFields Country = new ProfileFields(1L << 6, "country");
+        public static readonly ProfileFields Country = RegisterPossibleValue(1L << 6, "country");
 
         /// <summary>
         /// Для получения поля <see cref="Previews.Photo50"/>. 
         /// </summary>
-        public static readonly ProfileFields Photo50 = new ProfileFields(1L << 7, "photo_50");
+        public static readonly ProfileFields Photo50 = RegisterPossibleValue(1L << 7, "photo_50");
 
         /// <summary>
         /// Для получения поля <see cref="Previews.Photo100"/>. 
         /// </summary>
-        public static readonly ProfileFields Photo100 = new ProfileFields(1L << 8, "photo_100");
+        public static readonly ProfileFields Photo100 = RegisterPossibleValue(1L << 8, "photo_100");
 
         /// <summary>
         /// Для получения поля <see cref="Previews.Photo200"/>. 
         /// </summary>
-        public static readonly ProfileFields Photo200 = new ProfileFields(1L << 9, "photo_200");
+        public static readonly ProfileFields Photo200 = RegisterPossibleValue(1L << 9, "photo_200");
 
         /// <summary>
         /// Для получения поля <see cref="Previews.Photo200"/>. 
         /// </summary>
-        public static readonly ProfileFields Photo200Orig = new ProfileFields(1L << 10, "photo_200_orig");
+        public static readonly ProfileFields Photo200Orig = RegisterPossibleValue(1L << 10, "photo_200_orig");
 
         /// <summary>
         /// Для получения поля <see cref="Previews.Photo400"/>. 
         /// </summary>
-        public static readonly ProfileFields Photo400Orig = new ProfileFields(1L << 11, "photo_400_orig");
+        public static readonly ProfileFields Photo400Orig = RegisterPossibleValue(1L << 11, "photo_400_orig");
 
         /// <summary>
         /// Для получения поля <see cref="Previews.PhotoMax"/>. 
         /// </summary>
-        public static readonly ProfileFields PhotoMax = new ProfileFields(1L << 12, "photo_max");
+        public static readonly ProfileFields PhotoMax = RegisterPossibleValue(1L << 12, "photo_max");
 
         /// <summary>
         /// Для получения поля <see cref="Previews.PhotoMax"/>. 
         /// </summary>
-        public static readonly ProfileFields PhotoMaxOrig = new ProfileFields(1L << 13, "photo_max_orig");
+        public static readonly ProfileFields PhotoMaxOrig = RegisterPossibleValue(1L << 13, "photo_max_orig");
 
         /// <summary>
         /// Для получения поля <see cref="User.Online"/>. 
         /// </summary>
-        public static readonly ProfileFields Online = new ProfileFields(1L << 14, "online");
+        public static readonly ProfileFields Online = RegisterPossibleValue(1L << 14, "online");
 
         /// <summary>
         /// Для получения поля <see cref="User.FriendLists"/>. 
         /// </summary>
-        public static readonly ProfileFields FriendLists = new ProfileFields(1L << 15, "lists");
+        public static readonly ProfileFields FriendLists = RegisterPossibleValue(1L << 15, "lists");
 
         /// <summary>
         /// Для получения поля <see cref="User.Domain"/>. 
         /// </summary>
-        public static readonly ProfileFields Domain = new ProfileFields(1L << 16, "domain");
+        public static readonly ProfileFields Domain = RegisterPossibleValue(1L << 16, "domain");
 
         /// <summary>
         /// Для получения поля <see cref="User.HasMobile"/>. 
         /// </summary>
-        public static readonly ProfileFields HasMobile = new ProfileFields(1L << 17, "has_mobile");
+        public static readonly ProfileFields HasMobile = RegisterPossibleValue(1L << 17, "has_mobile");
 
         /// <summary>
         /// Для получения полей <see cref="User.MobilePhone"/> и <see cref="User.HomePhone"/>. 
         /// </summary>
-        public static readonly ProfileFields Contacts = new ProfileFields(1L << 18, "contacts");
+        public static readonly ProfileFields Contacts = RegisterPossibleValue(1L << 18, "contacts");
 
         /// <summary>
         /// Для получения поля <see cref="User.Connections"/>. 
         /// </summary>
-        public static readonly ProfileFields Connections = new ProfileFields(1L << 19, "connections");
+        public static readonly ProfileFields Connections = RegisterPossibleValue(1L << 19, "connections");
 
         /// <summary>
         /// Для получения поля <see cref="User.Site"/>. 
         /// </summary>
-        public static readonly ProfileFields Site = new ProfileFields(1L << 20, "site");
+        public static readonly ProfileFields Site = RegisterPossibleValue(1L << 20, "site");
 
         /// <summary>
         /// Для получения поля <see cref="User.Education"/>. 
         /// </summary>
-        public static readonly ProfileFields Education = new ProfileFields(1L << 21, "education");
+        public static readonly ProfileFields Education = RegisterPossibleValue(1L << 21, "education");
 
         /// <summary>
         /// Для получения поля <see cref="User.Universities"/>. 
         /// </summary>
-        public static readonly ProfileFields Universities = new ProfileFields(1L << 22, "universities");
+        public static readonly ProfileFields Universities = RegisterPossibleValue(1L << 22, "universities");
 
         /// <summary>
         /// Для получения поля <see cref="User.Schools"/>. 
         /// </summary>
-        public static readonly ProfileFields Schools = new ProfileFields(1L << 23, "schools");
+        public static readonly ProfileFields Schools = RegisterPossibleValue(1L << 23, "schools");
 
         /// <summary>
         /// Для получения поля <see cref="User.CanPost"/>. 
         /// </summary>
-        public static readonly ProfileFields CanPost = new ProfileFields(1L << 24, "can_post");
+        public static readonly ProfileFields CanPost = RegisterPossibleValue(1L << 24, "can_post");
 
         /// <summary>
         /// Для получения поля <see cref="User.CanSeeAllPosts"/>. 
         /// </summary>
-        public static readonly ProfileFields CanSeeAllPosts = new ProfileFields(1L << 25, "can_see_all_posts");
+        public static readonly ProfileFields CanSeeAllPosts = RegisterPossibleValue(1L << 25, "can_see_all_posts");
 
         /// <summary>
         /// Для получения поля <see cref="User.CanSeeAudio"/>. 
         /// </summary>
-        public static readonly ProfileFields CanSeeAudio = new ProfileFields(1L << 26, "can_see_audio");
+        public static readonly ProfileFields CanSeeAudio = RegisterPossibleValue(1L << 26, "can_see_audio");
 
         /// <summary>
         /// Для получения поля <see cref="User.CanWritePrivateMessage"/>. 
         /// </summary>
-        public static readonly ProfileFields CanWritePrivateMessage = new ProfileFields(1L << 27, "can_write_private_message");
+        public static readonly ProfileFields CanWritePrivateMessage = RegisterPossibleValue(1L << 27, "can_write_private_message");
 
         /// <summary>
         /// Для получения поля <see cref="User.Status"/>. 
         /// </summary>
-        public static readonly ProfileFields Status = new ProfileFields(1L << 28, "status");
+        public static readonly ProfileFields Status = RegisterPossibleValue(1L << 28, "status");
 
         /// <summary>
         /// Для получения поля <see cref="User.LastSeen"/>. 
         /// </summary>
-        public static readonly ProfileFields LastSeen = new ProfileFields(1L << 29, "last_seen");
+        public static readonly ProfileFields LastSeen = RegisterPossibleValue(1L << 29, "last_seen");
 
         /// <summary>
         /// Для получения поля <see cref="User.CommonCount"/>. 
         /// </summary>
-        public static readonly ProfileFields CommonCount = new ProfileFields(1L << 30, "common_count");
+        public static readonly ProfileFields CommonCount = RegisterPossibleValue(1L << 30, "common_count");
 
         /// <summary>
         /// Для получения поля <see cref="User.Relation"/>. 
         /// </summary>
-        public static readonly ProfileFields Relation = new ProfileFields(1L << 31, "relation");
+        public static readonly ProfileFields Relation = RegisterPossibleValue(1L << 31, "relation");
 
         /// <summary>
         /// Для получения поля <see cref="User.Relatives"/>. 
         /// </summary>
-        public static readonly ProfileFields Relatives = new ProfileFields(1L << 32, "relatives");
+        public static readonly ProfileFields Relatives = RegisterPossibleValue(1L << 32, "relatives");
 
         /// <summary>
         /// Для получения поля <see cref="User.Counters"/>. 
         /// </summary>
-        public static readonly ProfileFields Counters = new ProfileFields(1L << 33, "counters");
+        public static readonly ProfileFields Counters = RegisterPossibleValue(1L << 33, "counters");
 
         /// <summary>
         /// Для получения поля <see cref="User.Nickname"/>. 
         /// </summary>
-        public static readonly ProfileFields Nickname = new ProfileFields(1L << 34, "nickname");
+        public static readonly ProfileFields Nickname = RegisterPossibleValue(1L << 34, "nickname");
 
         /// <summary>
         /// Для получения поля <see cref="User.Timezone"/>. 
         /// </summary>
-        public static readonly ProfileFields Timezone = new ProfileFields(1L << 35, "timezone");
+        public static readonly ProfileFields Timezone = RegisterPossibleValue(1L << 35, "timezone");
 
         /// <summary>
         /// Для получения поля <see cref="User.Language"/>. 
         /// </summary>
-        public static readonly ProfileFields Language = new ProfileFields(1L << 36, "lang");
+        public static readonly ProfileFields Language = RegisterPossibleValue(1L << 36, "lang");
 
         /// <summary>
         /// Для получения поля <see cref="User.OnlineMobile"/>. 
         /// </summary>
-        public static readonly ProfileFields OnlineMobile = new ProfileFields(1L << 37, "online_mobile");
+        public static readonly ProfileFields OnlineMobile = RegisterPossibleValue(1L << 37, "online_mobile");
 
         /// <summary>
         /// Для получения поля <see cref="User.OnlineApp"/>. 
         /// </summary>
-        public static readonly ProfileFields OnlineApp = new ProfileFields(1L << 38, "online_app");
+        public static readonly ProfileFields OnlineApp = RegisterPossibleValue(1L << 38, "online_app");
 
         /// <summary>
         /// Для получения поля <see cref="User.RelationPartner"/>. 
         /// </summary>
-        public static readonly ProfileFields RelationPartner = new ProfileFields(1L << 39, "relation_partner");
+        public static readonly ProfileFields RelationPartner = RegisterPossibleValue(1L << 39, "relation_partner");
 
         /// <summary>
         /// Для получения поля <see cref="User.StandInLife"/>. 
         /// </summary>
-        public static readonly ProfileFields StandInLife = new ProfileFields(1L << 40, "personal");
+        public static readonly ProfileFields StandInLife = RegisterPossibleValue(1L << 40, "personal");
 
         /// <summary>
         /// Для получения поля <see cref="User.Interests"/>. 
         /// </summary>
-        public static readonly ProfileFields Interests = new ProfileFields(1L << 41, "interests");
+        public static readonly ProfileFields Interests = RegisterPossibleValue(1L << 41, "interests");
 
         /// <summary>
         /// Для получения поля <see cref="User.Music"/>. 
         /// </summary>
-        public static readonly ProfileFields Music = new ProfileFields(1L << 42, "music");
+        public static readonly ProfileFields Music = RegisterPossibleValue(1L << 42, "music");
 
         /// <summary>
         /// Для получения поля <see cref="User.Activities"/>. 
         /// </summary>
-        public static readonly ProfileFields Activities = new ProfileFields(1L << 43, "activities");
+        public static readonly ProfileFields Activities = RegisterPossibleValue(1L << 43, "activities");
 
         /// <summary>
         /// Для получения поля <see cref="User.Movies"/>. 
         /// </summary>
-        public static readonly ProfileFields Movies = new ProfileFields(1L << 44, "movies");
+        public static readonly ProfileFields Movies = RegisterPossibleValue(1L << 44, "movies");
 
         /// <summary>
         /// Для получения поля <see cref="User.Tv"/>. 
         /// </summary>
-        public static readonly ProfileFields Tv = new ProfileFields(1L << 45, "tv");
+        public static readonly ProfileFields Tv = RegisterPossibleValue(1L << 45, "tv");
 
         /// <summary>
         /// Для получения поля <see cref="User.Books"/>. 
         /// </summary>
-        public static readonly ProfileFields Books = new ProfileFields(1L << 46, "books");
+        public static readonly ProfileFields Books = RegisterPossibleValue(1L << 46, "books");
 
         /// <summary>
         /// Для получения поля <see cref="User.Games"/>. 
         /// </summary>
-        public static readonly ProfileFields Games = new ProfileFields(1L << 47, "games");
+        public static readonly ProfileFields Games = RegisterPossibleValue(1L << 47, "games");
 
         /// <summary>
         /// Для получения поля <see cref="User.About"/>. 
         /// </summary>
-        public static readonly ProfileFields About = new ProfileFields(1L << 48, "about");
+        public static readonly ProfileFields About = RegisterPossibleValue(1L << 48, "about");
 
         /// <summary>
         /// Для получения поля <see cref="User.Quotes"/>. 
         /// </summary>
-        public static readonly ProfileFields Quotes = new ProfileFields(1L << 49, "quotes");
+        public static readonly ProfileFields Quotes = RegisterPossibleValue(1L << 49, "quotes");
 
         /// <summary>
         /// Для получения поля <see cref="User.InvitedBy"/>. 
         /// </summary>        
-        public static readonly ProfileFields InvitedBy = new ProfileFields(1L << 50, "invited_by");
+        public static readonly ProfileFields InvitedBy = RegisterPossibleValue(1L << 50, "invited_by");
 
         /// <summary>
         /// Для получения всех документированных полей.
@@ -278,25 +278,6 @@
         public static readonly ProfileFields AllUndocumented = All | Language | OnlineMobile | OnlineApp | RelationPartner | 
             StandInLife | Interests | Music | Activities | Movies | Tv | Books | Games | About | Quotes | InvitedBy;
 
-        private ProfileFields(long value, string name) : base(value, name)
-        {
-            
-        }
 
-        private ProfileFields(ProfileFields left, ProfileFields right) : base(left, right)
-        {
-            
-        }
-
-        /// <summary>
-        /// Оператор объединения полей профиля.
-        /// </summary>
-        /// <param name="left">Левое поле выражения объединения.</param>
-        /// <param name="right">Правое поле выражения объединения.</param>
-        /// <returns>Результат объединения.</returns>
-        public static ProfileFields operator |(ProfileFields left, ProfileFields right)
-        {
-            return new ProfileFields(left, right);
-        }
     }
 }

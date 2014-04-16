@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests
+﻿using VkNet.Enums.Filters;
+
+namespace VkNet.Tests
 {
     using System;
     using System.Collections.Generic;

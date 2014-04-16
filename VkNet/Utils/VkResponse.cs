@@ -1,6 +1,4 @@
-﻿using VkNet.Model.Attachments;
-
-namespace VkNet.Utils
+﻿namespace VkNet.Utils
 {
     using System;
     using System.Collections.ObjectModel;
@@ -9,9 +7,8 @@ namespace VkNet.Utils
     using Newtonsoft.Json.Linq;
 
     using Enums;
-    using Model;
 
-    internal sealed partial class VkResponse
+	internal sealed partial class VkResponse
     {
         private readonly JToken _token;
         public string RawJson { get; set; }
@@ -60,12 +57,7 @@ namespace VkNet.Utils
 
 	    #region System types
 
-	    public static implicit operator Collection<string>(VkResponse response)
-	    {
-		    return response.ToCollectionOf<string>(s => s);
-	    }
-
-	    public static implicit operator bool(VkResponse response)
+		public static implicit operator bool(VkResponse response)
         {
             if (response == null)
                 return false;
@@ -73,47 +65,57 @@ namespace VkNet.Utils
             return response == 1;
         }
 
-        public static implicit operator bool?(VkResponse response)
+		public static implicit operator bool?(VkResponse response)
         {
             return response == null ? (bool?)null : response == 1;
         }
 
-        public static implicit operator long(VkResponse response)
+		public static implicit operator long(VkResponse response)
         {
             return (long)response._token;
         }
 
-        public static implicit operator float(VkResponse response)
+		public static implicit operator long?(VkResponse response)
+		{
+			return response != null ? (long?)response._token : null;
+		}
+
+		public static implicit operator Collection<long>(VkResponse response)
+		{
+			return response == null ? null : response.ToCollectionOf<long>(i => i);
+		}
+
+		public static implicit operator float(VkResponse response)
         {
             return (float) response._token;
         }
 
-        public static implicit operator float?(VkResponse response)
+		public static implicit operator float?(VkResponse response)
         {
             return response != null ? (float?) response._token : null;
         }
 
-        public static implicit operator long?(VkResponse response)
-        {
-            return response != null ? (long?)response._token : null;
-        }
-
-        public static implicit operator int(VkResponse response)
+		public static implicit operator int(VkResponse response)
         {
             return (int)response._token;
         }
 
-        public static implicit operator int?(VkResponse response)
+		public static implicit operator int?(VkResponse response)
         {
             return response != null ? (int?)response._token : null;
         }
 
-        public static implicit operator string(VkResponse response)
+		public static implicit operator string(VkResponse response)
         {
             return response == null ? null : HttpUtility.HtmlDecode((string)response._token);
         }
 
-        public static implicit operator DateTime?(VkResponse response)
+		public static implicit operator Collection<string>(VkResponse response)
+		{
+			return response.ToCollectionOf<string>(s => s);
+		}
+
+		public static implicit operator DateTime?(VkResponse response)
         {
             if (response == null)
                 return null;
@@ -133,26 +135,16 @@ namespace VkNet.Utils
             return null;
         }
 
-        public static implicit operator Uri(VkResponse response)
+		public static implicit operator Uri(VkResponse response)
         {
             return response != null ? new Uri(response) : null;
         }
 
-        public static implicit operator Collection<long>(VkResponse response)
-        {
-            return response == null ? null : response.ToCollectionOf<long>(i => i);
-        }
-
-	    #endregion
+		#endregion
 
 	    #region Enums
 
-	    public static implicit operator LinkAccessType(VkResponse response)
-	    {
-		    return response == null ? null : LinkAccessType.FromJson(response);
-	    }
-
-	    public static implicit operator PageAccessKind?(VkResponse response)
+		public static implicit operator PageAccessKind?(VkResponse response)
 	    {
 		    if (response == null)
 			    return null;
@@ -184,7 +176,22 @@ namespace VkNet.Utils
 		    return Utilities.NullableEnumFrom<AudioGenre>(response);
 	    }
 
-	    public static implicit operator PoliticalPreferences(VkResponse response)
+		public static implicit operator MessageType?(VkResponse response)
+		{
+			if (response == null)
+				return null;
+
+			return Utilities.NullableEnumFrom<MessageType>(response);
+		}
+
+		
+		
+		public static implicit operator LinkAccessType(VkResponse response)
+		{
+			return response == null ? null : LinkAccessType.FromJson(response);
+		}
+
+		public static implicit operator PoliticalPreferences(VkResponse response)
 	    {
 		    if (response == null)
 			    return PoliticalPreferences.Unknown;
@@ -238,14 +245,6 @@ namespace VkNet.Utils
 				return DeleteFriendStatus.Unknown;
 
 			return Utilities.EnumFrom<DeleteFriendStatus>(response);
-		}
-
-		public static implicit operator MessageType?(VkResponse response)
-		{
-			if (response == null)
-				return null;
-
-			return Utilities.NullableEnumFrom<MessageType>(response);
 		}
 
 		public static implicit operator MessageReadState?(VkResponse response)

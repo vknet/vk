@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using VkNet.Enums.Filters;
+
+namespace VkNet.Categories
 {
     using System;
     using System.Collections.Generic;
