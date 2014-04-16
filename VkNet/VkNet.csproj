@@ -142,10 +142,10 @@
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
-    <Compile Include="Utils\implicitCastGenerator1.cs">
+    <Compile Include="Utils\VkResponseToModelCastsGenerator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>implicitCastGenerator.tt</DependentUpon>
+      <DependentUpon>VkResponseToModelCastsGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\VkFilter.cs" />
     <Compile Include="Utils\WebCallResult.cs" />
@@ -193,9 +193,9 @@
     <Compile Include="Utils\VkAuthorization.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Utils\implicitCastGenerator.tt">
+    <None Include="Utils\VkResponseToModelCastsGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>implicitCastGenerator1.cs</LastGenOutput>
+      <LastGenOutput>VkResponseToModelCastsGenerator.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
