@@ -16,10 +16,10 @@ namespace VkNet.Utils
     {
 <#
 	var path = Directory.GetParent(Host.ResolvePath("")) + @"\Model";
-	List<string> files = Directory.GetFiles(path).ToList();
+	List<string> files = Directory.GetFiles(path).Where(s => Path.GetExtension(s) == ".cs").ToList();
 	foreach (var directory in Directory.GetDirectories(path))
 	{
-		files.AddRange(Directory.GetFiles(directory).ToList());
+		files.AddRange(Directory.GetFiles(directory).Where(s => Path.GetExtension(s) == ".cs").ToList());
 	}
 
 List<string> types = new List<string>();
