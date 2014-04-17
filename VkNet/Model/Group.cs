@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model
+﻿using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Model
 {
     using System;
 
@@ -189,7 +191,7 @@
             group.IsAdmin = response["is_admin"];
             group.AdminLevel = response["admin_level"];
             group.IsMember = response["is_member"];
-            group.Type = GetGroupType(response["type"]);
+            group.Type = response["type"];
             group.PhotoPreviews = response;
 
             // опциональные поля
@@ -218,20 +220,7 @@
             return group;
         }
 
-        internal static GroupType GetGroupType(string type)
-        {
-            switch (type)
-            {
-                case "page":
-                    return GroupType.Page;
-                case "event":
-                    return GroupType.Event;
-                case "group":
-                    return GroupType.Group;
-                default:
-                    return GroupType.Undefined;
-            }
-        }
+
 
         #endregion
     }

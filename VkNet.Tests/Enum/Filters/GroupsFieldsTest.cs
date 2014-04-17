@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
 
-namespace VkNet.Tests.Enum
+namespace VkNet.Tests.Enum.Filters
 {
     [TestFixture]
     public class GroupsFieldsTest

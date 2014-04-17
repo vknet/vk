@@ -1,13 +1,11 @@
 ﻿
+using NUnit.Framework;
 using VkNet.Enums.Filters;
+using VkNet.Utils.Tests;
 
-namespace VkNet.Tests.Enum
+namespace VkNet.Tests.Enum.Filters
 {
-    using NUnit.Framework;
-    using VkNet.Enums;
-    using VkNet.Utils.Tests;
-
-    [TestFixture]
+	[TestFixture]
     public class VideoFiltersTest
     {
         [Test]

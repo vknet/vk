@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
 
-namespace VkNet.Tests.Enum
+namespace VkNet.Tests.Enum.Filters
 {
     [TestFixture]
     public class ProfileFieldsTest
@@ -18,7 +17,7 @@ namespace VkNet.Tests.Enum
         public void ToString_DuplicateFields_NoDuplicates()
         {
             var fields = ProfileFields.City | ProfileFields.FirstName | ProfileFields.City;
-            const string expected = "city,first_name";
+            const string expected = "first_name,city";
 
             Assert.That(fields.ToString(), Is.EqualTo(expected));
         }

@@ -1,12 +1,10 @@
-﻿using VkNet.Enums.Filters;
+﻿using NUnit.Framework;
+using VkNet.Enums.Filters;
+using VkNet.Utils.Tests;
 
-namespace VkNet.Tests.Enum
+namespace VkNet.Tests.Enum.Filters
 {
-    using NUnit.Framework;
-    using VkNet.Utils.Tests;
-    using Enums;
-
-    [TestFixture]
+	[TestFixture]
     public class SettingsTest
     {
         [SetUp]

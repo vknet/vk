@@ -1,12 +1,10 @@
-﻿using VkNet.Enums.SafetyEnums;
+﻿using NUnit.Framework;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.Tests;
 
-namespace VkNet.Tests.Enum
+namespace VkNet.Tests.Enum.SafetyEnums
 {
-    using NUnit.Framework;
-    using VkNet.Enums;
-    using VkNet.Utils.Tests;
-
-    [TestFixture]
+	[TestFixture]
     public class CommentsSortTest
     {
         [Test]

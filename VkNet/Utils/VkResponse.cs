@@ -186,7 +186,11 @@ namespace VkNet.Utils
 			return Utilities.NullableEnumFrom<MessageType>(response);
 		}
 
-		
+
+		public static implicit operator GroupType(VkResponse response)
+		{
+			return response == null ? null : GroupType.FromJson(response);
+		}
 		
 		public static implicit operator LinkAccessType(VkResponse response)
 		{

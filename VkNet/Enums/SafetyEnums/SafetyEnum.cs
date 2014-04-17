@@ -1,13 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// Аналог enum, типобезопасен.
+	/// </summary>
+	/// <typeparam name="TFilter">Непосредственно наследник</typeparam>
 	public class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
 	{
+// ReSharper disable once StaticFieldInGenericType
 		private static readonly Dictionary<ulong, string> PossibleValues = new Dictionary<ulong, string>();
-		protected ulong _mask;
+
+		private ulong _mask;
+
+		protected static TFilter CreateFromMask(ulong mask)
+		{
+			//Если в маске находятся незарегистрированные в словаре биты
+			if(PossibleValues.Select(pair => pair.Key)
+				.Where(key => (mask & key) != 0)
+				.DefaultIfEmpty((ulong)0)
+				.Aggregate(mask, (current, @ulong) => current - @ulong)
+				!= 0)
+				throw new ArgumentException(string.Format("Mask contains value(s) that not defined for type {0} (mask except known values: {1:x8})", typeof (TFilter).FullName, PossibleValues.Select(pair => pair.Key).Where(key => (mask & key) != 0).Aggregate(mask, (current, @ulong) => current - @ulong)), "mask");
+
+			return new TFilter { _mask = mask };
+		}
 
 		protected SafetyEnum()
 		{
@@ -25,9 +45,7 @@ namespace VkNet.Enums.SafetyEnums
 				throw new ArgumentException("Mask must be a power of 2 (i.e. only one bit must be equal to 1)", "mask");
 			PossibleValues.Add(mask, value);
 
-			var filter = new TFilter();
-			filter._mask = (mask);
-			return filter;
+			return CreateFromMask(mask);
 		}
 
 		protected static TFilter RegisterPossibleValue(string value)
@@ -41,9 +59,7 @@ namespace VkNet.Enums.SafetyEnums
 
 			PossibleValues.Add(mask, value);
 
-			var filter = new TFilter();
-			filter._mask = (mask);
-			return filter;
+			return CreateFromMask(mask);
 		}
 
 		public override string ToString()
@@ -76,6 +92,11 @@ namespace VkNet.Enums.SafetyEnums
 			if (ReferenceEquals(this, obj)) return true;
 			if (obj.GetType() != GetType()) return false;
 			return Equals((SafetyEnum<TFilter>) obj);
+		}
+
+		public override int GetHashCode()
+		{
+			return _mask.GetHashCode();
 		}
 	}
 }
