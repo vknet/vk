@@ -1,4 +1,6 @@
-﻿namespace VkNet.Utils
+﻿using VkNet.Enums.Filters;
+
+namespace VkNet.Utils
 {
     using System.Threading.Tasks;
     using Enums;

@@ -1,6 +1,8 @@
-﻿namespace VkNet.Enums.BaseFilters
+﻿using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Enums.Filters
 {
-	public class MultivaluedFilter <TFilter> : Filter<TFilter> where TFilter : MultivaluedFilter<TFilter>, new()
+	public class MultivaluedFilter <TFilter> : SafetyEnum<TFilter> where TFilter : MultivaluedFilter<TFilter>, new()
 	{
 // ReSharper disable once StaticFieldInGenericType
 

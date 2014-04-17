@@ -1,9 +1,5 @@
-﻿using VkNet.Enums.BaseFilters;
-
-namespace VkNet.Enums
+﻿namespace VkNet.Enums.Filters
 {
-    using System.Collections.Generic;
-
 	/// <summary>
     /// Права доступа приложений.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Права_доступа_приложений"/>.

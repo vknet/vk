@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests.Enum
+﻿using VkNet.Enums.Filters;
+
+namespace VkNet.Tests.Enum
 {
     using NUnit.Framework;
     using VkNet.Utils.Tests;

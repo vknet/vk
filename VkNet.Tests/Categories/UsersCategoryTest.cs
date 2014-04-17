@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Categories
 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using VkNet.Enums.Filters;
 
 namespace VkNet
 {
@@ -87,7 +88,7 @@ namespace VkNet
 
         /// <summary>
         /// Идентификатор пользователя, от имени которого была проведена авторизация.
-        /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,VkNet.Enums.Settings)"/>, 
+        /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings)"/>, 
         /// то возвращается null.
         /// </summary>
         public long ?UserId { get; set; }

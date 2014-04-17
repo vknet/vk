@@ -1,5 +1,3 @@
-using VkNet.Enums.BaseFilters;
-
 namespace VkNet.Enums.Filters
 {
 	/// <summary>

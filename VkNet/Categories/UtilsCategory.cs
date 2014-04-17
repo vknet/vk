@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Categories
 {
     using System;
     using JetBrains.Annotations;

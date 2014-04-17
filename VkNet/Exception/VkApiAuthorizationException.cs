@@ -1,11 +1,13 @@
-﻿namespace VkNet.Exception
+﻿using VkNet.Enums.Filters;
+
+namespace VkNet.Exception
 {
     using System;
     using System.Runtime.Serialization;
 
     /// <summary>
     /// Исключение, которое выбрасывается при попытке неудачной авторизации, когда указан неправильный логин или пароль 
-    /// при вызове метода <see cref="VkApi.Authorize(int,string,string,VkNet.Enums.Settings)"/>.
+    /// при вызове метода <see cref="VkApi.Authorize(int,string,string,Settings)"/>.
     /// </summary>
     [Serializable]
     public class VkApiAuthorizationException : VkApiException

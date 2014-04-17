@@ -3,6 +3,7 @@ using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
 

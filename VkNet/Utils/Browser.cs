@@ -1,4 +1,7 @@
-﻿namespace VkNet.Utils
+﻿using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Utils
 {
     using System.Net;
     using System.Text;

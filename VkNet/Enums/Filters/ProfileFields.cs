@@ -1,5 +1,4 @@
-﻿using VkNet.Enums.BaseFilters;
-using VkNet.Model;
+﻿using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Enums.Filters

@@ -1,4 +1,6 @@
-﻿namespace VkNet.Utils
+﻿using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Utils
 {
     using System;
     using System.Collections.ObjectModel;

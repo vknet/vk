@@ -1,6 +1,4 @@
-﻿using VkNet.Enums.BaseFilters;
-
-namespace VkNet.Enums.Filters
+﻿namespace VkNet.Enums.Filters
 {
 	/// <summary>
     /// Фильтры сообществ пользователя.

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace VkNet.Enums.BaseFilters
+namespace VkNet.Enums.SafetyEnums
 {
-	public class Filter <TFilter> where TFilter : Filter<TFilter>, new()
+	public class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
 	{
 		private static readonly Dictionary<ulong, string> PossibleValues = new Dictionary<ulong, string>();
 		protected ulong _mask;
 
-		protected Filter()
+		protected SafetyEnum()
 		{
 			_mask = 0;
 		}
@@ -51,7 +51,7 @@ namespace VkNet.Enums.BaseFilters
 			return string.Join(",", PossibleValues.Where(pair => (pair.Key & _mask) != 0).Select(pair => pair.Value));
 		}
 
-		public static bool operator ==(Filter<TFilter> left, Filter<TFilter> right)
+		public static bool operator ==(SafetyEnum<TFilter> left, SafetyEnum<TFilter> right)
 		{
 			if (ReferenceEquals(right, left)) return true;
 			if (ReferenceEquals(null, left)) return false;
@@ -60,12 +60,12 @@ namespace VkNet.Enums.BaseFilters
 			return left._mask == right._mask;
 		}
 
-		public static bool operator !=(Filter<TFilter> left, Filter<TFilter> right)
+		public static bool operator !=(SafetyEnum<TFilter> left, SafetyEnum<TFilter> right)
 		{
 			return !(left == right);
 		}
 
-		protected bool Equals(Filter<TFilter> other)
+		protected bool Equals(SafetyEnum<TFilter> other)
 		{
 			return _mask == other._mask;
 		}
@@ -75,7 +75,7 @@ namespace VkNet.Enums.BaseFilters
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
 			if (obj.GetType() != GetType()) return false;
-			return Equals((Filter<TFilter>) obj);
+			return Equals((SafetyEnum<TFilter>) obj);
 		}
 	}
 }
