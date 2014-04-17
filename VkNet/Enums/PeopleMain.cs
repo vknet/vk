@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums
 {
     /// <summary>
     /// Главное в людях.
@@ -8,7 +10,8 @@
         /// <summary>
         /// Не указано.
         /// </summary>
-        Unknown = 0,
+		[DefaultValue]
+		Unknown = 0,
 
         /// <summary>
         /// Ум и креативность.

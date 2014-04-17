@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums
 {
     /// <summary>
     /// Причина бана
@@ -8,7 +10,8 @@
         /// <summary>
         /// Другое.
         /// </summary>
-        Other = 0,
+		[DefaultValue]
+		Other = 0,
 
         /// <summary>
         /// Спам.

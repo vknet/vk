@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums
 {
     /// <summary>
     /// Пол.
@@ -8,7 +10,8 @@
         /// <summary>
         /// Не указан.
         /// </summary>
-        Unknown = 0,
+		[DefaultValue]
+		Unknown = 0,
 
         /// <summary>
         /// Женский.

@@ -142,8 +142,14 @@
     <Compile Include="Model\University.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />
+    <Compile Include="Utils\DefaultValueAttribute.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
+    <Compile Include="Utils\VkResponseToManualEnumCastsGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkResponseToManualEnumCastsGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils\VkResponseToModelCastsGenerator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -199,6 +205,10 @@
     <Compile Include="Utils\VkAuthorization.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Utils\VkResponseToManualEnumCastsGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToManualEnumCastsGenerator.cs</LastGenOutput>
+    </None>
     <None Include="Utils\VkResponseToSafetyEnumCastGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VkResponseToSafetyEnumCastGenerator.cs</LastGenOutput>

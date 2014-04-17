@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums
 {
     /// <summary>
     /// Политические предпочтения.
@@ -8,6 +10,7 @@
         /// <summary>
         /// Не указаны.
         /// </summary>
+        [DefaultValue]
         Unknown = 0,
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums
 {
     /// <summary>
     /// Статус, возвращаемый после отправки запроса на добавления в друзья
@@ -8,6 +10,7 @@
         /// <summary>
         /// Статус в случае ошибки ответа
         /// </summary>
+        [DefaultValue]
         Unknown = 0,
 
         /// <summary>

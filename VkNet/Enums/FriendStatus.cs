@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums
 {
     /// <summary>
     /// Состояние дружбы с пользователями.
@@ -8,6 +10,7 @@
         /// <summary>
         /// Пользователь не является другом.
         /// </summary>
+		[DefaultValue]
         NotFriend = 0,
 
         /// <summary>

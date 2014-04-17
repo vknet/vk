@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums
 {
     /// <summary>
     /// Возвращаемый статус после удаления пользователя из списка друзей
@@ -8,7 +10,8 @@
         /// <summary>
         /// Неопределенный статус ответа
         /// </summary>
-        Unknown = 0,
+		[DefaultValue]
+		Unknown = 0,
 
         /// <summary>
         /// Пользователь удален из списка друзей
