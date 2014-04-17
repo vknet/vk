@@ -149,6 +149,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VkResponseToModelCastsGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils\VkResponseToSafetyEnumCastGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkResponseToSafetyEnumCastGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils\WebCallResult.cs" />
     <Compile Include="Model\Coordinates.cs" />
     <Compile Include="Utils\WebCall.cs" />
@@ -194,6 +199,10 @@
     <Compile Include="Utils\VkAuthorization.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Utils\VkResponseToSafetyEnumCastGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToSafetyEnumCastGenerator.cs</LastGenOutput>
+    </None>
     <None Include="Utils\VkResponseToModelCastsGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VkResponseToModelCastsGenerator.cs</LastGenOutput>
