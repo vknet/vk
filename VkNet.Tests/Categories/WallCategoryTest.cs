@@ -525,11 +525,10 @@ namespace VkNet.Tests.Categories
 		#region Wall.GetById
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.GetById(new[] { "93388_21539", "93388_20904", "2943_4276" });
-			_defaultWall.GetById(new[] { new KeyValuePair<long, long>(10, 20), new KeyValuePair<long, long>(10, 20) });
+			Assert.That(() => _defaultWall.GetById(new[] { "93388_21539", "93388_20904", "2943_4276" }), Throws.TypeOf<AccessTokenInvalidException>());
+			Assert.That(() => _defaultWall.GetById(new[] { new KeyValuePair<long, long>(10, 20), new KeyValuePair<long, long>(10, 20) }), Throws.TypeOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -1075,7 +1074,6 @@ namespace VkNet.Tests.Categories
 
 		#endregion
 
-
 		#region Wall.Repost
 		
 		[Test]
@@ -1141,13 +1139,56 @@ namespace VkNet.Tests.Categories
 
 		#endregion
 
+		#region Wall.Edit
+		//TODO: Проверить покрытие кода тестами
+
 		[Test]
 		[ExpectedException(typeof(AccessTokenInvalidException))]
-		[Ignore]
 		public void Edit_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.Edit();
+			_defaultWall.Edit(1, message: "message");
 		}
+
+		[Test]
+		public void Edit_IncorrectParameters_MessageAttachmentsAndUrlAreNullOrEmpty_ThrowException()
+		{
+			Assert.That(() => _defaultWall.Edit(1, message: null, mediaAttachments: null, url: null), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Edit(1, message: null, mediaAttachments: null, url: string.Empty), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Edit(1, message: null, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: null), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Edit(1, message: null, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Edit(1, message: string.Empty, mediaAttachments: null, url: null), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Edit(1, message: string.Empty, mediaAttachments: null, url: string.Empty), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Edit(1, message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: null), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Edit(1, message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);
+		}
+
+		[Test]
+		public void Edit_IncorrectParameters_ThrowException()
+		{
+			Assert.That(() => _defaultWall.Edit(1, message: "message", placeId: -1), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Edit(-1, message: "message"), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Edit(1, message: "message", lat: 90.1), Throws.TypeOf<ArgumentOutOfRangeException>());
+			Assert.That(() => _defaultWall.Edit(1, message: "message", lat: -90.1), Throws.TypeOf<ArgumentOutOfRangeException>());
+			Assert.That(() => _defaultWall.Edit(1, message: "message", @long: 180.1), Throws.TypeOf<ArgumentOutOfRangeException>());
+			Assert.That(() => _defaultWall.Edit(1, message: "message", @long: -180.1), Throws.TypeOf<ArgumentOutOfRangeException>());
+		}
+
+		[Test]
+		public void Edit_UrlIsGeneratedCorrectly()
+		{
+			const string url = "https://api.vk.com/method/wall.edit?post_id=10&owner_id=20&friends_only=1&message=message&" +
+								"attachments=audio10_20,link&services=twitter&signed=1&publish_date=1388620800&" +
+								"lat=45&long=135&place_id=100&access_token=token";
+			const string json =	@"{	 'response': 1 }";
+
+			var result = GetMockedWallCategory(url, json).Edit(10, 20, true, "message", new[] { new Audio { Id = 20, OwnerId = 10 } }, "link",
+													"twitter", true, new DateTime(2014, 1, 2, 0, 0, 0, DateTimeKind.Utc).ToLocalTime(), 45, 135, 100);
+			Assert.That(result, Is.True);
+		}
+
+
+		#endregion
+
 
 		[Test]
 		[ExpectedException(typeof(AccessTokenInvalidException))]

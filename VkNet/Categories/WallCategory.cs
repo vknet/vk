@@ -269,7 +269,7 @@ namespace VkNet.Categories
 								{"lat", lat},
 								{"long", @long},
 								{"place_id", placeId},
-								{"post_id", postId},
+								{"post_id", postId}
 							};
 			return  _vk.Call("wall.post", parameters)["post_id"];
 		}
@@ -298,18 +298,63 @@ namespace VkNet.Categories
 
 	    }
 
-
-	    /// <summary>
-        /// Редактирует запись на стене. 
-        /// </summary>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.edit"/>.
-        /// </remarks>
-        public void Edit()
+		/// <summary>
+		/// Редактирует запись на стене. 
+		/// </summary>
+		/// <param name="postId">Идентификатор записи, которую необходимо отредактировать.</param>
+		/// <param name="ownerId">Идентификатор пользователя или сообщества, на стене которого опубликована запись.</param>
+		/// <param name="friendsOnly">Доступна ли запись только друзьям (по умолчанию - доступна всем).</param>
+		/// <param name="message">Тескт сообщения. Обязательное поле, если список <paramref name="mediaAttachments"/> не задан или пуст.</param>
+		/// <param name="mediaAttachments">Список приложенных к записи объектов. 
+		/// Обязательно наличие хотя бы одного элемента в списке, если <paramref name="message"/> не задано. 
+		/// Свойства <see cref="MediaAttachment.Id"/> и <see cref="MediaAttachment.OwnerId"/> обязательно должны быть заданы. </param>
+		/// <param name="url">Ссылка на внешнюю страницу. В строке может содержаться только одна ссылка.</param>
+		/// <param name="services">Список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию.
+		///  Например, twitter, facebook</param>
+		/// <param name="signed">Добавляется ли подпись (имя опубликовавшего) к записи в группе, если запись сделана от имени группы.</param>
+		/// <param name="publishDate">Дата публикации записи. Если параметр не указан, отложенная запись будет опубликована. 
+		/// Параметр учитывается только при редактировании отложенной записи.</param>
+		/// <param name="lat">Географическая широта отметки, заданная в градусах (от -90 до 90).</param>
+		/// <param name="long">Географическая долгота отметки, заданная в градусах (от -180 до 180).</param>
+		/// <param name="placeId">Идентификатор места, в котором отмечен пользователь (положительное число).</param>
+		/// <returns>Результат выполнения редактирования.</returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.edit"/>.
+		/// </remarks>
+		public bool Edit(long postId, long? ownerId = null, bool friendsOnly = false,
+			string message = null, IEnumerable<MediaAttachment> mediaAttachments = null, string url = null,
+			string services = null, bool signed = false, DateTime? publishDate = null,
+			double? lat = null, double? @long = null, long? placeId = null)
         {
-            // TODO:
-            throw new NotImplementedException();
+			if (string.IsNullOrEmpty(message) && (mediaAttachments == null || !mediaAttachments.Any()) && string.IsNullOrEmpty(url))
+				throw new ArgumentException("Message and attachments cannot be null or empty at the same time.");
+			VkErrors.ThrowIfNumberIsNegative(placeId, "placeId");
+			VkErrors.ThrowIfNumberIsNegative(postId, "postId");
+			if (lat.HasValue && (Math.Abs(lat.Value) > 90))
+				throw new ArgumentOutOfRangeException("lat", lat, "lat must be at range from -90 to 90");
+			if (@long.HasValue && (Math.Abs(@long.Value) > 180))
+				throw new ArgumentOutOfRangeException("long", @long, "long must be at range from -90 to 90");
+
+			var attachments = mediaAttachments.JoinNonEmpty();
+			if (!string.IsNullOrEmpty(url))
+				attachments += (attachments.Length > 0 ? "," : string.Empty) + url;
+
+			var parameters = new VkParameters
+							{
+								{"post_id", postId},
+								{"owner_id", ownerId},
+								{"friends_only", friendsOnly},
+								{"message", message},
+								{"attachments", attachments},
+								{"services", services},
+								{"signed", signed},
+								{"publish_date", Utilities.ToUnixTime(publishDate)},
+								{"lat", lat},
+								{"long", @long},
+								{"place_id", placeId}
+							};
+			return _vk.Call("wall.edit", parameters);
         }
 
         /// <summary>

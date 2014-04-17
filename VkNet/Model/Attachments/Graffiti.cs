@@ -6,17 +6,12 @@ namespace VkNet.Model.Attachments
     /// Граффити.
     /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Граффити".
     /// </summary>
-    public class Graffiti
+    public class Graffiti : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор граффити.
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// Идентификатор автора граффити.
-        /// </summary>
-        public long OwnerId { get; set; }
+		static Graffiti()
+		{
+			RegisterType(typeof (Graffiti), "graffiti");
+		}
 
         /// <summary>
         /// Адрес изображения для предпросмотра.
