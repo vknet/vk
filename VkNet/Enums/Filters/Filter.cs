@@ -38,6 +38,11 @@ namespace VkNet.Enums.Filters
 
 		private ulong _mask;
 
+		protected ulong Mask
+		{
+			get { return _mask; }
+		}
+
 		protected Filter()
 		{
 			_mask = 0;

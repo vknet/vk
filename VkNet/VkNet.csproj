@@ -78,7 +78,7 @@
     <Compile Include="Enums\Display.cs" />
     <Compile Include="Enums\ManualEnums\AudioGenre.cs" />
     <Compile Include="Enums\ManualEnums\GroupPublicity.cs" />
-    <Compile Include="Enums\GroupsFields.cs" />
+    <Compile Include="Enums\Filters\GroupsFields.cs" />
     <Compile Include="Enums\Filters\GroupsFilters.cs" />
     <Compile Include="Enums\GroupsSort.cs" />
     <Compile Include="Enums\ManualEnums\GroupType.cs" />
