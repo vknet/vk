@@ -1,22 +1,15 @@
-﻿using VkNet.Enums.Filters;
+﻿using VkNet.Enums.BaseFilters;
 
 namespace VkNet.Enums
 {
     using System.Collections.Generic;
-    using System.Linq;
 
-    using Utils;
-
-    /// <summary>
+	/// <summary>
     /// Права доступа приложений.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Права_доступа_приложений"/>.
     /// </summary>
-    public sealed class Settings : Filter<Settings>
+    public sealed class Settings : MultivaluedFilter<Settings>
     {
-        private readonly string _name;
-
-        private int _value;
-
         /// <summary>
         /// Объединенные права доступа.
         /// </summary>
@@ -25,10 +18,8 @@ namespace VkNet.Enums
             get { return Mask; }
 
         }
-
-        private readonly IList<Settings> _scopes;
-
-        /// <summary>
+		
+		/// <summary>
         /// Пользователь разрешил отправлять ему уведомления.
         /// </summary>
         public static readonly Settings Notify = RegisterPossibleValue(1 << 0, "notify");

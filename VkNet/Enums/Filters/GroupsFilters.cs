@@ -1,9 +1,11 @@
-﻿namespace VkNet.Enums.Filters
+﻿using VkNet.Enums.BaseFilters;
+
+namespace VkNet.Enums.Filters
 {
 	/// <summary>
     /// Фильтры сообществ пользователя.
     /// </summary>
-    public sealed class GroupsFilters : Filter<GroupsFilters>
+    public sealed class GroupsFilters : MultivaluedFilter<GroupsFilters>
     {
         /// <summary>
         /// Вернуть все сообщества, в которых пользователь является администратором.

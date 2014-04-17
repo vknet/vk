@@ -1,11 +1,12 @@
-﻿using VkNet.Utils;
+﻿using VkNet.Enums.BaseFilters;
+using VkNet.Utils;
 
 namespace VkNet.Enums.Filters
 {
     /// <summary>
     /// Cписок критериев, по которым требуется отфильтровать видео.
     /// </summary>
-    public sealed class VideoFilters : Filter<VideoFilters>
+    public sealed class VideoFilters : MultivaluedFilter<VideoFilters>
     {
         /// <summary>
         /// Возвращать видео в формате mp4 (воспроиводимое на iOS).

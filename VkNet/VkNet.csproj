@@ -65,7 +65,8 @@
     <Compile Include="Categories\UtilsCategory.cs" />
     <Compile Include="Categories\VideoCategory.cs" />
     <Compile Include="Categories\WallCategory.cs" />
-    <Compile Include="Enums\Filters\Filter.cs" />
+    <Compile Include="Enums\BaseFilters\Filter.cs" />
+    <Compile Include="Enums\BaseFilters\MultivaluedFilter.cs" />
     <Compile Include="Enums\ManualEnums\AddFriendStatus.cs" />
     <Compile Include="Enums\ManualEnums\AdminLevel.cs" />
     <Compile Include="Enums\ManualEnums\Attitude.cs" />

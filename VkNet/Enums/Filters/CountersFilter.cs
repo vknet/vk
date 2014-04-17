@@ -1,9 +1,11 @@
+using VkNet.Enums.BaseFilters;
+
 namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Фильтры счетчиков
 	/// </summary>
-	public sealed class CountersFilter : Filter<CountersFilter>
+	public sealed class CountersFilter : MultivaluedFilter<CountersFilter>
 	{
 		/// <summary>
 		/// Количество заявок в друзья

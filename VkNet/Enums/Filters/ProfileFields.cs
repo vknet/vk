@@ -1,4 +1,5 @@
-﻿using VkNet.Model;
+﻿using VkNet.Enums.BaseFilters;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Enums.Filters
@@ -7,7 +8,7 @@ namespace VkNet.Enums.Filters
     /// Требуемые для получения поля профиля.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/>.
     /// </summary>
-    public sealed class ProfileFields : Filter<ProfileFields>
+    public sealed class ProfileFields : MultivaluedFilter<ProfileFields>
     {
         /// <summary>
         /// Для получения поля <see cref="User.Id"/>. Это поле возвращается всегда, поэтому его можно не указывать.

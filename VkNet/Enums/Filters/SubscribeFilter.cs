@@ -1,11 +1,12 @@
-﻿using VkNet.Utils;
+﻿using VkNet.Enums.BaseFilters;
+using VkNet.Utils;
 
 namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Список типов уведомлений.
 	/// </summary>
-	public sealed class SubscribeFilter : Filter<SubscribeFilter>
+	public sealed class SubscribeFilter : MultivaluedFilter<SubscribeFilter>
 	{
 
 		public static readonly SubscribeFilter Message = RegisterPossibleValue(1 << 0, "msg");
