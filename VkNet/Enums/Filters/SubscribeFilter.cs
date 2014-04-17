@@ -5,7 +5,7 @@ namespace VkNet.Enums.Filters
 	/// <summary>
 	/// Список типов уведомлений.
 	/// </summary>
-	public class SubscribeFilter : Filter<SubscribeFilter>
+	public sealed class SubscribeFilter : Filter<SubscribeFilter>
 	{
 
 		public static readonly SubscribeFilter Message = RegisterPossibleValue(1 << 0, "msg");

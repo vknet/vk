@@ -5,7 +5,7 @@ namespace VkNet.Enums.Filters
     /// <summary>
     /// Cписок критериев, по которым требуется отфильтровать видео.
     /// </summary>
-    public class VideoFilters : Filter<VideoFilters>
+    public sealed class VideoFilters : Filter<VideoFilters>
     {
         /// <summary>
         /// Возвращать видео в формате mp4 (воспроиводимое на iOS).

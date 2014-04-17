@@ -1,15 +1,9 @@
-﻿using VkNet.Enums.Filters;
+﻿using VkNet.Categories;
+using VkNet.Model;
 
-namespace VkNet.Enums
+namespace VkNet.Enums.Filters
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Categories;
-    using Model;
-    using Utils;
-
-    /// <summary>
+	/// <summary>
     /// Описание дополнительных полей сообщества, используемых в параметре fields (например, в методе <see cref="GroupsCategory.Get"/>).
     /// См. описание <see href="http://vk.com/dev/groups.get"/>.
     /// </summary>

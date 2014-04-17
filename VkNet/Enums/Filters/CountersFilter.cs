@@ -3,7 +3,7 @@ namespace VkNet.Enums.Filters
 	/// <summary>
 	/// Фильтры счетчиков
 	/// </summary>
-	public class CountersFilter : Filter<CountersFilter>
+	public sealed class CountersFilter : Filter<CountersFilter>
 	{
 		/// <summary>
 		/// Количество заявок в друзья
