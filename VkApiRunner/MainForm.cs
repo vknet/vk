@@ -4,13 +4,12 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using VkNet;
 using VkNet.Enums;
+using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Utils;
 
 namespace VkApiRunner
 {
-    using System.Linq;
-
     public partial class MainForm : Form
     {
         private string _apiUrl;

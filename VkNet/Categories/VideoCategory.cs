@@ -172,8 +172,8 @@ namespace VkNet.Categories
         /// текущего пользователя.</param>
         /// <param name="albumId">Идентификатор альбома, в который будет загружен видео файл.</param>
         /// <param name="isRepeat">Зацикливание воспроизведения видеозаписи.</param>
-        /// <returns>Возвращает объект видеозаписи, который имеет поля <see cref="Video.UploadUrl"/>, <see cref="Video.Id"/>, 
-        /// <see cref="Video.Title"/>, <see cref="Video.Description"/> и <see cref="Video.OwnerId"/>.</returns>
+        /// <returns>Возвращает объект видеозаписи, который имеет поля <see cref="Video.UploadUrl"/>, <see cref="MediaAttachment.Id"/>, 
+        /// <see cref="Video.Title"/>, <see cref="Video.Description"/> и <see cref="MediaAttachment.OwnerId"/>.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.save"/>.

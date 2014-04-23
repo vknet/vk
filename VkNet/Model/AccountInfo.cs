@@ -3,7 +3,7 @@
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Хранит информацию о текущем аккаунте. Подробнее: <see cref="https://vk.com/dev/account.getInfo"/>
+	/// Хранит информацию о текущем аккаунте. Подробнее: <see href="https://vk.com/dev/account.getInfo"/>
 	/// </summary>
 	public class AccountInfo
 	{

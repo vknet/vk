@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.SafetyEnums;
+﻿using System.Collections.Generic;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model
 {
@@ -156,7 +157,7 @@ namespace VkNet.Model
         public string Links { get; set; }
 
         /// <summary>
-        /// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById"/>,
+        /// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById(IEnumerable{KeyValuePair{long, long}})"/>,
         /// передав идентификатор в виде – {group_id}_{post_id}.
         /// </summary>
         public long? FixedPostId { get; set; }
