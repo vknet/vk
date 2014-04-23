@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -8,6 +9,7 @@ using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils;
+using VkNet.Utils.Tests;
 
 namespace VkNet.Tests.Categories
 {
@@ -36,7 +38,7 @@ namespace VkNet.Tests.Categories
             var browser = new Mock<IBrowser>(MockBehavior.Strict);
             browser.Setup(m => m.GetJson(url)).Returns(json);
 
-            return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser.Object });
+            return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser.Object, ApiVersion = "5.9"});
         }
 
         [Test]
@@ -1115,6 +1117,60 @@ namespace VkNet.Tests.Categories
             Assert.That(response.Key, Is.EqualTo("6f4120988efaf3a7d398054b5bb5d019c5844bz3"));
             Assert.That(response.Server, Is.EqualTo("im46.vk.com/im1858"));
             Assert.That(response.Ts, Is.EqualTo(1627957305));
+        }
+
+        [Test]
+        public void Get_NormalCase_V59()
+        {
+            url = "https://api.vk.com/method/messages.get?out=0&count=2&v=5.9&access_token=token";
+            json =
+                @"{
+                    'response': {
+                      'count': 5,
+                      'items': [
+                        {
+                          'id': 34,
+                          'date': 1398242416,
+                          'out': 0,
+                          'user_id': 562508789,
+                          'read_state': 0,
+                          'title': ' ... ',
+                          'body': 'fun'
+                        },
+                        {
+                          'id': 33,
+                          'date': 1398242415,
+                          'out': 0,
+                          'user_id': 562508789,
+                          'read_state': 0,
+                          'title': ' ... ',
+                          'body': 'very'
+                        }
+                      ]
+                    }
+                  }";
+
+            int total;
+            ReadOnlyCollection<Message> messages = Cat.Get(MessageType.Received, out total, 2);
+
+            total.ShouldEqual(5);
+            messages.Count.ShouldEqual(2);
+
+            messages[0].Body.ShouldEqual("fun");
+            messages[0].Id.ShouldEqual(34);
+            messages[0].Date.ShouldEqual(new DateTime(2014, 4, 23, 12, 40, 16));
+            messages[0].ReadState.ShouldEqual(MessageReadState.Unreaded);
+            messages[0].Type.ShouldEqual(MessageType.Received);
+            messages[0].UserId.ShouldEqual(562508789);
+            messages[0].Title.ShouldEqual(" ... ");
+            
+            messages[1].Body.ShouldEqual("very");
+            messages[1].Id.ShouldEqual(33);
+            messages[1].Date.ShouldEqual(new DateTime(2014, 4, 23, 12, 40, 15));
+            messages[1].ReadState.ShouldEqual(MessageReadState.Unreaded);
+            messages[1].Type.ShouldEqual(MessageType.Received);
+            messages[1].UserId.ShouldEqual(562508789);
+            messages[1].Title.ShouldEqual(" ... ");
         }
     }
 }

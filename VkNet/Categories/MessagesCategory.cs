@@ -71,14 +71,17 @@ namespace VkNet.Categories
                                  { "count", count },
                                  { "filters", filter },
                                  { "preview_length", previewLength },
-                                 { "time_offset", startDate }
+                                 { "time_offset", startDate },
+                                 { "v", _vk.ApiVersion}
                              };
 
-            VkResponseArray response = _vk.Call("messages.get", parameters);
+            VkResponse response = _vk.Call("messages.get", parameters);
 
-            totalCount = response[0];
+            totalCount = response["count"];
 
-            return response.Skip(1).ToReadOnlyCollectionOf<Message>(r => r);
+            VkResponseArray items = response["items"];
+
+            return items.ToReadOnlyCollectionOf<Message>(item => item);
         }
 
         /// <summary>
