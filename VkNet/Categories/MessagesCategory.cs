@@ -43,12 +43,13 @@ namespace VkNet.Categories
         /// <param name="totalCount">Общее количество сообщений, удовлетворяющих условиям фильтрации.</param>
         /// <param name="count">Количество сообщений, которое необходимо получить (но не более 100).</param>
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений.</param>
-        /// <param name="filter">Фильтр возвращаемых сообщений: Если установлен флаг <see cref="MessagesFilter.Important"/>, то 
-        /// флаги <see cref="MessagesFilter.Unread"/> и <see cref="MessagesFilter.NotFromChat"/> не учитываются.</param>
+        /// <param name="timeOffset">Максимальное время, прошедшее с момента отправки сообщения до текущего момента в секундах. 0, если Вы хотите получить сообщения любой давности.</param>
+        /// <param name="filter">Фильтр возвращаемых сообщений.</param>
         /// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. 
         /// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются). 
         /// Обратите внимание что сообщения обрезаются по словам.</param>
         /// <param name="startDate">Время, начиная с которого необходимо вернуть сообщения.</param>
+        /// <param name="lastMessageId">Идентификатор сообщения, полученного перед тем, которое нужно вернуть последним (при условии, что после него было получено не более count сообщений, иначе необходимо использовать с параметром offset).</param>
         /// <returns>Список сообщений, удовлетворяющий условиям фильтрации.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
@@ -60,27 +61,32 @@ namespace VkNet.Categories
             out int totalCount,
             int? count = null,
             int? offset = null,
+            DateTime? timeOffset = null,
             MessagesFilter? filter = null,
             int? previewLength = null,
-            DateTime? startDate = null)
+            DateTime? startDate = null,
+            long? lastMessageId = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+
             var parameters = new VkParameters
                              {
                                  { "out", type },
                                  { "offset", offset },
                                  { "count", count },
+                                 { "time_offset", timeOffset},
                                  { "filters", filter },
                                  { "preview_length", previewLength },
                                  { "time_offset", startDate },
+                                 { "last_message_id", lastMessageId },
                                  { "v", _vk.ApiVersion}
                              };
 
             VkResponse response = _vk.Call("messages.get", parameters);
-
             totalCount = response["count"];
 
             VkResponseArray items = response["items"];
-
             return items.ToReadOnlyCollectionOf<Message>(item => item);
         }
 

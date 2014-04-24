@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -49,80 +50,7 @@ namespace VkNet.Tests.Categories
             int totalCount;
             cat.Get(MessageType.Received, out totalCount);
         }
-        
-        [Test]
-        public void Get_NormalCaseAllFields_Messages()
-        {
-            url = "https://api.vk.com/method/messages.get?out=0&offset=5&count=3&filters=8&preview_length=100&time_offset=41712634&access_token=token";
-            json =
-                @"{
-                    'response': [
-                      2217,
-                      {
-                        'id': 4434,
-                        'date': 1342169928,
-                        'out': 0,
-                        'user_id': 245242,
-                        'read_state': 0,
-                        'title': ' ... ',
-                        'body': 'собирлись больше'
-                      },
-                      {
-                        'id': 4433,
-                        'date': 1342169920,
-                        'out': 0,
-                        'user_id': 245242,
-                        'read_state': 0,
-                        'title': ' ... ',
-                        'body': 'не особо'
-                      },
-                      {
-                        'id': 4431,
-                        'date': 1342169360,
-                        'out': 0,
-                        'user_id': 245242,
-                        'read_state': 1,
-                        'title': ' ... ',
-                        'body': 'наверное точно для демографии))'
-                      }
-                    ]
-                  }";
-
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(It.IsAny<string>())).Returns(json);
-            var cat = new MessagesCategory(new VkApi {AccessToken = "token", Browser = browser.Object});
-
-            int totalCount;
-            var msgs = cat.Get(MessageType.Received, out totalCount, 3, 5, MessagesFilter.Important, 100, new DateTime(2012, 7, 1)).ToList();
-            
-            Assert.That(totalCount, Is.EqualTo(2217));
-            Assert.That(msgs.Count, Is.EqualTo(3));
-
-            Assert.That(msgs[0].Id, Is.EqualTo(4434));
-            Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2012, 7, 13, 12, 58, 48)));
-            Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Received));
-            Assert.That(msgs[0].UserId, Is.EqualTo(245242));
-            Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Unreaded));
-            Assert.That(msgs[0].Title, Is.EqualTo(" ... "));
-            Assert.That(msgs[0].Body, Is.EqualTo("собирлись больше"));
-
-            Assert.That(msgs[1].Id, Is.EqualTo(4433));
-            Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2012, 7, 13, 12, 58, 40)));
-            Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Received));
-            Assert.That(msgs[1].UserId, Is.EqualTo(245242));
-            Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Unreaded));
-            Assert.That(msgs[1].Title, Is.EqualTo(" ... "));
-            Assert.That(msgs[1].Body, Is.EqualTo("не особо"));
-            
-            Assert.That(msgs[2].Id, Is.EqualTo(4431));
-            Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2012, 7, 13, 12, 49, 20)));
-            Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Received));
-            Assert.That(msgs[2].UserId, Is.EqualTo(245242));
-            Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
-            Assert.That(msgs[2].Title, Is.EqualTo(" ... "));
-            Assert.That(msgs[2].Body, Is.EqualTo("наверное точно для демографии))"));
-        }
-
+       
         [Test]
         [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
@@ -1119,6 +1047,52 @@ namespace VkNet.Tests.Categories
             Assert.That(response.Ts, Is.EqualTo(1627957305));
         }
 
+        #region Get
+        [Test]
+        public void Get_CountAndOffsetAreNegatives_ThrowExceptions()
+        {
+            int total;
+            ExceptionAssert.Throws<ArgumentException>(() => Cat.Get(MessageType.Received, out total,-2));
+            ExceptionAssert.Throws<ArgumentException>(() => Cat.Get(MessageType.Received, out total, offset:-4));
+        }
+
+        [Test]
+        public void Get_WithLastMessageIdParam_NormalCase_V59()
+        {
+            url = "https://api.vk.com/method/messages.get?out=0&last_message_id=30&v=5.9&access_token=token";
+            json =
+                @"{
+                    'response': {
+                      'count': 5,
+                      'items': [                        
+                        {
+                          'id': 31,
+                          'date': 1398242412,
+                          'out': 0,
+                          'user_id': 123508789,
+                          'read_state': 0,
+                          'title': ' ... ',
+                          'body': 'may'
+                        }
+                      ]
+                    }
+                  }";
+
+            int total;
+            ReadOnlyCollection<Message> messages = Cat.Get(MessageType.Received, out total, lastMessageId: 30);
+
+            total.ShouldEqual(5);
+            messages.Count.ShouldEqual(1);
+
+            messages[0].Id.ShouldEqual(31);
+            messages[0].Date.ShouldEqual(new DateTime(2014, 4, 23, 12, 40, 12));
+            messages[0].Type.ShouldEqual(MessageType.Received);
+            messages[0].UserId.ShouldEqual(123508789);
+            messages[0].ReadState.ShouldEqual(MessageReadState.Unreaded);
+            messages[0].Title.ShouldEqual(" ... ");
+            messages[0].Body.ShouldEqual("may");
+        }
+
         [Test]
         public void Get_NormalCase_V59()
         {
@@ -1172,5 +1146,6 @@ namespace VkNet.Tests.Categories
             messages[1].UserId.ShouldEqual(562508789);
             messages[1].Title.ShouldEqual(" ... ");
         }
+        #endregion
     }
 }
