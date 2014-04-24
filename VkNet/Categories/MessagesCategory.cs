@@ -65,8 +65,8 @@ namespace VkNet.Categories
             int? previewLength = null,
             long? lastMessageId = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                              {

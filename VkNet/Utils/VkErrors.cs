@@ -29,19 +29,40 @@ namespace VkNet.Utils
             }
         }
 
+
+        // todo refactor this shit
         public static void ThrowIfNumberIsNegative(Expression<Func<long?>> expr)
         {
+            if (expr == null)
+                throw new ArgumentNullException("expr");
+
+            string name = string.Empty;
+
+            // Если значение передатеся из вызывающего метода
+            var unary = expr.Body as UnaryExpression;
+            if (unary != null)
+            {
+                var member = unary.Operand as MemberExpression;
+                if (member != null)
+                {
+                    name = member.Member.Name;
+                }
+            }
+
+            // Если в метод передается значение напрямую
             var body = expr.Body as MemberExpression;
             if (body != null)
             {
-                string name = body.Member.Name;
-                Func<long?> func = expr.Compile();
-                long? value = func();
-                
-                if (value.HasValue && value < 0) throw new ArgumentException("Отрицательное значение.", name);
+                name = body.Member.Name;
             }
+
+            Func<long?> func = expr.Compile();
+            long? value = func();
+
+            if (value.HasValue && value < 0) throw new ArgumentException("Отрицательное значение.", name);
         }
 
+        // todo refactor this shit
         public static void ThrowIfNumberIsNegative(Expression<Func<long>> expr)
         {
             if (expr == null)
