@@ -48,7 +48,6 @@ namespace VkNet.Categories
         /// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. 
         /// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются). 
         /// Обратите внимание что сообщения обрезаются по словам.</param>
-        /// <param name="startDate">Время, начиная с которого необходимо вернуть сообщения.</param>
         /// <param name="lastMessageId">Идентификатор сообщения, полученного перед тем, которое нужно вернуть последним (при условии, что после него было получено не более count сообщений, иначе необходимо использовать с параметром offset).</param>
         /// <returns>Список сообщений, удовлетворяющий условиям фильтрации.</returns>
         /// <remarks>
@@ -64,7 +63,6 @@ namespace VkNet.Categories
             DateTime? timeOffset = null,
             MessagesFilter? filter = null,
             int? previewLength = null,
-            DateTime? startDate = null,
             long? lastMessageId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(count, "count");
@@ -78,7 +76,6 @@ namespace VkNet.Categories
                                  { "time_offset", timeOffset},
                                  { "filters", filter },
                                  { "preview_length", previewLength },
-                                 { "time_offset", startDate },
                                  { "last_message_id", lastMessageId },
                                  { "v", _vk.ApiVersion}
                              };
