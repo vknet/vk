@@ -29,41 +29,27 @@ namespace VkNet.Utils
             }
         }
 
-
-        // todo refactor this shit
         public static void ThrowIfNumberIsNegative(Expression<Func<long?>> expr)
         {
-            if (expr == null)
-                throw new ArgumentNullException("expr");
+            var result = ThrowIfNumberIsNegative<Func<long?>>(expr);
 
-            string name = string.Empty;
-
-            // Если значение передатеся из вызывающего метода
-            var unary = expr.Body as UnaryExpression;
-            if (unary != null)
-            {
-                var member = unary.Operand as MemberExpression;
-                if (member != null)
-                {
-                    name = member.Member.Name;
-                }
-            }
-
-            // Если в метод передается значение напрямую
-            var body = expr.Body as MemberExpression;
-            if (body != null)
-            {
-                name = body.Member.Name;
-            }
-
-            Func<long?> func = expr.Compile();
-            long? value = func();
+            string name = result.Item1;
+            long? value = result.Item2();
 
             if (value.HasValue && value < 0) throw new ArgumentException("Отрицательное значение.", name);
         }
 
-        // todo refactor this shit
         public static void ThrowIfNumberIsNegative(Expression<Func<long>> expr)
+        {
+            var result = ThrowIfNumberIsNegative<Func<long>>(expr);
+
+            var name = result.Item1;
+            long value = result.Item2();
+
+            if (value < 0) throw new ArgumentException("Отрицательное значение.", name);
+        }
+
+        private static Tuple<string, T> ThrowIfNumberIsNegative<T>(Expression<T> expr)
         {
             if (expr == null)
                 throw new ArgumentNullException("expr");
@@ -88,10 +74,9 @@ namespace VkNet.Utils
                 name = body.Member.Name;
             }
 
-            Func<long> func = expr.Compile();
-            long value = func();
+            T func = expr.Compile();
 
-            if (value < 0) throw new ArgumentException("Отрицательное значение.", name);
+            return new Tuple<string, T>(name, func);
         }
 
         public static void ThrowIfNumberIsNegative(long? number, string paramName)
