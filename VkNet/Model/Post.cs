@@ -151,6 +151,11 @@ namespace VkNet.Model
         /// </summary>
         public bool CanDelete { get; set; }
 
+        /// <summary>
+        /// Признак может ли текущий пользователь редактировать эту запись.
+        /// </summary>
+        public bool CanEdit { get; set; }
+
         #endregion
 
         #region Методы
@@ -186,6 +191,7 @@ namespace VkNet.Model
             post.CopyCommenterId = response["copy_commenter_id"];
             post.CopyCommentId = response["copy_comment_id"];
             post.CanDelete = response["can_delete"];
+            post.CanEdit = response["can_edit"];
 
             return post;
         }

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Resources;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
@@ -29,7 +31,7 @@ namespace VkNet.Tests.Categories
 
 		private WallCategory GetMockedWallCategory(string url, string json)
 		{
-			var mock = new Mock<IBrowser>(MockBehavior.Strict);
+			var mock = new Mock<IBrowser>();
 			mock.Setup(m => m.GetJson(url)).Returns(json);
 
 			return new WallCategory(new VkApi { AccessToken = "token", Browser = mock.Object });
@@ -1245,5 +1247,132 @@ namespace VkNet.Tests.Categories
 		{
 			_defaultWall.DeleteLike();
 		}
+
+	    [Test]
+	    public void Get_WithPoll_NormalCase()
+	    {
+            const string url = "https://api.vk.com/method/wall.get?owner_id=234015642&filter=all&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 1,
+                      'items': [
+                        {
+                          'id': 2,
+                          'from_id': 234015642,
+                          'owner_id': 234015642,
+                          'date': 1398409081,
+                          'post_type': 'post',
+                          'text': 'Нужен совет',
+                          'can_edit': 1,
+                          'can_delete': 1,
+                          'attachments': [
+                            {
+                              'type': 'poll',
+                              'poll': {
+                                'id': 134391320,
+                                'owner_id': 234015642,
+                                'created': 1398409081,
+                                'question': 'Куда ехать отдыхать',
+                                'votes': 0,
+                                'answer_id': 0,
+                                'answers': [
+                                  {
+                                    'id': 433073429,
+                                    'text': 'Россия',
+                                    'votes': 0,
+                                    'rate': 0.0
+                                  },
+                                  {
+                                    'id': 433073430,
+                                    'text': 'Крым',
+                                    'votes': 0,
+                                    'rate': 0.0
+                                  },
+                                  {
+                                    'id': 433073431,
+                                    'text': 'Вологда',
+                                    'votes': 0,
+                                    'rate': 0.0
+                                  }
+                                ],
+                                'anonymous': 0
+                              }
+                            }
+                          ],
+                          'post_source': {
+                            'type': 'vk'
+                          },
+                          'comments': {
+                            'count': 0,
+                            'can_post': 1
+                          },
+                          'likes': {
+                            'count': 0,
+                            'user_likes': 0,
+                            'can_like': 1,
+                            'can_publish': 0
+                          },
+                          'reposts': {
+                            'count': 0,
+                            'user_reposted': 0
+                          }
+                        }
+                      ]
+                    }
+                  }";
+
+	        int total;
+            ReadOnlyCollection<Post> posts = GetMockedWallCategory(url, json).Get(234015642, out total);
+
+	        total.ShouldEqual(1);
+	        posts.Count.ShouldEqual(1);
+
+	        posts[0].Id.ShouldEqual(2);
+	        posts[0].FromId.ShouldEqual(234015642);
+	        posts[0].OwnerId.ShouldEqual(234015642);
+	        posts[0].Date.ShouldEqual(new DateTime(2014, 4, 25, 10, 58, 1));
+	        posts[0].PostType.ShouldEqual("post");
+            posts[0].Text.ShouldEqual("Нужен совет");
+            posts[0].CanDelete.ShouldBeTrue();
+            posts[0].CanEdit.ShouldBeTrue();
+	        posts[0].PostSource.Type.ShouldEqual("vk");
+	        posts[0].Comments.CanPost.ShouldBeTrue();
+	        posts[0].Comments.Count.ShouldEqual(0);
+	        posts[0].Likes.Count.ShouldEqual(0);
+            posts[0].Likes.UserLikes.ShouldBeFalse();
+            posts[0].Likes.CanLike.ShouldBeTrue();
+	        posts[0].Likes.CanPublish.ShouldEqual(false);
+	        posts[0].Reposts.Count.ShouldEqual(0);
+            posts[0].Reposts.UserReposted.ShouldBeFalse();
+
+	        posts[0].Attachments.Count.ShouldEqual(1);
+	        posts[0].Attachment.Type.ShouldEqual(typeof (Poll));
+
+	        var poll = (Poll) posts[0].Attachment.Instance;
+	        poll.Id.ShouldEqual(134391320);
+	        poll.OwnerId.ShouldEqual(234015642);
+            poll.Created.ShouldEqual(new DateTime(2014, 4, 25, 10, 58, 1));
+	        poll.Question.ShouldEqual("Куда ехать отдыхать");
+	        poll.Votes.ShouldEqual(0);
+	        poll.AnswerId.ShouldEqual(0);
+	        poll.IsAnonymous.ShouldEqual(false);
+	        poll.Answers.Count.ShouldEqual(3);
+
+            poll.Answers[0].Id.ShouldEqual(433073429);
+            poll.Answers[0].Text.ShouldEqual("Россия");
+	        poll.Answers[0].Votes.ShouldEqual(0);
+	        poll.Answers[0].Rate.ShouldEqual(0d);
+
+            poll.Answers[1].Id.ShouldEqual(433073430);
+            poll.Answers[1].Text.ShouldEqual("Крым");
+            poll.Answers[1].Votes.ShouldEqual(0);
+            poll.Answers[1].Rate.ShouldEqual(0d);
+
+            poll.Answers[2].Id.ShouldEqual(433073431);
+            poll.Answers[2].Text.ShouldEqual("Вологда");
+            poll.Answers[2].Votes.ShouldEqual(0);
+            poll.Answers[2].Rate.ShouldEqual(0d);
+	    }
 	}
 }
