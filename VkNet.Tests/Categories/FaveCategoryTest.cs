@@ -1,7 +1,7 @@
-﻿using VkNet.Model.Attachments;
-
-namespace VkNet.Tests.Categories
+﻿namespace VkNet.Tests.Categories
 {
+    using Model.Attachments;
+
     using System;
     using System.Collections.ObjectModel;
     using Moq;

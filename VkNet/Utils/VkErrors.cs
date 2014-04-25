@@ -10,12 +10,6 @@ namespace VkNet.Utils
 
     internal sealed class VkErrors
     {
-//        public static void ThrowIfNullOrEmpty(string str)
-//        {   
-//            if (string.IsNullOrEmpty(str))
-//                throw new ArgumentNullException("str");
-//        }
-
         public static void ThrowIfNullOrEmpty(Expression<Func<string>>  expr)
         {
             var body = expr.Body as MemberExpression;
@@ -77,27 +71,6 @@ namespace VkNet.Utils
             T func = expr.Compile();
 
             return new Tuple<string, T>(name, func);
-        }
-
-        public static void ThrowIfNumberIsNegative(long? number, string paramName)
-        {
-            ThrowIfNumberIsNegative(number, paramName, string.Empty);
-        }
-
-        public static void ThrowIfNumberIsNegative(long number, string paramName)
-        {
-            ThrowIfNumberIsNegative(number, paramName, string.Empty);
-        }
-
-        public static void ThrowIfNumberIsNegative(long? number, string paramName, string message)
-        {
-            if (!number.HasValue) return;
-            ThrowIfNumberIsNegative(number.Value, paramName, message);
-        }
-
-        public static void ThrowIfNumberIsNegative(long number, string paramName, string message)
-        {
-            if (number < 0) throw new ArgumentException(message, paramName);
         }
 
         public static void IfErrorThrowException(string json)

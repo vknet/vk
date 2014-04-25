@@ -48,9 +48,9 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Video> Get(long? ownerId = null, long? albumId = null, VideoWidth width = VideoWidth.Medium160, int? count = null, int? offset = null, bool extended = false)
         {
-            VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => albumId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -312,9 +312,9 @@ namespace VkNet.Categories
         {
             // throw new NotImplementedException("Метод некорректно работает на самом сервере вконтакте");
 
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {

@@ -1088,7 +1088,7 @@ namespace VkNet.Tests.Categories
 		{
 			Assert.That(() => _defaultWall.Repost(null), Throws.TypeOf<ArgumentNullException>());
 			Assert.That(() => _defaultWall.Repost(string.Empty), Throws.TypeOf<ArgumentNullException>());
-			Assert.That(() => _defaultWall.Repost("id", groupID: -1), Throws.ArgumentException);
+			Assert.That(() => _defaultWall.Repost("id", groupId: -1), Throws.ArgumentException);
 		}
 
 

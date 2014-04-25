@@ -116,7 +116,7 @@ namespace VkNet.Categories
         public User Get(long userId, ProfileFields fields = null,
                                             NameCase nameCase = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
 
             var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "v", _vk.ApiVersion }, { "user_ids", userId } };
 
@@ -234,9 +234,9 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -267,9 +267,9 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -304,7 +304,7 @@ namespace VkNet.Categories
         /// </remarks>
         public bool Report(long userId, ReportType type, string comment = "")
         {
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
 
             var parameters = new VkParameters
                 {

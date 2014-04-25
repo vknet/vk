@@ -179,8 +179,8 @@ namespace VkNet.Categories
 		[Pure]
 		public IEnumerable<User> GetBanned(out int total, int? offset = null, int? count = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(offset, "offset");
-			VkErrors.ThrowIfNumberIsNegative(count, "count");
+			VkErrors.ThrowIfNumberIsNegative(() => offset);
+			VkErrors.ThrowIfNumberIsNegative(() => count);
 
 			var parameters = new VkParameters
 								{
@@ -213,7 +213,7 @@ namespace VkNet.Categories
 		/// <remarks>Если параметр <paramref name="intro"/> не установлен, он сбрасывается на 0.</remarks>
 		public bool SetInfo(int? intro = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(intro, "intro");
+			VkErrors.ThrowIfNumberIsNegative(() => intro);
 			return _vk.Call("account.setInfo", new VkParameters(){{"intro", intro}});
 		}
 
@@ -249,7 +249,7 @@ namespace VkNet.Categories
 		/// <remarks>Метод вынесен как отдельный, потому что если в запросе передан параметр <paramref name="cancelRequestId"/>, все остальные параметры игнорируются.</remarks>
 		public bool SaveProfileInfo(int cancelRequestId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(cancelRequestId, "cancelRequestId");
+			VkErrors.ThrowIfNumberIsNegative(() => cancelRequestId);
 			return _vk.Call("account.saveProfileInfo", new VkParameters() { { "cancel_request_id", cancelRequestId } })["changed"]
 			;
 		}
@@ -301,13 +301,13 @@ namespace VkNet.Categories
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
 			string homeTown = null, long? countryId = null, long? cityId = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(relationPartnerId, "relationPartnerId");
-			VkErrors.ThrowIfNumberIsNegative(countryId, "countryId");
-			VkErrors.ThrowIfNumberIsNegative(cityId, "cityId");
+			VkErrors.ThrowIfNumberIsNegative(() => relationPartnerId);
+			VkErrors.ThrowIfNumberIsNegative(() => countryId);
+			VkErrors.ThrowIfNumberIsNegative(() => cityId);
 			
 			changeNameRequest = null;
 			
-			VkParameters parameters = new VkParameters
+			var parameters = new VkParameters
 									{
 										{"first_name", firstName},
 										{"last_name", lastName},
