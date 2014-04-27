@@ -48,9 +48,9 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Video> Get(long? ownerId = null, long? albumId = null, VideoWidth width = VideoWidth.Medium160, int? count = null, int? offset = null, bool extended = false)
         {
-            VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => albumId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -172,8 +172,8 @@ namespace VkNet.Categories
         /// текущего пользователя.</param>
         /// <param name="albumId">Идентификатор альбома, в который будет загружен видео файл.</param>
         /// <param name="isRepeat">Зацикливание воспроизведения видеозаписи.</param>
-        /// <returns>Возвращает объект видеозаписи, который имеет поля <see cref="Video.UploadUrl"/>, <see cref="Video.Id"/>, 
-        /// <see cref="Video.Title"/>, <see cref="Video.Description"/> и <see cref="Video.OwnerId"/>.</returns>
+        /// <returns>Возвращает объект видеозаписи, который имеет поля <see cref="Video.UploadUrl"/>, <see cref="MediaAttachment.Id"/>, 
+        /// <see cref="Video.Title"/>, <see cref="Video.Description"/> и <see cref="MediaAttachment.OwnerId"/>.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.save"/>.
@@ -312,9 +312,9 @@ namespace VkNet.Categories
         {
             // throw new NotImplementedException("Метод некорректно работает на самом сервере вконтакте");
 
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {

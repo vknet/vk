@@ -200,8 +200,8 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Group> GetInvites(int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -230,8 +230,8 @@ namespace VkNet.Categories
         public bool BanUser(long groupId, long userId, DateTime? endDate = null, BanReason? reason = null,
                             string comment = "", bool commentVisible = false)
         {
-            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
 
             var parameters = new VkParameters
                 {
@@ -259,9 +259,9 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<User> GetBanned(long groupId, int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -286,8 +286,8 @@ namespace VkNet.Categories
         /// </remarks>
         public bool UnbanUser(long groupId, long userId)
         {
-            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
 
             var parameters = new VkParameters
                 {

@@ -1,6 +1,4 @@
-﻿using VkNet.Model.Attachments;
-
-namespace VkNet.Tests.Categories
+﻿namespace VkNet.Tests.Categories
 {
     using System;
     using System.Collections.ObjectModel;
@@ -8,9 +6,11 @@ namespace VkNet.Tests.Categories
     using Moq;
     using NUnit.Framework;
     using VkNet.Categories;
-    using VkNet.Enums;
-    using VkNet.Exception;
-    using VkNet.Model;
+    using Enums;
+    using Exception;
+    using Model;
+    using Model.Attachments;
+
     using VkNet.Utils;
     using VkNet.Utils.Tests;
 

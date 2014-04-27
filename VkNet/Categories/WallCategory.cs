@@ -1,9 +1,4 @@
-﻿using System.Text;
-using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
     using System;
     using System.Collections.Generic;
@@ -14,6 +9,11 @@ namespace VkNet.Categories
     using Enums;
     using Model;
     using Utils;
+
+    using System.Text;
+    using Enums.Filters;
+    using Enums.SafetyEnums;
+    using Model.Attachments;
 
     /// <summary>
     /// Методы для работы со стеной пользователя.
@@ -43,16 +43,19 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-			VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+			VkErrors.ThrowIfNumberIsNegative(() => offset);
 			if (filter == WallFilter.Suggests && ownerId >= 0)
 		        throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 
-	        var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
-			VkResponseArray response = _vk.Call("wall.get", parameters);
+	        var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() }, {"v", _vk.ApiVersion} };
 
-            totalCount = response[0];
-			return response.Skip(1).ToReadOnlyCollectionOf<Post>(r => r);
+			VkResponse response = _vk.Call("wall.get", parameters);
+
+            totalCount = response["count"];
+
+            VkResponseArray items = response["items"];
+			return items.ToReadOnlyCollectionOf<Post>(r => r);
         }
 
 	    /// <summary>
@@ -73,8 +76,8 @@ namespace VkNet.Categories
 	    [Pure]
 		public int GetExtended(long ownerId, out ReadOnlyCollection<Post> wallPosts, out ReadOnlyCollection<User> profiles, out ReadOnlyCollection<Group> groups, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
 		{			   
-			VkErrors.ThrowIfNumberIsNegative(count, "count");
-			VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+			VkErrors.ThrowIfNumberIsNegative(() => count);
+			VkErrors.ThrowIfNumberIsNegative(() => offset);
 			if (filter == WallFilter.Suggests && ownerId >= 0)
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 
@@ -117,10 +120,10 @@ namespace VkNet.Categories
             int? offset = null,
             int previewLength = 0)
         {
-            VkErrors.ThrowIfNumberIsNegative(postId, "postId");
-			VkErrors.ThrowIfNumberIsNegative(offset, "offset");
-			VkErrors.ThrowIfNumberIsNegative(count, "count");
-			VkErrors.ThrowIfNumberIsNegative(previewLength, "previewLength");
+            VkErrors.ThrowIfNumberIsNegative(() => postId);
+			VkErrors.ThrowIfNumberIsNegative(() => offset);
+			VkErrors.ThrowIfNumberIsNegative(() => count);
+			VkErrors.ThrowIfNumberIsNegative(() => previewLength);
 
 			var parameters = new VkParameters
                              {
@@ -245,8 +248,8 @@ namespace VkNet.Categories
 		{
 			if (string.IsNullOrEmpty(message) && (mediaAttachments == null || !mediaAttachments.Any()) && string.IsNullOrEmpty(url))
 				throw new ArgumentException("Message and attachments cannot be null or empty at the same time.");
-			VkErrors.ThrowIfNumberIsNegative(placeId, "placeId");
-			VkErrors.ThrowIfNumberIsNegative(postId, "postId");
+			VkErrors.ThrowIfNumberIsNegative(() => placeId);
+			VkErrors.ThrowIfNumberIsNegative(() => postId);
 			if(lat.HasValue && (Math.Abs(lat.Value) > 90))
 			   throw new ArgumentOutOfRangeException("lat", lat, "lat must be at range from -90 to 90");
 			if (@long.HasValue && (Math.Abs(@long.Value) > 180))
@@ -280,19 +283,19 @@ namespace VkNet.Categories
 	    /// </summary>
 		/// <param name="object">Строковый идентификатор объекта, который необходимо разместить на стене, например, wall66748_3675 или wall-1_340364.</param>
 		/// <param name="message">Сопроводительный текст, который будет добавлен к записи с объектом.</param>
-		/// <param name="groupID">Идентификатор сообщества, на стене которого будет размещена запись с объектом. 
+		/// <param name="groupId">Идентификатор сообщества, на стене которого будет размещена запись с объектом. 
 		/// Если не указан, запись будет размещена на стене текущего пользователя. </param>
 	    /// <returns>Результат выполнения копирвоания и информация о скопированном объекте.</returns>
-	    public RepostResult Repost(string @object, string message = null, long? groupID = null)
+	    public RepostResult Repost(string @object, string message = null, long? groupId = null)
 	    {
 			VkErrors.ThrowIfNullOrEmpty(() => @object);
-			VkErrors.ThrowIfNumberIsNegative(groupID, "groupId");
+			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
-		    VkParameters parameters = new VkParameters
+		    var parameters = new VkParameters
 									{
 										{"object", @object},
 										{"message", message},
-										{"group_id", groupID}
+										{"group_id", groupId}
 									};
 		    return _vk.Call("wall.repost", parameters);
 
@@ -329,8 +332,8 @@ namespace VkNet.Categories
         {
 			if (string.IsNullOrEmpty(message) && (mediaAttachments == null || !mediaAttachments.Any()) && string.IsNullOrEmpty(url))
 				throw new ArgumentException("Message and attachments cannot be null or empty at the same time.");
-			VkErrors.ThrowIfNumberIsNegative(placeId, "placeId");
-			VkErrors.ThrowIfNumberIsNegative(postId, "postId");
+			VkErrors.ThrowIfNumberIsNegative(() => placeId);
+			VkErrors.ThrowIfNumberIsNegative(() => postId);
 			if (lat.HasValue && (Math.Abs(lat.Value) > 90))
 				throw new ArgumentOutOfRangeException("lat", lat, "lat must be at range from -90 to 90");
 			if (@long.HasValue && (Math.Abs(@long.Value) > 180))

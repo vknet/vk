@@ -8,7 +8,6 @@ using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils;
-using VkNet.Utils.Tests;
 
 namespace VkNet.Tests.Categories
 {

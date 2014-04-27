@@ -184,7 +184,7 @@ namespace VkNet.Categories
         /// </remarks>
         public bool DeleteList(long listId)
         {
-            VkErrors.ThrowIfNumberIsNegative(listId, "listId");
+            VkErrors.ThrowIfNumberIsNegative(() => listId);
 
             var parameters = new VkParameters {{"list_id", listId}};
 
@@ -222,7 +222,7 @@ namespace VkNet.Categories
         /// </remarks>
         public bool EditList(long listId, string name = null, IEnumerable<long> userIds = null, IEnumerable<long> addUserIds = null, IEnumerable<long> deleteUserIds = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(listId, "listId");
+            VkErrors.ThrowIfNumberIsNegative(() => listId);
 
             var parameters = new VkParameters
                 {
@@ -268,7 +268,7 @@ namespace VkNet.Categories
         /// </remarks>
         public AddFriendStatus Add(long userId, string text = "", long? captchaSid = null, string captchaKey = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
             
             var parameters = new VkParameters
                 {
@@ -297,7 +297,7 @@ namespace VkNet.Categories
         /// </remarks>
         public DeleteFriendStatus Delete(long userId)
         {
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
 
             var parameters = new VkParameters {{"user_id", userId}};
 
@@ -316,7 +316,7 @@ namespace VkNet.Categories
         /// </remarks>
         public bool Edit(long userId, IEnumerable<long> listIds)
         {
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
 
             var parameters = new VkParameters { { "user_id", userId } };
             parameters.Add("list_ids", listIds);
@@ -337,7 +337,7 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<long> GetRecent(int? count = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
 
             var parameters = new VkParameters { { "count", count } };
             VkResponseArray response = _vk.Call("friends.getRecent", parameters);
@@ -376,8 +376,8 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<long> GetRequests(int? count = null, int? offset = null, bool extended = false, bool needMutual = false, bool @out = false, bool sort = false, bool suggested = false)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {

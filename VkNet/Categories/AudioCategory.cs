@@ -413,7 +413,7 @@ namespace VkNet.Categories
         public long AddAlbum(string title, long? groupId = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => title);
-            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
             var parameters = new VkParameters
                 {
@@ -438,8 +438,8 @@ namespace VkNet.Categories
         public bool EditAlbum(string title, long albumId, long? groupId = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => title);
-            VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
-            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+            VkErrors.ThrowIfNumberIsNegative(() => albumId);
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
             var parameters = new VkParameters
                 {
@@ -464,8 +464,8 @@ namespace VkNet.Categories
         /// </remarks>
         public bool DeleteAlbum(long albumId, long? groupId = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
-            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+            VkErrors.ThrowIfNumberIsNegative(() => albumId);
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
             var parameters = new VkParameters
                 {
@@ -491,8 +491,8 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
 
             var parameters = new VkParameters
                 {
@@ -522,9 +522,9 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<AudioAlbum> GetAlbums(long ownerid, int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(ownerid, "ownerid");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => ownerid);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -550,8 +550,8 @@ namespace VkNet.Categories
         /// </remarks>
         public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(albumId, "albumId");
-            VkErrors.ThrowIfNumberIsNegative(groupId, "groupId");
+            VkErrors.ThrowIfNumberIsNegative(() => albumId);
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
             var parameters = new VkParameters
                 {
@@ -583,9 +583,9 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Audio> GetRecommendations(long? userId = null, int? count = null, int? offset = null, bool shuffle = true, string targetAudio = "")
         {
-            VkErrors.ThrowIfNumberIsNegative(userId, "userId");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
 
             var parameters = new VkParameters
                 {

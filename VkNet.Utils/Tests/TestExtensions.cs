@@ -26,6 +26,18 @@
             return obj;
         }
 
+        public static string ShouldStartsWith(this string actual, string expected)
+        {
+            StringAssert.StartsWith(expected, actual);
+            return actual;
+        }
+
+        public static string ShouldContains(this string actual, string expected)
+        {
+            StringAssert.Contains(expected, actual);
+            return actual;
+        }
+
         public static T ShouldEqual<T>(this T actual, T expected)
         {
             Assert.That(actual, Is.EqualTo(expected));

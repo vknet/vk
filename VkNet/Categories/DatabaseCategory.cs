@@ -39,8 +39,8 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Country> GetCountries(bool needAll = true, string codes = "", int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
-            VkErrors.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом.");
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
 
             var parameters = new VkParameters { { "code", codes }, { "offset", offset }, { "count", count }, { "need_all", needAll } };
 
@@ -62,9 +62,9 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(countryId, "countryId", "Идентификатор страны должен быть положительным числом.");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset", "Отступ должен быть положительным числом.");
-            VkErrors.ThrowIfNumberIsNegative(count, "count", "Количество стран, которое необходимо вернуть должно быть положительным числом.");
+            VkErrors.ThrowIfNumberIsNegative(() => countryId);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
 
             var parameters = new VkParameters { { "country_id", countryId }, { "q", query }, { "offset", offset }, { "count", count } };
 
@@ -131,10 +131,10 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<City> GetCities(int countryId, int? regionId = null, string query = "", bool? needAll = false, int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(countryId, "countryId");
-            VkErrors.ThrowIfNumberIsNegative(regionId, "regionId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => countryId);
+            VkErrors.ThrowIfNumberIsNegative(() => regionId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -185,10 +185,10 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<University> GetUniversities(int countryId, int cityId, string query = "", int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(countryId, "countryId");
-            VkErrors.ThrowIfNumberIsNegative(cityId, "cityId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => countryId);
+            VkErrors.ThrowIfNumberIsNegative(() => cityId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
             
             var parameters = new VkParameters
                 {
@@ -218,10 +218,10 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<School> GetSchools(int countryId, int cityId, string query = "", int? offset = null, int? count = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(countryId, "countryId");
-            VkErrors.ThrowIfNumberIsNegative(cityId, "cityId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => countryId);
+            VkErrors.ThrowIfNumberIsNegative(() => cityId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -249,9 +249,9 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Faculty> GetFaculties(long universityId, int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(universityId, "universityId");
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => universityId);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {

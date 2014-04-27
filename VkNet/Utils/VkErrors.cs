@@ -10,12 +10,6 @@ namespace VkNet.Utils
 
     internal sealed class VkErrors
     {
-//        public static void ThrowIfNullOrEmpty(string str)
-//        {   
-//            if (string.IsNullOrEmpty(str))
-//                throw new ArgumentNullException("str");
-//        }
-
         public static void ThrowIfNullOrEmpty(Expression<Func<string>>  expr)
         {
             var body = expr.Body as MemberExpression;
@@ -31,49 +25,52 @@ namespace VkNet.Utils
 
         public static void ThrowIfNumberIsNegative(Expression<Func<long?>> expr)
         {
-            var body = expr.Body as MemberExpression;
-            if (body != null)
-            {
-                string name = body.Member.Name;
-                Func<long?> func = expr.Compile();
-                long? value = func();
-                
-                if (value.HasValue && value < 0) throw new ArgumentException("Отрицательное значение.", name);
-            }
+            var result = ThrowIfNumberIsNegative<Func<long?>>(expr);
+
+            string name = result.Item1;
+            long? value = result.Item2();
+
+            if (value.HasValue && value < 0) throw new ArgumentException("Отрицательное значение.", name);
         }
 
         public static void ThrowIfNumberIsNegative(Expression<Func<long>> expr)
         {
+            var result = ThrowIfNumberIsNegative<Func<long>>(expr);
+
+            var name = result.Item1;
+            long value = result.Item2();
+
+            if (value < 0) throw new ArgumentException("Отрицательное значение.", name);
+        }
+
+        private static Tuple<string, T> ThrowIfNumberIsNegative<T>(Expression<T> expr)
+        {
+            if (expr == null)
+                throw new ArgumentNullException("expr");
+
+            string name = string.Empty;
+
+            // Если значение передатеся из вызывающего метода
+            var unary = expr.Body as UnaryExpression;
+            if (unary != null)
+            {
+                var member = unary.Operand as MemberExpression;
+                if (member != null)
+                {
+                    name = member.Member.Name;
+                }
+            }
+
+            // Если в метод передается значение напрямую
             var body = expr.Body as MemberExpression;
             if (body != null)
             {
-                string name = body.Member.Name;
-                Func<long> func = expr.Compile();
-                long value = func();
-
-                if (value < 0) throw new ArgumentException("Отрицательное значение.", name);
+                name = body.Member.Name;
             }
-        }
 
-        public static void ThrowIfNumberIsNegative(long? number, string paramName)
-        {
-            ThrowIfNumberIsNegative(number, paramName, string.Empty);
-        }
+            T func = expr.Compile();
 
-        public static void ThrowIfNumberIsNegative(long number, string paramName)
-        {
-            ThrowIfNumberIsNegative(number, paramName, string.Empty);
-        }
-
-        public static void ThrowIfNumberIsNegative(long? number, string paramName, string message)
-        {
-            if (!number.HasValue) return;
-            ThrowIfNumberIsNegative(number.Value, paramName, message);
-        }
-
-        public static void ThrowIfNumberIsNegative(long number, string paramName, string message)
-        {
-            if (number < 0) throw new ArgumentException(message, paramName);
+            return new Tuple<string, T>(name, func);
         }
 
         public static void IfErrorThrowException(string json)

@@ -32,8 +32,8 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -59,8 +59,8 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -85,8 +85,8 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Post> GetPosts(int? count = null, int? offset = null)//, bool extended = false)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -112,8 +112,8 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {
@@ -139,8 +139,8 @@ namespace VkNet.Categories
         [Pure]
         public ReadOnlyCollection<Link> GetLinks(int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(count, "count");
-            VkErrors.ThrowIfNumberIsNegative(offset, "offset");
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 
             var parameters = new VkParameters
                 {

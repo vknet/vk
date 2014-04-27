@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using NUnit.Framework;
 
 using VkNet.Exception;
@@ -11,6 +12,22 @@ namespace VkNet.Tests.Utils
     [TestFixture]
     public class VkErrorsTest
     {
+        private class TestClass
+        {
+            public void Execute(int count)
+            {
+                VkErrors.ThrowIfNumberIsNegative(() => count);
+            }
+        }
+
+
+        [Test]
+        public void ThrowIfNumberIsNegative_InnerTestClass_ThrowException()
+        {
+            var cls = new TestClass();
+            ExceptionAssert.Throws<ArgumentException>(() => cls.Execute(-2));
+        }
+
         [Test]
         public void ThrowIfNullOrEmpty_EmptyString_ThrowException()
         {
@@ -18,7 +35,7 @@ namespace VkNet.Tests.Utils
 
             var ex = ExceptionAssert.Throws<ArgumentNullException>(() => VkErrors.ThrowIfNullOrEmpty(() => param));
 
-            ex.Message.ShouldEqual("Значение не может быть неопределенным.\r\nИмя параметра: param");
+            ex.Message.ShouldStartsWith("Value cannot be null").ShouldContains("param");
         }
 
         [Test]
@@ -28,7 +45,7 @@ namespace VkNet.Tests.Utils
 
             var ex = ExceptionAssert.Throws<ArgumentException>(() => VkErrors.ThrowIfNumberIsNegative(() => paramName));
 
-            ex.Message.ShouldEqual("Отрицательное значение.\r\nИмя параметра: paramName");
+            ex.Message.ShouldStartsWith("Отрицательное значение.").ShouldContains("paramName");
         }
 
         [Test]
@@ -38,7 +55,7 @@ namespace VkNet.Tests.Utils
 
             var ex = ExceptionAssert.Throws<ArgumentException>(() => VkErrors.ThrowIfNumberIsNegative(() => paramName));
 
-            ex.Message.ShouldEqual("Отрицательное значение.\r\nИмя параметра: paramName");
+            ex.Message.ShouldStartsWith("Отрицательное значение.").ShouldContains("paramName");
         }
 
         [Test]

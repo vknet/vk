@@ -130,6 +130,7 @@
     <Compile Include="Model\Attachments\Graffiti.cs" />
     <Compile Include="Model\Attachments\Link.cs" />
     <Compile Include="Model\Attachments\Poll.cs" />
+    <Compile Include="Model\PollAnswer.cs" />
     <Compile Include="Model\PostSource.cs" />
     <Compile Include="Model\Previews.cs" />
     <Compile Include="Model\Region.cs" />
