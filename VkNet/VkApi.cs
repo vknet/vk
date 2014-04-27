@@ -25,7 +25,8 @@ namespace VkNet
         /// <summary>
         /// Используемая версия API ВКонтакте.
         /// </summary>
-        public string ApiVersion { get; internal set; }
+        [Obsolete]
+		public string ApiVersion { get; internal set; }
 
         internal const string InvalidAuthorization = "Invalid authorization";
         internal const int MinInterval = 1000/3 + 1;
@@ -178,11 +179,19 @@ namespace VkNet
 	    {
 		    if (!parameters.ContainsKey("v"))
 		    {
-				StackTrace stackTrace = new StackTrace();
-				MethodBase methodBase = stackTrace.GetFrame(1).GetMethod();
-			    var attribute = methodBase.GetCustomAttribute<ApiVersionAttribute>();
+			    var attribute = new StackTrace().GetFrame(1).GetMethod().GetCustomAttribute<ApiVersionAttribute>();
 				if(attribute != null)
 					parameters.Add("v", attribute.Version);
+				else
+				{
+					//TODO: WARN: раскомментировать после добавления аннотаций ко всем методам
+					//throw new InvalidParameterException("You must use ApiVersionAttribute except adding \"v\" parameter to VkParameters");
+				}
+		    }
+		    else
+		    {
+				//TODO: WARN: раскомментировать, исправив ошибки в существующем коде
+				//throw new InvalidParameterException("You must use ApiVersionAttribute except adding \"v\" parameter to VkParameters");
 		    }
 
 			return CallImpl(methodName, parameters, skipAuthorization);

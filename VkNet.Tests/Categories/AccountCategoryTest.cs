@@ -14,17 +14,17 @@ namespace VkNet.Tests.Categories
 	[TestFixture]
 	public class AccountCategoryTest
 	{
-		private AccountCategory GetMockedAccountCategory(string url, string json, string version = "5.9")
+		private AccountCategory GetMockedAccountCategory(string url, string json)
 		{
-			return GetMockedAccountCategoryAndMockOfBrowser(url, json, version).Item1;
+			return GetMockedAccountCategoryAndMockOfBrowser(url, json).Item1;
 		}
 
-		private Tuple<AccountCategory, Mock<IBrowser>> GetMockedAccountCategoryAndMockOfBrowser(string url, string json, string version = "5.9")
+		private Tuple<AccountCategory, Mock<IBrowser>> GetMockedAccountCategoryAndMockOfBrowser(string url, string json)
 		{
 			var mock = new Mock<IBrowser>(MockBehavior.Strict);
 			mock.Setup(m => m.GetJson(url)).Returns(json);
 			return new Tuple<AccountCategory, Mock<IBrowser>>(
-				new AccountCategory(new VkApi { AccessToken = "token", Browser = mock.Object, ApiVersion = version, UserId = 10 })
+				new AccountCategory(new VkApi { AccessToken = "token", Browser = mock.Object, UserId = 10 })
 				, mock);
 		}
 
