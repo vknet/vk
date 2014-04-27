@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 
@@ -170,8 +172,23 @@ namespace VkNet
             return new VkResponse(rawResponse) { RawJson = answer };
         }
 #endif
-        
-        internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
+
+		[MethodImpl(MethodImplOptions.NoInlining)]
+	    internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
+	    {
+		    if (!parameters.ContainsKey("v"))
+		    {
+				StackTrace stackTrace = new StackTrace();
+				MethodBase methodBase = stackTrace.GetFrame(1).GetMethod();
+			    var attribute = methodBase.GetCustomAttribute<ApiVersionAttribute>();
+				if(attribute != null)
+					parameters.Add("v", attribute.Version);
+		    }
+
+			return CallImpl(methodName, parameters, skipAuthorization);
+	    }
+
+	    private VkResponse CallImpl(string methodName, VkParameters parameters,  bool skipAuthorization = false)
         {
             if (!skipAuthorization)
                 IfNotAuthorizedThrowException();
