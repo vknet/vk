@@ -175,13 +175,12 @@ namespace VkNet
 #endif
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-	    internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
+	    internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, string apiVersion = null)
 	    {
 		    if (!parameters.ContainsKey("v"))
 		    {
-			    var attribute = new StackTrace().GetFrame(1).GetMethod().GetCustomAttribute<ApiVersionAttribute>();
-				if(attribute != null)
-					parameters.Add("v", attribute.Version);
+			    if (!string.IsNullOrEmpty(apiVersion))
+					parameters.Add("v", apiVersion);
 				else
 				{
 					//TODO: WARN: раскомментировать после добавления аннотаций ко всем методам
