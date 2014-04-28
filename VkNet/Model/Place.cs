@@ -32,7 +32,7 @@
         /// <summary>
         /// Идентификатор типа места, информацию о котором можно получить с помощью метода <see cref="DatabaseCategory.GetPlaceTypes"/> (пока не реализовано).
         /// </summary>
-        public long TypeId { get; set; }
+        public long? TypeId { get; set; }
 
         /// <summary>
         /// Идентификатор страны, название которой можно получить с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>. 
@@ -74,10 +74,10 @@
         {
             var place = new Place();
 
-            place.Id = response["place_id"];
+            place.Id = response["place_id"] ?? response["id"];
             place.Title = response["title"];
-            place.Latitude = response["latitude"];
-            place.Longitude = response["longitude"];
+            place.Latitude = (int?)(double?)response["latitude"];       // TODO: refactor this shit
+            place.Longitude = (int?)(double?)response["longitude"];     // TODO: refactor this shit
             place.TypeId = response["type"];
             place.CountryId = response["country_id"];
             place.CityId = response["city_id"];

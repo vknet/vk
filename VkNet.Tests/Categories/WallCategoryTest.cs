@@ -1447,5 +1447,127 @@ namespace VkNet.Tests.Categories
             doc.Photo130.ShouldEqual("http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg");
             doc.AccessKey.ShouldEqual("5bf7103aa95aacb8ad");
 	    }
+
+        [Test, Ignore("undone")]
+	    public void Get_Geo_NormalCase()
+	    {
+            const string url = "https://api.vk.com/method/wall.get?owner_id=1563369&count=2&offset=3&filter=all&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 165,
+                      'items': [
+                        {
+                          'id': 1164,
+                          'from_id': 1563369,
+                          'owner_id': 1563369,
+                          'date': 1397915906,
+                          'post_type': 'post',
+                          'text': '',
+                          'copy_history': [
+                            {
+                              'id': 128,
+                              'owner_id': -42895313,
+                              'from_id': -42895313,
+                              'date': 1397915146,
+                              'post_type': 'post',
+                              'text': 'Мы оформляем храм...\n#пасха #весна #праздник #цветы #храм',
+                              'attachments': [
+                                
+                                
+                                {
+                                  'type': 'poll',
+                                  'poll': {
+                                    'id': 133455339,
+                                    'owner_id': -42895313,
+                                    'created': 1397915146,
+                                    'question': 'А вы как готовитесь к Пасхе?',
+                                    'votes': 6,
+                                    'answer_id': 0,
+                                    'answers': [
+                                      {
+                                        'id': 430631442,
+                                        'text': 'Красим яйца, печем куличи',
+                                        'votes': 4,
+                                        'rate': 66.67
+                                      },
+                                      {
+                                        'id': 430631443,
+                                        'text': 'Пойдем в храм освящать куличи',
+                                        'votes': 0,
+                                        'rate': 0.0
+                                      },
+                                      {
+                                        'id': 430631444,
+                                        'text': 'Готовим праздничный обед',
+                                        'votes': 1,
+                                        'rate': 16.67
+                                      },
+                                      {
+                                        'id': 430631445,
+                                        'text': 'Никак не готовлюсь, это праздник не для меня...',
+                                        'votes': 1,
+                                        'rate': 16.67
+                                      },
+                                      {
+                                        'id': 430631446,
+                                        'text': 'Ваш вариант в комментарии',
+                                        'votes': 0,
+                                        'rate': 0.0
+                                      }
+                                    ],
+                                    'anonymous': 1
+                                  }
+                                }
+                              ],
+                              'geo': {
+                                'type': 'point',
+                                'coordinates': '47.282735079717 39.697793677442',
+                                'place': {
+                                  'id': 0,
+                                  'title': 'Neklinovskiy pereulok, Rostov-na-Donu',
+                                  'latitude': 0.0,
+                                  'longitude': 0.0,
+                                  'created': 0,
+                                  'icon': 'http://vk.com/images/places/place.png',
+                                  'country': 'Russian Federation',
+                                  'city': 'Rostov-na-Donu'
+                                },
+                                'showmap': 1
+                              },
+                              'post_source': {
+                                'type': 'vk'
+                              }
+                            }
+                          ],
+                          'post_source': {
+                            'type': 'vk'
+                          },
+                          'comments': {
+                            'count': 0,
+                            'can_post': 1
+                          },
+                          'likes': {
+                            'count': 1,
+                            'user_likes': 0,
+                            'can_like': 1,
+                            'can_publish': 1
+                          },
+                          'reposts': {
+                            'count': 0,
+                            'user_reposted': 0
+                          }
+                        }                        
+                      ]
+                    }
+                  }";
+
+	        int total;
+            var posts = GetMockedWallCategory(url, json).Get(1563369, out total, 2, 3);
+
+	        total.ShouldEqual(165);
+
+            Assert.Fail("undone");
+	    }
 	}
 }
