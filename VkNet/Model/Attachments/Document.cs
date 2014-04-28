@@ -43,13 +43,18 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public string Photo130 { get; set; }
 
+        /// <summary>
+        /// Ключ доступа к закрытым ресурсам
+        /// </summary>
+        public string AccessKey { get; set; }
+
         #region Методы
 
         internal static Document FromJson(VkResponse response)
         {
             var document = new Document();
 
-            document.Id = response["did"];
+            document.Id = response["did"] ?? response["id"];
             document.OwnerId = response["owner_id"];
             document.Title = response["title"];
             document.Size = response["size"];
@@ -57,6 +62,7 @@ namespace VkNet.Model.Attachments
             document.Url = response["url"];
             document.Photo100 = response["photo_100"];
             document.Photo130 = response["photo_130"];
+            document.AccessKey = response["access_key"];
 
             return document;
         }

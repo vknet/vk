@@ -1374,5 +1374,78 @@ namespace VkNet.Tests.Categories
             poll.Answers[2].Votes.ShouldEqual(0);
             poll.Answers[2].Rate.ShouldEqual(0d);
 	    }
+
+        [Test]
+	    public void Get_Document_NormalCase()
+	    {
+            const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&count=1&offset=2&filter=all&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 100,
+                      'items': [
+                        {
+                          'id': 1261,
+                          'from_id': 26033241,
+                          'owner_id': 26033241,
+                          'date': 1383978467,
+                          'post_type': 'post',
+                          'text': '',
+                          'attachments': [
+                            {
+                              'type': 'doc',
+                              'doc': {
+                                'id': 237844408,
+                                'owner_id': 26033241,
+                                'title': '2e857c8f-aaf8-4399-9856-e4fda3199e3d.gif',
+                                'size': 2006654,
+                                'ext': 'gif',
+                                'url': 'http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1',
+                                'photo_100': 'http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg',
+                                'photo_130': 'http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg',
+                                'access_key': '5bf7103aa95aacb8ad'
+                              }
+                            }
+                          ],
+                          'post_source': {
+                            'type': 'vk'
+                          },
+                          'comments': {
+                            'count': 0,
+                            'can_post': 0
+                          },
+                          'likes': {
+                            'count': 7,
+                            'user_likes': 0,
+                            'can_like': 1,
+                            'can_publish': 1
+                          },
+                          'reposts': {
+                            'count': 0,
+                            'user_reposted': 0
+                          }
+                        }
+                      ]
+                    }
+                  }";
+
+            int total;
+            ReadOnlyCollection<Post> posts = GetMockedWallCategory(url, json).Get(26033241, out total, 1, 2);
+
+            total.ShouldEqual(100);
+
+            posts[0].Attachments.Count.ShouldEqual(1);
+            var doc = (Document) posts[0].Attachment.Instance;
+
+            doc.Id.ShouldEqual(237844408);
+            doc.OwnerId.ShouldEqual(26033241);
+            doc.Title.ShouldEqual("2e857c8f-aaf8-4399-9856-e4fda3199e3d.gif");
+            doc.Size.ShouldEqual(2006654);
+            doc.Ext.ShouldEqual("gif");
+            doc.Url.ShouldEqual("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1");
+            doc.Photo100.ShouldEqual("http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg");
+            doc.Photo130.ShouldEqual("http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg");
+            doc.AccessKey.ShouldEqual("5bf7103aa95aacb8ad");
+	    }
 	}
 }
