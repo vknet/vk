@@ -1,18 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
-using VkNet.Enums.Filters;
-
-namespace VkNet
+﻿namespace VkNet
 {
+    using System;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Text;
     using Newtonsoft.Json.Linq;
 
     using Categories;
-    using Enums;
     using Exception;
     using Utils;
+    using Enums.Filters;
 
     /// <summary>
     /// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями, 
@@ -173,6 +173,25 @@ namespace VkNet
         
         internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {
+            string answer = Invoke(methodName, parameters, skipAuthorization);
+
+            JObject json = JObject.Parse(answer);
+
+            var rawResponse = json["response"];
+
+            return new VkResponse(rawResponse) {RawJson = answer};
+        }
+
+        /// <summary>
+        /// Прямой ызов API-метода
+        /// </summary>
+        /// <param name="methodName">Название метода. Например, "wall.get".</param>
+        /// <param name="parameters">Вход. параметры метода.</param>
+        /// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
+        /// <returns>Ответ сервера в форомате JSON.</returns>
+        [CanBeNull]
+        public string Invoke(string methodName, VkParameters parameters, bool skipAuthorization = false)
+        {
             if (!skipAuthorization)
                 IfNotAuthorizedThrowException();
 
@@ -185,21 +204,17 @@ namespace VkNet
             }
 
             string url = GetApiUrl(methodName, parameters);
-            
+
             string answer = Browser.GetJson(url);
             _lastInvokeTime = DateTimeOffset.Now;
-            
-#if DEBUG
+
+#if DEBUG && !UNIT_TEST
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
             Trace.WriteLine(Utilities.PreetyPrintJson(answer));
 #endif
             VkErrors.IfErrorThrowException(answer);
 
-            JObject json = JObject.Parse(answer);
-
-            var rawResponse = json["response"];
-
-            return new VkResponse(rawResponse) {RawJson = answer};
+            return answer;
         }
 
         internal string GetApiUrl(string methodName, IDictionary<string, string> values)
