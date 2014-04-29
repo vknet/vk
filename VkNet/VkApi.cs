@@ -190,7 +190,7 @@
         /// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
         /// <returns>Ответ сервера в форомате JSON.</returns>
         [CanBeNull]
-        public string Invoke(string methodName, VkParameters parameters, bool skipAuthorization = false)
+        public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
         {
             if (!skipAuthorization)
                 IfNotAuthorizedThrowException();

@@ -177,5 +177,31 @@ namespace VkNet.Tests
             // переписать тест, когда придумаю более подходящий метод проверки
             browser.Verify(m => m.GetJson(It.IsAny<string>()), Times.AtMost(4));
         }
+
+        [Test]
+        public void Invoke_VkParams()
+        {
+            const string resultJson = @"{ 'response' : [] }";
+
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == resultJson);
+            var api = new VkApi{Browser =  browser};
+            var parameters = new VkParameters {{"count", 23}};
+            string json = api.Invoke("example.get", parameters, true);
+
+            json.ShouldEqual(resultJson);
+        }
+
+        [Test]
+        public void Invoke_DictionaryParams()
+        {
+            const string resultJson = @"{ 'response' : [] }";
+
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == resultJson);
+            var api = new VkApi { Browser = browser };
+            IDictionary<string, string> parameters = new Dictionary<string, string> { { "count", "23" } };
+            string json = api.Invoke("example.get", parameters, true);
+
+            json.ShouldEqual(resultJson);
+        }
     }
 }
