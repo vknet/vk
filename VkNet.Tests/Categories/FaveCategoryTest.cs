@@ -7,7 +7,8 @@
     using Moq;
     using NUnit.Framework;
     using VkNet.Categories;
-    using VkNet.Model;
+
+    using Model;
     using VkNet.Utils;
     using VkNet.Utils.Tests;
 
@@ -16,10 +17,8 @@
     {
         private FaveCategory GetMockedFaveCategory(string url, string json)
         {
-            var mock = new Mock<IBrowser>();
-            mock.Setup(m => m.GetJson(url.Replace('\'', '"'))).Returns(json);
-
-            return new FaveCategory(new VkApi(){AccessToken = "token", Browser = mock.Object});
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(url.Replace('\'', '"')) == json);
+            return new FaveCategory(new VkApi(){AccessToken = "token", Browser = browser});
         }
 
         [Test]

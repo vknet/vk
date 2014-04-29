@@ -15,10 +15,8 @@ namespace VkNet.Tests.Categories
     {
         private DatabaseCategory GetMockedDatabaseCategory(string url, string json)
         {
-            var mock = new Mock<IBrowser>();
-            mock.Setup(m => m.GetJson(url.Replace('\'', '"'))).Returns(json);
-
-            return new DatabaseCategory(new VkApi{Browser = mock.Object});
+            var browser = Mock.Of<IBrowser>(b => b.GetJson(url.Replace('\'', '"')) == json);
+            return new DatabaseCategory(new VkApi{Browser = browser});
         }
 
         [Test]

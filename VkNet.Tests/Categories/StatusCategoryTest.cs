@@ -19,10 +19,8 @@ namespace VkNet.Tests.Categories
 
         private StatusCategory GetMockedStatusCategory(string url, string json)
         {
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            return new StatusCategory(new VkApi { AccessToken = "token", Browser = browser.Object });
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
+            return new StatusCategory(new VkApi { AccessToken = "token", Browser = browser });
         }
 
         [Test]

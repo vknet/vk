@@ -19,10 +19,8 @@
     {
         private AudioCategory GetMockedAudioCategory(string url, string json, string version = "5.9")
         {
-            var mock = new Mock<IBrowser>();
-            mock.Setup(m => m.GetJson(url.Replace('\'', '"'))).Returns(json);
-            
-            return new AudioCategory(new VkApi { AccessToken = "token", Browser = mock.Object, ApiVersion = version});
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(url.Replace('\'', '"')) == json);
+            return new AudioCategory(new VkApi { AccessToken = "token", Browser = browser, ApiVersion = version});
         }
 
         #region GetCount

@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading;
-using Moq;
-using NUnit.Framework;
-using VkNet.Categories;
-using VkNet.Enums;
-using VkNet.Enums.Filters;
-using VkNet.Exception;
-using VkNet.Model;
-using VkNet.Utils;
-using VkNet.Utils.Tests;
-
-namespace VkNet.Tests.Categories
+﻿namespace VkNet.Tests.Categories
 {
     using System.Collections.Generic;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using Moq;
+    using NUnit.Framework;
+    using VkNet.Categories;
+    using VkNet.Utils;
+    using VkNet.Utils.Tests;
+
+    using Enums;
+    using Enums.Filters;
+    using Exception;
+    using Model;
 
     [TestFixture]
     public class MessagesCategoryTest
@@ -36,10 +35,8 @@ namespace VkNet.Tests.Categories
         
         private MessagesCategory GetMockedMessagesCategory()
         {
-            var browser = new Mock<IBrowser>(MockBehavior.Strict);
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser.Object, ApiVersion = "5.9"});
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
+            return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser, ApiVersion = "5.9"});
         }
 
         [Test]

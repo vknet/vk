@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Resources;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
-using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
@@ -31,10 +28,8 @@ namespace VkNet.Tests.Categories
 
 		private WallCategory GetMockedWallCategory(string url, string json)
 		{
-			var mock = new Mock<IBrowser>();
-			mock.Setup(m => m.GetJson(url)).Returns(json);
-
-			return new WallCategory(new VkApi { AccessToken = "token", Browser = mock.Object });
+		    var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
+			return new WallCategory(new VkApi { AccessToken = "token", Browser = browser });
 		}
 
 		#region Wall.Get

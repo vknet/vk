@@ -1,18 +1,19 @@
-﻿using VkNet.Enums.Filters;
-
-namespace VkNet.Tests.Categories
+﻿namespace VkNet.Tests.Categories
 {
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
     using Moq;
     using NUnit.Framework;
+
     using VkNet.Categories;
-    using VkNet.Enums;
-    using VkNet.Exception;
-    using VkNet.Model;
     using VkNet.Utils;
     using VkNet.Utils.Tests;
+
+    using Enums.Filters;
+    using Enums;
+    using Exception;
+    using Model;
 
     [TestFixture]
     public class FriendsCategoryTest
@@ -24,11 +25,9 @@ namespace VkNet.Tests.Categories
         }
 
         public FriendsCategory GetMockedFriendsCategory(string url, string json)
-        {
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(url)).Returns(json);
-
-            return new FriendsCategory(new VkApi { AccessToken = "token", Browser = browser.Object });
+        {   
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
+            return new FriendsCategory(new VkApi { AccessToken = "token", Browser = browser });
         }
 
         [Test]

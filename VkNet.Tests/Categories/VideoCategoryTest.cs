@@ -1,28 +1,27 @@
-﻿using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-
-namespace VkNet.Tests.Categories
+﻿namespace VkNet.Tests.Categories
 {
     using System;
     using System.Collections.ObjectModel;
     using Moq;
     using NUnit.Framework;
     using VkNet.Categories;
-    using VkNet.Enums;
-    using VkNet.Model;
     using VkNet.Utils;
     using VkNet.Utils.Tests;
+
+    using Enums;
+    using Model;
+    using Enums.Filters;
+    using Enums.SafetyEnums;
+    using Model.Attachments;
+    
 
     [TestFixture]
     public class VideoCategoryTest
     {
          private VideoCategory GetMockedVideoCategory(string url, string json)
          {
-             var browser = new Mock<IBrowser>();
-             browser.Setup(m => m.GetJson(url)).Returns(json);
-
-             return new VideoCategory(new VkApi{AccessToken = "token", Browser = browser.Object, ApiVersion = "5.9"});
+             var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
+             return new VideoCategory(new VkApi{AccessToken = "token", Browser = browser, ApiVersion = "5.9"});
          }
 
          [Test]

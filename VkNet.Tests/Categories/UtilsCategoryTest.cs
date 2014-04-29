@@ -15,10 +15,8 @@ namespace VkNet.Tests.Categories
     {
         private UtilsCategory GetMockedUtilsCategory(string url, string json)
         {
-            var mock = new Mock<IBrowser>();
-            mock.Setup(m => m.GetJson(url.Replace('\'', '"'))).Returns(json);
-
-            return new UtilsCategory(new VkApi{Browser = mock.Object});
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
+            return new UtilsCategory(new VkApi{Browser = browser});
         }
 
         [Test]
