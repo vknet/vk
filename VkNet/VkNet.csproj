@@ -143,6 +143,7 @@
     <Compile Include="Model\University.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />
+    <Compile Include="Utils\ApiVersionAttribute.cs" />
     <Compile Include="Utils\DefaultValueAttribute.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
@@ -223,7 +224,17 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Injector\Injector.csproj">
+      <Project>{55ce9c2a-50cb-43a2-9a9e-bd99d3f89d76}</Project>
+      <Name>Injector</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(TargetDir)Injector.exe
+del $(TargetDir)VkNet.dll_temp</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

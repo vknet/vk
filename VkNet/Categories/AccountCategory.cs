@@ -32,6 +32,7 @@ namespace VkNet.Categories
 		/// <param name="filter">Счетчики, информацию о которых нужно вернуть.</param>
 		/// <returns>Возвращает объект, который содержит ненулевые значения счетчиков, или null, если все значения нулевые. Равные нулю счетчики не устанавливаются независимо от их наличия в <paramref name="filter"/>.</returns>
 		[Pure]
+		[ApiVersion("5.21")]
 		public Counters GetCounters(CountersFilter filter)
 		{
 			return _vk.Call("account.getCounters", new VkParameters() { { "filter", filter } });
@@ -45,6 +46,7 @@ namespace VkNet.Categories
 		/// <param name="name">Короткое название приложения (до 17 символов).</param>
 		/// <returns>Возвращает результат установки короткого названия.</returns>
 		/// <remarks>Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied).</remarks>
+		[ApiVersion("5.21")]
 		public bool SetNameInMenu([NotNull] string name)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => name);
@@ -56,6 +58,7 @@ namespace VkNet.Categories
 		/// Помечает текущего пользователя как online на 15 минут. 
 		/// </summary>
 		/// <returns>Возвращает значение, показывающее, успешно ли выполнился метод.</returns>
+		[ApiVersion("5.21")]
 		public bool SetOnline(bool? voip = null)
 		{
 			var parameters = new VkParameters { { "voip", voip } };
@@ -66,6 +69,7 @@ namespace VkNet.Categories
 		/// Помечает текущего пользователя как offline.
 		/// </summary>
 		/// <returns>Возвращает значение, показывающее, успешно ли выполнился метод.</returns>
+		[ApiVersion("5.21")]
 		public bool SetOffline()
 		{
 			return _vk.Call("account.setOffline", VkParameters.Empty);
@@ -81,6 +85,7 @@ namespace VkNet.Categories
 		/// <param name="noText">Не передавать текст сообщения в push уведомлении. (по умолчанию текст передается)</param>
 		/// <param name="subscribe">Список типов уведомлений, которые следует присылать. По умолчанию присылаются: <see cref="SubscribeFilter.Message"/>, <see cref="SubscribeFilter.Friend"/>.</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
+		[ApiVersion("5.21")]
 		public bool RegisterDevice([NotNull]string token, string deviceModel, string systemVersion, bool? noText = null, SubscribeFilter subscribe = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => token);
@@ -102,6 +107,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="token">Идентификатор устройства.</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
+		[ApiVersion("5.21")]
 		public bool UnregisterDevice([NotNull] string token)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => token);
@@ -124,6 +130,7 @@ namespace VkNet.Categories
 		/// <param name="userID">Идентификатор пользователя, для которого следует отключить уведомления.</param>
 		/// <param name="sound">Включить звук в данном диалоге. (параметр работает только если указан <paramref name="userID"/> или <paramref name="chatID"/> )</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
+		[ApiVersion("5.21")]
 		public bool SetSilenceMode([NotNull] string token, int? time = null, int? chatID = null, int? userID = null, bool? sound = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => token);
@@ -147,6 +154,7 @@ namespace VkNet.Categories
 		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в черный список. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: <see cref="Settings.Friends"/>.</remarks>
+		[ApiVersion("5.21")]
 		public bool BanUser(int userId)
 		{
             if (userId <= 0)
@@ -160,6 +168,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="userId">Идентификатор пользователя, которого нужно убрать из черного списка. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
+		[ApiVersion("5.21")]
 		public bool UnbanUser(int userId)
 		{
             if (userId <= 0)
@@ -177,6 +186,7 @@ namespace VkNet.Categories
 		/// <param name="count">Количество записей, которое необходимо вернуть. (положительное число, по умолчанию - 20, максимальное значение - 200) </param>
 		/// <returns>Возвращает набор объектов пользователей, находящихся в черном списке. </returns>
 		[Pure]
+		[ApiVersion("5.21")]
 		public IEnumerable<User> GetBanned(out int total, int? offset = null, int? count = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -199,6 +209,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <returns>Возвращает информацию об аккаунте или null, если сервер присылает пустой ответ.</returns>
 		[Pure]
+		[ApiVersion("5.21")]
 		public AccountInfo GetInfo()
 		{
 			return _vk.Call("account.getInfo", VkParameters.Empty);
@@ -211,6 +222,7 @@ namespace VkNet.Categories
 		/// <param name="intro">Битовая маска, отвечающая за прохождение обучения в мобильных клиентах. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>Если параметр <paramref name="intro"/> не установлен, он сбрасывается на 0.</remarks>
+		[ApiVersion("5.21")]
 		public bool SetInfo(int? intro = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => intro);
@@ -223,6 +235,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <returns>Информация о текущем профиле в виде <see cref="Model.User"/></returns>
 		[Pure]
+		[ApiVersion("5.21")]
 		public User GetProfileInfo()
 		{
 			var info = _vk.Call("account.getProfileInfo", VkParameters.Empty);
@@ -247,6 +260,7 @@ namespace VkNet.Categories
 		/// <param name="cancelRequestId">Идентификатор заявки на смену имени, которую необходимо отменить.</param>
 		/// <returns>Результат отмены заявки.</returns>
 		/// <remarks>Метод вынесен как отдельный, потому что если в запросе передан параметр <paramref name="cancelRequestId"/>, все остальные параметры игнорируются.</remarks>
+		[ApiVersion("5.21")]
 		public bool SaveProfileInfo(int cancelRequestId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => cancelRequestId);
@@ -271,6 +285,7 @@ namespace VkNet.Categories
 		/// <returns>Результат выполнения операции.</returns>
 		/// <remarks> Если передаются <paramref name="firstName"/> или <paramref name="lastName"/>, рекомендуется 
 		/// использовать перегрузку с соотвествующим out параметром типа <see cref="ChangeNameRequest"/> для получения объекта заявки на смену имени.</remarks>
+		[ApiVersion("5.21")]
 		public bool SaveProfileInfo(string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
 			string homeTown = null, long? countryId = null, long? cityId = null)
@@ -297,6 +312,7 @@ namespace VkNet.Categories
 		/// <param name="countryId">Идентификатор страны пользователя</param>
 		/// <param name="cityId">Идентификатор города пользователя</param>
 		/// <returns>Результат выполнения операции.</returns>
+		[ApiVersion("5.21")]
 		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
 			string homeTown = null, long? countryId = null, long? cityId = null)

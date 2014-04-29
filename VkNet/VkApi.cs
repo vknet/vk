@@ -1,9 +1,11 @@
 ﻿namespace VkNet
 {
-    using System;
-    using System.Threading.Tasks;
+using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
     using JetBrains.Annotations;
-    
+
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Text;
@@ -23,6 +25,7 @@
         /// <summary>
         /// Используемая версия API ВКонтакте.
         /// </summary>
+        [Obsolete]
         public string ApiVersion { get; internal set; }
 
         internal const string InvalidAuthorization = "Invalid authorization";
@@ -171,7 +174,29 @@
         }
 #endif
         
-        internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
+		[MethodImpl(MethodImplOptions.NoInlining)]
+	    internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, string apiVersion = null)
+	    {
+		    if (!parameters.ContainsKey("v"))
+		    {
+			    if (!string.IsNullOrEmpty(apiVersion))
+					parameters.Add("v", apiVersion);
+				else
+				{
+					//TODO: WARN: раскомментировать после добавления аннотаций ко всем методам
+					//throw new InvalidParameterException("You must use ApiVersionAttribute except adding \"v\" parameter to VkParameters");
+				}
+		    }
+		    else
+		    {
+				//TODO: WARN: раскомментировать, исправив ошибки в существующем коде
+				//throw new InvalidParameterException("You must use ApiVersionAttribute except adding \"v\" parameter to VkParameters");
+		    }
+
+			return Call(methodName, parameters, skipAuthorization);
+	    }
+
+	    private VkResponse Call(string methodName, VkParameters parameters,  bool skipAuthorization = false)
         {
             string answer = Invoke(methodName, parameters, skipAuthorization);
 
@@ -183,12 +208,12 @@
         }
 
         /// <summary>
-        /// Прямой ызов API-метода
+        /// Прямой вызов API-метода
         /// </summary>
         /// <param name="methodName">Название метода. Например, "wall.get".</param>
         /// <param name="parameters">Вход. параметры метода.</param>
         /// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
-        /// <returns>Ответ сервера в форомате JSON.</returns>
+        /// <returns>Ответ сервера в формате JSON.</returns>
         [CanBeNull]
         public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
         {
@@ -204,10 +229,10 @@
             }
 
             string url = GetApiUrl(methodName, parameters);
-
+            
             string answer = Browser.GetJson(url);
             _lastInvokeTime = DateTimeOffset.Now;
-
+            
 #if DEBUG && !UNIT_TEST
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
             Trace.WriteLine(Utilities.PreetyPrintJson(answer));
