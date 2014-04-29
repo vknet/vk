@@ -55,6 +55,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
         /// </remarks>
         [Pure]
+		[ApiVersion("5.21")]
         public ReadOnlyCollection<Message> Get(
             MessageType type,
             out int totalCount,
@@ -67,6 +68,8 @@ namespace VkNet.Categories
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
+			VkErrors.ThrowIfNumberIsNegative(() => previewLength);
+			VkErrors.ThrowIfNumberIsNegative(() => lastMessageId);
 
             var parameters = new VkParameters
                              {
@@ -76,8 +79,7 @@ namespace VkNet.Categories
                                  { "time_offset", timeOffset},
                                  { "filters", filter },
                                  { "preview_length", previewLength },
-                                 { "last_message_id", lastMessageId },
-                                 { "v", _vk.ApiVersion}
+                                 { "last_message_id", lastMessageId }
                              };
 
             VkResponse response = _vk.Call("messages.get", parameters);
@@ -143,7 +145,7 @@ namespace VkNet.Categories
         /// </summary>
         /// <param name="messageIds">Идентификаторы сообщений, которые необходимо вернуть (не более 100).</param>
         /// <param name="totalCount">Общее количество сообщений.</param>
-        /// <param name="previewLength">Количество слов, по которому нужно обрезать сообщение. 
+        /// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. 
         /// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).</param>
         /// <returns>Запрошенные сообщения.</returns>
         /// <remarks>
@@ -151,9 +153,11 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
         /// </remarks>
         [Pure]
+		[ApiVersion("5.21")]
         public ReadOnlyCollection<Message> GetById(IEnumerable<long> messageIds, out int totalCount, int? previewLength = null)
         {
-            var parameters = new VkParameters { { "mids", messageIds }, { "preview_length", previewLength } };
+            VkErrors.ThrowIfNumberIsNegative(() => previewLength);
+			var parameters = new VkParameters { { "message_ids", messageIds }, { "preview_length", previewLength } };
 
             VkResponseArray response = _vk.Call("messages.getById", parameters);
 
@@ -163,10 +167,10 @@ namespace VkNet.Categories
         }
 
         /// <summary>
-        /// Ворзвращает указанное сообщение по его идентификаторы.
+        /// Ворзвращает указанное сообщение по его идентификатору.
         /// </summary>
         /// <param name="messageId">Идентификатор запрошенного сообщения.</param>
-        /// <param name="previewLength">Количество слов, по которому нужно обрезать сообщение. 
+        /// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. 
         /// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).</param>
         /// <returns>Запрошенное сообщение, null если сообщение с заданным идентификатором не найдено.</returns>
         /// <remarks>
@@ -174,11 +178,14 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
         /// </remarks>
         [Pure]
+		[ApiVersion("5.21")]
         public Message GetById(long messageId, int? previewLength = null)
         {
-            int totalCount;
-
-            return GetById(new[] { messageId }, out totalCount, previewLength).FirstOrDefault();
+			VkErrors.ThrowIfNumberIsNegative(() => messageId);
+            VkErrors.ThrowIfNumberIsNegative(() => previewLength);
+			
+			int totalCount;
+			return GetById(new[] { messageId }, out totalCount, previewLength).FirstOrDefault();
         }
 
         /// <summary>
@@ -197,7 +204,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getDialogs"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
+		public ReadOnlyCollection<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
         {
             var parameters = new VkParameters { { "uid", userId }, { "chat_id", chatId }, { "count", count }, { "offset", offset }, { "preview_length", previewLength } };
 

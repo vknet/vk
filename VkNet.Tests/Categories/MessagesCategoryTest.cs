@@ -186,7 +186,7 @@
         [Test]
         public void GetById_NormalCase_Message()
         {
-            url = "https://api.vk.com/method/messages.getById?mids=1&access_token=token";
+            url = "https://api.vk.com/method/messages.getById?message_ids=1&v=5.21&access_token=token";
             json =
                 @"{
                     'response': [
@@ -217,7 +217,7 @@
         [Test]
         public void GetById_Multiple_NormalCase_Messages()
         {
-            url = "https://api.vk.com/method/messages.getById?mids=1,3,5&access_token=token";
+            url = "https://api.vk.com/method/messages.getById?message_ids=1,3,5&v=5.21&access_token=token";
             json =
                 @"{
                     'response': [
@@ -1054,9 +1054,9 @@
         }
 
         [Test]
-        public void Get_WithLastMessageIdParam_NormalCase_V59()
+        public void Get_WithLastMessageIdParam_NormalCase_V521()
         {
-            url = "https://api.vk.com/method/messages.get?out=0&last_message_id=30&v=5.9&access_token=token";
+            url = "https://api.vk.com/method/messages.get?out=0&last_message_id=30&v=5.21&access_token=token";
             json =
                 @"{
                     'response': {
@@ -1091,9 +1091,9 @@
         }
 
         [Test]
-        public void Get_NormalCase_V59()
+        public void Get_NormalCase_V521()
         {
-            url = "https://api.vk.com/method/messages.get?out=0&count=2&v=5.9&access_token=token";
+            url = "https://api.vk.com/method/messages.get?out=0&count=2&v=5.21&access_token=token";
             json =
                 @"{
                     'response': {
