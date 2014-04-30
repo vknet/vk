@@ -2,7 +2,7 @@
 {
     using System;
 
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
     /// Информация о последней активности пользователя.
@@ -32,7 +32,7 @@
             var lastActivity = new LastActivity();
 
             lastActivity.IsOnline = re["online"];
-            lastActivity.Time = Utilities.FromUnixTime(re["time"]);
+            lastActivity.Time = re["time"];
 
             return lastActivity;
         }

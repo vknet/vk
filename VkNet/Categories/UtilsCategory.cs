@@ -71,9 +71,7 @@ namespace VkNet.Categories
         [Pure]
         public DateTime GetServerTime()
         {
-            long ticks = _vk.Call("utils.getServerTime", VkParameters.Empty, true);
-
-            return Utilities.FromUnixTime(ticks);
+            return _vk.Call("utils.getServerTime", VkParameters.Empty, true);
         }
     }
 }

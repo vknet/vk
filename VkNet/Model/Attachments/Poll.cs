@@ -54,7 +54,7 @@ namespace VkNet.Model.Attachments
             poll.Id = response["id"];
 	        poll.OwnerId = response["owner_id"];
             poll.Question = response["question"];
-            poll.Created = Utilities.FromUnixTime(response["created"]); // or Utils.FromUnixTime
+            poll.Created = response["created"];
             poll.Votes = response["votes"];
             poll.AnswerId = response["answer_id"];
             poll.IsAnonymous = response["anonymous"];

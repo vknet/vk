@@ -137,6 +137,26 @@ namespace VkNet.Utils
             return null;
         }
 
+	    public static implicit operator DateTime(VkResponse response)
+	    {
+	        if (response == null)
+                throw new ArgumentNullException("response");
+
+            string dateStringValue = response.ToString();
+            if (string.IsNullOrEmpty(dateStringValue))
+                throw new ArgumentException("Пустое значение невозможно преобразовать в дату", "response");
+
+            long unixTimeStamp;
+            if (long.TryParse(dateStringValue, out unixTimeStamp) && unixTimeStamp > 0)
+            {
+                // Unix timestamp is seconds past epoch
+                var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                return dt.AddSeconds(unixTimeStamp).ToLocalTime();
+            }
+
+            throw new ArgumentException("Невозможно преобразовать в дату", "response");
+	    }
+
 		public static implicit operator Uri(VkResponse response)
         {
             return response != null ? new Uri(response) : null;
