@@ -10,23 +10,6 @@
 
     internal static class Utilities
     {
-        [Obsolete("Refactor this shit")]
-        public static DateTime FromUnixTime(long ticks)
-        {
-            var startUnixTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            startUnixTime = startUnixTime.AddSeconds(ticks).ToLocalTime();
-            return startUnixTime;
-        }
-
-        [Obsolete("Refactor this shit")]
-        public static long? ToUnixTime(DateTime? time)
-        {
-            if (!time.HasValue) return null;
-
-            double totalSeconds = (time.Value.ToUniversalTime() - new DateTime(1970, 1, 1,0,0,0,DateTimeKind.Utc)).TotalSeconds;
-            return System.Convert.ToInt64(totalSeconds);
-        }
-
         public static T EnumFrom<T>(int value)
         {
             if (!Enum.IsDefined(typeof(T), value))

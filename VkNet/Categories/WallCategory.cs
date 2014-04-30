@@ -268,7 +268,7 @@
 								{"attachments", attachments},
 								{"services", services},
 								{"signed", signed},
-								{"publish_date", Utilities.ToUnixTime(publishDate)},
+								{"publish_date", publishDate},
 								{"lat", lat},
 								{"long", @long},
 								{"place_id", placeId},
@@ -352,7 +352,7 @@
 								{"attachments", attachments},
 								{"services", services},
 								{"signed", signed},
-								{"publish_date", Utilities.ToUnixTime(publishDate)},
+								{"publish_date", publishDate},
 								{"lat", lat},
 								{"long", @long},
 								{"place_id", placeId}

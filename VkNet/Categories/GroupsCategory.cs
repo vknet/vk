@@ -237,7 +237,7 @@ namespace VkNet.Categories
                 {
                     {"group_id", groupId},
                     {"user_id", userId},
-                    {"end_date", Utilities.ToUnixTime(endDate)},
+                    {"end_date", endDate},
                     {"comment", comment},
                     {"comment_visible", commentVisible}
                 };

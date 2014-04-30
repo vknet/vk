@@ -107,8 +107,11 @@
             if (!nullableDateTime.HasValue)
                 return;
 
-            var offset = DateTime.Now - nullableDateTime.Value;
-            Add(name, (long)offset.TotalSeconds);
+            //var offset = DateTime.Now - nullableDateTime.Value;
+            double totalSeconds = (nullableDateTime.Value.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+            long offset = Convert.ToInt64(totalSeconds);
+
+            Add(name, offset);
         }
 
         /// <summary>
