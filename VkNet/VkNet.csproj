@@ -226,14 +226,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(TargetDir)Injector.exe
-if errorlevel  1 (
-echo Injection was failed with code %25errorlevel%25 at Injector.exe
-exit /b %25errorlevel%25
-)
-del $(TargetDir)VkNet_temp.dll
-del $(TargetDir)VkNet_temp.pdb
-</PostBuildEvent>
+    <PostBuildEvent>$(TargetDir)Injector.exe</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

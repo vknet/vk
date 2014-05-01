@@ -1,24 +1,16 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-using System.Net.Mime;
-using System.Reflection;
-using System.Security.AccessControl;
-using System.Threading;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
-using Mono.Cecil.Pdb;
-using Mono.CompilerServices.SymbolWriter;
+using Mono.Cecil.Rocks;
 
 namespace Injector
 {
-	class Program
+	static class Program
 	{
-		const string dllFile = "VkNet.dll";
-		const string pdbFile = "VkNet.pdb";
-
-		const string tempDllFile = "VkNet_temp.dll";
-		const string tempPdbFile = "VkNet_temp.pdb";
+		const string DllFile = "VkNet.dll";
+		const string AttributeName = "ApiVersionAttribute";
+		const string CategoriesNamespace = "VkNet.Categories";
 		
 		static void Main(string[] args)
 		{
@@ -35,46 +27,56 @@ namespace Injector
 
 		static void Process()
 		{
-		
-			File.Copy(dllFile, tempDllFile, true);
-			File.Delete(dllFile);
-			File.Copy(pdbFile, tempPdbFile, true);
-			File.Delete(pdbFile);
+			Console.WriteLine("Loading assembly...");
+			var assembly = AssemblyDefinition.ReadAssembly(DllFile, new ReaderParameters { ReadSymbols = true });
+			Console.WriteLine("Assembly loaded.");
 
-			var assembly = AssemblyDefinition.ReadAssembly(tempDllFile, new ReaderParameters {ReadSymbols = true});
-			var assemblyRefl = Assembly.LoadFile(Environment.CurrentDirectory + @"\" + tempDllFile);
+			var categoryTypes = assembly.MainModule.Types.Where(t => t.Name.Contains("Category") && t.Namespace == CategoriesNamespace).ToArray();
+			Console.WriteLine("{0} categories was founded at {1} namespace.", categoryTypes.Count(), CategoriesNamespace);
 			
-			Type attrType = assemblyRefl.GetTypes().First(t => t.IsSubclassOf(typeof(Attribute)) && t.Name == "ApiVersionAttribute");
-
-			foreach (var type in assemblyRefl.GetTypes().Where(t => t.Name.Contains("Category") && t.Namespace.Contains("Categories")))
+			foreach (var type in categoryTypes)
 			{
 				Console.WriteLine(type.Name);
-				foreach (var info in type.GetMethods().Where(m => m.GetCustomAttributes(attrType, false).FirstOrDefault() != null))
-				{
-					dynamic attribute = info.GetCustomAttributes(attrType, false).First();
-					string version = attribute.Version;
-					Console.WriteLine("\t" + info.Name + " : " + version);
-					var apiMethod = assembly.MainModule.Types.First(t => t.FullName == type.FullName).Methods.First(m => m.FullName == assembly.MainModule.Import(info).FullName);
-					
-					var instruction = apiMethod.Body.Instructions
-						.FirstOrDefault(i => 
-							i.OpCode == OpCodes.Callvirt 
-							&& i.Operand.GetType().Name == "MethodDefinition" 
-							&& i.Operand.ToString().Contains("VkNet.VkApi::Call"));
-					
-					if(instruction == null)
-						continue;
 
-					if (instruction.Previous.OpCode == OpCodes.Ldnull)
+				foreach (var info in type.GetMethods().Where(m => m.CustomAttributes.Any(a => a.AttributeType.Name == AttributeName)))
+				{
+					var version = (string)info.CustomAttributes.First(a => a.AttributeType.Name == AttributeName).ConstructorArguments[0].Value;
+					Console.Write("\t{0,-17} : {1,6}", info.Name, version);
+
+					var instructions = (from i in info.Body.Instructions
+										where i.OpCode == OpCodes.Callvirt && i.Operand is MethodDefinition
+										let operand = (MethodDefinition)i.Operand
+										where operand.Name == "Call"
+											&& operand.ReturnType == assembly.MainModule.Types.Single(t => t.Name == "VkResponse")
+											&& operand.Parameters.Count == 4
+												&& operand.Parameters[0].ParameterType.Name == "String"
+												&& operand.Parameters[1].ParameterType.Name == "VkParameters"
+												&& operand.Parameters[2].ParameterType.Name == "Boolean"
+												&& operand.Parameters[3].ParameterType.Name == "String" && operand.Parameters[3].HasDefault
+										select i)
+										.ToArray();
+					
+					if (!instructions.Any())
 					{
-						apiMethod.Body.Instructions.Remove(instruction.Previous);
-						apiMethod.Body.Instructions.Insert(apiMethod.Body.Instructions.IndexOf(instruction), Instruction.Create(OpCodes.Ldstr, version));
+						Console.WriteLine(" - call invocations not found.");
+						continue;
 					}
+
+					int count = 0;
+					foreach (var instruction in instructions.Where(instruction => instruction.Previous.OpCode == OpCodes.Ldnull))
+					{
+						info.Body.Instructions.Remove(instruction.Previous);
+						info.Body.Instructions.Insert(info.Body.Instructions.IndexOf(instruction), Instruction.Create(OpCodes.Ldstr, version));
+						count++;
+					}
+
+					Console.WriteLine(" - injected to {0} of {1} call invocation(s)", count, instructions.Length);
 				}
 			}
 
-			
-			assembly.Write(dllFile, new WriterParameters { WriteSymbols = true });
+			Console.WriteLine("Rewriting assembly...");
+			assembly.Write(DllFile, new WriterParameters { WriteSymbols = true });
+			Console.WriteLine("Assembly rewrited.");
 		}
 	}
 }
