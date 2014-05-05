@@ -21,7 +21,7 @@
          private VideoCategory GetMockedVideoCategory(string url, string json)
          {
              var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-             return new VideoCategory(new VkApi{AccessToken = "token", Browser = browser, ApiVersion = "5.9"});
+             return new VideoCategory(new VkApi{AccessToken = "token", Browser = browser});
          }
 
          [Test]

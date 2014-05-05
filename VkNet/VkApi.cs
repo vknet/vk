@@ -22,12 +22,6 @@ using System.Threading.Tasks;
     /// </summary>
     public class VkApi
     {
-        /// <summary>
-        /// Используемая версия API ВКонтакте.
-        /// </summary>
-        [Obsolete]
-        public string ApiVersion { get; internal set; }
-
         internal const string InvalidAuthorization = "Invalid authorization";
         internal const int MinInterval = 1000/3 + 1;
         private DateTimeOffset? _lastInvokeTime;
@@ -115,8 +109,6 @@ using System.Threading.Tasks;
             Fave = new FaveCategory(this);
             Video = new VideoCategory(this);
 			Account = new AccountCategory(this);
-
-            ApiVersion = "5.9";
         }
 
         /// <summary>

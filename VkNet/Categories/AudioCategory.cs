@@ -53,9 +53,10 @@ namespace VkNet.Categories
         /// </code>
         /// </example>
         [Pure]
+        [ApiVersion("5.5")]
         public int GetCount(long ownerId)
         {
-            var parameters = new VkParameters { { "owner_id", ownerId }, { "v", _vk.ApiVersion } };
+            var parameters = new VkParameters { { "owner_id", ownerId }};
 
             return _vk.Call("audio.getCount", parameters);
         }
@@ -72,9 +73,10 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getLyrics"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.5")]
         public Lyrics GetLyrics(long lyricsId)
         {
-            var parameters = new VkParameters { { "lyrics_id", lyricsId }, { "v", _vk.ApiVersion } };
+            var parameters = new VkParameters { { "lyrics_id", lyricsId }};
 
             return _vk.Call("audio.getLyrics", parameters);
         }

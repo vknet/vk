@@ -17,10 +17,10 @@
     [TestFixture]
     public class AudioCategoryTest
     {
-        private AudioCategory GetMockedAudioCategory(string url, string json, string version = "5.9")
+        private AudioCategory GetMockedAudioCategory(string url, string json)
         {
-            var browser = Mock.Of<IBrowser>(m => m.GetJson(url.Replace('\'', '"')) == json);
-            return new AudioCategory(new VkApi { AccessToken = "token", Browser = browser, ApiVersion = version});
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
+            return new AudioCategory(new VkApi { AccessToken = "token", Browser = browser});
         }
 
         #region GetCount
@@ -42,7 +42,7 @@
                     response: 0
                   }";
 
-            var audio = GetMockedAudioCategory(url, json, "5.5");
+            var audio = GetMockedAudioCategory(url, json);
             int count = audio.GetCount(1);
 
             Assert.That(count, Is.EqualTo(0));
@@ -57,7 +57,7 @@
                     response: 158
                   }";
 
-            var audio = GetMockedAudioCategory(url, json, "5.5");
+            var audio = GetMockedAudioCategory(url, json);
             int count = audio.GetCount(1);
 
             Assert.That(count, Is.EqualTo(158));
@@ -72,7 +72,7 @@
                     response: 4
                   }";
 
-            var audio = GetMockedAudioCategory(url, json, "5.5");
+            var audio = GetMockedAudioCategory(url, json);
             int count = audio.GetCount(-1158263);
 
             Assert.That(count, Is.EqualTo(4));
@@ -102,7 +102,7 @@
                     }
                   }";
 
-            var audio = GetMockedAudioCategory(url, json, "5.5");
+            var audio = GetMockedAudioCategory(url, json);
             Lyrics lyrics = audio.GetLyrics(2662381);
 
             Assert.That(lyrics.Id, Is.EqualTo(2662381));
@@ -121,7 +121,7 @@
                     }
                   }";
 
-            var audio = GetMockedAudioCategory(url, json, "5.5");
+            var audio = GetMockedAudioCategory(url, json);
             Lyrics lyrics = audio.GetLyrics(-1);
 
             Assert.That(lyrics.Id, Is.EqualTo(-1));

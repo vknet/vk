@@ -36,7 +36,7 @@
         private MessagesCategory GetMockedMessagesCategory()
         {
             var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-            return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser, ApiVersion = "5.9"});
+            return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser});
         }
 
         [Test]

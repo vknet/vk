@@ -92,9 +92,10 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/isAppUser"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public bool IsAppUser(long userId)
         {   
-            var parameters = new VkParameters { { "user_id", userId }, {"v", _vk.ApiVersion} };
+            var parameters = new VkParameters { { "user_id", userId } };
 
             VkResponse response = _vk.Call("users.isAppUser", parameters);
 
@@ -113,12 +114,13 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public User Get(long userId, ProfileFields fields = null,
                                             NameCase nameCase = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
 
-            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "v", _vk.ApiVersion }, { "user_ids", userId } };
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "user_ids", userId } };
 
             VkResponseArray response = _vk.Call("users.get", parameters);
 
@@ -136,12 +138,13 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
         {
             if (userIds == null)
                 throw new ArgumentNullException("userIds");
 
-            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, {"v", _vk.ApiVersion} };
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase } };
             parameters.Add("user_ids", userIds);
 
             VkResponseArray response = _vk.Call("users.get", parameters);
@@ -160,6 +163,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
         /// </remarks>
         [Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null)
         {
             if (screenNames == null)
@@ -169,8 +173,7 @@ namespace VkNet.Categories
                 {
                     { "user_ids", screenNames }, 
                     { "fields", fields }, 
-                    { "name_case", nameCase }, 
-                    { "v", _vk.ApiVersion }
+                    { "name_case", nameCase }
                 };
 
             VkResponseArray response = _vk.Call("users.get", parameters);
@@ -180,6 +183,7 @@ namespace VkNet.Categories
 #if DEBUG
         // todo start shit
         [Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
+        [ApiVersion("5.9")]
         public async Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null)
         {
             if (screenNames == null)
@@ -189,8 +193,7 @@ namespace VkNet.Categories
                 {
                     { "user_ids", screenNames }, 
                     { "fields", fields }, 
-                    { "name_case", nameCase }, 
-                    { "v", _vk.ApiVersion }
+                    { "name_case", nameCase }
                 };
 
             VkResponseArray response = await _vk.CallAsync("users.get", parameters);
@@ -232,6 +235,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -243,8 +247,7 @@ namespace VkNet.Categories
                     {"user_id", userId},
                     {"extended", true},
                     {"offset", offset},
-                    {"count", count},
-                    {"v", _vk.ApiVersion}
+                    {"count", count}
                 };
 
             VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
@@ -265,6 +268,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getFollowers"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -277,8 +281,7 @@ namespace VkNet.Categories
                     {"offset", offset},
                     {"count", count},
                     {"fields", fields},
-                    {"name_case", nameCase},
-                    {"v", _vk.ApiVersion}
+                    {"name_case", nameCase}
                 };
 
             VkResponseArray response = _vk.Call("users.getFollowers", parameters);
@@ -302,6 +305,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.report"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool Report(long userId, ReportType type, string comment = "")
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -310,8 +314,7 @@ namespace VkNet.Categories
                 {
                     {"user_id", userId},
                     {"type", type},
-                    {"comment", comment},
-                    {"v", _vk.ApiVersion}
+                    {"comment", comment}
                 };
 
             return _vk.Call("users.report", parameters);

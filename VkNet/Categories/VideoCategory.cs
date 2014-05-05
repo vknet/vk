@@ -1,8 +1,4 @@
-﻿using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +6,10 @@ namespace VkNet.Categories
     using JetBrains.Annotations;
 
     using Enums;
+    using Enums.Filters;
+    using Enums.SafetyEnums;
     using Model;
+    using Model.Attachments;
     using Utils;
 
     /// <summary>
@@ -46,6 +45,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.get"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Video> Get(long? ownerId = null, long? albumId = null, VideoWidth width = VideoWidth.Medium160, int? count = null, int? offset = null, bool extended = false)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
@@ -59,8 +59,7 @@ namespace VkNet.Categories
                     {"width", width},
                     {"count", count},
                     {"offset", offset},
-                    {"extended", extended},
-                    {"v", _vk.ApiVersion}
+                    {"extended", extended}
                 };
 
             VkResponseArray response = _vk.Call("video.get", parameters);
@@ -109,6 +108,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.edit"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool Edit(long videoId, long? ownerId = null, string name = null, string desc = null, string privacyView = null, string privacyComment = null, bool isRepeat = false)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -121,8 +121,7 @@ namespace VkNet.Categories
                     {"desc", desc},
                     {"privacy_view", privacyView},
                     {"privacy_comment", privacyComment},
-                    {"repeat", isRepeat},
-                    {"v", _vk.ApiVersion}
+                    {"repeat", isRepeat}
                 };
 
             return _vk.Call("video.edit", parameters);
@@ -141,6 +140,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.add"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public long Add(long videoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -148,8 +148,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
-                    {"owner_id", ownerId},
-                    {"v", _vk.ApiVersion}
+                    {"owner_id", ownerId}
                 };
 
             VkResponse response = _vk.Call("video.add", parameters);
@@ -179,6 +178,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.save"/>.
         /// Метод может быть вызван не более 5000 раз в сутки для одного сервиса. 
         /// </remarks>
+        [ApiVersion("5.9")]
         public Video Save(string name = null, string description = null, bool isPrivate = false, bool isPostToWall = false, string link = null, long? groupId = null, long? albumId = null, bool isRepeat = false)
         {
             var parameters = new VkParameters
@@ -190,8 +190,7 @@ namespace VkNet.Categories
                     {"link", link},
                     {"group_id", groupId},
                     {"album_id", albumId},
-                    {"repeat", isRepeat},
-                    {"v", _vk.ApiVersion}
+                    {"repeat", isRepeat}
                 };
 
             return _vk.Call("video.save", parameters);
@@ -210,6 +209,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.delete"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool Delete(long videoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -217,8 +217,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
-                    {"owner_id", ownerId},
-                    {"v", _vk.ApiVersion}
+                    {"owner_id", ownerId}
                 };
 
             return _vk.Call("video.delete", parameters);
@@ -238,6 +237,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.restorehttp://vk.com/dev/video.restore"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool Restore(long videoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -245,8 +245,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
-                    {"owner_id", ownerId},
-                    {"v", _vk.ApiVersion}
+                    {"owner_id", ownerId}
                 };
 
             return _vk.Call("video.restore", parameters);
@@ -272,6 +271,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.search"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Video> Search(string query, VideoSort sort, bool isHd = false, bool isAdult = false, VideoFilters filters = null, bool isSearchOwn = false, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => query);
@@ -287,8 +287,7 @@ namespace VkNet.Categories
                     {"filters", filters},
                     {"search_own", isSearchOwn},
                     {"offset", offset},
-                    {"count", count},
-                    {"v", _vk.ApiVersion}
+                    {"count", count}
                 };
 
             VkResponseArray response = _vk.Call("video.search", parameters);
@@ -308,6 +307,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getUserVideos"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Video> GetUserVideos(long userId, int? count = null, int? offset = null)
         {
             // throw new NotImplementedException("Метод некорректно работает на самом сервере вконтакте");
@@ -320,8 +320,7 @@ namespace VkNet.Categories
                 {
                     {"user_id", userId},
                     {"count", count},
-                    {"offset", offset},
-                    {"v", _vk.ApiVersion}
+                    {"offset", offset}
                 };
 
             VkResponseArray response = _vk.Call("video.getUserVideos", parameters);
@@ -349,6 +348,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbums"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<VideoAlbum> GetAlbums(long ownerId, int? count = null, int? offset = null, bool extended = false)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -359,8 +359,7 @@ namespace VkNet.Categories
                     {"owner_id", ownerId},
                     {"count", count},
                     {"offset", offset},
-                    {"extended", extended},
-                    {"v", _vk.ApiVersion}
+                    {"extended", extended}
                 };
 
             VkResponseArray response = _vk.Call("video.getAlbums", parameters);
@@ -378,6 +377,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.addAlbum"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public long AddAlbum(string title, long? groupId = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => title);
@@ -386,8 +386,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"group_id", groupId},
-                    {"title", title},
-                    {"v", _vk.ApiVersion}
+                    {"title", title}
                 };
             
             VkResponse response = _vk.Call("video.addAlbum", parameters);
@@ -406,6 +405,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.editAlbum"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool EditAlbum(long albumId, string title, long? groupId = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => title);
@@ -416,8 +416,7 @@ namespace VkNet.Categories
                 {
                     {"album_id", albumId},
                     {"title", title},
-                    {"group_id", groupId},
-                    {"v", _vk.ApiVersion}
+                    {"group_id", groupId}
                 };
 
             return _vk.Call("video.editAlbum", parameters);
@@ -433,6 +432,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.deleteAlbum"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool DeleteAlbum(long albumId, long? groupId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
@@ -440,8 +440,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"group_id", groupId},
-                    {"album_id", albumId},
-                    {"v", _vk.ApiVersion}
+                    {"album_id", albumId}
                 };
 
             return _vk.Call("video.deleteAlbum", parameters);
@@ -459,6 +458,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.moveToAlbum"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool MoveToAlbum(IEnumerable<long> videoIds, long albumId, long? groupId = null)
         {
             if (videoIds == null)
@@ -468,8 +468,7 @@ namespace VkNet.Categories
 
             var parameters = new VkParameters { { "album_id", albumId }, { "group_id", groupId } };
             parameters.Add("video_ids", videoIds);
-            parameters.Add("v", _vk.ApiVersion);
-
+            
             return _vk.Call("video.moveToAlbum", parameters);
         }
 
@@ -494,6 +493,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getComments"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Comment> GetComments(long videoId, long? ownerId = null, bool needLikes = false, int? count = null, int? offset = null, CommentsSort sort = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -507,8 +507,7 @@ namespace VkNet.Categories
                     {"need_likes", needLikes},
                     {"count", count},
                     {"offset", offset},
-                    {"sort", sort},
-                    {"v", _vk.ApiVersion}
+                    {"sort", sort}
                 };
 
             VkResponse response = _vk.Call("video.getComments", parameters);
@@ -548,6 +547,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.createComment"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public long CreateComment(long videoId, string message, long? ownerId, bool isFromGroup = false)
         {
             VkErrors.ThrowIfNullOrEmpty(() => message);
@@ -558,8 +558,7 @@ namespace VkNet.Categories
                     {"video_id", videoId},
                     {"owner_id", ownerId},
                     {"message", message},
-                    {"from_group", isFromGroup},
-                    {"v", _vk.ApiVersion}
+                    {"from_group", isFromGroup}
                 };
 
             return _vk.Call("video.createComment", parameters);
@@ -575,11 +574,12 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.deleteComment"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool DeleteComment(long commentId, long? ownerId)
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
             
-            var parameters = new VkParameters { { "comment_id", commentId }, { "owner_id", ownerId }, {"v", _vk.ApiVersion} };
+            var parameters = new VkParameters {{ "comment_id", commentId }, { "owner_id", ownerId }};
 
             return _vk.Call("video.deleteComment", parameters);
         }
@@ -597,11 +597,12 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.restoreComment"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool RestoreComment(long commentId, long? ownerId)
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
             
-            var parameters = new VkParameters { { "comment_id", commentId }, { "owner_id", ownerId }, { "v", _vk.ApiVersion } };
+            var parameters = new VkParameters {{ "comment_id", commentId }, { "owner_id", ownerId }};
 
             return _vk.Call("video.restoreComment", parameters);
         }
@@ -635,6 +636,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.editComment"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool EditComment(long commentId, string message, long? ownerId)
         {
             VkErrors.ThrowIfNullOrEmpty(() => message);
@@ -644,8 +646,7 @@ namespace VkNet.Categories
                 {
                     {"comment_id", commentId},
                     {"message", message},
-                    {"owner_id", ownerId},
-                    {"v", _vk.ApiVersion}
+                    {"owner_id", ownerId}
                 };
 
             return _vk.Call("video.editComment", parameters);
@@ -664,13 +665,14 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getTags"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Tag> GetTags(long videoId, long? ownerId)
         {
             // todo add unit test
 
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
             
-            var parameters = new VkParameters { { "video_id", videoId }, { "owner_id", ownerId }, {"v", _vk.ApiVersion} };
+            var parameters = new VkParameters {{ "video_id", videoId }, { "owner_id", ownerId }};
 
             VkResponseArray response = _vk.Call("video.getTags", parameters);
 
@@ -689,6 +691,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.putTag"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public long PutTag(long videoId, long userId, long? ownerId, string taggedName)
         {
             // todo add unit tests
@@ -701,8 +704,7 @@ namespace VkNet.Categories
                     {"user_id", userId},
                     {"video_id", videoId},
                     {"owner_id", ownerId},
-                    {"tagged_name", taggedName},
-                    {"v", _vk.ApiVersion}
+                    {"tagged_name", taggedName}
                 };
 
             return _vk.Call("video.putTag", parameters);
@@ -719,6 +721,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.removeTag"/>.
         /// </remarks>
+        [ApiVersion("5.9")]
         public bool RemoveTag(long tagId, long videoId, long? ownerId)
         {
             // todo add unit test
@@ -730,8 +733,7 @@ namespace VkNet.Categories
                 {
                     {"tag_id", tagId},
                     {"video_id", videoId},
-                    {"owner_id", ownerId},
-                    {"v", _vk.ApiVersion}
+                    {"owner_id", ownerId}
                 };
 
             return _vk.Call("video.removeTag", parameters);
@@ -751,6 +753,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getNewTags"/>.
         /// </remarks>        
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Video> GetNewTags(int? count = null, int? offset = null)
         {
             // todo add unit test + parse new fields
@@ -761,8 +764,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"count", count},
-                    {"offset", offset},
-                    {"v", _vk.ApiVersion}
+                    {"offset", offset}
                 };
 
             VkResponseArray response = _vk.Call("video.getNewTags", parameters);
@@ -782,7 +784,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.report"/>.
-        /// </remarks>        
+        /// </remarks>
+        [ApiVersion("5.9")]    
         public bool Report(long videoId, VideoReportType reason, long? ownerId, string comment = null, string searchQuery = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -793,8 +796,7 @@ namespace VkNet.Categories
                     {"owner_id", ownerId},
                     {"reason", reason},
                     {"comment", comment},
-                    {"search_query", searchQuery},
-                    {"v", _vk.ApiVersion}
+                    {"search_query", searchQuery}
                 };
 
             return _vk.Call("video.report", parameters);
@@ -810,7 +812,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.reportComment"/>.
-        /// </remarks>        
+        /// </remarks>
+        [ApiVersion("5.9")]  
         public bool ReportComment(long commentId, long ownerId, VideoReportType reason)
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
@@ -819,8 +822,7 @@ namespace VkNet.Categories
                 {
                     {"comment_id", commentId},
                     {"owner_id", ownerId},
-                    {"reason", reason},
-                    {"v", _vk.ApiVersion}
+                    {"reason", reason}
                 };
 
             return _vk.Call("video.reportComment", parameters);

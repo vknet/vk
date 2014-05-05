@@ -41,6 +41,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -48,7 +49,7 @@
 			if (filter == WallFilter.Suggests && ownerId >= 0)
 		        throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 
-	        var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() }, {"v", _vk.ApiVersion} };
+	        var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
 
 			VkResponse response = _vk.Call("wall.get", parameters);
 
@@ -110,6 +111,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Comment> GetComments(
             long ownerId,
             long postId,
@@ -132,8 +134,7 @@
                                  { "need_likes", needLikes },
                                  { "count", count },
                                  { "offset", offset },
-                                 { "preview_length", previewLength },
-                                 { "v", _vk.ApiVersion }
+                                 { "preview_length", previewLength }
                              };
 
             if (sort != null)

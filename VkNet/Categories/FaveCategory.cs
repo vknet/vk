@@ -1,11 +1,10 @@
-﻿using VkNet.Model.Attachments;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
     using System.Collections.ObjectModel;
     using JetBrains.Annotations;
-    
+
     using Model;
+    using Model.Attachments;
     using Utils;
 
     /// <summary>
@@ -30,6 +29,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getUsers"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -38,8 +38,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"count", count},
-                    {"offset", offset},
-                    {"v", _vk.ApiVersion}
+                    {"offset", offset}
                 };
 
             VkResponseArray response = _vk.Call("fave.getUsers", parameters);
@@ -57,6 +56,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPhotos"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -65,8 +65,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"count", count},
-                    {"offset", offset},
-                    {"v", _vk.ApiVersion}
+                    {"offset", offset}
                 };
 
             VkResponseArray response = _vk.Call("fave.getPhotos", parameters);
@@ -83,6 +82,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Post> GetPosts(int? count = null, int? offset = null)//, bool extended = false)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -92,8 +92,7 @@ namespace VkNet.Categories
                 {
                     {"count", count},
                     {"offset", offset},
-                    //{"extended", extended},
-                    {"v", _vk.ApiVersion}
+                    //{"extended", extended}
                 };
 
             VkResponseArray response = _vk.Call("fave.getPosts", parameters);
@@ -110,6 +109,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -118,8 +118,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"count", count},
-                    {"offset", offset},
-                    {"v", _vk.ApiVersion}
+                    {"offset", offset}
                 };
 
             VkResponseArray response = _vk.Call("fave.getVideos", parameters);
@@ -137,6 +136,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.9")]
         public ReadOnlyCollection<Link> GetLinks(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -145,8 +145,7 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"count", count},
-                    {"offset", offset},
-                    {"v", _vk.ApiVersion}
+                    {"offset", offset}
                 };
 
             VkResponseArray response = _vk.Call("fave.getLinks", parameters);

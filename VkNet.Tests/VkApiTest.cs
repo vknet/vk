@@ -6,8 +6,7 @@ namespace VkNet.Tests
     using System.Collections.Generic;
     using Moq;
     using NUnit.Framework;
-    using VkNet.Enums;
-    using VkNet.Exception;
+    using Exception;
     using VkNet.Utils;
     using VkNet.Utils.Tests;
 
@@ -92,7 +91,6 @@ namespace VkNet.Tests
         public void Authorize_BadLoginOrPasswrod_ThrowVkApiAuthorizationException()
         {
             const string urlWithBadLoginOrPassword = "http://oauth.vk.com/oauth/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&m=4&email=mail";            
-
             var browser = new Mock<IBrowser>();
             browser.Setup(b => b.Authorize(AppId, Email, Password, Settings.Friends)).Returns(VkAuthorization.From(new Uri(urlWithBadLoginOrPassword)));
 
@@ -103,7 +101,6 @@ namespace VkNet.Tests
         [Test]
         public void Call_ThrowsCaptchaNeededException()
         {
-            const string url = "https://api.vk.com/method/messages.send?uid=1&message=hello10&type=0&access_token=token";
             const string json =
                 @"{
                     'error': {
@@ -140,10 +137,8 @@ namespace VkNet.Tests
                     }
                   }";
 
-            var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(It.IsAny<string>())).Returns(json);
-
-            var api = new VkApi {Browser = browser.Object};
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == json);
+            var api = new VkApi {Browser = browser};
 
             var ex = ExceptionAssert.Throws<CaptchaNeededException>(() => api.Call("messages.send", VkParameters.Empty, true));
 
