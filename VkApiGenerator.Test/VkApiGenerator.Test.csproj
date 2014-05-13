@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="GeneratorTest.cs" />
     <Compile Include="Model\VkMethodInfoTest.cs" />
+    <Compile Include="Model\VkMethodParamsCollectionTest.cs" />
     <Compile Include="Model\VkMethodParamTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace VkApiGenerator.Model
 {
@@ -53,8 +53,18 @@ namespace VkApiGenerator.Model
 
         public override string ToString()
         {
-            throw new NotImplementedException();
-            //return base.ToString();
+            if (_list.Count == 0) return string.Empty;
+
+            var sb = new StringBuilder();
+            for (int i = 0; i < _list.Count; i++)
+            {
+                sb.Append(_list[i]);
+
+                if (i != _list.Count - 1)
+                    sb.Append(", ");
+            }
+
+            return sb.ToString();
         }
     }
 }
