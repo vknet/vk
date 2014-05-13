@@ -33,8 +33,15 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,13 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VkApiGenerator.cs" />
     <Compile Include="Model\VkMethodInfo.cs" />
     <Compile Include="Model\VkMethodParam.cs" />
     <Compile Include="Model\VkMethodParamsCollection.cs" />
+    <Compile Include="Model\VkMethodViewModel.cs" />
     <Compile Include="Model\VkParamType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
     <Compile Include="Utils\HtmlHelper.cs" />
+    <Compile Include="Utils\Template.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

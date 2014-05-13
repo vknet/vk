@@ -1,11 +1,33 @@
-﻿using HtmlAgilityPack;
+﻿using System;
+using HtmlAgilityPack;
 
 namespace VkApiGenerator.Model
 {
     public class VkMethodParam
     {
-        public string Name { get; set; } 
+        /// <summary>
+        /// Название переменной на сервере Вконтакте
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Описание параметра
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Имя используемое в C# коде
+        /// </summary>
+        /// <remarks>
+        /// К примеру, если <see cref="Name"/> равен user_id, то <see cref="CanonicalName"/> будет 
+        /// </remarks>
+        public string CanonicalName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         /// <summary>
         /// Обязательный параметр
@@ -15,6 +37,11 @@ namespace VkApiGenerator.Model
         public VkParamType Type { get; set; }
 
         public VkParamRestrictions Restrictions { get; set; }
+
+        public override string ToString()
+        {
+           throw new NotImplementedException();
+        }
 
         internal static VkParamRestrictions GetRestrictions(HtmlNode td)
         {

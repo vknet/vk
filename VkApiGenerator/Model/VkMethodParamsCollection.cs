@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace VkApiGenerator.Model
 {
     public class VkMethodParamsCollection : ICollection<VkMethodParam>
     {
-        private IList<VkMethodParam> _list;
+        private readonly IList<VkMethodParam> _list;
 
         public VkMethodParamsCollection()
         {
@@ -49,5 +50,11 @@ namespace VkApiGenerator.Model
 
         public int Count { get { return _list.Count; } }
         public bool IsReadOnly { get { return _list.IsReadOnly; } }
+
+        public override string ToString()
+        {
+            throw new NotImplementedException();
+            //return base.ToString();
+        }
     }
 }

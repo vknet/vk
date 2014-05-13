@@ -21,6 +21,27 @@ namespace VkApiGenerator.Model
         /// </summary>
         public VkMethodParamsCollection Params { get; set; }
 
+        /// <summary>
+        /// Название метода на сервере Вконтакте
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Тип возвращаемого значения
+        /// </summary>
+        public ReturnType ReturnType { get; set; }
+
+        /// <summary>
+        /// Название метода используемого в C# коде
+        /// </summary>
+        public string CanonicalName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public VkMethodInfo()
         {
             Params = new VkMethodParamsCollection();
@@ -36,6 +57,7 @@ namespace VkApiGenerator.Model
             return info;
         }
 
+        #region Internal methods
         [NotNull, Pure]
         internal static string GetDesctiption(HtmlDocument html)
         {
@@ -82,5 +104,6 @@ namespace VkApiGenerator.Model
 
             return result;
         }
+        #endregion
     }
 }

@@ -42,12 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VkApiGenerator\VkApiGenerator.csproj">
       <Project>{50603d9e-f42d-4486-9218-07e3d186694f}</Project>
       <Name>VkApiGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VkNet.Utils\VkNet.Utils.csproj">
+      <Project>{b229b508-0403-46ed-bc78-a10ae3cc9de6}</Project>
+      <Name>VkNet.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

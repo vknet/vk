@@ -14,4 +14,11 @@ namespace VkApiGenerator.Model
         None = 0,
         PositiveDigit = 1
     }
+
+    public enum ReturnType
+    {
+        Bool,
+        Collection,
+        Void
+    }
 }
