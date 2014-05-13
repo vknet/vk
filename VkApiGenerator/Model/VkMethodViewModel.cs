@@ -14,6 +14,33 @@ namespace VkApiGenerator.Model
 
         public VkMethodViewModel(VkMethodInfo method)
         {
+            switch (method.ReturnType)
+            {
+                case Model.ReturnType.Bool:
+                    ReturnType = "bool";
+                    break;
+
+                case Model.ReturnType.Collection:
+                    ReturnType = "ReadOnlyCollection<>";
+                    break;
+
+                case Model.ReturnType.Void:
+                    ReturnType = "void";
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            Name = method.CanonicalName;
+            Params = method.Params.ToString();
+            
+
+            throw new NotImplementedException();
+        }
+
+        public string GetCheckBlock(VkMethodParamsCollection params)
+        {
             throw new NotImplementedException();
         }
     }
