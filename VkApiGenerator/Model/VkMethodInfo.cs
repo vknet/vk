@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
+using VkApiGenerator.Extensions;
 using VkApiGenerator.Utils;
 
 namespace VkApiGenerator.Model
@@ -38,7 +39,13 @@ namespace VkApiGenerator.Model
         {
             get
             {
-                throw new NotImplementedException();
+                if (string.IsNullOrEmpty(Name)) return string.Empty;
+
+                int pos = Name.LastIndexOf(".", StringComparison.Ordinal);
+                if (pos == -1)
+                    return Name.Capitalize();
+
+                return Name.Substring(pos + 1).Capitalize();
             }
         }
 

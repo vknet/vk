@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using HtmlAgilityPack;
+using VkApiGenerator.Extensions;
 
 namespace VkApiGenerator.Model
 {
@@ -35,9 +36,9 @@ namespace VkApiGenerator.Model
                 var sb = new StringBuilder(parts[0].ToLowerInvariant());
                 for (int i = 1; i < parts.Length; i++)
                 {
-                    string capitalized =
-                    char.ToUpperInvariant(parts[i][0]) + parts[i].Substring(1, parts[i].Length - 1);
-                    sb.Append(capitalized);
+//                    string capitalized =
+//                    char.ToUpperInvariant(parts[i][0]) + parts[i].Substring(1, parts[i].Length - 1);
+                    sb.Append(parts[i].Capitalize());
                 }
 
                 return sb.ToString();

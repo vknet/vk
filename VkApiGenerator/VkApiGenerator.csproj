@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\StringExtenstion.cs" />
     <Compile Include="VkApiGenerator.cs" />
     <Compile Include="Model\VkMethodInfo.cs" />
     <Compile Include="Model\VkMethodParam.cs" />
