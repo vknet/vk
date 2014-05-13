@@ -74,7 +74,7 @@ namespace VkApiGenerator.Console.Model
                 {
                     Name = columns[0].InnerText,
                     Description = HtmlHelper.RemoveHtmlComment(columns[1].InnerText),
-                    Restrictions = VkMethodParam.GetRestrictions(columns[1]);
+                    Restrictions = VkMethodParam.GetRestrictions(columns[1])
                 };
 
                 result.Add(param);
