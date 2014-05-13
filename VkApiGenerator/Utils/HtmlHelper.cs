@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
-namespace VkApiGenerator.Console.Utils
+namespace VkApiGenerator.Utils
 {
     public class HtmlHelper
     {

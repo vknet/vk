@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace VkApiGenerator.Console.Model
+namespace VkApiGenerator.Model
 {
     public class VkMethodParamsCollection : ICollection<VkMethodParam>
     {

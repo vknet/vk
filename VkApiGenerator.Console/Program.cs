@@ -1,8 +1,6 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿using System.Text;
 using HtmlAgilityPack;
-using VkApiGenerator.Console.Model;
-using VkApiGenerator.Console.Utils;
+using VkApiGenerator.Model;
 
 namespace VkApiGenerator.Console
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkApiGenerator.Console.Model
+namespace VkApiGenerator.Model
 {
     public enum VkParamType
     {

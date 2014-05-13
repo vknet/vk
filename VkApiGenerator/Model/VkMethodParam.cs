@@ -1,6 +1,6 @@
 ﻿using HtmlAgilityPack;
 
-namespace VkApiGenerator.Console.Model
+namespace VkApiGenerator.Model
 {
     public class VkMethodParam
     {

@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
-using VkApiGenerator.Console.Utils;
+using VkApiGenerator.Utils;
 
-namespace VkApiGenerator.Console.Model
+namespace VkApiGenerator.Model
 {
     /// <summary>
     /// Информация о методе на сайте Вконтакте
