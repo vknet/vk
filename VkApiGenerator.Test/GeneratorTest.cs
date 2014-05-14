@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using VkApiGenerator.Model;
+using VkNet.Utils.Tests;
 
 namespace VkApiGenerator.Test
 {
@@ -29,7 +30,21 @@ namespace VkApiGenerator.Test
             var gen = new VkApiGenerator();
             string result = gen.GenerateMethod(method);
 
-            Assert.Fail("undone");
+            result.ShouldEqual(@"public ReadOnlyCollection<> GetUsers(int? count = null, int? offset = null)
+{
+    VkErrors.ThrowIfNumberIsNegative(() => count);
+    VkErrors.ThrowIfNumberIsNegative(() => offset);
+
+    var parameters = new VkParameters
+        {
+            {""count"", count},
+            {""offset"", offset}
+        };
+
+    VkResponseArray response = _vk.Call(""fave.getUsers"", parameters);
+
+    return response.ToReadOnlyCollectionOf<>(x => x);
+}");
         }
     }
 }
