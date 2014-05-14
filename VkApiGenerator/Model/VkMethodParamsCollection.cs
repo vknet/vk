@@ -48,6 +48,12 @@ namespace VkApiGenerator.Model
             return _list.Remove(item);
         }
 
+        public VkMethodParam this[int i]
+        {
+            get { return _list[i]; }
+            set { _list[i] = value; }
+        }
+
         public int Count { get { return _list.Count; } }
         public bool IsReadOnly { get { return _list.IsReadOnly; } }
 

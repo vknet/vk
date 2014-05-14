@@ -2,17 +2,16 @@
 {
     public class Template
     {
-        public const string ThrowIfNumberIsNegative = "VkErrors.ThrowIfNumberIsNegative(() => {0});";
+        public static readonly string ThrowIfNumberIsNegative = "VkErrors.ThrowIfNumberIsNegative(() => {0});";
 
-        public const string Method = @"public @Model.ReturnType @Model.Name(@Model.Params)
+        public static readonly string Method = @"public @Raw(@Model.ReturnType) @(Model.Name)(@Model.Params)
 {
-    @Model.Check
+@Raw(@Model.Check)
+@Raw(@Model.ParamsDefinition)
 
-    @Model.ParamsDefinition
+    @Raw(@Model.Invoke)
 
-    @Model.Invoke
-
-    @Model.Return
+    @Raw(@Model.Return)
 }";
     }
 }

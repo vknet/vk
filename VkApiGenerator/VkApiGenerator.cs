@@ -7,7 +7,7 @@ namespace VkApiGenerator
     public class VkApiGenerator
     {
         public string GenerateMethod(VkMethodInfo method)
-        {
+        {   
             var model = new VkMethodViewModel(method);
             return Razor.Parse(Template.Method, model);
         }

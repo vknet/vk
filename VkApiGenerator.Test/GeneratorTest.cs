@@ -18,13 +18,14 @@ namespace VkApiGenerator.Test
             method.Params.Add(new VkMethodParam
             {
                 Name = "count",
-                Description = "Количество пользователей, информацию о которых необходимо вернуть"
+                Description = "Количество пользователей, информацию о которых необходимо вернуть",
+                Restrictions = VkParamRestrictions.PositiveDigit
             });
             method.Params.Add(new VkMethodParam
             {
                 Name = "offset",
-                Description = "Смещение"
-               
+                Description = "Смещение",
+                Restrictions = VkParamRestrictions.PositiveDigit
             });
 
             var gen = new VkApiGenerator();

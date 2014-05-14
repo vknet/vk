@@ -46,6 +46,7 @@
     <Compile Include="Model\VkMethodInfoTest.cs" />
     <Compile Include="Model\VkMethodParamsCollectionTest.cs" />
     <Compile Include="Model\VkMethodParamTest.cs" />
+    <Compile Include="Model\VkMethodViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
