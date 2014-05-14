@@ -39,7 +39,7 @@ namespace VkApiGenerator.Model
             throw new NotImplementedException();
         }
 
-        public string GetCheckBlock(VkMethodParamsCollection params)
+        public string GetCheckBlock(VkMethodParamsCollection parameters)
         {
             throw new NotImplementedException();
         }
