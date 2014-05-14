@@ -10,10 +10,13 @@ namespace VkApiGenerator.Test
         [Test]
         public void GenerateMethod_Fave_GetUsers()
         {
-            var method = new VkMethodInfo();
-            method.Name = "fave.getUsers";
-
-            method.ReturnType = ReturnType.Collection;
+            var method = new VkMethodInfo
+            {
+                Name = "fave.getUsers",
+                Description = "Возвращает список пользователей",
+                ReturnType = ReturnType.Collection,
+                ReturnText = "После успешного выполнения возвращает список объектов пользователей."
+            };
 
             method.Params.Add(new VkMethodParam
             {
@@ -31,7 +34,16 @@ namespace VkApiGenerator.Test
             var gen = new VkApiGenerator();
             string result = gen.GenerateMethod(method);
 
-            result.ShouldEqual(@"public ReadOnlyCollection<> GetUsers(int? count = null, int? offset = null)
+            result.ShouldEqual(@"/// <summary>
+/// Возвращает список пользователей
+/// </summary>
+/// <param name=""count"">Количество пользователей, информацию о которых необходимо вернуть</param>
+/// <param name=""offset"">Смещение</param>
+/// <returns>После успешного выполнения возвращает список объектов пользователей.</returns>
+/// <remarks>
+/// Страница документации ВКонтакте <see href=""http://vk.com/dev/fave.getUsers""/>.
+/// </remarks>
+public ReadOnlyCollection<> GetUsers(int? count = null, int? offset = null)
 {
     VkErrors.ThrowIfNumberIsNegative(() => count);
     VkErrors.ThrowIfNumberIsNegative(() => offset);

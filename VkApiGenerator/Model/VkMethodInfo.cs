@@ -33,6 +33,11 @@ namespace VkApiGenerator.Model
         public ReturnType ReturnType { get; set; }
 
         /// <summary>
+        /// Текст о возвращаемом значении на сервере Вконтакте
+        /// </summary>
+        public string ReturnText { get; set; }
+
+        /// <summary>
         /// Название метода используемого в C# коде
         /// </summary>
         public string CanonicalName

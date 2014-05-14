@@ -49,5 +49,39 @@ namespace VkApiGenerator.Test.Model
             string result = vm.GetReturnBlock(ReturnType.Bool);
             result.ShouldEqual("return response;");
         }
+
+        [Test]
+        public void GetXmlDoc_NormalCase()
+        {
+            var vm = new VkMethodViewModel(new VkMethodInfo());
+
+            var parameters = new VkMethodParamsCollection
+            {
+                new VkMethodParam
+                {
+                    Name = "count",
+                    Description = "Количество пользователей, информацию о которых необходимо вернуть",
+                    Restrictions = VkParamRestrictions.PositiveDigit
+                },
+                new VkMethodParam
+                {
+                    Name = "offset",
+                    Description = "Смещение",
+                    Restrictions = VkParamRestrictions.PositiveDigit
+                }
+            };
+
+            string comment = vm.GetXmlDoc("fave.getUsers", "Возвращает список пользователей", "После успешного выполнения возвращает список объектов пользователей.", parameters);
+
+            comment.ShouldEqual(@"/// <summary>
+/// Возвращает список пользователей
+/// </summary>
+/// <param name=""count"">Количество пользователей, информацию о которых необходимо вернуть</param>
+/// <param name=""offset"">Смещение</param>
+/// <returns>После успешного выполнения возвращает список объектов пользователей.</returns>
+/// <remarks>
+/// Страница документации ВКонтакте <see href=""http://vk.com/dev/fave.getUsers""/>.
+/// </remarks>");
+        }
     }
 }

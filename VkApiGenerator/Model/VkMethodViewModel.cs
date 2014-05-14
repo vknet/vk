@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using VkApiGenerator.Utils;
 
@@ -13,6 +14,7 @@ namespace VkApiGenerator.Model
         public string ParamsDefinition { get; set; }
         public string Invoke { get; set; }
         public string Return { get; set; }
+        public string XmlDoc { get; set; }
 
         public VkMethodViewModel(VkMethodInfo method)
         {
@@ -40,6 +42,7 @@ namespace VkApiGenerator.Model
             ParamsDefinition = GetParamsDefinitionnBlock(method.Params);
             Invoke = GetInvokeBlock(method.ReturnType, method.Name, method.Params.Count);
             Return = GetReturnBlock(method.ReturnType);
+            XmlDoc = GetXmlDoc(method.Name, method.Description, method.ReturnText, method.Params);
         }
 
         public string GetReturnBlock(ReturnType returnType)
@@ -88,6 +91,37 @@ namespace VkApiGenerator.Model
                 sb.Append("\r\n");
             }
             sb.Append("        };");
+
+            return sb.ToString();
+        }
+
+        public string GetXmlDoc(string name, string description, string returnText, VkMethodParamsCollection parameters)
+        {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException("name");
+
+            if (string.IsNullOrEmpty(description))
+                throw new ArgumentNullException("description");
+
+            if (string.IsNullOrEmpty(returnText))
+                throw new ArgumentNullException("returnText");
+
+            var sb = new StringBuilder();
+
+            sb.AppendFormat(@"/// <summary>
+/// {0}
+/// </summary>", description).AppendLine();
+
+            foreach (var p in parameters)
+            {
+                sb.AppendFormat("/// <param name=\"{0}\">{1}</param>", p.CanonicalName, p.Description).AppendLine();
+            }
+
+            sb.AppendFormat("/// <returns>{0}</returns>", returnText).AppendLine();
+
+            sb.AppendFormat(@"/// <remarks>
+/// Страница документации ВКонтакте <see href=""http://vk.com/dev/{0}""/>.
+/// </remarks>", name);
 
             return sb.ToString();
         }
