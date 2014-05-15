@@ -10,15 +10,9 @@ namespace VkApiGenerator.Console
 
         static void Main(string[] args)
         {
-            var browser = new HtmlWeb
-            {
-                AutoDetectEncoding = false,
-                OverrideEncoding = Encoding.GetEncoding("Windows-1251")
-            };
+            var parser = new VkApiParser();
 
-            HtmlDocument html = browser.Load(VkPrefix + "notes.get");
-
-            var methodInfo = VkMethodInfo.Parse(html);
+            var methodInfo = parser.Parse("notes.get");
             System.Console.WriteLine(methodInfo.Description);
 
             foreach (var p in methodInfo.Params)
