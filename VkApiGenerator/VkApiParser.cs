@@ -8,7 +8,7 @@ namespace VkApiGenerator
     {
         public const string VkPrefix = "https://vk.com/dev/";
 
-        private HtmlWeb _browser;
+        private readonly HtmlWeb _browser;
         public VkApiParser()
         {
             _browser = new HtmlWeb
@@ -20,7 +20,10 @@ namespace VkApiGenerator
         public VkMethodInfo Parse(string methodName)
         {
             HtmlDocument html = _browser.Load(VkPrefix + methodName);
-            return VkMethodInfo.Parse(html);
+            var method = VkMethodInfo.Parse(html);
+            method.Name = methodName;
+
+            return method;
         }
     }
 }

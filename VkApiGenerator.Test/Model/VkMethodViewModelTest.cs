@@ -6,11 +6,18 @@ namespace VkApiGenerator.Test.Model
 {
     [TestFixture]
     public class VkMethodViewModelTest
-    {
+    {   
+        private readonly VkMethodInfo _defaultMethodInfo = new VkMethodInfo
+        {
+            Name = "example.default",
+            Description = "default description",
+            ReturnText = "return text"
+        };
+
         [Test]
         public void GetInvokeBlock_CollectionWithParameters()
         {
-            var vm = new VkMethodViewModel(new VkMethodInfo());
+            var vm = new VkMethodViewModel(_defaultMethodInfo);
             string result = vm.GetInvokeBlock(ReturnType.Collection, "fave.getUsers", 2);
 
             result.ShouldEqual(@"VkResponseArray response = _vk.Call(""fave.getUsers"", parameters);");
@@ -19,7 +26,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void GetInvokeBlock_BoolWithParameters()
         {
-            var vm = new VkMethodViewModel(new VkMethodInfo());
+            var vm = new VkMethodViewModel(_defaultMethodInfo);
             string result = vm.GetInvokeBlock(ReturnType.Bool, "fave.getUsers", 2);
 
             result.ShouldEqual(@"VkResponse response = _vk.Call(""fave.getUsers"", parameters);");
@@ -28,7 +35,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void GetInvokeBlock_BoolWithoutParameters()
         {
-            var vm = new VkMethodViewModel(new VkMethodInfo());
+            var vm = new VkMethodViewModel(_defaultMethodInfo);
             string result = vm.GetInvokeBlock(ReturnType.Bool, "fave.getUsers", 0);
 
             result.ShouldEqual(@"VkResponse response = _vk.Call(""fave.getUsers"", VkParameters.Empty);");
@@ -37,7 +44,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void GetReturnBlock_Collection()
         {
-            var vm = new VkMethodViewModel(new VkMethodInfo());
+            var vm = new VkMethodViewModel(_defaultMethodInfo);
             string result = vm.GetReturnBlock(ReturnType.Collection);
             result.ShouldEqual("return response.ToReadOnlyCollectionOf<>(x => x);");
         }
@@ -45,7 +52,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void GetReturnBlock_SimpleType()
         {
-            var vm = new VkMethodViewModel(new VkMethodInfo());
+            var vm = new VkMethodViewModel(_defaultMethodInfo);
             string result = vm.GetReturnBlock(ReturnType.Bool);
             result.ShouldEqual("return response;");
         }
@@ -53,7 +60,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void GetXmlDoc_NormalCase()
         {
-            var vm = new VkMethodViewModel(new VkMethodInfo());
+            var vm = new VkMethodViewModel(_defaultMethodInfo);
 
             var parameters = new VkMethodParamsCollection
             {

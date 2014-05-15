@@ -1,8 +1,4 @@
-﻿using System.Text;
-using HtmlAgilityPack;
-using VkApiGenerator.Model;
-
-namespace VkApiGenerator.Console
+﻿namespace VkApiGenerator.Console
 {
     class Program
     {
