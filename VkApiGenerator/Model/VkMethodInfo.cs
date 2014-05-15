@@ -65,11 +65,38 @@ namespace VkApiGenerator.Model
 
             info.Description = GetDesctiption(html);
             info.Params = GetParams(html);
+            info.ReturnText = GetReturnText(html);
+            info.ReturnType = GetReturnType(info.ReturnText);
+
+//            Debug.Assert(!string.IsNullOrEmpty(info.Description));
+//            Debug.Assert(!string.IsNullOrEmpty(info.ReturnText));
+//            Debug.Assert(info.ReturnType != ReturnType.Unknown);
 
             return info;
         }
 
         #region Internal methods
+
+        internal static ReturnType GetReturnType(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return ReturnType.Unknown;
+
+            if (text.Contains("список") || text.Contains("массив")) return ReturnType.Collection;
+
+            if (text.Contains("идентификатор")) return ReturnType.Long;
+
+            if (text.Contains("1")) return ReturnType.Bool;
+
+            return ReturnType.Unknown;
+        }
+
+        [NotNull]
+        internal static string GetReturnText(HtmlDocument html)
+        {
+            HtmlNode div = html.DocumentNode.SelectSingleNode("//div[@class='dev_method_res']");
+            return div != null ? HtmlHelper.RemoveHtmlComment(div.InnerText) : string.Empty;
+        }
+
         [NotNull, Pure]
         internal static string GetDesctiption(HtmlDocument html)
         {
@@ -91,13 +118,11 @@ namespace VkApiGenerator.Model
             var result = new VkMethodParamsCollection();
 
             HtmlNode paramsSection = html.DocumentNode.SelectSingleNode("(//div[@class='wk_header dev_block_header'])[1]");
-            System.Console.WriteLine("Section name: " + paramsSection.InnerText);
             HtmlNode div = paramsSection.ParentNode;
             HtmlNode table = div.SelectSingleNode("table");
 
             Debug.Assert(table != null);
-            System.Console.WriteLine("table is not null");
-
+            
             HtmlNodeCollection rows = table.SelectNodes("tr");
             foreach (HtmlNode row in rows)
             {   

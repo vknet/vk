@@ -17,8 +17,10 @@ namespace VkApiGenerator.Model
 
     public enum ReturnType
     {
-        Bool,
-        Collection,
-        Void
+        Unknown = 0,
+        Bool = 1,
+        Collection = 2,
+        Void = 3,
+        Long
     }
 }
