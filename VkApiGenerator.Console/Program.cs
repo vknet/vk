@@ -1,4 +1,7 @@
-﻿namespace VkApiGenerator.Console
+﻿using System.Net;
+using VkApiGenerator.Model;
+
+namespace VkApiGenerator.Console
 {
     class Program
     {
@@ -23,7 +26,16 @@
             foreach (string methodName in methods)
             {
                 System.Console.WriteLine("*** {0} ***", methodName);
-                var methodInfo = parser.Parse(methodName);
+                VkMethodInfo methodInfo;
+                try
+                {
+                    methodInfo = parser.Parse(methodName);
+                }
+                catch (WebException ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                    continue;
+                }
                 System.Console.WriteLine("DESCRIPTION: {0}", methodInfo.Description);
                 System.Console.WriteLine("RETURN TEXT: {0}", methodInfo.ReturnText);
                 System.Console.WriteLine("RETURN TYPE: {0}", methodInfo.ReturnType);
