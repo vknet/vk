@@ -1,16 +1,15 @@
-﻿using VkNet.Enums.Filters;
-using VkNet.Model.Attachments;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using JetBrains.Annotations;
-
+    
     using Enums;
+    using Enums.Filters;
     using Model;
+    using Model.Attachments;
     using Utils;
 
     /// <summary>

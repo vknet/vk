@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
 using VkApiGenerator.Utils;
 
@@ -32,8 +31,16 @@ namespace VkApiGenerator.Model
                     ReturnType = "void";
                     break;
 
+                case Model.ReturnType.Long:
+                    ReturnType = "long";
+                    break;
+
+                case Model.ReturnType.Unknown:
+                    ReturnType = "Unknown";
+                    break;
+
                 default:
-                    throw new NotImplementedException();
+                    throw new ArgumentException("Unknown return type: " + method.ReturnType);
             }
 
             Name = method.CanonicalName;

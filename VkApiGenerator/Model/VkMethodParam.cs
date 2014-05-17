@@ -76,6 +76,19 @@ namespace VkApiGenerator.Model
             return sb.ToString();
         }
 
+        internal static bool GetIsMandatory(HtmlNode td)
+        {
+            if (td == null) return false;
+
+            HtmlNode div = td.SelectSingleNode("div[@class='dev_param_opts']");
+            if (div == null) return false;
+
+            string text = div.InnerText.ToLowerInvariant();
+            if (string.IsNullOrEmpty(text)) return false;
+
+            return text.Contains("обязательный");
+        }
+
         internal static VkParamRestrictions GetRestrictions(HtmlNode td)
         {
             if (td == null) return VkParamRestrictions.None;
