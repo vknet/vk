@@ -58,6 +58,7 @@ namespace VkNet.Tests
 
             vk.Fave.ShouldNotBeNull();
             vk.Video.ShouldNotBeNull();
+            vk.Account.ShouldNotBeNull();
             // TODO: continue later
         }
 

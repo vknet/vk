@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using VkApiGenerator.Model;
 
@@ -105,8 +106,10 @@ namespace VkApiGenerator.Console
 
             System.Console.WriteLine("Saving to disk");
 
-            
-            string path = string.Format(@"d:\vs-projects\gt\vk\VkNet\Categories\{0}Category_Generated.cs", categoryName);
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            path = Path.Combine(path, @"..\VkNet\Categories\");
+            path = string.Format("{0}\\{1}Category_Generated.cs", path, categoryName);
+
             File.WriteAllText(path, source.ToString());
 
             System.Console.WriteLine("done.");
