@@ -65,7 +65,7 @@ namespace VkApiGenerator.Model
             foreach (var p in parameters)
             {
                 if (p.Restrictions == VkParamRestrictions.PositiveDigit)
-                    sb.AppendFormat("    " + Template.ThrowIfNumberIsNegative, p.Name).AppendLine();
+                    sb.AppendFormat("    " + Template.ThrowIfNumberIsNegative, p.CanonicalName).AppendLine();
             }
 
             return sb.ToString();
