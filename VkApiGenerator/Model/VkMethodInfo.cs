@@ -121,6 +121,9 @@ namespace VkApiGenerator.Model
             HtmlNode div = paramsSection.ParentNode;
             HtmlNode table = div.SelectSingleNode("table");
 
+            if (table == null)
+                return result;
+
             Debug.Assert(table != null);
             
             HtmlNodeCollection rows = table.SelectNodes("tr");

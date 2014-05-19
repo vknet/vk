@@ -9,62 +9,62 @@ namespace VkApiGenerator.Console
     {
         static void Main(string[] args)
         {
-            const string categoryName = "Notes";
+            const string categoryName = "Photos";
 
             var methods = new[]
             {
-                "notes.get",
-                "notes.getById",
-                "notes.getFriendsNotes",
-                "notes.add",
-                "notes.edit",
-                "notes.delete",
-                "notes.getComments",
-                "notes.createComment",
-                "notes.editComment",
-                "notes.deleteComment",
-                "notes.restoreComment"
+//                "notes.get",
+//                "notes.getById",
+//                "notes.getFriendsNotes",
+//                "notes.add",
+//                "notes.edit",
+//                "notes.delete",
+//                "notes.getComments",
+//                "notes.createComment",
+//                "notes.editComment",
+//                "notes.deleteComment",
+//                "notes.restoreComment"
 
-//                  "photos.createAlbum",
-//                  "photos.editAlbum",
-//                  "photos.getAlbums",
-//                  "photos.get",
-//                  "photos.getAlbumsCount",
-//                  "photos.getProfile",
-//                  "photos.getById",
-//                  "photos.getUploadServer",
-//                  "photos.getProfileUploadServer",
-//                  "photos.getChatUploadServer",
-//                  "photos.saveProfilePhoto",
-//                  "photos.saveWallPhoto",
-//                  "photos.getWallUploadServer",
-//                  "photos.getMessagesUploadServer",
-//                  "photos.saveMessagesPhoto",
-//                  "photos.report",
-//                  "photos.reportComment",
-//                  "photos.search",
-//                  "photos.save",
-//                  "photos.copy",
-//                  "photos.edit",
-//                  "photos.move",
-//                  "photos.makeCover",
-//                  "photos.reorderAlbums",
-//                  "photos.reorderPhotos",
-//                  "photos.getAll",
-//                  "photos.getUserPhotos",
-//                  "photos.deleteAlbum",
-//                  "photos.delete",
-//                  "photos.confirmTag",
-//                  "photos.getComments",
-//                  "photos.getAllComments",
-//                  "photos.createComment",
-//                  "photos.deleteComment",
-//                  "photos.restoreComment",
-//                  "photos.editComment",
-//                  "photos.getTags",
-//                  "photos.putTag",
-//                  "photos.removeTag",
-//                  "photos.getNewTags"
+                  "photos.createAlbum",
+                  "photos.editAlbum",
+                  "photos.getAlbums",
+                  "photos.get",
+                  "photos.getAlbumsCount",
+                  "photos.getProfile",
+                  "photos.getById",
+                  "photos.getUploadServer",
+                  "photos.getProfileUploadServer",
+                  "photos.getChatUploadServer",
+                  "photos.saveProfilePhoto",
+                  "photos.saveWallPhoto",
+                  "photos.getWallUploadServer",
+                  "photos.getMessagesUploadServer",
+                  "photos.saveMessagesPhoto",
+                  "photos.report",
+                  "photos.reportComment",
+                  "photos.search",
+                  "photos.save",
+                  "photos.copy",
+                  "photos.edit",
+                  "photos.move",
+                  "photos.makeCover",
+                  "photos.reorderAlbums",
+                  "photos.reorderPhotos",
+                  "photos.getAll",
+                  "photos.getUserPhotos",
+                  "photos.deleteAlbum",
+                  "photos.delete",
+                  "photos.confirmTag",
+                  "photos.getComments",
+                  "photos.getAllComments",
+                  "photos.createComment",
+                  "photos.deleteComment",
+                  "photos.restoreComment",
+                  "photos.editComment",
+                  "photos.getTags",
+                  "photos.putTag",
+                  "photos.removeTag",
+                  "photos.getNewTags"
             };
             var parser = new VkApiParser();
             var generator = new VkApiGenerator();
@@ -117,6 +117,7 @@ namespace VkApiGenerator.Console
         {
             var sb = new StringBuilder().AppendFormat(@"namespace VkNet.Categories
 {{
+    using System.Collections.ObjectModel;
     using Utils;
 
     public class {0}Category
