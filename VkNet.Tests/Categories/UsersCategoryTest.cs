@@ -1322,6 +1322,7 @@
             user.City.Title.ShouldEqual("Москва");
         }
 
+#if DEBUG
         #region Async methods
 
         [Test]
@@ -1377,5 +1378,6 @@
         }
 
         #endregion
+#endif
     }
 }
