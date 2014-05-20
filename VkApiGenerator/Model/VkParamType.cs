@@ -21,6 +21,7 @@ namespace VkApiGenerator.Model
         Bool = 1,
         Collection = 2,
         Void = 3,
-        Long
+        Long = 4,
+        String = 5
     }
 }
