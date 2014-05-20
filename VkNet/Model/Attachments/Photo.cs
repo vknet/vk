@@ -108,7 +108,7 @@ namespace VkNet.Model.Attachments
             var photo = new Photo();
 
             photo.Id = response["id"];
-            photo.AlbumId = response["album_id"];
+            photo.AlbumId = response["album_id"] ?? response["aid"];
             photo.OwnerId = response["owner_id"];
             photo.Photo75 = response["photo_75"];
             photo.Photo130 = response["photo_130"];

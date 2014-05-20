@@ -145,6 +145,7 @@
     <Compile Include="Model\Street.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\University.cs" />
+    <Compile Include="Model\UploadServerInfo.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Utils\ApiVersionAttribute.cs" />

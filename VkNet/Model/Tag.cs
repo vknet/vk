@@ -3,7 +3,7 @@ namespace VkNet.Model
     using System;
     using System.Diagnostics;
 
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
     /// Отметка к видеозаписи.
