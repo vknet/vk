@@ -1,4 +1,5 @@
 // TODO Проверить возвращаемые значения у всех методов
+// TODO Првоерить типы параметров
 namespace VkNet.Categories
 {
     using System.Collections.ObjectModel;
@@ -9,6 +10,9 @@ namespace VkNet.Categories
     using Model;
     using Model.Attachments;
 
+    /// <summary>
+    /// Методы для работы с фотографиями.
+    /// </summary>
     public class PhotosCategory
     {
         private readonly VkApi _vk;
@@ -29,7 +33,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createAlbum"/>.
         /// </remarks>
-        public PhotoAlbum CreateAlbum(long title, long? groupId = null, long? description = null, long? commentPrivacy = null, long? privacy = null)
+        [VkValue("title", "hello world")]
+        [VkValue("description", "description for album")]
+        public PhotoAlbum CreateAlbum(long title, long? groupId = null, string description = null, long? commentPrivacy = null, long? privacy = null)
         {
             var parameters = new VkParameters
                 {
@@ -50,7 +56,7 @@ namespace VkNet.Categories
         /// </summary>
         /// <param name="albumId">идентификатор альбома. целое число, положительное число, обязательный параметр</param>
         /// <param name="title">новое название альбома. строка</param>
-        /// <param name="description">новый текст описания альбома. строка</param>
+        /// <param name="description">новый текст описания альбома.</param>
         /// <param name="ownerId">идентификатор владельца альбома (пользователь или сообщество). Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  по умолчанию идентификатор текущего пользователя</param>
         /// <param name="privacy">новый уровень доступа к альбому. Возможные значения: 0 — все пользователи, 1 — только друзья, 2 — друзья и друзья друзей, 3 — только я. </param>
         /// <param name="commentPrivacy">новый уровень доступа к комментированию альбома. Возможные значения: 0 — все пользователи, 1 — только друзья, 2 — друзья и друзья друзей, 3 — только я. </param>
@@ -58,7 +64,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editAlbum"/>.
         /// </remarks>
-        public bool EditAlbum(long albumId, long? title = null, long? description = null, long? ownerId = null, long? privacy = null, long? commentPrivacy = null)
+        public bool EditAlbum(long albumId, long? title = null, string description = null, long? ownerId = null, long? privacy = null, long? commentPrivacy = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
 

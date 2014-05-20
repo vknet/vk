@@ -167,6 +167,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VkResponseToSafetyEnumCastGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils\VkValueAttribute.cs" />
     <Compile Include="Utils\WebCallResult.cs" />
     <Compile Include="Model\Coordinates.cs" />
     <Compile Include="Utils\WebCall.cs" />
