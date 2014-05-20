@@ -50,7 +50,7 @@ namespace VkNet.Model.Attachments
 		{
 			var album = new Album();
 
-			album.Id = response["aid"];
+			album.Id = response["aid"] ?? response["id"];
 			album.Thumb = response["thumb"];
 			album.OwnerId = response["owner_id"];
 			album.Title = response["title"];

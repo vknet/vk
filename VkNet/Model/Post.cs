@@ -1,11 +1,11 @@
-﻿using VkNet.Model.Attachments;
-
-namespace VkNet.Model
+﻿namespace VkNet.Model
 {
     using System;
     using System.Linq;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
 
+    using Attachments;
     using Utils;
 
     /// <summary>
@@ -14,6 +14,7 @@ namespace VkNet.Model
     /// <remarks>
     /// См. описание <see href="http://vk.com/dev/post"/>.
     /// </remarks>
+    [DebuggerDisplay("[{Id}] {Text}")]
     public class Post
     {
         /// <summary>
@@ -163,6 +164,10 @@ namespace VkNet.Model
         internal static Post FromJson(VkResponse response)
         {
             var post = new Post();
+
+            long? postId = Utilities.GetNullableLongId(response["id"]);
+            if (postId == null)
+                return null;
 
             post.Id = response["id"];
             post.OwnerId = response["owner_id"];

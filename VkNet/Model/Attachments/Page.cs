@@ -84,6 +84,8 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public string Html { get; set; }
 
+        public string ViewUrl { get; set; }
+
         #endregion
 
         #region Методы
@@ -92,7 +94,7 @@ namespace VkNet.Model.Attachments
         {
             var page = new Page();
 
-            page.Id = response["pid"];
+            page.Id = response["pid"] ?? response["id"];
             page.GroupId = response["group_id"] ?? response["gid"];
             page.CreatorId = response["creator_id"];
             page.Title = response["title"];
@@ -108,6 +110,7 @@ namespace VkNet.Model.Attachments
             page.Parent2 = response["parent2"];
 
             page.Html = response["html"]; // установлено экcпериментальным путем
+            page.ViewUrl = response["view_url"];
 
             return page;
         }

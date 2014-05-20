@@ -35,7 +35,7 @@
         /// <returns></returns>
         public static long? GetNullableLongId(VkResponse response)
         {
-            return response != null ? System.Convert.ToInt64(response.ToString()) : (long?)null;
+            return response != null && !string.IsNullOrEmpty(response.ToString()) ? System.Convert.ToInt64(response.ToString()) : (long?)null;
         }
 
         public static string JoinNonEmpty<T>(this IEnumerable<T> collection, string separator = ",")

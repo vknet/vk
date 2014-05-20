@@ -1,9 +1,8 @@
-﻿
-
-namespace VkNet.Model
+﻿namespace VkNet.Model
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
 
     using Categories;
     using Enums;
@@ -14,6 +13,7 @@ namespace VkNet.Model
     /// Информация о пользователя.
     /// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&amp;p=users.get"/>.
     /// </summary>
+    [DebuggerDisplay("[{Id}] {FirstName} {LastName} ({Domain})")]
     public class User
     {
         #region Стандартные поля

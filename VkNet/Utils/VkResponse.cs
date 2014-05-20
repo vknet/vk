@@ -159,7 +159,7 @@ namespace VkNet.Utils
 
 		public static implicit operator Uri(VkResponse response)
         {
-            return response != null ? new Uri(response) : null;
+            return response != null && !string.IsNullOrEmpty(response) ? new Uri(response) : null;
         }
 
 		#endregion

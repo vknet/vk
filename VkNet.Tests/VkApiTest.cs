@@ -1,12 +1,11 @@
-﻿using VkNet.Enums.Filters;
-
-namespace VkNet.Tests
+﻿namespace VkNet.Tests
 {
     using System;
     using System.Collections.Generic;
     using Moq;
     using NUnit.Framework;
     using Exception;
+    using Enums.Filters;
     using VkNet.Utils;
     using VkNet.Utils.Tests;
 
