@@ -1,9 +1,8 @@
 ﻿namespace VkNet
 {
-using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+    using System;
+    using System.Runtime.CompilerServices;
+    using System.Threading.Tasks;
     using JetBrains.Annotations;
 
     using System.Collections.Generic;
