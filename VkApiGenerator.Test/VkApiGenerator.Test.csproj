@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNUnit, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentNUnit.0.1.2\lib\net35\FluentNUnit.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -53,10 +57,6 @@
     <ProjectReference Include="..\VkApiGenerator\VkApiGenerator.csproj">
       <Project>{50603d9e-f42d-4486-9218-07e3d186694f}</Project>
       <Name>VkApiGenerator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VkNet.Utils\VkNet.Utils.csproj">
-      <Project>{b229b508-0403-46ed-bc78-a10ae3cc9de6}</Project>
-      <Name>VkNet.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

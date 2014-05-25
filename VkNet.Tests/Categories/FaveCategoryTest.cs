@@ -10,7 +10,7 @@
 
     using Model;
     using VkNet.Utils;
-    using VkNet.Utils.Tests;
+    using FluentNUnit;
 
     [TestFixture]
     public class FaveCategoryTest

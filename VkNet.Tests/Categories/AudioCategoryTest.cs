@@ -12,7 +12,7 @@
     using Model.Attachments;
 
     using VkNet.Utils;
-    using VkNet.Utils.Tests;
+    using FluentNUnit;
 
     [TestFixture]
     public class AudioCategoryTest
@@ -1033,7 +1033,8 @@
         public void AddAlbum_GroupIdIsNegative_ThrowException()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-            ExceptionAssert.Throws<ArgumentException>(() => cat.AddAlbum("test title", 0));
+
+            This.Action(() => cat.AddAlbum("test title", 0)).Throws<ArgumentException>();
         }
 
         [Test]

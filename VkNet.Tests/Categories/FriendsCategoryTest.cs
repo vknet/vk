@@ -5,10 +5,10 @@
     using System.Linq;
     using Moq;
     using NUnit.Framework;
+    using FluentNUnit;
 
     using VkNet.Categories;
     using VkNet.Utils;
-    using VkNet.Utils.Tests;
 
     using Enums.Filters;
     using Enums;

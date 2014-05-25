@@ -9,7 +9,7 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
-    using VkNet.Utils.Tests;
+    using FluentNUnit;
 
     public class UtilsCategoryTest
     {
@@ -23,8 +23,7 @@ namespace VkNet.Tests.Categories
         public void CheckLink_NullAsLink()
         {
             var utils = GetMockedUtilsCategory("", "");
-
-            ExceptionAssert.Throws<ArgumentNullException>(() => utils.CheckLink(null));
+            This.Action(() => utils.CheckLink(null)).Throws<ArgumentNullException>();
         }
 
         [Test]
@@ -187,8 +186,7 @@ namespace VkNet.Tests.Categories
         public void ResolveScreenName_EmptyStringName_ThrowException()
         {
             var utils = GetMockedUtilsCategory("", "");
-
-            ExceptionAssert.Throws<ArgumentNullException>(() => utils.ResolveScreenName(string.Empty));
+            This.Action(() => utils.ResolveScreenName(string.Empty)).Throws<ArgumentNullException>();
         }
     }
 }

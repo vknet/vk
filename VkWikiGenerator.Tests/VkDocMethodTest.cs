@@ -1,10 +1,9 @@
 ﻿namespace VkWikiGenerator.Tests
 {
     using NUnit.Framework;
+    using FluentNUnit;
 
-    using VkNet.Utils.Tests;
-
-    using VkWikiGenerator.DocGen;
+    using DocGen;
 
     [TestFixture]
     public class VkDocMethodTest

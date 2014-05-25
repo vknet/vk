@@ -7,7 +7,7 @@
     using Exception;
     using Enums.Filters;
     using VkNet.Utils;
-    using VkNet.Utils.Tests;
+    using FluentNUnit;
 
     [TestFixture]
     public class VkApiTest
@@ -140,7 +140,7 @@
             var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == json);
             var api = new VkApi {Browser = browser};
 
-            var ex = ExceptionAssert.Throws<CaptchaNeededException>(() => api.Call("messages.send", VkParameters.Empty, true));
+            var ex = This.Action(() => api.Call("messages.send", VkParameters.Empty, true)).Throws<CaptchaNeededException>();
 
             ex.Sid.ShouldEqual(548747100691);
             ex.Img.ShouldEqual(new Uri("http://api.vk.com/captcha.php?sid=548747100284&s=1"));

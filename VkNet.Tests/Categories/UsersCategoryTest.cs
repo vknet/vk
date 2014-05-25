@@ -16,7 +16,7 @@
     using Enums.SafetyEnums;
 
     using VkNet.Utils;
-    using VkNet.Utils.Tests;
+    using FluentNUnit;
 
     [TestFixture]
     public class UsersCategoryTest
@@ -39,7 +39,8 @@
         public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new UsersCategory(new VkApi());
-            ExceptionAssert.Throws<AccessTokenInvalidException>(() => users.Get(1));
+
+            This.Action(() => users.Get(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -50,7 +51,7 @@
 
             var users = new UsersCategory(new VkApi {AccessToken = "asgsstsfast", Browser = mockBrowser.Object});
 
-            var ex = ExceptionAssert.Throws<VkApiException>(() => users.Get(1));
+            var ex = This.Action(() => users.Get(1)).Throws<VkApiException>(); 
             ex.Message.ShouldEqual("The remote name could not be resolved: 'api.vk.com'");
         }
 
@@ -86,7 +87,7 @@
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-            var ex = ExceptionAssert.Throws<UserAuthorizationFailException>(() => users.Get(1));
+            var ex = This.Action(() => users.Get(1)).Throws<UserAuthorizationFailException>();
             ex.Message.ShouldEqual("User authorization failed: invalid access_token.");
         }
 

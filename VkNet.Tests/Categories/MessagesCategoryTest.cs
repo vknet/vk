@@ -8,7 +8,7 @@
     using NUnit.Framework;
     using VkNet.Categories;
     using VkNet.Utils;
-    using VkNet.Utils.Tests;
+    using FluentNUnit;
 
     using Enums;
     using Enums.Filters;
@@ -1049,8 +1049,9 @@
         public void Get_CountAndOffsetAreNegatives_ThrowExceptions()
         {
             int total;
-            ExceptionAssert.Throws<ArgumentException>(() => Cat.Get(MessageType.Received, out total,-2));
-            ExceptionAssert.Throws<ArgumentException>(() => Cat.Get(MessageType.Received, out total, offset:-4));
+
+            This.Action(() => Cat.Get(MessageType.Received, out total, -2)).Throws<ArgumentException>();
+            This.Action(() => Cat.Get(MessageType.Received, out total, offset: -4)).Throws<ArgumentException>();
         }
 
         [Test]

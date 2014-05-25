@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using VkApiGenerator.Model;
-using VkNet.Utils.Tests;
+using FluentNUnit;
 
 namespace VkApiGenerator.Test
 {

@@ -11,7 +11,7 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
-using VkNet.Utils.Tests;
+using FluentNUnit; 
 
 namespace VkNet.Tests.Categories
 {

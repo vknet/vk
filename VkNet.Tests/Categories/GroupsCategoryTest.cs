@@ -7,7 +7,7 @@
     using NUnit.Framework;
     using VkNet.Categories;
     using VkNet.Utils;
-    using VkNet.Utils.Tests;
+    using FluentNUnit;
 
     using Enums;
     using Exception;

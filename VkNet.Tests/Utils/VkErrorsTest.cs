@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 using NUnit.Framework;
 
 using VkNet.Exception;
@@ -7,7 +6,7 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Utils
 {
-    using VkNet.Utils.Tests;
+    using FluentNUnit;
 
     [TestFixture]
     public class VkErrorsTest
@@ -25,7 +24,7 @@ namespace VkNet.Tests.Utils
         public void ThrowIfNumberIsNegative_InnerTestClass_ThrowException()
         {
             var cls = new TestClass();
-            ExceptionAssert.Throws<ArgumentException>(() => cls.Execute(-2));
+            This.Action(() => cls.Execute(-2)).Throws<ArgumentException>();
         }
 
         [Test]
@@ -33,7 +32,7 @@ namespace VkNet.Tests.Utils
         {
             string param = string.Empty;
 
-            var ex = ExceptionAssert.Throws<ArgumentNullException>(() => VkErrors.ThrowIfNullOrEmpty(() => param));
+            var ex = This.Action(() => VkErrors.ThrowIfNullOrEmpty(() => param)).Throws<ArgumentNullException>(); 
 
             ex.Message.ShouldStartsWith("Value cannot be null").ShouldContains("param");
         }
@@ -43,7 +42,7 @@ namespace VkNet.Tests.Utils
         {
             long? paramName = -1;
 
-            var ex = ExceptionAssert.Throws<ArgumentException>(() => VkErrors.ThrowIfNumberIsNegative(() => paramName));
+            var ex = This.Action(() => VkErrors.ThrowIfNumberIsNegative(() => paramName)).Throws<ArgumentException>();
 
             ex.Message.ShouldStartsWith("Отрицательное значение.").ShouldContains("paramName");
         }
@@ -51,9 +50,9 @@ namespace VkNet.Tests.Utils
         [Test]
         public void ThrowIfNumberIsNegative_ExpressionVersion_Long()
         {
-            long paramName = -1;
+            const long paramName = -1;
 
-            var ex = ExceptionAssert.Throws<ArgumentException>(() => VkErrors.ThrowIfNumberIsNegative(() => paramName));
+            var ex = This.Action(() => VkErrors.ThrowIfNumberIsNegative(() => paramName)).Throws<ArgumentException>();
 
             ex.Message.ShouldStartsWith("Отрицательное значение.").ShouldContains("paramName");
         }

@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.Tests;
+using FluentNUnit;
 
 namespace VkNet.Tests.Enum.SafetyEnums
 {

@@ -36,6 +36,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNUnit, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentNUnit.0.1.2\lib\net35\FluentNUnit.dll</HintPath>
+    </Reference>
     <Reference Include="Moq, Version=4.1.1311.615, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Moq.4.1.1311.0615\lib\net35\Moq.dll</HintPath>
@@ -74,10 +78,6 @@
     <Compile Include="Utils\VkAuthorizationTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VkNet.Utils\VkNet.Utils.csproj">
-      <Project>{b229b508-0403-46ed-bc78-a10ae3cc9de6}</Project>
-      <Name>VkNet.Utils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VkNet\VkNet.csproj">
       <Project>{8B031A92-84D4-4418-8551-18F1AFEECC6C}</Project>
       <Name>VkNet</Name>
