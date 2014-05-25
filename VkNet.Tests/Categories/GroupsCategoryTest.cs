@@ -32,7 +32,6 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessDeniedException), ExpectedMessage = "Access denied: you can not join this private community")]
         public void Join_WrongGid_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/groups.join?gid=0&not_sure=1&access_token=token";
@@ -67,7 +66,8 @@
                   }";
 
             var groups = GetMockedGroupCategory(url, json);
-            groups.Join(0, true);
+            This.Action(() => groups.Join(0, true)).Throws<AccessDeniedException>()
+                .Message.ShouldEqual("Access denied: you can not join this private community");
         }
 
         [Test]
@@ -132,7 +132,6 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessDeniedException))]
         public void Join_AccessDenied_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/groups.join?gid=2&not_sure=1&access_token=token";
@@ -164,11 +163,10 @@
 
             var groups = GetMockedGroupCategory(url, json);
 
-            groups.Join(2, true);
+            This.Action(() => groups.Join(2, true)).Throws<AccessDeniedException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessDeniedException))]
         public void Leave_AccessDenied_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/groups.leave?gid=2&access_token=token";
@@ -199,27 +197,24 @@
                   }";
 
             var groups = GetMockedGroupCategory(url, json);
-            groups.Leave(2);
+            This.Action(() => groups.Leave(2)).Throws<AccessDeniedException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Join_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var groups = new GroupsCategory(new VkApi());
-            groups.Join(1);
+            This.Action(() => groups.Join(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Leave_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var groups = new GroupsCategory(new VkApi());
-            groups.Leave(1);
+            This.Action(() => groups.Leave(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(UserAuthorizationFailException))]
         public void Join_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
         {
             const string url = "https://api.vk.com/method/groups.join?gid=1&not_sure=0&access_token=token";
@@ -250,11 +245,10 @@
                   }";
 
             var groups = GetMockedGroupCategory(url, json);
-            groups.Join(1);
+            This.Action(() => groups.Join(1)).Throws<UserAuthorizationFailException>();
         }
 
         [Test]
-        [ExpectedException(typeof(UserAuthorizationFailException))]
         public void Leave_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
         {
             const string url = "https://api.vk.com/method/groups.leave?gid=1&access_token=token";
@@ -285,15 +279,14 @@
                   }";
 
             var groups = GetMockedGroupCategory(url, json);
-            groups.Leave(1);
+            This.Action(() => groups.Leave(1)).Throws<UserAuthorizationFailException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var groups = new GroupsCategory(new VkApi());
-            groups.Get(1);
+            This.Action(() => groups.Get(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -403,23 +396,20 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var groups = new GroupsCategory(new VkApi());
-            groups.GetById(1);
+            This.Action(() => groups.GetById(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var g = new GroupsCategory(new VkApi());
-            g.IsMember(2, 1);
+            This.Action(() => g.IsMember(2, 1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(UserAuthorizationFailException), ExpectedMessage = "User authorization failed: access_token was given to another ip address.")]
         public void IsMemeber_UserAuthorizationFail_ThrowUserAuthorizationFailException()
         {
             const string url = "https://api.vk.com/method/groups.isMember?gid=637247&uid=4793858&access_token=token";
@@ -455,11 +445,11 @@
 
             var groups = GetMockedGroupCategory(url, json);
 
-            groups.IsMember(637247, 4793858);
+            This.Action(() => groups.IsMember(637247, 4793858)).Throws<UserAuthorizationFailException>()
+                .Message.ShouldEqual("User authorization failed: access_token was given to another ip address.");
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException), ExpectedMessage = "Invalid group id")]
         public void IsMember_WrongGid_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/groups.isMember?gid=-1&uid=4793858&access_token=token";
@@ -494,7 +484,8 @@
                   }";
 
             var groups = GetMockedGroupCategory(url, json);
-            groups.IsMember(-1, 4793858);
+            This.Action(() => groups.IsMember(-1, 4793858)).Throws<InvalidParameterException>()
+                .Message.ShouldEqual("Invalid group id");
         }
 
         [Test]
@@ -615,7 +606,6 @@
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException))]
         public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/groups.getMembers?gid=-1&access_token=token";
@@ -648,26 +638,24 @@
             var groups = GetMockedGroupCategory(url, json);
 
             int totalCount;
-            groups.GetMembers(-1, out totalCount);
+            This.Action(() => groups.GetMembers(-1, out totalCount)).Throws<InvalidParameterException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             int totalCount;
             var groups = new GroupsCategory(new VkApi());
-            groups.Search("Music", out totalCount);
+            This.Action(() => groups.Search("Music", out totalCount)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Search_EmptyQuery_ThrowsArgumentException()
         {
             int totalCount;
 
             var groups = new GroupsCategory(new VkApi { AccessToken = "token" });
-            groups.Search("", out totalCount);
+            This.Action(() => groups.Search("", out totalCount)).Throws<ArgumentNullException>();
         }
 
         [Test]
@@ -844,11 +832,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var groups = new GroupsCategory(new VkApi());
-            groups.GetById(2);
+            This.Action(() => groups.GetById(2)).Throws<AccessTokenInvalidException>();
         }
        
         [Test]
@@ -889,7 +876,6 @@
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException))]
         public void GetById_InvalidGid_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/groups.getById?gid=-1&access_token=token";
@@ -921,11 +907,10 @@
 
             var cat = GetMockedGroupCategory(url, json);
 
-            cat.GetById(-1);
+            This.Action(() => cat.GetById(-1)).Throws<InvalidParameterException>();
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException))]
         public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/groups.getById?gids=-1&access_token=token";
@@ -957,7 +942,7 @@
 
             var cat = GetMockedGroupCategory(url, json);
 
-            cat.GetById(new long[]{-1});
+            This.Action(() => cat.GetById(new long[]{-1})).Throws<InvalidParameterException>();
         }
 
         [Test]

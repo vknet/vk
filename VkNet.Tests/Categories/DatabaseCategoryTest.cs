@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentNUnit;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -20,7 +21,6 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException), ExpectedMessage = "One of the parameters specified was missing or invalid: street_ids is undefined")]
         public void GetStreetsById_EmptyList()
         {
             const string url = "https://api.vk.com/method/database.getStreetsById?access_token=";
@@ -47,7 +47,8 @@ namespace VkNet.Tests.Categories
                   }";
 
             var db = GetMockedDatabaseCategory(url, json);
-            db.GetStreetsById();
+            This.Action(() => db.GetStreetsById()).Throws<InvalidParameterException>()
+                .Message.ShouldEqual("One of the parameters specified was missing or invalid: street_ids is undefined");
         }
 
         [Test]
@@ -132,19 +133,17 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCities_CountryIdIsNegative_ThrowException()
         {
             var db = GetMockedDatabaseCategory("", "");
-            db.GetCities(-1);
+            This.Action(() => db.GetCities(-1)).Throws<ArgumentException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCities_RegionIdIsNegative_ThrowException()
         {
             var db = GetMockedDatabaseCategory("", "");
-            db.GetCities(1, -2);
+            This.Action(() => db.GetCities(1, -2)).Throws<ArgumentException>();
 
         }
 
@@ -298,30 +297,24 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetRegions_CountryIdIsNegative_ThrowArgumentException()
         {
             DatabaseCategory db = GetMockedDatabaseCategory("", "");
-
-            db.GetRegions(-1);
+            This.Action(() => db.GetRegions(-1)).Throws<ArgumentException>();
         }
 
         [Test]
-        [ExpectedException(typeof (ArgumentException))]
         public void GetRegions_CountIsNegative_ThrowArgumentException()
         {
             DatabaseCategory db = GetMockedDatabaseCategory("", "");
-
-            db.GetRegions(1, count: -2);
+            This.Action(() => db.GetRegions(1, count: -2)).Throws<ArgumentException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetRegions_OffsetIsNegative_ThrowArgumentException()
         {
             DatabaseCategory db = GetMockedDatabaseCategory("", "");
-
-            db.GetRegions(1, offset: -2);
+            This.Action(() => db.GetRegions(1, offset: -2)).Throws<ArgumentException>();
         }
 
         [Test]
@@ -363,19 +356,17 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCountries_CountIsNegative_ThrowArgumentException()
         {
             var db = GetMockedDatabaseCategory("", "");
-            db.GetCountries(count: -2);
+            This.Action(() => db.GetCountries(count: -2)).Throws<ArgumentException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetCountries_OffsetIsNegative_ThrowArgumentException()
         {
             var db = GetMockedDatabaseCategory("", "");
-            db.GetCountries(offset: -2);
+            This.Action(() => db.GetCountries(offset: -2)).Throws<ArgumentException>();
         }
 
         [Test]

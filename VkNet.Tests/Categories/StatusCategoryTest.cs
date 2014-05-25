@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentNUnit;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -24,15 +25,13 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var status = new StatusCategory(new VkApi());
-            status.Get(1);
+            This.Action(() => status.Get(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessDeniedException), ExpectedMessage = "Permission to perform this action is denied")]
         public void Get_AccessDenied_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/status.get?uid=1&access_token=token";
@@ -63,19 +62,18 @@ namespace VkNet.Tests.Categories
                   }";
 
             var status = GetMockedStatusCategory(url, json);
-            status.Get(1);
+            This.Action(() => status.Get(1)).Throws<AccessDeniedException>()
+                .Message.ShouldEqual("Permission to perform this action is denied");
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Set_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var status = new StatusCategory(new VkApi());
-            status.Set("test");
+            This.Action(() => status.Set("test")).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessDeniedException))]
         public void Set_AccessDenied_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/status.set?text=test&access_token=token";
@@ -106,19 +104,17 @@ namespace VkNet.Tests.Categories
                   }";
 
             var status = GetMockedStatusCategory(url, json);
-            status.Set("test");
+            This.Action(() => status.Set("test")).Throws<AccessDeniedException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Set_TextIsNull_ThrowArgumentNullException()
         {
             var status = new StatusCategory(new VkApi { AccessToken = "token" });
-            status.Set(null);
+            This.Action(() => status.Set(null)).Throws<ArgumentNullException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessDeniedException), ExpectedMessage = "User disabled track name broadcast")]
         public void Set_UserDisabledTrackNameBroadcast_ThrowAccessDeniedException()
         {
             const string url = "https://api.vk.com/method/status.set?audio=0_0&access_token=token";
@@ -150,7 +146,8 @@ namespace VkNet.Tests.Categories
 
             var status = GetMockedStatusCategory(url, json);
             var audio = new Audio {Id = 0, OwnerId = 0};
-            status.Set("test test test", audio);
+            This.Action(() => status.Set("test test test", audio)).Throws<AccessDeniedException>()
+                .Message.ShouldEqual("User disabled track name broadcast");
         }
 
         [Test]

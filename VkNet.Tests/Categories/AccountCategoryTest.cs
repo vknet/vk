@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentNUnit;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -31,11 +32,10 @@ namespace VkNet.Tests.Categories
 		#region GetCounters
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void GetCounters_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.GetCounters(CountersFilter.All);
+			This.Action(() => account.GetCounters(CountersFilter.All)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -86,11 +86,10 @@ namespace VkNet.Tests.Categories
 		#region SetNameInMenu
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void SetNameInMenu_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.SetNameInMenu("name");
+			This.Action(() => account.SetNameInMenu("name")).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -130,11 +129,10 @@ namespace VkNet.Tests.Categories
 		#region SetOnline
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void SetOnline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.SetOnline();
+			This.Action(() => account.SetOnline()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -173,11 +171,10 @@ namespace VkNet.Tests.Categories
 		#region SetOffline
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void SetOffline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.SetOffline();
+			This.Action(() => account.SetOffline()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -205,11 +202,10 @@ namespace VkNet.Tests.Categories
 		#region RegisterDevice
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void RegisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.RegisterDevice("tokenVal", null, null);
+			This.Action(() => account.RegisterDevice("tokenVal", null, null)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -284,11 +280,10 @@ namespace VkNet.Tests.Categories
 		#region UnregisterDevice
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void UnregisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.UnregisterDevice("tokenVal");
+			This.Action(() => account.UnregisterDevice("tokenVal")).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -331,11 +326,10 @@ namespace VkNet.Tests.Categories
 		#region SetSilenceMode
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void SetSilenceMode_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.SetSilenceMode("tokenVal");
+			This.Action(() => account.SetSilenceMode("tokenVal")).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -399,11 +393,10 @@ namespace VkNet.Tests.Categories
 		#region BanUser
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void BanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.BanUser(42);
+            This.Action(() => account.BanUser(42)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -443,11 +436,10 @@ namespace VkNet.Tests.Categories
 		#region UnbanUser
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void UnbanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.UnbanUser(42);
+			This.Action(() => account.UnbanUser(42)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -487,12 +479,11 @@ namespace VkNet.Tests.Categories
 		#region GetBanned
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void GetBanned_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
 			int res;
-			account.GetBanned(out res);
+			This.Action(() => account.GetBanned(out res)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -622,11 +613,10 @@ namespace VkNet.Tests.Categories
 		#region GetInfo
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void GetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.GetInfo();
+			This.Action(() => account.GetInfo()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -666,11 +656,10 @@ namespace VkNet.Tests.Categories
 		#region SetInfo
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void SetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.SetInfo(10);
+			This.Action(() => account.SetInfo(10)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -717,12 +706,10 @@ namespace VkNet.Tests.Categories
 		#region GetProfileInfo
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void GetProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			account.GetProfileInfo();
-
+			This.Action(() => account.GetProfileInfo()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]

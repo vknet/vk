@@ -1,20 +1,21 @@
-﻿namespace VkNet.Tests.Enum
+﻿using FluentNUnit;
+
+namespace VkNet.Tests.Enum
 {
     using System;
 
     using NUnit.Framework;
 
-    using VkNet.Enums;
+    using Enums;
     using VkNet.Utils;
 
     [TestFixture]
     public class FriendStatusTest
     {
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void GetFriendStatus_WrongInput_ThrowArgumentException()
         {
-            Utilities.EnumFrom<FriendStatus>(5);
+            This.Action(() => Utilities.EnumFrom<FriendStatus>(5)).Throws<ArgumentException>();
         }
 
         [Test]

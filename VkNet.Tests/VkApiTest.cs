@@ -87,7 +87,6 @@
         }
 
         [Test]
-        [ExpectedException(typeof(VkApiAuthorizationException), ExpectedMessage = VkApi.InvalidAuthorization)]
         public void Authorize_BadLoginOrPasswrod_ThrowVkApiAuthorizationException()
         {
             const string urlWithBadLoginOrPassword = "http://oauth.vk.com/oauth/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&m=4&email=mail";            
@@ -95,7 +94,8 @@
             browser.Setup(b => b.Authorize(AppId, Email, Password, Settings.Friends)).Returns(VkAuthorization.From(new Uri(urlWithBadLoginOrPassword)));
 
             vk.Browser = browser.Object;
-            vk.Authorize(AppId, Email, Password, Settings.Friends);
+            var ex = This.Action(() => vk.Authorize(AppId, Email, Password, Settings.Friends)).Throws<VkApiAuthorizationException>();
+            ex.Message.ShouldEqual(VkApi.InvalidAuthorization);
         }
 
         [Test]

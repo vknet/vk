@@ -40,21 +40,19 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
             int totalCount;
-            cat.Get(MessageType.Received, out totalCount);
+            This.Action(() => cat.Get(MessageType.Received, out totalCount)).Throws<AccessTokenInvalidException>();
         }
        
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
             int totalCount;
-            cat.GetDialogs(1, out totalCount);
+            This.Action(() => cat.GetDialogs(1, out totalCount)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -92,12 +90,11 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetHistory_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
             int totalCount;
-            cat.GetHistory(1, false, out totalCount);
+            This.Action(() => cat.GetHistory(1, false, out totalCount)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -167,20 +164,18 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.GetById(1);
+            This.Action(() => cat.GetById(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
             int totalCount;
-            cat.GetById(new long[]{1, 3, 5}, out totalCount);
+            This.Action(() => cat.GetById(new long[]{1, 3, 5}, out totalCount)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -283,11 +278,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void SearchDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.SearchDialogs("hello");
+            This.Action(() => cat.SearchDialogs("hello")).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -383,12 +377,11 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
             int totalCount;
-            cat.Search("привет", out totalCount);
+            This.Action(() => cat.Search("привет", out totalCount)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -479,11 +472,10 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Send_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.Send(1, false, "Привет, Паша!");
+            This.Action(() => cat.Send(1, false, "Привет, Паша!")).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -515,26 +507,23 @@
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void Send_EmptyMessage_ThrowsInvalidParameterException()
         {
-            Cat.Send(1, false, "");
+            This.Action(() => Cat.Send(1, false, "")).Throws<ArgumentException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.Delete(1);
+            This.Action(() => cat.Delete(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Delete_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.Delete(new long[] { 1 });
+            This.Action(() => cat.Delete(new long[] { 1 })).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -573,7 +562,6 @@
         }
 
         [Test]
-        [ExpectedException(typeof(VkApiException))]
         public void Delete_Id999999_False()
         {
             url = "https://api.vk.com/method/messages.delete?mids=999999&access_token=token";
@@ -603,15 +591,14 @@
                     }
                   }";
 
-            Cat.Delete(999999);
+            This.Action(() => Cat.Delete(999999)).Throws<VkApiException>();
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void DeleteDialog_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.DeleteDialog(111, false);
+            This.Action(() => cat.DeleteDialog(111, false)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -643,11 +630,10 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Restore_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.Restore(1);
+            This.Action(() => cat.Restore(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -665,11 +651,10 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void MarkAsNew_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.MarkAsNew(1);
+            This.Action(() => cat.MarkAsNew(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -701,11 +686,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void MarkAsRead_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.MarkAsRead(1);
+            This.Action(() => cat.MarkAsRead(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -737,11 +721,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void SetActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.SetActivity(1);
+            This.Action(() => cat.SetActivity(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -759,11 +742,10 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetLastActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.GetLastActivity(1);
+            This.Action(() => cat.GetLastActivity(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -786,11 +768,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.GetChat(1);
+            This.Action(() => cat.GetChat(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -824,11 +805,10 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void CreateChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.CreateChat(new long[] { 1, 2 }, "hi, friends");
+            This.Action(() => cat.CreateChat(new long[] { 1, 2 }, "hi, friends")).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -848,11 +828,10 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void EditChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.EditChat(2, "new title");
+            This.Action(() => cat.EditChat(2, "new title")).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -869,11 +848,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetChatUsers_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.GetChatUsers(2);
+            This.Action(() => cat.GetChatUsers(2)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -965,11 +943,10 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void AddChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.AddChatUser(2, 2);
+            This.Action(() => cat.AddChatUser(2, 2)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -987,11 +964,10 @@
         }
         
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void RemoveChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.RemoveChatUser(2, 2);
+            This.Action(() => cat.RemoveChatUser(2, 2)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -1017,11 +993,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetLongPollServer_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new MessagesCategory(new VkApi());
-            cat.GetLongPollServer();
+            This.Action(() => cat.GetLongPollServer()).Throws<AccessTokenInvalidException>();
         }
 
         [Test]

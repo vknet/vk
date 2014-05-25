@@ -80,7 +80,6 @@ namespace VkNet.Tests.Utils
         }
 
         [Test]
-        [ExpectedException(typeof(UserAuthorizationFailException), ExpectedMessage = "User authorization failed: invalid access_token.")]
         public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailExcption()
         {
             const string json =
@@ -109,11 +108,11 @@ namespace VkNet.Tests.Utils
                     }
                   }";
 
-            VkErrors.IfErrorThrowException(json);
+            This.Action(() => VkErrors.IfErrorThrowException(json)).Throws<UserAuthorizationFailException>()
+                .Message.ShouldEqual("User authorization failed: invalid access_token.");
         }
 
         [Test]
-        [ExpectedException(typeof(AccessDeniedException), ExpectedMessage = "Access to the groups list is denied due to the user privacy settings.")]
         public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
         {
             const string json =
@@ -142,16 +141,16 @@ namespace VkNet.Tests.Utils
                     }
                   }";
 
-            VkErrors.IfErrorThrowException(json);
+            This.Action(() => VkErrors.IfErrorThrowException(json)).Throws<AccessDeniedException>()
+                .Message.ShouldEqual("Access to the groups list is denied due to the user privacy settings.");
         }
 
         [Test]
-        [Ignore]
-        [ExpectedException(typeof(VkApiException), ExpectedMessage = "Wrong json data.")]
         public void IfErrorThrowException_WrongJson_ThrowVkApiException()
         {
             const string json = "ThisIsNotJson";
-            VkErrors.IfErrorThrowException(json);
+            This.Action(() => VkErrors.IfErrorThrowException(json)).Throws<VkApiException>()
+                .Message.ShouldEqual("Wrong json data.");
         }
     }
 }

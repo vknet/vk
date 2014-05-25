@@ -31,11 +31,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new FriendsCategory(new VkApi());
-            f.Get(1);
+            This.Action(() => f.Get(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -115,11 +114,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new FriendsCategory(new VkApi());
-            f.GetAppUsers();
+            This.Action(() => f.GetAppUsers()).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -161,11 +159,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new FriendsCategory(new VkApi());
-            f.GetOnline(1);
+            This.Action(() => f.GetOnline(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -210,11 +207,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new FriendsCategory(new VkApi());
-            f.GetMutual(2, 3);
+            This.Action(() => f.GetMutual(2, 3)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -256,19 +252,17 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var f = new FriendsCategory(new VkApi());
-            f.AreFriends(new long[]{2, 3});
+            This.Action(() => f.AreFriends(new long[]{2, 3})).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void AreFriends_NullInput_ThrowArgumentNullException()
         {
             var f = new FriendsCategory(new VkApi { AccessToken = "token" });
-            f.AreFriends(null);
+            This.Action(() => f.AreFriends(null)).Throws<ArgumentNullException>();
         }
 
         [Test]
@@ -344,20 +338,17 @@
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void AddList_NameIsEmpty_ThrowException()
         {
             FriendsCategory cat = GetMockedFriendsCategory("", "");
-
-            cat.AddList("");
+            This.Action(() => cat.AddList("")).Throws<ArgumentNullException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeleteList_IdIsNegative_ThrowException()
         {
             FriendsCategory cat = GetMockedFriendsCategory("", "");
-            cat.DeleteList(-1);
+            This.Action(() => cat.DeleteList(-1)).Throws<ArgumentException>();
         }
 
         [Test]
@@ -424,11 +415,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void EditList_ListIdIsNegative_ThrowException()
         {
             FriendsCategory cat = GetMockedFriendsCategory("", "");
-            cat.EditList(-1);
+            This.Action(() => cat.EditList(-1)).Throws<ArgumentException>();
         }
 
         [Test]

@@ -35,16 +35,15 @@ namespace VkNet.Tests.Categories
 		#region Wall.Get
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			int totalCount;
-			_defaultWall.Get(1, out totalCount);
+			This.Action(() => _defaultWall.Get(1, out totalCount)).Throws<AccessTokenInvalidException>();
 
 			ReadOnlyCollection<Post> posts;
 			ReadOnlyCollection<User> profiles;
 			ReadOnlyCollection<Group> groups;
-			_defaultWall.GetExtended(1, out posts, out profiles, out groups);
+			This.Action(() => _defaultWall.GetExtended(1, out posts, out profiles, out groups)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -411,11 +410,10 @@ namespace VkNet.Tests.Categories
 		#region Wall.GetComments
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void GetComments_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			int totalCount;
-			_defaultWall.GetComments(12312, 12345, out totalCount, CommentsSort.Asc, true);
+			This.Action(() => _defaultWall.GetComments(12312, 12345, out totalCount, CommentsSort.Asc, true)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -1020,10 +1018,9 @@ namespace VkNet.Tests.Categories
 		//TODO: Проверить покрытие кода тестами
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void Post_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.Post(message: "message");
+			This.Action(() => _defaultWall.Post(message: "message")).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -1074,10 +1071,9 @@ namespace VkNet.Tests.Categories
 		#region Wall.Repost
 		
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void Repost_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.Repost("id");
+			This.Action(() => _defaultWall.Repost("id")).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -1140,10 +1136,9 @@ namespace VkNet.Tests.Categories
 		//TODO: Проверить покрытие кода тестами
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		public void Edit_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.Edit(1, message: "message");
+			This.Action(() => _defaultWall.Edit(1, message: "message")).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -1188,59 +1183,52 @@ namespace VkNet.Tests.Categories
 
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		[Ignore]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.Delete();
+			This.Action(() => _defaultWall.Delete()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		[Ignore]
 		public void Restore_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.Restore();
+			This.Action(() => _defaultWall.Restore()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		[Ignore]
 		public void AddComment_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.AddComment();
+			This.Action(() => _defaultWall.AddComment()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		[Ignore]
 		public void RestoreComment_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.RestoreComment();
+            This.Action(() => _defaultWall.RestoreComment()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		[Ignore]
 		public void DeleteComment_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.DeleteComment();
+			This.Action(() =>_defaultWall.DeleteComment()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		[Ignore]
 		public void AddLike_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.AddLike();
+            This.Action(() => _defaultWall.AddLike()).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
 		[Ignore]
 		public void DeleteLike_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			_defaultWall.DeleteLike();
+			This.Action(() => _defaultWall.DeleteLike()).Throws<AccessTokenInvalidException>();
 		}
 
 	    [Test]

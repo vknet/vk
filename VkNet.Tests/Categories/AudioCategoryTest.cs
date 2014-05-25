@@ -26,11 +26,10 @@
         #region GetCount
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetCount_AccessTokenInvalid_ThrowsAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            audio.GetCount(1);
+            This.Action(() => audio.GetCount(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -83,11 +82,10 @@
         #region GetLyrics
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetLyrics_AccessTokenInvalid_ThrowsAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            audio.GetLyrics(222);
+            This.Action(() => audio.GetLyrics(222)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -133,19 +131,17 @@
         #region GetById
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetById_AccessTokenInvalid_ThrowsAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            audio.GetById(new[] { "1_1" });
+            This.Action(() => audio.GetById(new[] { "1_1" })).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GetById_AudiosParamIsNull_ThrowsArgumentNullException()
         {
             var audio = GetMockedAudioCategory("", "");
-            audio.GetById(null);
+            This.Action(() => audio.GetById(null)).Throws<ArgumentNullException>();
         }
 
         [Test]
@@ -222,11 +218,10 @@
         #endregion
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetUploadServer_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            audio.GetUploadServer();
+            This.Action(() => audio.GetUploadServer()).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -247,11 +242,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            audio.Get(1);
+            This.Action(() => audio.Get(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -422,21 +416,19 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidExcpetion()
         {
             var audio = new AudioCategory(new VkApi());
             int totalCount;
-            audio.Search("Beatles", out totalCount);
+            This.Action(() => audio.Search("Beatles", out totalCount)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void Search_QueryEmptyOrNull_ThrowsArgumentException()
         {
             var audio = GetMockedAudioCategory("", "");
             int totalCount;
-            audio.Search("", out totalCount);
+            This.Action(() => audio.Search("", out totalCount)).Throws<ArgumentException>();
         }
 
         [Test]
@@ -537,15 +529,13 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Add_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            audio.Add(0, 0);
+            This.Action(() => audio.Add(0, 0)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException))]
         public void Add_InvalidInputParam_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/audio.add?aid=0&oid=0&access_token=token";
@@ -580,7 +570,7 @@
                   }";
 
             var category = GetMockedAudioCategory(url, json);
-            category.Add(0, 0);
+            This.Action(() => category.Add(0, 0)).Throws<InvalidParameterException>();
         }
 
         [Test]
@@ -613,11 +603,10 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            audio.Delete(0, 0);
+            This.Action(() => audio.Delete(0, 0)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -651,7 +640,6 @@
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException))]
         public void Delete_WrongInputParams_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/audio.delete?aid=0&oid=0&access_token=token";
@@ -686,39 +674,35 @@
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            cat.Delete(0, 0);
+            This.Action(() => cat.Delete(0, 0)).Throws<InvalidParameterException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Edit_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            audio.Edit(0, 0, "", "", "");
+            This.Action(() => audio.Edit(0, 0, "", "", "")).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Edit_ArtistParamIsNull_ThrowsArgumentNullException()
         {
             var cat = GetMockedAudioCategory("", "");
-            cat.Edit(0, 0, null, "", "");
+            This.Action(() => cat.Edit(0, 0, null, "", "")).Throws<ArgumentNullException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Edit_TitleParamIsNull_ThrowsArgumentNullException()
         {
             var cat = GetMockedAudioCategory("", "");
-            cat.Edit(0, 0, "", null, "");
+            This.Action(() => cat.Edit(0, 0, "", null, "")).Throws<ArgumentNullException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Edit_TextParamIsNull_ThrowsArgumentNullException()
         {
             var cat = GetMockedAudioCategory("", "");
-            cat.Edit(0, 0, "", "", null);
+            This.Action(() => cat.Edit(0, 0, "", "", null)).Throws<ArgumentNullException>();
         }
 
         [Test]
@@ -738,7 +722,6 @@
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException))]
         public void Edit_WrongInputParams_ThrowsInvalidParameterException()
         {
             const string url =
@@ -791,19 +774,17 @@
 
             var cat = GetMockedAudioCategory(url, json);
 
-            cat.Edit(0, 0, "Test Artist", "Test Title", "Test Text");
+            This.Action(() => cat.Edit(0, 0, "Test Artist", "Test Title", "Test Text")).Throws<InvalidParameterException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Restore_InvalidAccessToken_ThrowAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            audio.Restore(0, 0);
+            This.Action(() => audio.Restore(0, 0)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException))]
         public void Restore_InvalidInputParams_ThrowsInvalidParameterException()
         {
             const string url = "https://api.vk.com/method/audio.restore?aid=0&oid=0&access_token=token";
@@ -838,7 +819,7 @@
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            cat.Restore(0, 0);
+            This.Action(() => cat.Restore(0, 0)).Throws<InvalidParameterException>();
         }
 
         [Test]
@@ -872,7 +853,6 @@
         }
 
         [Test]
-        [ExpectedException(typeof(VkApiException), ExpectedMessage = "Cache expired")]
         public void Restore_AudioNotDeletedYet_Throw()
         {
             const string url = "https://api.vk.com/method/audio.restore?aid=159210112&access_token=token";
@@ -903,20 +883,18 @@
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            cat.Restore(159210112);
+            var ex = This.Action(() => cat.Restore(159210112)).Throws<VkApiException>();
+            ex.Message.ShouldEqual("Cache expired");
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Reorder_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var cat = new AudioCategory(new VkApi());
-            cat.Reorder(0, 0, 0, 0);
-
+            This.Action(() => cat.Reorder(0, 0, 0, 0)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidParameterException))]
         public void Reorder_InvalidInputParams_ThrowsInvalidParameterException()
         {
             const string url =
@@ -961,7 +939,7 @@
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            cat.Reorder(0, 0, 159104443, 158945986);
+            This.Action(() => cat.Reorder(0, 0, 159104443, 158945986)).Throws<InvalidParameterException>();
         }
 
         [Test]
@@ -1021,19 +999,16 @@
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void AddAlbum_TitleIsEmpty_ThrowException()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-            cat.AddAlbum("");
+            This.Action(() => cat.AddAlbum("")).Throws<ArgumentNullException>();
         }
 
         [Test]
-        //[ExpectedException(typeof(ArgumentException))]
         public void AddAlbum_GroupIdIsNegative_ThrowException()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-
             This.Action(() => cat.AddAlbum("test title", 0)).Throws<ArgumentException>();
         }
 
@@ -1069,43 +1044,38 @@
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void EditAlbum_TitleIsEmpty_ThrowException()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-            cat.EditAlbum("", 1234567);
+            This.Action(() => cat.EditAlbum("", 1234567)).Throws<ArgumentNullException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void EditAlbum_AlbumIdIsNegative_ThrowException()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-            cat.EditAlbum("title", -1234567);
+            This.Action(() => cat.EditAlbum("title", -1234567)).Throws<ArgumentException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void EditAlbum_GroupIdIsNegative_ThrowException()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-            cat.EditAlbum("title", 1234567, -1);
+            This.Action(() => cat.EditAlbum("title", 1234567, -1)).Throws<ArgumentException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeleteAlbum_AlbumIdIsNegative_ThrowExcpetion()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-            cat.DeleteAlbum(-1);
+            This.Action(() => cat.DeleteAlbum(-1)).Throws<ArgumentException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void DeleteAlbum_GroupIdIsNegative_ThrowExcpetion()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-            cat.DeleteAlbum(1, -2);
+            This.Action(() => cat.DeleteAlbum(1, -2)).Throws<ArgumentException>();
         }
 
         [Test]

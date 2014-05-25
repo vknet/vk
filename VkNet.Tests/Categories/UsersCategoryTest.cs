@@ -209,20 +209,18 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Get_Multiple_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new UsersCategory(new VkApi());
-            users.Get(new long[] {1, 2});
+            This.Action(() => users.Get(new long[] {1, 2})).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Get_EmptyListOfUids_ThrowArgumentNullException()
         {
             var users = new UsersCategory(new VkApi { AccessToken = "token" });
             IEnumerable<long> userIds = null;
-            users.Get(userIds);
+            This.Action(() => users.Get(userIds)).Throws<ArgumentNullException>();
         }
 
         [Test]
@@ -320,19 +318,17 @@
         }
        
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void IsAppUser_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new UsersCategory(new VkApi());
-            users.IsAppUser(1);
+            This.Action(() => users.IsAppUser(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void GetUserSettings_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
-            vk.Users.GetUserSettings(100);
+            This.Action(() => vk.Users.GetUserSettings(100)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -352,21 +348,20 @@
         }
 
         [Test]
-        [ExpectedException(typeof(AccessTokenInvalidException))]
         public void Search_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
             int count;
-            vk.Users.Search(Query, out count);
+            This.Action(() => vk.Users.Search(Query, out count)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Query can not be null or empty.")]
         public void Search_EmptyQuery_ThrowArgumentException()
         {
             int count;
             var vk = new VkApi { AccessToken = "token" };
-            vk.Users.Search("", out count);
+            This.Action(() => vk.Users.Search("", out count)).Throws<ArgumentException>()
+                .Message.ShouldEqual("Query can not be null or empty.");
         }
 
         [Test]
