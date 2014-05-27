@@ -33,7 +33,6 @@ namespace VkNet.Model.Attachments
 		private static string MatchType(Type type)
 		{
 			return Types[type];
-
 		}
 	}
 }

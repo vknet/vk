@@ -6,6 +6,7 @@ using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
@@ -1551,6 +1552,75 @@ namespace VkNet.Tests.Categories
 	        total.ShouldEqual(165);
 
             Assert.Fail("undone");
+	    }
+
+	    [Test]
+	    public void Get_With_PhotoListAttachment()
+	    {
+            const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&count=1&offset=213&filter=owner&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 1724,
+                      'items': [
+                        {
+                          'id': 3188,
+                          'from_id': 46476924,
+                          'owner_id': 46476924,
+                          'date': 1359992640,
+                          'post_type': 'post',
+                          'text': '',
+                          'copy_history': [
+                            {
+                              'id': 2569,
+                              'owner_id': 91781360,
+                              'from_id': 91781360,
+                              'date': 1358240377,
+                              'post_type': 'post',
+                              'text': 'Закрыл стол! 130000 тыс, чуть больше месяца.',
+                              'attachments': [
+                                {
+                                  'type': 'photos_list',
+                                  'photos_list': null
+                                }
+                              ],
+                              'post_source': {
+                                'type': 'vk'
+                              }
+                            }
+                          ],
+                          'post_source': {
+                            'type': 'vk'
+                          },
+                          'comments': {
+                            'count': 0,
+                            'can_post': 0
+                          },
+                          'likes': {
+                            'count': 5,
+                            'user_likes': 0,
+                            'can_like': 1,
+                            'can_publish': 1
+                          },
+                          'reposts': {
+                            'count': 0,
+                            'user_reposted': 0
+                          }
+                        }
+                      ]
+                    }
+                  }";
+
+	        int totalCount;
+	        ReadOnlyCollection<Post> posts = GetMockedWallCategory(url, json).Get(46476924, out totalCount, 1, 213, WallFilter.Owner);
+
+	        totalCount.ShouldEqual(1724);
+	        posts.Count.ShouldEqual(1);
+	        posts[0].CopyHistory.ShouldNotBeNull().Count.ShouldEqual(1);
+
+	        Attachment attach = posts[0].CopyHistory[0].Attachment.ShouldNotBeNull();
+	        attach.Type = typeof (PhotosList);
+	        attach.Instance.ShouldBeNull();
 	    }
 	}
 }

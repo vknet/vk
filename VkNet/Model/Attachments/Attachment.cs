@@ -67,6 +67,8 @@ namespace VkNet.Model.Attachments
         /// </summary>
         private Album Album { get; set; }
 
+	    private PhotosList PhotosList;
+
         #endregion
 
         /// <summary>
@@ -98,6 +100,8 @@ namespace VkNet.Model.Attachments
                     return Page;
                 if (Type == typeof(Album))
                     return Album;
+                if (Type == typeof (PhotosList))
+                    return PhotosList;
 
                 return null;
             }
@@ -174,8 +178,13 @@ namespace VkNet.Model.Attachments
                     attachment.Album = response["album"];
                     break;
 
+                case "photos_list":
+                    attachment.Type = typeof (PhotosList);
+                    attachment.PhotosList = response["photos_list"];
+                    break;
+
                 default:
-                    throw new InvalidParameterException("The type of attachment is not defined.");
+                    throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined.", type));
             }
 
             return attachment;
