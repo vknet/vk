@@ -60,6 +60,17 @@ namespace VkApiGenerator
 
             // invoke and get json and url
             var api = new VkApi();
+            // TODO must be authorized
+
+            var unittests = new List<UnitTestInfo>();
+            foreach (var m in genMethods)
+            {
+                var test = new UnitTestInfo();
+                test.Name = string.Format("{0}_{1}", m.Name, (new Random()).Next());
+                test.Url = api.GetApiUrl(m.ApiMethod, m.Params);
+
+                unittests.Add(test);
+            }
 
             throw new NotImplementedException();
         }
@@ -80,7 +91,7 @@ namespace VkApiGenerator
             {
                 foreach (var val in valuesAttrs)
                 {
-                    result.Params.Add(val.Name, val.Value);
+                    result.Params.Add(val.Name, val.Value.ToString());
                 }
             }
 
@@ -98,13 +109,13 @@ namespace VkApiGenerator
         public override string ToString()
         {
             var test = string.Format(@"[Test]
-public void <#METHOD_NAME#>_()
+public void {2}()
 {{
     const string url = {0};
     const string json = {1};
     
     Assert.Fail(""undone"");
-}}", Url, Json);
+}}", Url, Json, Name);
 
             return test;
         }
@@ -116,11 +127,11 @@ public void <#METHOD_NAME#>_()
         public string Name { get; set; }
         public string ApiMethod { get; set; }
         public int Order { get; set; }
-        public IDictionary<string, object> Params;
+        public IDictionary<string, string> Params;
 
         public VkMethodGenInfo()
         {
-            Params = new Dictionary<string, object>();
+            Params = new Dictionary<string, string>();
         }
 
         public override string ToString()
