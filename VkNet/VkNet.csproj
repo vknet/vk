@@ -148,7 +148,7 @@
     <Compile Include="Model\UploadServerInfo.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />
-    <Compile Include="Utils\ApiMethodName.cs" />
+    <Compile Include="Utils\ApiMethodNameAttribute.cs" />
     <Compile Include="Utils\ApiVersionAttribute.cs" />
     <Compile Include="Utils\DefaultValueAttribute.cs" />
     <Compile Include="Utils\Cookies.cs" />

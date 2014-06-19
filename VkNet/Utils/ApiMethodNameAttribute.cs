@@ -6,7 +6,7 @@
     /// Задает название метода на сервере ВК (используется генератором юнит-тестов)
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class ApiMethodName : Attribute
+    public class ApiMethodNameAttribute : Attribute
     {
         /// <summary>
         /// Название метода
@@ -25,7 +25,7 @@
         /// Конструктор
         /// </summary>
         /// <param name="name">Название метода</param>
-        public ApiMethodName(string name)
+        public ApiMethodNameAttribute(string name)
         {
             Name = name;
         }

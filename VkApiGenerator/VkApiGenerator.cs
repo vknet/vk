@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using RazorEngine;
 using VkApiGenerator.Model;
 using VkApiGenerator.Utils;
+using VkNet;
 using VkNet.Utils;
 
 namespace VkApiGenerator
@@ -43,14 +46,20 @@ namespace VkApiGenerator
 
             MethodInfo[] methods = category.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public);
 
+            var genMethods = new List<VkMethodGenInfo>();
             foreach (var methodInfo in methods)
             {
 //                if (methodInfo.GetParameters().Length == 0)
 //                {
 
-                    Debug.WriteLine(GetMethodData(methodInfo).ToString());
+                var genInfo = GetMethodData(methodInfo);
+                    Debug.WriteLine(genInfo.ToString());
+                genMethods.Add(genInfo);
 //                }
             }
+
+            // invoke and get json and url
+            var api = new VkApi();
 
             throw new NotImplementedException();
         }
@@ -59,17 +68,49 @@ namespace VkApiGenerator
         {
             var result = new VkMethodGenInfo {Name = method.Name};
 
-            var apiNameAttr = method.GetCustomAttribute<ApiMethodName>();
+            var apiNameAttr = method.GetCustomAttribute<ApiMethodNameAttribute>();
             if (apiNameAttr != null)
             {
                 result.ApiMethod = apiNameAttr.Name;
                 result.Order = apiNameAttr.Order;
             }
 
+            var valuesAttrs = method.GetCustomAttributes<VkValueAttribute>();
+            if (valuesAttrs != null)
+            {
+                foreach (var val in valuesAttrs)
+                {
+                    result.Params.Add(val.Name, val.Value);
+                }
+            }
+
             return result;
         }
     }
 
+    // TODO move
+    public class UnitTestInfo
+    {
+        public string Name { get; set; }
+        public string Url { get; set; }
+        public string Json { get; set; }
+
+        public override string ToString()
+        {
+            var test = string.Format(@"[Test]
+public void <#METHOD_NAME#>_()
+{{
+    const string url = {0};
+    const string json = {1};
+    
+    Assert.Fail(""undone"");
+}}", Url, Json);
+
+            return test;
+        }
+    }
+
+    // TODO move
     public class VkMethodGenInfo
     {
         public string Name { get; set; }
@@ -85,11 +126,16 @@ namespace VkApiGenerator
         public override string ToString()
         {
             string m = string.Format("-- {0}: {1} [{2}] (", Name, ApiMethod, Order);
+            int counter = 0;
             foreach (var p in Params)
             {
-                m += string.Format("{{ {0} : {1}}},", p.Key, p.Value);
+                counter++;
+                m += string.Format("{{{0} : {1}}}", p.Key, p.Value);
+
+                if (counter != Params.Count)
+                    m += ", ";
             }
-            m += ")" + Environment.NewLine;
+            m += ")";
 
             return m;
         }
