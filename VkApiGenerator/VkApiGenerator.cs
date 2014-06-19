@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Reflection;
+using System.Text;
 using JetBrains.Annotations;
 using RazorEngine;
 using VkApiGenerator.Model;
@@ -49,28 +52,45 @@ namespace VkApiGenerator
             var genMethods = new List<VkMethodGenInfo>();
             foreach (var methodInfo in methods)
             {
-//                if (methodInfo.GetParameters().Length == 0)
-//                {
-
-                var genInfo = GetMethodData(methodInfo);
+                if (methodInfo.GetParameters().Length == 0)
+                {
+                    var genInfo = GetMethodData(methodInfo);
                     Debug.WriteLine(genInfo.ToString());
-                genMethods.Add(genInfo);
-//                }
+                    genMethods.Add(genInfo);
+                }
             }
 
             // invoke and get json and url
             var api = new VkApi();
+            api.Authorize("111");
             // TODO must be authorized
 
             var unittests = new List<UnitTestInfo>();
+
+            var testCategory = new StringBuilder();
             foreach (var m in genMethods)
             {
+                if (m.Skip) continue;
+
                 var test = new UnitTestInfo();
                 test.Name = string.Format("{0}_{1}", m.Name, (new Random()).Next());
-                test.Url = api.GetApiUrl(m.ApiMethod, m.Params);
+                test.Url = Utilities.PreetyPrintApiUrl(api.GetApiUrl(m.ApiMethod, m.Params));
+
+                // TODO refactor this shit
+                int index = test.Url.IndexOf("access_token", StringComparison.InvariantCulture);
+                if (index != -1)
+                {
+                    test.Url = test.Url.Substring(0, index) + "access_token=token";";
+                }
+
+                test.Json = Utilities.PreetyPrintJson(api.Invoke(m.ApiMethod, m.Params));
 
                 unittests.Add(test);
+
+                testCategory.Append(test);
             }
+
+            File.WriteAllText(@"d:\vk.txt", testCategory.ToString());
 
             throw new NotImplementedException();
         }
@@ -84,6 +104,7 @@ namespace VkApiGenerator
             {
                 result.ApiMethod = apiNameAttr.Name;
                 result.Order = apiNameAttr.Order;
+                result.Skip = apiNameAttr.Skip;
             }
 
             var valuesAttrs = method.GetCustomAttributes<VkValueAttribute>();
@@ -111,11 +132,13 @@ namespace VkApiGenerator
             var test = string.Format(@"[Test]
 public void {2}()
 {{
-    const string url = {0};
-    const string json = {1};
+{0}
+{1}
     
     Assert.Fail(""undone"");
-}}", Url, Json, Name);
+}}
+
+", Url, Json, Name);
 
             return test;
         }
@@ -127,6 +150,7 @@ public void {2}()
         public string Name { get; set; }
         public string ApiMethod { get; set; }
         public int Order { get; set; }
+        public bool Skip { get; set; }
         public IDictionary<string, string> Params;
 
         public VkMethodGenInfo()

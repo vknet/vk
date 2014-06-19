@@ -11,6 +11,7 @@ namespace VkNet.Tests.Categories
 {
     using VkNet.Utils.Tests;
 
+    [TestFixture]
     public class UtilsCategoryTest
     {
         private UtilsCategory GetMockedUtilsCategory(string url, string json)

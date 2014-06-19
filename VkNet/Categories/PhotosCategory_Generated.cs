@@ -295,7 +295,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfileUploadServer"/>.
         /// </remarks>
-        [ApiMethodName("photos.getProfileUploadServer")]
+        [ApiMethodName("photos.getProfileUploadServer", Skip = true)]
         public UploadServerInfo GetProfileUploadServer()
         {
             return _vk.Call("photos.getProfileUploadServer", VkParameters.Empty);
@@ -417,7 +417,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMessagesUploadServer"/>.
         /// </remarks>
-        [ApiMethodName("photos.getMessagesUploadServer")]
+        [ApiMethodName("photos.getMessagesUploadServer", Skip = true)]
         public UploadServerInfo GetMessagesUploadServer()
         {
             VkResponse response = _vk.Call("photos.getMessagesUploadServer", VkParameters.Empty);

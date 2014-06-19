@@ -22,6 +22,11 @@
         public int Order { get; set; }
 
         /// <summary>
+        /// Пропускает генерацию юнит теста для этого метода
+        /// </summary>
+        public bool Skip { get; set; }
+
+        /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="name">Название метода</param>

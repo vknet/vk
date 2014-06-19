@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Windows.Forms;
 using VkNet;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Utils;
@@ -17,7 +16,6 @@ namespace VkApiRunner
         public MainForm()
         {
             InitializeComponent();
-
         }
 
         private void btnRun_Click(object sender, EventArgs e)
