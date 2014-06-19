@@ -66,7 +66,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editAlbum"/>.
         /// </remarks>
-        [ApiMethodName("photos.editAlbum")]
+        [ApiMethodName("photos.editAlbum", Skip = true)]
         [ApiVersion("5.9")]
         public bool EditAlbum(long albumId, long? title = null, string description = null, long? ownerId = null, long? privacy = null, long? commentPrivacy = null)
         {
@@ -101,7 +101,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbums"/>.
         /// </remarks>
-        [ApiMethodName("photos.getAlbums")]
+        [ApiMethodName("photos.getAlbums", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<PhotoAlbum> GetAlbums(long? ownerId = null, long? albumIds = null, int? offset = null, int? count = null, long? needSystem = null, long? needCovers = null, long? photoSizes = null)
         {
@@ -145,7 +145,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.get"/>.
         /// </remarks>
-        [ApiMethodName("photos.get")]
+        [ApiMethodName("photos.get", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> Get(long? ownerId = null, long? albumId = null, long? photoIds = null, long? rev = null, long? extended = null, long? feedType = null, long? feed = null, long? photoSizes = null, int? offset = null, int? count = null)
         {
@@ -180,7 +180,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbumsCount"/>.
         /// </remarks>
-        [ApiMethodName("photos.getAlbumsCount")]
+        [ApiMethodName("photos.getAlbumsCount", Skip = true)]
         [ApiVersion("5.9")]
         public int GetAlbumsCount(long? userId = null, long? groupId = null)
         {
@@ -211,7 +211,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfile"/>.
         /// </remarks>
-        [ApiMethodName("photos.getProfile")]
+        [ApiMethodName("photos.getProfile", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, long? photoIds = null, long? rev = null, long? extended = null, long? feedType = null, long? feed = null, long? photoSizes = null, int? offset = null, int? count = null)
         {
@@ -255,7 +255,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getById"/>.
         /// </remarks>
-        [ApiMethodName("photos.getById")]
+        [ApiMethodName("photos.getById", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetById(long photos, long? extended = null, long? photoSizes = null)
         {
@@ -280,7 +280,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUploadServer"/>.
         /// </remarks>
-        [ApiMethodName("photos.getUploadServer")]
+        [ApiMethodName("photos.getUploadServer", Skip = true)]
         [ApiVersion("5.9")]
         public UploadServerInfo GetUploadServer(long? albumId = null, long? groupId = null)
         {
@@ -303,7 +303,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfileUploadServer"/>.
         /// </remarks>
-        [ApiMethodName("photos.getProfileUploadServer")]
+        [ApiMethodName("photos.getProfileUploadServer", Skip = true)]
         [ApiVersion("5.9")]
         public UploadServerInfo GetProfileUploadServer()
         {
@@ -321,7 +321,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getChatUploadServer"/>.
         /// </remarks>
-        [ApiMethodName("photos.getChatUploadServer")]
+        [ApiMethodName("photos.getChatUploadServer", Skip = true)]
         [ApiVersion("5.9")]
         public UploadServerInfo GetChatUploadServer(long chatId, long? cropX = null, long? cropY = null, long? cropWidth = null)
         {
@@ -352,7 +352,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveProfilePhoto"/>.
         /// </remarks>
-        [ApiMethodName("photos.saveProfilePhoto")]
+        [ApiMethodName("photos.saveProfilePhoto", Skip = true)]
         [ApiVersion("5.9")]
         public Photo SaveProfilePhoto(string server = null, string hash = null, string photo = null)
         {
@@ -380,7 +380,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveWallPhoto"/>.
         /// </remarks>
-        [ApiMethodName("photos.saveWallPhoto")]
+        [ApiMethodName("photos.saveWallPhoto", Skip = true)]
         [ApiVersion("5.9")]
         public Photo SaveWallPhoto(long photo, long? userId = null, long? groupId = null, long? server = null, long? hash = null)
         {
@@ -409,7 +409,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getWallUploadServer"/>.
         /// </remarks>
-        [ApiMethodName("photos.getWallUploadServer")]
+        [ApiMethodName("photos.getWallUploadServer", Skip = true)]
         [ApiVersion("5.9")]
         public UploadServerInfo GetWallUploadServer(long? groupId = null)
         {
@@ -430,7 +430,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMessagesUploadServer"/>.
         /// </remarks>
-        [ApiMethodName("photos.getMessagesUploadServer")]
+        [ApiMethodName("photos.getMessagesUploadServer", Skip = true)]
         [ApiVersion("5.9")]
         public UploadServerInfo GetMessagesUploadServer()
         {
@@ -446,7 +446,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMessagesPhoto"/>.
         /// </remarks>
-        [ApiMethodName("photos.saveMessagesPhoto")]
+        [ApiMethodName("photos.saveMessagesPhoto", Skip = true)]
         [ApiVersion("5.9")]
         public Photo SaveMessagesPhoto(string photo)
         {
@@ -469,7 +469,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.report"/>.
         /// </remarks>
-        [ApiMethodName("photos.report")]
+        [ApiMethodName("photos.report", Skip = true)]
         [ApiVersion("5.9")]
         public bool Report(long ownerId, long photoId, VideoReportType reason)
         {
@@ -497,7 +497,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reportComment"/>.
         /// </remarks>
-        [ApiMethodName("photos.reportComment")]
+        [ApiMethodName("photos.reportComment", Skip = true)]
         [ApiVersion("5.9")]
         public bool ReportComment(long ownerId, long commentId, VideoReportType reason)
         {
@@ -531,7 +531,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.search"/>.
         /// </remarks>
-        [ApiMethodName("photos.search")]
+        [ApiMethodName("photos.search", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> Search(string query, int? lat = null, int? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
         {
@@ -574,7 +574,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.save"/>.
         /// </remarks>
-        [ApiMethodName("photos.save")]
+        [ApiMethodName("photos.save", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> Save(long? albumId = null, long? groupId = null, long? server = null, long? photosList = null, long? hash = null, long? latitude = null, long? longitude = null, long? caption = null, long? description = null)
         {
@@ -606,7 +606,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.copy"/>.
         /// </remarks>
-        [ApiMethodName("photos.copy")]
+        [ApiMethodName("photos.copy", Skip = true)]
         [ApiVersion("5.9")]
         public long Copy(long ownerId, long photoId, long? accessKey = null)
         {
@@ -634,7 +634,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.edit"/>.
         /// </remarks>
-        [ApiMethodName("photos.edit")]
+        [ApiMethodName("photos.edit", Skip = true)]
         [ApiVersion("5.9")]
         public bool Edit(long photoId, long? ownerId = null, long? caption = null)
         {
@@ -662,7 +662,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.move"/>.
         /// </remarks>
-        [ApiMethodName("photos.move")]
+        [ApiMethodName("photos.move", Skip = true)]
         [ApiVersion("5.9")]
         public bool Move(long targetAlbumId, long photoId, long? ownerId = null)
         {
@@ -688,7 +688,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.makeCover"/>.
         /// </remarks>
-        [ApiMethodName("photos.makeCover")]
+        [ApiMethodName("photos.makeCover", Skip = true)]
         [ApiVersion("5.9")]
         public bool MakeCover(long photoId, long? ownerId = null, long? albumId = null)
         {
@@ -715,7 +715,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderAlbums"/>.
         /// </remarks>
-        [ApiMethodName("photos.reorderAlbums")]
+        [ApiMethodName("photos.reorderAlbums", Skip = true)]
         [ApiVersion("5.9")]
         public bool ReorderAlbums(long albumId, long? ownerId = null, long? before = null, long? after = null)
         {
@@ -744,7 +744,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderPhotos"/>.
         /// </remarks>
-        [ApiMethodName("photos.reorderPhotos")]
+        [ApiMethodName("photos.reorderPhotos", Skip = true)]
         [ApiVersion("5.9")]
         public bool ReorderPhotos(long photoId, long? ownerId = null, long? before = null, long? after = null)
         {
@@ -783,7 +783,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAll"/>.
         /// </remarks>
-        [ApiMethodName("photos.getAll")]
+        [ApiMethodName("photos.getAll", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetAll(long? ownerId = null, long? extended = null, int? offset = null, int? count = null, long? photoSizes = null, bool? noServiceAlbums = null)
         {
@@ -817,7 +817,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos"/>.
         /// </remarks>
-        [ApiMethodName("photos.getUserPhotos")]
+        [ApiMethodName("photos.getUserPhotos", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetUserPhotos(long? userId = null, int? offset = null, int? count = null, long? extended = null, long? sort = null)
         {
@@ -848,7 +848,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteAlbum"/>.
         /// </remarks>
-        [ApiMethodName("photos.deleteAlbum")]
+        [ApiMethodName("photos.deleteAlbum", Skip = true)]
         [ApiVersion("5.9")]
         public bool DeleteAlbum(long albumId, long? groupId = null)
         {
@@ -875,7 +875,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.delete"/>.
         /// </remarks>
-        [ApiMethodName("photos.delete")]
+        [ApiMethodName("photos.delete", Skip = true)]
         [ApiVersion("5.9")]
         public bool Delete(long photoId, long? ownerId = null)
         {
@@ -902,7 +902,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.confirmTag"/>.
         /// </remarks>
-        [ApiMethodName("photos.confirmTag")]
+        [ApiMethodName("photos.confirmTag", Skip = true)]
         [ApiVersion("5.9")]
         public bool ConfirmTag(long photoId, long tagId, long? ownerId = null)
         {
@@ -933,7 +933,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments"/>.
         /// </remarks>
-        [ApiMethodName("photos.getComments")]
+        [ApiMethodName("photos.getComments", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Comment> GetComments(long photoId, long? ownerId = null, long? needLikes = null, int? offset = null, int? count = null, long? sort = null, long? accessKey = null)
         {
@@ -968,7 +968,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments"/>.
         /// </remarks>
-        [ApiMethodName("photos.getAllComments")]
+        [ApiMethodName("photos.getAllComments", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Comment> GetAllComments(long? ownerId = null, long? albumId = null, long? needLikes = null, int? offset = null, int? count = null)
         {
@@ -1017,7 +1017,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createComment"/>.
         /// </remarks>
-        [ApiMethodName("photos.createComment")]
+        [ApiMethodName("photos.createComment", Skip = true)]
         [ApiVersion("5.9")]
         public long CreateComment(long photoId, long? ownerId = null, long? message = null, long? attachments = null, long? fromGroup = null, long? replyToComment = null, long? accessKey = null)
         {
@@ -1048,7 +1048,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteComment"/>.
         /// </remarks>
-        [ApiMethodName("photos.deleteComment")]
+        [ApiMethodName("photos.deleteComment", Skip = true)]
         [ApiVersion("5.9")]
         public bool DeleteComment(long commentId, long? ownerId = null)
         {
@@ -1073,7 +1073,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.restoreComment"/>.
         /// </remarks>
-        [ApiMethodName("photos.restoreComment")]
+        [ApiMethodName("photos.restoreComment", Skip = true)]
         [ApiVersion("5.9")]
         public long RestoreComment(long commentId, long? ownerId = null)
         {
@@ -1111,7 +1111,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editComment"/>.
         /// </remarks>
-        [ApiMethodName("photos.editComment")]
+        [ApiMethodName("photos.editComment", Skip = true)]
         [ApiVersion("5.9")]
         public bool EditComment(long commentId, long? ownerId = null, long? message = null, long? attachments = null)
         {
@@ -1137,7 +1137,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getTags"/>.
         /// </remarks>
-        [ApiMethodName("photos.getTags")]
+        [ApiMethodName("photos.getTags", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Tag> GetTags(long photoId, long? ownerId = null, long? accessKey = null)
         {
@@ -1168,7 +1168,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.putTag"/>.
         /// </remarks>
-        [ApiMethodName("photos.putTag")]
+        [ApiMethodName("photos.putTag", Skip = true)]
         [ApiVersion("5.9")]
         public long PutTag(long photoId, long userId, long? ownerId = null, long? x = null, long? y = null, long? x2 = null, long? y2 = null)
         {
@@ -1201,7 +1201,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.removeTag"/>.
         /// </remarks>
-        [ApiMethodName("photos.removeTag")]
+        [ApiMethodName("photos.removeTag", Skip = true)]
         [ApiVersion("5.9")]
         public bool RemoveTag(long tagId, long photoId, long? ownerId = null)
         {
@@ -1226,7 +1226,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags"/>.
         /// </remarks>
-        [ApiMethodName("photos.getNewTags")]
+        [ApiMethodName("photos.getNewTags", Skip = true)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetNewTags(int? offset = null, int? count = null)
         {
