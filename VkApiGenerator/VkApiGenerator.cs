@@ -72,15 +72,17 @@ namespace VkApiGenerator
             {
                 if (m.Skip) continue;
 
-                var test = new UnitTestInfo();
-                test.Name = string.Format("{0}_{1}", m.Name, (new Random()).Next());
-                test.Url = Utilities.PreetyPrintApiUrl(api.GetApiUrl(m.ApiMethod, m.Params));
+                var test = new UnitTestInfo
+                {
+                    Name = string.Format("{0}_", m.Name),
+                    Url = Utilities.PreetyPrintApiUrl(api.GetApiUrl(m.ApiMethod, m.Params))
+                };
 
                 // TODO refactor this shit
                 int index = test.Url.IndexOf("access_token", StringComparison.InvariantCulture);
                 if (index != -1)
                 {
-                    test.Url = test.Url.Substring(0, index) + "access_token=token";";
+                    test.Url = test.Url.Substring(0, index) + "access_token=token\";";
                 }
 
                 test.Json = Utilities.PreetyPrintJson(api.Invoke(m.ApiMethod, m.Params));
@@ -116,6 +118,7 @@ namespace VkApiGenerator
                 }
             }
 
+            result.Params.Add("v", "5.9");
             return result;
         }
     }
