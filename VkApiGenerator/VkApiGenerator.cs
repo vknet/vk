@@ -6,6 +6,7 @@ using System.Reflection;
 using RazorEngine;
 using VkApiGenerator.Model;
 using VkApiGenerator.Utils;
+using VkNet.Utils;
 
 namespace VkApiGenerator
 {
@@ -44,14 +45,53 @@ namespace VkApiGenerator
 
             foreach (var methodInfo in methods)
             {
-                if (methodInfo.GetParameters().Length == 0)
-                {
-                    Debug.WriteLine(" -- " + methodInfo.Name);
+//                if (methodInfo.GetParameters().Length == 0)
+//                {
 
-                }
+                    Debug.WriteLine(GetMethodData(methodInfo).ToString());
+//                }
             }
 
             throw new NotImplementedException();
+        }
+
+        public VkMethodGenInfo GetMethodData(MethodInfo method)
+        {
+            var result = new VkMethodGenInfo {Name = method.Name};
+
+            var apiNameAttr = method.GetCustomAttribute<ApiMethodName>();
+            if (apiNameAttr != null)
+            {
+                result.ApiMethod = apiNameAttr.Name;
+                result.Order = apiNameAttr.Order;
+            }
+
+            return result;
+        }
+    }
+
+    public class VkMethodGenInfo
+    {
+        public string Name { get; set; }
+        public string ApiMethod { get; set; }
+        public int Order { get; set; }
+        public IDictionary<string, object> Params;
+
+        public VkMethodGenInfo()
+        {
+            Params = new Dictionary<string, object>();
+        }
+
+        public override string ToString()
+        {
+            string m = string.Format("-- {0}: {1} [{2}] (", Name, ApiMethod, Order);
+            foreach (var p in Params)
+            {
+                m += string.Format("{{ {0} : {1}}},", p.Key, p.Value);
+            }
+            m += ")" + Environment.NewLine;
+
+            return m;
         }
     }
 }

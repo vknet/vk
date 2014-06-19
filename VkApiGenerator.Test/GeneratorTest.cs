@@ -66,7 +66,7 @@ public ReadOnlyCollection<> GetUsers(int? count = null, int? offset = null)
             var gen = new VkApiGenerator();
             gen.GenerateUnitTest("Photos");
 
-
+            Assert.Fail();
         }
     }
 }

@@ -33,6 +33,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createAlbum"/>.
         /// </remarks>
+        [ApiMethodName("photos.createAlbum")]
         [VkValue("title", "hello world")]
         [VkValue("description", "description for album")]
         public PhotoAlbum CreateAlbum(long title, long? groupId = null, string description = null, long? commentPrivacy = null, long? privacy = null)
@@ -64,6 +65,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editAlbum"/>.
         /// </remarks>
+        [ApiMethodName("photos.editAlbum")]
         public bool EditAlbum(long albumId, long? title = null, string description = null, long? ownerId = null, long? privacy = null, long? commentPrivacy = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
@@ -97,6 +99,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbums"/>.
         /// </remarks>
+        [ApiMethodName("photos.getAlbums")]
         public ReadOnlyCollection<PhotoAlbum> GetAlbums(long? ownerId = null, long? albumIds = null, int? offset = null, int? count = null, long? needSystem = null, long? needCovers = null, long? photoSizes = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -139,6 +142,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.get"/>.
         /// </remarks>
+        [ApiMethodName("photos.get")]
         public ReadOnlyCollection<Photo> Get(long? ownerId = null, long? albumId = null, long? photoIds = null, long? rev = null, long? extended = null, long? feedType = null, long? feed = null, long? photoSizes = null, int? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -172,6 +176,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbumsCount"/>.
         /// </remarks>
+        [ApiMethodName("photos.getAlbumsCount")]
         public int GetAlbumsCount(long? userId = null, long? groupId = null)
         {
             var parameters = new VkParameters
@@ -201,6 +206,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfile"/>.
         /// </remarks>
+        [ApiMethodName("photos.getProfile")]
         public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, long? photoIds = null, long? rev = null, long? extended = null, long? feedType = null, long? feed = null, long? photoSizes = null, int? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -243,6 +249,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getById"/>.
         /// </remarks>
+        [ApiMethodName("photos.getById")]
         public ReadOnlyCollection<Photo> GetById(long photos, long? extended = null, long? photoSizes = null)
         {
             var parameters = new VkParameters
@@ -266,6 +273,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUploadServer"/>.
         /// </remarks>
+        [ApiMethodName("photos.getUploadServer")]
         public UploadServerInfo GetUploadServer(long? albumId = null, long? groupId = null)
         {
 
@@ -287,6 +295,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfileUploadServer"/>.
         /// </remarks>
+        [ApiMethodName("photos.getProfileUploadServer")]
         public UploadServerInfo GetProfileUploadServer()
         {
             return _vk.Call("photos.getProfileUploadServer", VkParameters.Empty);
@@ -303,6 +312,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getChatUploadServer"/>.
         /// </remarks>
+        [ApiMethodName("photos.getChatUploadServer")]
         public UploadServerInfo GetChatUploadServer(long chatId, long? cropX = null, long? cropY = null, long? cropWidth = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => chatId);
@@ -332,6 +342,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveProfilePhoto"/>.
         /// </remarks>
+        [ApiMethodName("photos.saveProfilePhoto")]
         public Photo SaveProfilePhoto(string server = null, string hash = null, string photo = null)
         {
             var parameters = new VkParameters
@@ -358,6 +369,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveWallPhoto"/>.
         /// </remarks>
+        [ApiMethodName("photos.saveWallPhoto")]
         public Photo SaveWallPhoto(long photo, long? userId = null, long? groupId = null, long? server = null, long? hash = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -385,6 +397,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getWallUploadServer"/>.
         /// </remarks>
+        [ApiMethodName("photos.getWallUploadServer")]
         public UploadServerInfo GetWallUploadServer(long? groupId = null)
         {
             var parameters = new VkParameters
@@ -404,6 +417,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMessagesUploadServer"/>.
         /// </remarks>
+        [ApiMethodName("photos.getMessagesUploadServer")]
         public UploadServerInfo GetMessagesUploadServer()
         {
             VkResponse response = _vk.Call("photos.getMessagesUploadServer", VkParameters.Empty);
@@ -418,6 +432,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMessagesPhoto"/>.
         /// </remarks>
+        [ApiMethodName("photos.saveMessagesPhoto")]
         public Photo SaveMessagesPhoto(string photo)
         {
             var parameters = new VkParameters
@@ -439,6 +454,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.report"/>.
         /// </remarks>
+        [ApiMethodName("photos.report")]
         public bool Report(long ownerId, long photoId, VideoReportType reason)
         {
             VkErrors.ThrowIfNumberIsNegative(() => photoId);
@@ -465,6 +481,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reportComment"/>.
         /// </remarks>
+        [ApiMethodName("photos.reportComment")]
         public bool ReportComment(long ownerId, long commentId, VideoReportType reason)
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
@@ -497,6 +514,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.search"/>.
         /// </remarks>
+        [ApiMethodName("photos.search")]
         public ReadOnlyCollection<Photo> Search(string query, int? lat = null, int? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
         {
             // todo add check for latitude and longitude throught VkErrors.ThrowIfNumberNotInRange
@@ -538,6 +556,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.save"/>.
         /// </remarks>
+        [ApiMethodName("photos.save")]
         public ReadOnlyCollection<Photo> Save(long? albumId = null, long? groupId = null, long? server = null, long? photosList = null, long? hash = null, long? latitude = null, long? longitude = null, long? caption = null, long? description = null)
         {
 
@@ -568,6 +587,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.copy"/>.
         /// </remarks>
+        [ApiMethodName("photos.copy")]
         public long Copy(long ownerId, long photoId, long? accessKey = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => photoId);
@@ -594,6 +614,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.edit"/>.
         /// </remarks>
+        [ApiMethodName("photos.edit")]
         public bool Edit(long photoId, long? ownerId = null, long? caption = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => photoId);
@@ -620,6 +641,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.move"/>.
         /// </remarks>
+        [ApiMethodName("photos.move")]
         public bool Move(long targetAlbumId, long photoId, long? ownerId = null)
         {
             var parameters = new VkParameters
@@ -644,6 +666,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.makeCover"/>.
         /// </remarks>
+        [ApiMethodName("photos.makeCover")]
         public bool MakeCover(long photoId, long? ownerId = null, long? albumId = null)
         {
             var parameters = new VkParameters
@@ -669,6 +692,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderAlbums"/>.
         /// </remarks>
+        [ApiMethodName("photos.reorderAlbums")]
         public bool ReorderAlbums(long albumId, long? ownerId = null, long? before = null, long? after = null)
         {
 
@@ -696,6 +720,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderPhotos"/>.
         /// </remarks>
+        [ApiMethodName("photos.reorderPhotos")]
         public bool ReorderPhotos(long photoId, long? ownerId = null, long? before = null, long? after = null)
         {
 
@@ -733,6 +758,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAll"/>.
         /// </remarks>
+        [ApiMethodName("photos.getAll")]
         public ReadOnlyCollection<Photo> GetAll(long? ownerId = null, long? extended = null, int? offset = null, int? count = null, long? photoSizes = null, bool? noServiceAlbums = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -765,6 +791,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos"/>.
         /// </remarks>
+        [ApiMethodName("photos.getUserPhotos")]
         public ReadOnlyCollection<Photo> GetUserPhotos(long? userId = null, int? offset = null, int? count = null, long? extended = null, long? sort = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -794,6 +821,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteAlbum"/>.
         /// </remarks>
+        [ApiMethodName("photos.deleteAlbum")]
         public bool DeleteAlbum(long albumId, long? groupId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
@@ -819,6 +847,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.delete"/>.
         /// </remarks>
+        [ApiMethodName("photos.delete")]
         public bool Delete(long photoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => photoId);
@@ -844,6 +873,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.confirmTag"/>.
         /// </remarks>
+        [ApiMethodName("photos.confirmTag")]
         public bool ConfirmTag(long photoId, long tagId, long? ownerId = null)
         {
 
@@ -873,6 +903,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments"/>.
         /// </remarks>
+        [ApiMethodName("photos.getComments")]
         public ReadOnlyCollection<Comment> GetComments(long photoId, long? ownerId = null, long? needLikes = null, int? offset = null, int? count = null, long? sort = null, long? accessKey = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -906,6 +937,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments"/>.
         /// </remarks>
+        [ApiMethodName("photos.getAllComments")]
         public ReadOnlyCollection<Comment> GetAllComments(long? ownerId = null, long? albumId = null, long? needLikes = null, int? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
@@ -953,6 +985,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createComment"/>.
         /// </remarks>
+        [ApiMethodName("photos.createComment")]
         public long CreateComment(long photoId, long? ownerId = null, long? message = null, long? attachments = null, long? fromGroup = null, long? replyToComment = null, long? accessKey = null)
         {
 
@@ -982,6 +1015,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteComment"/>.
         /// </remarks>
+        [ApiMethodName("photos.deleteComment")]
         public bool DeleteComment(long commentId, long? ownerId = null)
         {
 
@@ -1005,6 +1039,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.restoreComment"/>.
         /// </remarks>
+        [ApiMethodName("photos.restoreComment")]
         public long RestoreComment(long commentId, long? ownerId = null)
         {
 
@@ -1041,6 +1076,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editComment"/>.
         /// </remarks>
+        [ApiMethodName("photos.editComment")]
         public bool EditComment(long commentId, long? ownerId = null, long? message = null, long? attachments = null)
         {
             var parameters = new VkParameters
@@ -1065,6 +1101,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getTags"/>.
         /// </remarks>
+        [ApiMethodName("photos.getTags")]
         public ReadOnlyCollection<Tag> GetTags(long photoId, long? ownerId = null, long? accessKey = null)
         {
 
@@ -1094,6 +1131,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.putTag"/>.
         /// </remarks>
+        [ApiMethodName("photos.putTag")]
         public long PutTag(long photoId, long userId, long? ownerId = null, long? x = null, long? y = null, long? x2 = null, long? y2 = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => ownerId);
@@ -1125,6 +1163,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.removeTag"/>.
         /// </remarks>
+        [ApiMethodName("photos.removeTag")]
         public bool RemoveTag(long tagId, long photoId, long? ownerId = null)
         {
             var parameters = new VkParameters
@@ -1148,6 +1187,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags"/>.
         /// </remarks>
+        [ApiMethodName("photos.getNewTags")]
         public ReadOnlyCollection<Photo> GetNewTags(int? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
