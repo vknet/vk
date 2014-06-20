@@ -51,12 +51,12 @@ namespace VkNet.Model
         /// <summary>
         /// настройки приватности для просмотра альбома
         /// </summary>
-        public string Privacy { get; set; }
+        public long? Privacy { get; set; }
 
         /// <summary>
         /// настройки приватности для комментирования альбома
         /// </summary>
-        public string CommentPrivacy { get; set; }
+        public long? CommentPrivacy { get; set; }
 
         /// <summary>
         /// может ли текущий пользователь добавлять фотографии в альбом
@@ -86,8 +86,8 @@ namespace VkNet.Model
             album.Created = response["created"];
             album.Updated = response["updated"];
             album.Size = response["size"];
-            album.Privacy = response["privacy"];
-            album.CommentPrivacy = response["comment_privacy"];
+            album.Privacy = Utilities.GetNullableLongId(response["privacy"]);
+            album.CommentPrivacy = Utilities.GetNullableLongId(response["comment_privacy"]);
             album.CanUpload = response["can_upload"];
             album.PrivacyView = response["privacy_view"];
             album.ThumbSrc = response["thumb_src"];

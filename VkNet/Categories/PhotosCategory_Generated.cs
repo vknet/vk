@@ -33,11 +33,11 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createAlbum"/>.
         /// </remarks>
-        [ApiMethodName("photos.createAlbum")]
-        [VkValue("title", "hello world")]
+        [ApiMethodName("photos.createAlbum", Skip = true)]
+        [VkValue("title", "hello world 111")]
         [VkValue("description", "description for album")]
-        [ApiVersion("5.9")] 
-        public PhotoAlbum CreateAlbum(long title, long? groupId = null, string description = null, long? commentPrivacy = null, long? privacy = null)
+        [ApiVersion("5.9")]
+        public PhotoAlbum CreateAlbum(string title, long? groupId = null, string description = null, long? commentPrivacy = null, long? privacy = null)
         {
             var parameters = new VkParameters
                 {
@@ -68,7 +68,10 @@ namespace VkNet.Categories
         /// </remarks>
         [ApiMethodName("photos.editAlbum", Skip = true)]
         [ApiVersion("5.9")]
-        public bool EditAlbum(long albumId, long? title = null, string description = null, long? ownerId = null, long? privacy = null, long? commentPrivacy = null)
+        [VkValue("album_id", 197266686)]
+        [VkValue("title", "new album title")]
+        [VkValue("description", "new description")]
+        public bool EditAlbum(long albumId, string title = null, string description = null, long? ownerId = null, long? privacy = null, long? commentPrivacy = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
 
@@ -102,6 +105,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbums"/>.
         /// </remarks>
         [ApiMethodName("photos.getAlbums", Skip = true)]
+        [VkValue("owner_id", 1)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<PhotoAlbum> GetAlbums(long? ownerId = null, long? albumIds = null, int? offset = null, int? count = null, long? needSystem = null, long? needCovers = null, long? photoSizes = null)
         {
@@ -181,6 +185,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbumsCount"/>.
         /// </remarks>
         [ApiMethodName("photos.getAlbumsCount", Skip = true)]
+        [VkValue("user_id", 1)]
         [ApiVersion("5.9")]
         public int GetAlbumsCount(long? userId = null, long? groupId = null)
         {
@@ -848,7 +853,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteAlbum"/>.
         /// </remarks>
-        [ApiMethodName("photos.deleteAlbum", Skip = true)]
+        [ApiMethodName("photos.deleteAlbum")]
+        [VkValue("album_id", 197305423)]
         [ApiVersion("5.9")]
         public bool DeleteAlbum(long albumId, long? groupId = null)
         {
