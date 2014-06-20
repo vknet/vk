@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
 using System.Reflection;
 using System.Text;
-using JetBrains.Annotations;
 using RazorEngine;
 using VkApiGenerator.Model;
 using VkApiGenerator.Utils;
@@ -31,7 +28,7 @@ namespace VkApiGenerator
             return string.Format(Template.ThrowIfNumberIsNegative, paramName);
         }
 
-        public string GenerateUnitTest(string categoryName)
+        public string GenerateUnitTest(string categoryName, string accessToken)
         {
             // 1. read assembly
             // 2. find methods in particular category
@@ -52,17 +49,17 @@ namespace VkApiGenerator
             var genMethods = new List<VkMethodGenInfo>();
             foreach (var methodInfo in methods)
             {
-                if (methodInfo.GetParameters().Length == 0)
-                {
+//                if (methodInfo.GetParameters().Length == 0)
+//                {
                     var genInfo = GetMethodData(methodInfo);
                     Debug.WriteLine(genInfo.ToString());
                     genMethods.Add(genInfo);
-                }
+//                }
             }
 
             // invoke and get json and url
             var api = new VkApi();
-            api.Authorize("111");
+            api.Authorize(accessToken);
             // TODO must be authorized
 
             var unittests = new List<UnitTestInfo>();
@@ -94,7 +91,9 @@ namespace VkApiGenerator
 
             File.WriteAllText(@"d:\vk.txt", testCategory.ToString());
 
-            throw new NotImplementedException();
+            return string.Empty;
+
+            //throw new NotImplementedException();
         }
 
         public VkMethodGenInfo GetMethodData(MethodInfo method)
