@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using FluentNUnit;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Model;
 using VkNet.Utils;
-using VkNet.Utils.Tests;
 
 namespace VkNet.Tests.Categories
 {
