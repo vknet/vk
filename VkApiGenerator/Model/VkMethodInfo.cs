@@ -85,6 +85,8 @@ namespace VkApiGenerator.Model
 
             if (text.Contains("идентификатор")) return ReturnType.Long;
 
+            if (text.Contains("строка")) return ReturnType.String;
+
             if (text.Contains("1")) return ReturnType.Bool;
 
             return ReturnType.Unknown;

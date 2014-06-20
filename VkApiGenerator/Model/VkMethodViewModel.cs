@@ -39,6 +39,10 @@ namespace VkApiGenerator.Model
                     ReturnType = "Unknown";
                     break;
 
+                case Model.ReturnType.String:
+                    ReturnType = "string";
+                    break;
+
                 default:
                     throw new ArgumentException("Unknown return type: " + method.ReturnType);
             }

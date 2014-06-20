@@ -121,7 +121,9 @@ namespace VkApiGenerator.Console
             var sb = new StringBuilder().AppendFormat(@"namespace VkNet.Categories
 {{
     using System.Collections.ObjectModel;
+
     using Utils;
+    using Model;
 
     public class {0}Category
     {{

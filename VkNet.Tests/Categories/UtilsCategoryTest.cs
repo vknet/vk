@@ -11,6 +11,7 @@ namespace VkNet.Tests.Categories
 {
     using FluentNUnit;
 
+    [TestFixture]
     public class UtilsCategoryTest
     {
         private UtilsCategory GetMockedUtilsCategory(string url, string json)

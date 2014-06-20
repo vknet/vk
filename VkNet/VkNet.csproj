@@ -57,6 +57,9 @@
   <ItemGroup>
     <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
+    <Compile Include="Categories\PhotosCategory_Generated.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Enums\Filters\CountersFilter.cs" />
     <Compile Include="Categories\DatabaseCategory.cs" />
     <Compile Include="Categories\FaveCategory.cs" />
@@ -131,6 +134,7 @@
     <Compile Include="Model\Attachments\Graffiti.cs" />
     <Compile Include="Model\Attachments\Link.cs" />
     <Compile Include="Model\Attachments\Poll.cs" />
+    <Compile Include="Model\PhotoAlbum.cs" />
     <Compile Include="Model\PollAnswer.cs" />
     <Compile Include="Model\PostSource.cs" />
     <Compile Include="Model\Previews.cs" />
@@ -142,8 +146,10 @@
     <Compile Include="Model\Street.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\University.cs" />
+    <Compile Include="Model\UploadServerInfo.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />
+    <Compile Include="Utils\ApiMethodNameAttribute.cs" />
     <Compile Include="Utils\ApiVersionAttribute.cs" />
     <Compile Include="Utils\DefaultValueAttribute.cs" />
     <Compile Include="Utils\Cookies.cs" />
@@ -163,6 +169,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VkResponseToSafetyEnumCastGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils\VkValueAttribute.cs" />
     <Compile Include="Utils\WebCallResult.cs" />
     <Compile Include="Model\Coordinates.cs" />
     <Compile Include="Utils\WebCall.cs" />

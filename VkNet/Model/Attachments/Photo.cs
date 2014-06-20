@@ -86,6 +86,21 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public long? PostId { get; set; }
 
+        /// <summary>
+        /// идентификатор пользователя, сделавшего отметку
+        /// </summary>
+        public long? PlacerId { get; set; }
+
+        /// <summary>
+        /// дата создания отметки
+        /// </summary>
+        public DateTime? TagCreated { get; set; }
+
+        /// <summary>
+        /// идентификатор отметки
+        /// </summary>
+        public long? TagId { get; set; }
+
         #region Методы
 
         internal static Photo FromJson(VkResponse response)
@@ -93,7 +108,7 @@ namespace VkNet.Model.Attachments
             var photo = new Photo();
 
             photo.Id = response["id"];
-            photo.AlbumId = response["album_id"];
+            photo.AlbumId = response["album_id"] ?? response["aid"];
             photo.OwnerId = response["owner_id"];
             photo.Photo75 = response["photo_75"];
             photo.Photo130 = response["photo_130"];
@@ -111,6 +126,10 @@ namespace VkNet.Model.Attachments
 
             // из описания альбом с фотографиями
             photo.AccessKey = response["access_key"];
+
+            photo.PlacerId = Utilities.GetNullableLongId(response["placer_id"]);
+            photo.TagCreated = response["tag_created"];
+            photo.TagId = response["tag_id"];
 
             return photo;
         }

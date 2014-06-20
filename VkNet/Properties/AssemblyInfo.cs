@@ -41,3 +41,4 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("VkNet.Tests")]
 [assembly: InternalsVisibleTo("VkApiRunner")]
 [assembly: InternalsVisibleTo("Injector")]
+[assembly: InternalsVisibleTo("VkApiGenerator")]
