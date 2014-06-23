@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -101,6 +102,26 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public long? TagId { get; set; }
 
+        /// <summary>
+        /// Лайки
+        /// </summary>
+        public Likes Likes { get; set; }
+
+        /// <summary>
+        /// Возможность комментирования фотографии
+        /// </summary>
+        public bool? CanComment { get; set; }
+
+        /// <summary>
+        /// Комментарии
+        /// </summary>
+        public Comments Comments { get; set; }
+
+        /// <summary>
+        /// Теги
+        /// </summary>
+        public Tags Tags { get; set; } 
+
         #region Методы
 
         internal static Photo FromJson(VkResponse response)
@@ -130,6 +151,12 @@ namespace VkNet.Model.Attachments
             photo.PlacerId = Utilities.GetNullableLongId(response["placer_id"]);
             photo.TagCreated = response["tag_created"];
             photo.TagId = response["tag_id"];
+
+            photo.Likes = response["likes"];
+            photo.Comments = response["comments"];
+            photo.CanComment = response["can_comment"];
+
+            photo.Tags = response["tags"];
 
             return photo;
         }

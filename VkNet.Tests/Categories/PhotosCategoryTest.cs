@@ -5,6 +5,7 @@ using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Model;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
@@ -184,9 +185,9 @@ namespace VkNet.Tests.Categories
 
         #region GetProfile
         [Test]
-        public void GetProfile_()
+        public void GetProfile_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getProfile?extended=1&owner_id=1&offset=3&rev=1&count=2&v=5.9&access_token=token";
+            const string url = "https://api.vk.com/method/photos.getProfile?owner_id=1&rev=1&extended=1&count=2&offset=3&v=5.9&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -242,15 +243,24 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            Assert.Fail("undone");
+            ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).GetProfile(ownerId: 1, offset: 3, rev: true, count: 2, extended:true);
+            photos.Count.ShouldEqual(2);
+            photos[0].Id.ShouldEqual(278184324);
+            photos[0].PostId.ShouldEqual(45430);
+            photos[0].Likes.Count.ShouldEqual(471203);
+            photos[0].Likes.UserLikes.ShouldEqual(false);
+            photos[0].Comments.Count.ShouldEqual(1);
+            photos[0].CanComment.ShouldEqual(false);
+            photos[0].Tags.Count.ShouldEqual(0);
+
         }
         #endregion
 
         #region GetAll
         [Test]
-        public void GetAll_()
+        public void GetAll_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getAll?count=2&offset=4&owner_id=1&v=5.9&access_token=token";
+            const string url = "https://api.vk.com/method/photos.getAll?owner_id=1&count=2&offset=4&v=5.9&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -286,16 +296,29 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            Assert.Fail("undone");
+            ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).GetAll(ownerId: 1, offset: 4, count: 2);
+            photos.Count.ShouldEqual(2);
+
+            photos[0].Id.ShouldEqual(328693256);
+            photos[0].AlbumId.ShouldEqual(-7);
+            photos[0].OwnerId.ShouldEqual(1);
+            photos[0].Photo75.ShouldEqual(new Uri("http://cs7004.vk.me/c7006/v7006001/26e37/xOF6D9lY3CU.jpg"));
+            photos[0].Photo130.ShouldEqual(new Uri("http://cs7004.vk.me/c7006/v7006001/26e38/3atNlPEJpaA.jpg"));
+            photos[0].Photo604.ShouldEqual(new Uri("http://cs7004.vk.me/c7006/v7006001/26e39/OfHtSC9qtuA.jpg"));
+            photos[0].Photo807.ShouldEqual(new Uri("http://cs7004.vk.me/c7006/v7006001/26e3a/el6ZcXa9WSc.jpg"));
+            photos[0].Width.ShouldEqual(609);
+            photos[0].Height.ShouldEqual(574);
+            photos[0].Text.ShouldEqual("Сегодня должности раздаются чиновниками, которые боятся конкуренции и подбирают себе все менее талантливых и все более беспомощных подчиненных. Государственные посты должны распределяться на основе прозрачных механизмов, в том числе, прямых выборов.");
+            photos[0].CreateTime.ShouldEqual(new DateTime(2014, 4, 28, 8, 12, 7));
         }
 
 #endregion
 
         #region Search
         [Test]
-        public void Search_()
+        public void Search_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.search?offset=2&q=порно&count=3&v=5.9&access_token=token";
+            const string url = "https://api.vk.com/method/photos.search?q=порно&offset=2&count=3&v=5.9&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -347,7 +370,22 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            Assert.Fail("undone");
+            ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).Search(query: "порно", offset:2, count:3);
+
+            photos.Count.ShouldEqual(3);
+
+            photos[0].Id.ShouldEqual(331520481);
+            photos[0].AlbumId.ShouldEqual(182104020);
+            photos[0].OwnerId.ShouldEqual(-49512556);
+            photos[0].UserId.ShouldEqual(100);
+            photos[0].Photo75.ShouldEqual(new Uri("http://cs620223.vk.me/v620223385/bd1f/SajcsJOh7hk.jpg"));
+            photos[0].Photo130.ShouldEqual(new Uri("http://cs620223.vk.me/v620223385/bd20/85-Qkc4oNH8.jpg"));
+            photos[0].Photo604.ShouldEqual(new Uri("http://cs620223.vk.me/v620223385/bd21/88vFsC-Z_FE.jpg"));
+            photos[0].Photo807.ShouldEqual(new Uri("http://cs620223.vk.me/v620223385/bd22/YqRauv0neMY.jpg"));
+            photos[0].Width.ShouldEqual(807);
+            photos[0].Height.ShouldEqual(515);
+            photos[0].Text.ShouldEqual("🍓 [club49512556|ЗАХОДИ К НАМ]\nчастное фото секси обнаженные девочки малолетки порно голые сиськи попки эротика няша шлюха грудь секс instagirls instagram лето\n#секс #девушки #девочки #instagram #instagirls #няша #InstaSize #лето #ПОПКИ");
+            photos[0].CreateTime.ShouldEqual(new DateTime(2014, 6, 22, 20, 49, 48));  //  2014-06-22 20:49:48.000
         }
 #endregion
 

@@ -536,6 +536,7 @@ namespace VkNet.Categories
         public ReadOnlyCollection<Photo> Search(string query, int? lat = null, int? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
         {
             // todo add check for latitude and longitude throught VkErrors.ThrowIfNumberNotInRange
+            // TODO add verstion with totalCount
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => radius);
