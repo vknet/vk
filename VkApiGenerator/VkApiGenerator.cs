@@ -9,6 +9,7 @@ using RazorEngine;
 using VkApiGenerator.Model;
 using VkApiGenerator.Utils;
 using VkNet;
+using VkNet.Enums.Filters;
 using VkNet.Utils;
 
 namespace VkApiGenerator
@@ -49,16 +50,21 @@ namespace VkApiGenerator
             var genMethods = new List<VkMethodGenInfo>();
             foreach (var methodInfo in methods)
             {
-//                if (methodInfo.GetParameters().Length == 0)
-//                {
-                    var genInfo = GetMethodData(methodInfo);
-                    Debug.WriteLine(genInfo.ToString());
-                    genMethods.Add(genInfo);
-//                }
+                var genInfo = GetMethodData(methodInfo);
+
+                if (string.IsNullOrEmpty(genInfo.ApiMethod)) continue;
+
+                Debug.WriteLine(genInfo.ToString());
+
+                genMethods.Add(genInfo);
+
             }
 
             // invoke and get json and url
             var api = new VkApi();
+
+            
+
             api.Authorize(accessToken);
             // TODO must be authorized
 

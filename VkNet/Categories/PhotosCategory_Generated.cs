@@ -33,9 +33,6 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createAlbum"/>.
         /// </remarks>
-        [ApiMethodName("photos.createAlbum", Skip = true)]
-        [VkValue("title", "hello world 111")]
-        [VkValue("description", "description for album")]
         [ApiVersion("5.9")]
         public PhotoAlbum CreateAlbum(string title, long? groupId = null, string description = null, long? commentPrivacy = null, long? privacy = null)
         {
@@ -66,11 +63,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editAlbum"/>.
         /// </remarks>
-        [ApiMethodName("photos.editAlbum", Skip = true)]
         [ApiVersion("5.9")]
-        [VkValue("album_id", 197266686)]
-        [VkValue("title", "new album title")]
-        [VkValue("description", "new description")]
         public bool EditAlbum(long albumId, string title = null, string description = null, long? ownerId = null, long? privacy = null, long? commentPrivacy = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
@@ -104,8 +97,6 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbums"/>.
         /// </remarks>
-        [ApiMethodName("photos.getAlbums", Skip = true)]
-        [VkValue("owner_id", 1)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<PhotoAlbum> GetAlbums(long? ownerId = null, long? albumIds = null, int? offset = null, int? count = null, long? needSystem = null, long? needCovers = null, long? photoSizes = null)
         {
@@ -184,8 +175,6 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbumsCount"/>.
         /// </remarks>
-        [ApiMethodName("photos.getAlbumsCount", Skip = true)]
-        [VkValue("user_id", 1)]
         [ApiVersion("5.9")]
         public int GetAlbumsCount(long? userId = null, long? groupId = null)
         {
@@ -210,15 +199,20 @@ namespace VkNet.Categories
         /// <param name="feedType">Тип новости, получаемый в поле type метода newsfeed.get. строка</param>
         /// <param name="feed">Unixtime, который может быть получен методом newsfeed.get в поле date, для получения всех фотографий загруженных пользователем в определённый день либо на которых пользователь был отмечен. Также нужно указать параметр uid пользователя, с которым произошло событие. </param>
         /// <param name="photoSizes">возвращать ли размеры фотографий в специальном формате. флаг, может принимать значения 1 или 0</param>
-        /// <param name="offset">положительное число</param>
         /// <param name="count">положительное число, максимальное значение 1000</param>
+        /// <param name="offset">положительное число</param>
         /// <returns>После успешного выполнения возвращает массив объектов photo. В случае, если запись на стене о том, что была обновлена фотография профиля, не удалена, будет возвращено дополнительное поле post_id, содержащее идентификатор записи на стене. </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfile"/>.
         /// </remarks>
         [ApiMethodName("photos.getProfile", Skip = true)]
+        [VkValue("owner_id", 1)]
+        [VkValue("rev", 1)]
+        [VkValue("extended", 1)]
+        [VkValue("count", 2)]
+        [VkValue("offset", 3)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, long? photoIds = null, long? rev = null, long? extended = null, long? feedType = null, long? feed = null, long? photoSizes = null, int? offset = null, int? count = null)
+        public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, long? photoIds = null, bool? rev = null, bool? extended = null, string feedType = null, long? feed = null, bool? photoSizes = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -232,8 +226,8 @@ namespace VkNet.Categories
                     {"feed_type", feedType},
                     {"feed", feed},
                     {"photo_sizes", photoSizes},
-                    {"offset", offset},
-                    {"count", count}
+                    {"count", count},
+                    {"offset", offset}
                 };
 
             VkResponseArray response = _vk.Call("photos.getProfile", parameters);
@@ -308,7 +302,6 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfileUploadServer"/>.
         /// </remarks>
-        [ApiMethodName("photos.getProfileUploadServer", Skip = true)]
         [ApiVersion("5.9")]
         public UploadServerInfo GetProfileUploadServer()
         {
@@ -435,7 +428,6 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMessagesUploadServer"/>.
         /// </remarks>
-        [ApiMethodName("photos.getMessagesUploadServer", Skip = true)]
         [ApiVersion("5.9")]
         public UploadServerInfo GetMessagesUploadServer()
         {
@@ -537,6 +529,9 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.search"/>.
         /// </remarks>
         [ApiMethodName("photos.search", Skip = true)]
+        [VkValue("q", "порно")]
+        [VkValue("count", 3)]
+        [VkValue("offset", 2)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> Search(string query, int? lat = null, int? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
         {
@@ -789,8 +784,11 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAll"/>.
         /// </remarks>
         [ApiMethodName("photos.getAll", Skip = true)]
+        [VkValue("owner_id", 1)]
+        [VkValue("count", 2)]
+        [VkValue("offset", 4)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Photo> GetAll(long? ownerId = null, long? extended = null, int? offset = null, int? count = null, long? photoSizes = null, bool? noServiceAlbums = null)
+        public ReadOnlyCollection<Photo> GetAll(long? ownerId = null, bool? extended = null, int? count = null, int? offset = null, bool? photoSizes = null, bool? noServiceAlbums = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -799,8 +797,8 @@ namespace VkNet.Categories
                 {
                     {"owner_id", ownerId},
                     {"extended", extended},
-                    {"offset", offset},
                     {"count", count},
+                    {"offset", offset},
                     {"photo_sizes", photoSizes},
                     {"no_service_albums", noServiceAlbums}
                 };
@@ -822,7 +820,10 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos"/>.
         /// </remarks>
-        [ApiMethodName("photos.getUserPhotos", Skip = true)]
+        [ApiMethodName("photos.getUserPhotos")]
+        [VkValue("userId", 1)]
+        [VkValue("count", 2)]
+        [VkValue("offset", 3)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetUserPhotos(long? userId = null, int? offset = null, int? count = null, long? extended = null, long? sort = null)
         {
@@ -833,8 +834,8 @@ namespace VkNet.Categories
             var parameters = new VkParameters
                 {
                     {"user_id", userId},
-                    {"offset", offset},
                     {"count", count},
+                    {"offset", offset},
                     {"extended", extended},
                     {"sort", sort}
                 };
@@ -853,8 +854,6 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteAlbum"/>.
         /// </remarks>
-        [ApiMethodName("photos.deleteAlbum")]
-        [VkValue("album_id", 197305423)]
         [ApiVersion("5.9")]
         public bool DeleteAlbum(long albumId, long? groupId = null)
         {
@@ -939,9 +938,11 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments"/>.
         /// </remarks>
-        [ApiMethodName("photos.getComments", Skip = true)]
+        [ApiMethodName("photos.getComments")]
+        [VkValue("owner_id", 1)]
+        [VkValue("photo_id", 263219735)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Comment> GetComments(long photoId, long? ownerId = null, long? needLikes = null, int? offset = null, int? count = null, long? sort = null, long? accessKey = null)
+        public ReadOnlyCollection<Comment> GetComments(long photoId, long? ownerId = null, bool? needLikes = null, int? count = null, int? offset = null, long? sort = null, long? accessKey = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);

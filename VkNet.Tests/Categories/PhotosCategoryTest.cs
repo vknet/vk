@@ -182,5 +182,174 @@ namespace VkNet.Tests.Categories
         }
         #endregion
 
+        #region GetProfile
+        [Test]
+        public void GetProfile_()
+        {
+            const string url = "https://api.vk.com/method/photos.getProfile?extended=1&owner_id=1&offset=3&rev=1&count=2&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 7,
+                      'items': [
+                        {
+                          'id': 278184324,
+                          'album_id': -6,
+                          'owner_id': 1,
+                          'photo_75': 'http://cs10408.vk.me/u4172580/-6/s_24887a5a.jpg',
+                          'photo_130': 'http://cs10408.vk.me/u4172580/-6/m_79ab6f4a.jpg',
+                          'photo_604': 'http://cs10408.vk.me/u4172580/-6/x_ee97448e.jpg',
+                          'text': '',
+                          'date': 1328126422,
+                          'post_id': 45430,
+                          'likes': {
+                            'user_likes': 0,
+                            'count': 471203
+                          },
+                          'comments': {
+                            'count': 1
+                          },
+                          'can_comment': 0,
+                          'tags': {
+                            'count': 0
+                          }
+                        },
+                        {
+                          'id': 263219735,
+                          'album_id': -6,
+                          'owner_id': 1,
+                          'photo_75': 'http://cs9591.vk.me/u00001/136592355/s_39db64b7.jpg',
+                          'photo_130': 'http://cs9591.vk.me/u00001/136592355/m_5f3fd6ac.jpg',
+                          'photo_604': 'http://cs9591.vk.me/u00001/136592355/x_d51dbfac.jpg',
+                          'photo_807': 'http://cs9591.vk.me/u00001/136592355/y_8cc51452.jpg',
+                          'photo_1280': 'http://cs9591.vk.me/u00001/136592355/z_90874cc2.jpg',
+                          'photo_2560': 'http://cs9591.vk.me/u00001/136592355/w_f6a60338.jpg',
+                          'text': '',
+                          'date': 1307883759,
+                          'likes': {
+                            'user_likes': 0,
+                            'count': 670292
+                          },
+                          'comments': {
+                            'count': 6
+                          },
+                          'can_comment': 0,
+                          'tags': {
+                            'count': 0
+                          }
+                        }
+                      ]
+                    }
+                  }";
+
+            Assert.Fail("undone");
+        }
+        #endregion
+
+        #region GetAll
+        [Test]
+        public void GetAll_()
+        {
+            const string url = "https://api.vk.com/method/photos.getAll?count=2&offset=4&owner_id=1&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 173,
+                      'items': [
+                        {
+                          'id': 328693256,
+                          'album_id': -7,
+                          'owner_id': 1,
+                          'photo_75': 'http://cs7004.vk.me/c7006/v7006001/26e37/xOF6D9lY3CU.jpg',
+                          'photo_130': 'http://cs7004.vk.me/c7006/v7006001/26e38/3atNlPEJpaA.jpg',
+                          'photo_604': 'http://cs7004.vk.me/c7006/v7006001/26e39/OfHtSC9qtuA.jpg',
+                          'photo_807': 'http://cs7004.vk.me/c7006/v7006001/26e3a/el6ZcXa9WSc.jpg',
+                          'width': 609,
+                          'height': 574,
+                          'text': 'Сегодня должности раздаются чиновниками, которые боятся конкуренции и подбирают себе все менее талантливых и все более беспомощных подчиненных. Государственные посты должны распределяться на основе прозрачных механизмов, в том числе, прямых выборов.',
+                          'date': 1398658327
+                        },
+                        {
+                          'id': 328693245,
+                          'album_id': -7,
+                          'owner_id': 1,
+                          'photo_75': 'http://cs7004.vk.me/c7006/v7006001/26e2f/sVIvq64s9N8.jpg',
+                          'photo_130': 'http://cs7004.vk.me/c7006/v7006001/26e30/IeqoOkYl7Xw.jpg',
+                          'photo_604': 'http://cs7004.vk.me/c7006/v7006001/26e31/ia2se1JpNi0.jpg',
+                          'photo_807': 'http://cs7004.vk.me/c7006/v7006001/26e32/bpijpqfjhyw.jpg',
+                          'width': 609,
+                          'height': 543,
+                          'text': 'Текущее обилие противоречащих друг другу законов стимулирует коррупцию и замедляет экономический рост. Страна нуждается в отмене большей части законотворческого балласта, принятого за последние 10 лет.',
+                          'date': 1398658302
+                        }
+                      ]
+                    }
+                  }";
+
+            Assert.Fail("undone");
+        }
+
+#endregion
+
+        #region Search
+        [Test]
+        public void Search_()
+        {
+            const string url = "https://api.vk.com/method/photos.search?offset=2&q=порно&count=3&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 48888,
+                      'items': [
+                        {
+                          'id': 331520481,
+                          'album_id': 182104020,
+                          'owner_id': -49512556,
+                          'user_id': 100,
+                          'photo_75': 'http://cs620223.vk.me/v620223385/bd1f/SajcsJOh7hk.jpg',
+                          'photo_130': 'http://cs620223.vk.me/v620223385/bd20/85-Qkc4oNH8.jpg',
+                          'photo_604': 'http://cs620223.vk.me/v620223385/bd21/88vFsC-Z_FE.jpg',
+                          'photo_807': 'http://cs620223.vk.me/v620223385/bd22/YqRauv0neMY.jpg',
+                          'width': 807,
+                          'height': 515,
+                          'text': '🍓 [club49512556|ЗАХОДИ К НАМ]\nчастное фото секси обнаженные девочки малолетки порно голые сиськи попки эротика няша шлюха грудь секс instagirls instagram лето\n#секс #девушки #девочки #instagram #instagirls #няша #InstaSize #лето #ПОПКИ',
+                          'date': 1403455788
+                        },
+                        {
+                          'id': 332606009,
+                          'album_id': -7,
+                          'owner_id': 178964623,
+                          'photo_75': 'http://cs618519.vk.me/v618519623/9595/RvC4OjMXsSM.jpg',
+                          'photo_130': 'http://cs618519.vk.me/v618519623/9596/AGp73aAvQo0.jpg',
+                          'photo_604': 'http://cs618519.vk.me/v618519623/9597/LRsFBCik5t0.jpg',
+                          'photo_807': 'http://cs618519.vk.me/v618519623/9598/Qtge80swvSs.jpg',
+                          'photo_1280': 'http://cs618519.vk.me/v618519623/9599/824w0bo3RAQ.jpg',
+                          'width': 768,
+                          'height': 1024,
+                          'text': 'порно',
+                          'date': 1403442663
+                        },
+                        {
+                          'id': 331193616,
+                          'album_id': 197460133,
+                          'owner_id': 32396848,
+                          'photo_75': 'http://cs620628.vk.me/v620628848/954d/NB9R43nYW_E.jpg',
+                          'photo_130': 'http://cs620628.vk.me/v620628848/954e/0KLMGHdB2RA.jpg',
+                          'photo_604': 'http://cs620628.vk.me/v620628848/954f/U7FTHERNKPU.jpg',
+                          'photo_807': 'http://cs620628.vk.me/v620628848/9550/eGywWT4JZ20.jpg',
+                          'photo_1280': 'http://cs620628.vk.me/v620628848/9551/AS2EFpUEY_4.jpg',
+                          'width': 1280,
+                          'height': 720,
+                          'text': 'порно xD',
+                          'date': 1403442409
+                        }
+                      ]
+                    }
+                  }";
+
+            Assert.Fail("undone");
+        }
+#endregion
+
     }
 }
