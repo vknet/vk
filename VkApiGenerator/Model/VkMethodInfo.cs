@@ -81,12 +81,10 @@ namespace VkApiGenerator.Model
         {
             if (string.IsNullOrEmpty(text)) return ReturnType.Unknown;
 
-            if (text.Contains("список") || text.Contains("массив")) return ReturnType.Collection;
-
-            if (text.Contains("идентификатор")) return ReturnType.Long;
-
+            if (text.Contains("дробное")) return ReturnType.Double;
             if (text.Contains("строка")) return ReturnType.String;
-
+            if (text.Contains("список") || text.Contains("массив")) return ReturnType.Collection;
+            if (text.Contains("идентификатор")) return ReturnType.Long;
             if (text.Contains("1")) return ReturnType.Bool;
 
             return ReturnType.Unknown;
@@ -137,7 +135,7 @@ namespace VkApiGenerator.Model
                 var param = new VkMethodParam
                 {
                     Name = columns[0].InnerText,
-                    Description = HtmlHelper.RemoveHtmlComment(columns[1].InnerText),
+                    Description = HtmlHelper.RemoveHtmlComment(columns[1].InnerText).Capitalize(),
                     Restrictions = VkMethodParam.GetRestrictions(columns[1]),
                     IsMandatory = VkMethodParam.GetIsMandatory(columns[1])
                 };

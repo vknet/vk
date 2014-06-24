@@ -1,9 +1,10 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
 namespace VkApiGenerator.Utils
 {
-    public class HtmlHelper
+    public static class HtmlHelper
     {
         /// <summary>
         /// Remove html comment from string
