@@ -19,6 +19,25 @@ namespace VkNet.Tests.Utils
             }
         }
 
+        [Test]
+        public void ThrowIfNumberNotInRange_LessThenMin_ThrowsException()
+        {
+            This.Action(() => VkErrors.ThrowIfNumberNotInRange(2, 5, 10)).Throws<ArgumentOutOfRangeException>();
+        }
+
+        [Test]
+        public void ThrowIfNumberNotInRange_MoreThanMax_ThrowsException()
+        {
+            This.Action(() => VkErrors.ThrowIfNumberNotInRange(12, 5, 10)).Throws<ArgumentOutOfRangeException>();
+        }
+
+        [Test]
+        public void ThrowIfNumberNotInRange_ValueInRange_ExceptionNotThrowed()
+        {
+            VkErrors.ThrowIfNumberNotInRange(5, 2, 7);
+            VkErrors.ThrowIfNumberNotInRange(5, 5, 7);
+            VkErrors.ThrowIfNumberNotInRange(5, 2, 5);
+        }
 
         [Test]
         public void ThrowIfNumberIsNegative_InnerTestClass_ThrowException()

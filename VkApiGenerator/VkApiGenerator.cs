@@ -63,8 +63,6 @@ namespace VkApiGenerator
             // invoke and get json and url
             var api = new VkApi();
 
-            
-
             api.Authorize(accessToken);
             // TODO must be authorized
 

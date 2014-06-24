@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq.Expressions;
-
-namespace VkNet.Utils
+﻿namespace VkNet.Utils
 {
+    using System;
+    using System.Linq.Expressions;
+
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
@@ -21,6 +21,12 @@ namespace VkNet.Utils
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentNullException(paramName);
             }
+        }
+
+        public static void ThrowIfNumberNotInRange<T>(T value, T min, T max) where T : struct, IComparable<T>
+        {
+            if (value.CompareTo(min) < 0 || value.CompareTo(max) > 0)
+                throw new ArgumentOutOfRangeException();
         }
 
         public static void ThrowIfNumberIsNegative(Expression<Func<long?>> expr)
