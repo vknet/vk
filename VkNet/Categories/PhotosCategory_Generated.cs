@@ -1,15 +1,15 @@
-// TODO Проверить возвращаемые значения у всех методов
-// TODO Првоерить типы параметров
 namespace VkNet.Categories
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System;
 
     using Utils;
     using Enums;
+    using Enums.SafetyEnums;
     using Model;
     using Model.Attachments;
-
+    
     /// <summary>
     /// Методы для работы с фотографиями.
     /// </summary>
@@ -24,17 +24,17 @@ namespace VkNet.Categories
         /// <summary>
         /// Создает пустой альбом для фотографий. 
         /// </summary>
-        /// <param name="title">название альбома. строка, обязательный параметр, минимальная длина 2</param>
-        /// <param name="groupId">идентификатор сообщества, в котором создаётся альбом. Для группы privacy  и comment_privacy могут принимать два значения: 0 — доступ для всех пользователей, 1 — доступ только для участников группы. целое число</param>
-        /// <param name="description">текст описания альбома. строка</param>
-        /// <param name="commentPrivacy">уровень доступа к комментированию альбома. Возможные значения: 0 — все пользователи, 1 — только друзья, 2 — друзья и друзья друзей, 3 — только я. </param>
-        /// <param name="privacy">уровень доступа к альбому. Возможные значения: 0 — все пользователи, 1 — только друзья, 2 — друзья и друзья друзей, 3 — только я. </param>
+        /// <param name="title">Название альбома</param>
+        /// <param name="groupId">Идентификатор сообщества, в котором создаётся альбом. Для группы privacy  и comment_privacy могут принимать два значения: 0 — доступ для всех пользователей, 1 — доступ только для участников группы</param>
+        /// <param name="description">Текст описания альбома</param>
+        /// <param name="commentPrivacy">Уровень доступа к комментированию альбома</param>
+        /// <param name="privacy">Уровень доступа к альбому</param>
         /// <returns>После успешного выполнения возвращает объект <see cref="PhotoAlbum"/></returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createAlbum"/>.
         /// </remarks>
         [ApiVersion("5.9")]
-        public PhotoAlbum CreateAlbum(string title, long? groupId = null, string description = null, long? commentPrivacy = null, long? privacy = null)
+        public PhotoAlbum CreateAlbum(string title, long? groupId = null, string description = null, CommentPrivacy? commentPrivacy = null, CommentPrivacy? privacy = null)
         {
             var parameters = new VkParameters
                 {
@@ -53,18 +53,18 @@ namespace VkNet.Categories
         /// <summary>
         /// Редактирует данные альбома для фотографий пользователя. 
         /// </summary>
-        /// <param name="albumId">идентификатор альбома. целое число, положительное число, обязательный параметр</param>
-        /// <param name="title">новое название альбома. строка</param>
-        /// <param name="description">новый текст описания альбома.</param>
-        /// <param name="ownerId">идентификатор владельца альбома (пользователь или сообщество). Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="privacy">новый уровень доступа к альбому. Возможные значения: 0 — все пользователи, 1 — только друзья, 2 — друзья и друзья друзей, 3 — только я. </param>
-        /// <param name="commentPrivacy">новый уровень доступа к комментированию альбома. Возможные значения: 0 — все пользователи, 1 — только друзья, 2 — друзья и друзья друзей, 3 — только я. </param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="albumId">Идентификатор альбома</param>
+        /// <param name="title">Новое название альбома</param>
+        /// <param name="description">Новый текст описания альбома</param>
+        /// <param name="ownerId">Идентификатор владельца альбома (пользователь или сообщество). Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="privacy">Новый уровень доступа к альбому</param>
+        /// <param name="commentPrivacy">новый уровень доступа к комментированию альбома</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editAlbum"/>.
         /// </remarks>
         [ApiVersion("5.9")]
-        public bool EditAlbum(long albumId, string title = null, string description = null, long? ownerId = null, long? privacy = null, long? commentPrivacy = null)
+        public bool EditAlbum(long albumId, string title = null, string description = null, long? ownerId = null, CommentPrivacy? privacy = null, CommentPrivacy? commentPrivacy = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
 
@@ -86,19 +86,19 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает список альбомов пользователя или сообщества. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежат альбомы. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="albumIds">перечисленные через запятую ID альбомов. список целых чисел, разделенных запятыми</param>
-        /// <param name="offset">смещение, необходимое для выборки определенного подмножества альбомов. положительное число</param>
-        /// <param name="count">количество альбомов, которое нужно вернуть. (по умолчанию – все альбомы) положительное число</param>
-        /// <param name="needSystem">1 – будут возвращены системные альбомы, имеющие отрицательные идентификаторы. </param>
-        /// <param name="needCovers">1 — будет возвращено дополнительное поле thumb_src. По умолчанию поле thumb_src не возвращается. флаг, может принимать значения 1 или 0</param>
-        /// <param name="photoSizes">1 — будут возвращены размеры фотографий в специальном формате. флаг, может принимать значения 1 или 0</param>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат альбомы. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="albumIds">Перечисленные через запятую ID альбомов</param>
+        /// <param name="offset">Cмещение, необходимое для выборки определенного подмножества альбомов</param>
+        /// <param name="count">Количество альбомов, которое нужно вернуть</param>
+        /// <param name="needSystem">true – будут возвращены системные альбомы, имеющие отрицательные идентификаторы.</param>
+        /// <param name="needCovers">true — будет возвращено дополнительное поле thumb_src. По умолчанию поле thumb_src не возвращается</param>
+        /// <param name="photoSizes">true — будут возвращены размеры фотографий в специальном формате</param>
         /// <returns>Возвращает список объектов <see cref="PhotoAlbum"/></returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbums"/>.
         /// </remarks>
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<PhotoAlbum> GetAlbums(long? ownerId = null, long? albumIds = null, int? offset = null, int? count = null, long? needSystem = null, long? needCovers = null, long? photoSizes = null)
+        public ReadOnlyCollection<PhotoAlbum> GetAlbums(long? ownerId = null, IEnumerable<long> albumIds = null, int? offset = null, int? count = null, bool? needSystem = null, bool? needCovers = null, bool? photoSizes = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -122,27 +122,31 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает список фотографий в альбоме. 
         /// </summary>
-        /// <param name="ownerId">идентификатор владельца альбома. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="albumId">идентификатор альбома. Для служебных альбомов используются следующие идентификаторы: 
-        /// todo реализовать для следующих типов
+        /// <param name="ownerId">Идентификатор владельца альбома.
+        /// <remarks>
+        /// Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя
+        /// </remarks>
+        /// </param>
+        /// <param name="albumId">Идентификатор альбома. Для служебных альбомов используются следующие идентификаторы: 
+        /// todo реализовать для следующих типов with PhotoAlbumType class
         /// wall — фотографии со стены; 
         /// profile — аватары; 
         /// saved — сохраненные фотографии. </param>
-        /// <param name="photoIds">идентификаторы фотографий, информацию о которых необходимо вернуть. список строк, разделенных через запятую</param>
-        /// <param name="rev">порядок сортировки фотографий (1 — антихронологический, 0 — хронологический). флаг, может принимать значения 1 или 0</param>
-        /// <param name="extended">1 — будут возвращены дополнительные поля likes, comments, tags, can_comment. Поля comments и tags содержат только количество объектов. По умолчанию данные поля не возвращается. флаг, может принимать значения 1 или 0</param>
-        /// <param name="feedType">Тип новости получаемый в поле type метода newsfeed.get, для получения только загруженных пользователем фотографий, либо только фотографий, на которых он был отмечен. Может принимать значения photo, photo_tag. строка</param>
+        /// <param name="photoIds">Идентификаторы фотографий, информацию о которых необходимо вернуть. список строк, разделенных через запятую</param>
+        /// <param name="rev">Порядок сортировки фотографий (true — антихронологический, false — хронологический).</param>
+        /// <param name="extended">True — будут возвращены дополнительные поля likes, comments, tags, can_comment. Поля comments и tags содержат только количество объектов. По умолчанию данные поля не возвращается.</param>
+        /// <param name="feedType">Тип новости получаемый в поле type метода newsfeed.get, для получения только загруженных пользователем фотографий, либо только фотографий, на которых он был отмечен.</param>
         /// <param name="feed">Unixtime, который может быть получен методом newsfeed.get в поле date, для получения всех фотографий загруженных пользователем в определённый день либо на которых пользователь был отмечен. Также нужно указать параметр uid пользователя, с которым произошло событие. </param>
         /// <param name="photoSizes">Возвращать ли доступные размеры фотографии в специальном формате. флаг, может принимать значения 1 или 0</param>
-        /// <param name="offset">отступ, необходимый для получения определенного подмножества записей. положительное число</param>
-        /// <param name="count">количество записей, которое будет получено. положительное число, максимальное значение 1000</param>
+        /// <param name="offset">Отступ, необходимый для получения определенного подмножества записей. положительное число</param>
+        /// <param name="count">Количество записей, которое будет получено. положительное число, максимальное значение 1000</param>
         /// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.get"/>.
         /// </remarks>
         [ApiMethodName("photos.get", Skip = true)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Photo> Get(long? ownerId = null, long? albumId = null, long? photoIds = null, long? rev = null, long? extended = null, long? feedType = null, long? feed = null, long? photoSizes = null, int? offset = null, int? count = null)
+        public ReadOnlyCollection<Photo> Get(long? ownerId = null, long? albumId = null, IEnumerable<long> photoIds = null, bool? rev = null, bool? extended = null, PhotoFeedType feedType = null, DateTime? feed = null, bool? photoSizes = null, int? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -169,15 +173,17 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает количество доступных альбомов пользователя или сообщества. 
         /// </summary>
-        /// <param name="userId">идентификатор пользователя, количество альбомов которого необходимо получить. целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="groupId">идентификатор сообщества, количество альбомов которого необходимо получить. </param>
-        /// <returns>После успешного выполнения возвращает количество альбомов  с учетом настроек приватности. </returns>
+        /// <param name="userId">Идентификатор пользователя, количество альбомов которого необходимо получить.</param>
+        /// <param name="groupId">Идентификатор сообщества, количество альбомов которого необходимо получить. </param>
+        /// <returns>После успешного выполнения возвращает количество альбомов с учетом настроек приватности.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbumsCount"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public int GetAlbumsCount(long? userId = null, long? groupId = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+
             var parameters = new VkParameters
                 {
                     {"user_id", userId},
@@ -192,27 +198,21 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает список фотографий со страницы пользователя или сообщества. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, фотографии которого нужно получить. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoIds">идентификаторы фотографий, информацию о которых необходимо вернуть. список строк, разделенных через запятую</param>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, фотографии которого нужно получить. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoIds">Идентификаторы фотографий, информацию о которых необходимо вернуть</param>
         /// <param name="rev">порядок сортировки фотографий (1 — антихронологический, 0 — хронологический). флаг, может принимать значения 1 или 0</param>
         /// <param name="extended">1 — будет возвращено дополнительное поле likes. По умолчанию поле likes не возвращается. флаг, может принимать значения 1 или 0</param>
         /// <param name="feedType">Тип новости, получаемый в поле type метода newsfeed.get. строка</param>
-        /// <param name="feed">Unixtime, который может быть получен методом newsfeed.get в поле date, для получения всех фотографий загруженных пользователем в определённый день либо на которых пользователь был отмечен. Также нужно указать параметр uid пользователя, с которым произошло событие. </param>
-        /// <param name="photoSizes">возвращать ли размеры фотографий в специальном формате. флаг, может принимать значения 1 или 0</param>
-        /// <param name="count">положительное число, максимальное значение 1000</param>
-        /// <param name="offset">положительное число</param>
-        /// <returns>После успешного выполнения возвращает массив объектов photo. В случае, если запись на стене о том, что была обновлена фотография профиля, не удалена, будет возвращено дополнительное поле post_id, содержащее идентификатор записи на стене. </returns>
+        /// <param name="feed">Unixtime, который может быть получен методом newsfeed.get в поле date, для получения всех фотографий загруженных пользователем в определённый день либо на которых пользователь был отмечен. Также нужно указать параметр uid пользователя, с которым произошло событие</param>
+        /// <param name="photoSizes">Возвращать ли размеры фотографий в специальном формате</param>
+        /// <param name="count">Положительное число, максимальное значение 1000</param>
+        /// <param name="offset">Положительное число</param>
+        /// <returns>После успешного выполнения возвращает массив объектов <see cref="Photo"/>. В случае, если запись на стене о том, что была обновлена фотография профиля, не удалена, будет возвращено дополнительное поле post_id, содержащее идентификатор записи на стене.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfile"/>.
         /// </remarks>
-        [ApiMethodName("photos.getProfile", Skip = true)]
-        [VkValue("owner_id", 1)]
-        [VkValue("rev", 1)]
-        [VkValue("extended", 1)]
-        [VkValue("count", 2)]
-        [VkValue("offset", 3)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, long? photoIds = null, bool? rev = null, bool? extended = null, string feedType = null, long? feed = null, bool? photoSizes = null, int? count = null, int? offset = null)
+        public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, IEnumerable<long> photoIds = null, bool? rev = null, bool? extended = null, string feedType = null, DateTime? feed = null, bool? photoSizes = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -238,7 +238,7 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает информацию о фотографиях по их идентификаторам. 
         /// </summary>
-        /// <param name="photos">перечисленные через запятую идентификаторы, которые представляют собой идущие через знак подчеркивания id пользователей, разместивших фотографии, и id самих фотографий. Чтобы получить информацию о фотографии в альбоме группы, вместо id пользователя следует указать -id группы.
+        /// <param name="photos">Перечисленные через запятую идентификаторы, которые представляют собой идущие через знак подчеркивания id пользователей, разместивших фотографии, и id самих фотографий. Чтобы получить информацию о фотографии в альбоме группы, вместо id пользователя следует указать -id группы.
         /// <example>
         /// Пример значения photos: 1_129207899,6492_135055734, -20629724_271945303 
         /// </example>
@@ -248,15 +248,15 @@ namespace VkNet.Categories
         /// Поле access_key будет возвращено вместе с остальными данными фотографии в методах, которые возвращают фотографии, закрытые приватностью но доступные в данном контексте. Например данное поле имеют фотографии, возвращаемые методом newsfeed.get. список строк, разделенных через запятую, обязательный параметр
         /// </remarks>
         /// </param>
-        /// <param name="extended">1 — будут возвращены дополнительные поля likes, comments, tags, can_comment, can_repost. Поля comments и tags содержат только количество объектов. По умолчанию данные поля не возвращается. флаг, может принимать значения 1 или 0</param>
-        /// <param name="photoSizes">возвращать ли доступные размеры фотографии в специальном формате. флаг, может принимать значения 1 или 0</param>
+        /// <param name="extended">True — будут возвращены дополнительные поля likes, comments, tags, can_comment, can_repost. Поля comments и tags содержат только количество объектов. По умолчанию данные поля не возвращается</param>
+        /// <param name="photoSizes">Возвращать ли доступные размеры фотографии в специальном формате</param>
         /// <returns>После успешного выполнения возвращает список объектов photo</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getById"/>.
         /// </remarks>
         [ApiMethodName("photos.getById", Skip = true)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Photo> GetById(long photos, long? extended = null, long? photoSizes = null)
+        public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null)
         {
             var parameters = new VkParameters
                 {
@@ -273,17 +273,16 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает адрес сервера для загрузки фотографий. 
         /// </summary>
-        /// <param name="albumId">идентификатор альбома. целое число</param>
-        /// <param name="groupId">идентификатор сообщества, которому принадлежит альбом (если необходимо загрузить фотографию в альбом сообщества). </param>
+        /// <param name="albumId">Идентификатор альбома</param>
+        /// <param name="groupId">Идентификатор сообщества, которому принадлежит альбом (если необходимо загрузить фотографию в альбом сообщества)</param>
         /// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/></returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUploadServer"/>.
         /// </remarks>
         [ApiMethodName("photos.getUploadServer", Skip = true)]
         [ApiVersion("5.9")]
-        public UploadServerInfo GetUploadServer(long? albumId = null, long? groupId = null)
+        public UploadServerInfo GetUploadServer(long albumId, long? groupId = null)
         {
-
             var parameters = new VkParameters
                 {
                     {"album_id", albumId},
@@ -311,10 +310,10 @@ namespace VkNet.Categories
         /// <summary>
         /// Позволяет получить адрес для загрузки фотографий мультидиалогов. 
         /// </summary>
-        /// <param name="chatId">идентификатор беседы, для которой нужно загрузить фотографию. положительное число, обязательный параметр</param>
-        /// <param name="cropX">положительное число</param>
-        /// <param name="cropY">положительное число</param>
-        /// <param name="cropWidth">ширина фотографии после обрезки в px. положительное число, минимальное значение 200</param>
+        /// <param name="chatId">Идентификатор беседы, для которой нужно загрузить фотографию</param>
+        /// <param name="cropX">Положительное число</param>
+        /// <param name="cropY">Положительное число</param>
+        /// <param name="cropWidth">Ширина фотографии после обрезки в px, минимальное значение 200</param>
         /// <returns>После успешного выполнения возвращает объект с единственным полем upload_url. </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getChatUploadServer"/>.
@@ -343,9 +342,9 @@ namespace VkNet.Categories
         /// <summary>
         /// Сохраняет фотографию пользователя после успешной загрузки. 
         /// </summary>
-        /// <param name="server">параметр, возвращаемый в результате загрузки фотографии на сервер. строка</param>
-        /// <param name="hash">параметр, возвращаемый в результате загрузки фотографии на сервер. строка</param>
-        /// <param name="photo">параметр, возвращаемый в результате загрузки фотографии на сервер. строка</param>
+        /// <param name="server">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
+        /// <param name="hash">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
+        /// <param name="photo">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
         /// <returns>После успешного выполнения возвращает объект, содержащий поля photo_hash и photo_src (при работе через VK.api метод вернёт поля photo_src, photo_src_big, photo_src_small). Параметр photo_hash необходим для подтверждения пользователем изменения его фотографии через вызов метода saveProfilePhoto Javascript API. Поле photo_src содержит путь к загруженной фотографии. </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveProfilePhoto"/>.
@@ -367,20 +366,20 @@ namespace VkNet.Categories
         }
 
         /// <summary>
-        /// Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getWallUploadServer. 
+        /// Сохраняет фотографии после успешной загрузки на URI, полученный методом <see cref="GetWallUploadServer"/>. 
         /// </summary>
-        /// <param name="userId">идентификатор пользователя, на стену которого нужно сохранить фотографию. положительное число</param>
-        /// <param name="groupId">идентификатор сообщества, на стену которого нужно сохранить фотографию. положительное число</param>
-        /// <param name="photo">параметр, возвращаемый в результате загрузки фотографии на сервер. строка, обязательный параметр</param>
-        /// <param name="server">параметр, возвращаемый в результате загрузки фотографии на сервер. целое число</param>
-        /// <param name="hash">параметр, возвращаемый в результате загрузки фотографии на сервер. строка</param>
+        /// <param name="userId">Идентификатор пользователя, на стену которого нужно сохранить фотографию</param>
+        /// <param name="groupId">Идентификатор сообщества, на стену которого нужно сохранить фотографию</param>
+        /// <param name="photo">параметр, возвращаемый в результате загрузки фотографии на сервер</param>
+        /// <param name="server">Параметр, возвращаемый в результате загрузки фотографии на сервер. целое число</param>
+        /// <param name="hash">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
         /// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveWallPhoto"/>.
         /// </remarks>
         [ApiMethodName("photos.saveWallPhoto", Skip = true)]
         [ApiVersion("5.9")]
-        public Photo SaveWallPhoto(long photo, long? userId = null, long? groupId = null, long? server = null, long? hash = null)
+        public Photo SaveWallPhoto(string photo, long? userId = null, long? groupId = null, long? server = null, string hash = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
             VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -402,8 +401,8 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества. 
         /// </summary>
-        /// <param name="groupId">идентификатор сообщества, на стену которого нужно загрузить фото (без знака «минус»). целое число</param>
-        /// <returns>После успешного выполнения возвращает объект с полями upload_url, aid, mid'. </returns>
+        /// <param name="groupId">Идентификатор сообщества, на стену которого нужно загрузить фото (без знака «минус»)</param>
+        /// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/>.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getWallUploadServer"/>.
         /// </remarks>
@@ -411,6 +410,8 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public UploadServerInfo GetWallUploadServer(long? groupId = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+
             var parameters = new VkParameters
                 {
                     {"group_id", groupId}
@@ -424,7 +425,7 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю. 
         /// </summary>
-        /// <returns>После успешного выполнения возвращает объект с полями upload_url, aid (id альбома)  и mid (id текущего пользователя). </returns>
+        /// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/>.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMessagesUploadServer"/>.
         /// </remarks>
@@ -436,9 +437,9 @@ namespace VkNet.Categories
         }
 
         /// <summary>
-        /// Сохраняет фотографию после успешной загрузки на URI, полученный методом photos.getMessagesUploadServer. 
+        /// Сохраняет фотографию после успешной загрузки на URI, полученный методом <see cref="GetMessagesUploadServer"/>. 
         /// </summary>
-        /// <param name="photo">параметр, возвращаемый в результате загрузки фотографии на сервер. строка, обязательный параметр</param>
+        /// <param name="photo">параметр, возвращаемый в результате загрузки фотографии на сервер</param>
         /// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMessagesPhoto"/>.
@@ -457,12 +458,12 @@ namespace VkNet.Categories
         }
 
         /// <summary>
-        /// Позволяет пожаловаться на фотографию. 
+        /// Позволяет пожаловаться на фотографию.
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. целое число, обязательный параметр</param>
-        /// <param name="photoId">идентификатор фотографии. положительное число, обязательный параметр</param>
-        /// <param name="reason">тип жалобы</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="reason">Тип жалобы</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.report"/>.
         /// </remarks>
@@ -487,10 +488,10 @@ namespace VkNet.Categories
         /// <summary>
         /// Позволяет пожаловаться на комментарий к фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор владельца фотографии к которой оставлен комментарий. целое число, обязательный параметр</param>
-        /// <param name="commentId">идентификатор комментария. положительное число, обязательный параметр</param>
-        /// <param name="reason">тип жалобы</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="ownerId">Идентификатор владельца фотографии к которой оставлен комментарий</param>
+        /// <param name="commentId">Идентификатор комментария</param>
+        /// <param name="reason">Тип жалобы</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reportComment"/>.
         /// </remarks>
@@ -515,25 +516,21 @@ namespace VkNet.Categories
         /// <summary>
         /// Осуществляет поиск изображений по местоположению или описанию. 
         /// </summary>
-        /// <param name="query">строка поискового запроса, например, &quot;Nature&quot;. строка</param>
-        /// <param name="lat">географическая широта отметки, заданная в градусах (от -90 до 90). дробное число</param>
-        /// <param name="longitude">географическая долгота отметки, заданная в градусах (от -180 до 180). дробное число</param>
-        /// <param name="startTime">время в формате unixtime, не раньше которого должны были быть загружены найденные фотографии. положительное число</param>
-        /// <param name="endTime">время в формате unixtime, не позже которого должны были быть загружены найденные фотографии. положительное число</param>
+        /// <param name="query">Строка поискового запроса</param>
+        /// <param name="lat">Географическая широта отметки, заданная в градусах (от -90 до 90)</param>
+        /// <param name="longitude">Географическая долгота отметки, заданная в градусах (от -180 до 180)</param>
+        /// <param name="startTime">Время в формате unixtime, не раньше которого должны были быть загружены найденные фотографии. положительное число</param>
+        /// <param name="endTime">Время в формате unixtime, не позже которого должны были быть загружены найденные фотографии. положительное число</param>
         /// <param name="sort">True – сортировать по количеству отметок «Мне нравится», false – сортировать по дате добавления фотографии. положительное число</param>
         /// <param name="offset">смещение относительно первой найденной фотографии для выборки определенного подмножества. положительное число</param>
         /// <param name="count">количество возвращаемых фотографий. положительное число, по умолчанию 100, максимальное значение 1000</param>
         /// <param name="radius">радиус поиска в метрах. (работает очень приближенно, поэтому реальное расстояние до цели может отличаться от заданного). Может принимать значения: 10, 100, 800, 6000, 50000 положительное число, по умолчанию 5000</param>
-        /// <returns>После успешного выполнения возвращает список объектов фотографий. </returns>
+        /// <returns>После успешного выполнения возвращает список объектов фотографий.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.search"/>.
         /// </remarks>
-        [ApiMethodName("photos.search", Skip = true)]
-        [VkValue("q", "порно")]
-        [VkValue("count", 3)]
-        [VkValue("offset", 2)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Photo> Search(string query, int? lat = null, int? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
+        public ReadOnlyCollection<Photo> Search(string query, double? lat = null, double? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
         {
             // todo add check for latitude and longitude throught VkErrors.ThrowIfNumberNotInRange
             // TODO add verstion with totalCount
@@ -562,22 +559,22 @@ namespace VkNet.Categories
         /// <summary>
         /// Сохраняет фотографии после успешной загрузки. 
         /// </summary>
-        /// <param name="albumId">идентификатор альбома, в который необходимо сохранить фотографии. целое число</param>
-        /// <param name="groupId">идентификатор сообщества, в которое необходимо сохранить фотографии. </param>
-        /// <param name="server">параметр, возвращаемый в результате загрузки фотографий на сервер. строка</param>
-        /// <param name="photosList">параметр, возвращаемый в результате загрузки фотографий на сервер. строка</param>
-        /// <param name="hash">параметр, возвращаемый в результате загрузки фотографий на сервер. строка</param>
-        /// <param name="latitude">географическая широта, заданная в градусах (от -90 до 90); дробное число</param>
-        /// <param name="longitude">географическая долгота, заданная в градусах (от -180 до 180); дробное число</param>
-        /// <param name="caption">текст описания фотографии. строка</param>
-        /// <param name="description">текст описания альбома. строка</param>
-        /// <returns>После успешного выполнения возвращает список объектов фотографий. </returns>
+        /// <param name="albumId">Идентификатор альбома, в который необходимо сохранить фотографии</param>
+        /// <param name="groupId">Идентификатор сообщества, в которое необходимо сохранить фотографии</param>
+        /// <param name="server">параметр, возвращаемый в результате загрузки фотографий на сервер</param>
+        /// <param name="photosList">Параметр, возвращаемый в результате загрузки фотографий на сервер</param>
+        /// <param name="hash">Параметр, возвращаемый в результате загрузки фотографий на сервер</param>
+        /// <param name="latitude">Географическая широта, заданная в градусах (от -90 до 90)</param>
+        /// <param name="longitude">Географическая долгота, заданная в градусах (от -180 до 180)</param>
+        /// <param name="caption">Текст описания фотографии</param>
+        /// <param name="description">Текст описания альбома</param>
+        /// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>. </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.save"/>.
         /// </remarks>
         [ApiMethodName("photos.save", Skip = true)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Photo> Save(long? albumId = null, long? groupId = null, long? server = null, long? photosList = null, long? hash = null, long? latitude = null, long? longitude = null, long? caption = null, long? description = null)
+        public ReadOnlyCollection<Photo> Save(long? albumId = null, long? groupId = null, string server = null, string photosList = null, string hash = null, double? latitude = null, double? longitude = null, string caption = null, string description = null)
         {
 
             var parameters = new VkParameters
@@ -600,16 +597,16 @@ namespace VkNet.Categories
         /// <summary>
         /// Позволяет скопировать фотографию в альбом &quot;Сохраненные фотографии&quot; 
         /// </summary>
-        /// <param name="ownerId">идентификатор владельца фотографии целое число, обязательный параметр</param>
-        /// <param name="photoId">индентификатор фотографии положительное число, обязательный параметр</param>
-        /// <param name="accessKey">специальный код доступа для приватных фотографий строка</param>
-        /// <returns>Возвращает идентификатор созданной фотографии. </returns>
+        /// <param name="ownerId">Идентификатор владельца фотографии</param>
+        /// <param name="photoId">Индентификатор фотографии</param>
+        /// <param name="accessKey">Специальный код доступа для приватных фотографий</param>
+        /// <returns>Возвращает идентификатор созданной фотографии.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.copy"/>.
         /// </remarks>
         [ApiMethodName("photos.copy", Skip = true)]
         [ApiVersion("5.9")]
-        public long Copy(long ownerId, long photoId, long? accessKey = null)
+        public long Copy(long ownerId, long photoId, string accessKey = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => photoId);
 
@@ -628,16 +625,16 @@ namespace VkNet.Categories
         /// <summary>
         /// Изменяет описание у выбранной фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии. положительное число, обязательный параметр</param>
-        /// <param name="caption">новый текст описания к фотографии. Если параметр не задан, то считается, что он равен пустой строке. строка</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="caption">Новый текст описания к фотографии. Если параметр не задан, то считается, что он равен пустой строке.</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.edit"/>.
         /// </remarks>
         [ApiMethodName("photos.edit", Skip = true)]
         [ApiVersion("5.9")]
-        public bool Edit(long photoId, long? ownerId = null, long? caption = null)
+        public bool Edit(long photoId, long? ownerId = null, string caption = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => photoId);
 
@@ -656,10 +653,10 @@ namespace VkNet.Categories
         /// <summary>
         /// Переносит фотографию из одного альбома в другой. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="targetAlbumId">идентификатор альбома, в который нужно переместить фотографию. обязательный параметр</param>
-        /// <param name="photoId">идентификатор фотографии, которую нужно перенести. обязательный параметр</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="targetAlbumId">Идентификатор альбома, в который нужно переместить фотографию</param>
+        /// <param name="photoId">Идентификатор фотографии, которую нужно перенести</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.move"/>.
         /// </remarks>
@@ -667,6 +664,9 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public bool Move(long targetAlbumId, long photoId, long? ownerId = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => targetAlbumId);
+            VkErrors.ThrowIfNumberIsNegative(() => photoId);
+
             var parameters = new VkParameters
                 {
                     {"owner_id", ownerId},
@@ -682,10 +682,10 @@ namespace VkNet.Categories
         /// <summary>
         /// Делает фотографию обложкой альбома. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии. обязательный параметр</param>
-        /// <param name="albumId">идентификатор альбома. </param>
-        /// <returns>После успешного выполнения возвращает true. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="albumId">Идентификатор альбома/param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.makeCover"/>.
         /// </remarks>
@@ -693,6 +693,9 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public bool MakeCover(long photoId, long? ownerId = null, long? albumId = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => photoId);
+            VkErrors.ThrowIfNumberIsNegative(() => albumId);
+
             var parameters = new VkParameters
                 {
                     {"owner_id", ownerId},
@@ -708,11 +711,11 @@ namespace VkNet.Categories
         /// <summary>
         /// Меняет порядок альбома в списке альбомов пользователя. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит альбом. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="albumId">идентификатор альбома. обязательный параметр</param>
-        /// <param name="before">идентификатор альбома, перед которым следует поместить альбом. </param>
-        /// <param name="after">идентификатор альбома, после которого следует поместить альбом. </param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит альбом. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="albumId">Идентификатор альбома</param>
+        /// <param name="before">Идентификатор альбома, перед которым следует поместить альбом</param>
+        /// <param name="after">Идентификатор альбома, после которого следует поместить альбом</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderAlbums"/>.
         /// </remarks>
@@ -720,6 +723,9 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public bool ReorderAlbums(long albumId, long? ownerId = null, long? before = null, long? after = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => albumId);
+            VkErrors.ThrowIfNumberIsNegative(() => before);
+            VkErrors.ThrowIfNumberIsNegative(() => after);
 
             var parameters = new VkParameters
                 {
@@ -729,19 +735,17 @@ namespace VkNet.Categories
                     {"after", after}
                 };
 
-            VkResponse response = _vk.Call("photos.reorderAlbums", parameters);
-
-            return response;
+            return _vk.Call("photos.reorderAlbums", parameters);
         }
 
         /// <summary>
         /// Меняет порядок фотографии в списке фотографий альбома пользователя. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии. обязательный параметр</param>
-        /// <param name="before">идентификатор фотографии, перед которой следует поместить фотографию. </param>
-        /// <param name="after">идентификатор фотографии, после которой следует поместить фотографию. </param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="before">Идентификатор фотографии, перед которой следует поместить фотографию</param>
+        /// <param name="after">Идентификатор фотографии, после которой следует поместить фотографию</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderPhotos"/>.
         /// </remarks>
@@ -749,6 +753,9 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public bool ReorderPhotos(long photoId, long? ownerId = null, long? before = null, long? after = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => photoId);
+            VkErrors.ThrowIfNumberIsNegative(() => before);
+            VkErrors.ThrowIfNumberIsNegative(() => after);
 
             var parameters = new VkParameters
                 {
@@ -758,21 +765,19 @@ namespace VkNet.Categories
                     {"after", after}
                 };
 
-            VkResponse response = _vk.Call("photos.reorderPhotos", parameters);
-
-            return response;
+            return _vk.Call("photos.reorderPhotos", parameters);
         }
 
         /// <summary>
         /// Возвращает все фотографии пользователя или сообщества в антихронологическом порядке. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, фотографии которого нужно получить. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="extended">1 — возвращать расширенную информацию о фотографиях. флаг, может принимать значения 1 или 0</param>
-        /// <param name="offset">смещение, необходимое для выборки определенного подмножества фотографий. По умолчанию — 0. положительное число</param>
-        /// <param name="count">число фотографий, информацию о которых необходимо получить. положительное число, по умолчанию 20, максимальное значение 200</param>
-        /// <param name="photoSizes">1 — будут возвращены размеры фотографий в специальном формате. флаг, может принимать значения 1 или 0</param>
-        /// <param name="noServiceAlbums">0 — вернуть все фотографии, включая находящиеся в сервисных альбомах, таких как &quot;Фотографии на моей стене&quot; (по умолчанию);  1 — вернуть фотографии только из стандартных альбомов пользователя или сообщества. флаг, может принимать значения 1 или 0</param>
-        /// <returns>После успешного выполнения возвращает список объектов photo.
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, фотографии которого нужно получить. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="extended">True — возвращать расширенную информацию о фотографиях</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества фотографий. По умолчанию — 0. положительное число</param>
+        /// <param name="count">Число фотографий, информацию о которых необходимо получить. положительное число, по умолчанию 20, максимальное значение 200</param>
+        /// <param name="photoSizes">True — будут возвращены размеры фотографий в специальном формате</param>
+        /// <param name="noServiceAlbums">false — вернуть все фотографии, включая находящиеся в сервисных альбомах, таких как &quot;Фотографии на моей стене&quot; (по умолчанию);  true — вернуть фотографии только из стандартных альбомов пользователя или сообщества</param>
+        /// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>.
         /// <remarks>
         /// Если был задан параметр extended — будет возвращено поле likes: 
         /// user_likes: 1 — текущему пользователю нравится данная фотография, 0 - не указано.
@@ -784,10 +789,6 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAll"/>.
         /// </remarks>
-        [ApiMethodName("photos.getAll", Skip = true)]
-        [VkValue("owner_id", 1)]
-        [VkValue("count", 2)]
-        [VkValue("offset", 4)]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetAll(long? ownerId = null, bool? extended = null, int? count = null, int? offset = null, bool? photoSizes = null, bool? noServiceAlbums = null)
         {
@@ -812,21 +813,21 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает список фотографий, на которых отмечен пользователь 
         /// </summary>
-        /// <param name="userId">идентификатор пользователя, список фотографий для которого нужно получить. положительное число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="offset">смещение, необходимое для выборки определенного подмножества фотографий. По умолчанию — 0. положительное число</param>
-        /// <param name="count">количество фотографий, которое необходимо получить. положительное число, по умолчанию 20, максимальное значение 1000</param>
-        /// <param name="extended">1 — будут возвращены дополнительные поля likes, comments, tags, can_comment. Поля comments и tags содержат только количество объектов. По умолчанию данные поля не возвращается. флаг, может принимать значения 1 или 0</param>
-        /// <param name="sort">сортировка результатов (0 — по дате добавления отметки в порядке убывания, 1 — по дате добавления отметки в порядке возрастания). строка</param>
+        /// <param name="userId">Идентификатор пользователя, список фотографий для которого нужно получить. положительное число, по умолчанию идентификатор текущего пользователя</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества фотографий. По умолчанию — 0. положительное число</param>
+        /// <param name="count">Количество фотографий, которое необходимо получить. положительное число, по умолчанию 20, максимальное значение 1000</param>
+        /// <param name="extended">True — будут возвращены дополнительные поля likes, comments, tags, can_comment. Поля comments и tags содержат только количество объектов. По умолчанию данные поля не возвращается</param>
+        /// <param name="sort">Сортировка результатов (false — по дате добавления отметки в порядке убывания, true — по дате добавления отметки в порядке возрастания)</param>
         /// <returns>После успешного выполнения возвращает список объектов photo. </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos"/>.
         /// </remarks>
         [ApiMethodName("photos.getUserPhotos")]
-        [VkValue("userId", 1)]
+        [VkValue("userId", 178964623)]
         [VkValue("count", 2)]
         [VkValue("offset", 3)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Photo> GetUserPhotos(long? userId = null, int? offset = null, int? count = null, long? extended = null, long? sort = null)
+        public ReadOnlyCollection<Photo> GetUserPhotos(long? userId = null, int? offset = null, int? count = null, bool? extended = null, bool? sort = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -849,9 +850,9 @@ namespace VkNet.Categories
         /// <summary>
         /// Удаляет указанный альбом для фотографий у текущего пользователя 
         /// </summary>
-        /// <param name="albumId">идентификатор альбома. целое число, положительное число, обязательный параметр</param>
-        /// <param name="groupId">идентификатор сообщества, в котором размещен альбом. положительное число</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="albumId">Идентификатор альбома</param>
+        /// <param name="groupId">Идентификатор сообщества, в котором размещен альбом.</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteAlbum"/>.
         /// </remarks>
@@ -867,17 +868,15 @@ namespace VkNet.Categories
                     {"group_id", groupId}
                 };
 
-            VkResponse response = _vk.Call("photos.deleteAlbum", parameters);
-
-            return response;
+            return _vk.Call("photos.deleteAlbum", parameters);
         }
 
         /// <summary>
         /// Удаление фотографии на сайте. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии. положительное число, обязательный параметр</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.delete"/>.
         /// </remarks>
@@ -893,18 +892,16 @@ namespace VkNet.Categories
                     {"photo_id", photoId}
                 };
 
-            VkResponse response = _vk.Call("photos.delete", parameters);
-
-            return response;
+            return _vk.Call("photos.delete", parameters);
         }
 
         /// <summary>
         /// Подтверждает отметку на фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии. обязательный параметр</param>
-        /// <param name="tagId">идентификатор отметки на фотографии. обязательный параметр</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="tagId">Идентификатор отметки на фотографии</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.confirmTag"/>.
         /// </remarks>
@@ -912,6 +909,8 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public bool ConfirmTag(long photoId, long tagId, long? ownerId = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => photoId);
+            VkErrors.ThrowIfNumberIsNegative(() => tagId);
 
             var parameters = new VkParameters
                 {
@@ -920,22 +919,20 @@ namespace VkNet.Categories
                     {"tag_id", tagId}
                 };
 
-            VkResponse response = _vk.Call("photos.confirmTag", parameters);
-
-            return response;
+            return _vk.Call("photos.confirmTag", parameters);
         }
 
         /// <summary>
         /// Возвращает список комментариев к фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии. обязательный параметр</param>
-        /// <param name="needLikes">1 — будет возвращено дополнительное поле likes. По умолчанию поле likes не возвращается. флаг, может принимать значения 1 или 0</param>
-        /// <param name="offset">смещение, необходимое для выборки определенного подмножества комментариев. По умолчанию — 0. положительное число</param>
-        /// <param name="count">количество комментариев, которое необходимо получить. положительное число, по умолчанию 20, максимальное значение 100</param>
-        /// <param name="sort">порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым) строка</param>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="needLikes">True — будет возвращено дополнительное поле likes. По умолчанию поле likes не возвращается</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества комментариев</param>
+        /// <param name="count">Количество комментариев, которое необходимо получить.</param>
+        /// <param name="sort">Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым)</param>
         /// <param name="accessKey">строка</param>
-        /// <returns>После успешного выполнения возвращает список объектов комментариев. </returns>
+        /// <returns>После успешного выполнения возвращает список объектов <see cref="Comment"/>.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments"/>.
         /// </remarks>
@@ -943,8 +940,9 @@ namespace VkNet.Categories
         [VkValue("owner_id", 1)]
         [VkValue("photo_id", 263219735)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Comment> GetComments(long photoId, long? ownerId = null, bool? needLikes = null, int? count = null, int? offset = null, long? sort = null, long? accessKey = null)
+        public ReadOnlyCollection<Comment> GetComments(long photoId, long? ownerId = null, bool? needLikes = null, int? count = null, int? offset = null, CommentsSort sort = null, string accessKey = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => photoId);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
 
@@ -967,18 +965,18 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежат фотографии. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="albumId">идентификатор альбома. Если параметр не задан, то считается, что необходимо получить комментарии ко всем альбомам пользователя или сообщества. положительное число</param>
-        /// <param name="needLikes">1 — будет возвращено дополнительное поле likes. По умолчанию поле likes не возвращается. флаг, может принимать значения 1 или 0</param>
-        /// <param name="offset">смещение, необходимое для выборки определенного подмножества комментариев. Если параметр не задан, то считается, что он равен 0. положительное число</param>
-        /// <param name="count">количество комментариев, которое необходимо получить. Если параметр не задан, то считается что он равен 20. Максимальное значение параметра 100. положительное число</param>
-        /// <returns>После успешного выполнения возвращает список объектов комментариев. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат фотографии. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="albumId">Идентификатор альбома. Если параметр не задан, то считается, что необходимо получить комментарии ко всем альбомам пользователя или сообщества</param>
+        /// <param name="needLikes">True — будет возвращено дополнительное поле likes. По умолчанию поле likes не возвращается</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества комментариево</param>
+        /// <param name="count">Количество комментариев, которое необходимо получить. Если параметр не задан, то считается что он равен 20. Максимальное значение параметра 100. положительное число</param>
+        /// <returns>После успешного выполнения возвращает список объектов <see cref="Comment"/>.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments"/>.
         /// </remarks>
         [ApiMethodName("photos.getAllComments", Skip = true)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Comment> GetAllComments(long? ownerId = null, long? albumId = null, long? needLikes = null, int? offset = null, int? count = null)
+        public ReadOnlyCollection<Comment> GetAllComments(long? ownerId = null, long? albumId = null, bool? needLikes = null, int? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -1001,10 +999,10 @@ namespace VkNet.Categories
         /// <summary>
         /// Создает новый комментарий к фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии. обязательный параметр</param>
-        /// <param name="message">текст комментария (является обязательным, если не задан параметр attachments). строка</param>
-        /// <param name="attachments">список объектов, приложенных к комментарию и разделённых символом &quot;,&quot;. Поле attachments представляется в формате: 
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="message">Текст комментария (является обязательным, если не задан параметр attachments)</param>
+        /// <param name="attachments">Список объектов, приложенных к комментарию и разделённых символом &quot;,&quot;. Поле attachments представляется в формате: 
         /// &lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt;,&lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt; 
         /// &lt;type&gt; — тип медиа-вложения: 
         /// photo — фотография 
@@ -1018,17 +1016,19 @@ namespace VkNet.Categories
         /// photo100172_166443618,photo66748_265827614
         /// </example>
         ///Параметр является обязательным, если не задан параметр message. список строк, разделенных через запятую</param>
-        /// <param name="fromGroup">Данный параметр учитывается, если oid &lt; 0 (комментарий к фотографии группы). 1 — комментарий будет опубликован от имени группы, 0 — комментарий будет опубликован от имени пользователя (по умолчанию). флаг, может принимать значения 1 или 0</param>
+        /// <param name="fromGroup">Данный параметр учитывается, если oid &lt; 0 (комментарий к фотографии группы). 1 — комментарий будет опубликован от имени группы, 0 — комментарий будет опубликован от имени пользователя (по умолчанию)</param>
         /// <param name="replyToComment"></param>
         /// <param name="accessKey">строка</param>
-        /// <returns>После успешного выполнения возвращает идентификатор созданного комментария. </returns>
+        /// <returns>После успешного выполнения возвращает идентификатор созданного комментария.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createComment"/>.
         /// </remarks>
         [ApiMethodName("photos.createComment", Skip = true)]
         [ApiVersion("5.9")]
-        public long CreateComment(long photoId, long? ownerId = null, long? message = null, long? attachments = null, long? fromGroup = null, long? replyToComment = null, long? accessKey = null)
+        public long CreateComment(long photoId, long? ownerId = null, string message = null, IEnumerable<string> attachments = null, bool? fromGroup = null, bool? replyToComment = null, string accessKey = null)
         {
+            // TODO сделать по-нормально работу с аттачментами
+            VkErrors.ThrowIfNumberIsNegative(() => photoId);
 
             var parameters = new VkParameters
                 {
@@ -1049,9 +1049,9 @@ namespace VkNet.Categories
         /// <summary>
         /// Удаляет комментарий к фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="commentId">идентификатор комментария. обязательный параметр</param>
-        /// <returns>После успешного выполнения возвращает 1 (0, если комментарий не найден). 
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="commentId">Идентификатор комментария</param>
+        /// <returns>После успешного выполнения возвращает true (false, если комментарий не найден). 
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteComment"/>.
@@ -1060,6 +1060,7 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public bool DeleteComment(long commentId, long? ownerId = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
             var parameters = new VkParameters
                 {
@@ -1067,17 +1068,15 @@ namespace VkNet.Categories
                     {"comment_id", commentId}
                 };
 
-            VkResponse response = _vk.Call("photos.deleteComment", parameters);
-
-            return response;
+            return _vk.Call("photos.deleteComment", parameters);
         }
 
         /// <summary>
         /// Восстанавливает удаленный комментарий к фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="commentId">идентификатор удаленного комментария. обязательный параметр</param>
-        /// <returns>После успешного выполнения возвращает 1 (0, если комментарий с таким идентификатором не является удаленным). </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="commentId">Идентификатор удаленного комментария</param>
+        /// <returns>После успешного выполнения возвращает true (false, если комментарий с таким идентификатором не является удаленным).</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.restoreComment"/>.
         /// </remarks>
@@ -1085,6 +1084,7 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public long RestoreComment(long commentId, long? ownerId = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
             var parameters = new VkParameters
                 {
@@ -1092,18 +1092,16 @@ namespace VkNet.Categories
                     {"comment_id", commentId}
                 };
 
-            VkResponse response = _vk.Call("photos.restoreComment", parameters);
-
-            return response;
+            return _vk.Call("photos.restoreComment", parameters);
         }
 
         /// <summary>
         /// Изменяет текст комментария к фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="commentId">идентификатор комментария. обязательный параметр</param>
-        /// <param name="message">новый текст комментария (является обязательным, если не задан параметр attachments). строка</param>
-        /// <param name="attachments">новый список объектов, приложенных к комментарию и разделённых символом &quot;,&quot;. Поле attachments представляется в формате: &lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt;,&lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt; &lt;type&gt; — тип медиа-вложения: 
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="commentId">Идентификатор комментария</param>
+        /// <param name="message">Новый текст комментария (является обязательным, если не задан параметр attachments)</param>
+        /// <param name="attachments">Новый список объектов, приложенных к комментарию и разделённых символом &quot;,&quot;. Поле attachments представляется в формате: &lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt;,&lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt; &lt;type&gt; — тип медиа-вложения: 
         /// photo — фотография 
         /// video — видеозапись 
         /// audio — аудиозапись 
@@ -1115,14 +1113,16 @@ namespace VkNet.Categories
         /// photo100172_166443618,photo66748_265827614
         /// </example>
         /// Параметр является обязательным, если не задан параметр message. список строк, разделенных через запятую</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editComment"/>.
         /// </remarks>
         [ApiMethodName("photos.editComment", Skip = true)]
         [ApiVersion("5.9")]
-        public bool EditComment(long commentId, long? ownerId = null, long? message = null, long? attachments = null)
+        public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<string> attachments = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+
             var parameters = new VkParameters
                 {
                     {"owner_id", ownerId},
@@ -1131,24 +1131,24 @@ namespace VkNet.Categories
                     {"attachments", attachments}
                 };
 
-            VkResponse response = _vk.Call("photos.editComment", parameters);
-            return response;
+            return _vk.Call("photos.editComment", parameters);
         }
 
         /// <summary>
         /// Возвращает список отметок на фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии. обязательный параметр</param>
-        /// <param name="accessKey">строковой ключ доступа, который може быть получен при получении объекта фотографии. строка</param>
-        /// <returns>После успешного выполнения возвращает массив объектов tag, каждый из которых содержит следующие поля: </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="accessKey">строковой ключ доступа, который може быть получен при получении объекта фотографии</param>
+        /// <returns>После успешного выполнения возвращает массив объектов <see cref="Tag"/>.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getTags"/>.
         /// </remarks>
         [ApiMethodName("photos.getTags", Skip = true)]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Tag> GetTags(long photoId, long? ownerId = null, long? accessKey = null)
+        public ReadOnlyCollection<Tag> GetTags(long photoId, long? ownerId = null, string accessKey = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => photoId);
 
             var parameters = new VkParameters
                 {
@@ -1165,23 +1165,24 @@ namespace VkNet.Categories
         /// <summary>
         /// Добавляет отметку на фотографию. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя, которому принадлежит фотография. положительное число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии.положительное число, обязательный параметр</param>
-        /// <param name="userId">идентификатор пользователя, которого нужно отметить на фотографии.целое число, обязательный параметр</param>
-        /// <param name="x">координата верхнего левого угла области с отметкой в % от ширины фотографии.дробное число</param>
-        /// <param name="y">координата верхнего левого угла области с отметкой в % от высоты фотографии.дробное число</param>
-        /// <param name="x2">координата правого нижнего угла области с отметкой в % от ширины фотографии.дробное число</param>
-        /// <param name="y2">координата правого нижнего угла области с отметкой в % от высоты фотографии.дробное число</param>
-        /// <returns>После успешного выполнения возвращает идентификатор созданной отметки (&#39;&#39;&#39;tag id&#39;&#39;&#39;).</returns>
+        /// <param name="ownerId">Идентификатор пользователя, которому принадлежит фотография</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="userId">Идентификатор пользователя</param>
+        /// <param name="x">Координата верхнего левого угла области с отметкой в % от ширины фотографии</param>
+        /// <param name="y">Координата верхнего левого угла области с отметкой в % от высоты фотографии</param>
+        /// <param name="x2">Координата правого нижнего угла области с отметкой в % от ширины фотографии</param>
+        /// <param name="y2">Координата правого нижнего угла области с отметкой в % от высоты фотографии</param>
+        /// <returns>После успешного выполнения возвращает идентификатор созданной отметки.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.putTag"/>.
         /// </remarks>
         [ApiMethodName("photos.putTag", Skip = true)]
         [ApiVersion("5.9")]
-        public long PutTag(long photoId, long userId, long? ownerId = null, long? x = null, long? y = null, long? x2 = null, long? y2 = null)
+        public long PutTag(long photoId, long userId, long? ownerId = null, double? x = null, double? y = null, double? x2 = null, double? y2 = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => ownerId);
             VkErrors.ThrowIfNumberIsNegative(() => photoId);
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
 
             var parameters = new VkParameters
                 {
@@ -1194,18 +1195,16 @@ namespace VkNet.Categories
                     {"y2", y2}
                 };
 
-            VkResponse response = _vk.Call("photos.putTag", parameters);
-
-            return response;
+            return _vk.Call("photos.putTag", parameters);
         }
 
         /// <summary>
         /// Удаляет отметку с фотографии. 
         /// </summary>
-        /// <param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя</param>
-        /// <param name="photoId">идентификатор фотографии. обязательный параметр</param>
-        /// <param name="tagId">идентификатор отметки. обязательный параметр</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+        /// <param name="photoId">Идентификатор фотографии</param>
+        /// <param name="tagId">Идентификатор отметки</param>
+        /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.removeTag"/>.
         /// </remarks>
@@ -1213,6 +1212,9 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public bool RemoveTag(long tagId, long photoId, long? ownerId = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => tagId);
+            VkErrors.ThrowIfNumberIsNegative(() => photoId);
+
             var parameters = new VkParameters
                 {
                     {"owner_id", ownerId},
@@ -1220,17 +1222,15 @@ namespace VkNet.Categories
                     {"tag_id", tagId}
                 };
 
-            VkResponse response = _vk.Call("photos.removeTag", parameters);
-
-            return response;
+            return _vk.Call("photos.removeTag", parameters);
         }
 
         /// <summary>
         /// Возвращает список фотографий, на которых есть непросмотренные отметки. 
         /// </summary>
-        /// <param name="offset">смещение, необходимое для получения определённого подмножества фотографий. целое число</param>
-        /// <param name="count">количество фотографий, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20</param>
-        /// <returns>После успешного выполнения возвращает список объектов photo с дополнительными полями: </returns>
+        /// <param name="offset">Смещение, необходимое для получения определённого подмножества фотографий</param>
+        /// <param name="count">Количество фотографий, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20</param>
+        /// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>.</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags"/>.
         /// </remarks>
@@ -1238,6 +1238,7 @@ namespace VkNet.Categories
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetNewTags(int? offset = null, int? count = null)
         {
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
 
             var parameters = new VkParameters

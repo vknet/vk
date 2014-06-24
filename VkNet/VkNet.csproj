@@ -60,6 +60,7 @@
     <Compile Include="Categories\PhotosCategory_Generated.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\CommentPrivacy.cs" />
     <Compile Include="Enums\Filters\CountersFilter.cs" />
     <Compile Include="Categories\DatabaseCategory.cs" />
     <Compile Include="Categories\FaveCategory.cs" />
@@ -87,6 +88,8 @@
     <Compile Include="Enums\PeopleMain.cs" />
     <Compile Include="Enums\PoliticalPreferences.cs" />
     <Compile Include="Enums\RelationType.cs" />
+    <Compile Include="Enums\SafetyEnums\PhotoAlbumType.cs" />
+    <Compile Include="Enums\SafetyEnums\PhotoFeedType.cs" />
     <Compile Include="Enums\Sex.cs" />
     <Compile Include="Enums\VideoReportType.cs" />
     <Compile Include="Enums\VideoSort.cs" />

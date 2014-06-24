@@ -120,7 +120,10 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Теги
         /// </summary>
-        public Tags Tags { get; set; } 
+        public Tags Tags { get; set; }
+
+        public Uri PhotoSrc { get; set; }
+        public Uri PhotoHash { get; set; }
 
         #region Методы
 
@@ -155,8 +158,10 @@ namespace VkNet.Model.Attachments
             photo.Likes = response["likes"];
             photo.Comments = response["comments"];
             photo.CanComment = response["can_comment"];
-
             photo.Tags = response["tags"];
+
+            photo.PhotoSrc = response["photo_src"];
+            photo.PhotoHash = response["photo_hash"];
 
             return photo;
         }
