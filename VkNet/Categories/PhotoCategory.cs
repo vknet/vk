@@ -13,11 +13,11 @@ namespace VkNet.Categories
     /// <summary>
     /// Методы для работы с фотографиями.
     /// </summary>
-    public class PhotosCategory
+    public class PhotoCategory
     {
         private readonly VkApi _vk;
 
-        internal PhotosCategory(VkApi vk)
+        internal PhotoCategory(VkApi vk)
         {
             _vk = vk;
         }

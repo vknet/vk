@@ -13,10 +13,10 @@ namespace VkNet.Tests.Categories
     [TestFixture]
     public class PhotosCategoryTest
     {
-        public PhotosCategory GetMockedPhotosCategory(string url, string json)
+        public PhotoCategory GetMockedPhotosCategory(string url, string json)
         {
             var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-            return new PhotosCategory(new VkApi{Browser = browser, AccessToken = "token"});
+            return new PhotoCategory(new VkApi{Browser = browser, AccessToken = "token"});
         }
 
         #region GetProfileUploadServer

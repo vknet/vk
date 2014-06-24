@@ -75,6 +75,10 @@
 		/// API для работы с аккаунтом пользователя.
 		/// </summary>
 		public AccountCategory Account { get; private set; }
+        /// <summary>
+        /// API для работы с фотографиями
+        /// </summary>
+        public PhotoCategory Photo { get; private set; }
 
         #endregion
 
@@ -108,6 +112,7 @@
             Fave = new FaveCategory(this);
             Video = new VideoCategory(this);
 			Account = new AccountCategory(this);
+            Photo = new PhotoCategory(this);
         }
 
         /// <summary>

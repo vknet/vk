@@ -58,6 +58,7 @@
             vk.Fave.ShouldNotBeNull();
             vk.Video.ShouldNotBeNull();
             vk.Account.ShouldNotBeNull();
+            vk.Photo.ShouldNotBeNull();
             // TODO: continue later
         }
 
