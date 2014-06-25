@@ -9,7 +9,6 @@ using RazorEngine;
 using VkApiGenerator.Model;
 using VkApiGenerator.Utils;
 using VkNet;
-using VkNet.Enums.Filters;
 using VkNet.Utils;
 
 namespace VkApiGenerator

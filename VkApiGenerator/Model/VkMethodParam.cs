@@ -50,7 +50,7 @@ namespace VkApiGenerator.Model
         /// </summary>
         public bool IsMandatory { get; set; }
 
-        public VkParamType Type { get; set; }
+        public ReturnType Type { get; set; }
 
         public VkParamRestrictions Restrictions { get; set; }
 
@@ -58,12 +58,43 @@ namespace VkApiGenerator.Model
         {
             var sb = new StringBuilder();
 
-            if (Type == VkParamType.Digit && (Name == "count" || Name == "offset"))
-                sb.Append("int");
-            else
-                sb.Append("long");
+            Type = VkMethodInfo.GetReturnType(Description);
 
-            if (!IsMandatory)
+            switch (Type)
+            {
+                case ReturnType.Bool:
+                    sb.Append("bool");
+                    break;
+
+                case ReturnType.Collection:
+                    sb.Append("IEnumerable<>");
+                    break;
+
+                case ReturnType.Void:
+                    sb.Append("void");
+                    break;
+
+                case ReturnType.Long:
+                    if (Name == "count" || Name == "offset")
+                        sb.Append("int");
+                    else
+                        sb.Append("long");
+                    break;
+
+                case ReturnType.String:
+                    sb.Append("string");
+                    break;
+
+                case ReturnType.Double:
+                    sb.Append("double");
+                    break;
+
+                default:
+                    sb.Append("long"); // if unknown make it long
+                    break;
+            }
+
+            if (!IsMandatory && Type != ReturnType.String)
                 sb.Append("?");
 
             sb.Append(" ");

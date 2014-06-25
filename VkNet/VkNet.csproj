@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
+    <Compile Include="Categories\LikesCategory_Generated.cs" />
     <Compile Include="Categories\PhotoCategory.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +89,7 @@
     <Compile Include="Enums\PeopleMain.cs" />
     <Compile Include="Enums\PoliticalPreferences.cs" />
     <Compile Include="Enums\RelationType.cs" />
+    <Compile Include="Enums\SafetyEnums\LikeObjectType.cs" />
     <Compile Include="Enums\SafetyEnums\PhotoAlbumType.cs" />
     <Compile Include="Enums\SafetyEnums\PhotoFeedType.cs" />
     <Compile Include="Enums\Sex.cs" />

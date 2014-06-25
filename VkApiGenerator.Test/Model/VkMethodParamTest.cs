@@ -31,7 +31,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void ToString_CountDigitMandatory()
         {
-            var param = new VkMethodParam { Name = "count", Type = VkParamType.Digit, IsMandatory = true };
+            var param = new VkMethodParam { Name = "count", Type = ReturnType.Long, IsMandatory = true };
 
             string result = param.ToString();
 
@@ -41,7 +41,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void ToString_Offset()
         {
-            var param = new VkMethodParam { Name = "offset", Type = VkParamType.Digit };
+            var param = new VkMethodParam { Name = "offset", Type = ReturnType.Long };
 
             string result = param.ToString();
 
@@ -51,7 +51,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void ToString_Mandatory()
         {
-            var param = new VkMethodParam { Name = "user_id", Type = VkParamType.Digit, IsMandatory = true};
+            var param = new VkMethodParam { Name = "user_id", Type = ReturnType.Long, IsMandatory = true};
             string result = param.ToString();
 
             result.ShouldEqual("long userId");
@@ -60,7 +60,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void ToString_NormalCase()
         {
-            var param = new VkMethodParam {Name = "user_id", Type = VkParamType.Digit};
+            var param = new VkMethodParam {Name = "user_id", Type = ReturnType.Long};
             string result = param.ToString();
 
             result.ShouldEqual("long? userId = null");

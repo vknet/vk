@@ -5,6 +5,7 @@
         public static readonly string ThrowIfNumberIsNegative = "VkErrors.ThrowIfNumberIsNegative(() => {0});";
 
         public static readonly string Method = @"@Raw(@Model.XmlDoc)
+[ApiVersion(""5.9"")]
 public @Raw(@Model.ReturnType) @(Model.Name)(@Model.Params)
 {
 @Raw(@Model.Check)

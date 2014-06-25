@@ -10,63 +10,16 @@ namespace VkApiGenerator.Console
     {
         static void Main(string[] args)
         {
-            const string categoryName = "Photos";
+            const string categoryName = "Likes";
 
             var methods = new[]
             {
-//                "notes.get",
-//                "notes.getById",
-//                "notes.getFriendsNotes",
-//                "notes.add",
-//                "notes.edit",
-//                "notes.delete",
-//                "notes.getComments",
-//                "notes.createComment",
-//                "notes.editComment",
-//                "notes.deleteComment",
-//                "notes.restoreComment"
-
-                  "photos.createAlbum",
-                  "photos.editAlbum",
-                  "photos.getAlbums",
-                  "photos.get",
-                  "photos.getAlbumsCount",
-                  "photos.getProfile",
-                  "photos.getById",
-                  "photos.getUploadServer",
-                  "photos.getProfileUploadServer",
-                  "photos.getChatUploadServer",
-                  "photos.saveProfilePhoto",
-                  "photos.saveWallPhoto",
-                  "photos.getWallUploadServer",
-                  "photos.getMessagesUploadServer",
-                  "photos.saveMessagesPhoto",
-                  "photos.report",
-                  "photos.reportComment",
-                  "photos.search",
-                  "photos.save",
-                  "photos.copy",
-                  "photos.edit",
-                  "photos.move",
-                  "photos.makeCover",
-                  "photos.reorderAlbums",
-                  "photos.reorderPhotos",
-                  "photos.getAll",
-                  "photos.getUserPhotos",
-                  "photos.deleteAlbum",
-                  "photos.delete",
-                  "photos.confirmTag",
-                  "photos.getComments",
-                  "photos.getAllComments",
-                  "photos.createComment",
-                  "photos.deleteComment",
-                  "photos.restoreComment",
-                  "photos.editComment",
-                  "photos.getTags",
-                  "photos.putTag",
-                  "photos.removeTag",
-                  "photos.getNewTags"
+                "likes.getList",
+                "likes.add",
+                "likes.delete",
+                "likes.isLiked"
             };
+
             var parser = new VkApiParser();
             var generator = new VkApiGenerator();
             var source = InitializeSource(categoryName);

@@ -18,7 +18,7 @@ namespace VkApiGenerator.Test.Model
         [Test]
         public void ToString_OneItem()
         {
-            var collection = new VkMethodParamsCollection {new VkMethodParam {Name = "count", Type = VkParamType.Digit}};
+            var collection = new VkMethodParamsCollection {new VkMethodParam {Name = "count", Type = ReturnType.Long}};
 
             string result = collection.ToString();
             result.ShouldEqual("int? count = null");
@@ -29,8 +29,8 @@ namespace VkApiGenerator.Test.Model
         {
             var collection = new VkMethodParamsCollection
             {
-                new VkMethodParam {Name = "count", Type = VkParamType.Digit},
-                new VkMethodParam {Name = "offset", Type = VkParamType.Digit}
+                new VkMethodParam {Name = "count", Type = ReturnType.Long},
+                new VkMethodParam {Name = "offset", Type = ReturnType.Long}
             };
 
             string result = collection.ToString();

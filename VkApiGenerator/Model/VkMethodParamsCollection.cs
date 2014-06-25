@@ -8,6 +8,11 @@ namespace VkApiGenerator.Model
     {
         private readonly IList<VkMethodParam> _list;
 
+        public VkMethodParamsCollection(IList<VkMethodParam> list)
+        {
+            _list = list;
+        }
+
         public VkMethodParamsCollection()
         {
             _list = new List<VkMethodParam>();
