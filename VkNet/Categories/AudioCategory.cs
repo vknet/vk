@@ -627,6 +627,35 @@
         }
 
         /// <summary>
+        /// Сохраняет аудиозаписи после успешной загрузки.
+        /// </summary>
+        /// <param name="server">параметр, возвращаемый в результате загрузки аудиофайла на сервер. </param>
+        /// <param name="audio">параметр, возвращаемый в результате загрузки аудиофайла на сервер.</param>
+        /// <param name="hash">параметр, возвращаемый в результате загрузки аудиофайла на сервер.</param>
+        /// <param name="artist">автор композиции. По умолчанию берется из ID3 тегов.</param>
+        /// <param name="title">название композиции. По умолчанию берется из ID3 тегов. </param>
+        /// <returns>Возвращает массив из объектов с загруженными аудиозаписями.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.save"/>.
+        /// </remarks>
+        [ApiVersion("5.21")]
+        public ReadOnlyCollection<Audio> Save(long server, string audio, string hash = null, string artist = null, string title = null)
+        {
+            VkErrors.ThrowIfNullOrEmpty(() => audio);
+            var parameters = new VkParameters
+            {
+                {"server", server},
+                {"audio", audio},
+                {"hash", hash},
+                {"artist", artist},
+                {"title", title}
+            };
+
+            VkResponseArray response = _vk.Call("audio.save", parameters);
+            return response.ToReadOnlyCollectionOf<Audio>(x => x);
+        }
+
+        /// <summary>
         /// НЕ РЕАЛИЗОВАН!
         /// </summary>
         public void GetBroadcastList()
