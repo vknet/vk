@@ -522,8 +522,7 @@
         /// </remarks>
         [Pure]
         public ReadOnlyCollection<AudioAlbum> GetAlbums(long ownerid, int? count = null, int? offset = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => ownerid);
+        {   
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
 

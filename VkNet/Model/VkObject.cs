@@ -1,11 +1,14 @@
 ﻿namespace VkNet.Model
 {
+    using System.Diagnostics;
+
     using Enums;
     using Utils;
-
+    
     /// <summary>
     /// Определяет тип объекта
     /// </summary>
+    [DebuggerDisplay("Id = {Id}, Type = {Type}")]
     public class VkObject
     {
         /// <summary>
