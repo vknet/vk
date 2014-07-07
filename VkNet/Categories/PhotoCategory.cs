@@ -538,6 +538,9 @@ namespace VkNet.Categories
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => radius);
 
+            //TODO do this check later
+//            VkErrors.ThrowIfNumberNotInRange(lat, -90, 90);
+
             var parameters = new VkParameters
                 {
                     {"q", query},
@@ -551,7 +554,7 @@ namespace VkNet.Categories
                     {"radius", radius}
                 };
 
-            VkResponseArray response = _vk.Call("photos.search", parameters);
+            VkResponseArray response = _vk.Call("photos.search", parameters, true);
 
             return response.ToReadOnlyCollectionOf<Photo>(x => x);
         }
