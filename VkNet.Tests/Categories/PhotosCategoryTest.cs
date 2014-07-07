@@ -387,6 +387,60 @@ namespace VkNet.Tests.Categories
             photos[0].Text.ShouldEqual("🍓 [club49512556|ЗАХОДИ К НАМ]\nчастное фото секси обнаженные девочки малолетки порно голые сиськи попки эротика няша шлюха грудь секс instagirls instagram лето\n#секс #девушки #девочки #instagram #instagirls #няша #InstaSize #лето #ПОПКИ");
             photos[0].CreateTime.ShouldEqual(new DateTime(2014, 6, 22, 20, 49, 48));  //  2014-06-22 20:49:48.000
         }
+
+        [Test]
+        public void Search_Error26_Lat_and_Long_in_output_photo()
+        {
+            const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=5.9&access_token=token";
+            const string json =
+                @"{
+                    'response': {
+                      'count': 12,
+                      'items': [
+                        {
+                          'id': 334408466,
+                          'album_id': 198144854,
+                          'owner_id': 258913887,
+                          'photo_75': 'http://cs617419.vk.me/v617419887/11e90/GD__Lv5FTI4.jpg',
+                          'photo_130': 'http://cs617419.vk.me/v617419887/11e91/f-4hN1xff9I.jpg',
+                          'photo_604': 'http://cs617419.vk.me/v617419887/11e92/KiTWG4Lk8sE.jpg',
+                          'photo_807': 'http://cs617419.vk.me/v617419887/11e93/LXbjRssgtso.jpg',
+                          'width': 640,
+                          'height': 640,
+                          'text': '',
+                          'date': 1404294037,
+                          'lat': 29.999996,
+                          'long': 29.999997
+                        },
+                        {
+                          'id': 326991086,
+                          'album_id': -6,
+                          'owner_id': 249390767,
+                          'photo_75': 'http://cs605216.vk.me/v605216767/5336/XeqYTC3wgwo.jpg',
+                          'photo_130': 'http://cs605216.vk.me/v605216767/5337/IdbmUgGaoys.jpg',
+                          'photo_604': 'http://cs605216.vk.me/v605216767/5338/6wIHGv9_xZ8.jpg',
+                          'width': 403,
+                          'height': 336,
+                          'text': '',
+                          'date': 1396601780,
+                          'lat': 29.942251,
+                          'long': 29.882819,
+                          'post_id': 1
+                        }
+                      ]
+                    }
+                  }";
+
+            var photos = GetMockedPhotosCategory(url, json).Search(query: "", lat: 30, longitude: 30, count: 2);
+
+            photos.Count.ShouldEqual(2);
+
+            photos[0].Latitude.ShouldEqual(29.999996185302734);
+            photos[0].Longitude.ShouldEqual(29.999996185302734);
+
+            photos[1].Latitude.ShouldEqual(29.942251205444336);
+            photos[1].Longitude.ShouldEqual(29.882818222045898);
+        }
 #endregion
 
     }

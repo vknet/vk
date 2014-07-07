@@ -530,7 +530,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.search"/>.
         /// </remarks>
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Photo> Search(string query, double? lat = null, double? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
+        public ReadOnlyCollection<Photo> Search(string query = null, double? lat = null, double? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
         {
             // todo add check for latitude and longitude throught VkErrors.ThrowIfNumberNotInRange
             // TODO add verstion with totalCount
