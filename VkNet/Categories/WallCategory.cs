@@ -75,6 +75,7 @@
 	    /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>, для случая, когда параметр extended = 1.
 	    /// </remarks>
 	    [Pure]
+        [ApiVersion("5.9")]
 		public int GetExtended(long ownerId, out ReadOnlyCollection<Post> wallPosts, out ReadOnlyCollection<User> profiles, out ReadOnlyCollection<Group> groups, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
 		{			   
 			VkErrors.ThrowIfNumberIsNegative(() => count);
