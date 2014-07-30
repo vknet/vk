@@ -16,14 +16,14 @@
         private const string Password = "pwd1234";
         private const int AppId = 123;
 
-        private VkApi vk;
-        private IDictionary<string, string> values;
+        private VkApi _vk;
+        private IDictionary<string, string> _values;
 
         [SetUp]
         public void SetUp()
         {
-            vk = new VkApi { AccessToken = "token" };
-            values = new Dictionary<string, string>();
+            _vk = new VkApi { AccessToken = "token" };
+            _values = new Dictionary<string, string>();
         }
         
         [Test]
@@ -37,7 +37,7 @@
 
             const string expected = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&access_token=token";
 
-            string url = vk.GetApiUrl("database.getCountriesById", parameters);
+            string url = _vk.GetApiUrl("database.getCountriesById", parameters);
 
             Assert.That(url, Is.EqualTo(expected));
         }
@@ -45,30 +45,30 @@
         [Test]
         public void VkApi_Constructor_SetDefaultMethodCategories()
         {
-            Assert.That(vk.Users, Is.Not.Null);
-            Assert.That(vk.Friends, Is.Not.Null);
-            Assert.That(vk.Status, Is.Not.Null);
-            Assert.That(vk.Messages, Is.Not.Null);
-            Assert.That(vk.Groups, Is.Not.Null);
-            Assert.That(vk.Audio, Is.Not.Null);
-            Assert.That(vk.Wall, Is.Not.Null);
-            Assert.That(vk.Database, Is.Not.Null);
-            Assert.That(vk.Utils, Is.Not.Null);
+            Assert.That(_vk.Users, Is.Not.Null);
+            Assert.That(_vk.Friends, Is.Not.Null);
+            Assert.That(_vk.Status, Is.Not.Null);
+            Assert.That(_vk.Messages, Is.Not.Null);
+            Assert.That(_vk.Groups, Is.Not.Null);
+            Assert.That(_vk.Audio, Is.Not.Null);
+            Assert.That(_vk.Wall, Is.Not.Null);
+            Assert.That(_vk.Database, Is.Not.Null);
+            Assert.That(_vk.Utils, Is.Not.Null);
 
-            vk.Fave.ShouldNotBeNull();
-            vk.Video.ShouldNotBeNull();
-            vk.Account.ShouldNotBeNull();
-            vk.Photo.ShouldNotBeNull();
+            _vk.Fave.ShouldNotBeNull();
+            _vk.Video.ShouldNotBeNull();
+            _vk.Account.ShouldNotBeNull();
+            _vk.Photo.ShouldNotBeNull();
             // TODO: continue later
         }
 
         [Test]
         public void GetApiUrl_GetProfile_RightUrl()
         {
-            values.Add("uid", "66748");
+            _values.Add("uid", "66748");
             const string expected = "https://api.vk.com/method/getProfiles?uid=66748&access_token=token";
 
-            var output = vk.GetApiUrl("getProfiles", values);
+            var output = _vk.GetApiUrl("getProfiles", _values);
 
             Assert.That(output, Is.Not.Null.Or.Empty);
             Assert.That(output, Is.EqualTo(expected));
@@ -78,11 +78,11 @@
         public void GetApiUrl_GetProfile_WithFields()
         {
             ProfileFields fields = ProfileFields.FirstName | ProfileFields.Domain | ProfileFields.Education;
-            values.Add("uid", "66748");
-            values.Add("fields", fields.ToString().Replace(" ", ""));
+            _values.Add("uid", "66748");
+            _values.Add("fields", fields.ToString().Replace(" ", ""));
             const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,domain,education&access_token=token";
 
-            string output = vk.GetApiUrl("getProfiles", values);
+            string output = _vk.GetApiUrl("getProfiles", _values);
 
             Assert.That(output, Is.EqualTo(expected));
         }
@@ -94,8 +94,8 @@
             var browser = new Mock<IBrowser>();
             browser.Setup(b => b.Authorize(AppId, Email, Password, Settings.Friends)).Returns(VkAuthorization.From(new Uri(urlWithBadLoginOrPassword)));
 
-            vk.Browser = browser.Object;
-            var ex = This.Action(() => vk.Authorize(AppId, Email, Password, Settings.Friends)).Throws<VkApiAuthorizationException>();
+            _vk.Browser = browser.Object;
+            var ex = This.Action(() => _vk.Authorize(AppId, Email, Password, Settings.Friends)).Throws<VkApiAuthorizationException>();
             ex.Message.ShouldEqual(VkApi.InvalidAuthorization);
         }
 
