@@ -84,14 +84,17 @@
 
         internal IBrowser Browser { get; set; }
 
-        internal string AccessToken { get; set; }
+        /// <summary>
+        /// Токен для доступа к методам API
+        /// </summary>
+        public string AccessToken { get; set; }
 
         /// <summary>
         /// Идентификатор пользователя, от имени которого была проведена авторизация.
         /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings)"/>, 
         /// то возвращается null.
         /// </summary>
-        public long ?UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="VkApi"/>.
