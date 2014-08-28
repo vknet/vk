@@ -1,8 +1,4 @@
-﻿using System.Threading.Tasks;
-using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +6,8 @@ namespace VkNet.Categories
     using System.Linq;
     using JetBrains.Annotations;
 
-    using Enums;
+    using Enums.Filters;
+    using Enums.SafetyEnums;
     using Model;
     using Utils;
 
@@ -180,7 +177,7 @@ namespace VkNet.Categories
             return response.ToReadOnlyCollectionOf<User>(x => x);
         }
 
-#if DEBUG
+#if false
         // todo start shit
         [Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
         [ApiVersion("5.9")]

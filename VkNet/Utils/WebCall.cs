@@ -1,13 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace VkNet.Utils
+﻿namespace VkNet.Utils
 {
     using System.Net;
     using System.Text;
-    using System.Net.Http;
 
-    using VkNet.Exception;
+    using Exception;
 
     internal sealed class WebCall
     {
@@ -32,6 +28,7 @@ namespace VkNet.Utils
             return call.MakeRequest();
         }
 
+#if false // async version for PostCall
         public static async Task<string> PostCallAsync(string url, string parameters)
         {
             var content = new StringContent(parameters);
@@ -44,6 +41,7 @@ namespace VkNet.Utils
 
             return output;
         }
+#endif
 
         public static WebCallResult PostCall(string url, string parameters)
         {

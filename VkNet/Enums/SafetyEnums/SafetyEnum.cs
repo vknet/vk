@@ -63,7 +63,7 @@ namespace VkNet.Enums.SafetyEnums
 
 		public override string ToString()
 		{
-			return string.Join(",", PossibleValues.Where(pair => (pair.Key & _mask) != 0).Select(pair => pair.Value));
+			return string.Join(",", PossibleValues.Where(pair => (pair.Key & _mask) != 0).Select(pair => pair.Value).ToArray());
 		}
 
 		public static bool operator ==(SafetyEnum<TFilter> left, SafetyEnum<TFilter> right)

@@ -1,13 +1,10 @@
-﻿using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-
-namespace VkNet.Utils
+﻿namespace VkNet.Utils
 {
     using System.Net;
     using System.Text;
-    using System.Threading.Tasks;
 
-    using VkNet.Enums;
+    using Enums.Filters;
+    using Enums.SafetyEnums;
 
     /// <summary>
     /// Браузер, через который производится сетевое взаимодействие с ВКонтакте.
@@ -29,6 +26,7 @@ namespace VkNet.Utils
             return WebCall.PostCall(methodUrl, parameters).Response;
         }
 
+#if false
         /// <summary>
         /// Асинхронное получение json по url-адресу
         /// </summary>
@@ -43,6 +41,7 @@ namespace VkNet.Utils
 
             return await WebCall.PostCallAsync(url, parameters);
         }
+#endif
 
         /// <summary>
         /// Авторизация на сервере ВК

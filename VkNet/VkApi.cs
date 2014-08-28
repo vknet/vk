@@ -2,7 +2,6 @@
 {
     using System;
     using System.Runtime.CompilerServices;
-    using System.Threading.Tasks;
     using JetBrains.Annotations;
 
     using System.Collections.Generic;
@@ -148,7 +147,7 @@
 
         #region Private & Internal Methods
 
-#if DEBUG
+#if false
         // todo refactor this shit
         internal async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {

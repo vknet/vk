@@ -1,9 +1,6 @@
-﻿using VkNet.Enums.Filters;
-
-namespace VkNet.Utils
+﻿namespace VkNet.Utils
 {
-    using System.Threading.Tasks;
-    using Enums;
+    using Enums.Filters;
 
     /// <summary>
     /// Интерфейс браузера, с помощью которого осуществляется сетевое взаимодействие.
@@ -18,12 +15,14 @@ namespace VkNet.Utils
         /// <returns>Результат выполнения запроса, полученный от сервера в формате JSON.</returns>
         string GetJson(string url);
 
+#if false
         /// <summary>
         /// Выполняет асинхронный JSON-запрос к ВКонтакте.
         /// </summary>
         /// <param name="url">URL, в котором закодированы параметры запроса.</param>
         /// <returns></returns>
         Task<string> GetJsonAsync(string url);
+#endif
 
         /// <summary>
         /// Выполняет авторизацию ВКонтакте. 

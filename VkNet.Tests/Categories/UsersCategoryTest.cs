@@ -3,7 +3,6 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using System.Linq;
     using Moq;
     using NUnit.Framework;
@@ -31,7 +30,11 @@
 
         private UsersCategory GetMockedUsersCategory(string url, string json)
         {
+#if false // async version
             var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json && m.GetJsonAsync(url) == Task.FromResult(json));
+#endif
+            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json && m.GetJson(url) == json);
+
             return new UsersCategory(new VkApi { AccessToken = "token", Browser = browser});
         }
 
@@ -1318,7 +1321,7 @@
             user.City.Title.ShouldEqual("Москва");
         }
 
-#if DEBUG
+#if false
         #region Async methods
 
         [Test]
