@@ -25,24 +25,30 @@ namespace VkNet.Categories
             _vk = vk;
         }
 
-        /// <summary>
-        /// Возвращает список идентификаторов друзей пользователя или расширенную информацию о друзьях пользователя (при использовании параметра fields).
-        /// </summary>
-        /// <param name="uid">Идентификатор пользователя, для которого необходимо получить список друзей.</param>
-        /// <param name="fields">Поля анкеты (профиля), которые необходимо получить.</param>
-        /// <param name="count">Количество друзей, которое нужно вернуть. (по умолчанию – все друзья).</param>
-        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества друзей.</param>
-        /// <param name="order">Порядок, в котором нужно вернуть список друзей.</param>
-        /// <returns>Список друзей пользователя с заполненными полями (указанными в параметре <paramref name="fields"/>).
-        /// Если значение поля <paramref name="fields"/> не указано, то у возвращаемых друзей заполняется только поле Id.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get"/>.
-        /// </remarks>
-        [Pure]
-        public ReadOnlyCollection<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null)
+	    /// <summary>
+	    /// Возвращает список идентификаторов друзей пользователя или расширенную информацию о друзьях пользователя (при использовании параметра fields).
+	    /// </summary>
+	    /// <param name="uid">Идентификатор пользователя, для которого необходимо получить список друзей.</param>
+	    /// <param name="fields">Поля анкеты (профиля), которые необходимо получить.</param>
+	    /// <param name="count">Количество друзей, которое нужно вернуть. (по умолчанию – все друзья).</param>
+	    /// <param name="offset">Смещение, необходимое для выборки определенного подмножества друзей.</param>
+	    /// <param name="order">Порядок, в котором нужно вернуть список друзей.</param>
+	    /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя.</param>
+	    /// <param name="listId">Идентификатор списка друзей, полученный методом <see cref="FriendsCategory.GetLists"/>, друзей из которого необходимо получить. Данный параметр учитывается, только когда параметр uid равен идентификатору текущего пользователя.</param>
+	    /// <returns>Список друзей пользователя с заполненными полями (указанными в параметре <paramref name="fields"/>).
+	    /// Если значение поля <paramref name="fields"/> не указано, то у возвращаемых друзей заполняется только поле Id.
+	    /// </returns>
+	    /// <remarks>
+	    /// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get"/>.
+	    /// </remarks>
+	    [Pure]
+		[ApiVersion("5.24")]
+        public ReadOnlyCollection<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null, NameCase nameCase = null, int? listId = null)
         {
-            var parameters = new VkParameters { { "uid", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order } };
+            if(listId != null && listId < 0)
+				throw new ArgumentOutOfRangeException("listId", "listId must be a positive number.");
+			
+			var parameters = new VkParameters { { "user_id", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order }, {"list_id", listId} , {"name_case", nameCase}};
 
             var response = _vk.Call("friends.get", parameters);
 

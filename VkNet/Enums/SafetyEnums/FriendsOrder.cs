@@ -18,6 +18,6 @@
         /// <summary>
         /// Возвращает друзей в случайном порядке.
         /// </summary>
-        public static readonly FriendsOrder Random = RegisterPossibleValue("random ");
+        public static readonly FriendsOrder Random = RegisterPossibleValue("random");
     }
 }
