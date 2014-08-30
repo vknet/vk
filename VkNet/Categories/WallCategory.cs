@@ -135,17 +135,15 @@
                                  { "need_likes", needLikes },
                                  { "count", count },
                                  { "offset", offset },
-                                 { "preview_length", previewLength }
+                                 { "preview_length", previewLength },
+                                 { "sort", sort }
                              };
 
-            if (sort != null)
-                parameters.Add("sort", sort.ToString().ToLowerInvariant());
+            var response = _vk.Call("wall.getComments", parameters);
 
-            VkResponseArray response = _vk.Call("wall.getComments", parameters);
+	        totalCount = response["count"];
 
-            totalCount = response[0];
-
-            return response.Skip(1).ToReadOnlyCollectionOf<Comment>(c => c);
+            return response["items"].ToReadOnlyCollectionOf<Comment>(c => c);
         }
 
         /// <summary>
