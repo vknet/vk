@@ -434,9 +434,9 @@ namespace VkNet.Tests.Categories
             const string url = "https://api.vk.com/method/wall.getComments?owner_id=12312&post_id=12345&need_likes=1&preview_length=0&sort=asc&v=5.9&access_token=token";
 			const string json =
                 @"{
-                    'response': [
-                      2,
-                      {
+                    'response': {
+                      'count': 2,
+                      'items': [{
                         'id': 3809,
                         'from_id': 6733856,
                         'date': 1385099144,
@@ -471,8 +471,8 @@ namespace VkNet.Tests.Categories
                             }
                           }
                         ]
-                      }
-                    ]
+                      } ]
+                    }
                   }";
 
 			int totalCount;
