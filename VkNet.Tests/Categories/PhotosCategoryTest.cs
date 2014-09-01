@@ -147,8 +147,8 @@ namespace VkNet.Tests.Categories
             albums[0].OwnerId.ShouldEqual(1);
             albums[0].Title.ShouldEqual("Здесь будут новые фотографии для прессы-службы");
             albums[0].Description.ShouldEqual(string.Empty);
-            albums[0].Created.ShouldEqual(new DateTime(2011, 6, 9, 19, 12, 58));
-            albums[0].Updated.ShouldEqual(new DateTime(2014, 4, 27, 23, 4, 33));
+	        albums[0].Created.ShouldEqual(new DateTime(2011, 6, 9, 14, 12, 58, DateTimeKind.Utc).ToLocalTime());
+           	albums[0].Updated.ShouldEqual(new DateTime(2014, 4, 27, 19, 4, 33).ToLocalTime());
             albums[0].Size.ShouldEqual(8);
         }
         #endregion

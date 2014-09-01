@@ -41,7 +41,7 @@
         public void Get_FriendsForDurov_ListOfFriends()
         {
             const string url =
-                "https://api.vk.com/method/friends.get?uid=1&access_token=token";
+                "https://api.vk.com/method/friends.get?user_id=1&v=5.24&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -68,33 +68,36 @@
         public void Get_FirstNameLastName_ListOfObjects()
         {
             const string url =
-                "https://api.vk.com/method/friends.get?uid=1&fields=first_name,last_name&count=3&access_token=token";
+                "https://api.vk.com/method/friends.get?user_id=1&fields=first_name,last_name&count=3&v=5.24&access_token=token";
             const string json =
-                @"{
-                    'response': [
-                      {
-                        'uid': 2,
-                        'first_name': 'Александра',
-                        'last_name': 'Владимирова',
-                        'online': 0
-                      },
-                      {
-                        'uid': 5,
-                        'first_name': 'Илья',
-                        'last_name': 'Перекопский',
-                        'online': 0
-                      },
-                      {
-                        'uid': 6,
-                        'first_name': 'Николай',
-                        'last_name': 'Дуров',
-                        'online': 0
-                      }
-                    ]
+               @"{
+                    'response': {
+                      'count': 690,
+                      'items': [
+                        {
+                          'id': 2,
+                          'first_name': 'Александра',
+                          'last_name': 'Владимирова',
+                          'online': 0
+                        },
+                        {
+                          'id': 5,
+                          'first_name': 'Илья',
+                          'last_name': 'Перекопский',
+                          'online': 0
+                        },
+                        {
+                          'id': 6,
+                          'first_name': 'Николай',
+                          'last_name': 'Дуров',
+                          'online': 0
+                        }
+                      ]
+                    }
                   }";
 
             var friends = GetMockedFriendsCategory(url, json);
-            var lst = friends.Get(1, ProfileFields.FirstName | ProfileFields.LastName, 3).ToList();
+            var lst = friends.Get(1, ProfileFields.FirstName | ProfileFields.LastName, 3);
 
             Assert.That(lst.Count, Is.EqualTo(3));
             Assert.That(lst[0].Id, Is.EqualTo(2));

@@ -307,7 +307,7 @@ namespace VkNet.Tests.Categories
 		public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 		{
 			const string url =
-			    "https://api.vk.com/method/wall.get?owner_id=10&count=1&offset=1&filter=owner&extended=1&access_token=token";
+			    "https://api.vk.com/method/wall.get?owner_id=10&count=1&offset=1&filter=owner&extended=1&v=5.9&access_token=token";
 			const string json =
 			    @"{
                     'response': {

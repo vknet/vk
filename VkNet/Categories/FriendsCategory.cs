@@ -52,10 +52,9 @@ namespace VkNet.Categories
 
             var response = _vk.Call("friends.get", parameters);
 
-            if (fields != null)
-                return response.ToReadOnlyCollectionOf<User>(x => x);
-
-            return response.ToReadOnlyCollectionOf(id => new User { Id = id });
+		    if (fields != null)
+                return response["items"].ToReadOnlyCollectionOf<User>(x => x);
+		    return response.ToReadOnlyCollectionOf(id => new User { Id = id });
         }
 
         /// <summary>
