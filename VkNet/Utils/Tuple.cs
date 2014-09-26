@@ -1,5 +1,6 @@
 ﻿namespace VkNet.Utils
 {
+#if NET35
     internal class Tuple<T, U>
     {
         public T Item1 { get; private set; }
@@ -11,4 +12,5 @@
             Item2 = item2;
         }
     }
+#endif
 }
