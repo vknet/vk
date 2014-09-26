@@ -363,14 +363,26 @@
         /// <summary>
         /// Удаляет запись со стены. 
         /// </summary>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, на стене которого находится запись.</param>
+        /// <param name="postId">Идентификатор записи на стене.</param>
+        /// <returns>
+        /// После успешного выполнения возвращает true.
+        /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.delete"/>.
         /// </remarks>
-        public void Delete()
+        public bool Delete(long ownerId, long postId)
         {
-            // TODO:
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(() => postId);
+
+            var parameters = new VkParameters
+                         {
+                             { "owner_id", ownerId },
+                             { "post_id", postId }
+                         };
+
+            return _vk.Call("wall.delete", parameters);
         }
 
         /// <summary>

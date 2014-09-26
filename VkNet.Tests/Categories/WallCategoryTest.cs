@@ -1187,7 +1187,7 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			This.Action(() => _defaultWall.Delete()).Throws<AccessTokenInvalidException>();
+			This.Action(() => _defaultWall.Delete(1, 1)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
