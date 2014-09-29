@@ -1,0 +1,4 @@
+pygments:        true
+markdown:        redcarpet
+redcarpet:
+  extensions: [:smart, :fenced_code, :gh_blockcode] 
