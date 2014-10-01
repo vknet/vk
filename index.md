@@ -37,118 +37,118 @@ TODO add link
 + [Friends.GetRequests](/friends/getRequests/) - Возвращает информацию о полученных или отправленных заявках на добавление в друзья для текущего пользователя.
 
 ## Группы
-+ [Groups.Get] (/groups/get/) - 
-+ [Groups.GetById] (/groups/getById/) - 
-+ [Groups.IsMember] (/groups/isMember/) - 
-+ [Groups.GetMembers] (/groups/getMembers/) - 
-+ [Groups.Search] (/groups/search/) - 
-+ [Groups.Join] (/groups/join/) - 
-+ [Groups.Leave] (/groups/leave/) - 
-+ [Groups.GetInvites] (/groups/getInvites/) - 
-+ [Groups.BanUser] (/groups/banUser/) - 
-+ [Groups.GetBanned] (/groups/getBanned/) - 
-+ [Groups.UnbanUser] (/groups/unbanUser/) - 
++ [Groups.Get] (/groups/get/) - возвращает список групп пользователя.
++ [Groups.GetById] (/groups/getById/) - возвращает информацию о группах по их идентификаторам.
++ [Groups.IsMember] (/groups/isMember/) - возвращает информацию о том, является ли пользователь участником группы.
++ [Groups.GetMembers] (/groups/getMembers/) - возвращает список участников группы.
++ [Groups.Search] (/groups/search/) - Осуществляет поиск групп по заданной подстроке.
++ [Groups.Join] (/groups/join/) - Данный метод позволяет вступить в группу, публичную страницу, а также подтверждать об участии во встрече.
++ [Groups.Leave] (/groups/leave/) - Данный метод позволяет выходить из группы, публичной страницы, или встречи.
++ [Groups.GetInvites] (/groups/getInvites/) - Данный метод возвращает список приглашений в сообщества и встречи.
++ [Groups.BanUser] (/groups/banUser/) - Добавляет пользователя в черный список группы.
++ [Groups.GetBanned] (/groups/getBanned/) - Возвращает список забаненных пользователей в сообществе.
++ [Groups.UnbanUser] (/groups/unbanUser/) - Убирает пользователя из черного списка сообщества.
 
 ## Аудиозаписи
-+ [Audio.Get](/audio/get/) -
-+ [Audio.GetFromGroup](/audio/getFromGroup/) - 
-+ [Audio.GetById](/audio/getById/) - 
-+ [Audio.GetCount](/audio/getCount/) - 
-+ [Audio.GetLyrics](/audio/getLyrics/) - 
-+ [Audio.GetUploadServer](/audio/getUploadServer/) - 
-+ [Audio.Search](/audio/search/) - 
-+ [Audio.Add](/audio/add/) - 
-+ [Audio.Delete](/audio/delete/) - 
-+ [Audio.Edit](/audio/edit/) - 
-+ [Audio.Restore](/audio/restore/) - 
-+ [Audio.Reorder](/audio/reorder/) - 
-+ [Audio.AddAlbum](/audio/addAlbum/) - 
-+ [Audio.EditAlbum](/audio/editAlbum/) - 
-+ [Audio.DeleteAlbum](/audio/deleteAlbum/) - 
-+ [Audio.GetPopular](/audio/getPopular/) - 
-+ [Audio.GetAlbums](/audio/getAlbums/) - 
-+ [Audio.MoveToAlbum](/audio/moveToAlbum/) - 
-+ [Audio.GetRecommendations](/audio/getRecommendations/) - 
-+ [Audio.SetBroadcast](/audio/setBroadcast/) - 
++ [Audio.Get](/audio/get/) - возвращает список аудиозаписей пользователя или группы.
++ [Audio.GetFromGroup](/audio/getFromGroup/) - возвращает список аудиозаписей пользователя или группы.
++ [Audio.GetById](/audio/getById/) - возвращает информацию об аудиозаписях по их идентификаторам.
++ [Audio.GetCount](/audio/getCount/) - возвращает количество аудиозаписей пользователя или группы.
++ [Audio.GetLyrics](/audio/getLyrics/) - возвращает текст аудиозаписи.
++ [Audio.GetUploadServer](/audio/getUploadServer/) - возвращает адрес сервера для загрузки аудиозаписей.
++ [Audio.Search](/audio/search/) - осуществляет поиск по аудиозаписям.
++ [Audio.Add](/audio/add/) - копирует существующую аудиозапись на страницу пользователя или группы.
++ [Audio.Delete](/audio/delete/) - удаляет аудиозапись со страницы пользователя или группы.
++ [Audio.Edit](/audio/edit/) - редактирует аудиозапись пользователя или группы.
++ [Audio.Restore](/audio/restore/) - восстанавливает удаленную аудиозапись пользователя или группы.
++ [Audio.Reorder](/audio/reorder/) - изменяет порядок аудиозаписи в списке аудиозаписей пользователя.
++ [Audio.AddAlbum](/audio/addAlbum/) - Создает пустой альбом аудиозаписей.
++ [Audio.EditAlbum](/audio/editAlbum/) - Редактирует название альбома аудиозаписей.
++ [Audio.DeleteAlbum](/audio/deleteAlbum/) - Удаляет альбом аудиозаписей.
++ [Audio.GetPopular](/audio/getPopular/) - Возвращает список аудиозаписей из раздела "Популярное".
++ [Audio.GetAlbums](/audio/getAlbums/) - Возвращает список альбомов аудиозаписей пользователя или группы.
++ [Audio.MoveToAlbum](/audio/moveToAlbum/) - Перемещает аудиозаписи в альбом.
++ [Audio.GetRecommendations](/audio/getRecommendations/) - Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи.
++ [Audio.SetBroadcast](/audio/setBroadcast/) - Транслирует аудиозапись в статус пользователю или сообществу.
 
 ## Сообщения
-+ [Messages.Get] (/messages/get/) -
-+ [Messages.GetHistory] (/messages/getHistory/) - 
-+ [Messages.GetById] (/messages/getById/) - 
-+ [Messages.GetDialogs] (/messages/getDialogs/) - 
-+ [Messages.SearchDialogs] (/messages/searchDialogs/) - 
-+ [Messages.Search] (/messages/search/) - 
-+ [Messages.Send] (/messages/send/) - 
-+ [Messages.DeleteDialog] (/messages/deleteDialog/) - 
-+ [Messages.Delete] (/messages/delete/) - 
-+ [Messages.Restore] (/messages/restore/) - 
-+ [Messages.MarkAsNew] (/messages/markAsNew/) - 
-+ [Messages.MarkAsRead] (/messages/markAsRead/) - 
-+ [Messages.SetActivity] (/messages/setActivity/) - 
-+ [Messages.GetLastActivity] (/messages/getLastActivity/) - 
-+ [Messages.GetChat] (/messages/getChat/) - 
-+ [Messages.CraeteChat] (/messages/createChat/) - 
-+ [Messages.EditChat] (/messages/editChat/) - 
-+ [Messages.GetChatUsers] (/messages/getChatUsers/) - 
-+ [Messages.AddChatUser] (/messages/addChatUser/) - 
-+ [Messages.RemoveChatUser] (/messages/removeChatUser/) - 
-+ [Messages.GetLongPollServer] (/messages/getLongPollServer/) - 
++ [Messages.Get] (/messages/get/) - Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
++ [Messages.GetHistory] (/messages/getHistory/) - Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
++ [Messages.GetById] (/messages/getById/) - Возвращает сообщения по их идентификаторам.
++ [Messages.GetDialogs] (/messages/getDialogs/) - Возвращает список диалогов текущего пользователя.
++ [Messages.SearchDialogs] (/messages/searchDialogs/) - Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
++ [Messages.Search] (/messages/search/) - Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
++ [Messages.Send] (/messages/send/) - Посылает личное сообщение.
++ [Messages.DeleteDialog] (/messages/deleteDialog/) - Удаляет все личные сообщения в диалоге.
++ [Messages.Delete] (/messages/delete/) - Удаляет сообщения пользователя.
++ [Messages.Restore] (/messages/restore/) - Восстанавливает удаленное сообщение.
++ [Messages.MarkAsNew] (/messages/markAsNew/) - Помечает сообщения как непрочитанные.
++ [Messages.MarkAsRead] (/messages/markAsRead/) - Помечает сообщения как прочитанные.
++ [Messages.SetActivity] (/messages/setActivity/) - Изменяет статус набора текста пользователем в диалоге.
++ [Messages.GetLastActivity] (/messages/getLastActivity/) - Возвращает текущий статус и дату последней активности указанного пользователя.
++ [Messages.GetChat] (/messages/getChat/) - Возвращает информацию о беседе.
++ [Messages.CraeteChat] (/messages/createChat/) - Возвращает информацию о беседе.
++ [Messages.EditChat] (/messages/editChat/) - Изменяет название беседы. 
++ [Messages.GetChatUsers] (/messages/getChatUsers/) - Позволяет получить список пользователей беседы по ее идентификатору.
++ [Messages.AddChatUser] (/messages/addChatUser/) - Добавляет в беседу нового пользователя.
++ [Messages.RemoveChatUser] (/messages/removeChatUser/) - Исключает из беседы пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
++ [Messages.GetLongPollServer] (/messages/getLongPollServer/) - Возвращает данные, необходимые для подключения к Long Poll серверу.
 
 ## Стена
-+ [Wall.Get](/wall/get/) -
-+ [Wall.GetComments](/wall/getComments/) - 
-+ [Wall.GetById](/wall/getById/) - 
-+ [Wall.Delete](/wall/delete/) - 
++ [Wall.Get](/wall/get/) - Возвращает список записей со стены пользователя или сообщества.
++ [Wall.GetComments](/wall/getComments/) - Возвращает список комментариев к записи на стене пользователя.
++ [Wall.GetById](/wall/getById/) - Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
++ [Wall.Delete](/wall/delete/) - TODO
 
 ## Статус
-+ [Status.Get](/status/get/) -
-+ [Status.Set](/status/set/) - 
++ [Status.Get](/status/get/) - Получает статус пользователя.
++ [Status.Set](/status/set/) - Устанавливает статус текущего пользователя.
 
 ## Видео
-+ [Video.Get](/video/get/) - 
-+ [Video.Edit](/video/edit/) - 
-+ [Video.Add](/video/add/) - 
-+ [Video.Save](/video/save/) - 
-+ [Video.Delete](/video/delete/) - 
-+ [Video.Restore](/video/restore/) - 
-+ [Video.Search](/video/search/) - 
-+ [Video.GetUserVideos](/video/getUserVideos/) - 
-+ [Video.GetAlbums](/video/getAlbums/) - 
-+ [Video.AddAlbum](/video/addAlbum/) - 
-+ [Video.EditAlbum](/video/editAlbum/) - 
-+ [Video.DeleteAlbum](/video/deleteAlbum/) - 
-+ [Video.MoveToAlbum](/video/moveToAlbum/) - 
-+ [Video.GetComments](/video/getComments/) - 
-+ [Video.CreateComment](/video/createComment/) - 
-+ [Video.DeleteComment](/video/deleteComment/) - 
-+ [Video.RestoreComment](/video/restoreComment/) - 
-+ [Video.EditComment](/video/editComment/) -
-+ [Video.GetTags](/video/getTags/) - 
-+ [Video.PutTag](/video/putTag/) - 
-+ [Video.RemoveTag](/video/removeTag/) - 
-+ [Video.GetNewTags](/video/getNewTags/) - 
-+ [Video.Report](/video/report/) - 
-+ [Video.ReportComment](/video/reportComment/) - 
++ [Video.Get](/video/get/) - Возвращает информацию о видеозаписях.
++ [Video.Edit](/video/edit/) - Редактирует данные видеозаписи на странице пользователя.
++ [Video.Add](/video/add/) - Добавляет видеозапись в список пользователя.
++ [Video.Save](/video/save/) - Возвращает адрес сервера (необходимый для загрузки) и данные видеозаписи.
++ [Video.Delete](/video/delete/) - Удаляет видеозапись со страницы пользователя.
++ [Video.Restore](/video/restore/) - Восстанавливает удаленную видеозапись.
++ [Video.Search](/video/search/) - Возвращает список видеозаписей в соответствии с заданным критерием поиска.
++ [Video.GetUserVideos](/video/getUserVideos/) - Возвращает список видеозаписей, на которых отмечен пользователь.
++ [Video.GetAlbums](/video/getAlbums/) - Возвращает список альбомов видеозаписей пользователя или сообщества.
++ [Video.AddAlbum](/video/addAlbum/) - Создает пустой альбом видеозаписей.
++ [Video.EditAlbum](/video/editAlbum/) - Редактирует название альбома видеозаписей.
++ [Video.DeleteAlbum](/video/deleteAlbum/) - Удаляет альбом видеозаписей.
++ [Video.MoveToAlbum](/video/moveToAlbum/) - Перемещает видеозаписи в альбом.
++ [Video.GetComments](/video/getComments/) - Возвращает список комментариев к видеозаписи.
++ [Video.CreateComment](/video/createComment/) - Cоздает новый комментарий к видеозаписи.
++ [Video.DeleteComment](/video/deleteComment/) - Удаляет комментарий к видеозаписи.
++ [Video.RestoreComment](/video/restoreComment/) - Восстанавливает удаленный комментарий к видеозаписи.
++ [Video.EditComment](/video/editComment/) -Изменяет текст комментария к видеозаписи.
++ [Video.GetTags](/video/getTags/) - TODO
++ [Video.PutTag](/video/putTag/) - TODO
++ [Video.RemoveTag](/video/removeTag/) - TODO
++ [Video.GetNewTags](/video/getNewTags/) - TODO
++ [Video.Report](/video/report/) - Позволяет пожаловаться на видеозапись.
++ [Video.ReportComment](/video/reportComment/) - Позволяет пожаловаться на комментарий к видеозаписи.
 
 ## Закладки
-+ [Fave.GetUsers](/fave/getUsers/) -
-+ [Fave.GetPhotos](/fave/getPhotos/) - 
-+ [Fave.GetPosts](/fave/getPosts/) - 
-+ [Fave.GetVideos](/fave/getVideos/) - 
-+ [Fave.GetLinks](/fave/getLinks/) - 
++ [Fave.GetUsers](/fave/getUsers/) - Позволяет пожаловаться на комментарий к видеозаписи.
++ [Fave.GetPhotos](/fave/getPhotos/) - Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне нравится".
++ [Fave.GetPosts](/fave/getPosts/) - Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
++ [Fave.GetVideos](/fave/getVideos/) - Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
++ [Fave.GetLinks](/fave/getLinks/) - Возвращает ссылки, добавленные в закладки текущим пользователем.
 
 ## Служебные
-+ [Utils.CheckLink](/utils/checkLink/) -
-+ [Utils.ResolveScreenName](/utils/resolveScrennName/) - 
-+ [Utils.GetServerTime](/utils/getServerTime/) - 
++ [Utils.CheckLink](/utils/checkLink/) - Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
++ [Utils.ResolveScreenName](/utils/resolveScrennName/) - Определяет тип объекта (пользователь, сообщество, приложение) и его идентификатор по короткому имени screenName.
++ [Utils.GetServerTime](/utils/getServerTime/) - Возвращает текущее время на сервере ВКонтакте.
 
 ## Данные ВК
-+ [Database.GetCountries](/database/getCountries/) - 
-+ [Database.GetRegions](/database/getRegions/) - 
-+ [Database.GetStreetsById](/database/getStreetsById/) - 
-+ [Database.GetCountriesById](/database/getCountriesById/) - 
-+ [Database.GetCities](/database/getCities/) - 
-+ [Database.GetCitiesById](/database/getCitiesById/) - 
-+ [Database.GetUniversities](/database/getUniversities/) - 
-+ [Database.GetSchools](/database/getSchools/) - 
-+ [Database.GetFaculties](/database/getFaculties/) - 
++ [Database.GetCountries](/database/getCountries/) - вращает список стран.
++ [Database.GetRegions](/database/getRegions/) - Возвращает список регионов.
++ [Database.GetStreetsById](/database/getStreetsById/) - Возвращает информацию об улицах по их идентификаторам.
++ [Database.GetCountriesById](/database/getCountriesById/) - Возвращает информацию о странах по их идентификаторам.
++ [Database.GetCities](/database/getCities/) - Возвращает список городов.
++ [Database.GetCitiesById](/database/getCitiesById/) - Возвращает информацию о городах по их идентификаторам.
++ [Database.GetUniversities](/database/getUniversities/) - Возвращает список высших учебных заведений.
++ [Database.GetSchools](/database/getSchools/) - Возвращает список школ.
++ [Database.GetFaculties](/database/getFaculties/) - Возвращает список факультетов.
