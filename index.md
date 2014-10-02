@@ -1,9 +1,10 @@
 ---
-layout: default
-title: Title for vknet
+layout: main_page
+title: VkNET ВКонтакте API для .NET (C#)
 ---
 
-# hello world
+# Описание методов API
+Ниже приводятся все реализованные методы для работы с данными ВКонтакте.
 ## Авторизация
 [Authorize](/vk/authorize/) - авторизация на сервере вконтакте и получение AccessToken.
 
