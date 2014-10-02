@@ -1,6 +1,6 @@
 ---
 layout: default
 title: Messages Get title
-permalink: messages/getChatUser/
+permalink: messages/getChatUsers/
 ---
-# Messages.GetChatUser
+# Messages.GetChatUsers
