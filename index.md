@@ -5,7 +5,7 @@ title: Title for vknet
 
 # hello world
 ## Авторизация
-TODO add link
+[Authorize](/vk/authorize/) - авторизация на сервере вконтакте и получение AccessToken.
 
 ## Пользователи
 + [Users.Get](/vk/users/get/) - Возвращает расширенную информацию о пользователях.
