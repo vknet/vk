@@ -4,8 +4,6 @@ title: Messages Get title
 permalink: messages/get/
 ---
 
-<h1>Messages.Get</h1>
-
 # hello world
 
 {% highlight csharp %}
