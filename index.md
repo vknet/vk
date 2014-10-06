@@ -1,5 +1,5 @@
 ---
-layout: main_page
+layout: default
 title: VKNET ВКонтакте API для .NET (C#)
 ---
 
