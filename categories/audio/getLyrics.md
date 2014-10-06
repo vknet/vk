@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.GetLyrics
 permalink: audio/getLyrics/
+comments: true
 ---
-# Audio.GetLyrics
+# Метод Audio.GetLyrics
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

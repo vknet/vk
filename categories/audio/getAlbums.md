@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.GetAlbums
 permalink: audio/getAlbums/
+comments: true
 ---
-# Audio.GetAlbums
+# Метод Audio.GetAlbums
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

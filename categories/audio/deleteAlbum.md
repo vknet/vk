@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.DeleteAlbum
 permalink: audio/deleteAlbum/
+comments: true
 ---
-# Audio.DeleteAlbum
+# Метод Audio.DeleteAlbum
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

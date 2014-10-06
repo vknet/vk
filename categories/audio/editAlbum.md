@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.EditAlbum
 permalink: audio/editAlbum/
+comments: true
 ---
-# Audio.EditAlbum
+# Метод Audio.EditAlbum
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

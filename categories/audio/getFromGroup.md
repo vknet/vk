@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.GetFromGroup
 permalink: audio/getFromGroup/
+comments: true
 ---
-# Audio.GetFromGroup
+# Метод Audio.GetFromGroup
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

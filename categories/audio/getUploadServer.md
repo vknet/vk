@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.GetUploadServer
 permalink: audio/getUploadServer/
+comments: true
 ---
-# Audio.GetUploadServer
+# Метод Audio.GetUploadServer
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

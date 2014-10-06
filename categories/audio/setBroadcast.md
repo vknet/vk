@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.SetBroadcast
 permalink: audio/setBroadcast/
+comments: true
 ---
-# Audio.SetBroadcast
+# Метод Audio.SetBroadcast
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

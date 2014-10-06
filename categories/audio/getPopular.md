@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.GetPopular
 permalink: audio/getPopular/
+comments: true
 ---
-# Audio.GetPopular
+# Метод Audio.GetPopular
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

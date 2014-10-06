@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.MoveToAlbum
 permalink: audio/moveToAlbum/
+comments: true
 ---
-# Audio.MoveToAlbum
+# Метод Audio.MoveToAlbum
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

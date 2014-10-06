@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.GetCount
 permalink: audio/getCount/
+comments: true
 ---
-# Audio.GetCount
+# Метод Audio.GetCount
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

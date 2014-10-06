@@ -1,6 +1,18 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Audio.Get
 permalink: audio/get/
+comments: true
 ---
-# Audio.Get
+# Метод Audio.Get
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```
