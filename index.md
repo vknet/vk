@@ -1,6 +1,7 @@
 ---
 layout: default
 title: VKNET ВКонтакте API для .NET (C#)
+comments: false
 ---
 
 # Описание методов API
