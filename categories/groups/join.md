@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: groups/join/
+comments: true
 ---
 
-# Groups.Join
+# Метод Groups.Join
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

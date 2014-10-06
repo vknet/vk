@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: database/getRegions/
+comments: true
 ---
-# Database.GetRegions
+# Метод Database.GetRegions
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

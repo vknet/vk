@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: groups/unbanUser/
+comments: true
 ---
 
-# Groups.UnbanUser
+# Метод Groups.UnbanUser
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

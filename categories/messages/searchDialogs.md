@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/searchDialogs/
+comments: true
 ---
-# Messages.SearchDialogs
+# Метод Messages.SearchDialogs
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

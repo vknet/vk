@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: friends/getRequests/
+comments: true
 ---
 
-# Friends.GetRequests
+# Метод Friends.GetRequests
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

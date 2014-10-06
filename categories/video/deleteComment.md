@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/deleteComment/
+comments: true
 ---
-# Video.DeleteComment
+# Метод Video.DeleteComment
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

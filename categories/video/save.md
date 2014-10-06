@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/save/
+comments: true
 ---
-# Video.Save
+# Метод Video.Save
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

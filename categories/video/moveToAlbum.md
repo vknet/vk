@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/moveToAlbum/
+comments: true
 ---
-# Video.MoveToAlbum
+# Метод Video.MoveToAlbum
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

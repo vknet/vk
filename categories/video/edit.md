@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/edit/
+comments: true
 ---
-# Video.Edit
+# Метод Video.Edit
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

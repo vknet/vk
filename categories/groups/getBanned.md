@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: groups/getBanned/
+comments: true
 ---
 
-# Groups.GetBanned
+# Метод Groups.GetBanned
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: utils/getServerTime/
+comments: true
 ---
-# Utils.GetServerTime
+# Метод Utils.GetServerTime
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

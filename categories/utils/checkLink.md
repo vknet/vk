@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: utils/checkLink/
+comments: true
 ---
-# Utils.CheckLink
+# Метод Utils.CheckLink
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

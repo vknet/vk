@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: friends/getMutual/
+comments: true
 ---
 
-# Friends.GetMutual
+# Метод Friends.GetMutual
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

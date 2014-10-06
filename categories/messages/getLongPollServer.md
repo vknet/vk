@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/getLongPollServer/
+comments: true
 ---
-# Messages.GetLongPollServer
+# Метод Messages.GetLongPollServer
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

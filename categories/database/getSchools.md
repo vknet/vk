@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: database/getSchools/
+comments: true
 ---
-# Database.GetSchools
+# Метод Database.GetSchools
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: friends/getLists/
+comments: true
 ---
 
-# Friends.GetLists
+# Метод Friends.GetLists
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

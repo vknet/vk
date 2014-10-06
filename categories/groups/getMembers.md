@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: groups/getMembers/
+comments: true
 ---
 
-# Groups.GetMembers
+# Метод Groups.GetMembers
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/restore/
+comments: true
 ---
-# Messages.Restore
+# Метод Messages.Restore
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

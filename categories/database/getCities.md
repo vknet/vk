@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: database/getCities/
+comments: true
 ---
-# Database.GetCities
+# Метод Database.GetCities
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

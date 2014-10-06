@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/putTag/
+comments: true
 ---
-# Video.PutTag
+# Метод Video.PutTag
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

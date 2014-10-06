@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: database/getCountries/
+comments: true
 ---
-# Database.GetCountries
+# Метод Database.GetCountries
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

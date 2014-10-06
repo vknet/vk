@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: fave/getUsers/
+comments: true
 ---
-# Fave.GetUsers
+# Метод Fave.GetUsers
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

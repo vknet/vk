@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/getDialogs/
+comments: true
 ---
-# Messages.GetDialogs
+# Метод Messages.GetDialogs
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

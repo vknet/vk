@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/addChatUser/
+comments: true
 ---
-# Messages.AddChatUser
+# Метод Messages.AddChatUser
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

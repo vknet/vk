@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/markAsNew/
+comments: true
 ---
-# Messages.MarkAsNew
+# Метод Messages.MarkAsNew
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

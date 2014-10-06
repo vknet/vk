@@ -2,6 +2,17 @@
 layout: default
 title: Users.Get
 permalink: users/isAppUser/
+comments: true
 ---
+# Метод Users.IsAppUser
 
-# Users.IsAppUser
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

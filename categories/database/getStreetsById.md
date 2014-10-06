@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: database/getStreetsById/
+comments: true
 ---
-# Database.GetStreetsById
+# Метод Database.GetStreetsById
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

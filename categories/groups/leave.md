@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: groups/leave/
+comments: true
 ---
 
-# Groups.Leave
+# Метод Groups.Leave
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

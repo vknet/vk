@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/deleteDialog/
+comments: true
 ---
-# Messages.DeleteDialog
+# Метод Messages.DeleteDialog
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

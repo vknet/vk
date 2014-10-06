@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: fave/getPhotos/
+comments: true
 ---
-# Fave.GetPhotos
+# Метод Fave.GetPhotos
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

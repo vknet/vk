@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: friends/editList/
+comments: true
 ---
 
-# Friends.EditList
+# Метод Friends.EditList
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

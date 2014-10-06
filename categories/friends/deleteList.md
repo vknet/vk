@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: friends/deleteList/
+comments: true
 ---
 
-# Friends.DeleteList
+# Метод Friends.DeleteList
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

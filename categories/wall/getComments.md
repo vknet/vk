@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: wall/getComments/
+comments: true
 ---
-# Wall.GetComments
+# Метод Wall.GetComments
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

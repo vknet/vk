@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: wall/getById/
+comments: true
 ---
-# Wall.GetById
+# Метод Wall.GetById
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/getById/
+comments: true
 ---
-# Messages.GetById
+# Метод Messages.GetById
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

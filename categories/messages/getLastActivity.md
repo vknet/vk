@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/getLastActivity/
+comments: true
 ---
-# Messages.GetLastActivity
+# Метод Messages.GetLastActivity
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

@@ -2,6 +2,18 @@
 layout: default
 title: Messages Get title
 permalink: groups/get/
+comments: true
 ---
 
-# Groups.Get
+# Метод Groups.Get
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

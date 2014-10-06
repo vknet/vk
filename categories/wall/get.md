@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: wall/get/
+comments: true
 ---
-# Wall.Get
+# Метод Wall.Get
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

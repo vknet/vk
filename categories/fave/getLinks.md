@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: fave/getLinks/
+comments: true
 ---
-# Fave.GetLinks
+# Метод Fave.GetLinks
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

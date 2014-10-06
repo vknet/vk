@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/addAlbum/
+comments: true
 ---
-# Video.AddAlbum
+# Метод Video.AddAlbum
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

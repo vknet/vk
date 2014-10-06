@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/getComments/
+comments: true
 ---
-# Video.GetComments
+# Метод Video.GetComments
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

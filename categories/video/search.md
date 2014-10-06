@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/search/
+comments: true
 ---
-# Video.Search
+# Метод Video.Search
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

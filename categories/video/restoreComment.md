@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/restoreComment/
+comments: true
 ---
-# Video.RestoreComment
+# Метод Video.RestoreComment
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

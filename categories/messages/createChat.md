@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: messages/createChat/
+comments: true
 ---
-# Messages.CreateChat
+# Метод Messages.CreateChat
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

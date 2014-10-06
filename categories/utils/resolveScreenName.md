@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: utils/resolveScreenName/
+comments: true
 ---
-# Utils.ResolveScreenName
+# Метод Utils.ResolveScreenName
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

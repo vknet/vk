@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: status/get/
+comments: true
 ---
-# Status.Get
+# Метод Status.Get
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

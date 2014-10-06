@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: wall/delete/
+comments: true
 ---
-# Wall.Delete
+# Метод Wall.Delete
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```

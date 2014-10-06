@@ -2,5 +2,17 @@
 layout: default
 title: Messages Get title
 permalink: video/getNewTags/
+comments: true
 ---
-# Video.GetNewTags
+# Метод Video.GetNewTags
+
+## Параметры
+
+## Результат
+
+## Исключения
+
+## Пример
+```csharp
+
+```
