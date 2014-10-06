@@ -1,6 +1,6 @@
 ---
 layout: main_page
-title: VkNET ВКонтакте API для .NET (C#)
+title: VKNET ВКонтакте API для .NET (C#)
 ---
 
 # Описание методов API
