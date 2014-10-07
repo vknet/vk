@@ -1,19 +1,23 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Friends.GetAppUsers
 permalink: friends/getAppUsers/
 comments: true
 ---
-
 # Метод Friends.GetAppUsers
+Возвращает список идентификаторов друзей текущего пользователя, которые установили данное приложение.
 
 ## Параметры
+Данный метод не имеет входных параметров.
 
 ## Результат
+Возвращает список идентификаторов (id) друзей текущего пользователя, установивших приложение.
 
 ## Исключения
++ **AccessTokenInvalidException** - не задан или используется неверный AccessToken.
 
 ## Пример
 ```csharp
-
+// Получение идентификторов друзей текущего пользователя, установивших приложение.
+var ids = vk.Friends.GetAppUsers();
 ```

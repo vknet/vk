@@ -19,6 +19,5 @@ comments: true
 ## Пример
 ```csharp
 // Получаем настройки Павла Дурова в нашем приложении.
-
 int settings = vk.Users.GetUserSettings(1);
 ```

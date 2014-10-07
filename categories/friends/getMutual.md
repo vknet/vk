@@ -1,19 +1,24 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Friends.GetMutual
 permalink: friends/getMutual/
 comments: true
 ---
-
 # Метод Friends.GetMutual
+Возвращает список идентификаторов общих друзей между парой пользователей.
 
 ## Параметры
++ **targetUid** - Идентификатор пользователя, с которым необходимо искать общих друзей.
++ **sourceUid** - Идентификатор пользователя, чьи друзья пересекаются с друзьями пользователя с идентификатором targetUid.
 
 ## Результат
+В случае успеха возвращает список идентификаторов (id) общих друзей между пользователями с идентификаторами sourceUid и targetUid.
 
 ## Исключения
++ **AccessTokenInvalidException** - не задан или используется неверный AccessToken.
 
 ## Пример
 ```csharp
-
+// Нахождение общих друзей Павла Дурова и человека с id равным 2.
+var ids = vk.Friends.GetMutual(2, 1);
 ```
