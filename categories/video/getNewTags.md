@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Video.GetNewTags
 permalink: video/getNewTags/
 comments: true
 ---

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Video.PutTag
 permalink: video/putTag/
 comments: true
 ---
