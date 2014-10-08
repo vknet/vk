@@ -7,7 +7,7 @@ comments: true
 # Метод Friends.GetRequests
 Возвращает информацию о полученных или отправленных заявках на добавление в друзья для текущего пользователя.
 
-## 
+## Синтаксис
 ```csharp
 public ReadOnlyCollection<long> GetRequests(int? count = null, int? offset = null, bool extended, bool needMutual, bool out, bool sort, bool suggested)
 ```

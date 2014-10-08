@@ -7,7 +7,7 @@ comments: true
 # Метод Friends.Add
 Одобряет или создает заявку на добавление в друзья.
 
-## 
+## Синтаксис
 ```csharp
 public AddFriendStatus Add(long userId, string text)
 ```
