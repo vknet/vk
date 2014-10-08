@@ -1,18 +1,31 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Messages.GetDialogs
 permalink: messages/getDialogs/
 comments: true
 ---
 # Метод Messages.GetDialogs
+Возвращает список диалогов текущего пользователя.
+
+## Синтаксис
+```csharp
+public ReadOnlyCollection<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
+```
 
 ## Параметры
++ **userId** - Идентификатор пользователя, последнее сообщение в переписке с которым необходимо вернуть.
++ **totalCount** - Общее количество диалогов с учетом фильтра.
++ **chatId** - Идентификатор беседы, последнее сообщение в которой необходимо вернуть.
++  **count** - Количество диалогов, которое необходимо получить (но не более 200).
++ **offset** - Смещение, необходимое для выборки определенного подмножества диалогов.
++ **previewLength** - Количество символов, по которому нужно обрезать сообщение. Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).
 
 ## Результат
+Список диалогов текущего пользователя.
 
 ## Исключения
 
 ## Пример
 ```csharp
-
+// TODO:
 ```
