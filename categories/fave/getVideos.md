@@ -1,18 +1,27 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Fave.GetVideos
 permalink: fave/getVideos/
 comments: true
 ---
 # Метод Fave.GetVideos
+Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
+
+## Синтаксис
+```csharp
+public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
+```
 
 ## Параметры
++ **count** - Количество пользователей, информацию о которых необходимо вернуть.
++ **offset** - Смещение, необходимое для выборки определенного подмножества пользователей.
 
 ## Результат
+После успешного выполнения возвращает список объектов записей на стене.
 
 ## Исключения
 
 ## Пример
 ```csharp
-
+// TODO:
 ```
