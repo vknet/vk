@@ -1,18 +1,27 @@
 ---
 layout: default
-title: Messages Get title
+title:  Метод Video.Add
 permalink: video/add/
 comments: true
 ---
 # Метод Video.Add
+Добавляет видеозапись в список пользователя.
+
+## Синтаксис
+```csharp
+public long Add(long videoId, long? ownerId = null)
+```
 
 ## Параметры
++ **videoId** - идентификатор видеозаписи.
++ **ownerId** - идентификатор пользователя или сообщества, которому принадлежит видеозапись.
 
 ## Результат
+После успешного выполнения возвращает идентификатор созданной видеозаписи.
 
 ## Исключения
 
 ## Пример
 ```csharp
-
+// TODO:
 ```
