@@ -1,18 +1,26 @@
 ---
 layout: default
-title: Messages Get title
+title: Метод Wall.GetById
 permalink: wall/getById/
 comments: true
 ---
 # Метод Wall.GetById
+Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
+
+## Синтаксис
+```csharp
+public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts)
+```
 
 ## Параметры
++ **posts** - Список строковых идентификаторов записий в формате - идентификатор пользователя (группы), знак подчеркивания и идентификатор записи.
 
 ## Результат
+После успешного выполнения возвращает список объектов записей со стены.
 
 ## Исключения
 
 ## Пример
 ```csharp
-
+// TODO
 ```
