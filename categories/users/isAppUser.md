@@ -6,6 +6,11 @@ comments: true
 ---
 # Метод Users.IsAppUser
 
+# Синтаксис
+```csharp
+
+```
+
 ## Параметры
 + **uid** - id пользователя
 

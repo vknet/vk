@@ -6,6 +6,11 @@ comments: true
 ---
 # Метод Users.GetGroupsFull
 
+# Синтаксис
+```csharp
+
+```
+
 ## Параметры
 + **gids** - Список идентификаторов групп
 

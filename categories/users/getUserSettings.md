@@ -6,6 +6,11 @@ comments: true
 ---
 # Метод Users.GetUserSettings
 
+# Синтаксис
+```csharp
+
+```
+
 ## Параметры
 + **uid** - id пользователя
 

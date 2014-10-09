@@ -6,6 +6,11 @@ comments: true
 ---
 # Метод Video.GetNewTags
 
+# Синтаксис
+```csharp
+
+```
+
 ## Параметры
 
 ## Результат
