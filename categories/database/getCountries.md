@@ -9,7 +9,12 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Country> GetCountries(bool needAll, string codes, int? offset = null, int? count = null)
+public ReadOnlyCollection<Country> GetCountries(
+	bool needAll, 
+	string codes, 
+	int? offset = null, 
+	int? count = null
+)
 ```
 
 ## Параметры

@@ -9,7 +9,12 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Region> GetRegions(int countryId, string query, int? count = null, int? offset = null)
+public ReadOnlyCollection<Region> GetRegions(
+	int countryId, 
+	string query, 
+	int? count = null, 
+	int? offset = null
+)
 ```
 
 ## Параметры

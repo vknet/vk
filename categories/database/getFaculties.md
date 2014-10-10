@@ -9,7 +9,11 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Faculty> GetFaculties(long universityId, int? count = null, int? offset = null)
+public ReadOnlyCollection<Faculty> GetFaculties(
+	long universityId, 
+	int? count = null, 
+	int? offset = null
+)
 ```
 
 ## Параметры

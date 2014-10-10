@@ -9,7 +9,14 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<City> GetCities(int countryId, int? regionId = null, string query, Nullable<bool> needAll, int? count = null, int? offset = null)
+public ReadOnlyCollection<City> GetCities(
+	int countryId, 
+	int? regionId = null, 
+	string query, 
+	bool? needAll, 
+	int? count = null, 
+	int? offset = null
+)
 ```
 
 ## Параметры
