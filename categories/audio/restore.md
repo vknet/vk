@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public Audio Restore(long audioId, long? ownerId = null)
 ```
 
 ## Параметры

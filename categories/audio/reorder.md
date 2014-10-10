@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public bool Reorder(long audioId, long ownerId, long after, long before)
 ```
 
 ## Параметры

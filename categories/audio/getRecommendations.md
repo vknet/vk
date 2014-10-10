@@ -7,11 +7,6 @@ comments: true
 # Метод Audio.GetRecommendations
 Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи.
 
-# Синтаксис
-```csharp
-
-```
-
 ## Синтаксис
 ```csharp
 public ReadOnlyCollection<Audio> GetRecommendations(long? userId = null, int? count = null, int? offset = null, bool shuffle, string targetAudio)
