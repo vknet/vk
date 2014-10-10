@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public int GetCount(long ownerId)
 ```
 
 ## Параметры

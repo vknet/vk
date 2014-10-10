@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public long Edit(long audioId, long ownerId, string artist, string title, string text, bool noSearch = false)
 ```
 
 ## Параметры

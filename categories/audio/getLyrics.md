@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public Lyrics GetLyrics(long lyricsId)
 ```
 
 ## Параметры

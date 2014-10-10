@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public long Add(long audioId, long ownerId, long? groupId = null)
 ```
 
 ## Параметры

@@ -9,7 +9,14 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+  public ReadOnlyCollection<Audio> Search(
+            string query,
+            out int totalCount,
+            bool? autoComplete = null,
+            AudioSort? sort = null,
+            bool? findLyrics = null,
+            int? count = null,
+            int? offset = null)
 ```
 
 ## Параметры

@@ -9,7 +9,9 @@ comments: true
 
 # Синтаксис
 ```csharp
+public ReadOnlyCollection<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
 
+ public ReadOnlyCollection<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, int? count = null, int? offset = null)
 ```
 
 ## Параметры
