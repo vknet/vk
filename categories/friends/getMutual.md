@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public ReadOnlyCollection<long> GetMutual(long targetUid, long sourceUid)
 ```
 
 ## Параметры

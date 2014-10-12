@@ -9,7 +9,13 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public bool EditList(long listId, string name, IEnumerable<long> userIds, IEnumerable<long> addUserIds, IEnumerable<long> deleteUserIds)
+public bool EditList(
+	long listId, 
+	string name, 
+	IEnumerable<long> userIds, 
+	IEnumerable<long> addUserIds, 
+	IEnumerable<long> deleteUserIds
+)
 ```
 
 ## Параметры

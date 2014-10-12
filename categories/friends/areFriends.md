@@ -10,7 +10,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public IDictionary<long, FriendStatus> AreFriends(IEnumerable<long> uids)
 ```
 
 ## Параметры

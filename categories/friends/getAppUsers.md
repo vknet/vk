@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public ReadOnlyCollection<long> GetAppUsers()
 ```
 
 ## Параметры

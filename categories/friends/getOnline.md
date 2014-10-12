@@ -8,7 +8,7 @@ permalink: friends/getOnline/
 
 # Синтаксис
 ```csharp
-
+public ReadOnlyCollection<long> GetOnline(long uid)
 ```
 
 ## Параметры
