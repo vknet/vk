@@ -24,3 +24,8 @@ long CreateComment(long photoId, long? ownerId = null, string message = null, IE
 ## Результат
 После успешного выполнения возвращает идентификатор созданного комментария.
 
+## Пример
+```csharp
+// TODO:
+```
+
