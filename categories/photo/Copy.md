@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photo.Copy
-permalink: photo/copy
+permalink: photo/copy/
 comments: true
 ---
 # Метод Copy
@@ -19,3 +19,8 @@ long ConfirmTag(long ownerId, long photoID, string accessKey=null)
 
 ## Результат
 Возвращает идентификатор созданной фотографии.
+
+## Пример
+```csharp
+// TODO:
+```
