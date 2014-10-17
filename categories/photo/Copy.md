@@ -9,7 +9,7 @@ comments: true
 
 ## Синтаксис
 ```csharp
-ConfirmTag(long ownerId, long photoID, string accessKey=null)
+long ConfirmTag(long ownerId, long photoID, string accessKey=null)
 ```
 
 ## Параметры
