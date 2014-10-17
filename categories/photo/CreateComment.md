@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photo.CreateComment
-permalink: photo/createcomment
+permalink: photo/createcomment/
 comments: true
 ---
 # Метод CreateComment
@@ -23,3 +23,4 @@ long CreateComment(long photoId, long? ownerId = null, string message = null, IE
 
 ## Результат
 После успешного выполнения возвращает идентификатор созданного комментария.
+
