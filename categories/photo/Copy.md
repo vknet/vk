@@ -19,9 +19,3 @@ long ConfirmTag(long ownerId, long photoID, string accessKey=null)
 
 ## Результат
 Возвращает идентификатор созданной фотографии.
-## Исключения
-
-## Пример
-```csharp
-// TODO:
-```
