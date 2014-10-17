@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photo.CreateAlbum
-permalink: photo/createalbum
+permalink: photo/createalbum/
 comments: true
 ---
 # Метод Copy
@@ -14,7 +14,7 @@ PhotoAlbum CreateAlbum(string title, long? groupId = null, string description = 
 
 ## Параметры
 + **title** - название альбома.
-+ **group_id** - идентификатор сообщества, в котором создаётся альбом. Для группы privacy и comment_privacy могут принимать два значения: 0 — доступ для всех пользователей, 1 — доступ только для участников группы. 
++ **group_id** - идентификатор сообщества, в котором создаётся альбом. Для группы privacy и commentPrivacy могут принимать два значения: 0 — доступ для всех пользователей, 1 — доступ только для участников группы. 
 + **description** - текст описания альбома. 
 + **comment_privacy** - уровень доступа к комментированию альбома. Возможные значения: 0 — все пользователи, 1 — только друзья, 2 — друзья и друзья друзей, 3 — только я. 
 + **privacy** - уровень доступа к альбому. Возможные значения: 0 — все пользователи, 1 — только друзья, 2 — друзья и друзья друзей, 3 — только я.
@@ -34,3 +34,8 @@ PhotoAlbum CreateAlbum(string title, long? groupId = null, string description = 
 + **Privacy** — настройки приватности для просмотра альбома;
 + **CommentPrivacy**
 + **CanUpload** — может ли текущий пользователь добавлять фотографии в альбом.
+
+## Пример
+```csharp
+// TODO:
+```
