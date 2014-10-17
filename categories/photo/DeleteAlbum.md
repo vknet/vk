@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photo.DeleteAlbum
-permalink: photo/deletealbum
+permalink: photo/deletealbum/
 comments: true
 ---
 # Метод DeleteAlbum
@@ -14,9 +14,13 @@ bool DeleteAlbum(long albumId, long? groupId = null)
 
 ## Параметры
 + **albumId** - идентификатор альбома. 
-Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)
 + **groupId** - идентификатор сообщества, в котором размещен альбом.
 
 
 ## Результат
 После успешного выполнения возвращает 1.
+
+## Пример
+```csharp
+// TODO:
+```
