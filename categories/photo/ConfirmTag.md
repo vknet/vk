@@ -19,9 +19,3 @@ bool ConfirmTag(long photoID, long tagID, long? ownerID=null)
 
 ## Результат
 После успешного выполнения возвращает 1.
-## Исключения
-
-## Пример
-```csharp
-// TODO:
-```
