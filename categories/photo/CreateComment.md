@@ -21,5 +21,6 @@ long CreateComment(long photoId, long? ownerId = null, string message = null, IE
 + **reply_to_comment**
 + **sticker_id**
 + **access_key**
+
 ## Результат
 После успешного выполнения возвращает идентификатор созданного комментария.
