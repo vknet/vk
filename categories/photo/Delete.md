@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photo.Delete
-permalink: photo/delete
+permalink: photo/delete/
 comments: true
 ---
 # Метод Delete
@@ -20,3 +20,8 @@ bool Delete(long photoId, long? ownerId = null)
 
 ## Результат
 После успешного выполнения возвращает 1.
+
+## Пример
+```csharp
+// TODO:
+```
