@@ -1,10 +1,9 @@
-
-//---
-//layout: default
-//title: Метод Photo.CreateAlbum
-//permalink: photo/createalbum
-//comments: true
-//---
+---
+layout: default
+title: Метод Photo.CreateAlbum
+permalink: photo/createalbum
+comments: true
+---
 # Метод Copy
 Создает пустой альбом для фотографий.
 
