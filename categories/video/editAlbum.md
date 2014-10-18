@@ -9,7 +9,11 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public bool EditAlbum(long albumId, string title, long? groupId = null)
+public bool EditAlbum(
+	long albumId, 
+	string title, 
+	long? groupId = null
+)
 ```
 
 ## Параметры

@@ -9,7 +9,12 @@ Cоздает новый комментарий к видеозаписи.
 
 ## Синтаксис
 ```csharp
-public long CreateComment(long videoId, string message, long? ownerId = null, bool isFromGroup)
+public long CreateComment(
+	long videoId, 
+	string message, 
+	long? ownerId = null, 
+	bool isFromGroup
+)
 ```
 
 ## Параметры

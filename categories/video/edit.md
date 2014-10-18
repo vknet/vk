@@ -9,7 +9,15 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public bool Edit(long videoId, long? ownerId = null, string name = null, string desc = null, string privacyView = null, string privacyComment = null, bool isRepeat = false)
+public bool Edit(
+	long videoId, 
+	long? ownerId = null, 
+	string name = null, 
+	string desc = null, 
+	string privacyView = null, 
+	string privacyComment = null, 
+	bool isRepeat = false
+)
 ```
 
 ## Параметры

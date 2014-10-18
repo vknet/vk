@@ -9,7 +9,13 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public bool Report(long videoId, VideoReportType reason, long? ownerId = null, string comment, string searchQuery)
+public bool Report(
+	long videoId, 
+	VideoReportType reason, 
+	long? ownerId = null, 
+	string comment, 
+	string searchQuery
+)
 ```
 
 ## Параметры

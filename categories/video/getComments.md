@@ -9,7 +9,14 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Comment> GetComments(long videoId, long? ownerId = null, bool needLikes, int? count = null, int? offset = null, CommentsSort sort)
+public ReadOnlyCollection<Comment> GetComments(
+	long videoId, 
+	long? ownerId = null, 
+	bool needLikes, 
+	int? count = null, 
+	int? offset = null, 
+	CommentsSort sort = null
+)
 ```
 
 ## Параметры

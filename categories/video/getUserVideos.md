@@ -9,7 +9,11 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Video> GetUserVideos(long userId, int? count = null, int? offset = null)
+public ReadOnlyCollection<Video> GetUserVideos(
+	long userId, 
+	int? count = null, 
+	int? offset = null
+)
 ```
 
 ## Параметры

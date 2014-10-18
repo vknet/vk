@@ -9,7 +9,16 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Video> Search(string query, VideoSort sort, bool isHd, bool isAdult, VideoFilters filters, bool isSearchOwn, int? count = null, int? offset = null)
+public ReadOnlyCollection<Video> Search(
+	string query, 
+	VideoSort sort, 
+	bool isHd, 
+	bool isAdult, 
+	VideoFilters filters, 
+	bool isSearchOwn, 
+	int? count = null, 
+	int? offset = null
+)
 ```
 
 ## Параметры

@@ -9,7 +9,16 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public Video Save(string name, string description, bool isPrivate, bool isPostToWall, string link, long? groupId = null, long? albumId = null, bool isRepeat)
+public Video Save(
+	string name, 
+	string description, 
+	bool isPrivate, 
+	bool isPostToWall, 
+	string link, 
+	long? groupId = null, 
+	long? albumId = null, 
+	bool isRepeat
+)
 ```
 
 ## Параметры

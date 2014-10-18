@@ -9,7 +9,12 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<VideoAlbum> GetAlbums(long ownerId, int? count = null, int? offset = null, bool extended)
+public ReadOnlyCollection<VideoAlbum> GetAlbums(
+	long ownerId, 
+	int? count = null, 
+	int? offset = null, 
+	bool extended
+)
 ```
 
 ## Параметры

@@ -9,7 +9,11 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public bool MoveToAlbum(IEnumerable<long> videoIds, long albumId, long? groupId = null)
+public bool MoveToAlbum(
+	IEnumerable<long> videoIds, 
+	long albumId, 
+	long? groupId = null
+)
 ```
 
 ## Параметры
