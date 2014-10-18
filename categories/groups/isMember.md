@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public bool IsMember(long gid, long uid)
 ```
 
 ## Параметры

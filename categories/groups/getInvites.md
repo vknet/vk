@@ -9,7 +9,10 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Group> GetInvites(int? count = null, int? offset = null)
+public ReadOnlyCollection<Group> GetInvites(
+	int? count = null, 
+	int? offset = null
+)
 ```
 
 ## Параметры

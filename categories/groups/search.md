@@ -9,7 +9,12 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public ReadOnlyCollection<Group> Search(
+	string query, 
+	out int totalCount, 
+	int? offset = null, 
+	int? count = null
+)
 ```
 
 ## Параметры

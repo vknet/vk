@@ -9,7 +9,13 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter)
+public ReadOnlyCollection<Post> Get(
+	long ownerId, 
+	out int totalCount, 
+	int? count = null, 
+	int? offset = null, 
+	WallFilter filter
+)
 ```
 
 ## Параметры

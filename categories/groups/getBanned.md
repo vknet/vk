@@ -9,7 +9,11 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<User> GetBanned(long groupId, int? count = null, int? offset = null)
+public ReadOnlyCollection<User> GetBanned(
+	long groupId, 
+	int? count = null, 
+	int? offset = null
+)
 ```
 
 ## Параметры

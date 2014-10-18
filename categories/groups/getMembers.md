@@ -9,7 +9,13 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public ReadOnlyCollection<long> GetMembers(
+	long gid, 
+	out int totalCount, 
+	int? count = null, 
+	int? offset = null, 
+	GroupsSort sort = null
+)
 ```
 
 ## Параметры

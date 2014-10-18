@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public bool Join(long gid, bool notSure = false)
 ```
 
 ## Параметры

@@ -9,7 +9,7 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public Group GetById(long gid, GroupsFields fields = null)
 ```
 
 ## Параметры

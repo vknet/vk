@@ -9,7 +9,14 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public bool BanUser(long groupId, long userId, DateTime> endDate, BanReason> reason, string comment, bool commentVisible)
+public bool BanUser(
+	long groupId, 
+	long userId,
+	DateTime? endDate, 
+	BanReason? reason, 
+	string comment, 
+	bool commentVisible
+)
 ```
 
 ## Параметры

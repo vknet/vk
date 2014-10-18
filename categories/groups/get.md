@@ -9,7 +9,12 @@ comments: true
 
 # Синтаксис
 ```csharp
-
+public ReadOnlyCollection<Group> Get(
+	long uid, 
+	bool extended = false, 
+	GroupsFilters filters = null, 
+	GroupsFields fields = null
+)
 ```
 
 ## Параметры
