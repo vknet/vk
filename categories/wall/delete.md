@@ -9,7 +9,7 @@ comments: true
 
 ## Синтаксис
 ```csharp
-
+public bool Delete(long ownerId, long postId)
 ```
 
 ## Параметры
