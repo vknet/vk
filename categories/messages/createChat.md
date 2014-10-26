@@ -9,7 +9,10 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public long CreateChat(IEnumerable<long> userIds, string title)
+public long CreateChat(
+	IEnumerable<long> userIds, 
+	string title
+)
 ```
 
 ## Параметры

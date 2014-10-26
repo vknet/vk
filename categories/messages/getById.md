@@ -9,7 +9,11 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Message> GetById(IEnumerable<long> messageIds, out int totalCount, int? previewLength = null)
+public ReadOnlyCollection<Message> GetById(
+	IEnumerable<long> messageIds, 
+	out int totalCount, 
+	int? previewLength = null
+)
 ```
 
 ## Параметры

@@ -9,7 +9,20 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public long Send(long id, bool isChat, string message, string title, Attachment attachment, IEnumerable<long> forwardMessagedIds, bool fromChat, Double> latitude, Double> longitude, string guid)
+public long Send(
+	long id, 
+	bool isChat, 
+	string message, 
+	string title, 
+	Attachment attachment, 
+	IEnumerable<long> forwardMessagedIds, 
+	bool fromChat, 
+	double? latitude, 
+	double? longitude, 
+	string guid,
+	long? captchaSid = null,
+    string captchaKey = null
+)
 ```
 
 ## Параметры

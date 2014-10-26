@@ -9,7 +9,15 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Message> GetHistory(long id, bool isChat, out int totalCount, int? offset = null, int? count = null, bool? inReverse = null, long? startMessageId = null)
+public ReadOnlyCollection<Message> GetHistory(
+	long id, 
+	bool isChat, 
+	out int totalCount, 
+	int? offset = null, 
+	int? count = null, 
+	bool? inReverse = null, 
+	long? startMessageId = null
+)
 ```
 
 ## Параметры

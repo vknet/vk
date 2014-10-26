@@ -9,7 +9,12 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Message> Search(string query, out int totalCount, int? count = null, int? offset = null)
+public ReadOnlyCollection<Message> Search(
+	string query, 
+	out int totalCount, 
+	int? count = null, 
+	int? offset = null
+)
 ```
 
 ## Параметры

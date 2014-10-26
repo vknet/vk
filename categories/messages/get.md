@@ -9,7 +9,15 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Message> Get(MessageType type, out int totalCount, int? count = null, int? offset = null, MessagesFilter? filter = null, int? previewLength = null, DateTime? startDate = null)
+public ReadOnlyCollection<Message> Get(
+	MessageType type, 
+	out int totalCount, 
+	int? count = null, 
+	int? offset = null, 
+	MessagesFilter? filter = null, 
+	int? previewLength = null, 
+	DateTime? startDate = null
+)
 ```
 
 ## Параметры

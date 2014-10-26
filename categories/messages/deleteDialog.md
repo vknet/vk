@@ -9,7 +9,12 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public bool DeleteDialog(long id, bool isChat, int? offset = null, int? limit = null)
+public bool DeleteDialog(
+	long id, 
+	bool isChat, 
+	int? offset = null, 
+	int? limit = null
+)
 ```
 
 ## Параметры

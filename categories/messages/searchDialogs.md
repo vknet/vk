@@ -9,7 +9,10 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields)
+public SearchDialogsResponse SearchDialogs(
+	string query, 
+	ProfileFields fields
+)
 ```
 
 ## Параметры

@@ -9,7 +9,14 @@ comments: true
 
 ## Синтаксис
 ```csharp
-public ReadOnlyCollection<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
+public ReadOnlyCollection<Message> GetDialogs(
+	long userId, 
+	out int totalCount, 
+	long? chatId = null, 
+	int? count = null, 
+	int? offset = null, 
+	int? previewLength = null
+)
 ```
 
 ## Параметры
