@@ -98,6 +98,85 @@
         }
 
         [Test]
+        public void GetHistory_ContainsRepost_Error46()
+        {
+            url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&count=3&rev=1&access_token=token";
+            json = @"{  
+               'response':{  
+                  'count':1940,
+                  'items':[  
+                     {  
+                        'id':1234,
+                        'body':'',
+                        'user_id':4321,
+                        'from_id':,
+                        'date':1414993364,
+                        'read_state':1,
+                        'out':1,
+                        'attachments':[  
+                           {  
+                              'type':'wall',
+                              'wall':{  
+                                 'id':6194,
+                                 'from_id':-1267,
+                                 'to_id':-7654,
+                                 'date':1414992610,
+                                 'post_type':'post',
+                                 'text':'',
+                                 'attachments':[  
+                                    {  
+                                       'type':'photo',
+                                       'photo':{  
+                                          'id':76352,
+                                          'album_id':-7,
+                                          'owner_id':-9816,
+                                          'user_id':198,
+                                          'photo_75':'https://pp.vk.me/...b/uKU7pKtHLe0.jpg',
+                                          'photo_130':'https://pp.vk.me/...c/WZJpkmJWBto.jpg',
+                                          'photo_604':'https://pp.vk.me/...d/Kp44mAbDqSk.jpg',
+                                          'width':604,
+                                          'height':402,
+                                          'text':'',
+                                          'date':1414992613,
+                                          'post_id':928719,
+                                          'access_key':'test_access_key'
+                                       }
+                                    }
+                                 ],
+                                 'post_source':{  
+                                    'type':'api'
+                                 },
+                                 'comments':{  
+                                    'count':0,
+                                    'can_post':0
+                                 },
+                                 'likes':{  
+                                    'count':9191,
+                                    'user_likes':1,
+                                    'can_like':0,
+                                    'can_publish':1
+                                 },
+                                 'reposts':{ 
+                                    'count':953,
+                                    'user_reposted':0
+                                 }
+                              }
+                           }
+                        ]
+                     }
+                  ]
+               }
+            }";
+
+            int totalCount;
+            var msg = Cat.GetHistory(7712, false, out totalCount, 5, 3, true).ToList();
+
+            totalCount.ShouldEqual(1940);
+
+            Assert.Fail("UNDONE: add fields from wall category.");
+        }
+
+        [Test]
         public void GetHistory_NormalCaseAllFields_Messages()
         {
             url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&count=3&rev=1&access_token=token";

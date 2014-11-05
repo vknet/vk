@@ -133,11 +133,12 @@ namespace VkNet.Categories
                                  { "rev", inReverse }
                              };
 
-            VkResponseArray response = _vk.Call("messages.getHistory", parameters);
+            VkResponse response = _vk.Call("messages.getHistory", parameters);
 
-            totalCount = response[0];
+            totalCount = response["count"];
+            VkResponseArray items = response["items"];
 
-            return response.Skip(1).ToReadOnlyCollectionOf<Message>(r => r);
+            return items.ToReadOnlyCollectionOf<Message>(r => r);
         }
 
         /// <summary>

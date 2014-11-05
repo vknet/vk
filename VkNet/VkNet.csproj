@@ -126,6 +126,7 @@
     <Compile Include="Model\Attachments\ApplicationContent.cs" />
     <Compile Include="Model\Attachments\MediaAttachment.cs" />
     <Compile Include="Model\Attachments\PhotosList.cs" />
+    <Compile Include="Model\Attachments\Wall.cs" />
     <Compile Include="Model\AudioAlbum.cs" />
     <Compile Include="Model\BanInfo.cs" />
     <Compile Include="Model\ChangeNameRequest.cs" />

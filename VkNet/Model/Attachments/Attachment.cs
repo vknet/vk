@@ -69,6 +69,8 @@ namespace VkNet.Model.Attachments
 
 	    private PhotosList PhotosList;
 
+        private Wall Wall { get; set; }
+
         #endregion
 
         /// <summary>
@@ -102,6 +104,8 @@ namespace VkNet.Model.Attachments
                     return Album;
                 if (Type == typeof (PhotosList))
                     return PhotosList;
+                if (Type == typeof (Wall))
+                    return Wall;
 
                 return null;
             }
@@ -181,6 +185,11 @@ namespace VkNet.Model.Attachments
                 case "photos_list":
                     attachment.Type = typeof (PhotosList);
                     attachment.PhotosList = response["photos_list"];
+                    break;
+
+                case "wall":
+                    attachment.Type = typeof (Wall);
+                    attachment.Wall = response["wall"];
                     break;
 
                 default:

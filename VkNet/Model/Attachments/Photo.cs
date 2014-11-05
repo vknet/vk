@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using VkNet.Utils;
-
-namespace VkNet.Model.Attachments
+﻿namespace VkNet.Model.Attachments
 {
+    using System;
+
+    using Utils;
+
 	/// <summary>
     /// Фотография.
     /// </summary>
