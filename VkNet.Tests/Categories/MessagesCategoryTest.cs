@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests.Categories
+﻿using VkNet.Model.Attachments;
+
+namespace VkNet.Tests.Categories
 {
     using System.Collections.Generic;
     using System;
@@ -147,7 +149,7 @@
                                     'type':'api'
                                  },
                                  'comments':{  
-                                    'count':0,
+                                    'count':3,
                                     'can_post':0
                                  },
                                  'likes':{  
@@ -171,9 +173,34 @@
             int totalCount;
             var msg = Cat.GetHistory(7712, false, out totalCount, 5, 3, true).ToList();
 
+            // assertions
             totalCount.ShouldEqual(1940);
+            msg[0].Attachments.Count.ShouldEqual(1);
 
-            Assert.Fail("UNDONE: add fields from wall category.");
+            Wall wall = msg[0].Attachments[0].Instance as Wall;
+            wall.ShouldNotBeNull();
+
+            wall.Id.ShouldEqual(6194);
+            wall.FromId.ShouldEqual(-1267);
+            wall.ToId.ShouldEqual(-7654);
+            wall.Date.ShouldEqual(new DateTime(2014, 11, 3, 8, 30, 10));
+            wall.PostType.ShouldEqual("post");
+            wall.Text.ShouldEqual(string.Empty);
+
+            wall.Comments.Count.ShouldEqual(3);
+            wall.Comments.CanPost.ShouldBeFalse();
+
+            wall.Likes.Count.ShouldEqual(9191);
+            wall.Likes.UserLikes.ShouldBeTrue();
+            wall.Likes.CanLike.ShouldBeFalse();
+            wall.Likes.CanPublish.ShouldEqual(true);
+
+            wall.Reposts.Count.ShouldEqual(953);
+            wall.Reposts.UserReposted.ShouldBeFalse();
+
+            wall.Attachments.Count.ShouldEqual(1);
+            var photo = wall.Attachments[0].Instance as Photo;
+            photo.ShouldNotBeNull();
         }
 
         [Test]
