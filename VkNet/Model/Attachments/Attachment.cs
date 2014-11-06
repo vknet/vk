@@ -71,6 +71,8 @@ namespace VkNet.Model.Attachments
 
         private Wall Wall { get; set; }
 
+        private Sticker Sticker { get; set; }
+
         #endregion
 
         /// <summary>
@@ -106,6 +108,8 @@ namespace VkNet.Model.Attachments
                     return PhotosList;
                 if (Type == typeof (Wall))
                     return Wall;
+                if (Type == typeof (Sticker))
+                    return Sticker;
 
                 return null;
             }
@@ -190,6 +194,11 @@ namespace VkNet.Model.Attachments
                 case "wall":
                     attachment.Type = typeof (Wall);
                     attachment.Wall = response["wall"];
+                    break;
+
+                case "sticker":
+                    attachment.Type = typeof (Sticker);
+                    attachment.Sticker = response["sticker"];
                     break;
 
                 default:

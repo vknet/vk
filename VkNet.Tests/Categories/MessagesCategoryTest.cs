@@ -100,6 +100,61 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
+        public void GetHistory_ContainsSticker_Error47()
+        {
+            url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&count=3&rev=1&access_token=token";
+            json = @"{
+    'response': {
+        'count': 6,
+        'items': [
+            {
+                'id': 890123,
+                'body': '',
+                'user_id': 45678,
+                'from_id': 876543,
+                'date': 1415205537,
+                'read_state': 1,
+                'out': 0,
+                'attachments': [
+                    {
+                        'type': 'sticker',
+                        'sticker': {
+                            'id': 12345,
+                            'product_id': 54321,
+                            'photo_64': 'https: //vk.com/im...ckers/134/64b.png',
+                            'photo_128': 'https: //vk.com/im...kers/134/128b.png',
+                            'photo_256': 'https: //vk.com/im...kers/134/256b.png',
+                            'width': 256,
+                            'height': 256
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}";
+            int totalCount;
+            var msg = Cat.GetHistory(7712, false, out totalCount, 5, 3, true).ToList();
+
+            // asserts
+            totalCount.ShouldEqual(6);
+            msg.Count.ShouldEqual(1);
+            msg[0].Attachments.Count.ShouldEqual(1);
+            
+            var sticker = msg[0].Attachments[0].Instance as Sticker;
+            sticker.ShouldNotBeNull();
+
+            sticker.Id.ShouldEqual(12345);
+            sticker.ProductId.ShouldEqual(54321);
+            sticker.Photo64.ShouldEqual("https: //vk.com/im...ckers/134/64b.png");
+            sticker.Photo128.ShouldEqual("https: //vk.com/im...kers/134/128b.png");
+            sticker.Photo256.ShouldEqual("https: //vk.com/im...kers/134/256b.png");
+            sticker.Width.ShouldEqual(256);
+            sticker.Height.ShouldEqual(256);
+
+        }
+
+        [Test]
         public void GetHistory_ContainsRepost_Error46()
         {
             url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&count=3&rev=1&access_token=token";
