@@ -443,5 +443,50 @@ namespace VkNet.Tests.Categories
         }
 #endregion
 
+        #region SaveWallPhoto
+        [Test]
+        public void SaveWallPhoto_NormalCase()
+        {
+            const string url = @"https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=photo&server=5678&hash=hash_hash&v=5.9&access_token=token";
+            const string json = @"{
+    'response': [
+        {
+            'id': 3446123,
+            'album_id': -12,
+            'owner_id': 234695890,
+            'photo_75': 'http://cs7004.vk.me/c625725/v625725118/8c39/XZJpyifpfkM.jpg',
+            'photo_130': 'http://cs7004.vk.me/c625725/v625725118/8c3a/cYyzeNiQCwg.jpg',
+            'photo_604': 'http://cs7004.vk.me/c625725/v625725118/8c3b/b9rHdTFfLuw.jpg',
+            'photo_807': 'http://cs7004.vk.me/c625725/v625725118/8c3c/POYM67dCGZg.jpg',
+            'photo_1280': 'http://cs7004.vk.me/c625725/v625725118/8c3d/OWWWGO1gkOI.jpg',
+            'width': 1256,
+            'height': 320,
+            'text': '',
+            'date': 1415629651
+        }
+    ]
+}";
+
+            var result = GetMockedPhotosCategory(url, json).SaveWallPhoto("photo", 1234, 123, 5678, "hash_hash");
+
+            result.Count.ShouldEqual(1);
+
+            Photo photo = result[0];
+            photo.ShouldNotBeNull();
+            photo.Id.ShouldEqual(3446123);
+            photo.AlbumId.ShouldEqual(-12);
+            photo.OwnerId.ShouldEqual(234695890);
+            photo.Photo75.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c39/XZJpyifpfkM.jpg"));
+            photo.Photo130.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3a/cYyzeNiQCwg.jpg"));
+            photo.Photo604.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3b/b9rHdTFfLuw.jpg"));
+            photo.Photo807.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3c/POYM67dCGZg.jpg"));
+            photo.Photo1280.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3d/OWWWGO1gkOI.jpg"));
+            photo.Width.ShouldEqual(1256);
+            photo.Height.ShouldEqual(320);
+            photo.Text.ShouldEqual(string.Empty);
+            photo.CreateTime.ShouldEqual(new DateTime(2014, 11, 10, 17, 27, 31));
+        }
+        #endregion
+
     }
 }

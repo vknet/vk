@@ -379,7 +379,7 @@ namespace VkNet.Categories
         /// </remarks>
         [ApiMethodName("photos.saveWallPhoto", Skip = true)]
         [ApiVersion("5.9")]
-        public Photo SaveWallPhoto(string photo, long? userId = null, long? groupId = null, long? server = null, string hash = null)
+        public ReadOnlyCollection<Photo> SaveWallPhoto(string photo, long? userId = null, long? groupId = null, long? server = null, string hash = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
             VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -393,9 +393,8 @@ namespace VkNet.Categories
                     {"hash", hash}
                 };
 
-            VkResponse response = _vk.Call("photos.saveWallPhoto", parameters);
-
-            return response;
+            VkResponseArray response = _vk.Call("photos.saveWallPhoto", parameters);
+            return response.ToReadOnlyCollectionOf<Photo>(x => x);
         }
 
         /// <summary>
