@@ -5,7 +5,14 @@ permalink: audio/add/
 comments: true
 ---
 
-<h1>Test test</h1>
+<script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+<div id="SkypeButton_Call_redoc-support_1">
+<script type="text/javascript">
+Skype.ui(
+{ "name": "chat", "element": "SkypeButton_Call_redoc-support_1", "participants": ["redoc-support"], "imageSize": 32 }
+);
+</script>
+</div>
 
 # Метод Audio.Add
 Копирует аудиозапись на страницу пользователя или группы.
