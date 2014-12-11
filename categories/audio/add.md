@@ -5,7 +5,7 @@ permalink: audio/add/
 comments: true
 ---
 
-<script type="text/javascript" src="https://rawgit.com/azhidkov/80f6994f0901e3cd4f82/raw/"></script>
+<script type="text/javascript" src="https://gist.githubusercontent.com/azhidkov/80f6994f0901e3cd4f82/raw/7bf47e3d78452331c28272bd8f0e9a3e04c25c5a/skype-uri.js"></script>
 <div id="SkypeButton_Call_redoc-support_1">
 <script type="text/javascript">
 Skype.ui(
