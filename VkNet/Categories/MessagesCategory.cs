@@ -115,6 +115,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.21")]
         public ReadOnlyCollection<Message> GetHistory(
             long id,
             bool isChat,
