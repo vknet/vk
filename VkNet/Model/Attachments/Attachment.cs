@@ -73,6 +73,10 @@ namespace VkNet.Model.Attachments
 
         private Sticker Sticker { get; set; }
 
+        private Gift Gift { get; set; }
+
+        private WallReply WallReply { get; set; }
+
         #endregion
 
         /// <summary>
@@ -110,6 +114,10 @@ namespace VkNet.Model.Attachments
                     return Wall;
                 if (Type == typeof (Sticker))
                     return Sticker;
+                if (Type == typeof(Gift))
+                    return Gift;
+                if (Type == typeof(WallReply))
+                    return WallReply;
 
                 return null;
             }
@@ -201,8 +209,18 @@ namespace VkNet.Model.Attachments
                     attachment.Sticker = response["sticker"];
                     break;
 
+                case "gift":
+                    attachment.Type = typeof(Gift);
+                    attachment.Gift = response["gift"];
+                    break;
+
+                case "wall_reply":
+                    attachment.Type = typeof(WallReply);
+                    attachment.WallReply = response["wall_reply"];
+                    break;
+
                 default:
-                    throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined.", type));
+                    throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}", type, response["date"]));
             }
 
             return attachment;
