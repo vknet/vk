@@ -435,6 +435,16 @@ namespace VkNet.Utils
             return response == null || response._token == null || !response._token.HasValues ? null :  Sticker.FromJson(response);
         }
 
+        public static implicit operator Gift(VkResponse response)
+        {
+            return response == null || response._token == null || !response._token.HasValues ? null : Gift.FromJson(response);
+        }
+
+        public static implicit operator WallReply(VkResponse response)
+        {
+            return response == null || response._token == null || !response._token.HasValues ? null : WallReply.FromJson(response);
+        }
+
 		public static implicit operator Collection<Sticker>(VkResponse response)
         {
             return response.ToCollectionOf<Sticker>(a => a);
