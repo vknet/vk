@@ -21,6 +21,11 @@
         /// Идентификатор записи на стене.
         /// </summary>
         public long Id { get; set; }
+        
+        /// <summary>
+        /// Идентификатор создателя записи.
+        /// </summary>
+        public long CreatedBy {get; set; }
 
         /// <summary>
         /// Идентификатор владельца стены, на которой размещена запись.
@@ -175,6 +180,7 @@
                 return null;
 
             post.Id = response["id"];
+            post.CreatedBy = response["created_by];
             post.OwnerId = response["owner_id"];
             post.FromId = response["from_id"];
             post.Date = response["date"];
