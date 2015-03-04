@@ -138,6 +138,11 @@
         #region Поля, установленные экспериментально
 
         /// <summary>
+        /// Идентификатор создателя записи в группе или паблике (тот, кто фактически ее написал)
+        /// </summary>
+        public long? CreatedBy { get; set; }
+
+        /// <summary>
         /// Если запись является копией записи с чужой стены, то в этом поле содержится идентификатор коментатора записи.
         /// </summary>
         public long? CopyCommenterId { get; set; }
@@ -193,6 +198,7 @@
             post.CopyHistory = response["copy_history"];
 
             // далее идут поля, установленные экcпериментальным путем
+            post.CreatedBy = response["created_by"];
             post.CopyCommenterId = response["copy_commenter_id"];
             post.CopyCommentId = response["copy_comment_id"];
             post.CanDelete = response["can_delete"];
