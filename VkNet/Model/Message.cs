@@ -112,6 +112,8 @@ namespace VkNet.Model
         internal static Message FromJson(VkResponse response)
         {
             var message = new Message();
+            if (response.ContainsKey("message"))
+                response = response["message"];
 
             message.Id = response["id"];
             message.UserId = response["user_id"];
