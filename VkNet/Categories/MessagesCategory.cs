@@ -194,7 +194,9 @@ namespace VkNet.Categories
         /// Возвращает список диалогов текущего пользователя.
         /// </summary>
         /// <param name="userId">Идентификатор пользователя, последнее сообщение в переписке с которым необходимо вернуть.</param>
-        /// <param name="totalCount">Общее количество диалогов с учетом фильтра.</param>
+        /// <param name="totalCount">Общее количество диалогов с учетом фильтра. Если получены только диалоги, в которых есть непрочитанные сообщения, то вернет то же что и unreadCount</param>
+        /// <param name="unreadCount">Количество диалогов с непрочитанными сообщениями</param>
+        /// <param name="unread">Значение true означает, что нужно вернуть только диалоги в которых есть непрочитанные входящие сообщения. По умолчанию false.</param>
         /// <param name="chatId">Идентификатор беседы, последнее сообщение в которой необходимо вернуть.</param>
         /// <param name="count">Количество диалогов, которое необходимо получить (но не более 200).</param>
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества диалогов.</param>
@@ -206,15 +208,22 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getDialogs"/>.
         /// </remarks>
         [Pure]
-		public ReadOnlyCollection<Message> GetDialogs(long userId, out int totalCount, long? chatId = null, int? count = null, int? offset = null, int? previewLength = null)
+        [ApiVersion("5.28")]
+        public ReadOnlyCollection<Message> GetDialogs(int count, int offset, out int totalCount, out int unreadCount, bool unread = false, long? userId = null, long? chatId = null, int? previewLength = null)
         {
-            var parameters = new VkParameters { { "uid", userId }, { "chat_id", chatId }, { "count", count }, { "offset", offset }, { "preview_length", previewLength } };
+            var parameters = new VkParameters { { "uid", userId }, { "chat_id", chatId }, { "count", count }, { "offset", offset }, { "unread", unread ? "1" : "0" }, { "preview_length", previewLength } };
 
-            VkResponseArray response = _vk.Call("messages.getDialogs", parameters);
+            VkResponse response = _vk.Call("messages.getDialogs", parameters);
 
-            totalCount = response[0];
+            // При загрузке списка непрочитанных диалогов в параметре count передаеться значение unreadCount, 
+            // а значение totalCount не возвращаеться
+            totalCount = response["count"];
+            if (unread)
+                unreadCount = totalCount;
+            else
+                unreadCount = response.ContainsKey("unread_dialogs") ? response["unread_dialogs"] : 0;
 
-            return response.Skip(1).ToReadOnlyCollectionOf<Message>(r => r);
+            return response["items"].ToReadOnlyCollectionOf<Message>(r => r);
         }
 
         /// <summary>
