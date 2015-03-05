@@ -137,7 +137,7 @@
         /// </remarks>
         [Pure]
         [ApiVersion("5.9")]
-        public ReadOnlyCollection<Link> GetLinks(int? count = null, int? offset = null)
+        public ReadOnlyCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -150,7 +150,7 @@
 
             VkResponseArray response = _vk.Call("fave.getLinks", parameters);
 
-            return response.ToReadOnlyCollectionOf<Link>(x => x);
+            return response.ToReadOnlyCollectionOf<ExternalLink>(x => x);
         }
     }
 }

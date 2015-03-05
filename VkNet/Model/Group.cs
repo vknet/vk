@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model
@@ -149,12 +150,12 @@ namespace VkNet.Model
         /// <summary>
         /// Информация из блока контактов публичной страницы.
         /// </summary>
-        public string Contacts { get; set; }
+        public Collection<Contact> Contacts { get; set; }
 
         /// <summary>
         /// Информация из блока ссылок сообщества.
         /// </summary>
-        public string Links { get; set; }
+        public Collection<ExternalLink> Links { get; set; }
 
         /// <summary>
         /// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById(IEnumerable{KeyValuePair{long, long}})"/>,
@@ -196,8 +197,8 @@ namespace VkNet.Model
             group.PhotoPreviews = response;
 
             // опциональные поля
-            group.CityId = response["city"];
-            group.CountryId = response["country"];
+            group.CityId = response.ContainsKey("city") ? response["city"]["id"] : null;
+            group.CountryId = response.ContainsKey("country") ? response["country"]["id"] : null;
             group.Place = response["place"];
             group.Description = response["description"];
             group.WikiPage = response["wiki_page"];

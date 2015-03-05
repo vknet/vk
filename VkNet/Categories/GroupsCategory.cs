@@ -64,22 +64,25 @@
         /// <param name="extended">Возвращать полную информацию?</param>
         /// <param name="filters">Список фильтров сообществ</param>
         /// <param name="fields">Список полей информации о группах</param>
+        /// <param name="offset">Смещение, необходимое для выборки определённого подмножества сообществ.</param>
+        /// <param name="count">Количество сообществ, информацию о которых нужно вернуть (Максимальное значение 1000)</param>
         /// <returns>Список групп</returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null)
+        [ApiVersion("5.28")]
+        public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, int offset = 0, int count = 1000)
         {
-            var parameters = new VkParameters { { "uid", uid }, { "extended", extended }, { "filter", filters }, { "fields", fields } };
+            var parameters = new VkParameters { { "uid", uid }, { "extended", extended }, { "filter", filters }, { "fields", fields }, { "offset", offset }, { "count", count } };
 
-            VkResponseArray response = _vk.Call("groups.get", parameters);
+            VkResponse response = _vk.Call("groups.get", parameters);
 
             if (!extended)
-                return response.Select(id => new Group { Id = id }).ToReadOnlyCollection();
+                return response.ToReadOnlyCollectionOf<Group>(id => new Group { Id = id });
 
             // в первой записи количество членов группы
-            return response.Skip(1).ToReadOnlyCollectionOf<Group>(r => r);
+            return response["items"].ToReadOnlyCollectionOf<Group>(r => r);
         }
 
         /// <summary>
