@@ -5,6 +5,7 @@
 
     using Enums.Filters;
     using Enums.SafetyEnums;
+    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// Браузер, через который производится сетевое взаимодействие с ВКонтакте.
@@ -24,6 +25,36 @@
             string parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
 
             return WebCall.PostCall(methodUrl, parameters).Response;
+        }
+
+        /// <summary>
+        /// Загружает файл на заданный Url
+        /// </summary>
+        /// <param name="uploadUrl">Адрес для загрузки</param>
+        /// <param name="path">Путь к файлу</param>
+        /// <returns>Cтрока, используемая далее в Vk API</returns>
+        public static string UploadFile(string uploadUrl, string path)
+        {
+            using (var client = new WebClient())
+            {
+                var answer = Encoding.UTF8.GetString(client.UploadFile(uploadUrl, path));
+
+                var json = JObject.Parse(answer);
+
+                var rawResponse = json["file"];
+                return new VkResponse(rawResponse) { RawJson = answer };
+            }
+        }
+
+        /// <summary>
+        /// Скачивает файл по заданному Url
+        /// </summary>
+        /// <param name="url">Url для скачки</param>
+        /// <param name="path">Путь сохранения файла</param>
+        public static void DownloadFile(string url, string path)
+        {
+            using (var client = new WebClient())
+                client.DownloadFile(url, path);
         }
 
 #if false

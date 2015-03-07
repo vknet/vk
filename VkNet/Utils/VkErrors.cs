@@ -129,6 +129,8 @@
                 case 260: // Access to the groups list is denied due to the user's privacy settings.
                 case 500: // Permission denied. You must enable votes processing in application settings.
                     throw new AccessDeniedException(message, code);
+                case 214: // Access to adding post denied: you can only add 50 posts a day.
+                    throw new PostLimitException(message);
 /*
                 case 1: // Unknown error occurred.
                 case 2: // Application is disabled. Enable your application or use test mode.
