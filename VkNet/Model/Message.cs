@@ -42,6 +42,11 @@ namespace VkNet.Model
         public MessageType? Type { get; set; }
 
         /// <summary>
+        /// Содержит количество непрочитанных сообщений в текущем диалоге (если это значение было возвращено, иначе 0)
+        /// </summary>
+        public int Unread { get; set; }
+
+        /// <summary>
         /// Заголовок сообщения или беседы.
         /// </summary>
         public string Title { get; set; }
@@ -55,6 +60,8 @@ namespace VkNet.Model
         /// Массив медиа-вложений (прикреплений).
         /// </summary>
         public Collection<Attachment> Attachments { get; set; }
+
+        public Geo Geo { get; set; }
 
         /// <summary>
         /// Массив пересланных сообщений (если есть).
@@ -112,6 +119,9 @@ namespace VkNet.Model
         internal static Message FromJson(VkResponse response)
         {
             var message = new Message();
+
+            message.Unread = response.ContainsKey("unread") ? response["unread"] : 0;
+
             if (response.ContainsKey("message"))
                 response = response["message"];
 
@@ -123,6 +133,7 @@ namespace VkNet.Model
             message.Title = response["title"];
             message.Body = response["body"];
             message.Attachments = response["attachments"];
+            message.Geo = response["geo"];
             message.ForwardedMessages = response["fwd_messages"];
             message.ContainsEmojiSmiles = response["emoji"];
             message.IsImportant = response["important"];

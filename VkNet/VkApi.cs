@@ -21,8 +21,12 @@
     public class VkApi
     {
         internal const string InvalidAuthorization = "Invalid authorization";
-        internal const int MinInterval = 1000/3 + 1;
-        private DateTimeOffset? _lastInvokeTime;
+        internal const int MinInterval = 1000 / 3 + 1;
+
+        /// <summary>
+        /// Время вызова последнего метода этим объектом
+        /// </summary>
+        public DateTimeOffset? LastInvokeTime { get; private set; }
 
         #region Categories Definition
         
@@ -219,9 +223,9 @@
                 IfNotAuthorizedThrowException();
 
             // проверка на не более 3-х запросов в секунду
-            if (_lastInvokeTime != null)
+            if (LastInvokeTime != null)
             {
-                TimeSpan span = DateTimeOffset.Now - _lastInvokeTime.Value;
+                TimeSpan span = DateTimeOffset.Now - LastInvokeTime.Value;
                 if (span.TotalMilliseconds < MinInterval)
                     System.Threading.Thread.Sleep(MinInterval - (int)span.TotalMilliseconds);
             }
@@ -229,7 +233,7 @@
             string url = GetApiUrl(methodName, parameters);
             
             string answer = Browser.GetJson(url);
-            _lastInvokeTime = DateTimeOffset.Now;
+            LastInvokeTime = DateTimeOffset.Now;
             
 #if DEBUG && !UNIT_TEST
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
