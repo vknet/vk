@@ -102,7 +102,7 @@
         /// </remarks>
         [Pure]
         [ApiVersion("5.28")]
-        public string GetWallUploadServer(long? group_id = null)
+        public UploadServerInfo GetWallUploadServer(long? group_id = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => group_id);
 
