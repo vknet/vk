@@ -21,12 +21,31 @@
     public class VkApi
     {
         internal const string InvalidAuthorization = "Invalid authorization";
-        internal const int MinInterval = 1000 / 3 + 1;
+        internal const int _second = 1000;
+        internal int _requestsPerSecond;
+        internal int _minInterval;                  // Минимальное время, которое должно пройти между запросами чтобы не привысить кол-во запросов в секунду
 
         /// <summary>
         /// Время вызова последнего метода этим объектом
         /// </summary>
         public DateTimeOffset? LastInvokeTime { get; private set; }
+        /// <summary>
+        /// Ограничение на кол-во запросов в секунду
+        /// </summary>
+        public int RequestsPerSecond
+        {
+            get { return _requestsPerSecond; }
+            set
+            {
+                if (value > 0)
+                {
+                    _requestsPerSecond = value;
+                    _minInterval = _second / _requestsPerSecond + 1;
+                }
+                else
+                    throw new ArgumentException("Value must be positive", "RequestsPerSecond");
+            }
+        }
 
         #region Categories Definition
         
@@ -119,6 +138,8 @@
             Video = new VideoCategory(this);
 			Account = new AccountCategory(this);
             Photo = new PhotoCategory(this);
+
+            RequestsPerSecond = 3;
         }
 
         /// <summary>
@@ -226,8 +247,8 @@
             if (LastInvokeTime != null)
             {
                 TimeSpan span = DateTimeOffset.Now - LastInvokeTime.Value;
-                if (span.TotalMilliseconds < MinInterval)
-                    System.Threading.Thread.Sleep(MinInterval - (int)span.TotalMilliseconds);
+                if (span.TotalMilliseconds < _minInterval)
+                    System.Threading.Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
             }
 
             string url = GetApiUrl(methodName, parameters);
