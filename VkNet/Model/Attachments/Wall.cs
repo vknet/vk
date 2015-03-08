@@ -33,6 +33,9 @@
         /// </summary>
         public Likes Likes { get; set; }
 
+        /// <summary>
+        /// Репосты
+        /// </summary>
         public Reposts Reposts { get; set; }
 
         public PostSource PostSource { get; set; }

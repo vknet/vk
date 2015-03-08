@@ -136,7 +136,9 @@
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />
+    <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\ExternalLink.cs" />
     <Compile Include="Model\Faculty.cs" />
     <Compile Include="Model\FriendList.cs" />
     <Compile Include="Model\Attachments\Graffiti.cs" />
