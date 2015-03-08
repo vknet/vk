@@ -55,7 +55,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
         /// </remarks>
         [Pure]
-		[ApiVersion("5.21")]
+        [ApiVersion("5.21")]
         public ReadOnlyCollection<Message> Get(
             MessageType type,
             out int totalCount,
@@ -68,8 +68,8 @@ namespace VkNet.Categories
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
-			VkErrors.ThrowIfNumberIsNegative(() => previewLength);
-			VkErrors.ThrowIfNumberIsNegative(() => lastMessageId);
+            VkErrors.ThrowIfNumberIsNegative(() => previewLength);
+            VkErrors.ThrowIfNumberIsNegative(() => lastMessageId);
 
             var parameters = new VkParameters
                              {
@@ -155,17 +155,16 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
         /// </remarks>
         [Pure]
-		[ApiVersion("5.21")]
+        [ApiVersion("5.28")]
         public ReadOnlyCollection<Message> GetById(IEnumerable<long> messageIds, out int totalCount, int? previewLength = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => previewLength);
-			var parameters = new VkParameters { { "message_ids", messageIds }, { "preview_length", previewLength } };
+            var parameters = new VkParameters { { "message_ids", messageIds }, { "preview_length", previewLength } };
 
-            VkResponseArray response = _vk.Call("messages.getById", parameters);
+            VkResponse response = _vk.Call("messages.getById", parameters);
 
-            totalCount = response[0];
-
-            return response.Skip(1).ToReadOnlyCollectionOf<Message>(r => r);
+            totalCount = response["count"];
+            return response["items"].ToReadOnlyCollectionOf<Message>(r => r);
         }
 
         /// <summary>
@@ -180,14 +179,14 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
         /// </remarks>
         [Pure]
-		[ApiVersion("5.21")]
+        [ApiVersion("5.28")]
         public Message GetById(long messageId, int? previewLength = null)
         {
-			VkErrors.ThrowIfNumberIsNegative(() => messageId);
+            VkErrors.ThrowIfNumberIsNegative(() => messageId);
             VkErrors.ThrowIfNumberIsNegative(() => previewLength);
-			
-			int totalCount;
-			return GetById(new[] { messageId }, out totalCount, previewLength).FirstOrDefault();
+
+            int totalCount;
+            return GetById(new[] { messageId }, out totalCount, previewLength).FirstOrDefault();
         }
 
         /// <summary>
