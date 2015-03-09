@@ -54,7 +54,8 @@ namespace VkNet.Tests.Categories
         {
             var cat = new MessagesCategory(new VkApi());
             int totalCount;
-            This.Action(() => cat.GetDialogs(1, out totalCount)).Throws<AccessTokenInvalidException>();
+            int unreadCount;
+            This.Action(() => cat.GetDialogs(1, 0, out totalCount, out unreadCount)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -78,7 +79,8 @@ namespace VkNet.Tests.Categories
                   }";
 
             int totalCount;
-            var msgs = Cat.GetDialogs(77128, out totalCount, null, 3).ToList();
+            int unreadCount;
+            var msgs = Cat.GetDialogs(77128, 0, out totalCount, out unreadCount, false, null, null, 3).ToList();
 
             Assert.That(totalCount, Is.EqualTo(18));
             Assert.That(msgs.Count, Is.EqualTo(1));
