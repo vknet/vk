@@ -21,7 +21,6 @@
     public class VkApi
     {
         internal const string InvalidAuthorization = "Invalid authorization";
-        internal const int _second = 1000;
         internal int _requestsPerSecond;
         internal int _minInterval;                  // Минимальное время, которое должно пройти между запросами чтобы не привысить кол-во запросов в секунду
 
@@ -40,7 +39,7 @@
                 if (value > 0)
                 {
                     _requestsPerSecond = value;
-                    _minInterval = _second / _requestsPerSecond + 1;
+                    _minInterval = 1000 / _requestsPerSecond + 1;
                 }
                 else
                     throw new ArgumentException("Value must be positive", "RequestsPerSecond");
