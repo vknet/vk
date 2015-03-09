@@ -101,6 +101,10 @@
         /// API для работы с фотографиями
         /// </summary>
         public PhotoCategory Photo { get; private set; }
+        /// <summary>
+        /// API для работы с документами
+        /// </summary>
+        public DocsCategory Docs { get; private set; }
 
         #endregion
 
@@ -138,7 +142,8 @@
             Video = new VideoCategory(this);
 			Account = new AccountCategory(this);
             Photo = new PhotoCategory(this);
-
+            Docs = new DocsCategory(this);
+			
             RequestsPerSecond = 3;
         }
 
