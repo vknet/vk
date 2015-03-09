@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
+    <Compile Include="Categories\DocsCategory.cs" />
     <Compile Include="Categories\LikesCategory_Generated.cs" />
     <Compile Include="Categories\PhotoCategory.cs">
       <SubType>Code</SubType>
@@ -117,6 +118,7 @@
     <Compile Include="Exception\AccessTokenInvalidException.cs" />
     <Compile Include="Exception\CaptchaNeededException.cs" />
     <Compile Include="Exception\InvalidParameterException.cs" />
+    <Compile Include="Exception\PostLimitException.cs" />
     <Compile Include="Exception\TooManyRequestsException.cs" />
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
