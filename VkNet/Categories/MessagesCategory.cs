@@ -41,7 +41,7 @@ namespace VkNet.Categories
         /// для отправленных пользователем сообщений.
         /// </param>
         /// <param name="totalCount">Общее количество сообщений, удовлетворяющих условиям фильтрации.</param>
-        /// <param name="count">Количество сообщений, которое необходимо получить (но не более 100).</param>
+        /// <param name="count">Количество сообщений, которое необходимо получить (по умолчанию 20, но не более 200).</param>
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений.</param>
         /// <param name="timeOffset">Максимальное время, прошедшее с момента отправки сообщения до текущего момента в секундах. 0, если Вы хотите получить сообщения любой давности.</param>
         /// <param name="filter">Фильтр возвращаемых сообщений.</param>
@@ -55,13 +55,13 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
         /// </remarks>
         [Pure]
-        [ApiVersion("5.21")]
+        [ApiVersion("5.28")]
         public ReadOnlyCollection<Message> Get(
             MessageType type,
             out int totalCount,
             int? count = null,
             int? offset = null,
-            DateTime? timeOffset = null,
+            TimeSpan? timeOffset = null,
             MessagesFilter? filter = null,
             int? previewLength = null,
             long? lastMessageId = null)
@@ -76,17 +76,17 @@ namespace VkNet.Categories
                                  { "out", type },
                                  { "offset", offset },
                                  { "count", count },
-                                 { "time_offset", timeOffset},
                                  { "filters", filter },
                                  { "preview_length", previewLength },
                                  { "last_message_id", lastMessageId }
                              };
+            if (timeOffset.HasValue)
+                parameters.Add("time_offset", timeOffset.Value.TotalSeconds);
 
             VkResponse response = _vk.Call("messages.get", parameters);
             totalCount = response["count"];
 
-            VkResponseArray items = response["items"];
-            return items.ToReadOnlyCollectionOf<Message>(item => item);
+            return response["items"].ToReadOnlyCollectionOf<Message>(item => item);
         }
 
         /// <summary>
