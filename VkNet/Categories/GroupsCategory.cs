@@ -299,5 +299,53 @@
 
             return _vk.Call("groups.unbanUser", parameters);
         }
+
+        /// <summary>
+        /// Позволяет назначить/разжаловать руководителя в сообществе или изменить уровень его полномочий.
+        /// </summary>
+        /// <param name="groupId">Идентификатор сообщества (указывается без знака «минус»)</param>
+        /// <param name="userId">Идентификатор пользователя, чьи полномочия в сообществе нужно изменить</param>
+        /// <param name="role">Уровень полномочий. Если параметр не задан, с пользователя user_id снимаются полномочия руководителя</param>
+        /// <param name="isContact">Отображать ли пользователя в блоке контактов сообщества</param>
+        /// <param name="contactPosition">Должность пользователя, отображаемая в блоке контактов</param>
+        /// <param name="contactPhone">Телефон пользователя, отображаемый в блоке контактов</param>
+        /// <param name="contactEmail">Email пользователя, отображаемый в блоке контактов</param>
+        /// <returns>В случае успешного выполнения возвращает true</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
+        /// </remarks>
+        [ApiVersion("5.28")]
+        public bool EditManager(long groupId, long userId, AdminLevel? role, bool? isContact = null, string contactPosition = null, string contactPhone = null, string contactEmail = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+
+            var parameters = new VkParameters
+                {
+                    {"group_id", groupId},
+                    {"user_id", userId},
+                    {"role", role},
+                    {"is_contact", isContact},
+                    {"contact_position", contactPosition},
+                    {"contact_phone", contactPhone},
+                    {"contact_email", contactEmail}
+                };
+
+            return _vk.Call("groups.unbanUser", parameters);
+        }
+        /// <summary>
+        /// Позволяет назначить/разжаловать руководителя в сообществе или изменить уровень его полномочий.
+        /// </summary>
+        /// <param name="groupId">Идентификатор сообщества (указывается без знака «минус»)</param>
+        /// <param name="userId">Идентификатор пользователя, чьи полномочия в сообществе нужно изменить</param>
+        /// <param name="role">Уровень полномочий. Если параметр не задан, с пользователя user_id снимаются полномочия руководителя</param>
+        /// <returns>В случае успешного выполнения возвращает true</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
+        /// </remarks>
+        public bool EditManager(long groupId, long userId, AdminLevel? role)
+        {
+            return EditManager(groupId, userId, role, null, null, null, null);
+        }
     }
 }
