@@ -28,6 +28,16 @@
         /// Время вызова последнего метода этим объектом
         /// </summary>
         public DateTimeOffset? LastInvokeTime { get; private set; }
+        public TimeSpan? LastInvokeTimeSpan
+        {
+            get
+            {
+                if (LastInvokeTime.HasValue)
+                    return DateTimeOffset.Now - LastInvokeTime.Value;
+                else
+                    return null;
+            }
+        }
         /// <summary>
         /// Ограничение на кол-во запросов в секунду
         /// </summary>
