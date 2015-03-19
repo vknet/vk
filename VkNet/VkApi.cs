@@ -28,6 +28,9 @@
         /// Время вызова последнего метода этим объектом
         /// </summary>
         public DateTimeOffset? LastInvokeTime { get; private set; }
+        /// <summary>
+        /// Время, прошедшее с момента последнего обращения к API этим объектом
+        /// </summary>
         public TimeSpan? LastInvokeTimeSpan
         {
             get
@@ -162,10 +165,12 @@
         /// <param name="appId">Appliation Id</param>
         /// <param name="email">Email or Phone</param>
         /// <param name="password">Password</param>
+        /// <param name="captcha_sid">Идентикикатор капчи</param>
+        /// <param name="captcha_key">Текст капчи</param>
         /// <param name="settings">Access rights requested by your application</param>
-        public void Authorize(int appId, string email, string password, Settings settings)
+        public void Authorize(int appId, string email, string password, Settings settings, long? captcha_sid = null, string captcha_key = null)
         {
-            var authorization = Browser.Authorize(appId, email, password, settings);
+            var authorization = Browser.Authorize(appId, email, password, settings, captcha_sid, captcha_key);
             if (!authorization.IsAuthorized)
                 throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
 
@@ -258,11 +263,10 @@
                 IfNotAuthorizedThrowException();
 
             // проверка на не более 3-х запросов в секунду
-            if (LastInvokeTime != null)
+            TimeSpan span;
+            if (LastInvokeTime.HasValue && (span = LastInvokeTimeSpan.Value).TotalMilliseconds < _minInterval)
             {
-                TimeSpan span = DateTimeOffset.Now - LastInvokeTime.Value;
-                if (span.TotalMilliseconds < _minInterval)
-                    System.Threading.Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
+                System.Threading.Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
             }
 
             string url = GetApiUrl(methodName, parameters);

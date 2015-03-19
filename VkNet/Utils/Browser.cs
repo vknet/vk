@@ -81,16 +81,22 @@
         /// <param name="email">Логин - телефон или эл. почта</param>
         /// <param name="password">Пароль</param>
         /// <param name="settings">Уровень доступа приложения</param>
+        /// <param name="captcha_sid">Идентификатор капчи</param>
+        /// <param name="captcha_key">Текст капчи</param>
         /// <returns>Информация об авторизации приложения</returns>
-        public VkAuthorization Authorize(int appId, string email, string password, Settings settings)
+        public VkAuthorization Authorize(int appId, string email, string password, Settings settings, long? captcha_sid = null, string captcha_key = null)
         {
             var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
             var authorizeUrlResult = WebCall.MakeCall(authorizeUrl);
 
             var loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
+            if (captcha_sid.HasValue)
+                loginForm.WithField("captcha_sid").FilledWith(captcha_sid.Value.ToString()).FilledWith("captcha_key").FilledWith(captcha_key);
             var loginFormPostResult = WebCall.Post(loginForm);
 
             var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
+            if (authorization.CaptchaID.HasValue)
+                throw new VkNet.Exception.CaptchaNeededException(authorization.CaptchaID.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaID.Value.ToString());
             if (!authorization.IsAuthorizationRequired)
                 return authorization;
 
@@ -98,7 +104,6 @@
             var authorizationFormPostResult = WebCall.Post(authorizationForm);
             return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
         }
-
         internal static string CreateAuthorizeUrlFor(int appId, Settings settings, Display display)
         {
             var builder = new StringBuilder("https://oauth.vk.com/authorize?");

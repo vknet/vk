@@ -78,6 +78,22 @@
             }
         }
 
+        /// <summary>
+        /// ID капчи, если она появилась
+        /// </summary>
+        public long? CaptchaID
+        {
+            get
+            {
+                var SidFieldValue = GetFieldValue("sid");
+                long sid;
+                if (long.TryParse(SidFieldValue, out sid))
+                    return sid;
+
+                return null;
+            }
+        }
+
         private string GetFieldValue(string fieldName)
         {
             return _decodedAnswer.Where(i => i.Name == fieldName).Select(i => i.Value).FirstOrDefault();

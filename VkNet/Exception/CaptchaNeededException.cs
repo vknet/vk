@@ -24,7 +24,7 @@
         /// </summary>
         /// <param name="sid">Сид</param>
         /// <param name="img">Url-адрес изображения с капчей</param>
-        public CaptchaNeededException(long sid, string img) : this(sid, new Uri(img))
+        public CaptchaNeededException(long sid, string img) : this(sid, string.IsNullOrEmpty(img) ? null : new Uri(img))
         {
             
         }

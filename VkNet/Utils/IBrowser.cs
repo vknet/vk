@@ -33,9 +33,11 @@
         /// <param name="email">Логин пользователя ВКонтакте (его почта).</param>
         /// <param name="password">Пароль пользователя.</param>
         /// <param name="settings">Запрашиваемые для работы разрешения.</param>
+        /// <param name="captcha_sid">Индентификатор капчи</param>
+        /// <param name="captcha_key">Текст капчи.</param>
         /// <returns>
         /// Информация об авторизации приложения.
         /// </returns>
-        VkAuthorization Authorize(int appId, string email, string password, Settings settings);
+        VkAuthorization Authorize(int appId, string email, string password, Settings settings, long? captcha_sid, string captcha_key);
     }
 }
