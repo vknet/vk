@@ -35,6 +35,24 @@
         /// </summary>
         public Collection<long> Users { get; set; }
 
+        #region Поля найденые експерементально
+
+        /// <summary>
+        /// Состоит ли аккаунт в беседе или покинул ее
+        /// </summary>
+        public bool Left { get; set; }
+
+        /// <summary>
+        /// Неизвестно что за поле, но оно есть в некоторых диалогах (Вроде не влияет на звоковое уведомление о новых сообщениях)
+        /// </summary>
+        public bool? Sound { get; set; }
+        /// <summary>
+        /// Неизвестно что за поле, но оно есть в некоторых диалогах (При отключенных звуковых уведомлениях равняеться -1)
+        /// </summary>
+        public int? DisabledUntil { get; set; }
+
+        #endregion
+
         #region Методы
 
         internal static Chat FromJson(VkResponse response)
@@ -46,6 +64,21 @@
             chat.Title = response["title"];
             chat.AdminId = Utilities.GetNullableLongId(response["admin_id"]);
             chat.Users = response["users"];
+
+            #region Поля найденые експерементально
+
+            chat.Left = response.ContainsKey("left") ? response["left"] : false;
+            if (response.ContainsKey("push_settings"))
+            {
+                chat.Sound = response["push_settings"]["sound"];
+                chat.DisabledUntil = response["push_settings"]["disabled_until"];
+            }
+            else
+            {
+                chat.Sound = null;
+                chat.DisabledUntil = null;
+            }
+            #endregion
 
             return chat;
         }

@@ -566,26 +566,58 @@ namespace VkNet.Categories
         }
 
         /// <summary>
-        /// Возвращает информацию о беседе. 
+        /// Возвращает информацию о беседе
         /// </summary>
-        /// <param name="chatId">
-        /// Идентификатор беседы.
-        /// </param>
+        /// <param name="chatId">Идентификатор беседы.</param>
+        /// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть.</param>
+        /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя. </param>
         /// <returns>
         /// После успешного выполнения возварщает список объектов, описывающих беседу (мультидиалог).
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
+        /// <a href="http://vk.com/dev/messages.getChat"/>Страница документации ВКонтакте</a> .
+        /// </remarks>
+        public Chat GetChat(long chatId, ProfileFields fields = null, Enums.SafetyEnums.NameCase nameCase = null)
+        {
+            return GetChat(new long[] { chatId }, fields, nameCase).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Возвращает информацию о беседах. 
+        /// </summary>
+        /// <param name="chatIds">Идентификаторы беседы.</param>
+        /// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть.</param>
+        /// <param name="nameCase">Падеж для склонения имени и фамилии пользователя. </param>
+        /// <returns>После успешного выполнения возварщает массив объектов, описывающих беседы (мультидиалог).</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChat"/>.
         /// </remarks>
         [Pure]
-        public Chat GetChat(long chatId)
+        [ApiVersion("5.29")]
+        public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, Enums.SafetyEnums.NameCase nameCase = null)
         {
-            var parameters = new VkParameters { { "chat_id", chatId } };
+            if (chatIds == null || chatIds.Count<long>() == 0)
+                throw new ArgumentException("At least one chat ID must be defined", "chatIds");
+
+            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase } };
+            if (chatIds.Count<long>() > 1)
+            {
+                string ids = "";
+                foreach (long chatId in chatIds)
+                    ids += chatId.ToString() + ',';
+                parameters.Add("chat_ids", ids.Remove(ids.Length - 1, 1));
+            }
+            else
+                parameters.Add("chat_id", chatIds.ElementAt(0));
 
             var response = _vk.Call("messages.getChat", parameters);
 
-            return response;
+            if (chatIds.Count<long>() > 1)
+                return response.ToReadOnlyCollectionOf<Chat>(c => c);
+            else
+                return new ReadOnlyCollection<Chat>(new List<Chat> { response });
         }
 
         /// <summary>
