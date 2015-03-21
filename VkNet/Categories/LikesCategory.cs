@@ -1,4 +1,3 @@
-#if false // TODO Сделать когда будут тестовые примеры
 namespace VkNet.Categories
 {
     using System.Collections.ObjectModel;
@@ -50,8 +49,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
         /// </remarks>
-        [ApiVersion("5.9")]
-        public ReadOnlyCollection<> GetList(LikeObjectType type, long? ownerId = null, long? itemId = null, string pageUrl = null, string filter = null, bool? friendsOnly = null, bool? extended = null, long? offset = null, int? count = null)
+        [ApiVersion("5.29")]
+        public ReadOnlyCollection<User> GetList(LikeObjectType type, long? ownerId = null, long? itemId = null, string pageUrl = null, string filter = null, bool? friendsOnly = null, bool? extended = null, long? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -71,7 +70,10 @@ namespace VkNet.Categories
 
             VkResponseArray response = _vk.Call("likes.getList", parameters);
 
-            return response.ToReadOnlyCollectionOf<>(x => x);
+            if (extended == true)
+                return response.ToReadOnlyCollectionOf<User>(x => x);
+            else
+                return response.ToReadOnlyCollectionOf<User>(x => new User() { Id = x });
         }
 
         /// <summary>
@@ -85,8 +87,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.add"/>.
         /// </remarks>
-        [ApiVersion("5.9")]
-        public ReadOnlyCollection<> Add(LikeObjectType type, long itemId, long? ownerId = null, string accessKey = null)
+        [ApiVersion("5.29")]
+        public long Add(LikeObjectType type, long itemId, long? ownerId = null, string accessKey = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => itemId);
 
@@ -98,9 +100,9 @@ namespace VkNet.Categories
                     {"access_key", accessKey}
                 };
 
-            VkResponseArray response = _vk.Call("likes.add", parameters);
+            VkResponse response = _vk.Call("likes.add", parameters);
 
-            return response.ToReadOnlyCollectionOf<>(x => x);
+            return response["likes"];
         }
 
         /// <summary>
@@ -113,8 +115,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.delete"/>.
         /// </remarks>
-        [ApiVersion("5.9")]
-        public ReadOnlyCollection<> Delete(LikeObjectType type, long itemId, long? ownerId = null)
+        [ApiVersion("5.29")]
+        public long Delete(LikeObjectType type, long itemId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => itemId);
 
@@ -125,26 +127,14 @@ namespace VkNet.Categories
                     {"owner_id", ownerId}
                 };
 
-            VkResponseArray response = _vk.Call("likes.delete", parameters);
+            VkResponse response = _vk.Call("likes.delete", parameters);
 
-            return response.ToReadOnlyCollectionOf<>(x => x);
+            return response["likes"];
         }
-
         /// <summary>
         /// Проверяет, находится ли объект в списке Мне нравится заданного пользователя. 
         /// </summary>
-        /// <param name="type">Тип объекта. 
-        /// Возможные типы:
-        /// post — запись на стене пользователя или группы;
-        /// comment — комментарий к записи на стене;
-        /// photo — фотография;
-        /// audio — аудиозапись;
-        /// video — видеозапись;
-        /// note — заметка;
-        /// photo_comment — комментарий к фотографии;
-        /// video_comment — комментарий к видеозаписи;
-        /// topic_comment — комментарий в обсуждении;
-        /// sitepage — страница сайта, на котором установлен виджет «Мне нравится». строка, обязательный параметр</param>
+        /// <param name="type">Тип объекта <see cref="LikeObjectType"/></param>
         /// <param name="itemId">Идентификатор объекта. положительное число, обязательный параметр</param>
         /// <param name="userId">Идентификатор пользователя, у которого необходимо проверить наличие объекта в списке «Мне нравится». Если параметр не задан, то считается, что он равен идентификатору текущего пользователя. положительное число, по умолчанию идентификатор текущего пользователя</param>
         /// <param name="ownerId">Идентификатор владельца Like-объекта. Если параметр не задан, то считается, что он равен идентификатору текущего пользователя. целое число, по умолчанию идентификатор текущего пользователя</param>
@@ -155,8 +145,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.isLiked"/>.
         /// </remarks>
-        [ApiVersion("5.9")]
-        public bool IsLiked(string type, long itemId, long? userId = null, long? ownerId = null)
+        [ApiVersion("5.29")]
+        public bool IsLiked(LikeObjectType type, long itemId, out bool copied, long? userId = null, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => itemId);
             VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -169,8 +159,10 @@ namespace VkNet.Categories
                     {"owner_id", ownerId}
                 };
 
-            return _vk.Call("likes.isLiked", parameters);
+            var resp = _vk.Call("likes.isLiked", parameters);
+
+            copied = resp["copied"];
+            return resp["liked"];
         }
     }
 }
-#endif
