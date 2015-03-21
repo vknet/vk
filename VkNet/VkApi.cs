@@ -24,6 +24,10 @@
         internal int _requestsPerSecond;
         internal int _minInterval;                  // Минимальное время, которое должно пройти между запросами чтобы не привысить кол-во запросов в секунду
 
+        internal KeyValuePair<string, string>? _credentials;
+        internal int _appId;
+        internal Settings _settings;
+
         /// <summary>
         /// Время вызова последнего метода этим объектом
         /// </summary>
@@ -58,6 +62,12 @@
                     throw new ArgumentException("Value must be positive", "RequestsPerSecond");
             }
         }
+
+        /// <summary>
+        /// Позволяет обновлять токен автоматически при возникновении ошибки если есть возможность.
+        /// Нужно дописать реализацию, пока только поле
+        /// </summary>
+        private bool AutoTokenRefresh { get; set; }
 
         #region Categories Definition
         
@@ -157,6 +167,7 @@
             Docs = new DocsCategory(this);
 			
             RequestsPerSecond = 3;
+            AutoTokenRefresh = false;
         }
 
         /// <summary>
@@ -170,12 +181,11 @@
         /// <param name="settings">Access rights requested by your application</param>
         public void Authorize(int appId, string email, string password, Settings settings, long? captcha_sid = null, string captcha_key = null)
         {
-            var authorization = Browser.Authorize(appId, email, password, settings, captcha_sid, captcha_key);
-            if (!authorization.IsAuthorized)
-                throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
+            _credentials = new KeyValuePair<string, string>(email, password);
+            _appId = appId;
+            _settings = settings;
 
-            AccessToken = authorization.AccessToken;
-            UserId = authorization.UserId;
+            _authorize(appId, email, password, settings, captcha_sid, captcha_key);
         }
 
         /// <summary>
@@ -187,9 +197,31 @@
         {
             AccessToken = accessToken;
             UserId = userId;
+            _credentials = null;
+        }
+
+        /// <summary>
+        /// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
+        /// </summary>
+        public void RefreshToken()
+        {
+            if (_credentials.HasValue)
+                _authorize(_appId, _credentials.Value.Key, _credentials.Value.Value, _settings);
+            else
+                throw new AggregateException("Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля");
         }
 
         #region Private & Internal Methods
+
+        internal void _authorize(int appId, string email, string password, Settings settings, long? captcha_sid = null, string captcha_key = null)
+        {
+            var authorization = Browser.Authorize(appId, email, password, settings, captcha_sid, captcha_key);
+            if (!authorization.IsAuthorized)
+                throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
+
+            AccessToken = authorization.AccessToken;
+            UserId = authorization.UserId;
+        }
 
 #if false
         // todo refactor this shit
