@@ -57,7 +57,7 @@
     <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
     <Compile Include="Categories\DocsCategory.cs" />
-    <Compile Include="Categories\LikesCategory_Generated.cs" />
+    <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\PhotoCategory.cs">
       <SubType>Code</SubType>
     </Compile>

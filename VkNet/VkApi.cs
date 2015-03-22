@@ -127,6 +127,10 @@
         /// API для работы с документами
         /// </summary>
         public DocsCategory Docs { get; private set; }
+        /// <summary>
+        /// API для работы с лайками
+        /// </summary>
+        public LikesCategory Likes { get; private set; }
 
         #endregion
 
@@ -165,6 +169,7 @@
 			Account = new AccountCategory(this);
             Photo = new PhotoCategory(this);
             Docs = new DocsCategory(this);
+            Likes = new LikesCategory(this);
 			
             RequestsPerSecond = 3;
             AutoTokenRefresh = false;
