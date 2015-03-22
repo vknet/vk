@@ -119,6 +119,31 @@
                     throw new TooManyRequestsException(message, code);
 
                 case 7: // Permission to perform this action is denied by user.
+                    if (response["request_params"] != null)
+                    {
+                        string method = null;
+                        try
+                        {
+                            foreach (var pair in response["request_params"])
+                            {
+                                if ((string)pair["key"] == "method")
+                                {
+                                    method = (string)pair["value"];
+                                    break;
+                                }
+                            }
+                        }
+                        catch { }
+                        if (method != null)
+                        {
+                            switch (method)
+                            {
+                                case "messages.send":
+                                    throw new MessagesLimitException(message);
+                            }
+                        }
+                    }
+                    goto default;
 				case 15: // Access denied: 1) groups list of this user are under privacy.	2) cannot blacklist yourself	
 				case 148: // Access to the menu of the user denied
                 case 170: // Access to user's friends list denied.

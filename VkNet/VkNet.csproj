@@ -118,6 +118,7 @@
     <Compile Include="Exception\AccessTokenInvalidException.cs" />
     <Compile Include="Exception\CaptchaNeededException.cs" />
     <Compile Include="Exception\InvalidParameterException.cs" />
+    <Compile Include="Exception\MessagesLimitException.cs" />
     <Compile Include="Exception\PostLimitException.cs" />
     <Compile Include="Exception\TooManyRequestsException.cs" />
     <Compile Include="Exception\UserAuthorizationFailException.cs" />
