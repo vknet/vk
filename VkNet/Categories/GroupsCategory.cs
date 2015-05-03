@@ -194,11 +194,11 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, int? offset = null, int? count = null)
+        public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, int? offset = null, int? count = null, GroupsFields fields = null, int sort = 0)
         {
             VkErrors.ThrowIfNullOrEmpty(() => query);
-            
-            var parameters = new VkParameters { { "q", query }, { "offset", offset }, { "count", count } };
+
+            var parameters = new VkParameters { { "q", query }, { "offset", offset }, { "count", count }, { "fields", fields }, { "sort", sort } };
 
             VkResponseArray response = _vk.Call("groups.search", parameters);
 
