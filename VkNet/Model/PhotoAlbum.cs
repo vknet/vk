@@ -77,8 +77,11 @@ namespace VkNet.Model
         internal static PhotoAlbum FromJson(VkResponse response)
         {
             var album = new PhotoAlbum();
-
-            album.Id = response["id"];
+            
+            if (response.ContainsKey("aid"))
+                album.Id = response["aid"];
+            else
+                album.Id = response["id"];
             album.ThumbId = Utilities.GetNullableLongId(response["thumb_id"]);
             album.OwnerId = Utilities.GetNullableLongId(response["owner_id"]);
             album.Title = response["title"];
