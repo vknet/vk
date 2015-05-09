@@ -23,6 +23,7 @@
         internal const string InvalidAuthorization = "Invalid authorization";
         internal int _requestsPerSecond;
         internal int _minInterval;                  // Минимальное время, которое должно пройти между запросами чтобы не привысить кол-во запросов в секунду
+        internal int? _countFromLastResponse=null;  // Счетчик count, содержавшийся в последнем ответе
 
         internal KeyValuePair<string, string>? _credentials;
         internal int _appId;
@@ -60,6 +61,22 @@
                 }
                 else
                     throw new ArgumentException("Value must be positive", "RequestsPerSecond");
+            }
+        }
+
+        /// <summary>
+        /// Счетчик count, содержавшийся в последнем ответе, возвращаемом из <see cref="Call(string, VkParameters, bool)"/>
+        /// Сбрасывается в null, если в ответе не было поля "count".
+        /// </summary>
+        public int? CountFromLastResponse
+        {
+            get { return _countFromLastResponse; }
+            set
+            {
+                if ((value != null) && value < 0)
+                    throw new ArgumentException("Value must be positive", "CountFromLastResponse");
+                else
+                    _countFromLastResponse = value;
             }
         }
 
@@ -283,7 +300,12 @@
 
             var rawResponse = json["response"];
 
-            return new VkResponse(rawResponse) {RawJson = answer};
+            VkResponse vkResponse = new VkResponse(rawResponse) { RawJson = answer };
+
+            // Если в ответе есть поле count (счетчик общего числа объектов, которые можно запросить), сохраняем его.
+            CountFromLastResponse = vkResponse["count"];
+ 
+            return vkResponse;
         }
 
         /// <summary>
