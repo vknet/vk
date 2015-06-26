@@ -91,7 +91,7 @@
 
             var loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
             if (captcha_sid.HasValue)
-                loginForm.WithField("captcha_sid").FilledWith(captcha_sid.Value.ToString()).FilledWith("captcha_key").FilledWith(captcha_key);
+                loginForm.WithField("captcha_sid").FilledWith(captcha_sid.Value.ToString()).WithField("captcha_key").FilledWith(captcha_key);
             var loginFormPostResult = WebCall.Post(loginForm);
 
             var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
