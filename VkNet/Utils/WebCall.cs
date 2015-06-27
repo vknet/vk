@@ -66,9 +66,9 @@
             request.ContentType = "application/x-www-form-urlencoded";
             var formRequest = form.GetRequest();
             request.ContentLength = formRequest.Length;
+            request.Referer = form.OriginalUrl;
             request.GetRequestStream().Write(formRequest, 0, formRequest.Length);
             request.AllowAutoRedirect = false;
-            request.Referer = form.OriginalUrl;
 
             return call.MakeRequest();
         }
