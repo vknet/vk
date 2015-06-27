@@ -145,7 +145,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.isLiked"/>.
         /// </remarks>
-        [ApiVersion("5.29")]
+        [ApiVersion("5.34")]
         public bool IsLiked(LikeObjectType type, long itemId, out bool copied, long? userId = null, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => itemId);
@@ -159,7 +159,7 @@ namespace VkNet.Categories
                     {"owner_id", ownerId}
                 };
 
-            var resp = _vk.Call("likes.isLiked", parameters);
+            var resp = _vk.Call("likes.isLiked", parameters, apiVersion: "5.34");
 
             copied = resp["copied"];
             return resp["liked"];
