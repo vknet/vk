@@ -412,17 +412,26 @@
         }
 
         /// <summary>
-        /// Удаляет комментарий текущего пользователя к записи на своей или чужой стене. 
-        /// </summary>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteComment"/>.
-        /// </remarks>
-        public void DeleteComment()
-        {
-            // TODO:
-            throw new NotImplementedException();
-        }
+    	/// Удаляет комментарий текущего пользователя к записи на своей или чужой стене. 
+    	/// </summary>
+    	/// <param name="commentId">Идентификатор пользователя, на чьей стене находится комментарий к записи. </param>
+    	/// <param name="ownerId">Идентификатор комментария.</param>
+    	/// <remarks>
+    	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+    	/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteComment"/>.
+    	/// </remarks>
+    	public bool DeleteComment(long ownerId, long commentId)
+    	{
+        	VkErrors.ThrowIfNumberIsNegative(() => commentId);
+
+        	var parameters = new VkParameters
+             		{
+                         	{ "owner_id", ownerId },
+                         	{ "comment_id", commentId }
+             		};
+
+        	return _vk.Call("wall.deleteComment", parameters);
+    	}
 
         /// <summary>
         /// Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене. 
