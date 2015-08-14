@@ -7,6 +7,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Text;
+    using System.Threading;
     using Newtonsoft.Json.Linq;
 
     using Categories;
@@ -14,6 +15,11 @@
     using Utils;
     using Enums.Filters;
 
+    /// <summary>
+    /// Служит для оповещения об истечении токена
+    /// </summary>
+    /// <param name="api">Экземпляр API у которого истекло время токена</param>
+    public delegate void VkApiDelegate(VkApi api);
     /// <summary>
     /// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями, 
     /// группами и т.п.).
@@ -27,6 +33,7 @@
         internal KeyValuePair<string, string>? _credentials;
         internal int _appId;
         internal Settings _settings;
+        private Timer _expireTimer;
 
         /// <summary>
         /// Время вызова последнего метода этим объектом
@@ -63,11 +70,7 @@
             }
         }
 
-        /// <summary>
-        /// Позволяет обновлять токен автоматически при возникновении ошибки если есть возможность.
-        /// Нужно дописать реализацию, пока только поле
-        /// </summary>
-        private bool AutoTokenRefresh { get; set; }
+        public event VkApiDelegate onTokenExpires;
 
         #region Categories Definition
         
@@ -172,7 +175,6 @@
             Likes = new LikesCategory(this);
 			
             RequestsPerSecond = 3;
-            AutoTokenRefresh = false;
         }
 
         /// <summary>
@@ -186,11 +188,11 @@
         /// <param name="settings">Access rights requested by your application</param>
         public void Authorize(int appId, string email, string password, Settings settings, long? captcha_sid = null, string captcha_key = null)
         {
+            _authorize(appId, email, password, settings, captcha_sid, captcha_key);
+
             _credentials = new KeyValuePair<string, string>(email, password);
             _appId = appId;
             _settings = settings;
-
-            _authorize(appId, email, password, settings, captcha_sid, captcha_key);
         }
 
         /// <summary>
@@ -200,6 +202,8 @@
         /// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
         public void Authorize(string accessToken, long ?userId = null)
         {
+            _stopTimer();
+
             AccessToken = accessToken;
             UserId = userId;
             _credentials = null;
@@ -224,10 +228,28 @@
             if (!authorization.IsAuthorized)
                 throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
 
+            _stopTimer();
+            _expireTimer = new Timer(_alertExpires, null, Convert.ToInt32(authorization.ExpiresIn) - 10000, Timeout.Infinite);
             AccessToken = authorization.AccessToken;
             UserId = authorization.UserId;
         }
-
+        /// <summary>
+        /// Прекращает работу таймера оповещения
+        /// </summary>
+        private void _stopTimer()
+        {
+            if (_expireTimer != null)
+                _expireTimer.Dispose();
+        }
+        /// <summary>
+        /// Создает событие оповещения об окончании времени токена
+        /// </summary>
+        /// <param name="state"></param>
+        private void _alertExpires(object state)
+        {
+            if (onTokenExpires != null)
+                onTokenExpires(this);
+        }
 #if false
         // todo refactor this shit
         internal async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
@@ -302,9 +324,7 @@
             // проверка на не более 3-х запросов в секунду
             TimeSpan span;
             if (LastInvokeTime.HasValue && (span = LastInvokeTimeSpan.Value).TotalMilliseconds < _minInterval)
-            {
                 System.Threading.Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
-            }
 
             string url = GetApiUrl(methodName, parameters);
             
