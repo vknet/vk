@@ -125,7 +125,7 @@
         }
 
         /// <summary>
-        /// Возвращает расширенную информацию о пользователях.
+        /// Возвращает расширенную информацию о пользователях. Метод не требует авторизацию
         /// </summary>
         /// <param name="userIds">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
         /// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
@@ -135,7 +135,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
         /// </remarks>
         [Pure]
-        [ApiVersion("5.9")]
+        [ApiVersion("5.21")]
         public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
         {
             if (userIds == null)

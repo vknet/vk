@@ -121,6 +121,23 @@
         }
 
         /// <summary>
+        /// Возвращает информацию о заданной группе.
+        /// </summary>
+        /// <param name="gid">Id группы</param>
+        /// <param name="fields">Список полей информации о группах</param>
+        /// <returns>Список групп</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
+        /// </remarks>
+        [Pure]
+        public Group GetById(string gid, GroupsFields fields = null)
+        {
+            var parameters = new VkParameters { { "gid", gid }, { "fields", fields } };
+
+            return _vk.Call("groups.getById", parameters)[0];
+        }
+
+        /// <summary>
         /// Возвращает список участников группы.
         /// </summary>
         /// <param name="gid">Id группы</param>
@@ -177,11 +194,11 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, int? offset = null, int? count = null)
+        public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, int? offset = null, int? count = null, GroupsFields fields = null, int sort = 0)
         {
             VkErrors.ThrowIfNullOrEmpty(() => query);
-            
-            var parameters = new VkParameters { { "q", query }, { "offset", offset }, { "count", count } };
+
+            var parameters = new VkParameters { { "q", query }, { "offset", offset }, { "count", count }, { "fields", fields }, { "sort", sort } };
 
             VkResponseArray response = _vk.Call("groups.search", parameters);
 
