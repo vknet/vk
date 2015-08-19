@@ -116,7 +116,7 @@ namespace VkNet.Categories
         /// </remarks>
         [Pure]
         [ApiVersion("5.21")]
-                public ReadOnlyCollection<Message> GetHistory(
+        public ReadOnlyCollection<Message> GetHistory(
             long id,
             bool isChat,
             out int totalCount,
