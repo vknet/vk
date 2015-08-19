@@ -135,11 +135,8 @@ namespace VkNet.Categories
                              };
 
             VkResponse response = _vk.Call("messages.getHistory", parameters);
-
             totalCount = response["count"];
-            VkResponseArray items = response["items"];
-
-            return items.ToReadOnlyCollectionOf<Message>(r => r);
+            return response["items"].ToReadOnlyCollectionOf<Message>(item => item);
         }
 
         /// <summary>
