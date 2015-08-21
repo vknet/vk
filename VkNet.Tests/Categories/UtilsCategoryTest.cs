@@ -92,7 +92,7 @@ namespace VkNet.Tests.Categories
                     'response': 1391153956
                   }";
 
-             DateTime expected = new DateTime(2014, 1, 31, 11, 39, 16);
+             var expected = new DateTime(2014, 1, 31, 7, 39, 16, DateTimeKind.Utc).ToLocalTime();
 
              var utils = GetMockedUtilsCategory(url, json);
 

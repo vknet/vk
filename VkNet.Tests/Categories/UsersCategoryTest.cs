@@ -1171,7 +1171,7 @@
             result[0].HomePhone.ShouldEqual(string.Empty);
             result[0].Site.ShouldEqual(string.Empty);
             result[0].Status.ShouldEqual("Пусть ветер гудит в проводах пусть будет осенняя влага пусть люди забудут о нас,но ни забудем друг друга.");
-            result[0].LastSeen.ShouldEqual(new DateTime(2014, 2, 18, 12, 2, 19));
+            result[0].LastSeen.ShouldEqual(new DateTime(2014, 2, 18, 8, 2, 19, DateTimeKind.Utc).ToLocalTime());
             result[0].CommonCount.ShouldEqual(0);
             result[0].Universities.Count.ShouldEqual(0);
             result[0].Relation.ShouldEqual(RelationType.InActiveSearch);
@@ -1205,7 +1205,7 @@
             result[1].Connections.Skype.ShouldEqual("немає");
             result[1].Site.ShouldEqual(string.Empty);
             result[1].Status.ShouldEqual("Не варто ображатися на людей за те, що вони не виправдали наших очікувань... ми самі винні, що чекали від них більше, ніж варто було!");
-            result[1].LastSeen.ShouldEqual(new DateTime(2014, 2, 18, 12, 1, 14));
+            result[1].LastSeen.ShouldEqual(new DateTime(2014, 2, 18, 8, 1, 14, DateTimeKind.Utc).ToLocalTime());
             result[1].CommonCount.ShouldEqual(0);
             result[1].Universities.Count.ShouldEqual(0);
             result[1].Relation.ShouldEqual(RelationType.Unknown);

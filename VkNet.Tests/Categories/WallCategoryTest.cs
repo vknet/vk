@@ -484,7 +484,7 @@ namespace VkNet.Tests.Categories
 			var comment0 = comments[0];
 			Assert.That(comment0.Id, Is.EqualTo(3809));
 			Assert.That(comment0.FromId, Is.EqualTo(6733856));
-			Assert.That(comment0.Date, Is.EqualTo(new DateTime(2013, 11, 22, 09, 45, 44)));
+			Assert.That(comment0.Date, Is.EqualTo(new DateTime(2013, 11, 22, 05, 45, 44, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(comment0.Text, Is.EqualTo("Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!"));
 			Assert.That(comment0.Likes, Is.Not.Null);
 			Assert.That(comment0.Likes.Count, Is.EqualTo(1));
@@ -492,7 +492,7 @@ namespace VkNet.Tests.Categories
 			var comment1 = comments[1];
 			Assert.That(comment1.Id, Is.EqualTo(3810));
 			Assert.That(comment1.FromId, Is.EqualTo(3073863));
-			Assert.That(comment1.Date, Is.EqualTo(new DateTime(2013, 11, 22, 10, 21, 06)));
+			Assert.That(comment1.Date, Is.EqualTo(new DateTime(2013, 11, 22, 6, 21, 06, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(comment1.Text, Is.EqualTo("C днем рождения малышку и родителей!!!"));
 			Assert.That(comment1.Likes, Is.Not.Null);
 			Assert.That(comment1.Likes.Count, Is.EqualTo(1));
@@ -703,7 +703,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(records[1].Id, Is.EqualTo(617));
 			Assert.That(records[1].FromId, Is.EqualTo(4793858));
 			Assert.That(records[1].OwnerId, Is.EqualTo(4793858));
-			Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 18, 37, 46)));
+			Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 14, 37, 46, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(records[1].Text, Is.Null.Or.Empty);
 			Assert.That(records[1].Comments.Count == 0);
 			Assert.That(records[1].Comments.CanPost, Is.True);
@@ -717,7 +717,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(records[2].Id, Is.EqualTo(616));
 			Assert.That(records[2].FromId, Is.EqualTo(4793858));
 			Assert.That(records[2].OwnerId, Is.EqualTo(4793858));
-			Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 11, 32, 37)));
+			Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 7, 32, 37, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(records[2].Text,
 						Is.EqualTo("Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было."));
 			Assert.That(records[2].Comments.Count, Is.EqualTo(0));
@@ -947,7 +947,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(records[1].Id, Is.EqualTo(617));
 			Assert.That(records[1].FromId, Is.EqualTo(4793858));
 			Assert.That(records[1].OwnerId, Is.EqualTo(4793858));
-			Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 18, 37, 46)));
+			Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 14, 37, 46, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(records[1].Text, Is.Null.Or.Empty);
 			Assert.That(records[1].Comments.Count == 0);
 			Assert.That(records[1].Comments.CanPost, Is.True);
@@ -961,7 +961,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(records[2].Id, Is.EqualTo(616));
 			Assert.That(records[2].FromId, Is.EqualTo(4793858));
 			Assert.That(records[2].OwnerId, Is.EqualTo(4793858));
-			Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 11, 32, 37)));
+			Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 7, 32, 37, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(records[2].Text, Is.EqualTo("Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было."));
 			Assert.That(records[2].Comments.Count, Is.EqualTo(0));
 			Assert.That(records[2].Comments.CanPost, Is.True);
@@ -975,7 +975,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(records[0].Id, Is.EqualTo(619));
 			Assert.That(records[0].FromId, Is.EqualTo(4793858));
 			Assert.That(records[0].OwnerId, Is.EqualTo(4793858));
-			Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 16, 21, 8)));
+			Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 12, 21, 8, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(records[0].Text, Is.EqualTo("Фильмы ужасов, основанные на реальных событиях."));
 			Assert.That(records[0].CopyOwnerId, Is.EqualTo(50915841));
 			Assert.That(records[0].CopyPostId, Is.EqualTo(1374));
@@ -999,7 +999,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(photo.Width, Is.EqualTo(450));
 			Assert.That(photo.Height, Is.EqualTo(320));
 			Assert.That(photo.Text, Is.Null.Or.Empty);
-			Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
+			Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2012, 05, 20, 19, 33, 04, DateTimeKind.Utc).ToLocalTime()));
 			//Assert.That(records[0]., Is.EqualTo());
 
 			Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));
@@ -1315,7 +1315,7 @@ namespace VkNet.Tests.Categories
 	        posts[0].Id.ShouldEqual(2);
 	        posts[0].FromId.ShouldEqual(234015642);
 	        posts[0].OwnerId.ShouldEqual(234015642);
-	        posts[0].Date.ShouldEqual(new DateTime(2014, 4, 25, 10, 58, 1));
+	        posts[0].Date.ShouldEqual(new DateTime(2014, 4, 25, 6, 58, 1, DateTimeKind.Utc).ToLocalTime());
 	        posts[0].PostType.ShouldEqual("post");
             posts[0].Text.ShouldEqual("Нужен совет");
             posts[0].CanDelete.ShouldBeTrue();
@@ -1336,7 +1336,7 @@ namespace VkNet.Tests.Categories
 	        var poll = (Poll) posts[0].Attachment.Instance;
 	        poll.Id.ShouldEqual(134391320);
 	        poll.OwnerId.ShouldEqual(234015642);
-            poll.Created.ShouldEqual(new DateTime(2014, 4, 25, 10, 58, 1));
+            poll.Created.ShouldEqual(new DateTime(2014, 4, 25, 6, 58, 1, DateTimeKind.Utc).ToLocalTime());
 	        poll.Question.ShouldEqual("Куда ехать отдыхать");
 	        poll.Votes.ShouldEqual(0);
 	        poll.AnswerId.ShouldEqual(0);
