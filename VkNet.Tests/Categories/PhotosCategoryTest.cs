@@ -89,8 +89,8 @@ namespace VkNet.Tests.Categories
             album.OwnerId.ShouldEqual(234698);
             album.Title.ShouldEqual("hello world");
             album.Description.ShouldEqual("description for album");
-            album.Created.ShouldEqual(new DateTime(2014, 6, 19, 17, 39, 44));
-            album.Updated.ShouldEqual(new DateTime(2014, 6, 19, 17, 39, 44));
+            album.Created.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
+            album.Updated.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
             album.Privacy.ShouldEqual(0);
             album.CommentPrivacy.ShouldEqual(0);
             album.Size.ShouldEqual(0);

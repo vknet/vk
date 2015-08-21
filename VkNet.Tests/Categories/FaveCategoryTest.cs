@@ -120,7 +120,7 @@
             photos[1].Height.ShouldEqual(530);
             photos[1].Text.ShouldEqual("");
             photos[1].PostId.ShouldEqual(88997);
-            photos[1].CreateTime.ShouldEqual(new DateTime(2014, 1, 24, 7, 25, 4));
+            photos[1].CreateTime.ShouldEqual(new DateTime(2014, 1, 24, 3, 25, 4, DateTimeKind.Utc).ToLocalTime());
         }
 
         [Test]
@@ -158,7 +158,7 @@
             videos[0].OwnerId.ShouldEqual(1);
             videos[0].Title.ShouldEqual("This is SPARTA");
             videos[0].Duration.ShouldEqual(16);
-            videos[0].Date.ShouldEqual(new DateTime(2013, 4, 21, 1, 57, 55));
+            videos[0].Date.ShouldEqual(new DateTime(2013, 4, 20, 21, 57, 55, DateTimeKind.Utc).ToLocalTime());
             videos[0].ViewsCount.ShouldEqual(215502);
             videos[0].CommentsCount.ShouldEqual(2559);
             videos[0].Photo130.ShouldEqual(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg"));

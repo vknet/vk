@@ -592,7 +592,7 @@ namespace VkNet.Tests.Categories
             Assert.That(msgs.Count, Is.EqualTo(3));
 
             Assert.That(msgs[2].Id, Is.EqualTo(4414));
-            Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2012, 7, 13, 12, 46, 32)));
+            Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2012, 7, 13, 8, 46, 32, DateTimeKind.Utc).ToLocalTime()));
             Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Received));
             Assert.That(msgs[2].UserId, Is.EqualTo(245242));
             Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
@@ -600,7 +600,7 @@ namespace VkNet.Tests.Categories
             Assert.That(msgs[2].Body, Is.EqualTo("привет, антон))"));
 
             Assert.That(msgs[1].Id, Is.EqualTo(4415));
-            Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2012, 7, 13, 12, 46, 48)));
+            Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2012, 7, 13, 8, 46, 48, DateTimeKind.Utc).ToLocalTime()));
             Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Sended));
             Assert.That(msgs[1].UserId, Is.EqualTo(245242));
             Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
@@ -927,7 +927,7 @@ namespace VkNet.Tests.Categories
 
             Assert.That(activity.UserId, Is.EqualTo(77128));
             Assert.That(activity.IsOnline, Is.False);
-            Assert.That(activity.Time, Is.EqualTo(new DateTime(2012, 8, 9, 7, 57, 25)));
+            Assert.That(activity.Time, Is.EqualTo(new DateTime(2012, 8, 9, 3, 57, 25, DateTimeKind.Utc).ToLocalTime()));
         }
 
         [Test]
