@@ -109,7 +109,7 @@
              result[2].Title.ShouldEqual("This is SPARTA");
              result[2].Duration.ShouldEqual(16);
              result[2].Description.ShouldEqual(string.Empty);
-             result[2].Date.ShouldEqual(new DateTime(2013, 4, 20, 22, 57, 55, DateTimeKind.Utc).ToLocalTime());
+             result[2].Date.ShouldEqual(new DateTime(2013, 4, 20, 21, 57, 55, DateTimeKind.Utc).ToLocalTime());
              result[2].ViewsCount.ShouldEqual(218658);
              result[2].CommentsCount.ShouldEqual(2578);
              result[2].Photo130.ShouldEqual(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg"));
@@ -236,7 +236,7 @@
              result[2].Title.ShouldEqual("This is SPARTA");
              result[2].Duration.ShouldEqual(16);
              result[2].Description.ShouldEqual(string.Empty);
-             result[2].Date.ShouldEqual(new DateTime(2013, 4, 20, 22, 57, 55, DateTimeKind.Utc).ToLocalTime());
+             result[2].Date.ShouldEqual(new DateTime(2013, 4, 20, 21, 57, 55, DateTimeKind.Utc).ToLocalTime());
              result[2].ViewsCount.ShouldEqual(218659);
              result[2].CommentsCount.ShouldEqual(2578);
              result[2].Photo130.ShouldEqual(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg"));

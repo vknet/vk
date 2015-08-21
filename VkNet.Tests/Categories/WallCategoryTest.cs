@@ -732,7 +732,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(records[0].Id, Is.EqualTo(619));
 			Assert.That(records[0].FromId, Is.EqualTo(4793858));
 			Assert.That(records[0].OwnerId, Is.EqualTo(4793858));
-			Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 16, 21, 8)));
+			Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 12, 21, 8, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(records[0].Text, Is.EqualTo("Фильмы ужасов, основанные на реальных событиях."));
 			Assert.That(records[0].CopyOwnerId, Is.EqualTo(50915841));
 			Assert.That(records[0].CopyPostId, Is.EqualTo(1374));
@@ -759,7 +759,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(photo.Width, Is.EqualTo(450));
 			Assert.That(photo.Height, Is.EqualTo(320));
 			Assert.That(photo.Text, Is.Null.Or.Empty);
-			Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
+			Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2012, 05, 20, 19, 33, 04, DateTimeKind.Utc).ToLocalTime()));
 			//Assert.That(records[0]., Is.EqualTo());
 
 			Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));
