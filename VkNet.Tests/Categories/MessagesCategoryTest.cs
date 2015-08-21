@@ -240,7 +240,7 @@ namespace VkNet.Tests.Categories
             wall.Id.ShouldEqual(6194);
             wall.FromId.ShouldEqual(-1267);
             wall.ToId.ShouldEqual(-7654);
-            wall.Date.ShouldEqual(new DateTime(2014, 11, 3, 8, 30, 10));
+			wall.Date.ShouldEqual(new DateTime(2014, 11, 3, 5, 30, 10, DateTimeKind.Utc).ToLocalTime());
             wall.PostType.ShouldEqual("post");
             wall.Text.ShouldEqual(string.Empty);
 
@@ -1222,7 +1222,7 @@ namespace VkNet.Tests.Categories
             messages.Count.ShouldEqual(1);
 
             messages[0].Id.ShouldEqual(31);
-            messages[0].Date.ShouldEqual(new DateTime(2014, 4, 23, 12, 40, 12));
+			messages[0].Date.ShouldEqual(new DateTime(2014, 4, 23, 8, 40, 12, DateTimeKind.Utc).ToLocalTime());
             messages[0].Type.ShouldEqual(MessageType.Received);
             messages[0].UserId.ShouldEqual(123508789);
             messages[0].ReadState.ShouldEqual(MessageReadState.Unreaded);
@@ -1269,7 +1269,7 @@ namespace VkNet.Tests.Categories
 
             messages[0].Body.ShouldEqual("fun");
             messages[0].Id.ShouldEqual(34);
-            messages[0].Date.ShouldEqual(new DateTime(2014, 4, 23, 12, 40, 16));
+			messages[0].Date.ShouldEqual(new DateTime(2014, 4, 23, 8, 40, 16, DateTimeKind.Utc).ToLocalTime());
             messages[0].ReadState.ShouldEqual(MessageReadState.Unreaded);
             messages[0].Type.ShouldEqual(MessageType.Received);
             messages[0].UserId.ShouldEqual(562508789);
@@ -1277,7 +1277,7 @@ namespace VkNet.Tests.Categories
             
             messages[1].Body.ShouldEqual("very");
             messages[1].Id.ShouldEqual(33);
-            messages[1].Date.ShouldEqual(new DateTime(2014, 4, 23, 12, 40, 15));
+			messages[1].Date.ShouldEqual(new DateTime(2014, 4, 23, 8, 40, 15, DateTimeKind.Utc).ToLocalTime());
             messages[1].ReadState.ShouldEqual(MessageReadState.Unreaded);
             messages[1].Type.ShouldEqual(MessageType.Received);
             messages[1].UserId.ShouldEqual(562508789);
