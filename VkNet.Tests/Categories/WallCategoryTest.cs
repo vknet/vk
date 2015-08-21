@@ -513,7 +513,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(photo.Width, Is.EqualTo(510));
 			Assert.That(photo.Height, Is.EqualTo(383));
 			Assert.That(photo.Text, Is.EqualTo(string.Empty));
-			Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2013, 11, 22, 10, 20, 31)));
+			Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2013, 11, 22, 6, 20, 31, DateTimeKind.Utc).ToLocalTime()));
 		}
 
 		#endregion

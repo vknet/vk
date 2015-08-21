@@ -1247,10 +1247,10 @@
             users[0].FirstName = "Маша";
             users[0].LastName = "Иванова";
             users[0].BanInfo.AdminId.ShouldEqual(234695672);
-            users[0].BanInfo.Date.ShouldEqual(new DateTime(2014, 2, 16, 13, 35, 1));
+			users[0].BanInfo.Date.ShouldEqual(new DateTime(2014, 2, 16, 9, 35, 1, DateTimeKind.Utc).ToLocalTime());
             users[0].BanInfo.Reason.ShouldEqual(BanReason.Spam);
             users[0].BanInfo.Comment.ShouldEqual("просто комментарий");
-            users[0].BanInfo.EndDate.ShouldEqual(new DateTime(2014, 2, 19, 13, 34, 57));
+			users[0].BanInfo.EndDate.ShouldEqual(new DateTime(2014, 2, 19, 9, 34, 57, DateTimeKind.Utc).ToLocalTime());
         }
 
         [Test]

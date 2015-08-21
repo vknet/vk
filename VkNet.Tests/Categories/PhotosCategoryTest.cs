@@ -309,7 +309,7 @@ namespace VkNet.Tests.Categories
             photos[0].Width.ShouldEqual(609);
             photos[0].Height.ShouldEqual(574);
             photos[0].Text.ShouldEqual("Сегодня должности раздаются чиновниками, которые боятся конкуренции и подбирают себе все менее талантливых и все более беспомощных подчиненных. Государственные посты должны распределяться на основе прозрачных механизмов, в том числе, прямых выборов.");
-            photos[0].CreateTime.ShouldEqual(new DateTime(2014, 4, 28, 8, 12, 7));
+			photos[0].CreateTime.ShouldEqual(new DateTime(2014, 4, 28, 4, 12, 7, DateTimeKind.Utc).ToLocalTime());
         }
 
 #endregion
@@ -385,7 +385,7 @@ namespace VkNet.Tests.Categories
             photos[0].Width.ShouldEqual(807);
             photos[0].Height.ShouldEqual(515);
             photos[0].Text.ShouldEqual("🍓 [club49512556|ЗАХОДИ К НАМ]\nчастное фото секси обнаженные девочки малолетки порно голые сиськи попки эротика няша шлюха грудь секс instagirls instagram лето\n#секс #девушки #девочки #instagram #instagirls #няша #InstaSize #лето #ПОПКИ");
-            photos[0].CreateTime.ShouldEqual(new DateTime(2014, 6, 22, 20, 49, 48));  //  2014-06-22 20:49:48.000
+			photos[0].CreateTime.ShouldEqual(new DateTime(2014, 6, 22, 16, 49, 48, DateTimeKind.Utc).ToLocalTime());  //  2014-06-22 20:49:48.000
         }
 
         [Test]
@@ -484,7 +484,7 @@ namespace VkNet.Tests.Categories
             photo.Width.ShouldEqual(1256);
             photo.Height.ShouldEqual(320);
             photo.Text.ShouldEqual(string.Empty);
-            photo.CreateTime.ShouldEqual(new DateTime(2014, 11, 10, 17, 27, 31));
+			photo.CreateTime.ShouldEqual(new DateTime(2014, 11, 10, 14, 27, 31, DateTimeKind.Utc).ToLocalTime());
         }
         #endregion
 
