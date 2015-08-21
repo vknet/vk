@@ -1211,12 +1211,12 @@ namespace VkNet.Tests.Categories
             This.Action(() => _defaultWall.RestoreComment()).Throws<AccessTokenInvalidException>();
 		}
 
-		[Test]
-		[Ignore]
-		public void DeleteComment_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			This.Action(() =>_defaultWall.DeleteComment()).Throws<AccessTokenInvalidException>();
-		}
+		//[Test]
+		//[Ignore]
+		//public void DeleteComment_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		//{
+		//	This.Action(() =>_defaultWall.DeleteComment()).Throws<AccessTokenInvalidException>();
+		//}
 
 		[Test]
 		[Ignore]

@@ -1,0 +1,10 @@
+language: csharp
+solution: ./VkNet.sln
+
+install:
+  - sudo apt-get install nunit-console
+  - nuget restore ./VkNet.sln
+
+script:
+  - xbuild ./VkNet.sln
+  - nunit-console ./Debug/VkNet.Tests.dll
