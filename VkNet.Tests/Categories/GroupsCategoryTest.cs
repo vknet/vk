@@ -319,7 +319,7 @@
         public void Get_NormalCaseAllFields_ReturnFullGroupInfo()
         {
             const string url =
-                "https://api.vk.com/method/groups.get?uid=1&extended=1&filter=events&fields=city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_create_topic,activity,status,contacts,links,fixed_post,verified,site&access_token=token";
+                "https://api.vk.com/method/groups.get?uid=1&extended=1&filter=events&fields=city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_create_topic,activity,status,contacts,links,fixed_post,verified,site&v=5.28&access_token=token";
 
             const string json =
                 @"{

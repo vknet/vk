@@ -229,7 +229,7 @@
         [Test]
         public void Get_Mutliple_TwoUidsDefaultFields_TwoProfiles()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=1,672&v=5.9&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=1,672&v=5.21&access_token=token";
             const string json =
                 @"{
                     'response': [

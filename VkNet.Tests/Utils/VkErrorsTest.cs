@@ -53,7 +53,7 @@ namespace VkNet.Tests.Utils
 
             var ex = This.Action(() => VkErrors.ThrowIfNullOrEmpty(() => param)).Throws<ArgumentNullException>(); 
 
-            ex.Message.ShouldStartsWith("Value cannot be null").ShouldContains("param");
+			ex.Message.ShouldStartsWith("Argument cannot be null").ShouldContains("param");
         }
 
         [Test]
