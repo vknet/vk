@@ -136,10 +136,22 @@ namespace VkNet.Categories
 
             VkResponse response = _vk.Call("messages.getHistory", parameters);
 
-            totalCount = response["count"];
-            VkResponseArray items = response["items"];
-
-            return items.ToReadOnlyCollectionOf<Message>(r => r);
+            totalCount = response[0];
+	        var result = new List<Message>();
+	        if (count > 0)
+	        {
+		        for (var i = 1; i <= count; i++)
+		        {
+			        try
+			        {
+						result.Add(Message.FromJson(response[i]));
+			        }
+			        catch (ArgumentOutOfRangeException)
+			        {
+			        }
+		        }   
+	        }
+	        return result.ToReadOnlyCollection();
         }
 
         /// <summary>
