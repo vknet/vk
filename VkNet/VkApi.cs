@@ -146,7 +146,7 @@
 
         /// <summary>
         /// Идентификатор пользователя, от имени которого была проведена авторизация.
-        /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings)"/>, 
+        /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings,long?,string)"/>, 
         /// то возвращается null.
         /// </summary>
         public long? UserId { get; set; }
@@ -181,16 +181,16 @@
         /// Authorize application on vk.com and getting Access Token.
         /// </summary>
         /// <param name="appId">Appliation Id</param>
-        /// <param name="email">Email or Phone</param>
+        /// <param name="emailOrPhone">Email or Phone</param>
         /// <param name="password">Password</param>
-        /// <param name="captcha_sid">Идентикикатор капчи</param>
-        /// <param name="captcha_key">Текст капчи</param>
+        /// <param name="captchaSid">Идентикикатор капчи</param>
+        /// <param name="captchaKey">Текст капчи</param>
         /// <param name="settings">Access rights requested by your application</param>
-        public void Authorize(int appId, string email, string password, Settings settings, long? captcha_sid = null, string captcha_key = null)
+        public void Authorize(int appId, string emailOrPhone, string password, Settings settings, long? captchaSid = null, string captchaKey = null)
         {
-            _authorize(appId, email, password, settings, captcha_sid, captcha_key);
+            _authorize(appId, emailOrPhone, password, settings, captchaSid, captchaKey);
 
-            _credentials = new KeyValuePair<string, string>(email, password);
+            _credentials = new KeyValuePair<string, string>(emailOrPhone, password);
             _appId = appId;
             _settings = settings;
         }
@@ -222,9 +222,9 @@
 
         #region Private & Internal Methods
 
-        internal void _authorize(int appId, string email, string password, Settings settings, long? captcha_sid = null, string captcha_key = null)
+        internal void _authorize(int appId, string email, string password, Settings settings, long? captchaSid = null, string captchaKey = null)
         {
-            var authorization = Browser.Authorize(appId, email, password, settings, captcha_sid, captcha_key);
+            var authorization = Browser.Authorize(appId, email, password, settings, captchaSid, captchaKey);
             if (!authorization.IsAuthorized)
                 throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
 
@@ -324,7 +324,7 @@
             // проверка на не более 3-х запросов в секунду
             TimeSpan span;
             if (LastInvokeTime.HasValue && (span = LastInvokeTimeSpan.Value).TotalMilliseconds < _minInterval)
-                System.Threading.Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
+                Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
 
             string url = GetApiUrl(methodName, parameters);
             
