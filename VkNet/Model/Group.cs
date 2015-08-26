@@ -205,7 +205,7 @@ namespace VkNet.Model
             group.MembersCount = response["members_count"];
             group.Counters = response["counters"];
             group.StartDate = response["start_date"];
-            group.EndDate = response["end_date"];
+            group.EndDate = response["finish_date"] ?? response["end_date"];
             group.CanPost = response["can_post"];
             group.CanSeelAllPosts = response["can_see_all_posts"];
             group.CanUploadDocuments = response["can_upload_doc"];
