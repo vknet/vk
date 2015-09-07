@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using VkNet.Exception;
+    using Exception;
 
     /// <summary>
     /// Информация об авторизации приложения на действия.

@@ -229,7 +229,13 @@
                 throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
 
             _stopTimer();
-            _expireTimer = new Timer(_alertExpires, null, Convert.ToInt32(authorization.ExpiresIn) - 10000, Timeout.Infinite);
+
+            int expireTime = Convert.ToInt32(authorization.ExpiresIn) - 10000;
+            if (expireTime > 0)
+            {
+                _expireTimer = new Timer(_alertExpires, null, expireTime, Timeout.Infinite);
+            }
+            
             AccessToken = authorization.AccessToken;
             UserId = authorization.UserId;
         }
