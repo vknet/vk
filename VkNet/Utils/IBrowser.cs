@@ -1,4 +1,6 @@
-﻿namespace VkNet.Utils
+﻿using System;
+
+namespace VkNet.Utils
 {
     using Enums.Filters;
 
@@ -39,5 +41,7 @@
         /// Информация об авторизации приложения.
         /// </returns>
         VkAuthorization Authorize(int appId, string email, string password, Settings settings, long? captcha_sid, string captcha_key);
+
+        VkAuthorization TwoStepAuthorization(int appId, string email, string password, Func<string> code, Settings settings, long? captchaSid, string captchaKey);
     }
 }

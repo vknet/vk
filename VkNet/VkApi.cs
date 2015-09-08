@@ -195,6 +195,33 @@
             _settings = settings;
         }
 
+        public void TwoStepAuthorize(int appId, string emailOrPhone, string password, Func<string> code, Settings settings, long? captchaSid = null, string captchaKey = null)
+        {
+            //_authorize(appId, emailOrPhone, password, settings, captchaSid, captchaKey);
+
+            // *** start ***
+            var authorization = Browser.TwoStepAuthorization(appId, emailOrPhone, password, code, settings, captchaSid, captchaKey);
+            if (!authorization.IsAuthorized)
+                throw new VkApiAuthorizationException(InvalidAuthorization, emailOrPhone, password);
+
+            _stopTimer();
+
+            int expireTime = Convert.ToInt32(authorization.ExpiresIn) - 10000;
+            if (expireTime > 0)
+            {
+                _expireTimer = new Timer(_alertExpires, null, expireTime, Timeout.Infinite);
+            }
+
+            AccessToken = authorization.AccessToken;
+            UserId = authorization.UserId;
+
+            // *** end ***
+
+            _credentials = new KeyValuePair<string, string>(emailOrPhone, password);
+            _appId = appId;
+            _settings = settings;
+        }
+
         /// <summary>
         /// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
         /// </summary>

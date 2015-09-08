@@ -13,6 +13,9 @@
 
         private WebCall(string url, Cookies cookies)
         {
+            if (!url.StartsWith("http"))
+                url = "https://m.vk.com" + url; // TODO refactor it later
+
             Request = (HttpWebRequest)WebRequest.Create(url);
             Request.Accept = "text/html";
             Request.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)";
@@ -59,7 +62,8 @@
 
         public static WebCallResult Post(WebForm form)
         {
-            var call = new WebCall(form.ActionUrl, form.Cookies);
+            string url = form.ActionUrl.StartsWith("http") ? form.ActionUrl : "https://m.vk.com" + form.ActionUrl; // TODO move this to another file
+            var call = new WebCall(url, form.Cookies);
 
             var request = call.Request;
             request.Method = "POST";
