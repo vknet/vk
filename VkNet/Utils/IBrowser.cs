@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace VkNet.Utils
+﻿namespace VkNet.Utils
 {
+    using System;
+
     using Enums.Filters;
 
     /// <summary>
@@ -35,13 +35,12 @@ namespace VkNet.Utils
         /// <param name="email">Логин пользователя ВКонтакте (его почта).</param>
         /// <param name="password">Пароль пользователя.</param>
         /// <param name="settings">Запрашиваемые для работы разрешения.</param>
-        /// <param name="captcha_sid">Индентификатор капчи</param>
-        /// <param name="captcha_key">Текст капчи.</param>
+        /// <param name="code">Провайдер кода для двухфакторной авторизации.</param>
+        /// <param name="captchaSid">Индентификатор капчи</param>
+        /// <param name="captchaKey">Текст капчи.</param>
         /// <returns>
         /// Информация об авторизации приложения.
         /// </returns>
-        VkAuthorization Authorize(int appId, string email, string password, Settings settings, long? captcha_sid, string captcha_key);
-
-        VkAuthorization TwoStepAuthorization(int appId, string email, string password, Func<string> code, Settings settings, long? captchaSid, string captchaKey);
+        VkAuthorization Authorize(int appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey);
     }
 }

@@ -87,51 +87,32 @@
         /// <param name="captcha_sid">Идентификатор капчи</param>
         /// <param name="captcha_key">Текст капчи</param>
         /// <returns>Информация об авторизации приложения</returns>
-        public VkAuthorization Authorize(int appId, string email, string password, Settings settings, long? captcha_sid = null, string captcha_key = null)
-        {
-            var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl);
-
-            var loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
-            if (captcha_sid.HasValue)
-                loginForm.WithField("captcha_sid").FilledWith(captcha_sid.Value.ToString()).WithField("captcha_key").FilledWith(captcha_key);
-            var loginFormPostResult = WebCall.Post(loginForm);
-
-            var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
-            if (authorization.CaptchaID.HasValue)
-                throw new CaptchaNeededException(authorization.CaptchaID.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaID.Value.ToString());
-            if (!authorization.IsAuthorizationRequired)
-                return authorization;
-
-            var authorizationForm = WebForm.From(loginFormPostResult);
-            var authorizationFormPostResult = WebCall.Post(authorizationForm);
-            return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
-        }
-
-        public VkAuthorization TwoStepAuthorization(int appId, string email, string password, Func<string> code, Settings settings,
-            long? captchaSid, string captchaKey)
+        public VkAuthorization Authorize(int appId, string email, string password, Settings settings, Func<string> code = null,  long? captcha_sid = null, string captcha_key = null)
         {
             string authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
             WebCallResult authorizeUrlResult = WebCall.MakeCall(authorizeUrl);
 
             // fill email and password
             WebForm loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
-            if (captchaSid.HasValue)
-                loginForm.WithField("captcha_sid").FilledWith(captchaSid.Value.ToString()).WithField("captcha_key").FilledWith(captchaKey);
+            if (captcha_sid.HasValue)
+                loginForm.WithField("captcha_sid").FilledWith(captcha_sid.Value.ToString()).WithField("captcha_key").FilledWith(captcha_key);
             WebCallResult loginFormPostResult = WebCall.Post(loginForm);
 
             // fill code
-            WebForm codeForm = WebForm.From(loginFormPostResult).WithField("code").FilledWith(code());
-            WebCallResult codeFormPostResult = WebCall.Post(codeForm);
+            if (code != null)
+            {
+                WebForm codeForm = WebForm.From(loginFormPostResult).WithField("code").FilledWith(code());
+                loginFormPostResult = WebCall.Post(codeForm);
+            }
 
-            VkAuthorization authorization = VkAuthorization.From(codeFormPostResult.ResponseUrl);
+            VkAuthorization authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
             if (authorization.CaptchaID.HasValue)
                 throw new CaptchaNeededException(authorization.CaptchaID.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaID.Value.ToString());
             if (!authorization.IsAuthorizationRequired)
                 return authorization;
 
             // press allow button
-            WebForm authorizationForm = WebForm.From(codeFormPostResult);
+            WebForm authorizationForm = WebForm.From(loginFormPostResult);
             WebCallResult authorizationFormPostResult = WebCall.Post(authorizationForm);
 
             return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
