@@ -203,17 +203,5 @@ namespace VkNet.Tests
 
             json.ShouldEqual(resultJson);
         }
-
-        [Test] // TODO remove it later
-        public void TwoStepAuthorization_normal_case()
-        {
-            Func<string> code = () => File.ReadAllText("code.txt");
-
-            var api = new VkApi();
-            api.TwoStepAuthorize(506131, "email", "password", code, Settings.All);
-
-            var list = api.Audio.Get(api.UserId.Value);
-            Assert.That(list.Count, Is.EqualTo(1));
-        }
     }
 }
