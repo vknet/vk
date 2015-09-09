@@ -31,3 +31,37 @@ var vk = new VkApi();
 vk.Authorize(appID, email, pass, scope);
 ```
 
+### Пример двухфакторной авторизации
+Для двухфакторной авторизации необходимо передать пятым параметром обработчик, возвращающий код авторизации.
+
+```csharp
+using System;
+using VkNet;
+using VkNet.Enums.Filters;
+
+namespace Sandbox
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // обработчик получения кода
+            Func<string> code = () =>
+            {
+                Console.Write("Please enter code: ");
+                string value = Console.ReadLine();
+
+                return value;
+            };
+
+            var api = new VkApi();
+            api.Authorize(12345678, "my@email.com", "pwd", Settings.All, code);
+
+            var records = api.Audio.Get(api.UserId.Value); // получаем список треков текущего пользователя
+
+            Console.WriteLine("Records count: " + records.Count);
+        }
+    }
+}
+```
+
