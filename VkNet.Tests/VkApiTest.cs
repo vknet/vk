@@ -1,4 +1,7 @@
-﻿namespace VkNet.Tests
+﻿using System.CodeDom;
+using System.IO;
+
+namespace VkNet.Tests
 {
     using System;
     using System.Collections.Generic;

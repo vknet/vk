@@ -70,7 +70,7 @@
             }
         }
 
-        public event VkApiDelegate onTokenExpires;
+        public event VkApiDelegate OnTokenExpires;
 
         #region Categories Definition
         
@@ -183,18 +183,19 @@
         /// <param name="appId">Appliation Id</param>
         /// <param name="emailOrPhone">Email or Phone</param>
         /// <param name="password">Password</param>
+        /// <param name="code">Делегат получения кода для двухфакторной авторизации</param>
         /// <param name="captchaSid">Идентикикатор капчи</param>
         /// <param name="captchaKey">Текст капчи</param>
         /// <param name="settings">Access rights requested by your application</param>
-        public void Authorize(int appId, string emailOrPhone, string password, Settings settings, long? captchaSid = null, string captchaKey = null)
+        public void Authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null)
         {
-            _authorize(appId, emailOrPhone, password, settings, captchaSid, captchaKey);
+            _authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
 
             _credentials = new KeyValuePair<string, string>(emailOrPhone, password);
             _appId = appId;
             _settings = settings;
         }
-
+        
         /// <summary>
         /// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
         /// </summary>
@@ -212,19 +213,19 @@
         /// <summary>
         /// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
         /// </summary>
-        public void RefreshToken()
+        public void RefreshToken(Func<string> code = null)
         {
             if (_credentials.HasValue)
-                _authorize(_appId, _credentials.Value.Key, _credentials.Value.Value, _settings);
+                _authorize(_appId, _credentials.Value.Key, _credentials.Value.Value, _settings, code);
             else
                 throw new AggregateException("Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля");
         }
 
         #region Private & Internal Methods
 
-        internal void _authorize(int appId, string email, string password, Settings settings, long? captchaSid = null, string captchaKey = null)
+        internal void _authorize(int appId, string email, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
         {
-            var authorization = Browser.Authorize(appId, email, password, settings, captchaSid, captchaKey);
+            var authorization = Browser.Authorize(appId, email, password, settings, code, captchaSid, captchaKey);
             if (!authorization.IsAuthorized)
                 throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
 
@@ -253,8 +254,8 @@
         /// <param name="state"></param>
         private void _alertExpires(object state)
         {
-            if (onTokenExpires != null)
-                onTokenExpires(this);
+            if (OnTokenExpires != null)
+                OnTokenExpires(this);
         }
 #if false
         // todo refactor this shit

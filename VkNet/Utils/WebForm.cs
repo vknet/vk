@@ -8,7 +8,7 @@
 
     using HtmlAgilityPack;
 
-    using VkNet.Exception;
+    using Exception;
 
     internal sealed class WebForm
     {
@@ -20,6 +20,8 @@
 
         private readonly string _originalUrl;
 
+        private readonly string _responceBaseUrl; // if form has relative url
+
         public Cookies Cookies { get; private set; }
 
         private WebForm(WebCallResult result)
@@ -29,6 +31,8 @@
 
             _html = new HtmlDocument();
             result.LoadResultTo(_html);
+
+            _responceBaseUrl = result.ResponseUrl.GetLeftPart(UriPartial.Authority);
 
             _inputs = ParseInputs();
         }
@@ -69,7 +73,18 @@
             get
             {
                 var formNode = GetFormNode();
-                return formNode.Attributes["action"] != null ? formNode.Attributes["action"].Value : OriginalUrl;
+
+                if (formNode.Attributes["action"] == null)
+                    return OriginalUrl;
+
+                string link = formNode.Attributes["action"].Value;
+                if (!string.IsNullOrEmpty(link) && !link.StartsWith("http")) // relative url
+                {
+                    link = _responceBaseUrl + link;
+                }
+
+                return link; // absolute path
+                //return formNode.Attributes["action"] != null ? formNode.Attributes["action"].Value : OriginalUrl;
             }
         }
 

@@ -1,11 +1,14 @@
 ﻿namespace VkNet.Utils
 {
+    using System;
     using System.Net;
     using System.Text;
 
     using Enums.Filters;
     using Enums.SafetyEnums;
     using Newtonsoft.Json.Linq;
+
+    using Exception;
 
     /// <summary>
     /// Браузер, через который производится сетевое взаимодействие с ВКонтакте.
@@ -84,26 +87,37 @@
         /// <param name="captcha_sid">Идентификатор капчи</param>
         /// <param name="captcha_key">Текст капчи</param>
         /// <returns>Информация об авторизации приложения</returns>
-        public VkAuthorization Authorize(int appId, string email, string password, Settings settings, long? captcha_sid = null, string captcha_key = null)
+        public VkAuthorization Authorize(int appId, string email, string password, Settings settings, Func<string> code = null,  long? captcha_sid = null, string captcha_key = null)
         {
-            var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl);
+            string authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
+            WebCallResult authorizeUrlResult = WebCall.MakeCall(authorizeUrl);
 
-            var loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
+            // fill email and password
+            WebForm loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
             if (captcha_sid.HasValue)
                 loginForm.WithField("captcha_sid").FilledWith(captcha_sid.Value.ToString()).WithField("captcha_key").FilledWith(captcha_key);
-            var loginFormPostResult = WebCall.Post(loginForm);
+            WebCallResult loginFormPostResult = WebCall.Post(loginForm);
 
-            var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
+            // fill code
+            if (code != null)
+            {
+                WebForm codeForm = WebForm.From(loginFormPostResult).WithField("code").FilledWith(code());
+                loginFormPostResult = WebCall.Post(codeForm);
+            }
+
+            VkAuthorization authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
             if (authorization.CaptchaID.HasValue)
-                throw new VkNet.Exception.CaptchaNeededException(authorization.CaptchaID.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaID.Value.ToString());
+                throw new CaptchaNeededException(authorization.CaptchaID.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaID.Value.ToString());
             if (!authorization.IsAuthorizationRequired)
                 return authorization;
 
-            var authorizationForm = WebForm.From(loginFormPostResult);
-            var authorizationFormPostResult = WebCall.Post(authorizationForm);
+            // press allow button
+            WebForm authorizationForm = WebForm.From(loginFormPostResult);
+            WebCallResult authorizationFormPostResult = WebCall.Post(authorizationForm);
+
             return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
         }
+
         internal static string CreateAuthorizeUrlFor(int appId, Settings settings, Display display)
         {
             var builder = new StringBuilder("https://oauth.vk.com/authorize?");
