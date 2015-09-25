@@ -53,10 +53,10 @@
 
 			VkResponse response = _vk.Call("wall.get", parameters);
 
-            totalCount = response["count"];
+            totalCount = ((VkResponseArray)response).First();
 
-            VkResponseArray items = response["items"];
-			return items.ToReadOnlyCollectionOf<Post>(r => r);
+            IEnumerable<VkResponse> items = ((VkResponseArray)response).Skip(1);
+            return items.ToReadOnlyCollectionOf<Post>(r => r);
         }
 
 	    /// <summary>
