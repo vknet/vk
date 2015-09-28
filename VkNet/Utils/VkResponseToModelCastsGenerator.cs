@@ -103,18 +103,29 @@ namespace VkNet.Utils
         }
 
 		public static implicit operator Collection<Comment>(VkResponse response)
-        {
-            return response.ToCollectionOf<Comment>(a => a);
-        }
+		{
+			return response.ToCollectionOf<Comment>(a => a);
+		}
 		public static implicit operator Comments(VkResponse response)
 		{
-            return response == null || response._token == null || !response._token.HasValues ? null :  Comments.FromJson(response);
-        }
+			return response == null || response._token == null || !response._token.HasValues ? null : Comments.FromJson(response);
+		}
 
 		public static implicit operator Collection<Comments>(VkResponse response)
-        {
-            return response.ToCollectionOf<Comments>(a => a);
-        }
+		{
+			return response.ToCollectionOf<Comments>(a => a);
+		}
+
+		public static implicit operator Collection<GroupInfo>(VkResponse response)
+		{
+			return response.ToCollectionOf<GroupInfo>(a => a);
+		}
+
+		public static implicit operator GroupInfo(VkResponse response)
+		{
+			return response == null || response._token == null || !response._token.HasValues ? null : GroupInfo.FromJson(response);
+		}
+
 		public static implicit operator Connections(VkResponse response)
 		{
             return response == null || response._token == null || !response._token.HasValues ? null :  Connections.FromJson(response);

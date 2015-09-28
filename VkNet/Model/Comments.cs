@@ -1,35 +1,42 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+	using VkNet.Utils;
 
-    /// <summary>
-    /// Информация о количестве комментариев к записи.
-    /// См. описание <see href="http://vk.com/dev/post"/>. Раздел comments.
-    /// </summary>
-    public class Comments
-    {
-        /// <summary>
-        /// Количество комментариев к записи.
-        /// </summary>
-        public int Count { get; set; }
+	/// <summary>
+	/// Информация о количестве комментариев к записи.
+	/// См. описание <see href="http://vk.com/dev/post"/>. Раздел comments.
+	/// </summary>
+	public class Comments
+	{
+		/// <summary>
+		/// Количество комментариев к записи.
+		/// </summary>
+		public int Count { get; set; }
 
-        /// <summary>
-        /// Признак может ли текущий пользователь добавить комментарий к записи.
-        /// </summary>
-        public bool CanPost { get; set; }
+		/// <summary>
+		/// Признак может ли текущий пользователь добавить комментарий к записи.
+		/// </summary>
+		public bool CanPost { get; set; }
 
-        #region Методы
+		#region Методы
 
-        internal static Comments FromJson(VkResponse response)
-        {
-            var comments = new Comments();
+		#endregion
 
-            comments.Count = response["count"];
-            comments.CanPost = response["can_post"];
+		/// <summary>
+		/// Разобрать из JSON.
+		/// </summary>
+		/// <param name="response">Ответ от vk.</param>
+		/// <returns></returns>
+		internal static Comments FromJson(VkResponse response)
+		{
+			var comments = new Comments
+			{
+				Count = response["count"],
+				CanPost = response["can_post"]
+			};
 
-            return comments;
-        }
 
-        #endregion
-    }
+			return comments;
+		}
+	}
 }
