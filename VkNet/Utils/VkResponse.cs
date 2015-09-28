@@ -80,6 +80,16 @@
 			return response != null ? (long?)response._token : null;
 		}
 
+		public static implicit operator ulong (VkResponse response)
+		{
+			return (ulong)response._token;
+		}
+
+		public static implicit operator ulong? (VkResponse response)
+		{
+			return response != null ? (ulong?)response._token : null;
+		}
+
 		public static implicit operator Collection<long>(VkResponse response)
 		{
 			return response == null ? null : response.ToCollectionOf<long>(i => i);

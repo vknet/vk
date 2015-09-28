@@ -79,7 +79,7 @@
 			VkResponse response = _vk.Call("groups.get", parameters);
 
 			if (!extended)
-				return response.ToReadOnlyCollectionOf<Group>(id => new Group { Id = id });
+				return response.ToReadOnlyCollectionOf(id => new Group { Id = id });
 
 			// в первой записи количество членов группы
 			return response["items"].ToReadOnlyCollectionOf<Group>(r => r);
@@ -345,7 +345,7 @@
 		/// </remarks>
 		public bool EditManager(long groupId, long userId, AdminLevel? role)
 		{
-			return EditManager(groupId, userId, role, null, null, null, null);
+			return EditManager(groupId, userId, role, null);
 		}
 
 		/// <summary>
@@ -367,8 +367,55 @@
 				{
 					{"group_id", groupId}
 				};
-			var res = _vk.Call("groups.getSettings", parameters);
-			return res;
+			return _vk.Call("groups.getSettings", parameters);
+		}
+
+		/// <summary>
+		/// Edits the specified group identifier.
+		/// </summary>
+		/// <param name="groupId">The group identifier.</param>
+		/// <param name="groupInfo">The group information.</param>
+		/// <returns></returns>
+		/// <remarks>
+		/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором группы.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.edit"/>.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool Edit(ulong groupId, GroupInfo groupInfo)
+		{
+			var parameters = new VkParameters
+			{
+				{"group_id", groupId},
+				{"title", groupInfo.Title},
+				{"description", groupInfo.Description},
+				{"address", groupInfo.Address},
+				{"place", groupInfo.Place},
+				{"wall", groupInfo.Wall},
+				{"photos", groupInfo.Photos},
+				{"video", groupInfo.Video},
+				{"audio", groupInfo.Audio},
+				{"docs", groupInfo.Docs},
+				{"topics", groupInfo.Topics},
+				{"wiki", groupInfo.Wiki},
+				{"access", groupInfo.Access},
+				{"subject", groupInfo.Subject},
+				{"website", groupInfo.Website},
+				{"contacts", groupInfo.Contacts},
+				{"places", groupInfo.Places},
+				{"events", groupInfo.Events},
+				{"links", groupInfo.Links},
+				{"public_date", groupInfo.PublicDate},
+				{"public_subcategory", groupInfo.PublicSubcategory},
+				{"public_category", groupInfo.PublicCategory},
+				{"event_group_id", groupInfo.EventGroupId},
+				{"event_finish_date", groupInfo.EventFinishDate},
+				{"event_start_date", groupInfo.EventStartDate},
+				{"rss", groupInfo.Rss},
+				{"phone", groupInfo.Phone},
+				{"email", groupInfo.Email},
+				{"screen_name", groupInfo.ScreenName}
+			};
+			return _vk.Call("groups.edit", parameters, true);
 		}
 	}
 }

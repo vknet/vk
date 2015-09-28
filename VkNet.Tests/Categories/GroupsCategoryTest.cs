@@ -14,21 +14,21 @@
 	using Model;
 	using Enums.Filters;
 	using Enums.SafetyEnums;
-	
+
 
 	[TestFixture]
 	public class GroupsCategoryTest
-	{   
+	{
 		[SetUp]
 		public void SetUp()
 		{
-			 
+
 		}
 
 		private GroupsCategory GetMockedGroupCategory(string url, string json)
 		{
 			var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-			return new GroupsCategory(new VkApi { AccessToken = "token", Browser = browser});
+			return new GroupsCategory(new VkApi { AccessToken = "token", Browser = browser });
 		}
 
 		[Test]
@@ -837,7 +837,7 @@
 			var groups = new GroupsCategory(new VkApi());
 			This.Action(() => groups.GetById(2)).Throws<AccessTokenInvalidException>();
 		}
-	   
+
 		[Test]
 		public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 		{
@@ -942,7 +942,7 @@
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			This.Action(() => cat.GetById(new long[]{-1})).Throws<InvalidParameterException>();
+			This.Action(() => cat.GetById(new long[] { -1 })).Throws<InvalidParameterException>();
 		}
 
 		[Test]
@@ -980,7 +980,7 @@
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
-			var groups = cat.GetById(new long[] {17683660, 637247}).ToList();
+			var groups = cat.GetById(new long[] { 17683660, 637247 }).ToList();
 
 			Assert.That(groups.Count == 2);
 			Assert.That(groups[0].Id, Is.EqualTo(17683660));
@@ -1439,6 +1439,25 @@
 			var groups = cat.GetSettings(103292418);
 
 			groups.ShouldNotBeNull();
+		}
+
+		[Test]
+		public void Edit_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=test1&access_token=token";
+			const string json =
+				@"{
+					'response': 1
+				  }";
+
+			var cat = GetMockedGroupCategory(url, json);
+			var group = new GroupInfo
+			{
+				Title = "test777"
+			};
+			var groups = cat.Edit(103292418, group);
+
+			groups.ShouldBeTrue();
 		}
 	}
 }
