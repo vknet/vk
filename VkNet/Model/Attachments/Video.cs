@@ -121,7 +121,7 @@ namespace VkNet.Model.Attachments
         {
             var result = new Video();
 
-            result.Id = video["id"] ?? video["video_id"];
+            result.Id = video["id"] ?? video["vid"];
             result.OwnerId = video["owner_id"];
             result.Title = video["title"];
             result.Description = video["description"];

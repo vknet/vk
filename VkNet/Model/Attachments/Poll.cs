@@ -23,7 +23,7 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Дата создания опроса
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// Кол-во ответов
@@ -51,7 +51,7 @@ namespace VkNet.Model.Attachments
         {
             var poll = new Poll();
 
-            poll.Id = response["id"];
+            poll.Id = response["id"] ?? response["poll_id"];
 	        poll.OwnerId = response["owner_id"];
             poll.Question = response["question"];
             poll.Created = response["created"];

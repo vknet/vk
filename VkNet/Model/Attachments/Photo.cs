@@ -23,33 +23,49 @@
         public long? AlbumId { get; set; }
 
         /// <summary>
+        /// Url фотографии с максимальным размером.
+        /// </summary>
+        public Uri BigPhotoSrc { get; set; }
+
+        /// <summary>
+        /// Url фотографии с минимальным размером.
+        /// </summary>
+        public Uri SmallPhotoSrc { get; set; }
+
+        /// <summary>
         /// Url фотографии с максимальным размером 75x75px.
         /// </summary>
+        [Obsolete]
         public Uri Photo75 { get; set; }
 
         /// <summary>
         /// Url фотографии с максимальным размером 130x130px.
         /// </summary>
+        [Obsolete]
         public Uri Photo130 { get; set; }
 
         /// <summary>
         /// Url фотографии с максимальным размером 604x604px.
         /// </summary>
+        [Obsolete]
         public Uri Photo604 { get; set; }
 
         /// <summary>
         /// Url фотографии с максимальным размером 807x807px.
         /// </summary>
+        [Obsolete]
         public Uri Photo807 { get; set; }
 
         /// <summary>
         /// Url фотографии с максимальным размером 1280x1024px. 
         /// </summary>
+        [Obsolete]
         public Uri Photo1280 { get; set; }
 
         /// <summary>
         /// Url фотографии с максимальным размером  2560x2048px.
         /// </summary>
+        [Obsolete]
         public Uri Photo2560 { get; set; }
 
         /// <summary>
@@ -121,10 +137,7 @@
         /// Теги
         /// </summary>
         public Tags Tags { get; set; }
-
-        public Uri PhotoSrc { get; set; }
-        public Uri PhotoHash { get; set; }
-
+                                          
 	    /// <summary>
 	    /// Географическая широта отметки, заданная в градусах
 	    /// </summary>
@@ -141,19 +154,19 @@
         {
             var photo = new Photo();
 
-            photo.Id = response["id"];
+            photo.Id = response["pid"] ?? response["id"];
             photo.AlbumId = response["album_id"] ?? response["aid"];
             photo.OwnerId = response["owner_id"];
-            photo.Photo75 = response["photo_75"];
-            photo.Photo130 = response["photo_130"];
-            photo.Photo604 = response["photo_604"];
-            photo.Photo807 = response["photo_807"];
-            photo.Photo1280 = response["photo_1280"];
-            photo.Photo2560 = response["photo_2560"];
+            photo.Photo75 = response["photo_75"] ?? response["src_small"];
+            photo.Photo130 = response["photo_130"] ?? response["src"];
+            photo.Photo604 = response["photo_604"] ?? response["src_big"];
+            photo.Photo807 = response["photo_807"] ?? response["src_xbig"];
+            photo.Photo1280 = response["photo_1280"] ?? response["src_xxbig"];
+            photo.Photo2560 = response["photo_2560"] ?? response["src_xxxbig"];
             photo.Width = response["width"];
             photo.Height = response["height"];
             photo.Text = response["text"];
-            photo.CreateTime = response["date"];
+            photo.CreateTime = response["created"];
 
             photo.UserId = Utilities.GetNullableLongId(response["user_id"]);
             photo.PostId = Utilities.GetNullableLongId(response["post_id"]);
@@ -170,9 +183,8 @@
             photo.CanComment = response["can_comment"];
             photo.Tags = response["tags"];
 
-            photo.PhotoSrc = response["photo_src"];
-            photo.PhotoHash = response["photo_hash"];
-
+            photo.SmallPhotoSrc = response["src_small"];
+                                                        
             photo.Latitude = response["lat"];
             photo.Longitude = response["long"];
 
