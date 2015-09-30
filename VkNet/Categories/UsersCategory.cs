@@ -119,7 +119,7 @@
 
             var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "user_ids", userId } };
 
-            VkResponseArray response = _vk.Call("users.get", parameters);
+            VkResponseArray response = _vk.Call("users.get", parameters, true);
 
             return response[0];
         }
