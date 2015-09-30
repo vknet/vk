@@ -415,7 +415,7 @@
 				{"email", groupInfo.Email},
 				{"screen_name", groupInfo.ScreenName}
 			};
-			return _vk.Call("groups.edit", parameters, true);
+			return _vk.Call("groups.edit", parameters);
 		}
 	}
 }

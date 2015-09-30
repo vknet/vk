@@ -1444,7 +1444,7 @@
 		[Test]
 		public void Edit_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=test1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=test777&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'response': 1
