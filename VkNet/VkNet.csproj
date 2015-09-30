@@ -43,8 +43,8 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net40\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net35\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,6 +61,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\CommentPrivacy.cs" />
+    <Compile Include="Enums\ContentAccess.cs" />
     <Compile Include="Enums\Filters\CountersFilter.cs" />
     <Compile Include="Categories\DatabaseCategory.cs" />
     <Compile Include="Categories\FaveCategory.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Enums\ChangeNameStatus.cs" />
     <Compile Include="Enums\DeleteFriendStatus.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
+    <Compile Include="Enums\GroupSubjects.cs" />
     <Compile Include="Enums\GroupPublicity.cs" />
     <Compile Include="Enums\LifeMain.cs" />
     <Compile Include="Enums\MessageReadState.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="Model\Attachments\Graffiti.cs" />
     <Compile Include="Model\Attachments\Link.cs" />
     <Compile Include="Model\Attachments\Poll.cs" />
+    <Compile Include="Model\GroupInfo.cs" />
     <Compile Include="Model\PhotoAlbum.cs" />
     <Compile Include="Model\PollAnswer.cs" />
     <Compile Include="Model\PostSource.cs" />
@@ -240,10 +243,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VkResponseToModelCastsGenerator.cs</LastGenOutput>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
