@@ -17,19 +17,19 @@
 		{ get; set; }
 
 		/// <summary>
-		/// Название сообщества.
+		/// Является ли пользователь участником сообщества;
 		/// </summary>
 		public bool Member
 		{ get; set; }
 
 		/// <summary>
-		/// Короткий адрес страницы сообщества, например, apiclub. Если он не назначен, то 'club'+gid, например, club35828305.
+		/// Есть ли непринятая заявка от пользователя на вступление в группу (такую заявку можно отозвать методом groups.leave).
 		/// </summary>
 		public bool Request
 		{ get; set; }
 
 		/// <summary>
-		/// Публичность группы.
+		/// Приглашён ли пользователь в группу или встречу.
 		/// </summary>
 		public bool Invitation
 		{ get; set; }
@@ -44,12 +44,13 @@
 		/// <returns></returns>
 		internal static GroupMember FromJson(VkResponse response)
 		{
-			var group = new GroupMember();
-
-			group.UserId = response["user_id"];
-			group.Member = response["member"];
-			group.Request = response["request"];
-			group.Invitation = response["invitation"];
+			var group = new GroupMember()
+			{
+				UserId = response["user_id"],
+				Member = response["member"],
+				Request = response["request"],
+				Invitation = response["invitation"]
+			};
 
 			return group;
 		}

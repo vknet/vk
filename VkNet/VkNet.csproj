@@ -147,8 +147,8 @@
     <Compile Include="Model\Attachments\Graffiti.cs" />
     <Compile Include="Model\Attachments\Link.cs" />
     <Compile Include="Model\Attachments\Poll.cs" />
-    <Compile Include="Model\GroupMember.cs" />
-    <Compile Include="Model\GroupInfo.cs" />
+    <Compile Include="Model\Group\GroupInfo.cs" />
+    <Compile Include="Model\Group\GroupMember.cs" />
     <Compile Include="Model\PhotoAlbum.cs" />
     <Compile Include="Model\PollAnswer.cs" />
     <Compile Include="Model\PostSource.cs" />
@@ -198,7 +198,7 @@
     <Compile Include="Model\Counters.cs" />
     <Compile Include="Model\Attachments\Document.cs" />
     <Compile Include="Model\Geo.cs" />
-    <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\Group\Group.cs" />
     <Compile Include="Model\LastActivity.cs" />
     <Compile Include="Model\Likes.cs" />
     <Compile Include="Model\LongPollServerResponse.cs" />
@@ -253,7 +253,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
-    <Folder Include="NewFolder1\" />
+    <Folder Include="Group\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
