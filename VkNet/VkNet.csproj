@@ -147,6 +147,7 @@
     <Compile Include="Model\Attachments\Graffiti.cs" />
     <Compile Include="Model\Attachments\Link.cs" />
     <Compile Include="Model\Attachments\Poll.cs" />
+    <Compile Include="Model\GroupMember.cs" />
     <Compile Include="Model\GroupInfo.cs" />
     <Compile Include="Model\PhotoAlbum.cs" />
     <Compile Include="Model\PollAnswer.cs" />

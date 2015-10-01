@@ -252,6 +252,16 @@ namespace VkNet.Utils
         {
             return response.ToCollectionOf<Group>(a => a);
         }
+
+		public static implicit operator GroupMember(VkResponse response)
+		{
+			return response == null || response._token == null || !response._token.HasValues ? null : GroupMember.FromJson(response);
+		}
+
+		public static implicit operator Collection<GroupMember>(VkResponse response)
+		{
+			return response.ToCollectionOf<GroupMember>(a => a);
+		}
 		public static implicit operator LastActivity(VkResponse response)
 		{
             return response == null || response._token == null || !response._token.HasValues ? null :  LastActivity.FromJson(response);

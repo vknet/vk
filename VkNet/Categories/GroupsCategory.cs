@@ -167,9 +167,13 @@
 		/// <param name="count">Количество участников которое необходимо получить</param>
 		/// <param name="offset">Смещение</param>
 		/// <param name="sort">Сортировка Id пользователей</param>
-		/// <returns>Id пользователей состоящих в группе</returns>
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть.</param>
+		/// <param name="filters">Фильтр.</param>
+		/// <returns>
+		/// Id пользователей состоящих в группе
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
 		/// </remarks>
 		[Pure]
 		public ReadOnlyCollection<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
@@ -185,6 +189,8 @@
 		/// <param name="count">Количество участников которое необходимо получить</param>
 		/// <param name="offset">Смещение</param>
 		/// <param name="sort">Сортировка Id пользователей</param>
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть.</param>
+		/// <param name="filters">Фильтр.</param>
 		/// <returns>Id пользователей состоящих в группе</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers"/>.
@@ -226,9 +232,64 @@
 		[Pure]
 		public bool IsMember(long gid, long uid)
 		{
-			var parameters = new VkParameters { { "gid", gid }, { "uid", uid } };
+			return IsMember(gid.ToString(), uid);
+		}
+
+		/// <summary>
+		/// Возвращает информацию о том является ли пользователь участником заданной группы.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества. </param>
+		/// <param name="uid">Id пользователя</param>
+		/// <returns>True если пользователь состоит в группе, иначе False</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// </remarks>
+		[Pure]
+		public bool IsMember(string gid, long uid)
+		{
+			var parameters = new VkParameters
+			{
+				{ "gid", gid },
+				{ "uid", uid }
+			};
 
 			return _vk.Call("groups.isMember", parameters);
+		}
+
+		/// <summary>
+		/// Возвращает информацию о том является ли пользователь участником заданной группы.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества. </param>
+		/// <param name="uids">Id пользователя</param>
+		/// <returns>True если пользователь состоит в группе, иначе False</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// </remarks>
+		[Pure]
+		public ReadOnlyCollection<GroupMember> IsMember(string gid, IEnumerable<long> uids)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id",  gid },
+				{ "user_ids", string.Join(", ", uids) }
+			};
+			var response = _vk.Call("groups.isMember", parameters);
+			return response.ToReadOnlyCollectionOf<GroupMember>(x => x);
+		}
+
+		/// <summary>
+		/// Возвращает информацию о том является ли пользователь участником заданной группы.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества. </param>
+		/// <param name="uids">Id пользователя</param>
+		/// <returns>True если пользователь состоит в группе, иначе False</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// </remarks>
+		[Pure]
+		public ReadOnlyCollection<GroupMember> IsMember(long gid, IEnumerable<long> uids)
+		{
+			return IsMember(gid.ToString(), uids);
 		}
 
 		/// <summary>
