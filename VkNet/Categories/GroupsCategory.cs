@@ -371,10 +371,10 @@
 		}
 
 		/// <summary>
-		/// Edits the specified group identifier.
+		/// Позволяет редактировать информацию групп.
 		/// </summary>
-		/// <param name="groupId">The group identifier.</param>
-		/// <param name="groupInfo">The group information.</param>
+		/// <param name="groupId">Идентификатор группы.</param>
+		/// <param name="groupInfo">Информация о группе.</param>
 		/// <returns></returns>
 		/// <remarks>
 		/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором группы.
@@ -416,6 +416,38 @@
 				{"screen_name", groupInfo.ScreenName}
 			};
 			return _vk.Call("groups.edit", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет редактировать информацию о месте группы.
+		/// Для удаления информации о местоположении нужно передать только group_id.
+		/// Для обновления данных о местоположении необходимо указать как минимум id страны, широту и долготу.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, информацию о месте которой нужно отредактировать.</param>
+		/// <param name="place">Местоположение.</param>
+		/// <remarks>
+		/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором группы.
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.editPlace"/>.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool EditPlace(ulong groupId, Place place = null)
+		{
+			if (place == null)
+			{
+				place = new Place();
+			}
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "title", place.Title },
+				{ "address", place.Address },
+				{ "country_id", place.CountryId },
+				{ "city_id", place.CityId },
+				{ "latitude", place.Latitude },
+				{ "longitude", place.Longitude }
+			};
+			var result = _vk.Call("groups.editPlace", parameters);
+			return result["success"];
 		}
 	}
 }

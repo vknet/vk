@@ -1444,7 +1444,7 @@
 		[Test]
 		public void Edit_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=test777&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=Raven&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -1453,9 +1453,36 @@
 			var cat = GetMockedGroupCategory(url, json);
 			var group = new GroupInfo
 			{
-				Title = "test777"
+				Title = "Raven"
 			};
 			var groups = cat.Edit(103292418, group);
+
+			groups.ShouldBeTrue();
+		}
+
+		[Test]
+		public void EditPlace_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/groups.editPlace?group_id=103292418&title=Test&address=1&country_id=1&city_id=1&latitude=30&longitude=30&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': {
+					  'success': 1,
+					  'address': ''
+					}
+				  }";
+
+			var cat = GetMockedGroupCategory(url, json);
+			var place = new Place
+			{
+				Title = "Test",
+				CityId = 1,
+				CountryId = 1,
+				Longitude = 30,
+				Latitude = 30,
+				Address = "1"
+			};
+			var groups = cat.EditPlace(103292418, place);
 
 			groups.ShouldBeTrue();
 		}
