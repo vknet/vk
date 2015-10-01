@@ -72,22 +72,20 @@
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.28")]
-		public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, int offset = 0, int count = 1000)
+		public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, int offset = 0, int? count = 1000)
 		{
-			if (count > 1000)
-			{
-				count = 1000;
-			}
 			var parameters = new VkParameters
 			{
 				{ "uid", uid },
 				{ "extended", extended },
 				{ "filter", filters },
 				{ "fields", fields },
-				{ "offset", offset },
-				{ "count", count }
+				{ "offset", offset }
 			};
-
+			if (count.HasValue && count.Value > 0 && count.Value < 1000)
+			{
+				parameters.Add("count", count);
+			}
 			var response = _vk.Call("groups.get", parameters);
 
 			return !extended ? response.ToReadOnlyCollectionOf(id => new Group { Id = id }) : response["items"].ToReadOnlyCollectionOf<Group>(r => r);
@@ -174,12 +172,39 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null)
+		public ReadOnlyCollection<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
 		{
-			var parameters = new VkParameters { { "gid", gid }, { "offset", offset }, { "sort", sort } };
+			return GetMembers(gid.ToString(), out totalCount, count, offset, sort, fields, filters);
+		}
+
+		/// <summary>
+		/// Возвращает список участников группы.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества</param>
+		/// <param name="totalCount">Общее количество участников</param>
+		/// <param name="count">Количество участников которое необходимо получить</param>
+		/// <param name="offset">Смещение</param>
+		/// <param name="sort">Сортировка Id пользователей</param>
+		/// <returns>Id пользователей состоящих в группе</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers"/>.
+		/// </remarks>
+		[Pure]
+		public ReadOnlyCollection<long> GetMembers(string gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
+		{
+			var parameters = new VkParameters
+			{
+				{ "gid", gid },
+				{ "offset", offset },
+				{ "sort", sort },
+				{ "fields", fields },
+				{ "filter", filters }
+			};
 
 			if (count.HasValue && count.Value > 0 && count.Value < 1000)
+			{
 				parameters.Add("count", count);
+			}
 
 			var response = _vk.Call("groups.getMembers", parameters, true);
 
