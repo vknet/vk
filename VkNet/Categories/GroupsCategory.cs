@@ -74,21 +74,31 @@
 		[ApiVersion("5.28")]
 		public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, int offset = 0, int count = 1000)
 		{
-			var parameters = new VkParameters { { "uid", uid }, { "extended", extended }, { "filter", filters }, { "fields", fields }, { "offset", offset }, { "count", count } };
+			if (count > 1000)
+			{
+				count = 1000;
+			}
+			var parameters = new VkParameters
+			{
+				{ "uid", uid },
+				{ "extended", extended },
+				{ "filter", filters },
+				{ "fields", fields },
+				{ "offset", offset },
+				{ "count", count }
+			};
 
-			VkResponse response = _vk.Call("groups.get", parameters);
+			var response = _vk.Call("groups.get", parameters);
 
-			if (!extended)
-				return response.ToReadOnlyCollectionOf(id => new Group { Id = id });
+			return !extended ? response.ToReadOnlyCollectionOf(id => new Group { Id = id }) : response["items"].ToReadOnlyCollectionOf<Group>(r => r);
 
 			// в первой записи количество членов группы
-			return response["items"].ToReadOnlyCollectionOf<Group>(r => r);
 		}
 
 		/// <summary>
 		/// Возвращает информацию о нескольких группах.
 		/// </summary>
-		/// <param name="gids">Список групп</param>
+		/// <param name="gids">Список идентификаторов или коротких имен сообществ.</param>
 		/// <param name="fields">Список полей информации о группах</param>
 		/// <returns>Список групп</returns>
 		/// <remarks>
@@ -96,6 +106,21 @@
 		/// </remarks>
 		[Pure]
 		public ReadOnlyCollection<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
+		{
+			return GetById(gids.Select(x => x.ToString()), fields);
+		}
+
+		/// <summary>
+		/// Возвращает информацию о нескольких группах.
+		/// </summary>
+		/// <param name="gids">Список идентификаторов или коротких имен сообществ.</param>
+		/// <param name="fields">Список полей информации о группах</param>
+		/// <returns>Список групп</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
+		/// </remarks>
+		[Pure]
+		public ReadOnlyCollection<Group> GetById(IEnumerable<string> gids, GroupsFields fields = null)
 		{
 			var parameters = new VkParameters { { "gids", gids }, { "fields", fields } };
 
@@ -114,6 +139,22 @@
 		/// </remarks>
 		[Pure]
 		public Group GetById(long gid, GroupsFields fields = null)
+		{
+			return GetById(gid.ToString(), fields);
+		}
+
+
+		/// <summary>
+		/// Возвращает информацию о заданной группе.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества.</param>
+		/// <param name="fields">Список полей информации о группах</param>
+		/// <returns>Список групп</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
+		/// </remarks>
+		[Pure]
+		public Group GetById(string gid, GroupsFields fields = null)
 		{
 			var parameters = new VkParameters { { "gid", gid }, { "fields", fields } };
 
@@ -361,7 +402,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getSettings"/>.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public GroupInfo GetSettings(ulong groupId)
+		public GroupInfo GetSettings(long groupId)
 		{
 			var parameters = new VkParameters
 				{
@@ -381,7 +422,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.edit"/>.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool Edit(ulong groupId, GroupInfo groupInfo)
+		public bool Edit(long groupId, GroupInfo groupInfo)
 		{
 			var parameters = new VkParameters
 			{
@@ -430,7 +471,7 @@
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.editPlace"/>.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool EditPlace(ulong groupId, Place place = null)
+		public bool EditPlace(long groupId, Place place = null)
 		{
 			if (place == null)
 			{
