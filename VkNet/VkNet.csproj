@@ -79,6 +79,8 @@
     <Compile Include="Enums\BirthdayVisibility.cs" />
     <Compile Include="Enums\ChangeNameStatus.cs" />
     <Compile Include="Enums\DeleteFriendStatus.cs" />
+    <Compile Include="Enums\Filters\UsersFields.cs" />
+    <Compile Include="Enums\Filters\GroupSort.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
     <Compile Include="Enums\GroupSubjects.cs" />
     <Compile Include="Enums\GroupPublicity.cs" />

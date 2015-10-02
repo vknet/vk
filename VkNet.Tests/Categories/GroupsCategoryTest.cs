@@ -1486,5 +1486,36 @@
 
 			groups.ShouldBeTrue();
 		}
+
+		[Test]
+		public void GetInvitedUsers_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/groups.getInvitedUsers?group_id=103292418&offset=0&count=20&fields=bdate&name_case=dat&access_token=token";
+			const string json =
+				@"{
+					'response': {
+					  'count': 1,
+					  'items': [
+						{
+						  'id': 221634238,
+						  'first_name': 'Александру',
+						  'last_name': 'Инютину',
+						  'bdate': '23.6.2000'
+						}
+					  ]
+					}
+				  }";
+
+			var cat = GetMockedGroupCategory(url, json);
+			int count;
+			var users = cat.GetInvitedUsers(103292418, out count, 0, 20, UsersFields.BirthDate, NameCase.Dat);
+
+			users.ShouldNotBeNull();
+
+			users[0].Id = 221634238;
+			users[0].FirstName = "Александру";
+			users[0].LastName = "Инютину";
+			users[0].BirthDate = "23.6.2000";
+		}
 	}
 }

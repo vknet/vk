@@ -66,13 +66,15 @@
 		/// <param name="fields">Список полей информации о группах</param>
 		/// <param name="offset">Смещение, необходимое для выборки определённого подмножества сообществ.</param>
 		/// <param name="count">Количество сообществ, информацию о которых нужно вернуть (Максимальное значение 1000)</param>
-		/// <returns>Список групп</returns>
+		/// <returns>
+		/// Список групп
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get" />.
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.28")]
-		public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, int offset = 0, int? count = 1000)
+		public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, int offset = 0, uint count = 1000)
 		{
 			var parameters = new VkParameters
 			{
@@ -82,15 +84,13 @@
 				{ "fields", fields },
 				{ "offset", offset }
 			};
-			if (count.HasValue && count.Value > 0 && count.Value < 1000)
+			if (count < 1000)
 			{
-				parameters.Add("count", count);
+				parameters.Add("userCount", count);
 			}
 			var response = _vk.Call("groups.get", parameters);
-
+			// в первой записи количество членов группы для (response["items"])
 			return !extended ? response.ToReadOnlyCollectionOf(id => new Group { Id = id }) : response["items"].ToReadOnlyCollectionOf<Group>(r => r);
-
-			// в первой записи количество членов группы
 		}
 
 		/// <summary>
@@ -299,16 +299,33 @@
 		/// <param name="totalCount">Общее количество групп удовлетворяющих запросу</param>
 		/// <param name="offset">Смещение</param>
 		/// <param name="count">Количество в выбоке</param>
-		/// <returns>Список объектов групп</returns>
+		/// <param name="fields">Поля. В документации не указан <see cref="http://vk.com/dev/groups.search"/>.</param>
+		/// <param name="sort">Порядок сортировки полученных групп.</param>
+		/// <param name="type">Тип сообщества.</param>
+		/// <param name="countryId">Идентификатор страны.</param>
+		/// <param name="cityId">Идентификатор города. При передаче этого параметра поле country_id игнорируется.</param>
+		/// <returns>
+		/// Список объектов групп
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, int? offset = null, int? count = null, GroupsFields fields = null, int sort = 0)
+		public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, int? offset = null, int? count = null, GroupsFields fields = null, GroupSort sort = GroupSort.Normal, GroupType type = null, int? countryId = null, int? cityId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => query);
 			
-			var parameters = new VkParameters { { "q", query }, { "offset", offset }, { "count", count }, { "fields", fields }, { "sort", sort } };
+			var parameters = new VkParameters
+			{
+				{ "q", query },
+				{ "offset", offset },
+				{ "count", count },
+				{ "fields", fields },
+				{ "sort", sort },
+				{ "type", type },
+				{ "country_id", countryId },
+				{ "city_id", cityId }
+			};
 
 			VkResponseArray response = _vk.Call("groups.search", parameters);
 
@@ -575,6 +592,34 @@
 			};
 			var result = _vk.Call("groups.editPlace", parameters);
 			return result["success"];
+		}
+
+		/// <summary>
+		/// Возвращает список пользователей, которые были приглашены в группу.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, список приглашенных в которую пользователей нужно вернуть.</param>
+		/// <param name="userCount">Количество пользователей.</param>
+		/// <param name="offset">Смещение, необходимое для выборки определённого подмножества пользователей. </param>
+		/// <param name="count">Количество пользователей, информацию о которых нужно вернуть. </param>
+		/// <param name="fields">Дополнительные поля с информацией о пользователе.</param>
+		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя. </param>
+		/// <returns></returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.getInvitedUsers"/>.
+		/// </remarks>
+		public ReadOnlyCollection<User> GetInvitedUsers(long groupId, out int userCount, uint offset = 0, uint count = 20, UsersFields fields = null, NameCase nameCase = null)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "offset", offset },
+				{ "count", count },
+				{ "fields", fields },
+				{ "name_case", nameCase }
+			};
+			var response = _vk.Call("groups.getInvitedUsers", parameters);
+			userCount = response["count"];
+			return response["items"].ToReadOnlyCollectionOf<User>(x => x);
 		}
 	}
 }
