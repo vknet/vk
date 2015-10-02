@@ -6,6 +6,8 @@ NuGet (`master`): [![](http://img.shields.io/nuget/v/VkNet.svg?style=flat-square
 
 Coverity: [![Coverity Scan Build Status](https://scan.coverity.com/projects/6249/badge.svg)](https://scan.coverity.com/projects/vknet)
 
+Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 # Roadmap
 Задачи на 1.0.18 версию:
 - [] Двухфакторная авторизация
