@@ -1,4 +1,7 @@
-﻿namespace VkNet.Categories
+﻿using System.Security.Policy;
+using VkNet.Model.Attachments;
+
+namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
@@ -628,6 +631,30 @@
 				{ "user_id", userId }
 			};
 			return _vk.Call("groups.invite", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет приглашать друзей в группу.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, в которую необходимо выслать приглашение</param>
+		/// <param name="link">Ссылка.</param>
+		/// <param name="text">Текст ссылки.</param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает объект ссылки.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.addLink" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public Link AddLink(ulong groupId, Url link, string text)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "link", link.Value },
+				{ "text", text }
+			};
+			return _vk.Call("groups.addLink", parameters);
 		}
 	}
 }
