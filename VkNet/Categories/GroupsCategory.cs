@@ -302,7 +302,7 @@ namespace VkNet.Categories
 		/// <param name="totalCount">Общее количество групп удовлетворяющих запросу</param>
 		/// <param name="offset">Смещение</param>
 		/// <param name="count">Количество в выбоке</param>
-		/// <param name="fields">Поля. В документации не указан <see cref="http://vk.com/dev/groups.search"/>.</param>
+		/// <param name="future">При передаче значения <c>true</c> будут выведены предстоящие события. Учитывается только при передаче в качестве <c>type</c> значения event.</param>
 		/// <param name="sort">Порядок сортировки полученных групп.</param>
 		/// <param name="type">Тип сообщества.</param>
 		/// <param name="countryId">Идентификатор страны.</param>
@@ -314,7 +314,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, uint? offset = null, uint? count = null, GroupsFields fields = null, GroupSort sort = GroupSort.Normal, GroupType type = null, uint? countryId = null, uint? cityId = null)
+		public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, uint? offset = null, uint? count = null, GroupSort sort = GroupSort.Normal, GroupType type = null, uint? countryId = null, uint? cityId = null, bool future = false)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => query);
 			
@@ -323,7 +323,7 @@ namespace VkNet.Categories
 				{ "q", query },
 				{ "offset", offset },
 				{ "count", count },
-				{ "fields", fields },
+				{ "future", future },
 				{ "sort", sort },
 				{ "type", type },
 				{ "country_id", countryId },

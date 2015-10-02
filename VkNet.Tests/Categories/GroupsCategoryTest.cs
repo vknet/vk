@@ -83,7 +83,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.Leave(-1);
+			bool result = groups.Leave(0);
 
 			Assert.That(result, Is.True);
 		}
@@ -486,7 +486,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			This.Action(() => groups.IsMember(-1, 4793858)).Throws<InvalidParameterException>()
+			This.Action(() => groups.IsMember(0, 4793858)).Throws<InvalidParameterException>()
 				.Message.ShouldEqual("Invalid group id");
 		}
 
@@ -500,7 +500,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.IsMember(637247, -1);
+			bool result = groups.IsMember(637247, 0);
 			Assert.That(result, Is.False);
 		}
 
@@ -640,7 +640,7 @@ namespace VkNet.Tests.Categories
 			var groups = GetMockedGroupCategory(url, json);
 
 			int totalCount;
-			This.Action(() => groups.GetMembers(-1, out totalCount)).Throws<InvalidParameterException>();
+			This.Action(() => groups.GetMembers(0, out totalCount)).Throws<InvalidParameterException>();
 		}
 
 		[Test]
@@ -909,7 +909,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			This.Action(() => cat.GetById(-1)).Throws<InvalidParameterException>();
+			This.Action(() => cat.GetById(0)).Throws<InvalidParameterException>();
 		}
 
 		[Test]
@@ -944,7 +944,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			This.Action(() => cat.GetById(new long[] { -1 })).Throws<InvalidParameterException>();
+			This.Action(() => cat.GetById(new ulong[] { 0 })).Throws<InvalidParameterException>();
 		}
 
 		[Test]
@@ -982,7 +982,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
-			var groups = cat.GetById(new long[] { 17683660, 637247 }).ToList();
+			var groups = cat.GetById(new ulong[] { 17683660, 637247 }).ToList();
 
 			Assert.That(groups.Count == 2);
 			Assert.That(groups[0].Id, Is.EqualTo(17683660));
@@ -1055,7 +1055,7 @@ namespace VkNet.Tests.Categories
 
 			var category = GetMockedGroupCategory(url, json);
 
-			var groups = category.GetById(new long[] { 17683660, 637247 }, GroupsFields.All).ToList();
+			var groups = category.GetById(new ulong[] { 17683660, 637247 }, GroupsFields.All).ToList();
 
 			Assert.That(groups.Count, Is.EqualTo(2));
 			Assert.That(groups[0].Id, Is.EqualTo(17683660));
