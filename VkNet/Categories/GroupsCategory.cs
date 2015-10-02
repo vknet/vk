@@ -700,5 +700,33 @@ namespace VkNet.Categories
 			};
 			return _vk.Call("groups.editLink", parameters);
 		}
+
+		/// <summary>
+		/// Позволяет редактировать ссылки в сообществе.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, в которое добавляется ссылка.</param>
+		/// <param name="linkId">Идентификатор редактируемой ссылки.</param>
+		/// <param name="after">
+		/// Идентификатор ссылки после которой необходимо разместить перемещаемую ссылку. 
+		/// 0 – если ссылку нужно разместить в начале списка.
+		/// </param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.reorderLink" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool ReorderLink(ulong groupId, ulong linkId, ulong after)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "link_id", linkId },
+				{ "after", after }
+			};
+			return _vk.Call("groups.reorderLink", parameters);
+		}
 	}
+
 }
