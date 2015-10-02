@@ -79,6 +79,9 @@
     <Compile Include="Enums\BirthdayVisibility.cs" />
     <Compile Include="Enums\ChangeNameStatus.cs" />
     <Compile Include="Enums\DeleteFriendStatus.cs" />
+    <Compile Include="Enums\Filters\GroupSubType.cs" />
+    <Compile Include="Enums\Filters\UsersFields.cs" />
+    <Compile Include="Enums\Filters\GroupSort.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
     <Compile Include="Enums\GroupSubjects.cs" />
     <Compile Include="Enums\GroupPublicity.cs" />
@@ -147,7 +150,8 @@
     <Compile Include="Model\Attachments\Graffiti.cs" />
     <Compile Include="Model\Attachments\Link.cs" />
     <Compile Include="Model\Attachments\Poll.cs" />
-    <Compile Include="Model\GroupInfo.cs" />
+    <Compile Include="Model\Group\GroupInfo.cs" />
+    <Compile Include="Model\Group\GroupMember.cs" />
     <Compile Include="Model\PhotoAlbum.cs" />
     <Compile Include="Model\PollAnswer.cs" />
     <Compile Include="Model\PostSource.cs" />
@@ -197,7 +201,7 @@
     <Compile Include="Model\Counters.cs" />
     <Compile Include="Model\Attachments\Document.cs" />
     <Compile Include="Model\Geo.cs" />
-    <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\Group\Group.cs" />
     <Compile Include="Model\LastActivity.cs" />
     <Compile Include="Model\Likes.cs" />
     <Compile Include="Model\LongPollServerResponse.cs" />
@@ -252,7 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
-    <Folder Include="NewFolder1\" />
+    <Folder Include="Group\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

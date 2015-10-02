@@ -1,4 +1,7 @@
-﻿namespace VkNet.Categories
+﻿using System.Security.Policy;
+using VkNet.Model.Attachments;
+
+namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
@@ -34,7 +37,7 @@
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.join"/>.
 		/// </remarks>
-		public bool Join(long gid, bool notSure = false)
+		public bool Join(ulong gid, bool notSure = false)
 		{
 			var parameters = new VkParameters { { "gid", gid }, { "not_sure", notSure } };
 
@@ -50,7 +53,7 @@
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.leave"/>.
 		/// </remarks>
-		public bool Leave(long gid)
+		public bool Leave(ulong gid)
 		{
 			var parameters = new VkParameters { { "gid", gid } };
 
@@ -66,36 +69,59 @@
 		/// <param name="fields">Список полей информации о группах</param>
 		/// <param name="offset">Смещение, необходимое для выборки определённого подмножества сообществ.</param>
 		/// <param name="count">Количество сообществ, информацию о которых нужно вернуть (Максимальное значение 1000)</param>
-		/// <returns>Список групп</returns>
+		/// <returns>
+		/// Список групп
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get" />.
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.28")]
-		public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, int offset = 0, int count = 1000)
+		public ReadOnlyCollection<Group> Get(ulong uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, uint offset = 0, uint count = 1000)
 		{
-			var parameters = new VkParameters { { "uid", uid }, { "extended", extended }, { "filter", filters }, { "fields", fields }, { "offset", offset }, { "count", count } };
-
-			VkResponse response = _vk.Call("groups.get", parameters);
-
-			if (!extended)
-				return response.ToReadOnlyCollectionOf(id => new Group { Id = id });
-
-			// в первой записи количество членов группы
-			return response["items"].ToReadOnlyCollectionOf<Group>(r => r);
+			var parameters = new VkParameters
+			{
+				{ "uid", uid },
+				{ "extended", extended },
+				{ "filter", filters },
+				{ "fields", fields },
+				{ "offset", offset }
+			};
+			if (count < 1000)
+			{
+				parameters.Add("count", count);
+			}
+			var response = _vk.Call("groups.get", parameters);
+			// в первой записи количество членов группы для (response["items"])
+			return !extended ? response.ToReadOnlyCollectionOf(id => new Group { Id = id }) : response["items"].ToReadOnlyCollectionOf<Group>(r => r);
 		}
 
 		/// <summary>
 		/// Возвращает информацию о нескольких группах.
 		/// </summary>
-		/// <param name="gids">Список групп</param>
+		/// <param name="gids">Список идентификаторов или коротких имен сообществ.</param>
 		/// <param name="fields">Список полей информации о группах</param>
 		/// <returns>Список групп</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
+		public ReadOnlyCollection<Group> GetById(IEnumerable<ulong> gids, GroupsFields fields = null)
+		{
+			return GetById(gids.Select(x => x.ToString()), fields);
+		}
+
+		/// <summary>
+		/// Возвращает информацию о нескольких группах.
+		/// </summary>
+		/// <param name="gids">Список идентификаторов или коротких имен сообществ.</param>
+		/// <param name="fields">Список полей информации о группах</param>
+		/// <returns>Список групп</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
+		/// </remarks>
+		[Pure]
+		public ReadOnlyCollection<Group> GetById(IEnumerable<string> gids, GroupsFields fields = null)
 		{
 			var parameters = new VkParameters { { "gids", gids }, { "fields", fields } };
 
@@ -113,7 +139,23 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
 		/// </remarks>
 		[Pure]
-		public Group GetById(long gid, GroupsFields fields = null)
+		public Group GetById(ulong gid, GroupsFields fields = null)
+		{
+			return GetById(gid.ToString(), fields);
+		}
+
+
+		/// <summary>
+		/// Возвращает информацию о заданной группе.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества.</param>
+		/// <param name="fields">Список полей информации о группах</param>
+		/// <returns>Список групп</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
+		/// </remarks>
+		[Pure]
+		public Group GetById(string gid, GroupsFields fields = null)
 		{
 			var parameters = new VkParameters { { "gid", gid }, { "fields", fields } };
 
@@ -128,24 +170,57 @@
 		/// <param name="count">Количество участников которое необходимо получить</param>
 		/// <param name="offset">Смещение</param>
 		/// <param name="sort">Сортировка Id пользователей</param>
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть.</param>
+		/// <param name="filters">Фильтр.</param>
+		/// <returns>
+		/// Id пользователей состоящих в группе
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
+		/// </remarks>
+		[Pure]
+		public ReadOnlyCollection<ulong> GetMembers(ulong gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
+		{
+			return GetMembers(gid.ToString(), out totalCount, count, offset, sort, fields, filters);
+		}
+
+		/// <summary>
+		/// Возвращает список участников группы.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества</param>
+		/// <param name="totalCount">Общее количество участников</param>
+		/// <param name="count">Количество участников которое необходимо получить</param>
+		/// <param name="offset">Смещение</param>
+		/// <param name="sort">Сортировка Id пользователей</param>
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть.</param>
+		/// <param name="filters">Фильтр.</param>
 		/// <returns>Id пользователей состоящих в группе</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null)
+		public ReadOnlyCollection<ulong> GetMembers(string gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
 		{
-			var parameters = new VkParameters { { "gid", gid }, { "offset", offset }, { "sort", sort } };
+			var parameters = new VkParameters
+			{
+				{ "gid", gid },
+				{ "offset", offset },
+				{ "sort", sort },
+				{ "fields", fields },
+				{ "filter", filters }
+			};
 
 			if (count.HasValue && count.Value > 0 && count.Value < 1000)
+			{
 				parameters.Add("count", count);
+			}
 
 			var response = _vk.Call("groups.getMembers", parameters, true);
 
 			totalCount = response["count"];
 
 			VkResponseArray users = response["users"];
-			return users.ToReadOnlyCollectionOf<long>(x => x);
+			return users.ToReadOnlyCollectionOf<ulong>(x => x);
 		}
 
 		/// <summary>
@@ -158,11 +233,66 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
 		/// </remarks>
 		[Pure]
-		public bool IsMember(long gid, long uid)
+		public bool IsMember(ulong gid, ulong uid)
 		{
-			var parameters = new VkParameters { { "gid", gid }, { "uid", uid } };
+			return IsMember(gid.ToString(), uid);
+		}
+
+		/// <summary>
+		/// Возвращает информацию о том является ли пользователь участником заданной группы.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества. </param>
+		/// <param name="uid">Id пользователя</param>
+		/// <returns>True если пользователь состоит в группе, иначе False</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// </remarks>
+		[Pure]
+		public bool IsMember(string gid, ulong uid)
+		{
+			var parameters = new VkParameters
+			{
+				{ "gid", gid },
+				{ "uid", uid }
+			};
 
 			return _vk.Call("groups.isMember", parameters);
+		}
+
+		/// <summary>
+		/// Возвращает информацию о том является ли пользователь участником заданной группы.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества. </param>
+		/// <param name="uids">Id пользователя</param>
+		/// <returns>True если пользователь состоит в группе, иначе False</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// </remarks>
+		[Pure]
+		public ReadOnlyCollection<GroupMember> IsMember(string gid, IEnumerable<ulong> uids)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id",  gid },
+				{ "user_ids", string.Join(", ", uids) }
+			};
+			var response = _vk.Call("groups.isMember", parameters);
+			return response.ToReadOnlyCollectionOf<GroupMember>(x => x);
+		}
+
+		/// <summary>
+		/// Возвращает информацию о том является ли пользователь участником заданной группы.
+		/// </summary>
+		/// <param name="gid">Идентификатор или короткое имя сообщества. </param>
+		/// <param name="uids">Id пользователя</param>
+		/// <returns>True если пользователь состоит в группе, иначе False</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// </remarks>
+		[Pure]
+		public ReadOnlyCollection<GroupMember> IsMember(ulong gid, IEnumerable<ulong> uids)
+		{
+			return IsMember(gid.ToString(), uids);
 		}
 
 		/// <summary>
@@ -172,16 +302,33 @@
 		/// <param name="totalCount">Общее количество групп удовлетворяющих запросу</param>
 		/// <param name="offset">Смещение</param>
 		/// <param name="count">Количество в выбоке</param>
-		/// <returns>Список объектов групп</returns>
+		/// <param name="fields">Поля. В документации не указан <see cref="http://vk.com/dev/groups.search"/>.</param>
+		/// <param name="sort">Порядок сортировки полученных групп.</param>
+		/// <param name="type">Тип сообщества.</param>
+		/// <param name="countryId">Идентификатор страны.</param>
+		/// <param name="cityId">Идентификатор города. При передаче этого параметра поле country_id игнорируется.</param>
+		/// <returns>
+		/// Список объектов групп
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, int? offset = null, int? count = null, GroupsFields fields = null, int sort = 0)
+		public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, uint? offset = null, uint? count = null, GroupsFields fields = null, GroupSort sort = GroupSort.Normal, GroupType type = null, uint? countryId = null, uint? cityId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => query);
 			
-			var parameters = new VkParameters { { "q", query }, { "offset", offset }, { "count", count }, { "fields", fields }, { "sort", sort } };
+			var parameters = new VkParameters
+			{
+				{ "q", query },
+				{ "offset", offset },
+				{ "count", count },
+				{ "fields", fields },
+				{ "sort", sort },
+				{ "type", type },
+				{ "country_id", countryId },
+				{ "city_id", cityId }
+			};
 
 			VkResponseArray response = _vk.Call("groups.search", parameters);
 
@@ -200,11 +347,8 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvites"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<Group> GetInvites(int? count = null, int? offset = null)
+		public ReadOnlyCollection<Group> GetInvites(uint? count = null, uint? offset = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-
 			var parameters = new VkParameters
 				{
 					{"count", count},
@@ -229,12 +373,9 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.banUser"/>.
 		/// </remarks>
-		public bool BanUser(long groupId, long userId, DateTime? endDate = null, BanReason? reason = null,
+		public bool BanUser(ulong groupId, ulong userId, DateTime? endDate = null, BanReason? reason = null,
 							string comment = "", bool commentVisible = false)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
 			var parameters = new VkParameters
 			{
 				{"group_id", groupId},
@@ -259,12 +400,8 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<User> GetBanned(long groupId, int? count = null, int? offset = null)
+		public ReadOnlyCollection<User> GetBanned(ulong groupId, uint? count = null, uint? offset = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-
 			var parameters = new VkParameters
 				{
 					{"group_id", groupId},
@@ -286,11 +423,8 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.unbanUser"/>.
 		/// </remarks>
-		public bool UnbanUser(long groupId, long userId)
+		public bool UnbanUser(ulong groupId, ulong userId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
 			var parameters = new VkParameters
 				{
 					{"group_id", groupId},
@@ -315,11 +449,8 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
 		/// </remarks>
 		[ApiVersion("5.28")]
-		public bool EditManager(long groupId, long userId, AdminLevel? role, bool? isContact = null, string contactPosition = null, string contactPhone = null, string contactEmail = null)
+		public bool EditManager(ulong groupId, ulong userId, AdminLevel? role, bool? isContact = null, string contactPosition = null, string contactPhone = null, string contactEmail = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
 			var parameters = new VkParameters
 				{
 					{"group_id", groupId},
@@ -343,7 +474,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
 		/// </remarks>
-		public bool EditManager(long groupId, long userId, AdminLevel? role)
+		public bool EditManager(ulong groupId, ulong userId, AdminLevel? role)
 		{
 			return EditManager(groupId, userId, role, null);
 		}
@@ -371,10 +502,10 @@
 		}
 
 		/// <summary>
-		/// Edits the specified group identifier.
+		/// Позволяет редактировать информацию групп.
 		/// </summary>
-		/// <param name="groupId">The group identifier.</param>
-		/// <param name="groupInfo">The group information.</param>
+		/// <param name="groupId">Идентификатор группы.</param>
+		/// <param name="groupInfo">Информация о группе.</param>
 		/// <returns></returns>
 		/// <remarks>
 		/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором группы.
@@ -417,5 +548,252 @@
 			};
 			return _vk.Call("groups.edit", parameters);
 		}
+
+		/// <summary>
+		/// Позволяет редактировать информацию о месте группы.
+		/// Для удаления информации о местоположении нужно передать только group_id.
+		/// Для обновления данных о местоположении необходимо указать как минимум id страны, широту и долготу.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, информацию о месте которой нужно отредактировать.</param>
+		/// <param name="place">Местоположение.</param>
+		/// <remarks>
+		/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором группы.
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.editPlace"/>.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool EditPlace(ulong groupId, Place place = null)
+		{
+			if (place == null)
+			{
+				place = new Place();
+			}
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "title", place.Title },
+				{ "address", place.Address },
+				{ "country_id", place.CountryId },
+				{ "city_id", place.CityId },
+				{ "latitude", place.Latitude },
+				{ "longitude", place.Longitude }
+			};
+			var result = _vk.Call("groups.editPlace", parameters);
+			return result["success"];
+		}
+
+		/// <summary>
+		/// Возвращает список пользователей, которые были приглашены в группу.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, список приглашенных в которую пользователей нужно вернуть.</param>
+		/// <param name="userCount">Количество пользователей.</param>
+		/// <param name="offset">Смещение, необходимое для выборки определённого подмножества пользователей. </param>
+		/// <param name="count">Количество пользователей, информацию о которых нужно вернуть. </param>
+		/// <param name="fields">Дополнительные поля с информацией о пользователе.</param>
+		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя. </param>
+		/// <returns></returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.getInvitedUsers"/>.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public ReadOnlyCollection<User> GetInvitedUsers(ulong groupId, out int userCount, uint offset = 0, uint count = 20, UsersFields fields = null, NameCase nameCase = null)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "offset", offset },
+				{ "count", count },
+				{ "fields", fields },
+				{ "name_case", nameCase }
+			};
+			var response = _vk.Call("groups.getInvitedUsers", parameters);
+			userCount = response["count"];
+			return response["items"].ToReadOnlyCollectionOf<User>(x => x);
+		}
+
+		/// <summary>
+		/// Позволяет приглашать друзей в группу.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, в которую необходимо выслать приглашение </param>
+		/// <param name="userId">Идентификатор пользователя, которому необходимо выслать приглашение </param>
+		/// <returns>В случае успешного выполнения возвращает 1.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.invite"/>.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool Invite(ulong groupId, ulong userId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "user_id", userId }
+			};
+			return _vk.Call("groups.invite", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет приглашать друзей в группу.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, в которую необходимо выслать приглашение</param>
+		/// <param name="link">Ссылка.</param>
+		/// <param name="text">Текст ссылки.</param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает объект ссылки.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.addLink" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public Link AddLink(ulong groupId, Url link, string text)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "link", link.Value },
+				{ "text", text }
+			};
+			return _vk.Call("groups.addLink", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет удалить ссылки из сообщества.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, ссылки которого нужно удалить.</param>
+		/// <param name="linkId">Идентификатор ссылки, которую необходимо удалить.</param>
+		/// <returns>В случае успешного выполнения возвращает 1.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.deleteLink"/>.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool DeleteLink(ulong groupId, ulong linkId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "link_id", linkId }
+			};
+			return _vk.Call("groups.deleteLink", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет редактировать ссылки в сообществе.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, в которое добавляется ссылка.</param>
+		/// <param name="linkId">Идентификатор редактируемой ссылки.</param>
+		/// <param name="text">Новое описание ссылки.</param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.editLink" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool EditLink(ulong groupId, ulong linkId, string text)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "link_id", linkId },
+				{ "text", text }
+			};
+			return _vk.Call("groups.editLink", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет менять местоположение ссылки в списке.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, в которое добавляется ссылка.</param>
+		/// <param name="linkId">Идентификатор редактируемой ссылки.</param>
+		/// <param name="after">
+		/// Идентификатор ссылки после которой необходимо разместить перемещаемую ссылку. 
+		/// 0 – если ссылку нужно разместить в начале списка.
+		/// </param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.reorderLink" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool ReorderLink(ulong groupId, ulong linkId, ulong after)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "link_id", linkId },
+				{ "after", after }
+			};
+			return _vk.Call("groups.reorderLink", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет исключить пользователя из группы или отклонить заявку на вступление.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, из которой необходимо исключить пользователя.</param>
+		/// <param name="userId">Идентификатор пользователя, которого нужно исключить.</param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.removeUser" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool RemoveUser(ulong groupId, ulong userId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "user_id", userId }
+			};
+			return _vk.Call("groups.removeUser", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет одобрить заявку в группу от пользователя.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, заявку в которую необходимо одобрить.</param>
+		/// <param name="userId">Идентификатор пользователя, заявку которого необходимо одобрить.</param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.approveRequest" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool ApproveRequest(ulong groupId, ulong userId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "user_id", userId }
+			};
+			return _vk.Call("groups.approveRequest", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет создавать новые сообщества.
+		/// </summary>
+		/// <param name="title">Название сообщества.</param>
+		/// <param name="description">Описание сообщества, не учитывается, если создается публичная страница.</param>
+		/// <param name="type">Тип создаваемого сообщества.</param>
+		/// <param name="subtype">Вид публичной страницы: (учитывается только при создании публичных страниц).</param>
+		/// <returns>
+		/// Возвращает id созданного сообщества.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.create" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public Group Create(string title, string description, GroupType type = null, GroupSubType subtype = GroupSubType.PlaceOrSmallCompany)
+		{
+			var parameters = new VkParameters
+			{
+				{ "title", title },
+				{ "description", description },
+				{ "type", type },
+				{ "subtype", subtype }
+			};
+			return _vk.Call("groups.create", parameters);
+		}
 	}
+
 }

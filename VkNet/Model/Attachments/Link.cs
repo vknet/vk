@@ -34,6 +34,18 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public string PreviewPage { get; set; }
 
+		/// <summary>
+		/// Идентификатор ссылки.
+		/// </summary>
+		public ulong Id { get; set; }
+
+
+		/// <summary>
+		/// Преобразовать к строке.
+		/// </summary>
+		/// <returns>
+		/// Адрес ссылки.
+		/// </returns>
 		public override string ToString()
 		{
 			return Url.ToString();
@@ -43,15 +55,18 @@ namespace VkNet.Model.Attachments
 
         internal static Link FromJson(VkResponse response)
         {
-            var link = new Link();
+	        var link = new Link
+	        {
+		        Id = response["id"],
+		        Url = response["url"],
+		        Title = response["title"],
+		        Description = response["description"] ?? response["desc"],
+		        Image = response["image_src"],
+		        PreviewPage = response["preview_page"]
+	        };
 
-            link.Url = response["url"];
-            link.Title = response["title"];
-            link.Description = response["description"];
-            link.Image = response["image_src"];
-            link.PreviewPage = response["preview_page"];
 
-            return link;
+	        return link;
         }
 
         #endregion

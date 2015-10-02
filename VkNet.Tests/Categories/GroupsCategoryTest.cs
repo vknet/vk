@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests.Categories
+﻿using System.Security.Policy;
+
+namespace VkNet.Tests.Categories
 {
 	using System;
 	using System.Collections.ObjectModel;
@@ -1444,7 +1446,7 @@
 		[Test]
 		public void Edit_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=test777&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=Raven&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -1453,11 +1455,84 @@
 			var cat = GetMockedGroupCategory(url, json);
 			var group = new GroupInfo
 			{
-				Title = "test777"
+				Title = "Raven"
 			};
 			var groups = cat.Edit(103292418, group);
 
 			groups.ShouldBeTrue();
+		}
+
+		[Test]
+		public void EditPlace_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/groups.editPlace?group_id=103292418&title=Test&address=1&country_id=1&city_id=1&latitude=30&longitude=30&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': {
+					  'success': 1,
+					  'address': ''
+					}
+				  }";
+
+			var cat = GetMockedGroupCategory(url, json);
+			var place = new Place
+			{
+				Title = "Test",
+				CityId = 1,
+				CountryId = 1,
+				Longitude = 30,
+				Latitude = 30,
+				Address = "1"
+			};
+			var groups = cat.EditPlace(103292418, place);
+
+			groups.ShouldBeTrue();
+		}
+
+		[Test]
+		public void GetInvitedUsers_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/groups.getInvitedUsers?group_id=103292418&offset=0&count=20&fields=bdate&name_case=dat&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': {
+					  'count': 1,
+					  'items': [
+						{
+						  'id': 221634238,
+						  'first_name': 'Александру',
+						  'last_name': 'Инютину',
+						  'bdate': '23.6.2000'
+						}
+					  ]
+					}
+				  }";
+
+			var cat = GetMockedGroupCategory(url, json);
+			int count;
+			var users = cat.GetInvitedUsers(103292418, out count, 0, 20, UsersFields.BirthDate, NameCase.Dat);
+
+			users.ShouldNotBeNull();
+
+			users[0].Id = 221634238;
+			users[0].FirstName = "Александру";
+			users[0].LastName = "Инютину";
+			users[0].BirthDate = "23.6.2000";
+		}
+
+		[Test]
+		public void Invite_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/groups.invite?group_id=103292418&user_id=221634238&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': 1
+				  }";
+
+			var cat = GetMockedGroupCategory(url, json);
+			var users = cat.Invite(103292418, 221634238);
+
+			users.ShouldBeTrue();
 		}
 	}
 }
