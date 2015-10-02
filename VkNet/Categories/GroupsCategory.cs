@@ -515,7 +515,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.edit"/>.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool Edit(long groupId, GroupInfo groupInfo)
+		public bool Edit(ulong groupId, GroupInfo groupInfo)
 		{
 			var parameters = new VkParameters
 			{
@@ -564,7 +564,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.editPlace"/>.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool EditPlace(long groupId, Place place = null)
+		public bool EditPlace(ulong groupId, Place place = null)
 		{
 			if (place == null)
 			{
@@ -598,7 +598,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.getInvitedUsers"/>.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<User> GetInvitedUsers(long groupId, out int userCount, uint offset = 0, uint count = 20, UsersFields fields = null, NameCase nameCase = null)
+		public ReadOnlyCollection<User> GetInvitedUsers(ulong groupId, out int userCount, uint offset = 0, uint count = 20, UsersFields fields = null, NameCase nameCase = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -702,7 +702,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Позволяет редактировать ссылки в сообществе.
+		/// Позволяет менять местоположение ссылки в списке.
 		/// </summary>
 		/// <param name="groupId">Идентификатор сообщества, в которое добавляется ссылка.</param>
 		/// <param name="linkId">Идентификатор редактируемой ссылки.</param>
@@ -726,6 +726,76 @@ namespace VkNet.Categories
 				{ "after", after }
 			};
 			return _vk.Call("groups.reorderLink", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет исключить пользователя из группы или отклонить заявку на вступление.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, из которой необходимо исключить пользователя.</param>
+		/// <param name="userId">Идентификатор пользователя, которого нужно исключить.</param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.removeUser" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool RemoveUser(ulong groupId, ulong userId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "user_id", userId }
+			};
+			return _vk.Call("groups.removeUser", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет одобрить заявку в группу от пользователя.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, заявку в которую необходимо одобрить.</param>
+		/// <param name="userId">Идентификатор пользователя, заявку которого необходимо одобрить.</param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.approveRequest" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool ApproveRequest(ulong groupId, ulong userId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "user_id", userId }
+			};
+			return _vk.Call("groups.approveRequest", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет создавать новые сообщества.
+		/// </summary>
+		/// <param name="title">Название сообщества.</param>
+		/// <param name="description">Описание сообщества, не учитывается, если создается публичная страница.</param>
+		/// <param name="type">Тип создаваемого сообщества.</param>
+		/// <param name="subtype">Вид публичной страницы: (учитывается только при создании публичных страниц).</param>
+		/// <returns>
+		/// Возвращает id созданного сообщества.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.create" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public Group Create(string title, string description, GroupType type = null, GroupSubType subtype = GroupSubType.PlaceOrSmallCompany)
+		{
+			var parameters = new VkParameters
+			{
+				{ "title", title },
+				{ "description", description },
+				{ "type", type },
+				{ "subtype", subtype }
+			};
+			return _vk.Call("groups.create", parameters);
 		}
 	}
 
