@@ -89,7 +89,7 @@ namespace VkNet.Categories
 			};
 			if (count < 1000)
 			{
-				parameters.Add("userCount", count);
+				parameters.Add("count", count);
 			}
 			var response = _vk.Call("groups.get", parameters);
 			// в первой записи количество членов группы для (response["items"])
