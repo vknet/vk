@@ -676,5 +676,29 @@ namespace VkNet.Categories
 			};
 			return _vk.Call("groups.deleteLink", parameters);
 		}
+
+		/// <summary>
+		/// Позволяет редактировать ссылки в сообществе.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, в которое добавляется ссылка.</param>
+		/// <param name="linkId">Идентификатор редактируемой ссылки.</param>
+		/// <param name="text">Новое описание ссылки.</param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.editLink" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool EditLink(ulong groupId, ulong linkId, string text)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "link_id", linkId },
+				{ "text", text }
+			};
+			return _vk.Call("groups.editLink", parameters);
+		}
 	}
 }
