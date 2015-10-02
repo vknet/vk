@@ -1490,7 +1490,7 @@
 		[Test]
 		public void GetInvitedUsers_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.getInvitedUsers?group_id=103292418&offset=0&count=20&fields=bdate&name_case=dat&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getInvitedUsers?group_id=103292418&offset=0&count=20&fields=bdate&name_case=dat&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -1516,6 +1516,21 @@
 			users[0].FirstName = "Александру";
 			users[0].LastName = "Инютину";
 			users[0].BirthDate = "23.6.2000";
+		}
+
+		[Test]
+		public void Invite_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/groups.invite?group_id=103292418&user_id=221634238&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': 1
+				  }";
+
+			var cat = GetMockedGroupCategory(url, json);
+			var users = cat.Invite(103292418, 221634238);
+
+			users.ShouldBeTrue();
 		}
 	}
 }

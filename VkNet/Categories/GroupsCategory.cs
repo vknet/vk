@@ -373,12 +373,9 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.banUser"/>.
 		/// </remarks>
-		public bool BanUser(long groupId, long userId, DateTime? endDate = null, BanReason? reason = null,
+		public bool BanUser(ulong groupId, ulong userId, DateTime? endDate = null, BanReason? reason = null,
 							string comment = "", bool commentVisible = false)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
 			var parameters = new VkParameters
 			{
 				{"group_id", groupId},
@@ -403,12 +400,8 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<User> GetBanned(long groupId, int? count = null, int? offset = null)
+		public ReadOnlyCollection<User> GetBanned(ulong groupId, uint? count = null, uint? offset = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-
 			var parameters = new VkParameters
 				{
 					{"group_id", groupId},
@@ -430,11 +423,8 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.unbanUser"/>.
 		/// </remarks>
-		public bool UnbanUser(long groupId, long userId)
+		public bool UnbanUser(ulong groupId, ulong userId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
 			var parameters = new VkParameters
 				{
 					{"group_id", groupId},
@@ -459,11 +449,8 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
 		/// </remarks>
 		[ApiVersion("5.28")]
-		public bool EditManager(long groupId, long userId, AdminLevel? role, bool? isContact = null, string contactPosition = null, string contactPhone = null, string contactEmail = null)
+		public bool EditManager(ulong groupId, ulong userId, AdminLevel? role, bool? isContact = null, string contactPosition = null, string contactPhone = null, string contactEmail = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
 			var parameters = new VkParameters
 				{
 					{"group_id", groupId},
@@ -487,7 +474,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
 		/// </remarks>
-		public bool EditManager(long groupId, long userId, AdminLevel? role)
+		public bool EditManager(ulong groupId, ulong userId, AdminLevel? role)
 		{
 			return EditManager(groupId, userId, role, null);
 		}
@@ -607,6 +594,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.getInvitedUsers"/>.
 		/// </remarks>
+		[ApiVersion("5.37")]
 		public ReadOnlyCollection<User> GetInvitedUsers(long groupId, out int userCount, uint offset = 0, uint count = 20, UsersFields fields = null, NameCase nameCase = null)
 		{
 			var parameters = new VkParameters
@@ -620,6 +608,26 @@
 			var response = _vk.Call("groups.getInvitedUsers", parameters);
 			userCount = response["count"];
 			return response["items"].ToReadOnlyCollectionOf<User>(x => x);
+		}
+
+		/// <summary>
+		/// Позволяет приглашать друзей в группу.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, в которую необходимо выслать приглашение </param>
+		/// <param name="userId">Идентификатор пользователя, которому необходимо выслать приглашение </param>
+		/// <returns>В случае успешного выполнения возвращает 1.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.invite"/>.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool Invite(ulong groupId, ulong userId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "user_id", userId }
+			};
+			return _vk.Call("groups.invite", parameters);
 		}
 	}
 }
