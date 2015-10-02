@@ -37,7 +37,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.join"/>.
 		/// </remarks>
-		public bool Join(long gid, bool notSure = false)
+		public bool Join(ulong gid, bool notSure = false)
 		{
 			var parameters = new VkParameters { { "gid", gid }, { "not_sure", notSure } };
 
@@ -53,7 +53,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Groups"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.leave"/>.
 		/// </remarks>
-		public bool Leave(long gid)
+		public bool Leave(ulong gid)
 		{
 			var parameters = new VkParameters { { "gid", gid } };
 
@@ -77,7 +77,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.28")]
-		public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, int offset = 0, uint count = 1000)
+		public ReadOnlyCollection<Group> Get(ulong uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, uint offset = 0, uint count = 1000)
 		{
 			var parameters = new VkParameters
 			{
@@ -106,7 +106,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<Group> GetById(IEnumerable<long> gids, GroupsFields fields = null)
+		public ReadOnlyCollection<Group> GetById(IEnumerable<ulong> gids, GroupsFields fields = null)
 		{
 			return GetById(gids.Select(x => x.ToString()), fields);
 		}
@@ -139,7 +139,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
 		/// </remarks>
 		[Pure]
-		public Group GetById(long gid, GroupsFields fields = null)
+		public Group GetById(ulong gid, GroupsFields fields = null)
 		{
 			return GetById(gid.ToString(), fields);
 		}
@@ -179,7 +179,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<long> GetMembers(long gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
+		public ReadOnlyCollection<ulong> GetMembers(ulong gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
 		{
 			return GetMembers(gid.ToString(), out totalCount, count, offset, sort, fields, filters);
 		}
@@ -199,7 +199,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<long> GetMembers(string gid, out int totalCount, int? count = null, int? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
+		public ReadOnlyCollection<ulong> GetMembers(string gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -220,7 +220,7 @@ namespace VkNet.Categories
 			totalCount = response["count"];
 
 			VkResponseArray users = response["users"];
-			return users.ToReadOnlyCollectionOf<long>(x => x);
+			return users.ToReadOnlyCollectionOf<ulong>(x => x);
 		}
 
 		/// <summary>
@@ -233,7 +233,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
 		/// </remarks>
 		[Pure]
-		public bool IsMember(long gid, long uid)
+		public bool IsMember(ulong gid, ulong uid)
 		{
 			return IsMember(gid.ToString(), uid);
 		}
@@ -248,7 +248,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
 		/// </remarks>
 		[Pure]
-		public bool IsMember(string gid, long uid)
+		public bool IsMember(string gid, ulong uid)
 		{
 			var parameters = new VkParameters
 			{
@@ -269,7 +269,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<GroupMember> IsMember(string gid, IEnumerable<long> uids)
+		public ReadOnlyCollection<GroupMember> IsMember(string gid, IEnumerable<ulong> uids)
 		{
 			var parameters = new VkParameters
 			{
@@ -290,7 +290,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<GroupMember> IsMember(long gid, IEnumerable<long> uids)
+		public ReadOnlyCollection<GroupMember> IsMember(ulong gid, IEnumerable<ulong> uids)
 		{
 			return IsMember(gid.ToString(), uids);
 		}
@@ -314,7 +314,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, int? offset = null, int? count = null, GroupsFields fields = null, GroupSort sort = GroupSort.Normal, GroupType type = null, int? countryId = null, int? cityId = null)
+		public ReadOnlyCollection<Group> Search([NotNull] string query, out int totalCount, uint? offset = null, uint? count = null, GroupsFields fields = null, GroupSort sort = GroupSort.Normal, GroupType type = null, uint? countryId = null, uint? cityId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => query);
 			
@@ -347,11 +347,8 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvites"/>.
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<Group> GetInvites(int? count = null, int? offset = null)
+		public ReadOnlyCollection<Group> GetInvites(uint? count = null, uint? offset = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-
 			var parameters = new VkParameters
 				{
 					{"count", count},
@@ -495,7 +492,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getSettings"/>.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public GroupInfo GetSettings(long groupId)
+		public GroupInfo GetSettings(ulong groupId)
 		{
 			var parameters = new VkParameters
 				{
