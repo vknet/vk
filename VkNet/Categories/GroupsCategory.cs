@@ -656,5 +656,25 @@ namespace VkNet.Categories
 			};
 			return _vk.Call("groups.addLink", parameters);
 		}
+
+		/// <summary>
+		/// Позволяет удалить ссылки из сообщества.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, ссылки которого нужно удалить.</param>
+		/// <param name="linkId">Идентификатор ссылки, которую необходимо удалить.</param>
+		/// <returns>В случае успешного выполнения возвращает 1.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.deleteLink"/>.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public bool DeleteLink(ulong groupId, ulong linkId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "link_id", linkId }
+			};
+			return _vk.Call("groups.deleteLink", parameters);
+		}
 	}
 }

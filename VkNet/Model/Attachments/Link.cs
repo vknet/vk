@@ -37,7 +37,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификатор ссылки.
 		/// </summary>
-		public int Id { get; set; }
+		public ulong Id { get; set; }
 
 
 		/// <summary>
