@@ -75,8 +75,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Leave_WrongGid_ReturnTrue()
 		{
-			const string url =
-				"https://api.vk.com/method/groups.leave?gid=-1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.leave?gid=0&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -294,7 +293,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 		{
-			const string url = "https://api.vk.com/method/groups.get?uid=4793858&extended=0&offset=0&count=1000&v=5.28&access_token=token";
+			const string url = "https://api.vk.com/method/groups.get?uid=4793858&extended=0&offset=0&v=5.28&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -454,7 +453,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMember_WrongGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?gid=-1&uid=4793858&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?gid=0&uid=4793858&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -493,7 +492,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMember_WrongUid_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?gid=637247&uid=-1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?gid=637247&uid=0&access_token=token";
 			const string json =
 				@"{
 					'response': 0
@@ -610,7 +609,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?gid=-1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?gid=0&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -663,7 +662,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_DefaultCase_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&future=0&sort=0&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -728,7 +727,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_DefaulCaseAllParams_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&offset=20&count=3&sort=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&offset=20&count=3&future=0&sort=0&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -816,7 +815,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_GroupsNotFounded_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&offset=20&count=3&sort=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&offset=20&count=3&future=0&sort=0&access_token=token";
+
 			const string json =
 				@"{
 					'response': [
@@ -880,7 +880,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?gid=-1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?gid=0&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -915,7 +915,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?gids=-1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?gids=0&access_token=token";
+
 			const string json =
 				@"{
 					'error': {
