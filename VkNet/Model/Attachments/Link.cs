@@ -37,7 +37,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификатор ссылки.
 		/// </summary>
-		public ulong Id { get; set; }
+		public ulong? Id { get; set; }
 
 
 		/// <summary>
@@ -55,15 +55,13 @@ namespace VkNet.Model.Attachments
 
         internal static Link FromJson(VkResponse response)
         {
-	        var link = new Link
-	        {
-		        Id = response["id"],
-		        Url = response["url"],
-		        Title = response["title"],
-		        Description = response["description"] ?? response["desc"],
-		        Image = response["image_src"],
-		        PreviewPage = response["preview_page"]
-	        };
+	        var link = new Link();
+	        link.Id = response["id"];
+	        link.Url = response["url"];
+	        link.Title = response["title"];
+	        link.Description = response["description"] ?? response["desc"];
+	        link.Image = response["image_src"];
+	        link.PreviewPage = response["preview_page"];
 
 
 	        return link;
