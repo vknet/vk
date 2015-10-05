@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests.Categories
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace VkNet.Tests.Categories
 {
     using System;
     using System.Collections.ObjectModel;
@@ -15,6 +17,7 @@
     using FluentNUnit;
 
     [TestFixture]
+    [SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
     public class AudioCategoryTest
     {
         private AudioCategory GetMockedAudioCategory(string url, string json)
@@ -343,8 +346,9 @@
         [Test]
         public void Get_WithOutUserAndAllFields_ReturnListOfAudio()
         {
-            const string url = "https://api.vk.com/method/audio.get?uid=4793858&need_user=1&count=3&offset=5&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.get?uid=4793858&need_user=1&offset=5&count=3&access_token=token";
+
+			const string json =
                 @"{
                     'response': [
                       {
@@ -708,9 +712,8 @@
         [Test]
         public void Edit_NoramCase_ReturnLyricsId()
         {
-            const string url =
-                "https://api.vk.com/method/audio.edit?aid=159207130&oid=4793858&artist=Test Artist&title=Test Title&text=Test Text&no_search=0&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.edit?aid=159207130&oid=4793858&artist=Test Artist&title=Test Title&text=Test Text&no_search=0&genre_id=18&access_token=token";
+			const string json =
                 @"{
                     'response': 26350163
                   }";
@@ -724,9 +727,8 @@
         [Test]
         public void Edit_WrongInputParams_ThrowsInvalidParameterException()
         {
-            const string url =
-                "https://api.vk.com/method/audio.edit?aid=0&oid=0&artist=Test Artist&title=Test Title&text=Test Text&no_search=0&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.edit?aid=0&oid=0&artist=Test Artist&title=Test Title&text=Test Text&no_search=0&genre_id=18&access_token=token";
+			const string json =
                 @"{
                     'error': {
                       'error_code': 100,
@@ -975,7 +977,7 @@
 
             AudioCategory cat = GetMockedAudioCategory(url, json);
 
-            long albumId = cat.AddAlbum("тестовый альбом");
+            ulong albumId = cat.AddAlbum("тестовый альбом");
 
             Assert.That(albumId, Is.EqualTo(45284861));
         }
@@ -993,7 +995,7 @@
 
             AudioCategory cat = GetMockedAudioCategory(url, json);
 
-            long albumId = cat.AddAlbum("Test audio category", 65968887);
+            ulong albumId = cat.AddAlbum("Test audio category", 65968887);
 
             Assert.That(albumId, Is.EqualTo(45302272));
         }
@@ -1051,31 +1053,10 @@
         }
 
         [Test]
-        public void EditAlbum_AlbumIdIsNegative_ThrowException()
-        {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.EditAlbum("title", -1234567)).Throws<ArgumentException>();
-        }
-
-        [Test]
         public void EditAlbum_GroupIdIsNegative_ThrowException()
         {
             AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.EditAlbum("title", 1234567, -1)).Throws<ArgumentException>();
-        }
-
-        [Test]
-        public void DeleteAlbum_AlbumIdIsNegative_ThrowExcpetion()
-        {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.DeleteAlbum(-1)).Throws<ArgumentException>();
-        }
-
-        [Test]
-        public void DeleteAlbum_GroupIdIsNegative_ThrowExcpetion()
-        {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.DeleteAlbum(1, -2)).Throws<ArgumentException>();
+            This.Action(() => cat.EditAlbum("title", 1234567, 0)).Throws<ArgumentException>();
         }
 
         [Test]
@@ -1230,7 +1211,7 @@
 
             AudioCategory cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.MoveToAlbum(45303161, new long[] {258542771, 258542571});
+            bool result = cat.MoveToAlbum(45303161, new ulong[] {258542771, 258542571});
 
             Assert.That(result, Is.True);
         }
