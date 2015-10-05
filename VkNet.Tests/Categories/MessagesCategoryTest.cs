@@ -100,13 +100,13 @@ namespace VkNet.Tests.Categories
 		{
 			var cat = new MessagesCategory(new VkApi());
 			int totalCount;
-			This.Action(() => cat.GetHistory(1, false, out totalCount)).Throws<AccessTokenInvalidException>();
+			This.Action(() => cat.GetHistory(out totalCount, false, 1)).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
 		public void GetHistory_ContainsSticker_Error47()
 		{
-			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=1&count=3&v=5.28&access_token=token";
+			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=0&count=3&v=5.37&access_token=token";
 			json = @"{
 	'response': {
 		'count': 6,
@@ -138,7 +138,7 @@ namespace VkNet.Tests.Categories
 	}
 }";
 			int totalCount;
-			var msg = Cat.GetHistory(7712, false, out totalCount, 5, 3, true).ToList();
+			var msg = Cat.GetHistory(out totalCount, false, 7712,  5, 3).ToList();
 
 			// asserts
 			totalCount.ShouldEqual(6);
@@ -161,7 +161,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetHistory_ContainsRepost_Error46()
 		{
-			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=1&count=3&v=5.28&access_token=token";
+			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=1&count=3&v=5.37&access_token=token";
 			json = @"{  
 			   'response':{  
 				  'count':1940,
@@ -230,7 +230,7 @@ namespace VkNet.Tests.Categories
 			}";
 
 			int totalCount;
-			var msg = Cat.GetHistory(7712, false, out totalCount, 5, 3, true).ToList();
+			var msg = Cat.GetHistory(out totalCount, false, 7712,  5, 3, null, true).ToList();
 
 			// assertions
 			totalCount.ShouldEqual(1940);
@@ -301,7 +301,7 @@ namespace VkNet.Tests.Categories
 				  }";
 			
 			int totalCount;
-			var msgs = Cat.GetHistory(7712, false, out totalCount, 5, 3, true).ToList();
+			var msgs = Cat.GetHistory( out totalCount, false, 7712, 5, 3,null, true).ToList();
 
 			Assert.That(msgs[2].Body, Is.EqualTo("думаю пива предложит попить"));
 			Assert.That(msgs[2].Id, Is.EqualTo(2095));
@@ -340,7 +340,7 @@ namespace VkNet.Tests.Categories
 		{
 			var cat = new MessagesCategory(new VkApi());
 			int totalCount;
-			This.Action(() => cat.GetById(new ulong[]{1, 3, 5}, out totalCount)).Throws<AccessTokenInvalidException>();
+			This.Action(() => cat.GetById(out totalCount, new ulong[] { 1, 3, 5 })).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test, Ignore]
@@ -413,7 +413,7 @@ namespace VkNet.Tests.Categories
 				  }";
 			
 			int totalCount;
-			var msgs = Cat.GetById(new ulong[] {1, 3, 5}, out totalCount).ToList();
+			var msgs = Cat.GetById(out totalCount, new ulong[] { 1, 3, 5 }).ToList();
 
 			Assert.That(totalCount, Is.EqualTo(3));
 			Assert.That(msgs.Count, Is.EqualTo(3));
@@ -555,37 +555,37 @@ namespace VkNet.Tests.Categories
 			url = "https://api.vk.com/method/messages.search?q=привет&count=3&v=5.37&access_token=token";
 			json =
 				@"{
-					'response': [
-					  680,
-					  {
-						'id': 4442,
-						'date': 1343764972,
-						'out': 0,
-						'user_id': 1016149,
-						'read_state': 1,
-						'title': '...',
-						'body': 'Привет, Антон! Как дела?'
-					  },
-					  {
-						'id': 4415,
-						'date': 1342169208,
-						'out': 1,
-						'user_id': 245242,
-						'read_state': 1,
-						'title': ' ... ',
-						'body': 'привет))'
-					  },
-					  {
-						'id': 4414,
-						'date': 1342169192,
-						'out': 0,
-						'user_id': 245242,
-						'read_state': 1,
-						'title': ' ... ',
-						'body': 'привет, антон))'
-					  }
-					]
-				  }";
+                    'response': [
+                      680,
+                      {
+                        'id': 4442,
+                        'date': 1343764972,
+                        'out': 0,
+                        'user_id': 1016149,
+                        'read_state': 1,
+                        'title': '...',
+                        'body': 'Привет, Антон! Как дела?'
+                      },
+                      {
+                        'id': 4415,
+                        'date': 1342169208,
+                        'out': 1,
+                        'user_id': 245242,
+                        'read_state': 1,
+                        'title': ' ... ',
+                        'body': 'привет))'
+                      },
+                      {
+                        'id': 4414,
+                        'date': 1342169192,
+                        'out': 0,
+                        'user_id': 245242,
+                        'read_state': 1,
+                        'title': ' ... ',
+                        'body': 'привет, антон))'
+                      }
+                    ]
+                  }";
 
 			int totalCount;
 			List<Message> msgs = Cat.Search("привет", out totalCount, 3).ToList();
@@ -624,10 +624,11 @@ namespace VkNet.Tests.Categories
 			url = "https://api.vk.com/method/messages.search?q=fsjkadoivhjioashdpfisd&count=3&v=5.37&access_token=token";
 			json =
 				@"{
-					'response': [
-					  0
-					]
-				  }";
+                    'response': [
+                      0
+                    ]
+                  }";
+
 
 			int totalCount;
 			var msgs = Cat.Search("fsjkadoivhjioashdpfisd", out totalCount, 3).ToList();

@@ -68,14 +68,14 @@ namespace VkNet.Categories
 			ulong? lastMessageId = null)
 		{
 			var parameters = new VkParameters
-							 {
-								 { "out", type },
-								 { "offset", offset },
-								 { "filters", filter },
-								 { "preview_length", previewLength },
-								 { "last_message_id", lastMessageId }
-							 };
-			if (count <= 200)
+			{
+				{ "out", type },
+				{ "offset", offset },
+				{ "filters", filter },
+				{ "preview_length", previewLength },
+				{ "last_message_id", lastMessageId }
+			};
+            if (count <= 200)
 			{
 				parameters.Add("count", count);
 			}
@@ -90,41 +90,24 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы. 
+		/// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
 		/// </summary>
-		/// <param name="id">
-		/// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, историю переписки 
-		/// с которым необходимо вернуть.
-		/// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, историю переписки в которой 
-		/// необходимо вернуть.
-		/// </param>
-		/// <param name="isChat">Признак нужно ли вернуть историю сообщений для беседы (true) или для указанного пользователя.</param>
 		/// <param name="totalCount">Общее количество сообщений в истории.</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений.</param>
+		/// <param name="isChat">Если <see langword="true" /> то вернуть беседу, иначе диалог с пользователем.</param>
+		/// <param name="id">Идентификатор пользователя или беседы (зависит от параметра <paramref name="isChat" />), историю переписки с которым необходимо вернуть.</param>
+		/// <param name="offset">смещение, необходимое для выборки определенного подмножества сообщений, должен быть &gt;= 0, если не передан параметр start_message_id, и должен быть &lt;= 0, если передан.</param>
 		/// <param name="count">Количество сообщений, которое необходимо получить (но не более 200).</param>
-		/// <param name="inReverse">
-		/// Если данный параметр равен true, то сообщения возвращаются в хронологическом порядке. 
-		/// Если данный параметр равен false (по умолчанию), сообщения возвращаются в обратном хронологическом порядке. 
-		/// </param>
-		/// <param name="startMessageId">Идентификатор сообщения, начиная с которго необходимо получить последующие сообщения.</param>
-		/// <returns>
-		/// Запрошенные сообщения.
-		/// </returns>
+		/// <param name="startMessageId">если значение &gt; 0, то это идентификатор сообщения, начиная с которого нужно вернуть историю переписки, если же передано значение -1, то к значению параметра offset прибавляется количество входящих непрочитанных сообщений в конце диалога</param>
+		/// <param name="inReverse">1 – возвращать сообщения в хронологическом порядке. 0 – возвращать сообщения в обратном хронологическом порядке (по умолчанию), недоступен при переданном start_message_id.</param>
+		/// <returns></returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory"/>.
-		/// :TODO: Актуализировать параметры
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.21")]
-		public ReadOnlyCollection<Message> GetHistory(
-			long id,
-			bool isChat,
-			out int totalCount,
-			int? offset = null,
-			uint? count = 20,
-			bool? inReverse = null,
-			long? startMessageId = null)
+		[ApiVersion("5.37")]
+		public ReadOnlyCollection<Message> GetHistory(out int totalCount, bool isChat, ulong id, int? offset = null, uint? count = 20,
+			long? startMessageId = null, bool inReverse = false)
 		{
 			var parameters = new VkParameters
 							 {
@@ -158,7 +141,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<Message> GetById(IEnumerable<ulong> messageIds, out int totalCount, uint? previewLength = null)
+		public ReadOnlyCollection<Message> GetById(out int totalCount, IEnumerable<ulong> messageIds,  uint? previewLength = null)
 		{
 			var parameters = new VkParameters { { "message_ids", messageIds }, { "preview_length", previewLength } };
 
@@ -180,11 +163,10 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.28")]
 		public Message GetById(ulong messageId, uint? previewLength = null)
 		{
 			int totalCount;
-			var result = GetById(new[] {messageId}, out totalCount, previewLength);
+			var result = GetById(out totalCount, new[] { messageId }, previewLength);
 			if (result.Count > 0)
 			{
 				return result.First();
@@ -230,12 +212,12 @@ namespace VkNet.Categories
 			{
 				parameters.Add("count", count);
 			}
-			// :TODO: Падает при наличии вложений (URL некорректно парсится)
 			VkResponse response = _vk.Call("messages.getDialogs", parameters);
 
-			// При загрузке списка непрочитанных диалогов в параметре count передаеться значение unreadCount, 
+			// При загрузке списка непрочитанных диалогов в параметре count передается значение unreadCount, 
 			// а значение totalCount не возвращаеться
 			totalCount = response["count"];
+			VkResponseArray items = response["items"];
 			if (unread)
 			{
 				unreadCount = totalCount;
@@ -244,7 +226,7 @@ namespace VkNet.Categories
 			{
 				unreadCount = response.ContainsKey("unread_dialogs") ? response["unread_dialogs"] : 0;
 			}
-			return response["items"].ToReadOnlyCollectionOf<Message>(r => r);
+			return items.ToReadOnlyCollectionOf<Message>(r => r);
 		}
 
 		/// <summary>
@@ -309,8 +291,10 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search"/>.
+		/// :TODO: Проверить, падает
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.37")]
 		public ReadOnlyCollection<Message> Search([NotNull] string query, out int totalCount, int? count = null, int? offset = null)
 		{
 			if (string.IsNullOrEmpty(query))
@@ -648,14 +632,19 @@ namespace VkNet.Categories
 				parameters.Add("chat_ids", ids.Remove(ids.Length - 1, 1));
 			}
 			else
+			{
 				parameters.Add("chat_id", chatIds.ElementAt(0));
-
+			}
 			var response = _vk.Call("messages.getChat", parameters);
 
-			if (chatIds.Count<long>() > 1)
+			if (chatIds.Count() > 1)
+			{
 				return response.ToReadOnlyCollectionOf<Chat>(c => c);
+			}
 			else
-				return new ReadOnlyCollection<Chat>(new List<Chat> { response });
+			{
+				return new ReadOnlyCollection<Chat>(new List<Chat> {response});
+			}
 		}
 
 		/// <summary>
