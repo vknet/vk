@@ -61,7 +61,10 @@ namespace VkNet.Model
         /// </summary>
         public Collection<Attachment> Attachments { get; set; }
 
-        public Geo Geo { get; set; }
+		/// <summary>
+		/// Гео данные.
+		/// </summary>
+		public Geo Geo { get; set; }
 
         /// <summary>
         /// Массив пересланных сообщений (если есть).
