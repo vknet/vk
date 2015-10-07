@@ -225,11 +225,11 @@
 
         internal void _authorize(int appId, string email, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
         {
+            _stopTimer();
+
             var authorization = Browser.Authorize(appId, email, password, settings, code, captchaSid, captchaKey);
             if (!authorization.IsAuthorized)
                 throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
-
-            _stopTimer();
 
             int expireTime = Convert.ToInt32(authorization.ExpiresIn) - 10000;
             if (expireTime > 0)
