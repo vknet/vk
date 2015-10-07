@@ -121,9 +121,10 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.37")]
 		public ReadOnlyCollection<Group> GetById(IEnumerable<string> gids, GroupsFields fields = null)
 		{
-			var parameters = new VkParameters { { "gids", gids }, { "fields", fields } };
+			var parameters = new VkParameters { { "group_ids", gids }, { "fields", fields } };
 
 			VkResponseArray response = _vk.Call("groups.getById", parameters);
 			return response.ToReadOnlyCollectionOf<Group>(x => x);
@@ -155,9 +156,10 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.37")]
 		public Group GetById(string gid, GroupsFields fields = null)
 		{
-			var parameters = new VkParameters { { "gid", gid }, { "fields", fields } };
+			var parameters = new VkParameters { { "group_id", gid }, { "fields", fields } };
 
 			return _vk.Call("groups.getById", parameters)[0];
 		}
