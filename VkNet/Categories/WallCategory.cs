@@ -392,6 +392,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restore"/>.
         /// </remarks>
+		[Obsolete("Данный метод не реализован.")]
         public void Restore()
         {
             // TODO:
@@ -399,23 +400,47 @@
         }
 
         /// <summary>
-        /// Добавляет комментарий к записи на стене пользователя или сообщества. 
-        /// </summary>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addComment"/>.
-        /// </remarks>
-        public void AddComment()
-        {
-            // TODO:
-            throw new NotImplementedException();
-        }
+		/// Добавляет комментарий к записи на стене пользователя или сообщества. 
+		/// </summary>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addComment"/>.
+		/// </remarks>
+		/// <param name="ownerId"> идентификатор пользователя или сообщества, на чьей стене находится запись, 
+		/// к которой необходимо добавить комментарий. идентификатор сообщества в параметре owner_id 
+		/// необходимо указывать со знаком "-" </param>
+		/// <param name="postId"> идентификатор записи на стене пользователя или сообщества. </param>
+		/// <param name="text"> текст комментария к записи. </param>
+		/// <param name="from_group"> данный параметр учитывается, если owner_id < 0 (комментарий публикуется на стене группы).
+		/// 1 — комментарий будет опубликован от имени группы, 0 — комментарий будет опубликован от
+		/// имени пользователя (по умолчанию). </param>
+		/// <param name="reply_to_comment"> идентификатор комментария, в ответ на который должен быть добавлен новый комментарий. </param>
+		/// <param name="attachments"> список объектов, приложенных к комментарию и разделённых символом ",". </param>
+		/// <param name="sticker_id"> идентификатор стикера. </param>
+		/// <returns> После успешного выполнения возвращает идентификатор добавленного комментария (comment_id). </returns>
+		public bool AddComment(long ownerId, long postId, string text, bool from_group = false,
+			int? reply_to_comment = null, string[] attachments = null, uint? sticker_id = null) // ref строка ??
+		{
+			// TODO: Не все аргументы тестировались.
+			var parameters = new VkParameters
+			{
+				{ "owner_id", ownerId },
+				{ "post_id", postId },
+				{ "from_group", from_group ? 1 : 0 }, // или всё же bool?
+				{ "text", text },
+				{ "reply_to_comment", reply_to_comment },
+				{ "attachments", attachments },
+				{ "sticker_id", sticker_id }
+			};
+
+			return _vk.Call("wall.addComment", parameters)["comment_id"];
+		}
 
         /// <summary>
     	/// Удаляет комментарий текущего пользователя к записи на своей или чужой стене. 
     	/// </summary>
-    	/// <param name="commentId">Идентификатор пользователя, на чьей стене находится комментарий к записи. </param>
-    	/// <param name="ownerId">Идентификатор комментария.</param>
+    	/// <param name="ownerId">Идентификатор пользователя, на чьей стене находится комментарий к записи. </param>
+    	/// <param name="commentId">Идентификатор комментария.</param>
     	/// <remarks>
     	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
     	/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteComment"/>.
@@ -440,6 +465,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restoreComment"/>.
         /// </remarks>
+		[Obsolete("Данный метод не реализован.")]
         public void RestoreComment()
         {
             // TODO:
@@ -454,6 +480,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addLike"/>.
         /// </remarks>
+		[Obsolete("Данный метод не реализован.")]
         public void AddLike()
         {
             // TODO: ДАННЫЙ МЕТОД УСТАРЕЛ.
@@ -467,6 +494,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteLike"/>.
         /// </remarks>
+		[Obsolete("Данный метод не реализован.")]
         public void DeleteLike()
         {
             // TODO: ДАННЫЙ МЕТОД УСТАРЕЛ.
