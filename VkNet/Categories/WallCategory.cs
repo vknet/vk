@@ -417,20 +417,25 @@
         /// <param name="reply_to_comment"> идентификатор комментария, в ответ на который должен быть добавлен новый комментарий. </param>
         /// <param name="attachments"> список объектов, приложенных к комментарию и разделённых символом ",". </param>
         /// <param name="sticker_id"> идентификатор стикера. </param>
+        /// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
+        /// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
         /// <returns> После успешного выполнения возвращает идентификатор добавленного комментария (comment_id). </returns>
         public bool AddComment(long ownerId, long postId, string text, bool from_group = false,
-            int? reply_to_comment = null, string[] attachments = null, uint? sticker_id = null) // ref строка ??
+            int? reply_to_comment = null, string[] attachments = null, uint? sticker_id = null,
+            long? captchaSid = null, string captchaKey = null) // ref строка ??
         {
             // TODO: Не все аргументы тестировались.
             var parameters = new VkParameters
             {
                 { "owner_id", ownerId },
                 { "post_id", postId },
-                { "from_group", from_group ? 1 : 0 }, // или всё же bool?
+                { "from_group", from_group ? 1 : 0 },
                 { "text", text },
                 { "reply_to_comment", reply_to_comment },
                 { "attachments", attachments },
-                { "sticker_id", sticker_id }
+                { "sticker_id", sticker_id },
+                { "captcha_sid", captchaSid },
+                { "captcha_key", captchaKey }
             };
 
             return _vk.Call("wall.addComment", parameters)["comment_id"];
