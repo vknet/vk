@@ -420,7 +420,7 @@
         /// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
         /// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
         /// <returns> После успешного выполнения возвращает идентификатор добавленного комментария (comment_id). </returns>
-        public bool AddComment(long ownerId, long postId, string text, bool from_group = false,
+        public int AddComment(long ownerId, long postId, string text, bool from_group = false,
             int? reply_to_comment = null, string[] attachments = null, uint? sticker_id = null,
             long? captchaSid = null, string captchaKey = null) // ref строка ??
         {
@@ -443,13 +443,13 @@
 
         /// <summary>
         /// Удаляет комментарий текущего пользователя к записи на своей или чужой стене. 
-        /// </summary>
-        /// <param name="ownerId">Идентификатор пользователя, на чьей стене находится комментарий к записи. </param>
-        /// <param name="commentId">Идентификатор комментария.</param>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteComment"/>.
         /// </remarks>
+        /// </summary>
+        /// <param name="ownerId">Идентификатор пользователя, на чьей стене находится комментарий к записи. </param>
+        /// <param name="commentId">Идентификатор комментария.</param>
         public bool DeleteComment(long ownerId, long commentId)
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
@@ -465,16 +465,25 @@
 
         /// <summary>
         /// Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене. 
-        /// </summary>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restoreComment"/>.
         /// </remarks>
-        [Obsolete("Данный метод не реализован.")]
-        public void RestoreComment()
+        /// </summary>
+        /// <param name="ownerId">Идентификатор пользователя, на чьей стене находится комментарий к записи. </param>
+        /// <param name="commentId">Идентификатор комментария.</param>
+        /// <return> После успешного выполнения возвращает 1. </return>
+        public int RestoreComment(long ownerId, long commentId)
         {
-            // TODO:
-            throw new NotImplementedException();
+            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+
+            var parameters = new VkParameters
+            {
+                { "owner_id", ownerId },
+                { "comment_id", commentId }
+            };
+
+            return _vk.Call("wall.deleteComment", parameters);
         }
 
         /// <summary>
