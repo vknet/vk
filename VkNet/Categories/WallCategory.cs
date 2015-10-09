@@ -493,8 +493,9 @@
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addLike"/>.
+        /// Альтернативные методы: likes.add, wall.repost
         /// </remarks>
-        [Obsolete("Данный метод не реализован.")]
+        [Obsolete("Данный метод устарел. Используйте метод Wall.Repost или Likes.Add")]
         public void AddLike()
         {
             // TODO: ДАННЫЙ МЕТОД УСТАРЕЛ.
@@ -507,8 +508,9 @@
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteLike"/>.
+        /// Альтернативный метод: likes.delete <see cref="http://vk.com/dev/likes.delete"/>.
         /// </remarks>
-        [Obsolete("Данный метод не реализован.")]
+        [Obsolete("Данный метод устарел. Используйте Likes.Delete")]
         public void DeleteLike()
         {
             // TODO: ДАННЫЙ МЕТОД УСТАРЕЛ.
