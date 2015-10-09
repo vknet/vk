@@ -420,7 +420,7 @@
         /// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
         /// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
         /// <returns> После успешного выполнения возвращает идентификатор добавленного комментария (comment_id). </returns>
-        public int AddComment(long ownerId, long postId, string text, bool from_group = false,
+        public RepostResult AddComment(long ownerId, long postId, string text, bool from_group = false,
             int? reply_to_comment = null, string[] attachments = null, uint? sticker_id = null,
             long? captchaSid = null, string captchaKey = null) // ref строка ??
         {
@@ -438,7 +438,10 @@
                 { "captcha_key", captchaKey }
             };
 
-            return _vk.Call("wall.addComment", parameters)["comment_id"];
+            return _vk.Call("wall.addComment", parameters); // succes always false
+            //if (response.ContainsKey("comment_id"))
+            //    return response["comment_id"]; // never
+            //return response; TODO: Error: Can not convert Object to Int32
         }
 
         /// <summary>
