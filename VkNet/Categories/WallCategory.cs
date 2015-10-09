@@ -45,52 +45,52 @@
         public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			if (filter == WallFilter.Suggests && ownerId >= 0)
-		        throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
+            if (filter == WallFilter.Suggests && ownerId >= 0)
+                throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 
-	        var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
+            var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
 
-			VkResponse response = _vk.Call("wall.get", parameters);
+            VkResponse response = _vk.Call("wall.get", parameters);
 
             totalCount = response["count"];
 
             VkResponseArray items = response["items"];
-			return items.ToReadOnlyCollectionOf<Post>(r => r);
+            return items.ToReadOnlyCollectionOf<Post>(r => r);
         }
 
-	    /// <summary>
-	    /// Возвращает три  коллекции в out параметрах <paramref name="wallPosts"/>, <paramref name="profiles"/> и <paramref name="groups"/>. 
-	    /// </summary>
-	    /// <param name="ownerId">Идентификатор пользователя. Чтобы получить записи со стены группы (публичной страницы, встречи), укажите её идентификатор 
-	    /// со знаком "минус": например, owner_id=-1 соответствует группе с идентификатором 1.</param>
-	    /// <param name="wallPosts">Коллекция записей на стене.</param>
-		/// <param name="profiles">Коллекция профилей, так или иначе связанных с полученными в <paramref name="wallPosts"/> записями.</param>
-		/// <param name="groups">Коллекция групп, так или иначе связанных с полученными в <paramref name="wallPosts"/> записями.</param>
-	    /// <param name="count">Количество сообщений, которое необходимо получить (но не более 100).</param>
-	    /// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений.</param>
-	    /// <param name="filter">Типы сообщений, которые необходимо получить (по умолчанию возвращаются все сообщения).</param>
-	    /// <returns>В случае успеха возвращается количество записей на стене.</returns>
-	    /// <remarks>
-	    /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>, для случая, когда параметр extended = 1.
-	    /// </remarks>
-	    [Pure]
+        /// <summary>
+        /// Возвращает три  коллекции в out параметрах <paramref name="wallPosts"/>, <paramref name="profiles"/> и <paramref name="groups"/>. 
+        /// </summary>
+        /// <param name="ownerId">Идентификатор пользователя. Чтобы получить записи со стены группы (публичной страницы, встречи), укажите её идентификатор 
+        /// со знаком "минус": например, owner_id=-1 соответствует группе с идентификатором 1.</param>
+        /// <param name="wallPosts">Коллекция записей на стене.</param>
+        /// <param name="profiles">Коллекция профилей, так или иначе связанных с полученными в <paramref name="wallPosts"/> записями.</param>
+        /// <param name="groups">Коллекция групп, так или иначе связанных с полученными в <paramref name="wallPosts"/> записями.</param>
+        /// <param name="count">Количество сообщений, которое необходимо получить (но не более 100).</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений.</param>
+        /// <param name="filter">Типы сообщений, которые необходимо получить (по умолчанию возвращаются все сообщения).</param>
+        /// <returns>В случае успеха возвращается количество записей на стене.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>, для случая, когда параметр extended = 1.
+        /// </remarks>
+        [Pure]
         [ApiVersion("5.9")]
-		public int GetExtended(long ownerId, out ReadOnlyCollection<Post> wallPosts, out ReadOnlyCollection<User> profiles, out ReadOnlyCollection<Group> groups, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
-		{			   
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			if (filter == WallFilter.Suggests && ownerId >= 0)
-				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
+        public int GetExtended(long ownerId, out ReadOnlyCollection<Post> wallPosts, out ReadOnlyCollection<User> profiles, out ReadOnlyCollection<Group> groups, int? count = null, int? offset = null, WallFilter filter = WallFilter.All)
+        {
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
+            if (filter == WallFilter.Suggests && ownerId >= 0)
+                throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 
-			var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() }, {"extended", 1} };
-			var response = _vk.Call("wall.get", parameters);
+            var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() }, { "extended", 1 } };
+            var response = _vk.Call("wall.get", parameters);
 
-		    wallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r);
-			profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r);
-			groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r);
-		    return response["count"];
-		}
+            wallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r);
+            profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r);
+            groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r);
+            return response["count"];
+        }
 
 
         /// <summary>
@@ -124,11 +124,11 @@
             int previewLength = 0)
         {
             VkErrors.ThrowIfNumberIsNegative(() => postId);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => previewLength);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => previewLength);
 
-			var parameters = new VkParameters
+            var parameters = new VkParameters
                              {
                                  { "owner_id", ownerId },
                                  { "post_id", postId },
@@ -141,7 +141,7 @@
 
             var response = _vk.Call("wall.getComments", parameters);
 
-	        totalCount = response["count"];
+            totalCount = response["count"];
 
             return response["items"].ToReadOnlyCollectionOf<Comment>(c => c);
         }
@@ -160,14 +160,14 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById"/>.
         /// </remarks>
         [Pure]
-		[Obsolete]
-		public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts)
+        [Obsolete]
+        public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts)
         {
             if (posts == null)
                 throw new ArgumentNullException("posts");
 
-			if (!posts.Any())
-				throw new ArgumentException("Posts collection was empty.", "posts");
+            if (!posts.Any())
+                throw new ArgumentException("Posts collection was empty.", "posts");
 
             var parameters = new VkParameters { { "posts", posts } };
 
@@ -176,188 +176,188 @@
             return response.ToReadOnlyCollectionOf<Post>(x => x);
         }
 
-		/// <summary>
-		/// Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
-		/// </summary>
-		/// <param name="posts">
-		/// Список идентификаторов записей. Key - идентификатор пользователя (группы), Value - идентификатор записи (положительное число).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов записей со стены. 
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById"/>.
-		/// </remarks>
-		[Pure]
-		//TODO: добавить Extended версию и параметр copy_history_depth
-		public ReadOnlyCollection<Post> GetById(IEnumerable<KeyValuePair<long, long>> posts)
-		{
-			if (posts == null)
-				throw new ArgumentNullException("posts");
-			var pairs = posts as KeyValuePair<long, long>[] ?? posts.ToArray();
-			if (!pairs.Any())
-				throw new ArgumentException("Posts collection must have more then 0 elements.", "posts");
-
-			var builder = new StringBuilder();
-			foreach (var pair in pairs)
-			{
-				if(builder.Length != 0)
-					builder.AppendFormat(",");
-				builder.AppendFormat("{0}_{1}", pair.Key, pair.Value);
-			}
-			
-			var parameters = new VkParameters { { "posts", builder.ToString() } };
-
-			VkResponseArray response = _vk.Call("wall.getById", parameters);
-
-			return response.ToReadOnlyCollectionOf<Post>(x => x);
-		}
-
-
-	    /// <summary>
-	    /// Публикует новую запись на своей или чужой стене. 
-	    /// Данный метод позволяет создать новую запись на стене, а также опубликовать предложенную новость или отложенную запись. 
-	    /// </summary>
-		/// <param name="ownerId">Идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись. </param>
-	    /// <param name="friendsOnly">Доступна ли запись только друзьям (по умолчанию - доступна всем).</param>
-	    /// <param name="fromGroup">При публикации в группе показывает, от чьего имени публикуется запись (по умолчанию - от имени пользователя).</param>
-	    /// <param name="message">Тескт сообщения. Обязательное поле, если список <paramref name="mediaAttachments"/> не задан или пуст.</param>
-	    /// <param name="mediaAttachments">Список приложенных к записи объектов. 
-	    /// Обязательно наличие хотя бы одного элемента в списке, если <paramref name="message"/> не задано. 
-	    /// Свойства <see cref="MediaAttachment.Id"/> и <see cref="MediaAttachment.OwnerId"/> обязательно должны быть заданы. </param>
-	    /// <param name="url">Ссылка на внешнюю страницу. В строке может содержаться только одна ссылка.</param>
-		/// <param name="services">Список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию.
-		///  Например, twitter, facebook</param>
-	    /// <param name="signed">Добавляется ли подпись (имя опубликовавшего) к записи в группе, если запись сделана от имени группы.</param>
-		/// <param name="publishDate">Дата публикации записи. Если параметр указан, публикация записи будет отложена до указанного времени. </param>
-		/// <param name="lat">Географическая широта отметки, заданная в градусах (от -90 до 90).</param>
-		/// <param name="long">Географическая долгота отметки, заданная в градусах (от -180 до 180).</param>
-		/// <param name="placeId">Идентификатор места, в котором отмечен пользователь (положительное число).</param>
-		/// <param name="postId">Идентификатор записи, которую необходимо опубликовать. 
-		/// Данный параметр используется для публикации отложенных записей и предложенных новостей.
-		/// При публикации отложенной записи все параметры кроме owner_id и post_id игнорируются. </param>
-	    /// <returns>Идентификатор созданной записи</returns>
-	    /// <remarks>
-	    /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-	    /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.post"/>.
-	    /// </remarks>
-	    public long Post(long? ownerId = null, bool friendsOnly = false, bool fromGroup = false,
-			string message = null, IEnumerable<MediaAttachment> mediaAttachments = null, string url = null, 
-			string services = null, bool signed = false, DateTime? publishDate = null,
-			double? lat = null, double? @long = null, long? placeId = null, long? postId = null)
-		{
-			if (string.IsNullOrEmpty(message) && (mediaAttachments == null || !mediaAttachments.Any()) && string.IsNullOrEmpty(url))
-				throw new ArgumentException("Message and attachments cannot be null or empty at the same time.");
-			VkErrors.ThrowIfNumberIsNegative(() => placeId);
-			VkErrors.ThrowIfNumberIsNegative(() => postId);
-			if(lat.HasValue && (Math.Abs(lat.Value) > 90))
-			   throw new ArgumentOutOfRangeException("lat", lat, "lat must be at range from -90 to 90");
-			if (@long.HasValue && (Math.Abs(@long.Value) > 180))
-				throw new ArgumentOutOfRangeException("long", @long, "long must be at range from -90 to 90");
-
-			var attachments = mediaAttachments.JoinNonEmpty();
-			if (!string.IsNullOrEmpty(url))
-				attachments += (attachments.Length > 0 ? "," : string.Empty) + url;
-
-			var parameters = new VkParameters
-							{
-								{"owner_id", ownerId},
-								{"friends_only", friendsOnly},
-								{"from_group", fromGroup},
-								{"message", message},
-								{"attachments", attachments},
-								{"services", services},
-								{"signed", signed},
-								{"publish_date", publishDate},
-								{"lat", lat},
-								{"long", @long},
-								{"place_id", placeId},
-								{"post_id", postId}
-							};
-			return  _vk.Call("wall.post", parameters)["post_id"];
-		}
-
-
-	    /// <summary>
-		/// Копирует объект на стену пользователя или сообщества. 
-	    /// </summary>
-		/// <param name="object">Строковый идентификатор объекта, который необходимо разместить на стене, например, wall66748_3675 или wall-1_340364.</param>
-		/// <param name="message">Сопроводительный текст, который будет добавлен к записи с объектом.</param>
-		/// <param name="groupId">Идентификатор сообщества, на стене которого будет размещена запись с объектом. 
-		/// Если не указан, запись будет размещена на стене текущего пользователя. </param>
-	    /// <returns>Результат выполнения копирвоания и информация о скопированном объекте.</returns>
-	    public RepostResult Repost(string @object, string message = null, long? groupId = null)
-	    {
-			VkErrors.ThrowIfNullOrEmpty(() => @object);
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-
-		    var parameters = new VkParameters
-									{
-										{"object", @object},
-										{"message", message},
-										{"group_id", groupId}
-									};
-		    return _vk.Call("wall.repost", parameters);
-
-	    }
-
-		/// <summary>
-		/// Редактирует запись на стене. 
-		/// </summary>
-		/// <param name="postId">Идентификатор записи, которую необходимо отредактировать.</param>
-		/// <param name="ownerId">Идентификатор пользователя или сообщества, на стене которого опубликована запись.</param>
-		/// <param name="friendsOnly">Доступна ли запись только друзьям (по умолчанию - доступна всем).</param>
-		/// <param name="message">Тескт сообщения. Обязательное поле, если список <paramref name="mediaAttachments"/> не задан или пуст.</param>
-		/// <param name="mediaAttachments">Список приложенных к записи объектов. 
-		/// Обязательно наличие хотя бы одного элемента в списке, если <paramref name="message"/> не задано. 
-		/// Свойства <see cref="MediaAttachment.Id"/> и <see cref="MediaAttachment.OwnerId"/> обязательно должны быть заданы. </param>
-		/// <param name="url">Ссылка на внешнюю страницу. В строке может содержаться только одна ссылка.</param>
-		/// <param name="services">Список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию.
-		///  Например, twitter, facebook</param>
-		/// <param name="signed">Добавляется ли подпись (имя опубликовавшего) к записи в группе, если запись сделана от имени группы.</param>
-		/// <param name="publishDate">Дата публикации записи. Если параметр не указан, отложенная запись будет опубликована. 
-		/// Параметр учитывается только при редактировании отложенной записи.</param>
-		/// <param name="lat">Географическая широта отметки, заданная в градусах (от -90 до 90).</param>
-		/// <param name="long">Географическая долгота отметки, заданная в градусах (от -180 до 180).</param>
-		/// <param name="placeId">Идентификатор места, в котором отмечен пользователь (положительное число).</param>
-		/// <returns>Результат выполнения редактирования.</returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.edit"/>.
-		/// </remarks>
-		public bool Edit(long postId, long? ownerId = null, bool friendsOnly = false,
-			string message = null, IEnumerable<MediaAttachment> mediaAttachments = null, string url = null,
-			string services = null, bool signed = false, DateTime? publishDate = null,
-			double? lat = null, double? @long = null, long? placeId = null)
+        /// <summary>
+        /// Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
+        /// </summary>
+        /// <param name="posts">
+        /// Список идентификаторов записей. Key - идентификатор пользователя (группы), Value - идентификатор записи (положительное число).
+        /// </param>
+        /// <returns>
+        /// После успешного выполнения возвращает список объектов записей со стены. 
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById"/>.
+        /// </remarks>
+        [Pure]
+        //TODO: добавить Extended версию и параметр copy_history_depth
+        public ReadOnlyCollection<Post> GetById(IEnumerable<KeyValuePair<long, long>> posts)
         {
-			if (string.IsNullOrEmpty(message) && (mediaAttachments == null || !mediaAttachments.Any()) && string.IsNullOrEmpty(url))
-				throw new ArgumentException("Message and attachments cannot be null or empty at the same time.");
-			VkErrors.ThrowIfNumberIsNegative(() => placeId);
-			VkErrors.ThrowIfNumberIsNegative(() => postId);
-			if (lat.HasValue && (Math.Abs(lat.Value) > 90))
-				throw new ArgumentOutOfRangeException("lat", lat, "lat must be at range from -90 to 90");
-			if (@long.HasValue && (Math.Abs(@long.Value) > 180))
-				throw new ArgumentOutOfRangeException("long", @long, "long must be at range from -90 to 90");
+            if (posts == null)
+                throw new ArgumentNullException("posts");
+            var pairs = posts as KeyValuePair<long, long>[] ?? posts.ToArray();
+            if (!pairs.Any())
+                throw new ArgumentException("Posts collection must have more then 0 elements.", "posts");
 
-			var attachments = mediaAttachments.JoinNonEmpty();
-			if (!string.IsNullOrEmpty(url))
-				attachments += (attachments.Length > 0 ? "," : string.Empty) + url;
+            var builder = new StringBuilder();
+            foreach (var pair in pairs)
+            {
+                if (builder.Length != 0)
+                    builder.AppendFormat(",");
+                builder.AppendFormat("{0}_{1}", pair.Key, pair.Value);
+            }
 
-			var parameters = new VkParameters
-							{
-								{"post_id", postId},
-								{"owner_id", ownerId},
-								{"friends_only", friendsOnly},
-								{"message", message},
-								{"attachments", attachments},
-								{"services", services},
-								{"signed", signed},
-								{"publish_date", publishDate},
-								{"lat", lat},
-								{"long", @long},
-								{"place_id", placeId}
-							};
-			return _vk.Call("wall.edit", parameters);
+            var parameters = new VkParameters { { "posts", builder.ToString() } };
+
+            VkResponseArray response = _vk.Call("wall.getById", parameters);
+
+            return response.ToReadOnlyCollectionOf<Post>(x => x);
+        }
+
+
+        /// <summary>
+        /// Публикует новую запись на своей или чужой стене. 
+        /// Данный метод позволяет создать новую запись на стене, а также опубликовать предложенную новость или отложенную запись. 
+        /// </summary>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись. </param>
+        /// <param name="friendsOnly">Доступна ли запись только друзьям (по умолчанию - доступна всем).</param>
+        /// <param name="fromGroup">При публикации в группе показывает, от чьего имени публикуется запись (по умолчанию - от имени пользователя).</param>
+        /// <param name="message">Тескт сообщения. Обязательное поле, если список <paramref name="mediaAttachments"/> не задан или пуст.</param>
+        /// <param name="mediaAttachments">Список приложенных к записи объектов. 
+        /// Обязательно наличие хотя бы одного элемента в списке, если <paramref name="message"/> не задано. 
+        /// Свойства <see cref="MediaAttachment.Id"/> и <see cref="MediaAttachment.OwnerId"/> обязательно должны быть заданы. </param>
+        /// <param name="url">Ссылка на внешнюю страницу. В строке может содержаться только одна ссылка.</param>
+        /// <param name="services">Список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию.
+        ///  Например, twitter, facebook</param>
+        /// <param name="signed">Добавляется ли подпись (имя опубликовавшего) к записи в группе, если запись сделана от имени группы.</param>
+        /// <param name="publishDate">Дата публикации записи. Если параметр указан, публикация записи будет отложена до указанного времени. </param>
+        /// <param name="lat">Географическая широта отметки, заданная в градусах (от -90 до 90).</param>
+        /// <param name="long">Географическая долгота отметки, заданная в градусах (от -180 до 180).</param>
+        /// <param name="placeId">Идентификатор места, в котором отмечен пользователь (положительное число).</param>
+        /// <param name="postId">Идентификатор записи, которую необходимо опубликовать. 
+        /// Данный параметр используется для публикации отложенных записей и предложенных новостей.
+        /// При публикации отложенной записи все параметры кроме owner_id и post_id игнорируются. </param>
+        /// <returns>Идентификатор созданной записи</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.post"/>.
+        /// </remarks>
+        public long Post(long? ownerId = null, bool friendsOnly = false, bool fromGroup = false,
+            string message = null, IEnumerable<MediaAttachment> mediaAttachments = null, string url = null,
+            string services = null, bool signed = false, DateTime? publishDate = null,
+            double? lat = null, double? @long = null, long? placeId = null, long? postId = null)
+        {
+            if (string.IsNullOrEmpty(message) && (mediaAttachments == null || !mediaAttachments.Any()) && string.IsNullOrEmpty(url))
+                throw new ArgumentException("Message and attachments cannot be null or empty at the same time.");
+            VkErrors.ThrowIfNumberIsNegative(() => placeId);
+            VkErrors.ThrowIfNumberIsNegative(() => postId);
+            if (lat.HasValue && (Math.Abs(lat.Value) > 90))
+                throw new ArgumentOutOfRangeException("lat", lat, "lat must be at range from -90 to 90");
+            if (@long.HasValue && (Math.Abs(@long.Value) > 180))
+                throw new ArgumentOutOfRangeException("long", @long, "long must be at range from -90 to 90");
+
+            var attachments = mediaAttachments.JoinNonEmpty();
+            if (!string.IsNullOrEmpty(url))
+                attachments += (attachments.Length > 0 ? "," : string.Empty) + url;
+
+            var parameters = new VkParameters
+                            {
+                                {"owner_id", ownerId},
+                                {"friends_only", friendsOnly},
+                                {"from_group", fromGroup},
+                                {"message", message},
+                                {"attachments", attachments},
+                                {"services", services},
+                                {"signed", signed},
+                                {"publish_date", publishDate},
+                                {"lat", lat},
+                                {"long", @long},
+                                {"place_id", placeId},
+                                {"post_id", postId}
+                            };
+            return _vk.Call("wall.post", parameters)["post_id"];
+        }
+
+
+        /// <summary>
+        /// Копирует объект на стену пользователя или сообщества. 
+        /// </summary>
+        /// <param name="object">Строковый идентификатор объекта, который необходимо разместить на стене, например, wall66748_3675 или wall-1_340364.</param>
+        /// <param name="message">Сопроводительный текст, который будет добавлен к записи с объектом.</param>
+        /// <param name="groupId">Идентификатор сообщества, на стене которого будет размещена запись с объектом. 
+        /// Если не указан, запись будет размещена на стене текущего пользователя. </param>
+        /// <returns>Результат выполнения копирвоания и информация о скопированном объекте.</returns>
+        public RepostResult Repost(string @object, string message = null, long? groupId = null)
+        {
+            VkErrors.ThrowIfNullOrEmpty(() => @object);
+            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+
+            var parameters = new VkParameters
+                                    {
+                                        {"object", @object},
+                                        {"message", message},
+                                        {"group_id", groupId}
+                                    };
+            return _vk.Call("wall.repost", parameters);
+
+        }
+
+        /// <summary>
+        /// Редактирует запись на стене. 
+        /// </summary>
+        /// <param name="postId">Идентификатор записи, которую необходимо отредактировать.</param>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, на стене которого опубликована запись.</param>
+        /// <param name="friendsOnly">Доступна ли запись только друзьям (по умолчанию - доступна всем).</param>
+        /// <param name="message">Тескт сообщения. Обязательное поле, если список <paramref name="mediaAttachments"/> не задан или пуст.</param>
+        /// <param name="mediaAttachments">Список приложенных к записи объектов. 
+        /// Обязательно наличие хотя бы одного элемента в списке, если <paramref name="message"/> не задано. 
+        /// Свойства <see cref="MediaAttachment.Id"/> и <see cref="MediaAttachment.OwnerId"/> обязательно должны быть заданы. </param>
+        /// <param name="url">Ссылка на внешнюю страницу. В строке может содержаться только одна ссылка.</param>
+        /// <param name="services">Список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию.
+        ///  Например, twitter, facebook</param>
+        /// <param name="signed">Добавляется ли подпись (имя опубликовавшего) к записи в группе, если запись сделана от имени группы.</param>
+        /// <param name="publishDate">Дата публикации записи. Если параметр не указан, отложенная запись будет опубликована. 
+        /// Параметр учитывается только при редактировании отложенной записи.</param>
+        /// <param name="lat">Географическая широта отметки, заданная в градусах (от -90 до 90).</param>
+        /// <param name="long">Географическая долгота отметки, заданная в градусах (от -180 до 180).</param>
+        /// <param name="placeId">Идентификатор места, в котором отмечен пользователь (положительное число).</param>
+        /// <returns>Результат выполнения редактирования.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.edit"/>.
+        /// </remarks>
+        public bool Edit(long postId, long? ownerId = null, bool friendsOnly = false,
+            string message = null, IEnumerable<MediaAttachment> mediaAttachments = null, string url = null,
+            string services = null, bool signed = false, DateTime? publishDate = null,
+            double? lat = null, double? @long = null, long? placeId = null)
+        {
+            if (string.IsNullOrEmpty(message) && (mediaAttachments == null || !mediaAttachments.Any()) && string.IsNullOrEmpty(url))
+                throw new ArgumentException("Message and attachments cannot be null or empty at the same time.");
+            VkErrors.ThrowIfNumberIsNegative(() => placeId);
+            VkErrors.ThrowIfNumberIsNegative(() => postId);
+            if (lat.HasValue && (Math.Abs(lat.Value) > 90))
+                throw new ArgumentOutOfRangeException("lat", lat, "lat must be at range from -90 to 90");
+            if (@long.HasValue && (Math.Abs(@long.Value) > 180))
+                throw new ArgumentOutOfRangeException("long", @long, "long must be at range from -90 to 90");
+
+            var attachments = mediaAttachments.JoinNonEmpty();
+            if (!string.IsNullOrEmpty(url))
+                attachments += (attachments.Length > 0 ? "," : string.Empty) + url;
+
+            var parameters = new VkParameters
+                            {
+                                {"post_id", postId},
+                                {"owner_id", ownerId},
+                                {"friends_only", friendsOnly},
+                                {"message", message},
+                                {"attachments", attachments},
+                                {"services", services},
+                                {"signed", signed},
+                                {"publish_date", publishDate},
+                                {"lat", lat},
+                                {"long", @long},
+                                {"place_id", placeId}
+                            };
+            return _vk.Call("wall.edit", parameters);
         }
 
         /// <summary>
@@ -392,7 +392,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restore"/>.
         /// </remarks>
-		[Obsolete("Данный метод не реализован.")]
+        [Obsolete("Данный метод не реализован.")]
         public void Restore()
         {
             // TODO:
@@ -400,63 +400,63 @@
         }
 
         /// <summary>
-		/// Добавляет комментарий к записи на стене пользователя или сообщества. 
-		/// </summary>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addComment"/>.
-		/// </remarks>
-		/// <param name="ownerId"> идентификатор пользователя или сообщества, на чьей стене находится запись, 
-		/// к которой необходимо добавить комментарий. идентификатор сообщества в параметре owner_id 
-		/// необходимо указывать со знаком "-" </param>
-		/// <param name="postId"> идентификатор записи на стене пользователя или сообщества. </param>
-		/// <param name="text"> текст комментария к записи. </param>
-		/// <param name="from_group"> данный параметр учитывается, если owner_id < 0 (комментарий публикуется на стене группы).
-		/// 1 — комментарий будет опубликован от имени группы, 0 — комментарий будет опубликован от
-		/// имени пользователя (по умолчанию). </param>
-		/// <param name="reply_to_comment"> идентификатор комментария, в ответ на который должен быть добавлен новый комментарий. </param>
-		/// <param name="attachments"> список объектов, приложенных к комментарию и разделённых символом ",". </param>
-		/// <param name="sticker_id"> идентификатор стикера. </param>
-		/// <returns> После успешного выполнения возвращает идентификатор добавленного комментария (comment_id). </returns>
-		public bool AddComment(long ownerId, long postId, string text, bool from_group = false,
-			int? reply_to_comment = null, string[] attachments = null, uint? sticker_id = null) // ref строка ??
-		{
-			// TODO: Не все аргументы тестировались.
-			var parameters = new VkParameters
-			{
-				{ "owner_id", ownerId },
-				{ "post_id", postId },
-				{ "from_group", from_group ? 1 : 0 }, // или всё же bool?
-				{ "text", text },
-				{ "reply_to_comment", reply_to_comment },
-				{ "attachments", attachments },
-				{ "sticker_id", sticker_id }
-			};
+        /// Добавляет комментарий к записи на стене пользователя или сообщества. 
+        /// </summary>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addComment"/>.
+        /// </remarks>
+        /// <param name="ownerId"> идентификатор пользователя или сообщества, на чьей стене находится запись, 
+        /// к которой необходимо добавить комментарий. идентификатор сообщества в параметре owner_id 
+        /// необходимо указывать со знаком "-" </param>
+        /// <param name="postId"> идентификатор записи на стене пользователя или сообщества. </param>
+        /// <param name="text"> текст комментария к записи. </param>
+        /// <param name="from_group"> данный параметр учитывается, если owner_id < 0 (комментарий публикуется на стене группы).
+        /// 1 — комментарий будет опубликован от имени группы, 0 — комментарий будет опубликован от
+        /// имени пользователя (по умолчанию). </param>
+        /// <param name="reply_to_comment"> идентификатор комментария, в ответ на который должен быть добавлен новый комментарий. </param>
+        /// <param name="attachments"> список объектов, приложенных к комментарию и разделённых символом ",". </param>
+        /// <param name="sticker_id"> идентификатор стикера. </param>
+        /// <returns> После успешного выполнения возвращает идентификатор добавленного комментария (comment_id). </returns>
+        public bool AddComment(long ownerId, long postId, string text, bool from_group = false,
+            int? reply_to_comment = null, string[] attachments = null, uint? sticker_id = null) // ref строка ??
+        {
+            // TODO: Не все аргументы тестировались.
+            var parameters = new VkParameters
+            {
+                { "owner_id", ownerId },
+                { "post_id", postId },
+                { "from_group", from_group ? 1 : 0 }, // или всё же bool?
+                { "text", text },
+                { "reply_to_comment", reply_to_comment },
+                { "attachments", attachments },
+                { "sticker_id", sticker_id }
+            };
 
-			return _vk.Call("wall.addComment", parameters)["comment_id"];
-		}
+            return _vk.Call("wall.addComment", parameters)["comment_id"];
+        }
 
         /// <summary>
-    	/// Удаляет комментарий текущего пользователя к записи на своей или чужой стене. 
-    	/// </summary>
-    	/// <param name="ownerId">Идентификатор пользователя, на чьей стене находится комментарий к записи. </param>
-    	/// <param name="commentId">Идентификатор комментария.</param>
-    	/// <remarks>
-    	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-    	/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteComment"/>.
-    	/// </remarks>
-    	public bool DeleteComment(long ownerId, long commentId)
-    	{
-        	VkErrors.ThrowIfNumberIsNegative(() => commentId);
+        /// Удаляет комментарий текущего пользователя к записи на своей или чужой стене. 
+        /// </summary>
+        /// <param name="ownerId">Идентификатор пользователя, на чьей стене находится комментарий к записи. </param>
+        /// <param name="commentId">Идентификатор комментария.</param>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteComment"/>.
+        /// </remarks>
+        public bool DeleteComment(long ownerId, long commentId)
+        {
+            VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
-        	var parameters = new VkParameters
-             		{
-                         	{ "owner_id", ownerId },
-                         	{ "comment_id", commentId }
-             		};
+            var parameters = new VkParameters
+                    {
+                            { "owner_id", ownerId },
+                            { "comment_id", commentId }
+                    };
 
-        	return _vk.Call("wall.deleteComment", parameters);
-    	}
+            return _vk.Call("wall.deleteComment", parameters);
+        }
 
         /// <summary>
         /// Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене. 
@@ -465,7 +465,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restoreComment"/>.
         /// </remarks>
-		[Obsolete("Данный метод не реализован.")]
+        [Obsolete("Данный метод не реализован.")]
         public void RestoreComment()
         {
             // TODO:
@@ -480,7 +480,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addLike"/>.
         /// </remarks>
-		[Obsolete("Данный метод не реализован.")]
+        [Obsolete("Данный метод не реализован.")]
         public void AddLike()
         {
             // TODO: ДАННЫЙ МЕТОД УСТАРЕЛ.
@@ -494,11 +494,11 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteLike"/>.
         /// </remarks>
-		[Obsolete("Данный метод не реализован.")]
+        [Obsolete("Данный метод не реализован.")]
         public void DeleteLike()
         {
             // TODO: ДАННЫЙ МЕТОД УСТАРЕЛ.
             throw new NotImplementedException();
-        } 
+        }
     }
 }
