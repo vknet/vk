@@ -202,5 +202,48 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(histories, Is.Not.Null);
 		}
+
+		[Test]
+		public void GetTitles_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/pages.getTitles?group_id=103292418&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': [{
+						'id': 50010549,
+						'title': 'Условия оплаты и доставки',
+						'group_id': 103292418,
+						'created': 1443433192,
+						'edited': 1444653608,
+						'who_can_view': 2,
+						'who_can_edit': 0,
+						'views': 0,
+						'creator_id': 32190123,
+						'creator_name': 'Максим Инютин',
+						'editor_id': 32190123,
+						'editor_name': 'Максим Инютин'
+						}, {
+						'id': 50050492,
+						'title': 'Свежие новости',
+						'group_id': 103292418,
+						'created': 1444643546,
+						'edited': 1444651212,
+						'who_can_view': 0,
+						'who_can_edit': 0,
+						'views': 1,
+						'creator_id': 32190123,
+						'creator_name': 'Максим Инютин',
+						'editor_id': 32190123,
+						'editor_name': 'Максим Инютин'
+						}
+					]
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var titles = db.GetTitles(103292418);
+
+			Assert.That(titles, Is.Not.Null);
+		}
 	}
 }

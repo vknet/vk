@@ -230,9 +230,15 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.getTitles" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool GetTitles()
+		public ReadOnlyCollection<Page> GetTitles(long groupId)
 		{
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId }
+			};
+			VkResponseArray result = _vk.Call("pages.getTitles", parameters);
+
+			return result.ToReadOnlyCollectionOf<Page>(x => x);
 		}
 
 
