@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void Get_NormalCase()
+		public void Get1_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/pages.get?owner_id=-103292418&global=0&site_preview=0&title=Свежие новости&need_source=0&need_html=0&v=5.37&access_token=token";
 			const string json =
@@ -57,6 +57,80 @@ namespace VkNet.Tests.Categories
 			Assert.That(page.EditorId, Is.EqualTo(32190123));
 			Assert.That(page.CreatorId, Is.EqualTo(32190123));
 			Assert.That(page.ViewUrl, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
+		}
+
+		[Test]
+		public void Get2_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/pages.get?owner_id=-103292418&page_id=50050492&global=0&site_preview=0&need_source=0&need_html=0&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': {
+					  'id': 50050492,
+					  'group_id': 103292418,
+					  'title': 'Свежие новости',
+					  'current_user_can_edit': 1,
+					  'current_user_can_edit_access': 1,
+					  'who_can_view': 1,
+					  'who_can_edit': 0,
+					  'edited': 1444643546,
+					  'created': 1444643546,
+					  'views': 1,
+					  'editor_id': 32190123,
+					  'creator_id': 32190123,
+					  'view_url': 'http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e'
+					}
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var page = db.Get(-103292418, 50050492);
+
+			Assert.That(page.Id, Is.EqualTo(50050492));
+			Assert.That(page.GroupId, Is.EqualTo(103292418));
+			Assert.That(page.Title, Is.EqualTo("Свежие новости"));
+			Assert.That(page.CurrentUserCanEdit, Is.EqualTo(true));
+			Assert.That(page.CurrentUserCanEditAccess, Is.EqualTo(true));
+
+			Assert.That(page.WhoCanEdit, Is.EqualTo(PageAccessKind.OnlyAdministrators));
+			Assert.That(page.WhoCanView, Is.EqualTo(PageAccessKind.OnlyMembers));
+			Assert.That(page.Edited, Is.EqualTo("1444643546"));
+			Assert.That(page.CreateTime, Is.EqualTo("1444643546"));
+			Assert.That(page.EditorId, Is.EqualTo(32190123));
+			Assert.That(page.CreatorId, Is.EqualTo(32190123));
+			Assert.That(page.ViewUrl, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
+		}
+
+		[Test]
+		public void Save1_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/pages.save?text=123&groupId=103292418&user_id=32190123&title=Свежие новости&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': 50050492
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var page = db.Save("123", 103292418, "Свежие новости", 32190123);
+
+			Assert.That(page, Is.EqualTo(50050492));
+		}
+
+		[Test]
+		public void Save2_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/pages.save?text=123&groupId=103292418&user_id=32190123&page_id=50050492&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': 50050492
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var page = db.Save("123", 103292418, 50050492, 32190123);
+
+			Assert.That(page, Is.EqualTo(50050492));
 		}
 	}
 }
