@@ -148,5 +148,59 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(page, Is.EqualTo(50050492));
 		}
+
+		[Test]
+		public void GetHistory_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/pages.getHistory?page_id=50050492&group_id=103292418&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': [
+						{
+						'id': 184657345,
+						'length': 3,
+						'date': 1444651212,
+						'editor_id': 32190123,
+						'editor_name': 'Максим Инютин'
+						}, {
+						'id': 184657327,
+						'length': 3,
+						'date': 1444651093,
+						'editor_id': 32190123,
+						'editor_name': 'Максим Инютин'
+						}, {
+						'id': 184657321,
+						'length': 3,
+						'date': 1444651048,
+						'editor_id': 32190123,
+						'editor_name': 'Максим Инютин'
+						}, {
+						'id': 184657309,
+						'length': 3,
+						'date': 1444650925,
+						'editor_id': 32190123,
+						'editor_name': 'Максим Инютин'
+						}, {
+						'id': 184657308,
+						'length': 3,
+						'date': 1444650923,
+						'editor_id': 32190123,
+						'editor_name': 'Максим Инютин'
+						}, {
+						'id': 184657135,
+						'length': 4,
+						'date': 1444644359,
+						'editor_id': 32190123,
+						'editor_name': 'Максим Инютин'
+						}
+					]
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var histories = db.GetHistory(50050492, 103292418);
+
+			Assert.That(histories, Is.Not.Null);
+		}
 	}
 }

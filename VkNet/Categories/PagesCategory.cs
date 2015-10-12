@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using VkNet.Enums;
+using VkNet.Model;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
@@ -24,6 +26,7 @@ namespace VkNet.Categories
 		{
 			_vk = vk;
 		}
+
 		/// <summary>
 		/// get
 		/// </summary>
@@ -31,7 +34,6 @@ namespace VkNet.Categories
 		/// <param name="pageId">Идентификатор вики-страницы.</param>
 		/// <param name="global"><c>true</c> — требуется получить информацию о глобальной вики-странице. </param>
 		/// <param name="sitePreview"><c>true</c>— получаемая wiki страница является предпросмотром для прикрепленной ссылки.</param>
-		/// <param name="title">Название страницы.</param>
 		/// <param name="needSource"><c>true</c> — требуется вернуть содержимое страницы в вики-формате.</param>
 		/// <param name="needHtml"><c>true</c> — требуется вернуть html-представление страницы.</param>
 		/// <returns>
@@ -206,9 +208,17 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.getHistory" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool GetHistory()
+		public ReadOnlyCollection<History> GetHistory(long pageId, long groupId, long? userId = null)
 		{
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "page_id", pageId },
+				{ "group_id", groupId },
+				{ "user_id", userId }
+			};
+			VkResponseArray result = _vk.Call("pages.getHistory", parameters);
+			
+			return result.ToReadOnlyCollectionOf<History>(x => x);
 		}
 
 
