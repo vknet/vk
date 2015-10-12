@@ -57,6 +57,7 @@
     <Compile Include="Categories\FaveCategoryTest.cs" />
     <Compile Include="Categories\GroupsCategoryTest.cs" />
     <Compile Include="Categories\MessagesCategoryTest.cs" />
+    <Compile Include="Categories\PagesCategoryTest.cs" />
     <Compile Include="Categories\PhotosCategoryTest.cs" />
     <Compile Include="Categories\StatusCategoryTest.cs" />
     <Compile Include="Categories\UtilsCategoryTest.cs" />

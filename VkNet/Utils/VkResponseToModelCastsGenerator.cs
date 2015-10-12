@@ -253,6 +253,16 @@ namespace VkNet.Utils
             return response.ToCollectionOf<Group>(a => a);
         }
 
+		public static implicit operator History(VkResponse response)
+		{
+			return response == null || response._token == null || !response._token.HasValues ? null : History.FromJson(response);
+		}
+
+		public static implicit operator Collection<History>(VkResponse response)
+		{
+			return response.ToCollectionOf<History>(a => a);
+		}
+
 		public static implicit operator GroupMember(VkResponse response)
 		{
 			return response == null || response._token == null || !response._token.HasValues ? null : GroupMember.FromJson(response);

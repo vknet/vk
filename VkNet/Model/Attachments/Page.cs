@@ -86,6 +86,8 @@ namespace VkNet.Model.Attachments
 
         public string ViewUrl { get; set; }
 
+		public string VersionCreated { get; set; }
+		
         #endregion
 
         #region Методы
@@ -94,7 +96,7 @@ namespace VkNet.Model.Attachments
         {
             var page = new Page();
 
-            page.Id = response["pid"] ?? response["id"];
+            page.Id = response["pid"] ?? response["page_id"] ?? response["id"];
             page.GroupId = response["group_id"] ?? response["gid"];
             page.CreatorId = response["creator_id"];
             page.Title = response["title"];
@@ -111,10 +113,13 @@ namespace VkNet.Model.Attachments
 
             page.Html = response["html"]; // установлено экcпериментальным путем
             page.ViewUrl = response["view_url"];
-
+	        page.VersionCreated = response["version_created"];
             return page;
         }
 
+		/// <summary>
+		/// Преобразовать в строку.
+		/// </summary>
 		public override string ToString()
 		{
 			return string.Format("page{0}_{1}", GroupId, Id);

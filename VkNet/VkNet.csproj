@@ -57,9 +57,11 @@
     <Compile Include="Categories\AudioCategory.cs" />
     <Compile Include="Categories\DocsCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
+    <Compile Include="Categories\PagesCategory.cs" />
     <Compile Include="Categories\PhotoCategory.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\AccessPages.cs" />
     <Compile Include="Enums\CommentPrivacy.cs" />
     <Compile Include="Enums\ContentAccess.cs" />
     <Compile Include="Enums\Filters\CountersFilter.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Model\Attachments\Poll.cs" />
     <Compile Include="Model\Group\GroupInfo.cs" />
     <Compile Include="Model\Group\GroupMember.cs" />
+    <Compile Include="Model\History.cs" />
     <Compile Include="Model\PhotoAlbum.cs" />
     <Compile Include="Model\PollAnswer.cs" />
     <Compile Include="Model\PostSource.cs" />
