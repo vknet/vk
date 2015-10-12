@@ -250,9 +250,17 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.getVersion" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool GetVersion()
+		public Page GetVersion(long versionId, long groupId, bool needHtml = false, long? userId = null)
 		{
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "version_id", versionId },
+				{ "group_id", groupId },
+				{ "user_id", userId },
+				{ "need_html", needHtml }
+			};
+
+			return _vk.Call("pages.getTitles", parameters);
 		}
 
 

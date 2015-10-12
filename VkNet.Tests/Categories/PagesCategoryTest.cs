@@ -245,5 +245,42 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(titles, Is.Not.Null);
 		}
+
+		[Test]
+		public void GetVersion_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/pages.getTitles?version_id=184657135&group_id=103292418&need_html=0&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': {
+						'id': 184657135,
+						'page_id': 50050492,
+						'group_id': 103292418,
+						'title': 'Свежие новости',
+						'source': 'test',
+						'current_user_can_edit': 1,
+						'who_can_view': 0,
+						'who_can_edit': 0,
+						'version_created': 1444644359,
+						'creator_id': 32190123,
+						'html': '<!--4-->test '
+					}
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var version = db.GetVersion(184657135, 103292418);
+
+			Assert.That(version.Id, Is.EqualTo(50050492));
+			Assert.That(version.GroupId, Is.EqualTo(103292418));
+			Assert.That(version.Title, Is.EqualTo("Свежие новости"));
+			Assert.That(version.Source, Is.EqualTo("test"));
+			Assert.That(version.CurrentUserCanEdit, Is.EqualTo(true));
+			Assert.That(version.WhoCanView, Is.EqualTo(PageAccessKind.OnlyAdministrators));
+			Assert.That(version.WhoCanEdit, Is.EqualTo(PageAccessKind.OnlyAdministrators));
+			Assert.That(version.VersionCreated, Is.EqualTo("1444644359"));
+			Assert.That(version.CreatorId, Is.EqualTo(32190123));
+			Assert.That(version.Html, Is.EqualTo("<!--4-->test "));
+		}
 	}
 }
