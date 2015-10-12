@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Enums;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
@@ -168,16 +169,32 @@ namespace VkNet.Categories
 
 
 		/// <summary>
-		/// saveAccess
+		/// Сохраняет новые настройки доступа на чтение и редактирование вики-страницы.
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="pageId">Идентификатор вики-страницы. </param>
+		/// <param name="groupId">Идентификатор сообщества, которому принадлежит вики-страница.</param>
+		/// <param name="userId">Идентификатор пользователя, создавшего вики-страницу.</param>
+		/// <param name="view">Значение настройки доступа на чтение.</param>
+		/// <param name="edit">Значение настройки доступа на редактирование.</param>
+		/// <returns>
+		/// В случае успеха возвращает id страницы, доступ к которой был отредактирован.
+		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.saveAccess" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool SaveAccess()
+		public long SaveAccess(long pageId, long groupId, long? userId = null, AccessPages view = AccessPages.All, AccessPages edit = AccessPages.Leaders)
 		{
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "page_id", pageId },
+				{ "group_id", groupId },
+				{ "user_id", userId },
+				{ "view", view },
+				{ "edit", edit }
+			};
+
+			return _vk.Call("pages.saveAccess", parameters);
 		}
 
 

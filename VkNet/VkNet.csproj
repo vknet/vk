@@ -61,6 +61,7 @@
     <Compile Include="Categories\PhotoCategory.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\AccessPages.cs" />
     <Compile Include="Enums\CommentPrivacy.cs" />
     <Compile Include="Enums\ContentAccess.cs" />
     <Compile Include="Enums\Filters\CountersFilter.cs" />

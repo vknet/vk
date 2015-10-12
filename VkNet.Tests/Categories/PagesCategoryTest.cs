@@ -132,5 +132,21 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(page, Is.EqualTo(50050492));
 		}
+
+		[Test]
+		public void SaveAccess_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/pages.saveAccess?page_id=50050492&group_id=103292418&view=2&edit=0&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': 50050492
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var page = db.SaveAccess(50050492, 103292418);
+
+			Assert.That(page, Is.EqualTo(50050492));
+		}
 	}
 }
