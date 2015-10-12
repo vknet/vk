@@ -6,6 +6,12 @@ using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
 {
+#if WINDOWS_PHONE
+	using System.Net;
+#else
+	using System.Web;
+
+#endif
 	using Utils;
 
 	/// <summary>
@@ -272,9 +278,15 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.parseWiki" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool ParseWiki()
+		public string ParseWiki(string text, ulong groupId)
 		{
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "text", HttpUtility.UrlEncode(text) },
+				{ "group_id", groupId }
+			};
+
+			return _vk.Call("pages.parseWiki", parameters);
 		}
 
 
@@ -286,9 +298,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.clearCache" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool ClearCache()
+		public bool ClearCache(Uri url)
 		{
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "url", url }
+			};
+
+			return _vk.Call("pages.clearCache", parameters);
 		}
 
 

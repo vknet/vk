@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using FluentNUnit;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -281,6 +283,22 @@ namespace VkNet.Tests.Categories
 			Assert.That(version.VersionCreated, Is.EqualTo("1444644359"));
 			Assert.That(version.CreatorId, Is.EqualTo(32190123));
 			Assert.That(version.Html, Is.EqualTo("<!--4-->test "));
+		}
+
+		[Test]
+		public void ClearCache()
+		{
+			const string url = "https://api.vk.com/method/pages.parseWiki?url=https://www.vk.com/dev/groups.addLink&v=5.37&access_token=token";
+			const string json =
+				@"{
+					'response': 1
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var cache = db.ClearCache(new Uri("https://www.vk.com/dev/groups.addLink"));
+			cache.ShouldBeTrue();
+
 		}
 	}
 }
