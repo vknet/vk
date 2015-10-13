@@ -82,6 +82,11 @@ namespace VkNet.Utils
 			return Utilities.EnumFrom<Sex>(response);
 		}
 
-
+		public static implicit operator GiftPrivacy(VkResponse response)
+		{
+			if (response == null)
+				return GiftPrivacy.NameHideMessageUser;
+			return Utilities.EnumFrom<GiftPrivacy>(response);
+		}
 	}
 }

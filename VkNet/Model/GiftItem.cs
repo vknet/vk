@@ -1,0 +1,63 @@
+﻿using VkNet.Enums;
+using VkNet.Model.Attachments;
+using VkNet.Utils;
+
+namespace VkNet.Model
+{
+	/// <summary>
+	/// Подарок.
+	/// </summary>
+	public class GiftItem
+	{
+		/// <summary>
+		/// Идентификатор полученного подарка.
+		/// </summary>
+		public ulong Id { get; set; }
+
+		/// <summary>
+		/// Идентификатор пользователя, который отправил подарок, или 0, если отправитель скрыт.
+		/// </summary>
+		public ulong FromId { get; set; }
+
+		/// <summary>
+		/// Текст сообщения, приложенного к подарку.
+		/// </summary>
+		public string Message { get; set; }
+
+		/// <summary>
+		/// Время отправки подарка в формате unixtime.
+		/// </summary>
+		public string Date { get; set; }
+
+		/// <summary>
+		/// Подарок.
+		/// </summary>
+		public Gift Gift { get; set; }
+
+		/// <summary>
+		/// Значение приватности подарка (только для текущего пользователя).
+		/// </summary>
+		public GiftPrivacy Privacy { get; set; }
+
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static GiftItem FromJson(VkResponse response)
+		{
+			var giftItem = new GiftItem
+			{
+				Id = response["id"],
+				FromId = response["from_id"],
+				Message = response["message"],
+				Date = response["date"],
+				Gift = response["gift"],
+				Privacy = response["privacy"]
+			};
+
+			return giftItem;
+		}
+	}
+}

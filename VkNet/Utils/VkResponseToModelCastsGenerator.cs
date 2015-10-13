@@ -597,5 +597,14 @@ namespace VkNet.Utils
             return response.ToCollectionOf<WallReply>(a => a);
         }
 
+		public static implicit operator GiftItem(VkResponse response)
+		{
+			return response == null || response._token == null || !response._token.HasValues ? null : GiftItem.FromJson(response);
+		}
+
+		public static implicit operator Collection<GiftItem>(VkResponse response)
+		{
+			return response.ToCollectionOf<GiftItem>(a => a);
+		}
 	}
 }
