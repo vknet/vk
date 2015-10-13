@@ -34,7 +34,7 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/gifts.get?user_id=32190123&v=5.37&access_token=token";
 			const string json =
 				@"{
-                    'response': {
+					'response': {
 						'count': 5,
 						'items': [
 							{
@@ -105,7 +105,7 @@ namespace VkNet.Tests.Categories
 							}
 						]
 					}
-                  }";
+				  }";
 			var audio = GetMockedGiftsCategory(url, json);
 			int total;
 			var gifts = audio.Get(out total, 32190123);
@@ -120,7 +120,6 @@ namespace VkNet.Tests.Categories
 			Assert.That(gifts[0].Gift.Thumb96, Is.EqualTo(@"http://vk.com/images/gift/711/96.png"));
 			Assert.That(gifts[0].Gift.Thumb48, Is.EqualTo(@"http://vk.com/images/gift/711/48.png"));
 			Assert.That(gifts[0].Privacy, Is.EqualTo(GiftPrivacy.All));
-			Assert.That(gifts[0].GiftHash, Is.EqualTo(@"GHtdZoFyFji3D0ulvWpSWD24ZDZf5bBHrkDUVF9wBoQrgO2HTdcEs7Qo63A/TWWEMUcMyI7HyYlAVNCgbzVfPIR7Exme28kZeSessZt4smEuavmtfK04n*D3HBB8CHLZeStwNQuJJ8wID8s5ZR7OBT*virUoYNWqda3s6uC2DWo-"));
 		}
 
 	}
