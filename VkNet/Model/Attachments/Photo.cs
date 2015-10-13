@@ -4,7 +4,7 @@
 
     using Utils;
 
-	/// <summary>
+    /// <summary>
     /// Фотография.
     /// </summary>
     /// <remarks>
@@ -12,10 +12,10 @@
     /// </remarks>
     public class Photo : MediaAttachment
     {
-		static Photo()
-		{
-			RegisterType(typeof (Photo), "photo");
-		}
+        static Photo()
+        {
+            RegisterType(typeof(Photo), "photo");
+        }
 
         /// <summary>
         /// Идентификатор альбома, в котором находится фотография.
@@ -51,6 +51,21 @@
         /// Url фотографии с максимальным размером  2560x2048px.
         /// </summary>
         public Uri Photo2560 { get; set; }
+
+        /// <summary> Получить Tuple Uri и текст размера фотографии с максимально доступным размером. </summary>
+        public Tuple<Uri, string> GetMaxSizePhotoUri
+        {
+            get
+            {
+                if (Photo2560 != null) return new Tuple<Uri, string>(Photo2560, "2560x2048 px");
+                if (Photo1280 != null) return new Tuple<Uri, string>(Photo2560, "1280x1024 px");
+                if (Photo807  != null) return new Tuple<Uri, string>(Photo2560, "807x807 px");
+                if (Photo604  != null) return new Tuple<Uri, string>(Photo2560, "604x604 px");
+                if (Photo130  != null) return new Tuple<Uri, string>(Photo2560, "130x130 px");
+                if (Photo75   != null) return new Tuple<Uri, string>(Photo2560, "75x75 px");
+                return null;
+            }
+        }
 
         /// <summary>
         /// Ширина оригинала фотографии в пикселах
@@ -125,15 +140,15 @@
         public Uri PhotoSrc { get; set; }
         public Uri PhotoHash { get; set; }
 
-	    /// <summary>
-	    /// Географическая широта отметки, заданная в градусах
-	    /// </summary>
-	    public double? Latitude;
+        /// <summary>
+        /// Географическая широта отметки, заданная в градусах
+        /// </summary>
+        public double? Latitude;
 
         /// <summary>
         /// Географическая долгота отметки, заданная в градусах
         /// </summary>
-	    public double? Longitude;
+        public double? Longitude;
 
         #region Методы
 
