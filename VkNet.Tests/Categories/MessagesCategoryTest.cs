@@ -106,7 +106,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetHistory_ContainsSticker_Error47()
 		{
-			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=0&count=3&access_token=token";
+			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=0&count=3&v=5.37&access_token=token";
 			json = @"{
 	'response': {
 		'count': 6,
@@ -161,7 +161,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetHistory_ContainsRepost_Error46()
 		{
-			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=1&count=3&access_token=token";
+			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=1&count=3&v=5.37&access_token=token";
 			json = @"{  
 			   'response':{  
 				  'count':1940,
@@ -452,7 +452,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
 		{
-			url = "https://api.vk.com/method/messages.searchDialogs?q=привет&limit=20&access_token=token";
+			url = "https://api.vk.com/method/messages.searchDialogs?q=привет&limit=20&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': []
@@ -467,7 +467,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SearchDialogs_NastyaQuery_TwoProfiles()
 		{
-			url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&limit=20&access_token=token";
+			url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&limit=20&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': [
@@ -501,7 +501,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SearchDialogs_ProfileAndChat_Response()
 		{
-			url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&limit=20&access_token=token";
+			url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&limit=20&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': [
@@ -694,7 +694,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Id4446_True()
 		{
-			url = "https://api.vk.com/method/messages.delete?mids=4446&access_token=token";
+			url = "https://api.vk.com/method/messages.delete?mids=4446&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': {
@@ -710,7 +710,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Multipre_4457And4464_True()
 		{
-			url = "https://api.vk.com/method/messages.delete?mids=4457,4464&access_token=token";
+			url = "https://api.vk.com/method/messages.delete?mids=4457,4464&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': {
@@ -729,7 +729,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Id999999_False()
 		{
-			url = "https://api.vk.com/method/messages.delete?mids=999999&access_token=token";
+			url = "https://api.vk.com/method/messages.delete?mids=999999&v=5.37&access_token=token";
 			json =
 				@"{
 					'error': {
@@ -769,7 +769,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteDialog_UserId_DeleteAllMessages()
 		{
-			url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&access_token=token";
+			url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 1
@@ -783,7 +783,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteDialog_WithAllInputParams_DeleteTwoMessages()
 		{
-			url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&offset=2&count=2&access_token=token";
+			url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&offset=2&count=2&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 1
@@ -804,7 +804,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Restore_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.restore?message_id=134&access_token=token";
+			url = "https://api.vk.com/method/messages.restore?message_id=134&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 1
@@ -863,7 +863,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void MarkAsRead_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.markAsRead?mids=1&access_token=token";
+			url = "https://api.vk.com/method/messages.markAsRead?mids=1&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 1
@@ -877,7 +877,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void MarkAsRead_Multiple_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.markAsRead?mids=2,3&access_token=token";
+			url = "https://api.vk.com/method/messages.markAsRead?mids=2,3&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 1
@@ -898,7 +898,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetActivity_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.setActivity?used_id=7550525&type=typing&access_token=token";
+			url = "https://api.vk.com/method/messages.setActivity?used_id=7550525&type=typing&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 1
@@ -919,7 +919,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLastActivity_NormalCast_LastActivityObject()
 		{
-			url = "https://api.vk.com/method/messages.getLastActivity?user_id=77128&access_token=token";
+			url = "https://api.vk.com/method/messages.getLastActivity?user_id=77128&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': {
@@ -945,7 +945,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChat_NormalCase_ChatObject()
 		{
-			url = "https://api.vk.com/method/messages.getChat?chat_id=2&access_token=token";
+			url = "https://api.vk.com/method/messages.getChat?chat_id=2&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': {
@@ -1025,7 +1025,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChatUsers_ChatId_UserIds()
 		{
-			url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&access_token=token";
+			url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': [
@@ -1046,7 +1046,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChatUsers_ChatIdWithFields_Users()
 		{
-			url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&fields=education&access_token=token";
+			url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&fields=education&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': [
@@ -1120,7 +1120,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void AddChatUser_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&uid=7550525&access_token=token";
+			url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&uid=7550525&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 1
@@ -1141,7 +1141,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void RemoveChatUser_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.removeChatUser?chat_id=2&uid=7550525&access_token=token";
+			url = "https://api.vk.com/method/messages.removeChatUser?chat_id=2&uid=7550525&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 1
@@ -1170,7 +1170,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLongPollServer_NormalCase_LongPollServerResponse()
 		{
-			url = "https://api.vk.com/method/messages.getLongPollServer?use_ssl=0&need_pts=0&access_token=token";
+			url = "https://api.vk.com/method/messages.getLongPollServer?use_ssl=0&need_pts=0&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': {
@@ -1201,7 +1201,7 @@ namespace VkNet.Tests.Categories
 		public void Get_WithLastMessageIdParam_NormalCase_V521()
 		{
 			//url = "https://api.vk.com/method/messages.get?out=0&last_message_id=30&v=5.21&access_token=token";
-			url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&last_message_id=30&count=20&access_token=token";
+			url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&last_message_id=30&count=20&v=5.37&access_token=token";
 
 			json =
 				@"{
@@ -1239,7 +1239,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCase_V521()
 		{
-			url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&count=2&access_token=token";
+			url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&count=2&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': {
