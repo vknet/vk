@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using VkNet.Utils;
 
 namespace VkNet.Enums
 {
@@ -21,6 +18,7 @@ namespace VkNet.Enums
 		/// <summary>
 		/// 2 — имя отправителя скрыто, сообщение видно только получателю
 		/// </summary>
+		[DefaultValue]
 		NameHideMessageUser
 	}
 }
