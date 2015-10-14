@@ -38,10 +38,11 @@
             return new UsersCategory(new VkApi { AccessToken = "token", Browser = browser});
         }
 
-        [Test]
-        public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
+		[Test, Ignore]
+		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var users = new UsersCategory(new VkApi());
+			// Метод Get не требует AccessToken
+            var users = new UsersCategory(new VkApi() { AccessToken = null });
 
             This.Action(() => users.Get(1)).Throws<AccessTokenInvalidException>();
         }
