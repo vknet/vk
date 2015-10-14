@@ -158,6 +158,11 @@
 		{ get; set; }
 		#endregion
 
+		/// <summary>
+		/// API для работы с подарками.
+		/// </summary>
+		public GiftsCategory Gifts { get; set; }
+		
 		internal IBrowser Browser
 		{ get; set; }
 
@@ -198,6 +203,7 @@
 			Docs = new DocsCategory(this);
 			Likes = new LikesCategory(this);
 			Pages = new PagesCategory(this);
+			Gifts = new GiftsCategory(this);
 
 			RequestsPerSecond = 3;
 		}

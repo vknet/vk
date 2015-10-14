@@ -288,7 +288,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ClearCache()
 		{
-			const string url = "https://api.vk.com/method/pages.parseWiki?url=https://www.vk.com/dev/groups.addLink&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/pages.clearCache?url=https://www.vk.com/dev/groups.addLink&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'response': 1

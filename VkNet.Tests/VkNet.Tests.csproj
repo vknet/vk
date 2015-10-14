@@ -62,6 +62,7 @@
     <Compile Include="Categories\StatusCategoryTest.cs" />
     <Compile Include="Categories\UtilsCategoryTest.cs" />
     <Compile Include="Categories\VideoCategoryTest.cs" />
+    <Compile Include="Categories\GiftsTest.cs" />
     <Compile Include="Categories\WallCategoryTest.cs" />
     <Compile Include="Enum\BirthdayVisibilityTest.cs" />
     <Compile Include="Enum\SafetyEnums\CommentsSortTest.cs" />

@@ -843,7 +843,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?gid=17683660&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=17683660&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -880,7 +880,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?gid=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=0&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -915,7 +915,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?gids=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_ids=0&v=5.37&access_token=token";
 
 			const string json =
 				@"{
@@ -951,7 +951,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?gids=17683660,637247&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_ids=17683660,637247&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'response': [

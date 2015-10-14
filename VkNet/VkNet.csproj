@@ -56,6 +56,7 @@
     <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
     <Compile Include="Categories\DocsCategory.cs" />
+    <Compile Include="Categories\GiftsCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\PagesCategory.cs" />
     <Compile Include="Categories\PhotoCategory.cs">
@@ -85,6 +86,7 @@
     <Compile Include="Enums\Filters\UsersFields.cs" />
     <Compile Include="Enums\Filters\GroupSort.cs" />
     <Compile Include="Enums\FriendStatus.cs" />
+    <Compile Include="Enums\GiftPrivacy.cs" />
     <Compile Include="Enums\GroupSubjects.cs" />
     <Compile Include="Enums\GroupPublicity.cs" />
     <Compile Include="Enums\LifeMain.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Model\Attachments\Graffiti.cs" />
     <Compile Include="Model\Attachments\Link.cs" />
     <Compile Include="Model\Attachments\Poll.cs" />
+    <Compile Include="Model\GiftItem.cs" />
     <Compile Include="Model\Group\GroupInfo.cs" />
     <Compile Include="Model\Group\GroupMember.cs" />
     <Compile Include="Model\History.cs" />

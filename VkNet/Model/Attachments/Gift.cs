@@ -2,29 +2,51 @@
 
 namespace VkNet.Model.Attachments
 {
-    public class Gift : MediaAttachment
-    {
-        static Gift()
-        {
-            RegisterType(typeof(Gift), "gift");
-        }
+	/// <summary>
+	/// Подарок.
+	/// </summary>
+	public class Gift : MediaAttachment
+	{
+		/// <summary>
+		/// Подарок.
+		/// </summary>
+		static Gift()
+		{
+			RegisterType(typeof(Gift), "gift");
+		}
 
-        public string Thumb48 { get; set; }
+		/// <summary>
+		/// Изображение 48х48.
+		/// </summary>
+		public string Thumb48 { get; set; }
 
-        public string Thumb96 { get; set; }
+		/// <summary>
+		/// Изображение 96х96.
+		/// </summary>
+		public string Thumb96 { get; set; }
 
-        public string Thumb256 { get; set; }
+		/// <summary>
+		/// Изображение 256х256.
+		/// </summary>
+		public string Thumb256 { get; set; }
 
-        internal static Gift FromJson(VkResponse response)
-        {
-            var gift = new Gift();
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Gift FromJson(VkResponse response)
+		{
+			var gift = new Gift
+			{
+				Id = response["id"],
+				Thumb48 = response["thumb_48"],
+				Thumb96 = response["thumb_96"],
+				Thumb256 = response["thumb_256"]
+			};
 
-            gift.Id = response["id"];
-            gift.Thumb48 = response["thumb_48"];
-            gift.Thumb96 = response["thumb_96"];
-            gift.Thumb256 = response["thumb_256"];
 
-            return gift;
-        }
-    }
+			return gift;
+		}
+	}
 }

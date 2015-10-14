@@ -34,7 +34,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// get
+		/// Возвращает информацию о вики-странице.
 		/// </summary>
 		/// <param name="ownerId">Идентификатор владельца вики-страницы.</param>
 		/// <param name="pageId">Идентификатор вики-страницы.</param>
@@ -43,7 +43,9 @@ namespace VkNet.Categories
 		/// <param name="needSource"><c>true</c> — требуется вернуть содержимое страницы в вики-формате.</param>
 		/// <param name="needHtml"><c>true</c> — требуется вернуть html-представление страницы.</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// Возвращает информацию о вики-странице в виде объекта page. 
+		/// Если был задан параметр need_source равный 1, дополнительно будет возвращено поле source.
+		/// Если был задан параметр need_html равный 1, дополнительно будет возвращено поле html.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.get" />.
@@ -55,7 +57,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// get
+		/// Возвращает информацию о вики-странице.
 		/// </summary>
 		/// <param name="ownerId">Идентификатор владельца вики-страницы.</param>
 		/// <param name="global"><c>true</c> — требуется получить информацию о глобальной вики-странице. </param>
@@ -64,7 +66,9 @@ namespace VkNet.Categories
 		/// <param name="needSource"><c>true</c> — требуется вернуть содержимое страницы в вики-формате.</param>
 		/// <param name="needHtml"><c>true</c> — требуется вернуть html-представление страницы.</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// Возвращает информацию о вики-странице в виде объекта page. 
+		/// Если был задан параметр need_source равный 1, дополнительно будет возвращено поле source.
+		/// Если был задан параметр need_html равный 1, дополнительно будет возвращено поле html.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.get" />.
@@ -74,8 +78,9 @@ namespace VkNet.Categories
 		{
 			return Get(ownerId, title, null, global, sitePreview, needSource, needHtml);
 		}
+
 		/// <summary>
-		/// get
+		/// Возвращает информацию о вики-странице.
 		/// </summary>
 		/// <param name="ownerId">Идентификатор владельца вики-страницы.</param>
 		/// <param name="pageId">Идентификатор вики-страницы.</param>
@@ -85,7 +90,9 @@ namespace VkNet.Categories
 		/// <param name="needSource"><c>true</c> — требуется вернуть содержимое страницы в вики-формате.</param>
 		/// <param name="needHtml"><c>true</c> — требуется вернуть html-представление страницы.</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// Возвращает информацию о вики-странице в виде объекта page. 
+		/// Если был задан параметр need_source равный 1, дополнительно будет возвращено поле source.
+		/// Если был задан параметр need_html равный 1, дополнительно будет возвращено поле html.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.get" />.
