@@ -58,11 +58,11 @@
             get
             {
                 if (Photo2560 != null) return new Tuple<Uri, string>(Photo2560, "2560x2048 px");
-                if (Photo1280 != null) return new Tuple<Uri, string>(Photo2560, "1280x1024 px");
-                if (Photo807  != null) return new Tuple<Uri, string>(Photo2560, "807x807 px");
-                if (Photo604  != null) return new Tuple<Uri, string>(Photo2560, "604x604 px");
-                if (Photo130  != null) return new Tuple<Uri, string>(Photo2560, "130x130 px");
-                if (Photo75   != null) return new Tuple<Uri, string>(Photo2560, "75x75 px");
+                if (Photo1280 != null) return new Tuple<Uri, string>(Photo1280, "1280x1024 px");
+                if (Photo807  != null) return new Tuple<Uri, string>(Photo807, "807x807 px");
+                if (Photo604  != null) return new Tuple<Uri, string>(Photo604, "604x604 px");
+                if (Photo130  != null) return new Tuple<Uri, string>(Photo130, "130x130 px");
+                if (Photo75   != null) return new Tuple<Uri, string>(Photo75, "75x75 px");
                 return null;
             }
         }
