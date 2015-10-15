@@ -56,6 +56,7 @@
     <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
     <Compile Include="Categories\DocsCategory.cs" />
+    <Compile Include="Categories\AppsCategory.cs" />
     <Compile Include="Categories\GiftsCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\PagesCategory.cs" />
@@ -63,6 +64,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\AccessPages.cs" />
+    <Compile Include="Enums\Filters\AppFilter.cs" />
+    <Compile Include="Enums\SafetyEnums\AppPlatforms.cs" />
+    <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
+    <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
+    <Compile Include="Enums\SafetyEnums\AppSort.cs" />
     <Compile Include="Enums\CommentPrivacy.cs" />
     <Compile Include="Enums\ContentAccess.cs" />
     <Compile Include="Enums\Filters\CountersFilter.cs" />
@@ -89,6 +95,7 @@
     <Compile Include="Enums\GiftPrivacy.cs" />
     <Compile Include="Enums\GroupSubjects.cs" />
     <Compile Include="Enums\GroupPublicity.cs" />
+    <Compile Include="Enums\LeaderboardTypes.cs" />
     <Compile Include="Enums\LifeMain.cs" />
     <Compile Include="Enums\MessageReadState.cs" />
     <Compile Include="Enums\MessagesFilter.cs" />
@@ -132,6 +139,8 @@
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\AccountInfo.cs" />
+    <Compile Include="Model\App.cs" />
+    <Compile Include="Model\RequestParams\App\GetCatalogParams.cs" />
     <Compile Include="Model\Attachments\Album.cs" />
     <Compile Include="Model\Attachments\ApplicationContent.cs" />
     <Compile Include="Model\Attachments\Gift.cs" />
@@ -165,6 +174,8 @@
     <Compile Include="Model\Region.cs" />
     <Compile Include="Model\Relative.cs" />
     <Compile Include="Model\RepostResult.cs" />
+    <Compile Include="Model\RequestParams\App\GetParams.cs" />
+    <Compile Include="Model\RequestParams\App\SendRequestParams.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\Street.cs" />
@@ -260,10 +271,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-    <Folder Include="Group\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent Condition=" '$(OS)' != 'Unix' ">"$(TargetDir)Injector.exe"</PostBuildEvent>
