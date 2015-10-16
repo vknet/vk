@@ -28,18 +28,24 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public string Photo604 { get; set; }
 
-        #region Методы
-
-        internal static ApplicationContent FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static ApplicationContent FromJson(VkResponse response)
         {
-            var application = new ApplicationContent();
+	        var application = new ApplicationContent
+	        {
+		        Id = response["id"],
+		        Name = response["name"],
+		        Photo130 = response["photo_130"],
+		        Photo604 = response["photo_604"]
+	        };
 
-            application.Id = response["id"];
-            application.Name = response["name"];
-            application.Photo130 = response["photo_130"];
-            application.Photo604 = response["photo_604"];
 
-            return application;
+	        return application;
         }
 
         #endregion

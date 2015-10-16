@@ -48,7 +48,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/gifts.get" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<GiftItem>  Get(out int totalCount, ulong userId, ulong? count = null, ulong? offset = null)
+		public ReadOnlyCollection<GiftItem> Get(out int totalCount, ulong userId, ulong? count = null, ulong? offset = null)
 		{
 			var parameters = new VkParameters
 			{

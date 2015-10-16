@@ -156,6 +156,13 @@
 		/// </summary>
 		public PagesCategory Pages
 		{ get; set; }
+
+		/// <summary>
+		/// API для работы с приложениями.
+		/// </summary>
+		public AppsCategory Apps
+		{ get; set; }
+		
 		#endregion
 
 		/// <summary>
@@ -204,6 +211,7 @@
 			Likes = new LikesCategory(this);
 			Pages = new PagesCategory(this);
 			Gifts = new GiftsCategory(this);
+			Apps = new AppsCategory(this);
 
 			RequestsPerSecond = 3;
 		}
@@ -289,28 +297,28 @@
 				OnTokenExpires(this);
 		}
 #if false
-        // todo refactor this shit
-        internal async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
-        {
-            if (!skipAuthorization)
-                IfNotAuthorizedThrowException();
+		// todo refactor this shit
+		internal async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
+		{
+			if (!skipAuthorization)
+				IfNotAuthorizedThrowException();
 
-            string url = GetApiUrl(methodName, parameters);
+			string url = GetApiUrl(methodName, parameters);
 
-            string answer = await Browser.GetJsonAsync(url);
+			string answer = await Browser.GetJsonAsync(url);
 
 #if DEBUG
-            Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
-            Trace.WriteLine(Utilities.PreetyPrintJson(answer));
+			Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
+			Trace.WriteLine(Utilities.PreetyPrintJson(answer));
 #endif
-            VkErrors.IfErrorThrowException(answer);
+			VkErrors.IfErrorThrowException(answer);
 
-            JObject json = JObject.Parse(answer);
+			JObject json = JObject.Parse(answer);
 
-            var rawResponse = json["response"];
+			var rawResponse = json["response"];
 
-            return new VkResponse(rawResponse) { RawJson = answer };
-        }
+			return new VkResponse(rawResponse) { RawJson = answer };
+		}
 #endif
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
