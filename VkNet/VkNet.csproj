@@ -57,6 +57,7 @@
     <Compile Include="Categories\AudioCategory.cs" />
     <Compile Include="Categories\DocsCategory.cs" />
     <Compile Include="Categories\AppsCategory.cs" />
+    <Compile Include="Categories\NewsFeedCategory.cs" />
     <Compile Include="Categories\GiftsCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\PagesCategory.cs" />
@@ -68,6 +69,8 @@
     <Compile Include="Enums\SafetyEnums\AppPlatforms.cs" />
     <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
     <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
+    <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
+    <Compile Include="Enums\SafetyEnums\PostType.cs" />
     <Compile Include="Enums\SafetyEnums\AppSort.cs" />
     <Compile Include="Enums\CommentPrivacy.cs" />
     <Compile Include="Enums\ContentAccess.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="Enums\PeopleMain.cs" />
     <Compile Include="Enums\PoliticalPreferences.cs" />
     <Compile Include="Enums\RelationType.cs" />
+    <Compile Include="Enums\SafetyEnums\NewsTypes.cs" />
     <Compile Include="Enums\SafetyEnums\LikeObjectType.cs" />
     <Compile Include="Enums\SafetyEnums\PhotoAlbumType.cs" />
     <Compile Include="Enums\SafetyEnums\PhotoFeedType.cs" />
@@ -140,6 +144,11 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\App.cs" />
+    <Compile Include="Model\Mention.cs" />
+    <Compile Include="Model\NewsBannedExList.cs" />
+    <Compile Include="Model\NewsBannedList.cs" />
+    <Compile Include="Model\NewsFeed.cs" />
+    <Compile Include="Model\NewsItem.cs" />
     <Compile Include="Model\RequestParams\App\GetCatalogParams.cs" />
     <Compile Include="Model\Attachments\Album.cs" />
     <Compile Include="Model\Attachments\ApplicationContent.cs" />
@@ -176,6 +185,9 @@
     <Compile Include="Model\RepostResult.cs" />
     <Compile Include="Model\RequestParams\App\GetParams.cs" />
     <Compile Include="Model\RequestParams\App\SendRequestParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\GetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\GetRecommendedParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\GetParams.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\Street.cs" />
