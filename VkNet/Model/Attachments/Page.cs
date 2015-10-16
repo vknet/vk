@@ -117,7 +117,7 @@ namespace VkNet.Model.Attachments
 
 		public override string ToString()
 		{
-			return string.Format("page{0}_{1}", GroupId, Id);
+			return string.Format("page-{0}_{1}", GroupId, Id);
 		}
 
         #endregion
