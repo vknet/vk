@@ -69,6 +69,7 @@
     <Compile Include="Enums\SafetyEnums\AppPlatforms.cs" />
     <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
     <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
+    <Compile Include="Enums\SafetyEnums\CommentObjectType.cs" />
     <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
     <Compile Include="Enums\SafetyEnums\AppSort.cs" />
@@ -149,6 +150,9 @@
     <Compile Include="Model\NewsBannedList.cs" />
     <Compile Include="Model\NewsFeed.cs" />
     <Compile Include="Model\NewsItem.cs" />
+    <Compile Include="Model\NewsSearchResult.cs" />
+    <Compile Include="Model\NewsSuggestions.cs" />
+    <Compile Include="Model\NewsUserListItem.cs" />
     <Compile Include="Model\RequestParams\App\GetCatalogParams.cs" />
     <Compile Include="Model\Attachments\Album.cs" />
     <Compile Include="Model\Attachments\ApplicationContent.cs" />
@@ -186,6 +190,7 @@
     <Compile Include="Model\RequestParams\App\GetParams.cs" />
     <Compile Include="Model\RequestParams\App\SendRequestParams.cs" />
     <Compile Include="Model\RequestParams\NewsFeed\GetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\SearchParams.cs" />
     <Compile Include="Model\RequestParams\NewsFeed\GetRecommendedParams.cs" />
     <Compile Include="Model\RequestParams\NewsFeed\GetParams.cs" />
     <Compile Include="Model\School.cs" />

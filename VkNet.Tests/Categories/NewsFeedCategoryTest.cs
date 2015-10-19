@@ -38,14 +38,6 @@ namespace VkNet.Tests.Categories
 			var newsFeed = newsFeedCategory.Get(new GetParams());
 
 			Assert.That(newsFeed, Is.Not.Null);
-			//Assert.That(newsFeed.FromId, Is.EqualTo(221634238));
-			//Assert.That(newsFeed.Message, Is.EqualTo(string.Empty));
-			//Assert.That(newsFeed.Date, Is.EqualTo("1431167825"));
-			//Assert.That(newsFeed.Gift.Id, Is.EqualTo(711));
-			//Assert.That(newsFeed.Gift.Thumb256, Is.EqualTo(@"http://vk.com/images/gift/711/256.jpg"));
-			//Assert.That(newsFeed.Gift.Thumb96, Is.EqualTo(@"http://vk.com/images/gift/711/96.png"));
-			//Assert.That(newsFeed.Gift.Thumb48, Is.EqualTo(@"http://vk.com/images/gift/711/48.png"));
-			//Assert.That(newsFeed.Privacy, Is.EqualTo(GiftPrivacy.All));
 		}
 
 		[Test]
@@ -58,14 +50,6 @@ namespace VkNet.Tests.Categories
 			var newsFeed = newsFeedCategory.GetRecommended(new GetRecommendedParams());
 
 			Assert.That(newsFeed, Is.Not.Null);
-			//Assert.That(newsFeed.FromId, Is.EqualTo(221634238));
-			//Assert.That(newsFeed.Message, Is.EqualTo(string.Empty));
-			//Assert.That(newsFeed.Date, Is.EqualTo("1431167825"));
-			//Assert.That(newsFeed.Gift.Id, Is.EqualTo(711));
-			//Assert.That(newsFeed.Gift.Thumb256, Is.EqualTo(@"http://vk.com/images/gift/711/256.jpg"));
-			//Assert.That(newsFeed.Gift.Thumb96, Is.EqualTo(@"http://vk.com/images/gift/711/96.png"));
-			//Assert.That(newsFeed.Gift.Thumb48, Is.EqualTo(@"http://vk.com/images/gift/711/48.png"));
-			//Assert.That(newsFeed.Privacy, Is.EqualTo(GiftPrivacy.All));
 		}
 	}
 }
