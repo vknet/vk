@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests.Categories
+﻿using VkNet.Model.RequestParams.Users;
+
+namespace VkNet.Tests.Categories
 {
     using System;
     using System.Collections.ObjectModel;
@@ -356,7 +358,7 @@
         {
             var vk = new VkApi();
             int count;
-            This.Action(() => vk.Users.Search(Query, out count)).Throws<AccessTokenInvalidException>();
+            This.Action(() => vk.Users.Search(out count, new UserSearchParams { Query = Query })).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -364,16 +366,16 @@
         {
             int count;
             var vk = new VkApi { AccessToken = "token" };
-            This.Action(() => vk.Users.Search("", out count)).Throws<ArgumentException>()
+            This.Action(() => vk.Users.Search(out count, new UserSearchParams { Query = "" })).Throws<ArgumentException>()
                 .Message.ShouldEqual("Query can not be null or empty.");
         }
 
         [Test]
         public void Search_BadQuery_EmptyList()
         {
-            const string url = "https://api.vk.com/method/users.search?q=fa'sosjvsoidf&count=20&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=fa'sosjvsoidf&sort=0&offset=0&count=20&sex=0&status=0&online=0&has_photo=0&access_token=token";
 
-            const string json =
+			const string json =
                 @"{
                     'response': [
                       0
@@ -382,7 +384,7 @@
 
             int count;
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Search("fa'sosjvsoidf", out count).ToList();
+            var lst = users.Search(out count, new UserSearchParams { Query = "fa'sosjvsoidf" }).ToList();
 
             Assert.That(count, Is.EqualTo(0));
             Assert.That(lst, Is.Not.Null);
@@ -392,9 +394,9 @@
         [Test]
         public void Search_EducationField_ListofProfileObjects()
         {
-            const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&fields=education&count=3&offset=123&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&status=0&online=0&has_photo=0&access_token=token";
 
-            const string json =
+			const string json =
                 @"{
                     'response': [
                       26953,
@@ -433,7 +435,7 @@
 
             int count;
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Search(Query, out count, ProfileFields.Education, 3, 123).ToList();
+            var lst = users.Search(out count, new UserSearchParams { Query = Query, Fields = ProfileFields.Education,Count = 3, Offset = 123}).ToList();
 
             Assert.That(count, Is.EqualTo(26953));
             Assert.That(lst.Count, Is.EqualTo(3));
@@ -459,9 +461,8 @@
         [Test]
         public void Search_DefaultFields_ListOfProfileObjects()
         {
-            const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&count=20&access_token=token";
-
-            const string json =
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=0&count=20&sex=0&status=0&online=0&has_photo=0&access_token=token";
+			const string json =
                 @"{
                     'response': [
                       26953,
@@ -485,7 +486,7 @@
 
             int count;
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Search(Query, out count).ToList();
+            var lst = users.Search(out count, new UserSearchParams { Query = Query }).ToList();
 
             Assert.That(count, Is.EqualTo(26953));
             Assert.That(lst.Count, Is.EqualTo(3));
