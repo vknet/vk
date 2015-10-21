@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Enums\AccessPages.cs" />
     <Compile Include="Enums\Filters\AppFilter.cs" />
+    <Compile Include="Enums\MaritalStatus.cs" />
     <Compile Include="Enums\SafetyEnums\AppPlatforms.cs" />
     <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
     <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
@@ -108,11 +109,13 @@
     <Compile Include="Enums\PeopleMain.cs" />
     <Compile Include="Enums\PoliticalPreferences.cs" />
     <Compile Include="Enums\RelationType.cs" />
+    <Compile Include="Enums\SafetyEnums\UserSection.cs" />
     <Compile Include="Enums\SafetyEnums\NewsTypes.cs" />
     <Compile Include="Enums\SafetyEnums\LikeObjectType.cs" />
     <Compile Include="Enums\SafetyEnums\PhotoAlbumType.cs" />
     <Compile Include="Enums\SafetyEnums\PhotoFeedType.cs" />
     <Compile Include="Enums\Sex.cs" />
+    <Compile Include="Enums\UserSort.cs" />
     <Compile Include="Enums\VideoReportType.cs" />
     <Compile Include="Enums\VideoSort.cs" />
     <Compile Include="Enums\VideoWidth.cs" />
@@ -200,6 +203,7 @@
     <Compile Include="Model\Tags.cs" />
     <Compile Include="Model\University.cs" />
     <Compile Include="Model\UploadServerInfo.cs" />
+    <Compile Include="Model\RequestParams\Users\UserSearchParams.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Utils\ApiMethodNameAttribute.cs" />
