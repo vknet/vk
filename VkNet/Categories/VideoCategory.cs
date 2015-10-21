@@ -135,20 +135,24 @@
         /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
+        /// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
+        /// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
         /// <returns>После успешного выполнения возвращает идентификатор созданной видеозаписи.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.add"/>.
         /// </remarks>
         [ApiVersion("5.9")]
-        public long Add(long videoId, long? ownerId = null)
+        public long Add(long videoId, long? ownerId = null, long? captchaSid = null, string captchaKey = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
             
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
-                    {"owner_id", ownerId}
+                    {"owner_id", ownerId},
+                    { "captcha_sid", captchaSid },
+                    { "captcha_key", captchaKey }
                 };
 
             VkResponse response = _vk.Call("video.add", parameters);

@@ -56,6 +56,100 @@
             return response.Skip(1).ToReadOnlyCollectionOf<User>(r => r);
         }
 
+        /// <summary> Возвращает список пользователей в соответствии с заданным критерием поиска. </summary>
+        /// <param name="query">строка поискового запроса. Например, Вася Бабич.</param>
+        /// <param name="itemsCount">Общее количество пользователей, удовлетворяющих условиям запроса.</param>
+        /// <param name="fields">список дополнительных полей, которые необходимо вернуть.</param>
+        /// <param name="count">количество возвращаемых пользователей.
+        /// Обратите внимание — даже при использовании параметра offset для получения информации доступны только первые 1000 результатов.</param>
+        /// <param name="offset">смещение относительно первого найденного пользователя для выборки определенного подмножества.</param>
+        /// <param name="sort">сортировка результатов: 1 - по дате регистрации, 0 - по популярности</param>
+        /// <param name="city">идентификатор города</param>
+        /// <param name="country">идентификатор страны</param>
+        /// <param name="hometown">название города строкой</param>
+        /// <param name="university_country">идентификатор страны, в которой пользователи закончили ВУЗ</param>
+        /// <param name="university">идентификатор ВУЗа</param>
+        /// <param name="university_year">год окончания ВУЗа</param>
+        /// <param name="university_faculty">идентификатор факультета</param>
+        /// <param name="university_chair">идентификатор кафедры</param>
+        /// <param name="sex">пол, 1 — женщина, 2 — мужчина, 0 (по умолчанию) — любой.</param>
+        /// <param name="status">семейное положение: 1 — Не женат, 2 — Встречается, 3 — Помолвлен, 4 — Женат, 7 — Влюблён, 5 — Всё сложно, 6 — В активном поиске.</param>
+        /// <param name="age_from">начиная с какого возраста</param>
+        /// <param name="age_to">до какого возраста</param>
+        /// <param name="birth_day">день рождения</param>
+        /// <param name="birth_month">месяц рождения</param>
+        /// <param name="birth_year">год рождения</param>
+        /// <param name="online">true — только в сети, false — все пользователи</param>
+        /// <param name="has_photo">true — только с фотографией, false — все пользователи</param>
+        /// <param name="school_country">идентификатор страны, в которой пользователи закончили школу</param>
+        /// <param name="school_city">идентификатор города, в котором пользователи закончили школу</param>
+        /// <param name="school_class">положительное число</param>
+        /// <param name="school">идентификатор школы, которую закончили пользователи</param>
+        /// <param name="school_year">год окончания школы</param>
+        /// <param name="religion">религиозные взгляды</param>
+        /// <param name="interests">интересы</param>
+        /// <param name="company">название компании, в которой работают пользователи</param>
+        /// <param name="position">название должности</param>
+        /// <param name="group_id">идентификатор группы, среди пользователей которой необходимо проводить поиск</param>
+        /// <returns> После успешного выполнения возвращает список объектов пользователей, найденных в соответствии с заданными критериями. </returns>
+        /// <remarks> Страница документации ВКонтакте <see href="http://vk.com/dev/users.search"/>. </remarks>
+        [Pure]
+        public ReadOnlyCollection<User> Search([NotNull] string query, out int itemsCount, ProfileFields fields = null, int count = 20, int offset = 0,
+            int? sort = null, int? city = null, int? country = null, string hometown = null, int? university_country = null, int? university = null,
+            int? university_year = null, int? university_faculty = null, int? university_chair = null, int? sex = null, int? status = null,
+            int? age_from = null, int? age_to = null, int? birth_day = null, int? birth_month = null, int? birth_year = null, bool? online = null,
+            bool? has_photo = null, int? school_country = null, int? school_city = null, int? school_class = null, int? school = null, int? school_year = null,
+            string religion = null, string interests = null, string company = null, string position = null, int? group_id = null)
+        {
+            // TODO: не все аргументы проверены
+
+            if (string.IsNullOrEmpty(query))
+                throw new ArgumentException("Query can not be null or empty.");
+
+            var parameters = new VkParameters
+            {
+                { "q", query },
+                { "fields", fields },
+                { "count", count },
+                { "sort", sort },
+                { "city", city },
+                { "country", country },
+                { "hometown", hometown },
+                { "university_country", university_country },
+                { "university", university },
+                { "university_year", university_year },
+                { "university_faculty", university_faculty },
+                { "university_chair", university_chair },
+                { "sex", sex },
+                { "status", status },
+                { "age_from", age_from },
+                { "age_to", age_to },
+                { "birth_day", birth_day },
+                { "birth_month", birth_month },
+                { "birth_year", birth_year },
+                { "online", online },
+                { "has_photo", has_photo },
+                { "school_country", school_country },
+                { "school_city", school_city },
+                { "school_class", school_class },
+                { "school", school },
+                { "school_year", school_year },
+                { "religion", religion },
+                { "interests", interests },
+                { "company", company },
+                { "position", position },
+                { "group_id", group_id },
+            };
+            if (offset > 0)
+                parameters.Add("offset", offset);
+
+            VkResponseArray response = _vk.Call("users.search", parameters);
+
+            itemsCount = response[0];
+
+            return response.Skip(1).ToReadOnlyCollectionOf<User>(r => r);
+        }
+
         /// <summary>
         /// Получает настройки текущего пользователя в данном приложении. .
         /// </summary>
