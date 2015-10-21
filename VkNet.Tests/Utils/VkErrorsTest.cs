@@ -51,10 +51,10 @@ namespace VkNet.Tests.Utils
         {
             string param = string.Empty;
 
-            var ex = This.Action(() => VkErrors.ThrowIfNullOrEmpty(() => param)).Throws<ArgumentNullException>(); 
+            var ex = This.Action(() => VkErrors.ThrowIfNullOrEmpty(() => param)).Throws<ArgumentNullException>();
 
-			ex.Message.ShouldStartsWith("Argument cannot be null").ShouldContains("param");
-        }
+			ex.Message.ShouldStartsWith("Значение не может быть неопределенным").ShouldContains("param");
+		}
 
         [Test]
         public void ThrowIfNumberIsNegative_ExpressionVersion_NullabeLong()
