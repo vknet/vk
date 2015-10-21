@@ -293,7 +293,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 		{
-			const string url = "https://api.vk.com/method/groups.get?uid=4793858&extended=0&offset=0&v=5.28&access_token=token";
+			const string url = "https://api.vk.com/method/groups.get?user_id=4793858&extended=0&offset=0&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'response': [

@@ -76,12 +76,12 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.28")]
+		[ApiVersion("5.37")]
 		public ReadOnlyCollection<Group> Get(ulong uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, uint offset = 0, uint count = 1000)
 		{
 			var parameters = new VkParameters
 			{
-				{ "uid", uid },
+				{ "user_id", uid },
 				{ "extended", extended },
 				{ "filter", filters },
 				{ "fields", fields },
