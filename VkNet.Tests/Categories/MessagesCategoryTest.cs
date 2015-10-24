@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams.Messages;
 
 namespace VkNet.Tests.Categories
 {
@@ -640,34 +641,39 @@ namespace VkNet.Tests.Categories
 		public void Send_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.Send(1, false, "Привет, Паша!")).Throws<AccessTokenInvalidException>();
+			This.Action(() => cat.Send(new MessageSendParams {UserId = 1, Message = "Привет, Паша!" })).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
 		public void Send_DefaultFields_MessageId()
 		{
-			url = "https://api.vk.com/method/messages.send?uid=7550525&message=Test+from+vk.net+%3b)+%23+2&title=Test+title&type=0&access_token=token";
+			url = "https://api.vk.com/method/messages.send?user_id=7550525&message=Test+from+vk.net+%3b)+%23+2&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 4457
 				  }";
 
-			long id = Cat.Send(7550525, false, "Test from vk.net ;) # 2", "Test title");
-
+			var id = Cat.Send(new MessageSendParams()
+			{
+				UserId = 7550525,
+				Message = "Test from vk.net ;) # 2"
+			});
 			Assert.That(id, Is.EqualTo(4457));
 		}
 
 		[Test]
 		public void Send_RussianText_MessageId()
 		{
-			url = "https://api.vk.com/method/messages.send?uid=7550525&message=%d0%97%d0%b0%d0%b8%d0%b1%d0%b8%d1%81%d1%8c+%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d0%b5%d1%82+%23+2+--++%d0%b5%d1%89%d0%b5+%d1%80%d0%b0%d0%b7%d0%be%d0%ba&title=%d0%a2%d0%b0%d0%b9%d1%82%d0%bb&type=0&access_token=token";
+			url = "https://api.vk.com/method/messages.send?user_id=7550525&message=%d0%a0%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d0%b5%d1%82+%23+2+--++%d0%b5%d1%89%d0%b5+%d1%80%d0%b0%d0%b7%d0%be%d0%ba&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 4464
 				  }";
-
-			long id = Cat.Send(7550525, false, "Заибись работает # 2 --  еще разок", "Тайтл");
-
+			var id = Cat.Send(new MessageSendParams()
+			{
+				UserId = 7550525,
+				Message = "Работает # 2 --  еще разок"
+			});
 			Assert.That(id, Is.EqualTo(4464));
 		}
 

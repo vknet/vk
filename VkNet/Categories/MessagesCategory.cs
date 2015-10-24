@@ -400,7 +400,7 @@ namespace VkNet.Categories
 				{ "domain", @params.Domain },
 				{ "chat_id", @params.ChatId },
 				{ "user_ids", @params.UserIds },
-				{ "message", @params.Message },
+				{ "message", HttpUtility.UrlEncode(@params.Message) },
 				{ "guid", @params.Guid },
 				{ "lat", @params.Lat },
 				{ "long", @params.Longitude },
