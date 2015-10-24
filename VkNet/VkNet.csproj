@@ -149,6 +149,7 @@
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\App.cs" />
     <Compile Include="Model\Mention.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessageSendParams.cs" />
     <Compile Include="Model\NewsBannedExList.cs" />
     <Compile Include="Model\NewsBannedList.cs" />
     <Compile Include="Model\NewsFeed.cs" />

@@ -1,6 +1,7 @@
 ﻿using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams.Messages;
 
 namespace VkNet.Categories
 {
@@ -367,6 +368,45 @@ namespace VkNet.Categories
 				{ "captcha_sid", captchaSid},
 				{ "captcha_key", captchaKey}
 
+			};
+
+			// TODO: Yet not work with attachments. Fix it later.
+
+			return _vk.Call("messages.send", parameters);
+		}
+
+		/// <summary>
+		/// Посылает личное сообщение.
+		/// </summary>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// Возвращается идентификатор отправленного сообщения.
+		/// </returns>
+		/// <exception cref="System.ArgumentException">Message can not be <c>null</c>.</exception>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.send" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public ulong Send(MessageSendParams @params)
+		{
+			if (string.IsNullOrEmpty(@params.Message))
+			{
+				throw new ArgumentException("Message can not be null.", "Message");
+			}
+			var parameters = new VkParameters
+			{
+				{ "user_id", @params.UserId },
+				{ "domain", @params.Domain },
+				{ "chat_id", @params.ChatId },
+				{ "user_ids", @params.UserIds },
+				{ "message", @params.Message },
+				{ "guid", @params.Guid },
+				{ "lat", @params.Lat },
+				{ "long", @params.Longitude },
+				{ "attachment", @params.Attachment },
+				{ "forward_messages", @params.ForwardMessages },
+				{ "sticker_id", @params.StickerId }
 			};
 
 			// TODO: Yet not work with attachments. Fix it later.
