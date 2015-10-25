@@ -337,6 +337,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.send"/>.
 		/// </remarks>
+		[Obsolete("Устаревшая версия API. Используйте метод Send(MessageSendParams @params)")]
 		public long Send(
 			long id,
 			bool isChat,
