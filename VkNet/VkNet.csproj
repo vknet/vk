@@ -72,6 +72,7 @@
     <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
     <Compile Include="Enums\SafetyEnums\CommentObjectType.cs" />
     <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
+    <Compile Include="Enums\SafetyEnums\LikesFilter.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
     <Compile Include="Enums\SafetyEnums\AppSort.cs" />
     <Compile Include="Enums\CommentPrivacy.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\App.cs" />
     <Compile Include="Model\Mention.cs" />
+    <Compile Include="Model\RequestParams\Likes\GetListParams.cs" />
     <Compile Include="Model\RequestParams\Messages\MessageSendParams.cs" />
     <Compile Include="Model\NewsBannedExList.cs" />
     <Compile Include="Model\NewsBannedList.cs" />
@@ -205,6 +207,7 @@
     <Compile Include="Model\University.cs" />
     <Compile Include="Model\UploadServerInfo.cs" />
     <Compile Include="Model\RequestParams\Users\UserSearchParams.cs" />
+    <Compile Include="Model\UserOrGroup.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Utils\ApiMethodNameAttribute.cs" />
