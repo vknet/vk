@@ -56,6 +56,7 @@
     <Compile Include="Categories\DatabaseCategoryTest.cs" />
     <Compile Include="Categories\FaveCategoryTest.cs" />
     <Compile Include="Categories\AppsTest.cs" />
+    <Compile Include="Categories\LikesCategoryTest.cs" />
     <Compile Include="Categories\NewsFeedCategoryTest.cs" />
     <Compile Include="Categories\GroupsCategoryTest.cs" />
     <Compile Include="Categories\MessagesCategoryTest.cs" />
