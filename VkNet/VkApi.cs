@@ -276,7 +276,7 @@
 			if (!authorization.IsAuthorized)
 				throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
 
-			int expireTime = Convert.ToInt32(authorization.ExpiresIn) - 10000;
+			int expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
 			if (expireTime > 0)
 			{
 				_expireTimer = new Timer(_alertExpires, null, expireTime, Timeout.Infinite);
