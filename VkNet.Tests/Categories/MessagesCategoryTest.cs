@@ -700,7 +700,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Id4446_True()
 		{
-			url = "https://api.vk.com/method/messages.delete?mids=4446&v=5.37&access_token=token";
+			url = "https://api.vk.com/method/messages.delete?message_ids=4446&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': {
@@ -716,7 +716,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Multipre_4457And4464_True()
 		{
-			url = "https://api.vk.com/method/messages.delete?mids=4457,4464&v=5.37&access_token=token";
+			url = "https://api.vk.com/method/messages.delete?message_ids=4457,4464&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': {
@@ -735,7 +735,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Id999999_False()
 		{
-			url = "https://api.vk.com/method/messages.delete?mids=999999&v=5.37&access_token=token";
+			url = "https://api.vk.com/method/messages.delete?message_ids=999999&v=5.37&access_token=token";
 			json =
 				@"{
 					'error': {

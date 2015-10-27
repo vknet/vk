@@ -456,6 +456,8 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete"/>.
 		/// </remarks>
+		/// <exception cref="ArgumentNullException">Параметр <paramref name="key" /> имеет значение null.</exception>
+		/// <exception cref="ArgumentException">Элемент с таким ключом уже существует в словаре <see cref="T:System.Collections.Generic.Dictionary`2" />.</exception>
 		[ApiVersion("5.37")]
 		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds)
 		{
@@ -468,7 +470,7 @@ namespace VkNet.Categories
 			{
 				throw new ArgumentException("Parameter messageIds has no elements.", "messageIds");
 			}
-			var parameters = new VkParameters { { "mids", ids } };
+			var parameters = new VkParameters { { "message_ids", ids } };
 
 			var response = _vk.Call("messages.delete", parameters);
 
@@ -495,6 +497,9 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete"/>.
 		/// </remarks>
+		/// <exception cref="ArgumentNullException">Параметр <paramref name="key" /> имеет значение null.</exception>
+		/// <exception cref="KeyNotFoundException">Свойство получено и параметр <paramref name="key" /> не найден.</exception>
+		/// <exception cref="NotSupportedException">Свойство задано, и объект <see cref="T:System.Collections.Generic.IDictionary`2" /> доступен только для чтения.</exception>
 		public bool Delete(ulong messageId)
 		{
 			var result = Delete(new[] { messageId });
