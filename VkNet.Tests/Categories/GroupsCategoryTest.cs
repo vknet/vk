@@ -1,6 +1,4 @@
-﻿using System.Security.Policy;
-
-namespace VkNet.Tests.Categories
+﻿namespace VkNet.Tests.Categories
 {
 	using System;
 	using System.Collections.ObjectModel;
@@ -910,6 +908,46 @@ namespace VkNet.Tests.Categories
 			var cat = GetMockedGroupCategory(url, json);
 
 			This.Action(() => cat.GetById(0)).Throws<InvalidParameterException>();
+		}
+
+		[Test]
+		public void GetById_BanInfo()
+		{
+			const string url = "https://api.vk.com/method/groups.getById?group_id=66464944&fields=ban_info&v=5.37&access_token=token";
+			const string json =
+				@"{
+                    'response': [
+                      {
+                        'id': 66464944,
+                        'name': 'Подслушано в Ст.Кривянской',
+                        'screen_name': 'club66464944',
+                        'is_closed': 0,
+                        'type': 'page',
+                        'is_admin': 0,
+                        'is_member': 1,
+                        'ban_info': {
+                          'end_date': 1446061273,
+                          'comment': 'Сам попросил :D'
+                        },
+                        'photo_50': 'https://pp.vk.me/...1f1/EQ4pWlWdL74.jpg',
+                        'photo_100': 'https://pp.vk.me/...1f0/0Rl3JI-Oyyo.jpg',
+                        'photo_200': 'https://pp.vk.me/...1ef/ozzx8hmX3Bk.jpg'
+                      }
+                    ]
+                  }";
+
+			var cat = GetMockedGroupCategory(url, json);
+
+			var group = cat.GetById(66464944, GroupsFields.BanInfo);
+			Assert.That(group, Is.Not.Null);
+			Assert.That(group.Id, Is.EqualTo(66464944));
+			Assert.That(group.Name, Is.EqualTo("Подслушано в Ст.Кривянской"));
+			Assert.That(group.ScreenName, Is.EqualTo("club66464944"));
+			Assert.That(group.IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(group.Type, Is.EqualTo(GroupType.Page));
+			Assert.That(group.IsAdmin, Is.EqualTo(false));
+			Assert.That(group.IsMember, Is.EqualTo(true));
+			Assert.That(group.BanInfo.Comment, Is.EqualTo("Сам попросил :D"));
 		}
 
 		[Test]

@@ -182,11 +182,20 @@ namespace VkNet.Model
 		/// Возвращается 1, если сообщество находится в закладках у текущего пользователя.
 		/// </summary>
 		public bool IsFavorite { get; set; }
-		
+
+		/// <summary>
+		/// Информация о забанненом (добавленном в черный список) пользователе сообщества.
+		/// </summary>
+		public BanInfo BanInfo { get; set; }
 		#endregion
 
 		#region Методы
 
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
 		internal static Group FromJson(VkResponse response)
 		{
 			var group = new Group();
@@ -224,6 +233,7 @@ namespace VkNet.Model
 			group.Site = response["site"];
 			group.InvitedBy = response["invited_by"];
 			group.IsFavorite = response["is_favorite"];
+			group.BanInfo = response["ban_info"];
 
 			return group;
 		}
