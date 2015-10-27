@@ -38,6 +38,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search" />.
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.37")]
 		public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @params)
 		{
 			if (string.IsNullOrWhiteSpace(@params.Query))
@@ -81,12 +82,12 @@ namespace VkNet.Categories
 				{ "from_list", @params.FromList }
 
 			};
-			VkResponseArray response = _vk.Call("users.search", parameters);
+			var response = _vk.Call("users.search", parameters);
 
-			itemsCount = response[0];
+			itemsCount = response["count"];
 
-			return response.Skip(1).ToReadOnlyCollectionOf<User>(r => r);
-		}
+			return response["items"].ToReadOnlyCollectionOf<User>(r => r);
+        }
 
 		/// <summary>
 		/// Получает настройки текущего пользователя в данном приложении. .
