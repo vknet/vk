@@ -23,34 +23,33 @@ namespace VkNet.Categories
         {
             _vk = vk;
         }
-        /// <summary>
-        /// Создает пустой альбом для фотографий. 
-        /// </summary>
-        /// <param name="title">Название альбома</param>
-        /// <param name="groupId">Идентификатор сообщества, в котором создаётся альбом. Для группы privacy  и comment_privacy могут принимать два значения: 0 — доступ для всех пользователей, 1 — доступ только для участников группы</param>
-        /// <param name="description">Текст описания альбома</param>
-        /// <param name="commentPrivacy">Уровень доступа к комментированию альбома</param>
-        /// <param name="privacy">Уровень доступа к альбому</param>
-        /// <returns>После успешного выполнения возвращает объект <see cref="PhotoAlbum"/></returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.createAlbum"/>.
-        /// </remarks>
-        [ApiVersion("5.9")]
-        public PhotoAlbum CreateAlbum(string title, long? groupId = null, string description = null, CommentPrivacy? commentPrivacy = null, CommentPrivacy? privacy = null)
+
+		/// <summary>
+		/// Создает пустой альбом для фотографий.
+		/// </summary>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект <see cref="PhotoAlbum" />
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.createAlbum" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+        public PhotoAlbum CreateAlbum(CreateAlbumParams @params)
         {
             var parameters = new VkParameters
                 {
-                    {"title", title},
-                    {"group_id", groupId},
-                    {"description", description},
-                    {"comment_privacy", commentPrivacy},
-                    {"privacy", privacy}
-                };
+					{ "title", @params.Title },
+					{ "group_id", @params.GroupId },
+					{ "description", @params.Description },
+					{ "privacy_view", @params.PrivacyView },
+					{ "privacy_comment", @params.PrivacyComment },
+					{ "upload_by_admins_only", @params.UploadByAdminsOnly },
+					{ "comments_disabled", @params.CommentsDisabled }
+				};
 
-            VkResponse response = _vk.Call("photos.createAlbum", parameters);
-
-            return response;
-        }
+            return _vk.Call("photos.createAlbum", parameters);
+		}
 
         /// <summary>
         /// Редактирует данные альбома для фотографий пользователя. 

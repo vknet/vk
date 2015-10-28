@@ -65,8 +65,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void CreateAlbum_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.createAlbum?title=hello world&description=description for album&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.createAlbum?title=hello world&description=description for album&v=5.37&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'id': 197266686,
@@ -83,7 +83,11 @@ namespace VkNet.Tests.Categories
                   }";
 
             PhotoAlbum album = GetMockedPhotosCategory(url, json)
-                .CreateAlbum(title: "hello world", description: "description for album");
+                .CreateAlbum(new CreateAlbumParams
+                {
+					Title= "hello world",
+					Description = "description for album"
+                });
 
             album.Id.ShouldEqual(197266686);
             album.ThumbId.ShouldEqual(-1);
