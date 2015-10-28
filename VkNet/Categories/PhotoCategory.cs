@@ -64,25 +64,23 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.editAlbum"/>.
         /// </remarks>
-        [ApiVersion("5.9")]
-        public bool EditAlbum(long albumId, string title = null, string description = null, long? ownerId = null, CommentPrivacy? privacy = null, CommentPrivacy? commentPrivacy = null)
+        [ApiVersion("5.37")]
+        public bool EditAlbum(EditAlbumParams @params)
         {
-            VkErrors.ThrowIfNumberIsNegative(() => albumId);
-
             var parameters = new VkParameters
                 {
-                    {"album_id", albumId},
-                    {"title", title},
-                    {"description", description},
-                    {"owner_id", ownerId},
-                    {"privacy", privacy},
-                    {"comment_privacy", commentPrivacy}
-                };
+					{ "album_id", @params.AlbumId },
+					{ "title", @params.Title },
+					{ "description", @params.Description },
+					{ "owner_id", @params.OwnerId },
+					{ "privacy_view", @params.PrivacyView },
+					{ "privacy_comment", @params.PrivacyComment },
+					{ "upload_by_admins_only", @params.UploadByAdminsOnly },
+					{ "comments_disabled", @params.CommentsDisabled }
+				};
 
-            VkResponse response = _vk.Call("photos.editAlbum", parameters);
-
-            return response;
-        }
+            return _vk.Call("photos.editAlbum", parameters);
+		}
 
 		/// <summary>
 		/// Возвращает список альбомов пользователя или сообщества.

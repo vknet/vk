@@ -202,6 +202,7 @@
     <Compile Include="Model\RequestParams\NewsFeed\GetRecommendedParams.cs" />
     <Compile Include="Model\RequestParams\NewsFeed\GetParams.cs" />
     <Compile Include="Model\RequestParams\Photo\CreateAlbumParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\EditAlbumParams.cs" />
     <Compile Include="Model\RequestParams\Photo\GetAlbumsParams.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
