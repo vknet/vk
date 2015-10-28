@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -73,29 +74,39 @@ namespace VkNet.Model
         /// </summary>
         public string ThumbSrc { get; set; }
 
-        #region Methods
-        internal static PhotoAlbum FromJson(VkResponse response)
-        {
-            var album = new PhotoAlbum();
-            
-            if (response.ContainsKey("aid"))
-                album.Id = response["aid"];
-            else
-                album.Id = response["id"];
-            album.ThumbId = Utilities.GetNullableLongId(response["thumb_id"]);
-            album.OwnerId = Utilities.GetNullableLongId(response["owner_id"]);
-            album.Title = response["title"];
-            album.Description = response["description"];
-            album.Created = response["created"];
-            album.Updated = response["updated"];
-            album.Size = response["size"];
-            album.Privacy = Utilities.GetNullableLongId(response["privacy"]);
-            album.CommentPrivacy = Utilities.GetNullableLongId(response["comment_privacy"]);
-            album.CanUpload = response["can_upload"];
-            album.PrivacyView = response["privacy_view"];
-            album.ThumbSrc = response["thumb_src"];
+		/// <summary>
+		/// Размеры фотографий.
+		/// </summary>
+		public IEnumerable<PhotoSize> Sizes
+		{ get; set; }
 
-            return album;
+		#region Methods
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static PhotoAlbum FromJson(VkResponse response)
+        {
+	        var album = new PhotoAlbum
+	        {
+		        Id = response["aid"] ?? response["id"],
+		        ThumbId = Utilities.GetNullableLongId(response["thumb_id"]),
+		        OwnerId = Utilities.GetNullableLongId(response["owner_id"]),
+		        Title = response["title"],
+		        Description = response["description"],
+		        Created = response["created"],
+		        Updated = response["updated"],
+		        Size = response["size"],
+		        Privacy = Utilities.GetNullableLongId(response["privacy"]),
+		        CommentPrivacy = Utilities.GetNullableLongId(response["comment_privacy"]),
+		        CanUpload = response["can_upload"],
+		        PrivacyView = response["privacy_view"],
+		        ThumbSrc = response["thumb_src"],
+				Sizes = response["sizes"].ToReadOnlyCollectionOf<PhotoSize>(x => x)
+			};
+
+	        return album;
         }
         #endregion
     }

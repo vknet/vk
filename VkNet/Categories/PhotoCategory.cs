@@ -1,3 +1,5 @@
+using VkNet.Model.RequestParams.Photo;
+
 namespace VkNet.Categories
 {
     using System.Collections.Generic;
@@ -31,7 +33,7 @@ namespace VkNet.Categories
         /// <param name="privacy">Уровень доступа к альбому</param>
         /// <returns>После успешного выполнения возвращает объект <see cref="PhotoAlbum"/></returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createAlbum"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.createAlbum"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public PhotoAlbum CreateAlbum(string title, long? groupId = null, string description = null, CommentPrivacy? commentPrivacy = null, CommentPrivacy? privacy = null)
@@ -61,7 +63,7 @@ namespace VkNet.Categories
         /// <param name="commentPrivacy">новый уровень доступа к комментированию альбома</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editAlbum"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.editAlbum"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public bool EditAlbum(long albumId, string title = null, string description = null, long? ownerId = null, CommentPrivacy? privacy = null, CommentPrivacy? commentPrivacy = null)
@@ -83,40 +85,34 @@ namespace VkNet.Categories
             return response;
         }
 
-        /// <summary>
-        /// Возвращает список альбомов пользователя или сообщества. 
-        /// </summary>
-        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат альбомы. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
-        /// <param name="albumIds">Перечисленные через запятую ID альбомов</param>
-        /// <param name="offset">Cмещение, необходимое для выборки определенного подмножества альбомов</param>
-        /// <param name="count">Количество альбомов, которое нужно вернуть</param>
-        /// <param name="needSystem">true – будут возвращены системные альбомы, имеющие отрицательные идентификаторы.</param>
-        /// <param name="needCovers">true — будет возвращено дополнительное поле thumb_src. По умолчанию поле thumb_src не возвращается</param>
-        /// <param name="photoSizes">true — будут возвращены размеры фотографий в специальном формате</param>
-        /// <returns>Возвращает список объектов <see cref="PhotoAlbum"/></returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbums"/>.
-        /// </remarks>
-        [ApiVersion("5.9")]
-        public ReadOnlyCollection<PhotoAlbum> GetAlbums(long? ownerId = null, IEnumerable<long> albumIds = null, int? offset = null, int? count = null, bool? needSystem = null, bool? needCovers = null, bool? photoSizes = null)
+		/// <summary>
+		/// Возвращает список альбомов пользователя или сообщества.
+		/// </summary>
+		/// <param name="count">Количество альбомов.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// Возвращает список объектов <see cref="PhotoAlbum" />
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAlbums" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+        public ReadOnlyCollection<PhotoAlbum> GetAlbums(out int count, GetAlbumsParams @params)
         {
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-
             var parameters = new VkParameters
                 {
-                    {"owner_id", ownerId},
-                    {"album_ids", albumIds},
-                    {"offset", offset},
-                    {"count", count},
-                    {"need_system", needSystem},
-                    {"need_covers", needCovers},
-                    {"photo_sizes", photoSizes}
+                    {"owner_id", @params.OwnerId},
+                    {"album_ids", @params.AlbumIds},
+                    {"offset", @params.Offset},
+                    {"count", @params.Count},
+                    {"need_system", @params.NeedSystem},
+                    {"need_covers", @params.NeedCovers},
+                    {"photo_sizes", @params.PhotoSizes}
                 };
 
-            VkResponseArray response = _vk.Call("photos.getAlbums", parameters);
-
-            return response.ToReadOnlyCollectionOf<PhotoAlbum>(x => x);
+            var response = _vk.Call("photos.getAlbums", parameters);
+	        count = response["count"];
+            return response["items"].ToReadOnlyCollectionOf<PhotoAlbum>(x => x);
         }
 
         /// <summary>
@@ -142,7 +138,7 @@ namespace VkNet.Categories
         /// <param name="count">Количество записей, которое будет получено. положительное число, максимальное значение 1000</param>
         /// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.get"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.get"/>.
         /// </remarks>
         [ApiMethodName("photos.get", Skip = true)]
         [ApiVersion("5.9")]
@@ -177,7 +173,7 @@ namespace VkNet.Categories
         /// <param name="groupId">Идентификатор сообщества, количество альбомов которого необходимо получить. </param>
         /// <returns>После успешного выполнения возвращает количество альбомов с учетом настроек приватности.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbumsCount"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAlbumsCount"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public int GetAlbumsCount(long? userId = null, long? groupId = null)
@@ -209,7 +205,7 @@ namespace VkNet.Categories
         /// <param name="offset">Положительное число</param>
         /// <returns>После успешного выполнения возвращает массив объектов <see cref="Photo"/>. В случае, если запись на стене о том, что была обновлена фотография профиля, не удалена, будет возвращено дополнительное поле post_id, содержащее идентификатор записи на стене.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfile"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getProfile"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, IEnumerable<long> photoIds = null, bool? rev = null, bool? extended = null, string feedType = null, DateTime? feed = null, bool? photoSizes = null, int? count = null, int? offset = null)
@@ -252,7 +248,7 @@ namespace VkNet.Categories
         /// <param name="photoSizes">Возвращать ли доступные размеры фотографии в специальном формате</param>
         /// <returns>После успешного выполнения возвращает список объектов photo</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getById"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getById"/>.
         /// </remarks>
         [ApiMethodName("photos.getById", Skip = true)]
         [ApiVersion("5.9")]
@@ -277,7 +273,7 @@ namespace VkNet.Categories
         /// <param name="groupId">Идентификатор сообщества, которому принадлежит альбом (если необходимо загрузить фотографию в альбом сообщества)</param>
         /// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/></returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUploadServer"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getUploadServer"/>.
         /// </remarks>
         [ApiMethodName("photos.getUploadServer", Skip = true)]
         [ApiVersion("5.9")]
@@ -299,7 +295,7 @@ namespace VkNet.Categories
         /// </summary>
         /// <returns>После успешного выполнения возвращает объект с единственным полем upload_url. </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getProfileUploadServer"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getProfileUploadServer"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public UploadServerInfo GetProfileUploadServer()
@@ -316,7 +312,7 @@ namespace VkNet.Categories
         /// <param name="cropWidth">Ширина фотографии после обрезки в px, минимальное значение 200</param>
         /// <returns>После успешного выполнения возвращает объект с единственным полем upload_url. </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getChatUploadServer"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getChatUploadServer"/>.
         /// </remarks>
         [ApiMethodName("photos.getChatUploadServer", Skip = true)]
         [ApiVersion("5.9")]
@@ -347,7 +343,7 @@ namespace VkNet.Categories
         /// <param name="photo">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
         /// <returns>После успешного выполнения возвращает объект, содержащий поля photo_hash и photo_src (при работе через VK.api метод вернёт поля photo_src, photo_src_big, photo_src_small). Параметр photo_hash необходим для подтверждения пользователем изменения его фотографии через вызов метода saveProfilePhoto Javascript API. Поле photo_src содержит путь к загруженной фотографии. </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveProfilePhoto"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveProfilePhoto"/>.
         /// </remarks>
         [ApiMethodName("photos.saveProfilePhoto", Skip = true)]
         [ApiVersion("5.9")]
@@ -375,7 +371,7 @@ namespace VkNet.Categories
         /// <param name="hash">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
         /// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveWallPhoto"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveWallPhoto"/>.
         /// </remarks>
         [ApiMethodName("photos.saveWallPhoto", Skip = true)]
         [ApiVersion("5.9")]
@@ -403,7 +399,7 @@ namespace VkNet.Categories
         /// <param name="groupId">Идентификатор сообщества, на стену которого нужно загрузить фото (без знака «минус»)</param>
         /// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/>.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getWallUploadServer"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getWallUploadServer"/>.
         /// </remarks>
         [ApiMethodName("photos.getWallUploadServer", Skip = true)]
         [ApiVersion("5.9")]
@@ -426,7 +422,7 @@ namespace VkNet.Categories
         /// </summary>
         /// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/>.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMessagesUploadServer"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getMessagesUploadServer"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public UploadServerInfo GetMessagesUploadServer()
@@ -441,7 +437,7 @@ namespace VkNet.Categories
         /// <param name="photo">параметр, возвращаемый в результате загрузки фотографии на сервер</param>
         /// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMessagesPhoto"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveMessagesPhoto"/>.
         /// </remarks>
         [ApiMethodName("photos.saveMessagesPhoto", Skip = true)]
         [ApiVersion("5.9")]
@@ -464,7 +460,7 @@ namespace VkNet.Categories
         /// <param name="reason">Тип жалобы</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.report"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.report"/>.
         /// </remarks>
         [ApiMethodName("photos.report", Skip = true)]
         [ApiVersion("5.9")]
@@ -492,7 +488,7 @@ namespace VkNet.Categories
         /// <param name="reason">Тип жалобы</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reportComment"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.reportComment"/>.
         /// </remarks>
         [ApiMethodName("photos.reportComment", Skip = true)]
         [ApiVersion("5.9")]
@@ -526,7 +522,7 @@ namespace VkNet.Categories
         /// <param name="radius">радиус поиска в метрах. (работает очень приближенно, поэтому реальное расстояние до цели может отличаться от заданного). Может принимать значения: 10, 100, 800, 6000, 50000 положительное число, по умолчанию 5000</param>
         /// <returns>После успешного выполнения возвращает список объектов фотографий.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.search"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.search"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> Search(string query = null, double? lat = null, double? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
@@ -572,7 +568,7 @@ namespace VkNet.Categories
         /// <param name="description">Текст описания альбома</param>
         /// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>. </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.save"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.save"/>.
         /// </remarks>
         [ApiMethodName("photos.save", Skip = true)]
         [ApiVersion("5.9")]
@@ -604,7 +600,7 @@ namespace VkNet.Categories
         /// <param name="accessKey">Специальный код доступа для приватных фотографий</param>
         /// <returns>Возвращает идентификатор созданной фотографии.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.copy"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.copy"/>.
         /// </remarks>
         [ApiMethodName("photos.copy", Skip = true)]
         [ApiVersion("5.9")]
@@ -632,7 +628,7 @@ namespace VkNet.Categories
         /// <param name="caption">Новый текст описания к фотографии. Если параметр не задан, то считается, что он равен пустой строке.</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.edit"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.edit"/>.
         /// </remarks>
         [ApiMethodName("photos.edit", Skip = true)]
         [ApiVersion("5.9")]
@@ -660,7 +656,7 @@ namespace VkNet.Categories
         /// <param name="photoId">Идентификатор фотографии, которую нужно перенести</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.move"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.move"/>.
         /// </remarks>
         [ApiMethodName("photos.move", Skip = true)]
         [ApiVersion("5.9")]
@@ -689,7 +685,7 @@ namespace VkNet.Categories
         /// <param name="albumId">Идентификатор альбома/param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.makeCover"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.makeCover"/>.
         /// </remarks>
         [ApiMethodName("photos.makeCover", Skip = true)]
         [ApiVersion("5.9")]
@@ -719,7 +715,7 @@ namespace VkNet.Categories
         /// <param name="after">Идентификатор альбома, после которого следует поместить альбом</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderAlbums"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.reorderAlbums"/>.
         /// </remarks>
         [ApiMethodName("photos.reorderAlbums", Skip = true)]
         [ApiVersion("5.9")]
@@ -749,7 +745,7 @@ namespace VkNet.Categories
         /// <param name="after">Идентификатор фотографии, после которой следует поместить фотографию</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderPhotos"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.reorderPhotos"/>.
         /// </remarks>
         [ApiMethodName("photos.reorderPhotos", Skip = true)]
         [ApiVersion("5.9")]
@@ -789,7 +785,7 @@ namespace VkNet.Categories
         /// </remarks>
         ///</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAll"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAll"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Photo> GetAll(long? ownerId = null, bool? extended = null, int? count = null, int? offset = null, bool? photoSizes = null, bool? noServiceAlbums = null)
@@ -822,7 +818,7 @@ namespace VkNet.Categories
         /// <param name="sort">Сортировка результатов (false — по дате добавления отметки в порядке убывания, true — по дате добавления отметки в порядке возрастания)</param>
         /// <returns>После успешного выполнения возвращает список объектов photo. </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getUserPhotos"/>.
         /// </remarks>
         [ApiMethodName("photos.getUserPhotos")]
         [VkValue("userId", 178964623)]
@@ -856,7 +852,7 @@ namespace VkNet.Categories
         /// <param name="groupId">Идентификатор сообщества, в котором размещен альбом.</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteAlbum"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.deleteAlbum"/>.
         /// </remarks>
         [ApiVersion("5.9")]
         public bool DeleteAlbum(long albumId, long? groupId = null)
@@ -880,7 +876,7 @@ namespace VkNet.Categories
         /// <param name="photoId">Идентификатор фотографии</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.delete"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.delete"/>.
         /// </remarks>
         [ApiMethodName("photos.delete", Skip = true)]
         [ApiVersion("5.9")]
@@ -905,7 +901,7 @@ namespace VkNet.Categories
         /// <param name="tagId">Идентификатор отметки на фотографии</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.confirmTag"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.confirmTag"/>.
         /// </remarks>
         [ApiMethodName("photos.confirmTag", Skip = true)]
         [ApiVersion("5.9")]
@@ -936,7 +932,7 @@ namespace VkNet.Categories
         /// <param name="accessKey">строка</param>
         /// <returns>После успешного выполнения возвращает список объектов <see cref="Comment"/>.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getComments"/>.
         /// </remarks>
         [ApiMethodName("photos.getComments")]
         [VkValue("owner_id", 1)]
@@ -974,7 +970,7 @@ namespace VkNet.Categories
         /// <param name="count">Количество комментариев, которое необходимо получить. Если параметр не задан, то считается что он равен 20. Максимальное значение параметра 100. положительное число</param>
         /// <returns>После успешного выполнения возвращает список объектов <see cref="Comment"/>.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAllComments"/>.
         /// </remarks>
         [ApiMethodName("photos.getAllComments", Skip = true)]
         [ApiVersion("5.9")]
@@ -1023,7 +1019,7 @@ namespace VkNet.Categories
         /// <param name="accessKey">строка</param>
         /// <returns>После успешного выполнения возвращает идентификатор созданного комментария.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createComment"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.createComment"/>.
         /// </remarks>
         [ApiMethodName("photos.createComment", Skip = true)]
         [ApiVersion("5.9")]
@@ -1056,7 +1052,7 @@ namespace VkNet.Categories
         /// <returns>После успешного выполнения возвращает true (false, если комментарий не найден). 
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteComment"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.deleteComment"/>.
         /// </remarks>
         [ApiMethodName("photos.deleteComment", Skip = true)]
         [ApiVersion("5.9")]
@@ -1080,7 +1076,7 @@ namespace VkNet.Categories
         /// <param name="commentId">Идентификатор удаленного комментария</param>
         /// <returns>После успешного выполнения возвращает true (false, если комментарий с таким идентификатором не является удаленным).</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.restoreComment"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.restoreComment"/>.
         /// </remarks>
         [ApiMethodName("photos.restoreComment", Skip = true)]
         [ApiVersion("5.9")]
@@ -1117,7 +1113,7 @@ namespace VkNet.Categories
         /// Параметр является обязательным, если не задан параметр message. список строк, разделенных через запятую</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editComment"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.editComment"/>.
         /// </remarks>
         [ApiMethodName("photos.editComment", Skip = true)]
         [ApiVersion("5.9")]
@@ -1144,7 +1140,7 @@ namespace VkNet.Categories
         /// <param name="accessKey">строковой ключ доступа, который може быть получен при получении объекта фотографии</param>
         /// <returns>После успешного выполнения возвращает массив объектов <see cref="Tag"/>.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getTags"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getTags"/>.
         /// </remarks>
         [ApiMethodName("photos.getTags", Skip = true)]
         [ApiVersion("5.9")]
@@ -1176,7 +1172,7 @@ namespace VkNet.Categories
         /// <param name="y2">Координата правого нижнего угла области с отметкой в % от высоты фотографии</param>
         /// <returns>После успешного выполнения возвращает идентификатор созданной отметки.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.putTag"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.putTag"/>.
         /// </remarks>
         [ApiMethodName("photos.putTag", Skip = true)]
         [ApiVersion("5.9")]
@@ -1208,7 +1204,7 @@ namespace VkNet.Categories
         /// <param name="tagId">Идентификатор отметки</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.removeTag"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.removeTag"/>.
         /// </remarks>
         [ApiMethodName("photos.removeTag", Skip = true)]
         [ApiVersion("5.9")]
@@ -1234,7 +1230,7 @@ namespace VkNet.Categories
         /// <param name="count">Количество фотографий, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20</param>
         /// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags"/>.
+        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getNewTags"/>.
         /// </remarks>
         [ApiMethodName("photos.getNewTags", Skip = true)]
         [ApiVersion("5.9")]

@@ -6,6 +6,7 @@ using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Model;
 using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams.Photo;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
@@ -119,8 +120,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAlbums_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getAlbums?owner_id=1&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.getAlbums?owner_id=1&v=5.37&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'count': 1,
@@ -138,8 +139,14 @@ namespace VkNet.Tests.Categories
                       ]
                     }
                   }";
+	        int count;
+            ReadOnlyCollection<PhotoAlbum> albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams()
+            {
+				OwnerId = 1
+			});
 
-            ReadOnlyCollection<PhotoAlbum> albums = GetMockedPhotosCategory(url, json).GetAlbums(1);
+	        count.ShouldEqual(1);
+
             albums.Count.ShouldEqual(1);
 
             albums[0].Id.ShouldEqual(136592355);

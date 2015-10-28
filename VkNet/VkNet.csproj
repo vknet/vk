@@ -71,6 +71,7 @@
     <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
     <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
     <Compile Include="Enums\SafetyEnums\CommentObjectType.cs" />
+    <Compile Include="Enums\SafetyEnums\PhotoSizeType.cs" />
     <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
     <Compile Include="Enums\SafetyEnums\LikesFilter.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\App.cs" />
     <Compile Include="Model\Mention.cs" />
+    <Compile Include="Model\PhotoSize.cs" />
     <Compile Include="Model\RequestParams\Likes\GetListParams.cs" />
     <Compile Include="Model\RequestParams\Messages\MessageSendParams.cs" />
     <Compile Include="Model\NewsBannedExList.cs" />
@@ -199,6 +201,7 @@
     <Compile Include="Model\RequestParams\NewsFeed\SearchParams.cs" />
     <Compile Include="Model\RequestParams\NewsFeed\GetRecommendedParams.cs" />
     <Compile Include="Model\RequestParams\NewsFeed\GetParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\GetAlbumsParams.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\Street.cs" />
