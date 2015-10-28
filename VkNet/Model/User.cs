@@ -315,11 +315,9 @@
             var user = new User();
 
             // ---- стандартные поля ----
+            user.Id = response["uid"] ?? response["id"] ?? 0;
 
-            VkResponse id = response["uid"] ?? response["id"];
-            user.Id = Convert.ToInt64(id.ToString());
-
-            user.FirstName = response["first_name"];
+			user.FirstName = response["first_name"];
             user.LastName = response["last_name"];
 
             if (response["name"] != null)
