@@ -246,7 +246,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getUploadServer"/>.
 		/// </remarks>
 		[ApiMethodName("photos.getUploadServer", Skip = true)]
-		[ApiVersion("5.9")]
+		[ApiVersion("5.37")]
 		public UploadServerInfo GetUploadServer(long albumId, long? groupId = null)
 		{
 			var parameters = new VkParameters
@@ -255,9 +255,7 @@ namespace VkNet.Categories
 					{"group_id", groupId}
 				};
 
-			VkResponse response = _vk.Call("photos.getUploadServer", parameters);
-
-			return response;
+			return _vk.Call("photos.getUploadServer", parameters);
 		}
 
 		/// <summary>
