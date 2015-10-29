@@ -303,24 +303,18 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getChatUploadServer"/>.
 		/// </remarks>
 		[ApiMethodName("photos.getChatUploadServer", Skip = true)]
-		[ApiVersion("5.9")]
-		public UploadServerInfo GetChatUploadServer(long chatId, long? cropX = null, long? cropY = null, long? cropWidth = null)
+		[ApiVersion("5.37")]
+		public UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => chatId);
-			VkErrors.ThrowIfNumberIsNegative(() => cropX);
-			VkErrors.ThrowIfNumberIsNegative(() => cropY);
-			VkErrors.ThrowIfNumberIsNegative(() => cropWidth);
-
 			var parameters = new VkParameters
 				{
-					{"chat_id", chatId},
-					{"crop_x", cropX},
-					{"crop_y", cropY},
-					{"crop_width", cropWidth}
+					{ "chat_id", chatId },
+					{ "crop_x", cropX },
+					{ "crop_y", cropY },
+					{ "crop_width", cropWidth }
 				};
-
-			VkResponse response = _vk.Call("photos.getChatUploadServer", parameters);
-			return response;
+			
+			return _vk.Call("photos.getChatUploadServer", parameters);
 		}
 
 		/// <summary>
