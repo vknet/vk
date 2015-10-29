@@ -180,11 +180,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getProfile"/>.
 		/// </remarks>
 		[ApiVersion("5.9")]
-		public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, IEnumerable<long> photoIds = null, bool? rev = null, bool? extended = null, string feedType = null, DateTime? feed = null, bool? photoSizes = null, int? count = null, int? offset = null)
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
+		public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, IEnumerable<long> photoIds = null, bool? rev = null, bool? extended = null, string feedType = null, DateTime? feed = null, bool? photoSizes = null, ulong? count = null, ulong? offset = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-
 			var parameters = new VkParameters
 				{
 					{"owner_id", ownerId},
@@ -223,7 +221,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getById"/>.
 		/// </remarks>
 		[ApiMethodName("photos.getById", Skip = true)]
-		[ApiVersion("5.9")]
+		[ApiVersion("5.37")]
 		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null)
 		{
 			var parameters = new VkParameters
