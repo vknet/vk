@@ -172,8 +172,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAlbumsCount_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=5.37&access_token=token";
+			const string json =
                 @"{
                     'response': 1
                   }";

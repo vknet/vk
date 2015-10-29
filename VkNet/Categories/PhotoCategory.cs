@@ -151,20 +151,16 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAlbumsCount"/>.
 		/// </remarks>
-		[ApiVersion("5.9")]
+		[ApiVersion("5.37")]
 		public int GetAlbumsCount(long? userId = null, long? groupId = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
 			var parameters = new VkParameters
 				{
 					{"user_id", userId},
 					{"group_id", groupId}
 				};
 
-			VkResponse response = _vk.Call("photos.getAlbumsCount", parameters);
-
-			return response;
+			return _vk.Call("photos.getAlbumsCount", parameters);
 		}
 
 		/// <summary>
