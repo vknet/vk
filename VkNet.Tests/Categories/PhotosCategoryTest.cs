@@ -24,8 +24,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetProfileUploadServer_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getProfileUploadServer?v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=5.37&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'upload_url': 'http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh'

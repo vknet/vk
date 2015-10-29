@@ -265,10 +265,30 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getProfileUploadServer"/>.
 		/// </remarks>
-		[ApiVersion("5.9")]
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте метод GetOwnerPhotoUploadServer")]
 		public UploadServerInfo GetProfileUploadServer()
 		{
-			return _vk.Call("photos.getProfileUploadServer", VkParameters.Empty);
+			return GetOwnerPhotoUploadServer();
+		}
+
+		/// <summary>
+		/// Возвращает адрес сервера для загрузки фотографии на страницу пользователя.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор сообщества или текущего пользователя.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект с единственным полем upload_url.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getOwnerPhotoUploadServer" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
+		public UploadServerInfo GetOwnerPhotoUploadServer(long? ownerId = null)
+		{
+			var parameters = new VkParameters
+				{
+					{"owner_id", ownerId}
+				};
+			return _vk.Call("photos.getOwnerPhotoUploadServer", parameters);
 		}
 
 		/// <summary>
