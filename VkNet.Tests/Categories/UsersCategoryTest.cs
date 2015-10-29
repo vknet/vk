@@ -373,18 +373,18 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_BadQuery_EmptyList()
         {
-			const string url = "https://api.vk.com/method/users.search?q=fa'sosjvsoidf&sort=0&offset=0&count=20&sex=0&status=0&online=0&has_photo=0&access_token=token";
-
+			const string url = "https://api.vk.com/method/users.search?q=fa'sosjvsoidf&sort=0&offset=0&count=20&sex=0&status=0&online=0&has_photo=0&v=5.37&access_token=token";
 			const string json =
-                @"{
-                    'response': [
-                      0
-                    ]
-                  }";
+				@"{
+					response: {
+						count: 0,
+						items: []
+					}
+				}";
 
-            int count;
+			int count;
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Search(out count, new UserSearchParams { Query = "fa'sosjvsoidf" }).ToList();
+            var lst = users.Search(out count, new UserSearchParams { Query = "fa'sosjvsoidf" });
 
             Assert.That(count, Is.EqualTo(0));
             Assert.That(lst, Is.Not.Null);
@@ -394,44 +394,46 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_EducationField_ListofProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&status=0&online=0&has_photo=0&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&status=0&online=0&has_photo=0&v=5.37&access_token=token";
 
 			const string json =
-                @"{
-                    'response': [
-                      26953,
-                      {
-                        'uid': 165614770,
-                        'first_name': 'Маша',
-                        'last_name': 'Иванова',
-                        'university': '0',
-                        'university_name': '',
-                        'faculty': '0',
-                        'faculty_name': '',
-                        'graduation': '0'
-                      },
-                      {
-                        'uid': 174063570,
-                        'first_name': 'Маша',
-                        'last_name': 'Иванова',
-                        'university': '0',
-                        'university_name': '',
-                        'faculty': '0',
-                        'faculty_name': '',
-                        'graduation': '0'
-                      },
-                      {
-                        'uid': 76817368,
-                        'first_name': 'Маша',
-                        'last_name': 'Иванова',
-                        'university': '0',
-                        'university_name': '',
-                        'faculty': '0',
-                        'faculty_name': '',
-                        'graduation': '0'
-                      }
-                    ]
-                  }";
+				@"{
+					response: {
+						count: 26953,
+						items: [
+							{
+								'uid': 165614770,
+								'first_name': 'Маша',
+								'last_name': 'Иванова',
+								'university': '0',
+								'university_name': '',
+								'faculty': '0',
+								'faculty_name': '',
+								'graduation': '0'
+							},
+							{
+								'uid': 174063570,
+								'first_name': 'Маша',
+								'last_name': 'Иванова',
+								'university': '0',
+								'university_name': '',
+								'faculty': '0',
+								'faculty_name': '',
+								'graduation': '0'
+							},
+							{
+								'uid': 76817368,
+								'first_name': 'Маша',
+								'last_name': 'Иванова',
+								'university': '0',
+								'university_name': '',
+								'faculty': '0',
+								'faculty_name': '',
+								'graduation': '0'
+							}
+						]
+					}
+				}";
 
             int count;
             var users = GetMockedUsersCategory(url, json);
@@ -461,28 +463,30 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_DefaultFields_ListOfProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=0&count=20&sex=0&status=0&online=0&has_photo=0&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=0&count=20&sex=0&status=0&online=0&has_photo=0&v=5.37&access_token=token";
 			const string json =
-                @"{
-                    'response': [
-                      26953,
-                      {
-                        'uid': 449928,
-                        'first_name': 'Маша',
-                        'last_name': 'Иванова'
-                      },
-                      {
-                        'uid': 70145254,
-                        'first_name': 'Маша',
-                        'last_name': 'Шаблинская-Иванова'
-                      },
-                      {
-                        'uid': 62899425,
-                        'first_name': 'Masha',
-                        'last_name': 'Ivanova'
-                      }
-                    ]
-                  }";
+				@"{
+				response: {
+					count: 26953,
+					items: [
+						{
+							'uid': 449928,
+							'first_name': 'Маша',
+							'last_name': 'Иванова'
+						},
+						{
+							'uid': 70145254,
+							'first_name': 'Маша',
+							'last_name': 'Шаблинская-Иванова'
+						},
+						{
+							'uid': 62899425,
+							'first_name': 'Masha',
+							'last_name': 'Ivanova'
+						}
+					]
+					}
+				}";
 
             int count;
             var users = GetMockedUsersCategory(url, json);

@@ -51,20 +51,17 @@ namespace VkNet.Categories
             return _vk.Call("photos.createAlbum", parameters);
 		}
 
-        /// <summary>
-        /// Редактирует данные альбома для фотографий пользователя. 
-        /// </summary>
-        /// <param name="albumId">Идентификатор альбома</param>
-        /// <param name="title">Новое название альбома</param>
-        /// <param name="description">Новый текст описания альбома</param>
-        /// <param name="ownerId">Идентификатор владельца альбома (пользователь или сообщество). Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
-        /// <param name="privacy">Новый уровень доступа к альбому</param>
-        /// <param name="commentPrivacy">новый уровень доступа к комментированию альбома</param>
-        /// <returns>После успешного выполнения возвращает true.</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.editAlbum"/>.
-        /// </remarks>
-        [ApiVersion("5.37")]
+		/// <summary>
+		/// Редактирует данные альбома для фотографий пользователя.
+		/// </summary>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c>true</c>.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.editAlbum" />.
+		/// </remarks>
+		[ApiVersion("5.37")]
         public bool EditAlbum(EditAlbumParams @params)
         {
             var parameters = new VkParameters

@@ -24,7 +24,7 @@ namespace VkNet.Tests.Enum.Filters
         public void ToString_AllValues()
         {
             var g = GroupsFields.All;
-            Assert.That(g.ToString(), Is.EqualTo("city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_create_topic,activity,status,contacts,links,fixed_post,verified,site"));
+            Assert.That(g.ToString(), Is.EqualTo("city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_create_topic,activity,status,contacts,links,fixed_post,verified,site,ban_info"));
         }
     }
 }
