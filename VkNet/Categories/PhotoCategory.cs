@@ -397,19 +397,15 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getWallUploadServer"/>.
 		/// </remarks>
 		[ApiMethodName("photos.getWallUploadServer", Skip = true)]
-		[ApiVersion("5.9")]
+		[ApiVersion("5.37")]
 		public UploadServerInfo GetWallUploadServer(long? groupId = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-
 			var parameters = new VkParameters
 				{
 					{"group_id", groupId}
 				};
 
-			VkResponse response = _vk.Call("photos.getWallUploadServer", parameters);
-
-			return response;
+			return _vk.Call("photos.getWallUploadServer", parameters);
 		}
 
 		/// <summary>
