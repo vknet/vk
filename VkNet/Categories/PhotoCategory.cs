@@ -372,12 +372,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveWallPhoto"/>.
 		/// </remarks>
 		[ApiMethodName("photos.saveWallPhoto", Skip = true)]
-		[ApiVersion("5.9")]
-		public ReadOnlyCollection<Photo> SaveWallPhoto(string photo, long? userId = null, long? groupId = null, long? server = null, string hash = null)
+		[ApiVersion("5.37")]
+		public ReadOnlyCollection<Photo> SaveWallPhoto(string photo, ulong? userId = null, ulong? groupId = null, long? server = null, string hash = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-
 			var parameters = new VkParameters
 				{
 					{"user_id", userId},
