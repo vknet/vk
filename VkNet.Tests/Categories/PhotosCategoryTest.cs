@@ -462,8 +462,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void SaveWallPhoto_NormalCase()
         {
-            const string url = @"https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=photo&server=5678&hash=hash_hash&v=5.9&access_token=token";
-            const string json = @"{
+			const string url = "https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=photo&server=5678&hash=hash_hash&v=5.37&access_token=token";
+			const string json = @"{
     'response': [
         {
             'id': 3446123,
