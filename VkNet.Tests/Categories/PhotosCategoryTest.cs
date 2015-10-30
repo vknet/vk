@@ -333,7 +333,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.search?q=порно&offset=2&count=3&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/photos.search?q=%d0%bf%d0%be%d1%80%d0%bd%d0%be&offset=2&count=3&v=5.37&access_token=token";
 			const string json =
                 @"{
                     'response': {
@@ -411,8 +411,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_Error26_Lat_and_Long_in_output_photo()
         {
-            const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=5.37&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'count': 12,
