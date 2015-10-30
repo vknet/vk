@@ -680,7 +680,7 @@
 
             VideoCategory cat = GetMockedVideoCategory(url, json);
 
-            bool result = cat.Report(166613182, VideoReportType.DrugPropaganda, 1, "коммент");
+            bool result = cat.Report(166613182, Enums.ContentReportType.DrugPropaganda, 1, "коммент");
 
             result.ShouldBeTrue();
         }
@@ -696,7 +696,7 @@
 
             VideoCategory cat = GetMockedVideoCategory(url, json);
 
-            bool result = cat.ReportComment(35637, 1, VideoReportType.AdultMaterial);
+            bool result = cat.ReportComment(35637, 1, Enums.ContentReportType.AdultMaterial);
 
             result.ShouldBeTrue();
         }

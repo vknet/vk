@@ -42,8 +42,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetMessagesUploadServer_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getMessagesUploadServer?v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.getMessagesUploadServer?v=5.37&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'upload_url': 'http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1',
@@ -333,8 +333,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.search?q=порно&offset=2&count=3&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.search?q=порно&offset=2&count=3&v=5.37&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'count': 48888,
@@ -384,10 +384,15 @@ namespace VkNet.Tests.Categories
                       ]
                     }
                   }";
+	        int count;
+			ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).Search(out count, new PhotoSearchParams
+			{
+				Query = "порно",
+				Offset = 2,
+				Count = 3
+			});
 
-            ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).Search(query: "порно", offset:2, count:3);
-
-            photos.Count.ShouldEqual(3);
+			photos.Count.ShouldEqual(3);
 
             photos[0].Id.ShouldEqual(331520481);
             photos[0].AlbumId.ShouldEqual(182104020);
@@ -446,9 +451,15 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            var photos = GetMockedPhotosCategory(url, json).Search(query: "", lat: 30, longitude: 30, count: 2);
-
-            photos.Count.ShouldEqual(2);
+			int count;
+			var photos = GetMockedPhotosCategory(url, json).Search(out count, new PhotoSearchParams
+			{
+				Query = "",
+				Latitude = 30,
+				Longitude = 30,
+				Count = 2
+			});
+			photos.Count.ShouldEqual(2);
 
             photos[0].Latitude.ShouldEqual(29.999996185302734);
             photos[0].Longitude.ShouldEqual(29.999996185302734);

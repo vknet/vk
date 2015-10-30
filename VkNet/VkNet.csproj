@@ -71,6 +71,7 @@
     <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
     <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
     <Compile Include="Enums\SafetyEnums\CommentObjectType.cs" />
+    <Compile Include="Enums\SafetyEnums\PhotoSearchRadius.cs" />
     <Compile Include="Enums\SafetyEnums\PhotoSizeType.cs" />
     <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
     <Compile Include="Enums\SafetyEnums\LikesFilter.cs" />
@@ -118,7 +119,7 @@
     <Compile Include="Enums\SafetyEnums\PhotoFeedType.cs" />
     <Compile Include="Enums\Sex.cs" />
     <Compile Include="Enums\UserSort.cs" />
-    <Compile Include="Enums\VideoReportType.cs" />
+    <Compile Include="Enums\ContentReportType.cs" />
     <Compile Include="Enums\VideoSort.cs" />
     <Compile Include="Enums\VideoWidth.cs" />
     <Compile Include="Enums\VkObjectType.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Model\RequestParams\Photo\EditAlbumParams.cs" />
     <Compile Include="Model\RequestParams\Photo\GetAlbumsParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoGetParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoSearchParams.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\Street.cs" />

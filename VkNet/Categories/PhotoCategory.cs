@@ -1,8 +1,10 @@
-using VkNet.Exception;
-using VkNet.Model.RequestParams.Photo;
-
 namespace VkNet.Categories
 {
+#if WINDOWS_PHONE
+	using System.Net;
+#else
+	using System.Web;
+#endif
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
 	using System;
@@ -12,6 +14,7 @@ namespace VkNet.Categories
 	using Enums.SafetyEnums;
 	using Model;
 	using Model.Attachments;
+	using VkNet.Model.RequestParams.Photo;
 
 	/// <summary>
 	/// Методы для работы с фотографиями.
@@ -415,11 +418,10 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getMessagesUploadServer"/>.
 		/// </remarks>
-		[ApiVersion("5.9")]
+		[ApiVersion("5.37")]
 		public UploadServerInfo GetMessagesUploadServer()
 		{
-			VkResponse response = _vk.Call("photos.getMessagesUploadServer", VkParameters.Empty);
-			return response;
+			return _vk.Call("photos.getMessagesUploadServer", VkParameters.Empty);
 		}
 
 		/// <summary>
@@ -431,7 +433,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveMessagesPhoto"/>.
 		/// </remarks>
 		[ApiMethodName("photos.saveMessagesPhoto", Skip = true)]
-		[ApiVersion("5.9")]
+		[ApiVersion("5.37")]
 		public Photo SaveMessagesPhoto(string photo)
 		{
 			var parameters = new VkParameters
@@ -439,8 +441,7 @@ namespace VkNet.Categories
 					{"photo", photo}
 				};
 
-			VkResponse response = _vk.Call("photos.saveMessagesPhoto", parameters);
-			return response;
+			return _vk.Call("photos.saveMessagesPhoto", parameters);
 		}
 
 		/// <summary>
@@ -454,11 +455,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.report"/>.
 		/// </remarks>
 		[ApiMethodName("photos.report", Skip = true)]
-		[ApiVersion("5.9")]
-		public bool Report(long ownerId, long photoId, VideoReportType reason)
+		[ApiVersion("5.37")]
+		public bool Report(long ownerId, ulong photoId, ContentReportType reason)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => photoId);
-
 			var parameters = new VkParameters
 				{
 					{"owner_id", ownerId},
@@ -466,9 +465,7 @@ namespace VkNet.Categories
 					{"reason", reason}
 				};
 
-			VkResponse response = _vk.Call("photos.report", parameters);
-
-			return response;
+			return _vk.Call("photos.report", parameters);
 		}
 
 		/// <summary>
@@ -482,11 +479,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.reportComment"/>.
 		/// </remarks>
 		[ApiMethodName("photos.reportComment", Skip = true)]
-		[ApiVersion("5.9")]
-		public bool ReportComment(long ownerId, long commentId, VideoReportType reason)
+		[ApiVersion("5.37")]
+		public bool ReportComment(long ownerId, ulong commentId, ContentReportType reason)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => commentId);
-
 			var parameters = new VkParameters
 				{
 					{"owner_id", ownerId},
@@ -494,55 +489,39 @@ namespace VkNet.Categories
 					{"reason", reason}
 				};
 
-			VkResponse response = _vk.Call("photos.reportComment", parameters);
-
-			return response;
+			return _vk.Call("photos.reportComment", parameters);
 		}
 
 		/// <summary>
-		/// Осуществляет поиск изображений по местоположению или описанию. 
+		/// Осуществляет поиск изображений по местоположению или описанию.
 		/// </summary>
-		/// <param name="query">Строка поискового запроса</param>
-		/// <param name="lat">Географическая широта отметки, заданная в градусах (от -90 до 90)</param>
-		/// <param name="longitude">Географическая долгота отметки, заданная в градусах (от -180 до 180)</param>
-		/// <param name="startTime">Время в формате unixtime, не раньше которого должны были быть загружены найденные фотографии. положительное число</param>
-		/// <param name="endTime">Время в формате unixtime, не позже которого должны были быть загружены найденные фотографии. положительное число</param>
-		/// <param name="sort">True – сортировать по количеству отметок «Мне нравится», false – сортировать по дате добавления фотографии. положительное число</param>
-		/// <param name="offset">смещение относительно первой найденной фотографии для выборки определенного подмножества. положительное число</param>
-		/// <param name="count">количество возвращаемых фотографий. положительное число, по умолчанию 100, максимальное значение 1000</param>
-		/// <param name="radius">радиус поиска в метрах. (работает очень приближенно, поэтому реальное расстояние до цели может отличаться от заданного). Может принимать значения: 10, 100, 800, 6000, 50000 положительное число, по умолчанию 5000</param>
-		/// <returns>После успешного выполнения возвращает список объектов фотографий.</returns>
+		/// <param name="count">Количество альбомов.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов фотографий.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.search"/>.
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.search" />.
 		/// </remarks>
-		[ApiVersion("5.9")]
-		public ReadOnlyCollection<Photo> Search(string query = null, double? lat = null, double? longitude = null, DateTime? startTime = null, DateTime? endTime = null, bool? sort = null, int? count = null, int? offset = null, int? radius = null)
+		[ApiVersion("5.37")]
+		public ReadOnlyCollection<Photo> Search(out int count,PhotoSearchParams @params)
 		{
-			// todo add check for latitude and longitude throught VkErrors.ThrowIfNumberNotInRange
-			// TODO add verstion with totalCount
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => radius);
-
-			//TODO do this check later
-			//            VkErrors.ThrowIfNumberNotInRange(lat, -90, 90);
-
 			var parameters = new VkParameters
 				{
-					{"q", query},
-					{"lat", lat},
-					{"long", longitude},
-					{"start_time", startTime},
-					{"end_time", endTime},
-					{"sort", sort},
-					{"offset", offset},
-					{"count", count},
-					{"radius", radius}
+					{ "q", HttpUtility.UrlEncode(@params.Query) },
+					{ "lat", @params.Latitude },
+					{ "long", @params.Longitude },
+					{ "start_time", @params.StartTime },
+					{ "end_time", @params.EndTime },
+					{ "sort", @params.Sort },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count },
+					{ "radius", @params.Radius }
 				};
 
-			VkResponseArray response = _vk.Call("photos.search", parameters, true);
-
-			return response.ToReadOnlyCollectionOf<Photo>(x => x);
+			var response = _vk.Call("photos.search", parameters, true);
+			count = response["count"];
+			return response["items"].ToReadOnlyCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
