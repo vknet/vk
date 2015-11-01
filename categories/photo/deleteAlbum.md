@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photo.DeleteAlbum
-permalink: photo/deletealbum/
+permalink: photo/deleteAlbum/
 comments: true
 ---
 # Метод DeleteAlbum
