@@ -4,7 +4,7 @@ title: Метод Photo.ReorderAlbums
 permalink: photo/reorderAlbums/
 comments: true
 ---
-# Метод ReorderAlbums
+# Метод Photo.ReorderAlbums
 Меняет порядок альбома в списке альбомов пользователя.
 
 ## Описание

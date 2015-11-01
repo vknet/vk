@@ -4,7 +4,7 @@ title: Метод Photo.Move
 permalink: photo/move/
 comments: true
 ---
-# Метод Move
+# Метод Photo.Move
 Переносит фотографию из одного альбома в другой.
 
 ## Описание

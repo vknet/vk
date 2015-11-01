@@ -4,7 +4,7 @@ title: Метод Photo.CreateComment
 permalink: photo/createComment/
 comments: true
 ---
-# Метод CreateComment
+# Метод Photo.CreateComment
 Создает новый комментарий к фотографии.
 
 ## Синтаксис

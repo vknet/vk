@@ -4,7 +4,7 @@ title: Метод Photo.GetUploadServer
 permalink: photo/getUploadServer/
 comments: true
 ---
-# Метод GetUploadServer
+# Метод Photo.GetUploadServer
 Возвращает адрес сервера для загрузки фотографий.
 
 ## Описание

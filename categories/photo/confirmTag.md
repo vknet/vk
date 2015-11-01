@@ -4,7 +4,7 @@ title: Метод Photo.ConfirmTag
 permalink: photo/confirmTag/
 comments: true
 ---
-# Метод ConfirmTag
+# Метод Photo.ConfirmTag
 Подтверждает отметку на фотографии.
 
 ## Синтаксис

@@ -4,7 +4,7 @@ title: Метод Photo.GetAlbums
 permalink: photo/getAlbums/
 comments: true
 ---
-# Метод GetAlbums
+# Метод Photo.GetAlbums
 Возвращает список альбомов пользователя или сообщества.
 
 ## Описание

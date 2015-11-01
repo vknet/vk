@@ -4,7 +4,7 @@ title: Метод Photo.DeleteAlbum
 permalink: photo/deleteAlbum/
 comments: true
 ---
-# Метод DeleteAlbum
+# Метод Photo.DeleteAlbum
 Удаляет указанный альбом для фотографий у текущего пользователя
 
 ## Синтаксис

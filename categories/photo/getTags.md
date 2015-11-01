@@ -4,7 +4,7 @@ title: Метод Photo.GetTags
 permalink: photo/getTags/
 comments: true
 ---
-# Метод GetTags
+# Метод Photo.GetTags
 Возвращает список отметок на фотографии.
 
 ## Описание

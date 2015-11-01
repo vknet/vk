@@ -4,7 +4,7 @@ title: Метод Photo.Search
 permalink: photo/search/
 comments: true
 ---
-# Метод Search
+# Метод Photo.Search
 Осуществляет поиск изображений по местоположению или описанию.
 
 ## Описание

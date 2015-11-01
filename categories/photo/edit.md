@@ -4,7 +4,7 @@ title: Метод Photo.Edit
 permalink: photo/edit/
 comments: true
 ---
-# Метод Edit
+# Метод Photo.Edit
 Изменяет описание у выбранной фотографии.
 
 ## Описание

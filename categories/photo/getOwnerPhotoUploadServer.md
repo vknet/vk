@@ -4,7 +4,7 @@ title: Метод Photo.GetOwnerPhotoUploadServer
 permalink: photo/getOwnerPhotoUploadServer/
 comments: true
 ---
-# Метод GetOwnerPhotoUploadServer
+# Метод Photo.GetOwnerPhotoUploadServer
 Возвращает адрес сервера для загрузки главной фотографии на страницу пользователя или сообщества.
 
 ## Описание

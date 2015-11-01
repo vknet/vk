@@ -4,7 +4,7 @@ title: Метод Photo.GetNewTags
 permalink: photo/getNewTags/
 comments: true
 ---
-# Метод GetNewTags
+# Метод Photo.GetNewTags
 Возвращает список фотографий, на которых есть непросмотренные отметки.
 
 ## Описание

@@ -4,7 +4,7 @@ title: Метод Photo.Delete
 permalink: photo/delete/
 comments: true
 ---
-# Метод Delete
+# Метод Photo.Delete
 Удаление фотографии на сайте.
 
 ## Синтаксис

@@ -4,7 +4,7 @@ title: Метод Photo.SaveOwnerPhoto
 permalink: photo/saveOwnerPhoto/
 comments: true
 ---
-# Метод SaveOwnerPhoto
+# Метод Photo.SaveOwnerPhoto
 Позволяет сохранить главную фотографию пользователя или сообщества.
 
 ## Описание

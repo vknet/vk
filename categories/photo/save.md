@@ -4,7 +4,7 @@ title: Метод Photo.Save
 permalink: photo/save/
 comments: true
 ---
-# Метод Save
+# Метод Photo.Save
 Сохраняет фотографии после успешной загрузки.
 
 ## Описание

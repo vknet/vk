@@ -4,7 +4,7 @@ title: Метод Photo.Copy
 permalink: photo/copy/
 comments: true
 ---
-# Метод Copy
+# Метод Photo.Copy
 Позволяет скопировать фотографию в альбом "Сохраненные фотографии"
 
 ## Синтаксис

@@ -4,7 +4,7 @@ title: Метод Photo.EditAlbum
 permalink: photo/editAlbum/
 comments: true
 ---
-# Метод EditAlbum
+# Метод Photo.EditAlbum
 Редактирует данные альбома для фотографий пользователя.
 
 ## Описание

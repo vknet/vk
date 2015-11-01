@@ -4,7 +4,7 @@ title: Метод Photo.Get
 permalink: photo/get/
 comments: true
 ---
-# Метод Get
+# Метод Photo.Get
 Возвращает список фотографий в альбоме.
 
 ## Описание

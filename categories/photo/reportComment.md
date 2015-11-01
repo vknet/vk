@@ -4,7 +4,7 @@ title: Метод Photo.ReportComment
 permalink: photo/reportComment/
 comments: true
 ---
-# Метод ReportComment
+# Метод Photo.ReportComment
 Позволяет пожаловаться на комментарий к фотографии.
 
 ## Описание

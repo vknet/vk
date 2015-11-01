@@ -4,7 +4,7 @@ title: Метод Photo.DeleteComment
 permalink: photo/deleteComment/
 comments: true
 ---
-# Метод DeleteComment
+# Метод Photo.DeleteComment
 Удаляет комментарий к фотографии.
 
 ## Описание

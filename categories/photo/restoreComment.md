@@ -4,7 +4,7 @@ title: Метод Photo.RestoreComment
 permalink: photo/restoreComment/
 comments: true
 ---
-# Метод RestoreComment
+# Метод Photo.RestoreComment
 Восстанавливает удаленный комментарий к фотографии.
 
 ## Описание

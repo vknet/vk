@@ -4,7 +4,7 @@ title: Метод Photo.GetById
 permalink: photo/getById/
 comments: true
 ---
-# Метод GetById
+# Метод Photo.GetById
 Возвращает информацию о фотографиях по их идентификаторам.
 
 ## Описание

@@ -4,7 +4,7 @@ title: Метод Photo.SaveWallPhoto
 permalink: photo/saveWallPhoto/
 comments: true
 ---
-# Метод SaveWallPhoto
+# Метод Photo.SaveWallPhoto
 Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getWallUploadServer.
 
 ## Описание

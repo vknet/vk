@@ -4,7 +4,7 @@ title: Метод Photo.EditComment
 permalink: photo/editComment/
 comments: true
 ---
-# Метод EditComment
+# Метод Photo.EditComment
 Изменяет текст комментария к фотографии.
 
 ## Описание

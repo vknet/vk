@@ -4,7 +4,7 @@ title: Метод Photo.SaveMessagesPhoto
 permalink: photo/saveMessagesPhoto/
 comments: true
 ---
-# Метод SaveMessagesPhoto
+# Метод Photo.SaveMessagesPhoto
 Сохраняет фотографию после успешной загрузки на URI, полученный методом photos.getMessagesUploadServer.
 
 ## Описание

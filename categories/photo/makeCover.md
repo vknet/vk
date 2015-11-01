@@ -4,7 +4,7 @@ title: Метод Photo.MakeCover
 permalink: photo/makeCover/
 comments: true
 ---
-# Метод MakeCover
+# Метод Photo.MakeCover
 Делает фотографию обложкой альбома.
 
 ## Описание

@@ -4,7 +4,7 @@ title: Метод Photo.GetUserPhotos
 permalink: photo/getUserPhotos/
 comments: true
 ---
-# Метод GetUserPhotos
+# Метод Photo.GetUserPhotos
 Возвращает список фотографий, на которых отмечен пользователь
 
 ## Описание

@@ -4,7 +4,7 @@ title: Метод Photo.RemoveTag
 permalink: photo/removeTag/
 comments: true
 ---
-# Метод RemoveTag
+# Метод Photo.RemoveTag
 Удаляет отметку с фотографии.
 
 ## Описание

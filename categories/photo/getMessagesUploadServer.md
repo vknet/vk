@@ -4,7 +4,7 @@ title: Метод Photo.GetMessagesUploadServer
 permalink: photo/getMessagesUploadServer/
 comments: true
 ---
-# Метод GetMessagesUploadServer
+# Метод Photo.GetMessagesUploadServer
 Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
 
 ## Описание

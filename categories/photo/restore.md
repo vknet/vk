@@ -4,7 +4,7 @@ title: Метод Photo.Restore
 permalink: photo/restore/
 comments: true
 ---
-# Метод Restore
+# Метод Photo.Restore
 Восстанавливает удаленную фотографию.
 
 ## Описание

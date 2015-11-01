@@ -4,7 +4,7 @@ title: Метод Photo.GetAllComments
 permalink: photo/getAllComments/
 comments: true
 ---
-# Метод GetAllComments
+# Метод Photo.GetAllComments
 Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
 
 ## Описание

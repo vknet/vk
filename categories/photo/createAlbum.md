@@ -4,7 +4,7 @@ title: Метод Photo.CreateAlbum
 permalink: photo/createAlbum/
 comments: true
 ---
-# Метод Copy
+# Метод Photo.CreateAlbum
 Создает пустой альбом для фотографий.
 
 ## Синтаксис

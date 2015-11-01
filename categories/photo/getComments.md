@@ -4,7 +4,7 @@ title: Метод Photo.GetComments
 permalink: photo/getComments/
 comments: true
 ---
-# Метод GetComments
+# Метод Photo.GetComments
 Возвращает список комментариев к фотографии.
 
 ## Описание

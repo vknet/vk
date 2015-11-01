@@ -4,7 +4,7 @@ title: Метод Photo.PutTag
 permalink: photo/putTag/
 comments: true
 ---
-# Метод PutTag
+# Метод Photo.PutTag
 Добавляет отметку на фотографию.
 
 ## Описание
