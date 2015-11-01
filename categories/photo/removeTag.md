@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.RemoveTag
+title: Метод Photos.RemoveTag
 permalink: photo/removeTag/
 comments: true
 ---
-# Метод Photo.RemoveTag
+# Метод Photos.RemoveTag
 Удаляет отметку с фотографии.
 
 ## Описание

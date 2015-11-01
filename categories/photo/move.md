@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.Move
+title: Метод Photos.Move
 permalink: photo/move/
 comments: true
 ---
-# Метод Photo.Move
+# Метод Photos.Move
 Переносит фотографию из одного альбома в другой.
 
 ## Описание

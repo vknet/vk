@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.Get
+title: Метод Photos.Get
 permalink: photo/get/
 comments: true
 ---
-# Метод Photo.Get
+# Метод Photos.Get
 Возвращает список фотографий в альбоме.
 
 ## Описание

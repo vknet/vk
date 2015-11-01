@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.CreateComment
+title: Метод Photos.CreateComment
 permalink: photo/createComment/
 comments: true
 ---
-# Метод Photo.CreateComment
+# Метод Photos.CreateComment
 Создает новый комментарий к фотографии.
 
 ## Синтаксис

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetChatUploadServer
+title: Метод Photos.GetChatUploadServer
 permalink: photo/getChatUploadServer/
 comments: true
 ---
-# Метод Photo.GetChatUploadServer
+# Метод Photos.GetChatUploadServer
 Позволяет получить адрес для загрузки фотографий мультидиалогов.
 
 ## Описание

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetById
+title: Метод Photos.GetById
 permalink: photo/getById/
 comments: true
 ---
-# Метод Photo.GetById
+# Метод Photos.GetById
 Возвращает информацию о фотографиях по их идентификаторам.
 
 ## Описание

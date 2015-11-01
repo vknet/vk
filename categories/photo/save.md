@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.Save
+title: Метод Photos.Save
 permalink: photo/save/
 comments: true
 ---
-# Метод Photo.Save
+# Метод Photos.Save
 Сохраняет фотографии после успешной загрузки.
 
 ## Описание

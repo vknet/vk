@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.ConfirmTag
+title: Метод Photos.ConfirmTag
 permalink: photo/confirmTag/
 comments: true
 ---
-# Метод Photo.ConfirmTag
+# Метод Photos.ConfirmTag
 Подтверждает отметку на фотографии.
 
 ## Синтаксис

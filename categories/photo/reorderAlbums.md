@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.ReorderAlbums
+title: Метод Photos.ReorderAlbums
 permalink: photo/reorderAlbums/
 comments: true
 ---
-# Метод Photo.ReorderAlbums
+# Метод Photos.ReorderAlbums
 Меняет порядок альбома в списке альбомов пользователя.
 
 ## Описание

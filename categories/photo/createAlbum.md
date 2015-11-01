@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.CreateAlbum
+title: Метод Photos.CreateAlbum
 permalink: photo/createAlbum/
 comments: true
 ---
-# Метод Photo.CreateAlbum
+# Метод Photos.CreateAlbum
 Создает пустой альбом для фотографий.
 
 ## Синтаксис

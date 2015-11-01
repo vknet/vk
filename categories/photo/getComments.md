@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetComments
+title: Метод Photos.GetComments
 permalink: photo/getComments/
 comments: true
 ---
-# Метод Photo.GetComments
+# Метод Photos.GetComments
 Возвращает список комментариев к фотографии.
 
 ## Описание

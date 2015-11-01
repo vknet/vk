@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.Delete
+title: Метод Photos.Delete
 permalink: photo/delete/
 comments: true
 ---
-# Метод Photo.Delete
+# Метод Photos.Delete
 Удаление фотографии на сайте.
 
 ## Синтаксис

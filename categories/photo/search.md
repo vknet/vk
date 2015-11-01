@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.Search
+title: Метод Photos.Search
 permalink: photo/search/
 comments: true
 ---
-# Метод Photo.Search
+# Метод Photos.Search
 Осуществляет поиск изображений по местоположению или описанию.
 
 ## Описание

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetAlbumsCount
+title: Метод Photos.GetAlbumsCount
 permalink: photo/getAlbumsCount/
 comments: true
 ---
-# Метод Photo.GetAlbumsCount
+# Метод Photos.GetAlbumsCount
 Возвращает количество доступных альбомов пользователя или сообщества.
 
 ## Описание

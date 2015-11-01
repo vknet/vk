@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetAll
+title: Метод Photos.GetAll
 permalink: photo/getAll/
 comments: true
 ---
-# Метод Photo.GetAll
+# Метод Photos.GetAll
 Возвращает все фотографии пользователя или сообщества в антихронологическом порядке.
 
 ## Описание

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.Edit
+title: Метод Photos.Edit
 permalink: photo/edit/
 comments: true
 ---
-# Метод Photo.Edit
+# Метод Photos.Edit
 Изменяет описание у выбранной фотографии.
 
 ## Описание

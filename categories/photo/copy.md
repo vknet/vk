@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.Copy
+title: Метод Photos.Copy
 permalink: photo/copy/
 comments: true
 ---
-# Метод Photo.Copy
+# Метод Photos.Copy
 Позволяет скопировать фотографию в альбом "Сохраненные фотографии"
 
 ## Синтаксис

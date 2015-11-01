@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.DeleteAlbum
+title: Метод Photos.DeleteAlbum
 permalink: photo/deleteAlbum/
 comments: true
 ---
-# Метод Photo.DeleteAlbum
+# Метод Photos.DeleteAlbum
 Удаляет указанный альбом для фотографий у текущего пользователя
 
 ## Синтаксис

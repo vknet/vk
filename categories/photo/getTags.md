@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetTags
+title: Метод Photos.GetTags
 permalink: photo/getTags/
 comments: true
 ---
-# Метод Photo.GetTags
+# Метод Photos.GetTags
 Возвращает список отметок на фотографии.
 
 ## Описание

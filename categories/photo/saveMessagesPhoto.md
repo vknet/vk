@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.SaveMessagesPhoto
+title: Метод Photos.SaveMessagesPhoto
 permalink: photo/saveMessagesPhoto/
 comments: true
 ---
-# Метод Photo.SaveMessagesPhoto
+# Метод Photos.SaveMessagesPhoto
 Сохраняет фотографию после успешной загрузки на URI, полученный методом photos.getMessagesUploadServer.
 
 ## Описание

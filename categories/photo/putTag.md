@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.PutTag
+title: Метод Photos.PutTag
 permalink: photo/putTag/
 comments: true
 ---
-# Метод Photo.PutTag
+# Метод Photos.PutTag
 Добавляет отметку на фотографию.
 
 ## Описание

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetAlbums
+title: Метод Photos.GetAlbums
 permalink: photo/getAlbums/
 comments: true
 ---
-# Метод Photo.GetAlbums
+# Метод Photos.GetAlbums
 Возвращает список альбомов пользователя или сообщества.
 
 ## Описание

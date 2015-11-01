@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.DeleteComment
+title: Метод Photos.DeleteComment
 permalink: photo/deleteComment/
 comments: true
 ---
-# Метод Photo.DeleteComment
+# Метод Photos.DeleteComment
 Удаляет комментарий к фотографии.
 
 ## Описание

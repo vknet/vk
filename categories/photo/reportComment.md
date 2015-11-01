@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.ReportComment
+title: Метод Photos.ReportComment
 permalink: photo/reportComment/
 comments: true
 ---
-# Метод Photo.ReportComment
+# Метод Photos.ReportComment
 Позволяет пожаловаться на комментарий к фотографии.
 
 ## Описание

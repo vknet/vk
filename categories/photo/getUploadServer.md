@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetUploadServer
+title: Метод Photos.GetUploadServer
 permalink: photo/getUploadServer/
 comments: true
 ---
-# Метод Photo.GetUploadServer
+# Метод Photos.GetUploadServer
 Возвращает адрес сервера для загрузки фотографий.
 
 ## Описание

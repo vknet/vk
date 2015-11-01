@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.Restore
+title: Метод Photos.Restore
 permalink: photo/restore/
 comments: true
 ---
-# Метод Photo.Restore
+# Метод Photos.Restore
 Восстанавливает удаленную фотографию.
 
 ## Описание

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetOwnerPhotoUploadServer
+title: Метод Photos.GetOwnerPhotoUploadServer
 permalink: photo/getOwnerPhotoUploadServer/
 comments: true
 ---
-# Метод Photo.GetOwnerPhotoUploadServer
+# Метод Photos.GetOwnerPhotoUploadServer
 Возвращает адрес сервера для загрузки главной фотографии на страницу пользователя или сообщества.
 
 ## Описание

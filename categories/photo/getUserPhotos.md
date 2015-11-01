@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetUserPhotos
+title: Метод Photos.GetUserPhotos
 permalink: photo/getUserPhotos/
 comments: true
 ---
-# Метод Photo.GetUserPhotos
+# Метод Photos.GetUserPhotos
 Возвращает список фотографий, на которых отмечен пользователь
 
 ## Описание

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.EditComment
+title: Метод Photos.EditComment
 permalink: photo/editComment/
 comments: true
 ---
-# Метод Photo.EditComment
+# Метод Photos.EditComment
 Изменяет текст комментария к фотографии.
 
 ## Описание

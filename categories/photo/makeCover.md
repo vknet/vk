@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.MakeCover
+title: Метод Photos.MakeCover
 permalink: photo/makeCover/
 comments: true
 ---
-# Метод Photo.MakeCover
+# Метод Photos.MakeCover
 Делает фотографию обложкой альбома.
 
 ## Описание

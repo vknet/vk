@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetWallUploadServer
+title: Метод Photos.GetWallUploadServer
 permalink: photo/getWallUploadServer/
 comments: true
 ---
-# Метод Photo.GetWallUploadServer
+# Метод Photos.GetWallUploadServer
 Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.
 
 ## Описание

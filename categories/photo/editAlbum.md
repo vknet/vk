@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.EditAlbum
+title: Метод Photos.EditAlbum
 permalink: photo/editAlbum/
 comments: true
 ---
-# Метод Photo.EditAlbum
+# Метод Photos.EditAlbum
 Редактирует данные альбома для фотографий пользователя.
 
 ## Описание

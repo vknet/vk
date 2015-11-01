@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.RestoreComment
+title: Метод Photos.RestoreComment
 permalink: photo/restoreComment/
 comments: true
 ---
-# Метод Photo.RestoreComment
+# Метод Photos.RestoreComment
 Восстанавливает удаленный комментарий к фотографии.
 
 ## Описание

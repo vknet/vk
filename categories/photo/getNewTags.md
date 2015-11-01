@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Photo.GetNewTags
+title: Метод Photos.GetNewTags
 permalink: photo/getNewTags/
 comments: true
 ---
-# Метод Photo.GetNewTags
+# Метод Photos.GetNewTags
 Возвращает список фотографий, на которых есть непросмотренные отметки.
 
 ## Описание
