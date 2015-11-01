@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photo.CreateAlbum
-permalink: photo/createalbum/
+permalink: photo/createAlbum/
 comments: true
 ---
 # Метод Copy
