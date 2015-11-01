@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photo.CreateComment
-permalink: photo/createcomment/
+permalink: photo/createComment/
 comments: true
 ---
 # Метод CreateComment
