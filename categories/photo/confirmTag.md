@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photo.ConfirmTag
-permalink: photo/confirmtag/
+permalink: photo/confirmTag/
 comments: true
 ---
 # Метод ConfirmTag
