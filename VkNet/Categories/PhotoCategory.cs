@@ -1077,7 +1077,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[ApiMethodName("photos.putTag", Skip = true)]
 		[ApiVersion("5.37")]
-		public long PutTag(PhotoPutTagParams @params)
+		public ulong PutTag(PhotoPutTagParams @params)
 		{
 			var parameters = new VkParameters
 				{
