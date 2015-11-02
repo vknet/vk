@@ -617,7 +617,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[ApiMethodName("photos.move", Skip = true)]
 		[ApiVersion("5.37")]
-		public bool Move(long targetAlbumId, long photoId, long? ownerId = null)
+		public bool Move(long targetAlbumId, ulong photoId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 				{
@@ -641,7 +641,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[ApiMethodName("photos.makeCover", Skip = true)]
 		[ApiVersion("5.37")]
-		public bool MakeCover(long photoId, long? ownerId = null, long? albumId = null)
+		public bool MakeCover(ulong photoId, long? ownerId = null, long? albumId = null)
 		{
 			var parameters = new VkParameters
 				{
@@ -692,7 +692,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[ApiMethodName("photos.reorderPhotos", Skip = true)]
 		[ApiVersion("5.37")]
-		public bool ReorderPhotos(long photoId, long? ownerId = null, long? before = null, long? after = null)
+		public bool ReorderPhotos(ulong photoId, long? ownerId = null, long? before = null, long? after = null)
 		{
 			var parameters = new VkParameters
 				{
@@ -738,7 +738,7 @@ namespace VkNet.Categories
 				};
 
 			var response = _vk.Call("photos.getAll", parameters);
-			count = response["couunt"];
+			count = response["count"];
 			return response["items"].ToReadOnlyCollectionOf<Photo>(x => x);
 		}
 
@@ -760,11 +760,11 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 				{
-					{ "user_id", @params.user_id },
-					{ "count", @params.count },
-					{ "offset", @params.offset },
-					{ "extended", @params.extended },
-					{ "sort", @params.sort }
+					{ "user_id", @params.UserId },
+					{ "count", @params.Count },
+					{ "offset", @params.Offset },
+					{ "extended", @params.Extended },
+					{ "sort", @params.Sort }
 				};
 
 			var response = _vk.Call("photos.getUserPhotos", parameters);
@@ -849,11 +849,8 @@ namespace VkNet.Categories
 		/// </remarks>
 		[ApiMethodName("photos.confirmTag", Skip = true)]
 		[ApiVersion("5.37")]
-		public bool ConfirmTag(long photoId, long tagId, long? ownerId = null)
+		public bool ConfirmTag(ulong photoId, ulong tagId, long? ownerId = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => photoId);
-			VkErrors.ThrowIfNumberIsNegative(() => tagId);
-
 			var parameters = new VkParameters
 				{
 					{"owner_id", ownerId},
@@ -865,127 +862,99 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает список комментариев к фотографии. 
+		/// Возвращает список комментариев к фотографии.
 		/// </summary>
-		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
-		/// <param name="photoId">Идентификатор фотографии</param>
-		/// <param name="needLikes">True — будет возвращено дополнительное поле likes. По умолчанию поле likes не возвращается</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества комментариев</param>
-		/// <param name="count">Количество комментариев, которое необходимо получить.</param>
-		/// <param name="sort">Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым)</param>
-		/// <param name="accessKey">строка</param>
-		/// <returns>После успешного выполнения возвращает список объектов <see cref="Comment"/>.</returns>
+		/// <param name="count">Количество.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getComments"/>.
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getComments" />.
 		/// </remarks>
 		[ApiMethodName("photos.getComments")]
 		[VkValue("owner_id", 1)]
 		[VkValue("photo_id", 263219735)]
-		[ApiVersion("5.9")]
-		public ReadOnlyCollection<Comment> GetComments(long photoId, long? ownerId = null, bool? needLikes = null, int? count = null, int? offset = null, CommentsSort sort = null, string accessKey = null)
+		[ApiVersion("5.37")]
+		public ReadOnlyCollection<Comment> GetComments(out int count, PhotoGetCommentsParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => photoId);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-
 			var parameters = new VkParameters
 				{
-					{"owner_id", ownerId},
-					{"photo_id", photoId},
-					{"need_likes", needLikes},
-					{"offset", offset},
-					{"count", count},
-					{"sort", sort},
-					{"access_key", accessKey}
+					{ "owner_id", @params.owner_id },
+					{ "photo_id", @params.photo_id },
+					{ "need_likes", @params.need_likes },
+					{ "start_comment_id", @params.start_comment_id },
+					{ "offset", @params.offset },
+					{ "count", @params.count },
+					{ "sort", @params.sort },
+					{ "access_key", @params.access_key },
+					{ "extended", @params.extended },
+					{ "fields", @params.fields }
 				};
 
-			VkResponseArray response = _vk.Call("photos.getComments", parameters);
-
-			return response.ToReadOnlyCollectionOf<Comment>(x => x);
+			var response = _vk.Call("photos.getComments", parameters);
+			count = response["count"];
+			return response["items"].ToReadOnlyCollectionOf<Comment>(x => x);
 		}
 
 		/// <summary>
-		/// Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя. 
+		/// Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
 		/// </summary>
-		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат фотографии. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
-		/// <param name="albumId">Идентификатор альбома. Если параметр не задан, то считается, что необходимо получить комментарии ко всем альбомам пользователя или сообщества</param>
-		/// <param name="needLikes">True — будет возвращено дополнительное поле likes. По умолчанию поле likes не возвращается</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества комментариево</param>
-		/// <param name="count">Количество комментариев, которое необходимо получить. Если параметр не задан, то считается что он равен 20. Максимальное значение параметра 100. положительное число</param>
-		/// <returns>После успешного выполнения возвращает список объектов <see cref="Comment"/>.</returns>
+		/// <param name="count">Количество комментариев</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAllComments"/>.
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAllComments" />.
 		/// </remarks>
 		[ApiMethodName("photos.getAllComments", Skip = true)]
-		[ApiVersion("5.9")]
-		public ReadOnlyCollection<Comment> GetAllComments(long? ownerId = null, long? albumId = null, bool? needLikes = null, int? offset = null, int? count = null)
+		[ApiVersion("5.37")]
+		public ReadOnlyCollection<Comment> GetAllComments(out int count, PhotoGetAllCommentsParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => albumId);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-
 			var parameters = new VkParameters
 				{
-					{"owner_id", ownerId},
-					{"album_id", albumId},
-					{"need_likes", needLikes},
-					{"offset", offset},
-					{"count", count}
+					{ "owner_id", @params.OwnerId },
+					{ "album_id", @params.AlbumId },
+					{ "need_likes", @params.NeedLikes },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count }
 				};
 
-			VkResponseArray response = _vk.Call("photos.getAllComments", parameters);
-
-			return response.ToReadOnlyCollectionOf<Comment>(x => x);
+			var response = _vk.Call("photos.getAllComments", parameters);
+			count = response["count"];
+			return response["items"].ToReadOnlyCollectionOf<Comment>(x => x);
 		}
 
 		/// <summary>
-		/// Создает новый комментарий к фотографии. 
+		/// Создает новый комментарий к фотографии.
 		/// </summary>
-		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
-		/// <param name="photoId">Идентификатор фотографии</param>
-		/// <param name="message">Текст комментария (является обязательным, если не задан параметр attachments)</param>
-		/// <param name="attachments">Список объектов, приложенных к комментарию и разделённых символом &quot;,&quot;. Поле attachments представляется в формате: 
-		/// &lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt;,&lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt; 
-		/// &lt;type&gt; — тип медиа-вложения: 
-		/// photo — фотография 
-		/// video — видеозапись 
-		/// audio — аудиозапись 
-		/// doc — документ 
-		/// &lt;owner_id&gt; — идентификатор владельца медиа-вложения  
-		/// &lt;media_id&gt; — идентификатор медиа-вложения. 
-		/// <example>
-		/// Например: 
-		/// photo100172_166443618,photo66748_265827614
-		/// </example>
-		///Параметр является обязательным, если не задан параметр message. список строк, разделенных через запятую</param>
-		/// <param name="fromGroup">Данный параметр учитывается, если oid &lt; 0 (комментарий к фотографии группы). 1 — комментарий будет опубликован от имени группы, 0 — комментарий будет опубликован от имени пользователя (по умолчанию)</param>
-		/// <param name="replyToComment"></param>
-		/// <param name="accessKey">строка</param>
-		/// <returns>После успешного выполнения возвращает идентификатор созданного комментария.</returns>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает идентификатор созданного комментария.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.createComment"/>.
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.createComment" />.
 		/// </remarks>
 		[ApiMethodName("photos.createComment", Skip = true)]
-		[ApiVersion("5.9")]
-		public long CreateComment(long photoId, long? ownerId = null, string message = null, IEnumerable<string> attachments = null, bool? fromGroup = null, bool? replyToComment = null, string accessKey = null)
+		[ApiVersion("5.37")]
+		public long CreateComment(PhotoCreateCommentParams @params)
 		{
 			// TODO сделать по-нормально работу с аттачментами
-			VkErrors.ThrowIfNumberIsNegative(() => photoId);
-
 			var parameters = new VkParameters
 				{
-					{"owner_id", ownerId},
-					{"photo_id", photoId},
-					{"message", message},
-					{"attachments", attachments},
-					{"from_group", fromGroup},
-					{"reply_to_comment", replyToComment},
-					{"access_key", accessKey}
+					{ "owner_id", @params.OwnerId },
+					{ "photo_id", @params.PhotoId },
+					{ "message", @params.Message },
+					{ "attachments", @params.Attachments },
+					{ "from_group", @params.FromGroup },
+					{ "reply_to_comment", @params.ReplyToComment },
+					{ "sticker_id", @params.StickerId },
+					{ "access_key", @params.AccessKey },
+					{ "guid", @params.Guid }
 				};
 
-			VkResponse response = _vk.Call("photos.createComment", parameters);
-
-			return response;
+			return _vk.Call("photos.createComment", parameters);
 		}
 
 		/// <summary>
@@ -999,15 +968,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.deleteComment"/>.
 		/// </remarks>
 		[ApiMethodName("photos.deleteComment", Skip = true)]
-		[ApiVersion("5.9")]
-		public bool DeleteComment(long commentId, long? ownerId = null)
+		[ApiVersion("5.37")]
+		public bool DeleteComment(ulong commentId, long? ownerId = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => commentId);
-
 			var parameters = new VkParameters
 				{
-					{"owner_id", ownerId},
-					{"comment_id", commentId}
+					{ "owner_id", ownerId },
+					{ "comment_id", commentId }
 				};
 
 			return _vk.Call("photos.deleteComment", parameters);
@@ -1023,11 +990,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.restoreComment"/>.
 		/// </remarks>
 		[ApiMethodName("photos.restoreComment", Skip = true)]
-		[ApiVersion("5.9")]
-		public long RestoreComment(long commentId, long? ownerId = null)
+		[ApiVersion("5.37")]
+		public long RestoreComment(ulong commentId, long? ownerId = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => commentId);
-
 			var parameters = new VkParameters
 				{
 					{"owner_id", ownerId},
@@ -1060,11 +1025,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.editComment"/>.
 		/// </remarks>
 		[ApiMethodName("photos.editComment", Skip = true)]
-		[ApiVersion("5.9")]
-		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<string> attachments = null)
+		[ApiVersion("5.37")]
+		public bool EditComment(ulong commentId, string message, long? ownerId = null, IEnumerable<Attachment> attachments = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => commentId);
-
 			var parameters = new VkParameters
 				{
 					{"owner_id", ownerId},
@@ -1087,11 +1050,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getTags"/>.
 		/// </remarks>
 		[ApiMethodName("photos.getTags", Skip = true)]
-		[ApiVersion("5.9")]
-		public ReadOnlyCollection<Tag> GetTags(long photoId, long? ownerId = null, string accessKey = null)
+		[ApiVersion("5.37")]
+		public ReadOnlyCollection<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => photoId);
-
 			var parameters = new VkParameters
 				{
 					{"owner_id", ownerId},
@@ -1105,36 +1066,28 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Добавляет отметку на фотографию. 
+		/// Добавляет отметку на фотографию.
 		/// </summary>
-		/// <param name="ownerId">Идентификатор пользователя, которому принадлежит фотография</param>
-		/// <param name="photoId">Идентификатор фотографии</param>
-		/// <param name="userId">Идентификатор пользователя</param>
-		/// <param name="x">Координата верхнего левого угла области с отметкой в % от ширины фотографии</param>
-		/// <param name="y">Координата верхнего левого угла области с отметкой в % от высоты фотографии</param>
-		/// <param name="x2">Координата правого нижнего угла области с отметкой в % от ширины фотографии</param>
-		/// <param name="y2">Координата правого нижнего угла области с отметкой в % от высоты фотографии</param>
-		/// <returns>После успешного выполнения возвращает идентификатор созданной отметки.</returns>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает идентификатор созданной отметки.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.putTag"/>.
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.putTag" />.
 		/// </remarks>
 		[ApiMethodName("photos.putTag", Skip = true)]
-		[ApiVersion("5.9")]
-		public long PutTag(long photoId, long userId, long? ownerId = null, double? x = null, double? y = null, double? x2 = null, double? y2 = null)
+		[ApiVersion("5.37")]
+		public long PutTag(PhotoPutTagParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-			VkErrors.ThrowIfNumberIsNegative(() => photoId);
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
 			var parameters = new VkParameters
 				{
-					{"owner_id", ownerId},
-					{"photo_id", photoId},
-					{"user_id", userId},
-					{"x", x},
-					{"y", y},
-					{"x2", x2},
-					{"y2", y2}
+					{ "owner_id", @params.owner_id },
+					{ "photo_id", @params.photo_id },
+					{ "user_id", @params.user_id },
+					{ "x", @params.x },
+					{ "y", @params.y },
+					{ "x2", @params.x2 },
+					{ "y2", @params.y2 }
 				};
 
 			return _vk.Call("photos.putTag", parameters);
@@ -1146,17 +1099,14 @@ namespace VkNet.Categories
 		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)</param>
 		/// <param name="photoId">Идентификатор фотографии</param>
 		/// <param name="tagId">Идентификатор отметки</param>
-		/// <returns>После успешного выполнения возвращает true.</returns>
+		/// <returns>После успешного выполнения возвращает <c>true</c>.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.removeTag"/>.
 		/// </remarks>
 		[ApiMethodName("photos.removeTag", Skip = true)]
-		[ApiVersion("5.9")]
-		public bool RemoveTag(long tagId, long photoId, long? ownerId = null)
+		[ApiVersion("5.37")]
+		public bool RemoveTag(ulong tagId, ulong photoId, long? ownerId = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => tagId);
-			VkErrors.ThrowIfNumberIsNegative(() => photoId);
-
 			var parameters = new VkParameters
 				{
 					{"owner_id", ownerId},
@@ -1168,30 +1118,30 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает список фотографий, на которых есть непросмотренные отметки. 
+		/// Возвращает список фотографий, на которых есть непросмотренные отметки.
 		/// </summary>
+		/// <param name="countTotal">Общее количество.</param>
 		/// <param name="offset">Смещение, необходимое для получения определённого подмножества фотографий</param>
 		/// <param name="count">Количество фотографий, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20</param>
-		/// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>.</returns>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getNewTags"/>.
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getNewTags" />.
 		/// </remarks>
 		[ApiMethodName("photos.getNewTags", Skip = true)]
-		[ApiVersion("5.9")]
-		public ReadOnlyCollection<Photo> GetNewTags(int? offset = null, int? count = null)
+		[ApiVersion("5.37")]
+		public ReadOnlyCollection<Photo> GetNewTags(out int countTotal, uint? offset = null, uint? count = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-
 			var parameters = new VkParameters
 				{
 					{"offset", offset},
 					{"count", count}
 				};
 
-			VkResponseArray response = _vk.Call("photos.getNewTags", parameters);
-
-			return response.ToReadOnlyCollectionOf<Photo>(x => x);
+			var response = _vk.Call("photos.getNewTags", parameters);
+			countTotal = response["count"];
+			return response["items"].ToReadOnlyCollectionOf<Photo>(x => x);
 		}
 	}
 }

@@ -118,6 +118,7 @@
     <Compile Include="Enums\SafetyEnums\PhotoAlbumType.cs" />
     <Compile Include="Enums\SafetyEnums\PhotoFeedType.cs" />
     <Compile Include="Enums\Sex.cs" />
+    <Compile Include="Enums\SortOrderBy.cs" />
     <Compile Include="Enums\UserSort.cs" />
     <Compile Include="Enums\ContentReportType.cs" />
     <Compile Include="Enums\VideoSort.cs" />
@@ -205,10 +206,14 @@
     <Compile Include="Model\RequestParams\Photo\CreateAlbumParams.cs" />
     <Compile Include="Model\RequestParams\Photo\EditAlbumParams.cs" />
     <Compile Include="Model\RequestParams\Photo\GetAlbumsParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoCreateCommentParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoEditParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoGetAllCommentsParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoGetAllParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoGetCommentsParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoGetParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoGetUserPhotosParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoPutTagParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoSaveParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoSearchParams.cs" />
     <Compile Include="Model\School.cs" />

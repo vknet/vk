@@ -1206,7 +1206,7 @@
 			groups.ShouldNotBeNull();
 			groups.Count.ShouldEqual(1);
 
-			groups[0].Id.ShouldEqual(66528333);
+			Assert.That(groups[0].Id, Is.EqualTo(66528333));
 			groups[0].Name.ShouldEqual("группа 123");
 			groups[0].ScreenName.ShouldEqual("club66528333");
 			groups[0].IsClosed.ShouldEqual(GroupPublicity.Closed);
@@ -1216,7 +1216,7 @@
 			groups[0].PhotoPreviews.Photo50.ShouldEqual("http://vk.com/images/community_50.gif");
 			groups[0].PhotoPreviews.Photo100.ShouldEqual("http://vk.com/images/community_100.gif");
 			groups[0].PhotoPreviews.PhotoMax.ShouldEqual("http://vk.com/images/question_a.gif");
-			groups[0].InvitedBy.ShouldEqual(242508789);
+			Assert.That(groups[0].InvitedBy, Is.EqualTo(242508789));
 		}
 
 		[Test]

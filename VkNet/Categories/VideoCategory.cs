@@ -658,7 +658,7 @@
         /// <param name="videoId">Идентификатор видеозаписи.</param>
         /// <param name="ownerId">Идентификатор владельца видеозаписи (пользователь или сообщество). По умолчанию — идентификатор текущего пользователя.</param>
         /// <returns>После успешного выполнения возвращает массив объектов <see cref="Tag"/>, каждый из которых содержит следующие поля:
-        /// <see cref="Tag.Id"/>, <see cref="Tag.Id"/>, <see cref="Tag.PlacerId"/>, <see cref="Tag.Name"/>, <see cref="Tag.Date"/> и <see cref="Tag.IsViewed"/>.
+        /// <see cref="Tag.Id"/>, <see cref="Tag.Id"/>, <see cref="Tag.PlacerId"/>, <see cref="Tag.TaggedName"/>, <see cref="Tag.Date"/> и <see cref="Tag.IsViewed"/>.
         /// </returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.

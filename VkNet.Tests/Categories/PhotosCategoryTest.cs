@@ -187,8 +187,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void DeleteAlbum_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.deleteAlbum?album_id=197303&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.deleteAlbum?album_id=197303&v=5.37&access_token=token";
+			const string json =
                 @"{
                     'response': 1
                   }";
@@ -275,9 +275,9 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAll_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getAll?owner_id=1&count=2&offset=4&v=5.9&access_token=token";
-            const string json =
-                @"{
+			const string url = "https://api.vk.com/method/photos.getAll?owner_id=1&offset=4&count=2&v=5.37&access_token=token";
+			const string json =
+				@"{
                     'response': {
                       'count': 173,
                       'items': [
@@ -311,7 +311,13 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).GetAll(ownerId: 1, offset: 4, count: 2);
+			int count;
+			ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).GetAll(out count, new PhotoGetAllParams
+			{
+				OwnerId = 1,
+				Offset = 4,
+				Count = 2
+			});
             photos.Count.ShouldEqual(2);
 
             photos[0].Id.ShouldEqual(328693256);

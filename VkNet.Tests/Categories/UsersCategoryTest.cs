@@ -974,8 +974,8 @@ namespace VkNet.Tests.Categories
             ReadOnlyCollection<Group> result = cat.GetSubscriptions(1, 2, 3);
 
             result.Count.ShouldEqual(2);
-            result[0].Id.ShouldEqual(32295218);
-            result[0].Name.ShouldEqual("LIVE Экспресс");
+			Assert.That(result[0].Id, Is.EqualTo(32295218));
+			result[0].Name.ShouldEqual("LIVE Экспресс");
             result[0].ScreenName.ShouldEqual("liveexp");
             result[0].IsClosed.ShouldEqual(GroupPublicity.Public);
             result[0].Type.ShouldEqual(GroupType.Page);
@@ -985,8 +985,8 @@ namespace VkNet.Tests.Categories
             result[0].PhotoPreviews.Photo100.ShouldEqual("http://cs412129.vk.me/v412129558/6ce9/Rs47ldlt4Ko.jpg");
             result[0].PhotoPreviews.Photo200.ShouldEqual("http://cs412129.vk.me/v412129604/1238/RhEgZqrsv-w.jpg");
 
-            result[1].Id.ShouldEqual(43694972);
-            result[1].Name.ShouldEqual("Sophie Ellis-Bextor");
+			Assert.That(result[1].Id, Is.EqualTo(43694972));
+			result[1].Name.ShouldEqual("Sophie Ellis-Bextor");
             result[1].ScreenName.ShouldEqual("sophieellisbextor");
             result[1].IsClosed.ShouldEqual(GroupPublicity.Public);
             result[1].Type.ShouldEqual(GroupType.Page);
