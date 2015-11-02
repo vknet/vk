@@ -21,7 +21,7 @@
         /// <summary>
         /// Идентификатор пользователя.
         /// </summary>
-        public long Id { get; set; }
+        public ulong Id { get; set; }
 
         /// <summary>
         /// Имя пользователя.
@@ -76,7 +76,7 @@
         /// помощью метода <see cref="FriendsCategory.GetLists"/>. Если пользователь не состоит ни в одном списке друзей, данное 
         /// поле принимает значение null.
         /// </summary>
-        public Collection<long> FriendLists { get; set; }
+        public Collection<ulong> FriendLists { get; set; }
 
         /// <summary>
         /// Короткий адрес страницы пользователя. Возвращается строка, содержащая короткий адрес страницы (возвращается только 
@@ -210,7 +210,7 @@
         /// <summary>
         /// Идентификатор языка, установленный в настройках.
         /// </summary>
-        public long? Language { get; set; }
+        public ulong? Language { get; set; }
 
         /// <summary>
         /// Признак использует ли пользователь мобильное приложение либо мобильную версию сайта.
@@ -220,7 +220,7 @@
         /// <summary>
         /// Если пользователь зашёл через приложение, то Id приложения иначе null.
         /// </summary>
-        public long? OnlineApp { get; set; }
+        public ulong? OnlineApp { get; set; }
 
         /// <summary>
         /// Партнер в семейных отношениях.
@@ -280,7 +280,7 @@
         /// <summary>
         /// Идентификатор пользователя, пригласившего пользователя в беседу (для GetChatUsers).
         /// </summary>
-        public long? InvitedBy { get; set; }
+        public ulong? InvitedBy { get; set; }
 
         #endregion
 

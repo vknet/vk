@@ -13,7 +13,7 @@
 		/// <summary>
 		/// Идентификатор сообщества.
 		/// </summary>
-		public long UserId
+		public ulong UserId
 		{ get; set; }
 
 		/// <summary>

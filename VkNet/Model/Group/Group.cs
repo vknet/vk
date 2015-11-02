@@ -21,7 +21,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор сообщества.
 		/// </summary>
-		public long Id { get; set; }
+		public ulong Id { get; set; }
 
 		/// <summary>
 		/// Название сообщества.
@@ -71,13 +71,13 @@ namespace VkNet.Model
 		/// Идентификатор города, указанного в информации о сообществе. Возвращается идентификатор города, который можно использовать для 
 		/// получения его названия с помощью метода <see cref="DatabaseCategory.GetCitiesById"/>. Если город не указан, возвращается 0. 
 		/// </summary>
-		public long? CityId { get; set; }
+		public ulong? CityId { get; set; }
 
 		/// <summary>
 		/// Идентификатор страны, указанной в информации о сообществе. Возвращается идентификатор страны, который можно использовать для 
 		/// получения ее названия с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>. Если страна не указана, возвращается 0.
 		/// </summary>
-		public long? CountryId { get; set; }
+		public ulong? CountryId { get; set; }
 
 		/// <summary>
 		/// Место, указанное в информации о сообществе.
@@ -161,7 +161,7 @@ namespace VkNet.Model
 		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById(IEnumerable{KeyValuePair{long, long}})"/>,
 		/// передав идентификатор в виде – {group_id}_{post_id}.
 		/// </summary>
-		public long? FixedPostId { get; set; }
+		public ulong? FixedPostId { get; set; }
 
 		/// <summary>
 		/// Возвращает информацию о том, является ли сообщество верифицированным.
@@ -176,7 +176,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор пользователя пригласившего в группу
 		/// </summary>
-		public long? InvitedBy { get; set; }
+		public ulong? InvitedBy { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если сообщество находится в закладках у текущего пользователя.
