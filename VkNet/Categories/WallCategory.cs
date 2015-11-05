@@ -51,7 +51,7 @@
 
 	        var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
 
-			VkResponse response = _vk.Call("wall.get", parameters);
+			VkResponse response = _vk.Call("wall.get", parameters, filter != WallFilter.Suggests && filter != WallFilter.Postponed);
 
             totalCount = response["count"];
 
@@ -84,7 +84,7 @@
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 
 			var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() }, {"extended", 1} };
-			var response = _vk.Call("wall.get", parameters);
+			var response = _vk.Call("wall.get", parameters, filter != WallFilter.Suggests && filter != WallFilter.Postponed);
 
 		    wallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r);
 			profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r);
