@@ -33,43 +33,43 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
-		/// url-адрес обложки приложения шириной 100px.
+		/// Url-адрес обложки приложения шириной 100px.
 		/// </summary>
 		public string Icon100
 		{ get; set; }
 
 		/// <summary>
-		/// url-адрес обложки приложения шириной 200px.
+		/// Url-адрес обложки приложения шириной 200px.
 		/// </summary>
 		public string Icon200
 		{ get; set; }
 
 		/// <summary>
-		/// url-адрес обложки приложения шириной 75px.
+		/// Url-адрес обложки приложения шириной 75px.
 		/// </summary>
 		public string Icon75
 		{ get; set; }
 
 		/// <summary>
-		/// url-адрес обложки приложения шириной 50px.
+		/// Url-адрес обложки приложения шириной 50px.
 		/// </summary>
 		public string Icon50
 		{ get; set; }
 
 		/// <summary>
-		/// url-адрес обложки приложения шириной 16px.
+		/// Url-адрес обложки приложения шириной 16px.
 		/// </summary>
 		public string Icon16
 		{ get; set; }
 
 		/// <summary>
-		/// url-адрес баннера шириной 186px.
+		/// Url-адрес баннера шириной 186px.
 		/// </summary>
 		public string Banner186
 		{ get; set; }
 
 		/// <summary>
-		/// url-адрес баннера шириной 896px.
+		/// Url-адрес баннера шириной 896px.
 		/// </summary>
 		public string Banner896
 		{ get; set; }
@@ -123,13 +123,13 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
-		/// url-адреса изображений-скриншотов из приложения.
+		/// Url-адреса изображений-скриншотов из приложения.
 		/// </summary>
 		public string ScreenShots
 		{ get; set; }
 
 		/// <summary>
-		/// Является ли приложение мультиязычным (1).
+		/// Является ли приложение мультиязычным (<c>true</c>).
 		/// </summary>
 		public bool International
 		{ get; set; }

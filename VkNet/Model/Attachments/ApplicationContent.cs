@@ -3,12 +3,12 @@ using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
-    [Serializable]
 	/// <summary>
-    /// Контент приложения.
-    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".
-    /// </summary>
-    public class ApplicationContent
+	/// Контент приложения.
+	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".
+	/// </summary>
+	[Serializable]
+	public class ApplicationContent
     {
         /// <summary>
         /// Идентификатор приложения, разместившего запись на стене.

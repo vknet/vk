@@ -115,7 +115,7 @@
         /// <param name="countryId">Идентификатор страны.</param>
         /// <param name="regionId">Идентификатор региона.</param>
         /// <param name="query">Строка поискового запроса. Например, Санкт.</param>
-        /// <param name="needAll">true – возвращать все города. false – возвращать только основные города.</param>
+        /// <param name="needAll"><c>true</c> – возвращать все города. <c>false</c> – возвращать только основные города.</param>
         /// <param name="count">Количество городов, которые необходимо вернуть.</param>
         /// <param name="offset">Отступ, необходимый для получения определенного подмножества городов.</param>
         /// <returns>Cписок городов</returns>

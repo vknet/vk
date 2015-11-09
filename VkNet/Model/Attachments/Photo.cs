@@ -90,17 +90,17 @@ namespace VkNet.Model.Attachments
 		public long? PostId { get; set; }
 
 		/// <summary>
-		/// идентификатор пользователя, сделавшего отметку
+		/// Идентификатор пользователя, сделавшего отметку
 		/// </summary>
 		public long? PlacerId { get; set; }
 
 		/// <summary>
-		/// дата создания отметки
+		/// Дата создания отметки
 		/// </summary>
 		public DateTime? TagCreated { get; set; }
 
 		/// <summary>
-		/// идентификатор отметки
+		/// Идентификатор отметки
 		/// </summary>
 		public long? TagId { get; set; }
 

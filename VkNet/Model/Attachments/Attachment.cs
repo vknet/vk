@@ -4,12 +4,13 @@ using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
-    [Serializable]
+
 	/// <summary>
-    /// Информация о медиавложении в записи.
-    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. 
-    /// </summary>
-    public class Attachment
+	/// Информация о медиавложении в записи.
+	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. 
+	/// </summary>
+	[Serializable]
+	public class Attachment
     {
         #region Поля
 

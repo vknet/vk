@@ -337,7 +337,7 @@
         /// По умолчанию — не больше 50, максимум — 100. 
         /// </param>
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества альбомов.</param>
-        /// <param name="extended">true – позволяет получать поля <see cref="VideoAlbum.Count"/>, <see cref="VideoAlbum.Photo160"/> и 
+        /// <param name="extended"><c>true</c> – позволяет получать поля <see cref="VideoAlbum.Count"/>, <see cref="VideoAlbum.Photo160"/> и 
         /// <see cref="VideoAlbum.Photo320"/> для каждого альбома.</param>
         /// <returns>
         /// После успешного выполнения возвращает массив объектов <see cref="VideoAlbum"/>, каждый из которых содержит следующие 

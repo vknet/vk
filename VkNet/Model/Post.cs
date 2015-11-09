@@ -53,7 +53,7 @@
         public long? ReplyPostId { get; set; }
 
         /// <summary>
-        /// true, если запись была создана с опцией «Только для друзей», false в противном случае.
+        /// <c>true</c>, если запись была создана с опцией «Только для друзей», <c>false</c> в противном случае.
         /// </summary>
         public bool FriendsOnly { get; set; }
 

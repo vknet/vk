@@ -10,9 +10,9 @@ namespace VkNet.Model.RequestParams.Photo
 	public class PhotoGetParams
 	{
 		/// <summary>
-		/// Идентификатор владельца альбома. целое число, по умолчанию идентификатор текущего пользователя.
+		/// Идентификатор владельца альбома.
 		/// </summary>
-		public long OwnerId
+		public long? OwnerId
 		{ get; set; }
 
 		/// <summary>
@@ -46,9 +46,9 @@ namespace VkNet.Model.RequestParams.Photo
 		{ get; set; }
 
 		/// <summary>
-		/// unixtime, который может быть получен методом newsfeed.get в поле date, для получения всех фотографий загруженных пользователем в определённый день либо на которых пользователь был отмечен. Также нужно указать параметр uid пользователя, с которым произошло событие.
+		/// Unixtime, который может быть получен методом newsfeed.get в поле date, для получения всех фотографий загруженных пользователем в определённый день либо на которых пользователь был отмечен. Также нужно указать параметр uid пользователя, с которым произошло событие.
 		/// </summary>
-		public string Feed
+		public DateTime? Feed
 		{ get; set; }
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace VkNet.Model.RequestParams.Photo
 		{ get; set; }
 
 		/// <summary>
-		/// Количество записей, которое будет получено. положительное число, максимальное значение 1000.
+		/// Количество записей, которое будет получено.
 		/// </summary>
 		public ulong? Count
 		{ get; set; }

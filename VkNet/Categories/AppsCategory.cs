@@ -231,7 +231,7 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Метод возвращает количество очков пользователя в этой игре.
 		/// </summary>
-		/// <param name="userId">идентификатор пользователя. </param>
+		/// <param name="userId">Идентификатор пользователя. </param>
 		/// <returns>
 		/// Возвращает результат выполнения метода.
 		/// </returns>

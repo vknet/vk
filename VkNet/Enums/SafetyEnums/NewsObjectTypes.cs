@@ -8,37 +8,37 @@ namespace VkNet.Enums.SafetyEnums
 	public sealed class NewsObjectTypes : SafetyEnum<NewsObjectTypes>
 	{
 		/// <summary>
-		/// запись на стене;.
+		/// Запись на стене.
 		/// </summary>
 		public static readonly NewsObjectTypes Wall = RegisterPossibleValue("wall");
 
 
 		/// <summary>
-		/// отметка на фотографии;.
+		/// Отметка на фотографии.
 		/// </summary>
 		public static readonly NewsObjectTypes Tag = RegisterPossibleValue("tag");
 
 
 		/// <summary>
-		/// фотография профиля;.
+		/// Фотография профиля.
 		/// </summary>
 		public static readonly NewsObjectTypes ProfilePhoto = RegisterPossibleValue("profilephoto");
 
 
 		/// <summary>
-		/// видеозапись;.
+		/// Видеозапись.
 		/// </summary>
 		public static readonly NewsObjectTypes Video = RegisterPossibleValue("video");
 
 
 		/// <summary>
-		/// фотография;.
+		/// Фотография.
 		/// </summary>
 		public static readonly NewsObjectTypes Photo = RegisterPossibleValue("photo");
 
 
 		/// <summary>
-		/// аудиозапись..
+		/// Аудиозапись.
 		/// </summary>
 		public static readonly NewsObjectTypes Audio = RegisterPossibleValue("audio");
 
