@@ -1,8 +1,11 @@
 ﻿namespace VkNet.Model
 {
+    using System;
+
     using Categories;
     using Utils;
 
+    [Serializable]
     /// <summary>
     /// Информация о месте, в котором была сделана запись.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/> и <see href="http://vk.com/dev/fields_groups"/>. Раздел place.

@@ -1,7 +1,10 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using System;
 
+    using Utils;
+
+    [Serializable]
     /// <summary>
     /// Информация о географическом месте, в котором была сделана запись. 
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/>.

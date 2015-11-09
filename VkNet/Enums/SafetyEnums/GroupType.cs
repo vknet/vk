@@ -1,7 +1,10 @@
-﻿using VkNet.Utils;
-
-namespace VkNet.Enums.SafetyEnums
+﻿namespace VkNet.Enums.SafetyEnums
 {
+    using System;
+
+    using Utils;
+
+    [Serializable]
     /// <summary>
     /// Тип сообщества
     /// </summary>

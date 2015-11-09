@@ -1,7 +1,10 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using System;
 
+    using Utils;
+
+    [Serializable]
     /// <summary>
     /// Информация о репостах записи. 
     /// См. описание <see href="http://vk.com/dev/post"/>. Раздел reposts.

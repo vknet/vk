@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace VkNet.Enums.SafetyEnums
 {
+    [Serializable]
 	/// <summary>
 	/// Аналог enum, типобезопасен.
 	/// </summary>

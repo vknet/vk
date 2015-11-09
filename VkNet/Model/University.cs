@@ -1,7 +1,9 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using System;
+    using Utils;
 
+    [Serializable]
     /// <summary>
     /// Высшее учебное заведение, в котором учился пользователь.
     /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел universities.

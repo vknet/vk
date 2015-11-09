@@ -3,11 +3,13 @@
 namespace VkNet.Model
 {
     using System;
+    using System.Diagnostics;
     using System.Collections.ObjectModel;
 
     using Enums;
     using Utils;
 
+    [DebuggerDisplay("[{UserId}-{Id}] {Body}")] [Serializable]
     /// <summary>
     /// Личное сообщение пользователя.
     /// См. описание <see href="http://vk.com/dev/message"/>.

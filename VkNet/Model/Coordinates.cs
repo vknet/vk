@@ -1,8 +1,11 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Exception;
-    using VkNet.Utils;
+    using System;
 
+    using Exception;
+    using Utils;
+
+    [Serializable]
     /// <summary>
     /// Координаты места, в котором была сделана запись.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/>.

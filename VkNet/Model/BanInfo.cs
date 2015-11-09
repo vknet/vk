@@ -1,9 +1,13 @@
-﻿using System;
-using VkNet.Enums;
-using VkNet.Utils;
-
+﻿
 namespace VkNet.Model
 {
+    using System;
+    using System.Diagnostics;
+
+    using Utils;
+    using Enums;
+
+    [DebuggerDisplay("[{AdminId}] {Comment} ({Reason})")][Serializable]
     /// <summary>
     /// Информация о забанненом (добавленном в черный список) пользователе сообщества.
     /// </summary>

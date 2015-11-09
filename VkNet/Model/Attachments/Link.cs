@@ -3,6 +3,7 @@ using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
+    [Serializable]
 	/// <summary>
     /// Ссылка на Web-страницу.
     /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Ссылка".

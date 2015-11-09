@@ -1,7 +1,9 @@
 namespace VkNet.Model
 {
+    using System;
     using VkNet.Utils;
 
+    [Serializable]
     /// <summary>
     /// Набор Url к картинкам с различным разрешениям.
     /// Используется в <see cref="User"/>, <see cref="Group"/> и <see cref="Message"/>.

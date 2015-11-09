@@ -4,6 +4,7 @@ namespace VkNet.Model
 {
     using System;
 
+    [Serializable]
     /// <summary>
     /// Город.
     /// </summary>

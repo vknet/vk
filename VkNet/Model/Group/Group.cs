@@ -5,11 +5,13 @@ using VkNet.Enums.SafetyEnums;
 namespace VkNet.Model
 {
 	using System;
+    using System.Diagnostics;
 
 	using VkNet.Categories;
 	using VkNet.Enums;
 	using VkNet.Utils;
 
+    [DebuggerDisplay("[{Id}] {Name} ({Domain})")] [Serializable]
 	/// <summary>
 	/// Информация о сообществе (группе).
 	/// См. описание <see href="http://vk.com/dev/fields_groups"/>.

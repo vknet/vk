@@ -13,7 +13,7 @@
     /// Информация о пользователя.
     /// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&amp;p=users.get"/>.
     /// </summary>
-    [DebuggerDisplay("[{Id}] {FirstName} {LastName} ({Domain})")]
+    [DebuggerDisplay("[{Id}] {FirstName} {LastName} ({Domain})")] [Serializable]
     public class User
     {
         #region Стандартные поля
@@ -64,7 +64,7 @@
         /// Информация о ссылках на предпросмотр фотографий пользователя.
         /// </summary>
         public Previews PhotoPreviews { get; set; }
-
+        
         /// <summary>
         /// Признак находится ли пользователь сейчас на сайте.
         /// </summary>

@@ -1,10 +1,12 @@
 ﻿namespace VkNet.Model
 {
+    using System;
     using System.Collections.ObjectModel;    
 
     using Enums;
     using Utils;
 
+    [Serializable]
     /// <summary>
     /// Жизненная позиция (Personal).
     /// Данная информация не документирована в официальном API ВКонтакте и восстановлена по ответам.

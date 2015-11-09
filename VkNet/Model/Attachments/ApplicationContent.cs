@@ -1,7 +1,9 @@
+using System;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
+    [Serializable]
 	/// <summary>
     /// Контент приложения.
     /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".

@@ -1,7 +1,9 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using System;
+    using Utils;
 
+    [Serializable]
     /// <summary>
     /// Количество различных объектов у пользователя. 
     /// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/> и 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace VkNet.Model.Attachments
 {
+    [Serializable]
 	/// <summary>
 	/// Приложенный объект, имеющий идентификатор и владельца.
 	/// </summary>

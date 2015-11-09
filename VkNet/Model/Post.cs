@@ -14,7 +14,7 @@
     /// <remarks>
     /// См. описание <see href="http://vk.com/dev/post"/>.
     /// </remarks>
-    [DebuggerDisplay("[{Id}] {Text}")]
+    [DebuggerDisplay("[{Id}] {Text}")] [Serializable]
     public class Post
     {
         /// <summary>

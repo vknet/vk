@@ -4,6 +4,9 @@ using VkNet.Utils;
 
 namespace VkNet.Model
 {
+    using System;
+
+    [Serializable]
 	/// <summary>
 	/// Информация о заявке на смену имени.
 	/// </summary>

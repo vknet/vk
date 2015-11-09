@@ -4,6 +4,7 @@ using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
+    [Serializable]
 	/// <summary>
     /// Информация о медиавложении в записи.
     /// См. описание <see href="http://vk.com/dev/attachments_w"/>. 

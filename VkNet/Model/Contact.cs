@@ -1,6 +1,10 @@
 ﻿namespace VkNet.Model
 {
+    using System;
+
     using Utils;
+
+    [Serializable]
     /// <summary>
     /// Контакты группы
     /// </summary>
