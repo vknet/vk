@@ -373,14 +373,17 @@
 				IfNotAuthorizedThrowException();
 
 			// проверка на не более 3-х запросов в секунду
-			TimeSpan span;
-			if (LastInvokeTime.HasValue && (span = LastInvokeTimeSpan.Value).TotalMilliseconds < _minInterval)
-				Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
+            if (LastInvokeTime.HasValue)
+            {
+                TimeSpan span = LastInvokeTimeSpan.Value;
+                LastInvokeTime = DateTimeOffset.Now;
+                if (span.TotalMilliseconds < _minInterval)
+                    Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
+            }
 
 			string url = GetApiUrl(methodName, parameters);
 
 			string answer = Browser.GetJson(url);
-			LastInvokeTime = DateTimeOffset.Now;
 
 #if DEBUG && !UNIT_TEST
 			Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
