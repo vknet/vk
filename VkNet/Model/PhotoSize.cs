@@ -12,25 +12,25 @@ namespace VkNet.Model
 		/// <summary>
 		/// Url копии изображения..
 		/// </summary>
-		public Url src
+		public Url Src
 		{ get; set; }
 
 		/// <summary>
 		/// Ширина копии в пикселах..
 		/// </summary>
-		public ulong width
+		public ulong Width
 		{ get; set; }
 
 		/// <summary>
 		/// Высота копии в пикселах..
 		/// </summary>
-		public ulong height
+		public ulong Height
 		{ get; set; }
 
 		/// <summary>
 		/// Обозначение размера и пропорций копии..
 		/// </summary>
-		public PhotoSizeType type
+		public PhotoSizeType Type
 		{ get; set; }
 
 		/// <summary>
@@ -42,10 +42,10 @@ namespace VkNet.Model
 		{
 			var giftItem = new PhotoSize
 			{
-				src = new Url(response["src"]),
-				width = response["width"],
-				height = response["height"],
-				type = response["type"]
+				Src = new Url(response["src"]),
+				Width = response["width"],
+				Height = response["height"],
+				Type = response["type"]
 			};
 
 			return giftItem;

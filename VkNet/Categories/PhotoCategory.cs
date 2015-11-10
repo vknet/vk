@@ -1,4 +1,4 @@
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
 #if WINDOWS_PHONE
 	using System.Net;
@@ -884,16 +884,16 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 				{
-					{ "owner_id", @params.owner_id },
-					{ "photo_id", @params.photo_id },
-					{ "need_likes", @params.need_likes },
-					{ "start_comment_id", @params.start_comment_id },
-					{ "offset", @params.offset },
-					{ "count", @params.count },
-					{ "sort", @params.sort },
-					{ "access_key", @params.access_key },
-					{ "extended", @params.extended },
-					{ "fields", @params.fields }
+					{ "owner_id", @params.OwnerId },
+					{ "photo_id", @params.PhotoId },
+					{ "need_likes", @params.NeedLikes },
+					{ "start_comment_id", @params.StartCommentId },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count },
+					{ "sort", @params.Sort },
+					{ "access_key", @params.AccessKey },
+					{ "extended", @params.Extended },
+					{ "fields", @params.Fields }
 				};
 
 			var response = _vk.Call("photos.getComments", parameters);
@@ -1089,13 +1089,13 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 				{
-					{ "owner_id", @params.owner_id },
-					{ "photo_id", @params.photo_id },
-					{ "user_id", @params.user_id },
-					{ "x", @params.x },
-					{ "y", @params.y },
-					{ "x2", @params.x2 },
-					{ "y2", @params.y2 }
+					{ "owner_id", @params.OwnerId },
+					{ "photo_id", @params.PhotoId },
+					{ "user_id", @params.UserId },
+					{ "x", @params.X },
+					{ "y", @params.Y },
+					{ "x2", @params.X2 },
+					{ "y2", @params.Y2 }
 				};
 
 			return _vk.Call("photos.putTag", parameters);

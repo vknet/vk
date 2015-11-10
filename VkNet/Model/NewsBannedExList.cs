@@ -22,7 +22,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// В поле members содержится массив идентификаторов друзей, которые пользователь скрыл из ленты новостей.
 		/// </summary>
-		public ReadOnlyCollection<User> profiles
+		public ReadOnlyCollection<User> Profiles
 		{ get; set; }
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace VkNet.Model
 			var bannedList = new NewsBannedExList
 			{
 				Groups = names.ToReadOnlyCollectionOf<Group>(x => x),
-				profiles = profiles.ToReadOnlyCollectionOf<User>(x => x)
+				Profiles = profiles.ToReadOnlyCollectionOf<User>(x => x)
 			};
 
 			return bannedList;

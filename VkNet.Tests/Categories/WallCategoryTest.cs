@@ -35,9 +35,10 @@ namespace VkNet.Tests.Categories
 
 		#region Wall.Get
 
-		[Test]
+		[Test, Ignore("Метод не требует AccessToken")]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
+			// 
 			int totalCount;
 			This.Action(() => _defaultWall.Get(1, out totalCount)).Throws<AccessTokenInvalidException>();
 

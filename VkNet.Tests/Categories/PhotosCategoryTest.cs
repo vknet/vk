@@ -107,7 +107,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void EditAlbum_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.editAlbum?album_id=19726&title=new album title&description=new description&owner_id=0&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/photos.editAlbum?album_id=19726&title=new album title&description=new description&v=5.37&access_token=token";
 			const string json =
                 @"{
                     'response': 1
