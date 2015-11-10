@@ -4,11 +4,11 @@
 
     using Utils;
 
-    [Serializable]
     /// <summary>
     /// Информация о репостах записи. 
     /// См. описание <see href="http://vk.com/dev/post"/>. Раздел reposts.
     /// </summary>
+    [Serializable]
     public class Reposts
     {
         /// <summary>

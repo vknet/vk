@@ -13,7 +13,8 @@
     /// Информация о пользователя.
     /// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&amp;p=users.get"/>.
     /// </summary>
-    [DebuggerDisplay("[{Id}] {FirstName} {LastName} ({Domain})")] [Serializable]
+    [DebuggerDisplay("[{Id}] {FirstName} {LastName}")]
+    [Serializable]
     public class User
     {
         #region Стандартные поля
@@ -124,40 +125,52 @@
         /// </summary>
         public Collection<School> Schools { get; set; }
 
+        [NonSerialized]
+        private bool _CanPost;
         /// <summary>
         /// Признак разрешено ли оставлять записи на стене у пользователя.
         /// </summary>
-        public bool CanPost { get; set; }
+        public bool CanPost { get { return _CanPost; } set { _CanPost = value; } }
 
+        [NonSerialized]
+        private bool _CanSeeAllPosts;
         /// <summary>
         /// Признак разрешено ли видеть чужие записи на стене пользователя.
         /// </summary>
-        public bool CanSeeAllPosts { get; set; }
+        public bool CanSeeAllPosts { get { return _CanSeeAllPosts; } set { _CanSeeAllPosts = value; } }
 
+        [NonSerialized]
+        private bool _CanSeeAudio;
         /// <summary>
         /// Признак разрешено ли видеть чужие аудиозаписи на стене пользователя.
         /// </summary>
-        public bool CanSeeAudio { get; set; }
+        public bool CanSeeAudio { get { return _CanSeeAudio; } set { _CanSeeAudio = value; } }
 
+        [NonSerialized]
+        private bool _CanWritePrivateMessage;
         /// <summary>
         /// Признак разрешено ли написание личных сообщений данному пользователю.
         /// </summary>
-        public bool CanWritePrivateMessage { get; set; }
+        public bool CanWritePrivateMessage { get { return _CanWritePrivateMessage; } set { _CanWritePrivateMessage = value; } }
 
         /// <summary>
         /// Строка со статусом пользователя.
         /// </summary>
         public string Status { get; set; }
 
+        [NonSerialized]
+        private DateTime? _LastSeen;
         /// <summary>
         /// Время последнего посещения сайта.
         /// </summary>
-        public DateTime? LastSeen { get; set; }
+        public DateTime? LastSeen { get { return _LastSeen; } set { _LastSeen = value; } }
 
+        [NonSerialized]
+        private int? _CommonCount;
         /// <summary>
         /// Общее количество друзей с текущим пользователем.
         /// </summary>
-        public int? CommonCount { get; set; }
+        public int? CommonCount { get { return _CommonCount; } set { _CommonCount = value; } }
 
         /// <summary>
         /// Семейное положение.
@@ -169,15 +182,19 @@
         /// </summary>
         public Collection<Relative> Relatives { get; set; }
 
+        [NonSerialized]
+        private Counters _Counters;
         /// <summary>
         /// Различные счетчики пользователя.
         /// </summary>
-        public Counters Counters { get; set; }
+        public Counters Counters { get { return _Counters; } set { _Counters = value; } }
 
+        [NonSerialized]
+        private BanInfo _BanInfo;
         /// <summary>
         /// Информация о блокировке пользователя
         /// </summary>
-        public BanInfo BanInfo { get; set; }
+        public BanInfo BanInfo { get { return _BanInfo; } set { _BanInfo = value; } }
 
         /// <summary>
         /// Является ли пользователь заблокированным

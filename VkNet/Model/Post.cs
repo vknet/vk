@@ -14,7 +14,8 @@
     /// <remarks>
     /// См. описание <see href="http://vk.com/dev/post"/>.
     /// </remarks>
-    [DebuggerDisplay("[{Id}] {Text}")] [Serializable]
+    [DebuggerDisplay("[{Id}] {Text}")]
+    [Serializable]
     public class Post
     {
         /// <summary>
@@ -57,20 +58,26 @@
         /// </summary>
         public bool FriendsOnly { get; set; }
 
+        [NonSerialized]
+        private Comments _Comments;
         /// <summary>
         /// Информация о комментариях к записи.
         /// </summary>
-        public Comments Comments { get; set; }
+        public Comments Comments { get { return _Comments; } set { _Comments = value; } }
 
+        [NonSerialized]
+        private Likes _Likes;
         /// <summary>
         /// Информация о лайках к записи.
         /// </summary>
-        public Likes Likes { get; set; }
+        public Likes Likes { get { return _Likes; } set { _Likes = value; } }
 
+        [NonSerialized]
+        private Reposts _Reposts;
         /// <summary>
         /// Информация о репостах записи («Рассказать друзьям»). 
         /// </summary>
-        public Reposts Reposts { get; set; }
+        public Reposts Reposts { get { return _Reposts; } set { _Reposts = value; } }
 
         /// <summary>
         /// Тип записи (post, copy, reply, postpone, suggest). Если PostType равен "copy", то запись является копией записи с чужой стены.
@@ -78,7 +85,7 @@
         public string PostType { get; set; }
 
         /// <summary>
-        /// Информация о способе размещения записи .
+        /// Информация о способе размещения записи.
         /// </summary>
         public PostSource PostSource { get; set; }
 
@@ -152,15 +159,19 @@
         /// </summary>
         public long? CopyCommentId { get; set; }
 
+        [NonSerialized]
+        private bool _CanDelete;
         /// <summary>
         /// Признак может ли текущий пользователь удалить эту запись.
         /// </summary>
-        public bool CanDelete { get; set; }
+        public bool CanDelete { get { return _CanDelete; } set { _CanDelete = value; } }
 
+        [NonSerialized]
+        private bool _CanEdit;
         /// <summary>
         /// Признак может ли текущий пользователь редактировать эту запись.
         /// </summary>
-        public bool CanEdit { get; set; }
+        public bool CanEdit { get { return _CanEdit; } set { _CanEdit = value; } }
 
         #endregion
 

@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model
 {
 	using System;
     using System.Diagnostics;
 
-	using VkNet.Categories;
+    using VkNet.Enums.SafetyEnums;
+    using VkNet.Categories;
 	using VkNet.Enums;
 	using VkNet.Utils;
 
-    [DebuggerDisplay("[{Id}] {Name} ({Domain})")] [Serializable]
-	/// <summary>
-	/// Информация о сообществе (группе).
-	/// См. описание <see href="http://vk.com/dev/fields_groups"/>.
-	/// </summary>
-	public class Group
+    /// <summary>
+    /// Информация о сообществе (группе).
+    /// См. описание <see href="http://vk.com/dev/fields_groups"/>.
+    /// </summary>
+    [DebuggerDisplay("[{Id}] {Name}")]
+    [Serializable]
+    public class Group
 	{
 		#region Стандартные поля
 
@@ -40,20 +41,26 @@ namespace VkNet.Model
 		/// </summary>
 		public GroupPublicity? IsClosed { get; set; }
 
+        [NonSerialized]
+        private bool _IsAdmin;
 		/// <summary>
 		/// Признак яляется ли текущий пользователь руководителем сообщества.
 		/// </summary>
-		public bool IsAdmin { get; set; }
+		public bool IsAdmin { get { return _IsAdmin; } set { _IsAdmin = value; } }
 
+        [NonSerialized]
+        private AdminLevel? _AdminLevel;
 		/// <summary>
 		/// Уровень административных полномочий текущего пользователя в сообществе (действительно, если IsAdmin = true).
 		/// </summary>
-		public AdminLevel? AdminLevel { get; set; }
+		public AdminLevel? AdminLevel { get { return _AdminLevel; } set { _AdminLevel = value; } }
 
+        [NonSerialized]
+        private bool? _IsMember;
 		/// <summary>
 		/// Признак является ли текущий пользователь участником сообщества.
 		/// </summary>
-		public bool? IsMember { get; set; }
+		public bool? IsMember { get { return _IsMember; } set { _IsMember = value; } }
 
 		/// <summary>
 		/// Тип сообщества.
@@ -96,15 +103,19 @@ namespace VkNet.Model
 		/// </summary>
 		public string WikiPage { get; set; }
 
-		/// <summary>
+        [NonSerialized]
+        private int? _MemberCount;
+        /// <summary>
 		/// Количество участников сообщества. 
 		/// </summary>
-		public int? MembersCount { get; set; }
+		public int? MembersCount { get { return _MemberCount; } set { _MemberCount = value; } }
 
+        [NonSerialized]
+        private Counters _Counters;
 		/// <summary>
 		/// Счетчики сообщества.
 		/// </summary>
-		public Counters Counters { get; set; }
+		public Counters Counters { get { return _Counters; } set { _Counters = value; } }
 
 		/// <summary>
 		/// Время начала встречи (возвращаются только для встреч).
@@ -116,27 +127,35 @@ namespace VkNet.Model
 		/// </summary>
 		public DateTime? EndDate { get; set; }
 
+        [NonSerialized]
+        private bool _CanPost;
 		/// <summary>
 		/// Информация о том, может ли текущий пользователь оставлять записи на стене сообщества (<c>true</c> - может, <c>false</c> - не может).
 		/// </summary>
-		public bool CanPost { get; set; }
+		public bool CanPost { get { return _CanPost; } set { _CanPost = value; } }
 
+        [NonSerialized]
+        private bool _CanSeeAllPosts;
 		/// <summary>
 		/// Информация о том, разрешено видеть чужие записи на стене группы (<c>true</c> - разрешено, <c>false</c> - не разрешено).
 		/// </summary>
-		public bool CanSeelAllPosts { get; set; }
+		public bool CanSeelAllPosts { get { return _CanSeeAllPosts; } set { _CanSeeAllPosts = value; } }
 
+        [NonSerialized]
+        private bool _CanUploadDocuments;
 		/// <summary>
 		/// Информация о том, может ли текущий пользователь загружать документы в группу (<c>true</c>, если пользователь может 
 		/// загружать документы, <c>false</c> – если не может).
 		/// </summary>
-		public bool CanUploadDocuments { get; set; }
+		public bool CanUploadDocuments { get { return _CanUploadDocuments; } set { _CanUploadDocuments = value; } }
 
+        [NonSerialized]
+        private bool _CanCreateTopic;
 		/// <summary>
 		/// Информация о том, может ли текущий пользователь создать тему обсуждения в группе. 
 		/// (<c>true</c>, если пользователь может создать обсуждение, <c>false</c> – если не может). 
 		/// </summary>
-		public bool CanCreateTopic { get; set; }
+		public bool CanCreateTopic { get { return _CanCreateTopic; } set { _CanCreateTopic = value; } }
 
 		/// <summary>
 		/// Строка состояния публичной страницы. У групп возвращается строковое значение, открыта ли группа или нет, 
@@ -159,11 +178,13 @@ namespace VkNet.Model
 		/// </summary>
 		public Collection<ExternalLink> Links { get; set; }
 
+        [NonSerialized]
+        private ulong? _FixedPostId;
 		/// <summary>
 		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById(IEnumerable{KeyValuePair{long, long}})"/>,
 		/// передав идентификатор в виде – {group_id}_{post_id}.
 		/// </summary>
-		public ulong? FixedPostId { get; set; }
+		public ulong? FixedPostId { get { return _FixedPostId; } set { _FixedPostId = value; } }
 
 		/// <summary>
 		/// Возвращает информацию о том, является ли сообщество верифицированным.
@@ -175,20 +196,26 @@ namespace VkNet.Model
 		/// </summary>
 		public string Site { get; set; }
 
+        [NonSerialized]
+        private ulong? _InvitedBy;
 		/// <summary>
 		/// Идентификатор пользователя пригласившего в группу
 		/// </summary>
-		public ulong? InvitedBy { get; set; }
+		public ulong? InvitedBy { get { return _InvitedBy; } set { _InvitedBy = value; } }
 
+        [NonSerialized]
+        private bool _IsFavorite;
 		/// <summary>
 		/// Возвращается 1, если сообщество находится в закладках у текущего пользователя.
 		/// </summary>
-		public bool IsFavorite { get; set; }
+		public bool IsFavorite { get { return _IsFavorite; } set { _IsFavorite = value; } }
 
+        [NonSerialized]
+        private BanInfo _BanInfo;
 		/// <summary>
 		/// Информация о забанненом (добавленном в черный список) пользователе сообщества.
 		/// </summary>
-		public BanInfo BanInfo { get; set; }
+		public BanInfo BanInfo { get { return _BanInfo; } set { _BanInfo = value; } }
 		#endregion
 
 		#region Методы

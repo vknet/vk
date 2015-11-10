@@ -4,10 +4,10 @@ namespace VkNet.Model
 {
     using System;
 
-    [Serializable]
     /// <summary>
     /// Информация о стране.
     /// </summary>
+    [Serializable]
     public class Country
     {
         /// <summary>

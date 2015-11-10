@@ -3,11 +3,11 @@
     using System;
     using Utils;
 
-    [Serializable]
     /// <summary>
     /// Школа, в которой учился пользователь.
     /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел schools.
     /// </summary>
+    [Serializable]
     public class School
     {
         /// <summary>

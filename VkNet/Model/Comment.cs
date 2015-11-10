@@ -13,7 +13,8 @@ namespace VkNet.Model
     /// Комментарий к записи.
     /// См. описание <see href="http://vk.com/devcomment_object"/>.
     /// </summary>
-    [DebuggerDisplay("Id = {Id}, Text = {Text}, Date = {Date}")][Serializable]
+    [DebuggerDisplay("Id = {Id}, Text = {Text}, Date = {Date}")]
+    [Serializable]
     public class Comment
     {
         /// <summary>

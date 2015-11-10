@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 namespace VkNet.Model.Attachments
 {
+
+    /// <summary>
+    /// Приложенный объект, имеющий идентификатор и владельца.
+    /// </summary>
     [Serializable]
-	/// <summary>
-	/// Приложенный объект, имеющий идентификатор и владельца.
-	/// </summary>
-	public abstract class MediaAttachment
+    public abstract class MediaAttachment
 	{
 		private static readonly IDictionary<Type, string> Types = new Dictionary<Type, string>();  
 

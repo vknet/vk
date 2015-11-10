@@ -7,13 +7,14 @@ namespace VkNet.Model
     using Utils;
     using Enums;
 
-    [DebuggerDisplay("[{AdminId}] {Comment} ({Reason})")][Serializable]
     /// <summary>
     /// Информация о забанненом (добавленном в черный список) пользователе сообщества.
     /// </summary>
     /// <remarks>
     /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned"/>.
     /// </remarks>
+    [DebuggerDisplay("[{AdminId}] {Comment} ({Reason})")]
+    [Serializable]
     public class BanInfo
     {
         /// <summary>

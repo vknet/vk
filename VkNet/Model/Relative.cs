@@ -3,12 +3,12 @@
     using System;
 	using Utils;
 
+    /// <summary>
+    /// Информация о родственнике.
+    /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел relatives.
+    /// </summary>
     [Serializable]
-	/// <summary>
-	/// Информация о родственнике.
-	/// См. описание <see href="http://vk.com/dev/fields"/>. Раздел relatives.
-	/// </summary>
-	public class Relative
+    public class Relative
 	{
 		/// <summary>
 		/// Идентификатор родственника.

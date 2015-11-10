@@ -3,10 +3,10 @@
     using System;
     using Utils;
 
-    [Serializable]
     /// <summary>
     /// Ссылки в группе
     /// </summary>
+    [Serializable]
     public class ExternalLink
     {
         /// <summary>

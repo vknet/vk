@@ -4,12 +4,13 @@ using System.Linq;
 
 namespace VkNet.Enums.SafetyEnums
 {
+
+    /// <summary>
+    /// Аналог enum, типобезопасен.
+    /// </summary>
+    /// <typeparam name="TFilter">Непосредственно наследник</typeparam>
     [Serializable]
-	/// <summary>
-	/// Аналог enum, типобезопасен.
-	/// </summary>
-	/// <typeparam name="TFilter">Непосредственно наследник</typeparam>
-	public class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
+    public class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
 	{
 // ReSharper disable once StaticFieldInGenericType
 		private static readonly Dictionary<ulong, string> PossibleValues = new Dictionary<ulong, string>();

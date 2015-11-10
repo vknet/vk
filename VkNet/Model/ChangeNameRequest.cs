@@ -6,11 +6,12 @@ namespace VkNet.Model
 {
     using System;
 
+
+    /// <summary>
+    /// Информация о заявке на смену имени.
+    /// </summary>
     [Serializable]
-	/// <summary>
-	/// Информация о заявке на смену имени.
-	/// </summary>
-	public class ChangeNameRequest
+    public class ChangeNameRequest
 	{
 		/// <summary>
 		/// Идентификатор заявки, необходимый для её отмены (только если <see cref="ChangeNameRequest.Status"/> равен <see cref="ChangeNameStatus.Processing"/>)

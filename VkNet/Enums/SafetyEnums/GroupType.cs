@@ -4,10 +4,10 @@
 
     using Utils;
 
-    [Serializable]
     /// <summary>
     /// Тип сообщества
     /// </summary>
+    [Serializable]
     public sealed class GroupType : SafetyEnum<GroupType>
     {
         /// <summary>

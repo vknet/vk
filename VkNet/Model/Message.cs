@@ -9,11 +9,12 @@ namespace VkNet.Model
     using Enums;
     using Utils;
 
-    [DebuggerDisplay("[{UserId}-{Id}] {Body}")] [Serializable]
     /// <summary>
     /// Личное сообщение пользователя.
     /// См. описание <see href="http://vk.com/dev/message"/>.
     /// </summary>
+    [DebuggerDisplay("[{UserId}-{Id}] {Body}")]
+    [Serializable]
     public class Message
     {
         #region Стандартные поля
@@ -33,20 +34,24 @@ namespace VkNet.Model
         /// </summary>
         public DateTime? Date { get; set; }
 
+        [NonSerialized]
+        private MessageReadState? _ReadState;
         /// <summary>
         /// Статус сообщения (не возвращается для пересланных сообщений).
         /// </summary>
-        public MessageReadState? ReadState { get; set; }
+        public MessageReadState? ReadState { get { return _ReadState; } set { _ReadState = value; } }
 
         /// <summary>
         /// Тип сообщения (не возвращается для пересланных сообщений).
         /// </summary>
         public MessageType? Type { get; set; }
 
+        [NonSerialized]
+        private int _Unread;
         /// <summary>
         /// Содержит количество непрочитанных сообщений в текущем диалоге (если это значение было возвращено, иначе 0)
         /// </summary>
-        public int Unread { get; set; }
+        public int Unread { get { return _Unread; } set { _Unread = value; } }
 
         /// <summary>
         /// Заголовок сообщения или беседы.

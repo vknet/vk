@@ -4,13 +4,13 @@ namespace VkNet.Model
 {
     using System;
 
-    [Serializable]
     /// <summary>
     /// Город.
     /// </summary>
     /// <remarks>
     /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCities"/>.
     /// </remarks>
+    [Serializable]
     public class City
     {
         /// <summary>

@@ -4,10 +4,10 @@
 
     using Utils;
 
-    [Serializable]
     /// <summary>
     /// Контакты группы
     /// </summary>
+    [Serializable]
     public class Contact
     {
         /// <summary>
