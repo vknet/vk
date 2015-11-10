@@ -167,6 +167,12 @@
 		/// API для работы с новостной лентой.
 		/// </summary>
 		public NewsFeedCategory NewsFeed { get; set; }
+
+		/// <summary>
+		/// API для работы со статистикой.
+		/// </summary>
+		public StatsCategory Stats { get; set; }
+		
 		
 		#endregion
 
@@ -218,6 +224,7 @@
 			Gifts = new GiftsCategory(this);
 			Apps = new AppsCategory(this);
 			NewsFeed = new NewsFeedCategory(this);
+			Stats = new StatsCategory(this);
 
 			RequestsPerSecond = 3;
 		}

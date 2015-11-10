@@ -67,6 +67,7 @@
     <Compile Include="Categories\PhotoCategory.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Categories\StatsCategory.cs" />
     <Compile Include="Enums\AccessPages.cs" />
     <Compile Include="Enums\Filters\AppFilter.cs" />
     <Compile Include="Enums\MaritalStatus.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Model\App.cs" />
     <Compile Include="Model\Mention.cs" />
     <Compile Include="Model\PhotoSize.cs" />
+    <Compile Include="Model\PostReach.cs" />
     <Compile Include="Model\RequestParams\Likes\GetListParams.cs" />
     <Compile Include="Model\RequestParams\Messages\MessageSendParams.cs" />
     <Compile Include="Model\NewsBannedExList.cs" />
@@ -221,6 +223,8 @@
     <Compile Include="Model\RequestParams\Photo\PhotoSearchParams.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
+    <Compile Include="Model\StatsPeriod.cs" />
+    <Compile Include="Model\StatStruct.cs" />
     <Compile Include="Model\Street.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\Tags.cs" />

@@ -986,11 +986,11 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore]
+		
 		//BUG: не работает, т.к. апостроф (в test chat's title) парсится в %27
 		public void CreateChat_NormalCase_ChatId()
 		{
-			url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test+chat's+title&access_token=token";
+			url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test+chat%27s+title&v=5.37&access_token=token";
 			json =
 				@"{
 					'response': 3
