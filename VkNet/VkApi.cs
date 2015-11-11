@@ -61,15 +61,21 @@
 			get { return _requestsPerSecond; }
 			set
 			{
-				if (value > 0)
-				{
-					_requestsPerSecond = value;
-					_minInterval = 1000 / _requestsPerSecond + 1;
-				} else
-					throw new ArgumentException("Value must be positive", "RequestsPerSecond");
+                if (value > 0)
+                {
+                    _requestsPerSecond = value;
+                    _minInterval = 1000 / _requestsPerSecond + 1;
+                }
+                else if (value == 0)
+                    _requestsPerSecond = 0;
+                else
+                    throw new ArgumentException("Value must be positive", "RequestsPerSecond");
 			}
 		}
 
+        /// <summary>
+        /// Оповещает об истечении срока токена доступа
+        /// </summary>
 		public event VkApiDelegate OnTokenExpires;
 
 		#region Categories Definition
@@ -379,8 +385,8 @@
 			if (!skipAuthorization)
 				IfNotAuthorizedThrowException();
 
-			// проверка на не более 3-х запросов в секунду
-            if (LastInvokeTime.HasValue)
+			// Защита от превышения кол-ва запросов в секунду
+            if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
                 TimeSpan span = LastInvokeTimeSpan.Value;
                 LastInvokeTime = DateTimeOffset.Now;
