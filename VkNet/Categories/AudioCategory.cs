@@ -370,7 +370,7 @@
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio" />.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.edit" />.
 		/// </remarks>
-		public ulong Edit(ulong audioId, long ownerId, string artist, string title, string text, bool noSearch = false, AudioGenre? genre_id = AudioGenre.Other)
+		public ulong Edit(ulong audioId, long ownerId, string artist, string title, string text, bool? noSearch = null, AudioGenre? genre_id = AudioGenre.Other)
 		{
 			if (artist == null)
 				throw new ArgumentNullException("artist", "Artist parameter can not be null.");

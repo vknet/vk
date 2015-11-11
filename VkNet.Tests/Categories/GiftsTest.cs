@@ -13,7 +13,7 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
-using FluentNUnit; 
+using FluentNUnit;
 
 namespace VkNet.Tests.Categories
 {
@@ -114,7 +114,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(gifts[0].Id, Is.EqualTo(443110992));
 			Assert.That(gifts[0].FromId, Is.EqualTo(221634238));
 			Assert.That(gifts[0].Message, Is.EqualTo(string.Empty));
-			Assert.That(gifts[0].Date, Is.EqualTo("1431167825"));
+			Assert.That(gifts[0].Date, Is.EqualTo(new DateTime(2015, 05, 09, 13, 37, 05)));
 			Assert.That(gifts[0].Gift.Id, Is.EqualTo(711));
 			Assert.That(gifts[0].Gift.Thumb256, Is.EqualTo(@"http://vk.com/images/gift/711/256.jpg"));
 			Assert.That(gifts[0].Gift.Thumb96, Is.EqualTo(@"http://vk.com/images/gift/711/96.png"));

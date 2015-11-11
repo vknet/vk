@@ -685,41 +685,41 @@ namespace VkNet.Tests.Categories
         public void Edit_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            This.Action(() => audio.Edit(0, 0, "", "", "")).Throws<AccessTokenInvalidException>();
+            This.Action(() => audio.Edit(0, 0, "", "", "", null, null)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
         public void Edit_ArtistParamIsNull_ThrowsArgumentNullException()
         {
             var cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.Edit(0, 0, null, "", "")).Throws<ArgumentNullException>();
+            This.Action(() => cat.Edit(0, 0, null, "", "", null, null)).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void Edit_TitleParamIsNull_ThrowsArgumentNullException()
         {
             var cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.Edit(0, 0, "", null, "")).Throws<ArgumentNullException>();
+            This.Action(() => cat.Edit(0, 0, "", null, "", null, null)).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void Edit_TextParamIsNull_ThrowsArgumentNullException()
         {
             var cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.Edit(0, 0, "", "", null)).Throws<ArgumentNullException>();
+            This.Action(() => cat.Edit(0, 0, "", "", null, null, null)).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void Edit_NoramCase_ReturnLyricsId()
         {
-			const string url = "https://api.vk.com/method/audio.edit?aid=159207130&oid=4793858&artist=Test Artist&title=Test Title&text=Test Text&no_search=0&genre_id=18&access_token=token";
+			const string url = "https://api.vk.com/method/audio.edit?aid=159207130&oid=4793858&artist=Test Artist&title=Test Title&text=Test Text&genre_id=1&access_token=token";
 			const string json =
                 @"{
                     'response': 26350163
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            var id = cat.Edit(159207130, 4793858, "Test Artist", "Test Title", "Test Text");
+            var id = cat.Edit(159207130, 4793858, "Test Artist", "Test Title", "Test Text", null, AudioGenre.Rock);
 
             Assert.That(id, Is.EqualTo(26350163));
         }
@@ -727,7 +727,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Edit_WrongInputParams_ThrowsInvalidParameterException()
         {
-			const string url = "https://api.vk.com/method/audio.edit?aid=0&oid=0&artist=Test Artist&title=Test Title&text=Test Text&no_search=0&genre_id=18&access_token=token";
+			const string url = "https://api.vk.com/method/audio.edit?aid=0&oid=0&artist=Test Artist&title=Test Title&text=Test Text&genre_id=18&access_token=token";
 			const string json =
                 @"{
                     'error': {
@@ -776,7 +776,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedAudioCategory(url, json);
 
-            This.Action(() => cat.Edit(0, 0, "Test Artist", "Test Title", "Test Text")).Throws<InvalidParameterException>();
+            This.Action(() => cat.Edit(0, 0, "Test Artist", "Test Title", "Test Text", false, AudioGenre.Other)).Throws<InvalidParameterException>();
         }
 
         [Test]
