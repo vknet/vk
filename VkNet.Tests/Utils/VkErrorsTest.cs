@@ -53,8 +53,9 @@ namespace VkNet.Tests.Utils
 
             var ex = This.Action(() => VkErrors.ThrowIfNullOrEmpty(() => param)).Throws<ArgumentNullException>();
 
-			ex.Message.ShouldStartsWith("Значение не может быть неопределенным").ShouldContains("param");
-		}
+			//ex.Message.ShouldStartsWith("Значение не может быть неопределенным").ShouldContains("param");
+	        Assert.Throws<ArgumentNullException>(() => VkErrors.ThrowIfNullOrEmpty(() => param));
+        }
 
         [Test]
         public void ThrowIfNumberIsNegative_ExpressionVersion_NullabeLong()
