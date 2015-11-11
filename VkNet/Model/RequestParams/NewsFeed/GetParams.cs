@@ -25,13 +25,13 @@ namespace VkNet.Model.RequestParams.NewsFeed
 		/// <summary>
 		/// Время в формате unixtime, начиная с которого следует получить новости для текущего пользователя.
 		/// </summary>
-		public string StartTime
+		public DateTime? StartTime
 		{ get; set; }
 
 		/// <summary>
 		/// Время в формате unixtime, до которого следует получить новости для текущего пользователя. Если параметр не задан, то он считается равным текущему времени.
 		/// </summary>
-		public string EndTime
+		public DateTime? EndTime
 		{ get; set; }
 
 		/// <summary>

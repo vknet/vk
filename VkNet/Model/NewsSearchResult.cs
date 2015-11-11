@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -33,7 +31,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время публикации записи в формате unixtime.
 		/// </summary>
-		public string Date
+		public DateTime? Date
 		{ get; set; }
 
 		/// <summary>

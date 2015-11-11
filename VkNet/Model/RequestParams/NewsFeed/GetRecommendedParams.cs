@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model.RequestParams.NewsFeed
 {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -150,7 +151,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getMentions" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<Mention> GetMentions(out int total, long ownerId = 0, ulong? startTime = null, ulong? endTime = null, ulong offset = 0, ulong count = 20)
+		public ReadOnlyCollection<Mention> GetMentions(out int total, long ownerId = 0, DateTime? startTime = null, DateTime? endTime = null, ulong offset = 0, ulong count = 20)
 		{
 			var parameters = new VkParameters
 			{

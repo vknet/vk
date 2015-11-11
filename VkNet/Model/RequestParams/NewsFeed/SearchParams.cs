@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model.RequestParams.NewsFeed
 {
@@ -51,13 +49,13 @@ namespace VkNet.Model.RequestParams.NewsFeed
 		/// <summary>
 		/// Время в формате unixtime, начиная с которого следует получить новости для текущего пользователя. Если параметр не задан, то он считается равным значению времени, которое было сутки назад.
 		/// </summary>
-		public ulong StartTime
+		public DateTime? StartTime
 		{ get; set; }
 
 		/// <summary>
 		/// Время в формате unixtime, до которого следует получить новости для текущего пользователя. Если параметр не задан, то он считается равным текущему времени.
 		/// </summary>
-		public ulong EndTime
+		public DateTime? EndTime
 		{ get; set; }
 
 		/// <summary>
