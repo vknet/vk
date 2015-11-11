@@ -50,7 +50,8 @@ namespace VkNet.Categories
 			{
 				parameters.Add("date_to", dateTo.Value.ToString("yyyy-MM-dd"));
 			}
-			return _vk.Call("stats.get", parameters).ToReadOnlyCollectionOf<StatsPeriod>(x => x);
+			var result = _vk.Call("stats.get", parameters, true);
+			return result.ToReadOnlyCollectionOf<StatsPeriod>(x => x);
 		}
 
 		/// <summary>
