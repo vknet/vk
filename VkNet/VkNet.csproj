@@ -156,10 +156,12 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\App.cs" />
+    <Compile Include="Model\LongPollHistoryResponse.cs" />
     <Compile Include="Model\Mention.cs" />
     <Compile Include="Model\PhotoSize.cs" />
     <Compile Include="Model\PostReach.cs" />
     <Compile Include="Model\RequestParams\Likes\GetListParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />
     <Compile Include="Model\RequestParams\Messages\MessageSendParams.cs" />
     <Compile Include="Model\NewsBannedExList.cs" />
     <Compile Include="Model\NewsBannedList.cs" />

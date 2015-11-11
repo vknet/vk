@@ -883,18 +883,25 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLongPollHistory" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		internal object GetLongPollHistory(ulong ts, ulong pts, ulong previewLength = 0, bool onlines = false, UsersFields fields = null, ulong eventsLimit = 1000, ulong msgsLimit = 200, ulong? maxMsgId = null)
+		public LongPollHistoryResponse GetLongPollHistory(GetLongPollHistoryParams @params)
 		{
+			VkErrors.ThrowIfNumberIsNegative(() => @params.Ts);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.Pts);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.PreviewLength);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.EventsLimit);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
+			
 			var parameters = new VkParameters
 			{
-				{ "ts", ts },
-				{ "pts", pts },
-				{ "preview_length", previewLength },
-				{ "onlines", onlines },
-				{ "fields", fields },
-				{ "events_limit", eventsLimit },
-				{ "msgs_limit", msgsLimit },
-				{ "max_msg_id", maxMsgId }
+				{ "ts", @params.Ts },
+				{ "pts", @params.Pts },
+				{ "preview_length", @params.PreviewLength },
+				{ "onlines", @params.Onlines },
+				{ "fields", @params.Fields },
+				{ "events_limit", @params.EventsLimit },
+				{ "msgs_limit", @params.MsgsLimit },
+				{ "max_msg_id", @params.MaxMsgId }
 			};
 			return _vk.Call("messages.getLongPollHistory", parameters);
 		}
