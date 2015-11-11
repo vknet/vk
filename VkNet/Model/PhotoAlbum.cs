@@ -58,7 +58,8 @@ namespace VkNet.Model
         /// <summary>
         /// Настройки приватности для комментирования альбома
         /// </summary>
-        public long? CommentPrivacy { get; set; }
+        public long? PrivacyComment
+		{ get; set; }
 
         /// <summary>
         /// Может ли текущий пользователь добавлять фотографии в альбом
@@ -81,6 +82,28 @@ namespace VkNet.Model
 		public IEnumerable<PhotoSize> Sizes
 		{ get; set; }
 
+		/// <summary>
+		/// Комментирование запрещено.
+		/// </summary>
+		public bool? CommentsDisabled
+		{ get; set; }
+
+		/// <summary>
+		/// Загружать могут только администраторы.
+		/// </summary>
+		public bool UploadByAdminsOnly
+		{ get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="PhotoAlbum"/> is thumb_is_last.
+		/// </summary>
+		/// <remarks>
+		/// Получено экспериментально.
+		/// </remarks>
+		public bool ThumbIsLast
+		{ get; set; }
+	    
+	    
 		#region Methods
 		/// <summary>
 		/// Разобрать из json.
@@ -100,11 +123,14 @@ namespace VkNet.Model
 		        Updated = response["updated"],
 		        Size = response["size"],
 		        Privacy = Utilities.GetNullableLongId(response["privacy"]),
-		        CommentPrivacy = Utilities.GetNullableLongId(response["comment_privacy"]),
+				PrivacyComment = Utilities.GetNullableLongId(response["privacy_comment"]),
 		        CanUpload = response["can_upload"],
 		        PrivacyView = response["privacy_view"],
 		        ThumbSrc = response["thumb_src"],
-				Sizes = response["sizes"].ToReadOnlyCollectionOf<PhotoSize>(x => x)
+				Sizes = response["sizes"].ToReadOnlyCollectionOf<PhotoSize>(x => x),
+				CommentsDisabled = response["comments_disabled"],
+				UploadByAdminsOnly = response["upload_by_admins_only"],
+				ThumbIsLast = response["thumb_is_last"]
 			};
 
 	        return album;
