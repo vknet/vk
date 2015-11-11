@@ -131,7 +131,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.37")]
 		public long Save(string text, long groupId, long pageId, long userId)
 		{
-			return Save(text, groupId, userId, pageId: pageId);
+			return Save(text, groupId, userId, pageId, null);
 		}
 
 		/// <summary>
