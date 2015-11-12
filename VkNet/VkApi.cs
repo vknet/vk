@@ -26,13 +26,35 @@
 	/// </summary>
 	public class VkApi
 	{
+		/// <summary>
+		///  Текст ошибки авторизации.
+		/// </summary>
 		internal const string InvalidAuthorization = "Invalid authorization";
+		/// <summary>
+		/// Запросов в секунду.
+		/// </summary>
 		internal int _requestsPerSecond;
-		internal int _minInterval;                  // Минимальное время, которое должно пройти между запросами чтобы не привысить кол-во запросов в секунду
 
+		/// <summary>
+		/// Минимальное время, которое должно пройти между запросами чтобы не привысить кол-во запросов в секунду.
+		/// </summary>
+		internal int _minInterval;
+
+		/// <summary>
+		/// Учетные данные.
+		/// </summary>
 		internal KeyValuePair<string, string>? _credentials;
+		/// <summary>
+		/// Идентификатор приложения.
+		/// </summary>
 		internal int _appId;
+		/// <summary>
+		/// Права доступа приложения.
+		/// </summary>
 		internal Settings _settings;
+		/// <summary>
+		/// Таймер.
+		/// </summary>
 		private Timer _expireTimer;
 
 		/// <summary>
@@ -48,9 +70,10 @@
 			get
 			{
 				if (LastInvokeTime.HasValue)
+				{
 					return DateTimeOffset.Now - LastInvokeTime.Value;
-				else
-					return null;
+				}
+				return null;
 			}
 		}
 		/// <summary>
@@ -178,15 +201,17 @@
 		/// API для работы со статистикой.
 		/// </summary>
 		public StatsCategory Stats { get; set; }
-		
-		
-		#endregion
 
 		/// <summary>
 		/// API для работы с подарками.
 		/// </summary>
-		public GiftsCategory Gifts { get; set; }
-		
+		public GiftsCategory Gifts
+		{ get; set; }
+		#endregion
+
+		/// <summary>
+		/// Браузер.
+		/// </summary>
 		internal IBrowser Browser
 		{ get; set; }
 
@@ -236,15 +261,15 @@
 		}
 
 		/// <summary>
-		/// Authorize application on vk.com and getting Access Token.
+		/// Авторизация и получение токена
 		/// </summary>
-		/// <param name="appId">Appliation Id</param>
-		/// <param name="emailOrPhone">Email or Phone</param>
-		/// <param name="password">Password</param>
+		/// <param name="appId">Идентификатор приложения</param>
+		/// <param name="emailOrPhone">Email или телефон</param>
+		/// <param name="password">Пароль</param>
 		/// <param name="code">Делегат получения кода для двухфакторной авторизации</param>
 		/// <param name="captchaSid">Идентикикатор капчи</param>
 		/// <param name="captchaKey">Текст капчи</param>
-		/// <param name="settings">Access rights requested by your application</param>
+		/// <param name="settings">Права доступа для приложения</param>
 		public void Authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null)
 		{
 			_authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
@@ -274,21 +299,38 @@
 		public void RefreshToken(Func<string> code = null)
 		{
 			if (_credentials.HasValue)
+			{
 				_authorize(_appId, _credentials.Value.Key, _credentials.Value.Value, _settings, code);
+			}
 			else
-				throw new AggregateException("Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля");
+			{
+				throw new AggregateException(
+					"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля");
+			}
 		}
 
 		#region Private & Internal Methods
 
-		internal void _authorize(int appId, string email, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
+		/// <summary>
+		/// Авторизация и получение токена
+		/// </summary>
+		/// <param name="appId">Идентификатор приложения</param>
+		/// <param name="emailOrPhone">Email или телефон</param>
+		/// <param name="password">Пароль</param>
+		/// <param name="code">Делегат получения кода для двухфакторной авторизации</param>
+		/// <param name="captchaSid">Идентикикатор капчи</param>
+		/// <param name="captchaKey">Текст капчи</param>
+		/// <param name="settings">Права доступа для приложения</param>
+		/// <exception cref="VkApiAuthorizationException"></exception>
+		internal void _authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
 		{
 			_stopTimer();
 
-			var authorization = Browser.Authorize(appId, email, password, settings, code, captchaSid, captchaKey);
+			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
 			if (!authorization.IsAuthorized)
-				throw new VkApiAuthorizationException(InvalidAuthorization, email, password);
-
+			{
+				throw new VkApiAuthorizationException(InvalidAuthorization, emailOrPhone, password);
+			}
 			int expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
 			if (expireTime > 0)
 			{
@@ -304,7 +346,9 @@
 		private void _stopTimer()
 		{
 			if (_expireTimer != null)
+			{
 				_expireTimer.Dispose();
+			}
 		}
 		/// <summary>
 		/// Создает событие оповещения об окончании времени токена
@@ -313,7 +357,9 @@
 		private void _alertExpires(object state)
 		{
 			if (OnTokenExpires != null)
+			{
 				OnTokenExpires(this);
+			}
 		}
 #if false
 		// todo refactor this shit
@@ -340,6 +386,14 @@
 		}
 #endif
 
+		/// <summary>
+		/// Вызвать метод.
+		/// </summary>
+		/// <param name="methodName">Название метода.</param>
+		/// <param name="parameters">Параметры.</param>
+		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+		/// <param name="apiVersion">Версия API.</param>
+		/// <returns></returns>
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, string apiVersion = null)
 		{
@@ -361,6 +415,13 @@
 			return Call(methodName, parameters, skipAuthorization);
 		}
 
+		/// <summary>
+		/// Вызвать метод.
+		/// </summary>
+		/// <param name="methodName">Название метода.</param>
+		/// <param name="parameters">Параметры.</param>
+		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+		/// <returns></returns>
 		private VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			string answer = Invoke(methodName, parameters, skipAuthorization);
@@ -407,24 +468,37 @@
 			return answer;
 		}
 
-		internal string GetApiUrl(string methodName, IDictionary<string, string> values)
+		/// <summary>
+		/// Получить URL для API.
+		/// </summary>
+		/// <param name="methodName">Название метода.</param>
+		/// <param name="parameters">Параметры.</param>
+		/// <returns></returns>
+		internal string GetApiUrl(string methodName, IDictionary<string, string> parameters)
 		{
 			var builder = new StringBuilder();
 
 			builder.AppendFormat("{0}{1}?", "https://api.vk.com/method/", methodName);
 
-			foreach (var pair in values)
+			foreach (var pair in parameters)
+			{
 				builder.AppendFormat("{0}={1}&", pair.Key, pair.Value);
-
+			}
 			builder.AppendFormat("access_token={0}", AccessToken);
 
 			return builder.ToString();
 		}
 
+		/// <summary>
+		/// Бросить исключение если не авторизован.
+		/// </summary>
+		/// <exception cref="AccessTokenInvalidException"></exception>
 		internal void IfNotAuthorizedThrowException()
 		{
 			if (string.IsNullOrEmpty(AccessToken))
+			{
 				throw new AccessTokenInvalidException();
+			}
 		}
 
 		#endregion
