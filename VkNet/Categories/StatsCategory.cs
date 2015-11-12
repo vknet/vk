@@ -110,20 +110,19 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
+		/// Необходимо входить в число руководителей этого сообщества.
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/stats.getPostReach" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
 		public PostReach GetPostReach(long ownerId, long postId)
 		{
-			//VkErrors.ThrowIfNumberIsNegative(() => postId);
-			//var parameters = new VkParameters
-			//{
-			//	{ "owner_id", ownerId },
-			//	{ "post_id", postId }
-			//};
-			//return _vk.Call("stats.getPostReach", parameters);
-			// TODO Пока не понятно как протестировать
-			throw new NotImplementedException();
+			VkErrors.ThrowIfNumberIsNegative(() => postId);
+			var parameters = new VkParameters
+			{
+				{ "owner_id", ownerId },
+				{ "post_id", postId }
+			};
+			return _vk.Call("stats.getPostReach", parameters);
 		}
 
 	}
