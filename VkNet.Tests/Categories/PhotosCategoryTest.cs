@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using FluentNUnit;
 using Moq;
 using NUnit.Framework;
@@ -12,7 +13,8 @@ using VkNet.Utils;
 namespace VkNet.Tests.Categories
 {
     [TestFixture]
-    public class PhotosCategoryTest
+	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	public class PhotosCategoryTest
     {
         public PhotoCategory GetMockedPhotosCategory(string url, string json)
         {
@@ -67,7 +69,7 @@ namespace VkNet.Tests.Categories
         {
 			const string url = "https://api.vk.com/method/photos.createAlbum?title=hello world&description=description for album&v=5.37&access_token=token";
 			const string json =
-                @"{
+				@"{
                     'response': {
                       'id': 197266686,
                       'thumb_id': -1,
@@ -77,7 +79,7 @@ namespace VkNet.Tests.Categories
                       'created': 1403185184,
                       'updated': 1403185184,
                       'privacy': 0,
-                      'comment_privacy': 0,
+                      'privacy_comment': 0,
                       'size': 0
                     }
                   }";
@@ -97,7 +99,7 @@ namespace VkNet.Tests.Categories
             album.Created.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
             album.Updated.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
             album.Privacy.ShouldEqual(0);
-            album.CommentPrivacy.ShouldEqual(0);
+            album.PrivacyComment.ShouldEqual(0);
             album.Size.ShouldEqual(0);
         }
 
