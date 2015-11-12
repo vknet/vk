@@ -145,7 +145,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getFriendsList" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<ulong> GetFriendsList(out int totalCount, AppRequestType type, ulong count = 20, ulong offset = 0)
+		public ReadOnlyCollection<long> GetFriendsList(out int totalCount, AppRequestType type, int count = 20, int offset = 0)
 		{
 			var parameters = new VkParameters
 			{
@@ -160,7 +160,7 @@ namespace VkNet.Categories
 			var result = _vk.Call("apps.getFriendsList", parameters);
 			totalCount = result["count"];
 			VkResponseArray items = result["items"];
-			return items.ToReadOnlyCollectionOf<ulong>(x => x);
+			return items.ToReadOnlyCollectionOf<long>(x => x);
 		}
 
 		/// <summary>
@@ -178,7 +178,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getFriendsList" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<User> GetFriendsListEx(out int totalCount, AppRequestType type, ulong count = 20, ulong offset = 0, UsersFields fields = null)
+		public ReadOnlyCollection<User> GetFriendsListEx(out int totalCount, AppRequestType type, int count = 20, int offset = 0, UsersFields fields = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -242,9 +242,10 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getScore" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public long GetScore(ulong userId)
+		public long GetScore(long userId)
 		{
-			var parameters = new VkParameters
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+            var parameters = new VkParameters
 			{
 				{ "user_id", userId }
 			};
