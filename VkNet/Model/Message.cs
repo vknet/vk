@@ -1,4 +1,5 @@
-﻿using VkNet.Model.Attachments;
+﻿using System.Security.Policy;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Model
 {
@@ -34,24 +35,30 @@ namespace VkNet.Model
         /// </summary>
         public DateTime? Date { get; set; }
 
-        [NonSerialized]
-        private MessageReadState? _ReadState;
+		/// <summary>
+		/// Статус сообщения (0 — не прочитано, 1 — прочитано, не возвращается для пересланных сообщений).
+		/// </summary>
+		[NonSerialized]
+        private MessageReadState? _readState;
         /// <summary>
         /// Статус сообщения (не возвращается для пересланных сообщений).
         /// </summary>
-        public MessageReadState? ReadState { get { return _ReadState; } set { _ReadState = value; } }
+        public MessageReadState? ReadState { get { return _readState; } set { _readState = value; } }
 
         /// <summary>
         /// Тип сообщения (не возвращается для пересланных сообщений).
         /// </summary>
         public MessageType? Type { get; set; }
 
-        [NonSerialized]
-        private int _Unread;
+		/// <summary>
+		/// Содержит количество непрочитанных сообщений в текущем диалоге (если это значение было возвращено, иначе 0)
+		/// </summary>
+		[NonSerialized]
+        private int _unread;
         /// <summary>
         /// Содержит количество непрочитанных сообщений в текущем диалоге (если это значение было возвращено, иначе 0)
         /// </summary>
-        public int Unread { get { return _Unread; } set { _Unread = value; } }
+        public int Unread { get { return _unread; } set { _unread = value; } }
 
         /// <summary>
         /// Заголовок сообщения или беседы.
@@ -93,6 +100,13 @@ namespace VkNet.Model
         /// </summary>
         public bool? IsDeleted { get; set; }
 
+		/// <summary>
+		/// Идентификатор автора сообщения.
+		/// </summary>
+		public long? FromId
+		{ get; set; }
+	    
+
         #endregion
 
         #region Дополнительные поля в сообщениях бесед (мультидиалогов)
@@ -122,42 +136,100 @@ namespace VkNet.Model
         /// </summary>
         public Previews PhotoPreviews { get; set; }
 
-        #endregion
+		/// <summary>
+		/// Настройки уведомлений для беседы, если они есть. sound и disabled_until
+		/// </summary>
+		public string PushSettings
+		{ get; set; }
 
-        #region Методы
+		/// <summary>
+		/// поле передано, если это служебное сообщение
+		/// </summary>
+		/// <remarks>
+		/// строка, может быть chat_photo_update или chat_photo_remove, а с версии 5.14 еще и chat_create, chat_title_update, chat_invite_user, chat_kick_user
+		/// </remarks>
+		public string Action
+		{ get; set; }
 
-        internal static Message FromJson(VkResponse response)
+		/// <summary>
+		/// Идентификатор пользователя (если больше 0) или email (если меньше 0), которого пригласили или исключили.
+		/// </summary>
+		public long? ActionMid
+		{ get; set; }
+
+		/// <summary>
+		/// email, который пригласили или исключили.
+		/// </summary>
+		public string ActionEmail
+		{ get; set; }
+
+		/// <summary>
+		/// Название беседы.
+		/// </summary>
+		public string ActionText
+		{ get; set; }
+
+		/// <summary>
+		/// <c>Url</c> копии фотографии беседы шириной 50px.
+		/// </summary>
+		public Url Photo50
+		{ get; set; }
+
+		/// <summary>
+		/// <c>Url</c> копии фотографии беседы шириной 100px.
+		/// </summary>
+		public Url Photo100
+		{ get; set; }
+
+		/// <summary>
+		/// <c>Url</c> копии фотографии беседы шириной 200px.
+		/// </summary>
+		public Url Photo200
+		{ get; set; }
+		#endregion
+
+		#region Методы
+
+		internal static Message FromJson(VkResponse response)
         {
-            var message = new Message();
+	        if (response.ContainsKey("message"))
+	        {
+		        response = response["message"];
+	        }
+	        var message = new Message
+	        {
+		        Unread = response.ContainsKey("unread") ? response["unread"] : 0,
+		        Id = response["id"],
+		        UserId = response["user_id"],
+		        Date = response["date"],
+		        ReadState = response["read_state"],
+		        Type = response["out"],
+		        Title = response["title"],
+		        Body = response["body"],
+		        Attachments = response["attachments"],
+		        Geo = response["geo"],
+		        ForwardedMessages = response["fwd_messages"],
+		        ContainsEmojiSmiles = response["emoji"],
+		        IsImportant = response["important"],
+		        IsDeleted = response["deleted"],
+		        FromId = response["from_id"],
+				// дополнительные поля бесед
+				ChatId = response["chat_id"],
+		        ChatActiveIds = response["chat_active"],
+		        UsersCount = response["users_count"],
+		        AdminId = response["admin_id"],
+		        PhotoPreviews = response,
+		        PushSettings = response["push_settings"],
+		        Action = response["action"],
+		        ActionMid = response["action_mid"],
+				ActionEmail = response["action_email"],
+				ActionText = response["action_text"],
+				Photo50 = new Url(response["photo_50"]),
+				Photo100 = new Url(response["photo_100"]),
+				Photo200 = new Url(response["photo_200"])
+			};
 
-            message.Unread = response.ContainsKey("unread") ? response["unread"] : 0;
-
-            if (response.ContainsKey("message"))
-                response = response["message"];
-
-            message.Id = response["id"];
-            message.UserId = response["user_id"];
-            message.Date = response["date"];
-            message.ReadState = response["read_state"];
-            message.Type = response["out"];
-            message.Title = response["title"];
-            message.Body = response["body"];
-            message.Attachments = response["attachments"];
-            message.Geo = response["geo"];
-            message.ForwardedMessages = response["fwd_messages"];
-            message.ContainsEmojiSmiles = response["emoji"];
-            message.IsImportant = response["important"];
-            message.IsDeleted = response["deleted"];
-
-            // дополнительные поля бесед
-
-            message.ChatId = response["chat_id"];
-            message.ChatActiveIds = response["chat_active"];
-            message.UsersCount = response["users_count"];
-            message.AdminId = response["admin_id"];
-            message.PhotoPreviews = response;
-
-            return message;
+			return message;
         }
 
         #endregion

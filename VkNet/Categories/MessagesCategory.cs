@@ -115,12 +115,12 @@ namespace VkNet.Categories
 			long? startMessageId = null, bool inReverse = false)
 		{
 			var parameters = new VkParameters
-							 {
-								 { isChat ? "chat_id" : "uid", id },
-								 { "offset", offset },
-								 { "start_mid", startMessageId },
-								 { "rev", inReverse }
-							 };
+			{
+				{ isChat ? "chat_id" : "uid", id },
+				{ "offset", offset },
+				{ "start_mid", startMessageId },
+				{ "rev", inReverse }
+			};
 			if (count <= 200)
 			{
 				parameters.Add("count", count);
