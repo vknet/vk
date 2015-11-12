@@ -76,28 +76,24 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.40")]
-		public WallGetObject Get(out int totalCount, WallGetParams @params)
+		public WallGetObject Get(WallGetParams @params)
 		{
-
-			if (@params.filter == WallFilter.Suggests && @params.owner_id >= 0)
+			if (@params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
 			{
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 			}
 			var parameters = new VkParameters
 			{
-				{ "owner_id", @params.owner_id },
-				{ "domain", @params.domain },
-				{ "offset", @params.offset },
-				{ "count", @params.count },
-				{ "filter", @params.filter },
-				{ "extended", @params.extended },
-				{ "fields", @params.fields }
+				{ "owner_id", @params.OwnerId },
+				{ "domain", @params.Domain },
+				{ "offset", @params.Offset },
+				{ "count", @params.Count },
+				{ "filter", @params.Filter },
+				{ "extended", @params.Extended },
+				{ "fields", @params.Fields }
 			};
 
-			var response = _vk.Call("wall.get", parameters, @params.filter != WallFilter.Suggests && @params.filter != WallFilter.Postponed);
-
-			totalCount = response["count"];
-			return response;
+			return _vk.Call("wall.get", parameters, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
 		}
 
 		/// <summary>

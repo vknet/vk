@@ -1308,35 +1308,33 @@ namespace VkNet.Tests.Categories
                       ]
                     }
                   }";
+            var posts = GetMockedWallCategory(url, json).Get(new WallGetParams {OwnerId = 234015642 });
 
-	        int total;
-            var posts = GetMockedWallCategory(url, json).Get(out total, new WallGetParams {owner_id = 234015642 });
+			posts.Count.ShouldEqual(1);
+	        posts.WallPosts.Count.ShouldEqual(1);
 
-	        total.ShouldEqual(1);
-	        posts.wallPosts.Count.ShouldEqual(1);
+	        posts.WallPosts[0].Id.ShouldEqual(2);
+	        posts.WallPosts[0].FromId.ShouldEqual(234015642);
+	        posts.WallPosts[0].OwnerId.ShouldEqual(234015642);
+	        posts.WallPosts[0].Date.ShouldEqual(new DateTime(2014, 4, 25, 6, 58, 1, DateTimeKind.Utc).ToLocalTime());
+	        posts.WallPosts[0].PostType.ShouldEqual("post");
+            posts.WallPosts[0].Text.ShouldEqual("Нужен совет");
+            posts.WallPosts[0].CanDelete.ShouldBeTrue();
+            posts.WallPosts[0].CanEdit.ShouldBeTrue();
+	        posts.WallPosts[0].PostSource.Type.ShouldEqual("vk");
+	        posts.WallPosts[0].Comments.CanPost.ShouldBeTrue();
+	        posts.WallPosts[0].Comments.Count.ShouldEqual(0);
+	        posts.WallPosts[0].Likes.Count.ShouldEqual(0);
+            posts.WallPosts[0].Likes.UserLikes.ShouldBeFalse();
+            posts.WallPosts[0].Likes.CanLike.ShouldBeTrue();
+	        posts.WallPosts[0].Likes.CanPublish.ShouldEqual(false);
+	        posts.WallPosts[0].Reposts.Count.ShouldEqual(0);
+            posts.WallPosts[0].Reposts.UserReposted.ShouldBeFalse();
 
-	        posts.wallPosts[0].Id.ShouldEqual(2);
-	        posts.wallPosts[0].FromId.ShouldEqual(234015642);
-	        posts.wallPosts[0].OwnerId.ShouldEqual(234015642);
-	        posts.wallPosts[0].Date.ShouldEqual(new DateTime(2014, 4, 25, 6, 58, 1, DateTimeKind.Utc).ToLocalTime());
-	        posts.wallPosts[0].PostType.ShouldEqual("post");
-            posts.wallPosts[0].Text.ShouldEqual("Нужен совет");
-            posts.wallPosts[0].CanDelete.ShouldBeTrue();
-            posts.wallPosts[0].CanEdit.ShouldBeTrue();
-	        posts.wallPosts[0].PostSource.Type.ShouldEqual("vk");
-	        posts.wallPosts[0].Comments.CanPost.ShouldBeTrue();
-	        posts.wallPosts[0].Comments.Count.ShouldEqual(0);
-	        posts.wallPosts[0].Likes.Count.ShouldEqual(0);
-            posts.wallPosts[0].Likes.UserLikes.ShouldBeFalse();
-            posts.wallPosts[0].Likes.CanLike.ShouldBeTrue();
-	        posts.wallPosts[0].Likes.CanPublish.ShouldEqual(false);
-	        posts.wallPosts[0].Reposts.Count.ShouldEqual(0);
-            posts.wallPosts[0].Reposts.UserReposted.ShouldBeFalse();
+	        posts.WallPosts[0].Attachments.Count.ShouldEqual(1);
+			posts.WallPosts[0].Attachment.Type.ShouldEqual(typeof (Poll));
 
-	        posts.wallPosts[0].Attachments.Count.ShouldEqual(1);
-			posts.wallPosts[0].Attachment.Type.ShouldEqual(typeof (Poll));
-
-	        var poll = (Poll)posts.wallPosts[0].Attachment.Instance;
+	        var poll = (Poll)posts.WallPosts[0].Attachment.Instance;
 	        poll.Id.ShouldEqual(134391320);
 	        poll.OwnerId.ShouldEqual(234015642);
             poll.Created.ShouldEqual(new DateTime(2014, 4, 25, 6, 58, 1, DateTimeKind.Utc).ToLocalTime());
@@ -1414,21 +1412,18 @@ namespace VkNet.Tests.Categories
                         }
                       ]
                     }
-                  }";
-
-            int total;
-            
-			var posts = GetMockedWallCategory(url, json).Get(out total, new WallGetParams
+                  }";           
+			var posts = GetMockedWallCategory(url, json).Get(new WallGetParams
 			{
-				owner_id = 26033241,
-				count = 1,
-				offset = 2
+				OwnerId = 26033241,
+				Count = 1,
+				Offset = 2
 			});
 
-			total.ShouldEqual(100);
+			posts.Count.ShouldEqual(100);
 
-            posts.wallPosts[0].Attachments.Count.ShouldEqual(1);
-            var doc = (Document)posts.wallPosts[0].Attachment.Instance;
+            posts.WallPosts[0].Attachments.Count.ShouldEqual(1);
+            var doc = (Document)posts.WallPosts[0].Attachment.Instance;
 
             doc.Id.ShouldEqual(237844408);
             doc.OwnerId.ShouldEqual(26033241);

@@ -10,21 +10,25 @@ namespace VkNet.Model
 	public class WallGetObject
 	{
 		/// <summary>
+		/// Общее количество записей на стене.
+		/// </summary>
+		public long Count { get; set; }
+		/// <summary>
 		/// Посты.
 		/// </summary>
-		public ReadOnlyCollection<Post> wallPosts
+		public ReadOnlyCollection<Post> WallPosts
 		{ get; set; }
 
 		/// <summary>
 		/// Профили.
 		/// </summary>
-		public ReadOnlyCollection<User> profiles
+		public ReadOnlyCollection<User> Profiles
 		{ get; set; }
 
 		/// <summary>
 		/// Группы.
 		/// </summary>
-		public ReadOnlyCollection<Group> groups
+		public ReadOnlyCollection<Group> Groups
 		{ get; set; }
 
 		/// <summary>
@@ -36,9 +40,10 @@ namespace VkNet.Model
 		{
 			var wallGetObject = new WallGetObject
 			{
-				wallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r),
-				profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r),
-				groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r)
+				Count = response["count"],
+				WallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r),
+				Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r),
+				Groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r)
 			};
 
 			return wallGetObject;
