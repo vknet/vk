@@ -1,4 +1,6 @@
-﻿using VkNet.Enums;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model.RequestParams.Photo
 {
@@ -7,6 +9,14 @@ namespace VkNet.Model.RequestParams.Photo
 	/// </summary>
 	public class EditAlbumParams
 	{
+		/// <summary>
+		/// Список параметров для метода photos.editAlbum
+		/// </summary>
+		public EditAlbumParams()
+		{
+			View = new ReadOnlyCollection<Privacy>(new List<Privacy>());
+			Privacy = new ReadOnlyCollection<Privacy>(new List<Privacy>());
+		}
 		/// <summary>
 		/// Идентификатор альбома.
 		/// </summary>
@@ -34,13 +44,13 @@ namespace VkNet.Model.RequestParams.Photo
 		/// <summary>
 		/// Настройки приватности просмотра альбома в специальном формате.
 		/// </summary>
-		public CommentPrivacy? PrivacyView
+		public ReadOnlyCollection<Privacy> View
 		{ get; set; }
 
 		/// <summary>
 		/// Настройки приватности комментирования альбома в специальном формате.
 		/// </summary>
-		public CommentPrivacy? PrivacyComment
+		public ReadOnlyCollection<Privacy> Privacy
 		{ get; set; }
 
 		/// <summary>

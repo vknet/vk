@@ -1,4 +1,5 @@
-﻿using VkNet.Enums;
+﻿using System.Collections.ObjectModel;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model.RequestParams.Photo
 {
@@ -28,13 +29,13 @@ namespace VkNet.Model.RequestParams.Photo
 		/// <summary>
 		/// Настройки приватности просмотра альбома в специальном формате.
 		/// </summary>
-		public CommentPrivacy? PrivacyView
+		public ReadOnlyCollection<Privacy> View
 		{ get; set; }
 
 		/// <summary>
 		/// Настройки приватности комментирования альбома в специальном формате.
 		/// </summary>
-		public CommentPrivacy? PrivacyComment
+		public ReadOnlyCollection<Privacy> Privacy
 		{ get; set; }
 
 		/// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using FluentNUnit;
@@ -78,8 +79,8 @@ namespace VkNet.Tests.Categories
                       'description': 'description for album',
                       'created': 1403185184,
                       'updated': 1403185184,
-                      'privacy': 0,
-                      'privacy_comment': 0,
+                      'privacy_view': ['all'],
+					  'privacy_comment': ['all'],
                       'size': 0
                     }
                   }";
@@ -98,9 +99,10 @@ namespace VkNet.Tests.Categories
             album.Description.ShouldEqual("description for album");
             album.Created.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
             album.Updated.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
-            album.Privacy.ShouldEqual(0);
-            album.PrivacyComment.ShouldEqual(0);
-            album.Size.ShouldEqual(0);
+			Assert.IsTrue(album.PrivacyView[0].ToString().Equals("all"));
+			Assert.IsTrue(album.PrivacyComment[0].ToString().Equals("all"));
+
+			album.Size.ShouldEqual(0);
         }
 
         #endregion
@@ -130,7 +132,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAlbums_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getAlbums?owner_id=1&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAlbums?owner_id=1&v=5.40&access_token=token";
 			const string json =
                 @"{
                     'response': {
@@ -168,10 +170,60 @@ namespace VkNet.Tests.Categories
            	albums[0].Updated.ShouldEqual(new DateTime(2014, 4, 27, 19, 4, 33).ToLocalTime());
             albums[0].Size.ShouldEqual(8);
         }
-        #endregion
 
-        #region GetAlbumsCount
-        [Test]
+		[Test]
+		public void GetAlbums_PrivacyCase()
+		{
+			const string url = "https://api.vk.com/method/photos.getAlbums?album_ids=110637109&v=5.40&access_token=token";
+			const string json =
+				@"{
+                    response: {
+						count: 1,
+						items: [{
+							id: 110637109,
+							thumb_id: 326631163,
+							owner_id: 32190123,
+							title: 'Я',
+							description: '',
+							created: 1307628778,
+							updated: 1398625473,
+							size: 6,
+							thumb_is_last: 1,
+							privacy_view: ['list28'],
+							privacy_comment: ['list28', '-list1']
+						}]
+					}
+                  }";
+			int count;
+			ReadOnlyCollection<PhotoAlbum> albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams()
+			{
+				AlbumIds = new List<long>
+				{
+					110637109
+				}
+			});
+
+			count.ShouldEqual(1);
+
+			albums.Count.ShouldEqual(1);
+
+			albums[0].Id.ShouldEqual(110637109);
+			albums[0].ThumbId.ShouldEqual(326631163);
+			albums[0].OwnerId.ShouldEqual(32190123);
+			albums[0].Title.ShouldEqual("Я");
+			albums[0].Description.ShouldEqual(string.Empty);
+			albums[0].Created.ShouldEqual(new DateTime(2011, 6, 9, 14, 12, 58, DateTimeKind.Utc).ToLocalTime());
+			albums[0].Updated.ShouldEqual(new DateTime(2014, 4, 27, 19, 4, 33).ToLocalTime());
+			albums[0].Size.ShouldEqual(6);
+			albums[0].ThumbIsLast.ShouldBeTrue();
+			Assert.IsTrue(albums[0].PrivacyView[0].ToString().Equals("list28"));
+			Assert.IsTrue(albums[0].PrivacyComment[0].ToString().Equals("list28"));
+			Assert.IsTrue(albums[0].PrivacyComment[1].ToString().Equals("-list1"));
+		}
+		#endregion
+
+		#region GetAlbumsCount
+		[Test]
         public void GetAlbumsCount_NormalCase()
         {
 			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=5.37&access_token=token";

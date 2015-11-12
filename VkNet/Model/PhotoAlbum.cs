@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -7,7 +9,6 @@ namespace VkNet.Model
     /// <summary>
     /// Альбом для фотографий
     /// </summary>
-    /// :TODO: тип данных для настроек приватности
     public class PhotoAlbum
     {
         /// <summary>
@@ -50,26 +51,22 @@ namespace VkNet.Model
         /// </summary>
         public int? Size { get; set; }
 
-        /// <summary>
-        /// Настройки приватности для просмотра альбома
-        /// </summary>
-        public long? Privacy { get; set; }
+		/// <summary>
+		/// Настройки приватности для альбома в формате настроек приватности; (не приходит для системных альбомов) 
+		/// </summary>
+		public ReadOnlyCollection<Privacy> PrivacyView
+		{ get; set; }
 
         /// <summary>
         /// Настройки приватности для комментирования альбома
         /// </summary>
-        public long? PrivacyComment
+        public ReadOnlyCollection<Privacy> PrivacyComment
 		{ get; set; }
 
         /// <summary>
         /// Может ли текущий пользователь добавлять фотографии в альбом
         /// </summary>
         public bool? CanUpload { get; set; }
-
-        /// <summary>
-        /// Настройки приватности для альбома в формате настроек приватности; (не приходит для системных альбомов) 
-        /// </summary>
-        public string PrivacyView { get; set; }
 
         /// <summary>
         /// Адрес на изображение с предпросмотром
@@ -112,7 +109,9 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static PhotoAlbum FromJson(VkResponse response)
         {
-	        var album = new PhotoAlbum
+			VkResponseArray privacy = response["privacy_view"];
+			VkResponseArray privacyComment = response["privacy_comment"];
+			var album = new PhotoAlbum
 	        {
 		        Id = response["aid"] ?? response["id"],
 		        ThumbId = Utilities.GetNullableLongId(response["thumb_id"]),
@@ -122,10 +121,9 @@ namespace VkNet.Model
 		        Created = response["created"],
 		        Updated = response["updated"],
 		        Size = response["size"],
-		        Privacy = Utilities.GetNullableLongId(response["privacy"]),
-				PrivacyComment = Utilities.GetNullableLongId(response["privacy_comment"]),
+				PrivacyView = privacy.ToReadOnlyCollectionOf<Privacy>(x => x),
+				PrivacyComment = privacyComment.ToReadOnlyCollectionOf<Privacy>(x => x),
 		        CanUpload = response["can_upload"],
-		        PrivacyView = response["privacy_view"],
 		        ThumbSrc = response["thumb_src"],
 				Sizes = response["sizes"].ToReadOnlyCollectionOf<PhotoSize>(x => x),
 				CommentsDisabled = response["comments_disabled"],

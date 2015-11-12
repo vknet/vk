@@ -81,7 +81,7 @@
     <Compile Include="Enums\SafetyEnums\LikesFilter.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
     <Compile Include="Enums\SafetyEnums\AppSort.cs" />
-    <Compile Include="Enums\CommentPrivacy.cs" />
+    <Compile Include="Enums\SafetyEnums\Privacy.cs" />
     <Compile Include="Enums\ContentAccess.cs" />
     <Compile Include="Enums\Filters\CountersFilter.cs" />
     <Compile Include="Categories\DatabaseCategory.cs" />

@@ -50,8 +50,8 @@
 					{ "title", @params.Title },
 					{ "group_id", @params.GroupId },
 					{ "description", @params.Description },
-					{ "privacy_view", @params.PrivacyView },
-					{ "privacy_comment", @params.PrivacyComment },
+					{ "privacy_view", @params.View },
+					{ "privacy_comment", @params.Privacy },
 					{ "upload_by_admins_only", @params.UploadByAdminsOnly },
 					{ "comments_disabled", @params.CommentsDisabled }
 				};
@@ -78,8 +78,8 @@
 					{ "title", @params.Title },
 					{ "description", @params.Description },
 					{ "owner_id", @params.OwnerId },
-					{ "privacy_view", @params.PrivacyView },
-					{ "privacy_comment", @params.PrivacyComment },
+					{ "privacy_view", string.Join(",", @params.View) },
+					{ "privacy_comment", string.Join(",", @params.Privacy) },
 					{ "upload_by_admins_only", @params.UploadByAdminsOnly },
 					{ "comments_disabled", @params.CommentsDisabled }
 				};
@@ -98,7 +98,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAlbums" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<PhotoAlbum> GetAlbums(out int count, GetAlbumsParams @params)
 		{
 			var parameters = new VkParameters
