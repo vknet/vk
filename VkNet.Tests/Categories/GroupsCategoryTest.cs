@@ -983,7 +983,7 @@
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			This.Action(() => cat.GetById(new ulong[] { 0 })).Throws<InvalidParameterException>();
+			This.Action(() => cat.GetById(new long[] { 0 })).Throws<InvalidParameterException>();
 		}
 
 		[Test]
@@ -1021,7 +1021,7 @@
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
-			var groups = cat.GetById(new ulong[] { 17683660, 637247 }).ToList();
+			var groups = cat.GetById(new long[] { 17683660, 637247 }).ToList();
 
 			Assert.That(groups.Count == 2);
 			Assert.That(groups[0].Id, Is.EqualTo(17683660));
@@ -1094,7 +1094,7 @@
 
 			var category = GetMockedGroupCategory(url, json);
 
-			var groups = category.GetById(new ulong[] { 17683660, 637247 }, GroupsFields.All).ToList();
+			var groups = category.GetById(new long[] { 17683660, 637247 }, GroupsFields.All).ToList();
 
 			Assert.That(groups.Count, Is.EqualTo(2));
 			Assert.That(groups[0].Id, Is.EqualTo(17683660));
