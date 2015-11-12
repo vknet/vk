@@ -44,22 +44,24 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.9")]
-		[Obsolete("Устаревшая версия API. Будет удалено в следующих версиях. Используйте метод Get(out int totalCount, WallGetParams @params)")]
+		[Obsolete("Устаревшая версия API. Используйте метод Get(WallGetParams @params)")]
 		public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			if (filter != null && filter == WallFilter.Suggests && ownerId >= 0)
+			if (filter == WallFilter.Suggests && ownerId >= 0)
+			{
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
-
-			var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter == null ? null : filter.ToString().ToLowerInvariant() } };
-
-			VkResponse response = _vk.Call("wall.get", parameters, filter != WallFilter.Suggests && filter != WallFilter.Postponed);
-
-			totalCount = response["count"];
-
-			VkResponseArray items = response["items"];
-			return items.ToReadOnlyCollectionOf<Post>(r => r);
+			}
+			var result = Get(new WallGetParams
+			{
+				OwnerId = ownerId,
+				Count = (ulong)count,
+				Offset = (ulong)offset,
+				Filter = filter
+			});
+			totalCount = Convert.ToInt32(result.Count);
+			return result.WallPosts;
 		}
 
 		/// <summary>
@@ -112,21 +114,27 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.9")]
-		[Obsolete("Устаревшая версия API. Будет удалено в следующих версиях. Используйте метод Get(out int totalCount, WallGetParams @params)")]
+		[Obsolete("Устаревшая версия API. Используйте метод Get(WallGetParams @params)")]
 		public int GetExtended(long ownerId, out ReadOnlyCollection<Post> wallPosts, out ReadOnlyCollection<User> profiles, out ReadOnlyCollection<Group> groups, int? count = null, int? offset = null, WallFilter filter = null)
 		{			   
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 			if (filter == WallFilter.Suggests && ownerId >= 0)
+			{
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
-
-			var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() }, {"extended", 1} };
-			var response = _vk.Call("wall.get", parameters, filter != WallFilter.Suggests && filter != WallFilter.Postponed);
-
-			wallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r);
-			profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r);
-			groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r);
-			return response["count"];
+			}
+			var result = Get(new WallGetParams
+			{
+				OwnerId = ownerId,
+				Count = (ulong)count,
+				Offset = (ulong)offset,
+				Filter = filter,
+				Extended = true
+			});
+			wallPosts = result.WallPosts;
+			profiles = result.Profiles;
+			groups = result.Groups;
+			return Convert.ToInt32(result.Count);
 		}
 
 

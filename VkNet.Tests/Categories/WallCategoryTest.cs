@@ -309,8 +309,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 		{
-			const string url =
-			    "https://api.vk.com/method/wall.get?owner_id=10&count=1&offset=1&filter=owner&extended=1&v=5.9&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=10&offset=1&count=1&filter=owner&extended=1&v=5.40&access_token=token";
 			const string json =
 			    @"{
                     'response': {
@@ -1561,8 +1560,8 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_With_PhotoListAttachment()
 	    {
-            const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&count=1&offset=213&filter=owner&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&v=5.40&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'count': 1724,
