@@ -49,6 +49,8 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
+            if (filter == null)
+                filter = WallFilter.All;
 			if (filter == WallFilter.Suggests && ownerId >= 0)
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 
