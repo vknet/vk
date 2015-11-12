@@ -135,7 +135,7 @@
 					{ "owner_id", @params.OwnerId },
 					{ "album_id", @params.AlbumId },
 					{ "photo_ids", @params.PhotoIds },
-					{ "rev", @params.Rev },
+					{ "rev", @params.Reversed },
 					{ "extended", @params.Extended },
 					{ "feed_type", @params.FeedType },
 					{ "feed", @params.Feed },

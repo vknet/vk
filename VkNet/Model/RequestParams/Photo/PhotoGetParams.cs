@@ -30,7 +30,7 @@ namespace VkNet.Model.RequestParams.Photo
 		/// <summary>
 		/// Порядок сортировки фотографий (<c>true</c> — антихронологический, <c>false</c> — хронологический).
 		/// </summary>
-		public bool? Rev
+		public bool? Reversed
 		{ get; set; }
 
 		/// <summary>
