@@ -49,7 +49,7 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			if (filter == WallFilter.Suggests && ownerId >= 0)
+			if (filter != null && filter == WallFilter.Suggests && ownerId >= 0)
 			{
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 			}
@@ -79,7 +79,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.40")]
 		public WallGetObject Get(WallGetParams @params)
 		{
-			if (@params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
+			if (@params.Filter != null && @params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
 			{
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 			}
@@ -116,10 +116,10 @@ namespace VkNet.Categories
 		[ApiVersion("5.9")]
 		[Obsolete("Устаревшая версия API. Используйте метод Get(WallGetParams @params)")]
 		public int GetExtended(long ownerId, out ReadOnlyCollection<Post> wallPosts, out ReadOnlyCollection<User> profiles, out ReadOnlyCollection<Group> groups, int? count = null, int? offset = null, WallFilter filter = null)
-		{			   
+		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
-			if (filter == WallFilter.Suggests && ownerId >= 0)
+			if (filter != null && filter == WallFilter.Suggests && ownerId >= 0)
 			{
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 			}
@@ -246,11 +246,11 @@ namespace VkNet.Categories
 			var builder = new StringBuilder();
 			foreach (var pair in pairs)
 			{
-				if(builder.Length != 0)
+				if (builder.Length != 0)
 					builder.AppendFormat(",");
 				builder.AppendFormat("{0}_{1}", pair.Key, pair.Value);
 			}
-			
+
 			var parameters = new VkParameters { { "posts", builder.ToString() } };
 
 			VkResponseArray response = _vk.Call("wall.getById", parameters);
@@ -287,7 +287,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.post"/>.
 		/// </remarks>
 		public long Post(long? ownerId = null, bool friendsOnly = false, bool fromGroup = false,
-			string message = null, IEnumerable<MediaAttachment> mediaAttachments = null, string url = null, 
+			string message = null, IEnumerable<MediaAttachment> mediaAttachments = null, string url = null,
 			string services = null, bool signed = false, DateTime? publishDate = null,
 			double? lat = null, double? @long = null, long? placeId = null, long? postId = null)
 		{
@@ -295,8 +295,8 @@ namespace VkNet.Categories
 				throw new ArgumentException("Message and attachments cannot be null or empty at the same time.");
 			VkErrors.ThrowIfNumberIsNegative(() => placeId);
 			VkErrors.ThrowIfNumberIsNegative(() => postId);
-			if(lat.HasValue && (Math.Abs(lat.Value) > 90))
-			   throw new ArgumentOutOfRangeException("lat", lat, "lat must be at range from -90 to 90");
+			if (lat.HasValue && (Math.Abs(lat.Value) > 90))
+				throw new ArgumentOutOfRangeException("lat", lat, "lat must be at range from -90 to 90");
 			if (@long.HasValue && (Math.Abs(@long.Value) > 180))
 				throw new ArgumentOutOfRangeException("long", @long, "long must be at range from -90 to 90");
 
@@ -319,7 +319,7 @@ namespace VkNet.Categories
 								{"place_id", placeId},
 								{"post_id", postId}
 							};
-			return  _vk.Call("wall.post", parameters)["post_id"];
+			return _vk.Call("wall.post", parameters)["post_id"];
 		}
 
 
@@ -516,6 +516,6 @@ namespace VkNet.Categories
 		{
 			// TODO: ДАННЫЙ МЕТОД УСТАРЕЛ.
 			throw new NotImplementedException();
-		} 
+		}
 	}
 }
