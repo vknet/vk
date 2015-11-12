@@ -128,7 +128,7 @@
     <Compile Include="Enums\VideoSort.cs" />
     <Compile Include="Enums\VideoWidth.cs" />
     <Compile Include="Enums\VkObjectType.cs" />
-    <Compile Include="Enums\WallFilter.cs" />
+    <Compile Include="Enums\SafetyEnums\WallFilter.cs" />
     <Compile Include="Enums\SafetyEnums\SafetyEnum.cs" />
     <Compile Include="Enums\Filters\MultivaluedFilter.cs" />
     <Compile Include="Enums\SafetyEnums\CommentsSort.cs" />
@@ -223,6 +223,7 @@
     <Compile Include="Model\RequestParams\Photo\PhotoPutTagParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoSaveParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallGetParams.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\StatsPeriod.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="Model\UserOrGroup.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />
+    <Compile Include="Model\WallGetObject.cs" />
     <Compile Include="Utils\ApiMethodNameAttribute.cs" />
     <Compile Include="Utils\ApiVersionAttribute.cs" />
     <Compile Include="Utils\DefaultValueAttribute.cs" />
