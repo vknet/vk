@@ -213,6 +213,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <exception cref="System.NotImplementedException"></exception>
 		/// <remarks>
+		/// Метод доступен только приложениям, размещенным в игровом каталоге. 
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getLeaderboard" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
@@ -237,17 +238,17 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <exception cref="System.NotImplementedException"></exception>
 		/// <remarks>
+		/// Метод доступен только приложениям, размещенным в игровом каталоге. 
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getScore" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public bool GetScore(ulong userId)
+		public long GetScore(ulong userId)
 		{
-			//var parameters = new VkParameters
-			//{
-			//	{ "user_id", userId }
-			//};
-			//return _vk.Call("apps.getScore", parameters);
-			throw new NotImplementedException(); // TODO: Методы доступны только приложениям, размещенным в игровом каталоге. 
+			var parameters = new VkParameters
+			{
+				{ "user_id", userId }
+			};
+			return _vk.Call("apps.getScore", parameters);
 		}
 	}
 }
