@@ -49,12 +49,10 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
-            if (filter == null)
-                filter = WallFilter.All;
-			if (filter == WallFilter.Suggests && ownerId >= 0)
+			if (filter != null && filter == WallFilter.Suggests && ownerId >= 0)
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 
-			var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter.ToString().ToLowerInvariant() } };
+			var parameters = new VkParameters { { "owner_id", ownerId }, { "count", count }, { "offset", offset }, { "filter", filter == null ? null : filter.ToString().ToLowerInvariant() } };
 
 			VkResponse response = _vk.Call("wall.get", parameters, filter != WallFilter.Suggests && filter != WallFilter.Postponed);
 
