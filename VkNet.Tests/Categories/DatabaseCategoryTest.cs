@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using FluentNUnit;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
+using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils;
@@ -372,9 +374,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCountries_ListOfCodes_ListOfCountries()
         {
-            const string url = "https://api.vk.com/method/database.getCountries?code=ru, de&need_all=1&access_token=";
-
-            const string json =
+			const string url = "https://api.vk.com/method/database.getCountries?code=RU,DE&need_all=1&v=5.40&access_token=";
+			const string json =
                 @"{
                     'response': [
                       {
@@ -389,7 +390,11 @@ namespace VkNet.Tests.Categories
                   }";
 
             var db = GetMockedDatabaseCategory(url, json);
-            ReadOnlyCollection<Country> countries = db.GetCountries(codes: "ru, de");
+            ReadOnlyCollection<Country> countries = db.GetCountries(codes: new List<Iso3166>()
+            {
+	            Iso3166.RU,
+				Iso3166.DE
+            });
 
             Assert.That(countries.Count, Is.EqualTo(2));
 
@@ -421,11 +426,10 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-             const string url = "https://api.vk.com/method/database.getCountries?offset=5&count=3&need_all=1&access_token=";
+			const string url = "https://api.vk.com/method/database.getCountries?offset=5&count=3&need_all=1&v=5.40&access_token=";
+			var db = GetMockedDatabaseCategory(url, json);
 
-             var db = GetMockedDatabaseCategory(url, json);
-
-             ReadOnlyCollection<Country> countries = db.GetCountries(true, "", 3, 5);
+             ReadOnlyCollection<Country> countries = db.GetCountries(true, null, 3, 5);
 
              Assert.That(countries.Count, Is.EqualTo(3));
 

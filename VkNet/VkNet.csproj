@@ -70,6 +70,7 @@
     <Compile Include="Categories\StatsCategory.cs" />
     <Compile Include="Enums\AccessPages.cs" />
     <Compile Include="Enums\Filters\AppFilter.cs" />
+    <Compile Include="Enums\Iso3166.cs" />
     <Compile Include="Enums\MaritalStatus.cs" />
     <Compile Include="Enums\SafetyEnums\AppPlatforms.cs" />
     <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
