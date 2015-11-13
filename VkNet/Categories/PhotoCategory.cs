@@ -11,10 +11,9 @@
 
 	using Utils;
 	using Enums;
-	using Enums.SafetyEnums;
 	using Model;
 	using Model.Attachments;
-	using VkNet.Model.RequestParams.Photo;
+	using Model.RequestParams.Photo;
 
 	/// <summary>
 	/// Методы для работы с фотографиями.
@@ -50,8 +49,8 @@
 					{ "title", @params.Title },
 					{ "group_id", @params.GroupId },
 					{ "description", @params.Description },
-					{ "privacy_view", @params.View },
-					{ "privacy_comment", @params.Privacy },
+					{ "privacy_view", string.Join(",", @params.View) },
+					{ "privacy_comment", string.Join(",", @params.Privacy) },
 					{ "upload_by_admins_only", @params.UploadByAdminsOnly },
 					{ "comments_disabled", @params.CommentsDisabled }
 				};
