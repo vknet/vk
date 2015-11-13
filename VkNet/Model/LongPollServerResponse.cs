@@ -22,7 +22,12 @@
         /// <summary>
         /// Отметка времени.
         /// </summary>
-        public long Ts { get; set; }
+        public ulong Ts { get; set; }
+
+        /// <summary>
+        /// Постоянное событие для работы с методом getLongPoolHistory
+        /// </summary>
+        public ulong? Pts { get; set; }
 
         #region Методы
 
@@ -33,6 +38,7 @@
             longPollServerResponse.Key = response["key"];
             longPollServerResponse.Server = response["server"];
             longPollServerResponse.Ts = response["ts"];
+            longPollServerResponse.Pts = response["pts"];  
 
             return longPollServerResponse;
         }

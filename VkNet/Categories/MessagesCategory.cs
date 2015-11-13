@@ -866,14 +866,7 @@ namespace VkNet.Categories
 		/// мобильном устройстве / ПК пользователя, чтобы не получать их повторно при каждом обращении.
 		/// Этот метод помогает осуществить синхронизацию локальной копии списка сообщений с актуальной версией.
 		/// </summary>
-		/// <param name="ts">Последнее значение параметра ts, полученное от Long Poll сервера или с помощью метода messages.getLongPollServer </param>
-		/// <param name="pts">Последнее значение параметра new_pts, полученное от Long Poll сервера, используется для получения действий, которые хранятся всегда.</param>
-		/// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).</param>
-		/// <param name="onlines"><c>true</c> — будет возвращена история только от тех пользователей, которые сейчас online. </param>
-		/// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть.</param>
-		/// <param name="eventsLimit">Если количество событий в истории превысит это значение, будет возвращена ошибка.</param>
-		/// <param name="msgsLimit">Количество сообщений, которое нужно вернуть.</param>
-		/// <param name="maxMsgId">
+		/// <param name="@params">Параметры запроса к LongPool серверу <see cref="GetLongPollHistoryParams"/></param>
 		/// Максимальный идентификатор сообщения среди уже имеющихся в локальной копии.
 		/// Необходимо учитывать как сообщения, полученные через методы API (например messages.getDialogs, messages.getHistory),
 		/// так и данные, полученные из Long Poll сервера (события с кодом 4).
@@ -885,8 +878,6 @@ namespace VkNet.Categories
 		[ApiVersion("5.37")]
 		public LongPollHistoryResponse GetLongPollHistory(GetLongPollHistoryParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => @params.Ts);
-			VkErrors.ThrowIfNumberIsNegative(() => @params.Pts);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.PreviewLength);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.EventsLimit);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);

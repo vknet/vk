@@ -10,13 +10,13 @@ namespace VkNet.Model.RequestParams.Messages
 		/// <summary>
 		/// Последнее значение параметра ts, полученное от Long Poll сервера или с помощью метода messages.getLongPollServer
 		/// </summary>
-		public long Ts
+		public ulong Ts
 		{ get; set; }
 
 		/// <summary>
 		/// Последнее значение параметра new_pts, полученное от Long Poll сервера, используется для получения действий, которые хранятся всегда.
 		/// </summary>
-		public long? Pts
+		public ulong? Pts
 		{ get; set; }
 
 		/// <summary>

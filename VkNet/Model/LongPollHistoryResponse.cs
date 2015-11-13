@@ -34,7 +34,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Последнее значение параметра new_pts, полученное от Long Poll сервера, используется для получения действий, которые хранятся всегда. 
 		/// </summary>
-		public long NewPts
+		public ulong NewPts
 		{ get; set; }
 
 		/// <summary>
