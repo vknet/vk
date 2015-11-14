@@ -139,8 +139,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Настройки уведомлений для беседы, если они есть. sound и disabled_until
 		/// </summary>
-		public string PushSettings
-		{ get; set; }
+		public PushSettings PushSettings { get; set; }
 
 		/// <summary>
 		/// поле передано, если это служебное сообщение
