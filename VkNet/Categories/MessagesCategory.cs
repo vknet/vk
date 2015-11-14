@@ -204,8 +204,10 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<Message> GetDialogs(out int totalCount, out int unreadCount, uint count = 20, int? offset = null, bool unread = false, long? startMessageId = null, int? previewLength = null)
+		public ReadOnlyCollection<Message> GetDialogs(out int totalCount, out int unreadCount, int count = 20, int? offset = null, bool unread = false, long? startMessageId = null, int? previewLength = null)
 		{
+            VkErrors.ThrowIfNumberIsNegative(() => count);
+            VkErrors.ThrowIfNumberIsNegative(() => offset);
 			var parameters = new VkParameters
 			{
 				{ "start_message_id", startMessageId },
@@ -866,11 +868,7 @@ namespace VkNet.Categories
 		/// мобильном устройстве / ПК пользователя, чтобы не получать их повторно при каждом обращении.
 		/// Этот метод помогает осуществить синхронизацию локальной копии списка сообщений с актуальной версией.
 		/// </summary>
-		/// <param name="@params">Параметры запроса к LongPool серверу <see cref="GetLongPollHistoryParams"/></param>
-		/// Максимальный идентификатор сообщения среди уже имеющихся в локальной копии.
-		/// Необходимо учитывать как сообщения, полученные через методы API (например messages.getDialogs, messages.getHistory),
-		/// так и данные, полученные из Long Poll сервера (события с кодом 4).
-		/// </param>
+		/// <param name="params">Параметры запроса к LongPool серверу <see cref="GetLongPollHistoryParams"/></param>
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLongPollHistory" />.
