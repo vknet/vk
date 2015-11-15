@@ -355,7 +355,7 @@
 		/// <param name="title">Название аудиозаписи.</param>
 		/// <param name="text">Текст аудиозаписи, если введен.</param>
 		/// <param name="noSearch"><c>true</c> - скрывает аудиозапись из поиска по аудиозаписям, <c>false</c> (по умолчанию) - не скрывает.</param>
-		/// <param name="genre_id">Идентификатор жанра из списка аудио жанров.</param>
+		/// <param name="genreId">Идентификатор жанра из списка аудио жанров.</param>
 		/// <returns>
 		/// Идентификатор текста, введенного пользователем
 		/// </returns>
@@ -370,7 +370,7 @@
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio" />.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.edit" />.
 		/// </remarks>
-		public ulong Edit(ulong audioId, long ownerId, string artist, string title, string text, bool? noSearch = null, AudioGenre? genre_id = AudioGenre.Other)
+		public ulong Edit(ulong audioId, long ownerId, string artist, string title, string text, bool? noSearch = null, AudioGenre? genreId = AudioGenre.Other)
 		{
 			if (artist == null)
 				throw new ArgumentNullException("artist", "Artist parameter can not be null.");
@@ -389,7 +389,7 @@
 				{ "title", title },
 				{ "text", text },
 				{ "no_search", noSearch },
-				{ "genre_id", genre_id }
+				{ "genre_id", genreId }
 			};
 
 			return _vk.Call("audio.edit", parameters);
