@@ -21,6 +21,11 @@ namespace VkNet.Model
 		/// </summary>
 		public List<ReadOnlyCollection<long>> History { get; set; }
 
+        /// <summary>
+        /// Количество непрочитанных сообщений
+        /// </summary>
+        public ulong UnreadMessages { get; set; }
+
 		/// <summary>
 		/// Колекция сообщений.
 		/// </summary>
@@ -44,9 +49,10 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static LongPollHistoryResponse FromJson(VkResponse response)
 		{
-			var fromJson = new LongPollHistoryResponse
-			{
-				Messages = response["messages"].ToReadOnlyCollectionOf<Message>(x => x),
+            var fromJson = new LongPollHistoryResponse
+            {
+                UnreadMessages = response["messages"]["count"],
+				Messages = response["messages"]["items"].ToReadOnlyCollectionOf<Message>(x => x),
 				Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(x => x),
 				NewPts = response["new_pts"]
 			};
