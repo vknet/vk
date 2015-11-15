@@ -24,7 +24,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор сообщества.
 		/// </summary>
-		public ulong Id { get; set; }
+		public long Id { get; set; }
 
 		/// <summary>
 		/// Название сообщества.
@@ -179,12 +179,12 @@ namespace VkNet.Model
 		public Collection<ExternalLink> Links { get; set; }
 
         [NonSerialized]
-        private ulong? _FixedPostId;
+        private long? _FixedPostId;
 		/// <summary>
 		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById(IEnumerable{KeyValuePair{long, long}})"/>,
 		/// передав идентификатор в виде – {group_id}_{post_id}.
 		/// </summary>
-		public ulong? FixedPostId { get { return _FixedPostId; } set { _FixedPostId = value; } }
+		public long? FixedPostId { get { return _FixedPostId; } set { _FixedPostId = value; } }
 
 		/// <summary>
 		/// Возвращает информацию о том, является ли сообщество верифицированным.
@@ -197,11 +197,11 @@ namespace VkNet.Model
 		public string Site { get; set; }
 
         [NonSerialized]
-        private ulong? _InvitedBy;
+        private long? _InvitedBy;
 		/// <summary>
 		/// Идентификатор пользователя пригласившего в группу
 		/// </summary>
-		public ulong? InvitedBy { get { return _InvitedBy; } set { _InvitedBy = value; } }
+		public long? InvitedBy { get { return _InvitedBy; } set { _InvitedBy = value; } }
 
         [NonSerialized]
         private bool _IsFavorite;
