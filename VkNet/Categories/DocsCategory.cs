@@ -115,7 +115,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.getUploadServer"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.28")]
+		[ApiVersion("5.40")]
 		public UploadServerInfo GetUploadServer(long? groupId = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -137,7 +137,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.getWallUploadServer"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.28")]
+		[ApiVersion("5.40")]
 		public UploadServerInfo GetWallUploadServer(long? groupId = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -160,7 +160,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.save"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.28")]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null, string captchaKey = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => file);
@@ -189,16 +189,18 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.delete"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.28")]
+		[ApiVersion("5.40")]
 		public int Delete(long ownerId, long docId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
 			VkErrors.ThrowIfNumberIsNegative(() => docId);
 
-			var parameters = new VkParameters { { "owner_id", ownerId }, { "doc_id", docId } };
-
-			VkResponse response = _vk.Call("docs.delete", parameters);
-			return response;
+			var parameters = new VkParameters
+			{
+				{ "owner_id", ownerId },
+				{ "doc_id", docId }
+			};
+			return _vk.Call("docs.delete", parameters);
 		}
 
 		/// <summary>
@@ -212,7 +214,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.add"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.28")]
+		[ApiVersion("5.40")]
 		public int Add(long ownerId, long docId, string accessKey = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
