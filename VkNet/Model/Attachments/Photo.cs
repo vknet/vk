@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace VkNet.Model.Attachments
 {
@@ -136,7 +137,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Размеры фотографий.
 		/// </summary>
-		public IEnumerable<PhotoSize> Sizes
+		public ReadOnlyCollection<PhotoSize> Sizes
 		{ get; set; }
 		/// <summary>
 		/// Географическая широта отметки, заданная в градусах

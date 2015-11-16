@@ -299,6 +299,13 @@
         /// </summary>
         public long? InvitedBy { get; set; }
 
+		/// <summary>
+		/// Gets or sets the screen_name.
+		/// </summary>
+		public string screenName
+		{ get; set; }
+	    
+
         #endregion
 
 		#region Поля, доступные через запрос https://vk.com/dev/account.getProfileInfo
@@ -376,10 +383,10 @@
             user.Relation = response["relation"];
             user.Relatives = response["relatives"];
             user.Counters = response["counters"];
+			user.screenName = response["screen_name"];
+			// -- дополнительные поля из http://vk.com/pages?oid=-1p=users.get
 
-            // -- дополнительные поля из http://vk.com/pages?oid=-1p=users.get
-
-            user.Nickname = response["nickname"];
+			user.Nickname = response["nickname"];
             user.Timezone = response["timezone"];
 
             // поля, установленные экспериментально
