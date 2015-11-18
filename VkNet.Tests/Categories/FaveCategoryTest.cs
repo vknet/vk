@@ -253,139 +253,128 @@ namespace VkNet.Tests.Categories
 		{
 			const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&extended=1&v=5.40&access_token=token";
 			const string json =
-				@"{
-					'response': {
-					  'count': 3,
-					  'items': [
-						{
-						  'id': 45611,
-						  'from_id': 1,
-						  'to_id': 1,
-						  'date': 1390260904,
-						  'post_type': 'post',
-						  'text': 'ВКонтакте взял новую высоту — 60 миллионов человек за сутки.',
-						  'attachments': [
-							{
-							  'type': 'photo',
-							  'photo': {
-								'id': 320624027,
-								'album_id': -7,
-								'owner_id': 1,
-								'photo_75': 'http://cs7004.vk.me/c540101/v540101001/945b/6JwHSc5wLGg.jpg',
-								'photo_130': 'http://cs7004.vk.me/c540101/v540101001/945c/xxlEPKAyYXM.jpg',
-								'photo_604': 'http://cs7004.vk.me/c540101/v540101001/945d/jvCKTR8CAHg.jpg',
-								'photo_807': 'http://cs7004.vk.me/c540101/v540101001/945e/UUCwCY799wQ.jpg',
-								'width': 609,
-								'height': 556,
-								'text': '',
-								'date': 1390260965,
-								'access_key': '82b124d82eba43d66d'
-							  }
+			@"{
+					response: {
+						count: 2623,
+						items: [{
+							id: 1258365,
+							from_id: -30666517,
+							owner_id: -30666517,
+							date: 1447668333,
+							post_type: 'post',
+							text: 'Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
+
+							#videos@tproger',
+							attachments: [{
+								type: 'video',
+								video: {
+									id: 171514588,
+									owner_id: 235845316,
+									title: 'Clean Code: Learn to write clean, maintainable and robust code',
+									duration: 2058,
+									description: 'Clean Code: Learn to write clean, maintainable and robust code.
+
+									In this video, I take a poorly-written piece of code and refactor in a step-by-step fashion. I also teach you some productivity tips along the way that helps you write code fast with Visual Studio. 
+
+									If you enjoy my teaching style and want to learn more from me, check out my courses on Udemy: 
+
+									C# Intermediate: Classes, Interfaces and Object-oriented Programming
+
+									https://www.udemy.com/csharp-intermediate-classes-interfaces-and-oop/?couponCode=',
+									date: 1447535648,
+									views: 1613,
+									comments: 0,
+									photo_130: 'https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg',
+									photo_320: 'https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg',
+									photo_800: 'https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg',
+									photo_640: 'https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg',
+									access_key: '733701ff4d7eb85ed7'
+								}
+							}],
+							post_source: {
+								type: 'vk'
+							},
+							comments: {
+								count: 9,
+								can_post: 1
+							},
+							likes: {
+								count: 413,
+								user_likes: 1,
+								can_like: 0,
+								can_publish: 1
+							},
+							reposts: {
+								count: 91,
+								user_reposted: 0
 							}
-						  ],
-						  'post_source': {
-							'type': 'vk'
-						  },
-						  'comments': {
-							'count': 0,
-							'can_post': 0
-						  },
-						  'likes': {
-							'count': 81167,
-							'user_likes': 1,
-							'can_like': 0,
-							'can_publish': 1
-						  },
-						  'reposts': {
-							'count': 4364,
-							'user_reposted': 0
-						  }
-						},
-						{
-						  'id': 88997,
-						  'from_id': -25397178,
-						  'to_id': -25397178,
-						  'date': 1390533904,
-						  'post_type': 'post',
-						  'text': 'Комплекс лучших упражнений на каждую группу мышц \n\nСПИНА \n- Подтягивания 4 подхода 8-12 повторений \n- Становая тяга 3-4 подхода 10-12 повторений \n\n- Тяга (Т-грифа или штанги в наклоне) 3-4 подхода 10-12 повторений \n- Горизонтальная тяга в блочном тренажере 4 подхода 10-12 повторений \n- Шраги со штангой 4 подхода 10-12 повторений \n\nГРУДЬ \n- Жим лёжа (штанги или гантелей) 4 подхода 10-12 повторений \n- Жим на наклонной (штанги или гантелей) 3-4 подхода 10-12 повторений \n- Отжимания на брусьях 4 подхода до отказа \n\nНОГИ \n- Приседания 4 подхода 10-12 повторений \n- Жим ногами 3-4 подхода 8-12 повторений \n- Разгибания ног в тренажере 4 подхода 10-12 повторений \n- Подъём на носки стоя 4 подхода 15 повторений \n- Подъём на носки сидя 3-4 подхода 12-15 повторений \n\nРУКИ \n- Жим лёжа узким хватом 4 подхода 10-12 повторений \n- Отжимания на брусьях 3-4 подхода 8-12 повторений (с доп весом) \n- Подъём штанги на бицепс 4 подхода 10-12 повторений \n- Молот 3-4 подхода 8-12 повторений \n- Армейский жим 3-4 подхода 8-12 повторений \n- Жим сидя 3-4 подхода 8-12 повторений\n- Разведение гантелей в наклоне 3-4 подхода 8-12 повторений \n\nПРЕСС \n- Скручивания 4 подхода 15-20 повторений \n- Косые скручивания 3-4 подхода 12-20 повторений \n- Подъём ног в висе 3-4 подхода 8-15 повторений\n\n#спорт@strog_pocan',
-						  'attachments': [
-							{
-							  'type': 'photo',
-							  'photo': {
-								'id': 319770573,
-								'album_id': -7,
-								'owner_id': -25397178,
-								'user_id': 100,
-								'photo_75': 'http://cs310923.vk.me/v310923070/c28b/VEtf7pX6MXM.jpg',
-								'photo_130': 'http://cs310923.vk.me/v310923070/c28c/cjCqKn_EGxE.jpg',
-								'photo_604': 'http://cs310923.vk.me/v310923070/c28d/IFtj16H-KwI.jpg',
-								'width': 604,
-								'height': 530,
-								'text': '',
-								'date': 1390533904,
-								'post_id': 88997,
-								'access_key': 'bab83089cd5ffeb0f8'
-							  }
-							}
-						  ],
-						  'post_source': {
-							'type': 'api'
-						  },
-						  'comments': {
-							'count': 0,
-							'can_post': 0
-						  },
-						  'likes': {
-							'count': 1397,
-							'user_likes': 1,
-							'can_like': 0,
-							'can_publish': 1
-						  },
-						  'reposts': {
-							'count': 565,
-							'user_reposted': 0
-						  }
-						}
-					  ]
+						}],
+						profiles: [{
+							id: 235845316,
+							first_name: 'Лапанильда',
+							last_name: 'Кошкодавленко',
+							sex: 1,
+							screen_name: 'deadlymanul',
+							photo_50: 'https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg',
+							photo_100: 'https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg',
+							online: 1
+						}],
+						groups: [{
+							id: 30666517,
+							name: 'Типичный программист | tproger',
+							screen_name: 'tproger',
+							is_closed: 0,
+							type: 'page',
+							is_admin: 0,
+							is_member: 1,
+							photo_50: 'https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg',
+							photo_100: 'https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg',
+							photo_200: 'https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg'
+						}]
 					}
 				  }";
 
 			var cat = GetMockedFaveCategory(url, json);
 
-			var posts = cat.GetPosts(3, 1);
+			var posts = cat.GetPostsEx(3, 1);
 
-			posts.Count.ShouldEqual(2);
+			posts.Count.ShouldEqual(2623);
 
-			posts[0].Id.ShouldEqual(45611);
-			posts[0].FromId.ShouldEqual(1);
-			posts[0].Date.ShouldEqual(new DateTime(2014, 1, 21, 3, 35, 4, DateTimeKind.Utc).ToLocalTime());
-			posts[0].PostType.ShouldEqual("post");
-			posts[0].Text.ShouldEqual("ВКонтакте взял новую высоту — 60 миллионов человек за сутки.");   
-			posts[0].PostSource.Type.ShouldEqual("vk");
-			posts[0].Comments.CanPost.ShouldEqual(false);
-			posts[0].Comments.Count.ShouldEqual(0);
-			posts[0].Likes.Count.ShouldEqual(81167);
-			posts[0].Likes.UserLikes.ShouldEqual(true);
-			posts[0].Likes.CanLike.ShouldEqual(false);
-			posts[0].Likes.CanPublish.ShouldEqual(true);
-			posts[0].Reposts.UserReposted.ShouldEqual(false);
-			posts[0].Reposts.Count.ShouldEqual(4364);
-			posts[0].Attachments.Count.ShouldEqual(1);
-			
-			var photo = posts[0].Attachments[0].Instance as Photo;
-			photo.ShouldNotBeNull();
-			photo.Id.ShouldEqual(320624027);
-			photo.AlbumId.ShouldEqual(-7);
-			photo.OwnerId.ShouldEqual(1);
-			photo.Photo75.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945b/6JwHSc5wLGg.jpg"));
-			photo.Photo130.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945c/xxlEPKAyYXM.jpg"));
-			photo.Photo604.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945d/jvCKTR8CAHg.jpg"));
-			photo.Photo807.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945e/UUCwCY799wQ.jpg"));
-			photo.Width.ShouldEqual(609);
-			photo.Height.ShouldEqual(556);
-			photo.Text.ShouldEqual(string.Empty);
-			photo.CreateTime.ShouldEqual(new DateTime(2014, 1, 21, 3, 36, 5, DateTimeKind.Utc).ToLocalTime());
-			photo.AccessKey.ShouldEqual("82b124d82eba43d66d");
+			posts.WallPosts[0].Id.ShouldEqual(1258365);
+			posts.WallPosts[0].FromId.ShouldEqual(-30666517);
+			posts.WallPosts[0].OwnerId.ShouldEqual(-30666517);
+			// 2015-11-16 13:05:33.000
+			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+			posts.WallPosts[0].Date.ShouldEqual(dt.AddSeconds(1447668333).ToLocalTime());
+			posts.WallPosts[0].PostType.ShouldEqual("post");
+			posts.WallPosts[0].Text.ShouldEqual(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
+
+							#videos@tproger");
+			posts.WallPosts[0].PostSource.Type.ShouldEqual("vk");
+			posts.WallPosts[0].Comments.CanPost.ShouldEqual(true);
+			posts.WallPosts[0].Comments.Count.ShouldEqual(9);
+			posts.WallPosts[0].Likes.Count.ShouldEqual(413);
+			posts.WallPosts[0].Likes.UserLikes.ShouldEqual(true);
+			posts.WallPosts[0].Likes.CanLike.ShouldEqual(false);
+			posts.WallPosts[0].Likes.CanPublish.ShouldEqual(true);
+			posts.WallPosts[0].Reposts.UserReposted.ShouldEqual(false);
+			posts.WallPosts[0].Reposts.Count.ShouldEqual(91);
+			posts.WallPosts[0].Attachments.Count.ShouldEqual(1);
+
+			var video = posts.WallPosts[0].Attachments[0].Instance as Video;
+			video.ShouldNotBeNull();
+			video.Id.ShouldEqual(171514588);
+			video.OwnerId.ShouldEqual(235845316);
+			video.Title.ShouldEqual("Clean Code: Learn to write clean, maintainable and robust code");
+			video.Duration.ShouldEqual(2058);
+			video.ViewsCount.ShouldEqual(1613);
+			video.CommentsCount.ShouldEqual(0);
+			video.Photo130.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg"));
+			video.Photo320.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg"));
+			video.Photo640.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg"));
+			dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+			video.Date.ShouldEqual(dt.AddSeconds(1447535648).ToLocalTime());
+			video.AccessKey.ShouldEqual("733701ff4d7eb85ed7");
 		}
 
 		[Test]
@@ -394,135 +383,83 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&extended=1&v=5.40&access_token=token";
 			const string json =
 			@"{
-					'response': {
-					  'count': 3,
-					  'items': [
-						{
-						  'id': 45611,
-						  'from_id': 1,
-						  'to_id': 1,
-						  'date': 1390260904,
-						  'post_type': 'post',
-						  'text': 'ВКонтакте взял новую высоту — 60 миллионов человек за сутки.',
-						  'attachments': [
-							{
-							  'type': 'photo',
-							  'photo': {
-								'id': 320624027,
-								'album_id': -7,
-								'owner_id': 1,
-								'photo_75': 'http://cs7004.vk.me/c540101/v540101001/945b/6JwHSc5wLGg.jpg',
-								'photo_130': 'http://cs7004.vk.me/c540101/v540101001/945c/xxlEPKAyYXM.jpg',
-								'photo_604': 'http://cs7004.vk.me/c540101/v540101001/945d/jvCKTR8CAHg.jpg',
-								'photo_807': 'http://cs7004.vk.me/c540101/v540101001/945e/UUCwCY799wQ.jpg',
-								'width': 609,
-								'height': 556,
-								'text': '',
-								'date': 1390260965,
-								'access_key': '82b124d82eba43d66d'
-							  }
+					response: {
+						count: 2623,
+						items: [{
+							id: 1258365,
+							from_id: -30666517,
+							owner_id: -30666517,
+							date: 1447668333,
+							post_type: 'post',
+							text: 'Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
+
+							#videos@tproger',
+							attachments: [{
+								type: 'video',
+								video: {
+									id: 171514588,
+									owner_id: 235845316,
+									title: 'Clean Code: Learn to write clean, maintainable and robust code',
+									duration: 2058,
+									description: 'Clean Code: Learn to write clean, maintainable and robust code.
+
+									In this video, I take a poorly-written piece of code and refactor in a step-by-step fashion. I also teach you some productivity tips along the way that helps you write code fast with Visual Studio. 
+
+									If you enjoy my teaching style and want to learn more from me, check out my courses on Udemy: 
+
+									C# Intermediate: Classes, Interfaces and Object-oriented Programming
+
+									https://www.udemy.com/csharp-intermediate-classes-interfaces-and-oop/?couponCode=',
+									date: 1447535648,
+									views: 1613,
+									comments: 0,
+									photo_130: 'https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg',
+									photo_320: 'https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg',
+									photo_800: 'https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg',
+									photo_640: 'https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg',
+									access_key: '733701ff4d7eb85ed7'
+								}
+							}],
+							post_source: {
+								type: 'vk'
+							},
+							comments: {
+								count: 9,
+								can_post: 1
+							},
+							likes: {
+								count: 413,
+								user_likes: 1,
+								can_like: 0,
+								can_publish: 1
+							},
+							reposts: {
+								count: 91,
+								user_reposted: 0
 							}
-						  ],
-						  'post_source': {
-							'type': 'vk'
-						  },
-						  'comments': {
-							'count': 0,
-							'can_post': 0
-						  },
-						  'likes': {
-							'count': 81168,
-							'user_likes': 1,
-							'can_like': 0,
-							'can_publish': 1
-						  },
-						  'reposts': {
-							'count': 4364,
-							'user_reposted': 0
-						  }
-						},
-						{
-						  'id': 88997,
-						  'from_id': -25397178,
-						  'to_id': -25397178,
-						  'date': 1390533904,
-						  'post_type': 'post',
-						  'text': 'Комплекс лучших упражнений на каждую группу мышц \n\nСПИНА \n- Подтягивания 4 подхода 8-12 повторений \n- Становая тяга 3-4 подхода 10-12 повторений \n\n- Тяга (Т-грифа или штанги в наклоне) 3-4 подхода 10-12 повторений \n- Горизонтальная тяга в блочном тренажере 4 подхода 10-12 повторений \n- Шраги со штангой 4 подхода 10-12 повторений \n\nГРУДЬ \n- Жим лёжа (штанги или гантелей) 4 подхода 10-12 повторений \n- Жим на наклонной (штанги или гантелей) 3-4 подхода 10-12 повторений \n- Отжимания на брусьях 4 подхода до отказа \n\nНОГИ \n- Приседания 4 подхода 10-12 повторений \n- Жим ногами 3-4 подхода 8-12 повторений \n- Разгибания ног в тренажере 4 подхода 10-12 повторений \n- Подъём на носки стоя 4 подхода 15 повторений \n- Подъём на носки сидя 3-4 подхода 12-15 повторений \n\nРУКИ \n- Жим лёжа узким хватом 4 подхода 10-12 повторений \n- Отжимания на брусьях 3-4 подхода 8-12 повторений (с доп весом) \n- Подъём штанги на бицепс 4 подхода 10-12 повторений \n- Молот 3-4 подхода 8-12 повторений \n- Армейский жим 3-4 подхода 8-12 повторений \n- Жим сидя 3-4 подхода 8-12 повторений\n- Разведение гантелей в наклоне 3-4 подхода 8-12 повторений \n\nПРЕСС \n- Скручивания 4 подхода 15-20 повторений \n- Косые скручивания 3-4 подхода 12-20 повторений \n- Подъём ног в висе 3-4 подхода 8-15 повторений\n\n#спорт@strog_pocan',
-						  'attachments': [
-							{
-							  'type': 'photo',
-							  'photo': {
-								'id': 319770573,
-								'album_id': -7,
-								'owner_id': -25397178,
-								'user_id': 100,
-								'photo_75': 'http://cs310923.vk.me/v310923070/c28b/VEtf7pX6MXM.jpg',
-								'photo_130': 'http://cs310923.vk.me/v310923070/c28c/cjCqKn_EGxE.jpg',
-								'photo_604': 'http://cs310923.vk.me/v310923070/c28d/IFtj16H-KwI.jpg',
-								'width': 604,
-								'height': 530,
-								'text': '',
-								'date': 1390533904,
-								'post_id': 88997,
-								'access_key': 'bab83089cd5ffeb0f8'
-							  }
-							}
-						  ],
-						  'post_source': {
-							'type': 'api'
-						  },
-						  'comments': {
-							'count': 0,
-							'can_post': 0
-						  },
-						  'likes': {
-							'count': 1397,
-							'user_likes': 1,
-							'can_like': 0,
-							'can_publish': 1
-						  },
-						  'reposts': {
-							'count': 565,
-							'user_reposted': 0
-						  }
-						}
-					  ],
-					  'profiles': [
-						{
-						  'id': 1,
-						  'first_name': 'Павел',
-						  'last_name': 'Дуров',
-						  'sex': 2,
-						  'screen_name': 'durov',
-						  'photo_50': 'http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg',
-						  'photo_100': 'http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg',
-						  'online': 0
-						},
-						{
-						  'id': 234695118,
-						  'first_name': 'Ruslan',
-						  'last_name': 'Davydov',
-						  'sex': 2,
-						  'screen_name': 'davydov.ruslan',
-						  'photo_50': 'http://vk.com/images/camera_c.gif',
-						  'photo_100': 'http://vk.com/images/camera_b.gif',
-						  'online': 1
-						}
-					  ],
-					  'groups': [
-						{
-						  'id': 25397178,
-						  'name': 'Мужские мысли',
-						  'screen_name': 'strog_pocan',
-						  'is_closed': 0,
-						  'type': 'page',
-						  'is_admin': 0,
-						  'is_member': 0,
-						  'photo_50': 'http://cs409122.vk.me/v409122070/b992/iQ5ct6z-V3Y.jpg',
-						  'photo_100': 'http://cs409122.vk.me/v409122070/b991/9IJpXZTZbuk.jpg',
-						  'photo_200': 'http://cs409122.vk.me/v409122070/b98e/0uLRcwvxKQI.jpg'
-						}
-					  ]
+						}],
+						profiles: [{
+							id: 235845316,
+							first_name: 'Лапанильда',
+							last_name: 'Кошкодавленко',
+							sex: 1,
+							screen_name: 'deadlymanul',
+							photo_50: 'https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg',
+							photo_100: 'https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg',
+							online: 1
+						}],
+						groups: [{
+							id: 30666517,
+							name: 'Типичный программист | tproger',
+							screen_name: 'tproger',
+							is_closed: 0,
+							type: 'page',
+							is_admin: 0,
+							is_member: 1,
+							photo_50: 'https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg',
+							photo_100: 'https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg',
+							photo_200: 'https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg'
+						}]
 					}
 				  }";
 
@@ -530,58 +467,63 @@ namespace VkNet.Tests.Categories
 
 			var posts = cat.GetPostsEx(3, 1);
 
-			posts.Count.ShouldEqual(3);
+			posts.Count.ShouldEqual(2623);
 
-			posts.WallPosts[0].Id.ShouldEqual(45611);
-			posts.WallPosts[0].FromId.ShouldEqual(1);
-			posts.WallPosts[0].Date.ShouldEqual(new DateTime(2014, 1, 21, 3, 35, 4, DateTimeKind.Utc).ToLocalTime());
+			posts.WallPosts[0].Id.ShouldEqual(1258365);
+			posts.WallPosts[0].FromId.ShouldEqual(-30666517);
+			posts.WallPosts[0].OwnerId.ShouldEqual(-30666517);
+			// 2015-11-16 13:05:33.000
+			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+			posts.WallPosts[0].Date.ShouldEqual(dt.AddSeconds(1447668333).ToLocalTime());
 			posts.WallPosts[0].PostType.ShouldEqual("post");
-			posts.WallPosts[0].Text.ShouldEqual("ВКонтакте взял новую высоту — 60 миллионов человек за сутки.");
+			posts.WallPosts[0].Text.ShouldEqual(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
+
+							#videos@tproger");
 			posts.WallPosts[0].PostSource.Type.ShouldEqual("vk");
-			posts.WallPosts[0].Comments.CanPost.ShouldEqual(false);
-			posts.WallPosts[0].Comments.Count.ShouldEqual(0);
-			posts.WallPosts[0].Likes.Count.ShouldEqual(81168);
+			posts.WallPosts[0].Comments.CanPost.ShouldEqual(true);
+			posts.WallPosts[0].Comments.Count.ShouldEqual(9);
+			posts.WallPosts[0].Likes.Count.ShouldEqual(413);
 			posts.WallPosts[0].Likes.UserLikes.ShouldEqual(true);
 			posts.WallPosts[0].Likes.CanLike.ShouldEqual(false);
 			posts.WallPosts[0].Likes.CanPublish.ShouldEqual(true);
 			posts.WallPosts[0].Reposts.UserReposted.ShouldEqual(false);
-			posts.WallPosts[0].Reposts.Count.ShouldEqual(4364);
+			posts.WallPosts[0].Reposts.Count.ShouldEqual(91);
 			posts.WallPosts[0].Attachments.Count.ShouldEqual(1);
 
-			var photo = posts.WallPosts[0].Attachments[0].Instance as Photo;
-			photo.ShouldNotBeNull();
-			photo.Id.ShouldEqual(320624027);
-			photo.AlbumId.ShouldEqual(-7);
-			photo.OwnerId.ShouldEqual(1);
-			photo.Photo75.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945b/6JwHSc5wLGg.jpg"));
-			photo.Photo130.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945c/xxlEPKAyYXM.jpg"));
-			photo.Photo604.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945d/jvCKTR8CAHg.jpg"));
-			photo.Photo807.ShouldEqual(new Uri("http://cs7004.vk.me/c540101/v540101001/945e/UUCwCY799wQ.jpg"));
-			photo.Width.ShouldEqual(609);
-			photo.Height.ShouldEqual(556);
-			photo.Text.ShouldEqual(string.Empty);
-			photo.CreateTime.ShouldEqual(new DateTime(2014, 1, 21, 3, 36, 5, DateTimeKind.Utc).ToLocalTime());
-			photo.AccessKey.ShouldEqual("82b124d82eba43d66d");
+			var video = posts.WallPosts[0].Attachments[0].Instance as Video;
+			video.ShouldNotBeNull();
+			video.Id.ShouldEqual(171514588);
+			video.OwnerId.ShouldEqual(235845316);
+			video.Title.ShouldEqual("Clean Code: Learn to write clean, maintainable and robust code");
+			video.Duration.ShouldEqual(2058);
+			video.ViewsCount.ShouldEqual(1613);
+			video.CommentsCount.ShouldEqual(0);
+			video.Photo130.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg"));
+			video.Photo320.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg"));
+			video.Photo640.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg"));
+			dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+			video.Date.ShouldEqual(dt.AddSeconds(1447535648).ToLocalTime());
+			video.AccessKey.ShouldEqual("733701ff4d7eb85ed7");
 
-			posts.Profiles[0].Id.ShouldEqual(1);
-			posts.Profiles[0].FirstName.ShouldEqual("Павел");
-			posts.Profiles[0].LastName.ShouldEqual("Дуров");
-			posts.Profiles[0].Sex.ShouldEqual(Sex.Male);
-			posts.Profiles[0].screenName.ShouldEqual("durov");
-			posts.Profiles[0].PhotoPreviews.Photo50.ShouldEqual("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg");
-			posts.Profiles[0].PhotoPreviews.Photo100.ShouldEqual("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg");
-			posts.Profiles[0].Online.ShouldEqual(false);
+			posts.Profiles[0].Id.ShouldEqual(235845316);
+			posts.Profiles[0].FirstName.ShouldEqual("Лапанильда");
+			posts.Profiles[0].LastName.ShouldEqual("Кошкодавленко");
+			posts.Profiles[0].Sex.ShouldEqual(Sex.Female);
+			posts.Profiles[0].screenName.ShouldEqual("deadlymanul");
+			posts.Profiles[0].PhotoPreviews.Photo50.ShouldEqual("https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg");
+			posts.Profiles[0].PhotoPreviews.Photo100.ShouldEqual("https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg");
+			posts.Profiles[0].Online.ShouldEqual(true);
 
-			posts.Groups[0].Id.ShouldEqual(25397178);
-			posts.Groups[0].Name.ShouldEqual("Мужские мысли");
-			posts.Groups[0].ScreenName.ShouldEqual("strog_pocan");
+			posts.Groups[0].Id.ShouldEqual(30666517);
+			posts.Groups[0].Name.ShouldEqual("Типичный программист | tproger");
+			posts.Groups[0].ScreenName.ShouldEqual("tproger");
 			posts.Groups[0].IsClosed.ShouldEqual(GroupPublicity.Public);
 			posts.Groups[0].Type.ShouldEqual(GroupType.Page);
 			posts.Groups[0].IsAdmin.ShouldEqual(false);
-			posts.Groups[0].IsMember.ShouldEqual(false);
-			posts.Groups[0].PhotoPreviews.Photo50.ShouldEqual("http://cs409122.vk.me/v409122070/b992/iQ5ct6z-V3Y.jpg");
-			posts.Groups[0].PhotoPreviews.Photo100.ShouldEqual("http://cs409122.vk.me/v409122070/b991/9IJpXZTZbuk.jpg");
-			posts.Groups[0].PhotoPreviews.Photo200.ShouldEqual("http://cs409122.vk.me/v409122070/b98e/0uLRcwvxKQI.jpg");
+			posts.Groups[0].IsMember.ShouldEqual(true);
+			posts.Groups[0].PhotoPreviews.Photo50.ShouldEqual("https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg");
+			posts.Groups[0].PhotoPreviews.Photo100.ShouldEqual("https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg");
+			posts.Groups[0].PhotoPreviews.Photo200.ShouldEqual("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg");
 		}
 	}
 }
