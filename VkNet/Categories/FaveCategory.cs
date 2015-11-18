@@ -44,8 +44,8 @@
 
 			var parameters = new VkParameters
 				{
-					{"count", count},
-					{"offset", offset}
+					{ "count", count },
+					{ "offset", offset }
 				};
 
 			VkResponseArray response = _vk.Call("fave.getUsers", parameters);
@@ -118,9 +118,9 @@
 
 			var parameters = new VkParameters
 				{
-					{"count", count},
-					{"offset", offset},
-					{"extended", true}
+					{ "count", count },
+					{ "offset", offset },
+					{ "extended", true }
 				};
 
 			return _vk.Call("fave.getPosts", parameters);
@@ -136,21 +136,37 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.9")]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
+		{
+			var response = GetVideosEx(count, offset);
+			return response.Video;
+		}
+
+		/// <summary>
+		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
+		/// </summary>
+		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
+		/// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos"/>.
+		/// </remarks>
+		[Pure]
+		[ApiVersion("5.40")]
+		public FaveVideoEx GetVideosEx(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 
 			var parameters = new VkParameters
 				{
-					{"count", count},
-					{"offset", offset}
+					{ "count", count },
+					{ "offset", offset },
+					{ "extended", true }
 				};
 
-			VkResponseArray response = _vk.Call("fave.getVideos", parameters);
-
-			return response.ToReadOnlyCollectionOf<Video>(x => x);
+			return _vk.Call("fave.getVideos", parameters);
 		}
 
 		/// <summary>
@@ -171,8 +187,8 @@
 
 			var parameters = new VkParameters
 				{
-					{"count", count},
-					{"offset", offset}
+					{ "count", count },
+					{ "offset", offset}
 				};
 
 			VkResponseArray response = _vk.Call("fave.getLinks", parameters);

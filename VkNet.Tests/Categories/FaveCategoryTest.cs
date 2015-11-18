@@ -209,7 +209,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetVideos_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/fave.getVideos?count=3&offset=1&v=5.9&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getVideos?count=3&offset=1&extended=1&v=5.40&access_token=token";
 			const string json =
 			@"{
 					'response': {

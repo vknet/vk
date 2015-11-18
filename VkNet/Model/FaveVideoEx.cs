@@ -1,21 +1,22 @@
 ﻿using System.Collections.ObjectModel;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// 
+	/// Расширеный объект видео для закладок
 	/// </summary>
-	public class WallGetObject
+	public class FaveVideoEx
 	{
 		/// <summary>
 		/// Общее количество записей на стене.
 		/// </summary>
 		public long Count { get; set; }
 		/// <summary>
-		/// Посты.
+		/// Видеозаписи.
 		/// </summary>
-		public ReadOnlyCollection<Post> WallPosts
+		public ReadOnlyCollection<Video> Video
 		{ get; set; }
 
 		/// <summary>
@@ -35,12 +36,12 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static WallGetObject FromJson(VkResponse response)
+		internal static FaveVideoEx FromJson(VkResponse response)
 		{
-			var wallGetObject = new WallGetObject
+			var wallGetObject = new FaveVideoEx
 			{
 				Count = response["count"],
-				WallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r),
+				Video = response["items"].ToReadOnlyCollectionOf<Video>(r => r),
 				Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r),
 				Groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r)
 			};

@@ -239,6 +239,7 @@
     <Compile Include="Model\UserOrGroup.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VkObject.cs" />
+    <Compile Include="Model\FaveVideoEx.cs" />
     <Compile Include="Model\WallGetObject.cs" />
     <Compile Include="Utils\ApiMethodNameAttribute.cs" />
     <Compile Include="Utils\ApiVersionAttribute.cs" />
