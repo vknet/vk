@@ -358,7 +358,7 @@ namespace VkNet.Tests.Categories
 
 			posts[0].Id.ShouldEqual(45611);
 			posts[0].FromId.ShouldEqual(1);
-			posts[0].Date.ShouldEqual(new DateTime(2014, 1, 21, 3, 35, 4));
+			posts[0].Date.ShouldEqual(new DateTime(2014, 1, 21, 3, 35, 4, DateTimeKind.Utc).ToLocalTime());
 			posts[0].PostType.ShouldEqual("post");
 			posts[0].Text.ShouldEqual("ВКонтакте взял новую высоту — 60 миллионов человек за сутки.");   
 			posts[0].PostSource.Type.ShouldEqual("vk");
@@ -384,7 +384,7 @@ namespace VkNet.Tests.Categories
 			photo.Width.ShouldEqual(609);
 			photo.Height.ShouldEqual(556);
 			photo.Text.ShouldEqual(string.Empty);
-			photo.CreateTime.ShouldEqual(new DateTime(2014, 1, 21, 3, 36, 5));
+			photo.CreateTime.ShouldEqual(new DateTime(2014, 1, 21, 3, 36, 5, DateTimeKind.Utc).ToLocalTime());
 			photo.AccessKey.ShouldEqual("82b124d82eba43d66d");
 		}
 
@@ -534,7 +534,7 @@ namespace VkNet.Tests.Categories
 
 			posts.WallPosts[0].Id.ShouldEqual(45611);
 			posts.WallPosts[0].FromId.ShouldEqual(1);
-			posts.WallPosts[0].Date.ShouldEqual(new DateTime(2014, 1, 21, 3, 35, 4));
+			posts.WallPosts[0].Date.ShouldEqual(new DateTime(2014, 1, 21, 3, 35, 4, DateTimeKind.Utc).ToLocalTime());
 			posts.WallPosts[0].PostType.ShouldEqual("post");
 			posts.WallPosts[0].Text.ShouldEqual("ВКонтакте взял новую высоту — 60 миллионов человек за сутки.");
 			posts.WallPosts[0].PostSource.Type.ShouldEqual("vk");
@@ -560,7 +560,7 @@ namespace VkNet.Tests.Categories
 			photo.Width.ShouldEqual(609);
 			photo.Height.ShouldEqual(556);
 			photo.Text.ShouldEqual(string.Empty);
-			photo.CreateTime.ShouldEqual(new DateTime(2014, 1, 21, 3, 36, 5));
+			photo.CreateTime.ShouldEqual(new DateTime(2014, 1, 21, 3, 36, 5, DateTimeKind.Utc).ToLocalTime());
 			photo.AccessKey.ShouldEqual("82b124d82eba43d66d");
 
 			posts.Profiles[0].Id.ShouldEqual(1);
