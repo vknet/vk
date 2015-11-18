@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using System.Security.Policy;
+
+namespace VkNet.Categories
 {
 	using System.Collections.ObjectModel;
 	using JetBrains.Annotations;
@@ -179,7 +181,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.9")]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -195,5 +197,128 @@
 
 			return response.ToReadOnlyCollectionOf<ExternalLink>(x => x);
 		}
+
+		/// <summary>
+		/// Добавляет пользователя в закладки.
+		/// </summary>
+		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в закладки. </param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.addUser" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool AddUser(ulong userId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "user_id", userId }
+			};
+			return _vk.Call("fave.addUser", parameters);
+		}
+
+		/// <summary>
+		/// Удаляет пользователя из закладок.
+		/// </summary>
+		/// <param name="userId">Идентификатор пользователя, которого нужно удалить из закладок.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.removeUser" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool RemoveUser(ulong userId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "user_id", userId }
+			};
+			return _vk.Call("fave.removeUser", parameters);
+		}
+
+		/// <summary>
+		/// Добавляет сообщество в закладки.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, которое нужно добавить в закладки.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.addGroup" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool AddGroup(ulong groupId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId }
+			};
+			return _vk.Call("fave.addGroup", parameters);
+		}
+
+		/// <summary>
+		/// Удаляет сообщество из закладок.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, которое нужно удалить из закладок.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.removeGroup" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool RemoveGroup(ulong groupId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId }
+			};
+			return _vk.Call("fave.removeGroup", parameters);
+		}
+
+		/// <summary>
+		/// Добавляет ссылку в закладки.
+		/// </summary>
+		/// <param name="link">Адрес добавляемой ссылки. Поддерживаются только внутренние ссылки на http://vk.com/. </param>
+		/// <param name="text">The text.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.addLink" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool AddLink(Url link, string text)
+		{
+			var parameters = new VkParameters
+			{
+				{ "link", link.Value },
+				{ "text", text }
+			};
+			return _vk.Call("fave.addLink", parameters);
+		}
+
+		/// <summary>
+		/// Удаляет ссылку из закладок.
+		/// </summary>
+		/// <param name="linkId">Идентификатор ссылки, которую нужно удалить, полученный методом <seealso cref="GetLinks"/></param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.removeLink" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool RemoveLink(string linkId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "link_id", linkId }
+			};
+			return _vk.Call("fave.removeLink", parameters);
+		}
+
 	}
 }

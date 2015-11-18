@@ -525,5 +525,37 @@ namespace VkNet.Tests.Categories
 			posts.Groups[0].PhotoPreviews.Photo100.ShouldEqual("https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg");
 			posts.Groups[0].PhotoPreviews.Photo200.ShouldEqual("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg");
 		}
+
+		[Test]
+		public void GetLinks_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/fave.getLinks?count=1&offset=1&v=5.40&access_token=token";
+			const string json = @"
+			{
+				response: {
+					count: 4,
+					items: [{
+						id: '2_32190123_1',
+						url: 'https://vk.com/apiclub',
+						title: 'ВКонтакте API',
+						description: 'Сообщество',
+						photo_50: 'https://pp.vk.me/c400/g00001/e_5ba03323.jpg',
+						photo_100: 'https://pp.vk.me/c400/g00001/e_5ba03323.jpg'
+					}]
+				}
+			}";
+
+			var cat = GetMockedFaveCategory(url, json);
+
+			var links = cat.GetLinks(1, 1);
+
+			links.Count.ShouldEqual(1);
+			links[0].Id.ShouldEqual("2_32190123_1");
+			links[0].Url.ShouldEqual("https://vk.com/apiclub");
+			links[0].Name.ShouldEqual("ВКонтакте API");
+			links[0].Description.ShouldEqual("Сообщество");
+			links[0].Photo50.ShouldEqual("https://pp.vk.me/c400/g00001/e_5ba03323.jpg");
+			links[0].Photo100.ShouldEqual("https://pp.vk.me/c400/g00001/e_5ba03323.jpg");
+		}
 	}
 }
