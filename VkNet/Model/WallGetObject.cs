@@ -11,7 +11,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Общее количество записей на стене.
 		/// </summary>
-		public long Count { get; set; }
+		public ulong TotalCount { get; set; }
 		/// <summary>
 		/// Посты.
 		/// </summary>
@@ -39,7 +39,7 @@ namespace VkNet.Model
 		{
 			var wallGetObject = new WallGetObject
 			{
-				Count = response["count"],
+				TotalCount = response["count"],
 				WallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r),
 				Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r),
 				Groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r)

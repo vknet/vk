@@ -338,7 +338,7 @@ namespace VkNet.Tests.Categories
 
 			var posts = cat.GetPostsEx(3, 1);
 
-			posts.Count.ShouldEqual(2623);
+			posts.TotalCount.ShouldEqual(2623u);
 
 			posts.WallPosts[0].Id.ShouldEqual(1258365);
 			posts.WallPosts[0].FromId.ShouldEqual(-30666517);
@@ -467,7 +467,7 @@ namespace VkNet.Tests.Categories
 
 			var posts = cat.GetPostsEx(3, 1);
 
-			posts.Count.ShouldEqual(2623);
+			posts.TotalCount.ShouldEqual(2623u);
 
 			posts.WallPosts[0].Id.ShouldEqual(1258365);
 			posts.WallPosts[0].FromId.ShouldEqual(-30666517);

@@ -60,7 +60,7 @@ namespace VkNet.Categories
 				Offset = (ulong)offset,
 				Filter = filter
 			});
-			totalCount = Convert.ToInt32(result.Count);
+			totalCount = Convert.ToInt32(result.TotalCount);
 			return result.WallPosts;
 		}
 
@@ -134,7 +134,7 @@ namespace VkNet.Categories
 			wallPosts = result.WallPosts;
 			profiles = result.Profiles;
 			groups = result.Groups;
-			return Convert.ToInt32(result.Count);
+			return Convert.ToInt32(result.TotalCount);
 		}
 
 

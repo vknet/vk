@@ -1309,7 +1309,7 @@ namespace VkNet.Tests.Categories
                   }";
             var posts = GetMockedWallCategory(url, json).Get(new WallGetParams {OwnerId = 234015642 });
 
-			posts.Count.ShouldEqual(1);
+			posts.TotalCount.ShouldEqual(1u);
 	        posts.WallPosts.Count.ShouldEqual(1);
 
 	        posts.WallPosts[0].Id.ShouldEqual(2);
@@ -1419,7 +1419,7 @@ namespace VkNet.Tests.Categories
 				Offset = 2
 			});
 
-			posts.Count.ShouldEqual(100);
+			posts.TotalCount.ShouldEqual(100u);
 
             posts.WallPosts[0].Attachments.Count.ShouldEqual(1);
             var doc = (Document)posts.WallPosts[0].Attachment.Instance;

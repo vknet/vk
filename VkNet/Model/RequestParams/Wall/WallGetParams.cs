@@ -19,29 +19,29 @@ namespace VkNet.Model.RequestParams.Wall
 		public string Domain
 		{ get; set; }
 
-		/// <summary>
-		/// Смещение, необходимое для выборки определенного подмножества записей.
-		/// </summary>
-		public ulong? Offset
-		{ get; set; }
+        /// <summary>
+        /// Смещение, необходимое для выборки определенного подмножества записей.
+        /// </summary>
+        public ulong Offset
+        { get; set; } = 0;
 
-		/// <summary>
-		/// Количество записей, которое необходимо получить (но не более 100).
-		/// </summary>
-		public ulong? Count
-		{ get; set; }
+        /// <summary>
+        /// Количество записей, которое необходимо получить (но не более 100).
+        /// </summary>
+        public ulong Count
+        { get; set; } = 20;
 
-		/// <summary>
-		/// Определяет, какие типы записей на стене необходимо получить. Возможны следующие значения параметра: Если параметр не задан, то считается, что он равен all.
-		/// </summary>
-		public WallFilter Filter
-		{ get; set; }
+        /// <summary>
+        /// Определяет, какие типы записей на стене необходимо получить. Возможны следующие значения параметра: Если параметр не задан, то считается, что он равен all.
+        /// </summary>
+        public WallFilter Filter
+        { get; set; } = WallFilter.All;
 
-		/// <summary>
-		/// <c>true</c> — будут возвращены три массива wall, profiles и groups. По умолчанию дополнительные поля не возвращаются.
-		/// </summary>
-		public bool? Extended
-		{ get; set; }
+        /// <summary>
+        /// <c>true</c> — будут возвращены три массива wall, profiles и groups. По умолчанию дополнительные поля не возвращаются.
+        /// </summary>
+        public bool Extended
+        { get; set; } = false;
 
 		/// <summary>
 		/// Список дополнительных полей для профилей и групп, которые необходимо вернуть. См. описание полей объекта user и описание полей объекта group. Обратите внимание, этот параметр учитывается только при extended=1.
