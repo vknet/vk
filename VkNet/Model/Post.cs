@@ -107,6 +107,13 @@
         /// </summary>
         public Geo Geo { get; set; }
 
+        [NonSerialized]
+        private bool? _IsPinned;
+        /// <summary>
+        /// Если запись закрепленная - вернет true
+        /// </summary>
+        public bool IsPinned { get { return _IsPinned.HasValue ? _IsPinned.Value : false; } set { _IsPinned = value; } }
+
         /// <summary>
         /// Идентификатор автора, если запись была опубликована от имени сообщества и подписана пользователем.
         /// </summary>
@@ -209,6 +216,7 @@
             post.CopyHistory = response["copy_history"];
 
             // далее идут поля, установленные экcпериментальным путем
+            post._IsPinned = response["is_pinned"];
             post.CreatedBy = response["created_by"];
             post.CopyCommenterId = response["copy_commenter_id"];
             post.CopyCommentId = response["copy_comment_id"];
