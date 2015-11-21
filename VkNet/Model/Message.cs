@@ -185,7 +185,21 @@ namespace VkNet.Model
 		/// </summary>
 		public string Photo200
 		{ get; set; }
-		#endregion
+        #endregion
+
+        [NonSerialized]
+        private ulong? _InRead;
+        /// <summary>
+        /// Идентификатор последнего прочитанного сообщения текущим пользователем
+        /// </summary>
+        public ulong? InRead { get { return _InRead; } set { _InRead = value; } }
+
+        [NonSerialized]
+        private ulong? _OutRead;
+        /// <summary>
+        /// Идентификатор последнего прочитанного сообщения собеседником
+        /// </summary>
+        public ulong? OutRead { get { return _OutRead; } set { _OutRead = value; } }
 
 		#region Методы
 
@@ -195,37 +209,40 @@ namespace VkNet.Model
 	        {
 		        response = response["message"];
 	        }
-			var message = new Message
-			{
-				Unread = response.ContainsKey("unread") ? response["unread"] : 0,
-				Id = response["id"],
-				UserId = response["user_id"],
-				Date = response["date"],
-				ReadState = response["read_state"],
-				Type = response["out"],
-				Title = response["title"],
-				Body = response["body"],
-				Attachments = response["attachments"],
-				Geo = response["geo"],
-				ForwardedMessages = response["fwd_messages"],
-				ContainsEmojiSmiles = response["emoji"],
-				IsImportant = response["important"],
-				IsDeleted = response["deleted"],
-				FromId = response["from_id"],
-				// дополнительные поля бесед
-				ChatId = response["chat_id"],
-				ChatActiveIds = response["chat_active"],
-				UsersCount = response["users_count"],
-				AdminId = response["admin_id"],
-				PhotoPreviews = response,
-				PushSettings = response["push_settings"],
-				Action = response["action"],
-				ActionMid = response["action_mid"],
-				ActionEmail = response["action_email"],
-				ActionText = response["action_text"],
-				Photo50 = response["photo_50"],
-				Photo100 = response["photo_100"],
-				Photo200 = response["photo_200"]
+            var message = new Message
+            {
+                Unread = response.ContainsKey("unread") ? response["unread"] : 0,
+                Id = response["id"],
+                UserId = response["user_id"],
+                Date = response["date"],
+                ReadState = response["read_state"],
+                Type = response["out"],
+                Title = response["title"],
+                Body = response["body"],
+                Attachments = response["attachments"],
+                Geo = response["geo"],
+                ForwardedMessages = response["fwd_messages"],
+                ContainsEmojiSmiles = response["emoji"],
+                IsImportant = response["important"],
+                IsDeleted = response["deleted"],
+                FromId = response["from_id"],
+                // дополнительные поля бесед
+                ChatId = response["chat_id"],
+                ChatActiveIds = response["chat_active"],
+                UsersCount = response["users_count"],
+                AdminId = response["admin_id"],
+                PhotoPreviews = response,
+                PushSettings = response["push_settings"],
+                Action = response["action"],
+                ActionMid = response["action_mid"],
+                ActionEmail = response["action_email"],
+                ActionText = response["action_text"],
+                Photo50 = response["photo_50"],
+                Photo100 = response["photo_100"],
+                Photo200 = response["photo_200"],
+
+                _InRead = response["in_read"],
+                _OutRead = response["out_read"]
 			};
 
 
