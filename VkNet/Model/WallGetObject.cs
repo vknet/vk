@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// 
+	/// Результат выполнения запроса получения записей со стены
 	/// </summary>
 	public class WallGetObject
 	{

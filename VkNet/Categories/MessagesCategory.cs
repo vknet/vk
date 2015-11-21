@@ -204,21 +204,18 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<Message> GetDialogs(out int totalCount, out int unreadCount, int count = 20, int? offset = null, bool unread = false, long? startMessageId = null, int? previewLength = null)
+        [Obsolete("Устаревшая версия API. Используйте метод GetDialogs(DialogsGetParams @params)")]
+        public ReadOnlyCollection<Message> GetDialogs(out int totalCount, out int unreadCount, int count = 20, int? offset = null, bool unread = false, long? startMessageId = null, int? previewLength = null)
 		{
             VkErrors.ThrowIfNumberIsNegative(() => count);
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
 			var parameters = new VkParameters
 			{
 				{ "start_message_id", startMessageId },
 				{ "offset", offset },
 				{ "unread", unread },
-				{ "preview_length", previewLength }
+				{ "preview_length", previewLength },
+                { "count", count }
 			};
-			if (count <= 200)
-			{
-				parameters.Add("count", count);
-			}
 			VkResponse response = _vk.Call("messages.getDialogs", parameters);
 
 			// При загрузке списка непрочитанных диалогов в параметре count передается значение unreadCount, 
@@ -235,6 +232,27 @@ namespace VkNet.Categories
 			}
 			return items.ToReadOnlyCollectionOf<Message>(r => r);
 		}
+
+        /// <summary>
+        /// Возвращает список диалогов аккаунта
+        /// </summary>
+        /// <param name="params">Входные параметры выборки.</param>
+        /// <returns>В случае успеха возвращает список диалогов пользователя</returns>
+        [Pure]
+		[ApiVersion("5.40")]
+        public DialogsGetObject GetDialogs(DialogsGetParams @params)
+        {
+            var parameters = new VkParameters
+            {
+                { "start_message_id", @params.StartMessageID },
+                { "offset", @params.Offset },
+                { "count", @params.Count },
+                { "unread", @params.Unread },
+                { "preview_length", @params.PreviewLength }
+            };
+            VkResponse response = _vk.Call("messages.getDialogs", parameters);
+            return response;
+        }
 
 		/// <summary>
 		/// Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.

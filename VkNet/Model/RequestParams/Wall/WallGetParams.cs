@@ -3,7 +3,7 @@
 namespace VkNet.Model.RequestParams.Wall
 {
 	/// <summary>
-	/// Список параметров для метода photos.createAlbum
+	/// Список параметров для метода Wall.Get
 	/// </summary>
 	public class WallGetParams
 	{
