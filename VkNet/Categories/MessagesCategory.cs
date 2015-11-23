@@ -118,7 +118,7 @@ namespace VkNet.Categories
                 { "preview_length", @params.PreviewLength },
                 { "last_message_id", @params.LastMessageId }
             };
-            VkResponse response = _vk.Call("messages.getDialogs", parameters);
+            VkResponse response = _vk.Call("messages.get", parameters);
             return response;
         }
 
@@ -184,7 +184,7 @@ namespace VkNet.Categories
                 { "start_message_id", @params.StartMessageID },
                 { "rev", @params.Reversed }
             };
-            VkResponse response = _vk.Call("messages.getDialogs", parameters);
+            VkResponse response = _vk.Call("messages.getHistory", parameters);
             return response;
         }
 
