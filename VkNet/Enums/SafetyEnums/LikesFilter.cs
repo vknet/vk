@@ -26,10 +26,13 @@ namespace VkNet.Enums.SafetyEnums
 			switch (response.ToString())
 			{
 				case "likes":
-					return Likes;
-
+					{
+						return Likes;
+					}
 				case "copies":
-					return Copies;
+					{
+						return Copies;
+					}
 			}
 
 			return null;

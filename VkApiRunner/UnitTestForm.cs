@@ -40,7 +40,7 @@ namespace VkApiRunner
 
             string method = parts.Length > 1 ? parts[1] : parts[0];
 
-            return Char.ToUpper(method[0]) + method.Substring(1, method.Length - 1);
+            return char.ToUpper(method[0]) + method.Substring(1, method.Length - 1);
         }
 
         internal string TruncateAccessToken(string url)

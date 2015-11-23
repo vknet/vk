@@ -509,7 +509,7 @@ namespace VkNet.Tests.Categories
 			posts.Profiles[0].FirstName.ShouldEqual("Лапанильда");
 			posts.Profiles[0].LastName.ShouldEqual("Кошкодавленко");
 			posts.Profiles[0].Sex.ShouldEqual(Sex.Female);
-			posts.Profiles[0].screenName.ShouldEqual("deadlymanul");
+			posts.Profiles[0].ScreenName.ShouldEqual("deadlymanul");
 			posts.Profiles[0].PhotoPreviews.Photo50.ShouldEqual("https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg");
 			posts.Profiles[0].PhotoPreviews.Photo100.ShouldEqual("https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg");
 			posts.Profiles[0].Online.ShouldEqual(true);

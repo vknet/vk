@@ -243,7 +243,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
-		[Pure, CanBeNull, ContractAnnotation("screenName:null => halt")]
+		[Pure, CanBeNull, ContractAnnotation("ScreenName:null => halt")]
 		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => screenName);

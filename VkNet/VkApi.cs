@@ -286,7 +286,7 @@
 		/// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
 		public void Authorize(string accessToken, long? userId = null)
 		{
-			_stopTimer();
+			StopTimer();
 
 			AccessToken = accessToken;
 			UserId = userId;
@@ -324,7 +324,7 @@
 		/// <exception cref="VkApiAuthorizationException"></exception>
 		internal void _authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
 		{
-			_stopTimer();
+			StopTimer();
 
 			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
 			if (!authorization.IsAuthorized)
@@ -334,7 +334,7 @@
 			int expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
 			if (expireTime > 0)
 			{
-				_expireTimer = new Timer(_alertExpires, null, expireTime, Timeout.Infinite);
+				_expireTimer = new Timer(AlertExpires, null, expireTime, Timeout.Infinite);
 			}
 
 			AccessToken = authorization.AccessToken;
@@ -343,7 +343,7 @@
 		/// <summary>
 		/// Прекращает работу таймера оповещения
 		/// </summary>
-		private void _stopTimer()
+		private void StopTimer()
 		{
 			if (_expireTimer != null)
 			{
@@ -354,7 +354,7 @@
 		/// Создает событие оповещения об окончании времени токена
 		/// </summary>
 		/// <param name="state"></param>
-		private void _alertExpires(object state)
+		private void AlertExpires(object state)
 		{
 			if (OnTokenExpires != null)
 			{
@@ -452,8 +452,10 @@
                 TimeSpan span = LastInvokeTimeSpan.Value;
                 LastInvokeTime = DateTimeOffset.Now;
                 if (span.TotalMilliseconds < _minInterval)
-                    Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
-            }
+				{
+					Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
+				}
+			}
 
 			string url = GetApiUrl(methodName, parameters);
 

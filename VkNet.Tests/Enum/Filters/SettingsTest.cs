@@ -16,8 +16,7 @@ namespace VkNet.Tests.Enum.Filters
         [Test]
         public void ToString_OneSetting()
         {
-            Settings s = Settings.Friends;
-            Assert.That(s.ToString(), Is.EqualTo("friends"));
+			Assert.That(Settings.Friends.ToString(), Is.EqualTo("friends"));
         }
 
         [Test]

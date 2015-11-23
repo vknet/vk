@@ -13,16 +13,16 @@ namespace VkNet.Tests.Enum.Filters
             VideoFilters mp4 = VideoFilters.Mp4;
             VideoFilters youtube = VideoFilters.Youtube;
             var vimeo = VideoFilters.Vimeo;
-            var _short = VideoFilters.Short;
-            var _long = VideoFilters.Long;
+            var videoFilters = VideoFilters.Short;
+            var filters = VideoFilters.Long;
             var all = VideoFilters.All;
-            var shortLong = _short | _long;
+            var shortLong = videoFilters | filters;
 
             mp4.ToString().ShouldEqual("mp4");
             youtube.ToString().ShouldEqual("youtube");
             vimeo.ToString().ShouldEqual("vimeo");
-            _long.ToString().ShouldEqual("long");
-            _short.ToString().ShouldEqual("short");
+            filters.ToString().ShouldEqual("long");
+            videoFilters.ToString().ShouldEqual("short");
             all.ToString().ShouldEqual("mp4,youtube,vimeo,short,long");
             shortLong.ToString().ShouldEqual("short,long");
         }

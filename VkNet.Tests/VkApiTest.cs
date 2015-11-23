@@ -167,10 +167,11 @@ namespace VkNet.Tests
 			{
 				api.Call("someMethod", VkParameters.Empty, true);
 
-				int total = (int)(DateTimeOffset.Now - start).TotalMilliseconds;
+				var total = (int)(DateTimeOffset.Now - start).TotalMilliseconds;
 				if (total > 999)
+				{
 					break;
-				
+				}
 			}
 
 			// Не больше 4 раз, т.к. 4-ый раз вызывается через 1002 мс после первого вызова, а total выходит через 1040 мс
