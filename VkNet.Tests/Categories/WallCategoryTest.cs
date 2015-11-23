@@ -1237,7 +1237,7 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_WithPoll_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=234015642&v=5.40&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=234015642&offset=0&count=20&filter=all&extended=0&v=5.40&access_token=token";
 			const string json =
                 @"{
                     'response': {
@@ -1362,7 +1362,7 @@ namespace VkNet.Tests.Categories
         [Test]
 	    public void Get_Document_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&v=5.40&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&filter=all&extended=0&v=5.40&access_token=token";
 			const string json =
                 @"{
                     'response': {
@@ -1560,7 +1560,7 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_With_PhotoListAttachment()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&v=5.40&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&extended=0&v=5.40&access_token=token";
 			const string json =
                 @"{
                     'response': {
