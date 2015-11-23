@@ -157,7 +157,7 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\App.cs" />
-    <Compile Include="Model\DialogsGetObject.cs" />
+    <Compile Include="Model\MessagesGetObject.cs" />
     <Compile Include="Model\LongPollHistoryResponse.cs" />
     <Compile Include="Model\Mention.cs" />
     <Compile Include="Model\PhotoSize.cs" />
@@ -166,6 +166,7 @@
     <Compile Include="Model\RequestParams\Likes\GetListParams.cs" />
     <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\HistoryGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\MessageSendParams.cs" />
     <Compile Include="Model\NewsBannedExList.cs" />
     <Compile Include="Model\NewsBannedList.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Model\RepostResult.cs" />
     <Compile Include="Model\RequestParams\App\GetParams.cs" />
     <Compile Include="Model\RequestParams\App\SendRequestParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesGetParams.cs" />
     <Compile Include="Model\RequestParams\NewsFeed\GetCommentsParams.cs" />
     <Compile Include="Model\RequestParams\NewsFeed\SearchParams.cs" />
     <Compile Include="Model\RequestParams\NewsFeed\GetRecommendedParams.cs" />

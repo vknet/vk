@@ -62,7 +62,8 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<Message> Get(
+        [Obsolete("Устаревшая версия API. Используйте метод Get(MessagesGetParams @params)")]
+        public ReadOnlyCollection<Message> Get(
 			MessageType type,
 			out int totalCount,
 			uint? count = 20,
@@ -93,6 +94,33 @@ namespace VkNet.Categories
 
 			return response["items"].ToReadOnlyCollectionOf<Message>(item => item);
 		}
+
+        /// <summary>
+        /// Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
+        /// </summary>
+        /// <param name="params">Входные параметры выборки.</param>
+        /// <returns>Список сообщений, удовлетворяющий условиям фильтрации.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>. 
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
+        /// </remarks>
+        [Pure]
+        [ApiVersion("5.40")]
+        public MessagesGetObject Get(MessagesGetParams @params)
+        {
+            var parameters = new VkParameters
+            {
+                { "out", @params.Out },
+                { "offset", @params.Offset },
+                { "count", @params.Count },
+                { "time_offset", @params.TimeOffset },
+                { "filters", @params.Filters },
+                { "preview_length", @params.PreviewLength },
+                { "last_message_id", @params.LastMessageId }
+            };
+            VkResponse response = _vk.Call("messages.getDialogs", parameters);
+            return response;
+        }
 
 		/// <summary>
 		/// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
@@ -240,7 +268,7 @@ namespace VkNet.Categories
         /// <returns>В случае успеха возвращает список диалогов пользователя</returns>
         [Pure]
 		[ApiVersion("5.40")]
-        public DialogsGetObject GetDialogs(DialogsGetParams @params)
+        public MessagesGetObject GetDialogs(DialogsGetParams @params)
         {
             var parameters = new VkParameters
             {

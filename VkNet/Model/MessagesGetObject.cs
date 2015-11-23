@@ -7,7 +7,7 @@
     /// <summary>
     /// Результат выполнения запроса получения диалогов
     /// </summary>
-    public class DialogsGetObject
+    public class MessagesGetObject
     {
         /// <summary>
         /// Общее число диалогов.
@@ -32,9 +32,9 @@
         /// </summary>
         public ReadOnlyCollection<Message> Dialogs { get; set; }
 
-        internal static DialogsGetObject FromJson(VkResponse response)
+        internal static MessagesGetObject FromJson(VkResponse response)
         {
-            var dialogsGetObject = new DialogsGetObject
+            var dialogsGetObject = new MessagesGetObject
             {
                 TotalCount = response["count"],
                 Unread = response["unread_dialogs"],
