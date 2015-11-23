@@ -30,7 +30,7 @@
         /// <summary>
         /// Диалоги
         /// </summary>
-        public ReadOnlyCollection<Message> Dialogs { get; set; }
+        public ReadOnlyCollection<Message> Messages { get; set; }
 
         internal static MessagesGetObject FromJson(VkResponse response)
         {
@@ -39,7 +39,7 @@
                 TotalCount = response["count"],
                 Unread = response["unread_dialogs"],
                 RealOffset = response["real_offset"],
-                Dialogs = response["items"].ToReadOnlyCollectionOf<Message>(m => m)
+                Messages = response["items"].ToReadOnlyCollectionOf<Message>(m => m)
             };
 
             return dialogsGetObject;
