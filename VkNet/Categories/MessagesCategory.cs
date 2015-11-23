@@ -139,7 +139,8 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<Message> GetHistory(out int totalCount, bool isChat, ulong id, int? offset = null, uint? count = 20,
+        [Obsolete("Устаревшая версия API. Используйте метод GetHistory(MessagesGetParams @params)")]
+        public ReadOnlyCollection<Message> GetHistory(out int totalCount, bool isChat, ulong id, int? offset = null, uint? count = 20,
 			long? startMessageId = null, bool inReverse = false)
 		{
 			var parameters = new VkParameters
@@ -159,6 +160,33 @@ namespace VkNet.Categories
 
 			return response["items"].ToReadOnlyCollectionOf<Message>(item => item);
 		}
+
+        /// <summary>
+        /// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
+        /// </summary>
+        /// <param name="params">Входные параметры выборки.</param>
+		/// <returns>Возвращает историю сообщений с указанным пользователем или из указанной беседы</returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory" />.
+		/// </remarks>
+        [Pure]
+		[ApiVersion("5.40")]
+        public MessagesGetObject GetHistory(HistoryGetParams @params)
+        {
+            var parameters = new VkParameters
+            {
+                { "offset", @params.Offset },
+                { "count", @params.Count },
+                { "user_id", @params.UserID },
+                { "chat_id", @params.ChatID },
+                { "peer_id", @params.PeerID },
+                { "start_message_id", @params.StartMessageID },
+                { "rev", @params.Reversed }
+            };
+            VkResponse response = _vk.Call("messages.getDialogs", parameters);
+            return response;
+        }
 
 		/// <summary>
 		/// Возвращает сообщения по их идентификаторам.
