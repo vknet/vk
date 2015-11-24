@@ -158,6 +158,7 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\App.cs" />
+    <Compile Include="Model\LookupContactsOther.cs" />
     <Compile Include="Model\LookupContactsResult.cs" />
     <Compile Include="Model\MessagesGetObject.cs" />
     <Compile Include="Model\LongPollHistoryResponse.cs" />

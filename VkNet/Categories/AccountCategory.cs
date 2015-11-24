@@ -119,7 +119,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.lookupContacts" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool LookupContacts(List<string> contacts, Services service, string mycontact, bool? returnAll, UsersFields fields)
+		public LookupContactsResult LookupContacts(List<string> contacts, Services service, string mycontact, bool? returnAll, UsersFields fields)
 		{
 			var parameters = new VkParameters
 			{

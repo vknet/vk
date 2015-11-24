@@ -1,15 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Результат поиск пользователей по другим сервисам.
+	/// </summary>
 	public class LookupContactsResult
 	{
 		/// <summary>
 		/// Список объектов пользователей.
 		/// </summary>
-		public List<User> FoundList { get; set; }
+		public ReadOnlyCollection<User> FoundList { get; set; }
+
+		/// <summary>
+		/// Список контактов, которые не были найдены.
+		/// </summary>
+		public ReadOnlyCollection<LookupContactsOther> Other { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -18,10 +27,10 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static LookupContactsResult FromJson(VkResponse response)
 		{
-
 			return new LookupContactsResult
 			{
-
+				FoundList = response["found"].ToReadOnlyCollectionOf<User>(x => x),
+				Other = response["other"].ToReadOnlyCollectionOf<LookupContactsOther>(x => x)
 			};
 		}
 	}
