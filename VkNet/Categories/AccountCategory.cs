@@ -1,4 +1,5 @@
 ﻿using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Categories
 {
@@ -104,6 +105,32 @@ namespace VkNet.Categories
 			return _vk.Call("account.setOffline", VkParameters.Empty);
 		}
 
+		/// <summary>
+		/// Позволяет искать пользователей ВКонтакте, используя телефонные номера, email-адреса, и идентификаторы пользователей в других сервисах.
+		/// Найденные пользователи могут быть также в дальнейшем получены методом friends.getSuggestions.
+		/// </summary>
+		/// <param name="contacts">Список контактов, разделенных через запятую. список строк, разделенных через запятую.</param>
+		/// <param name="service">Строковой идентификатор сервиса, по контактам которого производится поиск. строка, обязательный параметр.</param>
+		/// <param name="mycontact">Контакт текущего пользователя в заданном сервисе. строка.</param>
+		/// <param name="returnAll">1 – возвращать также контакты, найденные ранее с использованием этого сервиса, 0 – возвращать только контакты, найденные с использованием поля contacts. флаг, может принимать значения 1 или 0.</param>
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. список строк, разделенных через запятую.</param>
+		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.lookupContacts" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool LookupContacts(List<string> contacts, Services service, string mycontact, bool? returnAll, UsersFields fields)
+		{
+			var parameters = new VkParameters
+			{
+				{ "contacts", contacts },
+				{ "service", service },
+				{ "mycontact", mycontact },
+				{ "return_all", returnAll },
+				{ "fields", fields }
+			};
+			return _vk.Call("account.lookupContacts", parameters);
+		}
 
 		/// <summary>
 		/// Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений. 

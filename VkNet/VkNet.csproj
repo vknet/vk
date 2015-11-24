@@ -117,6 +117,7 @@
     <Compile Include="Enums\PeopleMain.cs" />
     <Compile Include="Enums\PoliticalPreferences.cs" />
     <Compile Include="Enums\RelationType.cs" />
+    <Compile Include="Enums\SafetyEnums\Services.cs" />
     <Compile Include="Enums\SafetyEnums\UserSection.cs" />
     <Compile Include="Enums\SafetyEnums\NewsTypes.cs" />
     <Compile Include="Enums\SafetyEnums\LikeObjectType.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\App.cs" />
+    <Compile Include="Model\LookupContactsResult.cs" />
     <Compile Include="Model\MessagesGetObject.cs" />
     <Compile Include="Model\LongPollHistoryResponse.cs" />
     <Compile Include="Model\Mention.cs" />
