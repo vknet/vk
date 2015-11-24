@@ -2,24 +2,31 @@
 
 namespace VkNet.Categories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Text.RegularExpressions;
-    using JetBrains.Annotations;
-    using Newtonsoft.Json.Linq;
+	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics;
+	using System.Text.RegularExpressions;
+	using JetBrains.Annotations;
+	using Newtonsoft.Json.Linq;
 
-    using Enums;
-    using Model;
-    using Utils;
+	using Enums;
+	using Model;
+	using Utils;
 
 	/// <summary>
 	/// Методы этого класса позволяют производить действия с аккаунтом пользователя.
 	/// </summary>
 	public class AccountCategory
 	{
-		private readonly VkApi _vk;
+		/// <summary>
+		/// API.
+		/// </summary>
+		readonly VkApi _vk;
 
+		/// <summary>
+		/// Методы для работы с аккаунтом пользователя.
+		/// </summary>
+		/// <param name="vk">API.</param>
 		internal AccountCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -31,34 +38,53 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="filter">Счетчики, информацию о которых нужно вернуть.</param>
 		/// <returns>Возвращает объект, который содержит ненулевые значения счетчиков, или null, если все значения нулевые. Равные нулю счетчики не устанавливаются независимо от их наличия в <paramref name="filter"/>.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getCounters" />.
+		/// </remarks>
 		[Pure]
-		[ApiVersion("5.21")]
+		[ApiVersion("5.40")]
 		public Counters GetCounters(CountersFilter filter)
 		{
-			return _vk.Call("account.getCounters", new VkParameters() { { "filter", filter } });
+			return _vk.Call("account.getCounters", new VkParameters { { "filter", filter } });
 		}
 
 
 		/// <summary>
 		/// Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню.
-		/// Это происходит только в том случае, если пользователь добавил приложение в левое меню со страницы приложения, списка приложений или настроек. 
+		/// Это происходит только в том случае, если пользователь добавил приложение в левое меню со страницы приложения, списка приложений или настроек.
 		/// </summary>
 		/// <param name="name">Короткое название приложения (до 17 символов).</param>
-		/// <returns>Возвращает результат установки короткого названия.</returns>
-		/// <remarks>Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied).</remarks>
-		[ApiVersion("5.21")]
-		public bool SetNameInMenu([NotNull] string name)
+		/// <param name="userId">Идентификатор пользователя, по умолчанию идентификатор текущего пользователя.</param>
+		/// <returns>
+		/// Возвращает результат установки короткого названия.
+		/// </returns>
+		/// <remarks>
+		/// Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied).
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setNameInMenu" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool SetNameInMenu([NotNull] string name, long? userId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => name);
-			var parameters = new VkParameters { { "name", name } };
+			var parameters = new VkParameters
+			{
+				{ "name", name },
+				{ "user_id", userId}
+			};
 			return _vk.Call("account.setNameInMenu", parameters);
 		}
 
 		/// <summary>
-		/// Помечает текущего пользователя как online на 15 минут. 
+		/// Помечает текущего пользователя как online на 15 минут.
 		/// </summary>
-		/// <returns>Возвращает значение, показывающее, успешно ли выполнился метод.</returns>
-		[ApiVersion("5.21")]
+		/// <param name="voip">Возможны ли видеозвонки для данного устройства.</param>
+		/// <returns>
+		/// Возвращает значение, показывающее, успешно ли выполнился метод.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setOnline" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
 		public bool SetOnline(bool? voip = null)
 		{
 			var parameters = new VkParameters { { "voip", voip } };
@@ -69,7 +95,10 @@ namespace VkNet.Categories
 		/// Помечает текущего пользователя как offline.
 		/// </summary>
 		/// <returns>Возвращает значение, показывающее, успешно ли выполнился метод.</returns>
-		[ApiVersion("5.21")]
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setOffline" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
 		public bool SetOffline()
 		{
 			return _vk.Call("account.setOffline", VkParameters.Empty);
@@ -157,9 +186,9 @@ namespace VkNet.Categories
 		[ApiVersion("5.21")]
 		public bool BanUser(int userId)
 		{
-            if (userId <= 0)
-                throw new ArgumentException("User ID should be greater than 0.", "userId");
-            
+			if (userId <= 0)
+				throw new ArgumentException("User ID should be greater than 0.", "userId");
+			
 			return _vk.Call("account.banUser", new VkParameters { { "user_id", userId } });
 		}
 
@@ -171,8 +200,8 @@ namespace VkNet.Categories
 		[ApiVersion("5.21")]
 		public bool UnbanUser(int userId)
 		{
-            if (userId <= 0)
-                throw new ArgumentException("User ID should be greater than 0.", "userId");
+			if (userId <= 0)
+				throw new ArgumentException("User ID should be greater than 0.", "userId");
 
 			return _vk.Call("account.unbanUser", new VkParameters() { { "user_id", userId } });
 		}
@@ -248,7 +277,7 @@ namespace VkNet.Categories
 				Trace.WriteLine(Utilities.PreetyPrintJson(info.RawJson));
 				JObject json = JObject.Parse(modifiedAnswer);
 				var rawResponse = json["response"];
-			    return new VkResponse(rawResponse) { RawJson = modifiedAnswer };
+				return new VkResponse(rawResponse) { RawJson = modifiedAnswer };
 			}
 
 			return info;
