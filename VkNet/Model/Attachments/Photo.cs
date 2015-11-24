@@ -149,6 +149,18 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public double? Longitude;
 
+
+		/// <summary>
+		/// Url фотографии с максимальным размером.
+		/// </summary>
+		public Uri BigPhotoSrc
+		{ get; set; }
+
+		/// <summary>
+		/// Url фотографии с минимальным размером.
+		/// </summary>
+		public Uri SmallPhotoSrc
+		{ get; set; }
 		#region Методы
 		/// <summary>
 		/// Разобрать из json.
@@ -159,19 +171,19 @@ namespace VkNet.Model.Attachments
 		{
 			var photo = new Photo
 			{
-				Id = response["id"],
+				Id = response["pid"] ?? response["id"],
 				AlbumId = response["album_id"] ?? response["aid"],
 				OwnerId = response["owner_id"],
-				Photo75 = response["photo_75"],
-				Photo130 = response["photo_130"],
-				Photo604 = response["photo_604"],
-				Photo807 = response["photo_807"],
-				Photo1280 = response["photo_1280"],
-				Photo2560 = response["photo_2560"],
+				Photo75 = response["photo_75"] ?? response["src_small"],
+				Photo130 = response["photo_130"] ?? response["src"],
+				Photo604 = response["photo_604"] ?? response["src_big"],
+				Photo807 = response["photo_807"] ?? response["src_xbig"],
+				Photo1280 = response["photo_1280"] ?? response["src_xxbig"],
+				Photo2560 = response["photo_2560"] ?? response["src_xxxbig"],
 				Width = response["width"],
 				Height = response["height"],
 				Text = response["text"],
-				CreateTime = response["date"],
+				CreateTime = response["date"] ?? response["created"],
 				UserId = Utilities.GetNullableLongId(response["user_id"]),
 				PostId = Utilities.GetNullableLongId(response["post_id"]),
 				AccessKey = response["access_key"],
@@ -184,6 +196,7 @@ namespace VkNet.Model.Attachments
 				Tags = response["tags"],
 				PhotoSrc = response["photo_src"],
 				PhotoHash = response["photo_hash"],
+				SmallPhotoSrc = response["src_small"],
 				Latitude = response["lat"],
 				Longitude = response["long"],
 				Sizes = response["sizes"].ToReadOnlyCollectionOf<PhotoSize>(x => x)

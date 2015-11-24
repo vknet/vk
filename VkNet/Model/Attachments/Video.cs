@@ -115,37 +115,40 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public Tag Tag { get; set; }
 
-        #region Методы
-
-        internal static Video FromJson(VkResponse video)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="video">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Video FromJson(VkResponse video)
         {
-            var result = new Video();
+	        var result = new Video
+	        {
+		        Id = video["id"] ?? video["video_id"] ?? video["vid"],
+		        OwnerId = video["owner_id"],
+		        Title = video["title"],
+		        Description = video["description"],
+		        Duration = video["duration"],
+		        Link = video["link"],
+		        Photo130 = video["photo_130"],
+		        Photo320 = video["photo_320"],
+		        Photo640 = video["photo_640"],
+		        Date = video["date"],
+		        ViewsCount = video["views"],
+		        CommentsCount = video["comments"],
+		        Player = video["player"],
+		        CanComment = video["can_comment"],
+		        CanRepost = video["can_repost"],
+		        Repeat = video["repeat"],
+		        Likes = video["likes"],
+		        AlbumId = Utilities.GetNullableLongId(video["album_id"]),
+		        UploadUrl = video["upload_url"],
+		        AccessKey = video["access_key"],
+		        Tag = video
+	        };
 
-            result.Id = video["id"] ?? video["video_id"];
-            result.OwnerId = video["owner_id"];
-            result.Title = video["title"];
-            result.Description = video["description"];
-            result.Duration = video["duration"];
-            result.Link = video["link"];
-            result.Photo130 = video["photo_130"];
-            result.Photo320 = video["photo_320"];
-            result.Photo640 = video["photo_640"];
-            result.Date = video["date"];
-            result.ViewsCount = video["views"];
-            result.CommentsCount = video["comments"];
-            result.Player = video["player"];
-
-            result.CanComment = video["can_comment"];
-            result.CanRepost = video["can_repost"];
-            result.Repeat = video["repeat"];
-            result.Likes = video["likes"];
-            result.AlbumId = Utilities.GetNullableLongId(video["album_id"]);
-            result.UploadUrl = video["upload_url"];
-            result.AccessKey = video["access_key"];
-
-            result.Tag = video;
-
-            return result;
+	        return result;
         }
 
         #endregion

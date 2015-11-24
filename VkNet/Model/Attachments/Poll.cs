@@ -23,7 +23,7 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Дата создания опроса
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// Кол-во ответов
@@ -43,24 +43,29 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Варианты ответов
         /// </summary>
-        public Collection<PollAnswer> Answers { get; set; } 
+        public Collection<PollAnswer> Answers { get; set; }
 
-        #region Методы
-
-        internal static Poll FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Poll FromJson(VkResponse response)
         {
-            var poll = new Poll();
+			var poll = new Poll
+			{
+				Id = response["id"] ?? response["poll_id"],
+				OwnerId = response["owner_id"],
+				Question = response["question"],
+				Created = response["created"],
+				Votes = response["votes"],
+				AnswerId = response["answer_id"],
+				IsAnonymous = response["anonymous"],
+				Answers = response["answers"]
+			};
 
-            poll.Id = response["id"];
-	        poll.OwnerId = response["owner_id"];
-            poll.Question = response["question"];
-            poll.Created = response["created"];
-            poll.Votes = response["votes"];
-            poll.AnswerId = response["answer_id"];
-            poll.IsAnonymous = response["anonymous"];
-            poll.Answers = response["answers"];
-
-            return poll;
+			return poll;
         }
 
         #endregion
