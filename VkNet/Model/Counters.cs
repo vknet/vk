@@ -119,12 +119,12 @@
 		/// <summary>
 		/// SDK.
 		/// </summary>
-		public int Sdk { get; set; }
+		public int? Sdk { get; set; }
 
 		/// <summary>
 		/// Запросов к приложению.
 		/// </summary>
-		public int AppRequests { get; set; }
+		public int? AppRequests { get; set; }
 		
 		#endregion
 
