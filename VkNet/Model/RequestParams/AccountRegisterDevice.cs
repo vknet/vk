@@ -38,7 +38,7 @@
 		/// <summary>
 		/// Сериализованный JSON-объект, описывающий настройки уведомлений в специальном формате данные в формате JSON, доступен начиная с версии 5.31.
 		/// </summary>
-		public string Settings
+		public PushSettings Settings
 		{ get; set; }
 
 		/// <summary>

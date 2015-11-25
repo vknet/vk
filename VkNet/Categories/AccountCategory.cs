@@ -250,52 +250,67 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Позволяет получать настройки Push уведомлений.
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="deviceId">Уникальный идентификатор устройства.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getPushSettings" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool GetPushSettings()
+		public AccountPushSettings GetPushSettings(string deviceId)
 		{
-			//var parameters = new VkParameters
-			//{
-			//};
-			//return _vk.Call("account.getPushSettings", parameters);
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "device_id", deviceId }
+			};
+			return _vk.Call("account.getPushSettings", parameters);
 		}
 
 		/// <summary>
 		/// Изменяет настройку Push-уведомлений.
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="deviceId">Уникальный идентификатор устройства.</param>
+		/// <param name="settings">Сериализованный JSON-объект, описывающий настройки уведомлений в специальном формате.</param>
+		/// <param name="key">Ключ уведомления.</param>
+		/// <param name="value">Новое значение уведомления в специальном формате.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setPushSettings" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool SetPushSettings()
+		public bool SetPushSettings(string deviceId, PushSettings settings, string key, List<string> value)
 		{
-			//var parameters = new VkParameters
-			//{
-			//};
-			//return _vk.Call("account.setPushSettings", parameters);
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "device_id", deviceId },
+				{ "settings", settings },
+				{ "key", key },
+				{ "value", value }
+			};
+			return _vk.Call("account.setPushSettings", parameters);
 		}
 
 		/// <summary>
 		/// Получает настройки текущего пользователя в данном приложении.
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="userId">Идентификатор пользователя, информацию о настройках которого необходимо получить. По умолчанию — текущий пользователь.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getAppPermissions" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool GetAppPermissions()
+		public long GetAppPermissions(long userId)
 		{
-			//var parameters = new VkParameters
-			//{
-			//};
-			//return _vk.Call("account.getAppPermissions", parameters);
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "user_id", userId}
+			};
+			return _vk.Call("account.getAppPermissions", parameters);
 		}
 
 		/// <summary>
@@ -306,13 +321,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getActiveOffers" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool GetActiveOffers()
+		public InformationAboutOffers GetActiveOffers(ulong? offset = null, ulong? count = null)
 		{
-			//var parameters = new VkParameters
-			//{
-			//};
-			//return _vk.Call("account.getActiveOffers", parameters);
-			throw new NotImplementedException();
+			var parameters = new VkParameters
+			{
+				{ "offset", offset },
+				{ "count", count }
+			};
+			return _vk.Call("account.getActiveOffers", parameters);
 		}
 
 		/// <summary>
