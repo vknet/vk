@@ -166,6 +166,7 @@
     <Compile Include="Model\PhotoSize.cs" />
     <Compile Include="Model\PostReach.cs" />
     <Compile Include="Model\PushSettings.cs" />
+    <Compile Include="Model\RequestParams\AccountRegisterDevice.cs" />
     <Compile Include="Model\RequestParams\Likes\GetListParams.cs" />
     <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />

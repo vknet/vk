@@ -141,7 +141,11 @@ namespace VkNet.Categories
 		/// <param name="noText">Не передавать текст сообщения в push уведомлении. (по умолчанию текст передается)</param>
 		/// <param name="subscribe">Список типов уведомлений, которые следует присылать. По умолчанию присылаются: <see cref="SubscribeFilter.Message"/>, <see cref="SubscribeFilter.Friend"/>.</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.registerDevice" />.
+		/// </remarks>
 		[ApiVersion("5.21")]
+		[Obsolete("Функция устарела. Пожалуйста используйте функцию RegisterDevice(AccountRegisterDevice @params)")]
 		public bool RegisterDevice([NotNull]string token, string deviceModel, string systemVersion, bool? noText = null, SubscribeFilter subscribe = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => token);
@@ -157,21 +161,56 @@ namespace VkNet.Categories
 
 			return _vk.Call("account.registerDevice", parameters);
 		}
-
 		/// <summary>
-		/// Отписывает устройство от Push уведомлений. 
+		/// Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений.
 		/// </summary>
-		/// <param name="token">Идентификатор устройства.</param>
-		/// <returns>Возвращает результат выполнения метода.</returns>
-		[ApiVersion("5.21")]
-		public bool UnregisterDevice([NotNull] string token)
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.registerDevice" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool RegisterDevice(AccountRegisterDevice @params)
 		{
-			VkErrors.ThrowIfNullOrEmpty(() => token);
+			VkErrors.ThrowIfNullOrEmpty(() => @params.Token);
 
 			var parameters = new VkParameters
-							{
-								{"token", token}
-							};
+			{
+				{ "token", @params.Token },
+				{ "device_model", @params.DeviceModel },
+				{ "device_year", @params.DeviceYear },
+				{ "device_id", @params.DeviceId },
+				{ "system_version", @params.SystemVersion },
+				{ "settings", @params.Settings },
+				{ "sandbox", @params.Sandbox }
+			};
+
+			return _vk.Call("account.registerDevice", parameters);
+		}
+
+		/// <summary>
+		/// Отписывает устройство от Push уведомлений.
+		/// </summary>
+		/// <param name="deviceId">Уникальный идентификатор устройства.</param>
+		/// <param name="sandbox">Флаг предназначен для iOS устройств. 1 — отписать устройство, использующего sandbox сервер для отправки push-уведомлений, 0 — отписать устройство, не использующее sandbox сервер.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.unregisterDevice" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool UnregisterDevice(string deviceId, bool? sandbox = null)
+		{
+			VkErrors.ThrowIfNullOrEmpty(() => deviceId);
+
+			var parameters = new VkParameters
+			{
+				{ "device_id", deviceId },
+				{ "sandbox", sandbox }
+			};
 
 			return _vk.Call("account.unregisterDevice", parameters);
 		}
