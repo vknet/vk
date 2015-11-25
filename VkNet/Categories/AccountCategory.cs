@@ -219,28 +219,100 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Отключает push-уведомления на заданный промежуток времени.
 		/// </summary>
-		/// <param name="token">Идентификатор устройства для сервиса push уведомлений.</param>
+		/// <param name="deviceId">Идентификатор устройства для сервиса push уведомлений.</param>
 		/// <param name="time">Время в секундах на которое требуется отключить уведомления. (-1 - отключить навсегда)</param>
-		/// <param name="chatID">Идентификатор чата, для которого следует отключить уведомления.</param>
-		/// <param name="userID">Идентификатор пользователя, для которого следует отключить уведомления.</param>
-		/// <param name="sound">Включить звук в данном диалоге. (параметр работает только если указан <paramref name="userID"/> или <paramref name="chatID"/> )</param>
-		/// <returns>Возвращает результат выполнения метода.</returns>
-		[ApiVersion("5.21")]
-		public bool SetSilenceMode([NotNull] string token, int? time = null, int? chatID = null, int? userID = null, bool? sound = null)
+		/// <param name="chatId">Идентификатор чата, для которого следует отключить уведомления.</param>
+		/// <param name="userId">Идентификатор пользователя, для которого следует отключить уведомления.</param>
+		/// <param name="sound">Включить звук в данном диалоге. (параметр работает только если указан <paramref name="userId" /> или <paramref name="chatId" /> )</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setSilenceMode" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool SetSilenceMode([NotNull] string deviceId, int? time = null, int? chatId = null, int? userId = null, bool? sound = null)
 		{
-			VkErrors.ThrowIfNullOrEmpty(() => token);
+			VkErrors.ThrowIfNullOrEmpty(() => deviceId);
 
 			var parameters = new VkParameters
-							{
-								{"token", token},
-								{"time", time},
-								{"chat_id", chatID},
-								{"user_id", userID}
-							};
-			if(sound.HasValue)
-				parameters.Add("sound", sound.Value);  // Cause Add(string, bool?) deletes parameter whem bool? value equals to false.
+			{
+				{ "device_id", deviceId },
+				{ "time", time },
+				{ "chat_id", chatId },
+				{ "user_id", userId },
+				{ "sound", sound }
+			};
 
 			return _vk.Call("account.setSilenceMode", parameters);
+		}
+
+		/// <summary>
+		/// Позволяет получать настройки Push уведомлений.
+		/// </summary>
+		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getPushSettings" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool GetPushSettings()
+		{
+			//var parameters = new VkParameters
+			//{
+			//};
+			//return _vk.Call("account.getPushSettings", parameters);
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Изменяет настройку Push-уведомлений.
+		/// </summary>
+		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setPushSettings" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool SetPushSettings()
+		{
+			//var parameters = new VkParameters
+			//{
+			//};
+			//return _vk.Call("account.setPushSettings", parameters);
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Получает настройки текущего пользователя в данном приложении.
+		/// </summary>
+		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getAppPermissions" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool GetAppPermissions()
+		{
+			//var parameters = new VkParameters
+			//{
+			//};
+			//return _vk.Call("account.getAppPermissions", parameters);
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения.
+		/// </summary>
+		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getActiveOffers" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool GetActiveOffers()
+		{
+			//var parameters = new VkParameters
+			//{
+			//};
+			//return _vk.Call("account.getActiveOffers", parameters);
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
@@ -249,12 +321,17 @@ namespace VkNet.Categories
 		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в черный список. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: <see cref="Settings.Friends"/>.</remarks>
-		[ApiVersion("5.21")]
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.banUser" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
 		public bool BanUser(int userId)
 		{
 			if (userId <= 0)
+			{
 				throw new ArgumentException("User ID should be greater than 0.", "userId");
-			
+			}
+
 			return _vk.Call("account.banUser", new VkParameters { { "user_id", userId } });
 		}
 
@@ -263,13 +340,17 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="userId">Идентификатор пользователя, которого нужно убрать из черного списка. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
-		[ApiVersion("5.21")]
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.unbanUser" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
 		public bool UnbanUser(int userId)
 		{
 			if (userId <= 0)
+			{
 				throw new ArgumentException("User ID should be greater than 0.", "userId");
-
-			return _vk.Call("account.unbanUser", new VkParameters() { { "user_id", userId } });
+			}
+			return _vk.Call("account.unbanUser", new VkParameters { { "user_id", userId } });
 		}
 
 
@@ -280,18 +361,21 @@ namespace VkNet.Categories
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества черного списка. (положительное число) </param>
 		/// <param name="count">Количество записей, которое необходимо вернуть. (положительное число, по умолчанию - 20, максимальное значение - 200) </param>
 		/// <returns>Возвращает набор объектов пользователей, находящихся в черном списке. </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getBanned" />.
+		/// </remarks>
 		[Pure]
-		[ApiVersion("5.21")]
+		[ApiVersion("5.40")]
 		public IEnumerable<User> GetBanned(out int total, int? offset = null, int? count = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 
 			var parameters = new VkParameters
-								{
-									{"offset", offset},
-									{"count", count}
-								};
+			{
+				{ "offset", offset },
+				{ "count", count }
+			};
 			var response = _vk.Call("account.getBanned", parameters);
 
 			total = response["count"];

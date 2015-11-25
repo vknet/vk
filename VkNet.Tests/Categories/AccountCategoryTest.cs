@@ -381,7 +381,7 @@ namespace VkNet.Tests.Categories
 				const string json = @"{ 'response': 0 }";
 				var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
 
-				account.Item1.SetSilenceMode("tokenVal", -1, userID: 10, sound: false);
+				account.Item1.SetSilenceMode("tokenVal", -1, userId: 10, sound: false);
 				account.Item2.VerifyAll();
 			}
 
