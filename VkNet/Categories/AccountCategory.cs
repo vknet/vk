@@ -403,6 +403,9 @@ namespace VkNet.Categories
 		/// Возвращает информацию о текущем аккаунте. 
 		/// </summary>
 		/// <returns>Возвращает информацию об аккаунте или null, если сервер присылает пустой ответ.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getInfo" />.
+		/// </remarks>
 		[Pure]
 		[ApiVersion("5.21")]
 		public AccountInfo GetInfo()
