@@ -622,7 +622,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetInfo_WhenServerReturnsEmptyResponse()
 		{
-			const string url = "https://api.vk.com/method/account.getInfo?v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.getInfo?v=5.40&access_token=token";
+
 			const string json = @"{ 'response': { } }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -633,7 +634,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetInfo_WhenServerReturnsAllFields()
 		{
-			const string url = "https://api.vk.com/method/account.getInfo?v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.getInfo?v=5.40&access_token=token";
 			const string json = @"{ 'response': {
 										country: 'RU',
 										https_required: 1,

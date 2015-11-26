@@ -400,17 +400,20 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает информацию о текущем аккаунте. 
+		/// Возвращает информацию о текущем аккаунте.
 		/// </summary>
-		/// <returns>Возвращает информацию об аккаунте или null, если сервер присылает пустой ответ.</returns>
+		/// <param name="fields">Список полей, которые необходимо вернуть. По умолчанию будут возвращены все поля.</param>
+		/// <returns>
+		/// Возвращает информацию об аккаунте или null, если сервер присылает пустой ответ.
+		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getInfo" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.21")]
-		public AccountInfo GetInfo()
+		[ApiVersion("5.40")]
+		public AccountInfo GetInfo(AccountFields fields = null)
 		{
-			return _vk.Call("account.getInfo", VkParameters.Empty);
+			return _vk.Call("account.getInfo", new VkParameters { { "fields", fields } });
 		}
 
 
