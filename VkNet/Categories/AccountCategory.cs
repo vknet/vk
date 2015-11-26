@@ -445,6 +445,32 @@ namespace VkNet.Categories
 			return _vk.Call("account.setInfo", parameters);
 		}
 
+		/// <summary>
+		/// Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore.
+		/// </summary>
+		/// <param name="oldPassword">Текущий пароль пользователя.</param>
+		/// <param name="newPassword">Новый пароль, который будет установлен в качестве текущего. </param>
+		/// <param name="restoreSid">Идентификатор сессии, полученный при восстановлении доступа используя метод <see cref="AuthCategory.Restore"/>. (В случае если пароль меняется сразу после восстановления доступа) </param>
+		/// <param name="changePasswordHash">Хэш, полученный при успешной OAuth авторизации по коду полученному по СМС (В случае если пароль меняется сразу после восстановления доступа).</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.ChangePassword" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool ChangePassword(string oldPassword, string newPassword, string restoreSid = null, string changePasswordHash = null)
+		{
+			var parameters = new VkParameters
+			{
+				{ "restore_sid", restoreSid },
+				{ "change_password_hash", changePasswordHash },
+				{ "old_password", oldPassword },
+				{ "new_password", newPassword }
+			};
+			return _vk.Call("account.ChangePassword", parameters);
+		}
+
 
 		/// <summary>
 		/// Возвращает информацию о текущем профиле.

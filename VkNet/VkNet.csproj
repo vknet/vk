@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
+    <Compile Include="Categories\AuthCategory.cs" />
     <Compile Include="Categories\DocsCategory.cs" />
     <Compile Include="Categories\AppsCategory.cs" />
     <Compile Include="Categories\NewsFeedCategory.cs" />

@@ -207,6 +207,11 @@
 		/// </summary>
 		public GiftsCategory Gifts
 		{ get; set; }
+
+		/// <summary>
+		/// API для работы с Авторизацией.
+		/// </summary>
+		public AuthCategory Auth { get; set; }
 		#endregion
 
 		/// <summary>
@@ -256,6 +261,7 @@
 			Apps = new AppsCategory(this);
 			NewsFeed = new NewsFeedCategory(this);
 			Stats = new StatsCategory(this);
+			Auth = new AuthCategory(this);
 
 			RequestsPerSecond = 3;
 		}
