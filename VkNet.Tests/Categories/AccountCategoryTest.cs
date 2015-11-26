@@ -41,7 +41,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCounters_WhenServerReturnsEmptyResponse()
 		{
-			const string url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=5.40&access_token=token";
 			const string json = @"{ 'response': [] }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -52,7 +52,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCounters_WhenServerReturnsAllFields()
 		{
-			const string url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=5.40&access_token=token";
 			const string json = @"{ 'response': {
 										friends:1,											
 										messages: 2,
@@ -107,7 +107,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetNameInMenu_SetsCorrectly_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=5.40&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -117,7 +117,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetNameInMenu_NotSets_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=5.40&access_token=token";
 			const string json = @"{ 'response': 0 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -138,7 +138,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOnline_SetsCorrectly_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/account.setOnline?v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setOnline?v=5.40&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -148,7 +148,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOnline_NotSets_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/account.setOnline?v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setOnline?v=5.40&access_token=token";
 			const string json = @"{ 'response': 0 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -158,7 +158,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOnline_WithVoipParameter()
 		{
-			const string url = "https://api.vk.com/method/account.setOnline?voip=1&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setOnline?voip=1&v=5.40&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
 
@@ -180,7 +180,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOffline_SetsCorrectly_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/account.setOffline?v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setOffline?v=5.40&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -190,7 +190,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOffline_NotSets_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/account.setOffline?v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setOffline?v=5.40&access_token=token";
 			const string json = @"{ 'response': 0 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -302,7 +302,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void UnregisterDevice_CorrectParameters_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/account.unregisterDevice?token=tokenVal&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.unregisterDevice?device_id=tokenVal&v=5.40&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -312,7 +312,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void UnregisterDevice_CorrectParameters_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/account.unregisterDevice?token=tokenVal&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.unregisterDevice?device_id=tokenVal&v=5.40&access_token=token";
 			const string json = @"{ 'response': 0 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -347,7 +347,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetSilenceMode_SetsCorrectly_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/account.setSilenceMode?token=tokenVal&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&v=5.40&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -357,7 +357,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetSilenceMode_SetsCorrectly_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/account.setSilenceMode?token=tokenVal&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&v=5.40&access_token=token";
 			const string json = @"{ 'response': 0 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -368,7 +368,7 @@ namespace VkNet.Tests.Categories
 		public void SetSilenceMode_AllParametersAddsToUrlCorrectly()
 		{
 			{
-				const string url = "https://api.vk.com/method/account.setSilenceMode?token=tokenVal&time=10&chat_id=15&user_id=42&sound=1&v=5.21&access_token=token";
+				const string url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&time=10&chat_id=15&user_id=42&sound=1&v=5.40&access_token=token";
 				const string json = @"{ 'response': 0 }";
 				var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
 
@@ -377,7 +377,7 @@ namespace VkNet.Tests.Categories
 			}
 
 			{
-				const string url = "https://api.vk.com/method/account.setSilenceMode?token=tokenVal&time=-1&user_id=10&sound=0&v=5.21&access_token=token";
+				const string url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&time=-1&user_id=10&v=5.40&access_token=token";
 				const string json = @"{ 'response': 0 }";
 				var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
 
@@ -414,7 +414,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void BanUser_CorrectParameters_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/account.banUser?user_id=4&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.banUser?user_id=4&v=5.40&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -424,7 +424,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void BanUser_CorrectParameters_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/account.banUser?user_id=1&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.banUser?user_id=1&v=5.40&access_token=token";
 			const string json = @"{ 'response': 0 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -457,7 +457,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void UnbanUser_CorrectParameters_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/account.unbanUser?user_id=4&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.unbanUser?user_id=4&v=5.40&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -467,7 +467,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void UnbanUser_CorrectParameters_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/account.unbanUser?user_id=1&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.unbanUser?user_id=1&v=5.40&access_token=token";
 			const string json = @"{ 'response': 0 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -501,7 +501,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WithDefaultParameters()
 		{
-			const string url = "https://api.vk.com/method/account.getBanned?v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.getBanned?v=5.40&access_token=token";
 			const string json = @"{ 'response': {
 									count: 10,
 									items: [{
@@ -531,7 +531,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WithCorrectCountParameter()
 		{
-			const string url = "https://api.vk.com/method/account.getBanned?count=2&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.getBanned?count=2&v=5.40&access_token=token";
 			const string json = @"{ 'response': {
 									count: 10,
 									items: [{
@@ -556,7 +556,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WithCorrectOffsetParameter()
 		{
-			const string url = "https://api.vk.com/method/account.getBanned?offset=10&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.getBanned?offset=10&v=5.40&access_token=token";
 			const string json = @"{ 'response': {
 									count: 10,
 									items: [{
@@ -581,7 +581,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WhenThereIsNoBannedUsers()
 		{
-			const string url = "https://api.vk.com/method/account.getBanned?v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.getBanned?v=5.40&access_token=token";
 			const string json = @"{ 'response': {
 									count: 0,
 									items: []
@@ -596,7 +596,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WhenThereIsSomeBannedUsersButNotInTheOffsetRange()
 		{
-			const string url = "https://api.vk.com/method/account.getBanned?offset=50&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.getBanned?offset=50&v=5.40&access_token=token";
 			const string json = @"{ 'response': {
 									count: 5,
 									items: []
