@@ -418,16 +418,31 @@ namespace VkNet.Categories
 
 
 		/// <summary>
-		/// Позволяет редактировать информацию о текущем аккаунте. 
+		/// Позволяет редактировать информацию о текущем аккаунте.
 		/// </summary>
 		/// <param name="intro">Битовая маска, отвечающая за прохождение обучения в мобильных клиентах. (положительное число)</param>
-		/// <returns>Возвращает результат выполнения метода.</returns>
-		/// <remarks>Если параметр <paramref name="intro"/> не установлен, он сбрасывается на 0.</remarks>
-		[ApiVersion("5.21")]
-		public bool SetInfo(int? intro = null)
+		/// <param name="ownPostsDefault">1 – на стене пользователя по-умолчанию должны отображаться только собственные записи;
+		/// 0 – на стене пользователя должны отображаться все записи.</param>
+		/// <param name="noWallReplies">1 – отключить комментирование записей на стене;
+		/// 0 – разрешить комментирование.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
+		/// <remarks>
+		/// Если параметр <paramref name="intro" /> не установлен, он сбрасывается на 0.
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setInfo" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool SetInfo(int? intro = null, bool ownPostsDefault = true, bool noWallReplies = true)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => intro);
-			return _vk.Call("account.setInfo", new VkParameters(){{"intro", intro}});
+			var parameters = new VkParameters
+			{
+				{ "intro", intro },
+				{ "own_posts_default", ownPostsDefault },
+				{ "no_wall_replies", noWallReplies }
+			};
+			return _vk.Call("account.setInfo", parameters);
 		}
 
 

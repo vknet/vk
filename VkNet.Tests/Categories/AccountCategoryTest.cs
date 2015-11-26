@@ -674,8 +674,9 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetInfo_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/account.setInfo?v=5.21&access_token=token";
-			const string json = @"{ 'response': 1 }";
+			const string url = "https://api.vk.com/method/account.setInfo?own_posts_default=1&no_wall_replies=1&v=5.40&access_token=token";
+			
+            const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategory(url, json);
 
 			Assert.That(account.SetInfo(), Is.True);
@@ -684,7 +685,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetInfo_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/account.setInfo?v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setInfo?own_posts_default=1&no_wall_replies=1&v=5.40&access_token=token";
 			const string json = @"{ 'response': 0 }";
 			var account = GetMockedAccountCategory(url, json);
 
@@ -694,7 +695,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetInfo_WithIntroParameter_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/account.setInfo?intro=10&v=5.21&access_token=token";
+			const string url = "https://api.vk.com/method/account.setInfo?intro=10&own_posts_default=1&no_wall_replies=1&v=5.40&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
 
