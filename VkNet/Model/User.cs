@@ -333,12 +333,13 @@
 		/// <summary>
 		/// Gets or sets the contact.
 		/// </summary>
-		public string contact { get; set; }
+		public string Contact { get; set; }
 
 		/// <summary>
-		/// Gets or sets the common_count.
+		/// Показывать дату?
 		/// </summary>
-		public long common_count { get; set; }
+		public bool? BdateVisibility { get; set; }
+
 		#endregion
 
 		#region Методы
@@ -423,6 +424,8 @@
 			user.BirthdayVisibility = (BirthdayVisibility)(response["bdate_visibility"] ?? 0);
 			user.HomeTown = response["home_town"];
 			user.ChangeNameRequest = response["name_request"];
+			user.BdateVisibility = response["bdate_visibility"];
+			user.Contact = response["contact"];
 
 			return user;
 		}

@@ -456,7 +456,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.ChangePassword" />.
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.сhangePassword" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
 		public bool ChangePassword(string oldPassword, string newPassword, string restoreSid = null, string changePasswordHash = null)
@@ -468,7 +468,7 @@ namespace VkNet.Categories
 				{ "old_password", oldPassword },
 				{ "new_password", newPassword }
 			};
-			return _vk.Call("account.ChangePassword", parameters);
+			return _vk.Call("account.сhangePassword", parameters);
 		}
 
 
@@ -476,24 +476,14 @@ namespace VkNet.Categories
 		/// Возвращает информацию о текущем профиле.
 		/// </summary>
 		/// <returns>Информация о текущем профиле в виде <see cref="Model.User"/></returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getProfileInfo" />.
+		/// </remarks>
 		[Pure]
-		[ApiVersion("5.21")]
+		[ApiVersion("5.40")]
 		public User GetProfileInfo()
 		{
-			var info = _vk.Call("account.getProfileInfo", VkParameters.Empty);
-			
-			//TODO: проверить эту гадость на корректность работы во разных ситуациях, или убрать, заменив в User свойство Id на Nullable
-			// Внедрение Id пользователя в ответ с сервера
-			if (!(info.ContainsKey("uid") || info.ContainsKey("id")) && _vk.UserId.HasValue)
-			{
-				string modifiedAnswer = Regex.Replace(info.RawJson, @"'response': {", @"'response': { id: " + _vk.UserId.Value + @", ", RegexOptions.IgnoreCase & RegexOptions.Multiline);
-				Trace.WriteLine(Utilities.PreetyPrintJson(info.RawJson));
-				JObject json = JObject.Parse(modifiedAnswer);
-				var rawResponse = json["response"];
-				return new VkResponse(rawResponse) { RawJson = modifiedAnswer };
-			}
-
-			return info;
+			return _vk.Call("account.getProfileInfo", VkParameters.Empty);
 		}
 
 		/// <summary>
@@ -502,7 +492,10 @@ namespace VkNet.Categories
 		/// <param name="cancelRequestId">Идентификатор заявки на смену имени, которую необходимо отменить.</param>
 		/// <returns>Результат отмены заявки.</returns>
 		/// <remarks>Метод вынесен как отдельный, потому что если в запросе передан параметр <paramref name="cancelRequestId"/>, все остальные параметры игнорируются.</remarks>
-		[ApiVersion("5.21")]
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.saveProfileInfo" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
 		public bool SaveProfileInfo(int cancelRequestId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => cancelRequestId);
@@ -528,13 +521,27 @@ namespace VkNet.Categories
 		/// <remarks> Если передаются <paramref name="firstName"/> или <paramref name="lastName"/>, рекомендуется 
 		/// использовать перегрузку с соотвествующим out параметром типа <see cref="ChangeNameRequest"/> для получения объекта заявки на смену имени.</remarks>
 		[ApiVersion("5.21")]
+		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
 		public bool SaveProfileInfo(string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
 			string homeTown = null, long? countryId = null, long? cityId = null)
 		{
 			ChangeNameRequest request;
-			return SaveProfileInfo(out request, firstName, lastName, maidenName, sex, relation, relationPartnerId, birthDate, birthDateVisibility,
-				homeTown,countryId, cityId);
+			var parameters = new AccountSaveInfo
+			{
+				FirstName = firstName,
+				LastName = lastName,
+				MaidenName = maidenName,
+				Sex = sex.Value,
+				Relation = relation.Value,
+				RelationPartnerId = relationPartnerId,
+				BirthDate = birthDate,
+				BirthDateVisibility = birthDateVisibility.Value,
+				HomeTown = homeTown,
+				CountryId = countryId,
+				CityId = cityId
+			};
+			return SaveProfileInfo(out request, parameters);
 		}
 
 		/// <summary>
@@ -555,37 +562,69 @@ namespace VkNet.Categories
 		/// <param name="cityId">Идентификатор города пользователя</param>
 		/// <returns>Результат выполнения операции.</returns>
 		[ApiVersion("5.21")]
+		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
 		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
 			string homeTown = null, long? countryId = null, long? cityId = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => relationPartnerId);
-			VkErrors.ThrowIfNumberIsNegative(() => countryId);
-			VkErrors.ThrowIfNumberIsNegative(() => cityId);
-			
-			changeNameRequest = null;
-			
-			var parameters = new VkParameters
-									{
-										{"first_name", firstName},
-										{"last_name", lastName},
-										{"maiden_name", maidenName},
-										{"sex", ((sex ?? Sex.Unknown) ==  Sex.Unknown) ? null : sex},
-										{"relation", relation},
-										{"relation_partner_id", relationPartnerId},
-										{"bdate", birthDate != null ? birthDate.Value.ToString("dd.MM.yyyy") : null},
-										{"bdate_visibility", birthDateVisibility},
-										{"home_town", homeTown},
-										{"country_id", countryId},
-										{"city_id", cityId}
-									};
+			var parameters = new AccountSaveInfo
+			{
+				FirstName = firstName,
+				LastName = lastName,
+				MaidenName = maidenName,
+				Sex = sex.Value,
+				Relation = relation.Value,
+				RelationPartnerId = relationPartnerId,
+				BirthDate = birthDate,
+				BirthDateVisibility = birthDateVisibility.Value,
+				HomeTown = homeTown,
+				CountryId = countryId,
+				CityId = cityId
+			};
 
+			return SaveProfileInfo(out changeNameRequest, parameters);
+
+		}
+
+		/// <summary>
+		/// Редактирует информацию текущего профиля.
+		/// </summary>
+		/// <param name="changeNameRequest">Если в параметрах передавалось имя или фамилия пользователя,
+		/// в этом параметре будет возвращен объект типа <see cref="ChangeNameRequest" />, содержащий информацию о заявке на смену имени.</param>
+		/// <param name="params">The parameters.</param>
+		/// <returns>
+		/// Результат отмены заявки.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.saveProfileInfo" />.
+		/// </remarks>
+		[ApiVersion("5.40")]
+		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => @params.RelationPartnerId);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.CountryId);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.CityId);
+
+			var parameters = new VkParameters
+			{
+				{ "first_name", @params.FirstName },
+				{ "last_name", @params.LastName },
+				{ "maiden_name", @params.MaidenName },
+				{ "screen_name", @params.ScreenName },
+				{ "sex", @params.Sex },
+				{ "relation", @params.Relation },
+				{ "relation_partner_id", @params.RelationPartnerId },
+				{ "bdate", @params.BirthDate },
+				{ "bdate_visibility", @params.BirthDateVisibility },
+				{ "home_town", @params.HomeTown },
+				{ "country_id", @params.CountryId },
+				{ "city_id", @params.CityId },
+				{ "status", @params.Status }
+			};
 			var response = _vk.Call("account.saveProfileInfo", parameters);
 
 			changeNameRequest = response["name_request"];
 			return response["changed"];
-
 		}
-
 	}
 }
