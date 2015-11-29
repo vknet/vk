@@ -211,7 +211,7 @@
         /// <summary>
         /// Была ли произведена авторизация каким либо образом
         /// </summary>
-        public bool Authorized { get { return !string.IsNullOrEmpty(AccessToken); } }
+        public bool IsAuthorized { get { return !string.IsNullOrEmpty(AccessToken); } }
 		/// <summary>
 		/// Токен для доступа к методам API
 		/// </summary>
@@ -471,7 +471,7 @@
         [CanBeNull]
         public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
         {
-            if (!skipAuthorization && !Authorized)
+            if (!skipAuthorization && !IsAuthorized)
                 throw new AccessTokenInvalidException();
 
             // Защита от превышения кол-ва запросов в секунду
@@ -522,7 +522,7 @@
     /// <summary>
     /// Параметры авторизации
     /// </summary>
-    public class ApiAuthParams
+    public struct ApiAuthParams
     {
         /// <summary>
         /// Идентификатор приложения для авторизации
