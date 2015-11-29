@@ -8,6 +8,7 @@
 	using System.Diagnostics;
 	using System.Text;
 	using System.Threading;
+    using System.Threading.Tasks;
 	using Newtonsoft.Json.Linq;
 
 	using Categories;
@@ -367,30 +368,14 @@
 				OnTokenExpires(this);
 			}
 		}
-#if false
-		// todo refactor this shit
-		internal async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
+
+		internal Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
-			if (!skipAuthorization)
-				IfNotAuthorizedThrowException();
-
-			string url = GetApiUrl(methodName, parameters);
-
-			string answer = await Browser.GetJsonAsync(url);
-
-#if DEBUG
-			Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
-			Trace.WriteLine(Utilities.PreetyPrintJson(answer));
-#endif
-			VkErrors.IfErrorThrowException(answer);
-
-			JObject json = JObject.Parse(answer);
-
-			var rawResponse = json["response"];
-
-			return new VkResponse(rawResponse) { RawJson = answer };
+            return new Task<VkResponse>(() =>
+            {
+                return Call(methodName, parameters, skipAuthorization);
+            });
 		}
-#endif
 
 		/// <summary>
 		/// Вызвать метод.
@@ -455,13 +440,16 @@
 			// Защита от превышения кол-ва запросов в секунду
             if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
-                TimeSpan span = LastInvokeTimeSpan.Value;
-                LastInvokeTime = DateTimeOffset.Now;
-                if (span.TotalMilliseconds < _minInterval)
-				{
-					Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
-				}
-			}
+                lock (_expireTimer)
+                {
+                    TimeSpan span = LastInvokeTimeSpan.Value;
+                    LastInvokeTime = DateTimeOffset.Now;
+                    if (span.TotalMilliseconds < _minInterval)
+                    {
+                        Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
+                    }
+                }
+            }
 
 			string url = GetApiUrl(methodName, parameters);
 
