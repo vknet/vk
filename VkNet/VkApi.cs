@@ -21,47 +21,33 @@
 	/// </summary>
 	/// <param name="api">Экземпляр API у которого истекло время токена</param>
 	public delegate void VkApiDelegate(VkApi api);
+
 	/// <summary>
 	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями, 
 	/// группами и т.п.).
 	/// </summary>
 	public class VkApi
 	{
-		/// <summary>
-		///  Текст ошибки авторизации.
-		/// </summary>
-		internal const string InvalidAuthorization = "Invalid authorization";
-		/// <summary>
-		/// Запросов в секунду.
-		/// </summary>
-		internal int _requestsPerSecond;
-
-		/// <summary>
-		/// Минимальное время, которое должно пройти между запросами чтобы не привысить кол-во запросов в секунду.
-		/// </summary>
-		internal int _minInterval;
-
-		/// <summary>
-		/// Учетные данные.
-		/// </summary>
-		internal KeyValuePair<string, string>? _credentials;
-		/// <summary>
-		/// Идентификатор приложения.
-		/// </summary>
-		internal int _appId;
-		/// <summary>
-		/// Права доступа приложения.
-		/// </summary>
-		internal Settings _settings;
+        internal ApiAuthParams _ap;
 		/// <summary>
 		/// Таймер.
 		/// </summary>
 		private Timer _expireTimer;
 
-		/// <summary>
-		/// Время вызова последнего метода этим объектом
-		/// </summary>
-		public DateTimeOffset? LastInvokeTime
+        #region Requests limit stuff
+        /// <summary>
+        /// Запросов в секунду.
+        /// </summary>
+        private int _requestsPerSecond;
+        /// <summary>
+        /// Минимальное время, которое должно пройти между запросами чтобы не привысить кол-во запросов в секунду.
+        /// </summary>
+        private int _minInterval;
+
+        /// <summary>
+        /// Время вызова последнего метода этим объектом
+        /// </summary>
+        public DateTimeOffset? LastInvokeTime
 		{ get; private set; }
 		/// <summary>
 		/// Время, прошедшее с момента последнего обращения к API этим объектом
@@ -96,11 +82,12 @@
                     throw new ArgumentException("Value must be positive", "RequestsPerSecond");
 			}
 		}
+        #endregion
 
         /// <summary>
         /// Оповещает об истечении срока токена доступа
         /// </summary>
-		public event VkApiDelegate OnTokenExpires;
+        public event VkApiDelegate OnTokenExpires;
 
 		#region Categories Definition
 
@@ -221,18 +208,22 @@
 		internal IBrowser Browser
 		{ get; set; }
 
+        /// <summary>
+        /// Была ли произведена авторизация каким либо образом
+        /// </summary>
+        public bool Authorized { get { return !string.IsNullOrEmpty(AccessToken); } }
 		/// <summary>
 		/// Токен для доступа к методам API
 		/// </summary>
 		public string AccessToken
-		{ get; set; }
+		{ get; internal set; }
 
-		/// <summary>
-		/// Идентификатор пользователя, от имени которого была проведена авторизация.
-		/// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings,long?,string)"/>, 
-		/// то возвращается null.
-		/// </summary>
-		public long? UserId
+        /// <summary>
+        /// Идентификатор пользователя, от имени которого была проведена авторизация.
+        /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings,Func{string},long?,string)"/>, 
+        /// то возвращается null.
+        /// </summary>
+        public long? UserId
 		{ get; set; }
 
 		/// <summary>
@@ -267,25 +258,34 @@
 			RequestsPerSecond = 3;
 		}
 
-		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="appId">Идентификатор приложения</param>
-		/// <param name="emailOrPhone">Email или телефон</param>
-		/// <param name="password">Пароль</param>
-		/// <param name="code">Делегат получения кода для двухфакторной авторизации</param>
-		/// <param name="captchaSid">Идентикикатор капчи</param>
-		/// <param name="captchaKey">Текст капчи</param>
-		/// <param name="settings">Права доступа для приложения</param>
-		public void Authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null)
+        /// <summary>
+        /// Авторизация и получение токена
+        /// </summary>
+        /// <param name="params">Данные авторизации</param>
+        public void Authorize(ApiAuthParams @params)
 		{
-			_authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
+			_authorize(
+                @params.ApplicationId, 
+                @params.Login,
+                @params.Password,
+                @params.Settings,
+                @params.TwoFactorAuthorization,
+                @params.CaptchaSid,
+                @params.CaptchaKey 
+                );
 
-			_credentials = new KeyValuePair<string, string>(emailOrPhone, password);
-			_appId = appId;
-			_settings = settings;
+            _ap = @params;
 		}
-
+        /// <summary>
+        /// Авторизация и получение токена в асинхронном режиме
+        /// </summary>
+        /// <param name="params">Данные авторизации</param>
+        public Task AuthorizeAsync(ApiAuthParams @params)
+        {
+            Task RTask = new Task(() => { Authorize(@params); });
+            RTask.Start();
+            return RTask;
+        }
 		/// <summary>
 		/// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
 		/// </summary>
@@ -293,21 +293,31 @@
 		/// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
 		public void Authorize(string accessToken, long? userId = null)
 		{
-			StopTimer();
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                StopTimer();
 
-			AccessToken = accessToken;
-			UserId = userId;
-			_credentials = null;
+                AccessToken = accessToken;
+                UserId = userId;
+                _ap = new ApiAuthParams();
+            }
 		}
 
-		/// <summary>
-		/// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
-		/// </summary>
+        /// <summary>
+        /// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
+        /// </summary>
+        /// <param name="code">Делегат двухфакторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
 		public void RefreshToken(Func<string> code = null)
 		{
-			if (_credentials.HasValue)
+			if (!string.IsNullOrEmpty(_ap.Login) && !string.IsNullOrEmpty(_ap.Password))
 			{
-				_authorize(_appId, _credentials.Value.Key, _credentials.Value.Value, _settings, code);
+				_authorize(
+                    _ap.ApplicationId, 
+                    _ap.Login, 
+                    _ap.Password, 
+                    _ap.Settings, 
+                    code != null ? code : _ap.TwoFactorAuthorization
+                    );
 			}
 			else
 			{
@@ -315,38 +325,49 @@
 					"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля");
 			}
 		}
+        /// <summary>
+        /// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
+        /// </summary>
+        /// <param name="code">Делегат двухфакторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
+        public Task RefreshTokenAsync(Func<string> code = null)
+        {
+            Task RTask = new Task(() =>
+            {
+                RefreshToken(code);
+            });
+            RTask.Start();
+            return RTask;
+        }
 
-		#region Private & Internal Methods
-
-		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="appId">Идентификатор приложения</param>
-		/// <param name="emailOrPhone">Email или телефон</param>
-		/// <param name="password">Пароль</param>
-		/// <param name="code">Делегат получения кода для двухфакторной авторизации</param>
-		/// <param name="captchaSid">Идентикикатор капчи</param>
-		/// <param name="captchaKey">Текст капчи</param>
-		/// <param name="settings">Права доступа для приложения</param>
-		/// <exception cref="VkApiAuthorizationException"></exception>
-		internal void _authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
+        #region Private & Internal Methods
+        /// <summary>
+        /// Авторизация и получение токена
+        /// </summary>
+        /// <param name="appId">Идентификатор приложения</param>
+        /// <param name="emailOrPhone">Email или телефон</param>
+        /// <param name="password">Пароль</param>
+        /// <param name="code">Делегат получения кода для двухфакторной авторизации</param>
+        /// <param name="captchaSid">Идентикикатор капчи</param>
+        /// <param name="captchaKey">Текст капчи</param>
+        /// <param name="settings">Права доступа для приложения</param>
+        /// <exception cref="VkApiAuthorizationException"></exception>
+        internal void _authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
 		{
 			StopTimer();
 
 			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
 			if (!authorization.IsAuthorized)
 			{
-				throw new VkApiAuthorizationException(InvalidAuthorization, emailOrPhone, password);
+				throw new VkApiAuthorizationException("Invalid authorization", emailOrPhone, password);
 			}
 			int expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
 			if (expireTime > 0)
 			{
 				_expireTimer = new Timer(AlertExpires, null, expireTime, Timeout.Infinite);
 			}
-
 			AccessToken = authorization.AccessToken;
 			UserId = authorization.UserId;
-		}
+        }
 		/// <summary>
 		/// Прекращает работу таймера оповещения
 		/// </summary>
@@ -369,23 +390,32 @@
 			}
 		}
 
-		internal Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
-		{
-            return new Task<VkResponse>(() =>
-            {
-                return Call(methodName, parameters, skipAuthorization);
-            });
-		}
+        /// <summary>
+        /// Вызвать метод.
+        /// </summary>
+        /// <param name="methodName">Название метода.</param>
+        /// <param name="parameters">Параметры.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+        /// <returns></returns>
+        private VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
+        {
+            string answer = Invoke(methodName, parameters, skipAuthorization);
 
-		/// <summary>
-		/// Вызвать метод.
-		/// </summary>
-		/// <param name="methodName">Название метода.</param>
-		/// <param name="parameters">Параметры.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
-		/// <param name="apiVersion">Версия API.</param>
-		/// <returns></returns>
-		[MethodImpl(MethodImplOptions.NoInlining)]
+            JObject json = JObject.Parse(answer);
+
+            var rawResponse = json["response"];
+
+            return new VkResponse(rawResponse) { RawJson = answer };
+        }
+        /// <summary>
+        /// Вызвать метод.
+        /// </summary>
+        /// <param name="methodName">Название метода.</param>
+        /// <param name="parameters">Параметры.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+        /// <param name="apiVersion">Версия API.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
 		internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, string apiVersion = null)
 		{
 			if (!parameters.ContainsKey("v"))
@@ -404,64 +434,6 @@
 			}
 
 			return Call(methodName, parameters, skipAuthorization);
-		}
-
-		/// <summary>
-		/// Вызвать метод.
-		/// </summary>
-		/// <param name="methodName">Название метода.</param>
-		/// <param name="parameters">Параметры.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
-		/// <returns></returns>
-		private VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
-		{
-			string answer = Invoke(methodName, parameters, skipAuthorization);
-
-			JObject json = JObject.Parse(answer);
-
-			var rawResponse = json["response"];
-
-			return new VkResponse(rawResponse) { RawJson = answer };
-		}
-
-		/// <summary>
-		/// Прямой вызов API-метода
-		/// </summary>
-		/// <param name="methodName">Название метода. Например, "wall.get".</param>
-		/// <param name="parameters">Вход. параметры метода.</param>
-		/// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
-		/// <returns>Ответ сервера в формате JSON.</returns>
-		[CanBeNull]
-		public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
-		{
-			if (!skipAuthorization)
-				IfNotAuthorizedThrowException();
-
-			// Защита от превышения кол-ва запросов в секунду
-            if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
-            {
-                lock (_expireTimer)
-                {
-                    TimeSpan span = LastInvokeTimeSpan.Value;
-                    LastInvokeTime = DateTimeOffset.Now;
-                    if (span.TotalMilliseconds < _minInterval)
-                    {
-                        Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
-                    }
-                }
-            }
-
-			string url = GetApiUrl(methodName, parameters);
-
-			string answer = Browser.GetJson(url);
-
-#if DEBUG && !UNIT_TEST
-			Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
-			Trace.WriteLine(Utilities.PreetyPrintJson(answer));
-#endif
-			VkErrors.IfErrorThrowException(answer);
-
-			return answer;
 		}
 
 		/// <summary>
@@ -484,19 +456,99 @@
 
 			return builder.ToString();
 		}
+        #endregion
 
-		/// <summary>
-		/// Бросить исключение если не авторизован.
-		/// </summary>
-		/// <exception cref="AccessTokenInvalidException"></exception>
-		internal void IfNotAuthorizedThrowException()
-		{
-			if (string.IsNullOrEmpty(AccessToken))
-			{
-				throw new AccessTokenInvalidException();
-			}
-		}
+        /// <summary>
+        /// Прямой вызов API-метода
+        /// </summary>
+        /// <param name="methodName">Название метода. Например, "wall.get".</param>
+        /// <param name="parameters">Вход. параметры метода.</param>
+        /// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
+        /// <returns>Ответ сервера в формате JSON.</returns>
+        [CanBeNull]
+        public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
+        {
+            if (!skipAuthorization && !Authorized)
+                throw new AccessTokenInvalidException();
 
-		#endregion
-	}
+            // Защита от превышения кол-ва запросов в секунду
+            if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
+            {
+                lock (_expireTimer)
+                {
+                    TimeSpan span = LastInvokeTimeSpan.Value;
+                    LastInvokeTime = DateTimeOffset.Now;
+                    if (span.TotalMilliseconds < _minInterval)
+                    {
+                        Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
+                    }
+                }
+            }
+
+            string url = GetApiUrl(methodName, parameters);
+
+            string answer = Browser.GetJson(url);
+
+#if DEBUG && !UNIT_TEST
+            Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
+            Trace.WriteLine(Utilities.PreetyPrintJson(answer));
+#endif
+            VkErrors.IfErrorThrowException(answer);
+
+            return answer;
+        }
+        /// <summary>
+        /// Прямой вызов API-метода в асинхронном режиме
+        /// </summary>
+        /// <param name="methodName">Название метода. Например, "wall.get".</param>
+        /// <param name="parameters">Вход. параметры метода.</param>
+        /// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
+        /// <returns>Ответ сервера в формате JSON.</returns>
+        [CanBeNull]
+        public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
+        {
+            Task<string> RTask = new Task<string>(() =>
+            {
+                return Invoke(methodName, parameters, skipAuthorization);
+            });
+            RTask.Start();
+            return RTask;
+        }
+    }
+
+    /// <summary>
+    /// Параметры авторизации
+    /// </summary>
+    public class ApiAuthParams
+    {
+        /// <summary>
+        /// Идентификатор приложения для авторизации
+        /// </summary>
+        public ulong ApplicationId { get; set; }
+        /// <summary>
+        /// Логин пользователя
+        /// </summary>
+        public string Login { get; set; }
+        /// <summary>
+        /// Пароль пользователя
+        /// </summary>
+        public string Password { get; set; }
+        /// <summary>
+        /// Права доступа приложения
+        /// </summary>
+        public Settings Settings { get; set; }
+        /// <summary>
+        /// Делегат получения кода для двухфакторной авторизации
+        /// </summary>
+        public Func<string> TwoFactorAuthorization { get; set; }
+        /// <summary>
+        /// Идентификатор капчи (если необходимо)
+        /// </summary>
+        public long? CaptchaSid { get; set; }
+        /// <summary>
+        /// Текст капчи (если необходимо)
+        /// </summary>
+        public string CaptchaKey { get; set; }
+
+    }
 }

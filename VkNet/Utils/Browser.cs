@@ -87,7 +87,7 @@
         /// <param name="captcha_sid">Идентификатор капчи</param>
         /// <param name="captcha_key">Текст капчи</param>
         /// <returns>Информация об авторизации приложения</returns>
-        public VkAuthorization Authorize(int appId, string email, string password, Settings settings, Func<string> code = null,  long? captcha_sid = null, string captcha_key = null)
+        public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code = null,  long? captcha_sid = null, string captcha_key = null)
         {
             string authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
             WebCallResult authorizeUrlResult = WebCall.MakeCall(authorizeUrl);
@@ -118,7 +118,7 @@
             return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
         }
 
-        internal static string CreateAuthorizeUrlFor(int appId, Settings settings, Display display)
+        internal static string CreateAuthorizeUrlFor(ulong appId, Settings settings, Display display)
         {
             var builder = new StringBuilder("https://oauth.vk.com/authorize?");
 

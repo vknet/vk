@@ -27,11 +27,11 @@ namespace VkApiRunner
 			}
 
 			// get authorization values from app.config
-			int appId;
+			ulong appId;
 			try
 			{
 				string appIdValue = ConfigurationManager.AppSettings["appId"];
-				appId = Convert.ToInt32(appIdValue);
+				appId = Convert.ToUInt64(appIdValue);
 			}
 			catch (FormatException)
 			{
@@ -47,7 +47,7 @@ namespace VkApiRunner
 			var api = new VkApi();
 			try
 			{
-				api.Authorize(appId, login, password, Settings.All);
+				api.Authorize(new ApiAuthParams() { ApplicationId = appId, Login = login, Password = password, Settings = Settings.All });
 			}
 			catch (VkApiException)
 			{

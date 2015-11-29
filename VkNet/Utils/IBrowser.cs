@@ -41,6 +41,6 @@
         /// <returns>
         /// Информация об авторизации приложения.
         /// </returns>
-        VkAuthorization Authorize(int appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey);
+        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey);
     }
 }
