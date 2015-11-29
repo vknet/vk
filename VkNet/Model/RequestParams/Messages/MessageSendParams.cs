@@ -11,7 +11,7 @@ namespace VkNet.Model.RequestParams.Messages
 		/// <summary>
 		/// Идентификатор пользователя, которому отправляется сообщение.
 		/// </summary>
-		public long UserId
+		public long? UserId
 		{ get; set; }
 
 		/// <summary>
@@ -23,7 +23,7 @@ namespace VkNet.Model.RequestParams.Messages
 		/// <summary>
 		/// Идентификатор беседы, к которой будет относиться сообщение.
 		/// </summary>
-		public ulong? ChatId
+		public long? ChatId
 		{ get; set; }
 
 		/// <summary>
@@ -73,6 +73,5 @@ namespace VkNet.Model.RequestParams.Messages
 		/// </summary>
 		public uint? StickerId
 		{ get; set; }
-
 	}
 }
