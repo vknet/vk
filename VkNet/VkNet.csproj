@@ -161,6 +161,7 @@
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\AccountPushSettings.cs" />
     <Compile Include="Model\App.cs" />
+    <Compile Include="Model\AuthConfirmResult.cs" />
     <Compile Include="Model\InformationAboutOffers.cs" />
     <Compile Include="Model\LookupContactsOther.cs" />
     <Compile Include="Model\LookupContactsResult.cs" />
@@ -172,6 +173,8 @@
     <Compile Include="Model\PushSettings.cs" />
     <Compile Include="Model\RequestParams\AccountRegisterDevice.cs" />
     <Compile Include="Model\RequestParams\Account\AccountSaveInfo.cs" />
+    <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />
+    <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />
     <Compile Include="Model\RequestParams\Likes\GetListParams.cs" />
     <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />

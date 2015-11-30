@@ -856,7 +856,7 @@ namespace VkNet.Tests.Categories
 		}
 
 
-		[Test]
+		[Test, Ignore("Устаревший метод")]
 		public void SaveProfileInfo_AllPArameters_UrlIsCreatedCorrectly()
 		{
 			const string url =

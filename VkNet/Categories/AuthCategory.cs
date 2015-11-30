@@ -1,9 +1,11 @@
-﻿using VkNet.Utils;
+﻿using VkNet.Model;
+using VkNet.Model.Auth;
+using VkNet.Utils;
 
 namespace VkNet.Categories
 {
 	/// <summary>
-	/// Методы для работы с подарками.
+	/// Методы для работы с авторизацией.
 	/// </summary>
 	public class AuthCategory
 	{
@@ -29,10 +31,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.checkPhone" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool CheckPhone()
+		public bool CheckPhone(string phone, long clientId, string clientSecret)
 		{
 			var parameters = new VkParameters
 			{
+				{ "phone", phone },
+				{ "client_id", clientId },
+				{ "client_secret", clientSecret }
 			};
 			return _vk.Call("auth.checkPhone", parameters);
 		}
@@ -45,10 +50,20 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.signup" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool Signup()
+		public string Signup(AuthSignupParams @params)
 		{
 			var parameters = new VkParameters
 			{
+				{ "first_name", @params.first_name },
+				{ "last_name", @params.last_name },
+				{ "client_id", @params.client_id },
+				{ "client_secret", @params.client_secret },
+				{ "phone", @params.phone },
+				{ "password", @params.password },
+				{ "test_mode", @params.test_mode },
+				{ "voice", @params.voice },
+				{ "sex", @params.sex },
+				{ "sid", @params.sid }
 			};
 			return _vk.Call("auth.signup", parameters);
 		}
@@ -61,10 +76,17 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.confirm" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool Confirm()
+		public AuthConfirmResult Confirm(AuthConfirmParams @params)
 		{
 			var parameters = new VkParameters
 			{
+				{ "client_id", @params.ClientId },
+				{ "client_secret", @params.ClientSecret },
+				{ "phone", @params.Phone },
+				{ "code", @params.Code },
+				{ "password", @params.Password },
+				{ "test_mode", @params.TestMode },
+				{ "intro", @params.Intro }
 			};
 			return _vk.Call("auth.confirm", parameters);
 		}
