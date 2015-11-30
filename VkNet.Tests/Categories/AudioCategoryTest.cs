@@ -38,7 +38,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCount_UserHasNoAudio_ReturnsZero()
         {
-            const string url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=5.5&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=5.40&access_token=token";
             const string json =
                 @"{
                     response: 0
@@ -53,7 +53,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCount_UserHasAudio_ReturnsCountOfRecords()
         {
-            const string url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=5.5&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=5.40&access_token=token";
             const string json =
                 @"{
                     response: 158
@@ -68,7 +68,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCount_GroupHasAudio_ReturnsCountOfRecords()
         {
-            const string url = "https://api.vk.com/method/audio.getCount?owner_id=-1158263&v=5.5&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getCount?owner_id=-1158263&v=5.40&access_token=token";
             const string json =
                 @"{
                     response: 4
@@ -94,7 +94,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetLyrics_2662381_ReturnsLyrics()
         {
-            const string url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=2662381&v=5.5&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=2662381&v=5.40&access_token=token";
             const string json =
                 @"{
                     response: {
@@ -113,7 +113,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetLyrics_WrongLyricsId_ReturnsEmptyLyrics()
         {
-            const string url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=-1&v=5.5&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=-1&v=5.40&access_token=token";
             const string json =
                 @"{
                     response: {
@@ -150,7 +150,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetById_WrongId_ReturnsEmptyList()
         {
-            const string url = "https://api.vk.com/method/audio.getById?audios=2e4w_67859ds194&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getById?audios=2e4w_67859ds194&v=5.40&access_token=token";
             const string json =
                 @"{
                     response: []
@@ -165,7 +165,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetById_NormalCase_ListOfAudioObjects()
         {
-            const string url = "https://api.vk.com/method/audio.getById?audios=4793858_158073513,2_63937759&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getById?audios=4793858_158073513,2_63937759&v=5.40&access_token=token";
             const string json =
                 @"{
                     response: [
@@ -230,18 +230,17 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetUploadServer_NormalCase_ReturnUploadUrl()
         {
-            const string url = "https://api.vk.com/method/audio.getUploadServer?access_token=token";
-            const string json =
-                @"{
+			const string url = "https://api.vk.com/method/audio.getUploadServer?v=5.40&access_token=token";
+			const string json =
+				@"{
                     'response': {
                       'upload_url': 'http://cs6173.vk.com/upload.php?act=add_audio&mid=4793858&aid=0&gid=0&hash=a1ec03d21addb2d8cf371db90c79f592&rhash=e5eda6ac5b469953c4d15d0c02d364f2&api=1'
                     }
                   }";
+			var audio = GetMockedAudioCategory(url, json);
+            var uploadUrl = audio.GetUploadServer();
 
-            var audio = GetMockedAudioCategory(url, json);
-            string uploadUrl = audio.GetUploadServer();
-
-            Assert.That(uploadUrl, Is.EqualTo("http://cs6173.vk.com/upload.php?act=add_audio&mid=4793858&aid=0&gid=0&hash=a1ec03d21addb2d8cf371db90c79f592&rhash=e5eda6ac5b469953c4d15d0c02d364f2&api=1"));
+            Assert.That(uploadUrl, Is.EqualTo(new Uri("http://cs6173.vk.com/upload.php?act=add_audio&mid=4793858&aid=0&gid=0&hash=a1ec03d21addb2d8cf371db90c79f592&rhash=e5eda6ac5b469953c4d15d0c02d364f2&api=1")));
         }
 
         [Test]
@@ -254,7 +253,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_NormalCaseDefaultValues_ListOfAudioObjects()
         {
-            const string url = "https://api.vk.com/method/audio.get?uid=4793858&access_token=token";
+            const string url = "https://api.vk.com/method/audio.get?uid=4793858&v=5.40&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -302,7 +301,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetFromGroup_NormalCase_ReturnListOfAudio()
         {
-            const string url = "https://api.vk.com/method/audio.get?gid=28622822&access_token=token";
+            const string url = "https://api.vk.com/method/audio.get?gid=28622822&v=5.40&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -346,7 +345,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_WithOutUserAndAllFields_ReturnListOfAudio()
         {
-			const string url = "https://api.vk.com/method/audio.get?uid=4793858&need_user=1&offset=5&count=3&access_token=token";
+			const string url = "https://api.vk.com/method/audio.get?uid=4793858&need_user=1&offset=5&count=3&v=5.40&access_token=token";
 
 			const string json =
                 @"{

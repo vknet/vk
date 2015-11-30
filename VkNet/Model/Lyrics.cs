@@ -1,6 +1,6 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
     /// Текст аудиозаписи.
@@ -18,16 +18,19 @@
         /// </summary>
         public string Text { get; set; }
 
-        #region Методы
-
-        internal static Lyrics FromJson(VkResponse re)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Lyrics FromJson(VkResponse response)
         {
-            var lyrics = new Lyrics();
-
-            lyrics.Id = re["lyrics_id"];
-            lyrics.Text = re["text"];
-
-            return lyrics;
+			return new Lyrics
+			{
+				Id = response["lyrics_id"],
+				Text = response["text"]
+			};
         }
 
         #endregion

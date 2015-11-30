@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using System.Security.Policy;
+
+namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
@@ -31,32 +33,28 @@
 		/// <summary>
 		/// Возвращает количество аудиозаписей пользователя или группы.
 		/// </summary>
-		/// <param name="ownerId">
-		/// Идентификатор владельца аудиозаписей (пользователь или сообщество). 
-		/// Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — 
-		/// например, owner_id=-<c>true</c> соответствует идентификатору сообщества ВКонтакте API (club1) 
-		/// </param>
+		/// <param name="ownerId">Идентификатор владельца аудиозаписей (пользователь или сообщество).
+		/// Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" —
+		/// например, owner_id=-<c>true</c> соответствует идентификатору сообщества ВКонтакте API (club1)</param>
 		/// <returns>
 		/// Возвращает число, равное количеству аудиозаписей на странице пользователя или группы.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getCount"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getCount" />.
 		/// </remarks>
 		/// <example>
 		/// Получим количество аудиозаписей Павла Дурова.
 		/// <code>
 		/// int count = vk.Audio.GetCount(1);
-		/// </code>
-		/// </example>
+		/// </code></example>
 		/// <example>
 		/// Получим количество аудиозаписей в группе с id равным 2.
 		/// <code>
 		/// int count = vk.Audio.GetCount(-2);
-		/// </code>
-		/// </example>
+		/// </code></example>
 		[Pure]
-		[ApiVersion("5.5")]
+		[ApiVersion("5.40")]
 		public int GetCount(long ownerId)
 		{
 			var parameters = new VkParameters { { "owner_id", ownerId } };
@@ -76,7 +74,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getLyrics"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.5")]
+		[ApiVersion("5.40")]
 		public Lyrics GetLyrics(long lyricsId)
 		{
 			var parameters = new VkParameters { { "lyrics_id", lyricsId } };
@@ -100,10 +98,13 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById"/>.
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<Audio> GetById(IEnumerable<string> audios)
 		{
-			if (audios == null)
+			if (!audios.Any())
+			{
 				throw new ArgumentNullException("audios");
+			}
 
 			var parameters = new VkParameters { { "audios", audios } };
 			VkResponseArray response = _vk.Call("audio.getById", parameters);
@@ -127,6 +128,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById"/>.
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<Audio> GetById(params string[] audios)
 		{
 			return GetById((IEnumerable<string>)audios);
@@ -151,6 +153,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<ulong> aids = null, uint? count = null, uint? offset = null)
 		{
 			User user;
@@ -174,6 +177,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<Audio> Get(ulong uid, out User user, long? albumId = null, IEnumerable<ulong> aids = null, uint? count = null, uint? offset = null)
 		{
 			return InternalGet("uid", (long)uid, out user, albumId, aids, true, count, offset);
@@ -193,6 +197,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<Audio> Get(ulong uid, long? albumId = null, IEnumerable<ulong> aids = null, uint? count = null, uint? offset = null)
 		{
 			User user;
@@ -212,6 +217,7 @@
 		/// <param name="offset">Смещение относительно первой найденной аудиозаписи (для выборки определенного подмножества).</param>
 		/// <returns></returns>
 		[Pure]
+		[ApiVersion("5.40")]
 		private ReadOnlyCollection<Audio> InternalGet(
 			string paramId,
 			long id,
@@ -222,6 +228,7 @@
 			uint? count = null,
 			uint? offset = null)
 		{
+			// todo Порефакторить метод
 			var parameters = new VkParameters
 							 {
 								 { paramId, id },
@@ -259,7 +266,8 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getUploadServer"/>.
 		/// </remarks>
 		[Pure]
-		public string GetUploadServer()
+		[ApiVersion("5.40")]
+		public Uri GetUploadServer()
 		{
 			var response = _vk.Call("audio.getUploadServer", VkParameters.Empty);
 
