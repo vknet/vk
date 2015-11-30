@@ -1,4 +1,5 @@
 ﻿using VkNet.Enums;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -125,7 +126,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Url-адреса изображений-скриншотов из приложения.
 		/// </summary>
-		public string ScreenShots
+		public Photo ScreenShots
 		{ get; set; }
 
 		/// <summary>

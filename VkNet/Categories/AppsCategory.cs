@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -16,7 +17,7 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API.
 		/// </summary>
-		readonly VkApi _vk;
+		private readonly VkApi _vk;
 
 		/// <summary>
 		/// Методы для работы с приложениями.
@@ -39,8 +40,8 @@ namespace VkNet.Categories
 		/// К методу можно делать не более 60 запросов в минуту с одного IP или id.
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getCatalog" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<App> GetCatalog(out int totalCount, GetCatalogParams @params)
+		[ApiVersion("5.40")]
+		public IEnumerable<App> GetCatalog(out int totalCount, GetCatalogParams @params)
 		{
 			var parameters = new VkParameters
 			{
@@ -73,8 +74,8 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.get" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<App> Get(out int totalCount, GetParams @params)
+		[ApiVersion("5.40")]
+		public IEnumerable<App> Get(out int totalCount, GetParams @params)
 		{
 			var parameters = new VkParameters
 			{
@@ -101,20 +102,19 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.sendRequest" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.40")]
 		public ulong SendRequest(SendRequestParams @params)
 		{
-			//var parameters = new VkParameters
-			//{
-			//	{ "user_id", @params.UserId },
-			//	{ "text", @params.Text },
-			//	{ "type", @params.Type },
-			//	{ "name", @params.Name },
-			//	{ "key", @params.Key },
-			//	{ "separate", @params.Separate },
-			//};
-			//return _vk.Call("apps.sendRequest", parameters);
-			throw new NotImplementedException(); // TODO: Пока не понял как тестировать. 
+			var parameters = new VkParameters
+			{
+				{ "user_id", @params.UserId },
+				{ "text", @params.Text },
+				{ "type", @params.Type },
+				{ "name", @params.Name },
+				{ "key", @params.Key },
+				{ "separate", @params.Separate }
+			};
+			return _vk.Call("apps.sendRequest", parameters); 
 		}
 
 		/// <summary>
@@ -124,7 +124,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.deleteAppRequests" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.40")]
 		public bool DeleteAppRequests()
 		{
 			var parameters = new VkParameters();
@@ -144,7 +144,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getFriendsList" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<long> GetFriendsList(out int totalCount, AppRequestType type, int count = 20, int offset = 0)
 		{
 			var parameters = new VkParameters
@@ -177,7 +177,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getFriendsList" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.40")]
 		public ReadOnlyCollection<User> GetFriendsListEx(out int totalCount, AppRequestType type, int count = 20, int offset = 0, UsersFields fields = null)
 		{
 			var parameters = new VkParameters
@@ -232,16 +232,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Метод возвращает количество очков пользователя в этой игре.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя. </param>
+		/// <param name="userId">Идентификатор пользователя.</param>
 		/// <returns>
 		/// Возвращает результат выполнения метода.
 		/// </returns>
-		/// <exception cref="System.NotImplementedException"></exception>
 		/// <remarks>
-		/// Метод доступен только приложениям, размещенным в игровом каталоге. 
+		/// Метод доступен только приложениям, размещенным в игровом каталоге.
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getScore" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.40")]
 		public long GetScore(long userId)
 		{
             VkErrors.ThrowIfNumberIsNegative(() => userId);

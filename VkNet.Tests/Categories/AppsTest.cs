@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories
 		{
 
 			const string url =
-				"https://api.vk.com/method/apps.getCatalog?sort=popular_today&offset=0&count=100&platform=web&extended=0&return_friends=0&v=5.37&access_token=token";
+				"https://api.vk.com/method/apps.getCatalog?sort=popular_today&offset=0&count=100&platform=web&extended=0&return_friends=0&v=5.40&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -102,7 +102,7 @@ namespace VkNet.Tests.Categories
 		{
 
 			const string url =
-				"https://api.vk.com/method/apps.get?app_ids=4268118&platform=web&extended=0&return_friends=0&v=5.37&access_token=token";
+				"https://api.vk.com/method/apps.get?app_ids=4268118&platform=web&extended=0&return_friends=0&v=5.40&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -139,7 +139,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteAppRequests_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/apps.deleteAppRequests?v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/apps.deleteAppRequests?v=5.40&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -153,7 +153,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetFriendsList_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/apps.getFriendsList?extended=0&offset=0&type=invite&count=20&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/apps.getFriendsList?extended=0&offset=0&type=invite&count=20&v=5.40&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -171,7 +171,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetFriendsListEx_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/apps.getFriendsList?extended=1&offset=1&type=invite&count=5&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/apps.getFriendsList?extended=1&offset=1&type=invite&count=5&v=5.40&access_token=token";
 			const string json =
 				@"{
 					'response': {
