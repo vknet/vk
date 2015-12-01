@@ -72,13 +72,13 @@
         /// </summary>
         /// <param name="videoId">Идентификатор видеозаписи.</param>
         /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит видеозапись.
-        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
+        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например,
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
         /// <param name="name">Новое название для видеозаписи.</param>
-        /// <param name="desc">Новое описание для видеозаписи.</param>
-        /// <param name="privacyView">Настройки приватности для просмотра. 
-        /// Могут принимать следующие значения: 
+        /// <param name="description">Новое описание для видеозаписи.</param>
+        /// <param name="privacyView">Настройки приватности для просмотра.
+        /// Могут принимать следующие значения:
         /// <list type="number">
         ///     <item>
         ///         Простые значения приватности:
@@ -90,16 +90,16 @@
         ///         </list>
         ///     </item>
         ///     <item>
-        ///         Для того, чтобы разрешить доступ только определённым друзьям необходимо указать значение параметра в соответствующем формате: 
+        ///         Для того, чтобы разрешить доступ только определённым друзьям необходимо указать значение параметра в соответствующем формате:
         /// users: friendId, friendId, ...
         ///     </item>
         ///     <item>
-        ///         Для того, чтобы разрешить доступ только определённым спискам друзей необходимо указать значение параметра в соответствующем формате: 
+        ///         Для того, чтобы разрешить доступ только определённым спискам друзей необходимо указать значение параметра в соответствующем формате:
         /// lists: listId, flistId, ... Списки друзей Вы можете получить используя метод <see cref="FriendsCategory.GetLists"/>.
         /// </item>
         /// </list>
         /// </param>
-        /// <param name="privacyComment">Настройки приватности для добавления комментариев  видео. 
+        /// <param name="privacyComment">Настройки приватности для добавления комментариев  видео.
         /// Формат задания тот же, что и для <paramref name="privacyView"/>.
         /// </param>
         /// <param name="isRepeat">Зацикливание воспроизведения видеозаписи.</param>
@@ -109,7 +109,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.edit"/>.
         /// </remarks>
         [ApiVersion("5.9")]
-        public bool Edit(long videoId, long? ownerId = null, string name = null, string desc = null, string privacyView = null, string privacyComment = null, bool isRepeat = false)
+        public bool Edit(long videoId, long? ownerId = null, string name = null, string description = null, string privacyView = null, string privacyComment = null, bool isRepeat = false)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
@@ -118,7 +118,7 @@
                     {"video_id", videoId},
                     {"owner_id", ownerId},
                     {"name", name},
-                    {"desc", desc},
+                    {"desc", description},
                     {"privacy_view", privacyView},
                     {"privacy_comment", privacyComment},
                     {"repeat", isRepeat}
