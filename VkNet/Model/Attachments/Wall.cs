@@ -46,26 +46,28 @@
         public Collection<Attachment> Attachments { get; set; }
 
 #warning add properties to wall class, see MessagesCategoryTest.GetHistory_ContainsRepost_Error46 method.
-        // TODO add properties, 
+        // TODO add properties,
 
         internal static Wall FromJson(VkResponse response)
-        {
-            var wall = new Wall();
+		{
+			var wall = new Wall
+			{
 
-            wall.Id = response["id"];
-            wall.FromId = response["from_id"];
-            wall.ToId = response["to_id"];
-            wall.Date = response["date"];
-            wall.PostType = response["post_type"];
-            wall.Text = response["text"];
+				Id = response["id"],
+				FromId = response["from_id"],
+				ToId = response["to_id"],
+				Date = response["date"],
+				PostType = response["post_type"],
+				Text = response["text"],
 
-            wall.Attachments = response["attachments"];
-            wall.Comments = response["comments"];
-            wall.Likes = response["likes"];
-            wall.Reposts = response["reposts"];
-            wall.PostSource = response["post_source"];
+				Attachments = response["attachments"],
+				Comments = response["comments"],
+				Likes = response["likes"],
+				Reposts = response["reposts"],
+				PostSource = response["post_source"]
+			};
 
-            return wall;
-        }
-    }
+			return wall;
+		}
+	}
 }

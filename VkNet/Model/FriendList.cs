@@ -20,15 +20,16 @@ namespace VkNet.Model
         #region Internal Methods
 
         internal static FriendList FromJson(VkResponse response)
-        {
-            var list = new FriendList();
+		{
+			var list = new FriendList
+			{
+				Id = response["lid"],
+				Name = response["name"]
+			};
 
-            list.Id = response["lid"];
-            list.Name = response["name"];
+			return list;
+		}
 
-            return list;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

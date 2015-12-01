@@ -24,7 +24,7 @@ namespace VkNet.Model
         {
             var settings = new PushSettings
             {
-                Sound = response.ContainsKey("sound") ? response["sound"] : false,
+                Sound = response.ContainsKey("sound") && response["sound"],
                 DisabledUntil = response.ContainsKey("disabled_until") ? response["disabled_until"] : null
             };
             return settings;

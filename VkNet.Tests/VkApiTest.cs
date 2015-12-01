@@ -200,7 +200,7 @@ namespace VkNet.Tests
 
 			var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == resultJson);
 			var api = new VkApi { Browser = browser };
-			IDictionary<string, string> parameters = new Dictionary<string, string> { { "count", "23" } };
+			var parameters = new Dictionary<string, string> { { "count", "23" } };
 			var json = api.Invoke("example.get", parameters, true);
 
 			json.ShouldEqual(resultJson);

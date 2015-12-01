@@ -39,7 +39,7 @@ namespace VkNet.Tests.Utils
         [Test]
         public void Authorize_InvalidLoginOrPassword_NotAuthorizedAndAuthorizationNotRequired()
         {
-            const string urlWithBadLoginOrPassword = "http://oauth.vk.com/oauth/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&m=4&email=mail";            
+            const string urlWithBadLoginOrPassword = "http://oauth.vk.com/oauth/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&m=4&email=mail";
 
             var authorization = VkAuthorization.From(new Uri(urlWithBadLoginOrPassword));
 
@@ -52,7 +52,7 @@ namespace VkNet.Tests.Utils
         public void Authorize_BadUserId_ThrowVkApiException()
         {
             const string urlWithBadUserId = "http://oauth.vk.com/blank.html#access_token=token&expires_in=86400&user_id=4793858sd";
-            
+
             var authorization = VkAuthorization.From(new Uri(urlWithBadUserId));
 
             var userId = authorization.UserId;
@@ -62,9 +62,9 @@ namespace VkNet.Tests.Utils
         public void Authorize_RightInput_AccessToken()
         {
             const string returnUrl = "http://oauth.vk.com/blank.html#access_token=token&expires_in=86400&user_id=4793858";
-            
+
             var authorization = VkAuthorization.From(new Uri(returnUrl));
-            
+
             Assert.IsTrue(authorization.IsAuthorized);
 
             Assert.That(authorization.AccessToken, Is.EqualTo("token"));

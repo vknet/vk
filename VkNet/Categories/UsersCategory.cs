@@ -93,19 +93,19 @@ namespace VkNet.Categories
 		/// Получает настройки текущего пользователя в данном приложении. .
 		/// </summary>
 		/// <param name="uid">Идентификатор пользователя, информацию о настройках которого необходимо получить.</param>
-		/// <returns>После успешного выполнения возвращает битовую маску настроек текущего пользователя в данном приложении. 
-		/// 
+		/// <returns>После успешного выполнения возвращает битовую маску настроек текущего пользователя в данном приложении.
+		///
 		/// Пример:
-		/// Если Вы хотите получить права на Доступ к друзьям и Доступ к статусам пользователя, то Ваша битовая маска будет 
-		/// равна: 2 + 1024 = 1026. 
-		/// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к друзьям — Вы можете сделать 1026 &amp; 2. 
+		/// Если Вы хотите получить права на Доступ к друзьям и Доступ к статусам пользователя, то Ваша битовая маска будет
+		/// равна: 2 + 1024 = 1026.
+		/// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к друзьям — Вы можете сделать 1026 &amp; 2.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getUserSettings"/>.
 		/// </remarks>
 		[Pure]
 		public int GetUserSettings(long uid)
-		{   
+		{
 			var parameters = new VkParameters { { "uid", uid } };
 
 			return _vk.Call("getUserSettings", parameters);
@@ -115,8 +115,8 @@ namespace VkNet.Categories
 		/// Возвращает информацию о том, установил ли пользователь приложение.
 		/// </summary>
 		/// <param name="userId">Идентификатор пользователя.</param>
-		/// <returns>После успешного выполнения возвращает true в случае, если пользователь установил у себя данное приложение, 
-		/// иначе false. 
+		/// <returns>После успешного выполнения возвращает true в случае, если пользователь установил у себя данное приложение,
+		/// иначе false.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/isAppUser"/>.
@@ -124,7 +124,7 @@ namespace VkNet.Categories
 		[Pure]
 		[ApiVersion("5.9")]
 		public bool IsAppUser(long userId)
-		{   
+		{
 			var parameters = new VkParameters { { "user_id", userId } };
 
 			var response = _vk.Call("users.isAppUser", parameters);
@@ -201,8 +201,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 				{
-					{ "user_ids", screenNames }, 
-					{ "fields", fields }, 
+					{ "user_ids", screenNames },
+					{ "fields", fields },
 					{ "name_case", nameCase }
 				};
 
@@ -212,23 +212,6 @@ namespace VkNet.Categories
 
 #if false
 		// todo start shit
-		[Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
-		[ApiVersion("5.9")]
-		public async Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null)
-		{
-			if (screenNames == null)
-				throw new ArgumentNullException("screenNames");
-
-			var parameters = new VkParameters
-				{
-					{ "user_ids", screenNames }, 
-					{ "fields", fields }, 
-					{ "name_case", nameCase }
-				};
-
-			VkResponseArray response = await _vk.CallAsync("users.get", parameters);
-			return response.ToReadOnlyCollectionOf<User>(x => x);
-		}
 #endif
 
 		// todo end shit
@@ -252,7 +235,7 @@ namespace VkNet.Categories
 			return users.Count > 0 ? users[0] : null;
 		}
 
-		
+
 			// todo add tests for subscriptions for users
 		/// <summary>
 		/// Возвращает список идентификаторов пользователей и групп, которые входят в список подписок пользователя.
@@ -281,7 +264,7 @@ namespace VkNet.Categories
 				};
 
 			VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
-			
+
 			return response.ToReadOnlyCollectionOf<Group>(x => x);
 		}
 

@@ -39,7 +39,7 @@ namespace VkNet.Model
 
         /// <summary>
         /// Идентификатор пользователя или сообщества, в ответ которому оставлен текущий комментарий (если применимо).
-        /// </summary>     
+        /// </summary>
         public long? ReplyToUserId { get; set; }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace VkNet.Model
         public long? ReplyToCommentId { get; set; }
 
         /// <summary>
-        /// Объект, содержащий информацию о медиавложениях в комментарии. См. описание формата медиавложений. 
+        /// Объект, содержащий информацию о медиавложениях в комментарии. См. описание формата медиавложений.
         /// </summary>
         public Collection<Attachment> Attachments { get; set; }
 
@@ -72,22 +72,23 @@ namespace VkNet.Model
         #region Методы
 
         internal static Comment FromJson(VkResponse response)
-        {
-            var comment = new Comment();
+		{
+			var comment = new Comment
+			{
+				Id = response["id"],
+				FromId = response["from_id"],
+				Date = response["date"],
+				Text = response["text"],
+				ReplyToUserId = response["reply_to_user"],
+				ReplyToCommentId = response["reply_to_comment"],
+				Attachments = response["attachments"],
 
-            comment.Id = response["id"];
-            comment.FromId = response["from_id"];
-            comment.Date = response["date"];
-            comment.Text = response["text"];
-            comment.ReplyToUserId = response["reply_to_user"];
-            comment.ReplyToCommentId = response["reply_to_comment"];
-            comment.Attachments = response["attachments"];
+				Likes = response["likes"] // установлено экcпериментальным путем
+			};
 
-            comment.Likes = response["likes"]; // установлено экcпериментальным путем
+			return comment;
+		}
 
-            return comment;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -47,7 +47,7 @@ namespace VkNet.Categories
 		{
 			if(listId != null && listId < 0)
 				throw new ArgumentOutOfRangeException("listId", "listId must be a positive number.");
-			
+
 			var parameters = new VkParameters { { "user_id", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order }, {"list_id", listId} , {"name_case", nameCase}};
 
 			var response = _vk.Call("friends.get", parameters);
@@ -66,8 +66,8 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getAppUsers"/>.
-		/// </remarks>      
-		[Pure] 
+		/// </remarks>
+		[Pure]
 		public ReadOnlyCollection<long> GetAppUsers()
 		{
 			VkResponseArray response = _vk.Call("friends.getAppUsers", VkParameters.Empty);
@@ -108,7 +108,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getMutual"/>.
 		/// </remarks>
-		[Pure]  
+		[Pure]
 		public ReadOnlyCollection<long> GetMutual(long targetUid, long sourceUid)
 		{
 			var parameters = new VkParameters { { "target_uid", targetUid }, { "source_uid", sourceUid } };
@@ -118,7 +118,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает информацию о том добавлен ли текущий пользователь в друзья у указанных пользователей. 
+		/// Возвращает информацию о том добавлен ли текущий пользователь в друзья у указанных пользователей.
 		/// Также возвращает информацию о наличии исходящей или входящей заявки в друзья (подписки).
 		/// </summary>
 		/// <param name="uids">Список проверяемых идентификаторов пользователей.</param>
@@ -274,7 +274,7 @@ namespace VkNet.Categories
 		public AddFriendStatus Add(long userId, string text = "", long? captchaSid = null, string captchaKey = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
-			
+
 			var parameters = new VkParameters
 				{
 					{"user_id", userId},
@@ -350,28 +350,28 @@ namespace VkNet.Categories
 			return response.ToReadOnlyCollectionOf<long>(x => x);
 		}
 
-		
+
 		/// <summary>
 		/// Возвращает информацию о полученных или отправленных заявках на добавление в друзья для текущего пользователя
 		/// </summary>
 		/// <param name="count">Максимальное количество заявок на добавление в друзья, которые необходимо получить (не более 1000)</param>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества заявок на добавление в друзья</param>
-		/// <param name="extended">Определяет, требуется ли возвращать в ответе сообщения от пользователей, подавших заявку на добавление 
+		/// <param name="extended">Определяет, требуется ли возвращать в ответе сообщения от пользователей, подавших заявку на добавление
 		/// в друзья. И отправителя рекомендации при <c>suggested</c>=<c>true</c>.</param>
-		/// <param name="needMutual">Определяет, требуется ли возвращать в ответе список общих друзей, если они есть. Обратите внимание, 
+		/// <param name="needMutual">Определяет, требуется ли возвращать в ответе список общих друзей, если они есть. Обратите внимание,
 		/// что при использовании need_mutual будет возвращено не более 20 заявок.</param>
-		/// <param name="out"><c>false</c> — возвращать полученные заявки в друзья (по умолчанию), <c>true</c> — возвращать отправленные пользователем 
+		/// <param name="out"><c>false</c> — возвращать полученные заявки в друзья (по умолчанию), <c>true</c> — возвращать отправленные пользователем
 		/// заявки.</param>
-		/// <param name="sort"><c>false</c> — сортировать по дате добавления, <c>true</c> — сортировать по количеству общих друзей. (Если <c>out</c> = <c>true</c>, 
+		/// <param name="sort"><c>false</c> — сортировать по дате добавления, <c>true</c> — сортировать по количеству общих друзей. (Если <c>out</c> = <c>true</c>,
 		/// данный параметр не учитывается).</param>
-		/// <param name="suggested"><c>true</c> — возвращать рекомендованных другими пользователями друзей, <c>false</c> — возвращать заявки в друзья 
+		/// <param name="suggested"><c>true</c> — возвращать рекомендованных другими пользователями друзей, <c>false</c> — возвращать заявки в друзья
 		/// (по умолчанию).</param>
 		/// <returns>
-		/// - Если не установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по 
+		/// - Если не установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по
 		/// времени подачи заявки список идентификаторов (id) пользователей (кому или от кого пришла заявка).
-		/// - Если установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по 
-		/// времени подачи заявки массив объектов, содержащих информацию о заявках на добавление в друзья. Каждый из объектов содержит 
-		/// поле uid, являющийся идентификатором пользователя. При наличии общих друзей, в объекте будет содержаться поле mutual, в 
+		/// - Если установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по
+		/// времени подачи заявки массив объектов, содержащих информацию о заявках на добавление в друзья. Каждый из объектов содержит
+		/// поле uid, являющийся идентификатором пользователя. При наличии общих друзей, в объекте будет содержаться поле mutual, в
 		/// котором будет находиться список идентификаторов общих друзей.
 		/// </returns>
 		/// <remarks>

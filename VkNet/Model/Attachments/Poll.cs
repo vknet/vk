@@ -29,7 +29,7 @@ namespace VkNet.Model.Attachments
         /// Кол-во ответов
         /// </summary>
         public int? Votes { get; set; }
-    
+
         /// <summary>
         /// Идентификатор выбранного ответа
         /// </summary>

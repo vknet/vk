@@ -23,15 +23,16 @@ namespace VkNet.Model
         #region Методы
 
         internal static Status FromJson(VkResponse response)
-        {
-            var status = new Status();
+		{
+			var status = new Status
+			{
+				Text = response["text"],
+				Audio = response["audio"]
+			};
 
-            status.Text = response["text"];
-            status.Audio = response["audio"];
+			return status;
+		}
 
-            return status;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

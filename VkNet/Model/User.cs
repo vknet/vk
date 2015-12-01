@@ -346,13 +346,14 @@
 
 		internal static User FromJson(VkResponse response)
 		{
-			var user = new User();
+			var user = new User
+			{
+				// ---- стандартные поля ----
+				Id = response["uid"] ?? response["id"] ?? 0,
 
-			// ---- стандартные поля ----
-			user.Id = response["uid"] ?? response["id"] ?? 0;
-
-			user.FirstName = response["first_name"];
-			user.LastName = response["last_name"];
+				FirstName = response["first_name"],
+				LastName = response["last_name"]
+			};
 
 			if (response["name"] != null)
 			{
@@ -369,7 +370,7 @@
 
 			user.Sex = response["sex"];
 			user.BirthDate = response["bdate"];
-			user.City =response["city"];
+			user.City = response["city"];
 			user.Country = response["country"];
 			user.PhotoPreviews = response;
 			user.Online = response["online"];

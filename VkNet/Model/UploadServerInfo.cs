@@ -24,15 +24,16 @@
 
         #region Methods
         internal static UploadServerInfo FromJson(VkResponse response)
-        {
-            var info = new UploadServerInfo();
+		{
+			var info = new UploadServerInfo
+			{
+				UploadUrl = response["upload_url"],
+				AlbumId = Utilities.GetNullableLongId(response["album_id"] ?? response["aid"]),
+				UserId = Utilities.GetNullableLongId(response["user_id"] ?? response["mid"])
+			};
 
-            info.UploadUrl = response["upload_url"];
-            info.AlbumId = Utilities.GetNullableLongId(response["album_id"] ?? response["aid"]);
-            info.UserId = Utilities.GetNullableLongId(response["user_id"] ?? response["mid"]);
-
-            return info;
-        }
-        #endregion
-    }
+			return info;
+		}
+		#endregion
+	}
 }

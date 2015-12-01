@@ -131,7 +131,7 @@ namespace VkNet.Tests.Categories
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
 			int total;
-			var app = mock.Get(out total, new GetParams() { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
+			var app = mock.Get(out total, new GetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("raventestapp"));
 		}

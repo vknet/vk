@@ -56,33 +56,33 @@
         #region Методы
 
         internal static Chat FromJson(VkResponse response)
-        {
-            var chat = new Chat();
+		{
+			var chat = new Chat
+			{
+				Id = response["id"],
+				Type = response["type"],
+				Title = response["title"],
+				AdminId = Utilities.GetNullableLongId(response["admin_id"]),
+				Users = response["users"],
 
-            chat.Id = response["id"];
-            chat.Type = response["type"];
-            chat.Title = response["title"];
-            chat.AdminId = Utilities.GetNullableLongId(response["admin_id"]);
-            chat.Users = response["users"];
+				#region Поля найденые експерементально
 
-            #region Поля найденые експерементально
+				Left = response.ContainsKey("left") && response["left"]
+			};
+			if (response.ContainsKey("push_settings"))
+			{
+				chat.Sound = response["push_settings"]["sound"];
+				chat.DisabledUntil = response["push_settings"]["disabled_until"];
+			} else
+			{
+				chat.Sound = null;
+				chat.DisabledUntil = null;
+			}
+			#endregion
 
-            chat.Left = response.ContainsKey("left") ? response["left"] : false;
-            if (response.ContainsKey("push_settings"))
-            {
-                chat.Sound = response["push_settings"]["sound"];
-                chat.DisabledUntil = response["push_settings"]["disabled_until"];
-            }
-            else
-            {
-                chat.Sound = null;
-                chat.DisabledUntil = null;
-            }
-            #endregion
+			return chat;
+		}
 
-            return chat;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -10,7 +10,7 @@ namespace VkNet.Tests.Enum.Filters
         [SetUp]
         public void SetUp()
         {
-            
+
         }
 
         [Test]

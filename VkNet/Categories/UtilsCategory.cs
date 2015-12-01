@@ -60,7 +60,7 @@ namespace VkNet.Categories
             if (response == null) return null;
             return response;
         }
-        
+
         /// <summary>
         /// Возвращает текущее время на сервере ВКонтакте в unixtime.
         /// </summary>

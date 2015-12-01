@@ -26,7 +26,7 @@ namespace VkNet.Model.Attachments
         public string Photo130 { get; set; }
 
         /// <summary>
-        /// Адрес полноразмерного изображения. 
+        /// Адрес полноразмерного изображения.
         /// </summary>
         public string Photo604 { get; set; }
 

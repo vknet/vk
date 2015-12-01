@@ -36,10 +36,10 @@ namespace VkNet.Tests.Enum.Filters
         public void ToString_All()
         {
             var all = ProfileFields.All;
-			const string expected = 
-                "uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig," + 
-                "photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections," + 
-                "site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message," + 
+			const string expected =
+                "uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig," +
+                "photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections," +
+                "site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message," +
                 "status,last_seen,common_count,relation,relatives,counters,nickname,timezone";
 
             var s = all.ToString();
@@ -54,14 +54,14 @@ namespace VkNet.Tests.Enum.Filters
 			const string expected =
                 "uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig," +
                 "photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections," +
-                "site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message," + 
-                "status,last_seen,common_count,relation,relatives,counters,nickname,timezone,lang,online_mobile,online_app," + 
+                "site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message," +
+                "status,last_seen,common_count,relation,relatives,counters,nickname,timezone,lang,online_mobile,online_app," +
                 "relation_partner,personal,interests,music,activities,movies,tv,books,games,about,quotes,invited_by";
 
             var actual = all.ToString();
 
 			Assert.That(actual, Is.EqualTo(expected));
         }
- 
+
     }
 }

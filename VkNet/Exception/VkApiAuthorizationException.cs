@@ -6,7 +6,7 @@
     using Enums.Filters;
 
     /// <summary>
-    /// Исключение, которое выбрасывается при попытке неудачной авторизации, когда указан неправильный логин или пароль 
+    /// Исключение, которое выбрасывается при попытке неудачной авторизации, когда указан неправильный логин или пароль
     /// при вызове метода <see cref="VkApi.Authorize(int,string,string,Settings,long?,string)"/>.
     /// </summary>
     [Serializable]
@@ -39,7 +39,7 @@
         /// Инициализирует новый экземпляр класса <see cref="AccessTokenInvalidException"/> на основе ранее сериализованных данных.
         /// </summary>
         /// <param name="info">Содержит все данные, необходимые для десериализации.</param>
-        /// <param name="context">Описывает источник и назначение данного сериализованного потока и предоставляет дополнительный, 
+        /// <param name="context">Описывает источник и назначение данного сериализованного потока и предоставляет дополнительный,
         /// определяемый вызывающим, контекст.</param>
         protected VkApiAuthorizationException(SerializationInfo info, StreamingContext context) : base(info, context)
         {

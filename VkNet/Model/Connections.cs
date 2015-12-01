@@ -6,8 +6,8 @@
 
 	/// <summary>
 	/// Информация о социальных контактах пользователя.
-	/// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/> 
-	/// и <see href="http://vk.com/dev/fields"/>. Последняя страница обманывает насчет поля 'connections'. 
+	/// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/>
+	/// и <see href="http://vk.com/dev/fields"/>. Последняя страница обманывает насчет поля 'connections'.
 	/// Экспериментально установлено, что поля находятся непосредственно в полях объекта User.
 	/// </summary>
 	[Serializable]
@@ -42,13 +42,14 @@
 
 		internal static Connections FromJson(VkResponse response)
 		{
-			var connections = new Connections();
-
-			connections.Skype = response["skype"];
-			connections.FacebookId = Utilities.GetNullableLongId(response["facebook"]);
-			connections.FacebookName = response["facebook_name"];
-			connections.Twitter = response["twitter"];
-			connections.Instagram = response["instagram"];
+			var connections = new Connections
+			{
+				Skype = response["skype"],
+				FacebookId = Utilities.GetNullableLongId(response["facebook"]),
+				FacebookName = response["facebook_name"],
+				Twitter = response["twitter"],
+				Instagram = response["instagram"]
+			};
 
 			return connections;
 		}

@@ -33,17 +33,18 @@
         #region Методы
 
         internal static Contact FromJson(VkResponse response)
-        {
-            var contact = new Contact();
+		{
+			var contact = new Contact
+			{
+				UserId = response["user_id"],
+				Description = response["desc"],
+				Email = response["email"],
+				Phone = response["phone"]
+			};
 
-            contact.UserId = response["user_id"];
-            contact.Description = response["desc"];
-            contact.Email = response["email"];
-            contact.Phone = response["phone"]; ;
+			return contact;
+		}
 
-            return contact;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

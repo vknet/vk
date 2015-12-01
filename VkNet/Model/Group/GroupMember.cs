@@ -44,7 +44,7 @@
 		/// <returns></returns>
 		internal static GroupMember FromJson(VkResponse response)
 		{
-			var group = new GroupMember()
+			var group = new GroupMember
 			{
 				UserId = response["user_id"],
 				Member = response["member"],

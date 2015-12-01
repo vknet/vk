@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Информация о предложениях. 
+	/// Информация о предложениях.
 	/// </summary>
 	public class InformationAboutOffers
 	{

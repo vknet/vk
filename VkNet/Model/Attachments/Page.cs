@@ -93,29 +93,31 @@ namespace VkNet.Model.Attachments
         #region Методы
 
         internal static Page FromJson(VkResponse response)
-        {
-            var page = new Page();
+		{
+			var page = new Page
+			{
 
-            page.Id = response["pid"] ?? response["page_id"] ?? response["id"];
-            page.GroupId = response["group_id"] ?? response["gid"];
-            page.CreatorId = response["creator_id"];
-            page.Title = response["title"];
-            page.Source = response["source"];
-            page.CurrentUserCanEdit = response["current_user_can_edit"];
-            page.CurrentUserCanEditAccess = response["current_user_can_edit_access"];
-            page.WhoCanView = response["who_can_view"];
-            page.WhoCanEdit = response["who_can_edit"];
-            page.EditorId = response["editor_id"];
-            page.Edited = response["edited"];
-            page.CreateTime = response["created"];
-            page.Parent = response["parent"];
-            page.Parent2 = response["parent2"];
+				Id = response["pid"] ?? response["page_id"] ?? response["id"],
+				GroupId = response["group_id"] ?? response["gid"],
+				CreatorId = response["creator_id"],
+				Title = response["title"],
+				Source = response["source"],
+				CurrentUserCanEdit = response["current_user_can_edit"],
+				CurrentUserCanEditAccess = response["current_user_can_edit_access"],
+				WhoCanView = response["who_can_view"],
+				WhoCanEdit = response["who_can_edit"],
+				EditorId = response["editor_id"],
+				Edited = response["edited"],
+				CreateTime = response["created"],
+				Parent = response["parent"],
+				Parent2 = response["parent2"],
 
-            page.Html = response["html"]; // установлено экcпериментальным путем
-            page.ViewUrl = response["view_url"];
-	        page.VersionCreated = response["version_created"];
-            return page;
-        }
+				Html = response["html"], // установлено экcпериментальным путем
+				ViewUrl = response["view_url"],
+				VersionCreated = response["version_created"]
+			};
+			return page;
+		}
 
 		/// <summary>
 		/// Преобразовать в строку.

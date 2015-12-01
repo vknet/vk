@@ -40,7 +40,7 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore("Метод не требует AccessToken")]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			// 
+			//
 			int totalCount;
 			This.Action(() => _defaultWall.Get(1, out totalCount)).Throws<AccessTokenInvalidException>();
 
@@ -927,12 +927,12 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var records = GetMockedWallCategory(url, json).GetById(
-				new[] 
+				new[]
 				{
 					new KeyValuePair<long, long>(1, 619),
-					new KeyValuePair<long, long>(1, 617), 
+					new KeyValuePair<long, long>(1, 617),
 					new KeyValuePair<long, long>(1,616)
-					
+
 				});
 
 			Assert.That(records.Count == 3);
@@ -1036,7 +1036,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: null, url: null), Throws.ArgumentException);
 			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: null, url: string.Empty), Throws.ArgumentException);
 			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: null), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);	
+			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);
 		}
 
 		[Test]
@@ -1072,7 +1072,7 @@ namespace VkNet.Tests.Categories
 		#endregion
 
 		#region Wall.Repost
-		
+
 		[Test]
 		public void Repost_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -1196,21 +1196,21 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void Restore_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			This.Action(() => _defaultWall.Restore()).Throws<AccessTokenInvalidException>();
+			This.Action(_defaultWall.Restore).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
 		[Ignore]
 		public void AddComment_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			This.Action(() => _defaultWall.AddComment()).Throws<AccessTokenInvalidException>();
+			This.Action(_defaultWall.AddComment).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
 		[Ignore]
 		public void RestoreComment_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-            This.Action(() => _defaultWall.RestoreComment()).Throws<AccessTokenInvalidException>();
+            This.Action(_defaultWall.RestoreComment).Throws<AccessTokenInvalidException>();
 		}
 
 		//[Test]
@@ -1224,14 +1224,14 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void AddLike_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-            This.Action(() => _defaultWall.AddLike()).Throws<AccessTokenInvalidException>();
+            This.Action(_defaultWall.AddLike).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
 		[Ignore]
 		public void DeleteLike_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			This.Action(() => _defaultWall.DeleteLike()).Throws<AccessTokenInvalidException>();
+			This.Action(_defaultWall.DeleteLike).Throws<AccessTokenInvalidException>();
 		}
 
 	    [Test]
@@ -1411,7 +1411,7 @@ namespace VkNet.Tests.Categories
                         }
                       ]
                     }
-                  }";           
+                  }";
 			var posts = GetMockedWallCategory(url, json).Get(new WallGetParams
 			{
 				OwnerId = 26033241,

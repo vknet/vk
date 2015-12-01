@@ -52,19 +52,20 @@ namespace VkNet.Model.Attachments
 
         internal static Document FromJson(VkResponse response)
         {
-            var document = new Document();
+	        var document = new Document
+	        {
+		        Id = response["did"] ?? response["id"],
+		        OwnerId = response["owner_id"],
+		        Title = response["title"],
+		        Size = response["size"],
+		        Ext = response["ext"],
+		        Url = response["url"],
+		        Photo100 = response["photo_100"],
+		        Photo130 = response["photo_130"],
+		        AccessKey = response["access_key"]
+	        };
 
-            document.Id = response["did"] ?? response["id"];
-            document.OwnerId = response["owner_id"];
-            document.Title = response["title"];
-            document.Size = response["size"];
-            document.Ext = response["ext"];
-            document.Url = response["url"];
-            document.Photo100 = response["photo_100"];
-            document.Photo130 = response["photo_130"];
-            document.AccessKey = response["access_key"];
-
-            return document;
+	        return document;
         }
 
         #endregion

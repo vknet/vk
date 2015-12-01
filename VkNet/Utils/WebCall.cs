@@ -29,19 +29,7 @@
         }
 
 #if false // async version for PostCall
-        public static async Task<string> PostCallAsync(string url, string parameters)
-        {
-            var content = new StringContent(parameters);
-            string output = string.Empty;
-            using (var client = new HttpClient())
-            {   
-                HttpResponseMessage response = await client.PostAsync(url, content);
-                output = await response.Content.ReadAsStringAsync();
-            }
-
-            return output;
-        }
-#endif
+        #endif
 
         public static WebCallResult PostCall(string url, string parameters)
         {
@@ -52,7 +40,7 @@
             call.Request.ContentLength = data.Length;
 
             using (var requestStream = call.Request.GetRequestStream())
-                requestStream.Write(data, 0, data.Length);                
+                requestStream.Write(data, 0, data.Length);
 
             return call.MakeRequest();
         }

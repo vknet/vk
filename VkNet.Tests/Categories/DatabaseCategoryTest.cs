@@ -390,7 +390,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var db = GetMockedDatabaseCategory(url, json);
-            var countries = db.GetCountries(codes: new List<Iso3166>()
+            var countries = db.GetCountries(codes: new List<Iso3166>
             {
 	            Iso3166.RU,
 				Iso3166.DE

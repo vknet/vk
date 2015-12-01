@@ -32,12 +32,13 @@ namespace VkNet.Model
 
 		internal static RepostResult FromJson(VkResponse response)
 		{
-			var result = new RepostResult();
-
-			result.Success = response["success"];
-			result.PostId = response["post_id"];
-			result.RepostsCount = response["reposts_count"];
-			result.LikesCount = response["likes_count"];
+			var result = new RepostResult
+			{
+				Success = response["success"],
+				PostId = response["post_id"],
+				RepostsCount = response["reposts_count"],
+				LikesCount = response["likes_count"]
+			};
 
 			return result;
 		}

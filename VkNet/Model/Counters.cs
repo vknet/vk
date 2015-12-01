@@ -3,9 +3,9 @@
 	using Utils;
 
 	/// <summary>
-	/// Количество различных объектов у пользователя. 
-	/// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/> и 
-	/// <see href="http://vk.com/dev/fields_groups"/>. 
+	/// Количество различных объектов у пользователя.
+	/// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/> и
+	/// <see href="http://vk.com/dev/fields_groups"/>.
 	/// Раздел counters.
 	/// </summary>
 	public class Counters
@@ -125,7 +125,7 @@
 		/// Запросов к приложению.
 		/// </summary>
 		public int? AppRequests { get; set; }
-		
+
 		#endregion
 
 		#region Методы

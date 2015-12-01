@@ -227,42 +227,43 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static Group FromJson(VkResponse response)
 		{
-			var group = new Group();
+			var group = new Group
+			{
+				Id = response["id"] ?? response["gid"],
+				Name = response["name"],
+				ScreenName = response["screen_name"],
+				IsClosed = response["is_closed"],
+				IsAdmin = response["is_admin"],
+				AdminLevel = response["admin_level"],
+				IsMember = response["is_member"],
+				Type = response["type"],
+				PhotoPreviews = response,
 
-			group.Id = response["id"] ?? response["gid"];
-			group.Name = response["name"];
-			group.ScreenName = response["screen_name"];
-			group.IsClosed = response["is_closed"];
-			group.IsAdmin = response["is_admin"];
-			group.AdminLevel = response["admin_level"];
-			group.IsMember = response["is_member"];
-			group.Type = response["type"];
-			group.PhotoPreviews = response;
-
-			// опциональные поля
-			group.CityId = response.ContainsKey("city") ? response["city"]["id"] : null;
-			group.CountryId = response.ContainsKey("country") ? response["country"]["id"] : null;
-			group.Place = response["place"];
-			group.Description = response["description"];
-			group.WikiPage = response["wiki_page"];
-			group.MembersCount = response["members_count"];
-			group.Counters = response["counters"];
-			group.StartDate = response["start_date"];
-			group.EndDate = response["finish_date"] ?? response["end_date"];
-			group.CanPost = response["can_post"];
-			group.CanSeelAllPosts = response["can_see_all_posts"];
-			group.CanUploadDocuments = response["can_upload_doc"];
-			group.CanCreateTopic = response["can_create_topic"];
-			group.Activity = response["activity"];
-			group.Status = response["status"];
-			group.Contacts = response["contacts"];
-			group.Links = response["links"];
-			group.FixedPostId = response["fixed_post"];
-			group.IsVerified = response["verified"];
-			group.Site = response["site"];
-			group.InvitedBy = response["invited_by"];
-			group.IsFavorite = response["is_favorite"];
-			group.BanInfo = response["ban_info"];
+				// опциональные поля
+				CityId = response.ContainsKey("city") ? response["city"]["id"] : null,
+				CountryId = response.ContainsKey("country") ? response["country"]["id"] : null,
+				Place = response["place"],
+				Description = response["description"],
+				WikiPage = response["wiki_page"],
+				MembersCount = response["members_count"],
+				Counters = response["counters"],
+				StartDate = response["start_date"],
+				EndDate = response["finish_date"] ?? response["end_date"],
+				CanPost = response["can_post"],
+				CanSeelAllPosts = response["can_see_all_posts"],
+				CanUploadDocuments = response["can_upload_doc"],
+				CanCreateTopic = response["can_create_topic"],
+				Activity = response["activity"],
+				Status = response["status"],
+				Contacts = response["contacts"],
+				Links = response["links"],
+				FixedPostId = response["fixed_post"],
+				IsVerified = response["verified"],
+				Site = response["site"],
+				InvitedBy = response["invited_by"],
+				IsFavorite = response["is_favorite"],
+				BanInfo = response["ban_info"]
+			};
 
 			return group;
 		}

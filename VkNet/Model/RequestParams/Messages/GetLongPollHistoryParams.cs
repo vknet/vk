@@ -50,7 +50,7 @@ namespace VkNet.Model.RequestParams.Messages
 		{ get; set; }
 
 		/// <summary>
-		/// Максимальный идентификатор сообщения среди уже имеющихся в локальной копии. Необходимо учитывать как сообщения, полученные через методы API (например messages.getDialogs, messages.getHistory), так и данные, полученные из Long Poll сервера (события с кодом 4). 
+		/// Максимальный идентификатор сообщения среди уже имеющихся в локальной копии. Необходимо учитывать как сообщения, полученные через методы API (например messages.getDialogs, messages.getHistory), так и данные, полученные из Long Poll сервера (события с кодом 4).
 		/// </summary>
 		public long? MaxMsgId
 		{ get; set; }

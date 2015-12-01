@@ -29,6 +29,6 @@
 		/// Творительный.
 		/// </summary>
 		public static readonly PhotoSearchRadius FiftyThousand = RegisterPossibleValue("50000");
-		
+
 	}
 }

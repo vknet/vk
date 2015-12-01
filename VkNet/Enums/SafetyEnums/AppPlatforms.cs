@@ -6,7 +6,7 @@ namespace VkNet.Enums
 	/// Платформа для которой необходимо вернуть приложения.
 	/// </summary>
 	/// <remarks>
-	/// По умолчанию используется web. 
+	/// По умолчанию используется web.
 	/// </remarks>
 	public sealed class AppPlatforms : SafetyEnum<AppPlatforms>
 	{

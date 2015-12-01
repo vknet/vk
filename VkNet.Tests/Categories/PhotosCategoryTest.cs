@@ -152,7 +152,7 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 	        int count;
-            var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams()
+            var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams
             {
 				OwnerId = 1
 			});
@@ -195,7 +195,7 @@ namespace VkNet.Tests.Categories
 					}
                   }";
 			int count;
-			var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams()
+			var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams
 			{
 				AlbumIds = new List<long>
 				{

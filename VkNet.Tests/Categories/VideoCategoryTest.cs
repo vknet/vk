@@ -13,7 +13,7 @@
     using Enums.Filters;
     using Enums.SafetyEnums;
     using Model.Attachments;
-    
+
 
     [TestFixture]
     public class VideoCategoryTest
@@ -501,7 +501,7 @@
              comments[0].FromId.ShouldEqual(24758120);
 			comments[0].Date.ShouldEqual(new DateTime(2013, 11, 19, 13, 22, 41, DateTimeKind.Utc).ToLocalTime());
              comments[0].Text.ShouldEqual("паша здаров!");
-             
+
              comments[1].Id.ShouldEqual(14716);
              comments[1].FromId.ShouldEqual(94278436);
 			comments[1].Date.ShouldEqual(new DateTime(2013, 11, 19, 13, 22, 52, DateTimeKind.Utc).ToLocalTime());
@@ -579,7 +579,7 @@
             result[0].Photo320.ShouldEqual(new Uri("http://cs505118.vk.me/u7160710/video/l_a02ed037.jpg"));
             result[0].AlbumId.ShouldEqual(50100051);
             result[0].Player.ShouldEqual(new Uri("http://vk.com/video_ext.php?oid=-59205334&id=166671614&hash=d609a7775bbb2e7d"));
-            
+
             result[1].Id.ShouldEqual(165458571);
             result[1].OwnerId.ShouldEqual(-49956637);
             result[1].Title.ShouldEqual("домашнее частное порно порно модель саша грей on-line любовь порно с сюжетом лесби порка стендап stand up клип группа");
@@ -591,7 +591,7 @@
             result[1].Photo130.ShouldEqual(new Uri("http://cs527502.vk.me/u65226705/video/s_1d867e81.jpg"));
             result[1].Photo320.ShouldEqual(new Uri("http://cs527502.vk.me/u65226705/video/l_ba2e1aff.jpg"));
             result[1].Player.ShouldEqual(new Uri("http://vk.com/video_ext.php?oid=-49956637&id=165458571&hash=dc6995a7cc9aed92"));
-            
+
             result[2].Id.ShouldEqual(166728490);
             result[2].OwnerId.ShouldEqual(-54257090);
             result[2].Title.ShouldEqual("Саша Грей | Sasha Grey #13");

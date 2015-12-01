@@ -38,7 +38,7 @@
         public long? TypeId { get; set; }
 
         /// <summary>
-        /// Идентификатор страны, название которой можно получить с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>. 
+        /// Идентификатор страны, название которой можно получить с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>.
         /// </summary>
         public long? CountryId { get; set; }
 
@@ -48,12 +48,12 @@
         public long? CityId { get; set; }
 
         /// <summary>
-        /// Строка с указанием адреса места в городе. 
+        /// Строка с указанием адреса места в городе.
         /// </summary>
         public string Address { get; set; }
 
         /// <summary>
-        /// Данный параметр указывается, если местоположение является прикреплённой картой. 
+        /// Данный параметр указывается, если местоположение является прикреплённой картой.
         /// </summary>
         public bool ShowMap { get; set; }
 
@@ -74,25 +74,26 @@
         #region Методы
 
         internal static Place FromJson(VkResponse response)
-        {
-            var place = new Place();
+		{
+			var place = new Place
+			{
+				Id = response["place_id"] ?? response["id"],
+				Title = response["title"],
+				Latitude = (int?)(double?)response["latitude"],       // TODO: refactor this shit
+				Longitude = (int?)(double?)response["longitude"],     // TODO: refactor this shit
+				TypeId = response["type"],
+				CountryId = response["country_id"],
+				CityId = response["city_id"],
+				Address = response["address"],
+				ShowMap = response["showmap"],
 
-            place.Id = response["place_id"] ?? response["id"];
-            place.Title = response["title"];
-            place.Latitude = (int?)(double?)response["latitude"];       // TODO: refactor this shit
-            place.Longitude = (int?)(double?)response["longitude"];     // TODO: refactor this shit
-            place.TypeId = response["type"];
-            place.CountryId = response["country_id"];
-            place.CityId = response["city_id"];
-            place.Address = response["address"];
-            place.ShowMap = response["showmap"];
+				Country = response["country"], // установлено экcпериментальным путем
+				City = response["city"] // установлено экcпериментальным путем
+			};
 
-            place.Country = response["country"]; // установлено экcпериментальным путем
-            place.City = response["city"]; // установлено экcпериментальным путем
+			return place;
+		}
 
-            return place;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

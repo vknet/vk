@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories
 		private FaveCategory GetMockedFaveCategory(string url, string json)
 		{
 			var browser = Mock.Of<IBrowser>(m => m.GetJson(url.Replace('\'', '"')) == json);
-			return new FaveCategory(new VkApi(){AccessToken = "token", Browser = browser});
+			return new FaveCategory(new VkApi {AccessToken = "token", Browser = browser});
 		}
 
 		[Test]

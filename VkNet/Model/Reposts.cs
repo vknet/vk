@@ -5,7 +5,7 @@
     using Utils;
 
     /// <summary>
-    /// Информация о репостах записи. 
+    /// Информация о репостах записи.
     /// См. описание <see href="http://vk.com/dev/post"/>. Раздел reposts.
     /// </summary>
     [Serializable]
@@ -24,15 +24,16 @@
         #region Методы
 
         internal static Reposts FromJson(VkResponse response)
-        {
-            var reposts = new Reposts();
+		{
+			var reposts = new Reposts
+			{
+				Count = response["count"],
+				UserReposted = response["user_reposted"]
+			};
 
-            reposts.Count = response["count"];
-            reposts.UserReposted = response["user_reposted"];
+			return reposts;
+		}
 
-            return reposts;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

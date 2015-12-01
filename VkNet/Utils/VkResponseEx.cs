@@ -39,7 +39,7 @@
         }
 
         public static ReadOnlyCollection<T> ToReadOnlyCollectionOf<T>(
-            this VkResponse response, Func<VkResponse, T> selector) where T : class 
+            this VkResponse response, Func<VkResponse, T> selector) where T : class
         {
             if (response == null)
                 return new ReadOnlyCollection<T>(new List<T>());

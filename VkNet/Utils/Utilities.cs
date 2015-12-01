@@ -28,7 +28,7 @@
 
         /// <summary>
         /// Получение идентификатора.
-        /// 
+        ///
         /// Применять когда id может быть задано как строкой так и числом в json'e.
         /// </summary>
         /// <param name="response"></param>
@@ -61,7 +61,7 @@
 
         public static string PreetyPrintJson(string json)
         {
-            // DELME: 
+            // DELME:
             var jObject = JObject.Parse(json);
             var preety = jObject.ToString();
             preety = preety.Replace('"', '\'');

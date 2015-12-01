@@ -23,15 +23,16 @@ namespace VkNet.Model
         #region Internal Methods
 
         internal static Country FromJson(VkResponse response)
-        {
-            var country = new Country();
+		{
+			var country = new Country
+			{
+				Id = response["cid"] ?? response["id"],
+				Title = response["title"] ?? response["name"]
+			};
 
-            country.Id = response["cid"] ?? response["id"];
-            country.Title = response["title"] ?? response["name"];
+			return country;
+		}
 
-            return country;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

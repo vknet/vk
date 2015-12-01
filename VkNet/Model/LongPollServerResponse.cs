@@ -3,8 +3,8 @@
     using VkNet.Utils;
 
     /// <summary>
-    /// Объект, с помощью которого можно подключиться к серверу быстрых сообщений для мгновенного 
-    /// получения приходящих сообщений и других событий.  
+    /// Объект, с помощью которого можно подключиться к серверу быстрых сообщений для мгновенного
+    /// получения приходящих сообщений и других событий.
     /// См. описание <see href="http://vk.com/dev/messages.getLongPollServer"/>.
     /// </summary>
     public class LongPollServerResponse
@@ -32,17 +32,18 @@
         #region Методы
 
         internal static LongPollServerResponse FromJson(VkResponse response)
-        {
-            var longPollServerResponse = new LongPollServerResponse();
+		{
+			var longPollServerResponse = new LongPollServerResponse
+			{
+				Key = response["key"],
+				Server = response["server"],
+				Ts = response["ts"],
+				Pts = response["pts"]
+			};
 
-            longPollServerResponse.Key = response["key"];
-            longPollServerResponse.Server = response["server"];
-            longPollServerResponse.Ts = response["ts"];
-            longPollServerResponse.Pts = response["pts"];  
+			return longPollServerResponse;
+		}
 
-            return longPollServerResponse;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -75,7 +75,7 @@
         [NonSerialized]
         private Reposts _Reposts;
         /// <summary>
-        /// Информация о репостах записи («Рассказать друзьям»). 
+        /// Информация о репостах записи («Рассказать друзьям»).
         /// </summary>
         public Reposts Reposts { get { return _Reposts; } set { _Reposts = value; } }
 
@@ -112,7 +112,7 @@
         /// <summary>
         /// Если запись закрепленная - вернет true
         /// </summary>
-        public bool IsPinned { get { return _IsPinned.HasValue ? _IsPinned.Value : false; } set { _IsPinned = value; } }
+        public bool IsPinned { get { return _IsPinned.HasValue && _IsPinned.Value; } set { _IsPinned = value; } }
 
         /// <summary>
         /// Идентификатор автора, если запись была опубликована от имени сообщества и подписана пользователем.
@@ -145,7 +145,7 @@
         public string CopyText { get; set; }
 
         /// <summary>
-        /// Массив, содержащий историю репостов для записи. Возвращается только в том случае, если запись является репостом. 
+        /// Массив, содержащий историю репостов для записи. Возвращается только в том случае, если запись является репостом.
         /// </summary>
         public Collection<Post> CopyHistory { get; set; }
 

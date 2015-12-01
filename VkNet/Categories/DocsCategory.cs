@@ -172,7 +172,7 @@
 				{ "title", title },
 				{ "tags", tags },
 				{ "captcha_sid", captchaSid },
-				{ "captcha_key", captchaKey },
+				{ "captcha_key", captchaKey }
 			};
 
 			var response = _vk.Call("docs.save", parameters);

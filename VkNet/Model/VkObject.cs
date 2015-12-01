@@ -4,7 +4,7 @@
 
     using Enums;
     using Utils;
-    
+
     /// <summary>
     /// Определяет тип объекта
     /// </summary>
@@ -22,12 +22,13 @@
         public VkObjectType Type { get; set; }
 
         internal static VkObject FromJson(VkResponse response)
-        {
-            var obj = new VkObject();
-            
-            obj.Id = Utilities.GetNullableLongId(response["object_id"]);
+		{
+			var obj = new VkObject
+			{
+				Id = Utilities.GetNullableLongId(response["object_id"])
+			};
 
-            string type = response["type"];
+			string type = response["type"];
 			switch (type)
 			{
 				case "group":
@@ -48,6 +49,6 @@
 			}
 
 			return obj;
-        }
-    }
+		}
+	}
 }

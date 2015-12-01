@@ -12,7 +12,7 @@ namespace VkNet.Enums
 		/// </summary>
 		public static readonly AppRequestType Invite = RegisterPossibleValue("invite");
 		/// <summary>
-		/// В случае если пользователь уже установил приложение 
+		/// В случае если пользователь уже установил приложение
 		/// </summary>
 		public static readonly AppRequestType Request = RegisterPossibleValue("request");
 	}

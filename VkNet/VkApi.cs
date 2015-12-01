@@ -23,7 +23,7 @@
 	public delegate void VkApiDelegate(VkApi api);
 
 	/// <summary>
-	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями, 
+	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
 	/// группами и т.п.).
 	/// </summary>
 	public class VkApi
@@ -220,7 +220,7 @@
 
         /// <summary>
         /// Идентификатор пользователя, от имени которого была проведена авторизация.
-        /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings,Func{string},long?,string)"/>, 
+        /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings,Func{string},long?,string)"/>,
         /// то возвращается null.
         /// </summary>
         public long? UserId
@@ -265,13 +265,13 @@
         public void Authorize(ApiAuthParams @params)
 		{
 			Authorize(
-                @params.ApplicationId, 
+                @params.ApplicationId,
                 @params.Login,
                 @params.Password,
                 @params.Settings,
                 @params.TwoFactorAuthorization,
                 @params.CaptchaSid,
-                @params.CaptchaKey 
+                @params.CaptchaKey
                 );
 
             _ap = @params;
@@ -315,11 +315,11 @@
 			if (!string.IsNullOrEmpty(_ap.Login) && !string.IsNullOrEmpty(_ap.Password))
 			{
 				Authorize(
-                    _ap.ApplicationId, 
-                    _ap.Login, 
-                    _ap.Password, 
-                    _ap.Settings, 
-                    code != null ? code : _ap.TwoFactorAuthorization
+                    _ap.ApplicationId,
+                    _ap.Login,
+                    _ap.Password,
+                    _ap.Settings,
+                    code ?? _ap.TwoFactorAuthorization
                     );
 			}
 			else

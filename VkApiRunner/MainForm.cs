@@ -47,7 +47,7 @@ namespace VkApiRunner
 			var api = new VkApi();
 			try
 			{
-				api.Authorize(new ApiAuthParams() { ApplicationId = appId, Login = login, Password = password, Settings = Settings.All });
+				api.Authorize(new ApiAuthParams { ApplicationId = appId, Login = login, Password = password, Settings = Settings.All });
 			}
 			catch (VkApiException)
 			{

@@ -37,7 +37,7 @@ namespace VkNet.Model
 		public ReadOnlyCollection<User> Profiles { get; set; }
 
 		/// <summary>
-		/// Последнее значение параметра new_pts, полученное от Long Poll сервера, используется для получения действий, которые хранятся всегда. 
+		/// Последнее значение параметра new_pts, полученное от Long Poll сервера, используется для получения действий, которые хранятся всегда.
 		/// </summary>
 		public ulong NewPts
 		{ get; set; }

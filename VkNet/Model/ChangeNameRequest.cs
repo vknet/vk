@@ -43,18 +43,19 @@ namespace VkNet.Model
 
 		internal static ChangeNameRequest FromJson(VkResponse response)
 		{
-			var request = new ChangeNameRequest();
+			var request = new ChangeNameRequest
+			{
+				Id = response["id"],
+				FirstName = response["first_name"],
+				LastName = response["last_name"],
 
-			request.Id = response["id"];
-			request.FirstName = response["first_name"];
-			request.LastName = response["last_name"];
-			
-			//TODO: проверить на реальном аккаунте, так ли расположены эти поля в ответе
-			request.Status = ParseStatus(response["status"]);
-			request.RepeatDate = response["repeat_date"];
+				//TODO: проверить на реальном аккаунте, так ли расположены эти поля в ответе
+				Status = ParseStatus(response["status"]),
+				RepeatDate = response["repeat_date"]
+			};
 
 			return request;
-		}									
+		}
 
 		private static ChangeNameStatus? ParseStatus(string status)
 		{

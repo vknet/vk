@@ -17,7 +17,7 @@ namespace VkNet.Enums.Filters
 		public static readonly SubscribeFilter Like = RegisterPossibleValue(1 << 6, "like");
 		public static readonly SubscribeFilter All = Message | Friend | Call | Reply | Mention | Group | Like;
 
-	
+
 
 	}
 }

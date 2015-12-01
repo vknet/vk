@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="ownerId">
         /// Идентификатор пользователя или сообщества, которому принадлежат видеозаписи.
-        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
+        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например,
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
         /// <param name="albumId">Идентификатор альбома, видеозаписи из которого нужно вернуть.</param>
@@ -37,8 +37,8 @@
         /// <param name="count">Количество возвращаемых видеозаписей.</param>
         /// <param name="offset">Смещение относительно первой найденной видеозаписи для выборки определенного подмножества.</param>
         /// <param name="extended">Определяет, возвращать ли информацию о настройках приватности видео для текущего пользователя.</param>
-        /// <returns>После успешного выполнения возвращает список объектов видеозаписей с дополнительным полем comments, содержащим число комментариев у 
-        /// видеозаписи. Если был задан параметр <paramref name="extended"/>, то для каждой видеозаписи возвращаются дополнительные поля: 
+        /// <returns>После успешного выполнения возвращает список объектов видеозаписей с дополнительным полем comments, содержащим число комментариев у
+        /// видеозаписи. Если был задан параметр <paramref name="extended"/>, то для каждой видеозаписи возвращаются дополнительные поля:
         /// <see cref="Video.CanComment"/>, <see cref="Video.CanRepost"/>, <see cref="Video.Likes"/></returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
@@ -132,7 +132,7 @@
         /// </summary>
         /// <param name="videoId">Идентификатор видеозаписи.</param>
         /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит видеозапись.
-        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
+        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например,
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
         /// <returns>После успешного выполнения возвращает идентификатор созданной видеозаписи.</returns>
@@ -144,7 +144,7 @@
         public long Add(long videoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
-            
+
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
@@ -161,22 +161,22 @@
         /// </summary>
         /// <param name="name">Название видеофайла.</param>
         /// <param name="description">Описание видеофайла.</param>
-        /// <param name="isPrivate">Указывается true в случае последующей отправки видеозаписи личным сообщением. После загрузки с этим 
-        /// параметром видеозапись не будет отображаться в списке видеозаписей пользователя и не будет доступна другим пользователям 
+        /// <param name="isPrivate">Указывается true в случае последующей отправки видеозаписи личным сообщением. После загрузки с этим
+        /// параметром видеозапись не будет отображаться в списке видеозаписей пользователя и не будет доступна другим пользователям
         /// по id.</param>
         /// <param name="isPostToWall">Требуется ли после сохранения опубликовать запись с видео на стене.</param>
-        /// <param name="link">Url для встраивания видео с внешнего сайта, например, с youtube. В этом случае нужно вызвать полученный 
+        /// <param name="link">Url для встраивания видео с внешнего сайта, например, с youtube. В этом случае нужно вызвать полученный
         /// <see cref="Video.UploadUrl"/>, не прикрепляя файл, достаточно просто обратиться по этому адресу.</param>
         /// <param name="groupId">Идентификатор сообщества, в которое будет сохранен видеофайл. По умолчанию файл сохраняется на страницу
         /// текущего пользователя.</param>
         /// <param name="albumId">Идентификатор альбома, в который будет загружен видео файл.</param>
         /// <param name="isRepeat">Зацикливание воспроизведения видеозаписи.</param>
-        /// <returns>Возвращает объект видеозаписи, который имеет поля <see cref="Video.UploadUrl"/>, <see cref="MediaAttachment.Id"/>, 
+        /// <returns>Возвращает объект видеозаписи, который имеет поля <see cref="Video.UploadUrl"/>, <see cref="MediaAttachment.Id"/>,
         /// <see cref="Video.Title"/>, <see cref="Video.Description"/> и <see cref="MediaAttachment.OwnerId"/>.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.save"/>.
-        /// Метод может быть вызван не более 5000 раз в сутки для одного сервиса. 
+        /// Метод может быть вызван не более 5000 раз в сутки для одного сервиса.
         /// </remarks>
         [ApiVersion("5.9")]
         public Video Save(string name = null, string description = null, bool isPrivate = false, bool isPostToWall = false, string link = null, long? groupId = null, long? albumId = null, bool isRepeat = false)
@@ -201,7 +201,7 @@
         /// </summary>
         /// <param name="videoId">Идентификатор видеозаписи.</param>
         /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит видеозапись.
-        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
+        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например,
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
         /// <returns>После успешного выполнения возвращает true.</returns>
@@ -213,7 +213,7 @@
         public bool Delete(long videoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
-            
+
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
@@ -229,7 +229,7 @@
         /// <param name="videoId">Идентификатор видеозаписи.</param>
         /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит видеозапись.
         /// Если <paramref name="ownerId"/> не указан, то производится восстановление видеозаписи у текущего пользователя.
-        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
+        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например,
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
         /// <returns>После успешного выполнения возвращает true.</returns>
@@ -241,7 +241,7 @@
         public bool Restore(long videoId, long? ownerId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
-            
+
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
@@ -262,7 +262,7 @@
         /// <param name="isSearchOwn">Искать по видеозаписям пользователя.</param>
         /// <param name="count">
         /// Количество возвращаемых видеозаписей.
-        /// Обратите внимание — даже при использовании параметра <paramref name="offset"/> для получения информации доступны только первые 1000 результатов. 
+        /// Обратите внимание — даже при использовании параметра <paramref name="offset"/> для получения информации доступны только первые 1000 результатов.
         /// </param>
         /// <param name="offset">Смещение относительно первой найденной видеозаписи для выборки определенного подмножества.</param>
         /// <returns>После успешного выполнения возвращает список объектов видеозаписей.</returns>
@@ -331,16 +331,16 @@
         /// <summary>
         /// Возвращает список альбомов видеозаписей пользователя или сообщества.
         /// </summary>
-        /// <param name="ownerId">Идентификатор владельца альбомов (пользователь или сообщество). По умолчанию — идентификатор текущего 
+        /// <param name="ownerId">Идентификатор владельца альбомов (пользователь или сообщество). По умолчанию — идентификатор текущего
         /// пользователя.</param>
         /// <param name="count">Количество альбомов, информацию о которых нужно вернуть.
-        /// По умолчанию — не больше 50, максимум — 100. 
+        /// По умолчанию — не больше 50, максимум — 100.
         /// </param>
         /// <param name="offset">Смещение, необходимое для выборки определенного подмножества альбомов.</param>
-        /// <param name="extended"><c>true</c> – позволяет получать поля <see cref="VideoAlbum.Count"/>, <see cref="VideoAlbum.Photo160"/> и 
+        /// <param name="extended"><c>true</c> – позволяет получать поля <see cref="VideoAlbum.Count"/>, <see cref="VideoAlbum.Photo160"/> и
         /// <see cref="VideoAlbum.Photo320"/> для каждого альбома.</param>
         /// <returns>
-        /// После успешного выполнения возвращает массив объектов <see cref="VideoAlbum"/>, каждый из которых содержит следующие 
+        /// После успешного выполнения возвращает массив объектов <see cref="VideoAlbum"/>, каждый из которых содержит следующие
         /// поля: <see cref="VideoAlbum.Id"/>, <see cref="VideoAlbum.OwnerId"/> и <see cref="VideoAlbum.Title"/>.
         /// </returns>
         /// <remarks>
@@ -388,7 +388,7 @@
                     {"group_id", groupId},
                     {"title", title}
                 };
-            
+
             var response = _vk.Call("video.addAlbum", parameters);
 
             return response["album_id"];
@@ -436,7 +436,7 @@
         public bool DeleteAlbum(long albumId, long? groupId = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => albumId);
-           
+
             var parameters = new VkParameters
                 {
                     {"group_id", groupId},
@@ -451,7 +451,7 @@
         /// </summary>
         /// <param name="videoIds">Список идентификаторов видеороликов.</param>
         /// <param name="albumId">Идентификатор альбома, в который перемещаются видеозаписи.</param>
-        /// <param name="groupId">Идентификатор сообщества, которому принадлежат видеозаписи. Если параметр не указан, то работа 
+        /// <param name="groupId">Идентификатор сообщества, которому принадлежат видеозаписи. Если параметр не указан, то работа
         /// ведется с альбомом текущего пользователя.</param>
         /// <returns>После успешного выполнения возвращает true.</returns>
         /// <remarks>
@@ -468,7 +468,7 @@
 
             var parameters = new VkParameters { { "album_id", albumId }, { "group_id", groupId } };
             parameters.Add("video_ids", videoIds);
-            
+
             return _vk.Call("video.moveToAlbum", parameters);
         }
 
@@ -477,10 +477,10 @@
         /// </summary>
         /// <param name="videoId">Идентификатор видеозаписи.</param>
         /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит видеозапись.
-        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
+        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например,
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
-        /// <param name="needLikes">true — будет возвращено дополнительное поле <see cref="Comment.Likes"/>. По умолчанию поле <see cref="Comment.Likes"/> 
+        /// <param name="needLikes">true — будет возвращено дополнительное поле <see cref="Comment.Likes"/>. По умолчанию поле <see cref="Comment.Likes"/>
         /// не возвращается.</param>
         /// <param name="count">Количество комментариев, информацию о которых необходимо вернуть.
         /// (по умолчанию 20, максимальное значение 100).
@@ -536,10 +536,10 @@
         /// <param name="videoId">Идентификатор видеозаписи.</param>
         /// <param name="message">Текст комментария.</param>
         /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит видеозапись.
-        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
+        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например,
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
-        /// <param name="isFromGroup">Данный параметр учитывается, если <paramref name="ownerId"/> &lt; 0 (комментарий к видеозаписи группы). 
+        /// <param name="isFromGroup">Данный параметр учитывается, если <paramref name="ownerId"/> &lt; 0 (комментарий к видеозаписи группы).
         /// true — комментарий будет опубликован от имени группы, false — комментарий будет опубликован от имени пользователя.
         /// (по умолчанию).</param>
         /// <returns>После успешного выполнения возвращает идентификатор созданного комментария.</returns>
@@ -552,7 +552,7 @@
         {
             VkErrors.ThrowIfNullOrEmpty(() => message);
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
-            
+
             var parameters = new VkParameters
                 {
                     {"video_id", videoId},
@@ -578,7 +578,7 @@
         public bool DeleteComment(long commentId, long? ownerId)
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
-            
+
             var parameters = new VkParameters {{ "comment_id", commentId }, { "owner_id", ownerId }};
 
             return _vk.Call("video.deleteComment", parameters);
@@ -589,7 +589,7 @@
         /// </summary>
         /// <param name="commentId">Идентификатор удаленного комментария.</param>
         /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит видеозапись.
-        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
+        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например,
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
         /// <returns>После успешного выполнения возвращает true, false если комментарий с таким идентификатором не является удаленным.</returns>
@@ -601,7 +601,7 @@
         public bool RestoreComment(long commentId, long? ownerId)
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
-            
+
             var parameters = new VkParameters {{ "comment_id", commentId }, { "owner_id", ownerId }};
 
             return _vk.Call("video.restoreComment", parameters);
@@ -628,7 +628,7 @@
         /// <param name="commentId">Идентификатор комментария.</param>
         /// <param name="message">Новый текст комментария.</param>
         /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит видеозапись.
-        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например, 
+        /// Обратите внимание, идентификатор сообщества в параметре <paramref name="ownerId"/> необходимо указывать со знаком "-" — например,
         /// <paramref name="ownerId"/>=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
         /// </param>
         /// <returns>После успешного выполнения возвращает true.</returns>
@@ -641,7 +641,7 @@
         {
             VkErrors.ThrowIfNullOrEmpty(() => message);
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
-            
+
             var parameters = new VkParameters
                 {
                     {"comment_id", commentId},
@@ -651,9 +651,9 @@
 
             return _vk.Call("video.editComment", parameters);
         }
-        
+
         /// <summary>
-        /// Возвращает список отметок на видеозаписи. 
+        /// Возвращает список отметок на видеозаписи.
         /// </summary>
         /// <param name="videoId">Идентификатор видеозаписи.</param>
         /// <param name="ownerId">Идентификатор владельца видеозаписи (пользователь или сообщество). По умолчанию — идентификатор текущего пользователя.</param>
@@ -671,16 +671,16 @@
             // todo add unit test
 
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
-            
+
             var parameters = new VkParameters {{ "video_id", videoId }, { "owner_id", ownerId }};
 
             VkResponseArray response = _vk.Call("video.getTags", parameters);
 
             return response.ToReadOnlyCollectionOf<Tag>(t => t);
         }
-        
+
         /// <summary>
-        /// Добавляет отметку на видеозапись. 
+        /// Добавляет отметку на видеозапись.
         /// </summary>
         /// <param name="videoId">Идентификатор видеозаписи.</param>
         /// <param name="userId">Идентификатор пользователя, которого нужно отметить.</param>
@@ -709,9 +709,9 @@
 
             return _vk.Call("video.putTag", parameters);
         }
-        
+
         /// <summary>
-        /// Удаляет отметку с видеозаписи. 
+        /// Удаляет отметку с видеозаписи.
         /// </summary>
         /// <param name="tagId">Идентификатор отметки.</param>
         /// <param name="videoId">Идентификатор видеозаписи.</param>
@@ -738,9 +738,9 @@
 
             return _vk.Call("video.removeTag", parameters);
         }
-        
+
         /// <summary>
-        /// Возвращает список видеозаписей, на которых есть непросмотренные отметки. 
+        /// Возвращает список видеозаписей, на которых есть непросмотренные отметки.
         /// </summary>
         /// <param name="count">Количество видеозаписей, которые необходимо вернуть (максимальное значение 100, по умолчанию 20).
         /// </param>
@@ -751,7 +751,7 @@
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getNewTags"/>.
-        /// </remarks>        
+        /// </remarks>
         [Pure]
         [ApiVersion("5.9")]
         public ReadOnlyCollection<Video> GetNewTags(int? count = null, int? offset = null)
@@ -785,7 +785,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.report"/>.
         /// </remarks>
-        [ApiVersion("5.9")]    
+        [ApiVersion("5.9")]
         public bool Report(long videoId, Enums.ContentReportType reason, long? ownerId, string comment = null, string searchQuery = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -813,7 +813,7 @@
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.reportComment"/>.
         /// </remarks>
-        [ApiVersion("5.9")]  
+        [ApiVersion("5.9")]
         public bool ReportComment(long commentId, long ownerId, Enums.ContentReportType reason)
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);

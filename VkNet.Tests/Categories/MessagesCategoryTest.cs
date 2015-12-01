@@ -37,7 +37,7 @@ namespace VkNet.Tests.Categories
 			Url = "";
 			Json = "";
 		}
-		
+
 		private MessagesCategory GetMockedMessagesCategory()
 		{
 			var browser = Mock.Of<IBrowser>(m => m.GetJson(Url) == Json);
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Categories
 			int totalCount;
 			This.Action(() => cat.Get(MessageType.Received, out totalCount)).Throws<AccessTokenInvalidException>();
 		}
-	   
+
 		[Test]
 		public void GetDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -95,7 +95,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(msgs[0].Title, Is.EqualTo("Re(15): Привет!"));
 			Assert.That(msgs[0].Body, Is.EqualTo("не..не зеленая точно..."));
 		}
-		
+
 		[Test]
 		public void GetHistory_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -145,7 +145,7 @@ namespace VkNet.Tests.Categories
 			totalCount.ShouldEqual(6);
 			msg.Count.ShouldEqual(1);
 			msg[0].Attachments.Count.ShouldEqual(1);
-			
+
 			var sticker = msg[0].Attachments[0].Instance as Sticker;
 			sticker.ShouldNotBeNull();
 
@@ -653,7 +653,7 @@ namespace VkNet.Tests.Categories
 					'response': 4457
 				  }";
 
-			var id = Cat.Send(new MessageSendParams()
+			var id = Cat.Send(new MessageSendParams
 			{
 				UserId = 7550525,
 				Message = "Test from vk.net ;) # 2"
@@ -669,7 +669,7 @@ namespace VkNet.Tests.Categories
 				@"{
 					'response': 4464
 				  }";
-			var id = Cat.Send(new MessageSendParams()
+			var id = Cat.Send(new MessageSendParams
 			{
 				UserId = 7550525,
 				Message = "Работает # 2 --  еще разок"

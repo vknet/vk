@@ -24,18 +24,19 @@ namespace VkNet.Model.Attachments
 
 
         internal static WallReply FromJson(VkResponse response)
-        {
-            var wallReply = new WallReply();
+		{
+			var wallReply = new WallReply
+			{
+				Id = response["id"],
+				FromId = response["from_id"],
+				Date = response["date"],
+				Text = response["text"],
+				Likes = response["likes"],
+				ReplyToUId = response["reply_to_uid"],
+				ReplyToCId = response["reply_to_cid"]
+			};
 
-            wallReply.Id = response["id"];
-            wallReply.FromId = response["from_id"];
-            wallReply.Date = response["date"];
-            wallReply.Text = response["text"];
-            wallReply.Likes = response["likes"];
-            wallReply.ReplyToUId = response["reply_to_uid"];
-            wallReply.ReplyToCId = response["reply_to_cid"];
-
-            return wallReply;
-        }
-    }
+			return wallReply;
+		}
+	}
 }

@@ -9,14 +9,15 @@
         #region Internal methods
 
         internal static Tags FromJson(VkResponse response)
-        {
-            var tags = new Tags();
+		{
+			var tags = new Tags
+			{
+				Count = response["count"]
+			};
 
-            tags.Count = response["count"];
+			return tags;
+		}
 
-            return tags;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -31,16 +31,14 @@ namespace VkNet.Model
 		/// 1 - на стене пользователя по-умолчанию должны отображаться только собственные записи.
 		/// Соответствует настройке на сайте "Показывать только мои записи", 0 - на стене пользователя должны отображаться все записи.
 		/// </summary>
-		public bool? OwnPostsDefault
-		{ get; set; }
+		public bool? OwnPostsDefault { get; set; }
 
 		/// <summary>
 		///  1 - пользователь отключил комментирование записей на стене, 0 - комментирование записей разрешено.
 		/// </summary>
-		public bool? NoWallReplies
-		{ get; set; }
+		public bool? NoWallReplies { get; set; }
 
-		#region Методы
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -58,7 +56,5 @@ namespace VkNet.Model
 				NoWallReplies = response["no_wall_replies"]
 			};
 		}
-
-		#endregion 
 	}
 }

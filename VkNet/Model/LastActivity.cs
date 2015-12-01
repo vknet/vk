@@ -28,15 +28,17 @@
         #region Методы
 
         internal static LastActivity FromJson(VkResponse re)
-        {
-            var lastActivity = new LastActivity();
+		{
+			var lastActivity = new LastActivity
+			{
 
-            lastActivity.IsOnline = re["online"];
-            lastActivity.Time = re["time"];
+				IsOnline = re["online"],
+				Time = re["time"]
+			};
 
-            return lastActivity;
-        }
+			return lastActivity;
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

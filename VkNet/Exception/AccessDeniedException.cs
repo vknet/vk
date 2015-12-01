@@ -57,7 +57,7 @@
         /// Инициализирует новый экземпляр класса <see cref="AccessDeniedException"/> на основе ранее сериализованных данных.
         /// </summary>
         /// <param name="info">Содержит все данные, необходимые для десериализации.</param>
-        /// <param name="context">Описывает источник и назначение данного сериализованного потока и предоставляет дополнительный, 
+        /// <param name="context">Описывает источник и назначение данного сериализованного потока и предоставляет дополнительный,
         /// определяемый вызывающим, контекст.</param>
         protected AccessDeniedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {

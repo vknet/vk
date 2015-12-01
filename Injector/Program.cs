@@ -51,7 +51,7 @@ namespace Injector
 
 			var categoryTypes = assembly.MainModule.Types.Where(t => t.Name.Contains("Category") && t.Namespace == CategoriesNamespace).ToArray();
 			Console.WriteLine("{0} categories was founded at {1} namespace.", categoryTypes.Count(), CategoriesNamespace);
-			
+
 			foreach (var type in categoryTypes)
 			{
 				Console.WriteLine(type.Name);
@@ -73,7 +73,7 @@ namespace Injector
 												&& operand.Parameters[3].ParameterType.Name == "String" && operand.Parameters[3].HasDefault
 										select i)
 										.ToArray();
-					
+
 					if (!instructions.Any())
 					{
 						Console.WriteLine(" - call invocations not found.");

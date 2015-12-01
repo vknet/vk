@@ -34,7 +34,7 @@ namespace VkNet.Model.Attachments
         public string Image { get; set; }
 
         /// <summary>
-        /// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы. Идентификатор возвращается в формате "owner_id_page_id". 
+        /// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы. Идентификатор возвращается в формате "owner_id_page_id".
         /// </summary>
         public string PreviewPage { get; set; }
 

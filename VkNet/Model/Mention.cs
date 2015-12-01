@@ -69,7 +69,7 @@ namespace VkNet.Model
 		public ulong? CopyPostId
 		{ get; set; }
 
-		
+
 		/// <summary>
 		/// Идентификатор сообщества где было сделано упоминание.
 		/// </summary>
@@ -112,21 +112,23 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static Mention FromJson(VkResponse response)
 		{
-			var mention = new Mention();
-			mention.Id = response["id"];
-			mention.FromId = response["from_id"];
-			mention.Date = response["date"];
-			mention.Text = response["text"];
-			mention.Likes = response["likes"];
-			mention.Comments = response["comments"];
-			mention.Attachment = response["attachment"];
-			mention.Geo = response["geo"];
-			mention.CopyOwnerId = response["copy_owner_id"];
-			mention.CopyPostId = response["copy_post_id"];
-			mention.ToId = response["to_id"];
-			mention.PostId = response["post_id"];
-			mention.PostType = response["post_type"];
-			mention.Reposts = response["reposts"];
+			var mention = new Mention
+			{
+				Id = response["id"],
+				FromId = response["from_id"],
+				Date = response["date"],
+				Text = response["text"],
+				Likes = response["likes"],
+				Comments = response["comments"],
+				Attachment = response["attachment"],
+				Geo = response["geo"],
+				CopyOwnerId = response["copy_owner_id"],
+				CopyPostId = response["copy_post_id"],
+				ToId = response["to_id"],
+				PostId = response["post_id"],
+				PostType = response["post_type"],
+				Reposts = response["reposts"]
+			};
 
 			return mention;
 		}

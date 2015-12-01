@@ -45,18 +45,20 @@ namespace VkNet.Model
         #region Методы
 
         internal static BanInfo FromJson(VkResponse response)
-        {
-            var info = new BanInfo();
+		{
+			var info = new BanInfo
+			{
 
-            info.AdminId = response["admin_id"];
-            info.Date = response["date"];
-            info.Comment = response["comment"];
-            info.EndDate = response["end_date"];
-            info.Reason = response["reason"];
+				AdminId = response["admin_id"],
+				Date = response["date"],
+				Comment = response["comment"],
+				EndDate = response["end_date"],
+				Reason = response["reason"]
+			};
 
-            return info;
-        }
+			return info;
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -72,26 +72,27 @@
         #region Методы
 
         internal static University FromJson(VkResponse response)
-        {
-            var university = new University();
+		{
+			var university = new University
+			{
+				Id = response["id"],
+				Country = response["country"],
+				City = response["city"],
+				Name = response["name"] ?? response["title"],
+				Faculty = response["faculty"],
+				FacultyName = response["faculty_name"],
+				Chair = response["chair"],
+				ChairName = response["chair_name"],
+				Graduation = response["graduation"],
 
-            university.Id = response["id"];
-            university.Country = response["country"];
-            university.City = response["city"];
-            university.Name = response["name"] ?? response["title"];
-            university.Faculty = response["faculty"];
-            university.FacultyName = response["faculty_name"];
-            university.Chair = response["chair"];
-            university.ChairName = response["chair_name"];
-            university.Graduation = response["graduation"];
+				// установлено экcпериментальным путем
+				EducationForm = response["education_form"],
+				EducationStatus = response["education_status"]
+			};
 
-            // установлено экcпериментальным путем
-            university.EducationForm = response["education_form"];
-            university.EducationStatus = response["education_status"];
+			return university;
+		}
 
-            return university;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

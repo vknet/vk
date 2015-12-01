@@ -68,24 +68,25 @@
         #region Методы
 
         internal static School FromJson(VkResponse response)
-        {
-            var school = new School();
+		{
+			var school = new School
+			{
+				Id = Utilities.GetNullableLongId(response["id"]),
+				Country = Utilities.GetNullableLongId(response["country"]),
+				City = Utilities.GetNullableLongId(response["city"]),
+				Name = response["name"] ?? response["title"],
+				YearFrom = response["year_from"],
+				YearTo = response["year_to"],
+				YearGraduated = response["year_graduated"],
+				Class = response["class"],
+				Speciality = response["speciality"],
+				Type = response["type"],
+				TypeStr = response["type_str"]
+			};
 
-            school.Id = Utilities.GetNullableLongId(response["id"]);
-            school.Country = Utilities.GetNullableLongId(response["country"]);
-            school.City = Utilities.GetNullableLongId(response["city"]);
-            school.Name = response["name"] ?? response["title"];
-            school.YearFrom = response["year_from"];
-            school.YearTo = response["year_to"];
-            school.YearGraduated = response["year_graduated"];
-            school.Class = response["class"];
-            school.Speciality = response["speciality"];
-            school.Type = response["type"];
-            school.TypeStr = response["type_str"];
+			return school;
+		}
 
-            return school;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -233,35 +233,37 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static GroupInfo FromJson(VkResponse response)
 		{
-			var group = new GroupInfo();
-			group.Title = response["title"];
-			group.Description = response["description"];
-			group.Address = response["address"];
-			group.Place = response["place"];
-			group.Wall = response["wall"];
-			group.Photos = response["photos"];
-			group.Video = response["video"];
-			group.Audio = response["audio"];
-			group.Docs = response["docs"];
-			group.Topics = response["topics"];
-			group.Wiki = response["wiki"];
-			group.Access = response["access"];
-			group.Subject = response["subject"];
-			group.Website = response["website"];
-			group.Contacts = response["contacts"];
-			group.Places = response["places"];
-			group.Events = response["events"];
-			group.Links = response["links"];
-			group.PublicDate = response["public_date"];
-			group.PublicSubcategory = response["public_subcategory"];
-			group.PublicCategory = response["public_category"];
-			group.EventGroupId = response["event_group_id"];
-			group.EventFinishDate = response["event_finish_date"];
-			group.EventStartDate = response["event_start_date"];
-			group.Rss = response["rss"];
-			group.Phone = response["phone"];
-			group.Email = response["email"];
-			group.ScreenName = response["screen_name"];
+			var group = new GroupInfo
+			{
+				Title = response["title"],
+				Description = response["description"],
+				Address = response["address"],
+				Place = response["place"],
+				Wall = response["wall"],
+				Photos = response["photos"],
+				Video = response["video"],
+				Audio = response["audio"],
+				Docs = response["docs"],
+				Topics = response["topics"],
+				Wiki = response["wiki"],
+				Access = response["access"],
+				Subject = response["subject"],
+				Website = response["website"],
+				Contacts = response["contacts"],
+				Places = response["places"],
+				Events = response["events"],
+				Links = response["links"],
+				PublicDate = response["public_date"],
+				PublicSubcategory = response["public_subcategory"],
+				PublicCategory = response["public_category"],
+				EventGroupId = response["event_group_id"],
+				EventFinishDate = response["event_finish_date"],
+				EventStartDate = response["event_start_date"],
+				Rss = response["rss"],
+				Phone = response["phone"],
+				Email = response["email"],
+				ScreenName = response["screen_name"]
+			};
 
 			return group;
 		}

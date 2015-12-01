@@ -12,7 +12,7 @@ namespace VkNet.Enums
 		/// </summary>
 		public static readonly AppRatingType Level = RegisterPossibleValue("level");
 		/// <summary>
-		/// Рейтинг по очкам 
+		/// Рейтинг по очкам
 		/// </summary>
 		public static readonly AppRatingType Points = RegisterPossibleValue("points");
 	}

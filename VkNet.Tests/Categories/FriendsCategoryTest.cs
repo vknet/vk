@@ -21,11 +21,11 @@
         [SetUp]
         public void SetUp()
         {
-             
+
         }
 
         public FriendsCategory GetMockedFriendsCategory(string url, string json)
-        {   
+        {
             var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
             return new FriendsCategory(new VkApi { AccessToken = "token", Browser = browser });
         }

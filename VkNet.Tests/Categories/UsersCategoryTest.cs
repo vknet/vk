@@ -9,7 +9,7 @@ namespace VkNet.Tests.Categories
     using Moq;
     using NUnit.Framework;
     using VkNet.Categories;
-    
+
     using Enums;
     using Exception;
     using Model;
@@ -27,7 +27,7 @@ namespace VkNet.Tests.Categories
         [SetUp]
         public void SetUp()
         {
-        
+
         }
 
         private UsersCategory GetMockedUsersCategory(string url, string json)
@@ -44,20 +44,20 @@ namespace VkNet.Tests.Categories
 		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
 			// Метод Get не требует AccessToken
-            var users = new UsersCategory(new VkApi() { AccessToken = null });
+            var users = new UsersCategory(new VkApi { AccessToken = null });
 
             This.Action(() => users.Get(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
         public void Get_NotAccessToInternet_ThrowVkApiException()
-        {   
+        {
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(f => f.GetJson(It.IsAny<string>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
 
             var users = new UsersCategory(new VkApi {AccessToken = "asgsstsfast", Browser = mockBrowser.Object});
 
-            var ex = This.Action(() => users.Get(1)).Throws<VkApiException>(); 
+            var ex = This.Action(() => users.Get(1)).Throws<VkApiException>();
             ex.Message.ShouldEqual("The remote name could not be resolved: 'api.vk.com'");
         }
 
@@ -322,7 +322,7 @@ namespace VkNet.Tests.Categories
             Assert.That(lst[1].Education.FacultyName, Is.EqualTo("Электроники и вычислительной техники"));
             Assert.That(lst[1].Education.Graduation, Is.EqualTo(2012));
         }
-       
+
         [Test]
         public void IsAppUser_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
@@ -509,7 +509,7 @@ namespace VkNet.Tests.Categories
             Assert.That(lst[2].FirstName, Is.EqualTo("Masha"));
             Assert.That(lst[2].LastName, Is.EqualTo("Ivanova"));
         }
-        
+
         // ===================================================================
         [Test]
         public void IsAppUser_5_5_version_of_api_return_false()
@@ -650,7 +650,7 @@ namespace VkNet.Tests.Categories
 
             result.ShouldNotBeNull();
             result.Count.ShouldEqual(1);
-            
+
             var user = result[0];
             user.Id.ShouldEqual(1);
             user.FirstName.ShouldEqual("Павла");

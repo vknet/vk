@@ -32,17 +32,18 @@
         #region Методы
 
         internal static Likes FromJson(VkResponse response)
-        {
-            var likes = new Likes();
+		{
+			var likes = new Likes
+			{
+				Count = response["count"],
+				UserLikes = response["user_likes"],
+				CanLike = response["can_like"],
+				CanPublish = response["can_publish"]
+			};
 
-            likes.Count = response["count"];
-            likes.UserLikes = response["user_likes"];
-            likes.CanLike = response["can_like"];
-            likes.CanPublish = response["can_publish"];
+			return likes;
+		}
 
-            return likes;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

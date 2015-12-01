@@ -28,16 +28,17 @@ namespace VkNet.Model
         #region Методы
 
         internal static AudioAlbum FromJson(VkResponse response)
-        {
-            var album = new AudioAlbum();
+		{
+			var album = new AudioAlbum
+			{
+				OwnerId = response["owner_id"],
+				AlbumId = response["album_id"],
+				Title = response["title"]
+			};
 
-            album.OwnerId = response["owner_id"];
-            album.AlbumId = response["album_id"];
-            album.Title = response["title"];
+			return album;
+		}
 
-            return album;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

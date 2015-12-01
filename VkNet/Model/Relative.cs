@@ -37,7 +37,7 @@
 				relative.Id = response["id"];
 			else if (response.ContainsKey("uid"))
 				relative.Id = response["uid"];
-			
+
 			relative.Type = response["type"];
 			relative.Name = response["name"];
 

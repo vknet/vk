@@ -133,7 +133,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений. 
+		/// Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений.
 		/// </summary>
 		/// <param name="token">Идентификатор устройства, используемый для отправки уведомлений. (для mpns идентификатор должен представлять из себя URL для отправки уведомлений)</param>
 		/// <param name="deviceModel">Строковое название модели устройства.</param>
@@ -332,7 +332,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Добавляет пользователя в черный список. 
+		/// Добавляет пользователя в черный список.
 		/// </summary>
 		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в черный список. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
@@ -352,7 +352,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Убирает пользователя из черного списка. 
+		/// Убирает пользователя из черного списка.
 		/// </summary>
 		/// <param name="userId">Идентификатор пользователя, которого нужно убрать из черного списка. (положительное число)</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
@@ -371,7 +371,7 @@ namespace VkNet.Categories
 
 
 		/// <summary>
-		/// Возвращает список пользователей, находящихся в черном списке. 
+		/// Возвращает список пользователей, находящихся в черном списке.
 		/// </summary>
 		/// <param name="total">Возвращает общее количество находящихся в черном списке пользователей.</param>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества черного списка. (положительное число) </param>
@@ -487,7 +487,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Редактирует информацию текущего профиля. 
+		/// Редактирует информацию текущего профиля.
 		/// </summary>
 		/// <param name="cancelRequestId">Идентификатор заявки на смену имени, которую необходимо отменить.</param>
 		/// <returns>Результат отмены заявки.</returns>
@@ -499,7 +499,7 @@ namespace VkNet.Categories
 		public bool SaveProfileInfo(int cancelRequestId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => cancelRequestId);
-			return _vk.Call("account.saveProfileInfo", new VkParameters() { { "cancel_request_id", cancelRequestId } })["changed"]
+			return _vk.Call("account.saveProfileInfo", new VkParameters { { "cancel_request_id", cancelRequestId } })["changed"]
 			;
 		}
 
@@ -518,7 +518,7 @@ namespace VkNet.Categories
 		/// <param name="countryId">Идентификатор страны пользователя</param>
 		/// <param name="cityId">Идентификатор города пользователя</param>
 		/// <returns>Результат выполнения операции.</returns>
-		/// <remarks> Если передаются <paramref name="firstName"/> или <paramref name="lastName"/>, рекомендуется 
+		/// <remarks> Если передаются <paramref name="firstName"/> или <paramref name="lastName"/>, рекомендуется
 		/// использовать перегрузку с соотвествующим out параметром типа <see cref="ChangeNameRequest"/> для получения объекта заявки на смену имени.</remarks>
 		[ApiVersion("5.21")]
 		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
@@ -547,7 +547,7 @@ namespace VkNet.Categories
 		/// <summary>
 		///  Редактирует информацию текущего профиля.
 		/// </summary>
-		/// <param name="changeNameRequest">Если в параметрах передавалось имя или фамилия пользователя, 
+		/// <param name="changeNameRequest">Если в параметрах передавалось имя или фамилия пользователя,
 		/// в этом параметре будет возвращен объект типа <see cref="ChangeNameRequest"/>, содержащий информацию о заявке на смену имени.</param>
 		/// <param name="firstName">Имя пользователя</param>
 		/// <param name="lastName">Фамилия пользователя</param>

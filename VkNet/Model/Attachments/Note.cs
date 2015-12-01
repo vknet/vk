@@ -13,7 +13,7 @@ namespace VkNet.Model.Attachments
 		{
 			RegisterType(typeof (Note), "note");
 		}
-		
+
 		/// <summary>
         /// Заголовок заметки.
         /// </summary>
@@ -42,21 +42,22 @@ namespace VkNet.Model.Attachments
         #region Методы
 
         internal static Note FromJson(VkResponse response)
-        {
-            // TODO: TEST IT!!!!!
-            var note = new Note();
+		{
+			// TODO: TEST IT!!!!!
+			var note = new Note
+			{
+				Id = response["id"],
+				OwnerId = response["owner_id"],
+				Title = response["title"],
+				Text = response["text"],
+				Date = response["date"],
+				CommentsCount = response["comments"],
+				ReadCommentsCount = response["read_comments"]
+			};
 
-            note.Id = response["id"];
-            note.OwnerId = response["owner_id"];
-            note.Title = response["title"];
-            note.Text = response["text"];
-            note.Date = response["date"];
-            note.CommentsCount = response["comments"];
-            note.ReadCommentsCount = response["read_comments"];
+			return note;
+		}
 
-            return note;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

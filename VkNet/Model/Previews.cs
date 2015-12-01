@@ -35,8 +35,7 @@ namespace VkNet.Model
         /// </summary>
         public string PhotoMax { get; set; }
 
-        #region Ìועמהû 
-
+        #region Ìועמהû
         internal static Previews FromJson(VkResponse response)
         {
             var previews = new Previews();

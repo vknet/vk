@@ -10,7 +10,7 @@ namespace VkNet.Model.Attachments
     [Serializable]
     public abstract class MediaAttachment
 	{
-		private static readonly IDictionary<Type, string> Types = new Dictionary<Type, string>();  
+		private static readonly IDictionary<Type, string> Types = new Dictionary<Type, string>();
 
 		/// <summary>
 		/// Идентификатор приложенного объекта.

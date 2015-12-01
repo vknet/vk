@@ -20,15 +20,16 @@ namespace VkNet.Model
         #region Internal Methods
 
         internal static Faculty FromJson(VkResponse response)
-        {
-            var faculty = new Faculty();
+		{
+			var faculty = new Faculty
+			{
+				Id = response["id"],
+				Title = response["title"]
+			};
 
-            faculty.Id = response["id"];
-            faculty.Title = response["title"];
+			return faculty;
+		}
 
-            return faculty;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

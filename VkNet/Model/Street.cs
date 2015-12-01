@@ -20,15 +20,16 @@ namespace VkNet.Model
         #region Internal Methods
 
         internal static Street FromJson(VkResponse response)
-        {
-            var street = new Street();
+		{
+			var street = new Street
+			{
+				Id = response["sid"],
+				Title = response["name"]
+			};
 
-            street.Id = response["sid"];
-            street.Title = response["name"];
+			return street;
+		}
 
-            return street;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

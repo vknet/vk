@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public class AccountPushSettings
 	{
