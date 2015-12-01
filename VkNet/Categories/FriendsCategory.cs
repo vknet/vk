@@ -174,7 +174,7 @@ namespace VkNet.Categories
 				};
 			parameters.Add("user_ids", userIds);
 
-			VkResponse response = _vk.Call("friends.addList", parameters);
+			var response = _vk.Call("friends.addList", parameters);
 
 			return response["lid"];
 		}
@@ -193,7 +193,7 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters {{"list_id", listId}};
 
-			VkResponse response = _vk.Call("friends.deleteList", parameters);
+			var response = _vk.Call("friends.deleteList", parameters);
 
 			return response;
 		}
@@ -238,7 +238,7 @@ namespace VkNet.Categories
 			parameters.Add("add_user_ids", addUserIds);
 			parameters.Add("delete_user_ids", deleteUserIds);
 
-			VkResponse response = _vk.Call("friends.editList", parameters);
+			var response = _vk.Call("friends.editList", parameters);
 
 			return response;
 		}
@@ -283,7 +283,7 @@ namespace VkNet.Categories
 					{"captcha_key", captchaKey}
 				};
 
-			VkResponse response = _vk.Call("friends.add", parameters);
+			var response = _vk.Call("friends.add", parameters);
 			return response;
 		}
 
@@ -306,7 +306,7 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters {{"user_id", userId}};
 
-			VkResponse response = _vk.Call("friends.delete", parameters);
+			var response = _vk.Call("friends.delete", parameters);
 			return response;
 		}
 
@@ -326,7 +326,7 @@ namespace VkNet.Categories
 			var parameters = new VkParameters { { "user_id", userId } };
 			parameters.Add("list_ids", listIds);
 
-			VkResponse response = _vk.Call("friends.edit", parameters);
+			var response = _vk.Call("friends.edit", parameters);
 
 			return response;
 		}

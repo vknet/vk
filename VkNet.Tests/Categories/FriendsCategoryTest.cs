@@ -33,8 +33,8 @@
         [Test]
         public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new FriendsCategory(new VkApi());
-            This.Action(() => f.Get(1)).Throws<AccessTokenInvalidException>();
+            var friendsCategory = new FriendsCategory(new VkApi());
+            This.Action(() => friendsCategory.Get(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -119,8 +119,8 @@
         [Test]
         public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new FriendsCategory(new VkApi());
-            This.Action(() => f.GetAppUsers()).Throws<AccessTokenInvalidException>();
+            var friendsCategory = new FriendsCategory(new VkApi());
+            This.Action(() => friendsCategory.GetAppUsers()).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -164,8 +164,8 @@
         [Test]
         public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new FriendsCategory(new VkApi());
-            This.Action(() => f.GetOnline(1)).Throws<AccessTokenInvalidException>();
+            var friendsCategory = new FriendsCategory(new VkApi());
+            This.Action(() => friendsCategory.GetOnline(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -212,8 +212,8 @@
         [Test]
         public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new FriendsCategory(new VkApi());
-            This.Action(() => f.GetMutual(2, 3)).Throws<AccessTokenInvalidException>();
+            var friendsCategory = new FriendsCategory(new VkApi());
+            This.Action(() => friendsCategory.GetMutual(2, 3)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -257,15 +257,15 @@
         [Test]
         public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
-            var f = new FriendsCategory(new VkApi());
-            This.Action(() => f.AreFriends(new long[]{2, 3})).Throws<AccessTokenInvalidException>();
+            var friendsCategory = new FriendsCategory(new VkApi());
+            This.Action(() => friendsCategory.AreFriends(new long[]{2, 3})).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
         public void AreFriends_NullInput_ThrowArgumentNullException()
         {
-            var f = new FriendsCategory(new VkApi { AccessToken = "token" });
-            This.Action(() => f.AreFriends(null)).Throws<ArgumentNullException>();
+            var friendsCategory = new FriendsCategory(new VkApi { AccessToken = "token" });
+            This.Action(() => friendsCategory.AreFriends(null)).Throws<ArgumentNullException>();
         }
 
         [Test]
@@ -315,11 +315,11 @@
                     }
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            long id = cat.AddList("тестовая метка");
+            var id = cat.AddList("тестовая метка");
 
-            Assert.That(id, Is.EqualTo(1));
+			Assert.That(id, Is.EqualTo(1));
         }
 
         [Test]
@@ -333,25 +333,25 @@
                     }
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            long id = cat.AddList("тестовая метка", new long[] {1, 2});
+            var id = cat.AddList("тестовая метка", new long[] {1, 2});
 
-            Assert.That(id, Is.EqualTo(2));
+			Assert.That(id, Is.EqualTo(2));
         }
 
         [Test]
         public void AddList_NameIsEmpty_ThrowException()
         {
-            FriendsCategory cat = GetMockedFriendsCategory("", "");
-            This.Action(() => cat.AddList("")).Throws<ArgumentNullException>();
+            var cat = GetMockedFriendsCategory("", "");
+			This.Action(() => cat.AddList("")).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void DeleteList_IdIsNegative_ThrowException()
         {
-            FriendsCategory cat = GetMockedFriendsCategory("", "");
-            This.Action(() => cat.DeleteList(-1)).Throws<ArgumentException>();
+            var cat = GetMockedFriendsCategory("", "");
+			This.Action(() => cat.DeleteList(-1)).Throws<ArgumentException>();
         }
 
         [Test]
@@ -363,11 +363,11 @@
                     'response': 1
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            bool result = cat.DeleteList(2);
+            var result = cat.DeleteList(2);
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
@@ -388,11 +388,11 @@
                     ]
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            ReadOnlyCollection<FriendList> list = cat.GetLists();
+            var list = cat.GetLists();
 
-            Assert.That(list.Count, Is.EqualTo(2));
+			Assert.That(list.Count, Is.EqualTo(2));
 
             Assert.That(list[0].Id, Is.EqualTo(1));
             Assert.That(list[0].Name, Is.EqualTo("тестовая метка"));
@@ -410,18 +410,18 @@
                     'response': 1
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            bool result = cat.EditList(2, "new тестовая метка");
+            var result = cat.EditList(2, "new тестовая метка");
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
         public void EditList_ListIdIsNegative_ThrowException()
         {
-            FriendsCategory cat = GetMockedFriendsCategory("", "");
-            This.Action(() => cat.EditList(-1)).Throws<ArgumentException>();
+            var cat = GetMockedFriendsCategory("", "");
+			This.Action(() => cat.EditList(-1)).Throws<ArgumentException>();
         }
 
         [Test]
@@ -433,9 +433,9 @@
                     'response': 1
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            bool result = cat.DeleteAllRequests();
+			var result = cat.DeleteAllRequests();
 
             Assert.That(result, Is.True);
         }
@@ -449,11 +449,11 @@
                     'response': 1
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            AddFriendStatus status = cat.Add(242508, "hello, user!");
+            var status = cat.Add(242508, "hello, user!");
 
-            Assert.That(status, Is.EqualTo(AddFriendStatus.Sended));
+			Assert.That(status, Is.EqualTo(AddFriendStatus.Sended));
         }
 
         [Test]
@@ -465,9 +465,9 @@
                     'response': 1
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            AddFriendStatus status = cat.Add(242508, "hello, user!", captchaSid:1247329, captchaKey:"hug2z");
+			var status = cat.Add(242508, "hello, user!", captchaSid:1247329, captchaKey:"hug2z");
 
             Assert.That(status, Is.EqualTo(AddFriendStatus.Sended));
         }
@@ -481,9 +481,9 @@
                     'response': 2
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            DeleteFriendStatus status = cat.Delete(24250);
+			var status = cat.Delete(24250);
 
             Assert.That(status, Is.EqualTo(DeleteFriendStatus.RequestRejected));
         }
@@ -501,9 +501,9 @@
                     ]
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            ReadOnlyCollection<long> ids = cat.GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
+			var ids = cat.GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
 
             ids.Count.ShouldEqual(1);
             ids[0].ShouldEqual(242508111);
@@ -520,9 +520,9 @@
                     ]
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            ReadOnlyCollection<long> ids = cat.GetRequests(offset: 0, count: 3);
+			var ids = cat.GetRequests(offset: 0, count: 3);
 
             ids.Count.ShouldEqual(1);
             ids[0].ShouldEqual(242508111);
@@ -537,9 +537,9 @@
                     'response': []
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            ReadOnlyCollection<long> ids = cat.GetRequests(offset: 0, count: 3, extended:true, needMutual:true);
+			var ids = cat.GetRequests(offset: 0, count: 3, extended:true, needMutual:true);
 
             ids.ShouldNotBeNull();
             ids.Count.ShouldEqual(0);
@@ -556,9 +556,9 @@
                     ]
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            ReadOnlyCollection<long> ids = cat.GetRecent(3);
+			var ids = cat.GetRecent(3);
 
             ids.ShouldNotBeNull();
             ids.Count.ShouldEqual(1);
@@ -574,9 +574,9 @@
                     'response': 1
                   }";
 
-            FriendsCategory cat = GetMockedFriendsCategory(url, json);
+            var cat = GetMockedFriendsCategory(url, json);
 
-            bool result = cat.Edit(242508111, new long[] {2});
+			var result = cat.Edit(242508111, new long[] {2});
 
             result.ShouldBeTrue();
         }

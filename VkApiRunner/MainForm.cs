@@ -30,7 +30,7 @@ namespace VkApiRunner
 			ulong appId;
 			try
 			{
-				string appIdValue = ConfigurationManager.AppSettings["appId"];
+				var appIdValue = ConfigurationManager.AppSettings["appId"];
 				appId = Convert.ToUInt64(appIdValue);
 			}
 			catch (FormatException)
@@ -38,8 +38,8 @@ namespace VkApiRunner
 				MessageBox.Show("Ошибка в разборе appId из app.config", "Ошибка приложения", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-			string login = ConfigurationManager.AppSettings["login"];
-			string password = ConfigurationManager.AppSettings["password"];
+			var login = ConfigurationManager.AppSettings["login"];
+			var password = ConfigurationManager.AppSettings["password"];
 
 			btnRun.Enabled = btnGetTest.Enabled = false;
 
@@ -58,20 +58,20 @@ namespace VkApiRunner
 
 			// Combine parameters
 			var parameters = new VkParameters();
-			for (int i = 1; i < 11; i++)
+			for (var i = 1; i < 11; i++)
 			{
 				var name = (TextBox) pnlParams.Controls.Find(string.Format("tbParamName{0}", i), false)[0];
 				var value = (TextBox)pnlParams.Controls.Find(string.Format("tbParamValue{0}", i), false)[0];
 
-				string paramName = name.Text.Trim();
-				string paramValue = value.Text.Trim();
+				var paramName = name.Text.Trim();
+				var paramValue = value.Text.Trim();
 
 				if (string.IsNullOrEmpty(paramName)) continue;
 
 				parameters.Add(paramName, paramValue);
 			}
 
-			string methodName = tbMethodName.Text.Trim();
+			var methodName = tbMethodName.Text.Trim();
 
 			VkResponse response;
 			try

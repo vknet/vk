@@ -127,7 +127,7 @@ namespace VkNet.Categories
 		{   
 			var parameters = new VkParameters { { "user_id", userId } };
 
-			VkResponse response = _vk.Call("users.isAppUser", parameters);
+			var response = _vk.Call("users.isAppUser", parameters);
 
 			return 1 == Convert.ToInt32(response.ToString());
 		}
@@ -248,7 +248,7 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
-			ReadOnlyCollection<User> users = Get(new[] {screenName}, fields, nameCase);
+			var users = Get(new[] {screenName}, fields, nameCase);
 			return users.Count > 0 ? users[0] : null;
 		}
 

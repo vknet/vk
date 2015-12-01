@@ -264,7 +264,7 @@
         /// <param name="params">Данные авторизации</param>
         public void Authorize(ApiAuthParams @params)
 		{
-			_authorize(
+			Authorize(
                 @params.ApplicationId, 
                 @params.Login,
                 @params.Password,
@@ -285,9 +285,9 @@
         /// <param name="params">Данные авторизации</param>
         public Task AuthorizeAsync(ApiAuthParams @params)
         {
-            Task RTask = new Task(() => { Authorize(@params); });
-            RTask.Start();
-            return RTask;
+            var rTask = new Task(() => { Authorize(@params); });
+            rTask.Start();
+            return rTask;
         }
 		/// <summary>
 		/// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
@@ -314,7 +314,7 @@
 		{
 			if (!string.IsNullOrEmpty(_ap.Login) && !string.IsNullOrEmpty(_ap.Password))
 			{
-				_authorize(
+				Authorize(
                     _ap.ApplicationId, 
                     _ap.Login, 
                     _ap.Password, 
@@ -334,12 +334,12 @@
         /// <param name="code">Делегат двухфакторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
         public Task RefreshTokenAsync(Func<string> code = null)
         {
-            Task RTask = new Task(() =>
+            var rTask = new Task(() =>
             {
                 RefreshToken(code);
             });
-            RTask.Start();
-            return RTask;
+            rTask.Start();
+            return rTask;
         }
 
         #region Private & Internal Methods
@@ -354,7 +354,7 @@
         /// <param name="captchaKey">Текст капчи</param>
         /// <param name="settings">Права доступа для приложения</param>
         /// <exception cref="VkApiAuthorizationException"></exception>
-        internal void _authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
+        internal void Authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
 		{
 			StopTimer();
 
@@ -363,7 +363,7 @@
 			{
 				throw new VkApiAuthorizationException("Invalid authorization", emailOrPhone, password);
 			}
-			int expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
+			var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
 			if (expireTime > 0)
 			{
 				_expireTimer = new Timer(AlertExpires, null, expireTime, Timeout.Infinite);
@@ -402,9 +402,9 @@
         /// <returns></returns>
         private VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {
-            string answer = Invoke(methodName, parameters, skipAuthorization);
+            var answer = Invoke(methodName, parameters, skipAuthorization);
 
-            JObject json = JObject.Parse(answer);
+            var json = JObject.Parse(answer);
 
             var rawResponse = json["response"];
 
@@ -461,25 +461,28 @@
 		}
         #endregion
 
-        /// <summary>
-        /// Прямой вызов API-метода
-        /// </summary>
-        /// <param name="methodName">Название метода. Например, "wall.get".</param>
-        /// <param name="parameters">Вход. параметры метода.</param>
-        /// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
-        /// <returns>Ответ сервера в формате JSON.</returns>
-        [CanBeNull]
+		/// <summary>
+		/// Прямой вызов API-метода
+		/// </summary>
+		/// <param name="methodName">Название метода. Например, "wall.get".</param>
+		/// <param name="parameters">Вход. параметры метода.</param>
+		/// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
+		/// <exception cref="AccessTokenInvalidException"></exception>
+		/// <returns>Ответ сервера в формате JSON.</returns>
+		[CanBeNull]
         public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
         {
             if (!skipAuthorization && !IsAuthorized)
-                throw new AccessTokenInvalidException();
+			{
+				throw new AccessTokenInvalidException();
+			}
 
-            // Защита от превышения кол-ва запросов в секунду
-            if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
+			// Защита от превышения кол-ва запросов в секунду
+			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
                 lock (_expireTimer)
                 {
-                    TimeSpan span = LastInvokeTimeSpan.Value;
+                    var span = LastInvokeTimeSpan.Value;
                     LastInvokeTime = DateTimeOffset.Now;
                     if (span.TotalMilliseconds < _minInterval)
                     {
@@ -488,9 +491,9 @@
                 }
             }
 
-            string url = GetApiUrl(methodName, parameters);
+            var url = GetApiUrl(methodName, parameters);
 
-            string answer = Browser.GetJson(url);
+            var answer = Browser.GetJson(url);
 
 #if DEBUG && !UNIT_TEST
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
@@ -510,12 +513,9 @@
         [CanBeNull]
         public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
         {
-            Task<string> RTask = new Task<string>(() =>
-            {
-                return Invoke(methodName, parameters, skipAuthorization);
-            });
-            RTask.Start();
-            return RTask;
+            var rTask = new Task<string>(() => Invoke(methodName, parameters, skipAuthorization));
+            rTask.Start();
+            return rTask;
         }
     }
 

@@ -108,8 +108,8 @@
                 return;
 
             //var offset = DateTime.Now - nullableDateTime.Value;
-            double totalSeconds = (nullableDateTime.Value.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
-            long offset = Convert.ToInt64(totalSeconds);
+            var totalSeconds = (nullableDateTime.Value.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+            var offset = Convert.ToInt64(totalSeconds);
 
             Add(name, offset);
         }

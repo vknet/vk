@@ -117,23 +117,23 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            UsersCategory users = GetMockedUsersCategory(url, json);
+            var users = GetMockedUsersCategory(url, json);
 
-            // act
-            var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education;
-            User p = users.Get(1, fields);
+			// act
+			var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education;
+            var user = users.Get(1, fields);
 
-            // assert
-            Assert.That(p, Is.Not.Null);
-            Assert.That(p.Id, Is.EqualTo(1));
-            Assert.That(p.FirstName, Is.EqualTo("Павел"));
-            Assert.That(p.LastName, Is.EqualTo("Дуров"));
-            Assert.That(p.Education, Is.Not.Null);
-            Assert.That(p.Education.UniversityId, Is.EqualTo(1));
-            Assert.That(p.Education.UniversityName, Is.EqualTo("СПбГУ"));
-            Assert.That(p.Education.FacultyId, Is.Null);
-            Assert.That(p.Education.FacultyName, Is.EqualTo(""));
-            Assert.That(p.Education.Graduation, Is.EqualTo(2006));
+			// assert
+			Assert.That(user, Is.Not.Null);
+            Assert.That(user.Id, Is.EqualTo(1));
+            Assert.That(user.FirstName, Is.EqualTo("Павел"));
+            Assert.That(user.LastName, Is.EqualTo("Дуров"));
+            Assert.That(user.Education, Is.Not.Null);
+            Assert.That(user.Education.UniversityId, Is.EqualTo(1));
+            Assert.That(user.Education.UniversityName, Is.EqualTo("СПбГУ"));
+            Assert.That(user.Education.FacultyId, Is.Null);
+            Assert.That(user.Education.FacultyName, Is.EqualTo(""));
+            Assert.That(user.Education.Graduation, Is.EqualTo(2006));
         }
 
         [Test]
@@ -167,25 +167,25 @@ namespace VkNet.Tests.Categories
 
             var users = GetMockedUsersCategory(url, json);
             // act
-            User p = users.Get(1, ProfileFields.Counters);
+            var user = users.Get(1, ProfileFields.Counters);
 
-            // assert
-            Assert.That(p, Is.Not.Null);
-            Assert.That(p.Id, Is.EqualTo(1));
-            Assert.That(p.FirstName, Is.EqualTo("Павел"));
-            Assert.That(p.LastName, Is.EqualTo("Дуров"));
-            Assert.That(p.Counters, Is.Not.Null);
-            Assert.That(p.Counters.Albums, Is.EqualTo(1));
-            Assert.That(p.Counters.Videos, Is.EqualTo(8));
-            Assert.That(p.Counters.Audios, Is.EqualTo(0));
-            Assert.That(p.Counters.Notes, Is.EqualTo(6));
-            Assert.That(p.Counters.Photos, Is.EqualTo(153));
-            Assert.That(p.Counters.Friends, Is.EqualTo(689));
-            Assert.That(p.Counters.OnlineFriends, Is.EqualTo(85));
-            Assert.That(p.Counters.MutualFriends, Is.EqualTo(0));
-            Assert.That(p.Counters.Followers, Is.EqualTo(5937280));
-            Assert.That(p.Counters.Subscriptions, Is.EqualTo(0));
-            Assert.That(p.Counters.Pages, Is.EqualTo(51));
+			// assert
+			Assert.That(user, Is.Not.Null);
+            Assert.That(user.Id, Is.EqualTo(1));
+            Assert.That(user.FirstName, Is.EqualTo("Павел"));
+            Assert.That(user.LastName, Is.EqualTo("Дуров"));
+            Assert.That(user.Counters, Is.Not.Null);
+            Assert.That(user.Counters.Albums, Is.EqualTo(1));
+            Assert.That(user.Counters.Videos, Is.EqualTo(8));
+            Assert.That(user.Counters.Audios, Is.EqualTo(0));
+            Assert.That(user.Counters.Notes, Is.EqualTo(6));
+            Assert.That(user.Counters.Photos, Is.EqualTo(153));
+            Assert.That(user.Counters.Friends, Is.EqualTo(689));
+            Assert.That(user.Counters.OnlineFriends, Is.EqualTo(85));
+            Assert.That(user.Counters.MutualFriends, Is.EqualTo(0));
+            Assert.That(user.Counters.Followers, Is.EqualTo(5937280));
+            Assert.That(user.Counters.Subscriptions, Is.EqualTo(0));
+            Assert.That(user.Counters.Pages, Is.EqualTo(51));
         }
 
         [Test]
@@ -203,15 +203,15 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            UsersCategory users = GetMockedUsersCategory(url, json);
+            var users = GetMockedUsersCategory(url, json);
 
-            // act
-            User p = users.Get(1);
+			// act
+			var user = users.Get(1);
 
             // assert
-            Assert.That(p.Id, Is.EqualTo(1));
-            Assert.That(p.FirstName, Is.EqualTo("Павел"));
-            Assert.That(p.LastName, Is.EqualTo("Дуров"));
+            Assert.That(user.Id, Is.EqualTo(1));
+            Assert.That(user.FirstName, Is.EqualTo("Павел"));
+            Assert.That(user.LastName, Is.EqualTo("Дуров"));
         }
 
         [Test]
@@ -250,9 +250,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-            ReadOnlyCollection<User> lst = users.Get(new long[] {1, 672});
+            var lst = users.Get(new long[] {1, 672});
 
-            Assert.That(lst.Count, Is.EqualTo(2));
+			Assert.That(lst.Count, Is.EqualTo(2));
             Assert.That(lst[0], Is.Not.Null);
             Assert.That(lst[0].Id, Is.EqualTo(1));
             Assert.That(lst[0].FirstName, Is.EqualTo("Павел"));
@@ -296,8 +296,8 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            UsersCategory users = GetMockedUsersCategory(url, json);
-            ReadOnlyCollection<User> lst = users.Get(new long[] {1, 5041431}, ProfileFields.Education);
+            var users = GetMockedUsersCategory(url, json);
+			var lst = users.Get(new long[] {1, 5041431}, ProfileFields.Education);
 
             Assert.That(lst.Count == 2);
             Assert.That(lst[0], Is.Not.Null);
@@ -348,9 +348,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-            int settings = users.GetUserSettings(1);
+            var settings = users.GetUserSettings(1);
 
-            Assert.That(settings, Is.EqualTo(2));
+			Assert.That(settings, Is.EqualTo(2));
         }
 
         [Test]
@@ -520,9 +520,9 @@ namespace VkNet.Tests.Categories
                     'response': 0
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            bool result = cat.IsAppUser(1);
+			var result = cat.IsAppUser(1);
 
             result.ShouldBeFalse();
         }
@@ -536,9 +536,9 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            bool result = cat.IsAppUser(123);
+			var result = cat.IsAppUser(123);
 
             result.ShouldBeTrue();
         }
@@ -644,85 +644,85 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            ReadOnlyCollection<User> result = cat.Get(new long[] {1}, ProfileFields.All, NameCase.Gen);
+			var result = cat.Get(new long[] {1}, ProfileFields.All, NameCase.Gen);
 
             result.ShouldNotBeNull();
             result.Count.ShouldEqual(1);
             
-            var u = result[0];
-            u.Id.ShouldEqual(1);
-            u.FirstName.ShouldEqual("Павла");
-            u.LastName.ShouldEqual("Дурова");
-            u.Sex.ShouldEqual(Sex.Male);
-            u.Nickname.ShouldEqual(string.Empty);
-            u.Domain.ShouldEqual("durov");
-            u.BirthDate.ShouldEqual("10.10.1984");
-            u.City.ShouldNotBeNull();
-            u.City.Id.ShouldEqual(2);
-            u.City.Title.ShouldEqual("Санкт-Петербург");
-            u.Country.ShouldNotBeNull();
-            u.Country.Id.ShouldEqual(1);
-            u.Country.Title.ShouldEqual("Россия");
-            u.Timezone.ShouldEqual(3);
-            u.PhotoPreviews.Photo50.ShouldEqual("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg");
-            u.PhotoPreviews.Photo100.ShouldEqual("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg");
-            u.PhotoPreviews.Photo200.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
-            u.PhotoPreviews.Photo400.ShouldEqual("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg");
-            u.PhotoPreviews.PhotoMax.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
-            u.HasMobile.HasValue.ShouldBeTrue();
-            u.HasMobile.Value.ShouldBeTrue();
-            u.Online.HasValue.ShouldBeTrue();
-            u.Online.Value.ShouldBeTrue();
-            u.CanPost.ShouldBeFalse();
-            u.CanSeeAllPosts.ShouldBeFalse();
-            u.CanSeeAudio.ShouldBeFalse();
-            u.CanWritePrivateMessage.ShouldBeFalse();
-            u.Connections.Twitter.ShouldEqual("durov");
-            u.Site.ShouldEqual(string.Empty);
-            u.Status.ShouldEqual(string.Empty);
+            var user = result[0];
+            user.Id.ShouldEqual(1);
+            user.FirstName.ShouldEqual("Павла");
+            user.LastName.ShouldEqual("Дурова");
+            user.Sex.ShouldEqual(Sex.Male);
+            user.Nickname.ShouldEqual(string.Empty);
+            user.Domain.ShouldEqual("durov");
+            user.BirthDate.ShouldEqual("10.10.1984");
+            user.City.ShouldNotBeNull();
+            user.City.Id.ShouldEqual(2);
+            user.City.Title.ShouldEqual("Санкт-Петербург");
+            user.Country.ShouldNotBeNull();
+            user.Country.Id.ShouldEqual(1);
+            user.Country.Title.ShouldEqual("Россия");
+            user.Timezone.ShouldEqual(3);
+            user.PhotoPreviews.Photo50.ShouldEqual("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg");
+            user.PhotoPreviews.Photo100.ShouldEqual("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg");
+            user.PhotoPreviews.Photo200.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
+            user.PhotoPreviews.Photo400.ShouldEqual("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg");
+            user.PhotoPreviews.PhotoMax.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
+            user.HasMobile.HasValue.ShouldBeTrue();
+            user.HasMobile.Value.ShouldBeTrue();
+            user.Online.HasValue.ShouldBeTrue();
+            user.Online.Value.ShouldBeTrue();
+            user.CanPost.ShouldBeFalse();
+            user.CanSeeAllPosts.ShouldBeFalse();
+            user.CanSeeAudio.ShouldBeFalse();
+            user.CanWritePrivateMessage.ShouldBeFalse();
+            user.Connections.Twitter.ShouldEqual("durov");
+            user.Site.ShouldEqual(string.Empty);
+            user.Status.ShouldEqual(string.Empty);
             // TODO: u.LastSeen
-            u.CommonCount.Value.ShouldEqual(0);
-            u.Counters.Albums.ShouldEqual(1);
-            u.Counters.Videos.ShouldEqual(8);
-            u.Counters.Audios.ShouldEqual(0);
-            u.Counters.Notes.Value.ShouldEqual(6);
-            u.Counters.Photos.Value.ShouldEqual(153);
-            u.Counters.Friends.Value.ShouldEqual(688);
-            u.Counters.OnlineFriends.ShouldEqual(146);
-            u.Counters.MutualFriends.ShouldEqual(0);
-            u.Counters.Followers.ShouldEqual(5934786);
-            u.Counters.Subscriptions.ShouldEqual(0);
-            u.Counters.Pages.ShouldEqual(51);
-            u.Universities.Count.ShouldEqual(1);
-            u.Universities[0].Id.ShouldEqual(1);
-            u.Universities[0].Country.ShouldEqual(1);
-            u.Universities[0].City.ShouldEqual(2);
-            u.Universities[0].Name.ShouldEqual("СПбГУ");
-            u.Universities[0].Graduation.ShouldEqual(2006);
+            user.CommonCount.Value.ShouldEqual(0);
+            user.Counters.Albums.ShouldEqual(1);
+            user.Counters.Videos.ShouldEqual(8);
+            user.Counters.Audios.ShouldEqual(0);
+            user.Counters.Notes.Value.ShouldEqual(6);
+            user.Counters.Photos.Value.ShouldEqual(153);
+            user.Counters.Friends.Value.ShouldEqual(688);
+            user.Counters.OnlineFriends.ShouldEqual(146);
+            user.Counters.MutualFriends.ShouldEqual(0);
+            user.Counters.Followers.ShouldEqual(5934786);
+            user.Counters.Subscriptions.ShouldEqual(0);
+            user.Counters.Pages.ShouldEqual(51);
+            user.Universities.Count.ShouldEqual(1);
+            user.Universities[0].Id.ShouldEqual(1);
+            user.Universities[0].Country.ShouldEqual(1);
+            user.Universities[0].City.ShouldEqual(2);
+            user.Universities[0].Name.ShouldEqual("СПбГУ");
+            user.Universities[0].Graduation.ShouldEqual(2006);
 
-            u.Schools.Count.ShouldEqual(2);
-            u.Schools[0].Id.ShouldEqual(1035386);
-            u.Schools[0].Country.ShouldEqual(88);
-            u.Schools[0].City.ShouldEqual(16);
-            u.Schools[0].Name.ShouldEqual("Sc.Elem. Coppino - Falletti di Barolo");
-            u.Schools[0].YearFrom.ShouldEqual(1990);
-            u.Schools[0].YearTo.ShouldEqual(1992);
-            u.Schools[0].Class.ShouldEqual(string.Empty);
+            user.Schools.Count.ShouldEqual(2);
+            user.Schools[0].Id.ShouldEqual(1035386);
+            user.Schools[0].Country.ShouldEqual(88);
+            user.Schools[0].City.ShouldEqual(16);
+            user.Schools[0].Name.ShouldEqual("Sc.Elem. Coppino - Falletti di Barolo");
+            user.Schools[0].YearFrom.ShouldEqual(1990);
+            user.Schools[0].YearTo.ShouldEqual(1992);
+            user.Schools[0].Class.ShouldEqual(string.Empty);
 
-            u.Schools[1].Id.ShouldEqual(1);
-            u.Schools[1].Country.ShouldEqual(1);
-            u.Schools[1].City.ShouldEqual(2);
-            u.Schools[1].Name.ShouldEqual("Академическая (АГ) СПбГУ");
-            u.Schools[1].YearFrom.ShouldEqual(1996);
-            u.Schools[1].YearTo.ShouldEqual(2001);
-            u.Schools[1].YearGraduated.ShouldEqual(2001);
-            u.Schools[1].Class.ShouldEqual("о");
-            u.Schools[1].Type.ShouldEqual(1);
-            u.Schools[1].TypeStr.ShouldEqual("Гимназия");
+            user.Schools[1].Id.ShouldEqual(1);
+            user.Schools[1].Country.ShouldEqual(1);
+            user.Schools[1].City.ShouldEqual(2);
+            user.Schools[1].Name.ShouldEqual("Академическая (АГ) СПбГУ");
+            user.Schools[1].YearFrom.ShouldEqual(1996);
+            user.Schools[1].YearTo.ShouldEqual(2001);
+            user.Schools[1].YearGraduated.ShouldEqual(2001);
+            user.Schools[1].Class.ShouldEqual("о");
+            user.Schools[1].Type.ShouldEqual(1);
+            user.Schools[1].TypeStr.ShouldEqual("Гимназия");
 
-            u.Relatives.Count.ShouldEqual(0);
+            user.Relatives.Count.ShouldEqual(0);
         }
 
         [Test]
@@ -826,82 +826,82 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            User u = cat.Get(1, ProfileFields.All, NameCase.Gen);
+            var user = cat.Get(1, ProfileFields.All, NameCase.Gen);
 
-            u.ShouldNotBeNull();
-            u.Id.ShouldEqual(1);
-            u.FirstName.ShouldEqual("Павла");
-            u.LastName.ShouldEqual("Дурова");
-            u.Sex.ShouldEqual(Sex.Male);
-            u.Nickname.ShouldEqual(string.Empty);
-            u.Domain.ShouldEqual("durov");
-            u.BirthDate.ShouldEqual("10.10.1984");
-            u.City.ShouldNotBeNull();
-            u.City.Id.ShouldEqual(2);
-            u.City.Title.ShouldEqual("Санкт-Петербург");
-            u.Country.ShouldNotBeNull();
-            u.Country.Id.ShouldEqual(1);
-            u.Country.Title.ShouldEqual("Россия");
-            u.Timezone.ShouldEqual(3);
-            u.PhotoPreviews.Photo50.ShouldEqual("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg");
-            u.PhotoPreviews.Photo100.ShouldEqual("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg");
-            u.PhotoPreviews.Photo200.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
-            u.PhotoPreviews.Photo400.ShouldEqual("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg");
-            u.PhotoPreviews.PhotoMax.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
-            u.HasMobile.HasValue.ShouldBeTrue();
-            u.HasMobile.Value.ShouldBeTrue();
-            u.Online.HasValue.ShouldBeTrue();
-            u.Online.Value.ShouldBeTrue();
-            u.CanPost.ShouldBeFalse();
-            u.CanSeeAllPosts.ShouldBeFalse();
-            u.CanSeeAudio.ShouldBeFalse();
-            u.CanWritePrivateMessage.ShouldBeFalse();
-            u.Connections.Twitter.ShouldEqual("durov");
-            u.Site.ShouldEqual(string.Empty);
-            u.Status.ShouldEqual(string.Empty);
+			user.ShouldNotBeNull();
+            user.Id.ShouldEqual(1);
+            user.FirstName.ShouldEqual("Павла");
+            user.LastName.ShouldEqual("Дурова");
+            user.Sex.ShouldEqual(Sex.Male);
+            user.Nickname.ShouldEqual(string.Empty);
+            user.Domain.ShouldEqual("durov");
+            user.BirthDate.ShouldEqual("10.10.1984");
+            user.City.ShouldNotBeNull();
+            user.City.Id.ShouldEqual(2);
+            user.City.Title.ShouldEqual("Санкт-Петербург");
+            user.Country.ShouldNotBeNull();
+            user.Country.Id.ShouldEqual(1);
+            user.Country.Title.ShouldEqual("Россия");
+            user.Timezone.ShouldEqual(3);
+            user.PhotoPreviews.Photo50.ShouldEqual("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg");
+            user.PhotoPreviews.Photo100.ShouldEqual("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg");
+            user.PhotoPreviews.Photo200.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
+            user.PhotoPreviews.Photo400.ShouldEqual("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg");
+            user.PhotoPreviews.PhotoMax.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
+            user.HasMobile.HasValue.ShouldBeTrue();
+            user.HasMobile.Value.ShouldBeTrue();
+            user.Online.HasValue.ShouldBeTrue();
+            user.Online.Value.ShouldBeTrue();
+            user.CanPost.ShouldBeFalse();
+            user.CanSeeAllPosts.ShouldBeFalse();
+            user.CanSeeAudio.ShouldBeFalse();
+            user.CanWritePrivateMessage.ShouldBeFalse();
+            user.Connections.Twitter.ShouldEqual("durov");
+            user.Site.ShouldEqual(string.Empty);
+            user.Status.ShouldEqual(string.Empty);
             // TODO: u.LastSeen
-            u.CommonCount.Value.ShouldEqual(0);
-            u.Counters.Albums.ShouldEqual(1);
-            u.Counters.Videos.ShouldEqual(8);
-            u.Counters.Audios.ShouldEqual(0);
-            u.Counters.Notes.Value.ShouldEqual(6);
-            u.Counters.Photos.Value.ShouldEqual(153);
-            u.Counters.Friends.Value.ShouldEqual(688);
-            u.Counters.OnlineFriends.ShouldEqual(146);
-            u.Counters.MutualFriends.ShouldEqual(0);
-            u.Counters.Followers.ShouldEqual(5934786);
-            u.Counters.Subscriptions.ShouldEqual(0);
-            u.Counters.Pages.ShouldEqual(51);
-            u.Universities.Count.ShouldEqual(1);
-            u.Universities[0].Id.ShouldEqual(1);
-            u.Universities[0].Country.ShouldEqual(1);
-            u.Universities[0].City.ShouldEqual(2);
-            u.Universities[0].Name.ShouldEqual("СПбГУ");
-            u.Universities[0].Graduation.ShouldEqual(2006);
+            user.CommonCount.Value.ShouldEqual(0);
+            user.Counters.Albums.ShouldEqual(1);
+            user.Counters.Videos.ShouldEqual(8);
+            user.Counters.Audios.ShouldEqual(0);
+            user.Counters.Notes.Value.ShouldEqual(6);
+            user.Counters.Photos.Value.ShouldEqual(153);
+            user.Counters.Friends.Value.ShouldEqual(688);
+            user.Counters.OnlineFriends.ShouldEqual(146);
+            user.Counters.MutualFriends.ShouldEqual(0);
+            user.Counters.Followers.ShouldEqual(5934786);
+            user.Counters.Subscriptions.ShouldEqual(0);
+            user.Counters.Pages.ShouldEqual(51);
+            user.Universities.Count.ShouldEqual(1);
+            user.Universities[0].Id.ShouldEqual(1);
+            user.Universities[0].Country.ShouldEqual(1);
+            user.Universities[0].City.ShouldEqual(2);
+            user.Universities[0].Name.ShouldEqual("СПбГУ");
+            user.Universities[0].Graduation.ShouldEqual(2006);
 
-            u.Schools.Count.ShouldEqual(2);
-            u.Schools[0].Id.ShouldEqual(1035386);
-            u.Schools[0].Country.ShouldEqual(88);
-            u.Schools[0].City.ShouldEqual(16);
-            u.Schools[0].Name.ShouldEqual("Sc.Elem. Coppino - Falletti di Barolo");
-            u.Schools[0].YearFrom.ShouldEqual(1990);
-            u.Schools[0].YearTo.ShouldEqual(1992);
-            u.Schools[0].Class.ShouldEqual(string.Empty);
+            user.Schools.Count.ShouldEqual(2);
+            user.Schools[0].Id.ShouldEqual(1035386);
+            user.Schools[0].Country.ShouldEqual(88);
+            user.Schools[0].City.ShouldEqual(16);
+            user.Schools[0].Name.ShouldEqual("Sc.Elem. Coppino - Falletti di Barolo");
+            user.Schools[0].YearFrom.ShouldEqual(1990);
+            user.Schools[0].YearTo.ShouldEqual(1992);
+            user.Schools[0].Class.ShouldEqual(string.Empty);
 
-            u.Schools[1].Id.ShouldEqual(1);
-            u.Schools[1].Country.ShouldEqual(1);
-            u.Schools[1].City.ShouldEqual(2);
-            u.Schools[1].Name.ShouldEqual("Академическая (АГ) СПбГУ");
-            u.Schools[1].YearFrom.ShouldEqual(1996);
-            u.Schools[1].YearTo.ShouldEqual(2001);
-            u.Schools[1].YearGraduated.ShouldEqual(2001);
-            u.Schools[1].Class.ShouldEqual("о");
-            u.Schools[1].Type.ShouldEqual(1);
-            u.Schools[1].TypeStr.ShouldEqual("Гимназия");
+            user.Schools[1].Id.ShouldEqual(1);
+            user.Schools[1].Country.ShouldEqual(1);
+            user.Schools[1].City.ShouldEqual(2);
+            user.Schools[1].Name.ShouldEqual("Академическая (АГ) СПбГУ");
+            user.Schools[1].YearFrom.ShouldEqual(1996);
+            user.Schools[1].YearTo.ShouldEqual(2001);
+            user.Schools[1].YearGraduated.ShouldEqual(2001);
+            user.Schools[1].Class.ShouldEqual("о");
+            user.Schools[1].Type.ShouldEqual(1);
+            user.Schools[1].TypeStr.ShouldEqual("Гимназия");
 
-            u.Relatives.Count.ShouldEqual(0);
+            user.Relatives.Count.ShouldEqual(0);
         }
 
         [Test]
@@ -920,9 +920,9 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            User user = cat.Get(4793858, ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education);
+			var user = cat.Get(4793858, ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education);
 
             user.ShouldNotBeNull();
             user.Id.ShouldEqual(4793858);
@@ -969,9 +969,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            ReadOnlyCollection<Group> result = cat.GetSubscriptions(1, 2, 3);
+			var result = cat.GetSubscriptions(1, 2, 3);
 
             result.Count.ShouldEqual(2);
 			Assert.That(result[0].Id, Is.EqualTo(32295218));
@@ -1012,9 +1012,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            ReadOnlyCollection<User> result = cat.GetFollowers(1, 2, 3);
+			var result = cat.GetFollowers(1, 2, 3);
 
             result.ShouldNotBeNull();
             result.Count.ShouldEqual(2);
@@ -1143,9 +1143,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            ReadOnlyCollection<User> result = cat.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen);
+			var result = cat.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen);
 
             result.ShouldNotBeNull();
             result.Count.ShouldEqual(2);
@@ -1233,9 +1233,9 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            bool result = cat.Report(243663122, ReportType.Insult, "комментарий");
+			var result = cat.Report(243663122, ReportType.Insult, "комментарий");
 
             result.ShouldBeTrue();
         }
@@ -1270,11 +1270,11 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            var screenNames = new [] {"dm", "durov"};
-            ProfileFields fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
-            ReadOnlyCollection<User> users = cat.Get(screenNames, fields, NameCase.Gen);
+			var screenNames = new [] {"dm", "durov"};
+            var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
+			var users = cat.Get(screenNames, fields, NameCase.Gen);
 
             users.Count.ShouldEqual(2);
             users[0].Id.ShouldEqual(53083705);
@@ -1312,12 +1312,12 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            UsersCategory cat = GetMockedUsersCategory(url, json);
+            var cat = GetMockedUsersCategory(url, json);
 
-            ProfileFields fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
-            User user = cat.Get("dm", fields, NameCase.Gen);
+			var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
+            var user = cat.Get("dm", fields, NameCase.Gen);
 
-            user.ShouldNotBeNull();
+			user.ShouldNotBeNull();
 
             user.Id.ShouldEqual(53083705);
             user.FirstName.ShouldEqual("Дмитрия");

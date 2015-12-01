@@ -52,20 +52,29 @@ namespace VkNet.Enums.SafetyEnums
 			switch (response.ToString())
 			{
 				case "post":
-					return Post;
-
+					{
+						return Post;
+					}
 				case "not_banned":
-					return Photo;
-
+					{
+						return Photo;
+					}
 				case "processing":
-					return PhotoTag;
-
+					{
+						return PhotoTag;
+					}
 				case "WallPhoto":
-					return WallPhoto;
+					{
+						return WallPhoto;
+					}
 				case "Friend":
-					return Friend;
+					{
+						return Friend;
+					}
 				case "Note":
-					return Note;
+					{
+						return Note;
+					}
 			}
 
 			return null;

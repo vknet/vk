@@ -188,7 +188,7 @@
         {
             var post = new Post();
 
-            long? postId = Utilities.GetNullableLongId(response["id"]);
+            var postId = Utilities.GetNullableLongId(response["id"]);
             if (postId == null)
                 return null;
 

@@ -89,7 +89,7 @@ namespace VkNet.Categories
 			{
 				parameters.Add("time_offset", timeOffset.Value.TotalSeconds);
 			}
-			VkResponse response = _vk.Call("messages.get", parameters);
+			var response = _vk.Call("messages.get", parameters);
 			totalCount = response["count"];
 
 			return response["items"].ToReadOnlyCollectionOf<Message>(item => item);
@@ -118,7 +118,7 @@ namespace VkNet.Categories
                 { "preview_length", @params.PreviewLength },
                 { "last_message_id", @params.LastMessageId }
             };
-            VkResponse response = _vk.Call("messages.get", parameters);
+            var response = _vk.Call("messages.get", parameters);
             return response;
         }
 
@@ -154,7 +154,7 @@ namespace VkNet.Categories
 			{
 				parameters.Add("count", count);
 			}
-			VkResponse response = _vk.Call("messages.getHistory", parameters);
+			var response = _vk.Call("messages.getHistory", parameters);
 
 			totalCount = response["count"];
 
@@ -184,7 +184,7 @@ namespace VkNet.Categories
                 { "start_message_id", @params.StartMessageID },
                 { "rev", @params.Reversed }
             };
-            VkResponse response = _vk.Call("messages.getHistory", parameters);
+            var response = _vk.Call("messages.getHistory", parameters);
             return response;
         }
 
@@ -206,7 +206,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters { { "message_ids", messageIds }, { "preview_length", previewLength } };
 
-			VkResponse response = _vk.Call("messages.getById", parameters);
+			var response = _vk.Call("messages.getById", parameters);
 
 			totalCount = response["count"];
 			return response["items"].ToReadOnlyCollectionOf<Message>(r => r);
@@ -272,7 +272,7 @@ namespace VkNet.Categories
 				{ "preview_length", previewLength },
                 { "count", count }
 			};
-			VkResponse response = _vk.Call("messages.getDialogs", parameters);
+			var response = _vk.Call("messages.getDialogs", parameters);
 
 			// При загрузке списка непрочитанных диалогов в параметре count передается значение unreadCount, 
 			// а значение totalCount не возвращаеться
@@ -306,7 +306,7 @@ namespace VkNet.Categories
                 { "unread", @params.Unread },
                 { "preview_length", @params.PreviewLength }
             };
-            VkResponse response = _vk.Call("messages.getDialogs", parameters);
+            var response = _vk.Call("messages.getDialogs", parameters);
             return response;
         }
 
@@ -348,14 +348,20 @@ namespace VkNet.Categories
 				switch (type)
 				{
 					case "profile":
-						result.Users.Add(record);
-						break;
+						{
+							result.Users.Add(record);
+							break;
+						}
 					case "chat":
-						result.Chats.Add(record);
-						break;
+						{
+							result.Chats.Add(record);
+							break;
+						}
 					case "email":
-						// TODO: Add email support.
-						continue;
+						{
+							// TODO: Add email support.
+							continue;
+						}
 				}
 			}
 			return result;
@@ -759,7 +765,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.37")]
 		public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, Enums.SafetyEnums.NameCase nameCase = null)
 		{
-			bool isNoEmpty = chatIds == null || !chatIds.Any();
+			var isNoEmpty = chatIds == null || !chatIds.Any();
 			if (isNoEmpty)
 			{
 				throw new ArgumentException("At least one chat ID must be defined", "chatIds");

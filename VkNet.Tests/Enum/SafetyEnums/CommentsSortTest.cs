@@ -10,18 +10,18 @@ namespace VkNet.Tests.Enum.SafetyEnums
         [Test]
         public void ToString_Asc()
         {
-            CommentsSort sort = CommentsSort.Asc;
+            var sort = CommentsSort.Asc;
 
-            string type = sort.ToString();
+			var type = sort.ToString();
             type.ShouldEqual("asc");
         }
 
         [Test]
         public void ToString_Desc()
         {
-            CommentsSort sort = CommentsSort.Desc;
+            var sort = CommentsSort.Desc;
 
-            string type = sort.ToString();
+			var type = sort.ToString();
 
             type.ShouldEqual("desc");
         }

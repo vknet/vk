@@ -31,9 +31,9 @@ namespace VkNet.Tests.Utils
         {
             const string expected =
                 "https://oauth.vk.com/authorize?client_id=123&scope=friends&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token";
-            string url = Browser.CreateAuthorizeUrlFor(123, Settings.Friends, Display.Page);
+            var url = Browser.CreateAuthorizeUrlFor(123, Settings.Friends, Display.Page);
 
-            Assert.That(url, Is.EqualTo(expected));
+			Assert.That(url, Is.EqualTo(expected));
         }
 
         [Test]
@@ -55,8 +55,8 @@ namespace VkNet.Tests.Utils
             
             var authorization = VkAuthorization.From(new Uri(urlWithBadUserId));
 
-            long userId = authorization.UserId;
-        }
+            var userId = authorization.UserId;
+		}
 
         [Test]
         public void Authorize_RightInput_AccessToken()

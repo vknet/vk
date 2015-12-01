@@ -22,8 +22,8 @@ namespace VkNet.Tests.Enum.Filters
         [Test]
         public void ToString_DuplicateSettings_NoDuplicates()
         {
-            var s = Settings.Friends | Settings.Video | Settings.Audio | Settings.Friends;
-			Assert.That(s.ToString(), Is.EqualTo("friends,audio,video"));
+            var settings = Settings.Friends | Settings.Video | Settings.Audio | Settings.Friends;
+			Assert.That(settings.ToString(), Is.EqualTo("friends,audio,video"));
         }
 
         [Test]
@@ -65,25 +65,25 @@ namespace VkNet.Tests.Enum.Filters
         [Test]
         public void Value_OffersPagesFriends_162()
         {
-            Settings s = Settings.Pages | Settings.Friends;
-            Assert.That(s.Value, Is.EqualTo(130));
+            var settings = Settings.Pages | Settings.Friends;
+			Assert.That(settings.Value, Is.EqualTo(130));
         }
 
         [Test]
         public void ToString_MulitpleItems()
         {
-            var s = Settings.Friends | Settings.Video | Settings.Audio;
-			Assert.That(s.ToString(), Is.EqualTo("friends,audio,video"));
+            var settings = Settings.Friends | Settings.Video | Settings.Audio;
+			Assert.That(settings.ToString(), Is.EqualTo("friends,audio,video"));
         }
 
         [Test]
         public void ToString_All()
         {
-            Settings s = Settings.All;
-            const string expected = "notify,friends,photos,audio,video,pages,status,notes,messages,wall," +
+            var settings = Settings.All;
+			const string expected = "notify,friends,photos,audio,video,pages,status,notes,messages,wall," +
 									"ads,docs,groups,notifications,stats";
 
-            Assert.That(s.ToString(), Is.EqualTo(expected));
+            Assert.That(settings.ToString(), Is.EqualTo(expected));
         }
     }
 }

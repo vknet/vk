@@ -41,9 +41,9 @@ namespace VkNet.Tests.Categories
 
             var utils = GetMockedUtilsCategory(url, json);
 
-            LinkAccessType type = utils.CheckLink("http://www.kreml.ru/‎");
+            var type = utils.CheckLink("http://www.kreml.ru/‎");
 
-            type.ShouldEqual(LinkAccessType.Banned);
+			type.ShouldEqual(LinkAccessType.Banned);
         }
 
         [Test]
@@ -59,9 +59,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var utils = GetMockedUtilsCategory(url, json);
-            LinkAccessType type = utils.CheckLink("hsfasfsf");
+            var type = utils.CheckLink("hsfasfsf");
 
-            type.ShouldEqual(LinkAccessType.NotBanned);
+			type.ShouldEqual(LinkAccessType.NotBanned);
         }
 
         [Test]
@@ -78,9 +78,9 @@ namespace VkNet.Tests.Categories
 
             var utils = GetMockedUtilsCategory(url, json);
 
-            LinkAccessType type = utils.CheckLink("http://www.google.com");
+            var type = utils.CheckLink("http://www.google.com");
 
-            type.ShouldEqual(LinkAccessType.NotBanned);
+			type.ShouldEqual(LinkAccessType.NotBanned);
         }
 
          [Test]
@@ -96,9 +96,9 @@ namespace VkNet.Tests.Categories
 
              var utils = GetMockedUtilsCategory(url, json);
 
-             DateTime time = utils.GetServerTime();
+             var time = utils.GetServerTime();
 
-             time.ShouldEqual(expected);
+			time.ShouldEqual(expected);
          }
 
         [Test]
@@ -112,9 +112,9 @@ namespace VkNet.Tests.Categories
 
             var utils = GetMockedUtilsCategory(url, json);
 
-            VkObject obj = utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
+            var obj = utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
 
-            obj.ShouldBeNull();
+			obj.ShouldBeNull();
         }
 
         [Test]
@@ -131,10 +131,10 @@ namespace VkNet.Tests.Categories
 
             var utils = GetMockedUtilsCategory(url, json);
 
-            VkObject obj = utils.ResolveScreenName("azhidkov");
+            var obj = utils.ResolveScreenName("azhidkov");
 
-            // assert
-            obj.ShouldNotBeNull();
+			// assert
+			obj.ShouldNotBeNull();
             obj.Id.ShouldEqual(186085938);
             obj.Type.ShouldEqual(VkObjectType.User);
         }
@@ -153,10 +153,10 @@ namespace VkNet.Tests.Categories
 
             var utils = GetMockedUtilsCategory(url, json);
 
-            VkObject obj = utils.ResolveScreenName("azhidkov");
+            var obj = utils.ResolveScreenName("azhidkov");
 
-            // assert
-            obj.ShouldNotBeNull();
+			// assert
+			obj.ShouldNotBeNull();
             obj.Id.ShouldEqual(922337203685471);
             obj.Type.ShouldEqual(VkObjectType.User);
         }
@@ -175,10 +175,10 @@ namespace VkNet.Tests.Categories
 
             var utils = GetMockedUtilsCategory(url, json);
 
-            VkObject obj = utils.ResolveScreenName("mdk");
+            var obj = utils.ResolveScreenName("mdk");
 
-            // assert
-            obj.ShouldNotBeNull();
+			// assert
+			obj.ShouldNotBeNull();
             obj.Type.ShouldEqual(VkObjectType.Group);
             obj.Id.ShouldEqual(10639516);
         }

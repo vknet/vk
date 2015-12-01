@@ -76,9 +76,9 @@
                     }
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             ReadOnlyCollection<Video> result = cat.Get(1, width:VideoWidth.Large320, count: 3, offset: 2);
+			var result = cat.Get(1, width:VideoWidth.Large320, count: 3, offset: 2);
 
              result.Count.ShouldEqual(3);
              result[0].Id.ShouldEqual(166481021);
@@ -190,9 +190,9 @@
                     }
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             ReadOnlyCollection<Video> result = cat.Get(1, width: VideoWidth.Large320, count: 3, offset: 2, extended:true);
+			var result = cat.Get(1, width: VideoWidth.Large320, count: 3, offset: 2, extended:true);
 
              result.Count.ShouldEqual(3);
              result[0].Id.ShouldEqual(166481021);
@@ -260,9 +260,9 @@
                     'response': 167593944
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             long id = cat.Add(164841344, 1);
+			var id = cat.Add(164841344, 1);
 
              id.ShouldEqual(167593944);
          }
@@ -276,9 +276,9 @@
                     'response': 1
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             bool result = cat.Delete(167593944);
+			var result = cat.Delete(167593944);
 
              result.ShouldBeTrue();
          }
@@ -292,9 +292,9 @@
                     'response': 1
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             bool result = cat.Restore(167593944);
+			var result = cat.Restore(167593944);
 
              result.ShouldBeTrue();
          }
@@ -311,9 +311,9 @@
                   }";
              // todo real album id
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             long id = cat.AddAlbum("Новый альбом видеозаписей");
+			var id = cat.AddAlbum("Новый альбом видеозаписей");
 
              id.ShouldEqual(52153803);
          }
@@ -344,9 +344,9 @@
                     }
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             ReadOnlyCollection<VideoAlbum> result = cat.GetAlbums(234695119, extended:true);
+			var result = cat.GetAlbums(234695119, extended:true);
 
              result.Count.ShouldEqual(2);
              result[0].Id.ShouldEqual(52154345);
@@ -369,9 +369,9 @@
                     'response': 1
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             bool result = cat.DeleteAlbum(52153813);
+			var result = cat.DeleteAlbum(52153813);
 
              result.ShouldBeTrue();
          }
@@ -385,9 +385,9 @@
                     'response': 1
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             bool result = cat.EditAlbum(521543, "Новое название!!!");
+			var result = cat.EditAlbum(521543, "Новое название!!!");
 
              result.ShouldBeTrue();
          }
@@ -401,9 +401,9 @@
                     'response': 1
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             bool result = cat.MoveToAlbum(new long[] {167593938}, 52154378);
+			var result = cat.MoveToAlbum(new long[] {167593938}, 52154378);
 
              result.ShouldBeTrue();
          }
@@ -443,9 +443,9 @@
                     }
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             ReadOnlyCollection<Comment> comments = cat.GetComments(166481021, 1, true, 2, 3, CommentsSort.Asc);
+			var comments = cat.GetComments(166481021, 1, true, 2, 3, CommentsSort.Asc);
 
              comments.Count.ShouldEqual(2);
 
@@ -491,9 +491,9 @@
                     }
                   }";
 
-             VideoCategory cat = GetMockedVideoCategory(url, json);
+             var cat = GetMockedVideoCategory(url, json);
 
-             ReadOnlyCollection<Comment> comments = cat.GetComments(166481021, 1, false, 2, 3, CommentsSort.Asc);
+			var comments = cat.GetComments(166481021, 1, false, 2, 3, CommentsSort.Asc);
 
              comments.Count.ShouldEqual(2);
 
@@ -563,9 +563,9 @@
 
             var cat = GetMockedVideoCategory(url, json);
 
-            ReadOnlyCollection<Video> result = cat.Search("саша грей", VideoSort.Relevance, false, true, VideoFilters.Long, false, 5, 1);
+            var result = cat.Search("саша грей", VideoSort.Relevance, false, true, VideoFilters.Long, false, 5, 1);
 
-            result.Count.ShouldEqual(3);
+			result.Count.ShouldEqual(3);
 
             result[0].Id.ShouldEqual(166671614);
             result[0].OwnerId.ShouldEqual(-59205334);
@@ -614,9 +614,9 @@
                     'response': 35634
                   }";
 
-            VideoCategory cat = GetMockedVideoCategory(url, json);
+            var cat = GetMockedVideoCategory(url, json);
 
-            long id = cat.CreateComment(166613182, "забавное видео", 1);
+			var id = cat.CreateComment(166613182, "забавное видео", 1);
 
             id.ShouldEqual(35634);
         }
@@ -630,9 +630,9 @@
                     'response': 1
                   }";
 
-            VideoCategory cat = GetMockedVideoCategory(url, json);
+            var cat = GetMockedVideoCategory(url, json);
 
-            bool result = cat.DeleteComment(35634, 1);
+			var result = cat.DeleteComment(35634, 1);
 
             result.ShouldBeTrue();
         }
@@ -646,9 +646,9 @@
                     'response': 1
                   }";
 
-            VideoCategory cat = GetMockedVideoCategory(url, json);
+            var cat = GetMockedVideoCategory(url, json);
 
-            bool result = cat.RestoreComment(35634, 1);
+			var result = cat.RestoreComment(35634, 1);
 
             result.ShouldBeTrue();
         }
@@ -662,9 +662,9 @@
                     'response': 1
                   }";
 
-            VideoCategory cat = GetMockedVideoCategory(url, json);
+            var cat = GetMockedVideoCategory(url, json);
 
-            bool result = cat.EditComment(35634, "суперское видео", 1);
+			var result = cat.EditComment(35634, "суперское видео", 1);
 
             result.ShouldBeTrue();
         }
@@ -678,9 +678,9 @@
                     'response': 1
                   }";
 
-            VideoCategory cat = GetMockedVideoCategory(url, json);
+            var cat = GetMockedVideoCategory(url, json);
 
-            bool result = cat.Report(166613182, Enums.ContentReportType.DrugPropaganda, 1, "коммент");
+			var result = cat.Report(166613182, Enums.ContentReportType.DrugPropaganda, 1, "коммент");
 
             result.ShouldBeTrue();
         }
@@ -694,11 +694,11 @@
                     'response': 1
                   }";
 
-            VideoCategory cat = GetMockedVideoCategory(url, json);
+            var cat = GetMockedVideoCategory(url, json);
 
-            bool result = cat.ReportComment(35637, 1, Enums.ContentReportType.AdultMaterial);
+            var result = cat.ReportComment(35637, 1, Enums.ContentReportType.AdultMaterial);
 
-            result.ShouldBeTrue();
+			result.ShouldBeTrue();
         }
 
         [Test]
@@ -710,9 +710,9 @@
                     'response': 1
                   }";
 
-            VideoCategory cat = GetMockedVideoCategory(url, json);
+            var cat = GetMockedVideoCategory(url, json);
 
-            bool result = cat.Edit(167538, 23469, "Новое название", "Новое описание");
+			var result = cat.Edit(167538, 23469, "Новое название", "Новое описание");
 
             result.ShouldBeTrue();
         }
@@ -733,16 +733,16 @@
                     }
                   }";
 
-            VideoCategory cat = GetMockedVideoCategory(url, json);
+            var cat = GetMockedVideoCategory(url, json);
 
-            Video v = cat.Save("Название из ютуба", "Описание из ютуба", isPostToWall: true, link: "https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA");
+            var video = cat.Save("Название из ютуба", "Описание из ютуба", isPostToWall: true, link: "https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA");
 
-            v.Id.ShouldEqual(1673994);
-            v.OwnerId.ShouldEqual(2346958);
-            v.Title.ShouldEqual("Название из ютуба");
-            v.Description.ShouldEqual("Описание из ютуба");
-            v.AccessKey.ShouldEqual("f2ec9f3982f05bc");
-            v.UploadUrl.ShouldEqual(new Uri("http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043"));
+			video.Id.ShouldEqual(1673994);
+            video.OwnerId.ShouldEqual(2346958);
+            video.Title.ShouldEqual("Название из ютуба");
+            video.Description.ShouldEqual("Описание из ютуба");
+            video.AccessKey.ShouldEqual("f2ec9f3982f05bc");
+            video.UploadUrl.ShouldEqual(new Uri("http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043"));
         }
 
     }

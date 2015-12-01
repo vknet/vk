@@ -151,7 +151,7 @@
                     {"owner_id", ownerId}
                 };
 
-            VkResponse response = _vk.Call("video.add", parameters);
+            var response = _vk.Call("video.add", parameters);
 
             return response;
         }
@@ -389,7 +389,7 @@
                     {"title", title}
                 };
             
-            VkResponse response = _vk.Call("video.addAlbum", parameters);
+            var response = _vk.Call("video.addAlbum", parameters);
 
             return response["album_id"];
         }
@@ -510,7 +510,7 @@
                     {"sort", sort}
                 };
 
-            VkResponse response = _vk.Call("video.getComments", parameters);
+            var response = _vk.Call("video.getComments", parameters);
 
             return response.ToReadOnlyCollectionOf<Comment>(x => x);
         }

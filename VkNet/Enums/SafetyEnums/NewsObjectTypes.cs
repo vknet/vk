@@ -52,17 +52,29 @@ namespace VkNet.Enums.SafetyEnums
 			switch (response.ToString())
 			{
 				case "wall":
-					return Wall;
+					{
+						return Wall;
+					}
 				case "tag":
-					return Tag;
+					{
+						return Tag;
+					}
 				case "profilephoto":
-					return ProfilePhoto;
+					{
+						return ProfilePhoto;
+					}
 				case "video":
-					return Video;
+					{
+						return Video;
+					}
 				case "photo":
-					return Photo;
+					{
+						return Photo;
+					}
 				case "audio":
-					return Audio;
+					{
+						return Audio;
+					}
 			}
 
 			return null;

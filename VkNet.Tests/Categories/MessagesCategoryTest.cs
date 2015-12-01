@@ -237,7 +237,7 @@ namespace VkNet.Tests.Categories
 			totalCount.ShouldEqual(1940);
 			msg[0].Attachments.Count.ShouldEqual(1);
 
-			Wall wall = msg[0].Attachments[0].Instance as Wall;
+			var wall = msg[0].Attachments[0].Instance as Wall;
 			wall.ShouldNotBeNull();
 
 			wall.Id.ShouldEqual(6194);
@@ -364,7 +364,7 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			Message msg = Cat.GetById(1);
+			var msg = Cat.GetById(1);
 
 			Assert.That(msg.Id, Is.EqualTo(1));
 			Assert.That(msg.Date, Is.EqualTo(new DateTime(2007, 12, 18, 2, 5, 20)));
@@ -487,7 +487,7 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			SearchDialogsResponse response = Cat.SearchDialogs("Настя");
+			var response = Cat.SearchDialogs("Настя");
 
 			Assert.That(response.Users.Count, Is.EqualTo(2));
 			Assert.That(response.Chats.Count, Is.EqualTo(0));
@@ -525,7 +525,7 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			SearchDialogsResponse response = Cat.SearchDialogs("Маша");
+			var response = Cat.SearchDialogs("Маша");
 
 			Assert.That(response.Users.Count, Is.EqualTo(1));
 			Assert.That(response.Chats.Count, Is.EqualTo(1));
@@ -587,7 +587,7 @@ namespace VkNet.Tests.Categories
 			}";
 
 			int totalCount;
-			List<Message> msgs = Cat.Search("привет", out totalCount, 3).ToList();
+			var msgs = Cat.Search("привет", out totalCount, 3).ToList();
 
 			Assert.That(totalCount, Is.EqualTo(680));
 			Assert.That(msgs.Count, Is.EqualTo(3));
@@ -708,7 +708,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			bool result = Cat.Delete(4446);
+			var result = Cat.Delete(4446);
 
 			Assert.That(result, Is.True);
 		}
@@ -781,7 +781,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			bool result = Cat.DeleteDialog(4460019, false);
+			var result = Cat.DeleteDialog(4460019, false);
 
 			Assert.That(result, Is.True);
 		}
@@ -795,7 +795,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			bool result = Cat.DeleteDialog(4460019, false, 2, 2);
+			var result = Cat.DeleteDialog(4460019, false, 2, 2);
 
 			Assert.That(result, Is.True);
 		}
@@ -816,7 +816,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			bool result = Cat.Restore(134);
+			var result = Cat.Restore(134);
 
 			Assert.That(result, Is.True);
 		}
@@ -839,7 +839,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			bool result = Cat.MarkAsNew(1);
+			var result = Cat.MarkAsNew(1);
 
 			Assert.That(result, Is.True);
 		}
@@ -854,7 +854,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			bool result = Cat.MarkAsNew(new ulong[] {2, 3});
+			var result = Cat.MarkAsNew(new ulong[] {2, 3});
 
 			Assert.That(result, Is.True);
 		}
@@ -875,7 +875,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			bool result = Cat.MarkAsRead(1);
+			var result = Cat.MarkAsRead(1);
 
 			Assert.That(result, Is.True);
 		}
@@ -889,7 +889,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			bool result = Cat.MarkAsRead(new ulong[]{2, 3});
+			var result = Cat.MarkAsRead(new ulong[]{2, 3});
 
 			Assert.That(result, Is.True);
 		}
@@ -910,7 +910,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			bool result = Cat.SetActivity(7550525);
+			var result = Cat.SetActivity(7550525);
 
 			Assert.That(result, Is.True);
 		}
@@ -934,7 +934,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			LastActivity activity = Cat.GetLastActivity(77128);
+			var activity = Cat.GetLastActivity(77128);
 
 			Assert.That(activity.UserId, Is.EqualTo(77128));
 			Assert.That(activity.IsOnline, Is.False);
@@ -967,7 +967,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			Chat chat = Cat.GetChat(2);
+			var chat = Cat.GetChat(2);
 
 			Assert.That(chat.Id, Is.EqualTo(2));
 			Assert.That(chat.Title, Is.EqualTo("test chat title"));
@@ -996,7 +996,7 @@ namespace VkNet.Tests.Categories
 					'response': 3
 				  }";
 
-			long chatId = Cat.CreateChat(new ulong[] { 5041431, 10657891 }, "test chat's title");
+			var chatId = Cat.CreateChat(new ulong[] { 5041431, 10657891 }, "test chat's title");
 
 			Assert.That(chatId, Is.EqualTo(3));
 		}
@@ -1018,7 +1018,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }"; 
 			
-			bool result = Cat.EditChat(2, "new title");
+			var result = Cat.EditChat(2, "new title");
 		}
 
 		[Test]
@@ -1092,7 +1092,7 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			List<User> users = Cat.GetChatUsers(2, ProfileFields.Education).ToList();
+			var users = Cat.GetChatUsers(2, ProfileFields.Education).ToList();
 
 			Assert.That(users.Count, Is.EqualTo(3));
 			Assert.That(users[0].Id, Is.EqualTo(4793858));
@@ -1132,7 +1132,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }"; 
 
-			bool result = Cat.AddChatUser(2, 7550525);
+			var result = Cat.AddChatUser(2, 7550525);
 
 			Assert.That(result, Is.True);
 		}
@@ -1153,7 +1153,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			bool result = Cat.RemoveChatUser(2, 7550525);
+			var result = Cat.RemoveChatUser(2, 7550525);
 
 			Assert.That(result, Is.True);
 		}
@@ -1228,7 +1228,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			int total;
-			ReadOnlyCollection<Message> messages = Cat.Get(MessageType.Received, out total, lastMessageId: 30);
+			var messages = Cat.Get(MessageType.Received, out total, lastMessageId: 30);
 
 			total.ShouldEqual(5);
 			messages.Count.ShouldEqual(1);
@@ -1274,7 +1274,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			int total;
-			ReadOnlyCollection<Message> messages = Cat.Get(MessageType.Received, out total, 2);
+			var messages = Cat.Get(MessageType.Received, out total, 2);
 
 			total.ShouldEqual(5);
 			messages.Count.ShouldEqual(2);

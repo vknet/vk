@@ -35,9 +35,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            UploadServerInfo info = GetMockedPhotosCategory(url, json).GetProfileUploadServer();
+            var info = GetMockedPhotosCategory(url, json).GetProfileUploadServer();
 
-            info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh");
+			info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh");
         }
         #endregion
 
@@ -55,9 +55,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            UploadServerInfo info = GetMockedPhotosCategory(url, json).GetMessagesUploadServer();
+            var info = GetMockedPhotosCategory(url, json).GetMessagesUploadServer();
 
-            info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1");
+			info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1");
             info.AlbumId.ShouldEqual(-3);
             info.UserId.ShouldEqual(234618);
         }
@@ -85,14 +85,14 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            PhotoAlbum album = GetMockedPhotosCategory(url, json)
+            var album = GetMockedPhotosCategory(url, json)
                 .CreateAlbum(new CreateAlbumParams
                 {
 					Title= "hello world",
 					Description = "description for album"
                 });
 
-            album.Id.ShouldEqual(197266686);
+			album.Id.ShouldEqual(197266686);
             album.ThumbId.ShouldEqual(-1);
             album.OwnerId.ShouldEqual(234698);
             album.Title.ShouldEqual("hello world");
@@ -117,7 +117,7 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-            bool result = GetMockedPhotosCategory(url, json).EditAlbum(new EditAlbumParams
+            var result = GetMockedPhotosCategory(url, json).EditAlbum(new EditAlbumParams
             {
 	            AlbumId = 19726,
 				Title = "new album title",
@@ -152,12 +152,12 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 	        int count;
-            ReadOnlyCollection<PhotoAlbum> albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams()
+            var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams()
             {
 				OwnerId = 1
 			});
 
-	        count.ShouldEqual(1);
+			count.ShouldEqual(1);
 
             albums.Count.ShouldEqual(1);
 
@@ -195,7 +195,7 @@ namespace VkNet.Tests.Categories
 					}
                   }";
 			int count;
-			ReadOnlyCollection<PhotoAlbum> albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams()
+			var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams()
 			{
 				AlbumIds = new List<long>
 				{
@@ -232,8 +232,8 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-            int count = GetMockedPhotosCategory(url, json).GetAlbumsCount(1);
-            count.ShouldEqual(1);
+            var count = GetMockedPhotosCategory(url, json).GetAlbumsCount(1);
+			count.ShouldEqual(1);
         }
         #endregion
 
@@ -247,8 +247,8 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-            bool result = GetMockedPhotosCategory(url, json).DeleteAlbum(197303);
-            result.ShouldBeTrue();
+            var result = GetMockedPhotosCategory(url, json).DeleteAlbum(197303);
+			result.ShouldBeTrue();
         }
         #endregion
 
@@ -312,8 +312,8 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).GetProfile(ownerId: 1, offset: 3, rev: true, count: 2, extended:true);
-            photos.Count.ShouldEqual(2);
+            var photos = GetMockedPhotosCategory(url, json).GetProfile(ownerId: 1, offset: 3, rev: true, count: 2, extended:true);
+			photos.Count.ShouldEqual(2);
             photos[0].Id.ShouldEqual(278184324);
             photos[0].PostId.ShouldEqual(45430);
             photos[0].Likes.Count.ShouldEqual(471203);
@@ -366,13 +366,13 @@ namespace VkNet.Tests.Categories
                   }";
 
 			int count;
-			ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).GetAll(out count, new PhotoGetAllParams
+			var photos = GetMockedPhotosCategory(url, json).GetAll(out count, new PhotoGetAllParams
 			{
 				OwnerId = 1,
 				Offset = 4,
 				Count = 2
 			});
-            photos.Count.ShouldEqual(2);
+			photos.Count.ShouldEqual(2);
 
             photos[0].Id.ShouldEqual(328693256);
             photos[0].AlbumId.ShouldEqual(-7);
@@ -445,7 +445,7 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 	        int count;
-			ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).Search(out count, new PhotoSearchParams
+			var photos = GetMockedPhotosCategory(url, json).Search(out count, new PhotoSearchParams
 			{
 				Query = "порно",
 				Offset = 2,
@@ -557,8 +557,8 @@ namespace VkNet.Tests.Categories
 
             result.Count.ShouldEqual(1);
 
-            Photo photo = result[0];
-            photo.ShouldNotBeNull();
+            var photo = result[0];
+			photo.ShouldNotBeNull();
             photo.Id.ShouldEqual(3446123);
             photo.AlbumId.ShouldEqual(-12);
             photo.OwnerId.ShouldEqual(234695890);

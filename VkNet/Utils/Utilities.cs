@@ -71,10 +71,10 @@
             result.Append("                @\"");
             using (var reader = new StringReader(preety))
             {
-                bool isFirst = true;
+                var isFirst = true;
                 for (;;)
                 {
-                    string line = reader.ReadLine();
+                    var line = reader.ReadLine();
                     if (line == null)
                         break;
 

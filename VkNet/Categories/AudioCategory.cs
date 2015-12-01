@@ -458,7 +458,7 @@ namespace VkNet.Categories
 					{"group_id", groupId}
 				};
 
-			VkResponse response = _vk.Call("audio.addAlbum", parameters);
+			var response = _vk.Call("audio.addAlbum", parameters);
 			return response["album_id"];
 		}
 

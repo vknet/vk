@@ -36,7 +36,7 @@ namespace VkNet.Categories
 
             var parameters = new VkParameters { {"url", url} };
 
-            VkResponse response = _vk.Call("utils.checkLink", parameters, true);
+            var response = _vk.Call("utils.checkLink", parameters, true);
             return response;
         }
 
@@ -55,7 +55,7 @@ namespace VkNet.Categories
 
             var parameters = new VkParameters {{"screen_name", screenName}};
 
-            VkResponse response = _vk.Call("utils.resolveScreenName", parameters, true);
+            var response = _vk.Call("utils.resolveScreenName", parameters, true);
 
             if (response == null) return null;
             return response;

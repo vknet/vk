@@ -160,9 +160,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var status = GetMockedStatusCategory(url, json);
-            bool result = status.Set("test test test");
+            var result = status.Set("test test test");
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
@@ -177,9 +177,9 @@ namespace VkNet.Tests.Categories
             var status = GetMockedStatusCategory(url, json);
 
             var audio = new Audio { Id = 158073513, OwnerId = 4793858 };
-            bool result = status.Set("test test test", audio);
+            var result = status.Set("test test test", audio);
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
@@ -194,11 +194,11 @@ namespace VkNet.Tests.Categories
                   }";
 
             var status = GetMockedStatusCategory(url, json);
-            Status s = status.Get(1);
+            var actual = status.Get(1);
 
-            Assert.That(s, Is.Not.Null);
-            Assert.That(s.Text, Is.EqualTo("it really work!!!"));
-            Assert.That(s.Audio, Is.Null);
+			Assert.That(actual, Is.Not.Null);
+            Assert.That(actual.Text, Is.EqualTo("it really work!!!"));
+            Assert.That(actual.Audio, Is.Null);
         }
 
         [Test]
@@ -223,19 +223,19 @@ namespace VkNet.Tests.Categories
                   }";
 
             var status = GetMockedStatusCategory(url, json);
-            Status s = status.Get(1);
+            var actual = status.Get(1);
 
-            Assert.That(s, Is.Not.Null);
-            Assert.That(s.Text, Is.EqualTo("Тараканы! – Собачье Сердце"));
-            Assert.That(s.Audio, Is.Not.Null);
-            Assert.That(s.Audio.Id, Is.EqualTo(158073513));
-            Assert.That(s.Audio.OwnerId, Is.EqualTo(4793858));
-            Assert.That(s.Audio.Artist, Is.EqualTo("Тараканы!"));
-            Assert.That(s.Audio.Title, Is.EqualTo("Собачье Сердце"));
-            Assert.That(s.Audio.Duration, Is.EqualTo(230));
-            Assert.That(s.Audio.Url.OriginalString, Is.EqualTo("http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
-            Assert.That(s.Audio.LyricsId, Is.EqualTo(7985406));
-            Assert.That(s.Audio.AlbumId, Is.Null);
+			Assert.That(actual, Is.Not.Null);
+            Assert.That(actual.Text, Is.EqualTo("Тараканы! – Собачье Сердце"));
+            Assert.That(actual.Audio, Is.Not.Null);
+            Assert.That(actual.Audio.Id, Is.EqualTo(158073513));
+            Assert.That(actual.Audio.OwnerId, Is.EqualTo(4793858));
+            Assert.That(actual.Audio.Artist, Is.EqualTo("Тараканы!"));
+            Assert.That(actual.Audio.Title, Is.EqualTo("Собачье Сердце"));
+            Assert.That(actual.Audio.Duration, Is.EqualTo(230));
+            Assert.That(actual.Audio.Url.OriginalString, Is.EqualTo("http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
+            Assert.That(actual.Audio.LyricsId, Is.EqualTo(7985406));
+            Assert.That(actual.Audio.AlbumId, Is.Null);
         }
     }
 }

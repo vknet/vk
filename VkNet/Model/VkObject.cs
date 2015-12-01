@@ -28,22 +28,26 @@
             obj.Id = Utilities.GetNullableLongId(response["object_id"]);
 
             string type = response["type"];
-            switch (type)
-            {
-                case "group":
-                    obj.Type = VkObjectType.Group;
-                    break;
- 
-                case "user":
-                    obj.Type = VkObjectType.User;
-                    break;
+			switch (type)
+			{
+				case "group":
+					{
+						obj.Type = VkObjectType.Group;
+						break;
+					}
+				case "user":
+					{
+						obj.Type = VkObjectType.User;
+						break;
+					}
+				case "application":
+					{
+						obj.Type = VkObjectType.Application;
+						break;
+					}
+			}
 
-                case "application":
-                    obj.Type = VkObjectType.Application;
-                    break;
-            }
-
-            return obj;
+			return obj;
         }
     }
 }

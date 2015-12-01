@@ -10,8 +10,8 @@ namespace VkNet.Tests.Enum.Filters
         [Test]
         public void ToString_EveryItems()
         {
-            VideoFilters mp4 = VideoFilters.Mp4;
-            VideoFilters youtube = VideoFilters.Youtube;
+            var mp4 = VideoFilters.Mp4;
+			var youtube = VideoFilters.Youtube;
             var vimeo = VideoFilters.Vimeo;
             var videoFilters = VideoFilters.Short;
             var filters = VideoFilters.Long;

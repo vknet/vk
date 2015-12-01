@@ -80,7 +80,7 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.Leave(0);
+			var result = groups.Leave(0);
 
 			Assert.That(result, Is.True);
 		}
@@ -110,7 +110,7 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.Join(2, true);
+			var result = groups.Join(2, true);
 
 			Assert.That(result, Is.True);
 		}
@@ -125,7 +125,7 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.Leave(2);
+			var result = groups.Leave(2);
 
 			Assert.That(result, Is.True);
 		}
@@ -497,7 +497,7 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.IsMember(637247, 0);
+			var result = groups.IsMember(637247, 0);
 			Assert.That(result, Is.False);
 		}
 
@@ -511,7 +511,7 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.IsMember(637247, 4793858);
+			var result = groups.IsMember(637247, 4793858);
 			Assert.That(result, Is.True);
 		}
 
@@ -525,7 +525,7 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.IsMember(17683660, 4793858);
+			var result = groups.IsMember(17683660, 4793858);
 			Assert.That(result, Is.False);
 		}
 
@@ -1157,22 +1157,22 @@
 				  }";
 
 			var category = GetMockedGroupCategory(url, json);
-			var g = category.GetById(17683660, GroupsFields.All);
+			var @group = category.GetById(17683660, GroupsFields.All);
 
-			Assert.That(g.Id, Is.EqualTo(17683660));
-			Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
-			Assert.That(g.ScreenName, Is.EqualTo("club17683660"));
-			Assert.That(g.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(g.IsAdmin, Is.False);
-			Assert.That(g.Type, Is.EqualTo(GroupType.Event));
-			Assert.That(g.IsMember, Is.False);
-			Assert.That(g.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-			Assert.That(g.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-			Assert.That(g.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
-			Assert.That(g.CityId, Is.EqualTo(95));
-			Assert.That(g.CountryId, Is.EqualTo(1));
-			Assert.That(g.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
-			Assert.That(g.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
+			Assert.That(@group.Id, Is.EqualTo(17683660));
+			Assert.That(@group.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
+			Assert.That(@group.ScreenName, Is.EqualTo("club17683660"));
+			Assert.That(@group.IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(@group.IsAdmin, Is.False);
+			Assert.That(@group.Type, Is.EqualTo(GroupType.Event));
+			Assert.That(@group.IsMember, Is.False);
+			Assert.That(@group.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+			Assert.That(@group.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+			Assert.That(@group.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(@group.CityId, Is.EqualTo(95));
+			Assert.That(@group.CountryId, Is.EqualTo(1));
+			Assert.That(@group.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
+			Assert.That(@group.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
 		}
 
 		[Test]
@@ -1199,9 +1199,9 @@
 					]
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			ReadOnlyCollection<Group> groups = cat.GetInvites(3, 0);
+			var groups = cat.GetInvites(3, 0);
 
 			groups.ShouldNotBeNull();
 			groups.Count.ShouldEqual(1);
@@ -1230,9 +1230,9 @@
 					]
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			ReadOnlyCollection<Group> groups = cat.GetInvites(3, 0);
+			var groups = cat.GetInvites(3, 0);
 
 			groups.ShouldNotBeNull();
 			groups.Count.ShouldEqual(0);
@@ -1247,9 +1247,9 @@
 					'response': 1
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			bool result = cat.BanUser(6596823, 242506753, comment: "просто комментарий", commentVisible: true);
+			var result = cat.BanUser(6596823, 242506753, comment: "просто комментарий", commentVisible: true);
 
 			result.ShouldBeTrue();
 		}
@@ -1277,9 +1277,9 @@
 					]
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			ReadOnlyCollection<User> users = cat.GetBanned(65968111, 3);
+			var users = cat.GetBanned(65968111, 3);
 
 			users.ShouldNotBeNull();
 			users.Count.ShouldEqual(1);
@@ -1303,9 +1303,9 @@
 					'response': 1
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			bool result = cat.UnbanUser(65960, 242508);
+			var result = cat.UnbanUser(65960, 242508);
 
 			result.ShouldBeTrue();
 		}

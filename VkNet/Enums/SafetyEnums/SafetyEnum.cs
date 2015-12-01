@@ -51,7 +51,7 @@ namespace VkNet.Enums.SafetyEnums
 
 		protected static TFilter RegisterPossibleValue(string value)
 		{
-			ulong mask = PossibleValues.Select(pair => pair.Key).DefaultIfEmpty().Max();
+			var mask = PossibleValues.Select(pair => pair.Key).DefaultIfEmpty().Max();
 			mask = (mask == 0) ? 1 : (mask *= 2);
 
 			if (mask == 0 || (mask & (mask - 1)) != 0)

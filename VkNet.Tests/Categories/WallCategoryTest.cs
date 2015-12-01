@@ -1101,9 +1101,9 @@ namespace VkNet.Tests.Categories
 						likes_count: 105
 					} }";
 
-			RepostResult result = GetMockedWallCategory(url, json).Repost("id", "example", 50);
+			var result = GetMockedWallCategory(url, json).Repost("id", "example", 50);
 
-		    result.ShouldNotBeNull();
+			result.ShouldNotBeNull();
 		    result.Success.ShouldBeTrue();
 		    result.PostId.ShouldEqual(2587);
 		    result.RepostsCount.ShouldEqual(21);
@@ -1615,14 +1615,14 @@ namespace VkNet.Tests.Categories
                   }";
 
 	        int totalCount;
-	        ReadOnlyCollection<Post> posts = GetMockedWallCategory(url, json).Get(46476924, out totalCount, 1, 213, WallFilter.Owner);
+	        var posts = GetMockedWallCategory(url, json).Get(46476924, out totalCount, 1, 213, WallFilter.Owner);
 
-	        totalCount.ShouldEqual(1724);
+			totalCount.ShouldEqual(1724);
 	        posts.Count.ShouldEqual(1);
 	        posts[0].CopyHistory.ShouldNotBeNull().Count.ShouldEqual(1);
 
-	        Attachment attach = posts[0].CopyHistory[0].Attachment.ShouldNotBeNull();
-	        attach.Type = typeof (PhotosList);
+	        var attach = posts[0].CopyHistory[0].Attachment.ShouldNotBeNull();
+			attach.Type = typeof (PhotosList);
 	        attach.Instance.ShouldBeNull();
 	    }
 	}

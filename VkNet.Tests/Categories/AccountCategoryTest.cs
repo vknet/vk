@@ -830,8 +830,8 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore("Устаревший метод")]
 		public void SaveProfileInfo_ResultWasParsedCorrectly_AndEmptyParametersIsProcessedCorrectly()
 		{
-			string url = "https://api.vk.com/method/account.saveProfileInfo?v=5.40&access_token=token";
-			string json = @"{ 'response': { changed: 0 } }";
+			var url = "https://api.vk.com/method/account.saveProfileInfo?v=5.40&access_token=token";
+			var json = @"{ 'response': { changed: 0 } }";
 
 			var account = GetMockedAccountCategory(url, json);
 			Assert.That(account.SaveProfileInfo(), Is.False);				//First overload 
@@ -876,7 +876,7 @@ namespace VkNet.Tests.Categories
 		public void SaveProfileInfo_DateIsParsedCorrectly()
 		{
 			// todo посмотреть
-			string url = "https://api.vk.com/method/account.saveProfileInfo?bdate=15.11.1984&v=5.40&access_token=token";
+			var url = "https://api.vk.com/method/account.saveProfileInfo?bdate=15.11.1984&v=5.40&access_token=token";
 			const string json = @"{ 'response': { changed: 1 } }";
 			var account = GetMockedAccountCategory(url, json);
 			account.SaveProfileInfo(birthDate: new DateTime(1984, 11, 15));

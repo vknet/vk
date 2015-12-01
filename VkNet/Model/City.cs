@@ -42,17 +42,16 @@ namespace VkNet.Model
 
         internal static City FromJson(VkResponse response)
         {
-            var city = new City();
-
-            VkResponse id = response["cid"] ?? response["id"];
-            city.Id = Convert.ToInt64(id.ToString());
-            city.Title = response["title"] ?? response["name"];
-            city.Area = response["area"];
-            city.Region = response["region"];
-            city.Important = response["important"] ?? false;
-
-            return city;
-        }
+			string id = response["cid"] ?? response["id"];
+	        return new City
+			{
+				Id = Convert.ToInt64(id),
+				Title = response["title"] ?? response["name"],
+				Area = response["area"],
+				Region = response["region"],
+				Important = response["important"] ?? false
+			};
+		}
 
         #endregion
     }

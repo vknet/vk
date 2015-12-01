@@ -32,7 +32,7 @@ namespace VkNet.Tests
 		[Test]
 		public void GetApiUrl_IntArray()
 		{
-			int[] arr = new[] {1, 65};
+			var arr = new[] {1, 65};
 
 			//var parameters = new VkParameters { { "country_ids", arr } };
 			var parameters = new VkParameters();
@@ -40,7 +40,7 @@ namespace VkNet.Tests
 
 			const string expected = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&access_token=token";
 
-			string url = _vk.GetApiUrl("database.getCountriesById", parameters);
+			var url = _vk.GetApiUrl("database.getCountriesById", parameters);
 
 			Assert.That(url, Is.EqualTo(expected));
 		}
@@ -80,12 +80,12 @@ namespace VkNet.Tests
 		[Test]
 		public void GetApiUrl_GetProfile_WithFields()
 		{
-			ProfileFields fields = ProfileFields.FirstName | ProfileFields.Domain | ProfileFields.Education;
+			var fields = ProfileFields.FirstName | ProfileFields.Domain | ProfileFields.Education;
 			_values.Add("uid", "66748");
 			_values.Add("fields", fields.ToString().Replace(" ", ""));
 			const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,domain,education&access_token=token";
 
-			string output = _vk.GetApiUrl("getProfiles", _values);
+			var output = _vk.GetApiUrl("getProfiles", _values);
 
 			Assert.That(output, Is.EqualTo(expected));
 		}
@@ -154,7 +154,7 @@ namespace VkNet.Tests
 		[Test, Ignore("Почему то тест стал падать")]
 		public void Call_NotMoreThen3CallsPerSecond()
 		{
-			int invocationCount = 0;
+			var invocationCount = 0;
 			var browser = new Mock<IBrowser>();
 			browser.Setup(m => m.GetJson(It.IsAny<string>()))
 				   .Returns(@"{ ""response"": 2 }")
@@ -188,7 +188,7 @@ namespace VkNet.Tests
 			var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == resultJson);
 			var api = new VkApi{Browser =  browser};
 			var parameters = new VkParameters {{"count", 23}};
-			string json = api.Invoke("example.get", parameters, true);
+			var json = api.Invoke("example.get", parameters, true);
 
 			json.ShouldEqual(resultJson);
 		}
@@ -201,7 +201,7 @@ namespace VkNet.Tests
 			var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == resultJson);
 			var api = new VkApi { Browser = browser };
 			IDictionary<string, string> parameters = new Dictionary<string, string> { { "count", "23" } };
-			string json = api.Invoke("example.get", parameters, true);
+			var json = api.Invoke("example.get", parameters, true);
 
 			json.ShouldEqual(resultJson);
 		}

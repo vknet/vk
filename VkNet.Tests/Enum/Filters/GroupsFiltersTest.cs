@@ -9,28 +9,28 @@ namespace VkNet.Tests.Enum.Filters
         [Test]
         public void ToString_OneGroupsFilters()
         {
-            var g = GroupsFilters.Groups;
-            Assert.That(g.ToString(), Is.EqualTo("groups"));
+            var groupsFilters = GroupsFilters.Groups;
+            Assert.That(groupsFilters.ToString(), Is.EqualTo("groups"));
         }
 
         [Test]
         public void ToString_DuplicateFields_NoDuplicates()
         {
-            var g = GroupsFilters.Administrator | GroupsFilters.Events | GroupsFilters.Administrator;
+            var groupsFilters = GroupsFilters.Administrator | GroupsFilters.Events | GroupsFilters.Administrator;
 
-            string result = g.ToString();
+            var result = groupsFilters.ToString();
 
-            Assert.That(result, Is.EqualTo("admin,events"));
+			Assert.That(result, Is.EqualTo("admin,events"));
         }
 
         [Test]
         public void ToString_AllValues()
         {
-            var g = GroupsFilters.All;
+            var groupsFilters = GroupsFilters.All;
 
-            string result = g.ToString();
+            var result = groupsFilters.ToString();
 
-            Assert.That(result, Is.EqualTo("admin,editor,moder,groups,publics,events"));
+			Assert.That(result, Is.EqualTo("admin,editor,moder,groups,publics,events"));
         }
     }
 }

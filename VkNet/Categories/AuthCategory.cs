@@ -54,16 +54,16 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "first_name", @params.first_name },
-				{ "last_name", @params.last_name },
-				{ "client_id", @params.client_id },
-				{ "client_secret", @params.client_secret },
-				{ "phone", @params.phone },
-				{ "password", @params.password },
-				{ "test_mode", @params.test_mode },
-				{ "voice", @params.voice },
-				{ "sex", @params.sex },
-				{ "sid", @params.sid }
+				{ "first_name", @params.FirstName },
+				{ "last_name", @params.LastName },
+				{ "client_id", @params.ClientId },
+				{ "client_secret", @params.ClientSecret },
+				{ "phone", @params.Phone },
+				{ "password", @params.Password },
+				{ "test_mode", @params.TestMode },
+				{ "voice", @params.Voice },
+				{ "sex", @params.Sex },
+				{ "sid", @params.Sid }
 			};
 			return _vk.Call("auth.signup", parameters);
 		}

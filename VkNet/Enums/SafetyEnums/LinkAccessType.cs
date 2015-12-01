@@ -26,19 +26,23 @@ namespace VkNet.Enums.SafetyEnums
         {
             string status = response["status"];
 
-            switch (status)
-            {
-                case "banned":
-                    return Banned;
+			switch (status)
+			{
+				case "banned":
+					{
+						return Banned;
+					}
+				case "not_banned":
+					{
+						return NotBanned;
+					}
+				case "processing":
+					{
+						return Processing;
+					}
+			}
 
-                case "not_banned":
-                    return NotBanned;
-
-                case "processing":
-                    return Processing;
-            }
-
-            return null;
+			return null;
         }
     }
 }

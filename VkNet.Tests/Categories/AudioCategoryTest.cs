@@ -45,9 +45,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            int count = audio.GetCount(1);
+            var count = audio.GetCount(1);
 
-            Assert.That(count, Is.EqualTo(0));
+			Assert.That(count, Is.EqualTo(0));
         }
 
         [Test]
@@ -60,9 +60,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            int count = audio.GetCount(1);
+            var count = audio.GetCount(1);
 
-            Assert.That(count, Is.EqualTo(158));
+			Assert.That(count, Is.EqualTo(158));
         }
 
         [Test]
@@ -75,9 +75,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            int count = audio.GetCount(-1158263);
+            var count = audio.GetCount(-1158263);
 
-            Assert.That(count, Is.EqualTo(4));
+			Assert.That(count, Is.EqualTo(4));
         }
 
         #endregion
@@ -104,9 +104,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            Lyrics lyrics = audio.GetLyrics(2662381);
+            var lyrics = audio.GetLyrics(2662381);
 
-            Assert.That(lyrics.Id, Is.EqualTo(2662381));
+			Assert.That(lyrics.Id, Is.EqualTo(2662381));
             Assert.That(lyrics.Text, Is.EqualTo("Seht ihr mich?\nVersteht ihr mich?\nFühlt ihr mich?\nHört ihr mich?"));
         }
 
@@ -123,9 +123,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            Lyrics lyrics = audio.GetLyrics(-1);
+            var lyrics = audio.GetLyrics(-1);
 
-            Assert.That(lyrics.Id, Is.EqualTo(-1));
+			Assert.That(lyrics.Id, Is.EqualTo(-1));
             Assert.That(lyrics.Text, Is.Null.Or.Empty);
         }
 
@@ -386,9 +386,9 @@ namespace VkNet.Tests.Categories
 
             User user;
             var category = GetMockedAudioCategory(url, json);
-            ReadOnlyCollection<Audio> audios = category.Get(4793858, out user, null, null, 3, 5);
+            var audios = category.Get(4793858, out user, null, null, 3, 5);
 
-            Assert.That(audios.Count, Is.EqualTo(3));
+			Assert.That(audios.Count, Is.EqualTo(3));
 
             Assert.That(user, Is.Not.Null);
             Assert.That(user.Id, Is.EqualTo(4793858));
@@ -622,9 +622,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            bool result = cat.Delete(159203048, 4793858);
+            var result = cat.Delete(159203048, 4793858);
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
@@ -637,9 +637,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            bool result = cat.Delete(160532304, -1158263);
+            var result = cat.Delete(160532304, -1158263);
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
@@ -841,15 +841,15 @@ namespace VkNet.Tests.Categories
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            Audio a = cat.Restore(159209928);
+            var audio = cat.Restore(159209928);
 
-            Assert.That(a.Id, Is.EqualTo(159209928));
-            Assert.That(a.OwnerId, Is.EqualTo(4793858));
-            Assert.That(a.Artist, Is.EqualTo("2560 The BEATLES (цикл передач на РАДИО СВОБОДА)"));
-            Assert.That(a.Title, Is.EqualTo("Джон, Пол, Ждордж, Ринго - работа для кино"));
-            Assert.That(a.Duration, Is.EqualTo(3180));
-            Assert.That(a.Url.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/4529541451fe.mp3"));
-            Assert.That(a.LyricsId, Is.EqualTo(23484916));
+			Assert.That(audio.Id, Is.EqualTo(159209928));
+            Assert.That(audio.OwnerId, Is.EqualTo(4793858));
+            Assert.That(audio.Artist, Is.EqualTo("2560 The BEATLES (цикл передач на РАДИО СВОБОДА)"));
+            Assert.That(audio.Title, Is.EqualTo("Джон, Пол, Ждордж, Ринго - работа для кино"));
+            Assert.That(audio.Duration, Is.EqualTo(3180));
+            Assert.That(audio.Url.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/4529541451fe.mp3"));
+            Assert.That(audio.LyricsId, Is.EqualTo(23484916));
 
         }
 
@@ -953,8 +953,8 @@ namespace VkNet.Tests.Categories
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            bool result = cat.Reorder(159210112, 4793858, 159104443, 158945986);
-            Assert.That(result, Is.True);
+            var result = cat.Reorder(159210112, 4793858, 159104443, 158945986);
+			Assert.That(result, Is.True);
         }
 
         [Test]
@@ -974,9 +974,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ulong albumId = cat.AddAlbum("тестовый альбом");
+			var albumId = cat.AddAlbum("тестовый альбом");
 
             Assert.That(albumId, Is.EqualTo(45284861));
         }
@@ -992,9 +992,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ulong albumId = cat.AddAlbum("Test audio category", 65968887);
+			var albumId = cat.AddAlbum("Test audio category", 65968887);
 
             Assert.That(albumId, Is.EqualTo(45302272));
         }
@@ -1002,15 +1002,15 @@ namespace VkNet.Tests.Categories
         [Test]
         public void AddAlbum_TitleIsEmpty_ThrowException()
         {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.AddAlbum("")).Throws<ArgumentNullException>();
+            var cat = GetMockedAudioCategory("", "");
+			This.Action(() => cat.AddAlbum("")).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void AddAlbum_GroupIdIsNegative_ThrowException()
         {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.AddAlbum("test title", 0)).Throws<ArgumentException>();
+            var cat = GetMockedAudioCategory("", "");
+			This.Action(() => cat.AddAlbum("test title", 0)).Throws<ArgumentException>();
         }
 
         [Test]
@@ -1022,9 +1022,9 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.EditAlbum("еще один альбом", 45284866);
+			var result = cat.EditAlbum("еще один альбом", 45284866);
 
             Assert.That(result, Is.True);
         }
@@ -1037,9 +1037,9 @@ namespace VkNet.Tests.Categories
             @"{
                     'response': 1
                   }";
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.EditAlbum("audio category 222", albumId: 45302272, groupId: 65968885);
+			var result = cat.EditAlbum("audio category 222", albumId: 45302272, groupId: 65968885);
 
             Assert.That(result, Is.True);
         }
@@ -1047,15 +1047,15 @@ namespace VkNet.Tests.Categories
         [Test]
         public void EditAlbum_TitleIsEmpty_ThrowException()
         {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.EditAlbum("", 1234567)).Throws<ArgumentNullException>();
+            var cat = GetMockedAudioCategory("", "");
+			This.Action(() => cat.EditAlbum("", 1234567)).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void EditAlbum_GroupIdIsNegative_ThrowException()
         {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.EditAlbum("title", 1234567, 0)).Throws<ArgumentException>();
+            var cat = GetMockedAudioCategory("", "");
+			This.Action(() => cat.EditAlbum("title", 1234567, 0)).Throws<ArgumentException>();
         }
 
         [Test]
@@ -1067,9 +1067,9 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.DeleteAlbum(45282792);
+			var result = cat.DeleteAlbum(45282792);
 
             Assert.That(result, Is.True);
         }
@@ -1083,11 +1083,11 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.DeleteAlbum(45302272, 65968885);
+            var result = cat.DeleteAlbum(45302272, 65968885);
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
@@ -1129,9 +1129,9 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ReadOnlyCollection<Audio> result = cat.GetPopular(genre: AudioGenre.RapAndHipHop, count: 3, offset: 2);
+			var result = cat.GetPopular(genre: AudioGenre.RapAndHipHop, count: 3, offset: 2);
 
             Assert.That(result.Count, Is.EqualTo(3));
 
@@ -1183,9 +1183,9 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            var result = cat.GetAlbums(23465118);
+			var result = cat.GetAlbums(23465118);
 
             Assert.That(result.Count, Is.EqualTo(2));
 
@@ -1208,9 +1208,9 @@ namespace VkNet.Tests.Categories
                   }";
 
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.MoveToAlbum(45303161, new ulong[] {258542771, 258542571});
+			var result = cat.MoveToAlbum(45303161, new ulong[] {258542771, 258542571});
 
             Assert.That(result, Is.True);
         }
@@ -1243,9 +1243,9 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ReadOnlyCollection<Audio> result = cat.GetRecommendations(targetAudio: "2314852_190922480", count: 2);
+			var result = cat.GetRecommendations(targetAudio: "2314852_190922480", count: 2);
 
             Assert.That(result.Count, Is.EqualTo(2));
 
@@ -1278,9 +1278,9 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ReadOnlyCollection<long> ids = cat.SetBroadcast("210002_66529476", new long[] {234695118, -65968880});
+			var ids = cat.SetBroadcast("210002_66529476", new long[] {234695118, -65968880});
 
             Assert.That(ids.Count, Is.EqualTo(2));
             Assert.That(ids[0], Is.EqualTo(234695118));
