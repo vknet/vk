@@ -72,6 +72,10 @@ namespace VkNet.Model
 		/// </summary>
 		public Previews PhotoPreviews { get; set; }
 
+		/// <summary>
+		/// Возвращается в случае, если сообщество удалено или заблокировано
+		/// </summary>
+		public Deactivated Deactivated { get; set; }
 		#endregion
 
 		#region Опциональные поля
@@ -237,6 +241,7 @@ namespace VkNet.Model
 				IsMember = response["is_member"],
 				Type = response["type"],
 				PhotoPreviews = response,
+				Deactivated = response["deactivated"],
 
 				// опциональные поля
 				City = response["city"],
