@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model
+﻿using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Model
 {
 	using System;
 	using System.Collections.ObjectModel;
@@ -34,6 +36,11 @@
 		/// </summary>
 		public string LastName { get; set; }
 
+		/// <summary>
+		/// Возвращается при вызове без access_token, если пользователь установил настройку «Кому в интернете видна моя страница» — «Только пользователям ВКонтакте».
+		/// Обратите внимание, в этом случае дополнительные поля fields не возвращаются.
+		/// </summary>
+		public bool Hidden;
 		#endregion
 
 		#region Опциональные поля
@@ -56,7 +63,7 @@
 		public City City { get; set; }
 
 		/// <summary>
-		/// Идентификатор страны, указанной на странице пользователя в разделе «Контакты». 
+		/// Идентификатор страны, указанной на странице пользователя в разделе «Контакты».
 		/// Если страна не указана или основная информация страницы скрыта настройками приватности, то 0.
 		/// </summary>
 		public Country Country { get; set; }
@@ -65,22 +72,22 @@
 		/// Информация о ссылках на предпросмотр фотографий пользователя.
 		/// </summary>
 		public Previews PhotoPreviews { get; set; }
-		
+
 		/// <summary>
 		/// Признак находится ли пользователь сейчас на сайте.
 		/// </summary>
 		public bool? Online { get; set; }
 
 		/// <summary>
-		/// Идентификаторы списков друзей, в которых состоит пользователь. Поле доступно только для метода 
-		/// <see cref="FriendsCategory.Get"/>. Получить информацию об идентификаторах и названиях списков друзей можно с 
-		/// помощью метода <see cref="FriendsCategory.GetLists"/>. Если пользователь не состоит ни в одном списке друзей, данное 
+		/// Идентификаторы списков друзей, в которых состоит пользователь. Поле доступно только для метода
+		/// <see cref="FriendsCategory.Get"/>. Получить информацию об идентификаторах и названиях списков друзей можно с
+		/// помощью метода <see cref="FriendsCategory.GetLists"/>. Если пользователь не состоит ни в одном списке друзей, данное
 		/// поле принимает значение null.
 		/// </summary>
 		public Collection<long> FriendLists { get; set; }
 
 		/// <summary>
-		/// Короткий адрес страницы пользователя. Возвращается строка, содержащая короткий адрес страницы (возвращается только 
+		/// Короткий адрес страницы пользователя. Возвращается строка, содержащая короткий адрес страницы (возвращается только
 		/// сам поддомен, например, andrew). Если он не назначен, то "id"+uid, например, id35828305.
 		/// </summary>
 		public string Domain { get; set; }
@@ -125,52 +132,64 @@
 		/// </summary>
 		public Collection<School> Schools { get; set; }
 
-		[NonSerialized]
-		private bool _CanPost;
 		/// <summary>
 		/// Признак разрешено ли оставлять записи на стене у пользователя.
 		/// </summary>
-		public bool CanPost { get { return _CanPost; } set { _CanPost = value; } }
+		public bool CanPost
+		{
+			get;
+			set;
+		}
 
-		[NonSerialized]
-		private bool _CanSeeAllPosts;
 		/// <summary>
 		/// Признак разрешено ли видеть чужие записи на стене пользователя.
 		/// </summary>
-		public bool CanSeeAllPosts { get { return _CanSeeAllPosts; } set { _CanSeeAllPosts = value; } }
+		public bool CanSeeAllPosts
+		{
+			get;
+			set;
+		}
 
-		[NonSerialized]
-		private bool _CanSeeAudio;
 		/// <summary>
 		/// Признак разрешено ли видеть чужие аудиозаписи на стене пользователя.
 		/// </summary>
-		public bool CanSeeAudio { get { return _CanSeeAudio; } set { _CanSeeAudio = value; } }
+		public bool CanSeeAudio
+		{
+			get;
+			set;
+		}
 
-		[NonSerialized]
-		private bool _CanWritePrivateMessage;
 		/// <summary>
 		/// Признак разрешено ли написание личных сообщений данному пользователю.
 		/// </summary>
-		public bool CanWritePrivateMessage { get { return _CanWritePrivateMessage; } set { _CanWritePrivateMessage = value; } }
+		public bool CanWritePrivateMessage
+		{
+			get;
+			set;
+		}
 
 		/// <summary>
 		/// Строка со статусом пользователя.
 		/// </summary>
 		public string Status { get; set; }
 
-		[NonSerialized]
-		private DateTime? _LastSeen;
 		/// <summary>
 		/// Время последнего посещения сайта.
 		/// </summary>
-		public DateTime? LastSeen { get { return _LastSeen; } set { _LastSeen = value; } }
+		public DateTime? LastSeen
+		{
+			get;
+			set;
+		}
 
-		[NonSerialized]
-		private int? _CommonCount;
 		/// <summary>
 		/// Общее количество друзей с текущим пользователем.
 		/// </summary>
-		public int? CommonCount { get { return _CommonCount; } set { _CommonCount = value; } }
+		public int? CommonCount
+		{
+			get;
+			set;
+		}
 
 		/// <summary>
 		/// Семейное положение.
@@ -182,19 +201,23 @@
 		/// </summary>
 		public Collection<Relative> Relatives { get; set; }
 
-		[NonSerialized]
-		private Counters _Counters;
 		/// <summary>
 		/// Различные счетчики пользователя.
 		/// </summary>
-		public Counters Counters { get { return _Counters; } set { _Counters = value; } }
+		public Counters Counters
+		{
+			get;
+			set;
+		}
 
-		[NonSerialized]
-		private BanInfo _BanInfo;
 		/// <summary>
 		/// Информация о блокировке пользователя
 		/// </summary>
-		public BanInfo BanInfo { get { return _BanInfo; } set { _BanInfo = value; } }
+		public BanInfo BanInfo
+		{
+			get;
+			set;
+		}
 
 		/// <summary>
 		/// Является ли пользователь заблокированным
@@ -204,7 +227,14 @@
 		/// <summary>
 		/// Причина блокирования аккаунта
 		/// </summary>
-		public string DeactiveReason { get; set; }
+		[Obsolete("Устаревшее свойство. Используйте Deactivated")]
+		public Deactivated DeactiveReason { get { return Deactivated; } }
+
+		/// <summary>
+		/// Причина блокирования аккаунта
+		/// </summary>
+		public Deactivated Deactivated
+		{ get; set; }
 
 		#endregion
 
@@ -304,7 +334,7 @@
 		/// </summary>
 		public string ScreenName
 		{ get; set; }
-		
+
 
 		#endregion
 
@@ -340,6 +370,61 @@
 		/// </summary>
 		public bool? BdateVisibility { get; set; }
 
+		/// <summary>
+		/// id главной фотографии профиля пользователя в формате user_id+photo_id, например, 6492_192164258. В некоторых случаях (если фотография была установлена очень давно) это поле не возвращается.
+		/// </summary>
+		public string PhotoId;
+
+		/// <summary>
+		/// Возвращается 1, если страница пользователя верифицирована, 0 — если не верифицирована.
+		/// </summary>
+		public bool? Verified;
+
+		/// <summary>
+		/// Возвращается 1, если текущий пользователь установил фотографию для профиля.
+		/// </summary>
+		public bool? HasPhoto;
+
+		/// <summary>
+		/// url квадратной фотографии пользователя, имеющей ширину 50 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_c.gif
+		/// </summary>
+		public Uri Photo50;
+
+		/// <summary>
+		/// url квадратной фотографии пользователя, имеющей ширину 100 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_b.gif.
+		/// </summary>
+		public Uri Photo100;
+
+		/// <summary>
+		/// url фотографии пользователя, имеющей ширину 200 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_a.gif.
+		/// </summary>
+		public Uri Photo200Orig;
+
+		/// <summary>
+		/// url квадратной фотографии пользователя, имеющей ширину 200 пикселей. Если фотография была загружена давно, изображения с такими размерами может не быть, в этом случае ответ не будет содержать этого поля.
+		/// </summary>
+		public Uri Photo200;
+
+		/// <summary>
+		/// url фотографии пользователя, имеющей ширину 400 пикселей. Если у пользователя отсутствует фотография такого размера, ответ не будет содержать этого поля.
+		/// </summary>
+		public Uri Photo400Orig;
+
+		/// <summary>
+		/// url квадратной фотографии пользователя с максимальной шириной. Может быть возвращена фотография, имеющая ширину как 200, так и 100 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_b.gif.
+		/// </summary>
+		public Uri PhotoMax;
+
+		/// <summary>
+		/// url фотографии пользователя максимального размера. Может быть возвращена фотография, имеющая ширину как 400, так и 200 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_a.gif.
+		/// </summary>
+		public Uri PhotoMaxOrig;
+
+		/// <summary>
+		/// Количество подписчиков пользователя.
+		/// </summary>
+		public long? FollowersCount;
+		
 		#endregion
 
 		#region Методы
@@ -348,13 +433,75 @@
 		{
 			var user = new User
 			{
-				// ---- стандартные поля ----
 				Id = response["uid"] ?? response["id"] ?? 0,
-
 				FirstName = response["first_name"],
-				LastName = response["last_name"]
+				LastName = response["last_name"],
+				Sex = response["sex"],
+				BirthDate = response["bdate"],
+				City = response["city"],
+				Country = response["country"],
+				PhotoPreviews = response,
+				Online = response["online"],
+				FriendLists = response["lists"],
+				Domain = response["domain"],
+				HasMobile = response["has_mobile"],
+				MobilePhone = response["mobile_phone"],
+				HomePhone = response["home_phone"],
+				Connections = response,
+				Site = response["site"],
+				Education = response,
+				Universities = response["universities"],
+				Schools = response["schools"],
+				CanPost = response["can_post"],
+				CanSeeAllPosts = response["can_see_all_posts"],
+				CanSeeAudio = response["can_see_audio"],
+				CanWritePrivateMessage = response["can_write_private_message"],
+				Status = response["status"],
+				LastSeen = response["last_seen"] != null ? response["last_seen"]["time"] : null,
+				CommonCount = response["common_count"],
+				Relation = response["relation"],
+				Relatives = response["relatives"],
+				Counters = response["counters"],
+				ScreenName = response["screen_name"],
+				Nickname = response["nickname"],
+				Timezone = response["timezone"],
+				Language = response["language"],
+				OnlineMobile = response["online_mobile"],
+				OnlineApp = response["online_app"],
+				RelationPartner = response["relation_partner"],
+				StandInLife = response["personal"],
+				Interests = response["interests"],
+				Music = response["music"],
+				Activities = response["activities"],
+				Movies = response["movies"],
+				Tv = response["tv"],
+				Books = response["books"],
+				Games = response["games"],
+				About = response["about"],
+				Quotes = response["quotes"],
+				InvitedBy = response["invited_by"],
+				BanInfo = response["ban_info"],
+				Deactivated = response["deactivated"],
+				MaidenName = response["maiden_name"],
+				BirthdayVisibility = (BirthdayVisibility) (response["bdate_visibility"] ?? 0),
+				HomeTown = response["home_town"],
+				ChangeNameRequest = response["name_request"],
+				BdateVisibility = response["bdate_visibility"],
+				Contact = response["contact"],
+				Hidden = response["hidden"],
+				PhotoId = response["photo_id"],
+				Verified = response["verified"],
+				HasPhoto = response["has_photo"],
+				Photo50 = response["photo_50"],
+				Photo100 = response["photo_100"],
+				Photo200Orig = response["photo_200_orig"],
+				Photo200 = response["photo_200"],
+				Photo400Orig = response["photo_400_orig"],
+				PhotoMax = response["photo_max"],
+				PhotoMaxOrig = response["photo_max_orig"],
+				FollowersCount = response["followers_count"]
 			};
-
+			user.IsDeactivated = user.DeactiveReason != null;
 			if (response["name"] != null)
 			{
 				// split for name and surname
@@ -365,69 +512,6 @@
 				user.FirstName = parts[0];
 				user.LastName = parts[1];
 			}
-
-			// ---- дополнительные поля ----
-
-			user.Sex = response["sex"];
-			user.BirthDate = response["bdate"];
-			user.City = response["city"];
-			user.Country = response["country"];
-			user.PhotoPreviews = response;
-			user.Online = response["online"];
-			user.FriendLists = response["lists"];
-			user.Domain = response["domain"];
-			user.HasMobile = response["has_mobile"];
-			user.MobilePhone = response["mobile_phone"];
-			user.HomePhone = response["home_phone"];
-			user.Connections = response;
-			user.Site = response["site"];
-			user.Education = response;
-			user.Universities = response["universities"];
-			user.Schools = response["schools"];
-			user.CanPost = response["can_post"];
-			user.CanSeeAllPosts = response["can_see_all_posts"];
-			user.CanSeeAudio = response["can_see_audio"];
-			user.CanWritePrivateMessage = response["can_write_private_message"];
-			user.Status = response["status"];
-			user.LastSeen = response["last_seen"] != null ? response["last_seen"]["time"] : null;
-			user.CommonCount = response["common_count"];
-			user.Relation = response["relation"];
-			user.Relatives = response["relatives"];
-			user.Counters = response["counters"];
-			user.ScreenName = response["screen_name"];
-			// -- дополнительные поля из http://vk.com/pages?oid=-1p=users.get
-
-			user.Nickname = response["nickname"];
-			user.Timezone = response["timezone"];
-
-			// поля, установленные экспериментально
-			user.Language = response["language"];
-			user.OnlineMobile = response["online_mobile"];
-			user.OnlineApp = response["online_app"];
-			user.RelationPartner = response["relation_partner"];
-			user.StandInLife = response["personal"];
-			user.Interests = response["interests"];
-			user.Music = response["music"];
-			user.Activities = response["activities"];
-			user.Movies = response["movies"];
-			user.Tv = response["tv"];
-			user.Books = response["books"];
-			user.Games = response["games"];
-			user.About = response["about"];
-			user.Quotes = response["quotes"];
-			user.InvitedBy = response["invited_by"];
-			user.BanInfo = response["ban_info"];
-			user.DeactiveReason = response["deactivated"];
-			user.IsDeactivated = !string.IsNullOrEmpty(user.DeactiveReason);
-
-			//Поля, доступные через запрос https://vk.com/dev/account.getProfileInfo
-			user.MaidenName = response["maiden_name"];
-			user.BirthdayVisibility = (BirthdayVisibility)(response["bdate_visibility"] ?? 0);
-			user.HomeTown = response["home_town"];
-			user.ChangeNameRequest = response["name_request"];
-			user.BdateVisibility = response["bdate_visibility"];
-			user.Contact = response["contact"];
-
 			return user;
 		}
 

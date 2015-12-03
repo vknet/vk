@@ -45,17 +45,17 @@ namespace VkNet.Enums.Filters
 		public static readonly UsersFields Timezone = RegisterPossibleValue(1 << 6, "timezone");
 
 		/// <summary>
-		/// Для получения дополнительного поля <see cref="User.photo_50"/>.
+		/// Для получения дополнительного поля <see cref="User.Photo50"/>.
 		/// </summary>
 		public static readonly UsersFields Photo50 = RegisterPossibleValue(1 << 7, "photo_50");
 
 		/// <summary>
-		/// Для получения дополнительного поля <see cref="User.photo_100"/>.
+		/// Для получения дополнительного поля <see cref="User.Photo100"/>.
 		/// </summary>
 		public static readonly UsersFields Photo100 = RegisterPossibleValue(1 << 8, "photo_100");
 
 		/// <summary>
-		/// Для получения дополнительного поля <see cref="User.photo_200_orig"/>.
+		/// Для получения дополнительного поля <see cref="User.Photo200Orig"/>.
 		/// </summary>
 		public static readonly UsersFields Photo200Orig = RegisterPossibleValue(1 << 9, "photo_200_orig");
 

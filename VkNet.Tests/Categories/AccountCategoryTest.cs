@@ -6,6 +6,7 @@ using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils;
@@ -525,7 +526,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(items.First().Id, Is.EqualTo(247704457));
 			Assert.That(items.First().FirstName, Is.EqualTo("Твой"));
 			Assert.That(items.First().LastName, Is.EqualTo("День-Рождения"));
-			Assert.That(items.First().DeactiveReason, Is.EqualTo("banned"));
+			Assert.That(items.First().DeactiveReason, Is.EqualTo(Deactivated.Banned));
 		}
 
 		[Test]
