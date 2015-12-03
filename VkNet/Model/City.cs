@@ -16,7 +16,7 @@ namespace VkNet.Model
         /// <summary>
         /// Идентификатор города.
         /// </summary>
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
         /// <summary>
         /// Название города.

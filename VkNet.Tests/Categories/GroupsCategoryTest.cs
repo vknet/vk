@@ -329,7 +329,10 @@
 						'name': 'The middle of spring',
 						'screen_name': 'club1153959',
 						'is_closed': 0,
-						'city': 10,
+						city: {
+							id: 10,
+							title: 'Санкт-Петербург'
+						},
 						'country': 1,
 						'description': 'Попади в не реальную сказку пришествия...',
 						'start_date': '1208700030',
@@ -345,7 +348,10 @@
 						'name': 'Геннадий Бачинский',
 						'screen_name': 'club1181795',
 						'is_closed': 0,
-						'city': 1,
+						city: {
+							id: 1,
+							title: 'Санкт-Петербург'
+						},
 						'country': 1,
 						'description': 'В связи с небольшим количеством...',
 						'start_date': '1200380400',
@@ -366,7 +372,7 @@
 			Assert.That(groups[1].Name, Is.EqualTo("Геннадий Бачинский"));
 			Assert.That(groups[1].ScreenName, Is.EqualTo("club1181795"));
 			Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[1].CityId, Is.EqualTo(1));
+			Assert.That(groups[1].City.Id, Is.EqualTo(1));
 			Assert.That(groups[1].CountryId, Is.EqualTo(1));
 			Assert.That(groups[1].Description, Is.EqualTo("В связи с небольшим количеством..."));
 			Assert.That(groups[1].StartDate, Is.EqualTo(new DateTime(2008, 1, 15, 7, 0, 0, DateTimeKind.Utc).ToLocalTime()));
@@ -382,7 +388,7 @@
 			Assert.That(groups[0].Name, Is.EqualTo("The middle of spring"));
 			Assert.That(groups[0].ScreenName, Is.EqualTo("club1153959"));
 			Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[0].CityId, Is.EqualTo(10));
+			Assert.That(groups[0].City.Id, Is.EqualTo(10));
 			Assert.That(groups[0].CountryId, Is.EqualTo(1));
 			Assert.That(groups[0].Description, Is.EqualTo("Попади в не реальную сказку пришествия..."));
 			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2008, 04, 20, 14, 0, 30, DateTimeKind.Utc).ToLocalTime()));
@@ -1061,7 +1067,10 @@
 						'name': 'Творческие каникулы ART CAMP с 21 по 29 июля',
 						'screen_name': 'club17683660',
 						'is_closed': 0,
-						'city': 95,
+						city: {
+							id: 95,
+							title: 'Санкт-Петербург'
+						},
 						'country': 1,
 						'description': 'Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21...',
 						'start_date': '1342850400',
@@ -1077,7 +1086,10 @@
 						'name': 'Чак Паланик - Сумасшедший гений литературы',
 						'screen_name': 'club637247',
 						'is_closed': 1,
-						'city': 95,
+						city: {
+							id: 95,
+							title: 'Санкт-Петербург'
+						},
 						'country': 1,
 						'description': 'Кто он, этот неординарный и талантливый человек? Его творчество спо...',
 						'wiki_page': 'Chuk Palahniuk',
@@ -1107,7 +1119,7 @@
 			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
-			Assert.That(groups[0].CityId, Is.EqualTo(95));
+			Assert.That(groups[0].City.Id, Is.EqualTo(95));
 			Assert.That(groups[0].CountryId, Is.EqualTo(1));
 			Assert.That(groups[0].Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21..."));
 			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
@@ -1123,7 +1135,7 @@
 			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
 			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
 			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
-			Assert.That(groups[1].CityId, Is.EqualTo(95));
+			Assert.That(groups[1].City.Id, Is.EqualTo(95));
 			Assert.That(groups[1].CountryId, Is.EqualTo(1));
 			Assert.That(groups[1].Description, Is.EqualTo("Кто он, этот неординарный и талантливый человек? Его творчество спо..."));
 			Assert.That(groups[1].StartDate, Is.Null);
@@ -1142,7 +1154,10 @@
 						'name': 'Творческие каникулы ART CAMP с 21 по 29 июля',
 						'screen_name': 'club17683660',
 						'is_closed': 0,
-						'city': 95,
+						city: {
+							id: 95,
+							title: 'Санкт-Петербург'
+						},
 						'country': 1,
 						'description': 'Творческие каникулы ART CAMP с 21 по 29 июля<br>....',
 						'start_date': '1342850400',
@@ -1169,7 +1184,7 @@
 			Assert.That(@group.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 			Assert.That(@group.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 			Assert.That(@group.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
-			Assert.That(@group.CityId, Is.EqualTo(95));
+			Assert.That(@group.City.Id, Is.EqualTo(95));
 			Assert.That(@group.CountryId, Is.EqualTo(1));
 			Assert.That(@group.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
 			Assert.That(@group.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));

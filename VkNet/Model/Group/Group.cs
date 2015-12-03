@@ -77,10 +77,9 @@ namespace VkNet.Model
 		#region Опциональные поля
 
 		/// <summary>
-		/// Идентификатор города, указанного в информации о сообществе. Возвращается идентификатор города, который можно использовать для 
-		/// получения его названия с помощью метода <see cref="DatabaseCategory.GetCitiesById"/>. Если город не указан, возвращается 0. 
+		/// Город. 
 		/// </summary>
-		public ulong? CityId { get; set; }
+		public City City { get; set; }
 
 		/// <summary>
 		/// Идентификатор страны, указанной в информации о сообществе. Возвращается идентификатор страны, который можно использовать для 
@@ -240,7 +239,7 @@ namespace VkNet.Model
 				PhotoPreviews = response,
 
 				// опциональные поля
-				CityId = response.ContainsKey("city") ? response["city"]["id"] : null,
+				City = response["city"],
 				CountryId = response.ContainsKey("country") ? response["country"]["id"] : null,
 				Place = response["place"],
 				Description = response["description"],
