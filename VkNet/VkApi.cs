@@ -211,7 +211,7 @@
         /// <summary>
         /// Была ли произведена авторизация каким либо образом
         /// </summary>
-        public bool IsAuthorized { get { return !string.IsNullOrEmpty(AccessToken); } }
+        public bool IsAuthorized { get { return !string.IsNullOrWhiteSpace(AccessToken); } }
 		/// <summary>
 		/// Токен для доступа к методам API
 		/// </summary>
@@ -278,7 +278,32 @@
             // Сбросить после использования
             _ap.CaptchaSid = null;
             _ap.CaptchaKey = "";
-		}
+        }
+        /// <summary>
+        /// Авторизация и получение токена
+        /// </summary>
+        /// <param name="appId">Идентификатор приложения</param>
+        /// <param name="emailOrPhone">Email или телефон</param>
+        /// <param name="password">Пароль</param>		
+		/// <param name="code">Делегат получения кода для двухфакторной авторизации</param>		
+		/// <param name="captchaSid">Идентикикатор капчи</param>		
+		/// <param name="captchaKey">Текст капчи</param>		
+		/// <param name="settings">Права доступа для приложения</param>
+        [Obsolete("Устаревший метод, будет удален. Используйте метод Get(Authorize @params)")]
+        public void Authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null)
+        {
+            VkErrors.ThrowIfNumberIsNegative(() => appId);
+            Authorize( new ApiAuthParams
+            {
+                ApplicationId = Convert.ToUInt64(appId),
+                Login = emailOrPhone,
+                Password = password,
+                Settings = settings,
+                TwoFactorAuthorization = code,
+                CaptchaSid = captchaSid,
+                CaptchaKey = captchaKey
+            });
+        }
         /// <summary>
         /// Авторизация и получение токена в асинхронном режиме
         /// </summary>
@@ -296,7 +321,7 @@
 		/// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
 		public void Authorize(string accessToken, long? userId = null)
 		{
-            if (!string.IsNullOrEmpty(accessToken))
+            if (!string.IsNullOrWhiteSpace(accessToken))
             {
                 StopTimer();
 
@@ -312,7 +337,7 @@
         /// <param name="code">Делегат двухфакторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
 		public void RefreshToken(Func<string> code = null)
 		{
-			if (!string.IsNullOrEmpty(_ap.Login) && !string.IsNullOrEmpty(_ap.Password))
+			if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
 			{
 				Authorize(
                     _ap.ApplicationId,
