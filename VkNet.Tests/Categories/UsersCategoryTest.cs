@@ -927,7 +927,7 @@
             user.Id.ShouldEqual(4793858);
             user.FirstName.ShouldEqual("Антон");
             user.LastName.ShouldEqual("Жидков");
-            user.DeactiveReason.ShouldEqual("deleted");
+            user.DeactiveReason.ShouldEqual(Deactivated.Deleted);
             user.IsDeactivated.ShouldBeTrue();
         }
 

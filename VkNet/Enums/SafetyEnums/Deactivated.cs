@@ -18,7 +18,7 @@ namespace VkNet.Enums.SafetyEnums
 		public static readonly Deactivated Banned = RegisterPossibleValue("banned");
 
 		/// <summary>
-		/// Заблокировано.
+		/// Активно.
 		/// </summary>
 		[DefaultValue]
 		public static readonly Deactivated Activated = RegisterPossibleValue("activated");
