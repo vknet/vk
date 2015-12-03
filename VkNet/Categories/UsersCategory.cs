@@ -1,4 +1,4 @@
-﻿using VkNet.Model.RequestParams.Users;
+﻿
 
 namespace VkNet.Categories
 {
@@ -11,7 +11,8 @@ namespace VkNet.Categories
 	using Enums.Filters;
 	using Enums.SafetyEnums;
 	using Model;
-	using Utils;
+    using Model.RequestParams;
+    using Utils;
 
 	/// <summary>
 	/// Методы для работы с информацией о пользователях.

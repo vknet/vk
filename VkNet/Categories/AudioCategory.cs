@@ -11,6 +11,7 @@ namespace VkNet.Categories
 	using Enums;
 	using Enums.Filters;
 	using Model;
+    using Model.RequestParams;
 	using Model.Attachments;
 	using Utils;
 
@@ -318,6 +319,28 @@ namespace VkNet.Categories
 
 			return response.Skip(1).ToReadOnlyCollectionOf<Audio>(r => r);
 		}
+
+        /// <summary>
+        /// Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
+        /// </summary>
+        /// <param name="params">Критерии поиска</param>
+        /// <param name="TotalCount">Общее кол-во аудиозаписей, найденных по этим критериям</param>
+        /// <returns>Список объектов класса Audio.</returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
+		/// </remarks>
+        public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out ulong TotalCount)
+        {
+            if (string.IsNullOrEmpty(@params.Query))
+                throw new ArgumentException("Query is null or empty.", "query");
+
+            VkResponseArray response = _vk.Call("audio.search", @params);
+
+            TotalCount = response[0];
+
+            return response.Skip(1).ToReadOnlyCollectionOf<Audio>(r => r);
+        }
 
 		/// <summary>
 		/// Копирует аудиозапись на страницу пользователя или группы.

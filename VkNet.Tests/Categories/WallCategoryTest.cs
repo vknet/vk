@@ -13,7 +13,7 @@ using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 using FluentNUnit;
-using VkNet.Model.RequestParams.Wall;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {

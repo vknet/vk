@@ -1,6 +1,4 @@
-﻿using VkNet.Model.RequestParams.Users;
-
-namespace VkNet.Tests.Categories
+﻿namespace VkNet.Tests.Categories
 {
     using System;
     using System.Collections.ObjectModel;
@@ -13,6 +11,7 @@ namespace VkNet.Tests.Categories
     using Enums;
     using Exception;
     using Model;
+    using Model.RequestParams;
     using Enums.Filters;
     using Enums.SafetyEnums;
 

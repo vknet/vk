@@ -1,11 +1,13 @@
-﻿using VkNet.Enums;
-
-namespace VkNet.Model.RequestParams.Wall
+﻿namespace VkNet.Model.RequestParams
 {
-	/// <summary>
-	/// Список параметров для метода Wall.Get
-	/// </summary>
-	public class WallGetParams
+    using Enums;
+
+    using Utils;
+
+    /// <summary>
+    /// Список параметров для метода Wall.Get
+    /// </summary>
+    public struct WallGetParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, со стены которого необходимо получить записи (по умолчанию — текущий пользователь).
@@ -23,30 +25,44 @@ namespace VkNet.Model.RequestParams.Wall
         /// Смещение, необходимое для выборки определенного подмножества записей.
         /// </summary>
         public ulong Offset
-        { get; set; } = 0;
+        { get; set; }
 
         /// <summary>
         /// Количество записей, которое необходимо получить (но не более 100).
         /// </summary>
         public ulong Count
-        { get; set; } = 20;
+        { get; set; }
 
         /// <summary>
         /// Определяет, какие типы записей на стене необходимо получить. Возможны следующие значения параметра: Если параметр не задан, то считается, что он равен all.
         /// </summary>
         public WallFilter Filter
-        { get; set; } = WallFilter.All;
+        { get; set; }
 
         /// <summary>
         /// <c>true</c> — будут возвращены три массива wall, profiles и groups. По умолчанию дополнительные поля не возвращаются.
         /// </summary>
         public bool Extended
-        { get; set; } = false;
+        { get; set; }
 
 		/// <summary>
 		/// Список дополнительных полей для профилей и групп, которые необходимо вернуть. См. описание полей объекта user и описание полей объекта group. Обратите внимание, этот параметр учитывается только при extended=1.
 		/// </summary>
 		public object Fields
 		{ get; set; }
-	}
+
+        internal static VkParameters ToVkParameters(WallGetParams p)
+        {
+            return new VkParameters
+            {
+                { "owner_id", p.OwnerId },
+                { "domain", p.Domain },
+                { "offset", p.Offset },
+                { "count", p.Count },
+                { "filter", p.Filter },
+                { "extended", p.Extended },
+                { "fields", p.Fields }
+            };
+        }
+    }
 }

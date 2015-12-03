@@ -1,9 +1,11 @@
-﻿namespace VkNet.Model
+﻿namespace VkNet.Model.RequestParams
 {
+    using Utils;
+
 	/// <summary>
 	/// Параметры запроса подписывания устройства на базе iOS, Android или Windows Phone на получение Push-уведомлений.
 	/// </summary>
-	public class AccountRegisterDevice
+	public class AccountRegisterDeviceParams
 	{
 		/// <summary>
 		/// Идентификатор устройства, используемый для отправки уведомлений. (для mpns идентификатор должен представлять из себя URL для отправки уведомлений) строка, обязательный параметр.
@@ -46,5 +48,5 @@
 		/// </summary>
 		public bool? Sandbox
 		{ get; set; }
-	}
+    }
 }

@@ -1,7 +1,7 @@
 namespace VkNet.Model
 {
     using System;
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
     /// Ќабор Url к картинкам с различным разрешени€м.

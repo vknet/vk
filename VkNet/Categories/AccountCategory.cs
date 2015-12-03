@@ -12,6 +12,7 @@ namespace VkNet.Categories
 
 	using Enums;
 	using Model;
+    using Model.RequestParams;
 	using Utils;
 
 	/// <summary>
@@ -172,7 +173,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.registerDevice" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool RegisterDevice(AccountRegisterDevice @params)
+		public bool RegisterDevice(AccountRegisterDeviceParams @params)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => @params.Token);
 
@@ -527,7 +528,7 @@ namespace VkNet.Categories
 			string homeTown = null, long? countryId = null, long? cityId = null)
 		{
 			ChangeNameRequest request;
-			var parameters = new AccountSaveInfo
+			var parameters = new AccountSaveInfoParams
 			{
 				FirstName = firstName,
 				LastName = lastName,
@@ -567,7 +568,7 @@ namespace VkNet.Categories
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
 			string homeTown = null, long? countryId = null, long? cityId = null)
 		{
-			var parameters = new AccountSaveInfo
+			var parameters = new AccountSaveInfoParams
 			{
 				FirstName = firstName,
 				LastName = lastName,
@@ -599,29 +600,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.saveProfileInfo" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)
+		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfoParams @params)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.RelationPartnerId);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.CountryId);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.CityId);
 
-			var parameters = new VkParameters
-			{
-				{ "first_name", @params.FirstName },
-				{ "last_name", @params.LastName },
-				{ "maiden_name", @params.MaidenName },
-				{ "screen_name", @params.ScreenName },
-				{ "sex", @params.Sex },
-				{ "relation", @params.Relation },
-				{ "relation_partner_id", @params.RelationPartnerId },
-				{ "bdate", @params.BirthDate },
-				{ "bdate_visibility", @params.BirthDateVisibility },
-				{ "home_town", @params.HomeTown },
-				{ "country_id", @params.CountryId },
-				{ "city_id", @params.CityId },
-				{ "status", @params.Status }
-			};
-			var response = _vk.Call("account.saveProfileInfo", parameters);
+			var response = _vk.Call("account.saveProfileInfo", @params);
 
 			changeNameRequest = response["name_request"];
 			return response["changed"];

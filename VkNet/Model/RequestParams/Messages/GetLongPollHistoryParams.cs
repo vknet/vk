@@ -1,11 +1,13 @@
 ﻿using VkNet.Enums.Filters;
 
-namespace VkNet.Model.RequestParams.Messages
+namespace VkNet.Model.RequestParams
 {
+    using Utils;
+
 	/// <summary>
 	/// Параметры метода messages.getLongPollHistoryParams
 	/// </summary>
-	public class GetLongPollHistoryParams
+	public struct GetLongPollHistoryParams
 	{
 		/// <summary>
 		/// Последнее значение параметра ts, полученное от Long Poll сервера или с помощью метода messages.getLongPollServer
@@ -55,5 +57,19 @@ namespace VkNet.Model.RequestParams.Messages
 		public long? MaxMsgId
 		{ get; set; }
 
-	}
+        internal static VkParameters ToVkParameters(GetLongPollHistoryParams p)
+        {
+            return new VkParameters
+            {
+                { "ts", p.Ts },
+                { "pts", p.Pts },
+                { "preview_length", p.PreviewLength },
+                { "onlines", p.Onlines },
+                { "fields", p.Fields },
+                { "events_limit", p.EventsLimit },
+                { "msgs_limit", p.MsgsLimit },
+                { "max_msg_id", p.MaxMsgId }
+            };
+        }
+    }
 }

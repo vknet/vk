@@ -7,7 +7,7 @@
     /// Параметры запроса к ВКонтакте.
     /// </summary>
     [Serializable]
-    public class VkParameters : Dictionary<string, string>
+    public partial class VkParameters : Dictionary<string, string>
     {
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="VkParameters"/>.

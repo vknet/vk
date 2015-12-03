@@ -169,8 +169,9 @@
     <Compile Include="Model\PhotoSize.cs" />
     <Compile Include="Model\PostReach.cs" />
     <Compile Include="Model\PushSettings.cs" />
-    <Compile Include="Model\RequestParams\AccountRegisterDevice.cs" />
-    <Compile Include="Model\RequestParams\Account\AccountSaveInfo.cs" />
+    <Compile Include="Model\RequestParams\AccountRegisterDeviceParams.cs" />
+    <Compile Include="Model\RequestParams\Account\AccountSaveInfoParams.cs" />
+    <Compile Include="Model\RequestParams\Audio\AudioSearchParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />
     <Compile Include="Model\RequestParams\Likes\GetListParams.cs" />
@@ -260,6 +261,11 @@
     <Compile Include="Utils\DefaultValueAttribute.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
+    <Compile Include="Utils\ModelToVkParametrsCastGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelToVkParametrsCastGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Tuple.cs" />
     <Compile Include="Utils\VkResponseToManualEnumCastsGenerator.cs">
       <AutoGen>True</AutoGen>
@@ -341,6 +347,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Utils\ModelToVkParametrsCastGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelToVkParametrsCastGenerator.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

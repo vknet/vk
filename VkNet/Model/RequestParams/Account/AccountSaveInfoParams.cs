@@ -1,12 +1,15 @@
 ﻿using System;
-using VkNet.Enums;
 
-namespace VkNet.Model
+namespace VkNet.Model.RequestParams
 {
-	/// <summary>
-	/// Параметры запроса метода account.saveProfileInfo
-	/// </summary>
-	public class AccountSaveInfo
+    using Enums;
+
+    using Utils;
+
+    /// <summary>
+    /// Параметры запроса метода account.saveProfileInfo
+    /// </summary>
+    public struct AccountSaveInfoParams
 	{
 		/// <summary>
 		/// Имя пользователя. строка.
@@ -86,5 +89,24 @@ namespace VkNet.Model
 		public string Status
 		{ get; set; }
 
-	}
+        internal static VkParameters ToVkParameters(AccountSaveInfoParams p)
+        {
+            return new VkParameters
+            {
+                { "first_name", p.FirstName },
+                { "last_name", p.LastName },
+                { "maiden_name", p.MaidenName },
+                { "screen_name", p.ScreenName },
+                { "sex", p.Sex },
+                { "relation", p.Relation },
+                { "relation_partner_id", p.RelationPartnerId },
+                { "bdate", p.BirthDate },
+                { "bdate_visibility", p.BirthDateVisibility },
+                { "home_town", p.HomeTown },
+                { "country_id", p.CountryId },
+                { "city_id", p.CityId },
+                { "status", p.Status }
+            };
+        }
+    }
 }

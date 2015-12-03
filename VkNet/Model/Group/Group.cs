@@ -6,10 +6,10 @@ namespace VkNet.Model
 	using System;
     using System.Diagnostics;
 
-    using VkNet.Enums.SafetyEnums;
-    using VkNet.Categories;
-	using VkNet.Enums;
-	using VkNet.Utils;
+    using Enums.SafetyEnums;
+    using Categories;
+	using Enums;
+	using Utils;
 
     /// <summary>
     /// Информация о сообществе (группе).

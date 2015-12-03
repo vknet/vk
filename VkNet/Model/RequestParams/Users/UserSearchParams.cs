@@ -1,13 +1,15 @@
-﻿using VkNet.Enums;
-using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-
-namespace VkNet.Model.RequestParams.Users
+﻿namespace VkNet.Model.RequestParams
 {
-	/// <summary>
-	/// Параметры метода users.search
-	/// </summary>
-	public class UserSearchParams
+    using Enums;
+    using Enums.Filters;
+    using Enums.SafetyEnums;
+
+    using Utils;
+
+    /// <summary>
+    /// Параметры метода users.search
+    /// </summary>
+    public class UserSearchParams
 	{
 		/// <summary>
 		/// Параметры метода users.search.
@@ -218,5 +220,44 @@ namespace VkNet.Model.RequestParams.Users
 		public UserSection FromList
 		{ get; set; }
 
-	}
+        internal static VkParameters ToVkParameters(UserSearchParams p)
+        {
+            return new VkParameters
+            {
+                { "q", p.Query },
+                { "sort", p.Sort },
+                { "offset", p.Offset },
+                { "count", p.Count },
+                { "fields", p.Fields },
+                { "city", p.City },
+                { "country", p.Country },
+                { "hometown", p.Hometown },
+                { "university_country", p.UniversityCountry },
+                { "university", p.University },
+                { "university_year", p.UniversityYear },
+                { "university_faculty", p.UniversityFaculty },
+                { "university_chair", p.UniversityChair },
+                { "sex", p.Sex },
+                { "status", p.Status },
+                { "age_from", p.AgeFrom },
+                { "age_to", p.AgeTo },
+                { "birth_day", p.BirthDay },
+                { "birth_month", p.BirthMonth },
+                { "birth_year", p.BirthYear },
+                { "online", p.Online },
+                { "has_photo", p.HasPhoto },
+                { "school_country", p.SchoolCountry },
+                { "school_city", p.SchoolCity },
+                { "school_class", p.SchoolClass },
+                { "school", p.School },
+                { "school_year", p.SchoolYear },
+                { "religion", p.Religion },
+                { "interests", p.Interests },
+                { "company", p.Company },
+                { "position", p.Position },
+                { "group_id", p.GroupId },
+                { "from_list", p.FromList }
+            };
+        }
+    }
 }

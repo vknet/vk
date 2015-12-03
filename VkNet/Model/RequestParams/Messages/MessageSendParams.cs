@@ -1,12 +1,20 @@
-﻿using System.Collections.Generic;
+﻿#if WINDOWS_PHONE
+	using System.Net;
+#else
+using System.Web;
+#endif
+
+using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace VkNet.Model.RequestParams.Messages
+namespace VkNet.Model.RequestParams
 {
+    using Utils;
+
 	/// <summary>
 	/// Параметры метода messages.send
 	/// </summary>
-	public class MessageSendParams
+	public struct MessageSendParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя, которому отправляется сообщение.
@@ -73,5 +81,23 @@ namespace VkNet.Model.RequestParams.Messages
 		/// </summary>
 		public uint? StickerId
 		{ get; set; }
-	}
+
+        internal static VkParameters ToVkParameters(MessageSendParams p)
+        {
+            return new VkParameters
+            {
+                { "user_id", p.UserId },
+                { "domain", p.Domain },
+                { "chat_id", p.ChatId },
+                { "user_ids", p.UserIds },
+                { "message", HttpUtility.UrlEncode(p.Message) },
+                { "guid", p.Guid },
+                { "lat", p.Lat },
+                { "long", p.Longitude },
+                { "attachment", p.Attachment },
+                { "forward_messages", p.ForwardMessages },
+                { "sticker_id", p.StickerId }
+            };
+        }
+    }
 }

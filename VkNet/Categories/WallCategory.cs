@@ -1,4 +1,4 @@
-﻿using VkNet.Model.RequestParams.Wall;
+﻿
 
 namespace VkNet.Categories
 {
@@ -10,7 +10,8 @@ namespace VkNet.Categories
 
 	using Enums;
 	using Model;
-	using Utils;
+    using Model.RequestParams;
+    using Utils;
 
 	using System.Text;
 	using Enums.Filters;
@@ -83,18 +84,8 @@ namespace VkNet.Categories
 			{
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 			}
-			var parameters = new VkParameters
-			{
-				{ "owner_id", @params.OwnerId },
-				{ "domain", @params.Domain },
-				{ "offset", @params.Offset },
-				{ "count", @params.Count },
-				{ "filter", @params.Filter },
-				{ "extended", @params.Extended },
-				{ "fields", @params.Fields }
-			};
 
-			return _vk.Call("wall.get", parameters, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
+			return _vk.Call("wall.get", @params, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
 		}
 
 		/// <summary>

@@ -1,7 +1,6 @@
 ﻿using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams.Messages;
 
 namespace VkNet.Categories
 {
@@ -21,7 +20,8 @@ namespace VkNet.Categories
 
 	using Enums;
 	using Model;
-	using Utils;
+    using Model.RequestParams;
+    using Utils;
 
 	/// <summary>
 	/// Методы для работы с сообщениями.
@@ -108,17 +108,7 @@ namespace VkNet.Categories
         [ApiVersion("5.40")]
         public MessagesGetObject Get(MessagesGetParams @params)
         {
-            var parameters = new VkParameters
-            {
-                { "out", @params.Out },
-                { "offset", @params.Offset },
-                { "count", @params.Count },
-                { "time_offset", @params.TimeOffset },
-                { "filters", @params.Filters },
-                { "preview_length", @params.PreviewLength },
-                { "last_message_id", @params.LastMessageId }
-            };
-            var response = _vk.Call("messages.get", parameters);
+            var response = _vk.Call("messages.get", @params);
             return response;
         }
 
@@ -174,17 +164,8 @@ namespace VkNet.Categories
 		[ApiVersion("5.40")]
         public MessagesGetObject GetHistory(HistoryGetParams @params)
         {
-            var parameters = new VkParameters
-            {
-                { "offset", @params.Offset },
-                { "count", @params.Count },
-                { "user_id", @params.UserID },
-                { "chat_id", @params.ChatID },
-                { "peer_id", @params.PeerID },
-                { "start_message_id", @params.StartMessageID },
-                { "rev", @params.Reversed }
-            };
-            var response = _vk.Call("messages.getHistory", parameters);
+            
+            var response = _vk.Call("messages.getHistory", @params);
             return response;
         }
 
@@ -298,15 +279,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.40")]
         public MessagesGetObject GetDialogs(DialogsGetParams @params)
         {
-            var parameters = new VkParameters
-            {
-                { "start_message_id", @params.StartMessageID },
-                { "offset", @params.Offset },
-                { "count", @params.Count },
-                { "unread", @params.Unread },
-                { "preview_length", @params.PreviewLength }
-            };
-            var response = _vk.Call("messages.getDialogs", parameters);
+            var response = _vk.Call("messages.getDialogs", @params);
             return response;
         }
 
@@ -477,24 +450,10 @@ namespace VkNet.Categories
 			{
 				throw new ArgumentException("Message can not be null.", "Message");
 			}
-			var parameters = new VkParameters
-			{
-				{ "user_id", @params.UserId },
-				{ "domain", @params.Domain },
-				{ "chat_id", @params.ChatId },
-				{ "user_ids", @params.UserIds },
-				{ "message", HttpUtility.UrlEncode(@params.Message) },
-				{ "guid", @params.Guid },
-				{ "lat", @params.Lat },
-				{ "long", @params.Longitude },
-				{ "attachment", @params.Attachment },
-				{ "forward_messages", @params.ForwardMessages },
-				{ "sticker_id", @params.StickerId }
-			};
 
 			// TODO: Yet not work with attachments. Fix it later.
 
-			return _vk.Call("messages.send", parameters);
+			return _vk.Call("messages.send", @params);
 		}
 
 		/// <summary>
@@ -961,18 +920,7 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
 
-			var parameters = new VkParameters
-			{
-				{ "ts", @params.Ts },
-				{ "pts", @params.Pts },
-				{ "preview_length", @params.PreviewLength },
-				{ "onlines", @params.Onlines },
-				{ "fields", @params.Fields },
-				{ "events_limit", @params.EventsLimit },
-				{ "msgs_limit", @params.MsgsLimit },
-				{ "max_msg_id", @params.MaxMsgId }
-			};
-			return _vk.Call("messages.getLongPollHistory", parameters);
+			return _vk.Call("messages.getLongPollHistory", @params);
 		}
 
 		/// <summary>

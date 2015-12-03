@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams.Messages;
 
 namespace VkNet.Tests.Categories
 {
@@ -18,8 +17,9 @@ namespace VkNet.Tests.Categories
 	using Enums.Filters;
 	using Exception;
 	using Model;
+    using Model.RequestParams;
 
-	[TestFixture]
+    [TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class MessagesCategoryTest
 	{
