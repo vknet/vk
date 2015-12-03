@@ -258,11 +258,11 @@
 			RequestsPerSecond = 3;
 		}
 
-        /// <summary>
-        /// Авторизация и получение токена
-        /// </summary>
-        /// <param name="params">Данные авторизации</param>
-        public void Authorize(ApiAuthParams @params)
+		/// <summary>
+		/// Авторизация и получение токена
+		/// </summary>
+		/// <param name="params">Данные авторизации</param>
+		public void Authorize(ApiAuthParams @params)
 		{
 			Authorize(
                 @params.ApplicationId,
@@ -279,17 +279,17 @@
             _ap.CaptchaSid = null;
             _ap.CaptchaKey = "";
         }
-        /// <summary>
-        /// Авторизация и получение токена
-        /// </summary>
-        /// <param name="appId">Идентификатор приложения</param>
-        /// <param name="emailOrPhone">Email или телефон</param>
-        /// <param name="password">Пароль</param>		
-		/// <param name="code">Делегат получения кода для двухфакторной авторизации</param>		
-		/// <param name="captchaSid">Идентикикатор капчи</param>		
-		/// <param name="captchaKey">Текст капчи</param>		
+		/// <summary>
+		/// Авторизация и получение токена
+		/// </summary>
+		/// <param name="appId">Идентификатор приложения</param>
+		/// <param name="emailOrPhone">Email или телефон</param>
+		/// <param name="password">Пароль</param>
 		/// <param name="settings">Права доступа для приложения</param>
-        [Obsolete("Устаревший метод, будет удален. Используйте метод Get(Authorize @params)")]
+		/// <param name="code">Делегат получения кода для двухфакторной авторизации</param>
+		/// <param name="captchaSid">Идентикикатор капчи</param>
+		/// <param name="captchaKey">Текст капчи</param>
+		[Obsolete("Устаревший метод, будет удален. Используйте метод Get(Authorize @params)")]
         public void Authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => appId);
@@ -379,7 +379,7 @@
         /// <param name="captchaKey">Текст капчи</param>
         /// <param name="settings">Права доступа для приложения</param>
         /// <exception cref="VkApiAuthorizationException"></exception>
-        internal void Authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
+        private void Authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
 		{
 			StopTimer();
 
@@ -542,41 +542,5 @@
             rTask.Start();
             return rTask;
         }
-    }
-
-    /// <summary>
-    /// Параметры авторизации
-    /// </summary>
-    public struct ApiAuthParams
-    {
-        /// <summary>
-        /// Идентификатор приложения для авторизации
-        /// </summary>
-        public ulong ApplicationId { get; set; }
-        /// <summary>
-        /// Логин пользователя
-        /// </summary>
-        public string Login { get; set; }
-        /// <summary>
-        /// Пароль пользователя
-        /// </summary>
-        public string Password { get; set; }
-        /// <summary>
-        /// Права доступа приложения
-        /// </summary>
-        public Settings Settings { get; set; }
-        /// <summary>
-        /// Делегат получения кода для двухфакторной авторизации
-        /// </summary>
-        public Func<string> TwoFactorAuthorization { get; set; }
-        /// <summary>
-        /// Идентификатор капчи (если необходимо)
-        /// </summary>
-        public long? CaptchaSid { get; set; }
-        /// <summary>
-        /// Текст капчи (если необходимо)
-        /// </summary>
-        public string CaptchaKey { get; set; }
-
     }
 }
