@@ -6,10 +6,10 @@ namespace VkNet.Model
 	using System;
     using System.Diagnostics;
 
-    using VkNet.Enums.SafetyEnums;
-    using VkNet.Categories;
-	using VkNet.Enums;
-	using VkNet.Utils;
+    using Enums.SafetyEnums;
+    using Categories;
+	using Enums;
+	using Utils;
 
     /// <summary>
     /// Информация о сообществе (группе).
@@ -41,26 +41,20 @@ namespace VkNet.Model
 		/// </summary>
 		public GroupPublicity? IsClosed { get; set; }
 
-        [NonSerialized]
-        private bool _IsAdmin;
 		/// <summary>
 		/// Признак яляется ли текущий пользователь руководителем сообщества.
 		/// </summary>
-		public bool IsAdmin { get { return _IsAdmin; } set { _IsAdmin = value; } }
+		public bool IsAdmin { get; set; }
 
-        [NonSerialized]
-        private AdminLevel? _AdminLevel;
 		/// <summary>
 		/// Уровень административных полномочий текущего пользователя в сообществе (действительно, если IsAdmin = true).
 		/// </summary>
-		public AdminLevel? AdminLevel { get { return _AdminLevel; } set { _AdminLevel = value; } }
+		public AdminLevel? AdminLevel { get; set; }
 
-        [NonSerialized]
-        private bool? _IsMember;
 		/// <summary>
 		/// Признак является ли текущий пользователь участником сообщества.
 		/// </summary>
-		public bool? IsMember { get { return _IsMember; } set { _IsMember = value; } }
+		public bool? IsMember { get; set; }
 
 		/// <summary>
 		/// Тип сообщества.
@@ -76,20 +70,40 @@ namespace VkNet.Model
 		/// Возвращается в случае, если сообщество удалено или заблокировано
 		/// </summary>
 		public Deactivated Deactivated { get; set; }
+
+		/// <summary>
+		/// Содержит фото.
+		/// </summary>
+		public bool HasPhoto { get; set; }
+
+		/// <summary>
+		/// url фотографии сообщества с размером 50x50px
+		/// </summary>
+		public Uri Photo50 { get; set; }
+
+		/// <summary>
+		/// url фотографии сообщества с размером 100x100px
+		/// </summary>
+		public Uri Photo100 { get; set; }
+
+		/// <summary>
+		/// url фотографии сообщества с размером 200x200px
+		/// </summary>
+		public Uri Photo200 { get; set; }
 		#endregion
 
 		#region Опциональные поля
 
 		/// <summary>
-		/// Город. 
+		/// Город.
 		/// </summary>
 		public City City { get; set; }
 
 		/// <summary>
-		/// Идентификатор страны, указанной в информации о сообществе. Возвращается идентификатор страны, который можно использовать для 
+		/// Идентификатор страны, указанной в информации о сообществе. Возвращается идентификатор страны, который можно использовать для
 		/// получения ее названия с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>. Если страна не указана, возвращается 0.
 		/// </summary>
-		public ulong? CountryId { get; set; }
+		public Country Country { get; set; }
 
 		/// <summary>
 		/// Место, указанное в информации о сообществе.
@@ -97,7 +111,7 @@ namespace VkNet.Model
 		public Place Place { get; set; }
 
 		/// <summary>
-		/// Текст описания сообщества. 
+		/// Текст описания сообщества.
 		/// </summary>
 		public string Description { get; set; }
 
@@ -106,19 +120,15 @@ namespace VkNet.Model
 		/// </summary>
 		public string WikiPage { get; set; }
 
-        [NonSerialized]
-        private int? _MemberCount;
-        /// <summary>
-		/// Количество участников сообщества. 
+		/// <summary>
+		/// Количество участников сообщества.
 		/// </summary>
-		public int? MembersCount { get { return _MemberCount; } set { _MemberCount = value; } }
+		public int? MembersCount { get; set; }
 
-        [NonSerialized]
-        private Counters _Counters;
 		/// <summary>
 		/// Счетчики сообщества.
 		/// </summary>
-		public Counters Counters { get { return _Counters; } set { _Counters = value; } }
+		public Counters Counters {  get; set; }
 
 		/// <summary>
 		/// Время начала встречи (возвращаются только для встреч).
@@ -130,44 +140,35 @@ namespace VkNet.Model
 		/// </summary>
 		public DateTime? EndDate { get; set; }
 
-        [NonSerialized]
-        private bool _CanPost;
 		/// <summary>
 		/// Информация о том, может ли текущий пользователь оставлять записи на стене сообщества (<c>true</c> - может, <c>false</c> - не может).
 		/// </summary>
-		public bool CanPost { get { return _CanPost; } set { _CanPost = value; } }
+		public bool CanPost { get; set; }
 
-        [NonSerialized]
-        private bool _CanSeeAllPosts;
 		/// <summary>
 		/// Информация о том, разрешено видеть чужие записи на стене группы (<c>true</c> - разрешено, <c>false</c> - не разрешено).
 		/// </summary>
-		public bool CanSeelAllPosts { get { return _CanSeeAllPosts; } set { _CanSeeAllPosts = value; } }
+		public bool CanSeelAllPosts { get; set; }
 
-        [NonSerialized]
-        private bool _CanUploadDocuments;
 		/// <summary>
-		/// Информация о том, может ли текущий пользователь загружать документы в группу (<c>true</c>, если пользователь может 
+		/// Информация о том, может ли текущий пользователь загружать документы в группу (<c>true</c>, если пользователь может
 		/// загружать документы, <c>false</c> – если не может).
 		/// </summary>
-		public bool CanUploadDocuments { get { return _CanUploadDocuments; } set { _CanUploadDocuments = value; } }
-
-        [NonSerialized]
-        private bool _CanCreateTopic;
+		public bool CanUploadDocuments  { get; set; }
 		/// <summary>
-		/// Информация о том, может ли текущий пользователь создать тему обсуждения в группе. 
-		/// (<c>true</c>, если пользователь может создать обсуждение, <c>false</c> – если не может). 
+		/// Информация о том, может ли текущий пользователь создать тему обсуждения в группе.
+		/// (<c>true</c>, если пользователь может создать обсуждение, <c>false</c> – если не может).
 		/// </summary>
-		public bool CanCreateTopic { get { return _CanCreateTopic; } set { _CanCreateTopic = value; } }
+		public bool CanCreateTopic { get; set; }
 
 		/// <summary>
-		/// Строка состояния публичной страницы. У групп возвращается строковое значение, открыта ли группа или нет, 
-		/// а у событий дата начала. 
+		/// Строка состояния публичной страницы. У групп возвращается строковое значение, открыта ли группа или нет,
+		/// а у событий дата начала.
 		/// </summary>
 		public string Activity { get; set; }
 
 		/// <summary>
-		/// Статус сообщества. Возвращается строка, содержащая текст статуса, расположенного на странице сообщества под его названием. 
+		/// Статус сообщества. Возвращается строка, содержащая текст статуса, расположенного на странице сообщества под его названием.
 		/// </summary>
 		public string Status { get; set; }
 
@@ -180,14 +181,11 @@ namespace VkNet.Model
 		/// Информация из блока ссылок сообщества.
 		/// </summary>
 		public Collection<ExternalLink> Links { get; set; }
-
-        [NonSerialized]
-        private long? _FixedPostId;
 		/// <summary>
 		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById(IEnumerable{KeyValuePair{long, long}})"/>,
 		/// передав идентификатор в виде – {group_id}_{post_id}.
 		/// </summary>
-		public long? FixedPostId { get { return _FixedPostId; } set { _FixedPostId = value; } }
+		public long? FixedPostId { get; set; }
 
 		/// <summary>
 		/// Возвращает информацию о том, является ли сообщество верифицированным.
@@ -199,26 +197,40 @@ namespace VkNet.Model
 		/// </summary>
 		public string Site { get; set; }
 
-        [NonSerialized]
-        private long? _InvitedBy;
 		/// <summary>
 		/// Идентификатор пользователя пригласившего в группу
 		/// </summary>
-		public long? InvitedBy { get { return _InvitedBy; } set { _InvitedBy = value; } }
+		public long? InvitedBy { get; set; }
 
-        [NonSerialized]
-        private bool _IsFavorite;
 		/// <summary>
 		/// Возвращается 1, если сообщество находится в закладках у текущего пользователя.
 		/// </summary>
-		public bool IsFavorite { get { return _IsFavorite; } set { _IsFavorite = value; } }
+		public bool IsFavorite { get; set; }
 
-        [NonSerialized]
-        private BanInfo _BanInfo;
 		/// <summary>
 		/// Информация о забанненом (добавленном в черный список) пользователе сообщества.
 		/// </summary>
-		public BanInfo BanInfo { get { return _BanInfo; } set { _BanInfo = value; } }
+		public BanInfo BanInfo { get; set; }
+
+		/// <summary>
+		/// Информация о том, может ли текущий пользователь загружать видеозаписи в группу.
+		/// </summary>
+		public bool CanUploadVideo { get; set; }
+
+		/// <summary>
+		/// Идентификатор основного альбома сообщества.
+		/// </summary>
+		public uint? MainAlbumId { get; set; }
+
+		/// <summary>
+		/// Возвращается 1, если сообщество скрыто в новостях у текущего пользователя.
+		/// </summary>
+		public bool IsHiddenFromFeed;
+
+		/// <summary>
+		/// Информация о главной секции в сообществе
+		/// </summary>
+		public MainSection? MainSection;
 		#endregion
 
 		#region Методы
@@ -242,10 +254,14 @@ namespace VkNet.Model
 				Type = response["type"],
 				PhotoPreviews = response,
 				Deactivated = response["deactivated"],
+				HasPhoto = response["has_photo"],
+				Photo50 = response["photo_50"],
+				Photo100 = response["photo_100"],
+				Photo200 = response["photo_200"],
 
 				// опциональные поля
 				City = response["city"],
-				CountryId = response.ContainsKey("country") ? response["country"]["id"] : null,
+				Country = response["country"],
 				Place = response["place"],
 				Description = response["description"],
 				WikiPage = response["wiki_page"],
@@ -266,13 +282,15 @@ namespace VkNet.Model
 				Site = response["site"],
 				InvitedBy = response["invited_by"],
 				IsFavorite = response["is_favorite"],
-				BanInfo = response["ban_info"]
+				BanInfo = response["ban_info"],
+				CanUploadVideo = response["can_upload_video"],
+				MainAlbumId = response["main_album_id"],
+				IsHiddenFromFeed = response["is_hidden_from_feed"],
+				MainSection = response["main_section"]
 			};
 
 			return group;
 		}
-
-
 
 		#endregion
 	}
