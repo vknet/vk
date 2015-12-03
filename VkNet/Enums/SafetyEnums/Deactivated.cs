@@ -40,9 +40,11 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return Banned;
 					}
+				default:
+				{
+					return Activated;
+				}
 			}
-
-			return null;
 		}
 	}
 }
