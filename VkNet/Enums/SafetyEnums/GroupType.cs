@@ -35,13 +35,21 @@
 			switch ((string)response)
 			{
 				case "page":
-					return Page;
+					{
+						return Page;
+					}
 				case "event":
-					return Event;
+					{
+						return Event;
+					}
 				case "group":
-					return Group;
+					{
+						return Group;
+					}
 				default:
-					return Undefined;
+					{
+						return Undefined;
+					}
 			}
 		}
     }
