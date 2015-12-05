@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VkNet.Model
+﻿namespace VkNet.Model
 {
 	using VkNet.Utils;
+	
 	/// <summary>
 	/// История изменения объекта
 	/// </summary>
