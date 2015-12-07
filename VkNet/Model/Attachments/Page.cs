@@ -84,15 +84,26 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public string Html { get; set; }
 
-        public string ViewUrl { get; set; }
+		/// <summary>
+		/// Gets or sets the view URL.
+		/// </summary>
+		public string ViewUrl { get; set; }
 
+		/// <summary>
+		/// Gets or sets the version created.
+		/// </summary>
 		public string VersionCreated { get; set; }
-		
-        #endregion
 
-        #region Методы
 
-        internal static Page FromJson(VkResponse response)
+		/// <summary>
+		/// Количество просмотров вики-страницы.
+		/// </summary>
+		public long views;
+		#endregion
+
+		#region Методы
+
+		internal static Page FromJson(VkResponse response)
 		{
 			var page = new Page
 			{
@@ -114,7 +125,8 @@ namespace VkNet.Model.Attachments
 
 				Html = response["html"], // установлено экcпериментальным путем
 				ViewUrl = response["view_url"],
-				VersionCreated = response["version_created"]
+				VersionCreated = response["version_created"],
+				views = response["views"]
 			};
 			return page;
 		}
