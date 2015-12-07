@@ -71,20 +71,20 @@ namespace VkNet.Model.Attachments
 		/// <returns></returns>
 		internal static Audio FromJson(VkResponse response)
 		{
-			string id = response["id"] ?? response["aid"];
-			return new Audio
+			var audio = new Audio
 			{
-				Id = Convert.ToInt64(id),
+				Id = response["id"] ?? response["aid"],
 				OwnerId = response["owner_id"],
 				Artist = response["artist"],
 				Title = response["title"],
 				Duration = response["duration"],
 				Url = response["url"],
-				LyricsId = Utilities.GetNullableLongId(response["lyrics_id"]),
-				AlbumId = Utilities.GetNullableLongId(response["album_id"]),
+				LyricsId = response["lyrics_id"],
+				AlbumId = response["album_id"],
 				Genre = response["genre_id"] ?? response["genre"],
 				Date = response["date"]
 			};
+			return audio;
 		}
 
 		#endregion

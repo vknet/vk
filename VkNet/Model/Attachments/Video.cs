@@ -70,7 +70,7 @@ namespace VkNet.Model.Attachments
         public int? CommentsCount { get; set; }
 
         /// <summary>
-        /// Адрес страницы с плеером, который можно использовать для воспроизведения ролика в браузере. 
+        /// Адрес страницы с плеером, который можно использовать для воспроизведения ролика в браузере.
         /// Поддерживается flash и html5, плеер всегда масштабируется по размеру окна.
         /// </summary>
         public Uri Player { get; set; }
@@ -115,6 +115,21 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public Tag Tag { get; set; }
 
+
+		/// <summary>
+		/// Поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1. Обратите внимание, в этом случае в поле duration содержится значение 0.
+		/// </summary>
+		public bool Live;
+
+		/// <summary>
+		/// Поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
+		/// </summary>
+		public bool Processing;
+
+		/// <summary>
+		/// Дата добавления видеозаписи пользователем или группой в формате unixtime.
+		/// </summary>
+		public DateTime? AddingDate;
 		#region Методы
 		/// <summary>
 		/// Разобрать из json.
@@ -145,8 +160,11 @@ namespace VkNet.Model.Attachments
 		        AlbumId = Utilities.GetNullableLongId(video["album_id"]),
 		        UploadUrl = video["upload_url"],
 		        AccessKey = video["access_key"],
-		        Tag = video
-	        };
+		        Tag = video,
+				Live = video["live"],
+				Processing = video["processing"],
+				AddingDate = video["adding_date"]
+			};
 
 	        return result;
         }
