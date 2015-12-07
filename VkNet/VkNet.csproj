@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Enums\MainSection.cs" />
     <Compile Include="Enums\SafetyEnums\Deactivated.cs" />
+    <Compile Include="Enums\SafetyEnums\RelativeType.cs" />
     <Compile Include="Model\ApiAuthParams.cs" />
     <Compile Include="Categories\AccountCategory.cs" />
     <Compile Include="Categories\AudioCategory.cs" />
@@ -163,12 +164,21 @@
     <Compile Include="Model\AccountPushSettings.cs" />
     <Compile Include="Model\App.cs" />
     <Compile Include="Model\AuthConfirmResult.cs" />
+    <Compile Include="Model\Career.cs" />
+    <Compile Include="Model\Contacts.cs" />
+    <Compile Include="Model\LastSeen.cs" />
+    <Compile Include="Model\Military.cs" />
+    <Compile Include="Model\Rect.cs" />
+    <Compile Include="Model\CropPhoto.cs" />
+    <Compile Include="Model\Exports.cs" />
     <Compile Include="Model\InformationAboutOffers.cs" />
     <Compile Include="Model\LookupContactsOther.cs" />
     <Compile Include="Model\LookupContactsResult.cs" />
     <Compile Include="Model\MessagesGetObject.cs" />
     <Compile Include="Model\LongPollHistoryResponse.cs" />
     <Compile Include="Model\Mention.cs" />
+    <Compile Include="Model\Occupation.cs" />
+    <Compile Include="Enums\SafetyEnums\OccupationType.cs" />
     <Compile Include="Model\PhotoSize.cs" />
     <Compile Include="Model\PostReach.cs" />
     <Compile Include="Model\PushSettings.cs" />

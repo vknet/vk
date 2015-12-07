@@ -1237,132 +1237,70 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_WithPoll_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=234015642&offset=0&count=20&filter=all&extended=0&v=5.40&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=-103292418&offset=0&count=1&extended=0&v=5.40&access_token=token";
 			const string json =
-                @"{
-                    'response': {
-                      'count': 1,
-                      'items': [
-                        {
-                          'id': 2,
-                          'from_id': 234015642,
-                          'owner_id': 234015642,
-                          'date': 1398409081,
-                          'post_type': 'post',
-                          'text': 'Нужен совет',
-                          'can_edit': 1,
-                          'can_delete': 1,
-                          'attachments': [
-                            {
-                              'type': 'poll',
-                              'poll': {
-                                'id': 134391320,
-                                'owner_id': 234015642,
-                                'created': 1398409081,
-                                'question': 'Куда ехать отдыхать',
-                                'votes': 0,
-                                'answer_id': 0,
-                                'answers': [
-                                  {
-                                    'id': 433073429,
-                                    'text': 'Россия',
-                                    'votes': 0,
-                                    'rate': 0.0
-                                  },
-                                  {
-                                    'id': 433073430,
-                                    'text': 'Крым',
-                                    'votes': 0,
-                                    'rate': 0.0
-                                  },
-                                  {
-                                    'id': 433073431,
-                                    'text': 'Вологда',
-                                    'votes': 0,
-                                    'rate': 0.0
-                                  }
-                                ],
-                                'anonymous': 0
-                              }
-                            }
-                          ],
-                          'post_source': {
-                            'type': 'vk'
-                          },
-                          'comments': {
-                            'count': 0,
-                            'can_post': 1
-                          },
-                          'likes': {
-                            'count': 0,
-                            'user_likes': 0,
-                            'can_like': 1,
-                            'can_publish': 0
-                          },
-                          'reposts': {
-                            'count': 0,
-                            'user_reposted': 0
-                          }
-                        }
-                      ]
-                    }
-                  }";
-            var posts = GetMockedWallCategory(url, json).Get(new WallGetParams {OwnerId = 234015642 });
+				@"{
+					response: {
+					count: 2,
+					items: [{
+						id: 3,
+						from_id: -103292418,
+						owner_id: -103292418,
+						date: 1447252575,
+						post_type: 'post',
+						text: 'Тест',
+						can_delete: 1,
+						can_pin: 1,
+						post_source: {
+							type: 'api'	
+						},
+						comments: {
+							count: 0,
+							can_post: 1
+						},
+						likes: {
+							count: 0,
+							user_likes: 0,
+							can_like: 1,
+							can_publish: 1
+						},
+						reposts: {
+							count: 0,
+							user_reposted: 0
+						}
+					}]
+				}
+			}";
+            var posts = GetMockedWallCategory(url, json).Get(new WallGetParams { OwnerId = -103292418, Count = 1 });
 
-			posts.TotalCount.ShouldEqual(1u);
+			posts.TotalCount.ShouldEqual(2u);
 	        posts.WallPosts.Count.ShouldEqual(1);
 
-	        posts.WallPosts[0].Id.ShouldEqual(2);
-	        posts.WallPosts[0].FromId.ShouldEqual(234015642);
-	        posts.WallPosts[0].OwnerId.ShouldEqual(234015642);
-	        posts.WallPosts[0].Date.ShouldEqual(new DateTime(2014, 4, 25, 6, 58, 1, DateTimeKind.Utc).ToLocalTime());
+	        posts.WallPosts[0].Id.ShouldEqual(3);
+	        posts.WallPosts[0].FromId.ShouldEqual(-103292418);
+	        posts.WallPosts[0].OwnerId.ShouldEqual(-103292418);
+			// Unix timestamp is seconds past epoch
+			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+			posts.WallPosts[0].Date.ShouldEqual(dt.AddSeconds(1447252575).ToLocalTime());
 	        posts.WallPosts[0].PostType.ShouldEqual("post");
-            posts.WallPosts[0].Text.ShouldEqual("Нужен совет");
+            posts.WallPosts[0].Text.ShouldEqual("Тест");
             posts.WallPosts[0].CanDelete.ShouldBeTrue();
-            posts.WallPosts[0].CanEdit.ShouldBeTrue();
-	        posts.WallPosts[0].PostSource.Type.ShouldEqual("vk");
+            posts.WallPosts[0].CanEdit.ShouldBeFalse();
+	        posts.WallPosts[0].PostSource.Type.ShouldEqual("api");
 	        posts.WallPosts[0].Comments.CanPost.ShouldBeTrue();
 	        posts.WallPosts[0].Comments.Count.ShouldEqual(0);
 	        posts.WallPosts[0].Likes.Count.ShouldEqual(0);
             posts.WallPosts[0].Likes.UserLikes.ShouldBeFalse();
             posts.WallPosts[0].Likes.CanLike.ShouldBeTrue();
-	        posts.WallPosts[0].Likes.CanPublish.ShouldEqual(false);
+	        posts.WallPosts[0].Likes.CanPublish.ShouldEqual(true);
 	        posts.WallPosts[0].Reposts.Count.ShouldEqual(0);
             posts.WallPosts[0].Reposts.UserReposted.ShouldBeFalse();
-
-	        posts.WallPosts[0].Attachments.Count.ShouldEqual(1);
-			posts.WallPosts[0].Attachment.Type.ShouldEqual(typeof (Poll));
-
-	        var poll = (Poll)posts.WallPosts[0].Attachment.Instance;
-	        poll.Id.ShouldEqual(134391320);
-	        poll.OwnerId.ShouldEqual(234015642);
-            poll.Created.ShouldEqual(new DateTime(2014, 4, 25, 6, 58, 1, DateTimeKind.Utc).ToLocalTime());
-	        poll.Question.ShouldEqual("Куда ехать отдыхать");
-	        poll.Votes.ShouldEqual(0);
-	        poll.AnswerId.ShouldEqual(0);
-	        poll.IsAnonymous.ShouldEqual(false);
-	        poll.Answers.Count.ShouldEqual(3);
-
-            poll.Answers[0].Id.ShouldEqual(433073429);
-            poll.Answers[0].Text.ShouldEqual("Россия");
-	        poll.Answers[0].Votes.ShouldEqual(0);
-	        poll.Answers[0].Rate.ShouldEqual(0d);
-
-            poll.Answers[1].Id.ShouldEqual(433073430);
-            poll.Answers[1].Text.ShouldEqual("Крым");
-            poll.Answers[1].Votes.ShouldEqual(0);
-            poll.Answers[1].Rate.ShouldEqual(0d);
-
-            poll.Answers[2].Id.ShouldEqual(433073431);
-            poll.Answers[2].Text.ShouldEqual("Вологда");
-            poll.Answers[2].Votes.ShouldEqual(0);
-            poll.Answers[2].Rate.ShouldEqual(0d);
 	    }
 
         [Test]
 	    public void Get_Document_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&filter=all&extended=0&v=5.40&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&extended=0&v=5.40&access_token=token";
 			const string json =
                 @"{
                     'response': {

@@ -56,9 +56,11 @@
     <Rule Id="GCop116" Action="None" />
     <Rule Id="GCop117" Action="Info" />
     <Rule Id="GCop119" Action="None" />
+    <Rule Id="GCop129" Action="None" />
     <Rule Id="GCop135" Action="Warning" />
     <Rule Id="GCop204" Action="Warning" />
     <Rule Id="GCop207" Action="None" />
+    <Rule Id="GCop211" Action="None" />
     <Rule Id="GCop301" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">

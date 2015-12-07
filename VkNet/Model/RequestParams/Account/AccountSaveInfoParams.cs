@@ -89,24 +89,29 @@ namespace VkNet.Model.RequestParams
 		public string Status
 		{ get; set; }
 
-        internal static VkParameters ToVkParameters(AccountSaveInfoParams p)
-        {
-            return new VkParameters
-            {
-                { "first_name", p.FirstName },
-                { "last_name", p.LastName },
-                { "maiden_name", p.MaidenName },
-                { "screen_name", p.ScreenName },
-                { "sex", p.Sex },
-                { "relation", p.Relation },
-                { "relation_partner_id", p.RelationPartnerId },
-                { "bdate", p.BirthDate },
-                { "bdate_visibility", p.BirthDateVisibility },
-                { "home_town", p.HomeTown },
-                { "country_id", p.CountryId },
-                { "city_id", p.CityId },
-                { "status", p.Status }
-            };
-        }
-    }
+		/// <summary>
+		/// To the vk parameters.
+		/// </summary>
+		/// <param name="p">The p.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(AccountSaveInfoParams p)
+		{
+			return new VkParameters
+			{
+				{ "first_name", p.FirstName },
+				{ "last_name", p.LastName },
+				{ "maiden_name", p.MaidenName },
+				{ "screen_name", p.ScreenName },
+				{ "sex", p.Sex },
+				{ "relation", p.Relation },
+				{ "relation_partner_id", p.RelationPartnerId },
+				{ "bdate", p.BirthDate },
+				{ "bdate_visibility", p.BirthDateVisibility },
+				{ "home_town", p.HomeTown },
+				{ "country_id", p.CountryId },
+				{ "city_id", p.CityId },
+				{ "status", p.Status }
+			};
+		}
+	}
 }

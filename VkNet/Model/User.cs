@@ -176,7 +176,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время последнего посещения сайта.
 		/// </summary>
-		public DateTime? LastSeen
+		public LastSeen LastSeen
 		{
 			get;
 			set;
@@ -330,7 +330,7 @@ namespace VkNet.Model
 		public long? InvitedBy { get; set; }
 
 		/// <summary>
-		/// Gets or sets the screen_name.
+		/// Короткое имя (поддомен) страницы пользователя.
 		/// </summary>
 		public string ScreenName
 		{ get; set; }
@@ -361,9 +361,9 @@ namespace VkNet.Model
 		public ChangeNameRequest ChangeNameRequest { get; set; }
 
 		/// <summary>
-		/// Gets or sets the contact.
+		/// Информация о телефонных номерах пользователя.
 		/// </summary>
-		public string Contact { get; set; }
+		public string Contacts { get; set; }
 
 		/// <summary>
 		/// Показывать дату?
@@ -424,7 +424,71 @@ namespace VkNet.Model
 		/// Количество подписчиков пользователя.
 		/// </summary>
 		public long? FollowersCount;
-		
+
+		/// <summary>
+		/// Информация о текущем роде занятия пользователя.
+		/// </summary>
+		public Occupation Occupation;
+
+		/// <summary>
+		/// Внешние сервисы, в которые настроен экспорт из ВК.
+		/// </summary>
+		public Exports Exports;
+
+		/// <summary>
+		/// Доступно ли комментирование стены (1 — доступно, 0 — недоступно).
+		/// </summary>
+		public bool WallComments;
+
+		/// <summary>
+		/// Информация о том, будет ли отправлено уведомление пользователю о заявке в друзья.
+		/// </summary>
+		public bool CanSendFriendRequest;
+
+		/// <summary>
+		/// Возвращается 1, если пользователь находится в закладках у текущего пользователя.
+		/// </summary>
+		public bool IsFavorite;
+
+		/// <summary>
+		/// Возвращается 1, если пользователь скрыт в новостях у текущего пользователя.
+		/// </summary>
+		public bool IsHiddenFromFeed;
+
+		/// <summary>
+		/// Возвращает данные о точках, по которым вырезаны профильная и миниатюрная фотографии пользователя.
+		/// </summary>
+		public CropPhoto CropPhoto;
+
+		/// <summary>
+		/// 1 – пользователь друг, 2 – пользователь не в друзьях.
+		/// </summary>
+		public bool? IsFriend;
+
+		/// <summary>
+		/// Состояние дружбы с пользователями.
+		/// </summary>
+		public FriendStatus FriendStatus;
+
+		/// <summary>
+		/// Информация о карьере пользователя.
+		/// </summary>
+		public Career Career;
+
+		/// <summary>
+		/// Информация о военной службе пользователя.
+		/// </summary>
+		public Military Military;
+
+		/// <summary>
+		/// Возвращается 1, если текущий пользователь находится в черном списке у запрашиваемого пользователя.
+		/// </summary>
+		public bool Blacklisted;
+
+		/// <summary>
+		/// Возвращается 1, если запрашиваемый пользователь находится в черном списке у текущего пользователя.
+		/// </summary>
+		public bool BlacklistedByMe;
 		#endregion
 
 		#region Методы
@@ -457,7 +521,7 @@ namespace VkNet.Model
 				CanSeeAudio = response["can_see_audio"],
 				CanWritePrivateMessage = response["can_write_private_message"],
 				Status = response["status"],
-				LastSeen = response["last_seen"] != null ? response["last_seen"]["time"] : null,
+				LastSeen = response["last_seen"],
 				CommonCount = response["common_count"],
 				Relation = response["relation"],
 				Relatives = response["relatives"],
@@ -483,11 +547,11 @@ namespace VkNet.Model
 				BanInfo = response["ban_info"],
 				Deactivated = response["deactivated"],
 				MaidenName = response["maiden_name"],
-				BirthdayVisibility = (BirthdayVisibility) (response["bdate_visibility"] ?? 0),
+				BirthdayVisibility = response["bdate_visibility"],
 				HomeTown = response["home_town"],
 				ChangeNameRequest = response["name_request"],
 				BdateVisibility = response["bdate_visibility"],
-				Contact = response["contact"],
+				Contacts = response["contacts"],
 				Hidden = response["hidden"],
 				PhotoId = response["photo_id"],
 				Verified = response["verified"],
@@ -499,7 +563,20 @@ namespace VkNet.Model
 				Photo400Orig = response["photo_400_orig"],
 				PhotoMax = response["photo_max"],
 				PhotoMaxOrig = response["photo_max_orig"],
-				FollowersCount = response["followers_count"]
+				FollowersCount = response["followers_count"],
+				Occupation = response["occupation"],
+				Exports = response["exports"],
+				WallComments = response["wall_comments"],
+				CanSendFriendRequest = response["can_send_friend_request"],
+				IsFavorite = response["is_favorite"],
+				IsHiddenFromFeed = response["is_hidden_from_feed"],
+				CropPhoto = response["crop_photo"],
+				IsFriend = response["is_friend"] == "1",
+				FriendStatus = response["friend_status"],
+				Career = response["career"],
+				Military = response["military"],
+				Blacklisted = response["blacklisted"],
+				BlacklistedByMe = response["blacklisted_by_me"]
 			};
 			user.IsDeactivated = user.DeactiveReason != null;
 			if (response["name"] != null)
@@ -507,7 +584,9 @@ namespace VkNet.Model
 				// split for name and surname
 				var parts = ((string)response["name"]).Split(' ');
 				if (parts.Length < 2)
+				{
 					throw new VkApiException("Invalid name in response");
+				}
 
 				user.FirstName = parts[0];
 				user.LastName = parts[1];
