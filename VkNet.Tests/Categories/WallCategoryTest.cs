@@ -1286,7 +1286,7 @@ namespace VkNet.Tests.Categories
             posts.WallPosts[0].Text.ShouldEqual("Тест");
             posts.WallPosts[0].CanDelete.ShouldBeTrue();
             posts.WallPosts[0].CanEdit.ShouldBeFalse();
-	        posts.WallPosts[0].PostSource.Type.ShouldEqual("api");
+	        posts.WallPosts[0].PostSource.Type.ShouldEqual(PostSourceType.Api);
 	        posts.WallPosts[0].Comments.CanPost.ShouldBeTrue();
 	        posts.WallPosts[0].Comments.Count.ShouldEqual(0);
 	        posts.WallPosts[0].Likes.Count.ShouldEqual(0);

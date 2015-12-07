@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-    /// Информация о вики-странице сообщества. 
+    /// Информация о вики-странице сообщества.
     /// См. описание <see href="http://vk.com/dev/pages.get"/>.
     /// </summary>
     public class Page : MediaAttachment
@@ -85,7 +85,7 @@ namespace VkNet.Model.Attachments
         public string Html { get; set; }
 
 		/// <summary>
-		/// Gets or sets the view URL.
+		/// Адрес страницы для отображения вики-страницы.
 		/// </summary>
 		public string ViewUrl { get; set; }
 
@@ -98,7 +98,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Количество просмотров вики-страницы.
 		/// </summary>
-		public long views;
+		public long Views;
 		#endregion
 
 		#region Методы
@@ -126,7 +126,7 @@ namespace VkNet.Model.Attachments
 				Html = response["html"], // установлено экcпериментальным путем
 				ViewUrl = response["view_url"],
 				VersionCreated = response["version_created"],
-				views = response["views"]
+				Views = response["views"]
 			};
 			return page;
 		}

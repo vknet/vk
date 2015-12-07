@@ -170,6 +170,8 @@
     <Compile Include="Model\Contacts.cs" />
     <Compile Include="Model\LastSeen.cs" />
     <Compile Include="Model\Military.cs" />
+    <Compile Include="Enums\SafetyEnums\PostSourceType.cs" />
+    <Compile Include="Model\PostSourceData.cs" />
     <Compile Include="Model\Rect.cs" />
     <Compile Include="Model\CropPhoto.cs" />
     <Compile Include="Model\Exports.cs" />

@@ -350,7 +350,7 @@ namespace VkNet.Tests.Categories
 			posts.WallPosts[0].Text.ShouldEqual(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
 
 							#videos@tproger");
-			posts.WallPosts[0].PostSource.Type.ShouldEqual("vk");
+			posts.WallPosts[0].PostSource.Type.ShouldEqual(PostSourceType.Vk);
 			posts.WallPosts[0].Comments.CanPost.ShouldEqual(true);
 			posts.WallPosts[0].Comments.Count.ShouldEqual(9);
 			posts.WallPosts[0].Likes.Count.ShouldEqual(413);
@@ -479,7 +479,7 @@ namespace VkNet.Tests.Categories
 			posts.WallPosts[0].Text.ShouldEqual(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
 
 							#videos@tproger");
-			posts.WallPosts[0].PostSource.Type.ShouldEqual("vk");
+			posts.WallPosts[0].PostSource.Type.ShouldEqual(PostSourceType.Vk);
 			posts.WallPosts[0].Comments.CanPost.ShouldEqual(true);
 			posts.WallPosts[0].Comments.Count.ShouldEqual(9);
 			posts.WallPosts[0].Likes.Count.ShouldEqual(413);

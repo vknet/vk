@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model
+﻿using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Model
 {
     using System;
     using Utils;
@@ -13,30 +15,22 @@
     public class PostSource
     {
         /// <summary>
-        /// На данный момент поддерживаются следующие типы источников записи на стене, значение которых указываются в поле type:
-        /// - vk - запись создана через основной интерфейс сайта (http://vk.com/);
-        /// - widget - запись создана через виджет на стороннем сайте;
-        /// - api - запись создана приложением через API;
-        /// - rss - запись создана посредством импорта RSS-ленты со стороннего сайта;
-        /// - sms - запись создана посредством отправки SMS-сообщения на специальный номер.
+        /// На данный момент поддерживаются следующие типы источников записи на стене.
         /// </summary>
-        public string Type { get; set; }
+        public PostSourceType Type { get; set; }
 
         /// <summary>
         /// Поле data является опциональным и содержит следующие данные в зависимости от значения поля type:
-        /// - vk - содержит тип действия, из-за которого была создана запись:
-        ///     - profile_activity - изменение статуса под именем пользователя;
-        ///     - profile_photo - изменение профильной фотографии пользователя;
-        /// - widget - содержит тип виджета, через который была создана запись:
-        ///     - comments - виджет комментариев;
-        ///     - like - виджет «Мне нравится»;
-        ///     - poll - виджет опросов;
         /// </summary>
-        public string Data { get; set; }
+        public PostSourceData Data { get; set; }
 
-        #region Методы
-
-        internal static PostSource FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static PostSource FromJson(VkResponse response)
 		{
 			var postSource = new PostSource
 			{
