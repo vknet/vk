@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Enums\MainSection.cs" />
     <Compile Include="Enums\SafetyEnums\Deactivated.cs" />
+    <Compile Include="Enums\SafetyEnums\Platform.cs" />
     <Compile Include="Enums\SafetyEnums\RelativeType.cs" />
     <Compile Include="Model\ApiAuthParams.cs" />
     <Compile Include="Categories\AccountCategory.cs" />
