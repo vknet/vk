@@ -165,6 +165,8 @@
     <Compile Include="Model\App.cs" />
     <Compile Include="Model\AuthConfirmResult.cs" />
     <Compile Include="Model\Career.cs" />
+    <Compile Include="Model\Chat.cs" />
+    <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Contacts.cs" />
     <Compile Include="Model\LastSeen.cs" />
     <Compile Include="Model\Military.cs" />
@@ -212,7 +214,6 @@
     <Compile Include="Model\BanInfo.cs" />
     <Compile Include="Model\ChangeNameRequest.cs" />
     <Compile Include="Model\City.cs" />
-    <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Connections.cs" />
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\Country.cs" />
@@ -302,7 +303,6 @@
     <Compile Include="Utils\VkParameters.cs" />
     <Compile Include="Model\Attachments\Attachment.cs" />
     <Compile Include="Model\Attachments\Audio.cs" />
-    <Compile Include="Model\Chat.cs" />
     <Compile Include="Model\Comments.cs" />
     <Compile Include="Model\Counters.cs" />
     <Compile Include="Model\Attachments\Document.cs" />

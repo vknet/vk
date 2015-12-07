@@ -39,20 +39,24 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public int? ReadCommentsCount { get; set; }
 
-        #region Методы
+		/// <summary>
+		/// Адрес страницы для отображения заметки.
+		/// </summary>
+		public Uri ViewUrl;
+		#region Методы
 
-        internal static Note FromJson(VkResponse response)
+		internal static Note FromJson(VkResponse response)
 		{
-			// TODO: TEST IT!!!!!
 			var note = new Note
 			{
 				Id = response["id"],
-				OwnerId = response["owner_id"],
+				OwnerId = response["user_id"],
 				Title = response["title"],
 				Text = response["text"],
 				Date = response["date"],
 				CommentsCount = response["comments"],
-				ReadCommentsCount = response["read_comments"]
+				ReadCommentsCount = response["read_comments"],
+				ViewUrl = response["view_url"]
 			};
 
 			return note;
