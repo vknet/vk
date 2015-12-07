@@ -98,7 +98,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Количество просмотров вики-страницы.
 		/// </summary>
-		public long Views;
+		public long? Views;
 		#endregion
 
 		#region Методы
@@ -107,7 +107,6 @@ namespace VkNet.Model.Attachments
 		{
 			var page = new Page
 			{
-
 				Id = response["pid"] ?? response["page_id"] ?? response["id"],
 				GroupId = response["group_id"] ?? response["gid"],
 				CreatorId = response["creator_id"],
@@ -122,8 +121,7 @@ namespace VkNet.Model.Attachments
 				CreateTime = response["created"],
 				Parent = response["parent"],
 				Parent2 = response["parent2"],
-
-				Html = response["html"], // установлено экcпериментальным путем
+				Html = response["html"],
 				ViewUrl = response["view_url"],
 				VersionCreated = response["version_created"],
 				Views = response["views"]
