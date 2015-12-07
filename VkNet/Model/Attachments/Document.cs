@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
@@ -48,9 +49,18 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public string AccessKey { get; set; }
 
-        #region Методы
+		/// <summary>
+		/// Дата добавления в формате unixtime.
+		/// </summary>
+		public DateTime? Date;
 
-        internal static Document FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Document FromJson(VkResponse response)
         {
 	        var document = new Document
 	        {
@@ -62,8 +72,9 @@ namespace VkNet.Model.Attachments
 		        Url = response["url"],
 		        Photo100 = response["photo_100"],
 		        Photo130 = response["photo_130"],
-		        AccessKey = response["access_key"]
-	        };
+		        AccessKey = response["access_key"],
+				Date = response["date"]
+			};
 
 	        return document;
         }
