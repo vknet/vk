@@ -15,7 +15,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификатор приложенного объекта.
 		/// </summary>
-		public long Id { get; set; }
+		public long? Id { get; set; }
 
 		/// <summary>
 		/// Идентификатор владельца приложенного объекта.

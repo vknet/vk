@@ -14,6 +14,9 @@ namespace VkNet.Model.Attachments
     [DebuggerDisplay("Id = {Id}, Title = {Title}")]
     public class Video : MediaAttachment
     {
+		/// <summary>
+		/// Видеозапись пользователя или группы.
+		/// </summary>
 		static Video()
 		{
 			RegisterType(typeof(Video), "video");

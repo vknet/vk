@@ -1,0 +1,36 @@
+﻿using VkNet.Utils;
+
+namespace VkNet.Model
+{
+	/// <summary>
+	/// Приложение.
+	/// </summary>
+	public class Application
+	{
+		/// <summary>
+		/// Магазин.
+		/// </summary>
+		public Store Store;
+
+		/// <summary>
+		/// Идентификатор приложения в магазине;.
+		/// </summary>
+		public long? AppId;
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Application FromJson(VkResponse response)
+		{
+			var application = new Application
+			{
+				Store = response["store"],
+				AppId = response["app_id"]
+			};
+
+			return application;
+		}
+	}
+}

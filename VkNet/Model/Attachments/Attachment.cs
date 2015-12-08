@@ -69,15 +69,30 @@ namespace VkNet.Model.Attachments
         /// </summary>
         private Album Album { get; set; }
 
-	    private PhotosList PhotosList;
+		/// <summary>
+		/// Список фотографий
+		/// </summary>
+		private PhotosList PhotosList;
 
-        private Wall Wall { get; set; }
+		/// <summary>
+		/// Запись на стене.
+		/// </summary>
+		private Wall Wall { get; set; }
 
-        private Sticker Sticker { get; set; }
+		/// <summary>
+		/// Стикер.
+		/// </summary>
+		private Sticker Sticker { get; set; }
 
-        private Gift Gift { get; set; }
+		/// <summary>
+		/// Подарок.
+		/// </summary>
+		private Gift Gift { get; set; }
 
-        private WallReply WallReply { get; set; }
+		/// <summary>
+		/// Комментарии к записи на стене.
+		/// </summary>
+		private WallReply WallReply { get; set; }
 
         #endregion
 
@@ -130,102 +145,124 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public Type Type { get; set; }
 
-        #region Методы
-
-        internal static Attachment FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Attachment FromJson(VkResponse response)
         {
             // TODO: Complete it later
             var attachment = new Attachment();
 
             string type = response["type"];
-            switch (type)
-            {
-                case "photo":
-                case "posted_photo":
-                    attachment.Type = typeof(Photo);
-                    attachment.Photo = response[type];
-                    break;
+			switch (type)
+			{
+				case "photo":
+				case "posted_photo":
+					{
+						attachment.Type = typeof(Photo);
+						attachment.Photo = response[type];
+						break;
+					}
+				case "video":
+					{
+						attachment.Type = typeof(Video);
+						attachment.Video = response["video"];
+						break;
+					}
+				case "audio":
+					{
+						attachment.Type = typeof(Audio);
+						attachment.Audio = response["audio"];
+						break;
+					}
+				case "doc":
+					{
+						attachment.Type = typeof(Document);
+						attachment.Document = response["doc"];
+						break;
+					}
+				case "graffiti":
+					{
+						attachment.Type = typeof(Graffiti);
+						attachment.Graffiti = response["graffiti"];
+						break;
+					}
+				case "link":
+					{
+						attachment.Type = typeof(Link);
+						attachment.Link = response["link"];
+						break;
+					}
+				case "note":
+					{
+						attachment.Type = typeof(Note);
+						attachment.Note = response["note"];
+						break;
+					}
+				case "app":
+					{
+						attachment.Type = typeof(ApplicationContent);
+						attachment.ApplicationContent = response["app"];
+						break;
+					}
+				case "poll":
+					{
+						attachment.Type = typeof(Poll);
+						attachment.Poll = response["poll"];
+						break;
+					}
+				case "page":
+					{
+						attachment.Type = typeof(Page);
+						attachment.Page = response["page"];
+						break;
+					}
+				case "album":
+					{
+						attachment.Type = typeof(Album);
+						attachment.Album = response["album"];
+						break;
+					}
+				case "photos_list":
+					{
+						attachment.Type = typeof(PhotosList);
+						attachment.PhotosList = response["photos_list"];
+						break;
+					}
+				case "wall":
+					{
+						attachment.Type = typeof(Wall);
+						attachment.Wall = response["wall"];
+						break;
+					}
+				case "sticker":
+					{
+						attachment.Type = typeof(Sticker);
+						attachment.Sticker = response["sticker"];
+						break;
+					}
+				case "gift":
+					{
+						attachment.Type = typeof(Gift);
+						attachment.Gift = response["gift"];
+						break;
+					}
+				case "wall_reply":
+					{
+						attachment.Type = typeof(WallReply);
+						attachment.WallReply = response["wall_reply"];
+						break;
+					}
+				default:
+					{
+						throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}", type, response["date"]));
+					}
+			}
 
-                case "video":
-                    attachment.Type = typeof(Video);
-                    attachment.Video = response["video"];
-                    break;
-
-                case "audio":
-                    attachment.Type = typeof(Audio);
-                    attachment.Audio = response["audio"];
-                    break;
-
-                case "doc":
-                    attachment.Type = typeof(Document);
-                    attachment.Document = response["doc"];
-                    break;
-
-                case "graffiti":
-                    attachment.Type = typeof(Graffiti);
-                    attachment.Graffiti = response["graffiti"];
-                    break;
-
-                case "link":
-                    attachment.Type = typeof(Link);
-                    attachment.Link = response["link"];
-                    break;
-
-                case "note":
-                    attachment.Type = typeof(Note);
-                    attachment.Note = response["note"];
-                    break;
-
-                case "app":
-                    attachment.Type = typeof(ApplicationContent);
-                    attachment.ApplicationContent = response["app"];
-                    break;
-
-                case "poll":
-                    attachment.Type = typeof(Poll);
-                    attachment.Poll = response["poll"];
-                    break;
-
-                case "page":
-                    attachment.Type = typeof(Page);
-                    attachment.Page = response["page"];
-                    break;
-
-                case "album":
-                    attachment.Type = typeof(Album);
-                    attachment.Album = response["album"];
-                    break;
-
-                case "photos_list":
-                    attachment.Type = typeof (PhotosList);
-                    attachment.PhotosList = response["photos_list"];
-                    break;
-
-                case "wall":
-                    attachment.Type = typeof (Wall);
-                    attachment.Wall = response["wall"];
-                    break;
-
-                case "sticker":
-                    attachment.Type = typeof (Sticker);
-                    attachment.Sticker = response["sticker"];
-                    break;
-
-                case "gift":
-                    attachment.Type = typeof(Gift);
-                    attachment.Gift = response["gift"];
-                    break;
-
-                case "wall_reply":
-                    attachment.Type = typeof(WallReply);
-                    attachment.WallReply = response["wall_reply"];
-                    break;
-
-                default:
-                    throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}", type, response["date"]));
-            }
-
-            return attachment;
+			return attachment;
         }
 
         #endregion

@@ -10,7 +10,10 @@ namespace VkNet.Model.Attachments
     /// </summary>
     public class Poll : MediaAttachment
     {
-      	static Poll()
+		/// <summary>
+		/// Опрос.
+		/// </summary>
+		static Poll()
       	{
       		RegisterType(typeof (Poll), "poll");
       	}

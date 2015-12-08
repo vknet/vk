@@ -8,8 +8,16 @@ namespace VkNet.Model.Attachments
 	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".
 	/// </summary>
 	[Serializable]
-	public class ApplicationContent
-    {
+	public class ApplicationContent : MediaAttachment
+	{
+		/// <summary>
+		/// Приложение.
+		/// </summary>
+		static ApplicationContent()
+		{
+			RegisterType(typeof(ApplicationContent), "app");
+		}
+
         /// <summary>
         /// Идентификатор приложения, разместившего запись на стене.
         /// </summary>
@@ -45,7 +53,6 @@ namespace VkNet.Model.Attachments
 		        Photo130 = response["photo_130"],
 		        Photo604 = response["photo_604"]
 	        };
-
 
 	        return application;
         }

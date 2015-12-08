@@ -9,6 +9,9 @@ namespace VkNet.Model.Attachments
     /// </summary>
     public class Note : MediaAttachment
     {
+		/// <summary>
+		/// Заметка пользователя.
+		/// </summary>
 		static Note()
 		{
 			RegisterType(typeof (Note), "note");

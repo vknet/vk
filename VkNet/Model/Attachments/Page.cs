@@ -9,10 +9,17 @@ namespace VkNet.Model.Attachments
     /// </summary>
     public class Page : MediaAttachment
     {
-        /// <summary>
-        /// Идентификатор сообщества.
-        /// </summary>
-        public long? GroupId {
+		/// <summary>
+		/// Опрос.
+		/// </summary>
+		static Page()
+		{
+			RegisterType(typeof(Page), "page");
+		}
+		/// <summary>
+		/// Идентификатор сообщества.
+		/// </summary>
+		public long? GroupId {
 	        get { return OwnerId; }
 	        set { OwnerId = value; }
         }
