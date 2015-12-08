@@ -292,7 +292,7 @@ namespace VkNet.Categories
 				{ "need_html", needHtml }
 			};
 
-			return _vk.Call("pages.getTitles", parameters);
+			return _vk.Call("pages.getVersion", parameters);
 		}
 
 
