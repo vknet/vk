@@ -251,7 +251,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetVersion_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/pages.getTitles?version_id=184657135&group_id=103292418&need_html=0&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/pages.getVersion?version_id=184657135&group_id=103292418&need_html=0&v=5.37&access_token=token";
 			const string json =
 				@"{
 					'response': {
