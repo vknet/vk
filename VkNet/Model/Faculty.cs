@@ -17,9 +17,13 @@ namespace VkNet.Model
         /// </summary>
         public string Title { get; set; }
 
-        #region Internal Methods
-
-        internal static Faculty FromJson(VkResponse response)
+		#region Internal Methods
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Faculty FromJson(VkResponse response)
 		{
 			var faculty = new Faculty
 			{

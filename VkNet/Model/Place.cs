@@ -69,11 +69,15 @@
         /// </summary>
         public string City { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
-
-        internal static Place FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Place FromJson(VkResponse response)
 		{
 			var place = new Place
 			{

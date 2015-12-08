@@ -22,8 +22,13 @@
         /// </summary>
         public long? UserId { get; set; }
 
-        #region Methods
-        internal static UploadServerInfo FromJson(VkResponse response)
+		#region Methods
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static UploadServerInfo FromJson(VkResponse response)
 		{
 			var info = new UploadServerInfo
 			{

@@ -2,13 +2,24 @@
 {
     using Utils;
 
-    public class Tags
+	/// <summary>
+	/// Теги.
+	/// </summary>
+	public class Tags
     {
-        public int Count { get; set; }
+		/// <summary>
+		/// Количество.
+		/// </summary>
+		public int Count { get; set; }
 
-        #region Internal methods
+		#region Internal methods
 
-        internal static Tags FromJson(VkResponse response)
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Tags FromJson(VkResponse response)
 		{
 			var tags = new Tags
 			{

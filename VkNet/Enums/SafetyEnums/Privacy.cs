@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VkNet.Enums.SafetyEnums
+﻿namespace VkNet.Enums.SafetyEnums
 {
 	using Utils;
 	using System.Text.RegularExpressions;
@@ -90,22 +88,34 @@ namespace VkNet.Enums.SafetyEnums
 			switch (response.ToString())
 			{
 				case "all":
-					return All;
+					{
+						return All;
+					}
 				case "friends":
-					return Friends;
+					{
+						return Friends;
+					}
 				case "friends_of_friends":
-					return FriendsOfFriends;
+					{
+						return FriendsOfFriends;
+					}
 				case "friends_of_friends_only":
-					return FriendsOfFriendsOnly;
+					{
+						return FriendsOfFriendsOnly;
+					}
 				case "nobody":
-					return Nobody;
+					{
+						return Nobody;
+					}
 				case "only_me":
-					return OnlyMe;
+					{
+						return OnlyMe;
+					}
 				default:
 					{
 						var input = response.ToString();
 						var idPattern = new Regex(@"([\d]+)");
-						long id = 0;
+						long id;
 						long.TryParse(idPattern.Match(input).Groups[1].Value, out id);
 						if (input.StartsWith("list"))
 						{

@@ -11,6 +11,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// Возвращать информацию обо всех пользователях
 		/// </summary>
 		public static readonly LikesFilter Likes = RegisterPossibleValue("likes");
+
 		/// <summary>
 		/// Возвращать информацию только о пользователях, рассказавших об объекте друзьям.
 		/// </summary>
@@ -33,9 +34,11 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return Copies;
 					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
 		}
 	}
 }

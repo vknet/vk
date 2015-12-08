@@ -65,9 +65,13 @@
         /// </summary>
         public string TypeStr { get; set; }
 
-        #region Методы
-
-        internal static School FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static School FromJson(VkResponse response)
 		{
 			var school = new School
 			{

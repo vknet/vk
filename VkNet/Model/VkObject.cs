@@ -21,7 +21,12 @@
         /// </summary>
         public VkObjectType Type { get; set; }
 
-        internal static VkObject FromJson(VkResponse response)
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static VkObject FromJson(VkResponse response)
 		{
 			var obj = new VkObject
 			{
@@ -46,9 +51,12 @@
 						obj.Type = VkObjectType.Application;
 						break;
 					}
+				default:
+				{
+					return obj;
+				}
 			}
-
-			return obj;
+			return null;
 		}
 	}
 }

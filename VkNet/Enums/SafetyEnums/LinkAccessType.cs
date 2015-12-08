@@ -22,6 +22,11 @@ namespace VkNet.Enums.SafetyEnums
         /// </summary>
         public static readonly LinkAccessType Processing = RegisterPossibleValue("processing");
 
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
 		internal static LinkAccessType FromJson (VkResponse response)
         {
             string status = response["status"];
@@ -40,9 +45,11 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return Processing;
 					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
-        }
+		}
     }
 }

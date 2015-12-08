@@ -29,9 +29,6 @@ namespace VkNet.Model
 		/// <summary>
 		/// Объект с настройками Push-уведомлений в специальном формате.
 		/// </summary>
-		/// <remarks>
-		/// todo тип данных должен быть другой
-		/// </remarks>
 		public PushSettings Settings
 		{ get; set; }
 

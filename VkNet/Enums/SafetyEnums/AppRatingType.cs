@@ -11,6 +11,7 @@ namespace VkNet.Enums
 		/// Рейтинг по уровням
 		/// </summary>
 		public static readonly AppRatingType Level = RegisterPossibleValue("level");
+
 		/// <summary>
 		/// Рейтинг по очкам
 		/// </summary>

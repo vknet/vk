@@ -1,5 +1,4 @@
-﻿using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
+﻿using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
@@ -9,27 +8,27 @@ namespace VkNet.Enums.SafetyEnums
 	public class PostSourceType : SafetyEnum<PostSourceType>
 	{
 		/// <summary>
-		/// запись создана через основной интерфейс сайта (http://vk.com/);.
+		/// Запись создана через основной интерфейс сайта (http://vk.com/).
 		/// </summary>
 		public static readonly PostSourceType Vk = RegisterPossibleValue("vk");
 
 		/// <summary>
-		/// запись создана через виджет на стороннем сайте;.
+		/// Запись создана через виджет на стороннем сайте.
 		/// </summary>
 		public static readonly PostSourceType Widget = RegisterPossibleValue("widget");
 
 		/// <summary>
-		/// запись создана приложением через API;.
+		/// Запись создана приложением через API.
 		/// </summary>
 		public static readonly PostSourceType Api = RegisterPossibleValue("api");
 
 		/// <summary>
-		/// запись создана посредством импорта RSS-ленты со стороннего сайта;.
+		/// Запись создана посредством импорта RSS-ленты со стороннего сайта.
 		/// </summary>
 		public static readonly PostSourceType Rss = RegisterPossibleValue("rss");
 
 		/// <summary>
-		/// запись создана посредством отправки SMS-сообщения на специальный номер..
+		/// Запись создана посредством отправки SMS-сообщения на специальный номер.
 		/// </summary>
 		public static readonly PostSourceType Sms = RegisterPossibleValue("sms");
 
@@ -63,9 +62,11 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return Sms;
 					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
 		}
 	}
 }

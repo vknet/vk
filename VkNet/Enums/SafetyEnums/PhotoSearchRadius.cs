@@ -6,27 +6,27 @@
 	public sealed class PhotoSearchRadius : SafetyEnum<PhotoSearchRadius>
 	{
 		/// <summary>
-		/// 10, 100, 800, 6000, 50000 .
+		/// 10.
 		/// </summary>
 		public static readonly PhotoSearchRadius Ten = RegisterPossibleValue("10");
 
 		/// <summary>
-		/// Родительный.
+		/// 100.
 		/// </summary>
 		public static readonly PhotoSearchRadius OneHundred = RegisterPossibleValue("100");
 
 		/// <summary>
-		/// Дательный.
+		/// 800.
 		/// </summary>
 		public static readonly PhotoSearchRadius Eighty = RegisterPossibleValue("800");
 
 		/// <summary>
-		/// Винительный.
+		/// 6000.
 		/// </summary>
 		public static readonly PhotoSearchRadius SixThousand = RegisterPossibleValue("6000");
 
 		/// <summary>
-		/// Творительный.
+		/// 50000.
 		/// </summary>
 		public static readonly PhotoSearchRadius FiftyThousand = RegisterPossibleValue("50000");
 

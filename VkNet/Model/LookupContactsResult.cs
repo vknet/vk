@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using VkNet.Model.Attachments;
+﻿using System.Collections.ObjectModel;
 using VkNet.Utils;
 
 namespace VkNet.Model

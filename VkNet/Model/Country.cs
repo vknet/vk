@@ -20,9 +20,13 @@ namespace VkNet.Model
         /// </summary>
         public string Title { get; set; }
 
-        #region Internal Methods
-
-        internal static Country FromJson(VkResponse response)
+		#region Internal Methods
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Country FromJson(VkResponse response)
 		{
 			var country = new Country
 			{

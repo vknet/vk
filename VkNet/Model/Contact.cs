@@ -30,9 +30,13 @@
         /// </summary>
         public string Phone { get; set; }
 
-        #region Методы
-
-        internal static Contact FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Contact FromJson(VkResponse response)
 		{
 			var contact = new Contact
 			{

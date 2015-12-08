@@ -53,7 +53,9 @@ namespace VkNet.Model
 						}
 						break;
 					default:
-						throw new System.Exception(string.Format("Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues", item["type"]));
+						{
+							throw new System.Exception(string.Format("Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues", item["type"]));
+						}
 				}
 			}
 			return newsSuggestions;

@@ -25,9 +25,13 @@ namespace VkNet.Model
         /// </summary>
         public string Title { get; set; }
 
-        #region Методы
-
-        internal static AudioAlbum FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static AudioAlbum FromJson(VkResponse response)
 		{
 			var album = new AudioAlbum
 			{

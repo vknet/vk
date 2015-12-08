@@ -50,7 +50,12 @@
         /// </summary>
         public ulong? LastMessageId { get; set; }
 
-        internal static VkParameters ToVkParameters(MessagesGetParams p)
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(MessagesGetParams p)
         {
             return new VkParameters
             {

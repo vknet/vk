@@ -45,7 +45,12 @@
         /// </summary>
         public bool? Reversed { get; set; }
 
-        internal static VkParameters ToVkParameters(HistoryGetParams p)
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(HistoryGetParams p)
         {
             return new VkParameters
             {

@@ -47,11 +47,15 @@
         /// </summary>
         public string EducationStatus { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
-
-        internal static Education FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Education FromJson(VkResponse response)
 		{
 			if (response["university"] == null || response["university"].ToString() == "0")
 				return null;

@@ -82,7 +82,12 @@ namespace VkNet.Model.RequestParams
 		public uint? StickerId
 		{ get; set; }
 
-        internal static VkParameters ToVkParameters(MessageSendParams p)
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(MessageSendParams p)
         {
             return new VkParameters
             {

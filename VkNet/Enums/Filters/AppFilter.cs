@@ -5,7 +5,6 @@ namespace VkNet.Enums
 	/// <summary>
 	/// Тип фильтрации для приложений.
 	/// </summary>
-	/// <remarks>
 	public sealed class AppFilter : SafetyEnum<AppFilter>
 	{
 		/// <summary>

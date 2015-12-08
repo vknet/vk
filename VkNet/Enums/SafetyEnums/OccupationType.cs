@@ -32,20 +32,22 @@ namespace VkNet.Enums.SafetyEnums
 			switch (response.ToString())
 			{
 				case "work":
-				{
-					return Work;
-				}
+					{
+						return Work;
+					}
 				case "school":
-				{
-					return School;
-				}
+					{
+						return School;
+					}
 				case "university":
-				{
-					return University;
-				}
+					{
+						return University;
+					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
 		}
 	}
 }

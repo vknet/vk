@@ -11,6 +11,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// Популярные за день (по умолчанию);
 		/// </summary>
 		public static readonly PostType Post = RegisterPossibleValue("post");
+
 		/// <summary>
 		/// По посещаемости
 		/// </summary>
@@ -33,9 +34,11 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return Copy;
 					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
 		}
 	}
 }

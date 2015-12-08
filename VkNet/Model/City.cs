@@ -38,9 +38,13 @@ namespace VkNet.Model
         /// </summary>
         public bool Important { get; set; }
 
-        #region Inernal Methods
-
-        internal static City FromJson(VkResponse response)
+		#region Inernal Methods
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static City FromJson(VkResponse response)
         {
 			string id = response["cid"] ?? response["id"];
 	        return new City

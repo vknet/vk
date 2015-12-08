@@ -49,7 +49,12 @@
         /// </summary>
         public bool? SearchOwn { get; set; }
 
-        internal static VkParameters ToVkParameters(AudioSearchParams p)
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(AudioSearchParams p)
         {
             return new VkParameters
             {

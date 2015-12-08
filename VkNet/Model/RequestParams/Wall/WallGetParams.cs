@@ -51,7 +51,12 @@
 		public object Fields
 		{ get; set; }
 
-        internal static VkParameters ToVkParameters(WallGetParams p)
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(WallGetParams p)
         {
             return new VkParameters
             {

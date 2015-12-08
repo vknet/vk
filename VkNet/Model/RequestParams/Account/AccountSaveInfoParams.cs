@@ -90,9 +90,9 @@ namespace VkNet.Model.RequestParams
 		{ get; set; }
 
 		/// <summary>
-		/// To the vk parameters.
+		/// Привести к типу VkParameters.
 		/// </summary>
-		/// <param name="p">The p.</param>
+		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
 		internal static VkParameters ToVkParameters(AccountSaveInfoParams p)
 		{

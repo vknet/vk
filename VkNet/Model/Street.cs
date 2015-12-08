@@ -17,9 +17,13 @@ namespace VkNet.Model
         /// </summary>
         public string Title { get; set; }
 
-        #region Internal Methods
-
-        internal static Street FromJson(VkResponse response)
+		#region Internal Methods
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Street FromJson(VkResponse response)
 		{
 			var street = new Street
 			{

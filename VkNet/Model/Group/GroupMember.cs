@@ -1,6 +1,6 @@
 ﻿namespace VkNet.Model
 {
-	using VkNet.Utils;
+	using Utils;
 
 	/// <summary>
 	/// Информация о сообществе (группе).

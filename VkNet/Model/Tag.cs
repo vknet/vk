@@ -61,7 +61,11 @@ namespace VkNet.Model
 		/// </summary>
 		public decimal? Y2 { get; set; }
 		#region Методы
-
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="tag">Ответ сервера.</param>
+		/// <returns></returns>
 		internal static Tag FromJson(VkResponse tag)
 		{
 			var result = new Tag
@@ -77,7 +81,6 @@ namespace VkNet.Model
 				X2 = tag["x2"],
 				Y2 = tag["y2"]
 			};
-
 
 			return result;
 		}

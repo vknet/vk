@@ -1,37 +1,40 @@
 ﻿namespace VkNet.Model
 {
-    using System;
-    using Utils;
+	using Utils;
 
-    /// <summary>
-    /// Информация о лайках к записи.
-    /// См. описание <see href="http://vk.com/dev/post"/>. Раздел likes.
-    /// </summary>
-    public class Likes
-    {
-        /// <summary>
-        /// Число пользователей, которым понравилась запись.
-        /// </summary>
-        public int Count { get; set; }
+	/// <summary>
+	/// Информация о лайках к записи.
+	/// См. описание <see href="http://vk.com/dev/post"/>. Раздел likes.
+	/// </summary>
+	public class Likes
+	{
+		/// <summary>
+		/// Число пользователей, которым понравилась запись.
+		/// </summary>
+		public int Count { get; set; }
 
-        /// <summary>
-        /// Признак понравилась ли запись текущему пользователю.
-        /// </summary>
-        public bool UserLikes { get; set; }
+		/// <summary>
+		/// Признак понравилась ли запись текущему пользователю.
+		/// </summary>
+		public bool UserLikes { get; set; }
 
-        /// <summary>
-        /// Признак может ли текущий пользователь поставить отметку "Мне нравится".
-        /// </summary>
-        public bool CanLike { get; set; }
+		/// <summary>
+		/// Признак может ли текущий пользователь поставить отметку "Мне нравится".
+		/// </summary>
+		public bool CanLike { get; set; }
 
-        /// <summary>
-        /// Признак может ли текущий пользователь сделать репост записи (опубликовать у себя запись).
-        /// </summary>
-        public bool? CanPublish { get; set; }
+		/// <summary>
+		/// Признак может ли текущий пользователь сделать репост записи (опубликовать у себя запись).
+		/// </summary>
+		public bool? CanPublish { get; set; }
 
-        #region Методы
-
-        internal static Likes FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Likes FromJson(VkResponse response)
 		{
 			var likes = new Likes
 			{

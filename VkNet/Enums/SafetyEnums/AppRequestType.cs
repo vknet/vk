@@ -11,6 +11,7 @@ namespace VkNet.Enums
 		/// В случае если запрос отправляется пользователю, не установившему приложение
 		/// </summary>
 		public static readonly AppRequestType Invite = RegisterPossibleValue("invite");
+
 		/// <summary>
 		/// В случае если пользователь уже установил приложение
 		/// </summary>

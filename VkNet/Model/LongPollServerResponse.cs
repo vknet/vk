@@ -1,6 +1,6 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
     /// Объект, с помощью которого можно подключиться к серверу быстрых сообщений для мгновенного
@@ -29,9 +29,13 @@
         /// </summary>
         public ulong? Pts { get; set; }
 
-        #region Методы
-
-        internal static LongPollServerResponse FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static LongPollServerResponse FromJson(VkResponse response)
 		{
 			var longPollServerResponse = new LongPollServerResponse
 			{

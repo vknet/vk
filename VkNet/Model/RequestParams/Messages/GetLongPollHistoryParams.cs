@@ -57,7 +57,12 @@ namespace VkNet.Model.RequestParams
 		public long? MaxMsgId
 		{ get; set; }
 
-        internal static VkParameters ToVkParameters(GetLongPollHistoryParams p)
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(GetLongPollHistoryParams p)
         {
             return new VkParameters
             {

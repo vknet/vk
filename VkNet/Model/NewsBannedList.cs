@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using VkNet.Model.Attachments;
+﻿using System.Collections.ObjectModel;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	///
+	/// Список забаненых новостей.
 	/// </summary>
 	public class NewsBannedList
 	{

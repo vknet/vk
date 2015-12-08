@@ -75,9 +75,11 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return Audio;
 					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
 		}
 	}
 }

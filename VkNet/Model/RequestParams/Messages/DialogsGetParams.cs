@@ -39,7 +39,12 @@
         /// </summary>
         public long? StartMessageID { get; set; }
 
-        internal static VkParameters ToVkParameters(DialogsGetParams p)
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(DialogsGetParams p)
         {
             return new VkParameters
             {

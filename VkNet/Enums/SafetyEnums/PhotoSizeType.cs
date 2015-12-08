@@ -106,9 +106,11 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return W;
 					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
 		}
 
 	}

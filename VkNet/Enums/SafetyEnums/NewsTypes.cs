@@ -75,9 +75,11 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return Note;
 					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
 		}
 	}
 }

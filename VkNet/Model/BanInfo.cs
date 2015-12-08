@@ -42,9 +42,13 @@ namespace VkNet.Model
         /// </summary>
         public BanReason Reason { get; set; }
 
-        #region Методы
-
-        internal static BanInfo FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static BanInfo FromJson(VkResponse response)
 		{
 			var info = new BanInfo
 			{

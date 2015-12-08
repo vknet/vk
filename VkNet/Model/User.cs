@@ -581,7 +581,7 @@ namespace VkNet.Model
 			user.IsDeactivated = user.DeactiveReason != null;
 			if (response["name"] != null)
 			{
-				// split for name and surname
+				// Разделить имя и фамилию
 				var parts = ((string)response["name"]).Split(' ');
 				if (parts.Length < 2)
 				{

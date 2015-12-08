@@ -1,5 +1,4 @@
-﻿using System;
-using VkNet.Enums;
+﻿using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -40,7 +39,11 @@ namespace VkNet.Model
 
 
 		#region Методы
-
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
 		internal static ChangeNameRequest FromJson(VkResponse response)
 		{
 			var request = new ChangeNameRequest
@@ -64,17 +67,29 @@ namespace VkNet.Model
 			switch (status)
 			{
 				case "success":
-					return ChangeNameStatus.Success;
+					{
+						return ChangeNameStatus.Success;
+					}
 				case "processing":
-					return ChangeNameStatus.Processing;
+					{
+						return ChangeNameStatus.Processing;
+					}
 				case "declined":
-					return ChangeNameStatus.Declined;
+					{
+						return ChangeNameStatus.Declined;
+					}
 				case "was_accepted":
-					return ChangeNameStatus.WasAccepted;
+					{
+						return ChangeNameStatus.WasAccepted;
+					}
 				case "was_declined":
-					return ChangeNameStatus.WasDeclined;
+					{
+						return ChangeNameStatus.WasDeclined;
+					}
 				default:
-					throw new ArgumentException(string.Format("Enum value {0} not defined!", status), "status");
+					{
+						throw new ArgumentException(string.Format("Enum value {0} not defined!", status), "status");
+					}
 			}
 		}
 

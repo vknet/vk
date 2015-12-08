@@ -51,11 +51,15 @@
         /// </summary>
         public int? DisabledUntil { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
-
-        internal static Chat FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Chat FromJson(VkResponse response)
 		{
 			var chat = new Chat
 			{

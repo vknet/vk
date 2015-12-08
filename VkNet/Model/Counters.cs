@@ -129,7 +129,11 @@
 		#endregion
 
 		#region Методы
-
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
 		internal static Counters FromJson(VkResponse response)
 		{
 			var counters = new Counters

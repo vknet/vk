@@ -67,11 +67,15 @@ namespace VkNet.Model
         /// </summary>
         public Likes Likes { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
-
-        internal static Comment FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Comment FromJson(VkResponse response)
 		{
 			var comment = new Comment
 			{

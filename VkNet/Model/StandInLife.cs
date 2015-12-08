@@ -53,13 +53,16 @@
         /// </summary>
         public Attitude Alcohol { get; set; }
 
-        #region Методы
-
-        internal static StandInLife FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static StandInLife FromJson(VkResponse response)
 		{
 			var standInLife = new StandInLife
 			{
-
 				Political = response["political"],
 				Languages = response["langs"],
 				Religion = response["religion"],

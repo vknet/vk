@@ -220,7 +220,12 @@
 		public UserSection FromList
 		{ get; set; }
 
-        internal static VkParameters ToVkParameters(UserSearchParams p)
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(UserSearchParams p)
         {
             return new VkParameters
             {

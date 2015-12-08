@@ -20,9 +20,13 @@ namespace VkNet.Model
         /// </summary>
         public Audio Audio { get; set; }
 
-        #region Методы
-
-        internal static Status FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Status FromJson(VkResponse response)
 		{
 			var status = new Status
 			{

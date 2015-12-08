@@ -40,11 +40,15 @@
         /// </summary>
         public string Photo320 { get; set; }
 
-        internal static VideoAlbum FromJson(VkResponse response)
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static VideoAlbum FromJson(VkResponse response)
 		{
 			var album = new VideoAlbum
 			{
-
 				Id = Utilities.GetNullableLongId(response["id"]),
 				OwnerId = response["owner_id"],
 				Title = response["title"],

@@ -42,9 +42,11 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return WindowsPhone;
 					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
 		}
 	}
 }

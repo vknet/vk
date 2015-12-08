@@ -1,5 +1,4 @@
-﻿using System;
-using VkNet.Utils;
+﻿using VkNet.Utils;
 
 namespace VkNet.Model
 {

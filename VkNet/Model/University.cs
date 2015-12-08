@@ -67,11 +67,15 @@
         /// </summary>
         public string EducationStatus { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
-
-        internal static University FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static University FromJson(VkResponse response)
 		{
 			var university = new University
 			{

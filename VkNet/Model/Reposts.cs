@@ -21,9 +21,13 @@
         /// </summary>
         public bool UserReposted { get; set; }
 
-        #region Методы
-
-        internal static Reposts FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Reposts FromJson(VkResponse response)
 		{
 			var reposts = new Reposts
 			{

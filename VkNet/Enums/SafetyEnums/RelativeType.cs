@@ -46,28 +46,30 @@ namespace VkNet.Enums.SafetyEnums
 			switch (response.ToString())
 			{
 				case "sibling":
-				{
-					return Sibling;
-				}
+					{
+						return Sibling;
+					}
 				case "parent":
-				{
-					return Parent;
-				}
+					{
+						return Parent;
+					}
 				case "child":
-				{
-					return Child;
-				}
+					{
+						return Child;
+					}
 				case "grandparent":
-				{
-					return Grandparent;
-				}
+					{
+						return Grandparent;
+					}
 				case "grandchild":
-				{
-					return Grandchild;
-				}
+					{
+						return Grandchild;
+					}
+				default:
+					{
+						return null;
+					}
 			}
-
-			return null;
 		}
 	}
 }

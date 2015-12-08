@@ -1,7 +1,5 @@
 ﻿namespace VkNet.Model.RequestParams
 {
-    using Utils;
-
 	/// <summary>
 	/// Параметры запроса подписывания устройства на базе iOS, Android или Windows Phone на получение Push-уведомлений.
 	/// </summary>
