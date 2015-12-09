@@ -1,9 +1,11 @@
-﻿namespace VkNet.Model.RequestParams.Photo
+﻿using VkNet.Utils;
+
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.getAllComments
 	/// </summary>
-	public class PhotoGetAllCommentsParams
+	public struct PhotoGetAllCommentsParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежат фотографии.
@@ -34,5 +36,24 @@
 		/// </summary>
 		public ulong? Count
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoGetAllCommentsParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "owner_id", p.OwnerId },
+				{ "album_id", p.AlbumId },
+				{ "need_likes", p.NeedLikes },
+				{ "offset", p.Offset },
+				{ "count", p.Count }
+			};
+
+			return parameters;
+		}
 	}
 }

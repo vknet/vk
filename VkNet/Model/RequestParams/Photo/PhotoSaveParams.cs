@@ -1,9 +1,11 @@
-﻿namespace VkNet.Model.RequestParams.Photo
+﻿using VkNet.Utils;
+
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.save
 	/// </summary>
-	public class PhotoSaveParams
+	public struct PhotoSaveParams
 	{
 		/// <summary>
 		/// Идентификатор альбома, в который необходимо сохранить фотографии.
@@ -52,5 +54,27 @@
 		/// </summary>
 		public string Caption
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoSaveParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "album_id", p.AlbumId },
+				{ "group_id", p.GroupId },
+				{ "server", p.Server },
+				{ "photos_list", p.PhotosList },
+				{ "hash", p.Hash },
+				{ "latitude", p.Latitude },
+				{ "longitude", p.Longitude },
+				{ "caption", p.Caption }
+			};
+
+			return parameters;
+		}
 	}
 }

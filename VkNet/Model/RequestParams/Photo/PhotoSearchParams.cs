@@ -1,12 +1,17 @@
 ﻿using System;
 using VkNet.Enums.SafetyEnums;
-
-namespace VkNet.Model.RequestParams.Photo
+using VkNet.Utils;
+#if WINDOWS_PHONE
+	using System.Net;
+#else
+	using System.Web;
+#endif
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.search
 	/// </summary>
-	public class PhotoSearchParams
+	public struct PhotoSearchParams
 	{
 		/// <summary>
 		/// Строка поискового запроса, например, "Nature".
@@ -62,5 +67,27 @@ namespace VkNet.Model.RequestParams.Photo
 		public PhotoSearchRadius Radius
 		{ get; set; }
 
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoSearchParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "q", HttpUtility.UrlEncode(p.Query) },
+				{ "lat", p.Latitude },
+				{ "long", p.Longitude },
+				{ "start_time", p.StartTime },
+				{ "end_time", p.EndTime },
+				{ "sort", p.Sort },
+				{ "offset", p.Offset },
+				{ "count", p.Count },
+				{ "radius", p.Radius }
+			};
+
+			return parameters;
+		}
 	}
 }

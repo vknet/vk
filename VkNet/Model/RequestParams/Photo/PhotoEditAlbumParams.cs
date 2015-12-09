@@ -1,20 +1,28 @@
 ﻿using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.Photo
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.editAlbum
 	/// </summary>
-	public class EditAlbumParams
+	public struct PhotoEditAlbumParams
 	{
 		/// <summary>
 		/// Список параметров для метода photos.editAlbum
 		/// </summary>
-		public EditAlbumParams()
+		/// <param name="gag">Заглушка инициализатора конструктора.</param>
+		public PhotoEditAlbumParams(bool gag = true)
 		{
 			View = new List<Privacy>();
 			Privacy = new List<Privacy>();
+			AlbumId = 0;
+			Title = null;
+			Description = null;
+			OwnerId = null;
+			UploadByAdminsOnly = null;
+			CommentsDisabled = null;
 		}
 		/// <summary>
 		/// Идентификатор альбома.
@@ -63,5 +71,35 @@ namespace VkNet.Model.RequestParams.Photo
 		/// </summary>
 		public bool? CommentsDisabled
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoEditAlbumParams p)
+		{
+			if (p.View == null)
+			{
+				p.View = new List<Privacy>();
+			}
+			if (p.Privacy == null)
+			{
+				p.Privacy = new List<Privacy>();
+			}
+			var parameters = new VkParameters
+			{
+				{ "album_id", p.AlbumId },
+				{ "title", p.Title },
+				{ "description", p.Description },
+				{ "owner_id", p.OwnerId },
+				{ "privacy_view", string.Join(",", p.View) },
+				{ "privacy_comment", string.Join(",", p.Privacy) },
+				{ "upload_by_admins_only", p.UploadByAdminsOnly },
+				{ "comments_disabled", p.CommentsDisabled }
+			};
+
+			return parameters;
+		}
 	}
 }

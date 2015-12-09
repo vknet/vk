@@ -1,12 +1,13 @@
 ﻿using System;
 using VkNet.Enums.Filters;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.NewsFeed
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров запроса newsfeed.get
 	/// </summary>
-	public class GetRecommendedParams
+	public struct NewsFeedGetRecommendedParams
 	{
 		/// <summary>
 		/// Время в формате unixtime, начиная с которого следует получить новости для текущего пользователя.
@@ -44,5 +45,24 @@ namespace VkNet.Model.RequestParams.NewsFeed
 		public UsersFields Fields
 		{ get; set; }
 
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(NewsFeedGetRecommendedParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "start_time", p.StartTime },
+				{ "end_time", p.EndTime },
+				{ "max_photos", p.MaxPhotos },
+				{ "start_from", p.StartFrom },
+				{ "count", p.Count },
+				{ "fields", p.Fields }
+			};
+
+			return parameters;
+		}
 	}
 }

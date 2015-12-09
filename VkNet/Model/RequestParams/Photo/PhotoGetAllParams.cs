@@ -1,9 +1,11 @@
-﻿namespace VkNet.Model.RequestParams.Photo
+﻿using VkNet.Utils;
+
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.getAll
 	/// </summary>
-	public class PhotoGetAllParams
+	public struct PhotoGetAllParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, фотографии которого нужно получить.
@@ -53,5 +55,26 @@
 		public bool? SkipHidden
 		{ get; set; }
 
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoGetAllParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "owner_id", p.OwnerId },
+				{ "extended", p.Extended },
+				{ "offset", p.Offset },
+				{ "count", p.Count },
+				{ "photo_sizes", p.PhotoSizes },
+				{ "no_service_albums", p.NoServiceAlbums },
+				{ "need_hidden", p.NeedHidden },
+				{ "skip_hidden", p.SkipHidden }
+			};
+
+			return parameters;
+		}
 	}
 }

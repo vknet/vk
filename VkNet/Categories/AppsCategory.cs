@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
-using VkNet.Model.RequestParams.App;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -41,23 +41,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getCatalog" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public IEnumerable<App> GetCatalog(out int totalCount, GetCatalogParams @params)
+		public IEnumerable<App> GetCatalog(out int totalCount, AppGetCatalogParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "sort", @params.Sort },
-				{ "offset", @params.Offset },
-				{ "count", @params.Count },
-				{ "platform", @params.Platform },
-				{ "extended", @params.Extended },
-				{ "return_friends", @params.ReturnFriends },
-				{ "fields", @params.Fields },
-				{ "name_case", @params.NameCase },
-				{ "q", @params.Query },
-				{ "genre_id", @params.GenreId },
-				{ "filter", @params.Filter }
-			};
-			var response = _vk.Call("apps.getCatalog", parameters, !@params.ReturnFriends);
+			var response = _vk.Call("apps.getCatalog", @params, !@params.ReturnFriends);
 			totalCount = response["count"];
 
 			return response["items"].ToReadOnlyCollectionOf<App>(x => x);
@@ -75,18 +61,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.get" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public IEnumerable<App> Get(out int totalCount, GetParams @params)
+		public IEnumerable<App> Get(out int totalCount, AppGetParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "app_ids", @params.AppIds },
-				{ "platform", @params.Platform },
-				{ "extended", @params.Extended },
-				{ "return_friends", @params.ReturnFriends },
-				{ "fields", @params.Fields },
-				{ "name_case", @params.NameCase }
-			};
-			var result = _vk.Call("apps.get", parameters);
+			var result = _vk.Call("apps.get", @params);
 			totalCount = result["count"];
 
 			return result["items"].ToReadOnlyCollectionOf<App>(x => x);
@@ -103,18 +80,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.sendRequest" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
-		public ulong SendRequest(SendRequestParams @params)
+		public ulong SendRequest(AppSendRequestParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "user_id", @params.UserId },
-				{ "text", @params.Text },
-				{ "type", @params.Type },
-				{ "name", @params.Name },
-				{ "key", @params.Key },
-				{ "separate", @params.Separate }
-			};
-			return _vk.Call("apps.sendRequest", parameters); 
+			return _vk.Call("apps.sendRequest", @params); 
 		}
 
 		/// <summary>

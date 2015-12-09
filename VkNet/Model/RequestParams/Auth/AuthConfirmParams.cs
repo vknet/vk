@@ -1,11 +1,12 @@
 ﻿using JetBrains.Annotations;
+using VkNet.Utils;
 
-namespace VkNet.Model.Auth
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры запроса метода auth.confirm
 	/// </summary>
-	public class AuthConfirmParams
+	public struct AuthConfirmParams
 	{
 		/// <summary>
 		/// Идентификатор Вашего приложения. целое число, обязательный параметр.
@@ -51,5 +52,26 @@ namespace VkNet.Model.Auth
 		/// </summary>
 		public long? Intro
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(AuthConfirmParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "client_id", p.ClientId },
+				{ "client_secret", p.ClientSecret },
+				{ "phone", p.Phone },
+				{ "code", p.Code },
+				{ "password", p.Password },
+				{ "test_mode", p.TestMode },
+				{ "intro", p.Intro }
+			};
+
+			return parameters;
+		}
 	}
 }

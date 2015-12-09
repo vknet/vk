@@ -1,8 +1,12 @@
 ﻿using VkNet.Enums;
+using VkNet.Utils;
 
-namespace VkNet.Model.Auth
+namespace VkNet.Model.RequestParams
 {
-	public class AuthSignupParams
+	/// <summary>
+	/// Параметры запроса регистрации нового пользователя по номеру телефона.
+	/// </summary>
+	public struct AuthSignupParams
 	{
 		/// <summary>
 		/// Имя пользователя. строка, обязательный параметр.
@@ -63,5 +67,29 @@ namespace VkNet.Model.Auth
 		/// </summary>
 		public string Sid
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(AuthSignupParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "first_name", p.FirstName },
+				{ "last_name", p.LastName },
+				{ "client_id", p.ClientId },
+				{ "client_secret", p.ClientSecret },
+				{ "phone", p.Phone },
+				{ "password", p.Password },
+				{ "test_mode", p.TestMode },
+				{ "voice", p.Voice },
+				{ "sex", p.Sex },
+				{ "sid", p.Sid }
+			};
+
+			return parameters;
+		}
 	}
 }

@@ -46,44 +46,8 @@ namespace VkNet.Categories
 			{
 				throw new ArgumentException("Query can not be null or empty.");
 			}
-			var parameters = new VkParameters
-			{
-				{ "q", @params.Query },
-				{ "sort", @params.Sort },
-				{ "offset", @params.Offset },
-				{ "count", @params.Count },
-				{ "fields", @params.Fields },
-				{ "city", @params.City },
-				{ "country", @params.Country },
-				{ "hometown", @params.Hometown },
-				{ "university_country", @params.UniversityCountry },
-				{ "university", @params.University },
-				{ "university_year", @params.UniversityYear },
-				{ "university_faculty", @params.UniversityFaculty },
-				{ "university_chair", @params.UniversityChair },
-				{ "sex", @params.Sex },
-				{ "status", @params.Status },
-				{ "age_from", @params.AgeFrom },
-				{ "age_to", @params.AgeTo },
-				{ "birth_day", @params.BirthDay },
-				{ "birth_month", @params.BirthMonth },
-				{ "birth_year", @params.BirthYear },
-				{ "online", @params.Online },
-				{ "has_photo", @params.HasPhoto },
-				{ "school_country", @params.SchoolCountry },
-				{ "school_city", @params.SchoolCity },
-				{ "school_class", @params.SchoolClass },
-				{ "school", @params.School },
-				{ "school_year", @params.SchoolYear },
-				{ "religion", @params.Religion },
-				{ "interests", @params.Interests },
-				{ "company", @params.Company },
-				{ "position", @params.Position },
-				{ "group_id", @params.GroupId },
-				{ "from_list", @params.FromList }
-
-			};
-			var response = _vk.Call("users.search", parameters);
+			
+			var response = _vk.Call("users.search", @params);
 
 			itemsCount = response["count"];
 

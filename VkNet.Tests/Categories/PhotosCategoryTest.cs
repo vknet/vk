@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using FluentNUnit;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
-using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams.Photo;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
@@ -86,7 +83,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var album = GetMockedPhotosCategory(url, json)
-                .CreateAlbum(new CreateAlbumParams
+                .CreateAlbum(new PhotoCreateAlbumParams
                 {
 					Title= "hello world",
 					Description = "description for album"
@@ -117,7 +114,7 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-            var result = GetMockedPhotosCategory(url, json).EditAlbum(new EditAlbumParams
+            var result = GetMockedPhotosCategory(url, json).EditAlbum(new PhotoEditAlbumParams
             {
 	            AlbumId = 19726,
 				Title = "new album title",
@@ -152,7 +149,7 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 	        int count;
-            var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams
+            var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new PhotoGetAlbumsParams
             {
 				OwnerId = 1
 			});
@@ -195,7 +192,7 @@ namespace VkNet.Tests.Categories
 					}
                   }";
 			int count;
-			var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new GetAlbumsParams
+			var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new PhotoGetAlbumsParams
 			{
 				AlbumIds = new List<long>
 				{

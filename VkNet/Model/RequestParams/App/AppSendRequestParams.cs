@@ -1,12 +1,12 @@
-﻿using System;
-using VkNet.Enums;
+﻿using VkNet.Enums;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.App
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры запроса SendRequest для приложений.
 	/// </summary>
-	public class SendRequestParams
+	public struct AppSendRequestParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя, которому следует отправить запрос.
@@ -43,5 +43,25 @@ namespace VkNet.Model.RequestParams.App
 		/// </summary>
 		public bool Separate
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(AppSendRequestParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "user_id", p.UserId },
+				{ "text", p.Text },
+				{ "type", p.Type },
+				{ "name", p.Name },
+				{ "key", p.Key },
+				{ "separate", p.Separate }
+			};
+
+			return parameters;
+		}
 	}
 }

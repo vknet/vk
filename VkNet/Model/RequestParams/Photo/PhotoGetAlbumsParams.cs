@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.Photo
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.getAlbums
 	/// </summary>
-	public class GetAlbumsParams
+	public struct PhotoGetAlbumsParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежат альбомы. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
@@ -48,5 +49,26 @@ namespace VkNet.Model.RequestParams.Photo
 		/// </summary>
 		public bool? PhotoSizes
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoGetAlbumsParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{"owner_id", p.OwnerId},
+				{"album_ids", p.AlbumIds},
+				{"offset", p.Offset},
+				{"count", p.Count},
+				{"need_system", p.NeedSystem},
+				{"need_covers", p.NeedCovers},
+				{"photo_sizes", p.PhotoSizes}
+			};
+
+			return parameters;
+		}
 	}
 }

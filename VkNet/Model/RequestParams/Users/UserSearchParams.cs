@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model.RequestParams
+﻿using System.Web;
+
+namespace VkNet.Model.RequestParams
 {
     using Enums;
     using Enums.Filters;
@@ -9,19 +11,48 @@
     /// <summary>
     /// Параметры метода users.search
     /// </summary>
-    public class UserSearchParams
+    public struct UserSearchParams
 	{
 		/// <summary>
 		/// Параметры метода users.search.
 		/// </summary>
-		public UserSearchParams()
+		/// <param name="gag">Заглушка для конструктора.</param>
+		public UserSearchParams(bool gag = true)
 		{
 			Sort = UserSort.ByPopularity;
 			Offset = 0;
 			Count = 20;
 			Sex = Sex.Unknown;
+			Query = null;
+			Fields = null;
+			City = null;
+			Country = null;
+			Hometown = null;
+			UniversityCountry = null;
+			University = null;
+			UniversityYear = null;
+			UniversityFaculty = null;
+			UniversityChair = null;
+			Status = (MaritalStatus) 0;
+			AgeFrom = null;
+			AgeTo = null;
+			BirthDay = null;
+			BirthMonth = null;
+			BirthYear = null;
+			Online = false;
+			HasPhoto = false;
+			SchoolCountry = null;
+			SchoolCity = null;
+			SchoolClass = null;
+			School = null;
+			SchoolYear = null;
+			Religion = null;
+			Interests = null;
+			Company = null;
+			Position = null;
+			GroupId = null;
+			FromList = null;
 		}
-
 		/// <summary>
 		/// Строка поискового запроса. Например, Вася Бабич.
 		/// </summary>
@@ -37,13 +68,13 @@
 		/// <summary>
 		/// Смещение относительно первого найденного пользователя для выборки определенного подмножества.
 		/// </summary>
-		public uint Offset
+		public uint? Offset
 		{ get; set; }
 
 		/// <summary>
 		/// Количество возвращаемых пользователей. Обратите внимание — даже при использовании параметра offset для получения информации доступны только первые 1000 результатов.
 		/// </summary>
-		public uint Count
+		public uint? Count
 		{ get; set; }
 
 		/// <summary>
@@ -145,13 +176,13 @@
 		/// <summary>
 		/// <c>true</c> — только в сети, <c>false</c> — все пользователи. флаг.
 		/// </summary>
-		public bool Online
+		public bool? Online
 		{ get; set; }
 
 		/// <summary>
 		/// <c>true</c> — только с фотографией, <c>false</c> — все пользователи. флаг.
 		/// </summary>
-		public bool HasPhoto
+		public bool? HasPhoto
 		{ get; set; }
 
 		/// <summary>
@@ -227,42 +258,44 @@
 		/// <returns></returns>
 		internal static VkParameters ToVkParameters(UserSearchParams p)
         {
-            return new VkParameters
-            {
-                { "q", p.Query },
-                { "sort", p.Sort },
-                { "offset", p.Offset },
-                { "count", p.Count },
-                { "fields", p.Fields },
-                { "city", p.City },
-                { "country", p.Country },
-                { "hometown", p.Hometown },
-                { "university_country", p.UniversityCountry },
-                { "university", p.University },
-                { "university_year", p.UniversityYear },
-                { "university_faculty", p.UniversityFaculty },
-                { "university_chair", p.UniversityChair },
-                { "sex", p.Sex },
-                { "status", p.Status },
-                { "age_from", p.AgeFrom },
-                { "age_to", p.AgeTo },
-                { "birth_day", p.BirthDay },
-                { "birth_month", p.BirthMonth },
-                { "birth_year", p.BirthYear },
-                { "online", p.Online },
-                { "has_photo", p.HasPhoto },
-                { "school_country", p.SchoolCountry },
-                { "school_city", p.SchoolCity },
-                { "school_class", p.SchoolClass },
-                { "school", p.School },
-                { "school_year", p.SchoolYear },
-                { "religion", p.Religion },
-                { "interests", p.Interests },
-                { "company", p.Company },
-                { "position", p.Position },
-                { "group_id", p.GroupId },
-                { "from_list", p.FromList }
-            };
+			var parameters = new VkParameters
+			{
+				{ "q", HttpUtility.HtmlEncode(p.Query) },
+				{ "sort", p.Sort },
+				{ "offset", p.Offset },
+				{ "count", p.Count },
+				{ "fields", p.Fields },
+				{ "city", p.City },
+				{ "country", p.Country },
+				{ "hometown", HttpUtility.HtmlEncode(p.Hometown) },
+				{ "university_country", p.UniversityCountry },
+				{ "university", p.University },
+				{ "university_year", p.UniversityYear },
+				{ "university_faculty", p.UniversityFaculty },
+				{ "university_chair", p.UniversityChair },
+				{ "sex", p.Sex },
+				{ "status", p.Status },
+				{ "age_from", p.AgeFrom },
+				{ "age_to", p.AgeTo },
+				{ "birth_day", p.BirthDay },
+				{ "birth_month", p.BirthMonth },
+				{ "birth_year", p.BirthYear },
+				{ "online", p.Online },
+				{ "has_photo", p.HasPhoto },
+				{ "school_country", p.SchoolCountry },
+				{ "school_city", p.SchoolCity },
+				{ "school_class", p.SchoolClass },
+				{ "school", p.School },
+				{ "school_year", p.SchoolYear },
+				{ "religion", HttpUtility.HtmlEncode(p.Religion) },
+				{ "interests", HttpUtility.HtmlEncode(p.Interests) },
+				{ "company", HttpUtility.HtmlEncode(p.Company) },
+				{ "position", HttpUtility.HtmlEncode(p.Position) },
+				{ "group_id", p.GroupId },
+				{ "from_list", p.FromList }
+			};
+
+			return parameters;
         }
     }
 }

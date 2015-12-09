@@ -198,7 +198,7 @@
     <Compile Include="Model\RequestParams\Audio\AudioSearchParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />
-    <Compile Include="Model\RequestParams\Likes\GetListParams.cs" />
+    <Compile Include="Model\RequestParams\Likes\LikesGetListParams.cs" />
     <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />
     <Compile Include="Model\RequestParams\Messages\HistoryGetParams.cs" />
@@ -210,7 +210,7 @@
     <Compile Include="Model\NewsSearchResult.cs" />
     <Compile Include="Model\NewsSuggestions.cs" />
     <Compile Include="Model\NewsUserListItem.cs" />
-    <Compile Include="Model\RequestParams\App\GetCatalogParams.cs" />
+    <Compile Include="Model\RequestParams\App\AppGetCatalogParams.cs" />
     <Compile Include="Model\Attachments\Album.cs" />
     <Compile Include="Model\Attachments\ApplicationContent.cs" />
     <Compile Include="Model\Attachments\Gift.cs" />
@@ -243,16 +243,16 @@
     <Compile Include="Model\Region.cs" />
     <Compile Include="Model\Relative.cs" />
     <Compile Include="Model\RepostResult.cs" />
-    <Compile Include="Model\RequestParams\App\GetParams.cs" />
-    <Compile Include="Model\RequestParams\App\SendRequestParams.cs" />
+    <Compile Include="Model\RequestParams\App\AppGetParams.cs" />
+    <Compile Include="Model\RequestParams\App\AppSendRequestParams.cs" />
     <Compile Include="Model\RequestParams\Messages\MessagesGetParams.cs" />
-    <Compile Include="Model\RequestParams\NewsFeed\GetCommentsParams.cs" />
-    <Compile Include="Model\RequestParams\NewsFeed\SearchParams.cs" />
-    <Compile Include="Model\RequestParams\NewsFeed\GetRecommendedParams.cs" />
-    <Compile Include="Model\RequestParams\NewsFeed\GetParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\CreateAlbumParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\EditAlbumParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\GetAlbumsParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedSearchParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedGetRecommendedParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedGetParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoCreateAlbumParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoEditAlbumParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoGetAlbumsParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoCreateCommentParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoEditParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoGetAllCommentsParams.cs" />
@@ -353,7 +353,7 @@
   <ItemGroup>
     <None Include="Utils\VkResponseToManualEnumCastsGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VkResponseToManualEnumCastsGenerator.cs</LastGenOutput>
+      <LastGenOutput>VkResponseToManualEnumCastsGenerator1.cs</LastGenOutput>
     </None>
     <None Include="Utils\VkResponseToSafetyEnumCastGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

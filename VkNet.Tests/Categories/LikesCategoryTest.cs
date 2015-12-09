@@ -4,7 +4,7 @@ using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams.Likes;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
@@ -70,7 +70,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetList_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/likes.getList?type=post&item_id=701&filter=likes&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/likes.getList?item_id=701&extended=1&v=5.37&access_token=token";
 			const string json =
 				@"{
 					response: {
@@ -79,7 +79,7 @@ namespace VkNet.Tests.Categories
 					}
 				}";
 			var likesCategory = GetMockedLikesCategory(url, json);
-			var like = likesCategory.GetList(new GetListParams
+			var like = likesCategory.GetList(new LikesGetListParams
 			{
 				ItemId = 701
 			});
@@ -89,7 +89,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetListEx_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/likes.getList?type=post&item_id=701&filter=likes&extended=1&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/likes.getList?item_id=701&extended=1&v=5.37&access_token=token";
 			const string json =
 				@"{
 					response: {
@@ -123,7 +123,7 @@ namespace VkNet.Tests.Categories
 					}
 				}";
 			var likesCategory = GetMockedLikesCategory(url, json);
-			var like = likesCategory.GetListEx(new GetListParams
+			var like = likesCategory.GetListEx(new LikesGetListParams
 			{
 				ItemId = 701
 			});

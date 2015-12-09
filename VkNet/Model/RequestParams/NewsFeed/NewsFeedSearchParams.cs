@@ -1,20 +1,28 @@
 ﻿using System;
 using VkNet.Enums.Filters;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.NewsFeed
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров запроса newsfeed.search
 	/// </summary>
-	public class SearchParams
+	public struct NewsFeedSearchParams
 	{
 		/// <summary>
 		/// Список параметров запроса newsfeed.search
 		/// </summary>
-		public SearchParams()
+		public NewsFeedSearchParams(bool gog = true)
 		{
 			Extended = false;
 			Count = 30;
+			Query = null;
+			Latitude = 0;
+			Longitude = 0;
+			StartTime = null;
+			EndTime = null;
+			StartFrom = 0;
+			Fields = null;
 		}
 		/// <summary>
 		/// Поисковой запрос.
@@ -69,5 +77,31 @@ namespace VkNet.Model.RequestParams.NewsFeed
 		/// </summary>
 		public UsersFields Fields
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(NewsFeedSearchParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "q", p.Query },
+				{ "extended", p.Extended },
+				{ "latitude", p.Latitude },
+				{ "longitude", p.Longitude },
+				{ "start_time", p.StartTime },
+				{ "end_time", p.EndTime },
+				{ "start_from", p.StartFrom },
+				{ "fields", p.Fields }
+			};
+			if (p.Count <= 200)
+			{
+				parameters.Add("count", p.Count);
+			}
+
+			return parameters;
+		}
 	}
 }

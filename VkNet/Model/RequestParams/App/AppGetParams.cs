@@ -2,13 +2,14 @@
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.App
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры метода Get для приложений
 	/// </summary>
-	public class GetParams
+	public struct AppGetParams
 	{
 		/// <summary>
 		/// Список идентификаторов приложений, данные которых необходимо получить.
@@ -45,5 +46,25 @@ namespace VkNet.Model.RequestParams.App
 		/// </summary>
 		public NameCase NameCase
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(AppGetParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "app_ids", p.AppIds },
+				{ "platform", p.Platform },
+				{ "extended", p.Extended },
+				{ "return_friends", p.ReturnFriends },
+				{ "fields", p.Fields },
+				{ "name_case", p.NameCase }
+			};
+
+			return parameters;
+		}
 	}
 }

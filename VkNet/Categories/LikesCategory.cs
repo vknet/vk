@@ -1,4 +1,4 @@
-﻿using VkNet.Model.RequestParams.Likes;
+﻿using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
 {
@@ -28,88 +28,39 @@ namespace VkNet.Categories
         }
 
 		/// <summary>
-		/// Получает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится. 
+		/// Получает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится.
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// Возвращает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится. 
+		/// Возвращает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<long> GetList(GetListParams @params)
+		public ReadOnlyCollection<long> GetList(LikesGetListParams @params)
 		{
-			var parameters = new VkParameters
-				{
-					{ "type", @params.Type },
-					{ "owner_id", @params.OwnerId },
-					{ "item_id", @params.ItemId },
-					{ "page_url", @params.PageUrl },
-					{ "filter", @params.Filter },
-					{ "friends_only", @params.FriendsOnly },
-					{ "offset", @params.Offset },
-					{ "skip_own", @params.SkipOwn }
-				};
-			if (@params.FriendsOnly.HasValue && @params.FriendsOnly.Value)
-			{
-				if (@params.Count <= 100)
-				{
-					parameters.Add("count", @params.Count);
-				}
-			} else
-			{
-				if (@params.Count <= 1000)
-				{
-					parameters.Add("count", @params.Count);
-				}
-			}
 
-			VkResponseArray response = _vk.Call("likes.getList", parameters);
+
+			VkResponseArray response = _vk.Call("likes.getList", @params);
 
 			return response.ToReadOnlyCollectionOf<long>(x => x);
 		}
 
 		/// <summary>
-		/// Получает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится. 
+		/// Получает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится.
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// Возвращает список пользователей и сообществ, которые добавили заданный объект в свой список Мне нравится. 
+		/// Возвращает список пользователей и сообществ, которые добавили заданный объект в свой список Мне нравится.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public UserOrGroup GetListEx(GetListParams @params)
+		public UserOrGroup GetListEx(LikesGetListParams @params)
 		{
-			var parameters = new VkParameters
-				{
-					{ "type", @params.Type },
-					{ "owner_id", @params.OwnerId },
-					{ "item_id", @params.ItemId },
-					{ "page_url", @params.PageUrl },
-					{ "filter", @params.Filter },
-					{ "friends_only", @params.FriendsOnly },
-					{ "extended", true },
-					{ "offset", @params.Offset },
-					{ "skip_own", @params.SkipOwn }
-				};
-			if (@params.FriendsOnly.HasValue && @params.FriendsOnly.Value)
-			{
-				if (@params.Count <= 100)
-				{
-					parameters.Add("count", @params.Count);
-				}
-            }
-			else
-			{
-				if (@params.Count <= 1000)
-				{
-					parameters.Add("count", @params.Count);
-				}
-			}
-			return _vk.Call("likes.getList", parameters, true);
+			return _vk.Call("likes.getList", @params, true);
 		}
 		/// <summary>
 		/// Добавляет указанный объект в список Мне нравится текущего пользователя.
@@ -143,7 +94,7 @@ namespace VkNet.Categories
         }
 
 		/// <summary>
-		/// Удаляет указанный объект из списка Мне нравится текущего пользователя 
+		/// Удаляет указанный объект из списка Мне нравится текущего пользователя
 		/// </summary>
 		/// <param name="type">Тип объекта <see cref="LikeObjectType"/></param>
 		/// <param name="itemId">Идентификатор объекта. положительное число, обязательный параметр</param>

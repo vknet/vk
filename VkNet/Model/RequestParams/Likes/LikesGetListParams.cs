@@ -1,22 +1,29 @@
 ﻿using System.Security.Policy;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.Likes
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры запроса likes.getList
 	/// </summary>
-	public class GetListParams
+	public struct LikesGetListParams
 	{
 		/// <summary>
 		/// Параметры запроса likes.getList
 		/// </summary>
-		public GetListParams()
+		public LikesGetListParams(bool gog = true)
 		{
 			Type = LikeObjectType.Post;
 			Filter = LikesFilter.Likes;
+			OwnerId = null;
+			ItemId = 0;
+			PageUrl = null;
+			FriendsOnly = null;
+			Offset = null;
+			Count = null;
+			SkipOwn = null;
 		}
-
 		/// <summary>
 		/// Тип объекта.
 		/// </summary>
@@ -71,5 +78,40 @@ namespace VkNet.Model.RequestParams.Likes
 		public bool? SkipOwn
 		{ get; set; }
 
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(LikesGetListParams p)
+		{
+			var parameters = new VkParameters
+				{
+					{ "type", p.Type },
+					{ "owner_id", p.OwnerId },
+					{ "item_id", p.ItemId },
+					{ "page_url", p.PageUrl },
+					{ "filter", p.Filter },
+					{ "friends_only", p.FriendsOnly },
+					{ "extended", true },
+					{ "offset", p.Offset },
+					{ "skip_own", p.SkipOwn }
+				};
+			if (p.FriendsOnly.HasValue && p.FriendsOnly.Value)
+			{
+				if (p.Count <= 100)
+				{
+					parameters.Add("count", p.Count);
+				}
+			} else
+			{
+				if (p.Count <= 1000)
+				{
+					parameters.Add("count", p.Count);
+				}
+			}
+
+			return parameters;
+		}
 	}
 }

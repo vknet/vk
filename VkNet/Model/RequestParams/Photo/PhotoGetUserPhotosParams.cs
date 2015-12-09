@@ -1,11 +1,12 @@
 ﻿using VkNet.Enums;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.Photo
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.getUserPhotos
 	/// </summary>
-	public class PhotoGetUserPhotosParams
+	public struct PhotoGetUserPhotosParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя, список фотографий для которого нужно получить.
@@ -36,5 +37,24 @@ namespace VkNet.Model.RequestParams.Photo
 		/// </summary>
 		public SortOrderBy Sort
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoGetUserPhotosParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "user_id", p.UserId },
+				{ "count", p.Count },
+				{ "offset", p.Offset },
+				{ "extended", p.Extended },
+				{ "sort", p.Sort }
+			};
+
+			return parameters;
+		}
 	}
 }

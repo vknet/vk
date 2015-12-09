@@ -1,18 +1,19 @@
 ﻿using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.App
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры запроса для приложений
 	/// </summary>
-	public class GetCatalogParams
+	public struct AppGetCatalogParams
 	{
 		/// <summary>
 		/// Параметры запроса для приложений.
 		/// </summary>
-		public GetCatalogParams()
+		public AppGetCatalogParams(bool gog = true)
 		{
 			Sort = AppSort.PopularToday;
 			Offset = 0;
@@ -20,13 +21,16 @@ namespace VkNet.Model.RequestParams.App
 			Platform = AppPlatforms.Web;
 			Extended = false;
 			ReturnFriends = false;
+			Fields = null;
+			NameCase = null;
+			Query = null;
+			GenreId = null;
+			Filter = null;
 		}
-
 		/// <summary>
 		/// Способ сортировки приложений
 		/// </summary>
-		public AppSort Sort
-		{ get; set; }
+		public AppSort Sort { get; set; }
 
 		/// <summary>
 		/// Смещение, необходимое для выборки определенного подмножества приложений.
@@ -37,8 +41,7 @@ namespace VkNet.Model.RequestParams.App
 		/// <summary>
 		/// Количество приложений, информацию о которых необходимо вернуть.
 		/// </summary>
-		public uint Count
-		{ get; set; }
+		public uint Count { get; set; }
 
 		/// <summary>
 		/// Платформа для которой необходимо вернуть приложения, принимает значения: ios, android, winphone, web. По умолчанию используется web.
@@ -88,5 +91,30 @@ namespace VkNet.Model.RequestParams.App
 		/// </summary>
 		public AppFilter Filter
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(AppGetCatalogParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "sort", p.Sort },
+				{ "offset", p.Offset },
+				{ "count", p.Count },
+				{ "platform", p.Platform },
+				{ "extended", p.Extended },
+				{ "return_friends", p.ReturnFriends },
+				{ "fields", p.Fields },
+				{ "name_case", p.NameCase },
+				{ "q", p.Query },
+				{ "genre_id", p.GenreId },
+				{ "filter", p.Filter }
+			};
+
+			return parameters;
+		}
 	}
 }

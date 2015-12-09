@@ -4,8 +4,8 @@ using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
-using VkNet.Model.RequestParams.App;
 
 namespace VkNet.Tests.Categories
 {
@@ -23,8 +23,7 @@ namespace VkNet.Tests.Categories
 		public void GetCatalog_NormalCase()
 		{
 
-			const string url =
-				"https://api.vk.com/method/apps.getCatalog?sort=popular_today&offset=0&count=100&platform=web&extended=0&return_friends=0&v=5.40&access_token=token";
+			const string url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=5.40&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -92,7 +91,7 @@ namespace VkNet.Tests.Categories
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
 			int total;
-			var app = mock.GetCatalog(out total, new GetCatalogParams());
+			var app = mock.GetCatalog(out total, new AppGetCatalogParams());
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("Подземелья!"));
 		}
@@ -131,7 +130,7 @@ namespace VkNet.Tests.Categories
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
 			int total;
-			var app = mock.Get(out total, new GetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
+			var app = mock.Get(out total, new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("raventestapp"));
 		}

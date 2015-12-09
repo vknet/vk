@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.Photo
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.get
 	/// </summary>
-	public class PhotoGetParams
+	public struct PhotoGetParams
 	{
 		/// <summary>
 		/// Идентификатор владельца альбома.
@@ -69,5 +70,28 @@ namespace VkNet.Model.RequestParams.Photo
 		public ulong? Count
 		{ get; set; }
 
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoGetParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "owner_id", p.OwnerId },
+				{ "album_id", p.AlbumId },
+				{ "photo_ids", p.PhotoIds },
+				{ "rev", p.Reversed },
+				{ "extended", p.Extended },
+				{ "feed_type", p.FeedType },
+				{ "feed", p.Feed },
+				{ "photo_sizes", p.PhotoSizes },
+				{ "offset", p.Offset },
+				{ "count", p.Count }
+			};
+
+			return parameters;
+		}
 	}
 }

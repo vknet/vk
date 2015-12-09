@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.Photo
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.getComments
 	/// </summary>
-	public class PhotoGetCommentsParams
+	public struct PhotoGetCommentsParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежит фотография.
@@ -67,5 +68,29 @@ namespace VkNet.Model.RequestParams.Photo
 		/// </summary>
 		public IEnumerable<string> Fields
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoGetCommentsParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "owner_id", p.OwnerId },
+				{ "photo_id", p.PhotoId },
+				{ "need_likes", p.NeedLikes },
+				{ "start_comment_id", p.StartCommentId },
+				{ "offset", p.Offset },
+				{ "count", p.Count },
+				{ "sort", p.Sort },
+				{ "access_key", p.AccessKey },
+				{ "extended", p.Extended },
+				{ "fields", p.Fields }
+			};
+
+			return parameters;
+		}
 	}
 }

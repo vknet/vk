@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams.NewsFeed;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -39,21 +39,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.get" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public NewsFeed Get(GetParams @params)
+		public NewsFeed Get(NewsFeedGetParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "filters", @params.Filters },
-				{ "return_banned", @params.ReturnBanned },
-				{ "start_time", @params.StartTime },
-				{ "end_time", @params.EndTime },
-				{ "max_photos", @params.MaxPhotos },
-				{ "source_ids", @params.SourceIds },
-				{ "start_from", @params.StartFrom },
-				{ "count", @params.Count },
-				{ "fields", @params.Fields }
-			};
-			var response = _vk.Call("newsfeed.get", parameters);
+			var response = _vk.Call("newsfeed.get", @params);
 			var result = new NewsFeed
 			{
 				Items = response["items"].ToReadOnlyCollectionOf<NewsItem>(x => x),
@@ -76,18 +64,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getRecommended" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public NewsFeed GetRecommended(GetRecommendedParams @params)
+		public NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "start_time", @params.StartTime },
-				{ "end_time", @params.EndTime },
-				{ "max_photos", @params.MaxPhotos },
-				{ "start_from", @params.StartFrom },
-				{ "count", @params.Count },
-				{ "fields", @params.Fields }
-			};
-			var response = _vk.Call("newsfeed.getRecommended", parameters);
+			var response = _vk.Call("newsfeed.getRecommended", @params);
 			var result = new NewsFeed
 			{
 				Items = response["items"].ToReadOnlyCollectionOf<NewsItem>(x => x),
@@ -110,20 +89,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getComments" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public NewsFeed GetComments(GetCommentsParams @params)
+		public NewsFeed GetComments(NewsFeedGetCommentsParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "count", @params.Count },
-				{ "filters", @params.Filters },
-				{ "reposts", @params.Reposts },
-				{ "start_time", @params.StartTime },
-				{ "end_time", @params.EndTime },
-				{ "last_comments_count", @params.LastCommentsCount },
-				{ "start_from", @params.StartFrom },
-				{ "fields", @params.Fields }
-			};
-			var response = _vk.Call("newsfeed.getComments", parameters);
+			var response = _vk.Call("newsfeed.getComments", @params);
 			var result = new NewsFeed
 			{
 				Items = response["items"].ToReadOnlyCollectionOf<NewsItem>(x => x),
@@ -306,24 +274,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.search" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<NewsSearchResult> Search(SearchParams @params)
+		public ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "q", @params.Query },
-				{ "extended", @params.Extended },
-				{ "latitude", @params.Latitude },
-				{ "longitude", @params.Longitude },
-				{ "start_time", @params.StartTime },
-				{ "end_time", @params.EndTime },
-				{ "start_from", @params.StartFrom },
-				{ "fields", @params.Fields }
-			};
-			if (@params.Count <= 200)
-			{
-				parameters.Add("count", @params.Count);
-			}
-			VkResponseArray response = _vk.Call("newsfeed.search", parameters);
+			VkResponseArray response = _vk.Call("newsfeed.search", @params);
 			return response.ToReadOnlyCollectionOf<NewsSearchResult>(x => x);
 		}
 

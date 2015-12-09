@@ -1,5 +1,5 @@
 ﻿using VkNet.Model;
-using VkNet.Model.Auth;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -26,7 +26,12 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Проверяет правильность введённого номера.
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="phone">Номер телефона регистрируемого пользователя.</param>
+		/// <param name="clientId">Идентификатор Вашего приложения.</param>
+		/// <param name="clientSecret">Секретный ключ приложения, доступный в разделе редактирования приложения.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.checkPhone" />.
 		/// </remarks>
@@ -45,50 +50,33 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Регистрирует нового пользователя по номеру телефона.
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.signup" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
 		public string Signup(AuthSignupParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "first_name", @params.FirstName },
-				{ "last_name", @params.LastName },
-				{ "client_id", @params.ClientId },
-				{ "client_secret", @params.ClientSecret },
-				{ "phone", @params.Phone },
-				{ "password", @params.Password },
-				{ "test_mode", @params.TestMode },
-				{ "voice", @params.Voice },
-				{ "sex", @params.Sex },
-				{ "sid", @params.Sid }
-			};
-			return _vk.Call("auth.signup", parameters);
+			return _vk.Call("auth.signup", @params);
 		}
 
 		/// <summary>
 		/// Завершает регистрацию нового пользователя, начатую методом auth.signup, по коду, полученному через SMS.
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// Возвращает результат выполнения метода.
+		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.confirm" />.
 		/// </remarks>
 		[ApiVersion("5.40")]
 		public AuthConfirmResult Confirm(AuthConfirmParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "client_id", @params.ClientId },
-				{ "client_secret", @params.ClientSecret },
-				{ "phone", @params.Phone },
-				{ "code", @params.Code },
-				{ "password", @params.Password },
-				{ "test_mode", @params.TestMode },
-				{ "intro", @params.Intro }
-			};
-			return _vk.Call("auth.confirm", parameters);
+			return _vk.Call("auth.confirm", @params);
 		}
 
 		/// <summary>

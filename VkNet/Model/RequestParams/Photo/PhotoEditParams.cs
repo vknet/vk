@@ -1,9 +1,11 @@
-﻿namespace VkNet.Model.RequestParams.Photo
+﻿using VkNet.Utils;
+
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.edit
 	/// </summary>
-	public class PhotoEditParams
+	public struct PhotoEditParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежит фотография.
@@ -52,5 +54,27 @@
 		/// </summary>
 		public bool? DeletePlace
 		{ get; set; }
+
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(PhotoEditParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "owner_id", p.OwnerId },
+				{ "photo_id", p.PhotoId },
+				{ "caption", p.Caption },
+				{ "latitude", p.Latitude },
+				{ "longitude", p.Longitude },
+				{ "place_str", p.PlaceStr },
+				{ "foursquare_id", p.FoursquareId },
+				{ "delete_place", p.DeletePlace }
+			};
+
+			return parameters;
+		}
 	}
 }

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams.NewsFeed
+namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров запроса newsfeed.get
 	/// </summary>
-	public class GetParams
+	public struct NewsFeedGetParams
 	{
 		/// <summary>
 		/// Перечисленные через запятую названия списков новостей, которые необходимо получить. В данный момент поддерживаются следующие списки новостей: post — новые записи со стен photo — новые фотографии photo_tag — новые отметки на фотографиях wall_photo — новые фотографии на стенах friend — новые друзья note — новые заметки Если параметр не задан, то будут получены все возможные списки новостей.
@@ -64,5 +65,27 @@ namespace VkNet.Model.RequestParams.NewsFeed
 		public UsersFields Fields
 		{ get; set; }
 
+		/// <summary>
+		/// Привести к типу VkParameters.
+		/// </summary>
+		/// <param name="p">Параметры.</param>
+		/// <returns></returns>
+		internal static VkParameters ToVkParameters(NewsFeedGetParams p)
+		{
+			var parameters = new VkParameters
+			{
+				{ "filters", p.Filters },
+				{ "return_banned", p.ReturnBanned },
+				{ "start_time", p.StartTime },
+				{ "end_time", p.EndTime },
+				{ "max_photos", p.MaxPhotos },
+				{ "source_ids", p.SourceIds },
+				{ "start_from", p.StartFrom },
+				{ "count", p.Count },
+				{ "fields", p.Fields }
+			};
+
+			return parameters;
+		}
 	}
 }
