@@ -56,7 +56,7 @@
 					return obj;
 				}
 			}
-			return null;
+			return obj;
 		}
 	}
 }
