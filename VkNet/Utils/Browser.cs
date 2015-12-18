@@ -16,6 +16,9 @@
     /// </summary>
     public class Browser : IBrowser
     {
+        private string host;
+        private int? port;
+
         /// <summary>
         /// Получение json по url-адресу
         /// </summary>
@@ -27,7 +30,7 @@
             var methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
             var parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
 
-            return WebCall.PostCall(methodUrl, parameters).Response;
+            return WebCall.PostCall(methodUrl, parameters, host, port).Response;
         }
 
         /// <summary>
@@ -86,23 +89,29 @@
         /// <param name="settings">Уровень доступа приложения</param>
         /// <param name="captcha_sid">Идентификатор капчи</param>
         /// <param name="captcha_key">Текст капчи</param>
+        /// <param name="host">Имя узла прокси-сервера.</param>
+        /// <param name="port">Номер порта используемого Host.</param>
         /// <returns>Информация об авторизации приложения</returns>
-        public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code = null,  long? captcha_sid = null, string captcha_key = null)
+        public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code = null, long? captcha_sid = null, string captcha_key = null,
+                                         string host = null, int? port = null)
         {
+            this.host = string.IsNullOrEmpty(host) ? null : host;
+            this.port = port;
+
             var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl);
+            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, host, port);
 
             // fill email and password
             var loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
             if (captcha_sid.HasValue)
                 loginForm.WithField("captcha_sid").FilledWith(captcha_sid.Value.ToString()).WithField("captcha_key").FilledWith(captcha_key);
-            var loginFormPostResult = WebCall.Post(loginForm);
+            var loginFormPostResult = WebCall.Post(loginForm, host, port);
 
             // fill code
             if (code != null)
             {
                 var codeForm = WebForm.From(loginFormPostResult).WithField("code").FilledWith(code());
-                loginFormPostResult = WebCall.Post(codeForm);
+                loginFormPostResult = WebCall.Post(codeForm, host, port);
             }
 
             var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
@@ -113,7 +122,7 @@
 
             // press allow button
             var authorizationForm = WebForm.From(loginFormPostResult);
-            var authorizationFormPostResult = WebCall.Post(authorizationForm);
+            var authorizationFormPostResult = WebCall.Post(authorizationForm, host, port);
 
             return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
         }
