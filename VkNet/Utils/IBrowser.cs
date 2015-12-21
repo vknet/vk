@@ -38,9 +38,11 @@
         /// <param name="code">Провайдер кода для двухфакторной авторизации.</param>
         /// <param name="captchaSid">Индентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи.</param>
+        /// <param name="host">Имя узла прокси-сервера.</param>
+        /// <param name="port">Номер порта используемого Host.</param>
         /// <returns>
         /// Информация об авторизации приложения.
         /// </returns>
-        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey);
+        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey, string host, int? port);
     }
 }
