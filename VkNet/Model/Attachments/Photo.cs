@@ -141,12 +141,12 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Географическая широта отметки, заданная в градусах
 		/// </summary>
-		public double? Latitude;
+		public double? Latitude { get; set; }
 
 		/// <summary>
 		/// Географическая долгота отметки, заданная в градусах
 		/// </summary>
-		public double? Longitude;
+		public double? Longitude { get; set; }
 
 
 		/// <summary>

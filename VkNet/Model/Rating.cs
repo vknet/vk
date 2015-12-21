@@ -10,12 +10,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Количество звезд у продукта;.
 		/// </summary>
-		public long? Stars;
+		public long? Stars { get; set; }
 
 		/// <summary>
 		/// Количество отзывов о продукте;.
 		/// </summary>
-		public long? ReviewsCount;
+		public long? ReviewsCount { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

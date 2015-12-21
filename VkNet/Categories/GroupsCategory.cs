@@ -96,7 +96,11 @@ namespace VkNet.Categories
 			}
 			var response = _vk.Call("groups.get", parameters);
 			// в первой записи количество членов группы для (response["items"])
-			return !extended ? response.ToReadOnlyCollectionOf(id => new Group { Id = id }) : response["items"].ToReadOnlyCollectionOf<Group>(r => r);
+			if (!extended)
+			{
+				return response.ToReadOnlyCollectionOf(id => new Group {Id = id});
+			}
+			return  response["items"].ToReadOnlyCollectionOf<Group>(r => r);
 		}
 
 		/// <summary>

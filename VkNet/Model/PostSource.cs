@@ -27,12 +27,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Название платформы, если оно доступно: android, iphone, wphone.
 		/// </summary>
-		public Platform Platform;
+		public Platform Platform { get; set; }
 
 		/// <summary>
 		/// Cодержит внешнюю ссылку на ресурс, с которого была опубликована запись.
 		/// </summary>
-		public Uri Url;
+		public Uri Url { get; set; }
 		#region Методы
 		/// <summary>
 		/// Разобрать из json.

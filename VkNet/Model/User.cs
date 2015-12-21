@@ -40,7 +40,7 @@ namespace VkNet.Model
 		/// Возвращается при вызове без access_token, если пользователь установил настройку «Кому в интернете видна моя страница» — «Только пользователям ВКонтакте».
 		/// Обратите внимание, в этом случае дополнительные поля fields не возвращаются.
 		/// </summary>
-		public bool Hidden;
+		public bool Hidden { get; set; }
 		#endregion
 
 		#region Опциональные поля
@@ -373,122 +373,122 @@ namespace VkNet.Model
 		/// <summary>
 		/// id главной фотографии профиля пользователя в формате user_id+photo_id, например, 6492_192164258. В некоторых случаях (если фотография была установлена очень давно) это поле не возвращается.
 		/// </summary>
-		public string PhotoId;
+		public string PhotoId { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если страница пользователя верифицирована, 0 — если не верифицирована.
 		/// </summary>
-		public bool? Verified;
+		public bool? Verified { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если текущий пользователь установил фотографию для профиля.
 		/// </summary>
-		public bool? HasPhoto;
+		public bool? HasPhoto { get; set; }
 
 		/// <summary>
 		/// url квадратной фотографии пользователя, имеющей ширину 50 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_c.gif
 		/// </summary>
-		public Uri Photo50;
+		public Uri Photo50 { get; set; }
 
 		/// <summary>
 		/// url квадратной фотографии пользователя, имеющей ширину 100 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_b.gif.
 		/// </summary>
-		public Uri Photo100;
+		public Uri Photo100 { get; set; }
 
 		/// <summary>
 		/// url фотографии пользователя, имеющей ширину 200 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_a.gif.
 		/// </summary>
-		public Uri Photo200Orig;
+		public Uri Photo200Orig { get; set; }
 
 		/// <summary>
 		/// url квадратной фотографии пользователя, имеющей ширину 200 пикселей. Если фотография была загружена давно, изображения с такими размерами может не быть, в этом случае ответ не будет содержать этого поля.
 		/// </summary>
-		public Uri Photo200;
+		public Uri Photo200 { get; set; }
 
 		/// <summary>
 		/// url фотографии пользователя, имеющей ширину 400 пикселей. Если у пользователя отсутствует фотография такого размера, ответ не будет содержать этого поля.
 		/// </summary>
-		public Uri Photo400Orig;
+		public Uri Photo400Orig { get; set; }
 
 		/// <summary>
 		/// url квадратной фотографии пользователя с максимальной шириной. Может быть возвращена фотография, имеющая ширину как 200, так и 100 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_b.gif.
 		/// </summary>
-		public Uri PhotoMax;
+		public Uri PhotoMax { get; set; }
 
 		/// <summary>
 		/// url фотографии пользователя максимального размера. Может быть возвращена фотография, имеющая ширину как 400, так и 200 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_a.gif.
 		/// </summary>
-		public Uri PhotoMaxOrig;
+		public Uri PhotoMaxOrig { get; set; }
 
 		/// <summary>
 		/// Количество подписчиков пользователя.
 		/// </summary>
-		public long? FollowersCount;
+		public long? FollowersCount { get; set; }
 
 		/// <summary>
 		/// Информация о текущем роде занятия пользователя.
 		/// </summary>
-		public Occupation Occupation;
+		public Occupation Occupation { get; set; }
 
 		/// <summary>
 		/// Внешние сервисы, в которые настроен экспорт из ВК.
 		/// </summary>
-		public Exports Exports;
+		public Exports Exports { get; set; }
 
 		/// <summary>
 		/// Доступно ли комментирование стены (1 — доступно, 0 — недоступно).
 		/// </summary>
-		public bool WallComments;
+		public bool WallComments { get; set; }
 
 		/// <summary>
 		/// Информация о том, будет ли отправлено уведомление пользователю о заявке в друзья.
 		/// </summary>
-		public bool CanSendFriendRequest;
+		public bool CanSendFriendRequest { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если пользователь находится в закладках у текущего пользователя.
 		/// </summary>
-		public bool IsFavorite;
+		public bool IsFavorite { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если пользователь скрыт в новостях у текущего пользователя.
 		/// </summary>
-		public bool IsHiddenFromFeed;
+		public bool IsHiddenFromFeed { get; set; }
 
 		/// <summary>
 		/// Возвращает данные о точках, по которым вырезаны профильная и миниатюрная фотографии пользователя.
 		/// </summary>
-		public CropPhoto CropPhoto;
+		public CropPhoto CropPhoto { get; set; }
 
 		/// <summary>
 		/// 1 – пользователь друг, 2 – пользователь не в друзьях.
 		/// </summary>
-		public bool? IsFriend;
+		public bool? IsFriend { get; set; }
 
 		/// <summary>
 		/// Состояние дружбы с пользователями.
 		/// </summary>
-		public FriendStatus FriendStatus;
+		public FriendStatus FriendStatus { get; set; }
 
 		/// <summary>
 		/// Информация о карьере пользователя.
 		/// </summary>
-		public Career Career;
+		public Career Career { get; set; }
 
 		/// <summary>
 		/// Информация о военной службе пользователя.
 		/// </summary>
-		public Military Military;
+		public Military Military { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если текущий пользователь находится в черном списке у запрашиваемого пользователя.
 		/// </summary>
-		public bool Blacklisted;
+		public bool Blacklisted { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если запрашиваемый пользователь находится в черном списке у текущего пользователя.
 		/// </summary>
-		public bool BlacklistedByMe;
+		public bool BlacklistedByMe { get; set; }
 		#endregion
 
 		#region Методы

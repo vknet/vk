@@ -10,12 +10,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор валюты;.
 		/// </summary>
-		public long? Id;
+		public long? Id { get; set; }
 
 		/// <summary>
 		/// Буквенное обозначение валюты;.
 		/// </summary>
-		public string Сurrency;
+		public string Сurrency { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

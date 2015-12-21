@@ -10,12 +10,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Номер мобильного телефона пользователя (только для Standalone-приложений).
 		/// </summary>
-		public string MobilePhone;
+		public string MobilePhone { get; set; }
 
 		/// <summary>
 		/// Дополнительный номер телефона пользователя.
 		/// </summary>
-		public string HomePhone;
+		public string HomePhone { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

@@ -16,7 +16,7 @@ namespace VkNet.Model.Attachments
         }
 
 		/// <summary>
-		/// идентификатор набора.
+		/// Идентификатор набора.
 		/// </summary>
 		public long? ProductId { get; set; }
 
@@ -38,7 +38,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// url изображения с высотой 352px.
 		/// </summary>
-		public string Photo352;
+		public string Photo352 { get; set; }
 		
 		/// <summary>
 		/// Ширина в px

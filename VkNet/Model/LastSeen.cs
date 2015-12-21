@@ -11,12 +11,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время последнего посещения в формате unixtime. .
 		/// </summary>
-		public DateTime? Time;
+		public DateTime? Time { get; set; }
 
 		/// <summary>
 		/// Тип платформы, через которую был осуществлён последний вход. Подробнее cмотрите на странице Подключение к LongPoll серверу. .
 		/// </summary>
-		public string Platform;
+		public string Platform { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

@@ -10,7 +10,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Цена
 		/// </summary>
-		public Price Price;
+		public Price Price { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

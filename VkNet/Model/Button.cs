@@ -11,12 +11,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Название кнопки.
 		/// </summary>
-		public string Title;
+		public string Title { get; set; }
 
 		/// <summary>
 		/// Ссылка на которую ведет кнопка.
 		/// </summary>
-		public Uri Url;
+		public Uri Url { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

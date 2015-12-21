@@ -69,27 +69,27 @@
 		/// <summary>
 		/// Информация о месте (если доступно).
 		/// </summary>
-		public Geo Geo;
+		public Geo Geo { get; set; }
 
 		/// <summary>
 		/// Если запись была опубликована от имени группы и подписана пользователем, то в поле содержится идентификатор её автора
 		/// </summary>
-		public long? SignerId;
+		public long? SignerId { get; set; }
 
 		/// <summary>
 		/// Если запись является копией записи с чужой стены, то в поле содержится идентификатор владельца стены, у которого была скопирована запись.
 		/// </summary>
-		public long? CopyOwnerId;
+		public long? CopyOwnerId { get; set; }
 
 		/// <summary>
 		/// Если запись является копией записи с чужой стены, то в поле содержится идентификатор скопированной записи на стене ее владельца.
 		/// </summary>
-		public long? CopyPostId;
+		public long? CopyPostId { get; set; }
 
 		/// <summary>
 		/// Если запись является копией записи с чужой стены и при её копировании был добавлен комментарий, его текст содержится в данном поле.
 		/// </summary>
-		public string CopyText;
+		public string CopyText { get; set; }
 
 		internal static Wall FromJson(VkResponse response)
 		{

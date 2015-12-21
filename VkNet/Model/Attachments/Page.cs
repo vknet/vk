@@ -105,7 +105,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Количество просмотров вики-страницы.
 		/// </summary>
-		public long? Views;
+		public long? Views { get; set; }
 		#endregion
 
 		#region Методы

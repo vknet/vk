@@ -10,27 +10,27 @@ namespace VkNet.Model
 		/// <summary>
 		/// Номер части.
 		/// </summary>
-		public string Unit;
+		public string Unit { get; set; }
 
 		/// <summary>
 		/// Идентификатор части в базе данных.
 		/// </summary>
-		public ulong? UnitId;
+		public ulong? UnitId { get; set; }
 
 		/// <summary>
 		/// Идентификатор страны, в которой находится часть.
 		/// </summary>
-		public long? CountryId;
+		public long? CountryId { get; set; }
 
 		/// <summary>
 		/// Год начала службы.
 		/// </summary>
-		public int? From;
+		public int? From { get; set; }
 
 		/// <summary>
 		/// Год окончания службы.
 		/// </summary>
-		public int? Until;
+		public int? Until { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

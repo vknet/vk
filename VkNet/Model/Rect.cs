@@ -10,19 +10,19 @@ namespace VkNet.Model
 		/// <summary>
 		/// x
 		/// </summary>
-		public uint X;
+		public uint X { get; set; }
 		/// <summary>
 		/// x2
 		/// </summary>
-		public uint X2;
+		public uint X2 { get; set; }
 		/// <summary>
 		/// y
 		/// </summary>
-		public uint Y;
+		public uint Y { get; set; }
 		/// <summary>
 		/// y2
 		/// </summary>
-		public uint Y2;
+		public uint Y2 { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

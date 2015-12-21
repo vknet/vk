@@ -48,42 +48,42 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Подпись ссылки (если имеется).
 		/// </summary>
-		public string Caption;
+		public string Caption { get; set; }
 
 		/// <summary>
 		/// Фото (если имеется).
 		/// </summary>
-		public Photo Photo;
+		public Photo Photo { get; set; }
 
 		/// <summary>
 		/// Является ли ссылкой на внешний ресурс (если имеется).
 		/// </summary>
-		public bool? IsExternal;
+		public bool? IsExternal { get; set; }
 
 		/// <summary>
 		/// Продукт.
 		/// </summary>
-		public Product Product;
+		public Product Product { get; set; }
 
 		/// <summary>
 		/// Рейтинг.
 		/// </summary>
-		public Rating Rating;
+		public Rating Rating { get; set; }
 
 		/// <summary>
 		/// Приложение.
 		/// </summary>
-		public Application Application;
+		public Application Application { get; set; }
 
 		/// <summary>
 		/// Кнопка.
 		/// </summary>
-		public Button Button;
+		public Button Button { get; set; }
 
 		/// <summary>
 		/// Адрес страницы для предпросмотра содержимого страницы.
 		/// </summary>
-		public Uri PreviewUrl;
+		public Uri PreviewUrl { get; set; }
 
 		/// <summary>
 		/// Преобразовать к строке.

@@ -11,17 +11,17 @@ namespace VkNet.Model
 		/// <summary>
 		/// Объект photo фотографии пользователя из которой вырезается профильная аватарка.
 		/// </summary>
-		public Photo Photo;
+		public Photo Photo { get; set; }
 
 		/// <summary>
 		/// Вырезанная фотография пользователя, поля: x, y, x2, y2, координаты указаны в процентах.
 		/// </summary>
-		public Rect Crop;
+		public Rect Crop { get; set; }
 
 		/// <summary>
 		/// Миниатюрная квадратная фотография, вырезанная из фотографии Crop: x, y, x2, y2, координаты также указаны в процентах;
 		/// </summary>
-		public Rect Rect;
+		public Rect Rect { get; set; }
 
 		
 		/// <summary>

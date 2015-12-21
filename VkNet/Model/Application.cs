@@ -10,12 +10,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Магазин.
 		/// </summary>
-		public Store Store;
+		public Store Store { get; set; }
 
 		/// <summary>
 		/// Идентификатор приложения в магазине;.
 		/// </summary>
-		public long? AppId;
+		public long? AppId { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

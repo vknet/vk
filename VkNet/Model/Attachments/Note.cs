@@ -45,7 +45,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Адрес страницы для отображения заметки.
 		/// </summary>
-		public Uri ViewUrl;
+		public Uri ViewUrl { get; set; }
 		#region Методы
 
 		internal static Note FromJson(VkResponse response)

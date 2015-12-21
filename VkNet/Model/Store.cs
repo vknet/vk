@@ -10,12 +10,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор магазина;.
 		/// </summary>
-		public long? Id;
+		public long? Id { get; set; }
 
 		/// <summary>
 		/// Название магазина;.
 		/// </summary>
-		public string Name;
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

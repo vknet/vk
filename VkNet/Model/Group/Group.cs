@@ -225,12 +225,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Возвращается 1, если сообщество скрыто в новостях у текущего пользователя.
 		/// </summary>
-		public bool IsHiddenFromFeed;
+		public bool IsHiddenFromFeed { get; set; }
 
 		/// <summary>
 		/// Информация о главной секции в сообществе
 		/// </summary>
-		public MainSection? MainSection;
+		public MainSection? MainSection { get; set; }
 		#endregion
 
 		#region Методы

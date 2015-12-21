@@ -122,17 +122,17 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1. Обратите внимание, в этом случае в поле duration содержится значение 0.
 		/// </summary>
-		public bool Live;
+		public bool Live { get; set; }
 
 		/// <summary>
 		/// Поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
 		/// </summary>
-		public bool Processing;
+		public bool Processing { get; set; }
 
 		/// <summary>
 		/// Дата добавления видеозаписи пользователем или группой в формате unixtime.
 		/// </summary>
-		public DateTime? AddingDate;
+		public DateTime? AddingDate { get; set; }
 		#region Методы
 		/// <summary>
 		/// Разобрать из json.

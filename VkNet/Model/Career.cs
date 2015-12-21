@@ -10,42 +10,42 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор сообщества (если доступно, иначе company).
 		/// </summary>
-		public long? GroupId;
+		public long? GroupId { get; set; }
 
 		/// <summary>
 		/// Название организации (если доступно, иначе group_id).
 		/// </summary>
-		public string Company;
+		public string Company { get; set; }
 
 		/// <summary>
 		/// Идентификатор страны.
 		/// </summary>
-		public long CountryId;
+		public long CountryId { get; set; }
 
 		/// <summary>
 		/// Идентификатор города (если доступно, иначе city_name).
 		/// </summary>
-		public long CityId;
+		public long CityId { get; set; }
 
 		/// <summary>
 		/// Название города (если доступно, иначе city_id).
 		/// </summary>
-		public string CityName;
+		public string CityName { get; set; }
 
 		/// <summary>
 		/// Год начала работы.
 		/// </summary>
-		public int From;
+		public int From { get; set; }
 
 		/// <summary>
 		/// Год окончания работы.
 		/// </summary>
-		public int? Until;
+		public int? Until { get; set; }
 
 		/// <summary>
 		/// Должность.
 		/// </summary>
-		public string Position;
+		public string Position { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

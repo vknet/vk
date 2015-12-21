@@ -11,17 +11,17 @@ namespace VkNet.Model
 		/// <summary>
 		/// Название школы, вуза или места работы
 		/// </summary>
-		public string Name;
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Идентификатор школы, вуза, группы компании (в которой пользователь работает).
 		/// </summary>
-		public long Id;
+		public long Id { get; set; }
 
 		/// <summary>
 		/// Информация о текущем роде занятия пользователя.
 		/// </summary>
-		public OccupationType Type;
+		public OccupationType Type { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

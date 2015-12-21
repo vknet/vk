@@ -179,7 +179,7 @@
 		/// <summary>
 		/// Информация о том, может ли текущий пользователь закрепить запись (1 — может, 0 — не может)
 		/// </summary>
-		public bool CanPin;
+		public bool CanPin { get; set; }
 		#endregion
 
 		#region Методы

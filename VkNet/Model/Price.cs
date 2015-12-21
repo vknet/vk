@@ -10,17 +10,17 @@ namespace VkNet.Model
 		/// <summary>
 		/// Целочисленное значение цены, умноженное на 100.
 		/// </summary>
-		public long? Amount;
+		public long? Amount { get; set; }
 
 		/// <summary>
 		/// Валюта.
 		/// </summary>
-		public Currency Currency;
+		public Currency Currency { get; set; }
 
 		/// <summary>
 		/// Строка с локализованной ценой и валютой.
 		/// </summary>
-		public string Text;
+		public string Text { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

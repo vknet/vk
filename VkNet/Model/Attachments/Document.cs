@@ -52,7 +52,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Дата добавления в формате unixtime.
 		/// </summary>
-		public DateTime? Date;
+		public DateTime? Date { get; set; }
 
 		#region Методы
 		/// <summary>

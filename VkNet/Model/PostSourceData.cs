@@ -10,27 +10,27 @@ namespace VkNet.Model
 		/// <summary>
 		/// Изменение статуса под именем пользователя.
 		/// </summary>
-		public string ProfileActivity;
+		public string ProfileActivity { get; set; }
 
 		/// <summary>
 		/// Изменение профильной фотографии пользователя.
 		/// </summary>
-		public string ProfilePhoto;
+		public string ProfilePhoto { get; set; }
 
 		/// <summary>
 		/// Виджет комментариев.
 		/// </summary>
-		public string Comments;
+		public string Comments { get; set; }
 
 		/// <summary>
 		/// Виджет «Мне нравится».
 		/// </summary>
-		public string Like;
+		public string Like { get; set; }
 
 		/// <summary>
 		/// Виджет опросов.
 		/// </summary>
-		public string Poll;
+		public string Poll { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

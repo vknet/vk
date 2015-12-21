@@ -10,19 +10,19 @@ namespace VkNet.Model
 		/// <summary>
 		/// Twitter
 		/// </summary>
-		public bool Twitter;
+		public bool Twitter { get; set; }
 		/// <summary>
 		/// Facebook
 		/// </summary>
-		public bool Facebook;
+		public bool Facebook { get; set; }
 		/// <summary>
 		/// LiveJournal
 		/// </summary>
-		public bool Livejournal;
+		public bool Livejournal { get; set; }
 		/// <summary>
 		/// Instagram
 		/// </summary>
-		public bool Instagram;
+		public bool Instagram { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
