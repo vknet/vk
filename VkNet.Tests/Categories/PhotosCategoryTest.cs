@@ -530,7 +530,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void SaveWallPhoto_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=photo&server=5678&hash=hash_hash&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=[]&server=631223&hash=163abf8b9e4e4513577012d5275cafbb&v=5.42&access_token=token";
 			const string json = @"{
     'response': [
         {
@@ -549,8 +549,11 @@ namespace VkNet.Tests.Categories
         }
     ]
 }";
+	        const string response = @"{""server"":631223
+				,""photo"":""[]""
+				,""hash"":""163abf8b9e4e4513577012d5275cafbb""}";
 
-            var result = GetMockedPhotosCategory(url, json).SaveWallPhoto("photo", 1234, 123, 5678, "hash_hash");
+			var result = GetMockedPhotosCategory(url, json).SaveWallPhoto(response, 1234, 123);
 
             result.Count.ShouldEqual(1);
 

@@ -317,28 +317,30 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="userId">Идентификатор пользователя, на стену которого нужно сохранить фотографию</param>
 		/// <param name="groupId">Идентификатор сообщества, на стену которого нужно сохранить фотографию</param>
-		/// <param name="photo">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
-		/// <param name="server">Параметр, возвращаемый в результате загрузки фотографии на сервер. целое число</param>
-		/// <param name="hash">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
-		/// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
+		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
+		// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveWallPhoto"/>.
 		/// </remarks>
 		[ApiMethodName("photos.saveWallPhoto", Skip = true)]
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<Photo> SaveWallPhoto(string photo, ulong? userId = null, ulong? groupId = null, long? server = null, string hash = null)
+		[ApiVersion("5.42")]
+		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId = null, ulong? groupId = null)
 		{
+			var responseJson = JObject.Parse(response);
+			var server = responseJson["server"].ToString();
+			var hash = responseJson["hash"].ToString();
+			var photo = responseJson["photo"].ToString();
 			var parameters = new VkParameters
 				{
-					{"user_id", userId},
-					{"group_id", groupId},
-					{"photo", photo},
-					{"server", server},
-					{"hash", hash}
+					{ "user_id", userId },
+					{ "group_id", groupId },
+					{ "photo", photo },
+					{ "server", server },
+					{ "hash", hash }
 				};
 
-			VkResponseArray response = _vk.Call("photos.saveWallPhoto", parameters);
-			return response.ToReadOnlyCollectionOf<Photo>(x => x);
+			VkResponseArray responseVk = _vk.Call("photos.saveWallPhoto", parameters);
+			return responseVk.ToReadOnlyCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
@@ -383,7 +385,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveMessagesPhoto"/>.
 		/// </remarks>
 		[ApiVersion("5.42")]
-		public Photo SaveMessagesPhoto(string response)
+		public ReadOnlyCollection<Photo> SaveMessagesPhoto(string response)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
@@ -396,7 +398,7 @@ namespace VkNet.Categories
 					{ "server", server }
 				};
 			VkResponseArray result = _vk.Call("photos.saveMessagesPhoto", parameters);
-			return result.FirstOrDefault();
+			return result.ToReadOnlyCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
