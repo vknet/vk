@@ -199,7 +199,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getUploadServer"/>.
 		/// </remarks>
 		[ApiMethodName("photos.getUploadServer", Skip = true)]
-		[ApiVersion("5.37")]
+		[ApiVersion("5.42")]
 		public UploadServerInfo GetUploadServer(long albumId, long? groupId = null)
 		{
 			var parameters = new VkParameters
@@ -485,7 +485,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.save" />.
 		/// </remarks>
 		[ApiMethodName("photos.save", Skip = true)]
-		[ApiVersion("5.37")]
+		[ApiVersion("5.42")]
 		public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
 		{
 			VkResponseArray response = _vk.Call("photos.save", @params);

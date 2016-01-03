@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using Newtonsoft.Json.Linq;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -22,19 +23,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Параметр, возвращаемый в результате загрузки фотографий на сервер.
 		/// </summary>
-		public long? Server
-		{ get; set; }
-
-		/// <summary>
-		/// Параметр, возвращаемый в результате загрузки фотографий на сервер.
-		/// </summary>
-		public string PhotosList
-		{ get; set; }
-
-		/// <summary>
-		/// Параметр, возвращаемый в результате загрузки фотографий на сервер.
-		/// </summary>
-		public string Hash
+		public string SaveFileResponse
 		{ get; set; }
 
 		/// <summary>
@@ -62,13 +51,17 @@ namespace VkNet.Model.RequestParams
 		/// <returns></returns>
 		internal static VkParameters ToVkParameters(PhotoSaveParams p)
 		{
+			var responseJson = JObject.Parse(p.SaveFileResponse);
+			var server = responseJson["server"].ToString();
+			var hash = responseJson["hash"].ToString();
+			var photosList = responseJson["photos_list"].ToString();
 			var parameters = new VkParameters
 			{
 				{ "album_id", p.AlbumId },
 				{ "group_id", p.GroupId },
-				{ "server", p.Server },
-				{ "photos_list", p.PhotosList },
-				{ "hash", p.Hash },
+				{ "server", server },
+				{ "photos_list", photosList },
+				{ "hash", hash },
 				{ "latitude", p.Latitude },
 				{ "longitude", p.Longitude },
 				{ "caption", p.Caption }
