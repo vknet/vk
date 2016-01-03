@@ -5,7 +5,23 @@ permalink: photo/saveMessagesPhoto/
 comments: true
 ---
 # Метод Photos.SaveMessagesPhoto
-Сохраняет фотографию после успешной загрузки на URI, полученный методом photos.getMessagesUploadServer.
+Сохраняет фотографию после успешной загрузки на URI, полученный методом `photos.getMessagesUploadServer`.
+### Синтаксис
+``` csharp
+public Photo SaveMessagesPhoto(string response)
+```
+### Параметры
+* response - После успешной загрузки возвращает необходимые данные для сохранения в формате JSON
+### Результат
+Возвращает объект фотографии.
 
-## Описание
-Данный раздел справки еще не реализован. Вы  можете помочь проекту, для этого перейдите по ссылке чтобы связаться с нами [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+### Пример
+``` csharp
+// Получить адрес сервера для загрузки.
+var uploadServer = _api.Photo.GetMessagesUploadServer();
+// Загрузить фотографию.
+var wc = new WebClient();
+var responseImg = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"vk.png"));
+// Сохранить загруженную фотографию
+var photo = _api.Photo.SaveMessagesPhoto(responseImg);
+```
