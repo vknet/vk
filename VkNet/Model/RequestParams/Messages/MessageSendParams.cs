@@ -5,11 +5,11 @@ using System.Web;
 #endif
 
 using System.Collections.Generic;
-using System.Net.Mail;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Model.RequestParams
 {
-    using Utils;
+	using Utils;
 
 	/// <summary>
 	/// Параметры метода messages.send
@@ -67,7 +67,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Медиавложения к личному сообщению, перечисленные через запятую.
 		/// </summary>
-		public Attachment Attachment
+		public IEnumerable<MediaAttachment> Attachments
 		{ get; set; }
 
 		/// <summary>
@@ -88,21 +88,21 @@ namespace VkNet.Model.RequestParams
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
 		internal static VkParameters ToVkParameters(MessageSendParams p)
-        {
-            return new VkParameters
-            {
-                { "user_id", p.UserId },
-                { "domain", p.Domain },
-                { "chat_id", p.ChatId },
-                { "user_ids", p.UserIds },
-                { "message", HttpUtility.UrlEncode(p.Message) },
-                { "guid", p.Guid },
-                { "lat", p.Lat },
-                { "long", p.Longitude },
-                { "attachment", p.Attachment },
-                { "forward_messages", p.ForwardMessages },
-                { "sticker_id", p.StickerId }
-            };
-        }
-    }
+		{
+			return new VkParameters
+			{
+				{ "user_id", p.UserId },
+				{ "domain", p.Domain },
+				{ "chat_id", p.ChatId },
+				{ "user_ids", p.UserIds },
+				{ "message", HttpUtility.UrlEncode(p.Message) },
+				{ "guid", p.Guid },
+				{ "lat", p.Lat },
+				{ "long", p.Longitude },
+				{ "attachment", p.Attachments },
+				{ "forward_messages", p.ForwardMessages },
+				{ "sticker_id", p.StickerId }
+			};
+		}
+	}
 }

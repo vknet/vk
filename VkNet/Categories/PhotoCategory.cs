@@ -1,4 +1,6 @@
-﻿using VkNet.Model.RequestParams;
+﻿using System.Linq;
+using Newtonsoft.Json.Linq;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
 {
@@ -375,21 +377,26 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Сохраняет фотографию после успешной загрузки на URI, полученный методом <see cref="GetMessagesUploadServer"/>.
 		/// </summary>
-		/// <param name="photo">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
+		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
 		/// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveMessagesPhoto"/>.
 		/// </remarks>
-		[ApiMethodName("photos.saveMessagesPhoto", Skip = true)]
-		[ApiVersion("5.37")]
-		public Photo SaveMessagesPhoto(string photo)
+		[ApiVersion("5.42")]
+		public Photo SaveMessagesPhoto(string response)
 		{
+			var responseJson = JObject.Parse(response);
+			var server = responseJson["server"].ToString();
+			var hash = responseJson["hash"].ToString();
+			var photo = responseJson["photo"].ToString();
 			var parameters = new VkParameters
 				{
-					{"photo", photo}
+					{ "photo", photo },
+					{ "hash", hash },
+					{ "server", server }
 				};
-
-			return _vk.Call("photos.saveMessagesPhoto", parameters);
+			VkResponseArray result = _vk.Call("photos.saveMessagesPhoto", parameters);
+			return result.FirstOrDefault();
 		}
 
 		/// <summary>
