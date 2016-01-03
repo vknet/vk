@@ -131,7 +131,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Хеш изображения.
 		/// </summary>
-		public Uri PhotoHash { get; set; }
+		public string PhotoHash { get; set; }
 
 		/// <summary>
 		/// Размеры фотографий.

@@ -234,7 +234,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getOwnerPhotoUploadServer" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.42")]
 		public UploadServerInfo GetOwnerPhotoUploadServer(long? ownerId = null)
 		{
 			var parameters = new VkParameters
@@ -285,28 +285,34 @@ namespace VkNet.Categories
 		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте метод SaveOwnerPhoto")]
 		public Photo SaveProfilePhoto(string server = null, string hash = null, string photo = null)
 		{
-			return SaveOwnerPhoto(server, hash, photo);
+			var response = @"{
+				""server"": " + server + @"
+				""photo"":" + photo + @"
+				""hash"": " + hash + @"
+			}";
+			return SaveOwnerPhoto(response);
 		}
 
 		/// <summary>
 		/// Сохраняет фотографию пользователя после успешной загрузки.
 		/// </summary>
-		/// <param name="server">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
-		/// <param name="hash">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
-		/// <param name="photo">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
+		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
 		/// <returns>После успешного выполнения возвращает объект, содержащий поля photo_hash и photo_src (при работе через VK.api метод вернёт поля photo_src, photo_src_big, photo_src_small). Параметр photo_hash необходим для подтверждения пользователем изменения его фотографии через вызов метода saveProfilePhoto Javascript API. Поле photo_src содержит путь к загруженной фотографии. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveOwnerPhoto"/>.
 		/// </remarks>
-		[ApiMethodName("photos.saveOwnerPhoto", Skip = true)]
-		[ApiVersion("5.37")]
-		public Photo SaveOwnerPhoto(string server = null, string hash = null, string photo = null)
+		[ApiVersion("5.42")]
+		public Photo SaveOwnerPhoto(string response)
 		{
+			var responseJson = JObject.Parse(response);
+			var server = responseJson["server"].ToString();
+			var hash = responseJson["hash"].ToString();
+			var photo = responseJson["photo"].ToString();
 			var parameters = new VkParameters
 				{
-					{"server", server},
-					{"hash", hash},
-					{"photo", photo}
+					{ "server", server },
+					{ "hash", hash },
+					{ "photo", photo }
 				};
 
 			return _vk.Call("photos.saveOwnerPhoto", parameters);
@@ -352,7 +358,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getWallUploadServer"/>.
 		/// </remarks>
 		[ApiMethodName("photos.getWallUploadServer", Skip = true)]
-		[ApiVersion("5.37")]
+		[ApiVersion("5.42")]
 		public UploadServerInfo GetWallUploadServer(long? groupId = null)
 		{
 			var parameters = new VkParameters
@@ -370,7 +376,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getMessagesUploadServer"/>.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.42")]
 		public UploadServerInfo GetMessagesUploadServer()
 		{
 			return _vk.Call("photos.getMessagesUploadServer", VkParameters.Empty);
