@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using Newtonsoft.Json.Linq;
+
+namespace VkNet.Categories
 {
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
@@ -115,7 +117,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.getUploadServer"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.42")]
 		public UploadServerInfo GetUploadServer(long? groupId = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -160,12 +162,13 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.save"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.42")]
 		public ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null, string captchaKey = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => file);
 			VkErrors.ThrowIfNullOrEmpty(() => title);
-
+			var responseJson = JObject.Parse(file);
+			file = responseJson["file"].ToString();
 			var parameters = new VkParameters
 			{
 				{ "file", file },

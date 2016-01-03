@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetProfileUploadServer_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=5.42&access_token=token";
 			const string json =
                 @"{
                     'response': {
@@ -42,7 +42,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetMessagesUploadServer_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getMessagesUploadServer?v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getMessagesUploadServer?v=5.42&access_token=token";
 			const string json =
                 @"{
                     'response': {
