@@ -1,4 +1,6 @@
 ﻿using System.Security.Policy;
+using System.Web;
+using Newtonsoft.Json.Linq;
 
 namespace VkNet.Categories
 {
@@ -11,7 +13,7 @@ namespace VkNet.Categories
 	using Enums;
 	using Enums.Filters;
 	using Model;
-    using Model.RequestParams;
+	using Model.RequestParams;
 	using Model.Attachments;
 	using Utils;
 
@@ -320,27 +322,27 @@ namespace VkNet.Categories
 			return response.Skip(1).ToReadOnlyCollectionOf<Audio>(r => r);
 		}
 
-        /// <summary>
-        /// Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
-        /// </summary>
-        /// <param name="params">Критерии поиска</param>
-        /// <param name="totalCount">Общее кол-во аудиозаписей, найденных по этим критериям</param>
-        /// <returns>Список объектов класса Audio.</returns>
+		/// <summary>
+		/// Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
+		/// </summary>
+		/// <param name="params">Критерии поиска</param>
+		/// <param name="totalCount">Общее кол-во аудиозаписей, найденных по этим критериям</param>
+		/// <returns>Список объектов класса Audio.</returns>
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
 		/// </remarks>
-        public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out ulong totalCount)
-        {
-            if (string.IsNullOrEmpty(@params.Query))
-                throw new ArgumentException("Query is null or empty.", "query");
+		public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out ulong totalCount)
+		{
+			if (string.IsNullOrEmpty(@params.Query))
+				throw new ArgumentException("Query is null or empty.", "query");
 
-            VkResponseArray response = _vk.Call("audio.search", @params);
+			VkResponseArray response = _vk.Call("audio.search", @params);
 
-            totalCount = response[0];
+			totalCount = response[0];
 
-            return response.Skip(1).ToReadOnlyCollectionOf<Audio>(r => r);
-        }
+			return response.Skip(1).ToReadOnlyCollectionOf<Audio>(r => r);
+		}
 
 		/// <summary>
 		/// Копирует аудиозапись на страницу пользователя или группы.
@@ -667,30 +669,31 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Сохраняет аудиозаписи после успешной загрузки.
 		/// </summary>
-		/// <param name="server">Параметр, возвращаемый в результате загрузки аудиофайла на сервер. </param>
-		/// <param name="audio">Параметр, возвращаемый в результате загрузки аудиофайла на сервер.</param>
-		/// <param name="hash">Параметр, возвращаемый в результате загрузки аудиофайла на сервер.</param>
+		/// <param name="response">Параметр, возвращаемый в результате загрузки аудиофайла на сервер.</param>
 		/// <param name="artist">Автор композиции. По умолчанию берется из ID3 тегов.</param>
 		/// <param name="title">Название композиции. По умолчанию берется из ID3 тегов. </param>
 		/// <returns>Возвращает массив из объектов с загруженными аудиозаписями.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.save"/>.
 		/// </remarks>
-		[ApiVersion("5.21")]
-		public ReadOnlyCollection<Audio> Save(long server, string audio, string hash = null, string artist = null, string title = null)
+		[ApiVersion("5.42")]
+		public Audio Save(string response, string artist = null, string title = null)
 		{
-			VkErrors.ThrowIfNullOrEmpty(() => audio);
+			VkErrors.ThrowIfNullOrEmpty(() => response);
+			var responseJson = JObject.Parse(response);
+			var server = responseJson["server"].ToString();
+			var hash = responseJson["hash"].ToString();
+			var audio = responseJson["audio"].ToString();
 			var parameters = new VkParameters
 			{
-				{"server", server},
-				{"audio", audio},
-				{"hash", hash},
-				{"artist", artist},
-				{"title", title}
+				{ "server", server },
+				{ "audio", HttpUtility.UrlEncode(audio) },
+				{ "hash", hash },
+				{ "artist", artist },
+				{ "title", title }
 			};
-
-			VkResponseArray response = _vk.Call("audio.save", parameters);
-			return response.ToReadOnlyCollectionOf<Audio>(x => x);
+			
+			return _vk.Call("audio.save", parameters);
 		}
 
 
