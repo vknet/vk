@@ -49,6 +49,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -280,6 +281,11 @@
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Model\FaveVideoEx.cs" />
     <Compile Include="Model\WallGetObject.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\ApiMethodNameAttribute.cs" />
     <Compile Include="Utils\ApiVersionAttribute.cs" />
     <Compile Include="Utils\DefaultValueAttribute.cs" />
@@ -376,6 +382,12 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelToVkParametrsCastGenerator.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
