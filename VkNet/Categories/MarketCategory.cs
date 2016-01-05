@@ -106,6 +106,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getAlbums" />.
 		/// </remarks>
+		[ApiVersion("5.42")]
 		public ReadOnlyCollection<ProductAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
 		{
 			var parameters = new VkParameters {
@@ -118,26 +119,27 @@ namespace VkNet.Categories
 		}
 
 
-		///// <summary>
-		///// Метод возвращает данные подборки с товарами.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца подборки. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="album_ids">Идентификаторы подборок, данные о которых нужно получить. список положительных чисел, разделенных запятыми, обязательный параметр (список положительных чисел, разделенных запятыми, обязательный параметр).</param>
-		///// <returns>
-		///// Возвращает список объектов album. 
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getAlbumById" />.
-		///// </remarks>
-		//public bool GetAlbumById(string owner_id, string album_ids)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "album_ids", album_ids },
-		//	};
+		/// <summary>
+		/// Метод возвращает данные подборки с товарами.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца подборки. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="albumIds">Идентификаторы подборок, данные о которых нужно получить. список положительных чисел, разделенных запятыми, обязательный параметр (список положительных чисел, разделенных запятыми, обязательный параметр).</param>
+		/// <returns>
+		/// Возвращает список объектов album. 
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getAlbumById" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public ReadOnlyCollection<ProductAlbum> GetAlbumById(long ownerId, IEnumerable<long> albumIds)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "album_ids", albumIds },
+			};
 
-		//	return _vk.Call("market.getAlbumById", parameters);
-		//}
+			return _vk.Call("market.getAlbumById", parameters).ToReadOnlyCollectionOf<ProductAlbum>(x => x);
+		}
 
 
 		///// <summary>
