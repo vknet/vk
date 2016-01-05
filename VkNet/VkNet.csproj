@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\MarketCategory.cs" />
     <Compile Include="Enums\MainSection.cs" />
     <Compile Include="Enums\SafetyEnums\Deactivated.cs" />
     <Compile Include="Enums\SafetyEnums\Platform.cs" />
@@ -178,6 +179,9 @@
     <Compile Include="Model\PostSourceData.cs" />
     <Compile Include="Model\Price.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Enums\ProductAvailability.cs" />
+    <Compile Include="Model\ProductCategory.cs" />
+    <Compile Include="Model\ProductCategorySection.cs" />
     <Compile Include="Model\Rating.cs" />
     <Compile Include="Model\Rect.cs" />
     <Compile Include="Model\CropPhoto.cs" />
@@ -291,7 +295,7 @@
       <DependentUpon>ModelToVkParametrsCastGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\Tuple.cs" />
-    <Compile Include="Utils\VkResponseToManualEnumCastsGenerator.cs">
+    <Compile Include="Utils\VkResponseToManualEnumCastsGenerator1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VkResponseToManualEnumCastsGenerator.tt</DependentUpon>
