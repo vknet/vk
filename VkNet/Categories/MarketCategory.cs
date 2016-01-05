@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Model;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -39,6 +40,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.get" />.
 		/// </remarks>
+		[ApiVersion("5.42")]
 		public ReadOnlyCollection<Product> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
 		{
 			var parameters = new VkParameters {
@@ -46,7 +48,7 @@ namespace VkNet.Categories
 				{ "album_id", albumId },
 				{ "count", count },
 				{ "offset", offset },
-				{ "extended", extended },
+				{ "extended", extended }
 			};
 
 			return _vk.Call("market.get", parameters).ToReadOnlyCollectionOf<Product>(x => x);
@@ -63,55 +65,33 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getById" />.
 		/// </remarks>
+		[ApiVersion("5.42")]
 		public ReadOnlyCollection<Product> GetById(IEnumerable<string> itemIds, bool extended = false)
 		{
 			var parameters = new VkParameters {
 				{ "item_ids", itemIds },
-				{ "extended", extended },
+				{ "extended", extended }
 			};
 
 			return _vk.Call("market.getById", parameters).ToReadOnlyCollectionOf<Product>(x => x);
 		}
 
 
-		///// <summary>
-		///// Поиск товаров в каталоге сообщества..
-		///// </summary>
-		///// <param name="owner_id">Идентификатор сообщества, которому принадлежат товары. целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="album_id">Идентификатор подборки, товары из которой нужно вернуть. положительное число, по умолчанию 0 (положительное число, по умолчанию 0).</param>
-		///// <param name="q">Строка поискового запроса. Например, зеленые тапочки. строка (строка).</param>
-		///// <param name="price_from">Минимальное значение цены товаров. Например, 100. положительное число (положительное число).</param>
-		///// <param name="price_to">Максимальное значение цены товаров. Например, 14100. положительное число (положительное число).</param>
-		///// <param name="tags">Перечисленные через запятую идентификаторы меток. список целых чисел, разделенных запятыми (список целых чисел, разделенных запятыми).</param>
-		///// <param name="sort">Вид сортировки.  0 — пользовательская расстановка,  1 — по дате добавления товара, 2 — по цене, 3 — по популярности. целое число, по умолчанию 0 (целое число, по умолчанию 0).</param>
-		///// <param name="rev">0 — не использовать обратный порядок, 1 — использовать обратный порядок. положительное число, по умолчанию 0 (положительное число, по умолчанию 0).</param>
-		///// <param name="offset">Смещение относительно первого найденного товара для выборки определенного подмножества. положительное число (положительное число).</param>
-		///// <param name="count">Количество возвращаемых товаров. положительное число, по умолчанию 20, максимальное значение 200 (положительное число, по умолчанию 20, максимальное значение 200).</param>
-		///// <param name="extended">1 — будут возвращены дополнительные поля likes, can_comment, can_repost, ''photos'''. По умолчанию эти поля не возвращается. флаг, может принимать значения 1 или 0, по умолчанию 0 (флаг, может принимать значения 1 или 0, по умолчанию 0).</param>
-		///// <returns>
-		///// Возвращает список объектов item..
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.search" />.
-		///// </remarks>
-		//public bool Search(string owner_id, string album_id, string q, string price_from, string price_to, string tags, string sort, string rev, string offset, string count, string extended)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "album_id", album_id },
-		//		{ "q", q },
-		//		{ "price_from", price_from },
-		//		{ "price_to", price_to },
-		//		{ "tags", tags },
-		//		{ "sort", sort },
-		//		{ "rev", rev },
-		//		{ "offset", offset },
-		//		{ "count", count },
-		//		{ "extended", extended },
-		//	};
-
-		//	return _vk.Call("market.search", parameters);
-		//}
+		/// <summary>
+		/// Поиск товаров в каталоге сообщества..
+		/// </summary>
+		/// <param name="params">Входные параметры запроса.</param>
+		/// <returns>
+		/// Возвращает список объектов item..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.search" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public ReadOnlyCollection<Product> Search(MarketSearchParams @params)
+		{
+			return _vk.Call("market.search", @params).ToReadOnlyCollectionOf<Product>(x => x);
+		}
 
 
 		///// <summary>

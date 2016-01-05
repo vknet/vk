@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Categories\MarketCategory.cs" />
     <Compile Include="Enums\MainSection.cs" />
+    <Compile Include="Enums\ProductSort.cs" />
     <Compile Include="Enums\SafetyEnums\Deactivated.cs" />
     <Compile Include="Enums\SafetyEnums\Platform.cs" />
     <Compile Include="Enums\SafetyEnums\RelativeType.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />
     <Compile Include="Model\RequestParams\Likes\LikesGetListParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketSearchParams.cs" />
     <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />
     <Compile Include="Model\RequestParams\Messages\HistoryGetParams.cs" />
