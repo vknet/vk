@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -51,26 +52,26 @@ namespace VkNet.Categories
 			return _vk.Call("market.get", parameters).ToReadOnlyCollectionOf<Product>(x => x);
 		}
 
-		///// <summary>
-		///// Возвращает информацию о товарах по идентификаторам..
-		///// </summary>
-		///// <param name="item_ids">Перечисленные через запятую идентификаторы — идущие через знак подчеркивания id владельцев товаров и id самих товаров. Если товар принадлежит сообществу, то в качестве первого параметра используется -id сообщества. Пример значения item_ids: -4363_136089719,13245770_137352259 список строк, разделенных через запятую, обязательный параметр, количество элементов должно составлять не более 100 (список строк, разделенных через запятую, обязательный параметр, количество элементов должно составлять не более 100).</param>
-		///// <param name="extended">1 — будут возвращены дополнительные поля likes, can_comment, can_repost, photos. По умолчанию эти поля не возвращается. флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает список объектов item с дополнительным полем comments, содержащим число комментариев у товара..
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getById" />.
-		///// </remarks>
-		//public bool GetById(string item_ids, string extended)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "item_ids", item_ids },
-		//		{ "extended", extended },
-		//	};
+		/// <summary>
+		/// Возвращает информацию о товарах по идентификаторам..
+		/// </summary>
+		/// <param name="itemIds">Перечисленные через запятую идентификаторы — идущие через знак подчеркивания id владельцев товаров и id самих товаров. Если товар принадлежит сообществу, то в качестве первого параметра используется -id сообщества. Пример значения item_ids: -4363_136089719,13245770_137352259 список строк, разделенных через запятую, обязательный параметр, количество элементов должно составлять не более 100 (список строк, разделенных через запятую, обязательный параметр, количество элементов должно составлять не более 100).</param>
+		/// <param name="extended">1 — будут возвращены дополнительные поля likes, can_comment, can_repost, photos. По умолчанию эти поля не возвращается. флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов item с дополнительным полем comments, содержащим число комментариев у товара..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getById" />.
+		/// </remarks>
+		public ReadOnlyCollection<Product> GetById(IEnumerable<string> itemIds, bool extended = false)
+		{
+			var parameters = new VkParameters {
+				{ "item_ids", itemIds },
+				{ "extended", extended },
+			};
 
-		//	return _vk.Call("market.getById", parameters);
-		//}
+			return _vk.Call("market.getById", parameters).ToReadOnlyCollectionOf<Product>(x => x);
+		}
 
 
 		///// <summary>
