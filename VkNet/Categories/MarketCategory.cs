@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Model;
+using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
@@ -225,30 +226,30 @@ namespace VkNet.Categories
 		}
 
 
-		///// <summary>
-		///// Изменяет текст комментария к товару.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="comment_id">Идентификатор комментария. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="message">Новый текст комментария (является обязательным, если не задан параметр attachments). Максимальное количество символов: 2048. строка (строка).</param>
-		///// <param name="attachments">Новый список объектов, приложенных к комментарию и разделённых символом &quot;,&quot;. (список строк, разделенных через запятую).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.editComment" />.
-		///// </remarks>
-		//public bool EditComment(string owner_id, string comment_id, string message, string attachments)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "comment_id", comment_id },
-		//		{ "message", message },
-		//		{ "attachments", attachments },
-		//	};
+		/// <summary>
+		/// Изменяет текст комментария к товару.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="commentId">Идентификатор комментария. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <param name="message">Новый текст комментария (является обязательным, если не задан параметр attachments). Максимальное количество символов: 2048. строка (строка).</param>
+		/// <param name="attachments">Новый список объектов, приложенных к комментарию и разделённых символом &quot;,&quot;. (список строк, разделенных через запятую).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.editComment" />.
+		/// </remarks>
+		public bool EditComment(long ownerId, long commentId, string message, IEnumerable<MediaAttachment> attachments = null)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId },
+				{ "message", message },
+				{ "attachments", attachments },
+			};
 
-		//	return _vk.Call("market.editComment", parameters);
-		//}
+			return _vk.Call("market.editComment", parameters);
+		}
 
 
 		///// <summary>
