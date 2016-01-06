@@ -452,43 +452,45 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.addAlbum" />.
 		/// </remarks>
+		[ApiVersion("5.42")]
 		public long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
 				{ "title", title },
 				{ "photo_id", photoId },
-				{ "main_album", mainAlbum },
+				{ "main_album", mainAlbum }
 			};
 
 			return _vk.Call("market.addAlbum", parameters)["market_album_id"];
 		}
 
 
-		///// <summary>
-		///// Редактирует подборку с товарами.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца подборки. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="album_id">Идентификатор подборки. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="title">Название подборки. строка, обязательный параметр, максимальная длина 128 (строка, обязательный параметр, максимальная длина 128).</param>
-		///// <param name="photo_id">Идентификатор фотографии-обложки подборки. положительное число (положительное число).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.editAlbum" />.
-		///// </remarks>
-		//public bool EditAlbum(string owner_id, string album_id, string title, string photo_id)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "album_id", album_id },
-		//		{ "title", title },
-		//		{ "photo_id", photo_id },
-		//	};
+		/// <summary>
+		/// Редактирует подборку с товарами.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца подборки. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="albumId">Идентификатор подборки. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <param name="title">Название подборки. строка, обязательный параметр, максимальная длина 128 (строка, обязательный параметр, максимальная длина 128).</param>
+		/// <param name="photoId">Идентификатор фотографии-обложки подборки. положительное число (положительное число).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.editAlbum" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "album_id", albumId },
+				{ "title", title },
+				{ "photo_id", photoId }
+			};
 
-		//	return _vk.Call("market.editAlbum", parameters);
-		//}
+			return _vk.Call("market.editAlbum", parameters);
+		}
 
 
 		///// <summary>
@@ -502,6 +504,7 @@ namespace VkNet.Categories
 		///// <remarks>
 		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.deleteAlbum" />.
 		///// </remarks>
+		//[ApiVersion("5.42")]
 		//public bool DeleteAlbum(string owner_id, string album_id)
 		//{
 		//	var parameters = new VkParameters {
@@ -525,6 +528,7 @@ namespace VkNet.Categories
 		///// <remarks>
 		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.removeFromAlbum" />.
 		///// </remarks>
+		//[ApiVersion("5.42")]
 		//public bool RemoveFromAlbum(string owner_id, string item_id, string album_ids)
 		//{
 		//	var parameters = new VkParameters {
@@ -549,6 +553,7 @@ namespace VkNet.Categories
 		///// <remarks>
 		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.addToAlbum" />.
 		///// </remarks>
+		//[ApiVersion("5.42")]
 		//public bool AddToAlbum(string owner_id, string item_id, string album_ids)
 		//{
 		//	var parameters = new VkParameters {
