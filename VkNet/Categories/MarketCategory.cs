@@ -279,28 +279,29 @@ namespace VkNet.Categories
 		}
 
 
-		///// <summary>
-		///// Позволяет отправить жалобу на товар.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товаров. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="item_id">Идентификатор товара положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="reason">Причина жалобы (положительное число, обязательный параметр).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.report" />.
-		///// </remarks>
-		//public bool Report(string owner_id, string item_id, string reason)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "item_id", item_id },
-		//		{ "reason", reason },
-		//	};
+		/// <summary>
+		/// Позволяет отправить жалобу на товар.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца товаров. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="itemId">Идентификатор товара положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <param name="reason">Причина жалобы (положительное число, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.report" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool Report(long ownerId, long itemId, ReportReason reason)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "item_id", itemId },
+				{ "reason", reason },
+			};
 
-		//	return _vk.Call("market.report", parameters);
-		//}
+			return _vk.Call("market.report", parameters);
+		}
 
 
 		///// <summary>

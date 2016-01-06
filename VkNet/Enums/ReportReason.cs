@@ -16,31 +16,31 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Детская порнография.
 		/// </summary>
-		ChildPornography = 1,
+		ChildPornography,
 
 		/// <summary>
 		/// Экстремизм.
 		/// </summary>
-		Extremism = 2,
+		Extremism,
 
 		/// <summary>
 		/// Насилие.
 		/// </summary>
-		Violence = 3,
+		Violence,
 
 		/// <summary>
 		/// Пропаганда наркотиков.
 		/// </summary>
-		DrugPropaganda = 4,
+		DrugPropaganda,
 
 		/// <summary>
 		/// Материал для взрослых.
 		/// </summary>
-		AdultMaterial  = 5,
+		AdultMaterial,
 
 		/// <summary>
 		/// Оскорбление.
 		/// </summary>
-		Abuse = 6,
+		Abuse
 	}
 }
