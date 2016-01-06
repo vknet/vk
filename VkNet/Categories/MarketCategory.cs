@@ -179,48 +179,50 @@ namespace VkNet.Categories
 		}
 
 
-		///// <summary>
-		///// Удаляет комментарий к товару.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="comment_id">Идентификатор комментария. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1 (0, если комментарий не найден).
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.deleteComment" />.
-		///// </remarks>
-		//public bool DeleteComment(string owner_id, string comment_id)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "comment_id", comment_id },
-		//	};
+		/// <summary>
+		/// Удаляет комментарий к товару.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="commentId">Идентификатор комментария. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1 (0, если комментарий не найден).
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.deleteComment" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool DeleteComment(long ownerId, long commentId)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId },
+			};
 
-		//	return _vk.Call("market.deleteComment", parameters);
-		//}
+			return _vk.Call("market.deleteComment", parameters);
+		}
 
 
-		///// <summary>
-		///// Восстанавливает удаленный комментарий к товару.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="comment_id">Идентификатор удаленного комментария. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1 (0, если комментарий с таким идентификатором не является удаленным).
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.restoreComment" />.
-		///// </remarks>
-		//public bool RestoreComment(string owner_id, string comment_id)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "comment_id", comment_id },
-		//	};
+		/// <summary>
+		/// Восстанавливает удаленный комментарий к товару.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="commentId">Идентификатор удаленного комментария. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1 (0, если комментарий с таким идентификатором не является удаленным).
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.restoreComment" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool RestoreComment(long ownerId, long commentId)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId },
+			};
 
-		//	return _vk.Call("market.restoreComment", parameters);
-		//}
+			return _vk.Call("market.restoreComment", parameters);
+		}
 
 
 		///// <summary>
