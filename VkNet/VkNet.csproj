@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories\MarketCategory.cs" />
+    <Compile Include="Model\ProductComment.cs" />
     <Compile Include="Model\ProductAlbum.cs" />
     <Compile Include="Enums\MainSection.cs" />
     <Compile Include="Enums\ProductSort.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />
     <Compile Include="Model\RequestParams\Likes\LikesGetListParams.cs" />
     <Compile Include="Model\RequestParams\Market\MarketCreateCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketGetCommentsParams.cs" />
     <Compile Include="Model\RequestParams\Market\MarketSearchParams.cs" />
     <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />

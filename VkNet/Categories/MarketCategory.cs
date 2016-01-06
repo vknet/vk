@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
@@ -155,46 +154,29 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.createComment" />.
 		/// </remarks>
+		[ApiVersion("5.42")]
 		public long CreateComment(MarketCreateCommentParams @params)
 		{
 			return _vk.Call("market.createComment", @params);
 		}
 
 
-		///// <summary>
-		///// Возвращает список комментариев к товару.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="item_id">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="need_likes">1 — возвращать информацию о лайках. флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
-		///// <param name="start_comment_id">Идентификатор комментария, начиная с которого нужно вернуть список (подробности см. ниже). положительное число (положительное число).</param>
-		///// <param name="offset">Сдвиг, необходимый для получения конкретной выборки результатов. положительное число, по умолчанию 0 (положительное число, по умолчанию 0).</param>
-		///// <param name="count">Число комментариев, которые необходимо получить. положительное число, по умолчанию 20, максимальное значение 100 (положительное число, по умолчанию 20, максимальное значение 100).</param>
-		///// <param name="sort">Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым) строка, по умолчанию asc (строка, по умолчанию asc).</param>
-		///// <param name="extended">1 — комментарии в ответе будут возвращены в виде пронумерованных объектов, дополнительно будут возвращены списки объектов profiles, groups. флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
-		///// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть. См. подробное описание. Доступные значения: sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, photo_id, online, online_mobile, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters, screen_name, maiden_name, timezone, occupation,activities, interests, music, movies, tv, books, games, about, quotes, personal, friend_status, military, career список строк, разделенных через запятую (список строк, разделенных через запятую).</param>
-		///// <returns>
-		///// .
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getComments" />.
-		///// </remarks>
-		//public bool GetComments(string owner_id, string item_id, string need_likes, string start_comment_id, string offset, string count, string sort, string extended, string fields)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "item_id", item_id },
-		//		{ "need_likes", need_likes },
-		//		{ "start_comment_id", start_comment_id },
-		//		{ "offset", offset },
-		//		{ "count", count },
-		//		{ "sort", sort },
-		//		{ "extended", extended },
-		//		{ "fields", fields },
-		//	};
 
-		//	return _vk.Call("market.getComments", parameters);
-		//}
+		/// <summary>
+		/// Возвращает список комментариев к товару.
+		/// </summary>
+		/// <param name="params">Входные параметры запроса.</param>
+		/// <returns>
+		/// Возвращает список объектов комментариев. 
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getComments" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public ProductComment GetComments(MarketGetCommentsParams @params)
+		{
+			return _vk.Call("market.getComments", @params);
+		}
 
 
 		///// <summary>

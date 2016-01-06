@@ -372,7 +372,7 @@
         [Test]
         public void Search_BadQuery_EmptyList()
         {
-			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&status=0&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&v=5.37&access_token=token";
 			const string json =
 				@"{
 					response: {
@@ -393,7 +393,7 @@
         [Test]
         public void Search_EducationField_ListofProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&status=0&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=5.37&access_token=token";
 
 			const string json =
 				@"{
@@ -462,7 +462,7 @@
         [Test]
         public void Search_DefaultFields_ListOfProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&status=0&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=5.37&access_token=token";
 			const string json =
 				@"{
 				response: {
