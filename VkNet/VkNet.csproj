@@ -208,6 +208,7 @@
     <Compile Include="Model\RequestParams\Likes\LikesGetListParams.cs" />
     <Compile Include="Model\RequestParams\Market\MarketCreateCommentParams.cs" />
     <Compile Include="Model\RequestParams\Market\MarketGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketProductParams.cs" />
     <Compile Include="Model\RequestParams\Market\MarketSearchParams.cs" />
     <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />

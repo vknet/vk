@@ -303,119 +303,84 @@ namespace VkNet.Categories
 			return _vk.Call("market.report", parameters);
 		}
 
-
 		///// <summary>
 		///// Добавляет новый товар.
 		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="name">Название товара. строка, минимальная длина 4, максимальная длина 100, обязательный параметр (строка, минимальная длина 4, максимальная длина 100, обязательный параметр).</param>
-		///// <param name="description">Описание товара. строка, минимальная длина 10, обязательный параметр (строка, минимальная длина 10, обязательный параметр).</param>
-		///// <param name="category_id">Идентификатор категории товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="price">Цена товара. дробное число, обязательный параметр, минимальное значение 0.01 (дробное число, обязательный параметр, минимальное значение 0.01).</param>
-		///// <param name="deleted">Статус товара (1 — товар удален, 0 — товар не удален). флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
-		///// <param name="main_photo_id">Идентификатор фотографии обложки товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="photo_ids">Идентификаторы дополнительных фотографий товара. список положительных чисел, разделенных запятыми, количество элементов должно составлять не более 4 (список положительных чисел, разделенных запятыми, количество элементов должно составлять не более 4).</param>
+		///// <param name="params">Входные параметры запроса.</param>
 		///// <returns>
 		///// После успешного выполнения возвращает идентификатор добавленного товара.
 		///// </returns>
 		///// <remarks>
 		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.add" />.
 		///// </remarks>
-		//public bool Add(string owner_id, string name, string description, string category_id, string price, string deleted, string main_photo_id, string photo_ids)
+		//[ApiVersion("5.42")]
+		//public long Add(MarketProductParams @params)
 		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "name", name },
-		//		{ "description", description },
-		//		{ "category_id", category_id },
-		//		{ "price", price },
-		//		{ "deleted", deleted },
-		//		{ "main_photo_id", main_photo_id },
-		//		{ "photo_ids", photo_ids },
-		//	};
-
-		//	return _vk.Call("market.add", parameters);
+		//	return _vk.Call("market.add", @params);
 		//}
 
 
 		///// <summary>
 		///// Редактирует товар.
 		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="item_id">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="name">Новое название товара. строка, минимальная длина 4, максимальная длина 100, обязательный параметр (строка, минимальная длина 4, максимальная длина 100, обязательный параметр).</param>
-		///// <param name="description">Новое описание товара. строка, минимальная длина 10, обязательный параметр (строка, минимальная длина 10, обязательный параметр).</param>
-		///// <param name="category_id">Идентификатор категории товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="price">Цена товара. дробное число, обязательный параметр, минимальное значение 0.01 (дробное число, обязательный параметр, минимальное значение 0.01).</param>
-		///// <param name="deleted">Статус товара (1 — товар удален, 0 — товар не удален). флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
-		///// <param name="main_photo_id">Идентификатор фотографии для обложки товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="photo_ids">Идентификаторы дополнительных фотографией товара. список положительных чисел, разделенных запятыми, количество элементов должно составлять не более 4 (список положительных чисел, разделенных запятыми, количество элементов должно составлять не более 4).</param>
+		///// <param name="params">Входные параметры запроса.</param>
 		///// <returns>
 		///// После успешного выполнения возвращает 1.
 		///// </returns>
 		///// <remarks>
 		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.edit" />.
 		///// </remarks>
-		//public bool Edit(string owner_id, string item_id, string name, string description, string category_id, string price, string deleted, string main_photo_id, string photo_ids)
+		//[ApiVersion("5.42")]
+		//public bool Edit(MarketProductParams @params)
 		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "item_id", item_id },
-		//		{ "name", name },
-		//		{ "description", description },
-		//		{ "category_id", category_id },
-		//		{ "price", price },
-		//		{ "deleted", deleted },
-		//		{ "main_photo_id", main_photo_id },
-		//		{ "photo_ids", photo_ids },
-		//	};
-
-		//	return _vk.Call("market.edit", parameters);
+		//	return _vk.Call("market.edit", @params);
 		//}
 
 
-		///// <summary>
-		///// Удаляет товар.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="item_id">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.delete" />.
-		///// </remarks>
-		//public bool Delete(string owner_id, string item_id)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "item_id", item_id },
-		//	};
+		/// <summary>
+		/// Удаляет товар.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="itemId">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.delete" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool Delete(long ownerId, long itemId)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "item_id", itemId },
+			};
 
-		//	return _vk.Call("market.delete", parameters);
-		//}
+			return _vk.Call("market.delete", parameters);
+		}
 
 
-		///// <summary>
-		///// Восстанавливает удаленный товар.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="item_id">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1 (0, если товар не найден среди удаленных).
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.restore" />.
-		///// </remarks>
-		//public bool Restore(string owner_id, string item_id)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "item_id", item_id },
-		//	};
+		/// <summary>
+		/// Восстанавливает удаленный товар.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="itemId">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1 (0, если товар не найден среди удаленных).
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.restore" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool Restore(long ownerId, long itemId)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "item_id", itemId },
+			};
 
-		//	return _vk.Call("market.restore", parameters);
-		//}
+			return _vk.Call("market.restore", parameters);
+		}
 
 
 		///// <summary>
