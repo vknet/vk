@@ -541,29 +541,28 @@ namespace VkNet.Categories
 		}
 
 
-		///// <summary>
-		///// Добавляет товар в одну или несколько выбранных подборок.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="item_id">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="album_ids">Идентификаторы подборок, в которые нужно добавить товар. список положительных чисел, разделенных запятыми, обязательный параметр (список положительных чисел, разделенных запятыми, обязательный параметр).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.addToAlbum" />.
-		///// </remarks>
-		//[ApiVersion("5.42")]
-		//public bool AddToAlbum(string owner_id, string item_id, string album_ids)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "item_id", item_id },
-		//		{ "album_ids", album_ids },
-		//	};
+		/// <summary>
+		/// Добавляет товар в одну или несколько выбранных подборок.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="itemId">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <param name="albumIds">Идентификаторы подборок, в которые нужно добавить товар. список положительных чисел, разделенных запятыми, обязательный параметр (список положительных чисел, разделенных запятыми, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.addToAlbum" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool AddToAlbum(long ownerId, long itemId, IEnumerable<long> albumIds)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "item_id", itemId },
+				{ "album_ids", albumIds }
+			};
 
-		//	return _vk.Call("market.addToAlbum", parameters);
-		//}
-
+			return _vk.Call("market.addToAlbum", parameters);
+		}
 	}
 }
