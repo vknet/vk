@@ -418,7 +418,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[ApiMethodName("photos.report", Skip = true)]
 		[ApiVersion("5.37")]
-		public bool Report(long ownerId, ulong photoId, ContentReportType reason)
+		public bool Report(long ownerId, ulong photoId, ReportReason reason)
 		{
 			var parameters = new VkParameters
 				{
@@ -442,7 +442,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[ApiMethodName("photos.reportComment", Skip = true)]
 		[ApiVersion("5.37")]
-		public bool ReportComment(long ownerId, ulong commentId, ContentReportType reason)
+		public bool ReportComment(long ownerId, ulong commentId, ReportReason reason)
 		{
 			var parameters = new VkParameters
 				{

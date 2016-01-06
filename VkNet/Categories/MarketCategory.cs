@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -239,6 +240,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.editComment" />.
 		/// </remarks>
+		[ApiVersion("5.42")]
 		public bool EditComment(long ownerId, long commentId, string message, IEnumerable<MediaAttachment> attachments = null)
 		{
 			var parameters = new VkParameters {
@@ -252,28 +254,29 @@ namespace VkNet.Categories
 		}
 
 
-		///// <summary>
-		///// Позволяет оставить жалобу на комментарий к товару.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="comment_id">Идентификатор комментария. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="reason">Причина жалобы (положительное число, обязательный параметр).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.reportComment" />.
-		///// </remarks>
-		//public bool ReportComment(string owner_id, string comment_id, string reason)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "comment_id", comment_id },
-		//		{ "reason", reason },
-		//	};
+		/// <summary>
+		/// Позволяет оставить жалобу на комментарий к товару.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="commentId">Идентификатор комментария. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <param name="reason">Причина жалобы (положительное число, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.reportComment" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool ReportComment(long ownerId, long commentId, ReportReason reason)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId },
+				{ "reason", reason },
+			};
 
-		//	return _vk.Call("market.reportComment", parameters);
-		//}
+			return _vk.Call("market.reportComment", parameters);
+		}
 
 
 		///// <summary>

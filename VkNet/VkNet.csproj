@@ -135,7 +135,7 @@
     <Compile Include="Enums\Sex.cs" />
     <Compile Include="Enums\SortOrderBy.cs" />
     <Compile Include="Enums\UserSort.cs" />
-    <Compile Include="Enums\ContentReportType.cs" />
+    <Compile Include="Enums\ReportReason.cs" />
     <Compile Include="Enums\VideoSort.cs" />
     <Compile Include="Enums\VideoWidth.cs" />
     <Compile Include="Enums\VkObjectType.cs" />
