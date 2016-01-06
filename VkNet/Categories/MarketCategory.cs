@@ -197,7 +197,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
-				{ "comment_id", commentId },
+				{ "comment_id", commentId }
 			};
 
 			return _vk.Call("market.deleteComment", parameters);
@@ -220,7 +220,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
-				{ "comment_id", commentId },
+				{ "comment_id", commentId }
 			};
 
 			return _vk.Call("market.restoreComment", parameters);
@@ -247,7 +247,7 @@ namespace VkNet.Categories
 				{ "owner_id", ownerId },
 				{ "comment_id", commentId },
 				{ "message", message },
-				{ "attachments", attachments },
+				{ "attachments", attachments }
 			};
 
 			return _vk.Call("market.editComment", parameters);
@@ -272,7 +272,7 @@ namespace VkNet.Categories
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
 				{ "comment_id", commentId },
-				{ "reason", reason },
+				{ "reason", reason }
 			};
 
 			return _vk.Call("market.reportComment", parameters);
@@ -297,7 +297,7 @@ namespace VkNet.Categories
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
 				{ "item_id", itemId },
-				{ "reason", reason },
+				{ "reason", reason }
 			};
 
 			return _vk.Call("market.report", parameters);
@@ -311,7 +311,7 @@ namespace VkNet.Categories
 		///// После успешного выполнения возвращает идентификатор добавленного товара.
 		///// </returns>
 		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.add" />.
+		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.add" />. TODO Непонятно как добавить изображение для товара
 		///// </remarks>
 		//[ApiVersion("5.42")]
 		//public long Add(MarketProductParams @params)
@@ -328,7 +328,7 @@ namespace VkNet.Categories
 		///// После успешного выполнения возвращает 1.
 		///// </returns>
 		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.edit" />.
+		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.edit" />. TODO Непонятно как получить ID изображение для товара
 		///// </remarks>
 		//[ApiVersion("5.42")]
 		//public bool Edit(MarketProductParams @params)
@@ -353,7 +353,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
-				{ "item_id", itemId },
+				{ "item_id", itemId }
 			};
 
 			return _vk.Call("market.delete", parameters);
@@ -376,7 +376,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
-				{ "item_id", itemId },
+				{ "item_id", itemId }
 			};
 
 			return _vk.Call("market.restore", parameters);
@@ -386,23 +386,24 @@ namespace VkNet.Categories
 		///// <summary>
 		///// Изменяет положение товара в подборке.
 		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="album_id">Идентификатор подборки, в которой находится товар. целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="item_id">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		///// <param name="ownerId">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		///// <param name="albumId">Идентификатор подборки, в которой находится товар. целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		///// <param name="itemId">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
 		///// <param name="before">Идентификатор товара, перед которым следует поместить текущий. положительное число (положительное число).</param>
 		///// <param name="after">Идентификатор товара, после которого следует поместить текущий. положительное число (положительное число).</param>
 		///// <returns>
 		///// После успешного выполнения возвращает 1.
 		///// </returns>
 		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.reorderItems" />.
+		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.reorderItems" />. TODO Ошибка что элемент не найден
 		///// </remarks>
-		//public bool ReorderItems(string owner_id, string album_id, string item_id, string before, string after)
+		//[ApiVersion("5.42")]
+		//public bool ReorderItems(long ownerId, long albumId, long itemId, long? before, long? after)
 		//{
 		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "album_id", album_id },
-		//		{ "item_id", item_id },
+		//		{ "owner_id", ownerId },
+		//		{ "album_id", albumId },
+		//		{ "item_id", itemId },
 		//		{ "before", before },
 		//		{ "after", after },
 		//	};
@@ -411,30 +412,31 @@ namespace VkNet.Categories
 		//}
 
 
-		///// <summary>
-		///// Изменяет положение подборки с товарами в списке.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца альбома. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="album_id">Идентификатор подборки. целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="before">Идентификатор подборки, перед которой следует поместить текущую. положительное число (положительное число).</param>
-		///// <param name="after">Идентификатор подборки, после которой следует поместить текущую. положительное число (положительное число).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.reorderAlbums" />.
-		///// </remarks>
-		//public bool ReorderAlbums(string owner_id, string album_id, string before, string after)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "album_id", album_id },
-		//		{ "before", before },
-		//		{ "after", after },
-		//	};
+		/// <summary>
+		/// Изменяет положение подборки с товарами в списке.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца альбома. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="albumId">Идентификатор подборки. целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="before">Идентификатор подборки, перед которой следует поместить текущую. положительное число (положительное число).</param>
+		/// <param name="after">Идентификатор подборки, после которой следует поместить текущую. положительное число (положительное число).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.reorderAlbums" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool ReorderAlbums(long ownerId, long albumId, long? before = null, long? after = null)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "album_id", albumId },
+				{ "before", before },
+				{ "after", after }
+			};
 
-		//	return _vk.Call("market.reorderAlbums", parameters);
-		//}
+			return _vk.Call("market.reorderAlbums", parameters);
+		}
 
 
 		///// <summary>
