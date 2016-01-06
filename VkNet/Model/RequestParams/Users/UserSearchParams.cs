@@ -33,7 +33,7 @@ namespace VkNet.Model.RequestParams
 			UniversityYear = null;
 			UniversityFaculty = null;
 			UniversityChair = null;
-			Status = (MaritalStatus) 0;
+			Status = null;
 			AgeFrom = null;
 			AgeTo = null;
 			BirthDay = null;
@@ -140,7 +140,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Семейное положение.
 		/// </summary>
-		public MaritalStatus Status
+		public MaritalStatus? Status
 		{ get; set; }
 
 		/// <summary>
