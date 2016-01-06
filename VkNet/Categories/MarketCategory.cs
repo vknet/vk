@@ -439,30 +439,30 @@ namespace VkNet.Categories
 		}
 
 
-		///// <summary>
-		///// Добавляет новую подборку с товарами.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца подборки. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="title">Название подборки. строка, обязательный параметр, максимальная длина 128 (строка, обязательный параметр, максимальная длина 128).</param>
-		///// <param name="photo_id">Идентификатор фотографии-обложки подборки. положительное число (положительное число).</param>
-		///// <param name="main_album">Назначить подборку основной (1 — назначить, 0 — нет). флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает идентификатор созданной подборки.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.addAlbum" />.
-		///// </remarks>
-		//public bool AddAlbum(string owner_id, string title, string photo_id, string main_album)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "title", title },
-		//		{ "photo_id", photo_id },
-		//		{ "main_album", main_album },
-		//	};
+		/// <summary>
+		/// Добавляет новую подборку с товарами.
+		/// </summary>
+		/// <param name="ownerId">Идентификатор владельца подборки. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
+		/// <param name="title">Название подборки. строка, обязательный параметр, максимальная длина 128 (строка, обязательный параметр, максимальная длина 128).</param>
+		/// <param name="photoId">Идентификатор фотографии-обложки подборки. положительное число (положительное число).</param>
+		/// <param name="mainAlbum">Назначить подборку основной (1 — назначить, 0 — нет). флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает идентификатор созданной подборки.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.addAlbum" />.
+		/// </remarks>
+		public long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false)
+		{
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "title", title },
+				{ "photo_id", photoId },
+				{ "main_album", mainAlbum },
+			};
 
-		//	return _vk.Call("market.addAlbum", parameters);
-		//}
+			return _vk.Call("market.addAlbum", parameters)["market_album_id"];
+		}
 
 
 		///// <summary>
