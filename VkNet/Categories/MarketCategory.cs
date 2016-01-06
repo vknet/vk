@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Model;
+using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
@@ -112,7 +113,7 @@ namespace VkNet.Categories
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
 				{ "offset", offset },
-				{ "count", count },
+				{ "count", count }
 			};
 
 			return _vk.Call("market.getAlbums", parameters).ToReadOnlyCollectionOf<ProductAlbum>(x => x);
@@ -135,43 +136,29 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
-				{ "album_ids", albumIds },
+				{ "album_ids", albumIds }
 			};
 
 			return _vk.Call("market.getAlbumById", parameters).ToReadOnlyCollectionOf<ProductAlbum>(x => x);
 		}
 
 
-		///// <summary>
-		///// Создает новый комментарий к товару.
-		///// </summary>
-		///// <param name="owner_id">Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).</param>
-		///// <param name="item_id">Идентификатор товара. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
-		///// <param name="message">Текст комментария (является обязательным, если не задан параметр attachments). строка (строка).</param>
-		///// <param name="attachments">Список объектов, приложенных к комментарию и разделённых символом &quot;,&quot;. </param>
-		///// <param name="from_group">1 — комментарий будет опубликован от имени группы, 0 — комментарий будет опубликован от имени пользователя (по умолчанию). флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
-		///// <param name="reply_to_comment">Идентификатор комментария, в ответ на который должен быть добавлен новый комментарий. положительное число (положительное число).</param>
-		///// <param name="sticker_id">Идентификатор стикера. положительное число (положительное число).</param>
-		///// <returns>
-		///// После успешного выполнения возвращает идентификатор созданного комментария.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.createComment" />.
-		///// </remarks>
-		//public bool CreateComment(string owner_id, string item_id, string message, string attachments, string from_group, string reply_to_comment, string sticker_id)
-		//{
-		//	var parameters = new VkParameters {
-		//		{ "owner_id", owner_id },
-		//		{ "item_id", item_id },
-		//		{ "message", message },
-		//		{ "attachments", attachments },
-		//		{ "from_group", from_group },
-		//		{ "reply_to_comment", reply_to_comment },
-		//		{ "sticker_id", sticker_id },
-		//	};
 
-		//	return _vk.Call("market.createComment", parameters);
-		//}
+
+		/// <summary>
+		/// Создает новый комментарий к товару.
+		/// </summary>
+		/// <param name="params">Входные параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает идентификатор созданного комментария.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.createComment" />.
+		/// </remarks>
+		public long CreateComment(MarketCreateCommentParams @params)
+		{
+			return _vk.Call("market.createComment", @params);
+		}
 
 
 		///// <summary>

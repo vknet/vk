@@ -205,6 +205,7 @@
     <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />
     <Compile Include="Model\RequestParams\Likes\LikesGetListParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketCreateCommentParams.cs" />
     <Compile Include="Model\RequestParams\Market\MarketSearchParams.cs" />
     <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />
