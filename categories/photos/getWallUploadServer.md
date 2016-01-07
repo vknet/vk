@@ -1,11 +1,25 @@
 ---
 layout: default
 title: Метод Photos.GetWallUploadServer
-permalink: photo/getWallUploadServer/
+permalink: photos/getWallUploadServer/
 comments: true
 ---
 # Метод Photos.GetWallUploadServer
 Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.
 
-## Описание
-Данный раздел справки еще не реализован. Вы  можете помочь проекту, для этого перейдите по ссылке чтобы связаться с нами [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Страница документации ВКонтакте [photos.getWallUploadServer](https://vk.com/dev/photos.getWallUploadServer).
+## Синтаксис
+``` csharp
+public UploadServerInfo GetWallUploadServer(long? groupId = null)
+```
+
+## Параметры
++ **groupId** - Идентификатор сообщества, на стену которого нужно загрузить фото (без знака «минус»). целое число
+
+## Результат
+После успешного выполнения возвращает объект с полями **UploadUrl, AlbumId, UserId**.
+
+## Пример
+``` csharp
+// Пример кода
+```
