@@ -13,7 +13,7 @@ public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
 ```
 
 ## Параметры
-Класс `PhotoCreateAlbumParams` содержит следующие свойства:
+Класс **`PhotoCreateAlbumParams`** содержит следующие свойства:
 
 + **Title** - Название альбома. строка, обязательный параметр, минимальная длина 2
 + **GroupId** - Идентификатор сообщества, в котором создаётся альбом. целое число
