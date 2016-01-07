@@ -1,11 +1,40 @@
 ---
 layout: default
 title: Метод Photos.GetUploadServer
-permalink: photo/getUploadServer/
+permalink: photos/getUploadServer/
 comments: true
 ---
 # Метод Photos.GetUploadServer
 Возвращает адрес сервера для загрузки фотографий.
 
-## Описание
-Данный раздел справки еще не реализован. Вы  можете помочь проекту, для этого перейдите по ссылке чтобы связаться с нами [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Страница документации ВКонтакте [photos.getUploadServer](https://vk.com/dev/photos.getUploadServer).
+## Синтаксис
+``` csharp
+public UploadServerInfo GetUploadServer(long albumId, long? groupId = null)
+```
+
+## Параметры
++ **albumId** - Идентификатор альбома. целое число
++ **groupId** - Идентификатор сообщества, которому принадлежит альбом (если необходимо загрузить фотографию в альбом сообщества). целое число
+
+## Результат
+После успешного выполнения возвращает объект, содержащий следующие поля: 
+
++ **UploadUrl** — адрес для загрузки фотографий; 
++ **AlbumId** — идентификатор альбома, в который будет загружена фотография; 
++ **UserId** — идентификатор пользователя, от чьего имени будет загружено фото.
+
+## Пример
+``` csharp
+// Получить адрес сервера для загрузки.
+var uploadServer = Api.Photo.GetUploadServer(123);
+// Загрузить файл.
+var wc = new WebClient();
+var responseFile = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"test.jpg"));
+// Сохранить загруженный файл
+var photos = Api.Photo.Save(new PhotoSaveParams
+{
+	SaveFileResponse = responseFile,
+	AlbumId = 123
+});
+```
