@@ -7,6 +7,7 @@ comments: true
 # Метод Photos.EditAlbum
 Редактирует данные альбома для фотографий пользователя.
 
+Страница документации ВКонтакте [photos.editAlbum](https://vk.com/dev/photos.editAlbum).
 ## Синтаксис
 ``` csharp
 public bool EditAlbum(PhotoEditAlbumParams @params)
