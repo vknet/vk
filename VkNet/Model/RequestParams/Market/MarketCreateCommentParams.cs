@@ -24,7 +24,7 @@ namespace VkNet.Model.RequestParams
 		}
 
 		/// <summary>
-		/// Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком &quot;-&quot; — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).
+		/// Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).
 		/// </summary>
 		public long OwnerId
 		{
@@ -48,7 +48,7 @@ namespace VkNet.Model.RequestParams
 		}
 
 		/// <summary>
-		/// Список объектов, приложенных к комментарию и разделённых символом &quot;,&quot;.
+		/// Список объектов, приложенных к комментарию и разделённых символом ",".
 		/// </summary>
 		public IEnumerable<MediaAttachment> Attachments
 		{
@@ -93,7 +93,7 @@ namespace VkNet.Model.RequestParams
 					{ "attachments", p.Attachments },
 					{ "from_group", p.FromGroup },
 					{ "reply_to_comment", p.ReplyToComment },
-					{ "sticker_id", p.StickerId },
+					{ "sticker_id", p.StickerId }
 				};
 
 			return parameters;

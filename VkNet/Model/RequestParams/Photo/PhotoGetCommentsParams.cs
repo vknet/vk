@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -66,7 +66,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		///  Список строк, разделенных через запятую.
 		/// </summary>
-		public IEnumerable<string> Fields
+		public UsersFields Fields
 		{ get; set; }
 
 		/// <summary>

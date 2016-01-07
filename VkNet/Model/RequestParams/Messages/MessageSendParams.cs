@@ -83,6 +83,16 @@ namespace VkNet.Model.RequestParams
 		{ get; set; }
 
 		/// <summary>
+		/// Идентификатор капчи
+		/// </summary>
+		public string CaptchaSid { get; set; }
+
+		/// <summary>
+		/// текст, который ввел пользователь
+		/// </summary>
+		public string CaptchaKey { get; set; }
+		
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
@@ -101,7 +111,9 @@ namespace VkNet.Model.RequestParams
 				{ "long", p.Longitude },
 				{ "attachment", p.Attachments },
 				{ "forward_messages", p.ForwardMessages },
-				{ "sticker_id", p.StickerId }
+				{ "sticker_id", p.StickerId },
+				{ "captcha_sid", p.CaptchaSid },
+				{ "captcha_key", p.CaptchaKey }
 			};
 		}
 	}
