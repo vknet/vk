@@ -998,5 +998,116 @@ namespace VkNet.Categories
 			countTotal = response["count"];
 			return response["items"].ToReadOnlyCollectionOf<Photo>(x => x);
 		}
+
+		/// <summary>
+		/// Возвращает адрес сервера для загрузки фотографии товаров сообщества.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, для которого необходимо загрузить фотографию товара. целое число (целое число).</param>
+		/// <param name="mainPhoto">Является ли фотография обложкой товара  (1 — фотография для обложки, 0 — дополнительная фотография) флаг, может принимать значения 1 или 0 (флаг, может принимать значения 1 или 0).</param>
+		/// <param name="cropX">Координата x для обрезки фотографии. положительное число (положительное число).</param>
+		/// <param name="cropY">Координата y для обрезки фотографии. положительное число (положительное число).</param>
+		/// <param name="cropWidth">Ширина фотографии после обрезки в px. положительное число, минимальное значение 200 (положительное число, минимальное значение 200).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект с единственным полем upload_url.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMarketUploadServer" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public UploadServerInfo GetMarketUploadServer(long groupId, bool? mainPhoto = null, long? cropX = null, long? cropY = null, long? cropWidth = null)
+		{
+			var parameters = new VkParameters {
+				{ "group_id", groupId },
+				{ "main_photo", mainPhoto },
+				{ "crop_x", cropX },
+				{ "crop_y", cropY },
+				{ "crop_width", cropWidth }
+			};
+
+			return _vk.Call("photos.getMarketUploadServer", parameters);
+		}
+
+
+		/// <summary>
+		/// Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
+		/// </summary>
+		/// <param name="groupId">Идентификатор сообщества, для которого необходимо загрузить фотографию подборки товаров. целое число (целое число).</param>
+		/// <returns>
+		/// .
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMarketAlbumUploadServer" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public UploadServerInfo GetMarketAlbumUploadServer(long groupId)
+		{
+			var parameters = new VkParameters {
+				{ "group_id", groupId }
+			};
+
+			return _vk.Call("photos.getMarketAlbumUploadServer", parameters);
+		}
+
+
+		/// <summary>
+		/// Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketUploadServer.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, для которой нужно загрузить фотографию. положительное число (положительное число).</param>
+		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер. строка, обязательный параметр (строка, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает массив, содержащий объект с загруженной фотографией.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMarketPhoto" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public ReadOnlyCollection<Photo> SaveMarketPhoto(long groupId, string response)
+		{
+			var responseJson = JObject.Parse(response);
+			var server = responseJson["server"].ToString();
+			var hash = responseJson["hash"].ToString();
+			var photo = responseJson["photo"].ToString();
+			var cropData = responseJson["crop_data"].ToString();
+			var cropHash = responseJson["crop_hash"].ToString();
+			var parameters = new VkParameters {
+				{ "group_id", groupId },
+				{ "photo", photo },
+				{ "server", server },
+				{ "hash", hash },
+				{ "crop_data", cropData },
+				{ "crop_hash", cropHash }
+			};
+
+			return _vk.Call("photos.saveMarketPhoto", parameters).ToReadOnlyCollectionOf<Photo>(x => x);
+		}
+
+
+		/// <summary>
+		/// Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketAlbumUploadServer.
+		/// </summary>
+		/// <param name="groupId">Идентификатор группы, для которой нужно загрузить фотографию. положительное число, обязательный параметр (положительное число, обязательный параметр).</param>
+		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер. строка, обязательный параметр (строка, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает массив, содержащий объект с загруженной фотографией.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMarketAlbumPhoto" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool SaveMarketAlbumPhoto(long groupId, string response)
+		{
+			var responseJson = JObject.Parse(response);
+			var server = responseJson["server"].ToString();
+			var hash = responseJson["hash"].ToString();
+			var photo = responseJson["photo"].ToString();
+			var parameters = new VkParameters {
+				{ "group_id", groupId },
+				{ "photo", photo },
+				{ "server", server },
+				{ "hash", hash }
+			};
+
+			return _vk.Call("photos.saveMarketAlbumPhoto", parameters);
+		}
 	}
 }

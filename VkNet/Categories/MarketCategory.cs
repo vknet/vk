@@ -303,38 +303,38 @@ namespace VkNet.Categories
 			return _vk.Call("market.report", parameters);
 		}
 
-		///// <summary>
-		///// Добавляет новый товар.
-		///// </summary>
-		///// <param name="params">Входные параметры запроса.</param>
-		///// <returns>
-		///// После успешного выполнения возвращает идентификатор добавленного товара.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.add" />. TODO Непонятно как добавить изображение для товара
-		///// </remarks>
-		//[ApiVersion("5.42")]
-		//public long Add(MarketProductParams @params)
-		//{
-		//	return _vk.Call("market.add", @params);
-		//}
+		/// <summary>
+		/// Добавляет новый товар.
+		/// </summary>
+		/// <param name="params">Входные параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает идентификатор добавленного товара.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.add" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public long Add(MarketProductParams @params)
+		{
+			return _vk.Call("market.add", @params)["market_item_id"];
+		}
 
 
-		///// <summary>
-		///// Редактирует товар.
-		///// </summary>
-		///// <param name="params">Входные параметры запроса.</param>
-		///// <returns>
-		///// После успешного выполнения возвращает 1.
-		///// </returns>
-		///// <remarks>
-		///// Страница документации ВКонтакте <see href="http://vk.com/dev/market.edit" />. TODO Непонятно как получить ID изображение для товара
-		///// </remarks>
-		//[ApiVersion("5.42")]
-		//public bool Edit(MarketProductParams @params)
-		//{
-		//	return _vk.Call("market.edit", @params);
-		//}
+		/// <summary>
+		/// Редактирует товар.
+		/// </summary>
+		/// <param name="params">Входные параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.edit" />. TODO Непонятно как получить ID изображение для товара
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public bool Edit(MarketProductParams @params)
+		{
+			return _vk.Call("market.edit", @params);
+		}
 
 
 		/// <summary>
