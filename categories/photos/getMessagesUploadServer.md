@@ -1,11 +1,28 @@
 ---
 layout: default
 title: Метод Photos.GetMessagesUploadServer
-permalink: photo/getMessagesUploadServer/
+permalink: photos/getMessagesUploadServer/
 comments: true
 ---
 # Метод Photos.GetMessagesUploadServer
 Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
 
-## Описание
-Данный раздел справки еще не реализован. Вы  можете помочь проекту, для этого перейдите по ссылке чтобы связаться с нами [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Страница документации ВКонтакте [photos.getMessagesUploadServer](https://vk.com/dev/photos.getMessagesUploadServer).
+## Синтаксис
+``` csharp
+public UploadServerInfo GetMessagesUploadServer()
+```
+
+## Результат
+После успешного выполнения возвращает объект с полями **UploadUrl**, aid (id альбома)  и mid (id текущего пользователя).
+
+## Пример
+``` csharp
+// Получить адрес сервера для загрузки.
+var uploadServer = _api.Photo.GetMessagesUploadServer();
+// Загрузить фотографию.
+var wc = new WebClient();
+var responseImg = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"vk.png"));
+// Сохранить загруженную фотографию
+var photo = _api.Photo.SaveMessagesPhoto(responseImg);
+```
