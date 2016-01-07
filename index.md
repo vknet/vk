@@ -123,6 +123,10 @@ comments: false
 + [Photos.saveWallPhoto](/vk/photos/saveWallPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getWallUploadServer.
 + [Photos.getWallUploadServer](/vk/photos/getWallUploadServer/) - Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.
 + [Photos.getMessagesUploadServer](/vk/photos/getMessagesUploadServer/) - Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
++ [Photos.getMarketUploadServer](/vk/photos/getMarketUploadServer/) - Возвращает адрес сервера для загрузки фотографии товаров сообщества.
++ [Photos.getMarketAlbumUploadServer](/vk/photos/getMarketAlbumUploadServer/) - Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
++ [Photos.saveMarketPhoto](/vk/photos/saveMarketPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketUploadServer.
++ [Photos.saveMarketAlbumPhoto](/vk/photos/saveMarketAlbumPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketAlbumUploadServer.
 + [Photos.saveMessagesPhoto](/vk/photos/saveMessagesPhoto/) - Сохраняет фотографию после успешной загрузки на URI, полученный методом photos.getMessagesUploadServer.
 + [Photos.report](/vk/photos/report/) - Позволяет пожаловаться на фотографию.
 + [Photos.reportComment](/vk/photos/reportComment/) - Позволяет пожаловаться на комментарий к фотографии.
