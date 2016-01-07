@@ -1,11 +1,25 @@
 ---
 layout: default
 title: Метод Photos.SaveOwnerPhoto
-permalink: photo/saveOwnerPhoto/
+permalink: photos/saveOwnerPhoto/
 comments: true
 ---
 # Метод Photos.SaveOwnerPhoto
 Позволяет сохранить главную фотографию пользователя или сообщества.
 
-## Описание
-Данный раздел справки еще не реализован. Вы  можете помочь проекту, для этого перейдите по ссылке чтобы связаться с нами [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Страница документации ВКонтакте [photos.saveOwnerPhoto](https://vk.com/dev/photos.saveOwnerPhoto).
+## Синтаксис
+``` csharp
+public Photo SaveOwnerPhoto(string response)
+```
+
+## Параметры
++ **response** - Параметр, возвращаемый в результате загрузки фотографии на сервер. строка
+
+## Результат
+После успешного выполнения возвращает объект, содержащий поля photo_hash и photo_src (при работе через VK.api метод вернёт поля photo_src, photo_src_big, photo_src_small). Параметр photo_hash необходим для подтверждения пользователем изменения его фотографии через вызов метода saveProfilePhoto Javascript API. Поле photo_src содержит путь к загруженной фотографии.
+
+## Пример
+``` csharp
+// Пример кода
+```
