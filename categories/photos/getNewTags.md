@@ -1,11 +1,30 @@
 ---
 layout: default
 title: Метод Photos.GetNewTags
-permalink: photo/getNewTags/
+permalink: photos/getNewTags/
 comments: true
 ---
 # Метод Photos.GetNewTags
 Возвращает список фотографий, на которых есть непросмотренные отметки.
 
-## Описание
-Данный раздел справки еще не реализован. Вы  можете помочь проекту, для этого перейдите по ссылке чтобы связаться с нами [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Страница документации ВКонтакте [photos.getNewTags](https://vk.com/dev/photos.getNewTags).
+## Синтаксис
+``` csharp
+public ReadOnlyCollection<Photo> GetNewTags(out int countTotal, uint? offset = null, uint? count = null)
+```
+
+## Параметры
++ **Offset** - Смещение, необходимое для получения определённого подмножества фотографий. целое число
++ **Count** - Количество фотографий, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20
+
+## Результат
+После успешного выполнения возвращает список объектов photo с дополнительными полями: 
+
++ **PlacerId** — идентификатор пользователя, сделавшего отметку; 
++ **TagCreated** — дата создания отметки в формате unixtime; 
++ **TagId** — идентификатор отметки.
+
+## Пример
+``` csharp
+// Пример кода
+```
