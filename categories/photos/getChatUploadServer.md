@@ -1,11 +1,28 @@
 ---
 layout: default
 title: Метод Photos.GetChatUploadServer
-permalink: photo/getChatUploadServer/
+permalink: photos/getChatUploadServer/
 comments: true
 ---
 # Метод Photos.GetChatUploadServer
 Позволяет получить адрес для загрузки фотографий мультидиалогов.
 
-## Описание
-Данный раздел справки еще не реализован. Вы  можете помочь проекту, для этого перейдите по ссылке чтобы связаться с нами [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Страница документации ВКонтакте [photos.getChatUploadServer](https://vk.com/dev/photos.getChatUploadServer).
+## Синтаксис
+``` csharp
+public UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null)
+```
+
+## Параметры
++ **chatId** - Идентификатор беседы, для которой нужно загрузить фотографию. положительное число, обязательный параметр
++ **cropX** - Координата x для обрезки фотографии. положительное число
++ **cropY** - Координата y для обрезки фотографии. положительное число
++ **cropWidth** - Ширина фотографии после обрезки в px. положительное число, минимальное значение 200
+
+## Результат
+После успешного выполнения возвращает объект с единственным полем **UploadUrl**.
+
+## Пример
+``` csharp
+// Пример кода
+```
