@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Photos.CreateAlbum
-permalink: photo/createAlbum/
+permalink: photos/createAlbum/
 comments: true
 ---
 # Метод Photos.CreateAlbum
