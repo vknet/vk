@@ -1,11 +1,28 @@
 ---
 layout: default
 title: Метод Photos.ReorderAlbums
-permalink: photo/reorderAlbums/
+permalink: photos/reorderAlbums/
 comments: true
 ---
 # Метод Photos.ReorderAlbums
 Меняет порядок альбома в списке альбомов пользователя.
 
-## Описание
-Данный раздел справки еще не реализован. Вы  можете помочь проекту, для этого перейдите по ссылке чтобы связаться с нами [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Страница документации ВКонтакте [photos.reorderAlbums](https://vk.com/dev/photos.reorderAlbums).
+## Синтаксис
+``` csharp
+public bool ReorderAlbums(long albumId, long? ownerId = null, long? before = null, long? after = null)
+```
+
+## Параметры
++ **ownerId** - Идентификатор пользователя или сообщества, которому принадлежит альбом. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя
++ **albumId** - Идентификатор альбома. целое число, обязательный параметр
++ **before** - Идентификатор альбома, перед которым следует поместить альбом. целое число
++ **after** - Идентификатор альбома, после которого следует поместить альбом. целое число
+
+## Результат
+После успешного выполнения возвращает 1.
+
+## Пример
+``` csharp
+// Пример кода
+```
