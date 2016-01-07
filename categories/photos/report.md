@@ -1,11 +1,27 @@
 ---
 layout: default
 title: Метод Photos.Report
-permalink: photo/report/
+permalink: photos/report/
 comments: true
 ---
 # Метод Photos.Report
 Позволяет пожаловаться на фотографию.
 
-## Описание
-Данный раздел справки еще не реализован. Вы  можете помочь проекту, для этого перейдите по ссылке чтобы связаться с нами [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Страница документации ВКонтакте [photos.report](https://vk.com/dev/photos.report).
+## Синтаксис
+``` csharp
+public bool Report(long ownerId, ulong photoId, ReportReason reason)
+```
+
+## Параметры
++ **ownerId** - Идентификатор пользователя или сообщества, которому принадлежит фотография. целое число, обязательный параметр
++ **photoId** - Идентификатор фотографии. положительное число, обязательный параметр
++ **reason** - Причина жалобы:   0 — спам;  1 — детская порнография;  2 — экстремизм;  3 — насилие;  4 — пропаганда наркотиков;  5 — материал для взрослых;  6 — оскорбление.  положительное число
+
+## Результат
+После успешного выполнения возвращает 1.
+
+## Пример
+``` csharp
+// Пример кода
+```
