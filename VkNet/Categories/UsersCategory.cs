@@ -42,11 +42,6 @@ namespace VkNet.Categories
 		[ApiVersion("5.37")]
 		public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @params)
 		{
-			if (string.IsNullOrWhiteSpace(@params.Query))
-			{
-				throw new ArgumentException("Query can not be null or empty.");
-			}
-			
 			var response = _vk.Call("users.search", @params);
 
 			itemsCount = response["count"];
