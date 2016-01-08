@@ -360,7 +360,7 @@
             This.Action(() => vk.Users.Search(out count, new UserSearchParams { Query = Query })).Throws<AccessTokenInvalidException>();
         }
 
-        [Test]
+        [Test, Ignore("Query может быть пустым")]
         public void Search_EmptyQuery_ThrowArgumentException()
         {
             int count;
