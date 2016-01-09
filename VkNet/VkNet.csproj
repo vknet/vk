@@ -55,7 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\MarketCategory.cs" />
+    <Compile Include="Enums\SafetyEnums\FriendsFilter.cs" />
+    <Compile Include="Model\ProductComment.cs" />
+    <Compile Include="Model\ProductAlbum.cs" />
     <Compile Include="Enums\MainSection.cs" />
+    <Compile Include="Enums\ProductSort.cs" />
     <Compile Include="Enums\SafetyEnums\Deactivated.cs" />
     <Compile Include="Enums\SafetyEnums\Platform.cs" />
     <Compile Include="Enums\SafetyEnums\RelativeType.cs" />
@@ -132,7 +137,7 @@
     <Compile Include="Enums\Sex.cs" />
     <Compile Include="Enums\SortOrderBy.cs" />
     <Compile Include="Enums\UserSort.cs" />
-    <Compile Include="Enums\ContentReportType.cs" />
+    <Compile Include="Enums\ReportReason.cs" />
     <Compile Include="Enums\VideoSort.cs" />
     <Compile Include="Enums\VideoWidth.cs" />
     <Compile Include="Enums\VkObjectType.cs" />
@@ -179,6 +184,9 @@
     <Compile Include="Model\PostSourceData.cs" />
     <Compile Include="Model\Price.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Enums\ProductAvailability.cs" />
+    <Compile Include="Model\ProductCategory.cs" />
+    <Compile Include="Model\ProductCategorySection.cs" />
     <Compile Include="Model\Rating.cs" />
     <Compile Include="Model\Rect.cs" />
     <Compile Include="Model\CropPhoto.cs" />
@@ -200,6 +208,10 @@
     <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />
     <Compile Include="Model\RequestParams\Likes\LikesGetListParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketCreateCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketProductParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketSearchParams.cs" />
     <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
     <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />
     <Compile Include="Model\RequestParams\Messages\HistoryGetParams.cs" />
@@ -297,7 +309,7 @@
       <DependentUpon>ModelToVkParametrsCastGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\Tuple.cs" />
-    <Compile Include="Utils\VkResponseToManualEnumCastsGenerator.cs">
+    <Compile Include="Utils\VkResponseToManualEnumCastsGenerator1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VkResponseToManualEnumCastsGenerator.tt</DependentUpon>
@@ -385,8 +397,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

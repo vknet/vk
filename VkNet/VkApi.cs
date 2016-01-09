@@ -196,16 +196,21 @@
         public GiftsCategory Gifts
         { get; set; }
 
-        /// <summary>
-        /// API для работы с Авторизацией.
-        /// </summary>
-        public AuthCategory Auth { get; set; }
-        #endregion
+		/// <summary>
+		/// API для работы с товарами.
+		/// </summary>
+		public MarketCategory Market { get; set; }
 
-        /// <summary>
-        /// Браузер.
-        /// </summary>
-        internal IBrowser Browser
+		/// <summary>
+		/// API для работы с Авторизацией.
+		/// </summary>
+		public AuthCategory Auth { get; set; }
+		#endregion
+
+		/// <summary>
+		/// Браузер.
+		/// </summary>
+		internal IBrowser Browser
         { get; set; }
 
         /// <summary>
@@ -254,6 +259,7 @@
             NewsFeed = new NewsFeedCategory(this);
             Stats = new StatsCategory(this);
             Auth = new AuthCategory(this);
+			Market = new MarketCategory(this);
 
             RequestsPerSecond = 3;
         }

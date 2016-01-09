@@ -81,7 +81,7 @@ namespace VkNet.Tests.Enum.Filters
         {
             var settings = Settings.All;
 			const string expected = "notify,friends,photos,audio,video,pages,status,notes,messages,wall," +
-									"ads,docs,groups,notifications,stats";
+									"ads,docs,groups,notifications,stats,market";
 
             Assert.That(settings.ToString(), Is.EqualTo(expected));
         }

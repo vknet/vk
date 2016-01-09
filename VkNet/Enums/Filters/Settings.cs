@@ -111,11 +111,16 @@
         /// </summary>
         public static readonly Settings Email = RegisterPossibleValue(1 << 22, "email");
 
-        /// <summary>
-        /// Доступ ко всем возможным операциям (без Offline и NoHttps).
-        /// </summary>
-        public static readonly Settings All = Notify | Friends | Photos | Audio | Video | Documents | Notes | Pages | Status | Wall | Groups | Messages | Notifications
-                                              | Statistic | Ads;
+		/// <summary>
+		/// Доступ к товарам. Доступно только для сайтов.
+		/// </summary>
+		public static readonly Settings Market = RegisterPossibleValue(1 << 27, "market");
+
+		/// <summary>
+		/// Доступ ко всем возможным операциям (без Offline и NoHttps).
+		/// </summary>
+		public static readonly Settings All = Notify | Friends | Photos | Audio | Video | Documents | Notes | Pages | Status | Wall | Groups | Messages | Notifications
+                                              | Statistic | Ads | Market;
 
     }
 }

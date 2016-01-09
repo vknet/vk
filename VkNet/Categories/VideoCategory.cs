@@ -786,7 +786,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.report"/>.
         /// </remarks>
         [ApiVersion("5.9")]
-        public bool Report(long videoId, Enums.ContentReportType reason, long? ownerId, string comment = null, string searchQuery = null)
+        public bool Report(long videoId, Enums.ReportReason reason, long? ownerId, string comment = null, string searchQuery = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
@@ -814,7 +814,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.reportComment"/>.
         /// </remarks>
         [ApiVersion("5.9")]
-        public bool ReportComment(long commentId, long ownerId, Enums.ContentReportType reason)
+        public bool ReportComment(long commentId, long ownerId, Enums.ReportReason reason)
         {
             VkErrors.ThrowIfNumberIsNegative(() => commentId);
 

@@ -3,22 +3,17 @@
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Валюта.
+	/// Секция катеогории товара
 	/// </summary>
-	public class Currency
+	public class ProductCategorySection
 	{
 		/// <summary>
-		/// Идентификатор валюты
+		/// Идентификатор
 		/// </summary>
 		public long? Id { get; set; }
 
 		/// <summary>
-		/// Буквенное обозначение валюты
-		/// </summary>
-		public string Сurrency { get; set; }
-
-		/// <summary>
-		/// Буквенное обозначение валюты
+		/// Название секции
 		/// </summary>
 		public string Name { get; set; }
 
@@ -27,16 +22,15 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Currency FromJson(VkResponse response)
+		internal static ProductCategorySection FromJson(VkResponse response)
 		{
-			var currency = new Currency
+			var product = new ProductCategorySection
 			{
 				Id = response["id"],
-				Сurrency = response["currency"],
 				Name = response["name"]
 			};
 
-			return currency;
+			return product;
 		}
 	}
 }

@@ -45,10 +45,10 @@ namespace VkNet.Categories
 		[ApiVersion("5.24")]
 		public ReadOnlyCollection<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null, NameCase nameCase = null, int? listId = null)
 		{
-			if(listId != null && listId < 0)
+			if (listId != null && listId < 0)
 				throw new ArgumentOutOfRangeException("listId", "listId must be a positive number.");
 
-			var parameters = new VkParameters { { "user_id", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order }, {"list_id", listId} , {"name_case", nameCase}};
+			var parameters = new VkParameters { { "user_id", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order }, { "list_id", listId }, { "name_case", nameCase } };
 
 			var response = _vk.Call("friends.get", parameters);
 
@@ -169,10 +169,10 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNullOrEmpty(() => name);
 
 			var parameters = new VkParameters
-				{
-					{"name", name}
-				};
-			parameters.Add("user_ids", userIds);
+			{
+				{"name", name},
+				{"user_ids", userIds}
+			};
 
 			var response = _vk.Call("friends.addList", parameters);
 
@@ -191,7 +191,7 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => listId);
 
-			var parameters = new VkParameters {{"list_id", listId}};
+			var parameters = new VkParameters { { "list_id", listId } };
 
 			var response = _vk.Call("friends.deleteList", parameters);
 
@@ -230,13 +230,13 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => listId);
 
 			var parameters = new VkParameters
-				{
-					{"name", name},
-					{"list_id", listId}
-				};
-			parameters.Add("user_ids", userIds);
-			parameters.Add("add_user_ids", addUserIds);
-			parameters.Add("delete_user_ids", deleteUserIds);
+			{
+				{"name", name},
+				{"list_id", listId},
+				{"user_ids", userIds},
+				{"add_user_ids", addUserIds},
+				{"delete_user_ids", deleteUserIds}
+			};
 
 			var response = _vk.Call("friends.editList", parameters);
 
@@ -304,7 +304,7 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 
-			var parameters = new VkParameters {{"user_id", userId}};
+			var parameters = new VkParameters { { "user_id", userId } };
 
 			var response = _vk.Call("friends.delete", parameters);
 			return response;
@@ -323,8 +323,11 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 
-			var parameters = new VkParameters { { "user_id", userId } };
-			parameters.Add("list_ids", listIds);
+			var parameters = new VkParameters
+			{
+				{"user_id", userId}, 
+				{"list_ids", listIds}
+			};
 
 			var response = _vk.Call("friends.edit", parameters);
 
@@ -405,6 +408,34 @@ namespace VkNet.Categories
 			}
 
 			return response.ToReadOnlyCollectionOf<long>(x => x);
+		}
+
+		/// <summary>
+		/// Возвращает список профилей пользователей, которые могут быть друзьями текущего пользователя.
+		/// </summary>
+		/// <param name="filter">Типы предлагаемых друзей, которые нужно вернуть, перечисленные через запятую.</param>
+		/// <param name="count">Количество рекомендаций, которое необходимо вернуть. положительное число, максимальное значение 500, по умолчанию 500 (положительное число, максимальное значение 500, по умолчанию 500).</param>
+		/// <param name="offset">Смещение, необходимое для выбора определённого подмножества списка. положительное число (положительное число).</param>
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, counters, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities список строк, разделенных через запятую(список строк, разделенных через запятую).</param>
+		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. строка (строка).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов пользователей с дополнительным полем found_with для пользователей, найденных через импорт контактов. Для некоторых пользователей, которые были найдены давно поле found_with может отсутствовать.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getSuggestions" />.
+		/// </remarks>
+		[ApiVersion("5.42")]
+		public ReadOnlyCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null, UsersFields fields = null, NameCase nameCase = null)
+		{
+			var parameters = new VkParameters {
+				{ "filter", filter },
+				{ "count", count },
+				{ "offset", offset },
+				{ "fields", fields },
+				{ "name_case", nameCase }
+			};
+
+			return _vk.Call("friends.getSuggestions", parameters).ToReadOnlyCollectionOf<User>(x => x);
 		}
 	}
 }
