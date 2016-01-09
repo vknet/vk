@@ -101,4 +101,49 @@
   <data name="UserSort_ByPopularity" xml:space="preserve">
     <value>По популярности</value>
   </data>
+	<data name="UserSort_ByRegDate" xml:space="preserve">
+    <value>По дате регистрации</value>
+  </data>
+	<data name="Sex_Unknown" xml:space="preserve">
+    <value>Не указан</value>
+  </data>
+	<data name="Sex_Female" xml:space="preserve">
+    <value>Женский</value>
+  </data>
+	<data name="Sex_Male" xml:space="preserve">
+    <value>Мужской</value>
+  </data>
+	<data name="MaritalStatus_Single" xml:space="preserve">
+    <value>Не женат</value>
+  </data>
+	<data name="MaritalStatus_Meets" xml:space="preserve">
+    <value>Встречается</value>
+  </data>
+	<data name="MaritalStatus_Engaged" xml:space="preserve">
+    <value>Помолвлен</value>
+  </data>
+	<data name="MaritalStatus_Married" xml:space="preserve">
+    <value>Женат</value>
+  </data>
+	<data name="MaritalStatus_ItsComplicated" xml:space="preserve">
+    <value>Всё сложно</value>
+  </data>
+	<data name="MaritalStatus_TheActiveSearch" xml:space="preserve">
+    <value>В активном поиске</value>
+  </data>
+	<data name="MaritalStatus_InLove" xml:space="preserve">
+    <value>Влюблён</value>
+  </data>
+	<data name="AddFriendStatus_Unknown" xml:space="preserve">
+    <value>Статус ответа неизвестен</value>
+  </data>
+	<data name="AddFriendStatus_Sended" xml:space="preserve">
+    <value>Заявка на добавление данного пользователя в друзья отправлена</value>
+  </data>
+	<data name="AddFriendStatus_Accepted" xml:space="preserve">
+    <value>Заявка на добавление в друзья от данного пользователя одобрена</value>
+  </data>
+	<data name="AddFriendStatus_Resubmit" xml:space="preserve">
+    <value>Повторная отправка заявки</value>
+  </data>
 </root>

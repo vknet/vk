@@ -140,7 +140,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Семейное положение.
 		/// </summary>
-		public MaritalStatus Status
+		public MaritalStatus? Status
 		{ get; set; }
 
 		/// <summary>

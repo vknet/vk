@@ -1,5 +1,4 @@
-﻿using System.Security.Policy;
-using System.Web;
+﻿using System.Web;
 using Newtonsoft.Json.Linq;
 
 namespace VkNet.Categories

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
