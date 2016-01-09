@@ -2,16 +2,16 @@
 
 namespace VkNet.Model.RequestParams
 {
-    using Enums;
-    using Enums.Filters;
-    using Enums.SafetyEnums;
+	using Enums;
+	using Enums.Filters;
+	using Enums.SafetyEnums;
 
-    using Utils;
+	using Utils;
 
-    /// <summary>
-    /// Параметры метода users.search
-    /// </summary>
-    public struct UserSearchParams
+	/// <summary>
+	/// Параметры метода users.search
+	/// </summary>
+	public struct UserSearchParams
 	{
 		/// <summary>
 		/// Параметры метода users.search.
@@ -257,7 +257,7 @@ namespace VkNet.Model.RequestParams
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
 		internal static VkParameters ToVkParameters(UserSearchParams p)
-        {
+		{
 			var parameters = new VkParameters
 			{
 				{ "q", HttpUtility.HtmlEncode(p.Query) },
@@ -296,6 +296,6 @@ namespace VkNet.Model.RequestParams
 			};
 
 			return parameters;
-        }
-    }
+		}
+	}
 }
