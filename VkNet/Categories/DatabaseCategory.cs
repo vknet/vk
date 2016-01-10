@@ -39,8 +39,8 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCountries"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.40")]
-		public ReadOnlyCollection<Country> GetCountries(bool needAll = true, List<Iso3166> codes = null, int? count = null, int? offset = null)
+		[ApiVersion("5.42")]
+		public ReadOnlyCollection<Country> GetCountries(bool? needAll = null, List<Iso3166> codes = null, int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 			VkErrors.ThrowIfNumberIsNegative(() => count);

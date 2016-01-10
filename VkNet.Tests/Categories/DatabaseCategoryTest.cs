@@ -374,7 +374,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCountries_ListOfCodes_ListOfCountries()
         {
-			const string url = "https://api.vk.com/method/database.getCountries?code=RU,DE&need_all=1&v=5.40&access_token=";
+			const string url = "https://api.vk.com/method/database.getCountries?code=RU,DE&v=5.40&access_token=";
 			const string json =
                 @"{
                     'response': [
