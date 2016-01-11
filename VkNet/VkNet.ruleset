@@ -50,14 +50,15 @@
     <Rule Id="CC0108" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="GCop.Analyzer" RuleNamespace="GCop.Analyzer">
-    <Rule Id="GCop101" Action="Warning" />
-    <Rule Id="GCop112" Action="Warning" />
     <Rule Id="GCop113" Action="Info" />
     <Rule Id="GCop116" Action="None" />
     <Rule Id="GCop117" Action="Info" />
     <Rule Id="GCop119" Action="None" />
     <Rule Id="GCop129" Action="None" />
     <Rule Id="GCop135" Action="Warning" />
+    <Rule Id="GCop169" Action="None" />
+    <Rule Id="GCop171" Action="None" />
+    <Rule Id="GCop172" Action="None" />
     <Rule Id="GCop204" Action="Warning" />
     <Rule Id="GCop207" Action="None" />
     <Rule Id="GCop211" Action="None" />

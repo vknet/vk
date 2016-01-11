@@ -223,7 +223,7 @@ namespace VkNet.Categories
 				{ "filter", filters }
 			};
 
-			if (count.HasValue && count.Value > 0 && count.Value < 1000)
+			if (count.HasValue && count > 0 && count < 1000)
 			{
 				parameters.Add("count", count);
 			}
