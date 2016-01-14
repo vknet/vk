@@ -18,7 +18,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор пользователя, который отправил подарок, или 0, если отправитель скрыт.
 		/// </summary>
-		public ulong FromId { get; set; }
+		public long FromId { get; set; }
 
 		/// <summary>
 		/// Текст сообщения, приложенного к подарку.

@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
-using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Exception;
-using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
-using FluentNUnit;
 
 namespace VkNet.Tests.Categories
 {
@@ -31,7 +22,7 @@ namespace VkNet.Tests.Categories
 		public void Get_NormalCase()
 		{
 
-			const string url = "https://api.vk.com/method/gifts.get?user_id=32190123&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/gifts.get?user_id=32190123&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -106,9 +97,9 @@ namespace VkNet.Tests.Categories
 						]
 					}
 				  }";
-			var audio = GetMockedGiftsCategory(url, json);
+			var category = GetMockedGiftsCategory(url, json);
 			int total;
-			var gifts = audio.Get(out total, 32190123);
+			var gifts = category.Get(out total, 32190123);
 
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(gifts[0].Id, Is.EqualTo(443110992));
@@ -123,6 +114,5 @@ namespace VkNet.Tests.Categories
 			Assert.That(gifts[0].Gift.Thumb48, Is.EqualTo(@"http://vk.com/images/gift/711/48.png"));
 			Assert.That(gifts[0].Privacy, Is.EqualTo(GiftPrivacy.All));
 		}
-
 	}
 }
