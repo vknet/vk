@@ -27,7 +27,7 @@ namespace VkNet.Model
 		{
 			var street = new Street
 			{
-				Id = response["sid"],
+				Id = response["sid"] ?? response["id"],
 				Title = response["name"]
 			};
 

@@ -27,7 +27,7 @@ namespace VkNet.Model
         {
 			var region = new Region
 			{
-				Id = response["region_id"],
+				Id = response["region_id"] ?? response["id"],
 				Title = response["title"]
 			};
 

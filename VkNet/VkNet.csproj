@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories\MarketCategory.cs" />
+    <Compile Include="Model\SchoolClass.cs" />
     <Compile Include="Enums\SafetyEnums\FriendsFilter.cs" />
     <Compile Include="Model\ProductComment.cs" />
     <Compile Include="Model\ProductAlbum.cs" />

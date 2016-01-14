@@ -25,7 +25,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetStreetsById_EmptyList()
         {
-            const string url = "https://api.vk.com/method/database.getStreetsById?access_token=";
+            const string url = "https://api.vk.com/method/database.getStreetsById?v=5.44&access_token=";
             const string json =
                 @"{
                     'error': {
@@ -56,7 +56,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetUniversities_FindVstu()
         {
-            const string url = "https://api.vk.com/method/database.getUniversities?q=ВолгГТУ&country_id=1&city_id=10&access_token=";
+            const string url = "https://api.vk.com/method/database.getUniversities?q=ВолгГТУ&country_id=1&city_id=10&v=5.44&access_token=";
             const string json =
                 @"{
                     'response': [
@@ -81,7 +81,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetUniversities_ListOfUniversities()
         {
-            const string url = "https://api.vk.com/method/database.getUniversities?q=ThisUniverDoesNotExist&country_id=1&city_id=1&access_token=";
+            const string url = "https://api.vk.com/method/database.getUniversities?q=ThisUniverDoesNotExist&country_id=1&city_id=1&v=5.44&access_token=";
             const string json =
                 @"{
                     'response': [
@@ -99,7 +99,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetStreetsById_1_89_437()
         {
-            const string url = "https://api.vk.com/method/database.getStreetsById?street_ids=1,89,437&access_token=";
+            const string url = "https://api.vk.com/method/database.getStreetsById?street_ids=1,89,437&v=5.44&access_token=";
             const string json =
                 @"{
                     'response': [
@@ -152,7 +152,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCitiesById_EmptyList()
         {
-            const string url = "https://api.vk.com/method/database.getCitiesById?access_token=";
+            const string url = "https://api.vk.com/method/database.getCitiesById?v=5.44&access_token=";
             const string json =
                 @"{
                     'response': []
@@ -168,7 +168,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCitiesById_MskSpbVlg()
         {
-            const string url = "https://api.vk.com/method/database.getCitiesById?city_ids=1,2,10&access_token=";
+            const string url = "https://api.vk.com/method/database.getCitiesById?city_ids=1,2,10&v=5.44&access_token=";
             const string json =
                 @"{
                     'response': [
@@ -206,7 +206,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCities_GetBiggestCitiesOfRussia()
         {
-            const string url = "https://api.vk.com/method/database.getCities?country_id=1&count=3&access_token=";
+            const string url = "https://api.vk.com/method/database.getCities?country_id=1&count=3&v=5.44&access_token=";
             const string json =
                 @"{
                     'response': [
@@ -262,7 +262,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCities_NormalCase()
         {
-            const string url = "https://api.vk.com/method/database.getCities?country_id=1&region_id=1004118&offset=1&count=2&access_token=";
+            const string url = "https://api.vk.com/method/database.getCities?country_id=1&region_id=1004118&offset=1&count=2&v=5.44&access_token=";
             const string json =
                 @"{
                     'response': [
@@ -322,24 +322,9 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetRegions_NormalCase_ListOfRegions()
         {
-            const string url = "https://api.vk.com/method/database.getRegions?country_id=1&offset=5&count=3&access_token=";
+            const string url = "https://api.vk.com/method/database.getRegions?country_id=1&offset=5&count=3&v=5.44&access_token=";
             const string json =
-                @"{
-                    'response': [
-                      {
-                        'region_id': '1000236',
-                        'title': 'Архангельская область'
-                      },
-                      {
-                        'region_id': '1004118',
-                        'title': 'Астраханская область'
-                      },
-                      {
-                        'region_id': '1004565',
-                        'title': 'Башкортостан'
-                      }
-                    ]
-                  }";
+                @"{'response':{'count':83,'items':[{'id':1004118,'title':'Астраханская область'},{'id':1004565,'title':'Башкортостан'},{'id':1009404,'title':'Белгородская область'}]}}";
 
             var db = GetMockedDatabaseCategory(url, json);
 
@@ -347,14 +332,14 @@ namespace VkNet.Tests.Categories
 
             Assert.That(regions.Count, Is.EqualTo(3));
 
-            Assert.That(regions[0].Id, Is.EqualTo(1000236));
-            Assert.That(regions[0].Title, Is.EqualTo("Архангельская область"));
+            Assert.That(regions[0].Id, Is.EqualTo(1004118));
+            Assert.That(regions[0].Title, Is.EqualTo("Астраханская область"));
 
-            Assert.That(regions[1].Id, Is.EqualTo(1004118));
-            Assert.That(regions[1].Title, Is.EqualTo("Астраханская область"));
+            Assert.That(regions[1].Id, Is.EqualTo(1004565));
+            Assert.That(regions[1].Title, Is.EqualTo("Башкортостан"));
 
-            Assert.That(regions[2].Id, Is.EqualTo(1004565));
-            Assert.That(regions[2].Title, Is.EqualTo("Башкортостан"));
+            Assert.That(regions[2].Id, Is.EqualTo(1009404));
+            Assert.That(regions[2].Title, Is.EqualTo("Белгородская область"));
         }
 
         [Test]
@@ -374,7 +359,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCountries_ListOfCodes_ListOfCountries()
         {
-			const string url = "https://api.vk.com/method/database.getCountries?code=RU,DE&v=5.42&access_token=";
+			const string url = "https://api.vk.com/method/database.getCountries?code=RU,DE&v=5.44&access_token=";
 			const string json =
                 @"{
                     'response': [
@@ -426,7 +411,7 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-			const string url = "https://api.vk.com/method/database.getCountries?offset=5&count=3&need_all=1&v=5.42&access_token=";
+			const string url = "https://api.vk.com/method/database.getCountries?offset=5&count=3&need_all=1&v=5.44&access_token=";
 			var db = GetMockedDatabaseCategory(url, json);
 
              var countries = db.GetCountries(true, null, 3, 5);
@@ -446,7 +431,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCountriesById_EmptyList()
         {
-            const string url = "https://api.vk.com/method/database.getCountriesById?access_token=";
+            const string url = "https://api.vk.com/method/database.getCountriesById?v=5.44&access_token=";
             const string json =
                 @"{
                     'response': []
@@ -463,7 +448,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCountriesById_1And65_RussiaAndGermany()
         {
-            const string url = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&access_token=";
+            const string url = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&v=5.44&access_token=";
             const string json =
                 @"{
                     'response': [
@@ -494,7 +479,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetSchools_BadQuery_EmptyList()
         {
-            const string url = "https://api.vk.com/method/database.getSchools?q=SchoolDoesNotExist&country_id=1&city_id=10&access_token=";
+            const string url = "https://api.vk.com/method/database.getSchools?q=SchoolDoesNotExist&city_id=10&v=5.44&access_token=";
             const string json =
                 @"{
                     'response': [
@@ -504,7 +489,7 @@ namespace VkNet.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            var schools = db.GetSchools(1, 10, "SchoolDoesNotExist");
+            var schools = db.GetSchools(10, "SchoolDoesNotExist");
 
 			Assert.That(schools.Count, Is.EqualTo(0));
         }
@@ -512,50 +497,34 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetSchools_LiceumsInVolgograd_ListOfLiceums()
         {
-            const string url = "https://api.vk.com/method/database.getSchools?country_id=1&city_id=10&count=3&access_token=";
+            const string url = "https://api.vk.com/method/database.getSchools?city_id=10&count=3&v=5.44&access_token=";
             const string json =
-                @"{
-                    'response': [
-                      342,
-                      {
-                        'id': 53649,
-                        'title': 'шк. 1'
-                      },
-                      {
-                        'id': 295408,
-                        'title': 'гимн. 1'
-                      },
-                      {
-                        'id': 55159,
-                        'title': 'лиц. 1'
-                      }
-                    ]
-                  }";
+                @"{'response':{'count':343,'items':[{'id':51946,'title':'Астраханское речное училище (ВФ АРУ)'},{'id':207063,'title':'Библейская школа «Весть»'},{'id':224706,'title':'Библейский колледж «Новая жизнь»'}]}}";
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            var schools = db.GetSchools(1, 10, count: 3);
+            var schools = db.GetSchools(10, count: 3);
 
 			Assert.That(schools.Count, Is.EqualTo(3));
 
-            Assert.That(schools[0].Id, Is.EqualTo(53649));
-            Assert.That(schools[0].Name, Is.EqualTo("шк. 1"));
+            Assert.That(schools[0].Id, Is.EqualTo(51946));
+            Assert.That(schools[0].Name, Is.EqualTo("Астраханское речное училище (ВФ АРУ)"));
 
-            Assert.That(schools[1].Id, Is.EqualTo(295408));
-            Assert.That(schools[1].Name, Is.EqualTo("гимн. 1"));
+            Assert.That(schools[1].Id, Is.EqualTo(207063));
+            Assert.That(schools[1].Name, Is.EqualTo("Библейская школа «Весть»"));
 
-            Assert.That(schools[2].Id, Is.EqualTo(55159));
-            Assert.That(schools[2].Name, Is.EqualTo("лиц. 1"));
+            Assert.That(schools[2].Id, Is.EqualTo(224706));
+            Assert.That(schools[2].Name, Is.EqualTo("Библейский колледж «Новая жизнь»"));
         }
 
         [Test]
         [Ignore("undone")]
         public void GetFaculties_SuchUniversityDoesNotExist()
         {
-//            const string url = "https://api.vk.com/method/database.getFaculties?university_id=999999&access_token=";
-//            var db = _db;
-//
-//            List<Faculty> faculties = db.GetFaculties(999999);
+            //            const string url = "https://api.vk.com/method/database.getFaculties?university_id=999999&v=5.44&access_token=";
+            //            var db = _db;
+            //
+            //            List<Faculty> faculties = db.GetFaculties(999999);
 
             Assert.Fail("undone");
         }
@@ -563,7 +532,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetFaculties_ListVstuFaculties()
         {
-            const string url = "https://api.vk.com/method/database.getFaculties?university_id=431&offset=2&count=3&access_token=";
+            const string url = "https://api.vk.com/method/database.getFaculties?university_id=431&offset=2&count=3&v=5.44&access_token=";
             const string json =
                 @"{
                     'response': [
