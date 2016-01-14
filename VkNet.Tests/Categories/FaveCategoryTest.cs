@@ -346,7 +346,7 @@ namespace VkNet.Tests.Categories
 			// 2015-11-16 13:05:33.000
 			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 			posts.WallPosts[0].Date.ShouldEqual(dt.AddSeconds(1447668333).ToLocalTime());
-			posts.WallPosts[0].PostType.ShouldEqual("post");
+			posts.WallPosts[0].PostType.ShouldEqual(PostType.Post);
 			posts.WallPosts[0].Text.ShouldEqual(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
 
 							#videos@tproger");
@@ -475,7 +475,7 @@ namespace VkNet.Tests.Categories
 			// 2015-11-16 13:05:33.000
 			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 			posts.WallPosts[0].Date.ShouldEqual(dt.AddSeconds(1447668333).ToLocalTime());
-			posts.WallPosts[0].PostType.ShouldEqual("post");
+			posts.WallPosts[0].PostType.ShouldEqual(PostType.Post);
 			posts.WallPosts[0].Text.ShouldEqual(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
 
 							#videos@tproger");

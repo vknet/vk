@@ -1282,7 +1282,7 @@ namespace VkNet.Tests.Categories
 			// Unix timestamp is seconds past epoch
 			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 			posts.WallPosts[0].Date.ShouldEqual(dt.AddSeconds(1447252575).ToLocalTime());
-	        posts.WallPosts[0].PostType.ShouldEqual("post");
+	        posts.WallPosts[0].PostType.ShouldEqual(PostType.Post);
             posts.WallPosts[0].Text.ShouldEqual("Тест");
             posts.WallPosts[0].CanDelete.ShouldBeTrue();
             posts.WallPosts[0].CanEdit.ShouldBeFalse();

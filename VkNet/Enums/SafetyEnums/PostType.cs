@@ -2,10 +2,10 @@
 
 namespace VkNet.Enums.SafetyEnums
 {
-	/// <summary>
-	/// Способ сортировки приложений
-	/// </summary>
-	public sealed class PostType : SafetyEnum<PostType>
+    /// <summary>
+    /// Тип записи post, copy, reply, postpone, suggest
+    /// </summary>
+    public sealed class PostType : SafetyEnum<PostType>
 	{
 		/// <summary>
 		/// Популярные за день (по умолчанию);
@@ -17,12 +17,26 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		public static readonly PostType Copy = RegisterPossibleValue("copy");
 
-		/// <summary>
-		/// Разобрать из json.
+        /// <summary>
+		/// По посещаемости
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static PostType FromJson(VkResponse response)
+		public static readonly PostType Reply = RegisterPossibleValue("reply");
+
+        /// <summary>
+		/// По посещаемости
+		/// </summary>
+		public static readonly PostType Postpone = RegisterPossibleValue("postpone");
+
+        /// <summary>
+		/// По посещаемости
+		/// </summary>
+		public static readonly PostType Suggest = RegisterPossibleValue("suggest");
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        internal static PostType FromJson(VkResponse response)
 		{
 			switch (response.ToString())
 			{
@@ -30,11 +44,23 @@ namespace VkNet.Enums.SafetyEnums
 					{
 						return Post;
 					}
-				case "Copy":
+				case "copy":
 					{
 						return Copy;
 					}
-				default:
+                case "reply":
+                    {
+                        return Reply;
+                    }
+                case "postpone":
+                    {
+                        return Postpone;
+                    }
+                case "suggest":
+                    {
+                        return Suggest;
+                    }
+                default:
 					{
 						return null;
 					}

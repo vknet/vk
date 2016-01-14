@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model
+﻿using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Model
 {
 	using System;
 	using System.Linq;
@@ -83,7 +85,7 @@
 		/// <summary>
 		/// Тип записи (post, copy, reply, postpone, suggest). Если PostType равен "copy", то запись является копией записи с чужой стены.
 		/// </summary>
-		public string PostType { get; set; }
+		public PostType PostType { get; set; }
 
 		/// <summary>
 		/// Информация о способе размещения записи.

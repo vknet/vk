@@ -38,7 +38,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Находится в записях со стен, содержит тип новости (post или copy).
 		/// </summary>
-		public PostType PostType
+		public PostTypeOrder PostTypeOrder
 		{ get; set; }
 
 		/// <summary>
@@ -162,7 +162,7 @@ namespace VkNet.Model
 				SourceId = response["source_id"],
 				Date = response["date"],
 				PostId = response["post_id"],
-				PostType = response["post_type"],
+				PostTypeOrder = response["post_type"],
 				FinalPost = response["final_post"],
 				CopyOwnerId = response["copy_owner_id"],
 				CopyPostId = response["copy_post_id"],

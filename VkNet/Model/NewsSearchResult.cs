@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -64,6 +65,16 @@ namespace VkNet.Model
 		public Geo Geo
 		{ get; set; }
 
+        /// <summary>
+        /// Идентификатор владельца записи.
+        /// </summary>
+	    public long? SignerId { get; set; }
+
+        /// <summary>
+        /// Тип записи
+        /// </summary>
+	    public PostType PostType { get; set; }
+	    
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -81,8 +92,10 @@ namespace VkNet.Model
 				Comments = response["comments"],
 				Likes = response["likes"],
 				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
-				Geo = response["geo"]
-			};
+				Geo = response["geo"],
+                SignerId = response["signer_id"],
+                PostType = response["post_type"]
+            };
 			return newsSearchResult;
 		}
 	}

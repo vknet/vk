@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories\MarketCategory.cs" />
+    <Compile Include="Enums\SafetyEnums\PostType.cs" />
     <Compile Include="Model\SchoolClass.cs" />
     <Compile Include="Enums\SafetyEnums\FriendsFilter.cs" />
     <Compile Include="Model\ProductComment.cs" />
@@ -92,7 +93,7 @@
     <Compile Include="Enums\SafetyEnums\PhotoSizeType.cs" />
     <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
     <Compile Include="Enums\SafetyEnums\LikesFilter.cs" />
-    <Compile Include="Enums\SafetyEnums\PostType.cs" />
+    <Compile Include="Enums\SafetyEnums\PostTypeOrder.cs" />
     <Compile Include="Enums\SafetyEnums\AppSort.cs" />
     <Compile Include="Enums\SafetyEnums\Privacy.cs" />
     <Compile Include="Enums\ContentAccess.cs" />
