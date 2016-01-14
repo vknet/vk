@@ -4,7 +4,6 @@ using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
-using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -34,7 +33,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_AccessDenied_ThrowAccessDeniedException()
         {
-            const string url = "https://api.vk.com/method/status.get?uid=1&access_token=token";
+            const string url = "https://api.vk.com/method/status.get?user_id=1&v=5.44&access_token=token";
             const string json =
                 @"{
                     'error': {
@@ -50,7 +49,7 @@ namespace VkNet.Tests.Categories
                           'value': 'status.get'
                         },
                         {
-                          'key': 'uid',
+                          'key': 'user_id',
                           'value': '4793858'
                         },
                         {
@@ -76,7 +75,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Set_AccessDenied_ThrowAccessDeniedException()
         {
-            const string url = "https://api.vk.com/method/status.set?text=test&access_token=token";
+            const string url = "https://api.vk.com/method/status.set?text=test&v=5.44&access_token=token";
             const string json =
                 @"{
                     'error': {
@@ -111,13 +110,14 @@ namespace VkNet.Tests.Categories
         public void Set_TextIsNull_ThrowArgumentNullException()
         {
             var status = new StatusCategory(new VkApi { AccessToken = "token" });
-            This.Action(() => status.Set(null)).Throws<ArgumentNullException>();
+            This.Action(() => status.Set(null)).Throws<NullReferenceException>();
         }
 
         [Test]
+        [Ignore("Данный метод устарел. Пожалуйста используйте метод Audio.SetBroadcast")]
         public void Set_UserDisabledTrackNameBroadcast_ThrowAccessDeniedException()
         {
-            const string url = "https://api.vk.com/method/status.set?audio=0_0&access_token=token";
+            const string url = "https://api.vk.com/method/status.set?audio=0_0&v=5.44&access_token=token";
             const string json =
                 @"{
                     'error': {
@@ -146,14 +146,14 @@ namespace VkNet.Tests.Categories
 
             var status = GetMockedStatusCategory(url, json);
             var audio = new Audio {Id = 0, OwnerId = 0};
-            This.Action(() => status.Set("test test test", audio)).Throws<AccessDeniedException>()
+            This.Action(() => status.Set(audio)).Throws<AccessDeniedException>()
                 .Message.ShouldEqual("User disabled track name broadcast");
         }
 
         [Test]
         public void Set_SimpleText_ReturnTrue()
         {
-            const string url = "https://api.vk.com/method/status.set?text=test test test&access_token=token";
+            const string url = "https://api.vk.com/method/status.set?text=test test test&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': 1
@@ -166,9 +166,10 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
+        [Ignore("Данный метод устарел. Пожалуйста используйте метод Audio.SetBroadcast")]
         public void Set_Audio_ReturnTrue()
         {
-            const string url = "https://api.vk.com/method/status.set?audio=4793858_158073513&access_token=token";
+            const string url = "https://api.vk.com/method/status.set?audio=4793858_158073513&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': 1
@@ -177,7 +178,7 @@ namespace VkNet.Tests.Categories
             var status = GetMockedStatusCategory(url, json);
 
             var audio = new Audio { Id = 158073513, OwnerId = 4793858 };
-            var result = status.Set("test test test", audio);
+            var result = status.Set(audio);
 
 			Assert.That(result, Is.True);
         }
@@ -185,7 +186,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_SimpleText_ReturnStatus()
         {
-            const string url = "https://api.vk.com/method/status.get?uid=1&access_token=token";
+            const string url = "https://api.vk.com/method/status.get?user_id=1&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -204,7 +205,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_Audio_ReturnStatus()
         {
-            const string url = "https://api.vk.com/method/status.get?uid=1&access_token=token";
+            const string url = "https://api.vk.com/method/status.get?user_id=1&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': {

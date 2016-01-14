@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.Filters;
+﻿using System.Collections.Generic;
+using VkNet.Enums.Filters;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
@@ -23,9 +24,8 @@ namespace VkNet.Categories
         /// <summary>
         /// Получает статус пользователя или сообщества.
         /// </summary>
-        /// <param name="uid">
-        /// Идентификатор пользователя или сообщества, информацию о статусе которого нужно получить.
-        /// </param>
+        /// <param name="userId">Идентификатор пользователя или сообщества, информацию о статусе которого нужно получить.</param>
+        /// <param name="groupId"></param>
         /// <returns>
         /// В случае успеха возвращается статус пользователдя или сообщества.
         /// </returns>
@@ -34,9 +34,13 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.get"/>.
         /// </remarks>
         [Pure]
-        public Status Get(long uid)
+        [ApiVersion("5.44")]
+        public Status Get(long userId, long? groupId = null)
         {
-            var parameters = new VkParameters { { "uid", uid } };
+            var parameters = new VkParameters {
+                { "user_id", userId },
+                { "group_id", groupId }
+            };
 
             return _vk.Call("status.get", parameters);
         }
@@ -48,27 +52,20 @@ namespace VkNet.Categories
         /// Текст статуса, который необходимо установить текущему пользователю. Если параметр 
         /// равен пустой строке, то статус текущего пользователя будет очищен.
         /// </param>
-        /// <param name="audio">
-        /// Текущая аудиозапись, которую необходимо транслировать в статус, задается в формате oid_aid (
-        /// идентификатор владельца и идентификатор аудиозаписи, разделенные знаком подчеркивания). 
-        /// Для успешной трансляции необходимо, чтобы она была включена пользователем, в противном случае будет возвращена 
-        /// ошибка 221 ("User disabled track name broadcast"). При указании параметра audio параметр text игнорируется.
-        /// </param>
+        /// <param name="groupId"> Идентификатор сообщества, в котором будет установлен статус. По умолчанию статус устанавливается текущему пользователю. </param>
         /// <returns>Возвращает true, если статус был успешно установлен, false в противном случае.</returns>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
         /// </remarks>
-        public bool Set([NotNull] string text, Audio audio = null)
+        [ApiVersion("5.44")]
+        public bool Set(string text, long? groupId = null)
         {
-            if (text == null)
-                throw new ArgumentNullException("text");
-
-            var parameters = new VkParameters();
-            if (audio != null)
-                parameters.Add("audio", string.Format("{0}_{1}", audio.OwnerId, audio.Id));
-            else
-                parameters.Add("text", text);
+            var parameters = new VkParameters
+            {
+                { "text", text },
+                { "group_id", groupId }
+            };
 
             return _vk.Call("status.set", parameters);
         }
@@ -87,14 +84,12 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
         /// </remarks>
+        [ApiVersion("5.44")]
+        [Obsolete("Данный метод устарел. Пожалуйста используйте метод Audio.SetBroadcast")]
         public bool Set([NotNull] Audio audio)
         {
-            if (audio == null)
-                throw new ArgumentNullException("audio");
-
-            var parameters = new VkParameters { { "audio", string.Format("{0}_{1}", audio.OwnerId, audio.Id) } };
-
-            return _vk.Call("status.set", parameters);
+            _vk.Audio.SetBroadcast(string.Format("{0}_{1}", audio.OwnerId, audio.Id), new List<long>());
+            return true;
         }
     }
 }
