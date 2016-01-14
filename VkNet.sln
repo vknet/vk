@@ -1,10 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet", "VkNet\VkNet.csproj", "{8B031A92-84D4-4418-8551-18F1AFEECC6C}"
 	ProjectSection(ProjectDependencies) = postProject
+GCop.json = GCop.json
 		{55CE9C2A-50CB-43A2-9A9E-BD99D3F89D76} = {55CE9C2A-50CB-43A2-9A9E-BD99D3F89D76}
 	EndProjectSection
 EndProject
