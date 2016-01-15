@@ -91,7 +91,12 @@ namespace VkNet.Model.RequestParams
 		/// текст, который ввел пользователь
 		/// </summary>
 		public string CaptchaKey { get; set; }
-		
+
+		/// <summary>
+		/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id сообщества. 
+		/// </summary>
+		public long? PeerId { get; set; }
+
 		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
@@ -113,7 +118,8 @@ namespace VkNet.Model.RequestParams
 				{ "forward_messages", p.ForwardMessages },
 				{ "sticker_id", p.StickerId },
 				{ "captcha_sid", p.CaptchaSid },
-				{ "captcha_key", p.CaptchaKey }
+				{ "captcha_key", p.CaptchaKey },
+				{ "peer_id", p.PeerId }
 			};
 		}
 	}

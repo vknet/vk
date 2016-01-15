@@ -642,7 +642,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Send_DefaultFields_MessageId()
 		{
-			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=Test+from+vk.net+%3b)+%23+2&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=Test+from+vk.net+%3b)+%23+2&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 4457
@@ -659,7 +659,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Send_RussianText_MessageId()
 		{
-			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=%d0%a0%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d0%b5%d1%82+%23+2+--++%d0%b5%d1%89%d0%b5+%d1%80%d0%b0%d0%b7%d0%be%d0%ba&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=%d0%a0%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d0%b5%d1%82+%23+2+--++%d0%b5%d1%89%d0%b5+%d1%80%d0%b0%d0%b7%d0%be%d0%ba&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 4464
@@ -770,7 +770,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteDialog_UserId_DeleteAllMessages()
 		{
-			Url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.deleteDialog?user_id=4460019&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -784,13 +784,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteDialog_WithAllInputParams_DeleteTwoMessages()
 		{
-			Url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&offset=2&count=2&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.deleteDialog?user_id=4460019&offset=2&count=2&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 1
 				  }";
 
-			var result = Cat.DeleteDialog(4460019, false, 2, 2);
+			var result = Cat.DeleteDialog(4460019, false, null, 2, 2);
 
 			Assert.That(result, Is.True);
 		}
@@ -899,7 +899,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetActivity_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.setActivity?used_id=7550525&type=typing&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.setActivity?used_id=7550525&type=typing&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -1201,8 +1201,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_WithLastMessageIdParam_NormalCase_V521()
 		{
-			//url = "https://api.vk.com/method/messages.get?out=0&last_message_id=30&v=5.21&access_token=token";
-			Url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&last_message_id=30&count=20&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&last_message_id=30&count=20&v=5.44&access_token=token";
 
 			Json =
 				@"{
@@ -1240,7 +1239,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCase_V521()
 		{
-			Url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&count=2&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&count=2&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': {

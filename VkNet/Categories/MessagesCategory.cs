@@ -161,10 +161,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public MessagesGetObject GetHistory(HistoryGetParams @params)
 		{
-			
 			var response = _vk.Call("messages.getHistory", @params);
 			return response;
 		}
@@ -419,7 +418,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.send" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public ulong Send(MessageSendParams @params)
 		{
 			if (string.IsNullOrEmpty(@params.Message))
@@ -427,19 +426,18 @@ namespace VkNet.Categories
 				throw new ArgumentException("Message can not be null.", "Message");
 			}
 
-			// TODO: Yet not work with attachments. Fix it later.
-
 			return _vk.Call("messages.send", @params);
 		}
 
 		/// <summary>
 		/// Удаляет все личные сообщения в диалоге.
 		/// </summary>
-		/// <param name="id">
+		/// <param name="userId">
 		/// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, из диалога с которым необходимо удалить свои личные сообщения.
 		/// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, из которой необходимо удалить свои личные сообщения.
 		/// </param>
 		/// <param name="isChat">Признак удаляются ли сообщения из беседы (true) или из диалога с указанным пользователем (false).</param>
+		/// <param name="peerId">Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id сообщества. </param>
 		/// <param name="offset">Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются все сообщения,
 		///  начиная с первого).</param>
 		/// <param name="count">Как много сообщений нужно удалить. Обратите внимание что на метод наложено ограничение, за один вызов
@@ -449,10 +447,15 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.deleteDialog"/>.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool DeleteDialog(long id, bool isChat, uint? offset = null, uint? count = null)
+		[ApiVersion("5.44")]
+		public bool DeleteDialog(long userId, bool isChat, long? peerId = null, uint? offset = null, uint? count = null)
 		{
-			var parameters = new VkParameters { { isChat ? "chat_id" : "uid", id }, { "offset", offset }};
+			var parameters = new VkParameters
+			{
+				{ isChat ? "chat_id" : "user_id", userId },
+				{ "offset", offset },
+				{ "peer_id", peerId }
+			};
 			if (count <= 10000)
 			{
 				parameters.Add("count", count);
@@ -621,9 +624,8 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Изменяет статус набора текста пользователем в диалоге.
 		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя
-		/// </param>
+		/// <param name="userId">Идентификатор пользователя</param>
+		/// <param name="peerId">Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id сообщества.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает true, false в противном случае.
 		/// Текст «N набирает сообщение...» отображается в течение 10 секунд после вызова метода, либо до момента отправки сообщения.
@@ -632,10 +634,15 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.setActivity"/>.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool SetActivity(long userId)
+		[ApiVersion("5.44")]
+		public bool SetActivity(long userId, long? peerId = null)
 		{
-			var parameters = new VkParameters { { "used_id", userId }, { "type", "typing" } };
+			var parameters = new VkParameters
+			{
+				{ "used_id", userId },
+				{ "type", "typing" },
+				{ "peer_id", peerId }
+			};
 
 			return _vk.Call("messages.setActivity", parameters);
 		}
