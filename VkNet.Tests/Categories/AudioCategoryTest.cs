@@ -392,7 +392,7 @@ namespace VkNet.Tests.Categories
 
             Assert.That(user, Is.Not.Null);
             Assert.That(user.Id, Is.EqualTo(4793858));
-            Assert.That(user.PhotoPreviews.Photo50, Is.EqualTo("http://cs9215.userapi.com/u4793858/e_1b975695.jpg"));
+            Assert.That(user.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9215.userapi.com/u4793858/e_1b975695.jpg")));
             Assert.That(user.FirstName, Is.EqualTo("Антон"));
             Assert.That(user.LastName, Is.EqualTo("Жидков"));
 

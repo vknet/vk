@@ -510,8 +510,8 @@ namespace VkNet.Tests.Categories
 			posts.Profiles[0].LastName.ShouldEqual("Кошкодавленко");
 			posts.Profiles[0].Sex.ShouldEqual(Sex.Female);
 			posts.Profiles[0].ScreenName.ShouldEqual("deadlymanul");
-			posts.Profiles[0].PhotoPreviews.Photo50.ShouldEqual("https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg");
-			posts.Profiles[0].PhotoPreviews.Photo100.ShouldEqual("https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg");
+			posts.Profiles[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg"));
+			posts.Profiles[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg"));
 			posts.Profiles[0].Online.ShouldEqual(true);
 
 			posts.Groups[0].Id.ShouldEqual(30666517);
@@ -521,9 +521,9 @@ namespace VkNet.Tests.Categories
 			posts.Groups[0].Type.ShouldEqual(GroupType.Page);
 			posts.Groups[0].IsAdmin.ShouldEqual(false);
 			posts.Groups[0].IsMember.ShouldEqual(true);
-			posts.Groups[0].PhotoPreviews.Photo50.ShouldEqual("https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg");
-			posts.Groups[0].PhotoPreviews.Photo100.ShouldEqual("https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg");
-			posts.Groups[0].PhotoPreviews.Photo200.ShouldEqual("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg");
+			posts.Groups[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg"));
+			posts.Groups[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg"));
+			posts.Groups[0].PhotoPreviews.Photo200.ShouldEqual(new Uri("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg"));
 		}
 
 		[Test]

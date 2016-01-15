@@ -665,11 +665,11 @@
             user.Country.Id.ShouldEqual(1);
             user.Country.Title.ShouldEqual("Россия");
             user.Timezone.ShouldEqual(3);
-            user.PhotoPreviews.Photo50.ShouldEqual("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg");
-            user.PhotoPreviews.Photo100.ShouldEqual("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg");
-            user.PhotoPreviews.Photo200.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
-            user.PhotoPreviews.Photo400.ShouldEqual("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg");
-            user.PhotoPreviews.PhotoMax.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
+            user.PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
+            user.PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
+            user.PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
+            user.PhotoPreviews.Photo400.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg"));
+            user.PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
             user.HasMobile.HasValue.ShouldBeTrue();
             user.HasMobile.Value.ShouldBeTrue();
             user.Online.HasValue.ShouldBeTrue();
@@ -844,11 +844,11 @@
             user.Country.Id.ShouldEqual(1);
             user.Country.Title.ShouldEqual("Россия");
             user.Timezone.ShouldEqual(3);
-            user.PhotoPreviews.Photo50.ShouldEqual("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg");
-            user.PhotoPreviews.Photo100.ShouldEqual("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg");
-            user.PhotoPreviews.Photo200.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
-            user.PhotoPreviews.Photo400.ShouldEqual("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg");
-            user.PhotoPreviews.PhotoMax.ShouldEqual("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg");
+            user.PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
+            user.PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
+            user.PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
+            user.PhotoPreviews.Photo400.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg"));
+            user.PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
             user.HasMobile.HasValue.ShouldBeTrue();
             user.HasMobile.Value.ShouldBeTrue();
             user.Online.HasValue.ShouldBeTrue();
@@ -980,9 +980,9 @@
             result[0].Type.ShouldEqual(GroupType.Page);
             result[0].IsAdmin.ShouldBeFalse();
             result[0].IsMember.ShouldEqual(false);
-            result[0].PhotoPreviews.Photo50.ShouldEqual("http://cs412129.vk.me/v412129558/6cea/T3jVq9A5hN4.jpg");
-            result[0].PhotoPreviews.Photo100.ShouldEqual("http://cs412129.vk.me/v412129558/6ce9/Rs47ldlt4Ko.jpg");
-            result[0].PhotoPreviews.Photo200.ShouldEqual("http://cs412129.vk.me/v412129604/1238/RhEgZqrsv-w.jpg");
+            result[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs412129.vk.me/v412129558/6cea/T3jVq9A5hN4.jpg"));
+            result[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs412129.vk.me/v412129558/6ce9/Rs47ldlt4Ko.jpg"));
+            result[0].PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs412129.vk.me/v412129604/1238/RhEgZqrsv-w.jpg"));
 
 			Assert.That(result[1].Id, Is.EqualTo(43694972));
 			result[1].Name.ShouldEqual("Sophie Ellis-Bextor");
@@ -991,9 +991,9 @@
             result[1].Type.ShouldEqual(GroupType.Page);
             result[1].IsAdmin.ShouldEqual(false);
             result[1].IsMember.ShouldEqual(false);
-            result[1].PhotoPreviews.Photo50.ShouldEqual("http://cs417031.vk.me/v417031989/59cb/65zF-xnOQsk.jpg");
-            result[1].PhotoPreviews.Photo100.ShouldEqual("http://cs417031.vk.me/v417031989/59ca/eOJ7ER_eJok.jpg");
-            result[1].PhotoPreviews.Photo200.ShouldEqual("http://cs417031.vk.me/v417031989/59c8/zI9aAlI-PHc.jpg");
+            result[1].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs417031.vk.me/v417031989/59cb/65zF-xnOQsk.jpg"));
+            result[1].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs417031.vk.me/v417031989/59ca/eOJ7ER_eJok.jpg"));
+            result[1].PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs417031.vk.me/v417031989/59c8/zI9aAlI-PHc.jpg"));
         }
 
         [Test]
@@ -1161,10 +1161,10 @@
             result[0].Country.Id.ShouldEqual(3);
             result[0].Country.Title.ShouldEqual("Беларусь");
             result[0].Timezone.ShouldEqual(3);
-            result[0].PhotoPreviews.Photo50.ShouldEqual("http://cs606327.vk.me/v606327122/35ac/R57FNUr34iw.jpg");
-            result[0].PhotoPreviews.Photo100.ShouldEqual("http://cs606327.vk.me/v606327122/35ab/HUsGNVxBoQU.jpg");
-            result[0].PhotoPreviews.Photo200.ShouldEqual("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg");
-            result[0].PhotoPreviews.PhotoMax.ShouldEqual("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg");
+            result[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs606327.vk.me/v606327122/35ac/R57FNUr34iw.jpg"));
+            result[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs606327.vk.me/v606327122/35ab/HUsGNVxBoQU.jpg"));
+            result[0].PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg"));
+            result[0].PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg"));
             result[0].HasMobile.ShouldEqual(true);
             result[0].Online.ShouldEqual(true);
             result[0].OnlineMobile.ShouldEqual(true);
@@ -1195,10 +1195,10 @@
             result[1].Country.Id.ShouldEqual(2);
             result[1].Country.Title.ShouldEqual("Украина");
             result[1].Timezone.ShouldEqual(1);
-            result[1].PhotoPreviews.Photo50.ShouldEqual("http://cs310121.vk.me/v310121398/8023/LMm-uoyk1-M.jpg");
-            result[1].PhotoPreviews.Photo100.ShouldEqual("http://cs310121.vk.me/v310121398/8022/KajnVK0lvFA.jpg");
-            result[1].PhotoPreviews.Photo200.ShouldEqual("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg");
-            result[1].PhotoPreviews.PhotoMax.ShouldEqual("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg");
+            result[1].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs310121.vk.me/v310121398/8023/LMm-uoyk1-M.jpg"));
+            result[1].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs310121.vk.me/v310121398/8022/KajnVK0lvFA.jpg"));
+            result[1].PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg"));
+            result[1].PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg"));
             result[1].HasMobile.ShouldEqual(true);
             result[1].Online.ShouldEqual(true);
             result[1].CanPost.ShouldEqual(false);

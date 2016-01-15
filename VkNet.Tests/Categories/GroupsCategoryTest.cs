@@ -718,9 +718,9 @@
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
 			Assert.That(groups[1].IsAdmin, Is.False);
 			Assert.That(groups[1].IsMember, Is.False);
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs410222.userapi.com/g27895931/d_2869e827.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs410222.userapi.com/g27895931/a_32935e91.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/d_2869e827.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/a_32935e91.jpg")));
 
 			Assert.That(groups[0].Id, Is.EqualTo(339767));
 			Assert.That(groups[0].Name, Is.EqualTo("A-ONE HIP-HOP MUSIC CHANNEL"));
@@ -729,9 +729,9 @@
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Group));
 			Assert.That(groups[0].IsAdmin, Is.False);
 			Assert.That(groups[0].IsMember, Is.False);
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs9365.userapi.com/g339767/e_a590d16b.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs9365.userapi.com/g339767/d_f653c773.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs9365.userapi.com/g339767/a_4653ba99.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/e_a590d16b.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/d_f653c773.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/a_4653ba99.jpg")));
 		}
 
 		[Test]
@@ -795,9 +795,9 @@
 			Assert.That(groups[2].Type, Is.EqualTo(GroupType.Page));
 			Assert.That(groups[2].IsAdmin, Is.False);
 			Assert.That(groups[2].IsMember, Is.False);
-			Assert.That(groups[2].PhotoPreviews.Photo50, Is.EqualTo("http://cs9913.userapi.com/g23995866/e_319d8573.jpg"));
-			Assert.That(groups[2].PhotoPreviews.Photo100, Is.EqualTo("http://cs9913.userapi.com/g23995866/d_166572a9.jpg"));
-			Assert.That(groups[2].PhotoPreviews.Photo200, Is.EqualTo("http://cs9913.userapi.com/g23995866/a_fc553960.jpg"));
+			Assert.That(groups[2].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9913.userapi.com/g23995866/e_319d8573.jpg")));
+			Assert.That(groups[2].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs9913.userapi.com/g23995866/d_166572a9.jpg")));
+			Assert.That(groups[2].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs9913.userapi.com/g23995866/a_fc553960.jpg")));
 
 			Assert.That(groups[1].Id, Is.EqualTo(23727386));
 			Assert.That(groups[1].Name, Is.EqualTo("Classical Music Humor"));
@@ -806,9 +806,9 @@
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Page));
 			Assert.That(groups[1].IsAdmin, Is.False);
 			Assert.That(groups[1].IsMember, Is.False);
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs10650.userapi.com/g23727386/e_8006da42.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs10650.userapi.com/g23727386/e_8006da42.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg")));
 
 			Assert.That(groups[0].Id, Is.EqualTo(26442631));
 			Assert.That(groups[0].Name, Is.EqualTo("Music Quotes. First Public."));
@@ -817,9 +817,9 @@
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
 			Assert.That(groups[0].IsAdmin, Is.False);
 			Assert.That(groups[0].IsMember, Is.False);
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg")));
 		}
 
 		[Test]
@@ -882,9 +882,9 @@
 			Assert.That(g.IsAdmin, Is.False);
 			Assert.That(g.Type, Is.EqualTo(GroupType.Event));
 			Assert.That(g.IsMember, Is.False);
-			Assert.That(g.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-			Assert.That(g.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-			Assert.That(g.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(g.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
+			Assert.That(g.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
+			Assert.That(g.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
 		}
 
 		[Test]
@@ -1043,9 +1043,9 @@
 			Assert.That(groups[0].IsAdmin, Is.False);
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
 			Assert.That(groups[0].IsMember, Is.False);
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
 
 			Assert.That(groups[1].Id, Is.EqualTo(637247));
 			Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
@@ -1054,9 +1054,9 @@
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
 			Assert.That(groups[1].IsAdmin, Is.False);
 			Assert.That(groups[1].IsMember, Is.True);
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg")));
 
 		}
 
@@ -1243,9 +1243,9 @@
 			groups[0].Type.ShouldEqual(GroupType.Group);
 			groups[0].IsAdmin.ShouldBeFalse();
 			groups[0].IsMember.ShouldEqual(false);
-			groups[0].PhotoPreviews.Photo50.ShouldEqual("http://vk.com/images/community_50.gif");
-			groups[0].PhotoPreviews.Photo100.ShouldEqual("http://vk.com/images/community_100.gif");
-			groups[0].PhotoPreviews.PhotoMax.ShouldEqual("http://vk.com/images/question_a.gif");
+			groups[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://vk.com/images/community_50.gif"));
+			groups[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://vk.com/images/community_100.gif"));
+			groups[0].PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://vk.com/images/question_a.gif"));
 			Assert.That(groups[0].InvitedBy, Is.EqualTo(242508789));
 		}
 

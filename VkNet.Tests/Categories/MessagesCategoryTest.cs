@@ -3,9 +3,7 @@ using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Categories
 {
-	using System.Collections.Generic;
 	using System;
-	using System.Collections.ObjectModel;
 	using System.Linq;
 	using Moq;
 	using NUnit.Framework;
@@ -16,10 +14,9 @@ namespace VkNet.Tests.Categories
 	using Enums;
 	using Enums.Filters;
 	using Exception;
-	using Model;
-    using Model.RequestParams;
+	using Model.RequestParams;
 
-    [TestFixture]
+	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class MessagesCategoryTest
 	{
@@ -453,22 +450,20 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
 		{
-			Url = "https://api.vk.com/method/messages.searchDialogs?q=привет&limit=20&v=5.37&access_token=token";
-			Json =
-				@"{
-					'response': []
-				  }";
-			
+			Url = "https://api.vk.com/method/messages.searchDialogs?q=привет&v=5.44&access_token=token";
+			Json = @"{
+                    'response': []
+                  }";
+
 			var response = Cat.SearchDialogs("привет");
 
-			Assert.That(response.Chats.Count, Is.EqualTo(0));
-			Assert.That(response.Users.Count, Is.EqualTo(0));
+			Assert.That(response, Is.Null);
 		}
 
 		[Test]
 		public void SearchDialogs_NastyaQuery_TwoProfiles()
 		{
-			Url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&limit=20&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -502,7 +497,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SearchDialogs_ProfileAndChat_Response()
 		{
-			Url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&limit=20&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': [

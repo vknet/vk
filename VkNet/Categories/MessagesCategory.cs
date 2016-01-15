@@ -20,8 +20,8 @@ namespace VkNet.Categories
 
 	using Enums;
 	using Model;
-    using Model.RequestParams;
-    using Utils;
+	using Model.RequestParams;
+	using Utils;
 
 	/// <summary>
 	/// Методы для работы с сообщениями.
@@ -62,8 +62,8 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.37")]
-        [Obsolete("Устаревшая версия API. Используйте метод Get(MessagesGetParams @params)")]
-        public ReadOnlyCollection<Message> Get(
+		[Obsolete("Устаревшая версия API. Используйте метод Get(MessagesGetParams @params)")]
+		public ReadOnlyCollection<Message> Get(
 			MessageType type,
 			out int totalCount,
 			uint? count = 20,
@@ -95,22 +95,22 @@ namespace VkNet.Categories
 			return response["items"].ToReadOnlyCollectionOf<Message>(item => item);
 		}
 
-        /// <summary>
-        /// Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
-        /// </summary>
-        /// <param name="params">Входные параметры выборки.</param>
-        /// <returns>Список сообщений, удовлетворяющий условиям фильтрации.</returns>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
-        /// </remarks>
-        [Pure]
-        [ApiVersion("5.40")]
-        public MessagesGetObject Get(MessagesGetParams @params)
-        {
-            var response = _vk.Call("messages.get", @params);
-            return response;
-        }
+		/// <summary>
+		/// Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
+		/// </summary>
+		/// <param name="params">Входные параметры выборки.</param>
+		/// <returns>Список сообщений, удовлетворяющий условиям фильтрации.</returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
+		/// </remarks>
+		[Pure]
+		[ApiVersion("5.40")]
+		public MessagesGetObject Get(MessagesGetParams @params)
+		{
+			var response = _vk.Call("messages.get", @params);
+			return response;
+		}
 
 		/// <summary>
 		/// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
@@ -129,8 +129,8 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.37")]
-        [Obsolete("Устаревшая версия API. Используйте метод GetHistory(MessagesGetParams @params)")]
-        public ReadOnlyCollection<Message> GetHistory(out int totalCount, bool isChat, ulong id, int? offset = null, uint? count = 20,
+		[Obsolete("Устаревшая версия API. Используйте метод GetHistory(MessagesGetParams @params)")]
+		public ReadOnlyCollection<Message> GetHistory(out int totalCount, bool isChat, ulong id, int? offset = null, uint? count = 20,
 			long? startMessageId = null, bool inReverse = false)
 		{
 			var parameters = new VkParameters
@@ -151,23 +151,23 @@ namespace VkNet.Categories
 			return response["items"].ToReadOnlyCollectionOf<Message>(item => item);
 		}
 
-        /// <summary>
-        /// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
-        /// </summary>
-        /// <param name="params">Входные параметры выборки.</param>
+		/// <summary>
+		/// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
+		/// </summary>
+		/// <param name="params">Входные параметры выборки.</param>
 		/// <returns>Возвращает историю сообщений с указанным пользователем или из указанной беседы</returns>
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory" />.
 		/// </remarks>
-        [Pure]
+		[Pure]
 		[ApiVersion("5.40")]
-        public MessagesGetObject GetHistory(HistoryGetParams @params)
-        {
-            
-            var response = _vk.Call("messages.getHistory", @params);
-            return response;
-        }
+		public MessagesGetObject GetHistory(HistoryGetParams @params)
+		{
+			
+			var response = _vk.Call("messages.getHistory", @params);
+			return response;
+		}
 
 		/// <summary>
 		/// Возвращает сообщения по их идентификаторам.
@@ -241,17 +241,17 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.37")]
-        [Obsolete("Устаревшая версия API. Используйте метод GetDialogs(DialogsGetParams @params)")]
-        public ReadOnlyCollection<Message> GetDialogs(out int totalCount, out int unreadCount, int count = 20, int? offset = null, bool unread = false, long? startMessageId = null, int? previewLength = null)
+		[Obsolete("Устаревшая версия API. Используйте метод GetDialogs(DialogsGetParams @params)")]
+		public ReadOnlyCollection<Message> GetDialogs(out int totalCount, out int unreadCount, int count = 20, int? offset = null, bool unread = false, long? startMessageId = null, int? previewLength = null)
 		{
-            VkErrors.ThrowIfNumberIsNegative(() => count);
+			VkErrors.ThrowIfNumberIsNegative(() => count);
 			var parameters = new VkParameters
 			{
 				{ "start_message_id", startMessageId },
 				{ "offset", offset },
 				{ "unread", unread },
 				{ "preview_length", previewLength },
-                { "count", count }
+				{ "count", count }
 			};
 			var response = _vk.Call("messages.getDialogs", parameters);
 
@@ -270,18 +270,18 @@ namespace VkNet.Categories
 			return items.ToReadOnlyCollectionOf<Message>(r => r);
 		}
 
-        /// <summary>
-        /// Возвращает список диалогов аккаунта
-        /// </summary>
-        /// <param name="params">Входные параметры выборки.</param>
-        /// <returns>В случае успеха возвращает список диалогов пользователя</returns>
-        [Pure]
+		/// <summary>
+		/// Возвращает список диалогов аккаунта
+		/// </summary>
+		/// <param name="params">Входные параметры выборки.</param>
+		/// <returns>В случае успеха возвращает список диалогов пользователя</returns>
+		[Pure]
 		[ApiVersion("5.40")]
-        public MessagesGetObject GetDialogs(DialogsGetParams @params)
-        {
-            var response = _vk.Call("messages.getDialogs", @params);
-            return response;
-        }
+		public MessagesGetObject GetDialogs(DialogsGetParams @params)
+		{
+			var response = _vk.Call("messages.getDialogs", @params);
+			return response;
+		}
 
 		/// <summary>
 		/// Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
@@ -298,13 +298,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.searchDialogs" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.37")]
-		public SearchDialogsResponse SearchDialogs([NotNull] string query, ProfileFields fields = null, uint limit = 20)
+		[ApiVersion("5.44")]
+		public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null)
 		{
-			if (string.IsNullOrEmpty(query))
-			{
-				throw new ArgumentException("Query can not be null or empty.", "query");
-			}
 			var parameters = new VkParameters
 			{
 				{ "q", query },
@@ -312,32 +308,7 @@ namespace VkNet.Categories
 				{ "limit", limit }
 			};
 
-			VkResponseArray response = _vk.Call("messages.searchDialogs", parameters);
-
-			var result = new SearchDialogsResponse();
-			foreach (var record in response)
-			{
-				string type = record["type"];
-				switch (type)
-				{
-					case "profile":
-						{
-							result.Users.Add(record);
-							break;
-						}
-					case "chat":
-						{
-							result.Chats.Add(record);
-							break;
-						}
-					case "email":
-						{
-							// TODO: Add email support.
-							continue;
-						}
-				}
-			}
-			return result;
+			return _vk.Call("messages.searchDialogs", parameters);
 		}
 
 		/// <summary>
