@@ -13,27 +13,32 @@ namespace VkNet.Model
 		/// <summary>
 		/// Url квадратной фотографии, имеющей ширину 50 пикселей.
 		/// </summary>
-		public string Photo50 { get; set; }
+		public Uri Photo50 { get; set; }
 
 		/// <summary>
 		/// Url квадратной фотографии, имеющей ширину 100 пикселей.
 		/// </summary>
-		public string Photo100 { get; set; }
+		public Uri Photo100 { get; set; }
+
+		/// <summary>
+		/// Url квадратной фотографии, имеющей ширину 130 пикселей.
+		/// </summary>
+		public Uri Photo130 { get; set; }
 
 		/// <summary>
 		/// Url квадратной фотографии, имеющей ширину 200 пикселей.
 		/// </summary>
-		public string Photo200 { get; set; }
+		public Uri Photo200 { get; set; }
 
 		/// <summary>
 		/// Url квадратной фотографии, имеющей ширину 400 пикселей.
 		/// </summary>
-		public string Photo400 { get; set; }
+		public Uri Photo400 { get; set; }
 
 		/// <summary>
 		/// Url квадратной фотографии, имеющей максимальную ширину.
 		/// </summary>
-		public string PhotoMax { get; set; }
+		public Uri PhotoMax { get; set; }
 
 		#region Методы
 		/// <summary>
@@ -47,6 +52,7 @@ namespace VkNet.Model
 			{
 				Photo50 = response["photo_50"] ?? response["photo"],
 				Photo100 = response["photo_100"] ?? response["photo_medium"],
+				Photo130 = response["photo_130"],
 				Photo200 = response["photo_200"] ?? response["photo_200_orig"],
 				Photo400 = response["photo_400_orig"]
 			};

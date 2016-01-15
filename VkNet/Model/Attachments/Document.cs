@@ -54,13 +54,19 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public DateTime? Date { get; set; }
 
-		#region Методы
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static Document FromJson(VkResponse response)
+
+        /// <summary>
+        /// Gets or sets the preview.
+        /// </summary>
+        public Previews Preview { get; set; }
+
+        #region Методы
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        internal static Document FromJson(VkResponse response)
         {
 	        var document = new Document
 	        {
@@ -73,8 +79,9 @@ namespace VkNet.Model.Attachments
 		        Photo100 = response["photo_100"],
 		        Photo130 = response["photo_130"],
 		        AccessKey = response["access_key"],
-				Date = response["date"]
-			};
+				Date = response["date"],
+                Preview = response["preview"]
+            };
 
 	        return document;
         }
