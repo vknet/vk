@@ -61,7 +61,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		[Obsolete("Устаревшая версия API. Используйте метод Get(MessagesGetParams @params)")]
 		public ReadOnlyCollection<Message> Get(
 			MessageType type,
@@ -105,7 +105,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public MessagesGetObject Get(MessagesGetParams @params)
 		{
 			var response = _vk.Call("messages.get", @params);
@@ -182,9 +182,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<Message> GetById(out int totalCount, IEnumerable<ulong> messageIds,  uint? previewLength = null)
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<Message> GetById(out int totalCount, [NotNull] IEnumerable<ulong> messageIds,  uint? previewLength = null)
 		{
+			if (!messageIds.Any())
+			{
+				throw new Exception("messageIds не может быть пустой");
+			}
 			var parameters = new VkParameters { { "message_ids", messageIds }, { "preview_length", previewLength } };
 
 			var response = _vk.Call("messages.getById", parameters);
@@ -205,6 +209,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
 		/// </remarks>
 		[Pure]
+		[ApiVersion("5.44")]
 		public Message GetById(ulong messageId, uint? previewLength = null)
 		{
 			int totalCount;
