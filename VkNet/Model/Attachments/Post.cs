@@ -95,7 +95,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация о вложениях записи (фотографии ссылки и т.п.).
 		/// </summary>
-		public Collection<Attachment> Attachments { get; set; }
+		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Первое вложение.
@@ -207,7 +207,7 @@ namespace VkNet.Model
 				Reposts = response["reposts"],
 				PostType = response["post_type"],
 				PostSource = response["post_source"],
-				Attachments = response["attachments"],
+				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
 				Geo = response["geo"],
 				SignerId = response["signer_id"],
 				CopyPostDate = response["copy_post_date"],

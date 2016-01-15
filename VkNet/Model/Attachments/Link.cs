@@ -63,7 +63,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Продукт.
 		/// </summary>
-		public Product Product { get; set; }
+		public Market Product { get; set; }
 
 		/// <summary>
 		/// Рейтинг.

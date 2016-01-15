@@ -199,7 +199,7 @@
 		/// <summary>
 		/// API для работы с товарами.
 		/// </summary>
-		public MarketCategory Market { get; set; }
+		public MarketsCategory Markets { get; set; }
 
 		/// <summary>
 		/// API для работы с Авторизацией.
@@ -259,7 +259,7 @@
             NewsFeed = new NewsFeedCategory(this);
             Stats = new StatsCategory(this);
             Auth = new AuthCategory(this);
-			Market = new MarketCategory(this);
+			Markets = new MarketsCategory(this);
 
             RequestsPerSecond = 3;
         }

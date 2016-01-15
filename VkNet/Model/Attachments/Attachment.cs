@@ -11,63 +11,63 @@ namespace VkNet.Model.Attachments
 	/// </summary>
 	[Serializable]
 	public class Attachment
-    {
-        #region Поля
+	{
+		#region Поля
 
-        /// <summary>
-        /// Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
-        /// </summary>
-        private Photo Photo { get; set; }
+		/// <summary>
+		/// Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
+		/// </summary>
+		private Photo Photo { get; set; }
 
-        /// <summary>
-        /// Видеозапись.
-        /// </summary>
-        private Video Video { get; set; }
+		/// <summary>
+		/// Видеозапись.
+		/// </summary>
+		private Video Video { get; set; }
 
-        /// <summary>
-        /// Аудиозапись.
-        /// </summary>
-        private Audio Audio { get; set; }
+		/// <summary>
+		/// Аудиозапись.
+		/// </summary>
+		private Audio Audio { get; set; }
 
-        /// <summary>
-        /// Документ.
-        /// </summary>
-        private Document Document { get; set; }
+		/// <summary>
+		/// Документ.
+		/// </summary>
+		private Document Document { get; set; }
 
-        /// <summary>
-        /// Документ.
-        /// </summary>
-        private Graffiti Graffiti { get; set; }
+		/// <summary>
+		/// Документ.
+		/// </summary>
+		private Graffiti Graffiti { get; set; }
 
-        /// <summary>
-        /// Ссылка на Web-страницу.
-        /// </summary>
-        private Link Link { get; set; }
+		/// <summary>
+		/// Ссылка на Web-страницу.
+		/// </summary>
+		private Link Link { get; set; }
 
-        /// <summary>
-        /// Заметка.
-        /// </summary>
-        private Note Note { get; set; }
+		/// <summary>
+		/// Заметка.
+		/// </summary>
+		private Note Note { get; set; }
 
-        /// <summary>
-        /// Контент приложения.
-        /// </summary>
-        private ApplicationContent ApplicationContent { get; set; }
+		/// <summary>
+		/// Контент приложения.
+		/// </summary>
+		private ApplicationContent ApplicationContent { get; set; }
 
-        /// <summary>
-        /// Опрос.
-        /// </summary>
-        private Poll Poll { get; set; }
+		/// <summary>
+		/// Опрос.
+		/// </summary>
+		private Poll Poll { get; set; }
 
-        /// <summary>
-        /// Wiki страница.
-        /// </summary>
-        private Page Page { get; set; }
+		/// <summary>
+		/// Wiki страница.
+		/// </summary>
+		private Page Page { get; set; }
 
-        /// <summary>
-        /// Альбом с фотографиями.
-        /// </summary>
-        private Album Album { get; set; }
+		/// <summary>
+		/// Альбом с фотографиями.
+		/// </summary>
+		private Album Album { get; set; }
 
 		/// <summary>
 		/// Список фотографий
@@ -94,56 +94,62 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		private WallReply WallReply { get; set; }
 
-        #endregion
+		/// <summary>
+		/// Каталог товаров.
+		/// </summary>
+		private MarketAlbum MarketAlbum { get; set; }
 
-        /// <summary>
-        /// Экземпляр самого прикрепления.
-        /// </summary>
-        public object Instance
-        {
-            get
-            {
-                if (Type == typeof(Photo))
-                    return Photo;
-                if (Type == typeof(Video))
-                    return Video;
-                if (Type == typeof(Audio))
-                    return Audio;
-                if (Type == typeof(Document))
-                    return Document;
-                if (Type == typeof(Graffiti))
-                    return Graffiti;
-                if (Type == typeof(Link))
-                    return Link;
-                if (Type == typeof(Note))
-                    return Note;
-                if (Type == typeof(ApplicationContent))
-                    return ApplicationContent;
-                if (Type == typeof(Poll))
-                    return Poll;
-                if (Type == typeof(Page))
-                    return Page;
-                if (Type == typeof(Album))
-                    return Album;
-                if (Type == typeof (PhotosList))
-                    return PhotosList;
-                if (Type == typeof (Wall))
-                    return Wall;
-                if (Type == typeof (Sticker))
-                    return Sticker;
-                if (Type == typeof(Gift))
-                    return Gift;
-                if (Type == typeof(WallReply))
-                    return WallReply;
+		#endregion
 
-                return null;
-            }
-        }
+		/// <summary>
+		/// Экземпляр самого прикрепления.
+		/// </summary>
+		public object Instance
+		{
+			get
+			{
+				if (Type == typeof(Photo))
+					return Photo;
+				if (Type == typeof(Video))
+					return Video;
+				if (Type == typeof(Audio))
+					return Audio;
+				if (Type == typeof(Document))
+					return Document;
+				if (Type == typeof(Graffiti))
+					return Graffiti;
+				if (Type == typeof(Link))
+					return Link;
+				if (Type == typeof(Note))
+					return Note;
+				if (Type == typeof(ApplicationContent))
+					return ApplicationContent;
+				if (Type == typeof(Poll))
+					return Poll;
+				if (Type == typeof(Page))
+					return Page;
+				if (Type == typeof(Album))
+					return Album;
+				if (Type == typeof(PhotosList))
+					return PhotosList;
+				if (Type == typeof(Wall))
+					return Wall;
+				if (Type == typeof(Sticker))
+					return Sticker;
+				if (Type == typeof(Gift))
+					return Gift;
+				if (Type == typeof(WallReply))
+					return WallReply;
+				if (Type == typeof(MarketAlbum))
+					return MarketAlbum;
+				return null;
+			}
+		}
 
-        /// <summary>
-        /// Информация о типе вложения.
-        /// </summary>
-        public Type Type { get; set; }
+		/// <summary>
+		/// Информация о типе вложения.
+		/// </summary>
+		public Type Type { get; set; }
 
 		#region Методы
 		/// <summary>
@@ -152,11 +158,11 @@ namespace VkNet.Model.Attachments
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
 		internal static Attachment FromJson(VkResponse response)
-        {
-            // TODO: Complete it later
-            var attachment = new Attachment();
+		{
+			// TODO: Complete it later
+			var attachment = new Attachment();
 
-            string type = response["type"];
+			string type = response["type"];
 			switch (type)
 			{
 				case "photo":
@@ -256,6 +262,12 @@ namespace VkNet.Model.Attachments
 						attachment.WallReply = response["wall_reply"];
 						break;
 					}
+				case "market_album":
+					{
+						attachment.Type = typeof(MarketAlbum);
+						attachment.MarketAlbum = response["market_album"];
+						break;
+					}
 				default:
 					{
 						throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}", type, response["date"]));
@@ -263,8 +275,8 @@ namespace VkNet.Model.Attachments
 			}
 
 			return attachment;
-        }
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }
