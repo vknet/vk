@@ -1,5 +1,6 @@
 ﻿namespace VkNet.Model
 {
+	using System;
 	using Utils;
 
 	/// <summary>
@@ -8,6 +9,7 @@
 	/// <see href="http://vk.com/dev/fields_groups"/>.
 	/// Раздел counters.
 	/// </summary>
+	[Serializable]
 	public class Counters
 	{
 		/// <summary>

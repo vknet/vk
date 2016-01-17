@@ -12,6 +12,7 @@ namespace VkNet.Model.Attachments
 	/// <remarks>
 	/// См. описание <see href="http://vk.com/dev/photo"/> и <see href="http://vk.com/dev/attachments_w"/> раздел "Альбом с фотографиями".
 	/// </remarks>
+	[Serializable]
 	public class Photo : MediaAttachment
 	{
 		static Photo()

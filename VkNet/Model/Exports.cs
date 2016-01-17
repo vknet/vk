@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Внешние сервисы, в которые настроен экспорт из ВК
 	/// </summary>
+	[Serializable]
 	public class Exports
 	{
 		/// <summary>

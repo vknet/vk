@@ -1,11 +1,13 @@
 ﻿namespace VkNet.Model
 {
+	using System;
 	using Utils;
 
 	/// <summary>
 	/// Информация о лайках к записи.
 	/// См. описание <see href="http://vk.com/dev/post"/>. Раздел likes.
 	/// </summary>
+	[Serializable]
 	public class Likes
 	{
 		/// <summary>

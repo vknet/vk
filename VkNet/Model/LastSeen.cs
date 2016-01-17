@@ -6,6 +6,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Время последнего посещения.
 	/// </summary>
+	[Serializable]
 	public class LastSeen
 	{
 		/// <summary>
