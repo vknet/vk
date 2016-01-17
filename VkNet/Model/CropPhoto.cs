@@ -1,4 +1,5 @@
-﻿using VkNet.Model.Attachments;
+﻿using System;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -6,6 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Возвращает данные о точках, по которым вырезаны профильная и миниатюрная фотографии пользователя.
 	/// </summary>
+	[Serializable]
 	public class CropPhoto
 	{
 		/// <summary>

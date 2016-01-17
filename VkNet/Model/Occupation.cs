@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.SafetyEnums;
+﻿using System;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -6,6 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Информация о текущем роде занятия пользователя.
 	/// </summary>
+	[Serializable]
 	public class Occupation
 	{
 		/// <summary>

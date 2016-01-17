@@ -1,4 +1,5 @@
-﻿using System.Security.Policy;
+﻿using System;
+using System.Security.Policy;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Формат описания размеров фотографи.
 	/// </summary>
+	[Serializable]
 	public class PhotoSize
 	{
 		/// <summary>

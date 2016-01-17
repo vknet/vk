@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums
 {
     /// <summary>
     /// Семейное положение.
     /// </summary>
+	[Serializable]
     public enum RelationType
     {
         /// <summary>

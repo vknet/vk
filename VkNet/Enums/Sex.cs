@@ -1,13 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using VkNet.Properties;
 using VkNet.Utils;
 
 namespace VkNet.Enums
 {
-    /// <summary>
-    /// Пол.
-    /// </summary>
-    public enum Sex
+	/// <summary>
+	/// Пол.
+	/// </summary>
+	[Serializable]
+	public enum Sex
     {
         /// <summary>
         /// Не указан

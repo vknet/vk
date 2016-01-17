@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Вырезанная фотография пользователя
 	/// </summary>
+	[Serializable]
 	public class Rect
 	{
 		/// <summary>

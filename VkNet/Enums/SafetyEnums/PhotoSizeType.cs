@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Порядок сортировки членов группы.
 	/// </summary>
+	[Serializable]
 	public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	{
 		/// <summary>
