@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Информация о карьере пользователя.
 	/// </summary>
+	[Serializable]
 	public class Career
 	{
 		/// <summary>

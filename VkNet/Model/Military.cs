@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Информация о военной службе пользователя.
 	/// </summary>
+	[Serializable]
 	public class Military
 	{
 		/// <summary>

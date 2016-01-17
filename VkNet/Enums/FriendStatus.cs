@@ -1,11 +1,13 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums
 {
-    /// <summary>
-    /// Состояние дружбы с пользователями.
-    /// </summary>
-    public enum FriendStatus
+	/// <summary>
+	/// Состояние дружбы с пользователями.
+	/// </summary>
+	[Serializable]
+	public enum FriendStatus
     {
         /// <summary>
         /// Пользователь не является другом.

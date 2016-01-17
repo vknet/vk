@@ -1,10 +1,12 @@
 ﻿namespace VkNet.Model
 {
-    using Utils;
+	using System;
+	using Utils;
 
 	/// <summary>
 	/// Теги.
 	/// </summary>
+	[Serializable]
 	public class Tags
     {
 		/// <summary>

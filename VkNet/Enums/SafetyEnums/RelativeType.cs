@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Тип родственных связей.
 	/// </summary>
+	[Serializable]
 	public sealed class RelativeType : SafetyEnum<RelativeType>
 	{
 		/// <summary>

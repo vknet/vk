@@ -7,6 +7,7 @@
 	/// Информация о количестве комментариев к записи.
 	/// См. описание <see href="http://vk.com/dev/post"/>. Раздел comments.
 	/// </summary>
+	[Serializable]
 	public class Comments
 	{
 		/// <summary>

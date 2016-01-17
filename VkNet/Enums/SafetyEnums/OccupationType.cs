@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Информация о текущем роде занятия пользователя.
 	/// </summary>
+	[Serializable]
 	public sealed class OccupationType : SafetyEnum<OccupationType>
 	{
 		/// <summary>
