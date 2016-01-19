@@ -27,3 +27,6 @@ public bool IsAppUser(long? userId)
 // Проверяем, установил ли Павел Дуров наше приложение.
 bool isInstalled = vk.Users.IsAppUser(1);
 ```
+
+## Версия Вконтакте API v.5.44
+Дата обновления: 19.01.2016 12:44:46
