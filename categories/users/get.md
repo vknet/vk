@@ -5,21 +5,22 @@ permalink: users/get/
 comments: true
 ---
 # Метод Users.Get
+Возвращает расширенную информацию о пользователях.
 
-# Синтаксис
-```csharp
-
+Страница документации ВКонтакте [users.get](https://vk.com/dev/users.get).
+## Синтаксис
+``` csharp
+public ReadOnlyCollection<Group> Get(IEnumerable<string> userIds, IEnumerable<string> fields, string nameCase)
 ```
 
 ## Параметры
-+ **uid** - id пользователя.
-+ **fields** - перечисленные поля анкет, необходимые для получения. Тип параметра - ProfileFields
-или
-+ **uids** - Список с id пользователе.
-**fields** - перечисленные поля анкет, необходимые для получения. Тип параметра - ProfileFields
++ **UserIds** - Перечисленные через запятую идентификаторы пользователей или их короткие имена (screen_name). По умолчанию — идентификатор текущего пользователя. список строк, разделенных через запятую, количество элементов должно составлять не более 1000
++ **Fields** - Список дополнительных полей профилей, которые необходимо вернуть. См. подробное описание. 
+/// Доступные значения: photo_id, verified, sex, bdate, city, country, home_town, has_photo, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, lists, domain, has_mobile, contacts, site, education, universities, schools, status, last_seen, followers_count, common_count, occupation, nickname, relatives, relation, personal, connections, exports, wall_comments, activities, interests, music, movies, tv, books, games, about, quotes, can_post, can_see_all_posts, can_see_audio, can_write_private_message, can_send_friend_request, is_favorite, is_hidden_from_feed, timezone, screen_name, maiden_name, crop_photo, is_friend, friend_status, career, military, blacklisted, blacklisted_by_me. список строк, разделенных через запятую
++ **NameCase** - Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. строка
 
 ## Результат
-Метод Get возвращает информацию о пользователе в виде объекта типа User.
+После успешного выполнения возвращает массив объектов user.
 
 ## Исключения
 + **AccessTokenInvalidException** - не задан или используется неверный AccessToken.
