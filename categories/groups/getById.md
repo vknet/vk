@@ -5,19 +5,22 @@ permalink: groups/getById/
 comments: true
 ---
 # Метод Groups.GetById
-Возвращает информацию о заданной группе.
+Возвращает информацию о заданном сообществе или о нескольких сообществах.
 
-# Синтаксис
-```csharp
-public Group GetById(long gid, GroupsFields fields = null)
+Страница документации ВКонтакте [groups.getById](https://vk.com/dev/groups.getById).
+## Синтаксис
+``` csharp
+public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields)
 ```
 
 ## Параметры
-+ **gid** - ID группы информацию о которой необходимо получить.
-+ **fields** - Список полей из информации о группах, которые необходимо получить.
++ **groupIds** - Идентификаторы или короткие имена сообществ. Максимальное число идентификаторов — 500. список строк, разделенных через запятую
++ **groupId** - Идентификатор или короткое имя сообщества. строка
++ **fields** - Список дополнительных полей, которые необходимо вернуть. Возможные значения: city, country, place, description, wiki_page, members_count, counters, start_date, finish_date, can_post, can_see_all_posts, activity, status, contacts, links, fixed_post, verified, site,ban_info. 
+Обратите внимание, для получения некоторых полей требуется право доступа groups. Подробнее см. описание полей объекта group список строк, разделенных через запятую
 
 ## Результат
-Возвращает информацию о группах в виде списка объектов.
+После успешного выполнения возвращает массив объектов group.
 
 ## Исключения
 + **AccessTokenInvalidException** - не задан или используется неверный AccessToken.
@@ -39,3 +42,6 @@ var groups = vk.Groups.GetById(gids);
 var gids = new long[] {1, 2, 3};
 var groups = vk.Groups.GetById(gids, GroupsFields.All);
 ```
+
+## Версия Вконтакте API v.5.44
+Дата обновления: 19.01.2016 16:15:07
