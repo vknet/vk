@@ -5,28 +5,42 @@ permalink: groups/getMembers/
 comments: true
 ---
 # Метод Groups.GetMembers
-Возвращает список участников группы.
+Возвращает список участников сообщества.
 
-# Синтаксис
-```csharp
-public ReadOnlyCollection<long> GetMembers(
-	long gid, 
-	out int totalCount, 
-	int? count = null, 
-	int? offset = null, 
-	GroupsSort sort = null
-)
+Страница документации ВКонтакте [groups.getMembers](https://vk.com/dev/groups.getMembers).
+## Синтаксис
+``` csharp
+public ReadOnlyCollection<long> GetMembers(out int totalCount, GroupsGetMembersParams @params)
 ```
 
 ## Параметры
-+ **gid** - ID группы, список пользователей которой необходимо получить.
-+ **totalCount** - Общее количество пользователей состоящих в группе.
-+ **count** - Максимальное количество участников группы, которое необходимо получить. Максимальное значение 1000.
-+ **offset** - Число, обозначающее смещение, для получения следующих после него участников.
-+ **sort** - Сортировка с которой необходимо вернуть список групп.
+Класс **`GroupsGetMembersParams`** содержит следующие свойства:
+
++ **GroupId** - Идентификатор или короткое имя сообщества. строка
++ **Sort** - Сортировка, с которой необходимо вернуть список участников. Может принимать значения: 
+
+id_asc — в порядке возрастания id; 
+id_desc — в порядке убывания id; 
+time_asc — в хронологическом порядке по вступлению в сообщество; 
+time_desc — в антихронологическом порядке по вступлению в сообщество. 
+Сортировка по time_asc и time_desc возможна только при вызове от модератора сообщества. строка, по умолчанию id_asc
++ **Offset** - Смещение, необходимое для выборки определенного подмножества участников. По умолчанию 0. положительное число
++ **Count** - Количество участников сообщества, информацию о которых необходимо получить. положительное число, по умолчанию 1000, максимальное значение 1000
++ **Fields** - Список дополнительных полей, которые необходимо вернуть. 
+Доступные значения: sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters список строк, разделенных через запятую
++ **Filter** - Friends — будут возвращены только друзья в этом сообществе. 
+unsure — будут возвращены пользователи, которые выбрали «Возможно пойду» (если сообщество относится к мероприятиям). 
+managers — будут возвращены только руководители сообщества (доступно при запросе с передачей access_token от имени администратора сообщества). 
+строка
 
 ## Результат
-Возвращает общее количество участников группы totalCount и список идентификаторов пользователей uid.
+Возвращает общее количество участников сообщества count и список идентификаторов пользователей items. 
+Если был передан параметр filter=managers, возвращается дополнительное поле role, которое содержит уровень полномочий руководителя: 
+
+moderator — модератор; 
+editor — редактор; 
+administrator — администратор; 
+creator — создатель сообщества.
 
 ## Исключения
 + **AccessTokenInvalidException** - не задан или используется неверный AccessToken.
@@ -42,3 +56,6 @@ var ids = vk.Groups.GetMembers(2, out totalCount);
 int totalCount;
 var ids = vk.Groups.GetMembers(2, out totalCount, 7, 15, GroupsSort.IdAsc);
 ```
+
+## Версия Вконтакте API v.5.44
+Дата обновления: 19.01.2016 16:15:07
