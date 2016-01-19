@@ -213,7 +213,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
+		public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -224,9 +224,10 @@ namespace VkNet.Categories
 					{ "user_id", userId },
 					{ "extended", true },
 					{ "offset", offset },
-					{ "count", count }
+					{ "count", count },
+					{ "fields", fields }
 				};
-
+			
 			VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
 
 			return response.ToReadOnlyCollectionOf<Group>(x => x);
