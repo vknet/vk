@@ -10,7 +10,7 @@ comments: true
 Страница документации ВКонтакте [groups.get](https://vk.com/dev/groups.get).
 ## Синтаксис
 ``` csharp
-public bool Get(GroupsGetParams @params)
+public ReadOnlyCollection<Group> Get(GroupsGetParams @params)
 ```
 
 ## Параметры
