@@ -40,9 +40,8 @@
         [Test]
         public void Get_FriendsForDurov_ListOfFriends()
         {
-            const string url =
-                "https://api.vk.com/method/friends.get?user_id=1&v=5.24&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/friends.get?user_id=1&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': [
                       2,
@@ -67,9 +66,8 @@
         [Test]
         public void Get_FirstNameLastName_ListOfObjects()
         {
-            const string url =
-                "https://api.vk.com/method/friends.get?user_id=1&fields=first_name,last_name&count=3&v=5.24&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/friends.get?user_id=1&count=3&fields=first_name,last_name&v=5.44&access_token=token";
+			const string json =
                @"{
                     'response': {
                       'count': 690,
@@ -171,8 +169,8 @@
         [Test]
         public void GetOnline_NoOne_EmptyList()
         {
-            const string url = "https://api.vk.com/method/friends.getOnline?uid=1&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/friends.getOnline?user_id=1&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': []
                   }";
@@ -186,16 +184,10 @@
         [Test]
         public void GetOnline_FiveUsers_ListOfObjects()
         {
-            const string url = "https://api.vk.com/method/friends.getOnline?uid=1&access_token=token";
-            const string json =
-                @"{
-                    'response': [
-                      5,
-                      467,
-                      2943,
-                      4424,
-                      13033
-                    ]
+			const string url = "https://api.vk.com/method/friends.getOnline?user_id=1&v=5.44&access_token=token";
+			const string json =
+				@"{
+                    response: [5, 467, 2943, 4424, 13033]
                   }";
 
             var friends = GetMockedFriendsCategory(url, json);

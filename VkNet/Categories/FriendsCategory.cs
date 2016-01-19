@@ -1,5 +1,6 @@
 ﻿using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
 {
@@ -43,18 +44,43 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.24")]
+		[Obsolete("Данный метод устарел. Используйте Get(FriendsGetParams @params)")]
 		public ReadOnlyCollection<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null, NameCase nameCase = null, int? listId = null)
 		{
 			if (listId != null && listId < 0)
 				throw new ArgumentOutOfRangeException("listId", "listId must be a positive number.");
 
-			var parameters = new VkParameters { { "user_id", uid }, { "fields", fields }, { "count", count }, { "offset", offset }, { "order", order }, { "list_id", listId }, { "name_case", nameCase } };
+			var parameters = new FriendsGetParams
+			{
+				UserId = uid,
+				Count = count,
+				Offset = offset,
+				Fields = fields,
+				NameCase = nameCase,
+				ListId = listId,
+				Order = order
+			};
 
-			var response = _vk.Call("friends.get", parameters);
+			return Get(parameters);
+		}
 
-			if (fields != null)
-				return response["items"].ToReadOnlyCollectionOf<User>(x => x);
-			return response.ToReadOnlyCollectionOf(id => new User { Id = id });
+		/// <summary>
+		/// Возвращает список идентификаторов друзей пользователя или расширенную информацию о друзьях пользователя (при использовании параметра fields)..
+		/// </summary>
+		/// <param name="params">Входные параметры выборки.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список идентификаторов (id) друзей пользователя, если параметр fields не использовался. 
+		/// При использовании параметра fields  возвращает список объектов пользователей, но не более 5000..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<User> Get(FriendsGetParams @params)
+		{
+			var response = _vk.Call("friends.get", @params);
+
+			return response.ToReadOnlyCollectionOf<User>(x => @params.Fields != null ? x : new User { Id = x });
 		}
 
 		/// <summary>
@@ -88,11 +114,30 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getOnline"/>.
 		/// </remarks>
 		[Pure]
+		[Obsolete("Данный метод устарел. Используйте GetOnline(FriendsGetOnlineParams @params)")]
 		public ReadOnlyCollection<long> GetOnline(long uid)
 		{
-			var parameters = new VkParameters { { "uid", uid } };
+			var parameters = new FriendsGetOnlineParams {UserId = uid};
 
-			VkResponseArray response = _vk.Call("friends.getOnline", parameters);
+			return GetOnline(parameters);
+		}
+
+		/// <summary>
+		/// Возвращает список идентификаторов друзей пользователя, находящихся на сайте..
+		/// </summary>
+		/// <param name="params">Входные параметры выборки.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список идентификаторов (id) друзей, находящихся сейчас на сайте, у пользователя с идентификатором uid и входящих в список с идентификатором lid. 
+		/// При использовании параметра online_mobile=1 также возвращается поле online_mobile, содержащее список идентификатор друзей, находящихся на сайте с мобильного устройства..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getOnline" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<long> GetOnline(FriendsGetOnlineParams @params)
+		{
+			@params.OnlineMobile = false; // TODO Исправить получаемый тип данных и убрать эту строку
+			VkResponseArray response = _vk.Call("friends.getOnline", @params);
 			return response.ToReadOnlyCollectionOf<long>(x => x);
 		}
 
