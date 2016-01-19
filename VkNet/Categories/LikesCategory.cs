@@ -2,17 +2,17 @@
 
 namespace VkNet.Categories
 {
-    using System.Collections.ObjectModel;
+	using System.Collections.ObjectModel;
 
-    using Enums.SafetyEnums;
-    using Utils;
-    using Model;
+	using Enums.SafetyEnums;
+	using Utils;
+	using Model;
 
 	/// <summary>
 	/// API для работы с лайками.
 	/// </summary>
 	public class LikesCategory
-    {
+	{
 		/// <summary>
 		/// API
 		/// </summary>
@@ -23,9 +23,9 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="vk">The vk.</param>
 		internal LikesCategory(VkApi vk)
-        {
-            _vk = vk;
-        }
+		{
+			_vk = vk;
+		}
 
 		/// <summary>
 		/// Получает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится.
@@ -62,6 +62,7 @@ namespace VkNet.Categories
 		{
 			return _vk.Call("likes.getList", @params, true);
 		}
+
 		/// <summary>
 		/// Добавляет указанный объект в список Мне нравится текущего пользователя.
 		/// </summary>
@@ -76,23 +77,23 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.add" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public long Add(LikeObjectType type, ulong itemId, long? ownerId = null, string accessKey = null, string reference = null)
-        {
-            var parameters = new VkParameters
-                {
-                    { "type", type },
-                    { "item_id", itemId },
-                    { "owner_id", ownerId },
-                    { "access_key", accessKey },
-                    { "ref", reference }
-                };
+		{
+			var parameters = new VkParameters
+				{
+					{ "type", type },
+					{ "item_id", itemId },
+					{ "owner_id", ownerId },
+					{ "access_key", accessKey },
+					{ "ref", reference }
+				};
 
-            var response = _vk.Call("likes.add", parameters);
+			var response = _vk.Call("likes.add", parameters);
 
-            return response["likes"];
-        }
-
+			return response["likes"];
+		}
+		
 		/// <summary>
 		/// Удаляет указанный объект из списка Мне нравится текущего пользователя
 		/// </summary>
@@ -105,18 +106,18 @@ namespace VkNet.Categories
 		/// </remarks>
 		[ApiVersion("5.37")]
 		public ulong Delete(LikeObjectType type, long itemId, ulong? ownerId = null)
-        {
-            var parameters = new VkParameters
-                {
-                    { "type", type },
-                    { "item_id", itemId },
-                    { "owner_id", ownerId }
-                };
+		{
+			var parameters = new VkParameters
+				{
+					{ "type", type },
+					{ "item_id", itemId },
+					{ "owner_id", ownerId }
+				};
 
-            var response = _vk.Call("likes.delete", parameters);
+			var response = _vk.Call("likes.delete", parameters);
 
-            return response["likes"];
-        }
+			return response["likes"];
+		}
 		/// <summary>
 		/// Проверяет, находится ли объект в списке Мне нравится заданного пользователя.
 		/// </summary>
@@ -134,20 +135,20 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.isLiked" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-        public bool IsLiked(out bool copied, LikeObjectType type, ulong itemId,  ulong? userId = null, long? ownerId = null)
-        {
-            var parameters = new VkParameters
-                {
-                    { "type", type },
-                    { "item_id", itemId },
-                    { "user_id", userId },
-                    { "owner_id", ownerId }
-                };
+		public bool IsLiked(out bool copied, LikeObjectType type, ulong itemId,  ulong? userId = null, long? ownerId = null)
+		{
+			var parameters = new VkParameters
+				{
+					{ "type", type },
+					{ "item_id", itemId },
+					{ "user_id", userId },
+					{ "owner_id", ownerId }
+				};
 
-            var resp = _vk.Call("likes.isLiked", parameters);
+			var resp = _vk.Call("likes.isLiked", parameters);
 
-            copied = resp["copied"];
-            return resp["liked"];
-        }
-    }
+			copied = resp["copied"];
+			return resp["liked"];
+		}
+	}
 }

@@ -55,7 +55,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Add_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/likes.add?type=post&item_id=701&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/likes.add?type=post&item_id=701&v=5.44&access_token=token";
 			const string json =
 				@"{
 					response: {
