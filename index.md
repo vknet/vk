@@ -39,17 +39,31 @@ comments: false
 + [Friends.GetRequests](/vk/friends/getRequests/) - Возвращает информацию о полученных или отправленных заявках на добавление в друзья для текущего пользователя.
 
 ## Группы
-+ [Groups.Get] (/vk/groups/get/) - возвращает список групп пользователя.
-+ [Groups.GetById] (/vk/groups/getById/) - возвращает информацию о группах по их идентификаторам.
-+ [Groups.IsMember] (/vk/groups/isMember/) - возвращает информацию о том, является ли пользователь участником группы.
-+ [Groups.GetMembers] (/vk/groups/getMembers/) - возвращает список участников группы.
-+ [Groups.Search] (/vk/groups/search/) - Осуществляет поиск групп по заданной подстроке.
-+ [Groups.Join] (/vk/groups/join/) - Данный метод позволяет вступить в группу, публичную страницу, а также подтверждать об участии во встрече.
-+ [Groups.Leave] (/vk/groups/leave/) - Данный метод позволяет выходить из группы, публичной страницы, или встречи.
-+ [Groups.GetInvites] (/vk/groups/getInvites/) - Данный метод возвращает список приглашений в сообщества и встречи.
-+ [Groups.BanUser] (/vk/groups/banUser/) - Добавляет пользователя в черный список группы.
-+ [Groups.GetBanned] (/vk/groups/getBanned/) - Возвращает список забаненных пользователей в сообществе.
++ [Groups.IsMember] (/vk/groups/isMember/) - Возвращает информацию о том, является ли пользователь участником сообщества.
++ [Groups.GetById] (/vk/groups/getById/) - Возвращает информацию о заданном сообществе или о нескольких сообществах.
++ [Groups.Get] (/vk/groups/get/) - Возвращает список сообществ указанного пользователя.
++ [Groups.GetMembers] (/vk/groups/getMembers/) - Возвращает список участников сообщества.
++ [Groups.Join] (/vk/groups/join/) - Данный метод позволяет вступить в группу, публичную страницу, а также подтвердить участие во встрече.
++ [Groups.Leave] (/vk/groups/leave/) - Позволяет покинуть сообщество.
++ [Groups.Search] (/vk/groups/search/) - Осуществляет поиск сообществ по заданной подстроке.
++ [Groups.GetInvites] (/vk/groups/getInvites/) - Данный метод возвращает список приглашений в сообщества и встречи текущего пользователя.
++ [Groups.GetInvitedUsers] (/vk/groups/getInvitedUsers/) - Возвращает список пользователей, которые были приглашены в группу.
++ [Groups.BanUser] (/vk/groups/banUser/) - Добавляет пользователя в черный список сообщества.
 + [Groups.UnbanUser] (/vk/groups/unbanUser/) - Убирает пользователя из черного списка сообщества.
++ [Groups.GetBanned] (/vk/groups/getBanned/) - Возвращает список забаненных пользователей в сообществе.
++ [Groups.Create] (/vk/groups/create/) - Создает новое сообщество.
++ [Groups.Edit] (/vk/groups/edit/) - Редактирует сообщество.
++ [Groups.EditPlace] (/vk/groups/editPlace/) - Позволяет редактировать информацию о месте группы.
++ [Groups.GetSettings] (/vk/groups/getSettings/) - Позволяет получать данные, необходимые для отображения страницы редактирования данных сообщества.
++ [Groups.GetRequests] (/vk/groups/getRequests/) - Возвращает список заявок на вступление в сообщество.
++ [Groups.EditManager] (/vk/groups/editManager/) - Позволяет назначить/разжаловать руководителя в сообществе или изменить уровень его полномочий.
++ [Groups.Invite] (/vk/groups/invite/) - Позволяет приглашать друзей в группу.
++ [Groups.AddLink] (/vk/groups/addLink/) - Позволяет добавлять ссылки в сообщество.
++ [Groups.DeleteLink] (/vk/groups/deleteLink/) - Позволяет удалить ссылки из сообщества.
++ [Groups.EditLink] (/vk/groups/editLink/) - Позволяет редактировать ссылки в сообществе.
++ [Groups.ReorderLink] (/vk/groups/reorderLink/) - Позволяет менять местоположение ссылки в списке.
++ [Groups.RemoveUser] (/vk/groups/removeUser/) - Позволяет исключить пользователя из группы или отклонить заявку на вступление.
++ [Groups.ApproveRequest] (/vk/groups/approveRequest/) - Позволяет одобрить заявку в группу от пользователя.
 
 ## Аудиозаписи
 + [Audio.Get](/vk/audio/get/) - возвращает список аудиозаписей пользователя или группы.
