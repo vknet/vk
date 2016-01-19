@@ -76,3 +76,5 @@ int count; // хранит общее количество Ивановых Ма
 var users = vk.Users.Search(out count, new UserSearchParams { Query = Query, Fields = ProfileFields.All, Count = 5, Offset = 15}).ToList();
 ```
 
+## Версия Вконтакте API v.5.44
+Дата обновления: 19.01.2016 12:44:46
