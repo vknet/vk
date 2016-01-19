@@ -59,3 +59,6 @@ foreach(var p in users)
 var ids = new long[] {2, 3, 6};
 var users = vk.Users.Get(ids, ProfileFields.Education);
 ```
+
+## Версия Вконтакте API v.5.44
+Дата обновления: 19.01.2016 12:44:46
