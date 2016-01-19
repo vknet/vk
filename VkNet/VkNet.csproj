@@ -57,6 +57,11 @@
   <ItemGroup>
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsBanUserParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsEditManagerParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsGetMembersParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsGetParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsSearchParams.cs" />
     <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
     <Compile Include="Model\SchoolClass.cs" />
     <Compile Include="Enums\SafetyEnums\FriendsFilter.cs" />

@@ -309,9 +309,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getNearby" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool GetNearby(UsersGetNearbyParams @params)
+		public ReadOnlyCollection<User> GetNearby(UsersGetNearbyParams @params)
 		{
-			return _vk.Call("users.getNearby", @params);
+			return _vk.Call("users.getNearby", @params).ToReadOnlyCollectionOf<User>(x => x);
 		}
 	}
 }

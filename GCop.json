@@ -1,0 +1,39 @@
+{
+  "$schema":"http://gcop.watch.masoud.g.e/public/js/gcop-schema.json",
+  "ReadMe": "To learn how to configure this, see: http://gcop.watch.masoud.g.e/documentation/config",
+  "Projects": [],
+  "General": [
+    {
+      "Path": "*.g.i.cs",
+      "Exclude": "*"
+    },
+    {
+      "Path": "*\\DAL\\*",
+      "Exclude": "*"
+    },
+    {
+      "Path": "*\\Pages\\*",
+      "Exclude": "*"
+    },
+    {
+      "Path": "*\\Entities\\*",
+      "Exclude": "*"
+    },
+    {
+      "Path": "*\\@Modules\\*",
+      "Exclude": "*"
+    },
+    {
+      "Path": "*\\Modules\\*",
+      "Exclude": "*"
+    },
+    {
+      "Path": "*\\Controller.cs",
+      "Exclude": "*"
+    },
+    {
+      "Path": "*\\Test\\*",
+      "Exclude": "*"
+    }
+  ]
+}

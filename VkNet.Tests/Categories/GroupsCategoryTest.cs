@@ -34,7 +34,7 @@
 		[Test]
 		public void Join_WrongGid_ThrowAccessDeniedException()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=0&not_sure=1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=0&not_sure=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -73,7 +73,7 @@
 		[Test]
 		public void Leave_WrongGid_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.leave?gid=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.leave?group_id=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -88,7 +88,7 @@
 		[Test]
 		public void Join_NormalCase_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=2&not_sure=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=2&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -103,7 +103,7 @@
 		[Test]
 		public void Join_NormalCaseNotSure_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=2&not_sure=1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=2&not_sure=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -118,7 +118,7 @@
 		[Test]
 		public void Leave_NormalCase_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.leave?gid=2&access_token=token";
+			const string url = "https://api.vk.com/method/groups.leave?group_id=2&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -133,7 +133,7 @@
 		[Test]
 		public void Join_AccessDenied_ThrowAccessDeniedException()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=2&not_sure=1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=2&not_sure=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -168,7 +168,7 @@
 		[Test]
 		public void Leave_AccessDenied_ThrowAccessDeniedException()
 		{
-			const string url = "https://api.vk.com/method/groups.leave?gid=2&access_token=token";
+			const string url = "https://api.vk.com/method/groups.leave?group_id=2&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -216,7 +216,7 @@
 		[Test]
 		public void Join_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=1&not_sure=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -250,7 +250,7 @@
 		[Test]
 		public void Leave_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 		{
-			const string url = "https://api.vk.com/method/groups.leave?gid=1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.leave?group_id=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -291,16 +291,20 @@
 		[Test]
 		public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 		{
-			const string url = "https://api.vk.com/method/groups.get?user_id=4793858&extended=0&offset=0&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.get?user_id=4793858&offset=0&count=1000&v=5.44&access_token=token";
+
 			const string json =
 				@"{
-					'response': [
-					  29689780,
-					  33489538,
-					  16108331,
-					  40724899,
-					  36346468
-					]
+					response: {
+						count: 8,
+						items: [
+						  29689780,
+						  33489538,
+						  16108331,
+						  40724899,
+						  36346468
+						]
+					}
 				  }";
 
 			var category = GetMockedGroupCategory(url, json);
@@ -544,7 +548,7 @@
 		[Test]
 		public void GetMembers_NormalCase_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?gid=17683660&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -583,7 +587,7 @@
 		[Test]
 		public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?gid=17683660&offset=15&sort=id_asc&count=7&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&sort=id_asc&offset=15&count=7&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -619,7 +623,7 @@
 		[Test]
 		public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?gid=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -672,7 +676,7 @@
 		[Test]
 		public void Search_DefaultCase_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&future=0&sort=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -737,7 +741,7 @@
 		[Test]
 		public void Search_DefaulCaseAllParams_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&offset=20&count=3&future=0&sort=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&offset=20&count=3&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -825,7 +829,7 @@
 		[Test]
 		public void Search_GroupsNotFounded_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&offset=20&count=3&future=0&sort=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&sort=0&offset=20&count=3&v=5.44&access_token=token";
 
 			const string json =
 				@"{
@@ -853,7 +857,7 @@
 		[Test]
 		public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=17683660&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=17683660&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -890,7 +894,7 @@
 		[Test]
 		public void GetById_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=0&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -925,7 +929,7 @@
 		[Test]
 		public void GetById_BanInfo()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=66464944&fields=ban_info&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=66464944&fields=ban_info&v=5.44&access_token=token";
 			const string json =
 				@"{
                     'response': [
@@ -965,8 +969,7 @@
 		[Test]
 		public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_ids=0&v=5.37&access_token=token";
-
+			const string url = "https://api.vk.com/method/groups.getById?group_ids=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -1001,7 +1004,7 @@
 		[Test]
 		public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_ids=17683660,637247&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_ids=17683660,637247&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -1208,7 +1211,7 @@
 		[Test]
 		public void GetInvites_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.getInvites?count=3&offset=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getInvites?offset=0&count=3&v=5.44&access_token=token";
 			const string json =
 			@"{
 					'response': [
@@ -1252,7 +1255,7 @@
 		[Test]
 		public void GetInivites_NotInvites()
 		{
-			const string url = "https://api.vk.com/method/groups.getInvites?count=3&offset=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getInvites?offset=0&count=3&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -1287,7 +1290,7 @@
 		[Test]
 		public void GetBanned_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.getBanned?group_id=65968111&count=3&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getBanned?group_id=65968111&count=3&v=5.44&access_token=token";
 			const string json =
 			@"{
 					'response': [
@@ -1309,7 +1312,7 @@
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			var users = cat.GetBanned(65968111, 3);
+			var users = cat.GetBanned(65968111,null, 3);
 
 			users.ShouldNotBeNull();
 			users.Count.ShouldEqual(1);
@@ -1327,7 +1330,7 @@
 		[Test]
 		public void UnbanUser_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.unbanUser?group_id=65960&user_id=242508&access_token=token";
+			const string url = "https://api.vk.com/method/groups.unbanUser?group_id=65960&user_id=242508&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -1343,7 +1346,7 @@
 		[Test]
 		public void GetSettings_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.getSettings?group_id=103292418&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getSettings?group_id=103292418&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -1515,7 +1518,7 @@
 		[Test]
 		public void Edit_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=Raven&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=Raven&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -1534,7 +1537,7 @@
 		[Test]
 		public void EditPlace_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.editPlace?group_id=103292418&title=Test&address=1&country_id=1&city_id=1&latitude=30&longitude=30&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.editPlace?group_id=103292418&title=Test&address=1&country_id=1&city_id=1&latitude=30&longitude=30&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -1561,7 +1564,7 @@
 		[Test]
 		public void GetInvitedUsers_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.getInvitedUsers?group_id=103292418&offset=0&count=20&fields=bdate&name_case=dat&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getInvitedUsers?group_id=103292418&offset=0&count=20&fields=bdate&name_case=dat&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -1592,7 +1595,7 @@
 		[Test]
 		public void Invite_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.invite?group_id=103292418&user_id=221634238&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.invite?group_id=103292418&user_id=221634238&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
