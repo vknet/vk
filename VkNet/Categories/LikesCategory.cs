@@ -37,7 +37,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<long> GetList(LikesGetListParams @params)
 		{
 
@@ -57,7 +57,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public UserOrGroup GetListEx(LikesGetListParams @params)
 		{
 			return _vk.Call("likes.getList", @params, true);
@@ -93,7 +93,7 @@ namespace VkNet.Categories
 
 			return response["likes"];
 		}
-		
+
 		/// <summary>
 		/// Удаляет указанный объект из списка Мне нравится текущего пользователя
 		/// </summary>
@@ -104,7 +104,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.delete"/>.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public ulong Delete(LikeObjectType type, long itemId, ulong? ownerId = null)
 		{
 			var parameters = new VkParameters
@@ -134,7 +134,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.isLiked" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public bool IsLiked(out bool copied, LikeObjectType type, ulong itemId,  ulong? userId = null, long? ownerId = null)
 		{
 			var parameters = new VkParameters

@@ -53,6 +53,7 @@ namespace VkNet.Model.RequestParams
 			GroupId = null;
 			FromList = null;
 		}
+
 		/// <summary>
 		/// Строка поискового запроса. Например, Вася Бабич.
 		/// </summary>

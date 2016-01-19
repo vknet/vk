@@ -11,8 +11,8 @@ namespace VkNet.Categories
 	using Enums.Filters;
 	using Enums.SafetyEnums;
 	using Model;
-    using Model.RequestParams;
-    using Utils;
+	using Model.RequestParams;
+	using Utils;
 
 	/// <summary>
 	/// Методы для работы с информацией о пользователях.
@@ -39,7 +39,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @params)
 		{
 			var response = _vk.Call("users.search", @params);
@@ -64,6 +64,8 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getUserSettings"/>.
 		/// </remarks>
 		[Pure]
+		[Obsolete("Метод устарел. Используйте вместо него account.getAppPermissions")]
+		[ApiVersion("5.44")]
 		public int GetUserSettings(long uid)
 		{
 			var parameters = new VkParameters { { "uid", uid } };
@@ -72,26 +74,25 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает информацию о том, установил ли пользователь приложение.
+		/// Возвращает информацию о том, установил ли пользователь приложение..
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя.</param>
-		/// <returns>После успешного выполнения возвращает true в случае, если пользователь установил у себя данное приложение,
-		/// иначе false.
+		/// <param name="userId">Идентификатор пользователя. целое число, по умолчанию идентификатор текущего пользователя (Целое число, по умолчанию идентификатор текущего пользователя).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1 в случае, если пользователь установил у себя данное приложение, иначе 0..
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/isAppUser"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.isAppUser" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.9")]
-		public bool IsAppUser(long userId)
+		[ApiVersion("5.44")]
+		public bool IsAppUser(long? userId)
 		{
-			var parameters = new VkParameters { { "user_id", userId } };
+			var parameters = new VkParameters {
+				{ "user_id", userId }
+			};
 
-			var response = _vk.Call("users.isAppUser", parameters);
-
-			return 1 == Convert.ToInt32(response.ToString());
+			return _vk.Call("users.isAppUser", parameters);
 		}
-
 
 		/// <summary>
 		/// Возвращает расширенную информацию о пользователе.
@@ -104,17 +105,12 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.9")]
-		public User Get(long userId, ProfileFields fields = null,
-											NameCase nameCase = null)
+		[ApiVersion("5.44")]
+		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
-			var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase }, { "user_ids", userId } };
-
-			VkResponseArray response = _vk.Call("users.get", parameters, true);
-
-			return response[0];
+			var users = Get(new[] {userId}, fields, nameCase);
+			return users.FirstOrDefault();
 		}
 
 		/// <summary>
@@ -128,14 +124,20 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.21")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			if (userIds == null)
+			{
 				throw new ArgumentNullException("userIds");
+			}
 
-			var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase } };
-			parameters.Add("user_ids", userIds);
+			var parameters = new VkParameters
+			{
+				{ "fields", fields },
+				{ "name_case", nameCase },
+				{ "user_ids", userIds }
+			};
 
 			VkResponseArray response = _vk.Call("users.get", parameters);
 
@@ -153,11 +155,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
 		[Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
-		[ApiVersion("5.9")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			if (screenNames == null)
+			{
 				throw new ArgumentNullException("screenNames");
+			}
 
 			var parameters = new VkParameters
 				{
@@ -187,6 +191,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
 		[Pure, CanBeNull, ContractAnnotation("ScreenName:null => halt")]
+		[ApiVersion("5.44")]
 		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => screenName);
@@ -195,8 +200,6 @@ namespace VkNet.Categories
 			return users.Count > 0 ? users[0] : null;
 		}
 
-
-			// todo add tests for subscriptions for users
 		/// <summary>
 		/// Возвращает список идентификаторов пользователей и групп, которые входят в список подписок пользователя.
 		/// </summary>
@@ -206,9 +209,10 @@ namespace VkNet.Categories
 		/// <returns>Пока возвращается только список групп.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions"/>.
+		/// :todo: add tests for subscriptions for users
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.9")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -217,10 +221,10 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 				{
-					{"user_id", userId},
-					{"extended", true},
-					{"offset", offset},
-					{"count", count}
+					{ "user_id", userId },
+					{ "extended", true },
+					{ "offset", offset },
+					{ "count", count }
 				};
 
 			VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
@@ -241,7 +245,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getFollowers"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.9")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -249,13 +253,13 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 
 			var parameters = new VkParameters
-				{
-					{"user_id", userId},
-					{"offset", offset},
-					{"count", count},
-					{"fields", fields},
-					{"name_case", nameCase}
-				};
+			{
+				{ "user_id", userId },
+				{ "offset", offset },
+				{ "count", count },
+				{ "fields", fields },
+				{ "name_case", nameCase }
+			};
 
 			VkResponseArray response = _vk.Call("users.getFollowers", parameters);
 
@@ -278,19 +282,35 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.report"/>.
 		/// </remarks>
-		[ApiVersion("5.9")]
+		[ApiVersion("5.44")]
 		public bool Report(long userId, ReportType type, string comment = "")
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 
 			var parameters = new VkParameters
-				{
-					{"user_id", userId},
-					{"type", type},
-					{"comment", comment}
-				};
+			{
+				{ "user_id", userId },
+				{ "type", type },
+				{ "comment", comment }
+			};
 
 			return _vk.Call("users.report", parameters);
+		}
+
+		/// <summary>
+		/// Индексирует текущее местоположение пользователя и возвращает список пользователей, которые находятся вблизи..
+		/// </summary>
+		/// <param name="params">Входные параметры выборки.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов user..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getNearby" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		public bool GetNearby(UsersGetNearbyParams @params)
+		{
+			return _vk.Call("users.getNearby", @params);
 		}
 	}
 }
