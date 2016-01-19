@@ -14,10 +14,7 @@ comments: false
 ## Пользователи
 + [Users.Get](/vk/users/get/) - Возвращает расширенную информацию о пользователях.
 + [Users.GetFollowers](/vk/users/getFollowers/) - Возвращает список идентификаторов пользователей, которые являются подписчиками пользователя.
-+ [Users.GetGroups](/vk/users/getGroups/) - Возвращает список id групп пользователя.
-+ [Users.GetGroupsFull](/vk/users/getGroupsFull/) - Возвращает базовую информацию о группах текущего пользователя или о группах из списка gids.
 + [Users.GetSubscription](/vk/users/getSubscription/) - Возвращает список идентификаторов пользователей и групп, которые входят в список подписок пользователя.
-+ [Users.GetUserBalance](/vk/users/getUserBalance/) - Возвращает баланс текущего пользователя на счету приложения в сотых долях голоса. Отличается от метода secure.getBalance тем, что не требует безопасного соединения с сервером API.
 + [Users.GetUserSettings](/vk/users/getUserSettings/) - Получает настройки текущего пользователя в данном приложении.
 + [Users.IsAppUser](/vk/users/isAppUser/) - Возвращает информацию о том, установил ли текущий пользователь приложение или нет.
 + [Users.Report](/vk/users/report/) - Позволяет пожаловаться на пользователя.
