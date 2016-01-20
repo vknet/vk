@@ -34,7 +34,7 @@ public ReadOnlyCollection<long> GetOnline(FriendsGetOnlineParams @params)
 ## Пример
 ```csharp
 // Получение идентификаторов находящихся онлайн друзей Павла Дурова.
-var ids = vk.Friends.GetOnline(1);
+var ids = vk.Friends.GetOnline(new FriendsGetParams {	UserId = 1 });
 ```
 
 ## Версия Вконтакте API v.5.44
