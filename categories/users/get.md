@@ -10,7 +10,7 @@ comments: true
 Страница документации ВКонтакте [users.get](https://vk.com/dev/users.get).
 ## Синтаксис
 ``` csharp
-public ReadOnlyCollection<Group> Get(IEnumerable<string> userIds, IEnumerable<string> fields, string nameCase)
+public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
 ```
 
 ## Параметры
