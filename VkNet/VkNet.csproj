@@ -69,6 +69,11 @@
     <Compile Include="Model\RequestParams\Groups\GroupsGetParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsSearchParams.cs" />
     <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallAddCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallEditParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallPostParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallSearchParams.cs" />
     <Compile Include="Model\SchoolClass.cs" />
     <Compile Include="Enums\SafetyEnums\FriendsFilter.cs" />
     <Compile Include="Model\MarketComment.cs" />

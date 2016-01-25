@@ -37,13 +37,24 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static WallGetObject FromJson(VkResponse response)
 		{
-			var wallGetObject = new WallGetObject
+			WallGetObject wallGetObject;
+			if (response.ContainsKey("items"))
 			{
-				TotalCount = response["count"],
-				WallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r),
-				Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r),
-				Groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r)
-			};
+				wallGetObject = new WallGetObject
+				{
+					TotalCount = response["count"],
+					WallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r),
+					Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r),
+					Groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r)
+				};
+			}
+			else
+			{
+				wallGetObject = new WallGetObject
+				{
+					WallPosts = response.ToReadOnlyCollectionOf<Post>(r => r)
+				};
+			}
 
 			return wallGetObject;
 		}
