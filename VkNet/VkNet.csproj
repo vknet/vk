@@ -58,8 +58,11 @@
     <Compile Include="Model\FriendOnline.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
+    <Compile Include="Model\RequestParams\Friends\FriendsGetMutualParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetOnlineParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetParams.cs" />
+    <Compile Include="Model\RequestParams\Friends\FriendsGetRequestsParams.cs" />
+    <Compile Include="Model\RequestParams\Friends\FriendsSearchParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsBanUserParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsEditManagerParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsGetMembersParams.cs" />
