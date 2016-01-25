@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using System.Web;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -55,24 +56,36 @@ namespace VkNet.Model.RequestParams
 		public bool? DeletePlace
 		{ get; set; }
 
-		/// <summary>
-		/// Привести к типу VkParameters.
+        /// <summary>
+		/// Идентификатор капчи
 		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
-		internal static VkParameters ToVkParameters(PhotoEditParams p)
+		public string CaptchaSid { get; set; }
+
+        /// <summary>
+        /// текст, который ввел пользователь
+        /// </summary>
+        public string CaptchaKey { get; set; }
+
+        /// <summary>
+        /// Привести к типу VkParameters.
+        /// </summary>
+        /// <param name="p">Параметры.</param>
+        /// <returns></returns>
+        internal static VkParameters ToVkParameters(PhotoEditParams p)
 		{
 			var parameters = new VkParameters
 			{
 				{ "owner_id", p.OwnerId },
 				{ "photo_id", p.PhotoId },
-				{ "caption", p.Caption },
+				{ "caption", HttpUtility.UrlEncode(p.Caption) },
 				{ "latitude", p.Latitude },
 				{ "longitude", p.Longitude },
 				{ "place_str", p.PlaceStr },
 				{ "foursquare_id", p.FoursquareId },
-				{ "delete_place", p.DeletePlace }
-			};
+				{ "delete_place", p.DeletePlace },
+                { "captcha_sid", p.CaptchaSid },
+                { "captcha_key", p.CaptchaKey }
+            };
 
 			return parameters;
 		}
