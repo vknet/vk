@@ -186,30 +186,39 @@ comments: false
 + [Photos.GetNewTags] (/vk/photos/getNewTags/) - Возвращает список фотографий, на которых есть непросмотренные отметки.
 
 ## Видео
-+ [Video.Get](/vk/video/get/) - Возвращает информацию о видеозаписях.
-+ [Video.Edit](/vk/video/edit/) - Редактирует данные видеозаписи на странице пользователя.
-+ [Video.Add](/vk/video/add/) - Добавляет видеозапись в список пользователя.
-+ [Video.Save](/vk/video/save/) - Возвращает адрес сервера (необходимый для загрузки) и данные видеозаписи.
-+ [Video.Delete](/vk/video/delete/) - Удаляет видеозапись со страницы пользователя.
-+ [Video.Restore](/vk/video/restore/) - Восстанавливает удаленную видеозапись.
-+ [Video.Search](/vk/video/search/) - Возвращает список видеозаписей в соответствии с заданным критерием поиска.
-+ [Video.GetUserVideos](/vk/video/getUserVideos/) - Возвращает список видеозаписей, на которых отмечен пользователь.
-+ [Video.GetAlbums](/vk/video/getAlbums/) - Возвращает список альбомов видеозаписей пользователя или сообщества.
-+ [Video.AddAlbum](/vk/video/addAlbum/) - Создает пустой альбом видеозаписей.
-+ [Video.EditAlbum](/vk/video/editAlbum/) - Редактирует название альбома видеозаписей.
-+ [Video.DeleteAlbum](/vk/video/deleteAlbum/) - Удаляет альбом видеозаписей.
-+ [Video.MoveToAlbum](/vk/video/moveToAlbum/) - Перемещает видеозаписи в альбом.
-+ [Video.GetComments](/vk/video/getComments/) - Возвращает список комментариев к видеозаписи.
-+ [Video.CreateComment](/vk/video/createComment/) - Cоздает новый комментарий к видеозаписи.
-+ [Video.DeleteComment](/vk/video/deleteComment/) - Удаляет комментарий к видеозаписи.
-+ [Video.RestoreComment](/vk/video/restoreComment/) - Восстанавливает удаленный комментарий к видеозаписи.
-+ [Video.EditComment](/vk/video/editComment/) -Изменяет текст комментария к видеозаписи.
-+ [Video.GetTags](/vk/video/getTags/) - TODO
-+ [Video.PutTag](/vk/video/putTag/) - TODO
-+ [Video.RemoveTag](/vk/video/removeTag/) - TODO
-+ [Video.GetNewTags](/vk/video/getNewTags/) - TODO
-+ [Video.Report](/vk/video/report/) - Позволяет пожаловаться на видеозапись.
-+ [Video.ReportComment](/vk/video/reportComment/) - Позволяет пожаловаться на комментарий к видеозаписи.
++ [Video.Get] (/vk/video/get/) - Возвращает информацию о видеозаписях.
++ [Video.Edit] (/vk/video/edit/) - Редактирует данные видеозаписи.
++ [Video.Add] (/vk/video/add/) - Добавляет видеозапись в список пользователя.
++ [Video.Save] (/vk/video/save/) - Возвращает адрес сервера (необходимый для загрузки) и данные видеозаписи.
++ [Video.Delete] (/vk/video/delete/) - Удаляет видеозапись со страницы пользователя.
++ [Video.Restore] (/vk/video/restore/) - Восстанавливает удаленную видеозапись.
++ [Video.Search] (/vk/video/search/) - Возвращает список видеозаписей в соответствии с заданным критерием поиска.
++ [Video.GetUserVideos] (/vk/video/getUserVideos/) - Возвращает список видеозаписей, на которых отмечен пользователь.
++ [Video.GetAlbums] (/vk/video/getAlbums/) - Возвращает список альбомов видеозаписей пользователя или сообщества.
++ [Video.GetAlbumById] (/vk/video/getAlbumById/) - Позволяет получить информацию об альбоме с видео.
++ [Video.AddAlbum] (/vk/video/addAlbum/) - Создает пустой альбом видеозаписей.
++ [Video.EditAlbum] (/vk/video/editAlbum/) - Редактирует название альбома видеозаписей.
++ [Video.DeleteAlbum] (/vk/video/deleteAlbum/) - Удаляет альбом видеозаписей.
++ [Video.ReorderAlbums] (/vk/video/reorderAlbums/) - Позволяет изменить порядок альбомов с видео.
++ [Video.ReorderVideos] (/vk/video/reorderVideos/) - Позволяет переместить видеозапись в альбоме.
++ [Video.AddToAlbum] (/vk/video/addToAlbum/) - Позволяет добавить видеозапись в альбом.
++ [Video.RemoveFromAlbum] (/vk/video/removeFromAlbum/) - Позволяет убрать видеозапись из альбома.
++ [Video.GetAlbumsByVideo] (/vk/video/getAlbumsByVideo/) - Возвращает список альбомов, в которых находится видеозапись.
++ [Video.GetComments] (/vk/video/getComments/) - Возвращает список комментариев к видеозаписи.
++ [Video.CreateComment] (/vk/video/createComment/) - Cоздает новый комментарий к видеозаписи
++ [Video.DeleteComment] (/vk/video/deleteComment/) - Удаляет комментарий к видеозаписи.
++ [Video.RestoreComment] (/vk/video/restoreComment/) - Восстанавливает удаленный комментарий к видеозаписи.
++ [Video.EditComment] (/vk/video/editComment/) - Изменяет текст комментария к видеозаписи.
++ [Video.GetTags] (/vk/video/getTags/) - Возвращает список отметок на видеозаписи.
++ [Video.PutTag] (/vk/video/putTag/) - Добавляет отметку на видеозапись.
++ [Video.RemoveTag] (/vk/video/removeTag/) - Удаляет отметку с видеозаписи.
++ [Video.GetNewTags] (/vk/video/getNewTags/) - Возвращает список видеозаписей, на которых есть непросмотренные отметки.
++ [Video.Report] (/vk/video/report/) - Позволяет пожаловаться на видеозапись.
++ [Video.ReportComment] (/vk/video/reportComment/) - Позволяет пожаловаться на комментарий к видеозаписи.
++ [Video.GetCatalog] (/vk/video/getCatalog/) - Позволяет получить представление каталога видео.
++ [Video.GetCatalogSection] (/vk/video/getCatalogSection/) - Позволяет получить отдельный блок видеокаталога.
++ [Video.HideCatalogSection] (/vk/video/hideCatalogSection/) - Скрывает для пользователя раздел видеокаталога.
+
 
 ## Закладки
 + [Fave.GetUsers](/vk/fave/getUsers/) - Позволяет пожаловаться на комментарий к видеозаписи.
