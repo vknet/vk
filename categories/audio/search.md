@@ -10,7 +10,7 @@ comments: true
 Страница документации ВКонтакте [audio.search](https://vk.com/dev/audio.search).
 ## Синтаксис
 ``` csharp
-public bool Search(AudioSearchParams @params)
+public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out long totalCount)
 ```
 
 ## Параметры
