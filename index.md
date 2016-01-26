@@ -116,10 +116,24 @@ comments: false
 + [Messages.GetLongPollServer] (/vk/messages/getLongPollServer/) - Возвращает данные, необходимые для подключения к Long Poll серверу.
 
 ## Стена
-+ [Wall.Get](/vk/wall/get/) - Возвращает список записей со стены пользователя или сообщества.
-+ [Wall.GetComments](/vk/wall/getComments/) - Возвращает список комментариев к записи на стене пользователя.
-+ [Wall.GetById](/vk/wall/getById/) - Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
-+ [Wall.Delete](/vk/wall/delete/) - TODO
++ [Wall.Get] (/vk/wall/get/) - Возвращает список записей со стены пользователя или сообщества.
++ [Wall.Search] (/vk/wall/search/) - Метод, позволяющий осуществлять поиск по стенам пользователей.
++ [Wall.GetById] (/vk/wall/getById/) - Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
++ [Wall.Post] (/vk/wall/post/) - Публикует новую запись на своей или чужой стене.
++ [Wall.Repost] (/vk/wall/repost/) - Копирует объект на стену пользователя или сообщества.
++ [Wall.GetReposts] (/vk/wall/getReposts/) - Позволяет получать список репостов заданной записи.
++ [Wall.Edit] (/vk/wall/edit/) - Редактирует запись на стене.
++ [Wall.Delete] (/vk/wall/delete/) - Удаляет запись со стены.
++ [Wall.Restore] (/vk/wall/restore/) - Восстанавливает удаленную запись на стене пользователя или сообщества.
++ [Wall.Pin] (/vk/wall/pin/) - Закрепляет запись на стене (запись будет отображаться выше остальных).
++ [Wall.Unpin] (/vk/wall/unpin/) - Отменяет закрепление записи на стене.
++ [Wall.GetComments] (/vk/wall/getComments/) - Возвращает список комментариев к записи на стене.
++ [Wall.AddComment] (/vk/wall/addComment/) - Добавляет комментарий к записи на стене пользователя или сообщества.
++ [Wall.EditComment] (/vk/wall/editComment/) - Редактирует комментарий на стене пользователя или сообщества.
++ [Wall.DeleteComment] (/vk/wall/deleteComment/) - Удаляет комментарий текущего пользователя к записи на своей или чужой стене.
++ [Wall.RestoreComment] (/vk/wall/restoreComment/) - Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене.
++ [Wall.ReportPost] (/vk/wall/reportPost/) - Позволяет пожаловаться на запись.
++ [Wall.ReportComment] (/vk/wall/reportComment/) - Позволяет пожаловаться на комментарий к записи.
 
 ## Статус
 + [Status.Get](/vk/status/get/) - Получает статус пользователя.
