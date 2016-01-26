@@ -5,7 +5,7 @@ permalink: photos/createAlbum/
 comments: true
 ---
 # Метод Photos.CreateAlbum
-Создает пустой альбом для фотографий..
+Создает пустой альбом для фотографий.
 
 Страница документации ВКонтакте [photos.createAlbum](https://vk.com/dev/photos.createAlbum).
 ## Синтаксис
@@ -43,5 +43,8 @@ public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода.
+// Пример кода
 ```
+
+## Версия Вконтакте API v.5.44
+Дата обновления: 26.01.2016 11:06:43
