@@ -38,3 +38,6 @@ var photos = Api.Photo.Save(new PhotoSaveParams
 	AlbumId = 123
 });
 ```
+
+## Версия Вконтакте API v.5.44
+Дата обновления: 26.01.2016 11:06:43
