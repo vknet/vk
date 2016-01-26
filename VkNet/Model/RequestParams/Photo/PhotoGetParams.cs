@@ -43,7 +43,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Тип новости получаемый в поле type метода newsfeed.get, для получения только загруженных пользователем фотографий, либо только фотографий, на которых он был отмечен. Может принимать значения photo, photo_tag.
 		/// </summary>
-		public Type FeedType
+		public FeedType FeedType
 		{ get; set; }
 
 		/// <summary>

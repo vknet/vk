@@ -12,8 +12,8 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Статус в случае ошибки ответа
 		/// </summary>
-		[Display(ResourceType = typeof (Resources), Name = "AddFriendStatus_Unknown")]
 		[DefaultValue]
+		[Display(ResourceType = typeof (Resources), Name = "AddFriendStatus_Unknown")]
         Unknown = 0,
 
 		/// <summary>

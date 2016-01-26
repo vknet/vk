@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\SafetyEnums\FeedType.cs" />
+    <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
+    <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
     <Compile Include="Model\FriendOnline.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
@@ -69,6 +72,13 @@
     <Compile Include="Model\RequestParams\Groups\GroupsGetParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsSearchParams.cs" />
     <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoCreateCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoEditParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoGetParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoReorderVideosParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoSaveParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoSearchParams.cs" />
     <Compile Include="Model\RequestParams\Wall\WallAddCommentParams.cs" />
     <Compile Include="Model\RequestParams\Wall\WallEditParams.cs" />
     <Compile Include="Model\RequestParams\Wall\WallGetCommentsParams.cs" />
@@ -309,6 +319,8 @@
     <Compile Include="Model\RequestParams\Users\UserSearchParams.cs" />
     <Compile Include="Model\UserOrGroup.cs" />
     <Compile Include="Model\VideoAlbum.cs" />
+    <Compile Include="Model\VideoCatalog.cs" />
+    <Compile Include="Model\VideoCatalogItem.cs" />
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Model\FaveVideoEx.cs" />
     <Compile Include="Model\WallGetObject.cs" />
