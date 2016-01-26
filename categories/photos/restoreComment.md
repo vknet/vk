@@ -24,3 +24,6 @@ public long RestoreComment(ulong commentId, long? ownerId = null)
 ``` csharp
 // Пример кода
 ```
+
+## Версия Вконтакте API v.5.44
+Дата обновления: 26.01.2016 11:06:43
