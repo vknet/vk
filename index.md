@@ -140,50 +140,50 @@ comments: false
 + [Status.Set](/vk/status/set/) - Устанавливает статус текущего пользователя.
 
 ## Фотографии
-+ [Photos.createAlbum](/vk/photos/createAlbum/) - Создает пустой альбом для фотографий.
-+ [Photos.editAlbum](/vk/photos/editAlbum/) - Редактирует данные альбома для фотографий пользователя.
-+ [Photos.getAlbums](/vk/photos/getAlbums/) - Возвращает список альбомов пользователя или сообщества.
-+ [Photos.get](/vk/photos/get/) - Возвращает список фотографий в альбоме.
-+ [Photos.getAlbumsCount](/vk/photos/getAlbumsCount/) - Возвращает количество доступных альбомов пользователя или сообщества.
-+ [Photos.getById](/vk/photos/getById/) - Возвращает информацию о фотографиях по их идентификаторам.
-+ [Photos.getUploadServer](/vk/photos/getUploadServer/) - Возвращает адрес сервера для загрузки фотографий.
-+ [Photos.getOwnerPhotoUploadServer](/vk/photos/getOwnerPhotoUploadServer/) - Возвращает адрес сервера для загрузки главной фотографии на страницу пользователя или сообщества.
-+ [Photos.getChatUploadServer](/vk/photos/getChatUploadServer/) - Позволяет получить адрес для загрузки фотографий мультидиалогов.
-+ [Photos.saveOwnerPhoto](/vk/photos/saveOwnerPhoto/) - Позволяет сохранить главную фотографию пользователя или сообщества.
-+ [Photos.saveWallPhoto](/vk/photos/saveWallPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getWallUploadServer.
-+ [Photos.getWallUploadServer](/vk/photos/getWallUploadServer/) - Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.
-+ [Photos.getMessagesUploadServer](/vk/photos/getMessagesUploadServer/) - Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
-+ [Photos.getMarketUploadServer](/vk/photos/getMarketUploadServer/) - Возвращает адрес сервера для загрузки фотографии товаров сообщества.
-+ [Photos.getMarketAlbumUploadServer](/vk/photos/getMarketAlbumUploadServer/) - Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
-+ [Photos.saveMarketPhoto](/vk/photos/saveMarketPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketUploadServer.
-+ [Photos.saveMarketAlbumPhoto](/vk/photos/saveMarketAlbumPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketAlbumUploadServer.
-+ [Photos.saveMessagesPhoto](/vk/photos/saveMessagesPhoto/) - Сохраняет фотографию после успешной загрузки на URI, полученный методом photos.getMessagesUploadServer.
-+ [Photos.report](/vk/photos/report/) - Позволяет пожаловаться на фотографию.
-+ [Photos.reportComment](/vk/photos/reportComment/) - Позволяет пожаловаться на комментарий к фотографии.
-+ [Photos.search](/vk/photos/search/) - Осуществляет поиск изображений по местоположению или описанию.
-+ [Photos.save](/vk/photos/save/) - Сохраняет фотографии после успешной загрузки.
-+ [Photos.copy](/vk/photos/copy/) - Позволяет скопировать фотографию в альбом "Сохраненные фотографии"
-+ [Photos.edit](/vk/photos/edit/) - Изменяет описание у выбранной фотографии.
-+ [Photos.move](/vk/photos/move/) - Переносит фотографию из одного альбома в другой.
-+ [Photos.makeCover](/vk/photos/makeCover/) - Делает фотографию обложкой альбома.
-+ [Photos.reorderAlbums](/vk/photos/reorderAlbums/) - Меняет порядок альбома в списке альбомов пользователя.
-+ [Photos.reorderPhotos](/vk/photos/reorderPhotos/) - Меняет порядок фотографии в списке фотографий альбома пользователя.
-+ [Photos.getAll](/vk/photos/getAll/) - Возвращает все фотографии пользователя или сообщества в антихронологическом порядке.
-+ [Photos.getUserPhotos](/vk/photos/getUserPhotos/) - Возвращает список фотографий, на которых отмечен пользователь
-+ [Photos.deleteAlbum](/vk/photos/deleteAlbum/) - Удаляет указанный альбом для фотографий у текущего пользователя
-+ [Photos.delete](/vk/photos/delete/) - Удаление фотографии на сайте.
-+ [Photos.restore](/vk/photos/restore/) - Восстанавливает удаленную фотографию.
-+ [Photos.confirmTag](/vk/photos/confirmTag/) - Подтверждает отметку на фотографии.
-+ [Photos.getComments](/vk/photos/getComments/) - Возвращает список комментариев к фотографии.
-+ [Photos.getAllComments](/vk/photos/getAllComments/) - Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
-+ [Photos.createComment](/vk/photos/createComment/) - Создает новый комментарий к фотографии.
-+ [Photos.deleteComment](/vk/photos/deleteComment/) - Удаляет комментарий к фотографии.
-+ [Photos.restoreComment](/vk/photos/restoreComment/) - Восстанавливает удаленный комментарий к фотографии.
-+ [Photos.editComment](/vk/photos/editComment/) - Изменяет текст комментария к фотографии.
-+ [Photos.getTags](/vk/photos/getTags/) - Возвращает список отметок на фотографии.
-+ [Photos.putTag](/vk/photos/putTag/) - Добавляет отметку на фотографию.
-+ [Photos.removeTag](/vk/photos/removeTag/) - Удаляет отметку с фотографии.
-+ [Photos.getNewTags](/vk/photos/getNewTags/) - Возвращает список фотографий, на которых есть непросмотренные отметки.
++ [Photos.CreateAlbum] (/vk/photos/createAlbum/) - Создает пустой альбом для фотографий.
++ [Photos.EditAlbum] (/vk/photos/editAlbum/) - Редактирует данные альбома для фотографий пользователя.
++ [Photos.GetAlbums] (/vk/photos/getAlbums/) - Возвращает список альбомов пользователя или сообщества.
++ [Photos.Get] (/vk/photos/get/) - Возвращает список фотографий в альбоме.
++ [Photos.GetAlbumsCount] (/vk/photos/getAlbumsCount/) - Возвращает количество доступных альбомов пользователя или сообщества.
++ [Photos.GetById] (/vk/photos/getById/) - Возвращает информацию о фотографиях по их идентификаторам.
++ [Photos.GetUploadServer] (/vk/photos/getUploadServer/) - Возвращает адрес сервера для загрузки фотографий.
++ [Photos.GetOwnerPhotoUploadServer] (/vk/photos/getOwnerPhotoUploadServer/) - Возвращает адрес сервера для загрузки главной фотографии на страницу пользователя или сообщества.
++ [Photos.GetChatUploadServer] (/vk/photos/getChatUploadServer/) - Позволяет получить адрес для загрузки фотографий мультидиалогов.
++ [Photos.GetMarketUploadServer] (/vk/photos/getMarketUploadServer/) - Возвращает адрес сервера для загрузки фотографии товаров сообщества.
++ [Photos.GetMarketAlbumUploadServer] (/vk/photos/getMarketAlbumUploadServer/) - Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
++ [Photos.SaveMarketPhoto] (/vk/photos/saveMarketPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketUploadServer.
++ [Photos.SaveMarketAlbumPhoto] (/vk/photos/saveMarketAlbumPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketAlbumUploadServer.
++ [Photos.SaveOwnerPhoto] (/vk/photos/saveOwnerPhoto/) - Позволяет сохранить главную фотографию пользователя или сообщества.
++ [Photos.SaveWallPhoto] (/vk/photos/saveWallPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getWallUploadServer.
++ [Photos.GetWallUploadServer] (/vk/photos/getWallUploadServer/) - Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.
++ [Photos.GetMessagesUploadServer] (/vk/photos/getMessagesUploadServer/) - Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
++ [Photos.SaveMessagesPhoto] (/vk/photos/saveMessagesPhoto/) - Сохраняет фотографию после успешной загрузки на URI, полученный методом photos.getMessagesUploadServer.
++ [Photos.Report] (/vk/photos/report/) - Позволяет пожаловаться на фотографию.
++ [Photos.ReportComment] (/vk/photos/reportComment/) - Позволяет пожаловаться на комментарий к фотографии.
++ [Photos.Search] (/vk/photos/search/) - Осуществляет поиск изображений по местоположению или описанию.
++ [Photos.Save] (/vk/photos/save/) - Сохраняет фотографии после успешной загрузки.
++ [Photos.Copy] (/vk/photos/copy/) - Позволяет скопировать фотографию в альбом "Сохраненные фотографии"
++ [Photos.Edit] (/vk/photos/edit/) - Изменяет описание у выбранной фотографии.
++ [Photos.Move] (/vk/photos/move/) - Переносит фотографию из одного альбома в другой.
++ [Photos.MakeCover] (/vk/photos/makeCover/) - Делает фотографию обложкой альбома.
++ [Photos.ReorderAlbums] (/vk/photos/reorderAlbums/) - Меняет порядок альбома в списке альбомов пользователя.
++ [Photos.ReorderPhotos] (/vk/photos/reorderPhotos/) - Меняет порядок фотографии в списке фотографий альбома пользователя.
++ [Photos.GetAll] (/vk/photos/getAll/) - Возвращает все фотографии пользователя или сообщества в антихронологическом порядке.
++ [Photos.GetUserPhotos] (/vk/photos/getUserPhotos/) - Возвращает список фотографий, на которых отмечен пользователь
++ [Photos.DeleteAlbum] (/vk/photos/deleteAlbum/) - Удаляет указанный альбом для фотографий у текущего пользователя
++ [Photos.Delete] (/vk/photos/delete/) - Удаление фотографии на сайте.
++ [Photos.Restore] (/vk/photos/restore/) - Восстанавливает удаленную фотографию.
++ [Photos.ConfirmTag] (/vk/photos/confirmTag/) - Подтверждает отметку на фотографии.
++ [Photos.GetComments] (/vk/photos/getComments/) - Возвращает список комментариев к фотографии.
++ [Photos.GetAllComments] (/vk/photos/getAllComments/) - Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
++ [Photos.CreateComment] (/vk/photos/createComment/) - Создает новый комментарий к фотографии.
++ [Photos.DeleteComment] (/vk/photos/deleteComment/) - Удаляет комментарий к фотографии.
++ [Photos.RestoreComment] (/vk/photos/restoreComment/) - Восстанавливает удаленный комментарий к фотографии.
++ [Photos.EditComment] (/vk/photos/editComment/) - Изменяет текст комментария к фотографии.
++ [Photos.GetTags] (/vk/photos/getTags/) - Возвращает список отметок на фотографии.
++ [Photos.PutTag] (/vk/photos/putTag/) - Добавляет отметку на фотографию.
++ [Photos.RemoveTag] (/vk/photos/removeTag/) - Удаляет отметку с фотографии.
++ [Photos.GetNewTags] (/vk/photos/getNewTags/) - Возвращает список фотографий, на которых есть непросмотренные отметки.
 
 ## Видео
 + [Video.Get](/vk/video/get/) - Возвращает информацию о видеозаписях.
