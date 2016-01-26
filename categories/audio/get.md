@@ -10,10 +10,12 @@ comments: true
 Страница документации ВКонтакте [audio.get](https://vk.com/dev/audio.get).
 ## Синтаксис
 ``` csharp
-public bool Get(AudioGetParams @params)
+public ReadOnlyCollection<Audio> Get(out User user, AudioGetParams @params)
 ```
 
 ## Параметры
++ **user** - Данные о пользователе.
+
 Класс **`AudioGetParams`** содержит следующие свойства:
 
 + **OwnerId** - Идентификатор владельца аудиозаписей (пользователь или сообщество). Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя
