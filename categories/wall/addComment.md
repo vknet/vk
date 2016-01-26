@@ -10,7 +10,7 @@ comments: true
 Страница документации ВКонтакте [wall.addComment](https://vk.com/dev/wall.addComment).
 ## Синтаксис
 ``` csharp
-public bool AddComment(WallAddCommentParams @params)
+public long AddComment(WallAddCommentParams @params)
 ```
 
 ## Параметры
