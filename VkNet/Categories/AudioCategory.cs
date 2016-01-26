@@ -33,74 +33,59 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает количество аудиозаписей пользователя или группы.
+		/// Возвращает количество аудиозаписей пользователя или сообщества..
 		/// </summary>
-		/// <param name="ownerId">Идентификатор владельца аудиозаписей (пользователь или сообщество).
-		/// Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" —
-		/// например, owner_id=-<c>true</c> соответствует идентификатору сообщества ВКонтакте API (club1)</param>
+		/// <param name="ownerId">Идентификатор владельца аудиозаписей (пользователь или сообщество). Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (Целое число, обязательный параметр).</param>
 		/// <returns>
-		/// Возвращает число, равное количеству аудиозаписей на странице пользователя или группы.
+		/// После успешного выполнения возвращает число, равное количеству аудиозаписей на странице пользователя или сообщества..
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio" />.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getCount" />.
 		/// </remarks>
-		/// <example>
-		/// Получим количество аудиозаписей Павла Дурова.
-		/// <code>
-		/// int count = vk.Audio.GetCount(1);
-		/// </code></example>
-		/// <example>
-		/// Получим количество аудиозаписей в группе с id равным 2.
-		/// <code>
-		/// int count = vk.Audio.GetCount(-2);
-		/// </code></example>
-		[Pure]
-		[ApiVersion("5.40")]
-		public int GetCount(long ownerId)
+		[ApiVersion("5.44")]
+		public long GetCount(long ownerId)
 		{
-			var parameters = new VkParameters { { "owner_id", ownerId } };
+			var parameters = new VkParameters
+			{
+				{ "owner_id", ownerId }
+			};
 
 			return _vk.Call("audio.getCount", parameters);
 		}
 
 		/// <summary>
-		/// Возвращает текст аудиозаписи по идентификатору текста аудиозаписи (<see cref="Audio.LyricsId"/>).
-		/// Параметр <paramref name="lyricsId"/> может быть получен с помощью методов <see cref="Get(long,out User,long?,IEnumerable{long},int?,int?)"/>,
-		/// <see cref="GetById(System.Collections.Generic.IEnumerable{string})"/> или <see cref="Search"/>.
+		/// Возвращает текст аудиозаписи..
 		/// </summary>
-		/// <param name="lyricsId">Идентификатор текста аудиозаписи, информацию о котором необходимо вернуть.</param>
-		/// <returns>В случае успеха возвращает найденный текст адиозаписи. В качестве переводов строк в тексте используется \n.</returns>
+		/// <param name="lyricsId">Идентификатор текста аудиозаписи, информацию о котором необходимо вернуть. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект lyrics c полями lyrics_id — идентификатор текста и text — текст аудиозаписи.. 
+		/// В качестве переводов строк в тексте используется /n..
+		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getLyrics"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getLyrics" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public Lyrics GetLyrics(long lyricsId)
 		{
-			var parameters = new VkParameters { { "lyrics_id", lyricsId } };
+			var parameters = new VkParameters
+			{
+				{ "lyrics_id", lyricsId }
+			};
 
 			return _vk.Call("audio.getLyrics", parameters);
 		}
 
 		/// <summary>
-		/// Возвращает информацию об аудиозаписях.
+		/// Возвращает информацию об аудиозаписях..
 		/// </summary>
-		/// <param name="audios">
-		/// Список строковых идентификаторов аудиозаписей в формате - {owner_id}_{audio_id}.
-		/// Если аудиозапись принадлежит группе, то в качестве первого параметра используется -id группы.
-		/// Примеры возможных значений идентификаторов: "2_67859194", "-683495_39822725", "2_63937759".
-		/// </param>
+		/// <param name="audios">Идентификаторы аудиозаписей, информацию о которых необходимо вернуть, в виде {owner_id}_{audio_id}. список строк, разделенных через запятую, обязательный параметр (Список строк, разделенных через запятую, обязательный параметр).</param>
 		/// <returns>
-		/// В случае успеха возвращает информацию о запрошенных аудиозаписях пользователя (группы).
+		/// После успешного выполнения возвращает массив объектов audio. Обратите внимание, что ссылки на аудиозаписи привязаны к ip адресу..
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Audio> GetById(IEnumerable<string> audios)
 		{
 			if (!audios.Any())
@@ -114,23 +99,19 @@ namespace VkNet.Categories
 			return response.ToReadOnlyCollectionOf<Audio>(x => x);
 		}
 
+
+
 		/// <summary>
-		/// Возвращает информацию об аудиозаписях.
+		/// Возвращает информацию об аудиозаписях..
 		/// </summary>
-		/// <param name="audios">
-		/// Список строковых идентификаторов аудиозаписей в формате - {owner_id}_{audio_id}.
-		/// Если аудиозапись принадлежит группе, то в качестве первого параметра используется -id группы.
-		/// Примеры возможных значений идентификаторов: "2_67859194", "-683495_39822725", "2_63937759".
-		/// </param>
+		/// <param name="audios">Идентификаторы аудиозаписей, информацию о которых необходимо вернуть, в виде {owner_id}_{audio_id}. список строк, разделенных через запятую, обязательный параметр (Список строк, разделенных через запятую, обязательный параметр).</param>
 		/// <returns>
-		/// В случае успеха возвращает информацию о запрошенных аудиозаписях пользователя (группы).
+		/// После успешного выполнения возвращает массив объектов audio. Обратите внимание, что ссылки на аудиозаписи привязаны к ip адресу..
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Audio> GetById(params string[] audios)
 		{
 			return GetById((IEnumerable<string>)audios);
@@ -156,7 +137,8 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.40")]
-		public ReadOnlyCollection<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<ulong> aids = null, uint? count = null, uint? offset = null)
+		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
+		public ReadOnlyCollection<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			User user;
 			return InternalGet("gid", gid, out user, albumId, aids, false, count, offset);
@@ -180,7 +162,8 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.40")]
-		public ReadOnlyCollection<Audio> Get(ulong uid, out User user, long? albumId = null, IEnumerable<ulong> aids = null, uint? count = null, uint? offset = null)
+		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
+		public ReadOnlyCollection<Audio> Get(ulong uid, out User user, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			return InternalGet("uid", (long)uid, out user, albumId, aids, true, count, offset);
 		}
@@ -200,7 +183,8 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.40")]
-		public ReadOnlyCollection<Audio> Get(ulong uid, long? albumId = null, IEnumerable<ulong> aids = null, uint? count = null, uint? offset = null)
+		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
+		public ReadOnlyCollection<Audio> Get(ulong uid, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			User user;
 			return InternalGet("uid", (long)uid, out user, albumId, aids, false, count, offset);
@@ -220,35 +204,55 @@ namespace VkNet.Categories
 		/// <returns></returns>
 		[Pure]
 		[ApiVersion("5.40")]
+		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
 		private ReadOnlyCollection<Audio> InternalGet(
 			string paramId,
 			long id,
 			out User user,
 			long? albumId = null,
-			IEnumerable<ulong> aids = null,
+			IEnumerable<long> aids = null,
 			bool? needUser = null,
 			uint? count = null,
 			uint? offset = null)
 		{
-			// todo Порефакторить метод
-			var parameters = new VkParameters
-							 {
-								 { paramId, id },
-								 { "album_id", albumId },
-								 { "aids", aids },
-								 { "need_user", needUser },
-								 { "offset", offset }
-							 };
-			if (count <= 6000)
-			{
-				parameters.Add("count", count);
-			}
-			VkResponseArray response = _vk.Call("audio.get", parameters);
+			var parameters = new AudioGetParams {
+				OwnerId = id,
+				AlbumId = albumId,
+				AudioIds = aids,
+				NeedUser = needUser,
+				Offset = offset,
+				Count = count
+			};
+			
+			return Get(out user, parameters);
+		}
+
+		/// <summary>
+		/// Возвращает список аудиозаписей пользователя или сообщества..
+		/// </summary>
+		/// <param name="user">Данные о пользователе.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов audio.
+		/// Если был задан параметр need_user=1, дополнительно возвращается объект user, содержащий поля:
+		/// id — идентификатор пользователя;
+		/// photo — url фотографии профиля;
+		/// name — имя и фамилия пользователя;
+		/// name_gen — имя пользователя в родительном падеже.
+		/// Обратите внимание, что ссылки на mp3 привязаны к ip-адресу..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<Audio> Get(out User user, AudioGetParams @params)
+		{
+			VkResponseArray response = _vk.Call("audio.get", @params);
 
 			IEnumerable<VkResponse> items = response.ToList();
 
 			user = null;
-			if (needUser.HasValue && needUser.Value && items.Any())
+			if (@params.NeedUser.HasValue && @params.NeedUser.Value && items.Any())
 			{
 				user = items.First();
 				items = items.Skip(1);
@@ -258,17 +262,15 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает адрес сервера для загрузки аудиозаписей.
+		/// Возвращает адрес сервера для загрузки аудиозаписей..
 		/// </summary>
 		/// <returns>
-		/// В случае успеха возвращает адрес сервера для загрузки аудиозаписей.
+		/// После успешного выполнения возвращает объект с единственным полем upload_url..
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getUploadServer"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getUploadServer" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public Uri GetUploadServer()
 		{
 			var response = _vk.Call("audio.getUploadServer", VkParameters.Empty);
@@ -292,33 +294,27 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
 		/// </remarks>
 		[Pure]
+		[Obsolete("Данный метод устарел. Используйте Search(AudioSearchParams @params, out ulong totalCount)")]
 		public ReadOnlyCollection<Audio> Search(
 			string query,
-			out int totalCount,
+			out long totalCount,
 			bool? autoComplete = null,
 			AudioSort? sort = null,
 			bool? findLyrics = null,
 			uint? count = null,
 			uint? offset = null)
 		{
-			if (string.IsNullOrEmpty(query))
-				throw new ArgumentException("Query is null or empty.", "query");
+			var parameters = new AudioSearchParams
+			{
+				Query = query,
+				Autocomplete = autoComplete,
+				Sort = sort,
+				Lyrics = findLyrics,
+				Count = Convert.ToInt32(count),
+				Offset = offset
+			};
 
-			var parameters = new VkParameters
-							 {
-								 { "q", query },
-								 { "auto_complete", autoComplete },
-								 { "sort", sort },
-								 { "lyrics", findLyrics },
-								 { "count", count },
-								 { "offset", offset }
-							 };
-
-			VkResponseArray response = _vk.Call("audio.search", parameters);
-
-			totalCount = response[0];
-
-			return response.Skip(1).ToReadOnlyCollectionOf<Audio>(r => r);
+			return Search(parameters, out totalCount);
 		}
 
 		/// <summary>
@@ -331,10 +327,13 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
 		/// </remarks>
-		public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out ulong totalCount)
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out long totalCount)
 		{
 			if (string.IsNullOrEmpty(@params.Query))
+			{
 				throw new ArgumentException("Query is null or empty.", "query");
+			}
 
 			VkResponseArray response = _vk.Call("audio.search", @params);
 
@@ -344,36 +343,50 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Копирует аудиозапись на страницу пользователя или группы.
+		/// Копирует аудиозапись на страницу пользователя или группы..
 		/// </summary>
-		/// <param name="audioId">Идентификатор аудиозаписи</param>
-		/// <param name="ownerId">Идентификатор владельца аудиозаписи</param>
-		/// <param name="groupId">Идентификатор группы, в которую следует копировать аудиозапись. Если параметр не указан, аудиозапись копируется не в группу, а на страницу текущего пользователя.</param>
-		/// <returns>Идентификатор созданной аудиозаписи</returns>
+		/// <param name="audioId">Идентификатор аудиозаписи. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="ownerId">Идентификатор владельца аудиозаписи (пользователь или сообщество). целое число, обязательный параметр (Целое число, обязательный параметр).</param>
+		/// <param name="groupId">Идентификатор сообщества (если аудиозапись необходимо скопировать в список сообщества). целое число (Целое число).</param>
+		/// <param name="albumId">Идентификатор альбома, в который нужно переместить аудиозапись. положительное число (Положительное число).</param>
+		/// <returns>
+		/// После успешного выполнения  возвращает идентификатор созданной аудиозаписи..
+		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.add"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.add" />.
 		/// </remarks>
-		public ulong Add(ulong audioId, long ownerId, long? groupId = null)
+		[ApiVersion("5.44")]
+		public ulong Add(long audioId, long ownerId, long? groupId = null, long? albumId = null)
 		{
-			var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId }, { "gid", groupId } };
+			var parameters = new VkParameters {
+				{ "audio_id", audioId },
+				{ "owner_id", ownerId },
+				{ "group_id", groupId },
+				{ "album_id", albumId }
+			};
 
 			return _vk.Call("audio.add", parameters);
 		}
 
 		/// <summary>
-		/// Удаляет аудиозапись со страницы пользователя или группы.
+		/// Удаляет аудиозапись со страницы пользователя или сообщества..
 		/// </summary>
-		/// <param name="audioId">Идентификатор аудиозаписи</param>
-		/// <param name="ownerId">Идентификатор владельца аудиозаписи</param>
-		/// <returns>При успешном удалении аудиозаписи сервер вернет <c>true</c></returns>
+		/// <param name="audioId">Идентификатор аудиозаписи. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="ownerId">Идентификатор владельца аудиозаписи (пользователь или сообщество). целое число, обязательный параметр (Целое число, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c>true</c>..
+		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.delete"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.delete" />.
 		/// </remarks>
+		[ApiVersion("5.44")]
 		public bool Delete(ulong audioId, long ownerId)
 		{
-			var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId } };
+			var parameters = new VkParameters
+			{
+				{ "aid", audioId },
+				{ "oid", ownerId }
+			};
 
 			return _vk.Call("audio.delete", parameters);
 		}
@@ -402,155 +415,200 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio" />.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.edit" />.
 		/// </remarks>
-		public ulong Edit(ulong audioId, long ownerId, string artist, string title, string text, bool? noSearch = null, AudioGenre? genreId = AudioGenre.Other)
+		[Obsolete("Данный метод устарел. Используйте Edit(AudioEditParams @params)")]
+		public long Edit(long audioId, long ownerId, string artist, string title, string text, bool? noSearch = null, AudioGenre? genreId = AudioGenre.Other)
 		{
-			if (artist == null)
-				throw new ArgumentNullException("artist", "Artist parameter can not be null.");
-
-			if (title == null)
-				throw new ArgumentNullException("title", "Title parameter can not be null.");
-
-			if (text == null)
-				throw new ArgumentNullException("text", "Text parameter can not be null.");
-
-			var parameters = new VkParameters
+			var parameters = new AudioEditParams
 			{
-				{ "aid", audioId },
-				{ "oid", ownerId },
-				{ "artist", artist },
-				{ "title", title },
-				{ "text", text },
-				{ "no_search", noSearch },
-				{ "genre_id", genreId }
+				AudioId = audioId,
+				OwnerId = ownerId,
+				Artist = artist,
+				Title = title,
+				Text = text,
+				NoSearch = noSearch,
+				GenreId = genreId
 			};
 
-			return _vk.Call("audio.edit", parameters);
+			return Edit(parameters);
 		}
 
 		/// <summary>
-		/// Восстанавливает удаленную аудиозапись пользователя после удаления.
+		/// Редактирует данные аудиозаписи на странице пользователя или сообщества..
 		/// </summary>
-		/// <param name="audioId">Идентификатор удаленной аудиозаписи</param>
-		/// <param name="ownerId">Идентификатор владельца аудиозаписи</param>
-		/// <returns>Удаленная аудиозапись.</returns>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает id текста, введенного пользователем (lyrics_id), если текст не был введен, вернет 0..
+		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.restore"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.edit" />.
 		/// </remarks>
+		[ApiVersion("5.44")]
+		public long Edit(AudioEditParams @params)
+		{
+			if (@params.Artist == null)
+			{
+				throw new ArgumentNullException("artist", "Artist parameter can not be null.");
+			}
+
+			if (@params.Title == null)
+			{
+				throw new ArgumentNullException("title", "Title parameter can not be null.");
+			}
+
+			if (@params.Text == null)
+			{
+				throw new ArgumentNullException("text", "Text parameter can not be null.");
+			}
+
+			return _vk.Call("audio.edit", @params);
+		}
+
+		/// <summary>
+		/// Восстанавливает аудиозапись после удаления..
+		/// </summary>
+		/// <param name="audioId">Идентификатор аудиозаписи. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="ownerId">Идентификатор владельца аудиозаписи (пользователь или сообщество). По умолчанию — идентификатор текущего пользователя. целое число, по умолчанию идентификатор текущего пользователя (Целое число, по умолчанию идентификатор текущего пользователя).</param>
+		/// <returns>
+		/// В случае успешного восстановления аудиозаписи возвращает объект аудиозаписи. 
+		/// Если время хранения удаленной аудиозаписи истекло (обычно это 20 минут), сервер вернет ошибку 202 (Cache expired)..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.restore" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
 		public Audio Restore(ulong audioId, long? ownerId = null)
 		{
-			var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId } };
+			var parameters = new VkParameters
+			{
+				{ "aid", audioId },
+				{ "oid", ownerId }
+			};
 
 			return _vk.Call("audio.restore", parameters);
 		}
 
 		/// <summary>
-		/// Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы которых переданы параметрами <paramref name="after"/> и <paramref name="before"/>.
+		/// Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы которых переданы параметрами after и before..
 		/// </summary>
-		/// <param name="audioId">Идентификатор аудиозаписи, порядок которой изменяется</param>
-		/// <param name="ownerId">Идентификатор владельца изменяемой аудиозаписи</param>
-		/// <param name="after">Идентификатор аудиозаписи, после которой нужно поместить аудиозапись. Если аудиозапись переносится в начало, параметр может быть равен нулю.</param>
-		/// <param name="before">Идентификатор аудиозаписи, перед которой нужно поместить аудиозапись. Если аудиозапись переносится в конец, параметр может быть равен нулю.</param>
-		/// <returns>При успешном изменении порядка аудиозаписи сервер вернет <c>true</c></returns>
+		/// <param name="audioId">Идентификатор аудиозаписи, которую нужно переместить. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="ownerId">Идентификатор владельца аудиозаписи (пользователь или сообщество). По умолчанию — идентификатор текущего пользователя. целое число, по умолчанию идентификатор текущего пользователя (Целое число, по умолчанию идентификатор текущего пользователя).</param>
+		/// <param name="before">Идентификатор аудиозаписи, перед которой нужно поместить композицию aid. целое число (Целое число).</param>
+		/// <param name="after">Идентификатор аудиозаписи, после  которой нужно поместить композицию aid. целое число (Целое число).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c>true</c>..
+		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.reorder"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.reorder" />.
 		/// </remarks>
-		public bool Reorder(ulong audioId, long ownerId, long after, long before)
+		[ApiVersion("5.44")]
+		public bool Reorder(long audioId, long? ownerId, long? before, long? after)
 		{
-			var parameters = new VkParameters { { "aid", audioId }, { "oid", ownerId }, { "after", after }, { "before", before } };
+			var parameters = new VkParameters {
+				{ "audio_id", audioId },
+				{ "owner_id", ownerId },
+				{ "before", before },
+				{ "after", after }
+			};
 
 			return _vk.Call("audio.reorder", parameters);
 		}
 
 		/// <summary>
-		/// Создает пустой альбом аудиозаписей.
+		/// Создает пустой альбом аудиозаписей..
 		/// </summary>
-		/// <param name="title">Название альбома</param>
-		/// <param name="groupId">Идентификатор сообщества (если альбом нужно создать в сообществе)</param>
-		/// <returns>Идентификатор созданного альбома</returns>
+		/// <param name="groupId">Идентификатор сообщества (если альбом нужно создать в сообществе). положительное число (Положительное число).</param>
+		/// <param name="title">Название альбома. строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает идентификатор (album_id) созданного альбома..
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.addAlbum"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.addAlbum" />.
 		/// </remarks>
+		[ApiVersion("5.44")]
 		public ulong AddAlbum(string title, ulong? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 
-			var parameters = new VkParameters
-				{
-					{"title", title},
-					{"group_id", groupId}
-				};
+			var parameters = new VkParameters {
+				{ "group_id", groupId },
+				{ "title", title }
+			};
 
 			var response = _vk.Call("audio.addAlbum", parameters);
 			return response["album_id"];
 		}
 
 		/// <summary>
-		/// Редактирует название альбома аудиозаписей.
+		/// Редактирует название альбома аудиозаписей..
 		/// </summary>
-		/// <param name="title">Новое название для альбома</param>
-		/// <param name="albumId">Идентификатор альбома</param>
-		/// <param name="groupId">Идентификатор сообщества, которому принадлежит альбом</param>
-		/// <returns>После успешного выполнения возвращает <c>true</c>.</returns>
+		/// <param name="groupId">Идентификатор сообщества, которому принадлежит альбом. положительное число (Положительное число).</param>
+		/// <param name="albumId">Идентификатор альбома. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="title">Новое название для альбома. строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c>true</c>..
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.editAlbum"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.editAlbum" />.
 		/// </remarks>
+		[ApiVersion("5.44")]
 		public bool EditAlbum(string title, ulong albumId, ulong? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 
 			var parameters = new VkParameters
-				{
-					{"title", title},
-					{"group_id", groupId},
-					{"album_id", albumId}
-				};
+			{
+				{ "title", title },
+				{ "group_id", groupId },
+				{ "album_id", albumId }
+			};
 
 			return _vk.Call("audio.editAlbum", parameters);
 		}
 
 		/// <summary>
-		/// Удаляет альбом аудиозаписей.
+		/// Удаляет альбом аудиозаписей..
 		/// </summary>
-		/// <param name="albumId">Идентификатор альбома</param>
-		/// <param name="groupId">Идентификатор сообщества, которому принадлежит альбом</param>
-		/// <returns>После успешного выполнения возвращает <c>true</c>.</returns>
+		/// <param name="groupId">Идентификатор сообщества, которому принадлежит альбом. положительное число (Положительное число).</param>
+		/// <param name="albumId">Идентификатор альбома. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c>true</c>..
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.deleteAlbum"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.deleteAlbum" />.
 		/// </remarks>
+		[ApiVersion("5.44")]
 		public bool DeleteAlbum(ulong albumId, ulong? groupId = null)
 		{
-			var parameters = new VkParameters
-				{
-					{"album_id", albumId},
-					{"group_id", groupId}
-
-				};
+			var parameters = new VkParameters {
+				{ "group_id", groupId },
+				{ "album_id", albumId }
+			};
 
 			return _vk.Call("audio.deleteAlbum", parameters);
 		}
 
 		/// <summary>
-		/// Возвращает список аудиозаписей из раздела "Популярное".
+		/// Возвращает список аудиозаписей из раздела "Популярное"..
 		/// </summary>
-		/// <param name="onlyEng"><c>true</c> – возвращать только зарубежные аудиозаписи. <c>false</c> – возвращать все аудиозаписи. (по умолчанию) </param>
-		/// <param name="genre">Идентификатор жанра </param>
-		/// <param name="count">Количество возвращаемых аудиозаписей</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества аудиозаписей</param>
-		/// <returns>Список аудиозаписей из раздела "Популярное"</returns>
+		/// <param name="onlyEng">1 – возвращать только зарубежные аудиозаписи. 0 – возвращать все аудиозаписи. (по умолчанию) флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <param name="genreId">Идентификатор жанра из списка жанров. положительное число (Положительное число).</param>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества аудиозаписей. положительное число (Положительное число).</param>
+		/// <param name="count">Количество возвращаемых аудиозаписей. положительное число, максимальное значение 1000, по умолчанию 100 (Положительное число, максимальное значение 1000, по умолчанию 100).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов audio. Обратите внимание, что ссылки на аудиозаписи привязаны к ip адресу..
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getPopular"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getPopular" />.
 		/// </remarks>
-		[Pure]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, uint? count = null, uint? offset = null)
 		{
 			var parameters = new VkParameters
-				{
-					{"only_eng", onlyEng},
-					{"genre_id", genre},
-					{"offset", offset}
-				};
+			{
+				{"only_eng", onlyEng},
+				{"genre_id", genre},
+				{"offset", offset}
+			};
 			if (count <= 1000)
 			{
 				parameters.Add("count", count);
@@ -561,26 +619,29 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает список альбомов аудиозаписей пользователя или группы.
+		/// Возвращает список альбомов аудиозаписей пользователя или группы..
 		/// </summary>
-		/// <param name="ownerid">Идентификатор пользователя или сообщества, у которого необходимо получить список альбомов с аудио.</param>
-		/// <param name="count">Количество альбомов, которое необходимо вернуть.</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества альбомов.</param>
+		/// <param name="ownerId">Идентификатор пользователя или сообщества, у которого необходимо получить список альбомов с аудио. целое число, по умолчанию идентификатор текущего пользователя (Целое число, по умолчанию идентификатор текущего пользователя).</param>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества альбомов. положительное число (Положительное число).</param>
+		/// <param name="count">Количество альбомов, которое необходимо вернуть. положительное число, по умолчанию 50, максимальное значение 100 (Положительное число, по умолчанию 50, максимальное значение 100).</param>
 		/// <returns>
-		/// После успешного выполнения возвращает массив альбомов аудиоальбомов <see cref="AudioAlbum"/>.
+		/// После успешного выполнения возвращает общее количество альбомов с аудиозаписями и массив объектов album, каждый из которых содержит следующие поля: 
+		/// 
+		/// id — идентификатор альбома; 
+		/// owner_id — идентификатор владельца альбома; 
+		/// title — название альбома..
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getAlbums"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getAlbums" />.
 		/// </remarks>
-		[Pure]
-		public ReadOnlyCollection<AudioAlbum> GetAlbums(long ownerid, uint? count = null, uint? offset = null)
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<AudioAlbum> GetAlbums(long ownerId, uint? count = null, uint? offset = null)
 		{
-			var parameters = new VkParameters
-				{
-					{"owner_id", ownerid},
-					{"count", count},
-					{"offset", offset}
-				};
+			var parameters = new VkParameters {
+				{ "owner_id", ownerId },
+				{ "offset", offset },
+				{ "count", count }
+			};
 
 			VkResponseArray response = _vk.Call("audio.getAlbums", parameters);
 
@@ -588,15 +649,19 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Перемещает аудиозаписи в альбом.
+		/// Перемещает аудиозаписи в альбом..
 		/// </summary>
-		/// <param name="albumId">Идентификатор альбома, в который нужно переместить аудиозаписи</param>
-		/// <param name="audioIds">Идентификаторы аудиозаписей, которые требуется переместить</param>
-		/// <param name="groupId">Идентификатор сообщества, в котором размещены аудиозаписи. Если параметр не указан, работа ведется с аудиозаписями текущего пользователя</param>
-		/// <returns>После успешного выполнения возвращает <c>true</c></returns>
+		/// <param name="groupId">Идентификатор сообщества, в котором размещены аудиозаписи. Если параметр не указан, работа ведется с аудиозаписями текущего пользователя. положительное число (Положительное число).</param>
+		/// <param name="albumId">Идентификатор альбома, в который нужно переместить аудиозаписи. положительное число (Положительное число).</param>
+		/// <param name="audioIds">Идентификаторы аудиозаписей, которые требуется переместить. список положительных чисел, разделенных запятыми, обязательный параметр (Список положительных чисел, разделенных запятыми, обязательный параметр).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c>true</c>. 
+		/// Обратите внимание, в одном альбоме не может быть более 1000 аудиозаписей..
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.moveToAlbum"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.moveToAlbum" />.
 		/// </remarks>
+		[ApiVersion("5.44")]
 		public bool MoveToAlbum(ulong albumId, IEnumerable<ulong> audioIds, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
@@ -610,31 +675,30 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи.
+		/// Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи..
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя для получения списка рекомендаций на основе его набора аудиозаписей (по умолчанию — идентификатор
-		/// текущего пользователя).</param>
-		/// <param name="count">Количество возвращаемых аудиозаписей.</param>
-		/// <param name="offset">Смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
-		/// <param name="shuffle"><c>true</c> — включен случайный порядок.</param>
-		/// <param name="targetAudio">Идентификатор аудиозаписи, на основе которой будет строиться список рекомендаций. Используется вместо параметра uid.
-		/// Идентификатор представляет из себя разделённые знаком подчеркивания id пользователя, которому принадлежит аудиозапись, и id самой аудиозаписи.
-		/// Если аудиозапись принадлежит сообществу, то в качестве первого параметра используется -id сообщества.</param>
-		/// <returns>Список рекомендуемых аудиозаписей.</returns>
+		/// <param name="targetAudio">Идентификатор аудиозаписи, на основе которой будет строиться список рекомендаций. Используется вместо параметра uid. Идентификатор представляет из себя разделённые знаком подчеркивания id пользователя, которому принадлежит аудиозапись, и id самой аудиозаписи. Если аудиозапись принадлежит сообществу, то в качестве первого параметра используется -id сообщества. строка (Строка).</param>
+		/// <param name="userId">Идентификатор пользователя для получения списка рекомендаций на основе его набора аудиозаписей (по умолчанию — идентификатор текущего пользователя). положительное число (Положительное число).</param>
+		/// <param name="offset">Смещение относительно первой найденной аудиозаписи для выборки определенного подмножества. положительное число (Положительное число).</param>
+		/// <param name="count">Количество возвращаемых аудиозаписей. положительное число, максимальное значение 1000, по умолчанию 100 (Положительное число, максимальное значение 1000, по умолчанию 100).</param>
+		/// <param name="shuffle">1 — включен случайный порядок. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов audio. Обратите внимание, что ссылки на аудиозаписи привязаны к ip адресу..
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getRecommendations"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getRecommendations" />.
 		/// </remarks>
-		[Pure]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Audio> GetRecommendations(ulong? userId = null, uint? count = null, uint? offset = null, bool shuffle = true, string targetAudio = "")
 		{
 			var parameters = new VkParameters
-				{
-					{"target_audio", targetAudio},
-					{"user_id", userId},
-					{"offset", offset},
-					{"count", count},
-					{"shuffle", shuffle}
-				};
+			{
+				{"target_audio", targetAudio},
+				{"user_id", userId},
+				{"offset", offset},
+				{"count", count},
+				{"shuffle", shuffle}
+			};
 
 			VkResponseArray response = _vk.Call("audio.getRecommendations", parameters);
 
@@ -642,14 +706,17 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Транслирует аудиозапись в статус пользователю или сообществу.
+		/// Транслирует аудиозапись в статус пользователю или сообществу..
 		/// </summary>
-		/// <param name="audio">Идентификатор аудиозаписи, которая будет отображаться в статусе, в формате owner_id_audio_id. Например, 1_190442705.
-		/// Если параметр не указан, аудиостатус указанных сообществ и пользователя будет удален.</param>
-		/// <param name="targetIds">Перечисленные через запятую идентификаторы сообществ и пользователя, которым будет транслироваться аудиозапись.
-		/// Идентификаторы сообществ должны быть заданы в формате "-gid", где gid - идентификатор сообщества. Например, 1,-34384434. По умолчанию аудиозапись
-		/// транслируется текущему пользователю.</param>
-		/// <returns>В случае успешного выполнения возвращает массив идентификаторов сообществ и пользователя, которым был установлен или удален аудиостатус.</returns>
+		/// <param name="audio">Идентификатор аудиозаписи, которая будет отображаться в статусе, в формате owner_id_audio_id. Например, 1_190442705. Если параметр не указан, аудиостатус указанных сообществ и пользователя будет удален. строка (Строка).</param>
+		/// <param name="targetIds">Перечисленные через запятую идентификаторы сообществ и пользователя, которым будет транслироваться аудиозапись. Идентификаторы сообществ должны быть заданы в формате "-gid", где gid - идентификатор сообщества. Например, 1,-34384434. По умолчанию аудиозапись транслируется текущему пользователю. список целых чисел, разделенных запятыми, количество элементов должно составлять не более 20 (Список целых чисел, разделенных запятыми, количество элементов должно составлять не более 20).</param>
+		/// <returns>
+		/// В случае успешного выполнения возвращает массив идентификаторов сообществ и пользователя, которым был установлен или удален аудиостатус..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.setBroadcast" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => audio);
@@ -675,7 +742,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.save"/>.
 		/// </remarks>
-		[ApiVersion("5.42")]
+		[ApiVersion("5.44")]
 		public Audio Save(string response, string artist = null, string title = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => response);
@@ -707,6 +774,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getBroadcastList"/>.
 		/// </remarks>
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<User> GetBroadcastListFriends(bool active = false)
 		{
 			var parameters = new VkParameters
@@ -717,6 +785,33 @@ namespace VkNet.Categories
 
 			VkResponseArray response = _vk.Call("audio.getBroadcastList", parameters);
 			return response.ToReadOnlyCollectionOf<User>(x => x);
+		}
+
+		/// <summary>
+		/// Возвращает список друзей и сообществ пользователя, которые транслируют музыку в статус..
+		/// </summary>
+		/// <param name="filter">Определяет, какие типы объектов необходимо получить. Возможны следующие значения параметра:
+		/// 
+		/// friends — только друзья;
+		/// groups — только сообщества;
+		/// all — друзья и сообщества. строка, по умолчанию all (Строка, по умолчанию all).</param>
+		/// <param name="active">1 — будут возвращены только друзья и сообщества, которые транслируют музыку в данный момент. По умолчанию возвращаются все. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов друзей и сообществ с дополнительным полем status_audio — объект аудиозаписи, установленной в статус (если аудиозапись транслируется в текущей момент)..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getBroadcastList" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		public UserOrGroup GetBroadcastList(string filter, bool? active)
+		{
+			// TODO Проверить
+			var parameters = new VkParameters {
+				{ "filter", filter },
+				{ "active", active }
+			};
+
+			return _vk.Call("audio.getBroadcastList", parameters);
 		}
 
 		/// <summary>

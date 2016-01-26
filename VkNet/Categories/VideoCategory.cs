@@ -751,7 +751,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.editComment" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<string> attachments = null)
+		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => message);
             VkErrors.ThrowIfNumberIsNegative(() => commentId);

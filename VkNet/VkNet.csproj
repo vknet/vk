@@ -61,6 +61,8 @@
     <Compile Include="Model\FriendOnline.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
+    <Compile Include="Model\RequestParams\Audio\AudioEditParams.cs" />
+    <Compile Include="Model\RequestParams\Audio\AudioGetParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetMutualParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetOnlineParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetParams.cs" />
