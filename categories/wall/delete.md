@@ -10,7 +10,7 @@ comments: true
 Страница документации ВКонтакте [wall.delete](https://vk.com/dev/wall.delete).
 ## Синтаксис
 ``` csharp
-public bool Delete(long? ownerId, long? postId)
+public bool Delete(long? ownerId = null, long? postId = null)
 ```
 
 ## Параметры
