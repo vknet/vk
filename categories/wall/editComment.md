@@ -10,7 +10,7 @@ comments: true
 Страница документации ВКонтакте [wall.editComment](https://vk.com/dev/wall.editComment).
 ## Синтаксис
 ``` csharp
-public bool EditComment(long? ownerId, long commentId, string message, IEnumerable<string> attachments)
+public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
 ```
 
 ## Параметры
