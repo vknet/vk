@@ -121,27 +121,26 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		[Obsolete("Устаревшая версия API. Используйте метод GetHistory(MessagesGetParams @params)")]
-		public ReadOnlyCollection<Message> GetHistory(out int totalCount, bool isChat, ulong id, int? offset = null, uint? count = 20,
+		public ReadOnlyCollection<Message> GetHistory(out int totalCount, bool isChat, long id, int? offset = null, uint? count = 20,
 			long? startMessageId = null, bool inReverse = false)
 		{
-			var parameters = new VkParameters
+			var parameters = new MessagesGetHistoryParams
 			{
-				{ isChat ? "chat_id" : "uid", id },
-				{ "offset", offset },
-				{ "start_mid", startMessageId },
-				{ "rev", inReverse }
+				Offset = offset,
+				StartMessageId = startMessageId,
+				Reversed = inReverse,
+				ChatId = isChat ? id : (long?)null,
+				UserId = isChat ? (long?)null : id,
+				Count = count.Value
 			};
-			if (count <= 200)
-			{
-				parameters.Add("count", count);
-			}
+			
 			var response = _vk.Call("messages.getHistory", parameters);
 
 			totalCount = response["count"];
 
-			return response["items"].ToReadOnlyCollectionOf<Message>(item => item);
+			return GetHistory(parameters).Messages;
 		}
 
 		/// <summary>
@@ -174,7 +173,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Message> GetById(out int totalCount, [NotNull] IEnumerable<ulong> messageIds,  uint? previewLength = null)
+		public ReadOnlyCollection<Message> GetById(out int totalCount, [NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)
 		{
 			if (!messageIds.Any())
 			{
@@ -236,7 +235,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getDialogs" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		[Obsolete("Устаревшая версия API. Используйте метод GetDialogs(DialogsGetParams @params)")]
 		public ReadOnlyCollection<Message> GetDialogs(out int totalCount, out int unreadCount, uint count = 20, int? offset = null, bool unread = false, long? startMessageId = null, uint? previewLength = null)
 		{
@@ -256,8 +255,7 @@ namespace VkNet.Categories
 			if (unread)
 			{
 				unreadCount = totalCount;
-			}
-			else
+			} else
 			{
 				unreadCount = response.ContainsKey("unread_dialogs") ? response["unread_dialogs"] : 0;
 			}
@@ -318,7 +316,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		[Obsolete("Устаревшая версия API. Используйте метод Search(out int totalCount, [NotNull] string query, long? previewLength, long? offset, long? count)")]
 		public ReadOnlyCollection<Message> Search([NotNull] string query, out int totalCount, int? count = null, int? offset = null)
 		{
@@ -400,14 +398,14 @@ namespace VkNet.Categories
 			long? captchaSid = null,
 			string captchaKey = null)
 		{
-			
+
 			var parameters = new MessagesSendParams
 			{
-				UserId = (isChat ? (long?) null : id),
+				UserId = (isChat ? (long?)null : id),
 				Message = message,
 				ForwardMessages = forwardMessagedIds,
 				Lat = latitude,
-				Attachments = new List<MediaAttachment> { attachment},
+				Attachments = new List<MediaAttachment> { attachment },
 				Guid = guid,
 				CaptchaKey = captchaKey,
 				CaptchaSid = captchaSid,
@@ -759,8 +757,7 @@ namespace VkNet.Categories
 			if (chatIds.Count() > 1)
 			{
 				parameters.Add("chat_ids", chatIds);
-			}
-			else
+			} else
 			{
 				parameters.Add("chat_id", chatIds.ElementAt(0));
 			}
@@ -770,7 +767,7 @@ namespace VkNet.Categories
 			{
 				return response.ToReadOnlyCollectionOf<Chat>(c => c);
 			}
-			return new ReadOnlyCollection<Chat>(new List<Chat> {response});
+			return new ReadOnlyCollection<Chat>(new List<Chat> { response });
 		}
 
 
@@ -842,11 +839,11 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChatUsers"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		[Obsolete("Устаревшая версия API. Используйте метод GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)")]
 		public ReadOnlyCollection<User> GetChatUsers(long chatId, UsersFields fields)
 		{
-			return GetChatUsers(new List<long> { chatId}, fields, null);
+			return GetChatUsers(new List<long> { chatId }, fields, null);
 		}
 
 		/// <summary>

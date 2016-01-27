@@ -16,7 +16,7 @@
         /// <summary>
         /// Идентификатор диалога, историю сообщений которого необходимо получить.
         /// </summary>
-        public ulong? ChatId { get; set; }
+        public long? ChatId { get; set; }
 
         /// <summary>
         /// Идентификатор назначения.

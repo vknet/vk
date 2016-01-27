@@ -104,7 +104,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetHistory_ContainsSticker_Error47()
 		{
-			Url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=0&count=3&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.getHistory?offset=5&count=3&user_id=7712&v=5.44&access_token=token";
 			Json = @"{
 	'response': {
 		'count': 6,
@@ -159,7 +159,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetHistory_ContainsRepost_Error46()
 		{
-			Url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=1&count=3&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.getHistory?offset=5&count=3&user_id=7712&rev=1&v=5.44&access_token=token";
 			Json = @"{  
 			   'response':{  
 				  'count':1940,
