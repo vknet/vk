@@ -70,27 +70,27 @@ comments: false
 + [Groups.ApproveRequest] (/vk/groups/approveRequest/) - Позволяет одобрить заявку в группу от пользователя.
 
 ## Аудиозаписи
-+ [Audio.Get](/vk/audio/get/) - возвращает список аудиозаписей пользователя или группы.
-+ [Audio.GetFromGroup](/vk/audio/getFromGroup/) - возвращает список аудиозаписей пользователя или группы.
-+ [Audio.GetById](/vk/audio/getById/) - возвращает информацию об аудиозаписях по их идентификаторам.
-+ [Audio.GetCount](/vk/audio/getCount/) - возвращает количество аудиозаписей пользователя или группы.
-+ [Audio.GetLyrics](/vk/audio/getLyrics/) - возвращает текст аудиозаписи.
-+ [Audio.GetUploadServer](/vk/audio/getUploadServer/) - возвращает адрес сервера для загрузки аудиозаписей.
-+ [Audio.Search](/vk/audio/search/) - осуществляет поиск по аудиозаписям.
-+ [Audio.Add](/vk/audio/add/) - копирует существующую аудиозапись на страницу пользователя или группы.
-+ [Audio.Delete](/vk/audio/delete/) - удаляет аудиозапись со страницы пользователя или группы.
-+ [Audio.Edit](/vk/audio/edit/) - редактирует аудиозапись пользователя или группы.
-+ [Audio.Restore](/vk/audio/restore/) - восстанавливает удаленную аудиозапись пользователя или группы.
-+ [Audio.Reorder](/vk/audio/reorder/) - изменяет порядок аудиозаписи в списке аудиозаписей пользователя.
-+ [Audio.AddAlbum](/vk/audio/addAlbum/) - Создает пустой альбом аудиозаписей.
-+ [Audio.EditAlbum](/vk/audio/editAlbum/) - Редактирует название альбома аудиозаписей.
-+ [Audio.DeleteAlbum](/vk/audio/deleteAlbum/) - Удаляет альбом аудиозаписей.
-+ [Audio.GetPopular](/vk/audio/getPopular/) - Возвращает список аудиозаписей из раздела "Популярное".
-+ [Audio.GetAlbums](/vk/audio/getAlbums/) - Возвращает список альбомов аудиозаписей пользователя или группы.
-+ [Audio.MoveToAlbum](/vk/audio/moveToAlbum/) - Перемещает аудиозаписи в альбом.
-+ [Audio.GetRecommendations](/vk/audio/getRecommendations/) - Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи.
-+ [Audio.SetBroadcast](/vk/audio/setBroadcast/) - Транслирует аудиозапись в статус пользователю или сообществу.
-+ [Audio.Save](/vk/audio/save/) - Сохраняет аудиозаписи после успешной загрузки.
++ [Audio.Get] (/vk/audio/get/) - Возвращает список аудиозаписей пользователя или сообщества.
++ [Audio.GetById] (/vk/audio/getById/) - Возвращает информацию об аудиозаписях.
++ [Audio.GetLyrics] (/vk/audio/getLyrics/) - Возвращает текст аудиозаписи.
++ [Audio.Search] (/vk/audio/search/) - Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
++ [Audio.GetUploadServer] (/vk/audio/getUploadServer/) - Возвращает адрес сервера для загрузки аудиозаписей.
++ [Audio.Save] (/vk/audio/save/) - Сохраняет аудиозаписи после успешной загрузки.
++ [Audio.Add] (/vk/audio/add/) - Копирует аудиозапись на страницу пользователя или группы.
++ [Audio.Delete] (/vk/audio/delete/) - Удаляет аудиозапись со страницы пользователя или сообщества.
++ [Audio.Edit] (/vk/audio/edit/) - Редактирует данные аудиозаписи на странице пользователя или сообщества.
++ [Audio.Reorder] (/vk/audio/reorder/) - Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы которых переданы параметрами after и before.
++ [Audio.Restore] (/vk/audio/restore/) - Восстанавливает аудиозапись после удаления.
++ [Audio.GetAlbums] (/vk/audio/getAlbums/) - Возвращает список альбомов аудиозаписей пользователя или группы.
++ [Audio.AddAlbum] (/vk/audio/addAlbum/) - Создает пустой альбом аудиозаписей.
++ [Audio.EditAlbum] (/vk/audio/editAlbum/) - Редактирует название альбома аудиозаписей.
++ [Audio.DeleteAlbum] (/vk/audio/deleteAlbum/) - Удаляет альбом аудиозаписей.
++ [Audio.MoveToAlbum] (/vk/audio/moveToAlbum/) - Перемещает аудиозаписи в альбом.
++ [Audio.SetBroadcast] (/vk/audio/setBroadcast/) - Транслирует аудиозапись в статус пользователю или сообществу.
++ [Audio.GetBroadcastList] (/vk/audio/getBroadcastList/) - Возвращает список друзей и сообществ пользователя, которые транслируют музыку в статус.
++ [Audio.GetRecommendations] (/vk/audio/getRecommendations/) - Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи.
++ [Audio.GetPopular] (/vk/audio/getPopular/) - Возвращает список аудиозаписей из раздела "Популярное".
++ [Audio.GetCount] (/vk/audio/getCount/) - Возвращает количество аудиозаписей пользователя или сообщества.
 
 ## Сообщения
 + [Messages.Get] (/vk/messages/get/) - Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
