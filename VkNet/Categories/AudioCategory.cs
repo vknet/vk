@@ -136,7 +136,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
 		public ReadOnlyCollection<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
@@ -161,9 +161,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
-		public ReadOnlyCollection<Audio> Get(ulong uid, out User user, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
+		public ReadOnlyCollection<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			return InternalGet("uid", (long)uid, out user, albumId, aids, true, count, offset);
 		}
@@ -182,9 +182,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
-		public ReadOnlyCollection<Audio> Get(ulong uid, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
+		public ReadOnlyCollection<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			User user;
 			return InternalGet("uid", (long)uid, out user, albumId, aids, false, count, offset);
@@ -203,7 +203,7 @@ namespace VkNet.Categories
 		/// <param name="offset">Смещение относительно первой найденной аудиозаписи (для выборки определенного подмножества).</param>
 		/// <returns></returns>
 		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
 		private ReadOnlyCollection<Audio> InternalGet(
 			string paramId,
@@ -294,7 +294,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
 		/// </remarks>
 		[Pure]
-		[Obsolete("Данный метод устарел. Используйте Search(AudioSearchParams @params, out ulong totalCount)")]
+		[Obsolete("Данный метод устарел. Используйте Search(AudioSearchParams @params, out long totalCount)")]
 		public ReadOnlyCollection<Audio> Search(
 			string query,
 			out long totalCount,
@@ -356,7 +356,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.add" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ulong Add(long audioId, long ownerId, long? groupId = null, long? albumId = null)
+		public long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null)
 		{
 			var parameters = new VkParameters {
 				{ "audio_id", audioId },
@@ -380,7 +380,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.delete" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool Delete(ulong audioId, long ownerId)
+		public bool Delete(long audioId, long ownerId)
 		{
 			var parameters = new VkParameters
 			{
@@ -476,7 +476,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.restore" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public Audio Restore(ulong audioId, long? ownerId = null)
+		public Audio Restore(long audioId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -525,7 +525,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.addAlbum" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ulong AddAlbum(string title, ulong? groupId = null)
+		public long AddAlbum(string title, long? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 
@@ -551,7 +551,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.editAlbum" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool EditAlbum(string title, ulong albumId, ulong? groupId = null)
+		public bool EditAlbum(string title, long albumId, long? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 
@@ -577,7 +577,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.deleteAlbum" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool DeleteAlbum(ulong albumId, ulong? groupId = null)
+		public bool DeleteAlbum(long albumId, long? groupId = null)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -662,7 +662,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.moveToAlbum" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool MoveToAlbum(ulong albumId, IEnumerable<ulong> audioIds, ulong? groupId = null)
+		public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -689,7 +689,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getRecommendations" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Audio> GetRecommendations(ulong? userId = null, uint? count = null, uint? offset = null, bool shuffle = true, string targetAudio = "")
+		public ReadOnlyCollection<Audio> GetRecommendations(long? userId = null, uint? count = null, uint? offset = null, bool shuffle = true, string targetAudio = "")
 		{
 			var parameters = new VkParameters
 			{
