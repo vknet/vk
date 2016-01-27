@@ -5,22 +5,24 @@ permalink: messages/delete/
 comments: true
 ---
 # Метод Messages.Delete
-Удаляет сообщения пользователя.
+Удаляет сообщение.
 
+Страница документации ВКонтакте [messages.delete](https://vk.com/dev/messages.delete).
 ## Синтаксис
-```csharp
-public IDictionary<long, bool> Delete(IEnumerable<long> messageIds)
+``` csharp
+public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds)
 ```
 
 ## Параметры
-+ **messageIds** - Идентификаторы удаляемых сообщений.
++ **messageIds** - Список идентификаторов сообщений, разделённых через запятую. список положительных чисел, разделенных запятыми
 
 ## Результат
-Возвращает словарь (идентификатор сообщения --> признак было ли удаление сообщения успешным).
-
-## Исключения
+После успешного выполнения возвращает **true** для каждого удаленного сообщения.
 
 ## Пример
-```csharp
-// TODO:
+``` csharp
+// Пример кода
 ```
+
+## Версия Вконтакте API v.5.44
+Дата обновления: 27.01.2016 19:50:49
