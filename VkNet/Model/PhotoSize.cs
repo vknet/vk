@@ -12,25 +12,25 @@ namespace VkNet.Model
 	public class PhotoSize
 	{
 		/// <summary>
-		/// Url копии изображения..
+		/// Url копии изображения.
 		/// </summary>
 		public Url Src
 		{ get; set; }
 
 		/// <summary>
-		/// Ширина копии в пикселах..
+		/// Ширина копии в пикселах.
 		/// </summary>
 		public ulong Width
 		{ get; set; }
 
 		/// <summary>
-		/// Высота копии в пикселах..
+		/// Высота копии в пикселах.
 		/// </summary>
 		public ulong Height
 		{ get; set; }
 
 		/// <summary>
-		/// Обозначение размера и пропорций копии..
+		/// Обозначение размера и пропорций копии.
 		/// </summary>
 		public PhotoSizeType Type
 		{ get; set; }
