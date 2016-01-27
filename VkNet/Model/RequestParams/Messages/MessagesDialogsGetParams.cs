@@ -5,7 +5,7 @@
     /// <summary>
     /// Список параметров для метода Messages.GetDialogs
     /// </summary>
-    public struct DialogsGetParams
+    public struct MessagesDialogsGetParams
     {
         /// <summary>
         /// Количество диалогов, которое необходимо получить (не более 200)
@@ -14,7 +14,7 @@
 
         /// <summary>
         /// Смещение, необходимое для выборки определенного подмножества диалогов.
-        /// Если указан <see cref="StartMessageID"/> то может быть отрицательным
+        /// Если указан <see cref="StartMessageId"/> то может быть отрицательным
         /// </summary>
         public int Offset { get; set; }
 
@@ -37,18 +37,18 @@
 		/// Начиная с этой позиции будет возвращено <c>count</c> диалогов.
 		/// Смещение <c>offset</c> в этом случае будет отсчитываться от этой позиции (оно может быть отрицательным).
         /// </summary>
-        public long? StartMessageID { get; set; }
+        public long? StartMessageId { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(DialogsGetParams p)
+		internal static VkParameters ToVkParameters(MessagesDialogsGetParams p)
         {
             return new VkParameters
             {
-                { "start_message_id", p.StartMessageID },
+                { "start_message_id", p.StartMessageId },
                 { "offset", p.Offset },
                 { "count", p.Count },
                 { "unread", p.Unread },

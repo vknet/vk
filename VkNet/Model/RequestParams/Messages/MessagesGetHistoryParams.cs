@@ -6,7 +6,7 @@
     /// Список параметров для метода Message.GetHistory
     /// <seealso cref="http://vk.com/dev/messages.getHistory"/>
     /// </summary>
-    public struct HistoryGetParams
+    public struct MessagesGetHistoryParams
     {
         /// <summary>
         /// Идентификатор пользователя, историю переписки с которым необходимо вернуть.
@@ -50,7 +50,7 @@
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(HistoryGetParams p)
+		internal static VkParameters ToVkParameters(MessagesGetHistoryParams p)
         {
             return new VkParameters
             {

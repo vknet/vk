@@ -636,7 +636,7 @@ namespace VkNet.Tests.Categories
 		public void Send_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.Send(new MessageSendParams {UserId = 1, Message = "Привет, Паша!" })).Throws<AccessTokenInvalidException>();
+			This.Action(() => cat.Send(new MessagesSendParams {UserId = 1, Message = "Привет, Паша!" })).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -648,7 +648,7 @@ namespace VkNet.Tests.Categories
 					'response': 4457
 				  }";
 
-			var id = Cat.Send(new MessageSendParams
+			var id = Cat.Send(new MessagesSendParams
 			{
 				UserId = 7550525,
 				Message = "Test from vk.net ;) # 2"
@@ -664,7 +664,7 @@ namespace VkNet.Tests.Categories
 				@"{
 					'response': 4464
 				  }";
-			var id = Cat.Send(new MessageSendParams
+			var id = Cat.Send(new MessagesSendParams
 			{
 				UserId = 7550525,
 				Message = "Работает # 2 --  еще разок"

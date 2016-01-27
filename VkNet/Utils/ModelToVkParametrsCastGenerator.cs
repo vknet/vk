@@ -45,9 +45,9 @@ namespace VkNet.Utils
 		{
             return AuthSignupParams.ToVkParameters(p);
         }
-		public static implicit operator VkParameters(DialogsGetParams p)
+		public static implicit operator VkParameters(MessagesDialogsGetParams p)
 		{
-            return DialogsGetParams.ToVkParameters(p);
+            return MessagesDialogsGetParams.ToVkParameters(p);
         }
 		public static implicit operator VkParameters(FriendsGetMutualParams p)
 		{
@@ -69,9 +69,9 @@ namespace VkNet.Utils
 		{
             return FriendsSearchParams.ToVkParameters(p);
         }
-		public static implicit operator VkParameters(GetLongPollHistoryParams p)
+		public static implicit operator VkParameters(MessagesGetLongPollHistoryParams p)
 		{
-            return GetLongPollHistoryParams.ToVkParameters(p);
+            return MessagesGetLongPollHistoryParams.ToVkParameters(p);
         }
 		public static implicit operator VkParameters(GroupsBanUserParams p)
 		{
@@ -93,9 +93,9 @@ namespace VkNet.Utils
 		{
             return GroupsSearchParams.ToVkParameters(p);
         }
-		public static implicit operator VkParameters(HistoryGetParams p)
+		public static implicit operator VkParameters(MessagesGetHistoryParams p)
 		{
-            return HistoryGetParams.ToVkParameters(p);
+            return MessagesGetHistoryParams.ToVkParameters(p);
         }
 		public static implicit operator VkParameters(LikesGetListParams p)
 		{
@@ -117,9 +117,9 @@ namespace VkNet.Utils
 		{
             return MarketSearchParams.ToVkParameters(p);
         }
-		public static implicit operator VkParameters(MessageSendParams p)
+		public static implicit operator VkParameters(MessagesSendParams p)
 		{
-            return MessageSendParams.ToVkParameters(p);
+            return MessagesSendParams.ToVkParameters(p);
         }
 		public static implicit operator VkParameters(MessagesGetParams p)
 		{
