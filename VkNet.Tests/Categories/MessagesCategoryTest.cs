@@ -61,7 +61,7 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore]
 		public void GetDialogs_NormalCase_Messages()
 		{
-			Url = "https://api.vk.com/method/messages.getDialogs?count=77128&offset=0&unread=0&preview_length=3&v=5.28&access_token=token";
+			Url = "https://api.vk.com/method/messages.getDialogs?count=77128&offset=0&unread=0&preview_length=3&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -344,7 +344,7 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore]
 		public void GetById_NormalCase_Message()
 		{
-			Url = "https://api.vk.com/method/messages.getById?message_ids=1&v=5.28&access_token=token";
+			Url = "https://api.vk.com/method/messages.getById?message_ids=1&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -375,7 +375,7 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore]
 		public void GetById_Multiple_NormalCase_Messages()
 		{
-			Url = "https://api.vk.com/method/messages.getById?message_ids=1,3,5&v=5.28&access_token=token";
+			Url = "https://api.vk.com/method/messages.getById?message_ids=1,3,5&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -549,7 +549,7 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void Search_NormalCase_Messages()
 		{
-			Url = "https://api.vk.com/method/messages.search?q=привет&count=3&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.search?q=привет&count=3&v=5.44&access_token=token";
 			Json = @"{
 				response: {
 					count: 18,
@@ -616,7 +616,7 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void Search_NotExistedQuery_EmptyList()
 		{
-			Url = "https://api.vk.com/method/messages.search?q=fsjkadoivhjioashdpfisd&count=3&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.search?q=fsjkadoivhjioashdpfisd&count=3&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -695,7 +695,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Id4446_True()
 		{
-			Url = "https://api.vk.com/method/messages.delete?message_ids=4446&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.delete?message_ids=4446&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -711,7 +711,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Multipre_4457And4464_True()
 		{
-			Url = "https://api.vk.com/method/messages.delete?message_ids=4457,4464&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.delete?message_ids=4457,4464&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -730,7 +730,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Id999999_False()
 		{
-			Url = "https://api.vk.com/method/messages.delete?message_ids=999999&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.delete?message_ids=999999&v=5.44&access_token=token";
 			Json =
 				@"{
 					'error': {
@@ -805,7 +805,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Restore_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.restore?message_id=134&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.restore?message_id=134&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -864,7 +864,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void MarkAsRead_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.markAsRead?mids=1&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.markAsRead?message_ids=1&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -878,7 +878,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void MarkAsRead_Multiple_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.markAsRead?mids=2,3&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.markAsRead?message_ids=2,3&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -920,7 +920,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLastActivity_NormalCast_LastActivityObject()
 		{
-			Url = "https://api.vk.com/method/messages.getLastActivity?user_id=77128&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.getLastActivity?user_id=77128&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -946,7 +946,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChat_NormalCase_ChatObject()
 		{
-			Url = "https://api.vk.com/method/messages.getChat?chat_id=2&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.getChat?chat_id=2&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -985,7 +985,7 @@ namespace VkNet.Tests.Categories
 		//BUG: не работает, т.к. апостроф (в test chat's title) парсится в %27
 		public void CreateChat_NormalCase_ChatId()
 		{
-			Url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test+chat%27s+title&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test chat's title&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 3
@@ -1026,7 +1026,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChatUsers_ChatId_UserIds()
 		{
-			Url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -1047,7 +1047,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChatUsers_ChatIdWithFields_Users()
 		{
-			Url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&fields=education&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&fields=education&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -1121,7 +1121,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void AddChatUser_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&uid=7550525&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&uid=7550525&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -1142,7 +1142,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void RemoveChatUser_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.removeChatUser?chat_id=2&uid=7550525&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.removeChatUser?chat_id=2&user_id=7550525&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -1171,7 +1171,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLongPollServer_NormalCase_LongPollServerResponse()
 		{
-			Url = "https://api.vk.com/method/messages.getLongPollServer?use_ssl=0&need_pts=0&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.getLongPollServer?use_ssl=0&need_pts=0&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -1201,7 +1201,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_WithLastMessageIdParam_NormalCase_V521()
 		{
-			Url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&last_message_id=30&count=20&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.get?out=0&count=0&preview_length=0&last_message_id=30&v=5.44&access_token=token";
 
 			Json =
 				@"{
@@ -1239,7 +1239,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCase_V521()
 		{
-			Url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&count=2&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.get?out=0&count=0&preview_length=0&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': {
