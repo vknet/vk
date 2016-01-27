@@ -77,7 +77,7 @@ namespace VkNet.Model.RequestParams
 		public NameCase NameCase
 		{ get; set; }
 		/// <summary>
-		/// Поисковая строка для поиска по каталогу приложений..
+		/// Поисковая строка для поиска по каталогу приложений.
 		/// </summary>
 		public string Query
 		{ get; set; }

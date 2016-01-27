@@ -30,7 +30,7 @@
 
 
 		/// <summary>
-		/// Заметка..
+		/// Заметка.
 		/// </summary>
 		public static readonly CommentObjectType Note = RegisterPossibleValue("note");
 	}

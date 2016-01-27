@@ -12,11 +12,11 @@
 
 		Example:
 
-		... ado.net/XML headers & schema ...
+		.. ado.net/XML headers & schema ..
 		<resheader name="resmimetype">text/microsoft-resx</resheader>
 		<resheader name="version">1.3</resheader>
-		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ..</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ..</resheader>
 		<data name="Name1">this is my long string</data>
 		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
 		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">

@@ -243,10 +243,10 @@
     <Compile Include="Model\RequestParams\Market\MarketGetCommentsParams.cs" />
     <Compile Include="Model\RequestParams\Market\MarketProductParams.cs" />
     <Compile Include="Model\RequestParams\Market\MarketSearchParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\DialogsGetParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\GetLongPollHistoryParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\HistoryGetParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\MessageSendParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesDialogsGetParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesGetLongPollHistoryParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesGetHistoryParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesSendParams.cs" />
     <Compile Include="Model\NewsBannedExList.cs" />
     <Compile Include="Model\NewsBannedList.cs" />
     <Compile Include="Model\NewsFeed.cs" />

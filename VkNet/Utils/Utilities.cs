@@ -35,21 +35,25 @@
         /// <returns></returns>
         public static long? GetNullableLongId(VkResponse response)
         {
-            return response != null && !string.IsNullOrEmpty(response.ToString()) ? System.Convert.ToInt64(response.ToString()) : (long?)null;
+            return response != null && !string.IsNullOrWhiteSpace(response.ToString()) ? System.Convert.ToInt64(response.ToString()) : (long?)null;
         }
 
         public static string JoinNonEmpty<T>(this IEnumerable<T> collection, string separator = ",")
         {
-            if (collection == null)
-                return string.Empty;
+	        if (collection == null)
+	        {
+		        return string.Empty;
+	        }
 
-            return string.Join(separator, collection.Select(i => i.ToString()).Where(s => !string.IsNullOrEmpty(s)).ToArray());
+            return string.Join(separator, collection.Select(i => i.ToString()).Where(s => !string.IsNullOrWhiteSpace(s)).ToArray());
         }
 
         public static IEnumerable<T> Convert<T>(this VkResponseArray response, Func<VkResponse, T> selector)
         {
-            if (response == null)
-                return Enumerable.Empty<T>();
+	        if (response == null)
+	        {
+		        return Enumerable.Empty<T>();
+	        }
 
             return response.Select(selector).ToList();
         }

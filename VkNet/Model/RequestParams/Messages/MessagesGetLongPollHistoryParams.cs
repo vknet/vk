@@ -7,7 +7,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода messages.getLongPollHistoryParams
 	/// </summary>
-	public struct GetLongPollHistoryParams
+	public struct MessagesGetLongPollHistoryParams
 	{
 		/// <summary>
 		/// Последнее значение параметра ts, полученное от Long Poll сервера или с помощью метода messages.getLongPollServer
@@ -62,7 +62,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(GetLongPollHistoryParams p)
+		internal static VkParameters ToVkParameters(MessagesGetLongPollHistoryParams p)
         {
             return new VkParameters
             {
