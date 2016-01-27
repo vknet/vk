@@ -884,7 +884,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			var result = Cat.MarkAsRead(new ulong[]{2, 3});
+			var result = Cat.MarkAsRead(new long[]{2, 3});
 
 			Assert.That(result, Is.True);
 		}
@@ -1087,7 +1087,7 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			var users = Cat.GetChatUsers(2, ProfileFields.Education).ToList();
+			var users = Cat.GetChatUsers(2, UsersFields.Education).ToList();
 
 			Assert.That(users.Count, Is.EqualTo(3));
 			Assert.That(users[0].Id, Is.EqualTo(4793858));

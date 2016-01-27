@@ -926,7 +926,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.removeChatUser" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool RemoveChatUser(long chatId, string userId)
+		public bool RemoveChatUser(long chatId, long userId)
 		{
 			var parameters = new VkParameters {
 				{ "chat_id", chatId },
