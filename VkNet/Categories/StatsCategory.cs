@@ -6,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	/// Методы для работы с приложениями.
+	/// Методы для работы со статистикой.
 	/// </summary>
 	public class StatsCategory
 	{
@@ -16,7 +16,7 @@ namespace VkNet.Categories
 		readonly VkApi _vk;
 
 		/// <summary>
-		/// Методы для работы с приложениями.
+		/// Методы для работы со статистикой.
 		/// </summary>
 		/// <param name="vk">API.</param>
 		internal StatsCategory(VkApi vk)
@@ -37,7 +37,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/stats.get" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		private ReadOnlyCollection<StatsPeriod> Get(DateTime dateFrom, DateTime? dateTo = null, long? groupId = null, long? appId = null)
 		{
 			var parameters = new VkParameters
@@ -89,13 +89,15 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Добавляет данные о текущем сеансе в статистику посещаемости приложения.
+		/// Добавляет данные о текущем сеансе в статистику посещаемости приложения..
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <returns>
+		/// В случае успешной обработки данных метод вернет <c>true</c>.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/stats.trackVisitor" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/stats.trackVisitor" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public bool TrackVisitor()
 		{
 			return _vk.Call("stats.trackVisitor", new VkParameters());
@@ -113,7 +115,7 @@ namespace VkNet.Categories
 		/// Необходимо входить в число руководителей этого сообщества.
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/stats.getPostReach" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public PostReach GetPostReach(long ownerId, long postId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => postId);

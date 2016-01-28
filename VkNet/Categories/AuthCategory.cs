@@ -26,26 +26,29 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Проверяет правильность введённого номера.
 		/// </summary>
-		/// <param name="phone">Номер телефона регистрируемого пользователя.</param>
-		/// <param name="clientId">Идентификатор Вашего приложения.</param>
-		/// <param name="clientSecret">Секретный ключ приложения, доступный в разделе редактирования приложения.</param>
+		/// <param name="phone">Номер телефона регистрируемого пользователя. строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <param name="clientId">Идентификатор Вашего приложения. целое число (Целое число).</param>
+		/// <param name="clientSecret">Секретный ключ приложения, доступный в разделе редактирования приложения. строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <param name="authByPhone">Флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В случае, если номер пользователя является правильным, будет возвращён <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.checkPhone" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/auth.checkPhone" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public bool CheckPhone(string phone, long clientId, string clientSecret)
+		[ApiVersion("5.44")]
+		public bool CheckPhone(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
 		{
-			var parameters = new VkParameters
-			{
+			var parameters = new VkParameters {
 				{ "phone", phone },
 				{ "client_id", clientId },
-				{ "client_secret", clientSecret }
+				{ "client_secret", clientSecret },
+				{ "auth_by_phone", authByPhone }
 			};
+
 			return _vk.Call("auth.checkPhone", parameters);
 		}
+
 
 		/// <summary>
 		/// Регистрирует нового пользователя по номеру телефона.
@@ -57,7 +60,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.signup" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public string Signup(AuthSignupParams @params)
 		{
 			return _vk.Call("auth.signup", @params);
@@ -73,7 +76,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.confirm" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public AuthConfirmResult Confirm(AuthConfirmParams @params)
 		{
 			return _vk.Call("auth.confirm", @params);
@@ -89,7 +92,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.restore" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public string Restore(string phone)
 		{
 			var response = _vk.Call("auth.restore", new VkParameters { { "phone", phone } });
