@@ -78,7 +78,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.add" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public long Add(LikeObjectType type, ulong itemId, long? ownerId = null, string accessKey = null, string reference = null)
+		public long Add(LikeObjectType type, long itemId, long? ownerId = null, string accessKey = null, string reference = null)
 		{
 			var parameters = new VkParameters
 				{
@@ -105,7 +105,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.delete"/>.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ulong Delete(LikeObjectType type, long itemId, ulong? ownerId = null)
+		public long Delete(LikeObjectType type, long itemId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 				{
@@ -135,7 +135,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.isLiked" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool IsLiked(out bool copied, LikeObjectType type, ulong itemId,  ulong? userId = null, long? ownerId = null)
+		public bool IsLiked(out bool copied, LikeObjectType type, long itemId,  long? userId = null, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 				{
