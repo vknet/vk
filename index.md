@@ -246,3 +246,20 @@ comments: false
 + [Database.GetUniversities](/vk/database/getUniversities/) - Возвращает список высших учебных заведений.
 + [Database.GetSchools](/vk/database/getSchools/) - Возвращает список школ.
 + [Database.GetFaculties](/vk/database/getFaculties/) - Возвращает список факультетов.
+
+## Новости
++ [Newsfeed.Get] (/vk/newsfeed/get/) - Возвращает данные, необходимые для показа списка новостей для текущего пользователя.
++ [Newsfeed.GetRecommended] (/vk/newsfeed/getRecommended/) - Получает список новостей, рекомендованных пользователю.
++ [Newsfeed.GetComments] (/vk/newsfeed/getComments/) - Возвращает данные, необходимые для показа раздела комментариев в новостях пользователя.
++ [Newsfeed.GetMentions] (/vk/newsfeed/getMentions/) - Возвращает список записей пользователей на своих стенах, в которых упоминается указанный пользователь.
++ [Newsfeed.GetBanned] (/vk/newsfeed/getBanned/) - Возвращает список пользователей и групп, которые текущий пользователь скрыл из ленты новостей.
++ [Newsfeed.AddBan] (/vk/newsfeed/addBan/) - Запрещает показывать новости от заданных пользователей и групп в ленте новостей текущего пользователя.
++ [Newsfeed.DeleteBan] (/vk/newsfeed/deleteBan/) - Разрешает показывать новости от заданных пользователей и групп в ленте новостей текущего пользователя.
++ [Newsfeed.IgnoreItem] (/vk/newsfeed/ignoreItem/) - Позволяет скрыть объект из ленты новостей.
++ [Newsfeed.UnignoreItem] (/vk/newsfeed/unignoreItem/) - Позволяет вернуть ранее скрытый объект в ленту новостей.
++ [Newsfeed.Search] (/vk/newsfeed/search/) - Возвращает результаты поиска по статусам. Новости возвращаются в порядке от более новых к более старым.
++ [Newsfeed.GetLists] (/vk/newsfeed/getLists/) - Возвращает пользовательские списки новостей.
++ [Newsfeed.SaveList] (/vk/newsfeed/saveList/) - Метод позволяет создавать или редактировать пользовательские списки для просмотра новостей.
++ [Newsfeed.DeleteList] (/vk/newsfeed/deleteList/) - Метод позволяет удалить пользовательский список новостей
++ [Newsfeed.Unsubscribe] (/vk/newsfeed/unsubscribe/) - Отписывает текущего пользователя от комментариев к заданному объекту.
++ [Newsfeed.GetSuggestedSources] (/vk/newsfeed/getSuggestedSources/) - Возвращает сообщества и пользователей, на которые текущему пользователю рекомендуется подписаться.
