@@ -10,12 +10,8 @@ comments: true
 Страница документации ВКонтакте [stats.get](https://vk.com/dev/stats.get).
 ## Синтаксис
 ``` csharp
-public ReadOnlyCollection<StatsPeriod> Get(
-	DateTime dateFrom,
-	DateTime? dateTo = null,
-	long? groupId = null,
-	long? appId = null
-)
+public ReadOnlyCollection<StatsPeriod> GetByGroup(long groupId, DateTime dateFrom, DateTime? dateTo = null)
+public ReadOnlyCollection<StatsPeriod> GetByApp(long appId, DateTime dateFrom, DateTime? dateTo = null)
 ```
 
 ## Параметры
