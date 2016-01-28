@@ -119,7 +119,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getMentions" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Mention> GetMentions(out int total, long ownerId = 0, DateTime? startTime = null, DateTime? endTime = null, long offset = 0, long count = 20)
+		public ReadOnlyCollection<Mention> GetMentions(out int total, long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -293,7 +293,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getLists" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<NewsUserListItem> GetLists(out int total, IEnumerable<long> listIds, bool extended = false)
+		public ReadOnlyCollection<NewsUserListItem> GetLists(out int total, IEnumerable<long> listIds, bool? extended = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -319,7 +319,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.saveList" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public long SaveList(string title, IEnumerable<long> sourceIds, long listId = 0, bool noReposts = false)
+		public long SaveList(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null)
 		{
 			var parameters = new VkParameters
 			{
