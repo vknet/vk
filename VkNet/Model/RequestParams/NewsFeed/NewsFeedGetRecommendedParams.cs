@@ -30,13 +30,13 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор, необходимый для получения следующей страницы результатов. Значение, необходимое для передачи в этом параметре, возвращается в поле ответа next_from.
 		/// </summary>
-		public long StartFrom
+		public long? StartFrom
 		{ get; set; }
 
 		/// <summary>
 		/// Указывает, какое максимальное число новостей следует возвращать, но не более 100. По умолчанию 50.
 		/// </summary>
-		public ushort Count
+		public long? Count
 		{ get; set; }
 
 		/// <summary>

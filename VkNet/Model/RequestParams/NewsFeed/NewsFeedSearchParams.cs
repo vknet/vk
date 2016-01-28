@@ -33,25 +33,25 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Указывается 1, если необходимо получить информацию о пользователе или группе, разместившей запись.
 		/// </summary>
-		public bool Extended
+		public bool? Extended
 		{ get; set; }
 
 		/// <summary>
 		/// Указывает, какое максимальное число записей следует возвращать.
 		/// </summary>
-		public uint Count
+		public long? Count
 		{ get; set; }
 
 		/// <summary>
 		/// Географическая широта точки, в радиусе от которой необходимо производить поиск, заданная в градусах (от -90 до 90).
 		/// </summary>
-		public double Latitude
+		public double? Latitude
 		{ get; set; }
 
 		/// <summary>
 		/// Географическая долгота точки, в радиусе от которой необходимо производить поиск, заданная в градусах (от -180 до 180).
 		/// </summary>
-		public double Longitude
+		public double? Longitude
 		{ get; set; }
 
 		/// <summary>
@@ -69,7 +69,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор, необходимый для получения следующей страницы результатов. Значение, необходимое для передачи в этом параметре, возвращается в поле ответа next_from.
 		/// </summary>
-		public ulong StartFrom
+		public long? StartFrom
 		{ get; set; }
 
 		/// <summary>
