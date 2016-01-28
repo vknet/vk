@@ -94,26 +94,30 @@ comments: false
 
 ## Сообщения
 + [Messages.Get] (/vk/messages/get/) - Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
-+ [Messages.GetHistory] (/vk/messages/getHistory/) - Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
-+ [Messages.GetById] (/vk/messages/getById/) - Возвращает сообщения по их идентификаторам.
 + [Messages.GetDialogs] (/vk/messages/getDialogs/) - Возвращает список диалогов текущего пользователя.
-+ [Messages.SearchDialogs] (/vk/messages/searchDialogs/) - Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
++ [Messages.GetById] (/vk/messages/getById/) - Возвращает сообщения по их id.
 + [Messages.Search] (/vk/messages/search/) - Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
-+ [Messages.Send] (/vk/messages/send/) - Посылает личное сообщение.
++ [Messages.GetHistory] (/vk/messages/getHistory/) - Возвращает историю сообщений для указанного пользователя.
++ [Messages.Send] (/vk/messages/send/) - Отправляет сообщение.
++ [Messages.Delete] (/vk/messages/delete/) - Удаляет сообщение.
 + [Messages.DeleteDialog] (/vk/messages/deleteDialog/) - Удаляет все личные сообщения в диалоге.
-+ [Messages.Delete] (/vk/messages/delete/) - Удаляет сообщения пользователя.
 + [Messages.Restore] (/vk/messages/restore/) - Восстанавливает удаленное сообщение.
-+ [Messages.MarkAsNew] (/vk/messages/markAsNew/) - Помечает сообщения как непрочитанные.
 + [Messages.MarkAsRead] (/vk/messages/markAsRead/) - Помечает сообщения как прочитанные.
-+ [Messages.SetActivity] (/vk/messages/setActivity/) - Изменяет статус набора текста пользователем в диалоге.
-+ [Messages.GetLastActivity] (/vk/messages/getLastActivity/) - Возвращает текущий статус и дату последней активности указанного пользователя.
-+ [Messages.GetChat] (/vk/messages/getChat/) - Возвращает информацию о беседе.
-+ [Messages.CraeteChat] (/vk/messages/createChat/) - Возвращает информацию о беседе.
-+ [Messages.EditChat] (/vk/messages/editChat/) - Изменяет название беседы. 
-+ [Messages.GetChatUsers] (/vk/messages/getChatUsers/) - Позволяет получить список пользователей беседы по ее идентификатору.
-+ [Messages.AddChatUser] (/vk/messages/addChatUser/) - Добавляет в беседу нового пользователя.
-+ [Messages.RemoveChatUser] (/vk/messages/removeChatUser/) - Исключает из беседы пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
++ [Messages.MarkAsImportant] (/vk/messages/markAsImportant/) - Помечает сообщения как важные либо снимает отметку.
 + [Messages.GetLongPollServer] (/vk/messages/getLongPollServer/) - Возвращает данные, необходимые для подключения к Long Poll серверу.
++ [Messages.GetLongPollHistory] (/vk/messages/getLongPollHistory/) - Возвращает обновления в личных сообщениях пользователя.
++ [Messages.GetChat] (/vk/messages/getChat/) - Возвращает информацию о беседе.
++ [Messages.CreateChat] (/vk/messages/createChat/) - Создаёт беседу с несколькими участниками.
++ [Messages.EditChat] (/vk/messages/editChat/) - Изменяет название беседы.
++ [Messages.GetChatUsers] (/vk/messages/getChatUsers/) - Позволяет получить список пользователей мультидиалога по его id.
++ [Messages.SetActivity] (/vk/messages/setActivity/) - Изменяет статус набора текста пользователем в диалоге.
++ [Messages.SearchDialogs] (/vk/messages/searchDialogs/) - Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
++ [Messages.AddChatUser] (/vk/messages/addChatUser/) - Добавляет в мультидиалог нового пользователя.
++ [Messages.RemoveChatUser] (/vk/messages/removeChatUser/) - Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
++ [Messages.GetLastActivity] (/vk/messages/getLastActivity/) - Возвращает текущий статус и дату последней активности указанного пользователя.
++ [Messages.SetChatPhoto] (/vk/messages/setChatPhoto/) - Позволяет установить фотографию мультидиалога, загруженную с помощью метода photos.getChatUploadServer.
++ [Messages.DeleteChatPhoto] (/vk/messages/deleteChatPhoto/) - Позволяет удалить фотографию мультидиалога.
+
 
 ## Стена
 + [Wall.Get] (/vk/wall/get/) - Возвращает список записей со стены пользователя или сообщества.
