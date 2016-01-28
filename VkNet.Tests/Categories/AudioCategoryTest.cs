@@ -1208,7 +1208,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedAudioCategory(url, json);
 
-			var result = cat.MoveToAlbum(45303161, new ulong[] {258542771, 258542571});
+			var result = cat.MoveToAlbum(45303161, new long[] {258542771, 258542571});
 
             Assert.That(result, Is.True);
         }
