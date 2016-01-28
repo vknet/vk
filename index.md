@@ -280,3 +280,6 @@ comments: false
 + [Stats.Get] (/vk/stats/get/) - Возвращает статистику сообщества или приложения.
 + [Stats.TrackVisitor] (/vk/stats/trackVisitor/) - Добавляет данные о текущем сеансе в статистику посещаемости приложения.
 + [Stats.GetPostReach] (/vk/stats/getPostReach/) - Возвращает статистику для записи на стене.
+
+## Подарки
++ [Gifts.Get] (/vk/gifts/get/) - Возвращает список полученных подарков пользователя.
