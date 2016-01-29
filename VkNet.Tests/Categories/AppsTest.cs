@@ -91,7 +91,7 @@ namespace VkNet.Tests.Categories
 						}
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
+			long total;
 			var app = mock.GetCatalog(out total, new AppGetCatalogParams());
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("Подземелья!"));
@@ -130,7 +130,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
+			long total;
 			var app = mock.Get(out total, new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("raventestapp"));
@@ -145,7 +145,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
+			long total;
 			var app = mock.DeleteAppRequests();
 			Assert.That(app, Is.True);
 		}
@@ -162,7 +162,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
+			long total;
 			var app = mock.GetFriendsList(out total, AppRequestType.Invite);
 			Assert.That(total, Is.GreaterThan(0));
 			Assert.That(app, Is.Not.Null);
@@ -200,7 +200,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
+			long total;
 			var app = mock.GetFriendsList(out total, AppRequestType.Invite, true, 5, 1, UsersFields.Online);
 			Assert.That(total, Is.GreaterThan(0));
 			Assert.That(app, Is.Not.Null);
