@@ -58,6 +58,7 @@
     <Compile Include="Enums\SafetyEnums\FeedType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
+    <Compile Include="Model\DocumentType.cs" />
     <Compile Include="Model\FriendOnline.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Model\RequestParams\Groups\GroupsGetMembersParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsGetParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Pages\PagesGetParams.cs" />
     <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
     <Compile Include="Model\RequestParams\Video\VideoCreateCommentParams.cs" />
     <Compile Include="Model\RequestParams\Video\VideoEditParams.cs" />
