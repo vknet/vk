@@ -322,3 +322,29 @@ comments: false
 + [Apps.GetFriendsList] (/vk/apps/getFriendsList/) - Создает список друзей, который будет использоваться при отправке пользователем приглашений в приложение и игровых запросов.
 + [Apps.GetLeaderboard] (/vk/apps/getLeaderboard/) - Возвращает рейтинг пользователей в игре.
 + [Apps.GetScore] (/vk/apps/getScore/) - Метод возвращает количество очков пользователя в этой игре.
+
+## Товары
++ [Market.Get] (/vk/market/get/) - Возвращает список товаров в сообществе.
++ [Market.GetById] (/vk/market/getById/) - Возвращает информацию о товарах по идентификаторам.
++ [Market.Search] (/vk/market/search/) - Ищет товары в каталоге сообщества.
++ [Market.GetAlbums] (/vk/market/getAlbums/) - Возвращает список подборок с товарами.
++ [Market.GetAlbumById] (/vk/market/getAlbumById/) - Возвращает данные подборки с товарами.
++ [Market.CreateComment] (/vk/market/createComment/) - Создает новый комментарий к товару.
++ [Market.GetComments] (/vk/market/getComments/) - Возвращает список комментариев к товару.
++ [Market.DeleteComment] (/vk/market/deleteComment/) - Удаляет комментарий к товару.
++ [Market.RestoreComment] (/vk/market/restoreComment/) - Восстанавливает удаленный комментарий к товару.
++ [Market.EditComment] (/vk/market/editComment/) - Изменяет текст комментария к товару.
++ [Market.ReportComment] (/vk/market/reportComment/) - Позволяет оставить жалобу на комментарий к товару.
++ [Market.GetCategories] (/vk/market/getCategories/) - Возвращает список категорий для товаров.
++ [Market.Report] (/vk/market/report/) - Позволяет отправить жалобу на товар.
++ [Market.Add] (/vk/market/add/) - Добавляет новый товар.
++ [Market.Edit] (/vk/market/edit/) - Редактирует товар.
++ [Market.Delete] (/vk/market/delete/) - Удаляет товар.
++ [Market.Restore] (/vk/market/restore/) - Восстанавливает удаленный товар.
++ [Market.ReorderItems] (/vk/market/reorderItems/) - Изменяет положение товара в подборке.
++ [Market.ReorderAlbums] (/vk/market/reorderAlbums/) - Изменяет положение подборки с товарами в списке.
++ [Market.AddAlbum] (/vk/market/addAlbum/) - Добавляет новую подборку с товарами.
++ [Market.EditAlbum] (/vk/market/editAlbum/) - Редактирует подборку с товарами.
++ [Market.DeleteAlbum] (/vk/market/deleteAlbum/) - Удаляет подборку с товарами.
++ [Market.RemoveFromAlbum] (/vk/market/removeFromAlbum/) - Удаляет товар из одной или нескольких выбранных подборок.
++ [Market.AddToAlbum] (/vk/market/addToAlbum/) - Добавляет товар в одну или несколько выбранных подборок.
