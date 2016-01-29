@@ -564,5 +564,30 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.addToAlbum", parameters);
 		}
+
+
+		/// <summary>
+		/// Возвращает список категорий для товаров..
+		/// </summary>
+		/// <param name="count">Количество категорий, информацию о которых необходимо вернуть. положительное число, максимальное значение 1000, по умолчанию 10 (Положительное число, максимальное значение 1000, по умолчанию 10).</param>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества категорий. положительное число (Положительное число).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов category. 
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getCategories" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<MarketCategory> GetCategories(long? count, long? offset)
+		{
+			var parameters = new VkParameters {
+				{ "count", count },
+				{ "offset", offset }
+			};
+
+			return _vk.Call("market.getCategories", parameters).ToReadOnlyCollectionOf<MarketCategory>(x => x);
+		}
+
+
 	}
 }
