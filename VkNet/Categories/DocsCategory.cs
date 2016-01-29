@@ -227,7 +227,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public int Add(long ownerId, long docId, string accessKey = null)
+		public long Add(long ownerId, long docId, string accessKey = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
 			VkErrors.ThrowIfNumberIsNegative(() => docId);
