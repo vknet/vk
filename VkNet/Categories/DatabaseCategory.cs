@@ -306,7 +306,7 @@ namespace VkNet.Categories
         /// </remarks>
         [Pure]
         [ApiVersion("5.44")]
-        public ReadOnlyCollection<Faculty> GetChairs(long facultyId, int? count = null, int? offset = null)
+        public ReadOnlyCollection<Chair> GetChairs(long facultyId, int? count = null, int? offset = null)
         {
             var parameters = new VkParameters
             {
@@ -315,7 +315,7 @@ namespace VkNet.Categories
                 { "count", count }
             };
 
-            return _vk.Call("database.getChairs", parameters, true).ToReadOnlyCollectionOf<Faculty>(x => x);
+            return _vk.Call("database.getChairs", parameters, true).ToReadOnlyCollectionOf<Chair>(x => x);
         }
     }
 }
