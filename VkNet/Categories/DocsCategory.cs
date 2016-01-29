@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using VkNet.Enums;
 
 namespace VkNet.Categories
 {
@@ -38,6 +39,7 @@ namespace VkNet.Categories
 		/// <param name="count">Количество документов, информацию о которых нужно вернуть. По умолчанию — все документы.</param>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества документов. Положительное число.</param>
 		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат документы. Целое число, по умолчанию идентификатор текущего пользователя.</param>
+		/// <param name="filter">Фильтр по типу документа.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов документов.
 		/// </returns>
@@ -46,12 +48,18 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Document> Get(out int totalCount, int? count = null, int? offset = null, long? ownerId = null)
+		public ReadOnlyCollection<Document> Get(out int totalCount, int? count = null, int? offset = null, long? ownerId = null, DocFilter? filter = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 
-			var parameters = new VkParameters{ { "count", count }, { "offset", offset }, { "owner_id", ownerId } };
+			var parameters = new VkParameters
+			{
+				{ "count", count },
+				{ "offset", offset },
+				{ "owner_id", ownerId },
+				{ "type", filter }
+			};
 
 			var response = _vk.Call("docs.get", parameters);
 
@@ -67,6 +75,7 @@ namespace VkNet.Categories
 		/// <param name="count">Количество документов, информацию о которых нужно вернуть. По умолчанию — все документы.</param>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества документов. Положительное число.</param>
 		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат документы. Целое число, по умолчанию идентификатор текущего пользователя.</param>
+		/// <param name="filter">Фильтр по типу документа.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов документов.
 		/// </returns>
@@ -75,10 +84,10 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null)
+		public ReadOnlyCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null, DocFilter? filter = null)
 		{
 			int totalCount;
-			return Get(out totalCount, count, offset, ownerId);
+			return Get(out totalCount, count, offset, ownerId, filter);
 		}
 
 		/// <summary>
