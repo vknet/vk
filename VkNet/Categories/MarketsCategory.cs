@@ -175,9 +175,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getComments" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public MarketComment GetComments(MarketGetCommentsParams @params)
+		public ReadOnlyCollection<MarketComment> GetComments(MarketGetCommentsParams @params)
 		{
-			return _vk.Call("market.getComments", @params);
+			return _vk.Call("market.getComments", @params).ToReadOnlyCollectionOf<MarketComment>(x => x);
 		}
 
 
