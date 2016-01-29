@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// На данный момент поддерживаются следующие типы источников записи на стене, значение которых указываются в поле type:
 	/// </summary>
+	[Serializable]
 	public class PostSourceType : SafetyEnum<PostSourceType>
 	{
 		/// <summary>

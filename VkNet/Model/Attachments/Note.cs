@@ -4,10 +4,11 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-    /// Заметка пользователя.
-    /// См. описание <see href="http://vk.com/dev/note"/>.
-    /// </summary>
-    public class Note : MediaAttachment
+	/// Заметка пользователя.
+	/// См. описание <see href="http://vk.com/dev/note"/>.
+	/// </summary>
+	[Serializable]
+	public class Note : MediaAttachment
     {
 		/// <summary>
 		/// Заметка пользователя.

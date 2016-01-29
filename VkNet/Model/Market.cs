@@ -9,6 +9,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Информация о продукте.
 	/// </summary>
+	[Serializable]
 	public class Market
 	{
 		/// <summary>

@@ -4,10 +4,11 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-    /// Альбом с фотографиями пользователя.
-    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Альбом с фотографиями".
-    /// </summary>
-    public class Album : MediaAttachment
+	/// Альбом с фотографиями пользователя.
+	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Альбом с фотографиями".
+	/// </summary>
+	[Serializable]
+	public class Album : MediaAttachment
 	{
 		static Album()
 		{

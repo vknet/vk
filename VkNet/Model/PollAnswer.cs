@@ -1,11 +1,13 @@
 ﻿namespace VkNet.Model
 {
-    using Utils;
+	using System;
+	using Utils;
 
-    /// <summary>
-    /// Вариант ответа в опросе
-    /// </summary>
-    public class PollAnswer
+	/// <summary>
+	/// Вариант ответа в опросе
+	/// </summary>
+	[Serializable]
+	public class PollAnswer
     {
         /// <summary>
         /// Идентификатор варианта ответа

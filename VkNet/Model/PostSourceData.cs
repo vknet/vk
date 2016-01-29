@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Является опциональным и содержит следующие данные в зависимости от значения поля type:
 	/// </summary>
+	[Serializable]
 	public class PostSourceData
 	{
 		/// <summary>

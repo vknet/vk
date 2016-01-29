@@ -1,9 +1,12 @@
-﻿namespace VkNet.Enums
+﻿using System;
+
+namespace VkNet.Enums
 {
-    /// <summary>
-    /// Режим доступа к странице
-    /// </summary>
-    public enum PageAccessKind
+	/// <summary>
+	/// Режим доступа к странице
+	/// </summary>
+	[Serializable]
+	public enum PageAccessKind
     {
         /// <summary>
         /// Доступ только руководителям сообщества.

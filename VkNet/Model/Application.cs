@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Приложение.
 	/// </summary>
+	[Serializable]
 	public class Application
 	{
 		/// <summary>
