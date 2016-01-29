@@ -31,14 +31,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список пользователей, добавленных текущим пользователем в закладки.
 		/// </summary>
-		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
-		/// <returns>После успешного выполнения возвращает список объектов пользователей.</returns>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей. По умолчанию — 0. положительное число (Положительное число).</param>
+		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов пользователей.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getUsers"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getUsers" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -55,20 +56,21 @@ namespace VkNet.Categories
 			return response.ToReadOnlyCollectionOf<User>(x => x);
 		}
 
+
 		/// <summary>
 		/// Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне нравится".
 		/// </summary>
-		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
-		/// <param name="photoSizes">Параметр, указывающий нужно ли возвращать ли доступные размеры фотографии в специальном формате <seealso cref="PhotoSize"/>. </param>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества фотографий.
+		/// По умолчанию 0. положительное число (Положительное число).</param>
+		/// <param name="count">Число фотографий, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <param name="photoSizes">Параметр, указывающий нужно ли возвращать ли доступные размеры фотографии в специальном формате. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов фотографий.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPhotos" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -88,14 +90,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
 		/// </summary>
-		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
-		/// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
+		/// <param name="offset">Смещение, необходимо для выборки определенного подмножества записей. По умолчанию — 0. положительное число (Положительное число).</param>
+		/// <param name="count">Количество записей, информацию о которых нужно вернуть (но не более 100). положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов записей на стене.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Post> GetPosts(int? count = null, int? offset = null)
 		{
 			var response = GetPostsEx(count, offset);
@@ -105,14 +108,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
 		/// </summary>
-		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
-		/// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
+		/// <param name="offset">Смещение, необходимо для выборки определенного подмножества записей. По умолчанию — 0. положительное число (Положительное число).</param>
+		/// <param name="count">Количество записей, информацию о которых нужно вернуть (но не более 100). положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов записей на стене.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public WallGetObject GetPostsEx(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -131,14 +135,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
 		/// </summary>
-		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
-		/// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества видеозаписей. положительное число (Положительное число).</param>
+		/// <param name="count">Количество видеозаписей, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов видеозаписей.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
 		{
 			var response = GetVideosEx(count, offset);
@@ -148,14 +153,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
 		/// </summary>
-		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
-		/// <returns>После успешного выполнения возвращает список объектов записей на стене.</returns>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества видеозаписей. положительное число (Положительное число).</param>
+		/// <param name="count">Количество видеозаписей, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов видеозаписей.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public FaveVideoEx GetVideosEx(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -174,14 +180,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает ссылки, добавленные в закладки текущим пользователем.
 		/// </summary>
-		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей</param>
-		/// <returns>После успешного выполнения возвращает общее количество ссылок и массив объектов Link.</returns>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества ссылок. положительное число (Положительное число).</param>
+		/// <param name="count">Количество ссылок, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает общее количество ссылок и массив объектов link, каждый из которых содержит поля id, url, title, description, photo_50 и photo_100.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public ReadOnlyCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -201,15 +208,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Добавляет пользователя в закладки.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в закладки. </param>
+		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в закладки. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.addUser" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addUser" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public bool AddUser(ulong userId)
+		[ApiVersion("5.44")]
+		public bool AddUser(long userId)
 		{
 			var parameters = new VkParameters
 			{
@@ -218,18 +225,19 @@ namespace VkNet.Categories
 			return _vk.Call("fave.addUser", parameters);
 		}
 
+
 		/// <summary>
 		/// Удаляет пользователя из закладок.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, которого нужно удалить из закладок.</param>
+		/// <param name="userId">Идентификатор пользователя, которого нужно удалить из закладок. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.removeUser" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.removeUser" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public bool RemoveUser(ulong userId)
+		[ApiVersion("5.44")]
+		public bool RemoveUser(long userId)
 		{
 			var parameters = new VkParameters
 			{
@@ -241,15 +249,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Добавляет сообщество в закладки.
 		/// </summary>
-		/// <param name="groupId">Идентификатор сообщества, которое нужно добавить в закладки.</param>
+		/// <param name="groupId">Идентификатор сообщества, которое нужно добавить в закладки. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.addGroup" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addGroup" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public bool AddGroup(ulong groupId)
+		[ApiVersion("5.44")]
+		public bool AddGroup(long groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -261,15 +269,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Удаляет сообщество из закладок.
 		/// </summary>
-		/// <param name="groupId">Идентификатор сообщества, которое нужно удалить из закладок.</param>
+		/// <param name="groupId">Идентификатор сообщества, которое нужно удалить из закладок. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.removeGroup" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.removeGroup" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public bool RemoveGroup(ulong groupId)
+		[ApiVersion("5.44")]
+		public bool RemoveGroup(long groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -281,15 +289,15 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Добавляет ссылку в закладки.
 		/// </summary>
-		/// <param name="link">Адрес добавляемой ссылки. Поддерживаются только внутренние ссылки на http://vk.com/. </param>
-		/// <param name="text">The text.</param>
+		/// <param name="link">Адрес добавляемой ссылки. Поддерживаются только внутренние ссылки на http://vk.com/. строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <param name="text">Текст ссылки. строка (Строка).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.addLink" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addLink" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public bool AddLink(Url link, string text)
 		{
 			var parameters = new VkParameters
@@ -303,14 +311,14 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Удаляет ссылку из закладок.
 		/// </summary>
-		/// <param name="linkId">Идентификатор ссылки, которую нужно удалить, полученный методом <seealso cref="GetLinks"/></param>
+		/// <param name="linkId">Идентификатор ссылки, которую нужно удалить, полученный методом fave.getLinks. строка, обязательный параметр (Строка, обязательный параметр).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/fave.removeLink" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.removeLink" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.44")]
 		public bool RemoveLink(string linkId)
 		{
 			var parameters = new VkParameters
