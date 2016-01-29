@@ -237,15 +237,17 @@ comments: false
 + [Utils.GetServerTime](/vk/utils/getServerTime/) - Возвращает текущее время на сервере ВКонтакте.
 
 ## Данные ВК
-+ [Database.GetCountries](/vk/database/getCountries/) - вращает список стран.
-+ [Database.GetRegions](/vk/database/getRegions/) - Возвращает список регионов.
-+ [Database.GetStreetsById](/vk/database/getStreetsById/) - Возвращает информацию об улицах по их идентификаторам.
-+ [Database.GetCountriesById](/vk/database/getCountriesById/) - Возвращает информацию о странах по их идентификаторам.
-+ [Database.GetCities](/vk/database/getCities/) - Возвращает список городов.
-+ [Database.GetCitiesById](/vk/database/getCitiesById/) - Возвращает информацию о городах по их идентификаторам.
-+ [Database.GetUniversities](/vk/database/getUniversities/) - Возвращает список высших учебных заведений.
-+ [Database.GetSchools](/vk/database/getSchools/) - Возвращает список школ.
-+ [Database.GetFaculties](/vk/database/getFaculties/) - Возвращает список факультетов.
++ [Database.GetCountries] (/vk/database/getCountries/) - Возвращает список стран.
++ [Database.GetRegions] (/vk/database/getRegions/) - Возвращает список регионов.
++ [Database.GetStreetsById] (/vk/database/getStreetsById/) - Возвращает информацию об улицах по их идентификаторам (id).
++ [Database.GetCountriesById] (/vk/database/getCountriesById/) - Возвращает информацию о странах по их идентификаторам
++ [Database.GetCities] (/vk/database/getCities/) - Возвращает список городов.
++ [Database.GetCitiesById] (/vk/database/getCitiesById/) - Возвращает информацию о городах по их идентификаторам.
++ [Database.GetUniversities] (/vk/database/getUniversities/) - Возвращает список высших учебных заведений.
++ [Database.GetSchools] (/vk/database/getSchools/) - Возвращает список школ.
++ [Database.GetSchoolClasses] (/vk/database/getSchoolClasses/) - Возвращает список классов, характерных для школ определенной страны.
++ [Database.GetFaculties] (/vk/database/getFaculties/) - Возвращает список факультетов.
++ [Database.GetChairs] (/vk/database/getChairs/) - Возвращает список кафедр университета по указанному факультету.
 
 ## Новости
 + [Newsfeed.Get] (/vk/newsfeed/get/) - Возвращает данные, необходимые для показа списка новостей для текущего пользователя.
