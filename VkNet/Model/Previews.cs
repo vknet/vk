@@ -55,16 +55,23 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static Previews FromJson(VkResponse response)
 		{
+		    
 			var previews = new Previews
 			{
 				Photo50 = response["photo_50"],
 				Photo100 = response["photo_100"] ?? response["photo_medium"],
 				Photo130 = response["photo_130"],
 				Photo200 = response["photo_200"] ?? response["photo_200_orig"],
-				Photo400 = response["photo_400_orig"],
-                Photo = response["photo"]
+				Photo400 = response["photo_400_orig"]
             };
-
+		    if (Uri.IsWellFormedUriString(response["photo"].ToString(), UriKind.Absolute))
+		    {
+		        previews.Photo50 = response["photo"];
+		    }
+		    else
+		    {
+		        previews.Photo = response["photo"];
+		    }
 			previews.PhotoMax = response["photo_max"] ?? response["photo_max_orig"] ?? response["photo_big"] ?? previews.Photo400 ?? previews.Photo200 ?? previews.Photo100 ?? previews.Photo50;
 
 			return previews;
