@@ -1,3 +1,5 @@
+using VkNet.Model.Attachments;
+
 namespace VkNet.Model
 {
 	using System;
@@ -40,6 +42,11 @@ namespace VkNet.Model
 		/// </summary>
 		public Uri PhotoMax { get; set; }
 
+        /// <summary>
+        /// Gets or sets the photo.
+        /// </summary>
+        public Photo Photo { get; set; }
+	    
 		#region Методы
 		/// <summary>
 		/// Разобрать из json.
@@ -50,12 +57,13 @@ namespace VkNet.Model
 		{
 			var previews = new Previews
 			{
-				Photo50 = response["photo_50"] ?? response["photo"],
+				Photo50 = response["photo_50"],
 				Photo100 = response["photo_100"] ?? response["photo_medium"],
 				Photo130 = response["photo_130"],
 				Photo200 = response["photo_200"] ?? response["photo_200_orig"],
-				Photo400 = response["photo_400_orig"]
-			};
+				Photo400 = response["photo_400_orig"],
+                Photo = response["photo"]
+            };
 
 			previews.PhotoMax = response["photo_max"] ?? response["photo_max_orig"] ?? response["photo_big"] ?? previews.Photo400 ?? previews.Photo200 ?? previews.Photo100 ?? previews.Photo50;
 
