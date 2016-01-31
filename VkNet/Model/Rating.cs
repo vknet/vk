@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Рейтинг.
 	/// </summary>
+	[Serializable]
 	public class Rating
 	{
 		/// <summary>

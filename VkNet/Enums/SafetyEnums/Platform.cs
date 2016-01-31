@@ -1,7 +1,9 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
+	[Serializable]
 	public class Platform : SafetyEnum<Platform>
 	{
 		/// <summary>

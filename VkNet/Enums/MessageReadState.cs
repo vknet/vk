@@ -1,9 +1,12 @@
-﻿namespace VkNet.Enums
+﻿using System;
+
+namespace VkNet.Enums
 {
-    /// <summary>
-    /// Информация о том прочитано ли сообщение.
-    /// </summary>
-    public enum MessageReadState
+	/// <summary>
+	/// Информация о том прочитано ли сообщение.
+	/// </summary>
+	[Serializable]
+	public enum MessageReadState
     {
         /// <summary>
         /// Сообщение не прочитано.

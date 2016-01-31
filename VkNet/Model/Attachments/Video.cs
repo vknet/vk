@@ -12,7 +12,8 @@ namespace VkNet.Model.Attachments
     /// См. описание <see href="http://vk.com/dev/video_object"/>.
     /// </remarks>
     [DebuggerDisplay("Id = {Id}, Title = {Title}")]
-    public class Video : MediaAttachment
+	[Serializable]
+	public class Video : MediaAttachment
     {
 		/// <summary>
 		/// Видеозапись пользователя или группы.
