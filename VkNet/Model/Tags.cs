@@ -1,22 +1,36 @@
 ﻿namespace VkNet.Model
 {
-    using Utils;
+	using System;
+	using Utils;
 
-    public class Tags
+	/// <summary>
+	/// Теги.
+	/// </summary>
+	[Serializable]
+	public class Tags
     {
-        public int Count { get; set; }
+		/// <summary>
+		/// Количество.
+		/// </summary>
+		public int Count { get; set; }
 
-        #region Internal methods
+		#region Internal methods
 
-        internal static Tags FromJson(VkResponse response)
-        {
-            var tags = new Tags();
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Tags FromJson(VkResponse response)
+		{
+			var tags = new Tags
+			{
+				Count = response["count"]
+			};
 
-            tags.Count = response["count"];
+			return tags;
+		}
 
-            return tags;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -1,15 +1,18 @@
 ﻿namespace VkNet.Model
 {
+    using System;
     using Utils;
+
     /// <summary>
     /// Ссылки в группе
     /// </summary>
+    [Serializable]
     public class ExternalLink
     {
         /// <summary>
         /// Идентификатор ссылки.
         /// </summary>
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Адрес ссылки.
@@ -36,18 +39,23 @@
         /// </summary>
         public string Photo100 { get; set; }
 
-        #region Методы
-
-        internal static ExternalLink FromJson(VkResponse response)
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static ExternalLink FromJson(VkResponse response)
         {
-            var contact = new ExternalLink();
-
-            contact.Id = response["id"];
-            contact.Url = response["url"];
-            contact.Name = response["name"];
-            contact.Description = response["desc"];
-            contact.Photo50 = response["photo_50"];
-            contact.Photo100 = response["photo_100"]; ;
+	        var contact = new ExternalLink
+	        {
+		        Id = response["id"],
+		        Url = response["url"],
+		        Name = response["name"] ?? response["title"],
+		        Description = response["desc"] ?? response["description"],
+		        Photo50 = response["photo_50"],
+		        Photo100 = response["photo_100"]
+	        };
 
             return contact;
         }

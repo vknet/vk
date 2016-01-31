@@ -22,23 +22,34 @@ namespace VkNet.Enums.SafetyEnums
         /// </summary>
         public static readonly LinkAccessType Processing = RegisterPossibleValue("processing");
 
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
 		internal static LinkAccessType FromJson (VkResponse response)
         {
             string status = response["status"];
 
-            switch (status)
-            {
-                case "banned":
-                    return Banned;
-
-                case "not_banned":
-                    return NotBanned;
-
-                case "processing":
-                    return Processing;
-            }
-
-            return null;
-        }
+			switch (status)
+			{
+				case "banned":
+					{
+						return Banned;
+					}
+				case "not_banned":
+					{
+						return NotBanned;
+					}
+				case "processing":
+					{
+						return Processing;
+					}
+				default:
+					{
+						return null;
+					}
+			}
+		}
     }
 }

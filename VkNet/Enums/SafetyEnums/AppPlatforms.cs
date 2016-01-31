@@ -6,7 +6,7 @@ namespace VkNet.Enums
 	/// Платформа для которой необходимо вернуть приложения.
 	/// </summary>
 	/// <remarks>
-	/// По умолчанию используется web. 
+	/// По умолчанию используется web.
 	/// </remarks>
 	public sealed class AppPlatforms : SafetyEnum<AppPlatforms>
 	{
@@ -14,14 +14,17 @@ namespace VkNet.Enums
 		/// Популярные за день (по умолчанию);
 		/// </summary>
 		public static readonly AppPlatforms Ios = RegisterPossibleValue("ios");
+
 		/// <summary>
 		/// По посещаемости
 		/// </summary>
 		public static readonly AppPlatforms Android = RegisterPossibleValue("android");
+
 		/// <summary>
 		/// По дате создания приложения
 		/// </summary>
 		public static readonly AppPlatforms WinPhone = RegisterPossibleValue("winphone");
+
 		/// <summary>
 		/// По скорости роста
 		/// </summary>

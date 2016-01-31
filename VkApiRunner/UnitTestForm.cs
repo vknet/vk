@@ -36,11 +36,11 @@ namespace VkApiRunner
                 throw new ArgumentNullException("methodName");
 
             // TODO add contracts check
-            string[] parts = methodName.Split(new[] {'.'}, StringSplitOptions.RemoveEmptyEntries);
+            var parts = methodName.Split(new[] {'.'}, StringSplitOptions.RemoveEmptyEntries);
 
-            string method = parts.Length > 1 ? parts[1] : parts[0];
+            var method = parts.Length > 1 ? parts[1] : parts[0];
 
-            return Char.ToUpper(method[0]) + method.Substring(1, method.Length - 1);
+            return char.ToUpper(method[0]) + method.Substring(1, method.Length - 1);
         }
 
         internal string TruncateAccessToken(string url)
@@ -48,10 +48,10 @@ namespace VkApiRunner
             if (string.IsNullOrEmpty(url))
                 throw new ArgumentNullException("url");
 
-            int pos = url.IndexOf("access_token=", StringComparison.InvariantCulture);
+            var pos = url.IndexOf("access_token=", StringComparison.InvariantCulture);
             Debug.Assert(pos > -1);
 
-            string result = url.Substring(0, pos) + "access_token=token";
+            var result = url.Substring(0, pos) + "access_token=token";
             return result;
         }
 
@@ -65,7 +65,7 @@ namespace VkApiRunner
                 return;
             }
 
-            string apiUrl = TruncateAccessToken(ApiUrl);
+            var apiUrl = TruncateAccessToken(ApiUrl);
 
             var template = new StringBuilder(File.ReadAllText(UnitTestTemplatePath));
 

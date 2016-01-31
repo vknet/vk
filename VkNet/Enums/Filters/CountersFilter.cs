@@ -41,7 +41,7 @@ namespace VkNet.Enums.Filters
 		/// Количество уведомлений
 		/// </summary>
 		public static readonly CountersFilter Notifications = RegisterPossibleValue(1 << 8, "notifications");
-		
+
 		/// <summary>
 		/// Все фильтры
 		/// </summary>

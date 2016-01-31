@@ -28,28 +28,32 @@
 
         /// <summary>
         /// Получение идентификатора.
-        /// 
+        ///
         /// Применять когда id может быть задано как строкой так и числом в json'e.
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>
         public static long? GetNullableLongId(VkResponse response)
         {
-            return response != null && !string.IsNullOrEmpty(response.ToString()) ? System.Convert.ToInt64(response.ToString()) : (long?)null;
+            return response != null && !string.IsNullOrWhiteSpace(response.ToString()) ? System.Convert.ToInt64(response.ToString()) : (long?)null;
         }
 
         public static string JoinNonEmpty<T>(this IEnumerable<T> collection, string separator = ",")
         {
-            if (collection == null)
-                return string.Empty;
+	        if (collection == null)
+	        {
+		        return string.Empty;
+	        }
 
-            return string.Join(separator, collection.Select(i => i.ToString()).Where(s => !string.IsNullOrEmpty(s)).ToArray());
+            return string.Join(separator, collection.Select(i => i.ToString()).Where(s => !string.IsNullOrWhiteSpace(s)).ToArray());
         }
 
         public static IEnumerable<T> Convert<T>(this VkResponseArray response, Func<VkResponse, T> selector)
         {
-            if (response == null)
-                return Enumerable.Empty<T>();
+	        if (response == null)
+	        {
+		        return Enumerable.Empty<T>();
+	        }
 
             return response.Select(selector).ToList();
         }
@@ -61,7 +65,7 @@
 
         public static string PreetyPrintJson(string json)
         {
-            // DELME: 
+            // DELME:
             var jObject = JObject.Parse(json);
             var preety = jObject.ToString();
             preety = preety.Replace('"', '\'');
@@ -71,10 +75,10 @@
             result.Append("                @\"");
             using (var reader = new StringReader(preety))
             {
-                bool isFirst = true;
+                var isFirst = true;
                 for (;;)
                 {
-                    string line = reader.ReadLine();
+                    var line = reader.ReadLine();
                     if (line == null)
                         break;
 

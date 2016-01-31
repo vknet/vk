@@ -1,20 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model
 {
 	using System;
+    using System.Diagnostics;
 
-	using VkNet.Categories;
-	using VkNet.Enums;
-	using VkNet.Utils;
+    using Enums.SafetyEnums;
+    using Categories;
+	using Enums;
+	using Utils;
 
-	/// <summary>
-	/// Информация о сообществе (группе).
-	/// См. описание <see href="http://vk.com/dev/fields_groups"/>.
-	/// </summary>
-	public class Group
+    /// <summary>
+    /// Информация о сообществе (группе).
+    /// См. описание <see href="http://vk.com/dev/fields_groups"/>.
+    /// </summary>
+    [DebuggerDisplay("[{Id}] {Name}")]
+    [Serializable]
+    public class Group
 	{
 		#region Стандартные поля
 
@@ -63,21 +66,44 @@ namespace VkNet.Model
 		/// </summary>
 		public Previews PhotoPreviews { get; set; }
 
+		/// <summary>
+		/// Возвращается в случае, если сообщество удалено или заблокировано
+		/// </summary>
+		public Deactivated Deactivated { get; set; }
+
+		/// <summary>
+		/// Содержит фото.
+		/// </summary>
+		public bool HasPhoto { get; set; }
+
+		/// <summary>
+		/// url фотографии сообщества с размером 50x50px
+		/// </summary>
+		public Uri Photo50 { get; set; }
+
+		/// <summary>
+		/// url фотографии сообщества с размером 100x100px
+		/// </summary>
+		public Uri Photo100 { get; set; }
+
+		/// <summary>
+		/// url фотографии сообщества с размером 200x200px
+		/// </summary>
+		public Uri Photo200 { get; set; }
 		#endregion
 
 		#region Опциональные поля
 
 		/// <summary>
-		/// Идентификатор города, указанного в информации о сообществе. Возвращается идентификатор города, который можно использовать для 
-		/// получения его названия с помощью метода <see cref="DatabaseCategory.GetCitiesById"/>. Если город не указан, возвращается 0. 
+		/// Город.
 		/// </summary>
-		public long? CityId { get; set; }
+		public City City { get; set; }
 
 		/// <summary>
-		/// Идентификатор страны, указанной в информации о сообществе. Возвращается идентификатор страны, который можно использовать для 
+		/// Идентификатор страны, указанной в информации о сообществе. Возвращается идентификатор страны, который можно использовать для
 		/// получения ее названия с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>. Если страна не указана, возвращается 0.
 		/// </summary>
-		public long? CountryId { get; set; }
+		public Country Country { get; set; }
 
 		/// <summary>
 		/// Место, указанное в информации о сообществе.
@@ -85,7 +111,7 @@ namespace VkNet.Model
 		public Place Place { get; set; }
 
 		/// <summary>
-		/// Текст описания сообщества. 
+		/// Текст описания сообщества.
 		/// </summary>
 		public string Description { get; set; }
 
@@ -95,14 +121,14 @@ namespace VkNet.Model
 		public string WikiPage { get; set; }
 
 		/// <summary>
-		/// Количество участников сообщества. 
+		/// Количество участников сообщества.
 		/// </summary>
 		public int? MembersCount { get; set; }
 
 		/// <summary>
 		/// Счетчики сообщества.
 		/// </summary>
-		public Counters Counters { get; set; }
+		public Counters Counters {  get; set; }
 
 		/// <summary>
 		/// Время начала встречи (возвращаются только для встреч).
@@ -115,35 +141,34 @@ namespace VkNet.Model
 		public DateTime? EndDate { get; set; }
 
 		/// <summary>
-		/// Информация о том, может ли текущий пользователь оставлять записи на стене сообщества (true - может, false - не может).
+		/// Информация о том, может ли текущий пользователь оставлять записи на стене сообщества (<c>true</c> - может, <c>false</c> - не может).
 		/// </summary>
 		public bool CanPost { get; set; }
 
 		/// <summary>
-		/// Информация о том, разрешено видеть чужие записи на стене группы (true - разрешено, false - не разрешено).
+		/// Информация о том, разрешено видеть чужие записи на стене группы (<c>true</c> - разрешено, <c>false</c> - не разрешено).
 		/// </summary>
 		public bool CanSeelAllPosts { get; set; }
 
 		/// <summary>
-		/// Информация о том, может ли текущий пользователь загружать документы в группу (true, если пользователь может 
-		/// загружать документы, false – если не может).
+		/// Информация о том, может ли текущий пользователь загружать документы в группу (<c>true</c>, если пользователь может
+		/// загружать документы, <c>false</c> – если не может).
 		/// </summary>
-		public bool CanUploadDocuments { get; set; }
-
+		public bool CanUploadDocuments  { get; set; }
 		/// <summary>
-		/// Информация о том, может ли текущий пользователь создать тему обсуждения в группе. 
-		/// (true, если пользователь может создать обсуждение, false – если не может). 
+		/// Информация о том, может ли текущий пользователь создать тему обсуждения в группе.
+		/// (<c>true</c>, если пользователь может создать обсуждение, <c>false</c> – если не может).
 		/// </summary>
 		public bool CanCreateTopic { get; set; }
 
 		/// <summary>
-		/// Строка состояния публичной страницы. У групп возвращается строковое значение, открыта ли группа или нет, 
-		/// а у событий дата начала. 
+		/// Строка состояния публичной страницы. У групп возвращается строковое значение, открыта ли группа или нет,
+		/// а у событий дата начала.
 		/// </summary>
 		public string Activity { get; set; }
 
 		/// <summary>
-		/// Статус сообщества. Возвращается строка, содержащая текст статуса, расположенного на странице сообщества под его названием. 
+		/// Статус сообщества. Возвращается строка, содержащая текст статуса, расположенного на странице сообщества под его названием.
 		/// </summary>
 		public string Status { get; set; }
 
@@ -156,7 +181,6 @@ namespace VkNet.Model
 		/// Информация из блока ссылок сообщества.
 		/// </summary>
 		public Collection<ExternalLink> Links { get; set; }
-
 		/// <summary>
 		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById(IEnumerable{KeyValuePair{long, long}})"/>,
 		/// передав идентификатор в виде – {group_id}_{post_id}.
@@ -182,53 +206,91 @@ namespace VkNet.Model
 		/// Возвращается 1, если сообщество находится в закладках у текущего пользователя.
 		/// </summary>
 		public bool IsFavorite { get; set; }
-		
+
+		/// <summary>
+		/// Информация о забанненом (добавленном в черный список) пользователе сообщества.
+		/// </summary>
+		public BanInfo BanInfo { get; set; }
+
+		/// <summary>
+		/// Информация о том, может ли текущий пользователь загружать видеозаписи в группу.
+		/// </summary>
+		public bool CanUploadVideo { get; set; }
+
+		/// <summary>
+		/// Идентификатор основного альбома сообщества.
+		/// </summary>
+		public uint? MainAlbumId { get; set; }
+
+		/// <summary>
+		/// Возвращается 1, если сообщество скрыто в новостях у текущего пользователя.
+		/// </summary>
+		public bool IsHiddenFromFeed { get; set; }
+
+		/// <summary>
+		/// Информация о главной секции в сообществе
+		/// </summary>
+		public MainSection? MainSection { get; set; }
 		#endregion
 
 		#region Методы
 
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
 		internal static Group FromJson(VkResponse response)
 		{
-			var group = new Group();
+			var group = new Group
+			{
+				Id = response["id"] ?? response["gid"],
+				Name = response["name"],
+				ScreenName = response["screen_name"],
+				IsClosed = response["is_closed"],
+				IsAdmin = response["is_admin"],
+				AdminLevel = response["admin_level"],
+				IsMember = response["is_member"],
+				Type = response["type"],
+				PhotoPreviews = response,
+				Deactivated = response["deactivated"],
+				HasPhoto = response["has_photo"],
+				Photo50 = response["photo_50"],
+				Photo100 = response["photo_100"],
+				Photo200 = response["photo_200"],
 
-			group.Id = response["id"] ?? response["gid"];
-			group.Name = response["name"];
-			group.ScreenName = response["screen_name"];
-			group.IsClosed = response["is_closed"];
-			group.IsAdmin = response["is_admin"];
-			group.AdminLevel = response["admin_level"];
-			group.IsMember = response["is_member"];
-			group.Type = response["type"];
-			group.PhotoPreviews = response;
-
-			// опциональные поля
-			group.CityId = response.ContainsKey("city") ? response["city"]["id"] : null;
-			group.CountryId = response.ContainsKey("country") ? response["country"]["id"] : null;
-			group.Place = response["place"];
-			group.Description = response["description"];
-			group.WikiPage = response["wiki_page"];
-			group.MembersCount = response["members_count"];
-			group.Counters = response["counters"];
-			group.StartDate = response["start_date"];
-			group.EndDate = response["finish_date"] ?? response["end_date"];
-			group.CanPost = response["can_post"];
-			group.CanSeelAllPosts = response["can_see_all_posts"];
-			group.CanUploadDocuments = response["can_upload_doc"];
-			group.CanCreateTopic = response["can_create_topic"];
-			group.Activity = response["activity"];
-			group.Status = response["status"];
-			group.Contacts = response["contacts"];
-			group.Links = response["links"];
-			group.FixedPostId = response["fixed_post"];
-			group.IsVerified = response["verified"];
-			group.Site = response["site"];
-			group.InvitedBy = response["invited_by"];
-			group.IsFavorite = response["is_favorite"];
+				// опциональные поля
+				City = response["city"],
+				Country = response["country"],
+				Place = response["place"],
+				Description = response["description"],
+				WikiPage = response["wiki_page"],
+				MembersCount = response["members_count"],
+				Counters = response["counters"],
+				StartDate = response["start_date"],
+				EndDate = response["finish_date"] ?? response["end_date"],
+				CanPost = response["can_post"],
+				CanSeelAllPosts = response["can_see_all_posts"],
+				CanUploadDocuments = response["can_upload_doc"],
+				CanCreateTopic = response["can_create_topic"],
+				Activity = response["activity"],
+				Status = response["status"],
+				Contacts = response["contacts"],
+				Links = response["links"],
+				FixedPostId = response["fixed_post"],
+				IsVerified = response["verified"],
+				Site = response["site"],
+				InvitedBy = response["invited_by"],
+				IsFavorite = response["is_favorite"],
+				BanInfo = response["ban_info"],
+				CanUploadVideo = response["can_upload_video"],
+				MainAlbumId = response["main_album_id"],
+				IsHiddenFromFeed = response["is_hidden_from_feed"],
+				MainSection = response["main_section"]
+			};
 
 			return group;
 		}
-
-
 
 		#endregion
 	}

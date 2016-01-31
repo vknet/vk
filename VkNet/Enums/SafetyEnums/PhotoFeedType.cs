@@ -1,9 +1,18 @@
 ﻿namespace VkNet.Enums.SafetyEnums
 {
-    public sealed class PhotoFeedType : SafetyEnum<PhotoFeedType>
-    {
-        public static PhotoFeedType Photo = RegisterPossibleValue("photo");
+	/// <summary>
+	/// Тип канала новостей.
+	/// </summary>
+	public sealed class PhotoFeedType : SafetyEnum<PhotoFeedType>
+	{
+		/// <summary>
+		/// Фото.
+		/// </summary>
+		public static PhotoFeedType Photo = RegisterPossibleValue("photo");
 
-        public static PhotoFeedType PhotoTag = RegisterPossibleValue("photo_tag");
-    }
+		/// <summary>
+		/// Тег фото.
+		/// </summary>
+		public static PhotoFeedType PhotoTag = RegisterPossibleValue("photo_tag");
+	}
 }

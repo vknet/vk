@@ -108,13 +108,18 @@ namespace VkNet.Enums.Filters
         /// Для получения дополнительного поля <see cref="Group.Site"/>.
         /// </summary>
         public static readonly GroupsFields Site = RegisterPossibleValue(1 << 19, "site");
-        
-        /// <summary>
-        /// Для получения всех дополнительных полей.
-        /// </summary>
-        public static readonly GroupsFields All = CityId | CountryId | Place | Description | WikiPage | MembersCount | Counters |
+
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="Group.BanInfo"/>.
+		/// </summary>
+		public static readonly GroupsFields BanInfo = RegisterPossibleValue(1 << 20, "ban_info");
+
+		/// <summary>
+		/// Для получения всех дополнительных полей.
+		/// </summary>
+		public static readonly GroupsFields All = CityId | CountryId | Place | Description | WikiPage | MembersCount | Counters |
             StartDate | EndDate | CanPost | CanSeelAllPosts | CanCreateTopic | Activity | Status | Contacts | Links | FixedPostId | 
-            IsVerified | Site;
+            IsVerified | Site | BanInfo;
 
         /// <summary>
         /// Для получения всех дополнительных полей (оказалаось, что некоторые поля пропущены в документации).

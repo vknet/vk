@@ -1,5 +1,7 @@
 ﻿namespace VkNet.Model
 {
+    using System;
+
     using Categories;
     using Utils;
 
@@ -7,6 +9,7 @@
     /// Информация о месте, в котором была сделана запись.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/> и <see href="http://vk.com/dev/fields_groups"/>. Раздел place.
     /// </summary>
+    [Serializable]
     public class Place
     {
         /// <summary>
@@ -35,7 +38,7 @@
         public long? TypeId { get; set; }
 
         /// <summary>
-        /// Идентификатор страны, название которой можно получить с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>. 
+        /// Идентификатор страны, название которой можно получить с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>.
         /// </summary>
         public long? CountryId { get; set; }
 
@@ -45,12 +48,12 @@
         public long? CityId { get; set; }
 
         /// <summary>
-        /// Строка с указанием адреса места в городе. 
+        /// Строка с указанием адреса места в городе.
         /// </summary>
         public string Address { get; set; }
 
         /// <summary>
-        /// Данный параметр указывается, если местоположение является прикреплённой картой. 
+        /// Данный параметр указывается, если местоположение является прикреплённой картой.
         /// </summary>
         public bool ShowMap { get; set; }
 
@@ -66,30 +69,35 @@
         /// </summary>
         public string City { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Place FromJson(VkResponse response)
+		{
+			var place = new Place
+			{
+				Id = response["place_id"] ?? response["id"],
+				Title = response["title"],
+				Latitude = (int?)(double?)response["latitude"],       // TODO: refactor this shit
+				Longitude = (int?)(double?)response["longitude"],     // TODO: refactor this shit
+				TypeId = response["type"],
+				CountryId = response["country_id"],
+				CityId = response["city_id"],
+				Address = response["address"],
+				ShowMap = response["showmap"],
 
-        internal static Place FromJson(VkResponse response)
-        {
-            var place = new Place();
+				Country = response["country"], // установлено экcпериментальным путем
+				City = response["city"] // установлено экcпериментальным путем
+			};
 
-            place.Id = response["place_id"] ?? response["id"];
-            place.Title = response["title"];
-            place.Latitude = (int?)(double?)response["latitude"];       // TODO: refactor this shit
-            place.Longitude = (int?)(double?)response["longitude"];     // TODO: refactor this shit
-            place.TypeId = response["type"];
-            place.CountryId = response["country_id"];
-            place.CityId = response["city_id"];
-            place.Address = response["address"];
-            place.ShowMap = response["showmap"];
+			return place;
+		}
 
-            place.Country = response["country"]; // установлено экcпериментальным путем
-            place.City = response["city"]; // установлено экcпериментальным путем
-
-            return place;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

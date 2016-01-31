@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VkNet.Enums.Filters
+﻿namespace VkNet.Enums.Filters
 {
 	/// <summary>
-	/// Вид публичной страницы: (учитывается только при создании публичных страниц) 
+	/// Вид публичной страницы: (учитывается только при создании публичных страниц)
 	/// </summary>
 	public enum GroupSubType
-	{ 
+	{
 		/// <summary>
 		/// 1 – Место или небольшая компания
 		/// </summary>
 		PlaceOrSmallCompany = 1,
 		/// <summary>
-		/// 2 – Компания, организация или веб-сайт 
+		/// 2 – Компания, организация или веб-сайт
 		/// </summary>
 		OrganizationOrWebsite,
 		/// <summary>

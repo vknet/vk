@@ -10,11 +10,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
         [Test]
         public void PhotoAlbumType_ToString_NormalCase()
         {
-            PhotoAlbumType wall = PhotoAlbumType.Wall;
-            PhotoAlbumType profile = PhotoAlbumType.Profile;
-            PhotoAlbumType saved = PhotoAlbumType.Saved;
+            var wall = PhotoAlbumType.Wall;
+			var profile = PhotoAlbumType.Profile;
+            var saved = PhotoAlbumType.Saved;
 
-            wall.ToString().ShouldEqual("wall");
+			wall.ToString().ShouldEqual("wall");
             profile.ToString().ShouldEqual("profile");
             saved.ToString().ShouldEqual("saved");
         }

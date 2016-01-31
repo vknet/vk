@@ -1,6 +1,7 @@
 ﻿namespace VkNet.Model
 {
-    using System.Collections.ObjectModel;    
+    using System;
+    using System.Collections.ObjectModel;
 
     using Enums;
     using Utils;
@@ -9,6 +10,7 @@
     /// Жизненная позиция (Personal).
     /// Данная информация не документирована в официальном API ВКонтакте и восстановлена по ответам.
     /// </summary>
+    [Serializable]
     public class StandInLife
     {
         /// <summary>
@@ -51,24 +53,29 @@
         /// </summary>
         public Attitude Alcohol { get; set; }
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static StandInLife FromJson(VkResponse response)
+		{
+			var standInLife = new StandInLife
+			{
+				Political = response["political"],
+				Languages = response["langs"],
+				Religion = response["religion"],
+				InspiredBy = response["inspired_by"],
+				PeopleMain = response["people_main"],
+				LifeMain = response["life_main"],
+				Smoking = response["smoking"],
+				Alcohol = response["alcohol"]
+			};
 
-        internal static StandInLife FromJson(VkResponse response)
-        {
-            var standInLife = new StandInLife();
+			return standInLife;
+		}
 
-            standInLife.Political = response["political"];
-            standInLife.Languages = response["langs"];
-            standInLife.Religion = response["religion"];
-            standInLife.InspiredBy = response["inspired_by"];
-            standInLife.PeopleMain = response["people_main"];
-            standInLife.LifeMain = response["life_main"];
-            standInLife.Smoking = response["smoking"];
-            standInLife.Alcohol = response["alcohol"];
-
-            return standInLife;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -38,46 +38,46 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCount_UserHasNoAudio_ReturnsZero()
         {
-            const string url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=5.5&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=5.44&access_token=token";
+			const string json =
                 @"{
                     response: 0
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            int count = audio.GetCount(1);
+            var count = audio.GetCount(1);
 
-            Assert.That(count, Is.EqualTo(0));
+			Assert.That(count, Is.EqualTo(0));
         }
 
         [Test]
         public void GetCount_UserHasAudio_ReturnsCountOfRecords()
         {
-            const string url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=5.5&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=5.44&access_token=token";
+			const string json =
                 @"{
                     response: 158
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            int count = audio.GetCount(1);
+            var count = audio.GetCount(1);
 
-            Assert.That(count, Is.EqualTo(158));
+			Assert.That(count, Is.EqualTo(158));
         }
 
         [Test]
         public void GetCount_GroupHasAudio_ReturnsCountOfRecords()
         {
-            const string url = "https://api.vk.com/method/audio.getCount?owner_id=-1158263&v=5.5&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.getCount?owner_id=-1158263&v=5.44&access_token=token";
+			const string json =
                 @"{
                     response: 4
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            int count = audio.GetCount(-1158263);
+            var count = audio.GetCount(-1158263);
 
-            Assert.That(count, Is.EqualTo(4));
+			Assert.That(count, Is.EqualTo(4));
         }
 
         #endregion
@@ -94,8 +94,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetLyrics_2662381_ReturnsLyrics()
         {
-            const string url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=2662381&v=5.5&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=2662381&v=5.44&access_token=token";
+			const string json =
                 @"{
                     response: {
                       lyrics_id: 2662381,
@@ -104,17 +104,17 @@ namespace VkNet.Tests.Categories
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            Lyrics lyrics = audio.GetLyrics(2662381);
+            var lyrics = audio.GetLyrics(2662381);
 
-            Assert.That(lyrics.Id, Is.EqualTo(2662381));
+			Assert.That(lyrics.Id, Is.EqualTo(2662381));
             Assert.That(lyrics.Text, Is.EqualTo("Seht ihr mich?\nVersteht ihr mich?\nFühlt ihr mich?\nHört ihr mich?"));
         }
 
         [Test]
         public void GetLyrics_WrongLyricsId_ReturnsEmptyLyrics()
         {
-            const string url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=-1&v=5.5&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=-1&v=5.44&access_token=token";
+			const string json =
                 @"{
                     response: {
                       lyrics_id: -1,
@@ -123,9 +123,9 @@ namespace VkNet.Tests.Categories
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
-            Lyrics lyrics = audio.GetLyrics(-1);
+            var lyrics = audio.GetLyrics(-1);
 
-            Assert.That(lyrics.Id, Is.EqualTo(-1));
+			Assert.That(lyrics.Id, Is.EqualTo(-1));
             Assert.That(lyrics.Text, Is.Null.Or.Empty);
         }
 
@@ -150,8 +150,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetById_WrongId_ReturnsEmptyList()
         {
-            const string url = "https://api.vk.com/method/audio.getById?audios=2e4w_67859ds194&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.getById?audios=2e4w_67859ds194&v=5.44&access_token=token";
+			const string json =
                 @"{
                     response: []
                   }";
@@ -165,8 +165,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetById_NormalCase_ListOfAudioObjects()
         {
-            const string url = "https://api.vk.com/method/audio.getById?audios=4793858_158073513,2_63937759&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.getById?audios=4793858_158073513,2_63937759&v=5.44&access_token=token";
+			const string json =
                 @"{
                     response: [
                       {
@@ -230,18 +230,17 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetUploadServer_NormalCase_ReturnUploadUrl()
         {
-            const string url = "https://api.vk.com/method/audio.getUploadServer?access_token=token";
-            const string json =
-                @"{
+			const string url = "https://api.vk.com/method/audio.getUploadServer?v=5.44&access_token=token";
+			const string json =
+				@"{
                     'response': {
                       'upload_url': 'http://cs6173.vk.com/upload.php?act=add_audio&mid=4793858&aid=0&gid=0&hash=a1ec03d21addb2d8cf371db90c79f592&rhash=e5eda6ac5b469953c4d15d0c02d364f2&api=1'
                     }
                   }";
+			var audio = GetMockedAudioCategory(url, json);
+            var uploadUrl = audio.GetUploadServer();
 
-            var audio = GetMockedAudioCategory(url, json);
-            string uploadUrl = audio.GetUploadServer();
-
-            Assert.That(uploadUrl, Is.EqualTo("http://cs6173.vk.com/upload.php?act=add_audio&mid=4793858&aid=0&gid=0&hash=a1ec03d21addb2d8cf371db90c79f592&rhash=e5eda6ac5b469953c4d15d0c02d364f2&api=1"));
+            Assert.That(uploadUrl, Is.EqualTo(new Uri("http://cs6173.vk.com/upload.php?act=add_audio&mid=4793858&aid=0&gid=0&hash=a1ec03d21addb2d8cf371db90c79f592&rhash=e5eda6ac5b469953c4d15d0c02d364f2&api=1")));
         }
 
         [Test]
@@ -254,8 +253,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_NormalCaseDefaultValues_ListOfAudioObjects()
         {
-            const string url = "https://api.vk.com/method/audio.get?uid=4793858&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.get?owner_id=4793858&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': [
                       {
@@ -302,8 +301,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetFromGroup_NormalCase_ReturnListOfAudio()
         {
-            const string url = "https://api.vk.com/method/audio.get?gid=28622822&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.get?owner_id=28622822&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': [
                       {
@@ -346,7 +345,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_WithOutUserAndAllFields_ReturnListOfAudio()
         {
-			const string url = "https://api.vk.com/method/audio.get?uid=4793858&need_user=1&offset=5&count=3&access_token=token";
+			const string url = "https://api.vk.com/method/audio.get?owner_id=4793858&need_user=1&offset=5&count=3&v=5.44&access_token=token";
 
 			const string json =
                 @"{
@@ -387,13 +386,13 @@ namespace VkNet.Tests.Categories
 
             User user;
             var category = GetMockedAudioCategory(url, json);
-            ReadOnlyCollection<Audio> audios = category.Get(4793858, out user, null, null, 3, 5);
+            var audios = category.Get(4793858, out user, null, null, 3, 5);
 
-            Assert.That(audios.Count, Is.EqualTo(3));
+			Assert.That(audios.Count, Is.EqualTo(3));
 
             Assert.That(user, Is.Not.Null);
             Assert.That(user.Id, Is.EqualTo(4793858));
-            Assert.That(user.PhotoPreviews.Photo50, Is.EqualTo("http://cs9215.userapi.com/u4793858/e_1b975695.jpg"));
+            Assert.That(user.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9215.userapi.com/u4793858/e_1b975695.jpg")));
             Assert.That(user.FirstName, Is.EqualTo("Антон"));
             Assert.That(user.LastName, Is.EqualTo("Жидков"));
 
@@ -423,7 +422,7 @@ namespace VkNet.Tests.Categories
         public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidExcpetion()
         {
             var audio = new AudioCategory(new VkApi());
-            int totalCount;
+            long totalCount;
             This.Action(() => audio.Search("Beatles", out totalCount)).Throws<AccessTokenInvalidException>();
         }
 
@@ -431,15 +430,15 @@ namespace VkNet.Tests.Categories
         public void Search_QueryEmptyOrNull_ThrowsArgumentException()
         {
             var audio = GetMockedAudioCategory("", "");
-            int totalCount;
+			long totalCount;
             This.Action(() => audio.Search("", out totalCount)).Throws<ArgumentException>();
         }
 
         [Test]
         public void Search_NotExistedQuery_EmptyList()
         {
-            const string url = "https://api.vk.com/method/audio.search?q=ThisQueryDoesNotExistAtAll&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.search?q=ThisQueryDoesNotExistAtAll&count=0&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': [
                       0
@@ -448,7 +447,7 @@ namespace VkNet.Tests.Categories
 
             var audio = GetMockedAudioCategory(url, json);
 
-            int totalCount;
+			long totalCount;
             var auds = audio.Search("ThisQueryDoesNotExistAtAll", out totalCount);
 
             Assert.That(totalCount, Is.EqualTo(0));
@@ -459,7 +458,7 @@ namespace VkNet.Tests.Categories
         public void Search_NormalCaseAllFields_ListOfAudios()
         {
             const string url =
-                "https://api.vk.com/method/audio.search?q=иуфедуы&auto_complete=1&sort=1&lyrics=1&count=3&offset=5&access_token=token";
+                "https://api.vk.com/method/audio.search?q=иуфедуы&auto_complete=1&sort=1&lyrics=1&count=3&offset=5&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -498,7 +497,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var category = GetMockedAudioCategory(url, json);
-            int totalCount;
+			long totalCount;
             var auds = category.Search("иуфедуы", out totalCount, true, AudioSort.Duration, true, 3, 5);
 
             Assert.That(auds.Count, Is.EqualTo(3));
@@ -536,14 +535,14 @@ namespace VkNet.Tests.Categories
         public void Add_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            This.Action(() => audio.Add(0, 0)).Throws<AccessTokenInvalidException>();
+            This.Action(() => audio.Add(0, 0, null, null)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
         public void Add_InvalidInputParam_ThrowsInvalidParameterException()
         {
-            const string url = "https://api.vk.com/method/audio.add?aid=0&oid=0&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.add?audio_id=0&owner_id=0&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'error': {
                       'error_code': 100,
@@ -580,8 +579,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Add_AddToCuurentUser_AudioId()
         {
-            const string url = "https://api.vk.com/method/audio.add?aid=141104180&oid=2289065&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.add?audio_id=141104180&owner_id=2289065&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': 159200195
                   }";
@@ -594,9 +593,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Add_AddToGroup_AudioId()
         {
-            const string url =
-                "https://api.vk.com/method/audio.add?aid=141104180&oid=2289065&gid=1158263&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.add?audio_id=141104180&owner_id=2289065&group_id=1158263&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': 160532304
                   }";
@@ -616,37 +614,37 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Delete_NoramCaseUser_ReturnTrue()
         {
-            const string url = "https://api.vk.com/method/audio.delete?aid=159203048&oid=4793858&access_token=token";
+            const string url = "https://api.vk.com/method/audio.delete?aid=159203048&oid=4793858&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': 1
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            bool result = cat.Delete(159203048, 4793858);
+            var result = cat.Delete(159203048, 4793858);
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
         public void Delete_NoramCaseGroup_ReturnTrue()
         {
-            const string url = "https://api.vk.com/method/audio.delete?aid=160532304&oid=-1158263&access_token=token";
+            const string url = "https://api.vk.com/method/audio.delete?aid=160532304&oid=-1158263&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': 1
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            bool result = cat.Delete(160532304, -1158263);
+            var result = cat.Delete(160532304, -1158263);
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
         public void Delete_WrongInputParams_ThrowsInvalidParameterException()
         {
-            const string url = "https://api.vk.com/method/audio.delete?aid=0&oid=0&access_token=token";
+            const string url = "https://api.vk.com/method/audio.delete?aid=0&oid=0&v=5.44&access_token=token";
             const string json =
                 @"{
                     'error': {
@@ -685,41 +683,41 @@ namespace VkNet.Tests.Categories
         public void Edit_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var audio = new AudioCategory(new VkApi());
-            This.Action(() => audio.Edit(0, 0, "", "", "")).Throws<AccessTokenInvalidException>();
+            This.Action(() => audio.Edit(0, 0, "", "", "", null, null)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
         public void Edit_ArtistParamIsNull_ThrowsArgumentNullException()
         {
             var cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.Edit(0, 0, null, "", "")).Throws<ArgumentNullException>();
+            This.Action(() => cat.Edit(0, 0, null, "", "", null, null)).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void Edit_TitleParamIsNull_ThrowsArgumentNullException()
         {
             var cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.Edit(0, 0, "", null, "")).Throws<ArgumentNullException>();
+            This.Action(() => cat.Edit(0, 0, "", null, "", null, null)).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void Edit_TextParamIsNull_ThrowsArgumentNullException()
         {
             var cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.Edit(0, 0, "", "", null)).Throws<ArgumentNullException>();
+            This.Action(() => cat.Edit(0, 0, "", "", null, null, null)).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void Edit_NoramCase_ReturnLyricsId()
         {
-			const string url = "https://api.vk.com/method/audio.edit?aid=159207130&oid=4793858&artist=Test Artist&title=Test Title&text=Test Text&no_search=0&genre_id=18&access_token=token";
+			const string url = "https://api.vk.com/method/audio.edit?owner_id=4793858&audio_id=159207130&artist=Test Artist&title=Test Title&text=Test Text&genre_id=1&v=5.44&access_token=token";
 			const string json =
                 @"{
                     'response': 26350163
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            var id = cat.Edit(159207130, 4793858, "Test Artist", "Test Title", "Test Text");
+            var id = cat.Edit(159207130, 4793858, "Test Artist", "Test Title", "Test Text", null, AudioGenre.Rock);
 
             Assert.That(id, Is.EqualTo(26350163));
         }
@@ -727,7 +725,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Edit_WrongInputParams_ThrowsInvalidParameterException()
         {
-			const string url = "https://api.vk.com/method/audio.edit?aid=0&oid=0&artist=Test Artist&title=Test Title&text=Test Text&no_search=0&genre_id=18&access_token=token";
+			const string url = "https://api.vk.com/method/audio.edit?owner_id=0&audio_id=0&artist=Test Artist&title=Test Title&text=Test Text&genre_id=18&v=5.44&access_token=token";
 			const string json =
                 @"{
                     'error': {
@@ -776,7 +774,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedAudioCategory(url, json);
 
-            This.Action(() => cat.Edit(0, 0, "Test Artist", "Test Title", "Test Text")).Throws<InvalidParameterException>();
+            This.Action(() => cat.Edit(0, 0, "Test Artist", "Test Title", "Test Text", false, AudioGenre.Other)).Throws<InvalidParameterException>();
         }
 
         [Test]
@@ -789,7 +787,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Restore_InvalidInputParams_ThrowsInvalidParameterException()
         {
-            const string url = "https://api.vk.com/method/audio.restore?aid=0&oid=0&access_token=token";
+            const string url = "https://api.vk.com/method/audio.restore?aid=0&oid=0&v=5.44&access_token=token";
             const string json =
                 @"{
                     'error': {
@@ -827,7 +825,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Restore_NoramCase_ReturnAudioObject()
         {
-            const string url = "https://api.vk.com/method/audio.restore?aid=159209928&access_token=token";
+            const string url = "https://api.vk.com/method/audio.restore?aid=159209928&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -842,22 +840,22 @@ namespace VkNet.Tests.Categories
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            Audio a = cat.Restore(159209928);
+            var audio = cat.Restore(159209928);
 
-            Assert.That(a.Id, Is.EqualTo(159209928));
-            Assert.That(a.OwnerId, Is.EqualTo(4793858));
-            Assert.That(a.Artist, Is.EqualTo("2560 The BEATLES (цикл передач на РАДИО СВОБОДА)"));
-            Assert.That(a.Title, Is.EqualTo("Джон, Пол, Ждордж, Ринго - работа для кино"));
-            Assert.That(a.Duration, Is.EqualTo(3180));
-            Assert.That(a.Url.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/4529541451fe.mp3"));
-            Assert.That(a.LyricsId, Is.EqualTo(23484916));
+			Assert.That(audio.Id, Is.EqualTo(159209928));
+            Assert.That(audio.OwnerId, Is.EqualTo(4793858));
+            Assert.That(audio.Artist, Is.EqualTo("2560 The BEATLES (цикл передач на РАДИО СВОБОДА)"));
+            Assert.That(audio.Title, Is.EqualTo("Джон, Пол, Ждордж, Ринго - работа для кино"));
+            Assert.That(audio.Duration, Is.EqualTo(3180));
+            Assert.That(audio.Url.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/4529541451fe.mp3"));
+            Assert.That(audio.LyricsId, Is.EqualTo(23484916));
 
         }
 
         [Test]
         public void Restore_AudioNotDeletedYet_Throw()
         {
-            const string url = "https://api.vk.com/method/audio.restore?aid=159210112&access_token=token";
+            const string url = "https://api.vk.com/method/audio.restore?aid=159210112&v=5.44&access_token=token";
             const string json =
                 @"{
                     'error': {
@@ -899,10 +897,9 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Reorder_InvalidInputParams_ThrowsInvalidParameterException()
         {
-            const string url =
-                "https://api.vk.com/method/audio.reorder?aid=0&oid=0&after=159104443&before=158945986&access_token=token";
+			const string url = "https://api.vk.com/method/audio.reorder?audio_id=0&owner_id=0&before=159104443&after=158945986&v=5.44&access_token=token";
 
-            const string json =
+			const string json =
                 @"{
                     'error': {
                       'error_code': 100,
@@ -947,27 +944,27 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Reorder_NormalCase_ReturnTrue()
         {
-            const string url = "https://api.vk.com/method/audio.reorder?aid=159210112&oid=4793858&after=159104443&before=158945986&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.reorder?audio_id=159210112&owner_id=4793858&before=159104443&after=158945986&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': 1
                   }";
 
             var cat = GetMockedAudioCategory(url, json);
-            bool result = cat.Reorder(159210112, 4793858, 159104443, 158945986);
-            Assert.That(result, Is.True);
+            var result = cat.Reorder(159210112, 4793858, 159104443, 158945986);
+			Assert.That(result, Is.True);
         }
 
         [Test]
         public void AddAlbum_ToUser_NormalCase()
         {
-//            const string url = "https://api.vk.com/method/audio.addAlbum?title=тестовый альбом&access_token=token";
+//            const string url = "https://api.vk.com/method/audio.addAlbum?title=тестовый альбом&v=5.44&access_token=token";
 //            const string json =
 //                @"{
 //                    'album_id': 45282793
 //                  }";
 
-            const string url = "https://api.vk.com/method/audio.addAlbum?title=тестовый альбом&access_token=token";
+            const string url = "https://api.vk.com/method/audio.addAlbum?title=тестовый альбом&v=5.44&access_token=token";
             const string json =
                   @"{
                     'response': {
@@ -975,9 +972,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ulong albumId = cat.AddAlbum("тестовый альбом");
+			var albumId = cat.AddAlbum("тестовый альбом");
 
             Assert.That(albumId, Is.EqualTo(45284861));
         }
@@ -985,17 +982,17 @@ namespace VkNet.Tests.Categories
         [Test]
         public void AddAlbum_ToGroup_NormalCase()
         {
-            const string url = "https://api.vk.com/method/audio.addAlbum?title=Test audio category&group_id=65968887&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.addAlbum?group_id=65968887&title=Test audio category&v=5.44&access_token=token";
+			const string json =
             @"{
                     'response': {
                       'album_id': 45302272
                     }
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ulong albumId = cat.AddAlbum("Test audio category", 65968887);
+			var albumId = cat.AddAlbum("Test audio category", 65968887);
 
             Assert.That(albumId, Is.EqualTo(45302272));
         }
@@ -1003,29 +1000,29 @@ namespace VkNet.Tests.Categories
         [Test]
         public void AddAlbum_TitleIsEmpty_ThrowException()
         {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.AddAlbum("")).Throws<ArgumentNullException>();
+            var cat = GetMockedAudioCategory("", "");
+			This.Action(() => cat.AddAlbum("")).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void AddAlbum_GroupIdIsNegative_ThrowException()
         {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.AddAlbum("test title", 0)).Throws<ArgumentException>();
+            var cat = GetMockedAudioCategory("", "");
+			This.Action(() => cat.AddAlbum("test title", 0)).Throws<ArgumentException>();
         }
 
         [Test]
         public void EditAlbum_EditUserAlbum_NormalCase()
         {
-            const string url = "https://api.vk.com/method/audio.editAlbum?title=еще один альбом&album_id=45284866&access_token=token";
+            const string url = "https://api.vk.com/method/audio.editAlbum?title=еще один альбом&album_id=45284866&v=5.44&access_token=token";
             const string json =
             @"{
                     'response': 1
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.EditAlbum("еще один альбом", 45284866);
+			var result = cat.EditAlbum("еще один альбом", 45284866);
 
             Assert.That(result, Is.True);
         }
@@ -1033,14 +1030,14 @@ namespace VkNet.Tests.Categories
         [Test]
         public void EditAlbum_EditGroupAlbum_NormalCase()
         {
-            const string url = "https://api.vk.com/method/audio.editAlbum?title=audio category 222&group_id=65968885&album_id=45302272&access_token=token";
+            const string url = "https://api.vk.com/method/audio.editAlbum?title=audio category 222&group_id=65968885&album_id=45302272&v=5.44&access_token=token";
             const string json =
             @"{
                     'response': 1
                   }";
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.EditAlbum("audio category 222", albumId: 45302272, groupId: 65968885);
+			var result = cat.EditAlbum("audio category 222", albumId: 45302272, groupId: 65968885);
 
             Assert.That(result, Is.True);
         }
@@ -1048,29 +1045,29 @@ namespace VkNet.Tests.Categories
         [Test]
         public void EditAlbum_TitleIsEmpty_ThrowException()
         {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.EditAlbum("", 1234567)).Throws<ArgumentNullException>();
+            var cat = GetMockedAudioCategory("", "");
+			This.Action(() => cat.EditAlbum("", 1234567)).Throws<ArgumentNullException>();
         }
 
         [Test]
         public void EditAlbum_GroupIdIsNegative_ThrowException()
         {
-            AudioCategory cat = GetMockedAudioCategory("", "");
-            This.Action(() => cat.EditAlbum("title", 1234567, 0)).Throws<ArgumentException>();
+            var cat = GetMockedAudioCategory("", "");
+			This.Action(() => cat.EditAlbum("title", 1234567, 0)).Throws<ArgumentException>();
         }
 
         [Test]
         public void DeleteAlbum_FromUser_NormalCase()
         {
-            const string url = "https://api.vk.com/method/audio.deleteAlbum?album_id=45282792&access_token=token";
+            const string url = "https://api.vk.com/method/audio.deleteAlbum?album_id=45282792&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': 1
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.DeleteAlbum(45282792);
+			var result = cat.DeleteAlbum(45282792);
 
             Assert.That(result, Is.True);
         }
@@ -1078,23 +1075,23 @@ namespace VkNet.Tests.Categories
         [Test]
         public void DeleteAlbum_FromGroup_NormalCase()
         {
-            const string url = "https://api.vk.com/method/audio.deleteAlbum?album_id=45302272&group_id=65968885&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.deleteAlbum?group_id=65968885&album_id=45302272&v=5.44&access_token=token";
+			const string json =
             @"{
                     'response': 1
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.DeleteAlbum(45302272, 65968885);
+            var result = cat.DeleteAlbum(45302272, 65968885);
 
-            Assert.That(result, Is.True);
+			Assert.That(result, Is.True);
         }
 
         [Test]
         public void GetPopular_GetOnly3RapRecords()
         {
-            const string url = "https://api.vk.com/method/audio.getPopular?only_eng=0&genre_id=3&offset=2&count=3&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getPopular?only_eng=0&genre_id=3&offset=2&count=3&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -1130,9 +1127,9 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ReadOnlyCollection<Audio> result = cat.GetPopular(genre: AudioGenre.RapAndHipHop, count: 3, offset: 2);
+			var result = cat.GetPopular(genre: AudioGenre.RapAndHipHop, count: 3, offset: 2);
 
             Assert.That(result.Count, Is.EqualTo(3));
 
@@ -1166,7 +1163,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAlbums_FromUser_NormalCase()
         {
-            const string url = "https://api.vk.com/method/audio.getAlbums?owner_id=23465118&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getAlbums?owner_id=23465118&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -1184,9 +1181,9 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            var result = cat.GetAlbums(23465118);
+			var result = cat.GetAlbums(23465118);
 
             Assert.That(result.Count, Is.EqualTo(2));
 
@@ -1202,16 +1199,16 @@ namespace VkNet.Tests.Categories
         [Test]
         public void MoveToAlbum_ToUserAlbum()
         {
-            const string url = "https://api.vk.com/method/audio.moveToAlbum?album_id=45303161&audio_ids=258542771,258542571&access_token=token";
+            const string url = "https://api.vk.com/method/audio.moveToAlbum?album_id=45303161&audio_ids=258542771,258542571&v=5.44&access_token=token";
              const string json =
                 @"{
                     'response': 1
                   }";
 
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            bool result = cat.MoveToAlbum(45303161, new ulong[] {258542771, 258542571});
+			var result = cat.MoveToAlbum(45303161, new long[] {258542771, 258542571});
 
             Assert.That(result, Is.True);
         }
@@ -1219,7 +1216,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetRecommendations_TargetAudio_NormalCase()
         {
-            const string url = "https://api.vk.com/method/audio.getRecommendations?target_audio=2314852_190922480&count=2&shuffle=1&access_token=token";
+            const string url = "https://api.vk.com/method/audio.getRecommendations?target_audio=2314852_190922480&count=2&shuffle=1&v=5.44&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -1244,9 +1241,9 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ReadOnlyCollection<Audio> result = cat.GetRecommendations(targetAudio: "2314852_190922480", count: 2);
+			var result = cat.GetRecommendations(targetAudio: "2314852_190922480", count: 2);
 
             Assert.That(result.Count, Is.EqualTo(2));
 
@@ -1270,7 +1267,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void SetBroadcast_NormalCase()
         {
-            const string url = "https://api.vk.com/method/audio.setBroadcast?audio=210002_66529476&target_ids=234695118,-65968880&access_token=token";
+            const string url = "https://api.vk.com/method/audio.setBroadcast?audio=210002_66529476&target_ids=234695118,-65968880&v=5.44&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -1279,9 +1276,9 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-            AudioCategory cat = GetMockedAudioCategory(url, json);
+            var cat = GetMockedAudioCategory(url, json);
 
-            ReadOnlyCollection<long> ids = cat.SetBroadcast("210002_66529476", new long[] {234695118, -65968880});
+			var ids = cat.SetBroadcast("210002_66529476", new long[] {234695118, -65968880});
 
             Assert.That(ids.Count, Is.EqualTo(2));
             Assert.That(ids[0], Is.EqualTo(234695118));

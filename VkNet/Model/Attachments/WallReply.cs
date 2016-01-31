@@ -3,39 +3,68 @@ using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
-    public class WallReply : MediaAttachment
+	/// <summary>
+	/// Комментарий к записи на стене.
+	/// </summary>
+	public class WallReply : MediaAttachment
     {
-        static WallReply()
+		/// <summary>
+		/// Комментарий к записи на стене.
+		/// </summary>
+		static WallReply()
         {
             RegisterType(typeof(WallReply), "wall_reply");
         }
 
-        public long? FromId { get; set; }
+		/// <summary>
+		/// Идентификатор автора комментария.
+		/// </summary>
+		public long? FromId { get; set; }
 
-        public DateTime? Date { get; set; }
+		/// <summary>
+		/// Дата создания комментария в формате unixtime.
+		/// </summary>
+		public DateTime? Date { get; set; }
 
-        public string Text { get; set; }
+		/// <summary>
+		/// Текст комментария.
+		/// </summary>
+		public string Text { get; set; }
 
-        public Likes Likes { get; set; }
+		/// <summary>
+		/// Информация о лайках к комментарию.
+		/// </summary>
+		public Likes Likes { get; set; }
 
-        public long? ReplyToUId { get; set; }
+		/// <summary>
+		/// Идентификатор пользователя, в ответ которому был оставлен комментарий;
+		/// </summary>
+		public long? ReplyToUId { get; set; }
 
-        public long? ReplyToCId { get; set; }
+		/// <summary>
+		/// Идентификатор комментария, в ответ на который был оставлен текущий.
+		/// </summary>
+		public long? ReplyToCId { get; set; }
 
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static WallReply FromJson(VkResponse response)
+		{
+			var wallReply = new WallReply
+			{
+				Id = response["id"] ?? response["cid"],
+				FromId = response["from_id"] ?? response["uid"],
+				Date = response["date"],
+				Text = response["text"],
+				Likes = response["likes"],
+				ReplyToUId = response["reply_to_uid"],
+				ReplyToCId = response["reply_to_cid"]
+			};
 
-        internal static WallReply FromJson(VkResponse response)
-        {
-            var wallReply = new WallReply();
-
-            wallReply.Id = response["id"];
-            wallReply.FromId = response["from_id"];
-            wallReply.Date = response["date"];
-            wallReply.Text = response["text"];
-            wallReply.Likes = response["likes"];
-            wallReply.ReplyToUId = response["reply_to_uid"];
-            wallReply.ReplyToCId = response["reply_to_cid"];
-
-            return wallReply;
-        }
-    }
+			return wallReply;
+		}
+	}
 }

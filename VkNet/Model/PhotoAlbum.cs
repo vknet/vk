@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -9,93 +12,126 @@ namespace VkNet.Model
     public class PhotoAlbum
     {
         /// <summary>
-        /// идентификатор созданного альбома
+        /// Идентификатор созданного альбома
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// идентификатор фотографии, которая является обложкой альбома
+        /// Идентификатор фотографии, которая является обложкой альбома
         /// </summary>
         public long? ThumbId { get; set; }
 
         /// <summary>
-        /// идентификатор пользователя или сообщества, которому принадлежит альбом
+        /// Идентификатор пользователя или сообщества, которому принадлежит альбом
         /// </summary>
         public long? OwnerId { get; set; }
 
         /// <summary>
-        /// название альбома
+        /// Название альбома
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// описание альбома
+        /// Описание альбома
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// дата создания альбома
+        /// Дата создания альбома
         /// </summary>
         public DateTime? Created { get; set; }
 
         /// <summary>
-        /// дата обновления альбома
+        /// Дата обновления альбома
         /// </summary>
         public DateTime? Updated { get; set; }
 
         /// <summary>
-        /// количество фотографий в альбоме
+        /// Количество фотографий в альбоме
         /// </summary>
         public int? Size { get; set; }
 
-        /// <summary>
-        /// настройки приватности для просмотра альбома
-        /// </summary>
-        public long? Privacy { get; set; }
+		/// <summary>
+		/// Настройки приватности для альбома в формате настроек приватности; (не приходит для системных альбомов) 
+		/// </summary>
+		public ReadOnlyCollection<Privacy> PrivacyView
+		{ get; set; }
 
         /// <summary>
-        /// настройки приватности для комментирования альбома
+        /// Настройки приватности для комментирования альбома
         /// </summary>
-        public long? CommentPrivacy { get; set; }
+        public ReadOnlyCollection<Privacy> PrivacyComment
+		{ get; set; }
 
         /// <summary>
-        /// может ли текущий пользователь добавлять фотографии в альбом
+        /// Может ли текущий пользователь добавлять фотографии в альбом
         /// </summary>
         public bool? CanUpload { get; set; }
-
-        /// <summary>
-        /// настройки приватности для альбома в формате настроек приватности; (не приходит для системных альбомов) 
-        /// </summary>
-        public string PrivacyView { get; set; }
 
         /// <summary>
         /// Адрес на изображение с предпросмотром
         /// </summary>
         public string ThumbSrc { get; set; }
 
-        #region Methods
-        internal static PhotoAlbum FromJson(VkResponse response)
-        {
-            var album = new PhotoAlbum();
-            
-            if (response.ContainsKey("aid"))
-                album.Id = response["aid"];
-            else
-                album.Id = response["id"];
-            album.ThumbId = Utilities.GetNullableLongId(response["thumb_id"]);
-            album.OwnerId = Utilities.GetNullableLongId(response["owner_id"]);
-            album.Title = response["title"];
-            album.Description = response["description"];
-            album.Created = response["created"];
-            album.Updated = response["updated"];
-            album.Size = response["size"];
-            album.Privacy = Utilities.GetNullableLongId(response["privacy"]);
-            album.CommentPrivacy = Utilities.GetNullableLongId(response["comment_privacy"]);
-            album.CanUpload = response["can_upload"];
-            album.PrivacyView = response["privacy_view"];
-            album.ThumbSrc = response["thumb_src"];
+		/// <summary>
+		/// Размеры фотографий.
+		/// </summary>
+		public IEnumerable<PhotoSize> Sizes
+		{ get; set; }
 
-            return album;
+		/// <summary>
+		/// Комментирование запрещено.
+		/// </summary>
+		public bool? CommentsDisabled
+		{ get; set; }
+
+		/// <summary>
+		/// Загружать могут только администраторы.
+		/// </summary>
+		public bool UploadByAdminsOnly
+		{ get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="PhotoAlbum"/> is thumb_is_last.
+		/// </summary>
+		/// <remarks>
+		/// Получено экспериментально.
+		/// </remarks>
+		public bool ThumbIsLast
+		{ get; set; }
+	    
+	    
+		#region Methods
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static PhotoAlbum FromJson(VkResponse response)
+        {
+			VkResponseArray privacy = response["privacy_view"];
+			VkResponseArray privacyComment = response["privacy_comment"];
+			var album = new PhotoAlbum
+	        {
+		        Id = response["aid"] ?? response["id"],
+		        ThumbId = Utilities.GetNullableLongId(response["thumb_id"]),
+		        OwnerId = Utilities.GetNullableLongId(response["owner_id"]),
+		        Title = response["title"],
+		        Description = response["description"],
+		        Created = response["created"],
+		        Updated = response["updated"],
+		        Size = response["size"],
+				PrivacyView = privacy.ToReadOnlyCollectionOf<Privacy>(x => x),
+				PrivacyComment = privacyComment.ToReadOnlyCollectionOf<Privacy>(x => x),
+		        CanUpload = response["can_upload"],
+		        ThumbSrc = response["thumb_src"],
+				Sizes = response["sizes"].ToReadOnlyCollectionOf<PhotoSize>(x => x),
+				CommentsDisabled = response["comments_disabled"],
+				UploadByAdminsOnly = response["upload_by_admins_only"],
+				ThumbIsLast = response["thumb_is_last"]
+			};
+
+	        return album;
         }
         #endregion
     }

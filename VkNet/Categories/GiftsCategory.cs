@@ -47,9 +47,10 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/gifts.get" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<GiftItem> Get(out int totalCount, ulong userId, ulong? count = null, ulong? offset = null)
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<GiftItem> Get(out int totalCount, long userId, int? count = null, int? offset = null)
 		{
+			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			var parameters = new VkParameters
 			{
 				{ "user_id", userId },

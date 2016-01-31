@@ -2,9 +2,12 @@
 
 namespace VkNet.Model
 {
+    using System;
+
     /// <summary>
     /// Информация о стране.
     /// </summary>
+    [Serializable]
     public class Country
     {
         /// <summary>
@@ -17,18 +20,23 @@ namespace VkNet.Model
         /// </summary>
         public string Title { get; set; }
 
-        #region Internal Methods
+		#region Internal Methods
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Country FromJson(VkResponse response)
+		{
+			var country = new Country
+			{
+				Id = response["cid"] ?? response["id"],
+				Title = response["title"] ?? response["name"]
+			};
 
-        internal static Country FromJson(VkResponse response)
-        {
-            var country = new Country();
+			return country;
+		}
 
-            country.Id = response["cid"] ?? response["id"];
-            country.Title = response["title"] ?? response["name"];
-
-            return country;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

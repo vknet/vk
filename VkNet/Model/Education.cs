@@ -1,11 +1,13 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using System;
+    using Utils;
 
     /// <summary>
     /// Информация о высшем учебном заведении пользователя.
     /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел education.
     /// </summary>
+    [Serializable]
     public class Education
     {
         /// <summary>
@@ -45,38 +47,43 @@
         /// </summary>
         public string EducationStatus { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Education FromJson(VkResponse response)
+		{
+			if (response["university"] == null || response["university"].ToString() == "0")
+				return null;
 
-        internal static Education FromJson(VkResponse response)
-        {   
-            if (response["university"] == null || response["university"].ToString() == "0")
-                return null;
+			var education = new Education
+			{
+				UniversityId = Utilities.GetNullableLongId(response["university"]),
+				UniversityName = response["university_name"],
+				FacultyId = Utilities.GetNullableLongId(response["faculty"]),
+				FacultyName = response["faculty_name"],
+				Graduation = (int?)Utilities.GetNullableLongId(response["graduation"])
+			};
 
-            var education = new Education();
+			if (education.UniversityId.HasValue && education.UniversityId == 0)
+				education.UniversityId = null;
 
-            education.UniversityId = Utilities.GetNullableLongId(response["university"]);
-            education.UniversityName = response["university_name"];
-            education.FacultyId = Utilities.GetNullableLongId(response["faculty"]);
-            education.FacultyName = response["faculty_name"];
-            education.Graduation = (int?) Utilities.GetNullableLongId(response["graduation"]);
+			if (education.FacultyId.HasValue && education.FacultyId == 0)
+				education.FacultyId = null;
 
-            if (education.UniversityId.HasValue && education.UniversityId == 0)
-                education.UniversityId = null;
+			if (education.Graduation.HasValue && education.Graduation == 0)
+				education.Graduation = null;
 
-            if (education.FacultyId.HasValue && education.FacultyId == 0)
-                education.FacultyId = null;
+			education.EducationForm = response["education_form"]; // установлено экcпериментальным путем
+			education.EducationStatus = response["education_status"]; // установлено экcпериментальным путем
 
-            if (education.Graduation.HasValue && education.Graduation == 0)
-                education.Graduation = null;
+			return education;
+		}
 
-            education.EducationForm = response["education_form"]; // установлено экcпериментальным путем
-            education.EducationStatus = response["education_status"]; // установлено экcпериментальным путем
-
-            return education;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

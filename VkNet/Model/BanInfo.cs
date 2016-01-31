@@ -1,15 +1,20 @@
-﻿using System;
-using VkNet.Enums;
-using VkNet.Utils;
-
+﻿
 namespace VkNet.Model
 {
+    using System;
+    using System.Diagnostics;
+
+    using Utils;
+    using Enums;
+
     /// <summary>
     /// Информация о забанненом (добавленном в черный список) пользователе сообщества.
     /// </summary>
     /// <remarks>
     /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned"/>.
     /// </remarks>
+    [DebuggerDisplay("[{AdminId}] {Comment} ({Reason})")]
+    [Serializable]
     public class BanInfo
     {
         /// <summary>
@@ -37,21 +42,27 @@ namespace VkNet.Model
         /// </summary>
         public BanReason Reason { get; set; }
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static BanInfo FromJson(VkResponse response)
+		{
+			var info = new BanInfo
+			{
 
-        internal static BanInfo FromJson(VkResponse response)
-        {
-            var info = new BanInfo();
+				AdminId = response["admin_id"],
+				Date = response["date"],
+				Comment = response["comment"],
+				EndDate = response["end_date"],
+				Reason = response["reason"]
+			};
 
-            info.AdminId = response["admin_id"];
-            info.Date = response["date"];
-            info.Comment = response["comment"];
-            info.EndDate = response["end_date"];
-            info.Reason = response["reason"];
+			return info;
+		}
 
-            return info;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

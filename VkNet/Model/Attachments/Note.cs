@@ -9,11 +9,14 @@ namespace VkNet.Model.Attachments
     /// </summary>
     public class Note : MediaAttachment
     {
+		/// <summary>
+		/// Заметка пользователя.
+		/// </summary>
 		static Note()
 		{
 			RegisterType(typeof (Note), "note");
 		}
-		
+
 		/// <summary>
         /// Заголовок заметки.
         /// </summary>
@@ -39,24 +42,29 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public int? ReadCommentsCount { get; set; }
 
-        #region Методы
+		/// <summary>
+		/// Адрес страницы для отображения заметки.
+		/// </summary>
+		public Uri ViewUrl { get; set; }
+		#region Методы
 
-        internal static Note FromJson(VkResponse response)
-        {
-            // TODO: TEST IT!!!!!
-            var note = new Note();
+		internal static Note FromJson(VkResponse response)
+		{
+			var note = new Note
+			{
+				Id = response["id"],
+				OwnerId = response["user_id"],
+				Title = response["title"],
+				Text = response["text"],
+				Date = response["date"],
+				CommentsCount = response["comments"],
+				ReadCommentsCount = response["read_comments"],
+				ViewUrl = response["view_url"]
+			};
 
-            note.Id = response["id"];
-            note.OwnerId = response["owner_id"];
-            note.Title = response["title"];
-            note.Text = response["text"];
-            note.Date = response["date"];
-            note.CommentsCount = response["comments"];
-            note.ReadCommentsCount = response["read_comments"];
+			return note;
+		}
 
-            return note;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

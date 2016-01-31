@@ -20,8 +20,7 @@
 
 		public bool ContainsKey(string key)
 		{
-			if (!(_token is JObject))
-				return false;
+			if (!(_token is JObject)) { return false;}
 
 			var token = _token[key];
 			return token != null;
@@ -31,8 +30,7 @@
 		{
 			get
 			{
-				if (_token is JArray && key is string)
-					return null;
+				if (_token is JArray && key is string) { return null;}
 
 				var token = _token[key];
 				return token != null ? new VkResponse(_token[key]) : null;
@@ -41,10 +39,9 @@
 
 		public static implicit operator VkResponseArray(VkResponse response)
 		{
-			if (response == null)
-				return null;
+			if (response == null) { return null;}
 
-			VkResponse resp = response.ContainsKey("items") ? response["items"] : response;
+			var resp = response.ContainsKey("items") ? response["items"] : response;
 
 			var array = (JArray)resp._token;
 			return array == null ? null : new VkResponseArray(array);
@@ -60,8 +57,9 @@
 		public static implicit operator bool(VkResponse response)
 		{
 			if (response == null)
+			{
 				return false;
-
+			}
 			return response == 1;
 		}
 
@@ -105,6 +103,26 @@
 			return response != null ? (float?) response._token : null;
 		}
 
+		public static implicit operator decimal (VkResponse response)
+		{
+			return (decimal)response._token;
+		}
+
+		public static implicit operator decimal? (VkResponse response)
+		{
+			return response != null ? (decimal?)response._token : null;
+		}
+
+		public static implicit operator uint (VkResponse response)
+		{
+			return (uint)response._token;
+		}
+
+		public static implicit operator uint? (VkResponse response)
+		{
+			return response != null ? (uint?)response._token : null;
+		}
+
 		public static implicit operator int(VkResponse response)
 		{
 			return (int)response._token;
@@ -127,13 +145,13 @@
 
 		public static implicit operator DateTime?(VkResponse response)
 		{
-			if (response == null)
-				return null;
+			if (response == null) { return null;}
 
-			string dateStringValue = response.ToString();
-			if (string.IsNullOrEmpty(dateStringValue))
+			var dateStringValue = response.ToString();
+			if (string.IsNullOrWhiteSpace(dateStringValue))
+			{
 				return null;
-
+			}
 			long unixTimeStamp;
 			if (long.TryParse(dateStringValue, out unixTimeStamp) && unixTimeStamp > 0)
 			{
@@ -148,12 +166,14 @@
 		public static implicit operator DateTime(VkResponse response)
 		{
 			if (response == null)
+			{
 				throw new ArgumentNullException("response");
-
-			string dateStringValue = response.ToString();
-			if (string.IsNullOrEmpty(dateStringValue))
+			}
+			var dateStringValue = response.ToString();
+			if (string.IsNullOrWhiteSpace(dateStringValue))
+			{
 				throw new ArgumentException("Пустое значение невозможно преобразовать в дату", "response");
-
+			}
 			long unixTimeStamp;
 			if (long.TryParse(dateStringValue, out unixTimeStamp) && unixTimeStamp > 0)
 			{
@@ -167,7 +187,7 @@
 
 		public static implicit operator Uri(VkResponse response)
 		{
-			return response != null && !string.IsNullOrEmpty(response) ? new Uri(response) : null;
+			return !string.IsNullOrWhiteSpace(response) ? new Uri(response) : null;
 		}
 
 		#endregion
@@ -176,68 +196,43 @@
 
 		public static implicit operator PageAccessKind?(VkResponse response)
 		{
-			if (response == null)
-				return null;
-
-			return Utilities.NullableEnumFrom<PageAccessKind>(response);
+			return response == null ? null : Utilities.NullableEnumFrom<PageAccessKind>(response);
 		}
 
 		public static implicit operator GroupPublicity?(VkResponse response)
 		{
-			if (response == null)
-				return null;
-
-			return Utilities.NullableEnumFrom<GroupPublicity>(response);
+			return response == null ? null : Utilities.NullableEnumFrom<GroupPublicity>(response);
 		}
 
 		public static implicit operator ContentAccess? (VkResponse response)
 		{
-			if (response == null)
-				return null;
-
-			return Utilities.NullableEnumFrom<ContentAccess>(response);
+			return response == null ? null : Utilities.NullableEnumFrom<ContentAccess>(response);
 		}
 
 		public static implicit operator GroupSubjects? (VkResponse response)
 		{
-			if (response == null)
-				return null;
-
-			return Utilities.NullableEnumFrom<GroupSubjects>(response);
+			return response == null ? null : Utilities.NullableEnumFrom<GroupSubjects>(response);
 		}
 
 		public static implicit operator AdminLevel?(VkResponse response)
 		{
-			if (response == null)
-				return null;
-
-			return Utilities.NullableEnumFrom<AdminLevel>(response);
+			return response == null ? null : Utilities.NullableEnumFrom<AdminLevel>(response);
 		}
 
 		public static implicit operator AudioGenre?(VkResponse response)
 		{
-			if (response == null)
-				return null;
-
-			return Utilities.NullableEnumFrom<AudioGenre>(response);
+			return response == null ? null : Utilities.NullableEnumFrom<AudioGenre>(response);
 		}
 
 		public static implicit operator MessageType?(VkResponse response)
 		{
-			if (response == null)
-				return null;
-
-			return Utilities.NullableEnumFrom<MessageType>(response);
+			return response == null ? null : Utilities.NullableEnumFrom<MessageType>(response);
 		}
 
 		public static implicit operator MessageReadState?(VkResponse response)
 		{
-			if (response == null)
-				return null;
-
-			return Utilities.NullableEnumFrom<MessageReadState>(response);
+			return response == null ? null : Utilities.NullableEnumFrom<MessageReadState>(response);
 		}
-
 
 		#endregion
 

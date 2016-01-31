@@ -1,9 +1,13 @@
 ﻿namespace VkNet.Model
 {
+    using System;
+
     using Utils;
+
     /// <summary>
     /// Контакты группы
     /// </summary>
+    [Serializable]
     public class Contact
     {
         /// <summary>
@@ -26,20 +30,25 @@
         /// </summary>
         public string Phone { get; set; }
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Contact FromJson(VkResponse response)
+		{
+			var contact = new Contact
+			{
+				UserId = response["user_id"],
+				Description = response["desc"],
+				Email = response["email"],
+				Phone = response["phone"]
+			};
 
-        internal static Contact FromJson(VkResponse response)
-        {
-            var contact = new Contact();
+			return contact;
+		}
 
-            contact.UserId = response["user_id"];
-            contact.Description = response["desc"];
-            contact.Email = response["email"];
-            contact.Phone = response["phone"]; ;
-
-            return contact;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -8,15 +8,15 @@
 
     using Exception;
 
-    internal sealed class VkErrors
+    internal static class VkErrors
     {
         public static void ThrowIfNullOrEmpty(Expression<Func<string>>  expr)
         {
             var body = expr.Body as MemberExpression;
             if (body != null)
             {
-                string paramName = body.Member.Name;
-                string value = expr.Compile()();
+                var paramName = body.Member.Name;
+                var value = expr.Compile()();
 
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentNullException(paramName);
@@ -33,8 +33,8 @@
         {
             var result = ThrowIfNumberIsNegative<Func<long?>>(expr);
 
-            string name = result.Item1;
-            long? value = result.Item2();
+            var name = result.Item1;
+            var value = result.Item2();
 
             if (value.HasValue && value < 0) throw new ArgumentException("Отрицательное значение.", name);
         }
@@ -44,7 +44,7 @@
             var result = ThrowIfNumberIsNegative<Func<long>>(expr);
 
             var name = result.Item1;
-            long value = result.Item2();
+            var value = result.Item2();
 
             if (value < 0) throw new ArgumentException("Отрицательное значение.", name);
         }
@@ -54,7 +54,7 @@
             if (expr == null)
                 throw new ArgumentNullException("expr");
 
-            string name = string.Empty;
+            var name = string.Empty;
 
             // Если значение передатеся из вызывающего метода
             var unary = expr.Body as UnaryExpression;
@@ -74,7 +74,7 @@
                 name = body.Member.Name;
             }
 
-            T func = expr.Compile();
+            var func = expr.Compile();
 
             return new Tuple<string, T>(name, func);
         }
@@ -119,7 +119,7 @@
                     throw new TooManyRequestsException(message, code);
 
                 case 7: // Permission to perform this action is denied by user.
-				case 15: // Access denied: 1) groups list of this user are under privacy.	2) cannot blacklist yourself	
+				case 15: // Access denied: 1) groups list of this user are under privacy.	2) cannot blacklist yourself
 				case 148: // Access to the menu of the user denied
                 case 170: // Access to user's friends list denied.
                 case 201: // Access denied.
@@ -137,7 +137,7 @@
                 case 10: // Internal server error.
                 case 103: // Out of limits.
                 case 202:
- */ 
+ */
                 default:
                     throw new VkApiException(message);
             }

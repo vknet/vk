@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using VkNet.Model.Attachments;
+﻿using System.Collections.ObjectModel;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// 
+	/// Расширеный список забаненых новостей.
 	/// </summary>
 	public class NewsBannedExList
 	{
@@ -22,7 +17,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// В поле members содержится массив идентификаторов друзей, которые пользователь скрыл из ленты новостей.
 		/// </summary>
-		public ReadOnlyCollection<User> profiles
+		public ReadOnlyCollection<User> Profiles
 		{ get; set; }
 
 		/// <summary>
@@ -37,7 +32,7 @@ namespace VkNet.Model
 			var bannedList = new NewsBannedExList
 			{
 				Groups = names.ToReadOnlyCollectionOf<Group>(x => x),
-				profiles = profiles.ToReadOnlyCollectionOf<User>(x => x)
+				Profiles = profiles.ToReadOnlyCollectionOf<User>(x => x)
 			};
 
 			return bannedList;

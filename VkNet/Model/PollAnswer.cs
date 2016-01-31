@@ -27,16 +27,22 @@
         /// </summary>
         public double? Rate { get; set; }
 
-        internal static PollAnswer FromJson(VkResponse response)
-        {
-            var answer = new PollAnswer();
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static PollAnswer FromJson(VkResponse response)
+		{
+			var answer = new PollAnswer
+			{
+				Id = response["id"],
+				Text = response["text"],
+				Votes = response["votes"],
+				Rate = response["rate"]
+			};
 
-            answer.Id = response["id"];
-            answer.Text = response["text"];
-            answer.Votes = response["votes"];
-            answer.Rate = response["rate"];
-
-            return answer;
-        }
-    }
+			return answer;
+		}
+	}
 }

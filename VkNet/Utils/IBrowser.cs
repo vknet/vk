@@ -27,8 +27,8 @@
 #endif
 
         /// <summary>
-        /// Выполняет авторизацию ВКонтакте. 
-        /// Если приложение с идентификатором <paramref name="appId"/> не было установлено у пользователя, имеющего 
+        /// Выполняет авторизацию ВКонтакте.
+        /// Если приложение с идентификатором <paramref name="appId"/> не было установлено у пользователя, имеющего
         /// логин <paramref name="email"/>, то производится его установка с разрешениями <paramref name="settings"/>.
         /// </summary>
         /// <param name="appId">Идентификатор авторизуемого приложения.</param>
@@ -38,9 +38,11 @@
         /// <param name="code">Провайдер кода для двухфакторной авторизации.</param>
         /// <param name="captchaSid">Индентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи.</param>
+        /// <param name="host">Имя узла прокси-сервера.</param>
+        /// <param name="port">Номер порта используемого Host.</param>
         /// <returns>
         /// Информация об авторизации приложения.
         /// </returns>
-        VkAuthorization Authorize(int appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey);
+        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey, string host, int? port);
     }
 }

@@ -1,11 +1,14 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using System;
+
+    using Utils;
 
     /// <summary>
-    /// Информация о репостах записи. 
+    /// Информация о репостах записи.
     /// См. описание <see href="http://vk.com/dev/post"/>. Раздел reposts.
     /// </summary>
+    [Serializable]
     public class Reposts
     {
         /// <summary>
@@ -18,18 +21,23 @@
         /// </summary>
         public bool UserReposted { get; set; }
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Reposts FromJson(VkResponse response)
+		{
+			var reposts = new Reposts
+			{
+				Count = response["count"],
+				UserReposted = response["user_reposted"]
+			};
 
-        internal static Reposts FromJson(VkResponse response)
-        {
-            var reposts = new Reposts();
+			return reposts;
+		}
 
-            reposts.Count = response["count"];
-            reposts.UserReposted = response["user_reposted"];
-
-            return reposts;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

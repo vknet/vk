@@ -1,6 +1,6 @@
 ﻿namespace VkNet.Model
 {
-	using VkNet.Utils;
+	using Utils;
 
 	/// <summary>
 	/// Информация о сообществе (группе).
@@ -13,7 +13,7 @@
 		/// <summary>
 		/// Идентификатор сообщества.
 		/// </summary>
-		public long UserId
+		public ulong UserId
 		{ get; set; }
 
 		/// <summary>
@@ -44,7 +44,7 @@
 		/// <returns></returns>
 		internal static GroupMember FromJson(VkResponse response)
 		{
-			var group = new GroupMember()
+			var group = new GroupMember
 			{
 				UserId = response["user_id"],
 				Member = response["member"],

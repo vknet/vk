@@ -14,6 +14,7 @@ namespace VkNet.Model
     /// См. описание <see href="http://vk.com/devcomment_object"/>.
     /// </summary>
     [DebuggerDisplay("Id = {Id}, Text = {Text}, Date = {Date}")]
+    [Serializable]
     public class Comment
     {
         /// <summary>
@@ -38,7 +39,7 @@ namespace VkNet.Model
 
         /// <summary>
         /// Идентификатор пользователя или сообщества, в ответ которому оставлен текущий комментарий (если применимо).
-        /// </summary>     
+        /// </summary>
         public long? ReplyToUserId { get; set; }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace VkNet.Model
         public long? ReplyToCommentId { get; set; }
 
         /// <summary>
-        /// Объект, содержащий информацию о медиавложениях в комментарии. См. описание формата медиавложений. 
+        /// Объект, содержащий информацию о медиавложениях в комментарии. См. описание формата медиавложений.
         /// </summary>
         public Collection<Attachment> Attachments { get; set; }
 
@@ -66,27 +67,32 @@ namespace VkNet.Model
         /// </summary>
         public Likes Likes { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Comment FromJson(VkResponse response)
+		{
+			var comment = new Comment
+			{
+				Id = response["id"],
+				FromId = response["from_id"],
+				Date = response["date"],
+				Text = response["text"],
+				ReplyToUserId = response["reply_to_user"],
+				ReplyToCommentId = response["reply_to_comment"],
+				Attachments = response["attachments"],
 
-        internal static Comment FromJson(VkResponse response)
-        {
-            var comment = new Comment();
+				Likes = response["likes"] // установлено экcпериментальным путем
+			};
 
-            comment.Id = response["id"];
-            comment.FromId = response["from_id"];
-            comment.Date = response["date"];
-            comment.Text = response["text"];
-            comment.ReplyToUserId = response["reply_to_user"];
-            comment.ReplyToCommentId = response["reply_to_comment"];
-            comment.Attachments = response["attachments"];
+			return comment;
+		}
 
-            comment.Likes = response["likes"]; // установлено экcпериментальным путем
-
-            return comment;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

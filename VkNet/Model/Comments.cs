@@ -1,11 +1,13 @@
 ﻿namespace VkNet.Model
 {
-	using VkNet.Utils;
+    using System;
+	using Utils;
 
 	/// <summary>
 	/// Информация о количестве комментариев к записи.
 	/// См. описание <see href="http://vk.com/dev/post"/>. Раздел comments.
 	/// </summary>
+	[Serializable]
 	public class Comments
 	{
 		/// <summary>

@@ -18,16 +18,20 @@ namespace VkNet.Model
         /// </summary>
         public string Title { get; set; }
 
-        internal static Region FromJson(VkResponse response)
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Region FromJson(VkResponse response)
         {
-            var region = new Region();
+			var region = new Region
+			{
+				Id = response["region_id"] ?? response["id"],
+				Title = response["title"]
+			};
 
-            string regionId = response["region_id"];
-
-            region.Id = Convert.ToInt32(regionId);
-            region.Title = response["title"];
-
-            return region;
+			return region;
         }
     }
 }

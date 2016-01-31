@@ -6,7 +6,7 @@
     public sealed class FriendsOrder :  SafetyEnum<FriendsOrder>
     {
         /// <summary>
-        /// Сортировать по имени (работает только при переданном параметре fields). 
+        /// Сортировать по имени (работает только при переданном параметре fields).
         /// </summary>
         public static readonly FriendsOrder Name = RegisterPossibleValue("name");
 

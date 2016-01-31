@@ -1,13 +1,23 @@
+using System;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-    /// Контент приложения.
-    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".
-    /// </summary>
-    public class ApplicationContent
-    {
+	/// Контент приложения.
+	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".
+	/// </summary>
+	[Serializable]
+	public class ApplicationContent : MediaAttachment
+	{
+		/// <summary>
+		/// Приложение.
+		/// </summary>
+		static ApplicationContent()
+		{
+			RegisterType(typeof(ApplicationContent), "app");
+		}
+
         /// <summary>
         /// Идентификатор приложения, разместившего запись на стене.
         /// </summary>
@@ -24,7 +34,7 @@ namespace VkNet.Model.Attachments
         public string Photo130 { get; set; }
 
         /// <summary>
-        /// Адрес полноразмерного изображения. 
+        /// Адрес полноразмерного изображения.
         /// </summary>
         public string Photo604 { get; set; }
 
@@ -43,7 +53,6 @@ namespace VkNet.Model.Attachments
 		        Photo130 = response["photo_130"],
 		        Photo604 = response["photo_604"]
 	        };
-
 
 	        return application;
         }

@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
-using VkNet.Model.RequestParams.App;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -16,7 +16,7 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API.
 		/// </summary>
-		readonly VkApi _vk;
+		private readonly VkApi _vk;
 
 		/// <summary>
 		/// Методы для работы с приложениями.
@@ -39,24 +39,10 @@ namespace VkNet.Categories
 		/// К методу можно делать не более 60 запросов в минуту с одного IP или id.
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getCatalog" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<App> GetCatalog(out int totalCount, GetCatalogParams @params)
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<App> GetCatalog(out long totalCount, AppGetCatalogParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "sort", @params.Sort },
-				{ "offset", @params.Offset },
-				{ "count", @params.Count },
-				{ "platform", @params.Platform },
-				{ "extended", @params.Extended },
-				{ "return_friends", @params.ReturnFriends },
-				{ "fields", @params.Fields },
-				{ "name_case", @params.NameCase },
-				{ "q", @params.Query },
-				{ "genre_id", @params.GenreId },
-				{ "filter", @params.Filter }
-			};
-			var response = _vk.Call("apps.getCatalog", parameters, !@params.ReturnFriends);
+			var response = _vk.Call("apps.getCatalog", @params, !@params.ReturnFriends);
 			totalCount = response["count"];
 
 			return response["items"].ToReadOnlyCollectionOf<App>(x => x);
@@ -68,24 +54,15 @@ namespace VkNet.Categories
 		/// <param name="totalCount">Количество приложений.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// После успешного выполнения возвращает объект приложения.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.get" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.get" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<App> Get(out int totalCount, GetParams @params)
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<App> Get(out long totalCount, AppGetParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "app_ids", @params.AppIds },
-				{ "platform", @params.Platform },
-				{ "extended", @params.Extended },
-				{ "return_friends", @params.ReturnFriends },
-				{ "fields", @params.Fields },
-				{ "name_case", @params.NameCase }
-			};
-			var result = _vk.Call("apps.get", parameters);
+			var result = _vk.Call("apps.get", @params);
 			totalCount = result["count"];
 
 			return result["items"].ToReadOnlyCollectionOf<App>(x => x);
@@ -96,35 +73,28 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В случае удачного выполнения метод возвращает идентификатор созданного запроса, например: 
+		/// 10013.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.sendRequest" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.sendRequest" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public ulong SendRequest(SendRequestParams @params)
+		[ApiVersion("5.44")]
+		public long SendRequest(AppSendRequestParams @params)
 		{
-			//var parameters = new VkParameters
-			//{
-			//	{ "user_id", @params.UserId },
-			//	{ "text", @params.Text },
-			//	{ "type", @params.Type },
-			//	{ "name", @params.Name },
-			//	{ "key", @params.Key },
-			//	{ "separate", @params.Separate },
-			//};
-			//return _vk.Call("apps.sendRequest", parameters);
-			throw new NotImplementedException(); // TODO: Пока не понял как тестировать. 
+			return _vk.Call("apps.sendRequest", @params); 
 		}
 
 		/// <summary>
-		/// Удаляет все уведомления о запросах, отправленных из текущего приложения
+		/// Удаляет все уведомления о запросах, отправленных из текущего приложения.
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <returns>
+		/// В случае успешного выполнения возвращает <c>true</c>.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.deleteAppRequests" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.deleteAppRequests" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public bool DeleteAppRequests()
 		{
 			var parameters = new VkParameters();
@@ -138,51 +108,19 @@ namespace VkNet.Categories
 		/// <param name="count">Количество пользователей в создаваемом списке.</param>
 		/// <param name="offset">Смещение относительно первого пользователя для выборки определенного подмножества.</param>
 		/// <param name="type">Tип создаваемого списка друзей.</param>
-		/// <returns>
-		/// Возвращает результат выполнения метода.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getFriendsList" />.
-		/// </remarks>
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<ulong> GetFriendsList(out int totalCount, AppRequestType type, ulong count = 20, ulong offset = 0)
-		{
-			var parameters = new VkParameters
-			{
-				{ "extended", false },
-				{ "offset", offset },
-				{ "type", type }
-			};
-			if (count <= 5000)
-			{
-				parameters.Add("count", count);
-			}
-			var result = _vk.Call("apps.getFriendsList", parameters);
-			totalCount = result["count"];
-			VkResponseArray items = result["items"];
-			return items.ToReadOnlyCollectionOf<ulong>(x => x);
-		}
-
-		/// <summary>
-		/// Создает список друзей, который будет использоваться при отправке пользователем приглашений в приложение.
-		/// </summary>
-		/// <param name="totalCount">Количество приложений.</param>
-		/// <param name="count">Количество пользователей в создаваемом списке.</param>
-		/// <param name="offset">Смещение относительно первого пользователя для выборки определенного подмножества.</param>
-		/// <param name="type">Tип создаваемого списка друзей.</param>
 		/// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть. См. подробное описание. </param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// После успешного выполнения возвращает список пользователей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getFriendsList" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.getFriendsList" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<User> GetFriendsListEx(out int totalCount, AppRequestType type, ulong count = 20, ulong offset = 0, UsersFields fields = null)
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<User> GetFriendsList(out long totalCount, AppRequestType type, bool? extended = null, long? count = null, long? offset = null, UsersFields fields = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "extended", true },
+				{ "extended", extended },
 				{ "offset", offset },
 				{ "type", type },
 				{ "fields", fields }
@@ -193,30 +131,26 @@ namespace VkNet.Categories
 			}
 			var result = _vk.Call("apps.getFriendsList", parameters);
 			totalCount = result["count"];
-			return result["items"].ToReadOnlyCollectionOf<User>(x => x);
+			return result["items"].ToReadOnlyCollectionOf<User>(x => fields == null ? new User {Id = x} : x);
 		}
 
 		/// <summary>
 		/// Возвращает рейтинг пользователей в игре.
 		/// </summary>
-		/// <param name="type">
-		/// level — рейтинг по уровням, 
-		/// points — рейтинг по очкам
-		/// </param>
-		/// <param name="global">
-		/// <c>true</c> — глобальный рейтинг по всем игрокам, 
-		/// <c>false</c> — рейтинг по друзьям пользователя 
-		/// </param>
-		/// <param name="extended"><c>true</c> — дополнительно возвращает информацию о пользователе.</param>
+		/// <param name="type">Level — рейтинг по уровням, 
+		/// points — рейтинг по очкам, начисленным за выполнение миссий. 
+		/// score — рейтинг по очкам, начисленным напрямую (apps.getScore). строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <param name="global">1 — глобальный рейтинг по всем игрокам, 
+		/// 0 — рейтинг по друзьям пользователя флаг, может принимать значения 1 или 0, по умолчанию 1 (Флаг, может принимать значения 1 или 0, по умолчанию 1).</param>
+		/// <param name="extended">1 — дополнительно возвращает информацию о пользователе. флаг, может принимать значения 1 или 0, по умолчанию 0 (Флаг, может принимать значения 1 или 0, по умолчанию 0).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// После успешного выполнения возвращает список друзей с текущим уровнем и количеством очков в игре, отсортированный по убыванию текущего уровня или количества очков.
 		/// </returns>
-		/// <exception cref="System.NotImplementedException"></exception>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getLeaderboard" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.getLeaderboard" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool GetLeaderboard(AppRatingType type, bool global = true, bool extended = false)
+		[ApiVersion("5.44")]
+		public bool GetLeaderboard(AppRatingType type, bool? global = null, bool? extended = null)
 		{
 			//var parameters = new VkParameters
 			//{
@@ -231,23 +165,22 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Метод возвращает количество очков пользователя в этой игре.
 		/// </summary>
-		/// <param name="userId">идентификатор пользователя. </param>
+		/// <param name="userId">Идентификатор пользователя. положительное число, по умолчанию идентификатор текущего пользователя, обязательный параметр (Положительное число, по умолчанию идентификатор текущего пользователя, обязательный параметр).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// После успешного выполнения возвращает число очков для пользователя.
 		/// </returns>
-		/// <exception cref="System.NotImplementedException"></exception>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getScore" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.getScore" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool GetScore(ulong userId)
+		[ApiVersion("5.44")]
+		public long GetScore(long userId)
 		{
-			//var parameters = new VkParameters
-			//{
-			//	{ "user_id", userId }
-			//};
-			//return _vk.Call("apps.getScore", parameters);
-			throw new NotImplementedException(); // TODO: Методы доступны только приложениям, размещенным в игровом каталоге. 
+            VkErrors.ThrowIfNumberIsNegative(() => userId);
+            var parameters = new VkParameters
+			{
+				{ "user_id", userId }
+			};
+			return _vk.Call("apps.getScore", parameters);
 		}
 	}
 }

@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using FluentNUnit;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
-using VkNet.Model;
-using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
     [TestFixture]
-    public class PhotosCategoryTest
+	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	public class PhotosCategoryTest
     {
         public PhotoCategory GetMockedPhotosCategory(string url, string json)
         {
@@ -23,17 +24,17 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetProfileUploadServer_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getProfileUploadServer?v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'upload_url': 'http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh'
                     }
                   }";
 
-            UploadServerInfo info = GetMockedPhotosCategory(url, json).GetProfileUploadServer();
+            var info = GetMockedPhotosCategory(url, json).GetProfileUploadServer();
 
-            info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh");
+			info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh");
         }
         #endregion
 
@@ -41,8 +42,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetMessagesUploadServer_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getMessagesUploadServer?v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.getMessagesUploadServer?v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'upload_url': 'http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1',
@@ -51,9 +52,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            UploadServerInfo info = GetMockedPhotosCategory(url, json).GetMessagesUploadServer();
+            var info = GetMockedPhotosCategory(url, json).GetMessagesUploadServer();
 
-            info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1");
+			info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1");
             info.AlbumId.ShouldEqual(-3);
             info.UserId.ShouldEqual(234618);
         }
@@ -64,9 +65,9 @@ namespace VkNet.Tests.Categories
         [Test]
         public void CreateAlbum_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.createAlbum?title=hello world&description=description for album&v=5.9&access_token=token";
-            const string json =
-                @"{
+			const string url = "https://api.vk.com/method/photos.createAlbum?title=hello world&description=description for album&v=5.44&access_token=token";
+			const string json =
+				@"{
                     'response': {
                       'id': 197266686,
                       'thumb_id': -1,
@@ -75,25 +76,30 @@ namespace VkNet.Tests.Categories
                       'description': 'description for album',
                       'created': 1403185184,
                       'updated': 1403185184,
-                      'privacy': 0,
-                      'comment_privacy': 0,
+                      'privacy_view': ['all'],
+					  'privacy_comment': ['all'],
                       'size': 0
                     }
                   }";
 
-            PhotoAlbum album = GetMockedPhotosCategory(url, json)
-                .CreateAlbum(title: "hello world", description: "description for album");
+            var album = GetMockedPhotosCategory(url, json)
+                .CreateAlbum(new PhotoCreateAlbumParams
+                {
+					Title= "hello world",
+					Description = "description for album"
+                });
 
-            album.Id.ShouldEqual(197266686);
+			album.Id.ShouldEqual(197266686);
             album.ThumbId.ShouldEqual(-1);
             album.OwnerId.ShouldEqual(234698);
             album.Title.ShouldEqual("hello world");
             album.Description.ShouldEqual("description for album");
             album.Created.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
             album.Updated.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
-            album.Privacy.ShouldEqual(0);
-            album.CommentPrivacy.ShouldEqual(0);
-            album.Size.ShouldEqual(0);
+			Assert.IsTrue(album.PrivacyView[0].ToString().Equals("all"));
+			Assert.IsTrue(album.PrivacyComment[0].ToString().Equals("all"));
+
+			album.Size.ShouldEqual(0);
         }
 
         #endregion
@@ -102,16 +108,20 @@ namespace VkNet.Tests.Categories
         [Test]
         public void EditAlbum_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.editAlbum?album_id=19726&title=new album title&description=new description&v=5.9&access_token=token";
-
-
-            const string json =
+			const string url = "https://api.vk.com/method/photos.editAlbum?album_id=19726&title=new album title&description=new description&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': 1
                   }";
 
-            bool result = GetMockedPhotosCategory(url, json).EditAlbum(19726, "new album title", "new description");
-            result.ShouldBeTrue();
+            var result = GetMockedPhotosCategory(url, json).EditAlbum(new PhotoEditAlbumParams
+            {
+	            AlbumId = 19726,
+				Title = "new album title",
+				Description = "new description"
+			});
+
+			result.ShouldBeTrue();
         }
         #endregion
 
@@ -119,8 +129,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAlbums_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getAlbums?owner_id=1&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.getAlbums?owner_id=1&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'count': 1,
@@ -138,8 +148,14 @@ namespace VkNet.Tests.Categories
                       ]
                     }
                   }";
+	        int count;
+            var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new PhotoGetAlbumsParams
+            {
+				OwnerId = 1
+			});
 
-            ReadOnlyCollection<PhotoAlbum> albums = GetMockedPhotosCategory(url, json).GetAlbums(1);
+			count.ShouldEqual(1);
+
             albums.Count.ShouldEqual(1);
 
             albums[0].Id.ShouldEqual(136592355);
@@ -151,20 +167,70 @@ namespace VkNet.Tests.Categories
            	albums[0].Updated.ShouldEqual(new DateTime(2014, 4, 27, 19, 4, 33).ToLocalTime());
             albums[0].Size.ShouldEqual(8);
         }
-        #endregion
 
-        #region GetAlbumsCount
-        [Test]
+		[Test]
+		public void GetAlbums_PrivacyCase()
+		{
+			const string url = "https://api.vk.com/method/photos.getAlbums?album_ids=110637109&v=5.44&access_token=token";
+			const string json =
+				@"{
+                    response: {
+						count: 1,
+						items: [{
+							id: 110637109,
+							thumb_id: 326631163,
+							owner_id: 32190123,
+							title: 'Я',
+							description: '',
+							created: 1307628778,
+							updated: 1398625473,
+							size: 6,
+							thumb_is_last: 1,
+							privacy_view: ['list28'],
+							privacy_comment: ['list28', '-list1']
+						}]
+					}
+                  }";
+			int count;
+			var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new PhotoGetAlbumsParams
+			{
+				AlbumIds = new List<long>
+				{
+					110637109
+				}
+			});
+
+			count.ShouldEqual(1);
+
+			albums.Count.ShouldEqual(1);
+
+			albums[0].Id.ShouldEqual(110637109);
+			albums[0].ThumbId.ShouldEqual(326631163);
+			albums[0].OwnerId.ShouldEqual(32190123);
+			albums[0].Title.ShouldEqual("Я");
+			albums[0].Description.ShouldEqual(string.Empty);
+			albums[0].Created.ShouldEqual(new DateTime(2011, 6, 9, 14, 12, 58, DateTimeKind.Utc).ToLocalTime());
+			albums[0].Updated.ShouldEqual(new DateTime(2014, 4, 27, 19, 4, 33).ToLocalTime());
+			albums[0].Size.ShouldEqual(6);
+			albums[0].ThumbIsLast.ShouldBeTrue();
+			Assert.IsTrue(albums[0].PrivacyView[0].ToString().Equals("list28"));
+			Assert.IsTrue(albums[0].PrivacyComment[0].ToString().Equals("list28"));
+			Assert.IsTrue(albums[0].PrivacyComment[1].ToString().Equals("-list1"));
+		}
+		#endregion
+
+		#region GetAlbumsCount
+		[Test]
         public void GetAlbumsCount_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': 1
                   }";
 
-            int count = GetMockedPhotosCategory(url, json).GetAlbumsCount(1);
-            count.ShouldEqual(1);
+            var count = GetMockedPhotosCategory(url, json).GetAlbumsCount(1);
+			count.ShouldEqual(1);
         }
         #endregion
 
@@ -172,22 +238,22 @@ namespace VkNet.Tests.Categories
         [Test]
         public void DeleteAlbum_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.deleteAlbum?album_id=197303&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.deleteAlbum?album_id=197303&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': 1
                   }";
 
-            bool result = GetMockedPhotosCategory(url, json).DeleteAlbum(197303);
-            result.ShouldBeTrue();
+            var result = GetMockedPhotosCategory(url, json).DeleteAlbum(197303);
+			result.ShouldBeTrue();
         }
         #endregion
 
         #region GetProfile
-        [Test]
+        [Test, Ignore("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
         public void GetProfile_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getProfile?owner_id=1&rev=1&extended=1&count=2&offset=3&v=5.9&access_token=token";
+            const string url = "https://api.vk.com/method/photos.getProfile?owner_id=1&rev=1&extended=1&count=2&offset=3&v=5.44&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -243,8 +309,8 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).GetProfile(ownerId: 1, offset: 3, rev: true, count: 2, extended:true);
-            photos.Count.ShouldEqual(2);
+            var photos = GetMockedPhotosCategory(url, json).GetProfile(ownerId: 1, offset: 3, rev: true, count: 2, extended:true);
+			photos.Count.ShouldEqual(2);
             photos[0].Id.ShouldEqual(278184324);
             photos[0].PostId.ShouldEqual(45430);
             photos[0].Likes.Count.ShouldEqual(471203);
@@ -260,9 +326,9 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAll_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getAll?owner_id=1&count=2&offset=4&v=5.9&access_token=token";
-            const string json =
-                @"{
+			const string url = "https://api.vk.com/method/photos.getAll?owner_id=1&offset=4&count=2&v=5.44&access_token=token";
+			const string json =
+				@"{
                     'response': {
                       'count': 173,
                       'items': [
@@ -296,8 +362,14 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).GetAll(ownerId: 1, offset: 4, count: 2);
-            photos.Count.ShouldEqual(2);
+			int count;
+			var photos = GetMockedPhotosCategory(url, json).GetAll(out count, new PhotoGetAllParams
+			{
+				OwnerId = 1,
+				Offset = 4,
+				Count = 2
+			});
+			photos.Count.ShouldEqual(2);
 
             photos[0].Id.ShouldEqual(328693256);
             photos[0].AlbumId.ShouldEqual(-7);
@@ -318,8 +390,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.search?q=порно&offset=2&count=3&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.search?q=%d0%bf%d0%be%d1%80%d0%bd%d0%be&offset=2&count=3&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'count': 48888,
@@ -369,10 +441,15 @@ namespace VkNet.Tests.Categories
                       ]
                     }
                   }";
+	        int count;
+			var photos = GetMockedPhotosCategory(url, json).Search(out count, new PhotoSearchParams
+			{
+				Query = "порно",
+				Offset = 2,
+				Count = 3
+			});
 
-            ReadOnlyCollection<Photo> photos = GetMockedPhotosCategory(url, json).Search(query: "порно", offset:2, count:3);
-
-            photos.Count.ShouldEqual(3);
+			photos.Count.ShouldEqual(3);
 
             photos[0].Id.ShouldEqual(331520481);
             photos[0].AlbumId.ShouldEqual(182104020);
@@ -391,8 +468,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_Error26_Lat_and_Long_in_output_photo()
         {
-            const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=5.9&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'count': 12,
@@ -431,9 +508,15 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            var photos = GetMockedPhotosCategory(url, json).Search(query: "", lat: 30, longitude: 30, count: 2);
-
-            photos.Count.ShouldEqual(2);
+			int count;
+			var photos = GetMockedPhotosCategory(url, json).Search(out count, new PhotoSearchParams
+			{
+				Query = "",
+				Latitude = 30,
+				Longitude = 30,
+				Count = 2
+			});
+			photos.Count.ShouldEqual(2);
 
             photos[0].Latitude.ShouldEqual(29.999996185302734);
             photos[0].Longitude.ShouldEqual(29.999996185302734);
@@ -447,8 +530,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void SaveWallPhoto_NormalCase()
         {
-            const string url = @"https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=photo&server=5678&hash=hash_hash&v=5.9&access_token=token";
-            const string json = @"{
+			const string url = "https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=[]&server=631223&hash=163abf8b9e4e4513577012d5275cafbb&v=5.44&access_token=token";
+			const string json = @"{
     'response': [
         {
             'id': 3446123,
@@ -466,13 +549,16 @@ namespace VkNet.Tests.Categories
         }
     ]
 }";
+	        const string response = @"{""server"":631223
+				,""photo"":""[]""
+				,""hash"":""163abf8b9e4e4513577012d5275cafbb""}";
 
-            var result = GetMockedPhotosCategory(url, json).SaveWallPhoto("photo", 1234, 123, 5678, "hash_hash");
+			var result = GetMockedPhotosCategory(url, json).SaveWallPhoto(response, 1234, 123);
 
             result.Count.ShouldEqual(1);
 
-            Photo photo = result[0];
-            photo.ShouldNotBeNull();
+            var photo = result[0];
+			photo.ShouldNotBeNull();
             photo.Id.ShouldEqual(3446123);
             photo.AlbumId.ShouldEqual(-12);
             photo.OwnerId.ShouldEqual(234695890);

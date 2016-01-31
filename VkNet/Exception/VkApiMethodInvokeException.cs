@@ -28,7 +28,7 @@
         public VkApiMethodInvokeException(string message) : base(message)
         {
         }
-        
+
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> с указанным описанием и внутренним исключением.
         /// </summary>
@@ -63,7 +63,7 @@
         /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> на основе ранее сериализованных данных.
         /// </summary>
         /// <param name="info">Содержит все данные, необходимые для десериализации.</param>
-        /// <param name="context">Описывает источник и назначение данного сериализованного потока и предоставляет дополнительный, 
+        /// <param name="context">Описывает источник и назначение данного сериализованного потока и предоставляет дополнительный,
         /// определяемый вызывающим, контекст.</param>
         protected VkApiMethodInvokeException(SerializationInfo info, StreamingContext context) : base(info, context)
         {

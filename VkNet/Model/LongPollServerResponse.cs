@@ -1,10 +1,10 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using Utils;
 
     /// <summary>
-    /// Объект, с помощью которого можно подключиться к серверу быстрых сообщений для мгновенного 
-    /// получения приходящих сообщений и других событий.  
+    /// Объект, с помощью которого можно подключиться к серверу быстрых сообщений для мгновенного
+    /// получения приходящих сообщений и других событий.
     /// См. описание <see href="http://vk.com/dev/messages.getLongPollServer"/>.
     /// </summary>
     public class LongPollServerResponse
@@ -22,21 +22,32 @@
         /// <summary>
         /// Отметка времени.
         /// </summary>
-        public long Ts { get; set; }
+        public ulong Ts { get; set; }
 
-        #region Методы
+        /// <summary>
+        /// Постоянное событие для работы с методом getLongPoolHistory
+        /// </summary>
+        public ulong? Pts { get; set; }
 
-        internal static LongPollServerResponse FromJson(VkResponse response)
-        {
-            var longPollServerResponse = new LongPollServerResponse();
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static LongPollServerResponse FromJson(VkResponse response)
+		{
+			var longPollServerResponse = new LongPollServerResponse
+			{
+				Key = response["key"],
+				Server = response["server"],
+				Ts = response["ts"],
+				Pts = response["pts"]
+			};
 
-            longPollServerResponse.Key = response["key"];
-            longPollServerResponse.Server = response["server"];
-            longPollServerResponse.Ts = response["ts"];
+			return longPollServerResponse;
+		}
 
-            return longPollServerResponse;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

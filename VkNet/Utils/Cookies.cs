@@ -34,7 +34,7 @@
             {
                 if (key[0] == '.')
                 {
-                    string newKey = key.Remove(0, 1);
+                    var newKey = key.Remove(0, 1);
                     if (!table.ContainsKey(newKey))
                         table[newKey] = table[key];
                 }

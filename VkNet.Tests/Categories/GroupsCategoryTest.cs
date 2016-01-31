@@ -1,6 +1,4 @@
-﻿using System.Security.Policy;
-
-namespace VkNet.Tests.Categories
+﻿namespace VkNet.Tests.Categories
 {
 	using System;
 	using System.Collections.ObjectModel;
@@ -36,7 +34,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Join_WrongGid_ThrowAccessDeniedException()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=0&not_sure=1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=0&not_sure=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -75,14 +73,14 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Leave_WrongGid_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.leave?gid=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.leave?group_id=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.Leave(0);
+			var result = groups.Leave(0);
 
 			Assert.That(result, Is.True);
 		}
@@ -90,7 +88,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Join_NormalCase_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=2&not_sure=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=2&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -105,14 +103,14 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Join_NormalCaseNotSure_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=2&not_sure=1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=2&not_sure=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.Join(2, true);
+			var result = groups.Join(2, true);
 
 			Assert.That(result, Is.True);
 		}
@@ -120,14 +118,14 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Leave_NormalCase_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.leave?gid=2&access_token=token";
+			const string url = "https://api.vk.com/method/groups.leave?group_id=2&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.Leave(2);
+			var result = groups.Leave(2);
 
 			Assert.That(result, Is.True);
 		}
@@ -135,7 +133,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Join_AccessDenied_ThrowAccessDeniedException()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=2&not_sure=1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=2&not_sure=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -170,7 +168,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Leave_AccessDenied_ThrowAccessDeniedException()
 		{
-			const string url = "https://api.vk.com/method/groups.leave?gid=2&access_token=token";
+			const string url = "https://api.vk.com/method/groups.leave?group_id=2&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -218,7 +216,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Join_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 		{
-			const string url = "https://api.vk.com/method/groups.join?gid=1&not_sure=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.join?group_id=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -252,7 +250,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Leave_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 		{
-			const string url = "https://api.vk.com/method/groups.leave?gid=1&access_token=token";
+			const string url = "https://api.vk.com/method/groups.leave?group_id=1&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -293,16 +291,20 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 		{
-			const string url = "https://api.vk.com/method/groups.get?uid=4793858&extended=0&offset=0&v=5.28&access_token=token";
+			const string url = "https://api.vk.com/method/groups.get?user_id=4793858&offset=0&count=1000&v=5.44&access_token=token";
+
 			const string json =
 				@"{
-					'response': [
-					  29689780,
-					  33489538,
-					  16108331,
-					  40724899,
-					  36346468
-					]
+					response: {
+						count: 8,
+						items: [
+						  29689780,
+						  33489538,
+						  16108331,
+						  40724899,
+						  36346468
+						]
+					}
 				  }";
 
 			var category = GetMockedGroupCategory(url, json);
@@ -331,8 +333,14 @@ namespace VkNet.Tests.Categories
 						'name': 'The middle of spring',
 						'screen_name': 'club1153959',
 						'is_closed': 0,
-						'city': 10,
-						'country': 1,
+						city: {
+							id: 10,
+							title: 'Санкт-Петербург'
+						},
+						country: {
+							id: 1,
+							title: 'Россия'
+						},
 						'description': 'Попади в не реальную сказку пришествия...',
 						'start_date': '1208700030',
 						'type': 'event',
@@ -347,8 +355,14 @@ namespace VkNet.Tests.Categories
 						'name': 'Геннадий Бачинский',
 						'screen_name': 'club1181795',
 						'is_closed': 0,
-						'city': 1,
-						'country': 1,
+						city: {
+							id: 1,
+							title: 'Санкт-Петербург'
+						},
+						country: {
+							id: 1,
+							title: 'Россия'
+						},
 						'description': 'В связи с небольшим количеством...',
 						'start_date': '1200380400',
 						'type': 'event',
@@ -368,8 +382,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[1].Name, Is.EqualTo("Геннадий Бачинский"));
 			Assert.That(groups[1].ScreenName, Is.EqualTo("club1181795"));
 			Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[1].CityId, Is.EqualTo(1));
-			Assert.That(groups[1].CountryId, Is.EqualTo(1));
+			Assert.That(groups[1].City.Id, Is.EqualTo(1));
+			Assert.That(groups[1].Country.Id, Is.EqualTo(1));
 			Assert.That(groups[1].Description, Is.EqualTo("В связи с небольшим количеством..."));
 			Assert.That(groups[1].StartDate, Is.EqualTo(new DateTime(2008, 1, 15, 7, 0, 0, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
@@ -384,8 +398,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[0].Name, Is.EqualTo("The middle of spring"));
 			Assert.That(groups[0].ScreenName, Is.EqualTo("club1153959"));
 			Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[0].CityId, Is.EqualTo(10));
-			Assert.That(groups[0].CountryId, Is.EqualTo(1));
+			Assert.That(groups[0].City.Id, Is.EqualTo(10));
+			Assert.That(groups[0].Country.Id, Is.EqualTo(1));
 			Assert.That(groups[0].Description, Is.EqualTo("Попади в не реальную сказку пришествия..."));
 			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2008, 04, 20, 14, 0, 30, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
@@ -499,7 +513,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.IsMember(637247, 0);
+			var result = groups.IsMember(637247, 0);
 			Assert.That(result, Is.False);
 		}
 
@@ -513,7 +527,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.IsMember(637247, 4793858);
+			var result = groups.IsMember(637247, 4793858);
 			Assert.That(result, Is.True);
 		}
 
@@ -527,14 +541,14 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			bool result = groups.IsMember(17683660, 4793858);
+			var result = groups.IsMember(17683660, 4793858);
 			Assert.That(result, Is.False);
 		}
 
 		[Test]
 		public void GetMembers_NormalCase_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?gid=17683660&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -573,7 +587,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?gid=17683660&offset=15&sort=id_asc&count=7&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&sort=id_asc&offset=15&count=7&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -609,7 +623,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?gid=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -662,7 +676,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_DefaultCase_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&future=0&sort=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -708,9 +722,9 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
 			Assert.That(groups[1].IsAdmin, Is.False);
 			Assert.That(groups[1].IsMember, Is.False);
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs410222.userapi.com/g27895931/d_2869e827.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs410222.userapi.com/g27895931/a_32935e91.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/d_2869e827.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/a_32935e91.jpg")));
 
 			Assert.That(groups[0].Id, Is.EqualTo(339767));
 			Assert.That(groups[0].Name, Is.EqualTo("A-ONE HIP-HOP MUSIC CHANNEL"));
@@ -719,15 +733,15 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Group));
 			Assert.That(groups[0].IsAdmin, Is.False);
 			Assert.That(groups[0].IsMember, Is.False);
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs9365.userapi.com/g339767/e_a590d16b.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs9365.userapi.com/g339767/d_f653c773.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs9365.userapi.com/g339767/a_4653ba99.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/e_a590d16b.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/d_f653c773.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/a_4653ba99.jpg")));
 		}
 
 		[Test]
 		public void Search_DefaulCaseAllParams_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&offset=20&count=3&future=0&sort=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&offset=20&count=3&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -785,9 +799,9 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[2].Type, Is.EqualTo(GroupType.Page));
 			Assert.That(groups[2].IsAdmin, Is.False);
 			Assert.That(groups[2].IsMember, Is.False);
-			Assert.That(groups[2].PhotoPreviews.Photo50, Is.EqualTo("http://cs9913.userapi.com/g23995866/e_319d8573.jpg"));
-			Assert.That(groups[2].PhotoPreviews.Photo100, Is.EqualTo("http://cs9913.userapi.com/g23995866/d_166572a9.jpg"));
-			Assert.That(groups[2].PhotoPreviews.Photo200, Is.EqualTo("http://cs9913.userapi.com/g23995866/a_fc553960.jpg"));
+			Assert.That(groups[2].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9913.userapi.com/g23995866/e_319d8573.jpg")));
+			Assert.That(groups[2].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs9913.userapi.com/g23995866/d_166572a9.jpg")));
+			Assert.That(groups[2].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs9913.userapi.com/g23995866/a_fc553960.jpg")));
 
 			Assert.That(groups[1].Id, Is.EqualTo(23727386));
 			Assert.That(groups[1].Name, Is.EqualTo("Classical Music Humor"));
@@ -796,9 +810,9 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Page));
 			Assert.That(groups[1].IsAdmin, Is.False);
 			Assert.That(groups[1].IsMember, Is.False);
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs10650.userapi.com/g23727386/e_8006da42.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs10650.userapi.com/g23727386/e_8006da42.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg")));
 
 			Assert.That(groups[0].Id, Is.EqualTo(26442631));
 			Assert.That(groups[0].Name, Is.EqualTo("Music Quotes. First Public."));
@@ -807,15 +821,15 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
 			Assert.That(groups[0].IsAdmin, Is.False);
 			Assert.That(groups[0].IsMember, Is.False);
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg")));
 		}
 
 		[Test]
 		public void Search_GroupsNotFounded_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&offset=20&count=3&future=0&sort=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&sort=0&offset=20&count=3&v=5.44&access_token=token";
 
 			const string json =
 				@"{
@@ -843,7 +857,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=17683660&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=17683660&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -872,15 +886,15 @@ namespace VkNet.Tests.Categories
 			Assert.That(g.IsAdmin, Is.False);
 			Assert.That(g.Type, Is.EqualTo(GroupType.Event));
 			Assert.That(g.IsMember, Is.False);
-			Assert.That(g.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-			Assert.That(g.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-			Assert.That(g.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(g.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
+			Assert.That(g.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
+			Assert.That(g.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
 		}
 
 		[Test]
 		public void GetById_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=0&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -913,10 +927,49 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
+		public void GetById_BanInfo()
+		{
+			const string url = "https://api.vk.com/method/groups.getById?group_id=66464944&fields=ban_info&v=5.44&access_token=token";
+			const string json =
+				@"{
+                    'response': [
+                      {
+                        'id': 66464944,
+                        'name': 'Подслушано в Ст.Кривянской',
+                        'screen_name': 'club66464944',
+                        'is_closed': 0,
+                        'type': 'page',
+                        'is_admin': 0,
+                        'is_member': 1,
+                        'ban_info': {
+                          'end_date': 1446061273,
+                          'comment': 'Сам попросил :D'
+                        },
+                        'photo_50': 'https://pp.vk.me/...1f1/EQ4pWlWdL74.jpg',
+                        'photo_100': 'https://pp.vk.me/...1f0/0Rl3JI-Oyyo.jpg',
+                        'photo_200': 'https://pp.vk.me/...1ef/ozzx8hmX3Bk.jpg'
+                      }
+                    ]
+                  }";
+
+			var cat = GetMockedGroupCategory(url, json);
+
+			var group = cat.GetById(66464944, GroupsFields.BanInfo);
+			Assert.That(group, Is.Not.Null);
+			Assert.That(group.Id, Is.EqualTo(66464944));
+			Assert.That(group.Name, Is.EqualTo("Подслушано в Ст.Кривянской"));
+			Assert.That(group.ScreenName, Is.EqualTo("club66464944"));
+			Assert.That(group.IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(group.Type, Is.EqualTo(GroupType.Page));
+			Assert.That(group.IsAdmin, Is.EqualTo(false));
+			Assert.That(group.IsMember, Is.EqualTo(true));
+			Assert.That(group.BanInfo.Comment, Is.EqualTo("Сам попросил :D"));
+		}
+
+		[Test]
 		public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_ids=0&v=5.37&access_token=token";
-
+			const string url = "https://api.vk.com/method/groups.getById?group_ids=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -945,13 +998,13 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			This.Action(() => cat.GetById(new ulong[] { 0 })).Throws<InvalidParameterException>();
+			This.Action(() => cat.GetById(new long[] { 0 })).Throws<InvalidParameterException>();
 		}
 
 		[Test]
 		public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_ids=17683660,637247&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_ids=17683660,637247&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -983,7 +1036,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
-			var groups = cat.GetById(new ulong[] { 17683660, 637247 }).ToList();
+			var groups = cat.GetById(new long[] { 17683660, 637247 }).ToList();
 
 			Assert.That(groups.Count == 2);
 			Assert.That(groups[0].Id, Is.EqualTo(17683660));
@@ -993,9 +1046,9 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[0].IsAdmin, Is.False);
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
 			Assert.That(groups[0].IsMember, Is.False);
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
+			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
 
 			Assert.That(groups[1].Id, Is.EqualTo(637247));
 			Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
@@ -1004,9 +1057,9 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
 			Assert.That(groups[1].IsAdmin, Is.False);
 			Assert.That(groups[1].IsMember, Is.True);
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg")));
+			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg")));
 
 		}
 
@@ -1023,8 +1076,14 @@ namespace VkNet.Tests.Categories
 						'name': 'Творческие каникулы ART CAMP с 21 по 29 июля',
 						'screen_name': 'club17683660',
 						'is_closed': 0,
-						'city': 95,
-						'country': 1,
+						city: {
+							id: 95,
+							title: 'Санкт-Петербург'
+						},
+						country: {
+							id: 1,
+							title: 'Россия'
+						},
 						'description': 'Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21...',
 						'start_date': '1342850400',
 						'type': 'event',
@@ -1039,8 +1098,14 @@ namespace VkNet.Tests.Categories
 						'name': 'Чак Паланик - Сумасшедший гений литературы',
 						'screen_name': 'club637247',
 						'is_closed': 1,
-						'city': 95,
-						'country': 1,
+						city: {
+							id: 95,
+							title: 'Санкт-Петербург'
+						},
+						country: {
+							id: 1,
+							title: 'Россия'
+						},
 						'description': 'Кто он, этот неординарный и талантливый человек? Его творчество спо...',
 						'wiki_page': 'Chuk Palahniuk',
 						'start_date': '0',
@@ -1056,7 +1121,7 @@ namespace VkNet.Tests.Categories
 
 			var category = GetMockedGroupCategory(url, json);
 
-			var groups = category.GetById(new ulong[] { 17683660, 637247 }, GroupsFields.All).ToList();
+			var groups = category.GetById(new long[] { 17683660, 637247 }, GroupsFields.All).ToList();
 
 			Assert.That(groups.Count, Is.EqualTo(2));
 			Assert.That(groups[0].Id, Is.EqualTo(17683660));
@@ -1069,8 +1134,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
-			Assert.That(groups[0].CityId, Is.EqualTo(95));
-			Assert.That(groups[0].CountryId, Is.EqualTo(1));
+			Assert.That(groups[0].City.Id, Is.EqualTo(95));
+			Assert.That(groups[0].Country.Id, Is.EqualTo(1));
 			Assert.That(groups[0].Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21..."));
 			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
 
@@ -1085,8 +1150,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
 			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
 			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
-			Assert.That(groups[1].CityId, Is.EqualTo(95));
-			Assert.That(groups[1].CountryId, Is.EqualTo(1));
+			Assert.That(groups[1].City.Id, Is.EqualTo(95));
+			Assert.That(groups[1].Country.Id, Is.EqualTo(1));
 			Assert.That(groups[1].Description, Is.EqualTo("Кто он, этот неординарный и талантливый человек? Его творчество спо..."));
 			Assert.That(groups[1].StartDate, Is.Null);
 		}
@@ -1104,8 +1169,14 @@ namespace VkNet.Tests.Categories
 						'name': 'Творческие каникулы ART CAMP с 21 по 29 июля',
 						'screen_name': 'club17683660',
 						'is_closed': 0,
-						'city': 95,
-						'country': 1,
+						city: {
+							id: 95,
+							title: 'Санкт-Петербург'
+						},
+						country: {
+							id: 1,
+							title: 'Россия'
+						},
 						'description': 'Творческие каникулы ART CAMP с 21 по 29 июля<br>....',
 						'start_date': '1342850400',
 						'type': 'event',
@@ -1119,28 +1190,28 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var category = GetMockedGroupCategory(url, json);
-			var g = category.GetById(17683660, GroupsFields.All);
+			var @group = category.GetById(17683660, GroupsFields.All);
 
-			Assert.That(g.Id, Is.EqualTo(17683660));
-			Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
-			Assert.That(g.ScreenName, Is.EqualTo("club17683660"));
-			Assert.That(g.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(g.IsAdmin, Is.False);
-			Assert.That(g.Type, Is.EqualTo(GroupType.Event));
-			Assert.That(g.IsMember, Is.False);
-			Assert.That(g.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
-			Assert.That(g.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
-			Assert.That(g.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
-			Assert.That(g.CityId, Is.EqualTo(95));
-			Assert.That(g.CountryId, Is.EqualTo(1));
-			Assert.That(g.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
-			Assert.That(g.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
+			Assert.That(@group.Id, Is.EqualTo(17683660));
+			Assert.That(@group.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
+			Assert.That(@group.ScreenName, Is.EqualTo("club17683660"));
+			Assert.That(@group.IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(@group.IsAdmin, Is.False);
+			Assert.That(@group.Type, Is.EqualTo(GroupType.Event));
+			Assert.That(@group.IsMember, Is.False);
+			Assert.That(@group.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+			Assert.That(@group.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+			Assert.That(@group.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(@group.City.Id, Is.EqualTo(95));
+			Assert.That(@group.Country.Id, Is.EqualTo(1));
+			Assert.That(@group.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
+			Assert.That(@group.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
 		}
 
 		[Test]
 		public void GetInvites_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.getInvites?count=3&offset=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getInvites?offset=0&count=3&v=5.44&access_token=token";
 			const string json =
 			@"{
 					'response': [
@@ -1161,30 +1232,30 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			ReadOnlyCollection<Group> groups = cat.GetInvites(3, 0);
+			var groups = cat.GetInvites(3, 0);
 
 			groups.ShouldNotBeNull();
 			groups.Count.ShouldEqual(1);
 
-			groups[0].Id.ShouldEqual(66528333);
+			Assert.That(groups[0].Id, Is.EqualTo(66528333));
 			groups[0].Name.ShouldEqual("группа 123");
 			groups[0].ScreenName.ShouldEqual("club66528333");
 			groups[0].IsClosed.ShouldEqual(GroupPublicity.Closed);
 			groups[0].Type.ShouldEqual(GroupType.Group);
 			groups[0].IsAdmin.ShouldBeFalse();
 			groups[0].IsMember.ShouldEqual(false);
-			groups[0].PhotoPreviews.Photo50.ShouldEqual("http://vk.com/images/community_50.gif");
-			groups[0].PhotoPreviews.Photo100.ShouldEqual("http://vk.com/images/community_100.gif");
-			groups[0].PhotoPreviews.PhotoMax.ShouldEqual("http://vk.com/images/question_a.gif");
-			groups[0].InvitedBy.ShouldEqual(242508789);
+			groups[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://vk.com/images/community_50.gif"));
+			groups[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://vk.com/images/community_100.gif"));
+			groups[0].PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://vk.com/images/question_a.gif"));
+			Assert.That(groups[0].InvitedBy, Is.EqualTo(242508789));
 		}
 
 		[Test]
 		public void GetInivites_NotInvites()
 		{
-			const string url = "https://api.vk.com/method/groups.getInvites?count=3&offset=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getInvites?offset=0&count=3&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': [
@@ -1192,9 +1263,9 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			ReadOnlyCollection<Group> groups = cat.GetInvites(3, 0);
+			var groups = cat.GetInvites(3, 0);
 
 			groups.ShouldNotBeNull();
 			groups.Count.ShouldEqual(0);
@@ -1209,9 +1280,9 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			bool result = cat.BanUser(6596823, 242506753, comment: "просто комментарий", commentVisible: true);
+			var result = cat.BanUser(6596823, 242506753, comment: "просто комментарий", commentVisible: true);
 
 			result.ShouldBeTrue();
 		}
@@ -1219,7 +1290,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.getBanned?group_id=65968111&count=3&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getBanned?group_id=65968111&count=3&v=5.44&access_token=token";
 			const string json =
 			@"{
 					'response': [
@@ -1239,9 +1310,9 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			ReadOnlyCollection<User> users = cat.GetBanned(65968111, 3);
+			var users = cat.GetBanned(65968111,null, 3);
 
 			users.ShouldNotBeNull();
 			users.Count.ShouldEqual(1);
@@ -1259,15 +1330,15 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void UnbanUser_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.unbanUser?group_id=65960&user_id=242508&access_token=token";
+			const string url = "https://api.vk.com/method/groups.unbanUser?group_id=65960&user_id=242508&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
 				  }";
 
-			GroupsCategory cat = GetMockedGroupCategory(url, json);
+			var cat = GetMockedGroupCategory(url, json);
 
-			bool result = cat.UnbanUser(65960, 242508);
+			var result = cat.UnbanUser(65960, 242508);
 
 			result.ShouldBeTrue();
 		}
@@ -1275,7 +1346,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetSettings_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.getSettings?group_id=103292418&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getSettings?group_id=103292418&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -1447,7 +1518,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Edit_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=Raven&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.edit?group_id=103292418&title=Raven&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
@@ -1466,7 +1537,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void EditPlace_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.editPlace?group_id=103292418&title=Test&address=1&country_id=1&city_id=1&latitude=30&longitude=30&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.editPlace?group_id=103292418&title=Test&address=1&country_id=1&city_id=1&latitude=30&longitude=30&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -1493,7 +1564,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetInvitedUsers_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.getInvitedUsers?group_id=103292418&offset=0&count=20&fields=bdate&name_case=dat&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getInvitedUsers?group_id=103292418&offset=0&count=20&fields=bdate&name_case=dat&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -1524,7 +1595,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Invite_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.invite?group_id=103292418&user_id=221634238&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/groups.invite?group_id=103292418&user_id=221634238&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1

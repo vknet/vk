@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams.NewsFeed;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -35,24 +36,12 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.get" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.get" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public NewsFeed Get(GetParams @params)
+		[ApiVersion("5.44")]
+		public NewsFeed Get(NewsFeedGetParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "filters", @params.Filters },
-				{ "return_banned", @params.ReturnBanned },
-				{ "start_time", @params.StartTime },
-				{ "end_time", @params.EndTime },
-				{ "max_photos", @params.MaxPhotos },
-				{ "source_ids", @params.SourceIds },
-				{ "start_from", @params.StartFrom },
-				{ "count", @params.Count },
-				{ "fields", @params.Fields }
-			};
-			var response = _vk.Call("newsfeed.get", parameters);
+			var response = _vk.Call("newsfeed.get", @params);
 			var result = new NewsFeed
 			{
 				Items = response["items"].ToReadOnlyCollectionOf<NewsItem>(x => x),
@@ -72,21 +61,12 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getRecommended" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getRecommended" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public NewsFeed GetRecommended(GetRecommendedParams @params)
+		[ApiVersion("5.44")]
+		public NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "start_time", @params.StartTime },
-				{ "end_time", @params.EndTime },
-				{ "max_photos", @params.MaxPhotos },
-				{ "start_from", @params.StartFrom },
-				{ "count", @params.Count },
-				{ "fields", @params.Fields }
-			};
-			var response = _vk.Call("newsfeed.getRecommended", parameters);
+			var response = _vk.Call("newsfeed.getRecommended", @params);
 			var result = new NewsFeed
 			{
 				Items = response["items"].ToReadOnlyCollectionOf<NewsItem>(x => x),
@@ -106,23 +86,12 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getComments" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getComments" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public NewsFeed GetComments(GetCommentsParams @params)
+		[ApiVersion("5.44")]
+		public NewsFeed GetComments(NewsFeedGetCommentsParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "count", @params.Count },
-				{ "filters", @params.Filters },
-				{ "reposts", @params.Reposts },
-				{ "start_time", @params.StartTime },
-				{ "end_time", @params.EndTime },
-				{ "last_comments_count", @params.LastCommentsCount },
-				{ "start_from", @params.StartFrom },
-				{ "fields", @params.Fields }
-			};
-			var response = _vk.Call("newsfeed.getComments", parameters);
+			var response = _vk.Call("newsfeed.getComments", @params);
 			var result = new NewsFeed
 			{
 				Items = response["items"].ToReadOnlyCollectionOf<NewsItem>(x => x),
@@ -147,10 +116,10 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getMentions" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getMentions" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public ReadOnlyCollection<Mention> GetMentions(out int total, long ownerId = 0, ulong? startTime = null, ulong? endTime = null, ulong offset = 0, ulong count = 20)
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<Mention> GetMentions(out int total, long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -173,9 +142,9 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getBanned" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getBanned" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public NewsBannedList GetBanned()
 		{
 			return _vk.Call("newsfeed.getBanned", new VkParameters());
@@ -190,9 +159,9 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getBanned" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getBanned" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.44")]
 		public NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null)
 		{
 			var parameters = new VkParameters
@@ -213,10 +182,10 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.addBan" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.addBan" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool AddBan(IEnumerable<ulong> userIds, IEnumerable<ulong> groupIds)
+		[ApiVersion("5.44")]
+		public bool AddBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)
 		{
 			var parameters = new VkParameters
 			{
@@ -235,10 +204,10 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.deleteBan" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.deleteBan" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool DeleteBan(IEnumerable<ulong> userIds, IEnumerable<ulong> groupIds)
+		[ApiVersion("5.44")]
+		public bool DeleteBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)
 		{
 			var parameters = new VkParameters
 			{
@@ -258,10 +227,10 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.ignoreItem" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.ignoreItem" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool IgnoreItem(NewsObjectTypes type, long ownerId, ulong itemId)
+		[ApiVersion("5.44")]
+		public bool IgnoreItem(NewsObjectTypes type, long ownerId, long itemId)
 		{
 			var parameters = new VkParameters
 			{
@@ -280,10 +249,10 @@ namespace VkNet.Categories
 		/// <param name="ownerId">Идентификатор владельца объекта (пользователь или сообщество).</param>
 		/// <param name="itemId">Идентификатор объекта. </param>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.unignoreItem" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.unignoreItem" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool UnignoreItem(NewsObjectTypes type, long ownerId, ulong itemId)
+		[ApiVersion("5.44")]
+		public bool UnignoreItem(NewsObjectTypes type, long ownerId, long itemId)
 		{
 			var parameters = new VkParameters
 			{
@@ -302,27 +271,12 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.search" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.search" />.
 		/// </remarks>
 		[ApiVersion("5.37")]
-		public ReadOnlyCollection<NewsSearchResult> Search(SearchParams @params)
+		public ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params)
 		{
-			var parameters = new VkParameters
-			{
-				{ "q", @params.Query },
-				{ "extended", @params.Extended },
-				{ "latitude", @params.Latitude },
-				{ "longitude", @params.Longitude },
-				{ "start_time", @params.StartTime },
-				{ "end_time", @params.EndTime },
-				{ "start_from", @params.StartFrom },
-				{ "fields", @params.Fields }
-			};
-			if (@params.Count <= 200)
-			{
-				parameters.Add("count", @params.Count);
-			}
-			VkResponseArray response = _vk.Call("newsfeed.search", parameters);
+			VkResponseArray response = _vk.Call("newsfeed.search", @params);
 			return response.ToReadOnlyCollectionOf<NewsSearchResult>(x => x);
 		}
 
@@ -336,10 +290,10 @@ namespace VkNet.Categories
 		/// Метод возвращает список объектов пользовательских списков.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getLists" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getLists" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public IEnumerable<NewsUserListItem> GetLists(out int total, IEnumerable<ulong> listIds, bool extended = false)
+		[ApiVersion("5.44")]
+		public ReadOnlyCollection<NewsUserListItem> GetLists(out int total, IEnumerable<long> listIds, bool? extended = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -362,10 +316,10 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает Идентификатор списка.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.saveList" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.saveList" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public ulong SaveList(string title, IEnumerable<long> sourceIds, ulong listId = 0, bool noReposts = false)
+		[ApiVersion("5.44")]
+		public long SaveList(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -385,10 +339,10 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.deleteList" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.deleteList" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool DeleteList(ulong listId)
+		[ApiVersion("5.44")]
+		public bool DeleteList(long listId)
 		{
 			var parameters = new VkParameters
 			{
@@ -407,10 +361,10 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.unsubscribe" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.unsubscribe" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public bool Unsubscribe(CommentObjectType type, ulong ownerId, ulong itemId)
+		[ApiVersion("5.44")]
+		public bool Unsubscribe(CommentObjectType type, long itemId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -424,18 +378,18 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает сообщества и пользователей, на которые текущему пользователю рекомендуется подписаться.
 		/// </summary>
-		/// <param name="offset">Отступ, необходимый для выборки определенного подмножества сообществ или пользователей.</param>
-		/// <param name="count">Количество сообществ или пользователей, которое необходимо вернуть.</param>
-		/// <param name="shuffle">Перемешивать ли возвращаемый список.</param>
-		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. См. возможные поля для пользователей и сообществ.</param>
+		/// <param name="offset">Отступ, необходимый для выборки определенного подмножества сообществ или пользователей. положительное число (Положительное число).</param>
+		/// <param name="count">Количество сообществ или пользователей, которое необходимо вернуть. положительное число, максимальное значение 1000, по умолчанию 20 (Положительное число, максимальное значение 1000, по умолчанию 20).</param>
+		/// <param name="shuffle">Перемешивать ли возвращаемый список. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. См. возможные поля для пользователей и сообществ. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// Список объектов пользователей и групп.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/newsfeed.getSuggestedSources" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/newsfeed.getSuggestedSources" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
-		public NewsSuggestions GetSuggestedSources(int offset, int count = 20, bool shuffle = false, UsersFields fields = null)
+		[ApiVersion("5.44")]
+		public NewsSuggestions GetSuggestedSources(long? offset = null, long? count = null, bool? shuffle = null, UsersFields fields = null)
 		{
 			var parameters = new VkParameters
 			{

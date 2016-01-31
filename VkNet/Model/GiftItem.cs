@@ -1,4 +1,5 @@
-﻿using VkNet.Enums;
+﻿using System;
+using VkNet.Enums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -17,7 +18,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор пользователя, который отправил подарок, или 0, если отправитель скрыт.
 		/// </summary>
-		public ulong FromId { get; set; }
+		public long FromId { get; set; }
 
 		/// <summary>
 		/// Текст сообщения, приложенного к подарку.
@@ -27,7 +28,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время отправки подарка в формате unixtime.
 		/// </summary>
-		public string Date { get; set; }
+		public DateTime? Date { get; set; }
 
 		/// <summary>
 		/// Подарок.

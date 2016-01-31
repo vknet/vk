@@ -6,13 +6,28 @@ using Mono.Cecil.Rocks;
 
 namespace Injector
 {
+	/// <summary>
+	/// Иньектор
+	/// </summary>
 	static class Program
 	{
+		/// <summary>
+		/// Название файла библиотеки
+		/// </summary>
 		const string DllFile = "VkNet.dll";
+		/// <summary>
+		/// Название аттрибута
+		/// </summary>
 		const string AttributeName = "ApiVersionAttribute";
+		/// <summary>
+		/// Пространство имен
+		/// </summary>
 		const string CategoriesNamespace = "VkNet.Categories";
-		
-		static void Main(string[] args)
+
+		/// <summary>
+		/// Иньектор.
+		/// </summary>
+		static void Main()
 		{
 			try
 			{
@@ -25,6 +40,9 @@ namespace Injector
 			}
 		}
 
+		/// <summary>
+		/// Processes this instance.
+		/// </summary>
 		static void Process()
 		{
 			Console.WriteLine("Loading assembly...");
@@ -33,7 +51,7 @@ namespace Injector
 
 			var categoryTypes = assembly.MainModule.Types.Where(t => t.Name.Contains("Category") && t.Namespace == CategoriesNamespace).ToArray();
 			Console.WriteLine("{0} categories was founded at {1} namespace.", categoryTypes.Count(), CategoriesNamespace);
-			
+
 			foreach (var type in categoryTypes)
 			{
 				Console.WriteLine(type.Name);
@@ -55,14 +73,14 @@ namespace Injector
 												&& operand.Parameters[3].ParameterType.Name == "String" && operand.Parameters[3].HasDefault
 										select i)
 										.ToArray();
-					
+
 					if (!instructions.Any())
 					{
 						Console.WriteLine(" - call invocations not found.");
 						continue;
 					}
 
-					int count = 0;
+					var count = 0;
 					foreach (var instruction in instructions.Where(instruction => instruction.Previous.OpCode == OpCodes.Ldnull))
 					{
 						info.Body.Instructions.Remove(instruction.Previous);

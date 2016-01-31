@@ -27,21 +27,34 @@ namespace VkNet.Model
 		/// </summary>
 		public int? Language { get; set; }
 
-		
-		#region Методы
+		/// <summary>
+		/// 1 - на стене пользователя по-умолчанию должны отображаться только собственные записи.
+		/// Соответствует настройке на сайте "Показывать только мои записи", 0 - на стене пользователя должны отображаться все записи.
+		/// </summary>
+		public bool? OwnPostsDefault { get; set; }
 
+		/// <summary>
+		///  1 - пользователь отключил комментирование записей на стене, 0 - комментирование записей разрешено.
+		/// </summary>
+		public bool? NoWallReplies { get; set; }
+
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
 		internal static AccountInfo FromJson(VkResponse response)
 		{
-			AccountInfo info = new AccountInfo();
-
-			info.Country = response["country"];
-			info.HttpsRequired = response["https_required"];
-			info.Intro = response["intro"];
-			info.Language = response["lang"];
-
-			return info;
+			return new AccountInfo
+			{
+				Country = response["country"],
+				HttpsRequired = response["https_required"],
+				Intro = response["intro"],
+				Language = response["lang"],
+				OwnPostsDefault = response["own_posts_default"],
+				NoWallReplies = response["no_wall_replies"]
+			};
 		}
-
-		#endregion 
 	}
 }

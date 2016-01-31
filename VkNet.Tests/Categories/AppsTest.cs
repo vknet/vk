@@ -4,8 +4,9 @@ using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
+using VkNet.Enums.Filters;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
-using VkNet.Model.RequestParams.App;
 
 namespace VkNet.Tests.Categories
 {
@@ -23,8 +24,7 @@ namespace VkNet.Tests.Categories
 		public void GetCatalog_NormalCase()
 		{
 
-			const string url =
-				"https://api.vk.com/method/apps.getCatalog?sort=popular_today&offset=0&count=100&platform=web&extended=0&return_friends=0&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -91,8 +91,8 @@ namespace VkNet.Tests.Categories
 						}
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
-			var app = mock.GetCatalog(out total, new GetCatalogParams());
+			long total;
+			var app = mock.GetCatalog(out total, new AppGetCatalogParams());
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("Подземелья!"));
 		}
@@ -102,7 +102,7 @@ namespace VkNet.Tests.Categories
 		{
 
 			const string url =
-				"https://api.vk.com/method/apps.get?app_ids=4268118&platform=web&extended=0&return_friends=0&v=5.37&access_token=token";
+				"https://api.vk.com/method/apps.get?app_ids=4268118&platform=web&extended=0&return_friends=0&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -130,8 +130,8 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
-			var app = mock.Get(out total, new GetParams() { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
+			long total;
+			var app = mock.Get(out total, new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("raventestapp"));
 		}
@@ -139,13 +139,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteAppRequests_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/apps.deleteAppRequests?v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/apps.deleteAppRequests?v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': 1
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
+			long total;
 			var app = mock.DeleteAppRequests();
 			Assert.That(app, Is.True);
 		}
@@ -153,7 +153,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetFriendsList_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/apps.getFriendsList?extended=0&offset=0&type=invite&count=20&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/apps.getFriendsList?type=invite&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -162,7 +162,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
+			long total;
 			var app = mock.GetFriendsList(out total, AppRequestType.Invite);
 			Assert.That(total, Is.GreaterThan(0));
 			Assert.That(app, Is.Not.Null);
@@ -171,7 +171,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetFriendsListEx_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/apps.getFriendsList?extended=1&offset=1&type=invite&count=5&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/apps.getFriendsList?extended=1&offset=1&type=invite&fields=online&count=5&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -200,8 +200,8 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 			var mock = GetMockedAppsCategory(url, json);
-			int total;
-			var app = mock.GetFriendsListEx(out total, AppRequestType.Invite, 5, 1);
+			long total;
+			var app = mock.GetFriendsList(out total, AppRequestType.Invite, true, 5, 1, UsersFields.Online);
 			Assert.That(total, Is.GreaterThan(0));
 			Assert.That(app, Is.Not.Null);
 		}

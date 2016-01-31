@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
-using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Exception;
-using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
-using FluentNUnit; 
 
 namespace VkNet.Tests.Categories
 {
@@ -31,7 +22,7 @@ namespace VkNet.Tests.Categories
 		public void Get_NormalCase()
 		{
 
-			const string url = "https://api.vk.com/method/gifts.get?user_id=32190123&v=5.37&access_token=token";
+			const string url = "https://api.vk.com/method/gifts.get?user_id=32190123&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'response': {
@@ -106,21 +97,22 @@ namespace VkNet.Tests.Categories
 						]
 					}
 				  }";
-			var audio = GetMockedGiftsCategory(url, json);
+			var category = GetMockedGiftsCategory(url, json);
 			int total;
-			var gifts = audio.Get(out total, 32190123);
+			var gifts = category.Get(out total, 32190123);
 
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(gifts[0].Id, Is.EqualTo(443110992));
 			Assert.That(gifts[0].FromId, Is.EqualTo(221634238));
 			Assert.That(gifts[0].Message, Is.EqualTo(string.Empty));
-			Assert.That(gifts[0].Date, Is.EqualTo("1431167825"));
+			// Unix timestamp is seconds past epoch
+			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+			Assert.That(gifts[0].Date.Value, Is.EqualTo(dt.AddSeconds(1431167825).ToLocalTime()));
 			Assert.That(gifts[0].Gift.Id, Is.EqualTo(711));
 			Assert.That(gifts[0].Gift.Thumb256, Is.EqualTo(@"http://vk.com/images/gift/711/256.jpg"));
 			Assert.That(gifts[0].Gift.Thumb96, Is.EqualTo(@"http://vk.com/images/gift/711/96.png"));
 			Assert.That(gifts[0].Gift.Thumb48, Is.EqualTo(@"http://vk.com/images/gift/711/48.png"));
 			Assert.That(gifts[0].Privacy, Is.EqualTo(GiftPrivacy.All));
 		}
-
 	}
 }

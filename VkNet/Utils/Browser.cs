@@ -12,10 +12,19 @@
 
     /// <summary>
     /// Браузер, через который производится сетевое взаимодействие с ВКонтакте.
-    /// Сетевое взаимодействие выполняется с помощью <see cref="HttpWebRequest"/>. 
+    /// Сетевое взаимодействие выполняется с помощью <see cref="HttpWebRequest"/>.
     /// </summary>
     public class Browser : IBrowser
     {
+        /// <summary>
+        /// Адрес хоста
+        /// </summary>
+        private string _host;
+        /// <summary>
+        /// Порт
+        /// </summary>
+        private int? _port;
+
         /// <summary>
         /// Получение json по url-адресу
         /// </summary>
@@ -24,10 +33,10 @@
         public string GetJson(string url)
         {
             var separatorPosition = url.IndexOf('?');
-            string methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
-            string parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
+            var methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
+            var parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
 
-            return WebCall.PostCall(methodUrl, parameters).Response;
+            return WebCall.PostCall(methodUrl, parameters, _host, _port).Response;
         }
 
         /// <summary>
@@ -84,41 +93,55 @@
         /// <param name="email">Логин - телефон или эл. почта</param>
         /// <param name="password">Пароль</param>
         /// <param name="settings">Уровень доступа приложения</param>
-        /// <param name="captcha_sid">Идентификатор капчи</param>
-        /// <param name="captcha_key">Текст капчи</param>
+        /// <param name="code">Код двухфакторной авторизации</param>
+        /// <param name="captchaSid">Идентификатор капчи</param>
+        /// <param name="captchaKey">Текст капчи</param>
+        /// <param name="host">Имя узла прокси-сервера.</param>
+        /// <param name="port">Номер порта используемого Host.</param>
         /// <returns>Информация об авторизации приложения</returns>
-        public VkAuthorization Authorize(int appId, string email, string password, Settings settings, Func<string> code = null,  long? captcha_sid = null, string captcha_key = null)
+        public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null,
+                                         string host = null, int? port = null)
         {
-            string authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            WebCallResult authorizeUrlResult = WebCall.MakeCall(authorizeUrl);
+            _host = string.IsNullOrWhiteSpace(host) ? null : host;
+            _port = port;
 
-            // fill email and password
-            WebForm loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
-            if (captcha_sid.HasValue)
-                loginForm.WithField("captcha_sid").FilledWith(captcha_sid.Value.ToString()).WithField("captcha_key").FilledWith(captcha_key);
-            WebCallResult loginFormPostResult = WebCall.Post(loginForm);
+            var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
+            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, host, port);
 
-            // fill code
+            // Заполнить логин и пароль
+            var loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
+            if (captchaSid.HasValue)
+                loginForm.WithField("captcha_sid").FilledWith(captchaSid.Value.ToString()).WithField("captcha_key").FilledWith(captchaKey);
+            var loginFormPostResult = WebCall.Post(loginForm, host, port);
+
+            // Заполнить код двухфакторной авторизации
             if (code != null)
             {
-                WebForm codeForm = WebForm.From(loginFormPostResult).WithField("code").FilledWith(code());
-                loginFormPostResult = WebCall.Post(codeForm);
+                var codeForm = WebForm.From(loginFormPostResult).WithField("code").FilledWith(code());
+                loginFormPostResult = WebCall.Post(codeForm, host, port);
             }
 
-            VkAuthorization authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
+            var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
             if (authorization.CaptchaID.HasValue)
                 throw new CaptchaNeededException(authorization.CaptchaID.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaID.Value.ToString());
             if (!authorization.IsAuthorizationRequired)
                 return authorization;
 
-            // press allow button
-            WebForm authorizationForm = WebForm.From(loginFormPostResult);
-            WebCallResult authorizationFormPostResult = WebCall.Post(authorizationForm);
+            // Отправить данные
+            var authorizationForm = WebForm.From(loginFormPostResult);
+            var authorizationFormPostResult = WebCall.Post(authorizationForm, host, port);
 
             return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
         }
 
-        internal static string CreateAuthorizeUrlFor(int appId, Settings settings, Display display)
+        /// <summary>
+        /// Построить URL для авторизации.
+        /// </summary>
+        /// <param name="appId">Идентификатор приложения.</param>
+        /// <param name="settings">Настройки прав доступа.</param>
+        /// <param name="display">Вид окна авторизации.</param>
+        /// <returns></returns>
+        internal static string CreateAuthorizeUrlFor(ulong appId, Settings settings, Display display)
         {
             var builder = new StringBuilder("https://oauth.vk.com/authorize?");
 

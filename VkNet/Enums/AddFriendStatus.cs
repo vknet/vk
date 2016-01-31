@@ -1,4 +1,6 @@
-﻿using VkNet.Utils;
+﻿using System.ComponentModel.DataAnnotations;
+using VkNet.Properties;
+using VkNet.Utils;
 
 namespace VkNet.Enums
 {
@@ -7,25 +9,29 @@ namespace VkNet.Enums
     /// </summary>
     public enum AddFriendStatus
     {
-        /// <summary>
-        /// Статус в случае ошибки ответа
-        /// </summary>
-        [DefaultValue]
+		/// <summary>
+		/// Статус в случае ошибки ответа
+		/// </summary>
+		[DefaultValue]
+		[Display(ResourceType = typeof (Resources), Name = "AddFriendStatus_Unknown")]
         Unknown = 0,
 
-        /// <summary>
-        /// заявка на добавление данного пользователя в друзья отправлена
-        /// </summary>
-        Sended = 1,
+		/// <summary>
+		/// Заявка на добавление данного пользователя в друзья отправлена
+		/// </summary>
+		[Display(ResourceType = typeof (Resources), Name = "AddFriendStatus_Sended")]
+		Sended = 1,
 
-        /// <summary>
-        /// заявка на добавление в друзья от данного пользователя одобрена
-        /// </summary>
-        Accepted = 2,
+		/// <summary>
+		/// Заявка на добавление в друзья от данного пользователя одобрена
+		/// </summary>
+		[Display(ResourceType = typeof (Resources), Name = "AddFriendStatus_Accepted")]
+		Accepted = 2,
 
-        /// <summary>
-        /// повторная отправка заявки
-        /// </summary>
-        Resubmit = 4
+		/// <summary>
+		/// Повторная отправка заявки
+		/// </summary>
+		[Display(ResourceType = typeof (Resources), Name = "AddFriendStatus_Resubmit")]
+		Resubmit = 4
     }
 }

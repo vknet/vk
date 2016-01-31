@@ -1,6 +1,8 @@
-﻿namespace VkNet.Categories
+﻿using System.Collections.Generic;
+using VkNet.Enums;
+
+namespace VkNet.Categories
 {
-    using System.Linq;
     using System.Collections.ObjectModel;
     using JetBrains.Annotations;
 
@@ -36,15 +38,21 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCountries"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<Country> GetCountries(bool needAll = true, string codes = "", int? count = null, int? offset = null)
+        [ApiVersion("5.44")]
+        public ReadOnlyCollection<Country> GetCountries(bool? needAll = null, List<Iso3166> codes = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
 
-            var parameters = new VkParameters { { "code", codes }, { "offset", offset }, { "count", count }, { "need_all", needAll } };
+            var parameters = new VkParameters
+            {
+                { "code", codes },
+                { "offset", offset },
+                { "count", count },
+                { "need_all", needAll }
+            };
 
-            VkResponseArray response = _vk.Call("database.getCountries", parameters, true);
-            return response.ToReadOnlyCollectionOf<Country>(x => x);
+            return _vk.Call("database.getCountries", parameters, true).ToReadOnlyCollectionOf<Country>(x => x);
         }
 
         /// <summary>
@@ -59,17 +67,22 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getRegions"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public ReadOnlyCollection<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => countryId);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
 
-            var parameters = new VkParameters { { "country_id", countryId }, { "q", query }, { "offset", offset }, { "count", count } };
+            var parameters = new VkParameters
+            {
+                { "country_id", countryId },
+                { "q", query },
+                { "offset", offset },
+                { "count", count }
+            };
 
-            VkResponseArray response = _vk.Call("database.getRegions", parameters, true);
-            
-            return response.ToReadOnlyCollectionOf<Region>(r => r);
+            return _vk.Call("database.getRegions", parameters, true).ToReadOnlyCollectionOf<Region>(r => r);
         }
 
         /// <summary>
@@ -81,13 +94,13 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getStreetsById"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public ReadOnlyCollection<Street> GetStreetsById(params int[] streetIds)
         {
             var parameters = new VkParameters();
             parameters.Add<int>("street_ids", streetIds);
 
-            VkResponseArray response = _vk.Call("database.getStreetsById", parameters, true);
-            return response.ToReadOnlyCollectionOf<Street>(x => x);
+            return _vk.Call("database.getStreetsById", parameters, true).ToReadOnlyCollectionOf<Street>(x => x);
         }
 
         /// <summary>
@@ -99,14 +112,13 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCountriesById"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public ReadOnlyCollection<Country> GetCountriesById(params int[] countryIds)
         {
             var parameters = new VkParameters();
             parameters.Add<int>("country_ids", countryIds);
 
-            VkResponseArray response = _vk.Call("database.getCountriesById", parameters, true);
-
-            return response.ToReadOnlyCollectionOf<Country>(c => c);
+            return _vk.Call("database.getCountriesById", parameters, true).ToReadOnlyCollectionOf<Country>(c => c);
         }
 
         /// <summary>
@@ -115,7 +127,7 @@
         /// <param name="countryId">Идентификатор страны.</param>
         /// <param name="regionId">Идентификатор региона.</param>
         /// <param name="query">Строка поискового запроса. Например, Санкт.</param>
-        /// <param name="needAll">true – возвращать все города. false – возвращать только основные города.</param>
+        /// <param name="needAll"><c>true</c> – возвращать все города. <c>false</c> – возвращать только основные города.</param>
         /// <param name="count">Количество городов, которые необходимо вернуть.</param>
         /// <param name="offset">Отступ, необходимый для получения определенного подмножества городов.</param>
         /// <returns>Cписок городов</returns>
@@ -128,6 +140,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCities"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public ReadOnlyCollection<City> GetCities(int countryId, int? regionId = null, string query = "", bool? needAll = false, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => countryId);
@@ -137,16 +150,15 @@
 
             var parameters = new VkParameters
                 {
-                    { "country_id", countryId }, 
-                    { "region_id", regionId }, 
+                    { "country_id", countryId },
+                    { "region_id", regionId },
                     {"q", query},
                     {"need_all", needAll},
                     {"offset", offset},
                     {"count", count}
                 };
 
-            VkResponseArray response = _vk.Call("database.getCities", parameters, true);
-            return response.ToReadOnlyCollectionOf<City>(x => x);
+            return _vk.Call("database.getCities", parameters, true).ToReadOnlyCollectionOf<City>(x => x);
         }
 
         /// <summary>
@@ -160,13 +172,13 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCitiesById"/>. 
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public ReadOnlyCollection<City> GetCitiesById(params int[] cityIds)
         {
             var parameters = new VkParameters();
             parameters.Add<int>("city_ids", cityIds);
 
-            VkResponseArray response = _vk.Call("database.getCitiesById", parameters, true);
-            return response.ToReadOnlyCollectionOf<City>(x => x);
+            return _vk.Call("database.getCitiesById", parameters, true).ToReadOnlyCollectionOf<City>(x => x);
         }
 
         /// <summary>
@@ -182,13 +194,14 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getUniversities"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public ReadOnlyCollection<University> GetUniversities(int countryId, int cityId, string query = "", int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => countryId);
             VkErrors.ThrowIfNumberIsNegative(() => cityId);
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
-            
+
             var parameters = new VkParameters
                 {
                     {"q", query},
@@ -198,14 +211,12 @@
                     {"count", count}
                 };
 
-            VkResponseArray response = _vk.Call("database.getUniversities", parameters, true);
-            return response.Skip(1).ToReadOnlyCollectionOf<University>(x => x);
+            return _vk.Call("database.getUniversities", parameters, true).ToReadOnlyCollectionOf<University>(x => x);
         }
 
         /// <summary>
         /// Возвращает список школ.
         /// </summary>
-        /// <param name="countryId">Идентификатор страны, школы которой необходимо вернуть.</param>
         /// <param name="cityId">Идентификатор города, школы которого необходимо вернуть.</param>
         /// <param name="query">Строка поискового запроса. Например, гимназия.</param>
         /// <param name="offset">Отступ, необходимый для получения определенного подмножества школ.</param>
@@ -215,9 +226,9 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getSchools"/>.
         /// </remarks>
         [Pure]
-        public ReadOnlyCollection<School> GetSchools(int countryId, int cityId, string query = "", int? offset = null, int? count = null)
+        [ApiVersion("5.44")]
+        public ReadOnlyCollection<School> GetSchools(int cityId, string query = "", int? offset = null, int? count = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(() => countryId);
             VkErrors.ThrowIfNumberIsNegative(() => cityId);
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -225,14 +236,12 @@
             var parameters = new VkParameters
                 {
                     {"q", query},
-                    {"country_id", countryId},
                     {"city_id", cityId},
                     {"offset", offset},
                     {"count", count}
                 };
 
-            VkResponseArray response = _vk.Call("database.getSchools", parameters, true);
-            return response.Skip(1).ToReadOnlyCollectionOf<School>(x => x);
+            return _vk.Call("database.getSchools", parameters, true).ToReadOnlyCollectionOf<School>(x => x);
         }
 
         /// <summary>
@@ -246,6 +255,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getFaculties"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public ReadOnlyCollection<Faculty> GetFaculties(long universityId, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => universityId);
@@ -259,8 +269,53 @@
                     {"count", count}
                 };
 
-            VkResponseArray response = _vk.Call("database.getFaculties", parameters, true);
-            return response.Skip(1).ToReadOnlyCollectionOf<Faculty>(x => x);
+            return _vk.Call("database.getFaculties", parameters, true).ToReadOnlyCollectionOf<Faculty>(x => x);
+        }
+
+        /// <summary>
+        /// Возвращает список классов, характерных для школ определенной страны.
+        /// </summary>
+        /// <param name="countryId">Идентификатор страны, доступные классы в которой необходимо вернуть.</param>
+        /// <returns>Возвращает массив, каждый элемент которого представляет собой пару: идентификатор и строковое обозначение класса.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getSchoolClasses"/>.
+        /// </remarks>
+        [Pure]
+        [ApiVersion("5.44")]
+        public ReadOnlyCollection<SchoolClass> GetSchoolClasses(long countryId)
+        {
+            var parameters = new VkParameters
+            {
+                { "country_id", countryId }
+            };
+
+            return _vk.Call("database.getSchoolClasses", parameters, true).ToReadOnlyCollectionOf<SchoolClass>(x => x);
+        }
+
+        /// <summary>
+        /// Возвращает список кафедр университета по указанному факультету.
+        /// </summary>
+        /// <param name="facultyId">Идентификатор факультета, кафедры которого необходимо получить.</param>
+        /// <param name="count">Количество кафедр которое необходимо получить.</param>
+        /// <param name="offset">Отступ, необходимый для получения определенного подмножества кафедр.</param>
+        /// <returns>
+        /// Возвращает массив, каждый элемент которого представляет собой пару: идентификатор и строковое обозначение класса.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getChairs" />.
+        /// </remarks>
+        [Pure]
+        [ApiVersion("5.44")]
+        public ReadOnlyCollection<Chair> GetChairs(long facultyId, int? count = null, int? offset = null)
+        {
+            var parameters = new VkParameters
+            {
+                { "faculty_id", facultyId },
+                { "offset", offset },
+                { "count", count }
+            };
+
+            return _vk.Call("database.getChairs", parameters, true).ToReadOnlyCollectionOf<Chair>(x => x);
         }
     }
 }

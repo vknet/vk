@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace VkNet.Model
+﻿namespace VkNet.Model
 {
-	using VkNet.Utils;
+	using Utils;
+	
 	/// <summary>
 	/// История изменения объекта
 	/// </summary>
@@ -43,9 +39,9 @@ namespace VkNet.Model
 		#region Методы
 
 		/// <summary>
-		/// Froms the json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">The response.</param>
+		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
 		internal static History FromJson(VkResponse response)
 		{

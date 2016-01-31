@@ -25,19 +25,24 @@ namespace VkNet.Model
         /// </summary>
         public string Title { get; set; }
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static AudioAlbum FromJson(VkResponse response)
+		{
+			var album = new AudioAlbum
+			{
+				OwnerId = response["owner_id"],
+				AlbumId = response["album_id"],
+				Title = response["title"]
+			};
 
-        internal static AudioAlbum FromJson(VkResponse response)
-        {
-            var album = new AudioAlbum();
+			return album;
+		}
 
-            album.OwnerId = response["owner_id"];
-            album.AlbumId = response["album_id"];
-            album.Title = response["title"];
-
-            return album;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -1,39 +1,37 @@
 ﻿namespace VkNet.Enums.SafetyEnums
 {
-    /// <summary>
-    /// Тип комментариев.
-    /// </summary>
+	/// <summary>
+	/// Тип комментариев.
+	/// </summary>
 	public sealed class CommentObjectType : SafetyEnum<CommentObjectType>
-    {
+	{
 		/// <summary>
-		/// запись на стене пользователя или группы;.
+		/// Запись на стене пользователя или группы.
 		/// </summary>
 		public static readonly CommentObjectType Post = RegisterPossibleValue("post");
 
 
 		/// <summary>
-		/// фотография;.
+		/// Фотография.
 		/// </summary>
 		public static readonly CommentObjectType Photo = RegisterPossibleValue("photo");
 
 
 		/// <summary>
-		/// видеозапись;.
+		/// Видеозапись.
 		/// </summary>
 		public static readonly CommentObjectType Video = RegisterPossibleValue("video");
 
 
 		/// <summary>
-		/// обсуждение;.
+		/// Обсуждение.
 		/// </summary>
 		public static readonly CommentObjectType Topic = RegisterPossibleValue("topic");
 
 
 		/// <summary>
-		/// заметка..
+		/// Заметка.
 		/// </summary>
 		public static readonly CommentObjectType Note = RegisterPossibleValue("note");
-
-
 	}
 }

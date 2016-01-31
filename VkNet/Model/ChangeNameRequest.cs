@@ -1,13 +1,16 @@
-﻿using System;
-using VkNet.Enums;
+﻿using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
-	/// <summary>
-	/// Информация о заявке на смену имени.
-	/// </summary>
-	public class ChangeNameRequest
+    using System;
+
+
+    /// <summary>
+    /// Информация о заявке на смену имени.
+    /// </summary>
+    [Serializable]
+    public class ChangeNameRequest
 	{
 		/// <summary>
 		/// Идентификатор заявки, необходимый для её отмены (только если <see cref="ChangeNameRequest.Status"/> равен <see cref="ChangeNameStatus.Processing"/>)
@@ -36,21 +39,26 @@ namespace VkNet.Model
 
 
 		#region Методы
-
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
 		internal static ChangeNameRequest FromJson(VkResponse response)
 		{
-			var request = new ChangeNameRequest();
+			var request = new ChangeNameRequest
+			{
+				Id = response["id"],
+				FirstName = response["first_name"],
+				LastName = response["last_name"],
 
-			request.Id = response["id"];
-			request.FirstName = response["first_name"];
-			request.LastName = response["last_name"];
-			
-			//TODO: проверить на реальном аккаунте, так ли расположены эти поля в ответе
-			request.Status = ParseStatus(response["status"]);
-			request.RepeatDate = response["repeat_date"];
+				//TODO: проверить на реальном аккаунте, так ли расположены эти поля в ответе
+				Status = ParseStatus(response["status"]),
+				RepeatDate = response["repeat_date"]
+			};
 
 			return request;
-		}									
+		}
 
 		private static ChangeNameStatus? ParseStatus(string status)
 		{
@@ -59,17 +67,29 @@ namespace VkNet.Model
 			switch (status)
 			{
 				case "success":
-					return ChangeNameStatus.Success;
+					{
+						return ChangeNameStatus.Success;
+					}
 				case "processing":
-					return ChangeNameStatus.Processing;
+					{
+						return ChangeNameStatus.Processing;
+					}
 				case "declined":
-					return ChangeNameStatus.Declined;
+					{
+						return ChangeNameStatus.Declined;
+					}
 				case "was_accepted":
-					return ChangeNameStatus.WasAccepted;
+					{
+						return ChangeNameStatus.WasAccepted;
+					}
 				case "was_declined":
-					return ChangeNameStatus.WasDeclined;
+					{
+						return ChangeNameStatus.WasDeclined;
+					}
 				default:
-					throw new ArgumentException(string.Format("Enum value {0} not defined!", status), "status");
+					{
+						throw new ArgumentException(string.Format("Enum value {0} not defined!", status), "status");
+					}
 			}
 		}
 

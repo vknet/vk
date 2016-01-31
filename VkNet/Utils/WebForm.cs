@@ -59,7 +59,7 @@
             if (string.IsNullOrEmpty(_lastName))
                 throw new InvalidOperationException("Field name not set!");
 
-            string encodedValue = HttpUtility.UrlEncode(value);
+            var encodedValue = HttpUtility.UrlEncode(value);
             if (_inputs.ContainsKey(_lastName))
                 _inputs[_lastName] = encodedValue;
             else
@@ -77,7 +77,7 @@
                 if (formNode.Attributes["action"] == null)
                     return OriginalUrl;
 
-                string link = formNode.Attributes["action"].Value;
+                var link = formNode.Attributes["action"].Value;
                 if (!string.IsNullOrEmpty(link) && !link.StartsWith("http")) // relative url
                 {
                     link = _responceBaseUrl + link;
@@ -95,7 +95,7 @@
 
         public byte[] GetRequest()
         {
-            string uri = _inputs.Select(x => string.Format("{0}={1}", x.Key, x.Value)).JoinNonEmpty("&");
+            var uri = _inputs.Select(x => string.Format("{0}={1}", x.Key, x.Value)).JoinNonEmpty("&");
             return Encoding.UTF8.GetBytes(uri);
         }
 
@@ -109,8 +109,8 @@
                 var nameAttribute = node.Attributes["name"];
                 var valueAttribute = node.Attributes["value"];
 
-                string name = nameAttribute != null ? nameAttribute.Value : string.Empty;
-                string value = valueAttribute != null ? valueAttribute.Value : string.Empty;
+                var name = nameAttribute != null ? nameAttribute.Value : string.Empty;
+                var value = valueAttribute != null ? valueAttribute.Value : string.Empty;
 
                 if (string.IsNullOrEmpty(name))
                     continue;
@@ -124,7 +124,7 @@
         private HtmlNode GetFormNode()
         {
             HtmlNode.ElementsFlags.Remove("form");
-            HtmlNode form = _html.DocumentNode.SelectSingleNode("//form");
+            var form = _html.DocumentNode.SelectSingleNode("//form");
             if (form == null)
                 throw new VkApiException("Form element not found.");
 

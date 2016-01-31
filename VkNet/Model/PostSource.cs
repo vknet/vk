@@ -1,49 +1,57 @@
-﻿namespace VkNet.Model
+﻿using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Model
 {
-    using Utils;
+	using System;
+	using Utils;
 
-    /// <summary>
-    /// Информация информацию о том, каким образом (через интерфейс сайта, виджет и т.п.) была создана запись на стене. 
-    /// Используя данные из этого поля, разработчик может вывести уточняющую информацию о том, как была создана запись на стене 
-    /// в своем приложении. 
-    /// См. описание <see href="http://vk.com/dev/post_source"/>.
-    /// </summary>
-    public class PostSource
-    {
-        /// <summary>
-        /// На данный момент поддерживаются следующие типы источников записи на стене, значение которых указываются в поле type: 
-        /// - vk - запись создана через основной интерфейс сайта (http://vk.com/); 
-        /// - widget - запись создана через виджет на стороннем сайте; 
-        /// - api - запись создана приложением через API; 
-        /// - rss - запись создана посредством импорта RSS-ленты со стороннего сайта; 
-        /// - sms - запись создана посредством отправки SMS-сообщения на специальный номер. 
-        /// </summary>
-        public string Type { get; set; }
+	/// <summary>
+	/// Информация информацию о том, каким образом (через интерфейс сайта, виджет и т.п.) была создана запись на стене.
+	/// Используя данные из этого поля, разработчик может вывести уточняющую информацию о том, как была создана запись на стене
+	/// в своем приложении.
+	/// См. описание <see href="http://vk.com/dev/post_source"/>.
+	/// </summary>
+	[Serializable]
+	public class PostSource
+	{
+		/// <summary>
+		/// На данный момент поддерживаются следующие типы источников записи на стене.
+		/// </summary>
+		public PostSourceType Type { get; set; }
 
-        /// <summary>
-        /// Поле data является опциональным и содержит следующие данные в зависимости от значения поля type: 
-        /// - vk - содержит тип действия, из-за которого была создана запись: 
-        ///     - profile_activity - изменение статуса под именем пользователя; 
-        ///     - profile_photo - изменение профильной фотографии пользователя; 
-        /// - widget - содержит тип виджета, через который была создана запись: 
-        ///     - comments - виджет комментариев; 
-        ///     - like - виджет «Мне нравится»; 
-        ///     - poll - виджет опросов; 
-        /// </summary>
-        public string Data { get; set; }
+		/// <summary>
+		/// Поле data является опциональным и содержит следующие данные в зависимости от значения поля type:
+		/// </summary>
+		public PostSourceData Data { get; set; }
 
-        #region Методы
+		/// <summary>
+		/// Название платформы, если оно доступно: android, iphone, wphone.
+		/// </summary>
+		public Platform Platform { get; set; }
 
-        internal static PostSource FromJson(VkResponse response)
-        {
-            var postSource = new PostSource();
+		/// <summary>
+		/// Cодержит внешнюю ссылку на ресурс, с которого была опубликована запись.
+		/// </summary>
+		public Uri Url { get; set; }
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static PostSource FromJson(VkResponse response)
+		{
+			var postSource = new PostSource
+			{
+				Type = response["type"],
+				Data = response["data"],
+				Platform = response["source_platform"],
+				Url = response["source_url"]
+			};
 
-            postSource.Type = response["type"];
-            postSource.Data = response["data"];
+			return postSource;
+		}
 
-            return postSource;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

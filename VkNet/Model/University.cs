@@ -1,11 +1,13 @@
 ﻿namespace VkNet.Model
 {
-    using VkNet.Utils;
+    using System;
+    using Utils;
 
     /// <summary>
     /// Высшее учебное заведение, в котором учился пользователь.
     /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел universities.
     /// </summary>
+    [Serializable]
     public class University
     {
         /// <summary>
@@ -65,31 +67,36 @@
         /// </summary>
         public string EducationStatus { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static University FromJson(VkResponse response)
+		{
+			var university = new University
+			{
+				Id = response["id"],
+				Country = response["country"],
+				City = response["city"],
+				Name = response["name"] ?? response["title"],
+				Faculty = response["faculty"],
+				FacultyName = response["faculty_name"],
+				Chair = response["chair"],
+				ChairName = response["chair_name"],
+				Graduation = response["graduation"],
 
-        internal static University FromJson(VkResponse response)
-        {
-            var university = new University();
+				// установлено экcпериментальным путем
+				EducationForm = response["education_form"],
+				EducationStatus = response["education_status"]
+			};
 
-            university.Id = response["id"];
-            university.Country = response["country"];
-            university.City = response["city"];
-            university.Name = response["name"] ?? response["title"];
-            university.Faculty = response["faculty"];
-            university.FacultyName = response["faculty_name"];
-            university.Chair = response["chair"];
-            university.ChairName = response["chair_name"];
-            university.Graduation = response["graduation"];
+			return university;
+		}
 
-            // установлено экcпериментальным путем
-            university.EducationForm = response["education_form"];
-            university.EducationStatus = response["education_status"];
-
-            return university;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }

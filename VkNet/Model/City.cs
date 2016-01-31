@@ -10,12 +10,13 @@ namespace VkNet.Model
     /// <remarks>
     /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCities"/>.
     /// </remarks>
+    [Serializable]
     public class City
     {
         /// <summary>
         /// Идентификатор города.
         /// </summary>
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
         /// <summary>
         /// Название города.
@@ -37,21 +38,24 @@ namespace VkNet.Model
         /// </summary>
         public bool Important { get; set; }
 
-        #region Inernal Methods
-
-        internal static City FromJson(VkResponse response)
+		#region Inernal Methods
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static City FromJson(VkResponse response)
         {
-            var city = new City();
-
-            VkResponse id = response["cid"] ?? response["id"];
-            city.Id = Convert.ToInt64(id.ToString());
-            city.Title = response["title"] ?? response["name"];
-            city.Area = response["area"];
-            city.Region = response["region"];
-            city.Important = response["important"] ?? false;
-
-            return city;
-        }
+			string id = response["cid"] ?? response["id"];
+	        return new City
+			{
+				Id = Convert.ToInt64(id),
+				Title = response["title"] ?? response["name"],
+				Area = response["area"],
+				Region = response["region"],
+				Important = response["important"] ?? false
+			};
+		}
 
         #endregion
     }

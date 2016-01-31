@@ -85,12 +85,12 @@
         {
             get
             {
-                var SidFieldValue = GetFieldValue("sid");
                 long sid;
-                if (long.TryParse(SidFieldValue, out sid))
-                    return sid;
-
-                return null;
+	            if (long.TryParse(GetFieldValue("sid"), out sid))
+	            {
+		            return sid;
+	            }
+	            return null;
             }
         }
 

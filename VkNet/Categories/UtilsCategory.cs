@@ -4,8 +4,6 @@ namespace VkNet.Categories
 {
     using System;
     using JetBrains.Annotations;
-
-    using Enums;
     using Model;
     using Utils;
 
@@ -30,18 +28,33 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public LinkAccessType CheckLink([NotNull] string url)
         {
-            VkErrors.ThrowIfNullOrEmpty(() => url);
+            var parameters = new VkParameters { { "url", url } };
 
-            var parameters = new VkParameters { {"url", url} };
-
-            VkResponse response = _vk.Call("utils.checkLink", parameters, true);
-            return response;
+            return _vk.Call("utils.checkLink", parameters, true);
         }
 
         /// <summary>
-        /// Определяет тип объекта (пользователь, сообщество, приложение) и его идентификатор по короткому имени screenName.
+        /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
+        /// </summary>
+        /// <param name="url">Внешняя ссылка, которую необходимо проверить.</param>
+        /// <returns>Статус ссылки</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
+        /// </remarks>
+        [Pure]
+        [ApiVersion("5.44")]
+        public LinkAccessType CheckLink([NotNull] Uri url)
+        {
+            var parameters = new VkParameters { { "url", url } };
+
+            return _vk.Call("utils.checkLink", parameters, true);
+        }
+
+        /// <summary>
+        /// Определяет тип объекта (пользователь, сообщество, приложение) и его идентификатор по короткому имени ScreenName.
         /// </summary>
         /// <param name="screenName">Короткое имя</param>
         /// <returns>Тип объекта</returns>
@@ -49,18 +62,16 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.resolveScreenName"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public VkObject ResolveScreenName([NotNull] string screenName)
         {
             VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
-            var parameters = new VkParameters {{"screen_name", screenName}};
+            var parameters = new VkParameters { { "screen_name", screenName } };
 
-            VkResponse response = _vk.Call("utils.resolveScreenName", parameters, true);
-
-            if (response == null) return null;
-            return response;
+            return _vk.Call("utils.resolveScreenName", parameters, true);
         }
-        
+
         /// <summary>
         /// Возвращает текущее время на сервере ВКонтакте в unixtime.
         /// </summary>
@@ -69,6 +80,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.getServerTime"/>.
         /// </remarks>
         [Pure]
+        [ApiVersion("5.44")]
         public DateTime GetServerTime()
         {
             return _vk.Call("utils.getServerTime", VkParameters.Empty, true);

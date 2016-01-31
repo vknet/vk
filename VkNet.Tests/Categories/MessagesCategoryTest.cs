@@ -3,9 +3,7 @@ using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Categories
 {
-	using System.Collections.Generic;
 	using System;
-	using System.Collections.ObjectModel;
 	using System.Linq;
 	using Moq;
 	using NUnit.Framework;
@@ -16,14 +14,14 @@ namespace VkNet.Tests.Categories
 	using Enums;
 	using Enums.Filters;
 	using Exception;
-	using Model;
+	using Model.RequestParams;
 
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class MessagesCategoryTest
 	{
-		public string json;
-		public string url;
+		public string Json;
+		public string Url;
 
 		public MessagesCategory Cat
 		{
@@ -33,13 +31,13 @@ namespace VkNet.Tests.Categories
 		[SetUp]
 		public void SetUp()
 		{
-			url = "";
-			json = "";
+			Url = "";
+			Json = "";
 		}
-		
+
 		private MessagesCategory GetMockedMessagesCategory()
 		{
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
+			var browser = Mock.Of<IBrowser>(m => m.GetJson(Url) == Json);
 			return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser});
 		}
 
@@ -50,7 +48,7 @@ namespace VkNet.Tests.Categories
 			int totalCount;
 			This.Action(() => cat.Get(MessageType.Received, out totalCount)).Throws<AccessTokenInvalidException>();
 		}
-	   
+
 		[Test]
 		public void GetDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -63,8 +61,8 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore]
 		public void GetDialogs_NormalCase_Messages()
 		{
-			url = "https://api.vk.com/method/messages.getDialogs?count=77128&offset=0&unread=0&preview_length=3&v=5.28&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.getDialogs?count=77128&offset=0&unread=0&preview_length=3&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': [
 					  18,
@@ -94,7 +92,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(msgs[0].Title, Is.EqualTo("Re(15): Привет!"));
 			Assert.That(msgs[0].Body, Is.EqualTo("не..не зеленая точно..."));
 		}
-		
+
 		[Test]
 		public void GetHistory_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -106,8 +104,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetHistory_ContainsSticker_Error47()
 		{
-			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=0&count=3&v=5.37&access_token=token";
-			json = @"{
+			Url = "https://api.vk.com/method/messages.getHistory?offset=5&count=3&user_id=7712&v=5.44&access_token=token";
+			Json = @"{
 	'response': {
 		'count': 6,
 		'items': [
@@ -144,7 +142,7 @@ namespace VkNet.Tests.Categories
 			totalCount.ShouldEqual(6);
 			msg.Count.ShouldEqual(1);
 			msg[0].Attachments.Count.ShouldEqual(1);
-			
+
 			var sticker = msg[0].Attachments[0].Instance as Sticker;
 			sticker.ShouldNotBeNull();
 
@@ -161,8 +159,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetHistory_ContainsRepost_Error46()
 		{
-			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&rev=1&count=3&v=5.37&access_token=token";
-			json = @"{  
+			Url = "https://api.vk.com/method/messages.getHistory?offset=5&count=3&user_id=7712&rev=1&v=5.44&access_token=token";
+			Json = @"{  
 			   'response':{  
 				  'count':1940,
 				  'items':[  
@@ -236,7 +234,7 @@ namespace VkNet.Tests.Categories
 			totalCount.ShouldEqual(1940);
 			msg[0].Attachments.Count.ShouldEqual(1);
 
-			Wall wall = msg[0].Attachments[0].Instance as Wall;
+			var wall = msg[0].Attachments[0].Instance as Wall;
 			wall.ShouldNotBeNull();
 
 			wall.Id.ShouldEqual(6194);
@@ -265,8 +263,8 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore]
 		public void GetHistory_NormalCaseAllFields_Messages()
 		{
-			url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&count=3&rev=1&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&count=3&rev=1&access_token=token";
+			Json =
 				@"{
 					'response': [
 					  18,
@@ -346,8 +344,8 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore]
 		public void GetById_NormalCase_Message()
 		{
-			url = "https://api.vk.com/method/messages.getById?message_ids=1&v=5.28&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.getById?message_ids=1&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': [
 					  1,
@@ -363,7 +361,7 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			Message msg = Cat.GetById(1);
+			var msg = Cat.GetById(1);
 
 			Assert.That(msg.Id, Is.EqualTo(1));
 			Assert.That(msg.Date, Is.EqualTo(new DateTime(2007, 12, 18, 2, 5, 20)));
@@ -377,8 +375,8 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore]
 		public void GetById_Multiple_NormalCase_Messages()
 		{
-			url = "https://api.vk.com/method/messages.getById?message_ids=1,3,5&v=5.28&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.getById?message_ids=1,3,5&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': [
 					  3,
@@ -452,23 +450,21 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
 		{
-			url = "https://api.vk.com/method/messages.searchDialogs?q=привет&limit=20&v=5.37&access_token=token";
-			json =
-				@"{
-					'response': []
-				  }";
-			
+			Url = "https://api.vk.com/method/messages.searchDialogs?q=привет&v=5.44&access_token=token";
+			Json = @"{
+                    'response': []
+                  }";
+
 			var response = Cat.SearchDialogs("привет");
 
-			Assert.That(response.Chats.Count, Is.EqualTo(0));
-			Assert.That(response.Users.Count, Is.EqualTo(0));
+			Assert.That(response, Is.Null);
 		}
 
 		[Test]
 		public void SearchDialogs_NastyaQuery_TwoProfiles()
 		{
-			url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&limit=20&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': [
 					  {
@@ -486,7 +482,7 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			SearchDialogsResponse response = Cat.SearchDialogs("Настя");
+			var response = Cat.SearchDialogs("Настя");
 
 			Assert.That(response.Users.Count, Is.EqualTo(2));
 			Assert.That(response.Chats.Count, Is.EqualTo(0));
@@ -501,8 +497,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SearchDialogs_ProfileAndChat_Response()
 		{
-			url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&limit=20&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': [
 					  {
@@ -524,7 +520,7 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			SearchDialogsResponse response = Cat.SearchDialogs("Маша");
+			var response = Cat.SearchDialogs("Маша");
 
 			Assert.That(response.Users.Count, Is.EqualTo(1));
 			Assert.That(response.Chats.Count, Is.EqualTo(1));
@@ -553,8 +549,8 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void Search_NormalCase_Messages()
 		{
-			url = "https://api.vk.com/method/messages.search?q=привет&count=3&v=5.37&access_token=token";
-			json = @"{
+			Url = "https://api.vk.com/method/messages.search?q=привет&count=3&v=5.44&access_token=token";
+			Json = @"{
 				response: {
 					count: 18,
 					items: [{
@@ -586,7 +582,7 @@ namespace VkNet.Tests.Categories
 			}";
 
 			int totalCount;
-			List<Message> msgs = Cat.Search("привет", out totalCount, 3).ToList();
+			var msgs = Cat.Search("привет", out totalCount, 3).ToList();
 
 			Assert.That(totalCount, Is.EqualTo(680));
 			Assert.That(msgs.Count, Is.EqualTo(3));
@@ -620,8 +616,8 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void Search_NotExistedQuery_EmptyList()
 		{
-			url = "https://api.vk.com/method/messages.search?q=fsjkadoivhjioashdpfisd&count=3&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.search?q=fsjkadoivhjioashdpfisd&count=3&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': [
 					  0
@@ -640,34 +636,39 @@ namespace VkNet.Tests.Categories
 		public void Send_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.Send(1, false, "Привет, Паша!")).Throws<AccessTokenInvalidException>();
+			This.Action(() => cat.Send(new MessagesSendParams {UserId = 1, Message = "Привет, Паша!" })).Throws<AccessTokenInvalidException>();
 		}
 
 		[Test]
 		public void Send_DefaultFields_MessageId()
 		{
-			url = "https://api.vk.com/method/messages.send?uid=7550525&message=Test+from+vk.net+%3b)+%23+2&title=Test+title&type=0&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=Test+from+vk.net+%3b)+%23+2&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 4457
 				  }";
 
-			long id = Cat.Send(7550525, false, "Test from vk.net ;) # 2", "Test title");
-
+			var id = Cat.Send(new MessagesSendParams
+			{
+				UserId = 7550525,
+				Message = "Test from vk.net ;) # 2"
+			});
 			Assert.That(id, Is.EqualTo(4457));
 		}
 
 		[Test]
 		public void Send_RussianText_MessageId()
 		{
-			url = "https://api.vk.com/method/messages.send?uid=7550525&message=%d0%97%d0%b0%d0%b8%d0%b1%d0%b8%d1%81%d1%8c+%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d0%b5%d1%82+%23+2+--++%d0%b5%d1%89%d0%b5+%d1%80%d0%b0%d0%b7%d0%be%d0%ba&title=%d0%a2%d0%b0%d0%b9%d1%82%d0%bb&type=0&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=%d0%a0%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d0%b5%d1%82+%23+2+--++%d0%b5%d1%89%d0%b5+%d1%80%d0%b0%d0%b7%d0%be%d0%ba&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 4464
 				  }";
-
-			long id = Cat.Send(7550525, false, "Заибись работает # 2 --  еще разок", "Тайтл");
-
+			var id = Cat.Send(new MessagesSendParams
+			{
+				UserId = 7550525,
+				Message = "Работает # 2 --  еще разок"
+			});
 			Assert.That(id, Is.EqualTo(4464));
 		}
 
@@ -694,15 +695,15 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Id4446_True()
 		{
-			url = "https://api.vk.com/method/messages.delete?mids=4446&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.delete?message_ids=4446&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': {
 					  '4446': 1
 					}
 				  }";
 
-			bool result = Cat.Delete(4446);
+			var result = Cat.Delete(4446);
 
 			Assert.That(result, Is.True);
 		}
@@ -710,8 +711,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Multipre_4457And4464_True()
 		{
-			url = "https://api.vk.com/method/messages.delete?mids=4457,4464&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.delete?message_ids=4457,4464&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': {
 					  '4457': 1,
@@ -729,8 +730,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Id999999_False()
 		{
-			url = "https://api.vk.com/method/messages.delete?mids=999999&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.delete?message_ids=999999&v=5.44&access_token=token";
+			Json =
 				@"{
 					'error': {
 					  'error_code': 1,
@@ -769,13 +770,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteDialog_UserId_DeleteAllMessages()
 		{
-			url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.deleteDialog?user_id=4460019&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
 
-			bool result = Cat.DeleteDialog(4460019, false);
+			var result = Cat.DeleteDialog(4460019, false);
 
 			Assert.That(result, Is.True);
 		}
@@ -783,13 +784,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteDialog_WithAllInputParams_DeleteTwoMessages()
 		{
-			url = "https://api.vk.com/method/messages.deleteDialog?uid=4460019&offset=2&count=2&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.deleteDialog?user_id=4460019&offset=2&count=2&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
 
-			bool result = Cat.DeleteDialog(4460019, false, 2, 2);
+			var result = Cat.DeleteDialog(4460019, false, null, 2, 2);
 
 			Assert.That(result, Is.True);
 		}
@@ -804,13 +805,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Restore_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.restore?message_id=134&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.restore?message_id=134&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
 
-			bool result = Cat.Restore(134);
+			var result = Cat.Restore(134);
 
 			Assert.That(result, Is.True);
 		}
@@ -827,13 +828,13 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void MarkAsNew_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.markAsNew?mids=1&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.markAsNew?mids=1&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
 
-			bool result = Cat.MarkAsNew(1);
+			var result = Cat.MarkAsNew(1);
 
 			Assert.That(result, Is.True);
 		}
@@ -842,13 +843,13 @@ namespace VkNet.Tests.Categories
 		[Ignore]
 		public void MarkAsNew_Multiple_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.markAsNew?mids=2,3&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.markAsNew?mids=2,3&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
 
-			bool result = Cat.MarkAsNew(new ulong[] {2, 3});
+			var result = Cat.MarkAsNew(new ulong[] {2, 3});
 
 			Assert.That(result, Is.True);
 		}
@@ -863,13 +864,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void MarkAsRead_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.markAsRead?mids=1&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.markAsRead?message_ids=1&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
 
-			bool result = Cat.MarkAsRead(1);
+			var result = Cat.MarkAsRead(1);
 
 			Assert.That(result, Is.True);
 		}
@@ -877,13 +878,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void MarkAsRead_Multiple_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.markAsRead?mids=2,3&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.markAsRead?message_ids=2,3&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
 
-			bool result = Cat.MarkAsRead(new ulong[]{2, 3});
+			var result = Cat.MarkAsRead(new long[]{2, 3});
 
 			Assert.That(result, Is.True);
 		}
@@ -898,13 +899,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetActivity_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.setActivity?used_id=7550525&type=typing&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.setActivity?used_id=7550525&type=typing&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
 
-			bool result = Cat.SetActivity(7550525);
+			var result = Cat.SetActivity(7550525);
 
 			Assert.That(result, Is.True);
 		}
@@ -919,8 +920,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLastActivity_NormalCast_LastActivityObject()
 		{
-			url = "https://api.vk.com/method/messages.getLastActivity?user_id=77128&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.getLastActivity?user_id=77128&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': {
 					  'online': 0,
@@ -928,7 +929,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			LastActivity activity = Cat.GetLastActivity(77128);
+			var activity = Cat.GetLastActivity(77128);
 
 			Assert.That(activity.UserId, Is.EqualTo(77128));
 			Assert.That(activity.IsOnline, Is.False);
@@ -945,8 +946,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChat_NormalCase_ChatObject()
 		{
-			url = "https://api.vk.com/method/messages.getChat?chat_id=2&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.getChat?chat_id=2&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': {
 					  'type': 'chat',
@@ -961,7 +962,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			Chat chat = Cat.GetChat(2);
+			var chat = Cat.GetChat(2);
 
 			Assert.That(chat.Id, Is.EqualTo(2));
 			Assert.That(chat.Title, Is.EqualTo("test chat title"));
@@ -980,17 +981,17 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore]
+		
 		//BUG: не работает, т.к. апостроф (в test chat's title) парсится в %27
 		public void CreateChat_NormalCase_ChatId()
 		{
-			url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test+chat's+title&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test chat's title&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 3
 				  }";
 
-			long chatId = Cat.CreateChat(new ulong[] { 5041431, 10657891 }, "test chat's title");
+			var chatId = Cat.CreateChat(new ulong[] { 5041431, 10657891 }, "test chat's title");
 
 			Assert.That(chatId, Is.EqualTo(3));
 		}
@@ -1006,13 +1007,13 @@ namespace VkNet.Tests.Categories
 		[Ignore("undone")]
 		public void EditChat_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.editChat?chat_id=2&title=new+title&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.editChat?chat_id=2&title=new+title&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }"; 
 			
-			bool result = Cat.EditChat(2, "new title");
+			var result = Cat.EditChat(2, "new title");
 		}
 
 		[Test]
@@ -1025,8 +1026,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChatUsers_ChatId_UserIds()
 		{
-			url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': [
 					  4793858,
@@ -1046,8 +1047,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChatUsers_ChatIdWithFields_Users()
 		{
-			url = "https://api.vk.com/method/messages.getChatUsers?chat_id=2&fields=education&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&fields=education&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': [
 					  {
@@ -1086,7 +1087,7 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-			List<User> users = Cat.GetChatUsers(2, ProfileFields.Education).ToList();
+			var users = Cat.GetChatUsers(2, UsersFields.Education).ToList();
 
 			Assert.That(users.Count, Is.EqualTo(3));
 			Assert.That(users[0].Id, Is.EqualTo(4793858));
@@ -1120,13 +1121,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void AddChatUser_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&uid=7550525&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&uid=7550525&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }"; 
 
-			bool result = Cat.AddChatUser(2, 7550525);
+			var result = Cat.AddChatUser(2, 7550525);
 
 			Assert.That(result, Is.True);
 		}
@@ -1141,13 +1142,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void RemoveChatUser_NormalCase_True()
 		{
-			url = "https://api.vk.com/method/messages.removeChatUser?chat_id=2&uid=7550525&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.removeChatUser?chat_id=2&user_id=7550525&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
 
-			bool result = Cat.RemoveChatUser(2, 7550525);
+			var result = Cat.RemoveChatUser(2, 7550525);
 
 			Assert.That(result, Is.True);
 		}
@@ -1170,8 +1171,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLongPollServer_NormalCase_LongPollServerResponse()
 		{
-			url = "https://api.vk.com/method/messages.getLongPollServer?use_ssl=0&need_pts=0&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.getLongPollServer?use_ssl=0&need_pts=0&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': {
 					  'key': '6f4120988efaf3a7d398054b5bb5d019c5844bz3',
@@ -1200,10 +1201,9 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_WithLastMessageIdParam_NormalCase_V521()
 		{
-			//url = "https://api.vk.com/method/messages.get?out=0&last_message_id=30&v=5.21&access_token=token";
-			url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&last_message_id=30&count=20&v=5.37&access_token=token";
+			Url = "https://api.vk.com/method/messages.get?out=0&count=0&preview_length=0&last_message_id=30&v=5.44&access_token=token";
 
-			json =
+			Json =
 				@"{
 					'response': {
 					  'count': 5,
@@ -1222,7 +1222,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			int total;
-			ReadOnlyCollection<Message> messages = Cat.Get(MessageType.Received, out total, lastMessageId: 30);
+			var messages = Cat.Get(MessageType.Received, out total, lastMessageId: 30);
 
 			total.ShouldEqual(5);
 			messages.Count.ShouldEqual(1);
@@ -1239,8 +1239,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCase_V521()
 		{
-			url = "https://api.vk.com/method/messages.get?out=0&preview_length=0&count=2&v=5.37&access_token=token";
-			json =
+			Url = "https://api.vk.com/method/messages.get?out=0&count=0&preview_length=0&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': {
 					  'count': 5,
@@ -1268,7 +1268,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			int total;
-			ReadOnlyCollection<Message> messages = Cat.Get(MessageType.Received, out total, 2);
+			var messages = Cat.Get(MessageType.Received, out total, 2);
 
 			total.ShouldEqual(5);
 			messages.Count.ShouldEqual(2);

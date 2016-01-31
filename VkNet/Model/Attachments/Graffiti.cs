@@ -8,6 +8,9 @@ namespace VkNet.Model.Attachments
     /// </summary>
     public class Graffiti : MediaAttachment
     {
+		/// <summary>
+		/// Граффити.
+		/// </summary>
 		static Graffiti()
 		{
 			RegisterType(typeof (Graffiti), "graffiti");
@@ -19,22 +22,28 @@ namespace VkNet.Model.Attachments
         public string Photo200 { get; set; }
 
         /// <summary>
-        /// Адрес полноразмерного изображения. 
+        /// Адрес полноразмерного изображения.
         /// </summary>
         public string Photo586 { get; set; }
 
-        #region Методы
+		#region Методы
 
-        internal static Graffiti FromJson(VkResponse response)
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Graffiti FromJson(VkResponse response)
         {
-            var graffiti = new Graffiti();
+	        var graffiti = new Graffiti
+	        {
+		        Id = response["id"],
+		        OwnerId = response["owner_id"],
+		        Photo200 = response["photo_200"],
+		        Photo586 = response["photo_586"]
+	        };
 
-            graffiti.Id = response["id"];
-            graffiti.OwnerId = response["owner_id"];
-            graffiti.Photo200 = response["photo_200"];
-            graffiti.Photo586 = response["photo_586"];
-
-            return graffiti;
+	        return graffiti;
         }
 
         #endregion

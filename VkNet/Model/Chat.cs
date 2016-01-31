@@ -51,38 +51,42 @@
         /// </summary>
         public int? DisabledUntil { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Методы
+		#region Методы
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		internal static Chat FromJson(VkResponse response)
+		{
+			var chat = new Chat
+			{
+				Id = response["id"],
+				Type = response["type"],
+				Title = response["title"],
+				AdminId = Utilities.GetNullableLongId(response["admin_id"]),
+				Users = response["users"],
 
-        internal static Chat FromJson(VkResponse response)
-        {
-            var chat = new Chat();
+				#region Поля найденые експерементально
 
-            chat.Id = response["id"];
-            chat.Type = response["type"];
-            chat.Title = response["title"];
-            chat.AdminId = Utilities.GetNullableLongId(response["admin_id"]);
-            chat.Users = response["users"];
+				Left = response.ContainsKey("left") && response["left"]
+			};
+			if (response.ContainsKey("push_settings"))
+			{
+				chat.Sound = response["push_settings"]["sound"];
+				chat.DisabledUntil = response["push_settings"]["disabled_until"];
+			} else
+			{
+				chat.Sound = null;
+				chat.DisabledUntil = null;
+			}
+			#endregion
 
-            #region Поля найденые експерементально
+			return chat;
+		}
 
-            chat.Left = response.ContainsKey("left") ? response["left"] : false;
-            if (response.ContainsKey("push_settings"))
-            {
-                chat.Sound = response["push_settings"]["sound"];
-                chat.DisabledUntil = response["push_settings"]["disabled_until"];
-            }
-            else
-            {
-                chat.Sound = null;
-                chat.DisabledUntil = null;
-            }
-            #endregion
-
-            return chat;
-        }
-
-        #endregion
-    }
+		#endregion
+	}
 }
