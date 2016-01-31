@@ -6,6 +6,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Кнопка.
 	/// </summary>
+	[Serializable]
 	public class Button
 	{
 		/// <summary>

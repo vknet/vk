@@ -1,13 +1,15 @@
-﻿using VkNet.Enums;
+﻿using System;
+using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-    /// Информация о вики-странице сообщества.
-    /// См. описание <see href="http://vk.com/dev/pages.get"/>.
-    /// </summary>
-    public class Page : MediaAttachment
+	/// Информация о вики-странице сообщества.
+	/// См. описание <see href="http://vk.com/dev/pages.get"/>.
+	/// </summary>
+	[Serializable]
+	public class Page : MediaAttachment
     {
 		/// <summary>
 		/// Опрос.

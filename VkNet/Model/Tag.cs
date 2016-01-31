@@ -9,6 +9,7 @@ namespace VkNet.Model
 	/// Отметка к видеозаписи.
 	/// </summary>
 	[DebuggerDisplay("Id = {Id}, TaggedName = {TaggedName}")]
+	[Serializable]
 	public class Tag
 	{
 		/// <summary>

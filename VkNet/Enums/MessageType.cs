@@ -1,9 +1,12 @@
-﻿namespace VkNet.Enums
+﻿using System;
+
+namespace VkNet.Enums
 {
-    /// <summary>
-    /// Тип сообщения.
-    /// </summary>
-    public enum MessageType
+	/// <summary>
+	/// Тип сообщения.
+	/// </summary>
+	[Serializable]
+	public enum MessageType
     {
         /// <summary>
         /// Полученное сообщение.

@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums
 {
 	/// <summary>
 	/// Статус доступности товара
 	/// </summary>
+	[Serializable]
 	public enum ProductAvailability
 	{
 		/// <summary>

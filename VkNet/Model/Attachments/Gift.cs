@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Подарок.
 	/// </summary>
+	[Serializable]
 	public class Gift : MediaAttachment
 	{
 		/// <summary>

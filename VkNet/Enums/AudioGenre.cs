@@ -1,12 +1,15 @@
-﻿namespace VkNet.Enums
+﻿using System;
+
+namespace VkNet.Enums
 {
-    /// <summary>
-    /// Идентификаторы жанров музыки.
-    /// </summary>
-    /// <remarks>
-    /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio_object#/dev/audio_genres"/>.
-    /// </remarks>
-    public enum AudioGenre
+	/// <summary>
+	/// Идентификаторы жанров музыки.
+	/// </summary>
+	/// <remarks>
+	/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio_object#/dev/audio_genres"/>.
+	/// </remarks>
+	[Serializable]
+	public enum AudioGenre
     {
         /// <summary>
         /// Рок музыка.

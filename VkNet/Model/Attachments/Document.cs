@@ -4,10 +4,11 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-    /// Информация о документе.
-    /// См. описание <see href="http://vk.com/dev/doc"/>.
-    /// </summary>
-    public class Document : MediaAttachment
+	/// Информация о документе.
+	/// См. описание <see href="http://vk.com/dev/doc"/>.
+	/// </summary>
+	[Serializable]
+	public class Document : MediaAttachment
     {
 		static Document()
 		{

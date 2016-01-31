@@ -1,11 +1,13 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
-    /// <summary>
-    /// Тип записи post, copy, reply, postpone, suggest
-    /// </summary>
-    public sealed class PostType : SafetyEnum<PostType>
+	/// <summary>
+	/// Тип записи post, copy, reply, postpone, suggest
+	/// </summary>
+	[Serializable]
+	public sealed class PostType : SafetyEnum<PostType>
 	{
 		/// <summary>
 		/// Популярные за день (по умолчанию);

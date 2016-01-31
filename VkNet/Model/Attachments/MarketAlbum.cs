@@ -7,6 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Каталог товаров
 	/// </summary>
+	[Serializable]
 	public class MarketAlbum : MediaAttachment
 	{
 		static MarketAlbum()
