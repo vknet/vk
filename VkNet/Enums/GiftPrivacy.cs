@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums
 {
 	/// <summary>
 	/// Значение приватности подарка (только для текущего пользователя).
 	/// </summary>
+	[Serializable]
 	public enum GiftPrivacy
 	{
 		/// <summary>
