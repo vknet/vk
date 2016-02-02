@@ -18,7 +18,6 @@ public ReadOnlyCollection<long> GetMembers(out int totalCount, GroupsGetMembersP
 
 + **GroupId** - Идентификатор или короткое имя сообщества. строка
 + **Sort** - Сортировка, с которой необходимо вернуть список участников. Может принимать значения: 
-
 id_asc — в порядке возрастания id; 
 id_desc — в порядке убывания id; 
 time_asc — в хронологическом порядке по вступлению в сообщество; 
