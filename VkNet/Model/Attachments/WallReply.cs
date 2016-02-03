@@ -6,6 +6,7 @@ namespace VkNet.Model.Attachments
 	/// <summary>
 	/// Комментарий к записи на стене.
 	/// </summary>
+	[Serializable]
 	public class WallReply : MediaAttachment
     {
 		/// <summary>

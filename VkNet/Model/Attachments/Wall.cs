@@ -8,6 +8,7 @@
 	/// <summary>
 	/// Запись на стене.
 	/// </summary>
+	[Serializable]
 	public class Wall : MediaAttachment
     {
 		/// <summary>

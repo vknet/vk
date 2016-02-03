@@ -111,7 +111,7 @@ namespace VkNet.Model
         {
 			VkResponseArray privacy = response["privacy_view"];
 			VkResponseArray privacyComment = response["privacy_comment"];
-			var album = new PhotoAlbum
+            return new PhotoAlbum
 	        {
 		        Id = response["aid"] ?? response["id"],
 		        ThumbId = Utilities.GetNullableLongId(response["thumb_id"]),
@@ -130,8 +130,6 @@ namespace VkNet.Model
 				UploadByAdminsOnly = response["upload_by_admins_only"],
 				ThumbIsLast = response["thumb_is_last"]
 			};
-
-	        return album;
         }
         #endregion
     }

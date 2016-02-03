@@ -5,10 +5,11 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-    /// Опрос.
-    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Опрос".
-    /// </summary>
-    public class Poll : MediaAttachment
+	/// Опрос.
+	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Опрос".
+	/// </summary>
+	[Serializable]
+	public class Poll : MediaAttachment
     {
 		/// <summary>
 		/// Опрос.

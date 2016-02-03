@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Способ сортировки приложений
 	/// </summary>
+	[Serializable]
 	public sealed class PostTypeOrder : SafetyEnum<PostTypeOrder>
 	{
 		/// <summary>

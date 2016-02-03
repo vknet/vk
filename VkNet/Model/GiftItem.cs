@@ -8,6 +8,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Подарок.
 	/// </summary>
+	[Serializable]
 	public class GiftItem
 	{
 		/// <summary>

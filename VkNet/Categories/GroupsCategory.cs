@@ -238,7 +238,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetMembers(out int totalCount, GroupsGetMembersParams @params)")]
-		public ReadOnlyCollection<long> GetMembers(long gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
+		public ReadOnlyCollection<User> GetMembers(long gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => gid);
 			var parameters = new GroupsGetMembersParams
@@ -271,12 +271,12 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<long> GetMembers(out int totalCount, GroupsGetMembersParams @params)
+		public ReadOnlyCollection<User> GetMembers(out int totalCount, GroupsGetMembersParams @params)
 		{
 			var response = _vk.Call("groups.getMembers", @params, true);
 			totalCount = response["count"];
 			VkResponseArray users = response["users"];
-			return users.ToReadOnlyCollectionOf<long>(x => x);
+			return users.ToReadOnlyCollectionOf<User>(x => @params.Fields != null? x : new User {Id = x});
 		}
 
 		/// <summary>
@@ -295,7 +295,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetMembers(out int totalCount, GroupsGetMembersParams @params)")]
-		public ReadOnlyCollection<long> GetMembers(string gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
+		public ReadOnlyCollection<User> GetMembers(string gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, GroupsFields fields = null, GroupsFilters filters = null)
 		{
 			var parameters = new GroupsGetMembersParams
 			{

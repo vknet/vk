@@ -31,14 +31,11 @@
 		/// <returns></returns>
 		internal static Comments FromJson(VkResponse response)
 		{
-			var comments = new Comments
-			{
-				Count = response["count"],
-				CanPost = response["can_post"]
-			};
-
-
-			return comments;
-		}
+			return new Comments
+            {
+                Count = response["count"],
+                CanPost = response["can_post"]
+            };
+        }
 	}
 }

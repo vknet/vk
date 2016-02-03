@@ -8,6 +8,7 @@ namespace VkNet.Model.Attachments
 	/// Аудиозапись пользователя или группы.
 	/// См. описание <see href="http://vk.com/dev/audio_object"/>.
 	/// </summary>
+	[Serializable]
 	public class Audio : MediaAttachment
 	{
 		static Audio()

@@ -1,12 +1,14 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-    /// Граффити.
-    /// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Граффити".
-    /// </summary>
-    public class Graffiti : MediaAttachment
+	/// Граффити.
+	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Граффити".
+	/// </summary>
+	[Serializable]
+	public class Graffiti : MediaAttachment
     {
 		/// <summary>
 		/// Граффити.
