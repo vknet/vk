@@ -10,7 +10,7 @@ comments: true
 Страница документации ВКонтакте [groups.getMembers](https://vk.com/dev/groups.getMembers).
 ## Синтаксис
 ``` csharp
-public ReadOnlyCollection<long> GetMembers(out int totalCount, GroupsGetMembersParams @params)
+public ReadOnlyCollection<User> GetMembers(out int totalCount, GroupsGetMembersParams @params)
 ```
 
 ## Параметры
