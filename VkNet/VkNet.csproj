@@ -59,6 +59,7 @@
     <Compile Include="Enums\SafetyEnums\FeedType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
+    <Compile Include="Exception\OutOfLimitsException.cs" />
     <Compile Include="Model\DocumentType.cs" />
     <Compile Include="Model\Chair.cs" />
     <Compile Include="Model\FriendOnline.cs" />
