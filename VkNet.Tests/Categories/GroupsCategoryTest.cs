@@ -574,14 +574,14 @@
 			Assert.That(totalCount, Is.EqualTo(861));
 			Assert.That(ids.Count, Is.EqualTo(8));
 
-			Assert.That(ids[0], Is.EqualTo(116446865));
-			Assert.That(ids[1], Is.EqualTo(485839));
-			Assert.That(ids[2], Is.EqualTo(23483719));
-			Assert.That(ids[3], Is.EqualTo(3428459));
-			Assert.That(ids[4], Is.EqualTo(153698746));
-			Assert.That(ids[5], Is.EqualTo(16080868));
-			Assert.That(ids[6], Is.EqualTo(5054657));
-			Assert.That(ids[7], Is.EqualTo(38690458));
+			Assert.That(ids[0].Id, Is.EqualTo(116446865));
+			Assert.That(ids[1].Id, Is.EqualTo(485839));
+			Assert.That(ids[2].Id, Is.EqualTo(23483719));
+			Assert.That(ids[3].Id, Is.EqualTo(3428459));
+			Assert.That(ids[4].Id, Is.EqualTo(153698746));
+			Assert.That(ids[5].Id, Is.EqualTo(16080868));
+			Assert.That(ids[6].Id, Is.EqualTo(5054657));
+			Assert.That(ids[7].Id, Is.EqualTo(38690458));
 		}
 
 		[Test]
@@ -611,13 +611,13 @@
 			Assert.That(totalCount, Is.EqualTo(861));
 			Assert.That(ids.Count, Is.EqualTo(7));
 
-			Assert.That(ids[0], Is.EqualTo(1129147));
-			Assert.That(ids[1], Is.EqualTo(1137997));
-			Assert.That(ids[2], Is.EqualTo(1201582));
-			Assert.That(ids[3], Is.EqualTo(1205554));
-			Assert.That(ids[4], Is.EqualTo(1220166));
-			Assert.That(ids[5], Is.EqualTo(1238937));
-			Assert.That(ids[6], Is.EqualTo(1239796));
+			Assert.That(ids[0].Id, Is.EqualTo(1129147));
+			Assert.That(ids[1].Id, Is.EqualTo(1137997));
+			Assert.That(ids[2].Id, Is.EqualTo(1201582));
+			Assert.That(ids[3].Id, Is.EqualTo(1205554));
+			Assert.That(ids[4].Id, Is.EqualTo(1220166));
+			Assert.That(ids[5].Id, Is.EqualTo(1238937));
+			Assert.That(ids[6].Id, Is.EqualTo(1239796));
 		}
 
 		[Test]
