@@ -90,8 +90,10 @@
         /// <param name="nullableValue">Значение параметра запроса.</param>
         public void Add<T>(string name, T? nullableValue) where T : struct
         {
-            if (!nullableValue.HasValue)
+            if (nullableValue == null)
+            {
                 return;
+            }
 
             Add(name, nullableValue.Value);
         }
@@ -104,8 +106,10 @@
         /// <param name="nullableDateTime">Значение параметра.</param>
         public void Add(string name, DateTime? nullableDateTime)
         {
-            if (!nullableDateTime.HasValue)
+            if (nullableDateTime == null)
+            {
                 return;
+            }
 
             //var offset = DateTime.Now - nullableDateTime.Value;
             var totalSeconds = (nullableDateTime.Value.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
@@ -122,8 +126,10 @@
         /// <param name="nullableValue">Значение параметра.</param>
         public void Add(string name, bool? nullableValue)
         {
-            if (!nullableValue.HasValue || !nullableValue.Value)
+            if (nullableValue == null || !nullableValue.Value)
+            {
                 return;
+            }
 
             base.Add(name, "1");
         }

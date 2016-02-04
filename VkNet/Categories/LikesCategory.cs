@@ -63,33 +63,20 @@ namespace VkNet.Categories
 			return _vk.Call("likes.getList", @params, true);
 		}
 
-		/// <summary>
-		/// Добавляет указанный объект в список Мне нравится текущего пользователя.
-		/// </summary>
-		/// <param name="type">Тип объекта <see cref="LikeObjectType" /></param>
-		/// <param name="itemId">Идентификатор объекта. положительное число, обязательный параметр</param>
-		/// <param name="ownerId">Идентификатор владельца объекта. целое число, по умолчанию идентификатор текущего пользователя</param>
-		/// <param name="accessKey">Ключ доступа в случае работы с приватными объектами. строка</param>
-		/// <param name="reference">Ссылка.</param>
-		/// <returns>
-		/// В случае успеха возвращает объект с полем likes, в котором находится текущее количество пользователей, которые добавили данный объект в свой список Мне нравится.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.add" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long Add(LikeObjectType type, long itemId, long? ownerId = null, string accessKey = null, string reference = null)
+        /// <summary>
+        /// Добавляет указанный объект в список Мне нравится текущего пользователя.
+        /// </summary>
+        /// <param name="params">Параметры запроса.</param>
+        /// <returns>
+        /// В случае успеха возвращает объект с полем likes, в котором находится текущее количество пользователей, которые добавили данный объект в свой список Мне нравится.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.add" />.
+        /// </remarks>
+        [ApiVersion("5.44")]
+		public long Add(LikesAddParams @params)
 		{
-			var parameters = new VkParameters
-				{
-					{ "type", type },
-					{ "item_id", itemId },
-					{ "owner_id", ownerId },
-					{ "access_key", accessKey },
-					{ "ref", reference }
-				};
-
-			var response = _vk.Call("likes.add", parameters);
+			var response = _vk.Call("likes.add", @params);
 
 			return response["likes"];
 		}
