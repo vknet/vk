@@ -20,6 +20,12 @@
 
             if (host != null && port != null)
                 Request.Proxy = new WebProxy(host, port.Value);
+            
+            if (Request.Proxy != null)
+            {
+                // Авторизация с реквизитами по умолчанию (для NTLM прокси)
+                Request.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            }
 
             Result = new WebCallResult(url, cookies);
         }
