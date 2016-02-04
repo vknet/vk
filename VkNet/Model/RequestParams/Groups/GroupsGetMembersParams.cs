@@ -54,7 +54,7 @@ namespace VkNet.Model.RequestParams
 		/// Список дополнительных полей, которые необходимо вернуть. 
 		/// Доступные значения: sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters список строк, разделенных через запятую.
 		/// </summary>
-		public GroupsFields Fields { get; set; }
+		public UsersFields Fields { get; set; }
 
 		/// <summary>
 		/// Friends — будут возвращены только друзья в этом сообществе. 
