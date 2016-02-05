@@ -60,6 +60,21 @@ namespace VkNet.Enums.Filters
 		public static readonly UsersFields Photo200Orig = RegisterPossibleValue(1 << 9, "photo_200_orig");
 
 		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.Photo400Orig"/>.
+		/// </summary>
+		public static readonly UsersFields Photo400Orig = RegisterPossibleValue(1 << 21, "photo_400_orig");
+
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.PhotoMax"/>.
+		/// </summary>
+		public static readonly UsersFields PhotoMax = RegisterPossibleValue(1 << 22, "photo_max");
+		
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.PhotoMaxOrig"/>.
+		/// </summary>
+		public static readonly UsersFields PhotoMaxOrig = RegisterPossibleValue(1 << 23, "photo_max_orig");
+
+		/// <summary>
 		/// Для получения дополнительного поля <see cref="User.HasMobile"/>.
 		/// </summary>
 		public static readonly UsersFields HasMobile = RegisterPossibleValue(1 << 10, "has_mobile");
@@ -119,7 +134,7 @@ namespace VkNet.Enums.Filters
 		/// Для получения всех дополнительных полей.
 		/// </summary>
 		public static readonly UsersFields All = Nickname | Domain | Sex | BirthDate | City | Country | Timezone | Photo50 
-			| Photo100 | Photo200Orig | HasMobile | Contacts | Education | Online | Relation | LastSeen | Status | CanWritePrivateMessage 
+			| Photo100 | Photo200Orig | Photo400Orig | PhotoMax | PhotoMaxOrig | HasMobile | Contacts | Education | Online | Relation | LastSeen | Status | CanWritePrivateMessage 
 			| CanSeeAllPosts | CanPost | Universities;
 
 	}
