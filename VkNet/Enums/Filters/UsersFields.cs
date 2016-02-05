@@ -163,6 +163,9 @@ namespace VkNet.Enums.Filters
 		/// Для получения дополнительного поля <see cref="User.CanSeeAudio "/>.
 		/// </summary>
 		public static readonly UsersFields CanSeeAudio = RegisterPossibleValue(1 << 30, "can_see_audio");
+		
+
+		//TODO: Fix this issue and uncomment!!! 
 		/*
 		/// <summary>
 		/// Для получения дополнительного поля <see cref="User.CommonCount "/>.
