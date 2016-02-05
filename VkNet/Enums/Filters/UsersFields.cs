@@ -58,6 +58,11 @@ namespace VkNet.Enums.Filters
 		/// Для получения дополнительного поля <see cref="User.Photo200Orig"/>.
 		/// </summary>
 		public static readonly UsersFields Photo200Orig = RegisterPossibleValue(1 << 9, "photo_200_orig");
+		
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.Photo200"/>.
+		/// </summary>
+		public static readonly UsersFields Photo200 = RegisterPossibleValue(1 << 24, "photo_200");
 
 		/// <summary>
 		/// Для получения дополнительного поля <see cref="User.Photo400Orig"/>.
@@ -95,6 +100,16 @@ namespace VkNet.Enums.Filters
 		public static readonly UsersFields Online = RegisterPossibleValue(1 << 13, "online");
 
 		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.OnlineMobile"/>.
+		/// </summary>
+		public static readonly UsersFields OnlineMobile = RegisterPossibleValue(1 << 25, "online_mobile");
+
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.FriendLists"/>.
+		/// </summary>
+		public static readonly UsersFields FriendLists = RegisterPossibleValue(1 << 26, "lists");
+
+		/// <summary>
 		/// Для получения дополнительного поля <see cref="User.Relation"/>.
 		/// </summary>
 		public static readonly UsersFields Relation = RegisterPossibleValue(1 << 14, "relation");
@@ -129,13 +144,49 @@ namespace VkNet.Enums.Filters
 		/// </summary>
 		public static readonly UsersFields Universities = RegisterPossibleValue(1 << 20, "universities");
 
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.Connections "/>.
+		/// </summary>
+		public static readonly UsersFields Connections = RegisterPossibleValue(1 << 27, "connections");
+
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.Site "/>.
+		/// </summary>
+		public static readonly UsersFields Site = RegisterPossibleValue(1 << 28, "site");
+
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.Schools "/>.
+		/// </summary>
+		public static readonly UsersFields Schools = RegisterPossibleValue(1 << 29, "schools");
+
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.CanSeeAudio "/>.
+		/// </summary>
+		public static readonly UsersFields CanSeeAudio = RegisterPossibleValue(1 << 30, "can_see_audio");
+
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.CommonCount "/>.
+		/// </summary>
+		public static readonly UsersFields CommonCount = RegisterPossibleValue(1 << 32, "common_count");
+
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.Relatives "/>.
+		/// </summary>
+		public static readonly UsersFields Relatives = RegisterPossibleValue(1 << 33, "relatives");
+
+		/// <summary>
+		/// Для получения дополнительного поля <see cref="User.Counters "/>.
+		/// </summary>
+		public static readonly UsersFields Counters = RegisterPossibleValue(1 << 34, "counters");
+
 
 		/// <summary>
 		/// Для получения всех дополнительных полей.
 		/// </summary>
 		public static readonly UsersFields All = Nickname | Domain | Sex | BirthDate | City | Country | Timezone | Photo50 
-			| Photo100 | Photo200Orig | Photo400Orig | PhotoMax | PhotoMaxOrig | HasMobile | Contacts | Education | Online | Relation | LastSeen | Status | CanWritePrivateMessage 
-			| CanSeeAllPosts | CanPost | Universities;
+			| Photo100 | Photo200Orig | HasMobile | Contacts | Education | Online | Relation | LastSeen | Status | CanWritePrivateMessage 
+			| CanSeeAllPosts | CanPost | Universities | OnlineMobile | FriendLists | Photo200 | Photo400Orig | PhotoMax | PhotoMaxOrig
+			| Connections | Site | Schools | CanSeeAudio | CommonCount | Relatives | Counters;
 
 	}
 }
