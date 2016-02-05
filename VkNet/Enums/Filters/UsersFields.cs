@@ -163,21 +163,21 @@ namespace VkNet.Enums.Filters
 		/// Для получения дополнительного поля <see cref="User.CanSeeAudio "/>.
 		/// </summary>
 		public static readonly UsersFields CanSeeAudio = RegisterPossibleValue(1 << 30, "can_see_audio");
-
+		/*
 		/// <summary>
 		/// Для получения дополнительного поля <see cref="User.CommonCount "/>.
 		/// </summary>
-		public static readonly UsersFields CommonCount = RegisterPossibleValue(1 << 32, "common_count");
+		public static readonly UsersFields CommonCount = RegisterPossibleValue(1 << 31, "common_count");
 
 		/// <summary>
 		/// Для получения дополнительного поля <see cref="User.Relatives "/>.
 		/// </summary>
-		public static readonly UsersFields Relatives = RegisterPossibleValue(1 << 33, "relatives");
+		public static readonly UsersFields Relatives = RegisterPossibleValue(1 << 32, "relatives");
 
 		/// <summary>
 		/// Для получения дополнительного поля <see cref="User.Counters "/>.
 		/// </summary>
-		public static readonly UsersFields Counters = RegisterPossibleValue(1 << 34, "counters");
+		public static readonly UsersFields Counters = RegisterPossibleValue(1 << 33, "counters");*/
 
 
 		/// <summary>
@@ -186,7 +186,7 @@ namespace VkNet.Enums.Filters
 		public static readonly UsersFields All = Nickname | Domain | Sex | BirthDate | City | Country | Timezone | Photo50 
 			| Photo100 | Photo200Orig | HasMobile | Contacts | Education | Online | Relation | LastSeen | Status | CanWritePrivateMessage 
 			| CanSeeAllPosts | CanPost | Universities | OnlineMobile | FriendLists | Photo200 | Photo400Orig | PhotoMax | PhotoMaxOrig
-			| Connections | Site | Schools | CanSeeAudio | CommonCount | Relatives | Counters;
+			| Connections | Site | Schools | CanSeeAudio/* | CommonCount | Relatives | Counters*/;
 
 	}
 }
