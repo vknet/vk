@@ -550,10 +550,10 @@
 		{
 			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&v=5.44&access_token=token";
 			const string json =
-				@"{
+                @"{
 					'response': {
 					  'count': 861,
-					  'users': [
+					  'items': [
 						116446865,
 						485839,
 						23483719,
@@ -592,7 +592,7 @@
 				@"{
 					'response': {
 					  'count': 861,
-					  'users': [
+					  'items': [
 						1129147,
 						1137997,
 						1201582,
