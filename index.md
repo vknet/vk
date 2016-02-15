@@ -348,3 +348,25 @@ comments: false
 + [Market.DeleteAlbum] (/vk/market/deleteAlbum/) - Удаляет подборку с товарами.
 + [Market.RemoveFromAlbum] (/vk/market/removeFromAlbum/) - Удаляет товар из одной или нескольких выбранных подборок.
 + [Market.AddToAlbum] (/vk/market/addToAlbum/) - Добавляет товар в одну или несколько выбранных подборок.
+
+# Аккаунт
++ [Account.GetCounters] (/vk/account/getCounters/) - Возвращает ненулевые значения счетчиков пользователя.
++ [Account.SetNameInMenu] (/vk/account/setNameInMenu/) - Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню.
++ [Account.SetOnline] (/vk/account/setOnline/) - Помечает текущего пользователя как online на 15 минут.
++ [Account.SetOffline] (/vk/account/setOffline/) - Помечает текущего пользователя как offline.
++ [Account.LookupContacts] (/vk/account/lookupContacts/) - Позволяет искать пользователей ВКонтакте, используя телефонные номера, email-адреса, и идентификаторы пользователей в других сервисах. Найденные пользователи могут быть также в дальнейшем получены методом friends.getSuggestions.
++ [Account.RegisterDevice] (/vk/account/registerDevice/) - Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений.
++ [Account.UnregisterDevice] (/vk/account/unregisterDevice/) - Отписывает устройство от Push уведомлений.
++ [Account.SetSilenceMode] (/vk/account/setSilenceMode/) - Отключает push-уведомления на заданный промежуток времени.
++ [Account.GetPushSettings] (/vk/account/getPushSettings/) - Позволяет получать настройки Push уведомлений.
++ [Account.SetPushSettings] (/vk/account/setPushSettings/) - Изменяет настройку Push-уведомлений.
++ [Account.GetAppPermissions] (/vk/account/getAppPermissions/) - Получает настройки текущего пользователя в данном приложении.
++ [Account.GetActiveOffers] (/vk/account/getActiveOffers/) - Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения.
++ [Account.BanUser] (/vk/account/banUser/) - Добавляет пользователя в черный список.
++ [Account.UnbanUser] (/vk/account/unbanUser/) - Убирает пользователя из черного списка.
++ [Account.GetBanned] (/vk/account/getBanned/) - Возвращает список пользователей, находящихся в черном списке.
++ [Account.GetInfo] (/vk/account/getInfo/) - Возвращает информацию о текущем аккаунте.
++ [Account.SetInfo] (/vk/account/setInfo/) - Позволяет редактировать информацию о текущем аккаунте.
++ [Account.ChangePassword] (/vk/account/changePassword/) - Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore.
++ [Account.GetProfileInfo] (/vk/account/getProfileInfo/) - Возвращает информацию о текущем профиле.
++ [Account.SaveProfileInfo] (/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
