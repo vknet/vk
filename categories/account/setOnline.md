@@ -10,7 +10,7 @@ comments: true
 Страница документации ВКонтакте [account.setOnline](https://vk.com/dev/account.setOnline).
 ## Синтаксис
 ``` csharp
-public bool SetOnline(bool? voip)
+public bool SetOnline(bool? voip = null)
 ```
 
 ## Параметры
@@ -25,4 +25,4 @@ public bool SetOnline(bool? voip)
 ```
 
 ## Версия Вконтакте API v.5.45
-Дата обновления: 10.02.2016 13:55:10
+Дата обновления: 15.02.2016 14:14:52
