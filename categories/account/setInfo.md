@@ -10,7 +10,11 @@ comments: true
 Страница документации ВКонтакте [account.setInfo](https://vk.com/dev/account.setInfo).
 ## Синтаксис
 ``` csharp
-public bool SetInfo(long? intro, bool? ownPostsDefault, bool? noWallReplies)
+public bool SetInfo(
+  int? intro = null,
+  bool ownPostsDefault = true,
+  bool noWallReplies = true
+)
 ```
 
 ## Параметры
