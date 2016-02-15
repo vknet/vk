@@ -10,7 +10,12 @@ comments: true
 Страница документации ВКонтакте [account.changePassword](https://vk.com/dev/account.changePassword).
 ## Синтаксис
 ``` csharp
-public bool ChangePassword(string restoreSid, string changePasswordHash, string oldPassword, string newPassword)
+public AccountChangePasswordResult ChangePassword(
+  string oldPassword,
+  string newPassword,
+  string restoreSid = null,
+  string changePasswordHash = null
+)
 ```
 
 ## Параметры
