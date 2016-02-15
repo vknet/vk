@@ -150,7 +150,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.registerDevice" />.
 		/// </remarks>
-		[ApiVersion("5.21")]
+		[ApiVersion("5.45")]
 		[Obsolete("Функция устарела. Пожалуйста используйте функцию RegisterDevice(AccountRegisterDevice @params)")]
 		public bool RegisterDevice([NotNull]string token, string deviceModel, string systemVersion, bool? noText = null, SubscribeFilter subscribe = null)
 		{
@@ -355,6 +355,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.45")]
 		public bool BanUser(long userId)
 		{
+			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			var parameters = new VkParameters {
 				{ "user_id", userId }
 			};
@@ -375,6 +376,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.45")]
 		public bool UnbanUser(long userId)
 		{
+			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			var parameters = new VkParameters {
 				{ "user_id", userId }
 			};
@@ -529,7 +531,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.saveProfileInfo" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public bool SaveProfileInfo(int cancelRequestId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => cancelRequestId);
@@ -553,7 +555,7 @@ namespace VkNet.Categories
 		/// <returns>Результат выполнения операции.</returns>
 		/// <remarks> Если передаются <paramref name="firstName"/> или <paramref name="lastName"/>, рекомендуется
 		/// использовать перегрузку с соотвествующим out параметром типа <see cref="ChangeNameRequest"/> для получения объекта заявки на смену имени.</remarks>
-		[ApiVersion("5.21")]
+		[ApiVersion("5.45")]
 		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
 		public bool SaveProfileInfo(string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
@@ -597,7 +599,7 @@ namespace VkNet.Categories
 		/// <param name="countryId">Идентификатор страны пользователя</param>
 		/// <param name="cityId">Идентификатор города пользователя</param>
 		/// <returns>Результат выполнения операции.</returns>
-		[ApiVersion("5.21")]
+		[ApiVersion("5.45")]
 		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
 		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
