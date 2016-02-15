@@ -10,11 +10,11 @@ comments: true
 Страница документации ВКонтакте [account.getProfileInfo](https://vk.com/dev/account.getProfileInfo).
 ## Синтаксис
 ``` csharp
-public User GetProfileInfo()
+public AccountSaveProfileInfoParams GetProfileInfo()
 ```
 
 ## Параметры
-
+Метод не содержит входных параметров
 
 ## Результат
 Метод возвращает объект, содержащий информацию о пользователе
