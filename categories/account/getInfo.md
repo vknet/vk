@@ -10,7 +10,7 @@ comments: true
 Страница документации ВКонтакте [account.getInfo](https://vk.com/dev/account.getInfo).
 ## Синтаксис
 ``` csharp
-public bool GetInfo(IEnumerable<string> fields)
+public AccountInfo GetInfo(AccountFields fields = null)
 ```
 
 ## Параметры
