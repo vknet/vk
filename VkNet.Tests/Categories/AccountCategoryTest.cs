@@ -767,12 +767,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(info.HomeTown, Is.EqualTo("Санкт-Петербург"));
 			Assert.That(info.Country.Title, Is.EqualTo("Российская империя"));
 			Assert.That(info.City.Title, Is.EqualTo("Санкт-Петербург"));
-			Assert.That(info.ChangeNameRequest, Is.Not.Null);
-			Assert.That(info.ChangeNameRequest.FirstName, Is.EqualTo("Анюта"));
-			Assert.That(info.ChangeNameRequest.LastName, Is.EqualTo("Вронская"));
-			Assert.That(info.ChangeNameRequest.Id, Is.EqualTo(56789));
-			Assert.That(info.ChangeNameRequest.Status, Is.EqualTo(ChangeNameStatus.Processing));
-			Assert.That(info.ChangeNameRequest.RepeatDate, Is.Null);
+			//Assert.That(info.ChangeNameRequest, Is.Not.Null);
+			//Assert.That(info.ChangeNameRequest.FirstName, Is.EqualTo("Анюта"));
+			//Assert.That(info.ChangeNameRequest.LastName, Is.EqualTo("Вронская"));
+			//Assert.That(info.ChangeNameRequest.Id, Is.EqualTo(56789));
+			//Assert.That(info.ChangeNameRequest.Status, Is.EqualTo(ChangeNameStatus.Processing));
+			//Assert.That(info.ChangeNameRequest.RepeatDate, Is.Null);
 
 		}
 
@@ -810,7 +810,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(info.BirthdayVisibility, Is.EqualTo(BirthdayVisibility.Invisible));
 			Assert.That(info.Country.Title, Is.EqualTo("Российская империя"));
 			Assert.That(info.City.Title, Is.EqualTo("Санкт-Петербург"));
-			Assert.That(info.ChangeNameRequest, Is.Null);
+			//Assert.That(info.ChangeNameRequest, Is.Null);
 		}
 
 		#endregion

@@ -348,7 +348,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Видимость даты рождения.
 		/// </summary>
-		public BirthdayVisibility BirthdayVisibility { get; set; }
+		public BirthdayVisibility? BirthdayVisibility { get; set; }
 
 		/// <summary>
 		/// Родной город пользователя.
@@ -368,6 +368,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Показывать дату?
 		/// </summary>
+		[Obsolete("Пожалуйста используйте поле BirthdayVisibility")]
 		public bool? BdateVisibility { get; set; }
 
 		/// <summary>

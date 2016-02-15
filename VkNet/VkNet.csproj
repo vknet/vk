@@ -60,11 +60,13 @@
     <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
     <Compile Include="Exception\OutOfLimitsException.cs" />
+    <Compile Include="Model\AccountChangePasswordResult.cs" />
     <Compile Include="Model\DocumentType.cs" />
     <Compile Include="Model\Chair.cs" />
     <Compile Include="Model\FriendOnline.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
+    <Compile Include="Model\RequestParams\Account\AccountSaveProfileInfoParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioEditParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioGetParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetMutualParams.cs" />
@@ -239,8 +241,7 @@
     <Compile Include="Model\PhotoSize.cs" />
     <Compile Include="Model\PostReach.cs" />
     <Compile Include="Model\PushSettings.cs" />
-    <Compile Include="Model\RequestParams\AccountRegisterDeviceParams.cs" />
-    <Compile Include="Model\RequestParams\Account\AccountSaveInfoParams.cs" />
+    <Compile Include="Model\RequestParams\Account\AccountRegisterDeviceParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioSearchParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />

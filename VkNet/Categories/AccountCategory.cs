@@ -1,18 +1,15 @@
-﻿using VkNet.Enums.Filters;
+﻿using System.Collections.ObjectModel;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Diagnostics;
-	using System.Text.RegularExpressions;
 	using JetBrains.Annotations;
-	using Newtonsoft.Json.Linq;
-
 	using Enums;
 	using Model;
-    using Model.RequestParams;
+	using Model.RequestParams;
 	using Utils;
 
 	/// <summary>
@@ -38,13 +35,16 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает ненулевые значения счетчиков пользователя.
 		/// </summary>
-		/// <param name="filter">Счетчики, информацию о которых нужно вернуть.</param>
-		/// <returns>Возвращает объект, который содержит ненулевые значения счетчиков, или null, если все значения нулевые. Равные нулю счетчики не устанавливаются независимо от их наличия в <paramref name="filter"/>.</returns>
+		/// <param name="filter">Счетчики, информацию о которых нужно вернуть (friends, messages, photos, videos, notes, gifts, events, groups, notifications, sdk, app_requests). 
+		/// sdk - возвращает количество запросов в приложениях. 
+		/// app_requests - возвращает количество непрочитанных запросов в приложениях. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
+		/// <returns>
+		/// Возвращает объект, который может содержать поля friends, messages, photos, videos, notes, gifts, events, groups, notifications, sdk, app_requests.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getCounters" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getCounters" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public Counters GetCounters(CountersFilter filter)
 		{
 			return _vk.Call("account.getCounters", new VkParameters { { "filter", filter } });
@@ -53,18 +53,17 @@ namespace VkNet.Categories
 
 		/// <summary>
 		/// Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню.
-		/// Это происходит только в том случае, если пользователь добавил приложение в левое меню со страницы приложения, списка приложений или настроек.
 		/// </summary>
-		/// <param name="name">Короткое название приложения (до 17 символов).</param>
-		/// <param name="userId">Идентификатор пользователя, по умолчанию идентификатор текущего пользователя.</param>
+		/// <param name="userId">Идентификатор пользователя. положительное число, по умолчанию идентификатор текущего пользователя, обязательный параметр (Положительное число, по умолчанию идентификатор текущего пользователя, обязательный параметр).</param>
+		/// <param name="name">Короткое название приложения. строка (Строка).</param>
 		/// <returns>
-		/// Возвращает результат установки короткого названия.
+		/// Возвращает 1 в случае успешной установки короткого названия. 
+		/// Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied). Избежать этой ошибки можно с помощью метода account.getAppPermissions.
 		/// </returns>
 		/// <remarks>
-		/// Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied).
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setNameInMenu" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setNameInMenu" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public bool SetNameInMenu([NotNull] string name, long? userId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => name);
@@ -79,14 +78,14 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Помечает текущего пользователя как online на 15 минут.
 		/// </summary>
-		/// <param name="voip">Возможны ли видеозвонки для данного устройства.</param>
+		/// <param name="voip">Возможны ли видеозвонки для данного устройства флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
 		/// <returns>
-		/// Возвращает значение, показывающее, успешно ли выполнился метод.
+		/// В случае успешного выполнения метода будет возвращён код 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setOnline" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setOnline" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public bool SetOnline(bool? voip = null)
 		{
 			var parameters = new VkParameters { { "voip", voip } };
@@ -96,31 +95,37 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Помечает текущего пользователя как offline.
 		/// </summary>
-		/// <returns>Возвращает значение, показывающее, успешно ли выполнился метод.</returns>
+		/// <returns>
+		/// В случае успешного выполнения возвращает <c>true</c>.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setOffline" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setOffline" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public bool SetOffline()
 		{
 			return _vk.Call("account.setOffline", VkParameters.Empty);
 		}
 
 		/// <summary>
-		/// Позволяет искать пользователей ВКонтакте, используя телефонные номера, email-адреса, и идентификаторы пользователей в других сервисах.
-		/// Найденные пользователи могут быть также в дальнейшем получены методом friends.getSuggestions.
+		/// Позволяет искать пользователей ВКонтакте, используя телефонные номера, email-адреса, и идентификаторы пользователей в других сервисах. Найденные пользователи могут быть также в дальнейшем получены методом friends.getSuggestions.
 		/// </summary>
-		/// <param name="contacts">Список контактов, разделенных через запятую. список строк, разделенных через запятую.</param>
-		/// <param name="service">Строковой идентификатор сервиса, по контактам которого производится поиск. строка, обязательный параметр.</param>
-		/// <param name="mycontact">Контакт текущего пользователя в заданном сервисе. строка.</param>
-		/// <param name="returnAll">1 – возвращать также контакты, найденные ранее с использованием этого сервиса, 0 – возвращать только контакты, найденные с использованием поля contacts. флаг, может принимать значения 1 или 0.</param>
-		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. список строк, разделенных через запятую.</param>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="contacts">Список контактов, разделенных через запятую. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
+		/// <param name="service">Строковой идентификатор сервиса, по контактам которого производится поиск. Может принимать следующие значения: (email, phone, twitter, facebook, odnoklassniki, instagram, google) строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <param name="mycontact">Контакт текущего пользователя в заданном сервисе. строка (Строка).</param>
+		/// <param name="returnAll">1 – возвращать также контакты, найденные ранее с использованием этого сервиса, 0 – возвращать только контакты, найденные с использованием поля contacts. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. 
+		/// Доступные значения: nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
+		/// <returns>
+		/// В качестве результата метод возвращает два списка: 
+		/// found – список объектов пользователей, расширенных полями contact – контакт, по которому был найден пользователь (не приходит если пользователь был найден при предыдущем использовании метода), request_sent – запрос на добавление в друзья уже был выслан, либо пользователь уже является другом, common_count если этот контакт также был импортирован друзьями или контактами текущего пользователя. Метод также возвращает найденные ранее контакты. 
+		/// other – список контактов, которые не были найдены. Объект содержит поля contact и common_count если этот контакт также был импортирован друзьями или контактами текущего пользователя.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.lookupContacts" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.lookupContacts" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public LookupContactsResult LookupContacts(List<string> contacts, Services service, string mycontact, bool? returnAll, UsersFields fields)
+		[ApiVersion("5.45")]
+		public LookupContactsResult LookupContacts(List<string> contacts, Services service, string mycontact = null, bool? returnAll = null, UsersFields fields = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -162,47 +167,39 @@ namespace VkNet.Categories
 
 			return _vk.Call("account.registerDevice", parameters);
 		}
+
 		/// <summary>
 		/// Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений.
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// Возвращает 1 в случае успешного выполнения метода. 
+		/// На iOS и Windows Phone push-уведомления будут отображены без какой либо обработки. 
+		/// На Android будут приходить события в следующем формате.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.registerDevice" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.registerDevice" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public bool RegisterDevice(AccountRegisterDeviceParams @params)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => @params.Token);
 
-			var parameters = new VkParameters
-			{
-				{ "token", @params.Token },
-				{ "device_model", @params.DeviceModel },
-				{ "device_year", @params.DeviceYear },
-				{ "device_id", @params.DeviceId },
-				{ "system_version", @params.SystemVersion },
-				{ "settings", @params.Settings },
-				{ "sandbox", @params.Sandbox }
-			};
-
-			return _vk.Call("account.registerDevice", parameters);
+			return _vk.Call("account.registerDevice", @params);
 		}
 
 		/// <summary>
 		/// Отписывает устройство от Push уведомлений.
 		/// </summary>
-		/// <param name="deviceId">Уникальный идентификатор устройства.</param>
-		/// <param name="sandbox">Флаг предназначен для iOS устройств. 1 — отписать устройство, использующего sandbox сервер для отправки push-уведомлений, 0 — отписать устройство, не использующее sandbox сервер.</param>
+		/// <param name="deviceId">Уникальный идентификатор устройства. строка, доступен начиная с версии 5.31 (Строка, доступен начиная с версии 5.31).</param>
+		/// <param name="sandbox">Флаг предназначен для iOS устройств. 1 — отписать устройство, использующего sandbox сервер для отправки push-уведомлений, 0 — отписать устройство, не использующее sandbox сервер флаг, может принимать значения 1 или 0, по умолчанию 0 (Флаг, может принимать значения 1 или 0, по умолчанию 0).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// Возвращает <c>true</c> в случае успешного выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.unregisterDevice" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.unregisterDevice" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public bool UnregisterDevice(string deviceId, bool? sandbox = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => deviceId);
@@ -231,7 +228,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setSilenceMode" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public bool SetSilenceMode([NotNull] string deviceId, int? time = null, int? chatId = null, int? userId = null, bool? sound = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => deviceId);
@@ -251,14 +248,18 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Позволяет получать настройки Push уведомлений.
 		/// </summary>
-		/// <param name="deviceId">Уникальный идентификатор устройства.</param>
+		/// <param name="deviceId">Уникальный идентификатор устройства. строка, доступен начиная с версии 5.31 (Строка, доступен начиная с версии 5.31).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// Возвращает объект, содержащий поля:  
+		/// disabled — отключены ли уведомления. 
+		/// disabled_until — unixtime-значение времени, до которого временно отключены уведомления. 
+		/// conversations — список, содержащий настройки конкретных диалогов, и их количество первым элементом. 
+		/// settings — объект с настройками Push-уведомлений в специальном формате.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getPushSettings" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getPushSettings" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public AccountPushSettings GetPushSettings(string deviceId)
 		{
 			var parameters = new VkParameters
@@ -271,17 +272,17 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Изменяет настройку Push-уведомлений.
 		/// </summary>
-		/// <param name="deviceId">Уникальный идентификатор устройства.</param>
-		/// <param name="settings">Сериализованный JSON-объект, описывающий настройки уведомлений в специальном формате.</param>
-		/// <param name="key">Ключ уведомления.</param>
-		/// <param name="value">Новое значение уведомления в специальном формате.</param>
+		/// <param name="deviceId">Уникальный идентификатор устройства. строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <param name="settings">Сериализованный JSON-объект, описывающий настройки уведомлений в специальном формате данные в формате JSON (Данные в формате JSON).</param>
+		/// <param name="key">Ключ уведомления. строка (Строка).</param>
+		/// <param name="value">Новое значение уведомления в специальном формате. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// Возвращает 1 в случае успешного выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setPushSettings" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setPushSettings" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public bool SetPushSettings(string deviceId, PushSettings settings, string key, List<string> value)
 		{
 			var parameters = new VkParameters
@@ -297,14 +298,18 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Получает настройки текущего пользователя в данном приложении.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, информацию о настройках которого необходимо получить. По умолчанию — текущий пользователь.</param>
+		/// <param name="userId">Идентификатор пользователя, информацию о настройках которого необходимо получить. По умолчанию — текущий пользователь. положительное число, по умолчанию идентификатор текущего пользователя, обязательный параметр (Положительное число, по умолчанию идентификатор текущего пользователя, обязательный параметр).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// После успешного выполнения возвращает битовую маску настроек текущего пользователя в данном приложении. 
+		/// 
+		/// Пример Если Вы хотите получить права на Доступ к друзьям и Доступ к статусам пользователя, то Ваша битовая маска будет равна: 2   1024 = 1026. 
+		/// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к друзьям — Вы можете сделать 1026 &amp; 2. Например alert(1026 &amp; 2); 
+		/// см. Список возможных настроек прав доступа.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getAppPermissions" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getAppPermissions" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public long GetAppPermissions(long userId)
 		{
 			var parameters = new VkParameters
@@ -317,11 +322,16 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения.
 		/// </summary>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества офферов. положительное число, по умолчанию 0 (Положительное число, по умолчанию 0).</param>
+		/// <param name="count">Количество офферов, которое необходимо получить положительное число, по умолчанию 100, максимальное значение 100 (Положительное число, по умолчанию 100, максимальное значение 100).</param>
+		/// <returns>
+		/// Возвращает массив, состоящий из общего количества старгетированных на текущего пользователя специальных предложений (первый элемент), и списка объектов с информацией о предложениях. 
+		/// В случае, если на пользователя не старгетировано ни одного специального предложения, массив будет содержать элемент 0 (количество специальных предложений).
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getActiveOffers" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getActiveOffers" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public InformationAboutOffers GetActiveOffers(ulong? offset = null, ulong? count = null)
 		{
 			var parameters = new VkParameters
@@ -335,39 +345,41 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Добавляет пользователя в черный список.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в черный список. (положительное число)</param>
-		/// <returns>Возвращает результат выполнения метода.</returns>
-		/// <remarks>Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: <see cref="Settings.Friends"/>.</remarks>
+		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в черный список. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <returns>
+		/// В случае успеха метод вернет <c>true</c>.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.banUser" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.banUser" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public bool BanUser(int userId)
+		[ApiVersion("5.45")]
+		public bool BanUser(long userId)
 		{
-			if (userId <= 0)
-			{
-				throw new ArgumentException("User ID should be greater than 0.", "userId");
-			}
+			var parameters = new VkParameters {
+				{ "user_id", userId }
+			};
 
-			return _vk.Call("account.banUser", new VkParameters { { "user_id", userId } });
+			return _vk.Call("account.banUser", parameters);
 		}
 
 		/// <summary>
 		/// Убирает пользователя из черного списка.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, которого нужно убрать из черного списка. (положительное число)</param>
-		/// <returns>Возвращает результат выполнения метода.</returns>
+		/// <param name="userId">Идентификатор пользователя, которого нужно убрать из черного списка. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <returns>
+		/// В случае успеха метод вернет <c>true</c>.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.unbanUser" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.unbanUser" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public bool UnbanUser(int userId)
+		[ApiVersion("5.45")]
+		public bool UnbanUser(long userId)
 		{
-			if (userId <= 0)
-			{
-				throw new ArgumentException("User ID should be greater than 0.", "userId");
-			}
-			return _vk.Call("account.unbanUser", new VkParameters { { "user_id", userId } });
+			var parameters = new VkParameters {
+				{ "user_id", userId }
+			};
+
+			return _vk.Call("account.unbanUser", parameters);
 		}
 
 
@@ -375,15 +387,16 @@ namespace VkNet.Categories
 		/// Возвращает список пользователей, находящихся в черном списке.
 		/// </summary>
 		/// <param name="total">Возвращает общее количество находящихся в черном списке пользователей.</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества черного списка. (положительное число) </param>
-		/// <param name="count">Количество записей, которое необходимо вернуть. (положительное число, по умолчанию - 20, максимальное значение - 200) </param>
-		/// <returns>Возвращает набор объектов пользователей, находящихся в черном списке. </returns>
+		/// <param name="offset">Смещение необходимое для выборки определенного подмножества черного списка. положительное число (Положительное число).</param>
+		/// <param name="count">Количество записей, которое необходимо вернуть. положительное число, по умолчанию 20, максимальное значение 200 (Положительное число, по умолчанию 20, максимальное значение 200).</param>
+		/// <returns>
+		/// Возвращает набор объектов пользователей, находящихся в черном списке.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getBanned" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getBanned" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
-		public IEnumerable<User> GetBanned(out int total, int? offset = null, int? count = null)
+		[ApiVersion("5.45")]
+		public ReadOnlyCollection<User> GetBanned(out int total, int? offset = null, int? count = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -397,21 +410,26 @@ namespace VkNet.Categories
 
 			total = response["count"];
 
-			return response["items"].ToListOf<User>(vkResponse => vkResponse);
+			return response["items"].ToReadOnlyCollectionOf<User>(vkResponse => vkResponse);
 		}
 
 		/// <summary>
 		/// Возвращает информацию о текущем аккаунте.
 		/// </summary>
-		/// <param name="fields">Список полей, которые необходимо вернуть. По умолчанию будут возвращены все поля.</param>
+		/// <param name="fields">Список полей, которые необходимо вернуть. Возможные значения: (country, https_required, own_posts_default, no_wall_replies, intro, lang, По умолчанию будут возвращены все поля. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
 		/// <returns>
-		/// Возвращает информацию об аккаунте или null, если сервер присылает пустой ответ.
+		/// Метод возвращает объект, содержащий следующие поля: 
+		/// country – строковой код страны, определенный по IP адресу, с которого сделан запрос; 
+		/// https_required – 1 - пользователь установил на сайте настройку "Всегда использовать безопасное соединение"; 0 - безопасное соединение не требуется; 
+		/// own_posts_default – 1 - на стене пользователя по-умолчанию должны отображаться только собственные записи. Соответствует настройке на сайте "Показывать только мои записи", 0 - на стене пользователя должны отображаться все записи; 
+		/// no_wall_replies – 1 - пользователь отключил комментирование записей на стене, 0 - комментирование записей разрешено; 
+		/// intro – битовая маска отвечающая за прохождение обучения использованию приложения; 
+		/// lang – числовой идентификатор текущего языка пользователя.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getInfo" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getInfo" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public AccountInfo GetInfo(AccountFields fields = null)
 		{
 			return _vk.Call("account.getInfo", new VkParameters { { "fields", fields } });
@@ -421,19 +439,18 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Позволяет редактировать информацию о текущем аккаунте.
 		/// </summary>
-		/// <param name="intro">Битовая маска, отвечающая за прохождение обучения в мобильных клиентах. (положительное число)</param>
-		/// <param name="ownPostsDefault">1 – на стене пользователя по-умолчанию должны отображаться только собственные записи;
-		/// 0 – на стене пользователя должны отображаться все записи.</param>
-		/// <param name="noWallReplies">1 – отключить комментирование записей на стене;
-		/// 0 – разрешить комментирование.</param>
+		/// <param name="intro">Битовая маска, отвечающая за прохождение обучения в мобильных клиентах. положительное число (Положительное число).</param>
+		/// <param name="ownPostsDefault">1 – на стене пользователя по-умолчанию должны отображаться только собственные записи; 
+		/// 0 – на стене пользователя должны отображаться все записи. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <param name="noWallReplies">1 – отключить комментирование записей на стене; 
+		/// 0 – разрешить комментирование. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В результате успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Если параметр <paramref name="intro" /> не установлен, он сбрасывается на 0.
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setInfo" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setInfo" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
+		[ApiVersion("5.45")]
 		public bool SetInfo(int? intro = null, bool ownPostsDefault = true, bool noWallReplies = true)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => intro);
@@ -449,18 +466,18 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore.
 		/// </summary>
-		/// <param name="oldPassword">Текущий пароль пользователя.</param>
-		/// <param name="newPassword">Новый пароль, который будет установлен в качестве текущего. </param>
-		/// <param name="restoreSid">Идентификатор сессии, полученный при восстановлении доступа используя метод <see cref="AuthCategory.Restore"/>. (В случае если пароль меняется сразу после восстановления доступа) </param>
-		/// <param name="changePasswordHash">Хэш, полученный при успешной OAuth авторизации по коду полученному по СМС (В случае если пароль меняется сразу после восстановления доступа).</param>
+		/// <param name="restoreSid">Идентификатор сессии, полученный при восстановлении доступа используя метод auth.restore. (В случае если пароль меняется сразу после восстановления доступа) строка (Строка).</param>
+		/// <param name="changePasswordHash">Хэш, полученный при успешной OAuth авторизации по коду полученному по СМС (В случае если пароль меняется сразу после восстановления доступа) строка (Строка).</param>
+		/// <param name="oldPassword">Текущий пароль пользователя. строка (Строка).</param>
+		/// <param name="newPassword">Новый пароль, который будет установлен в качестве текущего. строка, минимальная длина 6, обязательный параметр (Строка, минимальная длина 6, обязательный параметр).</param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// В результате выполнения этого метода будет возвращен объект с полем token, содержащим новый токен, и полем secret в случае, если токен был nohttps.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.сhangePassword" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.changePassword" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public bool ChangePassword(string oldPassword, string newPassword, string restoreSid = null, string changePasswordHash = null)
+		[ApiVersion("5.45")]
+		public AccountChangePasswordResult ChangePassword(string oldPassword, string newPassword, string restoreSid = null, string changePasswordHash = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -481,10 +498,26 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getProfileInfo" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.40")]
-		public User GetProfileInfo()
+		[ApiVersion("5.45")]
+		public AccountSaveProfileInfoParams GetProfileInfo()
 		{
-			return _vk.Call("account.getProfileInfo", VkParameters.Empty);
+			User user = _vk.Call("account.getProfileInfo", VkParameters.Empty);
+			return new AccountSaveProfileInfoParams
+			{
+				City = user.City,
+				Country = user.Country,
+				BirthDate = user.BirthDate,
+				BirthdayVisibility = user.BirthdayVisibility,
+				FirstName = user.FirstName,
+				LastName = user.LastName,
+				HomeTown = user.HomeTown,
+				MaidenName = user.MaidenName,
+				Relation = user.Relation,
+				Sex = user.Sex,
+				RelationPartner = user.RelationPartner,
+				ScreenName = user.ScreenName,
+				Status = user.Status
+			};
 		}
 
 		/// <summary>
@@ -500,8 +533,7 @@ namespace VkNet.Categories
 		public bool SaveProfileInfo(int cancelRequestId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => cancelRequestId);
-			return _vk.Call("account.saveProfileInfo", new VkParameters { { "cancel_request_id", cancelRequestId } })["changed"]
-			;
+			return _vk.Call("account.saveProfileInfo", new VkParameters { { "cancel_request_id", cancelRequestId } })["changed"];
 		}
 
 		/// <summary>
@@ -528,19 +560,22 @@ namespace VkNet.Categories
 			string homeTown = null, long? countryId = null, long? cityId = null)
 		{
 			ChangeNameRequest request;
-			var parameters = new AccountSaveInfoParams
+			var parameters = new AccountSaveProfileInfoParams
 			{
 				FirstName = firstName,
 				LastName = lastName,
 				MaidenName = maidenName,
 				Sex = sex.Value,
 				Relation = relation.Value,
-				RelationPartnerId = relationPartnerId,
-				BirthDate = birthDate,
-				BirthDateVisibility = birthDateVisibility.Value,
+				RelationPartner = relationPartnerId.HasValue ? new User { Id =  relationPartnerId.Value } : null,
+				BirthDate = birthDate.HasValue ? birthDate.Value.ToShortDateString() : null,
+				BirthdayVisibility = birthDateVisibility.Value,
 				HomeTown = homeTown,
-				CountryId = countryId,
-				CityId = cityId
+				Country = new Country { Id = countryId },
+				City = new City
+				{
+					Id = cityId
+				}
 			};
 			return SaveProfileInfo(out request, parameters);
 		}
@@ -568,23 +603,25 @@ namespace VkNet.Categories
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
 			string homeTown = null, long? countryId = null, long? cityId = null)
 		{
-			var parameters = new AccountSaveInfoParams
+			var parameters = new AccountSaveProfileInfoParams
 			{
 				FirstName = firstName,
 				LastName = lastName,
 				MaidenName = maidenName,
 				Sex = sex.Value,
 				Relation = relation.Value,
-				RelationPartnerId = relationPartnerId,
-				BirthDate = birthDate,
-				BirthDateVisibility = birthDateVisibility.Value,
+				RelationPartner = relationPartnerId.HasValue ? new User
+				{
+					Id = relationPartnerId.Value
+				} : null,
+				BirthDate = birthDate.HasValue ? birthDate.Value.ToShortDateString() : null,
+				BirthdayVisibility = birthDateVisibility.Value,
 				HomeTown = homeTown,
-				CountryId = countryId,
-				CityId = cityId
+				Country = new Country { Id = countryId },
+				City = new City { Id = cityId }
 			};
 
 			return SaveProfileInfo(out changeNameRequest, parameters);
-
 		}
 
 		/// <summary>
@@ -599,12 +636,12 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.saveProfileInfo" />.
 		/// </remarks>
-		[ApiVersion("5.40")]
-		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfoParams @params)
+		[ApiVersion("5.45")]
+		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveProfileInfoParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => @params.RelationPartnerId);
-			VkErrors.ThrowIfNumberIsNegative(() => @params.CountryId);
-			VkErrors.ThrowIfNumberIsNegative(() => @params.CityId);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.RelationPartner.Id);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.Country.Id);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.City.Id);
 
 			var response = _vk.Call("account.saveProfileInfo", @params);
 
