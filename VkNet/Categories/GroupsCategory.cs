@@ -483,11 +483,11 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Group> Search(out int totalCount, GroupsSearchParams @params)
 		{
-			VkResponseArray response = _vk.Call("groups.search", @params);
+			var response = _vk.Call("groups.search", @params);
 
-			totalCount = response[0];
+			totalCount = response["count"];
 
-			return response.Skip(1).ToReadOnlyCollectionOf<Group>(r => r);
+			return response["items"].ToReadOnlyCollectionOf<Group>(r => r);
 		}
 
 		/// <summary>
