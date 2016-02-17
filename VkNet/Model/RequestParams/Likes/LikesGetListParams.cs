@@ -23,6 +23,7 @@ namespace VkNet.Model.RequestParams
 			Offset = null;
 			Count = null;
 			SkipOwn = null;
+		    Extended = null;
 		}
 		/// <summary>
 		/// Тип объекта.
@@ -78,6 +79,12 @@ namespace VkNet.Model.RequestParams
 		public bool? SkipOwn
 		{ get; set; }
 
+        /// <summary>
+        /// 1 — возвращать расширенную информацию о пользователях и сообществах из списка поставивших отметку «Мне нравится» или сделавших репост. По умолчанию — 0.
+        /// </summary>
+        public bool? Extended { get; set; }
+	    
+
 		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
@@ -93,7 +100,7 @@ namespace VkNet.Model.RequestParams
 					{ "page_url", p.PageUrl },
 					{ "filter", p.Filter },
 					{ "friends_only", p.FriendsOnly },
-					{ "extended", true },
+					{ "extended", p.Extended },
 					{ "offset", p.Offset },
 					{ "skip_own", p.SkipOwn }
 				};
