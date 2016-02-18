@@ -9,6 +9,9 @@ Coverity: [![Coverity Scan Build Status](https://scan.coverity.com/projects/6249
 Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Roadmap
-Задачи на 1.0.18 версию:
-- [] Двухфакторная авторизация
-- [] Закрыть все ошибки (метка Bug)
+Задачи на 1.21 версию:
+
+- [ ] Привести реализованные методы к актуальному состоянию API на текущий момент v 5.45
+- [ ] Актуализировать справку по реализованым методам
+- [ ] Обновить тесты
+- [ ] Перевести справку на новый движок markdown

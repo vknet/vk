@@ -49,6 +49,7 @@ List<string> types = new List<string>();
 		{
             return <#= type #>.ToVkParameters(p);
         }
+
 <# } #>
 
 	}

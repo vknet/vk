@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -42,13 +43,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Число новых подписчиков.
 		/// </summary>
-		public long Subscribed
+		public long? Subscribed
 		{ get; set; }
 
 		/// <summary>
 		/// Число отписавшихся.
 		/// </summary>
-		public long Unsubscribed
+		public long? Unsubscribed
 		{ get; set; }
 
 		/// <summary>
@@ -90,7 +91,7 @@ namespace VkNet.Model
 		{
 			var statsPeriod = new StatsPeriod
 			{
-				Day = DateTime.Parse(response["day"]),
+				Day = DateTime.Parse(response["day"], DateTimeFormatInfo.InvariantInfo),
 				Views = response["views"],
 				Visitors = response["visitors"],
 				Reach = response["reach"],

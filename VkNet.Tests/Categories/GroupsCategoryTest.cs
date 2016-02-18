@@ -679,9 +679,9 @@
 			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&v=5.44&access_token=token";
 			const string json =
 				@"{
-					'response': [
-					  78152,
-					  {
+					'response': {
+					  count: 78152,
+					  items:[{
 						'id': 339767,
 						'name': 'A-ONE HIP-HOP MUSIC CHANNEL',
 						'screen_name': 'a1tv',
@@ -704,8 +704,8 @@
 						'photo_50': 'http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg',
 						'photo_100': 'http://cs410222.userapi.com/g27895931/d_2869e827.jpg',
 						'photo_200': 'http://cs410222.userapi.com/g27895931/a_32935e91.jpg'
-					  }
-					]
+					  }]
+					}
 				  }";
 
 			int totalCount;
@@ -744,9 +744,9 @@
 			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&offset=20&count=3&v=5.44&access_token=token";
 			const string json =
 				@"{
-					'response': [
-					  78152,
-					  {
+					'response': {
+					  count: 78152,
+					  items: [{
 						'id': 26442631,
 						'name': 'Music Quotes. First Public.',
 						'screen_name': 'music_quotes_public',
@@ -781,8 +781,8 @@
 						'photo_50': 'http://cs9913.userapi.com/g23995866/e_319d8573.jpg',
 						'photo_100': 'http://cs9913.userapi.com/g23995866/d_166572a9.jpg',
 						'photo_200': 'http://cs9913.userapi.com/g23995866/a_fc553960.jpg'
-					  }
-					]
+					  }]
+					}
 				  }";
 
 			int totalCount;
@@ -833,9 +833,10 @@
 
 			const string json =
 				@"{
-					'response': [
-					  0
-					]
+					response: {
+						count: 0,
+						items: []
+					}
 				  }";
 
 			var category = GetMockedGroupCategory(url, json);

@@ -40,11 +40,10 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public ReadOnlyCollection<long> GetList(LikesGetListParams @params)
 		{
+		    @params.Extended = false;
+			VkResponseArray response = _vk.Call("likes.getList", @params, true);
 
-
-			VkResponseArray response = _vk.Call("likes.getList", @params);
-
-			return response.ToReadOnlyCollectionOf<long>(x => x);
+            return response.ToReadOnlyCollectionOf<long>(x => x);
 		}
 
 		/// <summary>
@@ -60,7 +59,8 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public UserOrGroup GetListEx(LikesGetListParams @params)
 		{
-			return _vk.Call("likes.getList", @params, true);
+            @params.Extended = true;
+            return _vk.Call("likes.getList", @params, true);
 		}
 
         /// <summary>

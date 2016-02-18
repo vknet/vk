@@ -329,14 +329,14 @@
             This.Action(() => users.IsAppUser(1)).Throws<AccessTokenInvalidException>();
         }
 
-        [Test]
+        [Test, Ignore("Метод устарел. Используйте вместо него account.getAppPermissions")]
         public void GetUserSettings_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var vk = new VkApi();
             This.Action(() => vk.Users.GetUserSettings(100)).Throws<AccessTokenInvalidException>();
         }
 
-        [Test]
+        [Test, Ignore("Метод устарел. Используйте вместо него account.getAppPermissions")]
         public void GetUserSettings_AccessToFriends_Return2()
         {
             const string url = "https://api.vk.com/method/getUserSettings?uid=1&v=5.44&access_token=token";

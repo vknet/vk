@@ -13,7 +13,7 @@ namespace VkNet.Model
         /// <summary>
         /// Идентификатор страны.
         /// </summary>
-        public int Id { get; set; }
+        public long? Id { get; set; }
 
         /// <summary>
         /// Название страны.
