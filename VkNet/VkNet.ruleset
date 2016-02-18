@@ -56,6 +56,7 @@
     <Rule Id="GCop119" Action="None" />
     <Rule Id="GCop129" Action="None" />
     <Rule Id="GCop135" Action="Warning" />
+    <Rule Id="GCop160" Action="Info" />
     <Rule Id="GCop169" Action="None" />
     <Rule Id="GCop171" Action="None" />
     <Rule Id="GCop172" Action="None" />

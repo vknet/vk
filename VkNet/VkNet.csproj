@@ -55,6 +55,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\Obsolete\AccountCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\AudioCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\FriendsCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\GroupsCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\PagesCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\PhotoCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\StatusCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\UsersCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\VideoCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\WallCategory.Obsolete.cs" />
     <Compile Include="Enums\DocFilter.cs" />
     <Compile Include="Enums\SafetyEnums\FeedType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />

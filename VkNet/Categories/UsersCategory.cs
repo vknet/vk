@@ -17,7 +17,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с информацией о пользователях.
 	/// </summary>
-	public class UsersCategory
+	public partial class UsersCategory
 	{
 		private readonly VkApi _vk;
 
@@ -47,30 +47,6 @@ namespace VkNet.Categories
 			itemsCount = response["count"];
 
 			return response["items"].ToReadOnlyCollectionOf<User>(r => r);
-		}
-
-		/// <summary>
-		/// Получает настройки текущего пользователя в данном приложении. .
-		/// </summary>
-		/// <param name="uid">Идентификатор пользователя, информацию о настройках которого необходимо получить.</param>
-		/// <returns>После успешного выполнения возвращает битовую маску настроек текущего пользователя в данном приложении.
-		///
-		/// Пример:
-		/// Если Вы хотите получить права на Доступ к друзьям и Доступ к статусам пользователя, то Ваша битовая маска будет
-		/// равна: 2 + 1024 = 1026.
-		/// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к друзьям — Вы можете сделать 1026 &amp; 2.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getUserSettings"/>.
-		/// </remarks>
-		[Pure]
-		[Obsolete("Метод устарел. Используйте вместо него account.getAppPermissions")]
-		[ApiVersion("5.44")]
-		public int GetUserSettings(long uid)
-		{
-			var parameters = new VkParameters { { "uid", uid } };
-
-			return _vk.Call("getUserSettings", parameters);
 		}
 
 		/// <summary>
@@ -174,12 +150,6 @@ namespace VkNet.Categories
 			return response.ToReadOnlyCollectionOf<User>(x => x);
 		}
 
-#if false
-		// todo start shit
-#endif
-
-		// todo end shit
-
 		/// <summary>
 		/// Возвращает расширенную информацию о пользователе.
 		/// </summary>
@@ -209,7 +179,6 @@ namespace VkNet.Categories
 		/// <returns>Пока возвращается только список групп.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions"/>.
-		/// :todo: add tests for subscriptions for users
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
