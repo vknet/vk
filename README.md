@@ -15,3 +15,6 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 - [ ] Актуализировать справку по реализованым методам
 - [ ] Обновить тесты
 - [ ] Перевести справку на новый движок markdown
+
+--------------------------------------------
+Пожертвование для : [@inyutin-maxim](https://paypal.me/inyutinmaxim).
