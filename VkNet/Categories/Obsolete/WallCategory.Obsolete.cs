@@ -147,36 +147,6 @@ namespace VkNet.Categories
         /// Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
         /// </summary>
         /// <param name="posts">
-        /// Список строковых идентификаторов записий в формате - идентификатор пользователя (группы), знак подчеркивания и идентификатор записи.
-        /// Примеры возможных значений идентификаторов: "93388_21539", "93388_20904", "-2943_4276".
-        /// </param>
-        /// <returns>
-        /// После успешного выполнения возвращает список объектов записей со стены.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById"/>.
-        /// </remarks>
-        [Pure]
-        [Obsolete("Данный метод устарел. Используйте GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null)")]
-        public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts)
-        {
-            if (posts == null)
-            {
-                throw new ArgumentNullException("posts");
-            }
-
-            if (!posts.Any())
-            {
-                throw new ArgumentException("Posts collection was empty.", "posts");
-            }
-
-            return GetById(posts, null, null, null).WallPosts;
-        }
-
-        /// <summary>
-        /// Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
-        /// </summary>
-        /// <param name="posts">
         /// Список идентификаторов записей. Key - идентификатор пользователя (группы), Value - идентификатор записи (положительное число).
         /// </param>
         /// <returns>
