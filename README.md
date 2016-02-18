@@ -17,4 +17,4 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 - [ ] Перевести справку на новый движок markdown
 
 --------------------------------------------
-Пожертвование для : [@inyutin-maxim](https://paypal.me/inyutinmaxim).
+Пожертвование для [@inyutin-maxim](https://github.com/inyutin-maxim): [PayPal](https://paypal.me/inyutinmaxim) или [Яндекс.Деньги](https://money.yandex.ru/to/410012783295317).
