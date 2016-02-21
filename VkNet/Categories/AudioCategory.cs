@@ -233,8 +233,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "aid", audioId },
-				{ "oid", ownerId }
+				{ "audio_id", audioId },
+				{ "owner_id", ownerId }
 			};
 
 			return _vk.Call("audio.delete", parameters);
@@ -288,8 +288,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "aid", audioId },
-				{ "oid", ownerId }
+				{ "audio_id", audioId },
+				{ "owner_id", ownerId }
 			};
 
 			return _vk.Call("audio.restore", parameters);
