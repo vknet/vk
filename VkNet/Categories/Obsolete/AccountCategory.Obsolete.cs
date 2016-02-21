@@ -26,21 +26,19 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.registerDevice" />.
         /// </remarks>
         [ApiVersion("5.45")]
-        [Obsolete("Функция устарела. Пожалуйста используйте функцию RegisterDevice(AccountRegisterDevice @params)")]
+        [Obsolete("Функция устарела. Пожалуйста используйте функцию RegisterDevice(AccountRegisterDeviceParams @params)")]
         public bool RegisterDevice([NotNull]string token, string deviceModel, string systemVersion, bool? noText = null, SubscribeFilter subscribe = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => token);
 
-            var parameters = new VkParameters
-                            {
-                                {"token", token},
-                                {"device_model", deviceModel},
-                                {"system_version", systemVersion},
-                                {"no_text", noText},
-                                {"subscribe", subscribe}
-                            };
+            var parameters = new AccountRegisterDeviceParams
+			{
+				Token = token,
+				DeviceModel = deviceModel,
+				SystemVersion = systemVersion
+            };
 
-            return _vk.Call("account.registerDevice", parameters);
+            return RegisterDevice(parameters);
         }
 
         /// <summary>

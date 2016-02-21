@@ -184,11 +184,11 @@ namespace VkNet.Categories
 				throw new ArgumentException("Query is null or empty.", "query");
 			}
 
-			VkResponseArray response = _vk.Call("audio.search", @params);
+			var response = _vk.Call("audio.search", @params);
 
-			totalCount = response[0];
+			totalCount = response["count"];
 
-			return response.Skip(1).ToReadOnlyCollectionOf<Audio>(r => r);
+			return response["items"].ToReadOnlyCollectionOf<Audio>(r => r);
 		}
 
 		/// <summary>
