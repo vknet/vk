@@ -615,8 +615,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Delete_NoramCaseUser_ReturnTrue()
         {
-            const string url = "https://api.vk.com/method/audio.delete?aid=159203048&oid=4793858&v=5.44&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.delete?audio_id=159203048&owner_id=4793858&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': 1
                   }";
@@ -630,8 +630,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Delete_NoramCaseGroup_ReturnTrue()
         {
-            const string url = "https://api.vk.com/method/audio.delete?aid=160532304&oid=-1158263&v=5.44&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.delete?audio_id=160532304&owner_id=-1158263&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': 1
                   }";
@@ -645,8 +645,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Delete_WrongInputParams_ThrowsInvalidParameterException()
         {
-            const string url = "https://api.vk.com/method/audio.delete?aid=0&oid=0&v=5.44&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.delete?audio_id=0&owner_id=0&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'error': {
                       'error_code': 100,
@@ -788,8 +788,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Restore_InvalidInputParams_ThrowsInvalidParameterException()
         {
-            const string url = "https://api.vk.com/method/audio.restore?aid=0&oid=0&v=5.44&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.restore?audio_id=0&owner_id=0&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'error': {
                       'error_code': 100,
@@ -826,8 +826,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Restore_NoramCase_ReturnAudioObject()
         {
-            const string url = "https://api.vk.com/method/audio.restore?aid=159209928&v=5.44&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.restore?audio_id=159209928&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'id': 159209928,
@@ -856,8 +856,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Restore_AudioNotDeletedYet_Throw()
         {
-            const string url = "https://api.vk.com/method/audio.restore?aid=159210112&v=5.44&access_token=token";
-            const string json =
+			const string url = "https://api.vk.com/method/audio.restore?audio_id=159210112&v=5.44&access_token=token";
+			const string json =
                 @"{
                     'error': {
                       'error_code': 202,

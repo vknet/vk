@@ -1121,7 +1121,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void AddChatUser_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&uid=7550525&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&user_id=7550525&v=5.44&access_token=token";
 			Json =
 				@"{
 					'response': 1
