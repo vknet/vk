@@ -250,9 +250,7 @@ namespace VkNet.Categories
         [Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
         public bool MarkAsNew(IEnumerable<ulong> messageIds)
         {
-            var parameters = new VkParameters { { "mids", messageIds } };
-
-            return _vk.Call("messages.markAsNew", parameters);
+	        throw new System.Exception("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.");
         }
 
         /// <summary>
@@ -271,8 +269,8 @@ namespace VkNet.Categories
         [Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
         public bool MarkAsNew(ulong messageId)
         {
-            return MarkAsNew(new[] { messageId });
-        }
+			throw new System.Exception("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.");
+		}
 
         /// <summary>
         /// Помечает сообщения как прочитанные.

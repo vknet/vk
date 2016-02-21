@@ -200,8 +200,10 @@ namespace VkNet.Categories
         public bool IsMember(long gid, long uid)
         {
             VkErrors.ThrowIfNumberIsNegative(() => gid);    // uid проверяет след. метод
-            return IsMember(gid.ToString(), uid);
-        }
+			var result = IsMember(gid.ToString(), uid, null, null);
+
+			return result.Count > 0 && result[0].Member;
+		}
 
         /// <summary>
         /// Возвращает информацию о том является ли пользователь участником заданной группы.
@@ -217,13 +219,9 @@ namespace VkNet.Categories
         public bool IsMember(string gid, long uid)
         {
             VkErrors.ThrowIfNumberIsNegative(() => uid);
-            var parameters = new VkParameters
-            {
-                { "gid", gid },
-                { "uid", uid }
-            };
+	        var result = IsMember(gid, uid, null, null);
 
-            return _vk.Call("groups.isMember", parameters);
+			return result.Count > 0 && result[0].Member;
         }
 
         /// <summary>
@@ -241,13 +239,8 @@ namespace VkNet.Categories
         {
             foreach (var uid in uids)
                 VkErrors.ThrowIfNumberIsNegative(() => uid);
-            var parameters = new VkParameters
-            {
-                { "group_id",  gid },
-                { "user_ids", string.Join(", ", uids) }
-            };
-            var response = _vk.Call("groups.isMember", parameters);
-            return response.ToReadOnlyCollectionOf<GroupMember>(x => x);
+
+            return IsMember(gid, null, uids, null);
         }
 
         /// <summary>
@@ -337,7 +330,7 @@ namespace VkNet.Categories
                 Role = role
             };
 
-            return _vk.Call("groups.unbanUser", parameters);
+            return EditManager(parameters);
         }
         /// <summary>
         /// Позволяет назначить/разжаловать руководителя в сообществе или изменить уровень его полномочий.

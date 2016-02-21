@@ -1,4 +1,5 @@
-﻿using System.Security.Policy;
+﻿using System.Linq;
+using System.Security.Policy;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
@@ -166,17 +167,39 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended)
+		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended)
 		{
+			if (userId.HasValue)
+			{
+				if (userIds != null)
+				{
+					if (userIds.Any(id => id < 1))
+					{
+						throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
+					}
+					userIds.ToList().Add((long) userId);
+				}
+				else
+				{
+					if (userId.Value < 1)
+					{
+						throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
+					}
+					userIds = new List<long>
+					{
+						(long) userId
+					};
+				}
+			}
 			var parameters = new VkParameters
 			{
 				{ "group_id", groupId },
-				{ "user_id", userId },
 				{ "user_ids", userIds },
 				{ "extended", extended }
 			};
+			var result = _vk.Call("groups.isMember", parameters, true);
 
-			return _vk.Call("groups.isMember", parameters);
+			return result.ToReadOnlyCollectionOf<GroupMember>(x => x);
 		}
 
 		/// <summary>

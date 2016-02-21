@@ -451,7 +451,7 @@
 		[Test]
 		public void Add_WithCaptcha_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&captcha_sid=1247329&captcha_key=hug2z&access_token=token";
+			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&captcha_sid=1247329&captcha_key=hug2z&v=5.44&access_token=token";
 			const string json =
 				@"{
                     'response': 1

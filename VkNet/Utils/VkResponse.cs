@@ -43,7 +43,7 @@
 
 			var resp = response.ContainsKey("items") ? response["items"] : response;
 
-			var array = (JArray)resp._token;
+			var array = resp._token as JArray;
 			return array == null ? null : new VkResponseArray(array);
 		}
 
