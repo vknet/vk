@@ -439,10 +439,11 @@ namespace VkNet.Tests.Categories
         {
 			const string url = "https://api.vk.com/method/audio.search?q=ThisQueryDoesNotExistAtAll&count=0&v=5.44&access_token=token";
 			const string json =
-                @"{
-                    'response': [
-                      0
-                    ]
+				@"{
+                    response: {
+						count: 0,
+						items: []
+					}
                   }";
 
             var audio = GetMockedAudioCategory(url, json);
@@ -461,9 +462,9 @@ namespace VkNet.Tests.Categories
                 "https://api.vk.com/method/audio.search?q=иуфедуы&auto_complete=1&sort=1&lyrics=1&count=3&offset=5&v=5.44&access_token=token";
             const string json =
                 @"{
-                    'response': [
-                      84673,
-                      {
+                    'response': {
+                      count:84673,
+                      items: [{
                         'id': 141104180,
                         'owner_id': 2289065,
                         'artist': '2560 The BEATLES (цикл передач на РАДИО СВОБОДА)',
@@ -492,8 +493,8 @@ namespace VkNet.Tests.Categories
                         'url': 'http://cs5045.vkontakte.ru/u17922696/audio/6768fd4bfece.mp3',
                         'lyrics_id': '23484929',
                         'album_id': '24110176'
-                      }
-                    ]
+                      }]
+					}
                   }";
 
             var category = GetMockedAudioCategory(url, json);

@@ -256,7 +256,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void RegisterDevice_ExplicitNoTextAndSomeSubscribes_ParametersAddsToUrlCorrectly()
 		{
-			const string url = "https://api.vk.com/method/account.registerDevice?token=tokenVal&device_model=deviceModelVal&system_version=systemVersionVal&no_text=1&subscribe=msg,friend,call&v=5.45&access_token=token";
+			const string url = "https://api.vk.com/method/account.registerDevice?token=tokenVal&device_model=deviceModelVal&system_version=systemVersionVal&v=5.45&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
 
@@ -268,7 +268,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void RegisterDevice_ExplicitNoTextAndAllSubscribes_ParametersAddsToUrlCorrectly()
 		{
-			const string url = "https://api.vk.com/method/account.registerDevice?token=tokenVal&device_model=deviceModelVal&system_version=systemVersionVal&no_text=1&subscribe=msg,friend,call,reply,mention,group,like&v=5.45&access_token=token";
+			const string url = "https://api.vk.com/method/account.registerDevice?token=tokenVal&device_model=deviceModelVal&system_version=systemVersionVal&v=5.45&access_token=token";
 			const string json = @"{ 'response': 1 }";
 			var account = GetMockedAccountCategoryAndMockOfBrowser(url, json);
 
