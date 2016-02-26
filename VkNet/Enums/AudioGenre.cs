@@ -59,7 +59,7 @@ namespace VkNet.Enums
         /// <summary>
         /// Джаз и блюз.
         /// </summary>
-        JazzAndBlues = 9,
+        JazzAndBlues = 1001,
 
         /// <summary>
         /// Драм-н-бэйс.
