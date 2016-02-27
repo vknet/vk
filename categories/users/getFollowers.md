@@ -8,6 +8,7 @@ comments: true
 Возвращает список идентификаторов пользователей, которые являются подписчиками пользователя.
 
 Страница документации ВКонтакте [users.getFollowers](https://vk.com/dev/users.getFollowers).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)

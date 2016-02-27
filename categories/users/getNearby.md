@@ -8,6 +8,7 @@ comments: true
 Индексирует текущее местоположение пользователя и возвращает список пользователей, которые находятся вблизи.
 
 Страница документации ВКонтакте [users.getNearby](https://vk.com/dev/users.getNearby).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetNearby(UsersGetNearbyParams @params)

@@ -8,6 +8,7 @@ comments: true
 Возвращает список идентификаторов пользователей и сообществ, которые входят в список подписок пользователя.
 
 Страница документации ВКонтакте [users.getSubscriptions](https://vk.com/dev/users.getSubscriptions).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null)

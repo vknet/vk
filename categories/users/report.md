@@ -8,6 +8,7 @@ comments: true
 Позволяет пожаловаться на пользователя.
 
 Страница документации ВКонтакте [users.report](https://vk.com/dev/users.report).
+
 ## Синтаксис
 ``` csharp
 public bool Report(long userId, string type, string comment)

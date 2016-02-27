@@ -8,6 +8,7 @@ comments: true
 Возвращает список пользователей в соответствии с заданным критерием поиска.
 
 Страница документации ВКонтакте [users.search](https://vk.com/dev/users.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @params)

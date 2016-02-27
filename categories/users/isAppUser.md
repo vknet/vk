@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о том, установил ли пользователь приложение.
 
 Страница документации ВКонтакте [users.isAppUser](https://vk.com/dev/users.isAppUser).
+
 ## Синтаксис
 ``` csharp
 public bool IsAppUser(long? userId)
