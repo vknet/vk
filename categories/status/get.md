@@ -8,6 +8,7 @@ comments: true
 Получает текст статуса пользователя или сообщества.
 
 Страница документации ВКонтакте [status.get](https://vk.com/dev/status.get).
+
 ## Синтаксис
 ``` csharp
 public Status Get(long userId, long? groupId = null)

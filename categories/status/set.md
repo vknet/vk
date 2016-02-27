@@ -8,6 +8,7 @@ comments: true
 Устанавливает новый статус текущему пользователю или сообществу.
 
 Страница документации ВКонтакте [status.set](https://vk.com/dev/status.set).
+
 ## Синтаксис
 ``` csharp
 public bool Set(string text, long? groupId = null)
