@@ -8,6 +8,7 @@ comments: true
 Регистрирует нового пользователя по номеру телефона.
 
 Страница документации ВКонтакте [auth.signup](https://vk.com/dev/auth.signup).
+
 ## Синтаксис
 ``` csharp
 public string Signup(AuthSignupParams @params)

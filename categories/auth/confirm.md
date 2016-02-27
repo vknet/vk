@@ -8,6 +8,7 @@ comments: true
 Завершает регистрацию нового пользователя, начатую методом auth.signup, по коду, полученному через SMS.
 
 Страница документации ВКонтакте [auth.confirm](https://vk.com/dev/auth.confirm).
+
 ## Синтаксис
 ``` csharp
 public AuthConfirmResult Confirm(AuthConfirmParams @params)

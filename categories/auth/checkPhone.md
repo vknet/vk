@@ -8,6 +8,7 @@ comments: true
 Проверяет правильность введённого номера.
 
 Страница документации ВКонтакте [auth.checkPhone](https://vk.com/dev/auth.checkPhone).
+
 ## Синтаксис
 ``` csharp
 public bool CheckPhone(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)

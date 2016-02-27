@@ -9,6 +9,7 @@ comments: true
 Данный метод доступен только приложениям, имеющим доступ к Прямой авторизации.
 
 Страница документации ВКонтакте [auth.restore](https://vk.com/dev/auth.restore).
+
 ## Синтаксис
 ``` csharp
 public string Restore(string phone)
