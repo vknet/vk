@@ -8,6 +8,7 @@ comments: true
 Определяет тип объекта (пользователь, сообщество, приложение) и его идентификатор по короткому имени screen_name.
 
 Страница документации ВКонтакте [utils.resolveScreenName](https://vk.com/dev/utils.resolveScreenName).
+
 ## Синтаксис
 ``` csharp
 public VkObject ResolveScreenName([NotNull] string screenName)

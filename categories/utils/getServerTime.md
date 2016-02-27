@@ -8,6 +8,7 @@ comments: true
 Возвращает текущее время на сервере ВКонтакте в unixtime.
 
 Страница документации ВКонтакте [utils.getServerTime](https://vk.com/dev/utils.getServerTime).
+
 ## Синтаксис
 ``` csharp
 public DateTime GetServerTime()

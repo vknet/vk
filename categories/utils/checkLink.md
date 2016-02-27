@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
 
 Страница документации ВКонтакте [utils.checkLink](https://vk.com/dev/utils.checkLink).
+
 ## Синтаксис
 ``` csharp
 public LinkAccessType CheckLink([NotNull] Uri url)
