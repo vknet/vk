@@ -8,6 +8,7 @@ comments: true
 Добавляет в мультидиалог нового пользователя.
 
 Страница документации ВКонтакте [messages.addChatUser](https://vk.com/dev/messages.addChatUser).
+
 ## Синтаксис
 ``` csharp
 public bool AddChatUser(long chatId, long userId)

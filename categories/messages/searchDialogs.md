@@ -8,6 +8,7 @@ comments: true
 Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
 
 Страница документации ВКонтакте [messages.searchDialogs](https://vk.com/dev/messages.searchDialogs).
+
 ## Синтаксис
 ``` csharp
 public SearchDialogsResponse SearchDialogs(

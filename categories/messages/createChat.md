@@ -8,6 +8,7 @@ comments: true
 Создаёт беседу с несколькими участниками.
 
 Страница документации ВКонтакте [messages.createChat](https://vk.com/dev/messages.createChat).
+
 ## Синтаксис
 ``` csharp
 public long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title)

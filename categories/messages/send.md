@@ -8,6 +8,7 @@ comments: true
 Отправляет сообщение.
 
 Страница документации ВКонтакте [messages.send](https://vk.com/dev/messages.send).
+
 ## Синтаксис
 ``` csharp
 public long Send(MessagesSendParams @params)

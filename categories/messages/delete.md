@@ -8,6 +8,7 @@ comments: true
 Удаляет сообщение.
 
 Страница документации ВКонтакте [messages.delete](https://vk.com/dev/messages.delete).
+
 ## Синтаксис
 ``` csharp
 public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds)

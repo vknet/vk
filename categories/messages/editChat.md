@@ -8,6 +8,7 @@ comments: true
 Изменяет название беседы.
 
 Страница документации ВКонтакте [messages.editChat](https://vk.com/dev/messages.editChat).
+
 ## Синтаксис
 ``` csharp
 public bool EditChat(long chatId, [NotNull] string title)

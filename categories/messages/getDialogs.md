@@ -8,6 +8,7 @@ comments: true
 Возвращает список диалогов текущего пользователя.
 
 Страница документации ВКонтакте [messages.getDialogs](https://vk.com/dev/messages.getDialogs).
+
 ## Синтаксис
 ``` csharp
 public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)

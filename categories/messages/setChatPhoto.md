@@ -8,6 +8,7 @@ comments: true
 Позволяет установить фотографию мультидиалога, загруженную с помощью метода photos.getChatUploadServer.
 
 Страница документации ВКонтакте [messages.setChatPhoto](https://vk.com/dev/messages.setChatPhoto).
+
 ## Синтаксис
 ``` csharp
 public long SetChatPhoto(out long messageId, string file)

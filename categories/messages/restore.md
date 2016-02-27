@@ -8,6 +8,7 @@ comments: true
 Восстанавливает удаленное сообщение.
 
 Страница документации ВКонтакте [messages.restore](https://vk.com/dev/messages.restore).
+
 ## Синтаксис
 ``` csharp
 public bool Restore(long messageId)

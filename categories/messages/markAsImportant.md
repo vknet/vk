@@ -8,6 +8,7 @@ comments: true
 Помечает сообщения как важные либо снимает отметку.
 
 Страница документации ВКонтакте [messages.markAsImportant](https://vk.com/dev/messages.markAsImportant).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<long> MarkAsImportant(IEnumerable<long> messageIds, bool important = true)

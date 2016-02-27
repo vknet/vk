@@ -8,6 +8,7 @@ comments: true
 Позволяет удалить фотографию мультидиалога.
 
 Страница документации ВКонтакте [messages.deleteChatPhoto](https://vk.com/dev/messages.deleteChatPhoto).
+
 ## Синтаксис
 ``` csharp
 public Chat DeleteChatPhoto(out ulong messageId, ulong chatId)

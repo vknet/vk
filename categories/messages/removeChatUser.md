@@ -8,6 +8,7 @@ comments: true
 Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
 
 Страница документации ВКонтакте [messages.removeChatUser](https://vk.com/dev/messages.removeChatUser).
+
 ## Синтаксис
 ``` csharp
 public bool RemoveChatUser(long chatId, long userId)

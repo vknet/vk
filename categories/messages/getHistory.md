@@ -8,6 +8,7 @@ comments: true
 Возвращает историю сообщений для указанного пользователя.
 
 Страница документации ВКонтакте [messages.getHistory](https://vk.com/dev/messages.getHistory).
+
 ## Синтаксис
 ``` csharp
 public MessagesGetObject GetHistory(MessagesGetHistoryParams @params)

@@ -8,6 +8,7 @@ comments: true
 Изменяет статус набора текста пользователем в диалоге.
 
 Страница документации ВКонтакте [messages.setActivity](https://vk.com/dev/messages.setActivity).
+
 ## Синтаксис
 ``` csharp
 public bool SetActivity(long userId, long? peerId = null)

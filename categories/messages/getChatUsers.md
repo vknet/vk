@@ -8,6 +8,7 @@ comments: true
 Позволяет получить список пользователей мультидиалога по его id.
 
 Страница документации ВКонтакте [messages.getChatUsers](https://vk.com/dev/messages.getChatUsers).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)

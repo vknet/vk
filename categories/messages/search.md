@@ -8,6 +8,7 @@ comments: true
 Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
 
 Страница документации ВКонтакте [messages.search](https://vk.com/dev/messages.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Message> Search(

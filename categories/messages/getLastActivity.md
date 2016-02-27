@@ -8,6 +8,7 @@ comments: true
 Возвращает текущий статус и дату последней активности указанного пользователя.
 
 Страница документации ВКонтакте [messages.getLastActivity](https://vk.com/dev/messages.getLastActivity).
+
 ## Синтаксис
 ``` csharp
 public LastActivity GetLastActivity(long userId)

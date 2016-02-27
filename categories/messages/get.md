@@ -8,6 +8,7 @@ comments: true
 Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
 
 Страница документации ВКонтакте [messages.get](https://vk.com/dev/messages.get).
+
 ## Синтаксис
 ``` csharp
 public MessagesGetObject Get(MessagesGetParams @params)

@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о беседе.
 
 Страница документации ВКонтакте [messages.getChat](https://vk.com/dev/messages.getChat).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Chat> GetChat(

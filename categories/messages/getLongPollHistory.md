@@ -8,6 +8,7 @@ comments: true
 Возвращает обновления в личных сообщениях пользователя.
 
 Страница документации ВКонтакте [messages.getLongPollHistory](https://vk.com/dev/messages.getLongPollHistory).
+
 ## Синтаксис
 ``` csharp
 public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params)

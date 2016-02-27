@@ -8,6 +8,7 @@ comments: true
 Удаляет все личные сообщения в диалоге.
 
 Страница документации ВКонтакте [messages.deleteDialog](https://vk.com/dev/messages.deleteDialog).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteDialog(

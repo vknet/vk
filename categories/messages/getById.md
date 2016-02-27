@@ -8,6 +8,7 @@ comments: true
 Возвращает сообщения по их id.
 
 Страница документации ВКонтакте [messages.getById](https://vk.com/dev/messages.getById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Message> GetById(

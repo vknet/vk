@@ -8,6 +8,7 @@ comments: true
 Возвращает данные, необходимые для подключения к Long Poll серверу.
 
 Страница документации ВКонтакте [messages.getLongPollServer](https://vk.com/dev/messages.getLongPollServer).
+
 ## Синтаксис
 ``` csharp
 public LongPollServerResponse GetLongPollServer(bool useSsl = false, bool needPts = false)

@@ -8,6 +8,7 @@ comments: true
 Помечает сообщения как прочитанные.
 
 Страница документации ВКонтакте [messages.markAsRead](https://vk.com/dev/messages.markAsRead).
+
 ## Синтаксис
 ``` csharp
 public bool MarkAsRead(IEnumerable<string> messageIds, string peerId, long? startMessageId)
