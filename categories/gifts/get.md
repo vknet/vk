@@ -8,6 +8,7 @@ comments: true
 Возвращает список полученных подарков пользователя.
 
 Страница документации ВКонтакте [gifts.get](https://vk.com/dev/gifts.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<GiftItem> Get(out int totalCount, long userId, int? count = null, int? offset = null)
