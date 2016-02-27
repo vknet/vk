@@ -8,6 +8,7 @@ comments: true
 Возвращает список школ.
 
 Страница документации ВКонтакте [database.getSchools](https://vk.com/dev/database.getSchools).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<School> GetSchools(

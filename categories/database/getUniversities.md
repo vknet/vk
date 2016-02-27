@@ -8,6 +8,7 @@ comments: true
 Возвращает список высших учебных заведений.
 
 Страница документации ВКонтакте [database.getUniversities](https://vk.com/dev/database.getUniversities).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<University> GetUniversities(

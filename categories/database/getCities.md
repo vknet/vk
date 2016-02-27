@@ -8,6 +8,7 @@ comments: true
 Возвращает список городов.
 
 Страница документации ВКонтакте [database.getCities](https://vk.com/dev/database.getCities).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<City> GetCities(

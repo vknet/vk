@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию об улицах по их идентификаторам (id).
 
 Страница документации ВКонтакте [database.getStreetsById](https://vk.com/dev/database.getStreetsById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Street> GetStreetsById(params int[] streetIds)

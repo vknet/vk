@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о странах по их идентификаторам
 
 Страница документации ВКонтакте [database.getCountriesById](https://vk.com/dev/database.getCountriesById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Country> GetCountriesById(params int[] countryIds)

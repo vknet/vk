@@ -8,6 +8,7 @@ comments: true
 Возвращает список факультетов.
 
 Страница документации ВКонтакте [database.getFaculties](https://vk.com/dev/database.getFaculties).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Faculty> GetFaculties(

@@ -8,6 +8,7 @@ comments: true
 Возвращает список регионов.
 
 Страница документации ВКонтакте [database.getRegions](https://vk.com/dev/database.getRegions).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Region> GetRegions(

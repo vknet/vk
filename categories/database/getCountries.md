@@ -8,6 +8,7 @@ comments: true
 Возвращает список стран.
 
 Страница документации ВКонтакте [database.getCountries](https://vk.com/dev/database.getCountries).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Country> GetCountries(

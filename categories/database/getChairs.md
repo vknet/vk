@@ -8,6 +8,7 @@ comments: true
 Возвращает список кафедр университета по указанному факультету.
 
 Страница документации ВКонтакте [database.getChairs](https://vk.com/dev/database.getChairs).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Chair> GetChairs(long facultyId, int? count = null, int? offset = null)

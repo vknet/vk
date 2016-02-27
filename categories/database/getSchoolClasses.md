@@ -8,6 +8,7 @@ comments: true
 Возвращает список классов, характерных для школ определенной страны.
 
 Страница документации ВКонтакте [database.getSchoolClasses](https://vk.com/dev/database.getSchoolClasses).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<SchoolClass> GetSchoolClasses(long countryId)

@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о городах по их идентификаторам.
 
 Страница документации ВКонтакте [database.getCitiesById](https://vk.com/dev/database.getCitiesById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<City> GetCitiesById(params int[] cityIds)
