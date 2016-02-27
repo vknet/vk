@@ -8,6 +8,7 @@ comments: true
 Метод позволяет удалить пользовательский список новостей
 
 Страница документации ВКонтакте [newsfeed.deleteList](https://vk.com/dev/newsfeed.deleteList).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteList(long listId)

@@ -8,6 +8,7 @@ comments: true
 Возвращает сообщества и пользователей, на которые текущему пользователю рекомендуется подписаться.
 
 Страница документации ВКонтакте [newsfeed.getSuggestedSources](https://vk.com/dev/newsfeed.getSuggestedSources).
+
 ## Синтаксис
 ``` csharp
 public NewsSuggestions GetSuggestedSources(

@@ -8,6 +8,7 @@ comments: true
 Отписывает текущего пользователя от комментариев к заданному объекту.
 
 Страница документации ВКонтакте [newsfeed.unsubscribe](https://vk.com/dev/newsfeed.unsubscribe).
+
 ## Синтаксис
 ``` csharp
 public bool Unsubscribe(CommentObjectType type, long itemId, long? ownerId = null)

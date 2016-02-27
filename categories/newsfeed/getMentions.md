@@ -8,6 +8,7 @@ comments: true
 Возвращает список записей пользователей на своих стенах, в которых упоминается указанный пользователь.
 
 Страница документации ВКонтакте [newsfeed.getMentions](https://vk.com/dev/newsfeed.getMentions).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Mention> GetMentions(

@@ -8,6 +8,7 @@ comments: true
 Возвращает данные, необходимые для показа списка новостей для текущего пользователя.
 
 Страница документации ВКонтакте [newsfeed.get](https://vk.com/dev/newsfeed.get).
+
 ## Синтаксис
 ``` csharp
 public NewsFeed Get(NewsFeedGetParams @params)

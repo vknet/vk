@@ -8,6 +8,7 @@ comments: true
 Разрешает показывать новости от заданных пользователей и групп в ленте новостей текущего пользователя.
 
 Страница документации ВКонтакте [newsfeed.deleteBan](https://vk.com/dev/newsfeed.deleteBan).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)

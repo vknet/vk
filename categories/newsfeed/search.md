@@ -8,6 +8,7 @@ comments: true
 Возвращает результаты поиска по статусам. Новости возвращаются в порядке от более новых к более старым.
 
 Страница документации ВКонтакте [newsfeed.search](https://vk.com/dev/newsfeed.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params)

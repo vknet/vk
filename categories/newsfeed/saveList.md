@@ -8,6 +8,7 @@ comments: true
 Метод позволяет создавать или редактировать пользовательские списки для просмотра новостей.
 
 Страница документации ВКонтакте [newsfeed.saveList](https://vk.com/dev/newsfeed.saveList).
+
 ## Синтаксис
 ``` csharp
 public long SaveList(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null)

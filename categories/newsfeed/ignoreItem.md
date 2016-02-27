@@ -8,6 +8,7 @@ comments: true
 Позволяет скрыть объект из ленты новостей.
 
 Страница документации ВКонтакте [newsfeed.ignoreItem](https://vk.com/dev/newsfeed.ignoreItem).
+
 ## Синтаксис
 ``` csharp
 public bool IgnoreItem(NewsObjectTypes type, long ownerId, long itemId)

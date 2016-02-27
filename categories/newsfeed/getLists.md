@@ -8,6 +8,7 @@ comments: true
 Возвращает пользовательские списки новостей.
 
 Страница документации ВКонтакте [newsfeed.getLists](https://vk.com/dev/newsfeed.getLists).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<NewsUserListItem> GetLists(

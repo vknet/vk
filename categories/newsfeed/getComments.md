@@ -8,6 +8,7 @@ comments: true
 Возвращает данные, необходимые для показа раздела комментариев в новостях пользователя.
 
 Страница документации ВКонтакте [newsfeed.getComments](https://vk.com/dev/newsfeed.getComments).
+
 ## Синтаксис
 ``` csharp
 public NewsFeed GetComments(NewsFeedGetCommentsParams @params)

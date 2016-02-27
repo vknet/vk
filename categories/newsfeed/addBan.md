@@ -8,6 +8,7 @@ comments: true
 Запрещает показывать новости от заданных пользователей и групп в ленте новостей текущего пользователя.
 
 Страница документации ВКонтакте [newsfeed.addBan](https://vk.com/dev/newsfeed.addBan).
+
 ## Синтаксис
 ``` csharp
 public bool AddBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)

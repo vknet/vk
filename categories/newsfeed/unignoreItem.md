@@ -8,6 +8,7 @@ comments: true
 Позволяет вернуть ранее скрытый объект в ленту новостей.
 
 Страница документации ВКонтакте [newsfeed.unignoreItem](https://vk.com/dev/newsfeed.unignoreItem).
+
 ## Синтаксис
 ``` csharp
 public bool UnignoreItem(NewsObjectTypes type, long ownerId, long itemId)

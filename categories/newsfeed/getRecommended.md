@@ -8,6 +8,7 @@ comments: true
 Получает список новостей, рекомендованных пользователю.
 
 Страница документации ВКонтакте [newsfeed.getRecommended](https://vk.com/dev/newsfeed.getRecommended).
+
 ## Синтаксис
 ``` csharp
 public NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params)

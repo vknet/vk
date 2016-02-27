@@ -8,6 +8,7 @@ comments: true
 Возвращает список пользователей и групп, которые текущий пользователь скрыл из ленты новостей.
 
 Страница документации ВКонтакте [newsfeed.getBanned](https://vk.com/dev/newsfeed.getBanned).
+
 ## Синтаксис
 ``` csharp
 public NewsBannedList GetBanned()
