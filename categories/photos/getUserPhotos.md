@@ -8,6 +8,7 @@ comments: true
 Возвращает список фотографий, на которых отмечен пользователь
 
 Страница документации ВКонтакте [photos.getUserPhotos](https://vk.com/dev/photos.getUserPhotos).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> GetUserPhotos(out int count, PhotoGetUserPhotosParams @params)

@@ -8,6 +8,7 @@ comments: true
 Позволяет скопировать фотографию в альбом "Сохраненные фотографии"
 
 Страница документации ВКонтакте [photos.copy](https://vk.com/dev/photos.copy).
+
 ## Синтаксис
 ``` csharp
 public long Copy(long ownerId, ulong photoId, string accessKey = null)

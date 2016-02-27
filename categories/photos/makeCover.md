@@ -8,6 +8,7 @@ comments: true
 Делает фотографию обложкой альбома.
 
 Страница документации ВКонтакте [photos.makeCover](https://vk.com/dev/photos.makeCover).
+
 ## Синтаксис
 ``` csharp
 public bool MakeCover(ulong photoId, long? ownerId = null, long? albumId = null)

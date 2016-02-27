@@ -8,6 +8,7 @@ comments: true
 Позволяет получить адрес для загрузки фотографий мультидиалогов.
 
 Страница документации ВКонтакте [photos.getChatUploadServer](https://vk.com/dev/photos.getChatUploadServer).
+
 ## Синтаксис
 ``` csharp
 public UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null)

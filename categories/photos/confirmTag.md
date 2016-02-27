@@ -8,6 +8,7 @@ comments: true
 Подтверждает отметку на фотографии.
 
 Страница документации ВКонтакте [photos.confirmTag](https://vk.com/dev/photos.confirmTag).
+
 ## Синтаксис
 ``` csharp
 public bool ConfirmTag(ulong photoId, ulong tagId, long? ownerId = null)

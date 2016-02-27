@@ -8,6 +8,7 @@ comments: true
 Сохраняет фотографию после успешной загрузки на URI, полученный методом photos.getMessagesUploadServer.
 
 Страница документации ВКонтакте [photos.saveMessagesPhoto](https://vk.com/dev/photos.saveMessagesPhoto).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> SaveMessagesPhoto(string response)

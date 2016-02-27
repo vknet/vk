@@ -8,6 +8,7 @@ comments: true
 Возвращает адрес сервера для загрузки фотографий.
 
 Страница документации ВКонтакте [photos.getUploadServer](https://vk.com/dev/photos.getUploadServer).
+
 ## Синтаксис
 ``` csharp
 public UploadServerInfo GetUploadServer(long albumId, long? groupId = null)

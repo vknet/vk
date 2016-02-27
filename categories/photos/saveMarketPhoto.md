@@ -8,6 +8,7 @@ comments: true
 Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketUploadServer.
 
 Страница документации ВКонтакте [photos.saveMarketPhoto](https://vk.com/dev/photos.saveMarketPhoto).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> SaveMarketPhoto(long groupId, string response)

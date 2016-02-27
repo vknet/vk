@@ -8,6 +8,7 @@ comments: true
 Добавляет отметку на фотографию.
 
 Страница документации ВКонтакте [photos.putTag](https://vk.com/dev/photos.putTag).
+
 ## Синтаксис
 ``` csharp
 public ulong PutTag(PhotoPutTagParams @params)

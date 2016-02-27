@@ -8,6 +8,7 @@ comments: true
 Возвращает список отметок на фотографии.
 
 Страница документации ВКонтакте [photos.getTags](https://vk.com/dev/photos.getTags).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null)

@@ -8,6 +8,7 @@ comments: true
 Меняет порядок фотографии в списке фотографий альбома пользователя.
 
 Страница документации ВКонтакте [photos.reorderPhotos](https://vk.com/dev/photos.reorderPhotos).
+
 ## Синтаксис
 ``` csharp
 public bool ReorderPhotos(ulong photoId, long? ownerId = null, long? before = null, long? after = null)

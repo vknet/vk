@@ -8,6 +8,7 @@ comments: true
 Позволяет сохранить главную фотографию пользователя или сообщества.
 
 Страница документации ВКонтакте [photos.saveOwnerPhoto](https://vk.com/dev/photos.saveOwnerPhoto).
+
 ## Синтаксис
 ``` csharp
 public Photo SaveOwnerPhoto(string response)

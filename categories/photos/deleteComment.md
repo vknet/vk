@@ -8,6 +8,7 @@ comments: true
 Удаляет комментарий к фотографии.
 
 Страница документации ВКонтакте [photos.deleteComment](https://vk.com/dev/photos.deleteComment).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteComment(ulong commentId, long? ownerId = null)

@@ -8,6 +8,7 @@ comments: true
 Удаляет отметку с фотографии.
 
 Страница документации ВКонтакте [photos.removeTag](https://vk.com/dev/photos.removeTag).
+
 ## Синтаксис
 ``` csharp
 public bool RemoveTag(ulong tagId, ulong photoId, long? ownerId = null)

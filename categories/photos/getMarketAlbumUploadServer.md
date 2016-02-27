@@ -8,6 +8,7 @@ comments: true
 Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
 
 Страница документации ВКонтакте [photos.getMarketAlbumUploadServer](https://vk.com/dev/photos.getMarketAlbumUploadServer).
+
 ## Синтаксис
 ``` csharp
 public UploadServerInfo GetMarketAlbumUploadServer(long groupId)

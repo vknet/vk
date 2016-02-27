@@ -8,6 +8,7 @@ comments: true
 Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.
 
 Страница документации ВКонтакте [photos.getWallUploadServer](https://vk.com/dev/photos.getWallUploadServer).
+
 ## Синтаксис
 ``` csharp
 public UploadServerInfo GetWallUploadServer(long? groupId = null)

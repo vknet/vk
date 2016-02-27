@@ -8,6 +8,7 @@ comments: true
 Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getWallUploadServer.
 
 Страница документации ВКонтакте [photos.saveWallPhoto](https://vk.com/dev/photos.saveWallPhoto).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId = null, ulong? groupId = null)

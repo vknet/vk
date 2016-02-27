@@ -8,6 +8,7 @@ comments: true
 Сохраняет фотографии после успешной загрузки.
 
 Страница документации ВКонтакте [photos.save](https://vk.com/dev/photos.save).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)

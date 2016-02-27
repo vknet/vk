@@ -8,6 +8,7 @@ comments: true
 Позволяет пожаловаться на фотографию.
 
 Страница документации ВКонтакте [photos.report](https://vk.com/dev/photos.report).
+
 ## Синтаксис
 ``` csharp
 public bool Report(long ownerId, ulong photoId, ReportReason reason)

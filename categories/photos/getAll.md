@@ -8,6 +8,7 @@ comments: true
 Возвращает все фотографии пользователя или сообщества в антихронологическом порядке.
 
 Страница документации ВКонтакте [photos.getAll](https://vk.com/dev/photos.getAll).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> GetAll(out int count, PhotoGetAllParams @params)

@@ -8,6 +8,7 @@ comments: true
 Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
 
 Страница документации ВКонтакте [photos.getMessagesUploadServer](https://vk.com/dev/photos.getMessagesUploadServer).
+
 ## Синтаксис
 ``` csharp
 public UploadServerInfo GetMessagesUploadServer()

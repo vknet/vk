@@ -8,6 +8,7 @@ comments: true
 Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
 
 Страница документации ВКонтакте [photos.getAllComments](https://vk.com/dev/photos.getAllComments).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Comment> GetAllComments(out int count, PhotoGetAllCommentsParams @params)

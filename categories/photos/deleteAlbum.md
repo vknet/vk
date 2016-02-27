@@ -8,6 +8,7 @@ comments: true
 Удаляет указанный альбом для фотографий у текущего пользователя
 
 Страница документации ВКонтакте [photos.deleteAlbum](https://vk.com/dev/photos.deleteAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteAlbum(long albumId, long? groupId = null)

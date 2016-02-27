@@ -8,6 +8,7 @@ comments: true
 Восстанавливает удаленный комментарий к фотографии.
 
 Страница документации ВКонтакте [photos.restoreComment](https://vk.com/dev/photos.restoreComment).
+
 ## Синтаксис
 ``` csharp
 public long RestoreComment(ulong commentId, long? ownerId = null)

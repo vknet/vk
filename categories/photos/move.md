@@ -8,6 +8,7 @@ comments: true
 Переносит фотографию из одного альбома в другой.
 
 Страница документации ВКонтакте [photos.move](https://vk.com/dev/photos.move).
+
 ## Синтаксис
 ``` csharp
 public bool Move(long targetAlbumId, ulong photoId, long? ownerId = null)

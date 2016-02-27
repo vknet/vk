@@ -8,6 +8,7 @@ comments: true
 Возвращает список фотографий в альбоме.
 
 Страница документации ВКонтакте [photos.get](https://vk.com/dev/photos.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> Get(out int count, PhotoGetParams @params)

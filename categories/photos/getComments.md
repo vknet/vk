@@ -8,6 +8,7 @@ comments: true
 Возвращает список комментариев к фотографии.
 
 Страница документации ВКонтакте [photos.getComments](https://vk.com/dev/photos.getComments).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Comment> GetComments(out int count, PhotoGetCommentsParams @params)

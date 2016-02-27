@@ -8,6 +8,7 @@ comments: true
 Возвращает список фотографий, на которых есть непросмотренные отметки.
 
 Страница документации ВКонтакте [photos.getNewTags](https://vk.com/dev/photos.getNewTags).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> GetNewTags(out int countTotal, uint? offset = null, uint? count = null)

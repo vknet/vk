@@ -8,6 +8,7 @@ comments: true
 Восстанавливает удаленную фотографию.
 
 Страница документации ВКонтакте [photos.restore](https://vk.com/dev/photos.restore).
+
 ## Синтаксис
 ``` csharp
 public bool Restore(ulong photoId, long? ownerId = null)

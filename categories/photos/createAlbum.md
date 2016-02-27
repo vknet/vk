@@ -8,6 +8,7 @@ comments: true
 Создает пустой альбом для фотографий.
 
 Страница документации ВКонтакте [photos.createAlbum](https://vk.com/dev/photos.createAlbum).
+
 ## Синтаксис
 ``` csharp
 public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)

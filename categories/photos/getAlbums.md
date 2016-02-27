@@ -8,6 +8,7 @@ comments: true
 Возвращает список альбомов пользователя или сообщества.
 
 Страница документации ВКонтакте [photos.getAlbums](https://vk.com/dev/photos.getAlbums).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<PhotoAlbum> GetAlbums(out int count, PhotoGetAlbumsParams @params)

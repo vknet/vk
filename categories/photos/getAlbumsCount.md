@@ -8,6 +8,7 @@ comments: true
 Возвращает количество доступных альбомов пользователя или сообщества.
 
 Страница документации ВКонтакте [photos.getAlbumsCount](https://vk.com/dev/photos.getAlbumsCount).
+
 ## Синтаксис
 ``` csharp
 public int GetAlbumsCount(long? userId, long? groupId)

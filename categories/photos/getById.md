@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о фотографиях по их идентификаторам.
 
 Страница документации ВКонтакте [photos.getById](https://vk.com/dev/photos.getById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null)

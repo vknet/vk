@@ -8,6 +8,7 @@ comments: true
 Осуществляет поиск изображений по местоположению или описанию.
 
 Страница документации ВКонтакте [photos.search](https://vk.com/dev/photos.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> Search(out int count, PhotoSearchParams @params)

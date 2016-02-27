@@ -8,6 +8,7 @@ comments: true
 Меняет порядок альбома в списке альбомов пользователя.
 
 Страница документации ВКонтакте [photos.reorderAlbums](https://vk.com/dev/photos.reorderAlbums).
+
 ## Синтаксис
 ``` csharp
 public bool ReorderAlbums(long albumId, long? ownerId = null, long? before = null, long? after = null)

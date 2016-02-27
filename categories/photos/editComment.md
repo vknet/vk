@@ -8,6 +8,7 @@ comments: true
 Изменяет текст комментария к фотографии.
 
 Страница документации ВКонтакте [photos.editComment](https://vk.com/dev/photos.editComment).
+
 ## Синтаксис
 ``` csharp
 public bool EditComment(ulong commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)

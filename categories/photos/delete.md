@@ -8,6 +8,7 @@ comments: true
 Удаление фотографии на сайте.
 
 Страница документации ВКонтакте [photos.delete](https://vk.com/dev/photos.delete).
+
 ## Синтаксис
 ``` csharp
 public bool Delete(ulong photoId, long? ownerId = null)

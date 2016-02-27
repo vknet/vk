@@ -8,6 +8,7 @@ comments: true
 Изменяет описание у выбранной фотографии.
 
 Страница документации ВКонтакте [photos.edit](https://vk.com/dev/photos.edit).
+
 ## Синтаксис
 ``` csharp
 public bool Edit(PhotoEditParams @params)

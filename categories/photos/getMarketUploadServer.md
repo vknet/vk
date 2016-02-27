@@ -8,6 +8,7 @@ comments: true
 Возвращает адрес сервера для загрузки фотографии товаров сообщества.
 
 Страница документации ВКонтакте [photos.getMarketUploadServer](https://vk.com/dev/photos.getMarketUploadServer).
+
 ## Синтаксис
 ``` csharp
 public UploadServerInfo GetMarketUploadServer(long groupId, bool? mainPhoto = null, long? cropX = null, long? cropY = null, long? cropWidth = null)

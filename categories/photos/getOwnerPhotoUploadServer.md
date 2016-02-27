@@ -8,6 +8,7 @@ comments: true
 Возвращает адрес сервера для загрузки главной фотографии на страницу пользователя или сообщества.
 
 Страница документации ВКонтакте [photos.getOwnerPhotoUploadServer](https://vk.com/dev/photos.getOwnerPhotoUploadServer).
+
 ## Синтаксис
 ``` csharp
 public UploadServerInfo GetOwnerPhotoUploadServer(long? ownerId = null)
