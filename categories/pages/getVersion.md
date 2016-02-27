@@ -8,6 +8,7 @@ comments: true
 Возвращает текст одной из старых версий страницы.
 
 Страница документации ВКонтакте [pages.getVersion](https://vk.com/dev/pages.getVersion).
+
 ## Синтаксис
 ``` csharp
 public Page GetVersion(long versionId, long groupId, bool needHtml = false, long? userId = null)

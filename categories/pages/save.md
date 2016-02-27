@@ -8,6 +8,7 @@ comments: true
 Сохраняет текст вики-страницы.
 
 Страница документации ВКонтакте [pages.save](https://vk.com/dev/pages.save).
+
 ## Синтаксис
 ``` csharp
 public long Save(string text, long groupId, long userId, long? pageId = null, string title = "")

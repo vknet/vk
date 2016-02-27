@@ -8,6 +8,7 @@ comments: true
 Сохраняет новые настройки доступа на чтение и редактирование вики-страницы.
 
 Страница документации ВКонтакте [pages.saveAccess](https://vk.com/dev/pages.saveAccess).
+
 ## Синтаксис
 ``` csharp
 public long SaveAccess(

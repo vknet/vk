@@ -8,6 +8,7 @@ comments: true
 Возвращает список вики-страниц в группе.
 
 Страница документации ВКонтакте [pages.getTitles](https://vk.com/dev/pages.getTitles).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Page> GetTitles(long groupId)

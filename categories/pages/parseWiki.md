@@ -8,6 +8,7 @@ comments: true
 Возвращает html-представление вики-разметки.
 
 Страница документации ВКонтакте [pages.parseWiki](https://vk.com/dev/pages.parseWiki).
+
 ## Синтаксис
 ``` csharp
 public string ParseWiki(string text, ulong groupId)

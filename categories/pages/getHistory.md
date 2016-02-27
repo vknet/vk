@@ -8,6 +8,7 @@ comments: true
 Возвращает список всех старых версий вики-страницы.
 
 Страница документации ВКонтакте [pages.getHistory](https://vk.com/dev/pages.getHistory).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<History> GetHistory(long pageId, long groupId, long? userId = null)

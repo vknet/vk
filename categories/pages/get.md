@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о вики-странице.
 
 Страница документации ВКонтакте [pages.get](https://vk.com/dev/pages.get).
+
 ## Синтаксис
 ``` csharp
 public Page Get(PagesGetParams @params)
