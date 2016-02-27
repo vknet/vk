@@ -8,6 +8,7 @@ comments: true
 Получает список идентификаторов пользователей, которые добавили заданный объект в свой список Мне нравится.
 
 Страница документации ВКонтакте [likes.getList](https://vk.com/dev/likes.getList).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<long> GetList(LikesGetListParams @params)

@@ -8,6 +8,7 @@ comments: true
 Проверяет, находится ли объект в списке Мне нравится заданного пользователя.
 
 Страница документации ВКонтакте [likes.isLiked](https://vk.com/dev/likes.isLiked).
+
 ## Синтаксис
 ``` csharp
 public bool IsLiked(

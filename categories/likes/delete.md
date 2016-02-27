@@ -8,6 +8,7 @@ comments: true
 Удаляет указанный объект из списка Мне нравится текущего пользователя
 
 Страница документации ВКонтакте [likes.delete](https://vk.com/dev/likes.delete).
+
 ## Синтаксис
 ``` csharp
 public long Delete(LikeObjectType type, long itemId, long? ownerId = null)

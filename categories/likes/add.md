@@ -8,6 +8,7 @@ comments: true
 Добавляет указанный объект в список Мне нравится текущего пользователя.
 
 Страница документации ВКонтакте [likes.add](https://vk.com/dev/likes.add).
+
 ## Синтаксис
 ``` csharp
 public long Add(
