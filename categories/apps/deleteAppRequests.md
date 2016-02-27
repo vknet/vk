@@ -8,6 +8,7 @@ comments: true
 Удаляет все уведомления о запросах, отправленных из текущего приложения
 
 Страница документации ВКонтакте [apps.deleteAppRequests](https://vk.com/dev/apps.deleteAppRequests).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteAppRequests()

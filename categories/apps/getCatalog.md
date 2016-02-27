@@ -8,6 +8,7 @@ comments: true
 Возвращает список приложений, доступных для пользователей сайта через каталог приложений.
 
 Страница документации ВКонтакте [apps.getCatalog](https://vk.com/dev/apps.getCatalog).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<App> GetCatalog(out long totalCount, AppGetCatalogParams @params)

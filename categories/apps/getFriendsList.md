@@ -8,6 +8,7 @@ comments: true
 Создает список друзей, который будет использоваться при отправке пользователем приглашений в приложение и игровых запросов.
 
 Страница документации ВКонтакте [apps.getFriendsList](https://vk.com/dev/apps.getFriendsList).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetFriendsList(

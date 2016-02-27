@@ -8,6 +8,7 @@ comments: true
 Возвращает рейтинг пользователей в игре.
 
 Страница документации ВКонтакте [apps.getLeaderboard](https://vk.com/dev/apps.getLeaderboard).
+
 ## Синтаксис
 ``` csharp
 public bool GetLeaderboard(string type, bool? global, bool? extended)

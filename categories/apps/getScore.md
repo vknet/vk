@@ -8,6 +8,7 @@ comments: true
 Метод возвращает количество очков пользователя в этой игре.
 
 Страница документации ВКонтакте [apps.getScore](https://vk.com/dev/apps.getScore).
+
 ## Синтаксис
 ``` csharp
 public long GetScore(long userId)

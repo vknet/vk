@@ -8,6 +8,7 @@ comments: true
 Возвращает данные о запрошенном приложении на платформе ВКонтакте
 
 Страница документации ВКонтакте [apps.get](https://vk.com/dev/apps.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<App> Get(out long totalCount, AppGetParams @params)

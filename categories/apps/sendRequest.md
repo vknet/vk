@@ -8,6 +8,7 @@ comments: true
 Позволяет отправить запрос другому пользователю в приложении, использующем авторизацию ВКонтакте.
 
 Страница документации ВКонтакте [apps.sendRequest](https://vk.com/dev/apps.sendRequest).
+
 ## Синтаксис
 ``` csharp
 public long SendRequest(AppSendRequestParams @params)
