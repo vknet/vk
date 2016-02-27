@@ -8,6 +8,7 @@ comments: true
 Возвращает количество аудиозаписей пользователя или сообщества.
 
 Страница документации ВКонтакте [audio.getCount](https://vk.com/dev/audio.getCount).
+
 ## Синтаксис
 ``` csharp
 public long GetCount(long ownerId)

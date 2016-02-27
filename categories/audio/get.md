@@ -8,6 +8,7 @@ comments: true
 Возвращает список аудиозаписей пользователя или сообщества.
 
 Страница документации ВКонтакте [audio.get](https://vk.com/dev/audio.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Audio> Get(out User user, AudioGetParams @params)

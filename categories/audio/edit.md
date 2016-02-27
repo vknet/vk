@@ -8,6 +8,7 @@ comments: true
 Редактирует данные аудиозаписи на странице пользователя или сообщества.
 
 Страница документации ВКонтакте [audio.edit](https://vk.com/dev/audio.edit).
+
 ## Синтаксис
 ``` csharp
 public long Edit(AudioEditParams @params)

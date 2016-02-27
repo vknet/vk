@@ -8,6 +8,7 @@ comments: true
 Копирует аудиозапись на страницу пользователя или группы.
 
 Страница документации ВКонтакте [audio.add](https://vk.com/dev/audio.add).
+
 ## Синтаксис
 ``` csharp
 public ulong Add(long audioId, long ownerId, long? groupId = null, long? albumId = null)

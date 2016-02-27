@@ -8,6 +8,7 @@ comments: true
 Восстанавливает аудиозапись после удаления.
 
 Страница документации ВКонтакте [audio.restore](https://vk.com/dev/audio.restore).
+
 ## Синтаксис
 ``` csharp
 public Audio Restore(ulong audioId, long? ownerId = null)

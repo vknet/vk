@@ -8,6 +8,7 @@ comments: true
 Возвращает текст аудиозаписи.
 
 Страница документации ВКонтакте [audio.getLyrics](https://vk.com/dev/audio.getLyrics).
+
 ## Синтаксис
 ``` csharp
 public Lyrics GetLyrics(long lyricsId)

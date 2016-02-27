@@ -8,6 +8,7 @@ comments: true
 Удаляет аудиозапись со страницы пользователя или сообщества.
 
 Страница документации ВКонтакте [audio.delete](https://vk.com/dev/audio.delete).
+
 ## Синтаксис
 ``` csharp
 public bool Delete(long audioId, long ownerId)

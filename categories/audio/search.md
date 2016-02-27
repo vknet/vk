@@ -8,6 +8,7 @@ comments: true
 Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
 
 Страница документации ВКонтакте [audio.search](https://vk.com/dev/audio.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out long totalCount)

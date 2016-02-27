@@ -8,6 +8,7 @@ comments: true
 Удаляет альбом аудиозаписей.
 
 Страница документации ВКонтакте [audio.deleteAlbum](https://vk.com/dev/audio.deleteAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteAlbum(long albumId, long? groupId = null)

@@ -8,6 +8,7 @@ comments: true
 Возвращает список друзей и сообществ пользователя, которые транслируют музыку в статус.
 
 Страница документации ВКонтакте [audio.getBroadcastList](https://vk.com/dev/audio.getBroadcastList).
+
 ## Синтаксис
 ``` csharp
 public bool GetBroadcastList(string filter, bool? active)

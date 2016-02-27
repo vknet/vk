@@ -8,6 +8,7 @@ comments: true
 Возвращает список аудиозаписей из раздела "Популярное".
 
 Страница документации ВКонтакте [audio.getPopular](https://vk.com/dev/audio.getPopular).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Audio> GetPopular(

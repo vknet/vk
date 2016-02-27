@@ -8,6 +8,7 @@ comments: true
 Возвращает список альбомов аудиозаписей пользователя или группы.
 
 Страница документации ВКонтакте [audio.getAlbums](https://vk.com/dev/audio.getAlbums).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<AudioAlbum> GetAlbums(long ownerId, uint? count = null, uint? offset = null)

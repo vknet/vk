@@ -8,6 +8,7 @@ comments: true
 Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения заданного пользователя или на основе одной выбранной аудиозаписи.
 
 Страница документации ВКонтакте [audio.getRecommendations](https://vk.com/dev/audio.getRecommendations).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Audio> GetRecommendations(

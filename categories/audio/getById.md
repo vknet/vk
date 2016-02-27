@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию об аудиозаписях.
 
 Страница документации ВКонтакте [audio.getById](https://vk.com/dev/audio.getById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Audio> GetById(IEnumerable<string> audios)

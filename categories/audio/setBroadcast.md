@@ -8,6 +8,7 @@ comments: true
 Транслирует аудиозапись в статус пользователю или сообществу.
 
 Страница документации ВКонтакте [audio.setBroadcast](https://vk.com/dev/audio.setBroadcast).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> targetIds)

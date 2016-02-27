@@ -8,6 +8,7 @@ comments: true
 Перемещает аудиозаписи в альбом.
 
 Страница документации ВКонтакте [audio.moveToAlbum](https://vk.com/dev/audio.moveToAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)

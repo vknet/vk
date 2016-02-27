@@ -8,6 +8,7 @@ comments: true
 Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы которых переданы параметрами after и before.
 
 Страница документации ВКонтакте [audio.reorder](https://vk.com/dev/audio.reorder).
+
 ## Синтаксис
 ``` csharp
 public bool Reorder(long audioId, long? ownerId, long? before, long? after)

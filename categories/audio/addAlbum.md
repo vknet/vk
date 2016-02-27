@@ -8,6 +8,7 @@ comments: true
 Создает пустой альбом аудиозаписей.
 
 Страница документации ВКонтакте [audio.addAlbum](https://vk.com/dev/audio.addAlbum).
+
 ## Синтаксис
 ``` csharp
 public long AddAlbum(string title, long? groupId = null)
