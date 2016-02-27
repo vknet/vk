@@ -8,6 +8,7 @@ comments: true
 Возвращает расширенную информацию о документах пользователя или сообщества.
 
 Страница документации ВКонтакте [docs.get](https://vk.com/dev/docs.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Document> Get(

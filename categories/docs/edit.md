@@ -8,6 +8,7 @@ comments: true
 Редактирует документ пользователя или группы.
 
 Страница документации ВКонтакте [docs.edit](https://vk.com/dev/docs.edit).
+
 ## Синтаксис
 ``` csharp
 public bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags)

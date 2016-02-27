@@ -8,6 +8,7 @@ comments: true
 Удаляет документ пользователя или группы.
 
 Страница документации ВКонтакте [docs.delete](https://vk.com/dev/docs.delete).
+
 ## Синтаксис
 ``` csharp
 public bool Delete(long ownerId, long docId)

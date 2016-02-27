@@ -8,6 +8,7 @@ comments: true
 Возвращает адрес сервера для загрузки документов в папку Отправленные, для последующей отправки документа на стену или личным сообщением.
 
 Страница документации ВКонтакте [docs.getWallUploadServer](https://vk.com/dev/docs.getWallUploadServer).
+
 ## Синтаксис
 ``` csharp
 public UploadServerInfo GetWallUploadServer(long? groupId = null)

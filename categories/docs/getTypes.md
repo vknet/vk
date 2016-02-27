@@ -8,6 +8,7 @@ comments: true
 Возвращает доступные типы документы для пользователя
 
 Страница документации ВКонтакте [docs.getTypes](https://vk.com/dev/docs.getTypes).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<DocumentType> GetTypes(long ownerId)

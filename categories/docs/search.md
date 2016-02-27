@@ -8,6 +8,7 @@ comments: true
 Возвращает результаты поиска по документам.
 
 Страница документации ВКонтакте [docs.search](https://vk.com/dev/docs.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Document> Search(string query, long? count = null, long? offset = null)

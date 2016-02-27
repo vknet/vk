@@ -8,6 +8,7 @@ comments: true
 Копирует документ в документы текущего пользователя.
 
 Страница документации ВКонтакте [docs.add](https://vk.com/dev/docs.add).
+
 ## Синтаксис
 ``` csharp
 public long Add(long ownerId, long docId, string accessKey = null)

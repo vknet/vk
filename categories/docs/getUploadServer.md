@@ -8,6 +8,7 @@ comments: true
 Возвращает адрес сервера для загрузки документов.
 
 Страница документации ВКонтакте [docs.getUploadServer](https://vk.com/dev/docs.getUploadServer).
+
 ## Синтаксис
 ``` csharp
 public UploadServerInfo GetUploadServer(long? groupId = null)

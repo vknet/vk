@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о документах по их идентификаторам.
 
 Страница документации ВКонтакте [docs.getById](https://vk.com/dev/docs.getById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Document> GetById(IEnumerable<Document> docs)
