@@ -8,6 +8,7 @@ comments: true
 Возвращает список идентификаторов друзей текущего пользователя, которые установили данное приложение.
 
 Страница документации ВКонтакте [friends.getAppUsers](https://vk.com/dev/friends.getAppUsers).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<long> GetAppUsers()

@@ -8,6 +8,7 @@ comments: true
 Возвращает список идентификаторов общих друзей между парой пользователей.
 
 Страница документации ВКонтакте [friends.getMutual](https://vk.com/dev/friends.getMutual).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<long> GetMutual(FriendsGetMutualParams @params)

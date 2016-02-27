@@ -8,6 +8,7 @@ comments: true
 Удаляет существующий список друзей текущего пользователя.
 
 Страница документации ВКонтакте [friends.deleteList](https://vk.com/dev/friends.deleteList).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteList(long listId)

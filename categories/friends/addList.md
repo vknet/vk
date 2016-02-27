@@ -8,6 +8,7 @@ comments: true
 Создает новый список друзей у текущего пользователя.
 
 Страница документации ВКонтакте [friends.addList](https://vk.com/dev/friends.addList).
+
 ## Синтаксис
 ``` csharp
 public long AddList(string name, IEnumerable<long> userIds)

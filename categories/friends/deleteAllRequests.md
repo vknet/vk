@@ -8,6 +8,7 @@ comments: true
 Отмечает все входящие заявки на добавление в друзья как просмотренные.
 
 Страница документации ВКонтакте [friends.deleteAllRequests](https://vk.com/dev/friends.deleteAllRequests).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteAllRequests()

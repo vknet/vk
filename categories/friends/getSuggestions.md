@@ -8,6 +8,7 @@ comments: true
 Возвращает список профилей пользователей, которые могут быть друзьями текущего пользователя.
 
 Страница документации ВКонтакте [friends.getSuggestions](https://vk.com/dev/friends.getSuggestions).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null, UsersFields fields = null, NameCase nameCase = null)

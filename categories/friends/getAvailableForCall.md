@@ -9,6 +9,7 @@ comments: true
 Подробнее о схеме вызова из приложений.
 
 Страница документации ВКонтакте [friends.getAvailableForCall](https://vk.com/dev/friends.getAvailableForCall).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetAvailableForCall(ProfileFields fields, NameCase nameCase)

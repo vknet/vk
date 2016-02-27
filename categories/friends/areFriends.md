@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о том, добавлен ли текущий пользователь в друзья у указанных пользователей.
 
 Страница документации ВКонтакте [friends.areFriends](https://vk.com/dev/friends.areFriends).
+
 ## Синтаксис
 ``` csharp
 public IDictionary<long, FriendStatus> AreFriends([NotNull]IEnumerable<long> userIds, bool? needSign = null)

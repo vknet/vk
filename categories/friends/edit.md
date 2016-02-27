@@ -8,6 +8,7 @@ comments: true
 Редактирует списки друзей для выбранного друга.
 
 Страница документации ВКонтакте [friends.edit](https://vk.com/dev/friends.edit).
+
 ## Синтаксис
 ``` csharp
 public bool Edit(long userId, IEnumerable<long> listIds)

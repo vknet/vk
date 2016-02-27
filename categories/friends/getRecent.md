@@ -8,6 +8,7 @@ comments: true
 Возвращает список идентификаторов недавно добавленных друзей текущего пользователя
 
 Страница документации ВКонтакте [friends.getRecent](https://vk.com/dev/friends.getRecent).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<long> GetRecent(long? count = null)

@@ -8,6 +8,7 @@ comments: true
 Возвращает список друзей пользователя, у которых завалидированные или указанные в профиле телефонные номера входят в заданный список.
 
 Страница документации ВКонтакте [friends.getByPhones](https://vk.com/dev/friends.getByPhones).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetByPhones(IEnumerable<string> phones, ProfileFields fields)

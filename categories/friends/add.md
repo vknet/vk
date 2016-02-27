@@ -8,6 +8,7 @@ comments: true
 Одобряет или создает заявку на добавление в друзья.
 
 Страница документации ВКонтакте [friends.add](https://vk.com/dev/friends.add).
+
 ## Синтаксис
 ``` csharp
 public AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null)

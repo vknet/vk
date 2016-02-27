@@ -8,6 +8,7 @@ comments: true
 Позволяет искать по списку друзей пользователей.
 
 Страница документации ВКонтакте [friends.search](https://vk.com/dev/friends.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> Search(FriendsSearchParams @params)

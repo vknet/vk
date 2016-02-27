@@ -8,6 +8,7 @@ comments: true
 Возвращает список меток друзей текущего пользователя.
 
 Страница документации ВКонтакте [friends.getLists](https://vk.com/dev/friends.getLists).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<FriendList> GetLists(long? userId = null, bool? returnSystem = null)

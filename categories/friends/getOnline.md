@@ -8,6 +8,7 @@ comments: true
 Возвращает список идентификаторов друзей пользователя, находящихся на сайте.
 
 Страница документации ВКонтакте [friends.getOnline](https://vk.com/dev/friends.getOnline).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<long> GetOnline(FriendsGetOnlineParams @params)

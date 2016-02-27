@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о полученных или отправленных заявках на добавление в друзья для текущего пользователя.
 
 Страница документации ВКонтакте [friends.getRequests](https://vk.com/dev/friends.getRequests).
+
 ## Синтаксис
 ``` csharp
 public IDictionary<long, ReadOnlyCollection<long>> GetRequests(FriendsGetRequestsParams @params)

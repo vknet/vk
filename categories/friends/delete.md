@@ -8,6 +8,7 @@ comments: true
 Удаляет пользователя из списка друзей или отклоняет заявку в друзья.
 
 Страница документации ВКонтакте [friends.delete](https://vk.com/dev/friends.delete).
+
 ## Синтаксис
 ``` csharp
 public DeleteFriendStatus Delete(long userId)

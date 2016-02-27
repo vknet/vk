@@ -8,6 +8,7 @@ comments: true
 Редактирует существующий список друзей текущего пользователя.
 
 Страница документации ВКонтакте [friends.editList](https://vk.com/dev/friends.editList).
+
 ## Синтаксис
 ``` csharp
 public bool EditList(long listId, string name = null, IEnumerable<long> userIds = null, IEnumerable<long> addUserIds = null, IEnumerable<long> deleteUserIds = null)

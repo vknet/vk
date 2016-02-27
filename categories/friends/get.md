@@ -8,6 +8,7 @@ comments: true
 Возвращает список идентификаторов друзей пользователя или расширенную информацию о друзьях пользователя (при использовании параметра fields).
 
 Страница документации ВКонтакте [friends.get](https://vk.com/dev/friends.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> Get(FriendsGetParams @params)
