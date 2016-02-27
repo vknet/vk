@@ -8,6 +8,7 @@ comments: true
 Добавляет пользователя в черный список.
 
 Страница документации ВКонтакте [account.banUser](https://vk.com/dev/account.banUser).
+
 ## Синтаксис
 ``` csharp
 public bool BanUser(long userId)
