@@ -8,6 +8,7 @@ comments: true
 Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню.
 
 Страница документации ВКонтакте [account.setNameInMenu](https://vk.com/dev/account.setNameInMenu).
+
 ## Синтаксис
 ``` csharp
 public bool SetNameInMenu([NotNull] string name, long? userId = null)

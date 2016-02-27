@@ -8,6 +8,7 @@ comments: true
 Возвращает список пользователей, находящихся в черном списке.
 
 Страница документации ВКонтакте [account.getBanned](https://vk.com/dev/account.getBanned).
+
 ## Синтаксис
 ``` csharp
 public IEnumerable<User> GetBanned(out int total, int? offset = null, int? count = null)

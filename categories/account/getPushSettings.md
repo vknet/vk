@@ -8,6 +8,7 @@ comments: true
 Позволяет получать настройки Push уведомлений.
 
 Страница документации ВКонтакте [account.getPushSettings](https://vk.com/dev/account.getPushSettings).
+
 ## Синтаксис
 ``` csharp
 public AccountPushSettings GetPushSettings(string deviceId)

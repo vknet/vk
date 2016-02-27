@@ -8,6 +8,7 @@ comments: true
 Позволяет редактировать информацию о текущем аккаунте.
 
 Страница документации ВКонтакте [account.setInfo](https://vk.com/dev/account.setInfo).
+
 ## Синтаксис
 ``` csharp
 public bool SetInfo(

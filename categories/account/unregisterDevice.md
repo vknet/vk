@@ -8,6 +8,7 @@ comments: true
 Отписывает устройство от Push уведомлений.
 
 Страница документации ВКонтакте [account.unregisterDevice](https://vk.com/dev/account.unregisterDevice).
+
 ## Синтаксис
 ``` csharp
 public bool UnregisterDevice(string deviceId, bool? sandbox)

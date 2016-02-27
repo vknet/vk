@@ -8,6 +8,7 @@ comments: true
 Возвращает ненулевые значения счетчиков пользователя.
 
 Страница документации ВКонтакте [account.getCounters](https://vk.com/dev/account.getCounters).
+
 ## Синтаксис
 ``` csharp
 public Counters GetCounters(CountersFilter filter)

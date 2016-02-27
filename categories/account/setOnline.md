@@ -8,6 +8,7 @@ comments: true
 Помечает текущего пользователя как online на 15 минут.
 
 Страница документации ВКонтакте [account.setOnline](https://vk.com/dev/account.setOnline).
+
 ## Синтаксис
 ``` csharp
 public bool SetOnline(bool? voip = null)

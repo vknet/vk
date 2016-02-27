@@ -8,6 +8,7 @@ comments: true
 Изменяет настройку Push-уведомлений.
 
 Страница документации ВКонтакте [account.setPushSettings](https://vk.com/dev/account.setPushSettings).
+
 ## Синтаксис
 ``` csharp
 public bool SetPushSettings(string deviceId, PushSettings settings, string key, List<string> value)

@@ -8,6 +8,7 @@ comments: true
 Получает настройки текущего пользователя в данном приложении.
 
 Страница документации ВКонтакте [account.getAppPermissions](https://vk.com/dev/account.getAppPermissions).
+
 ## Синтаксис
 ``` csharp
 public long GetAppPermissions(long userId)

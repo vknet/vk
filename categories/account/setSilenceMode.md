@@ -8,6 +8,7 @@ comments: true
 Отключает push-уведомления на заданный промежуток времени.
 
 Страница документации ВКонтакте [account.setSilenceMode](https://vk.com/dev/account.setSilenceMode).
+
 ## Синтаксис
 ``` csharp
 public bool SetSilenceMode(

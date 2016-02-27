@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о текущем аккаунте.
 
 Страница документации ВКонтакте [account.getInfo](https://vk.com/dev/account.getInfo).
+
 ## Синтаксис
 ``` csharp
 public AccountInfo GetInfo(AccountFields fields = null)

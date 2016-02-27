@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о текущем профиле.
 
 Страница документации ВКонтакте [account.getProfileInfo](https://vk.com/dev/account.getProfileInfo).
+
 ## Синтаксис
 ``` csharp
 public AccountSaveProfileInfoParams GetProfileInfo()

@@ -8,6 +8,7 @@ comments: true
 Позволяет искать пользователей ВКонтакте, используя телефонные номера, email-адреса, и идентификаторы пользователей в других сервисах. Найденные пользователи могут быть также в дальнейшем получены методом friends.getSuggestions.
 
 Страница документации ВКонтакте [account.lookupContacts](https://vk.com/dev/account.lookupContacts).
+
 ## Синтаксис
 ``` csharp
 public LookupContactsResult LookupContacts(

@@ -8,6 +8,7 @@ comments: true
 Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения.
 
 Страница документации ВКонтакте [account.getActiveOffers](https://vk.com/dev/account.getActiveOffers).
+
 ## Синтаксис
 ``` csharp
 public InformationAboutOffers GetActiveOffers(ulong? offset = null, ulong? count = null)

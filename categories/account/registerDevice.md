@@ -8,6 +8,7 @@ comments: true
 Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений.
 
 Страница документации ВКонтакте [account.registerDevice](https://vk.com/dev/account.registerDevice).
+
 ## Синтаксис
 ``` csharp
 public bool RegisterDevice(AccountRegisterDeviceParams @params)

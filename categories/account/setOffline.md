@@ -8,6 +8,7 @@ comments: true
 Помечает текущего пользователя как offline.
 
 Страница документации ВКонтакте [account.setOffline](https://vk.com/dev/account.setOffline).
+
 ## Синтаксис
 ``` csharp
 public bool SetOffline()

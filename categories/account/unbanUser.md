@@ -8,6 +8,7 @@ comments: true
 Убирает пользователя из черного списка.
 
 Страница документации ВКонтакте [account.unbanUser](https://vk.com/dev/account.unbanUser).
+
 ## Синтаксис
 ``` csharp
 public bool UnbanUser(long userId)

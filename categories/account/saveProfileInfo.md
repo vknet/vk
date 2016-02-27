@@ -8,6 +8,7 @@ comments: true
 Редактирует информацию текущего профиля.
 
 Страница документации ВКонтакте [account.saveProfileInfo](https://vk.com/dev/account.saveProfileInfo).
+
 ## Синтаксис
 ``` csharp
 public bool SaveProfileInfo(AccountSaveProfileInfoParams @params)

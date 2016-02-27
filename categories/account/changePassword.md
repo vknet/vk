@@ -8,6 +8,7 @@ comments: true
 Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore.
 
 Страница документации ВКонтакте [account.changePassword](https://vk.com/dev/account.changePassword).
+
 ## Синтаксис
 ``` csharp
 public AccountChangePasswordResult ChangePassword(
