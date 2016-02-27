@@ -8,6 +8,7 @@ comments: true
 Возвращает расширенную информацию о пользователях.
 
 Страница документации ВКонтакте [users.get](https://vk.com/dev/users.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
