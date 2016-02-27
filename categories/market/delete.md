@@ -8,6 +8,7 @@ comments: true
 Удаляет товар.
 
 Страница документации ВКонтакте [market.delete](https://vk.com/dev/market.delete).
+
 ## Синтаксис
 ``` csharp
 public bool Delete(long ownerId, long itemId)

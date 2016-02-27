@@ -8,6 +8,7 @@ comments: true
 Удаляет товар из одной или нескольких выбранных подборок.
 
 Страница документации ВКонтакте [market.removeFromAlbum](https://vk.com/dev/market.removeFromAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool RemoveFromAlbum(long ownerId, long itemId, IEnumerable<string> albumIds)

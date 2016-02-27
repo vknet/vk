@@ -8,6 +8,7 @@ comments: true
 Ищет товары в каталоге сообщества.
 
 Страница документации ВКонтакте [market.search](https://vk.com/dev/market.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Market> Search(MarketSearchParams @params)

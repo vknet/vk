@@ -8,6 +8,7 @@ comments: true
 Удаляет подборку с товарами.
 
 Страница документации ВКонтакте [market.deleteAlbum](https://vk.com/dev/market.deleteAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteAlbum(long ownerId, long albumId)

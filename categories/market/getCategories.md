@@ -8,6 +8,7 @@ comments: true
 Возвращает список категорий для товаров.
 
 Страница документации ВКонтакте [market.getCategories](https://vk.com/dev/market.getCategories).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<MarketCategory> GetCategories(long? count, long? offset)

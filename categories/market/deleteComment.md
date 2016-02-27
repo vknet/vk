@@ -8,6 +8,7 @@ comments: true
 Удаляет комментарий к товару.
 
 Страница документации ВКонтакте [market.deleteComment](https://vk.com/dev/market.deleteComment).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteComment(long ownerId, long commentId)

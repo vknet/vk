@@ -8,6 +8,7 @@ comments: true
 Создает новый комментарий к товару.
 
 Страница документации ВКонтакте [market.createComment](https://vk.com/dev/market.createComment).
+
 ## Синтаксис
 ``` csharp
 public long CreateComment(MarketCreateCommentParams @params)

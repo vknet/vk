@@ -8,6 +8,7 @@ comments: true
 Добавляет новую подборку с товарами.
 
 Страница документации ВКонтакте [market.addAlbum](https://vk.com/dev/market.addAlbum).
+
 ## Синтаксис
 ``` csharp
 public long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false)

@@ -8,6 +8,7 @@ comments: true
 Возвращает список комментариев к товару.
 
 Страница документации ВКонтакте [market.getComments](https://vk.com/dev/market.getComments).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<MarketComment> GetComments(MarketGetCommentsParams @params)

@@ -8,6 +8,7 @@ comments: true
 Редактирует товар.
 
 Страница документации ВКонтакте [market.edit](https://vk.com/dev/market.edit).
+
 ## Синтаксис
 ``` csharp
 public bool Edit(MarketEditParams @params)

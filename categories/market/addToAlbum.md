@@ -8,6 +8,7 @@ comments: true
 Добавляет товар в одну или несколько выбранных подборок.
 
 Страница документации ВКонтакте [market.addToAlbum](https://vk.com/dev/market.addToAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool AddToAlbum(long ownerId, long itemId, IEnumerable<string> albumIds)

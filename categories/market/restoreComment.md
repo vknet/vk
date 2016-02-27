@@ -8,6 +8,7 @@ comments: true
 Восстанавливает удаленный комментарий к товару.
 
 Страница документации ВКонтакте [market.restoreComment](https://vk.com/dev/market.restoreComment).
+
 ## Синтаксис
 ``` csharp
 public bool RestoreComment(long ownerId, long commentId)

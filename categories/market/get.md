@@ -8,6 +8,7 @@ comments: true
 Возвращает список товаров в сообществе.
 
 Страница документации ВКонтакте [market.get](https://vk.com/dev/market.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Market> Get(

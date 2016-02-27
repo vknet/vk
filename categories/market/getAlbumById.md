@@ -8,6 +8,7 @@ comments: true
 Возвращает данные подборки с товарами.
 
 Страница документации ВКонтакте [market.getAlbumById](https://vk.com/dev/market.getAlbumById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<MarketAlbum> GetAlbumById(long ownerId, IEnumerable<long> albumIds)

@@ -8,6 +8,7 @@ comments: true
 Добавляет новый товар.
 
 Страница документации ВКонтакте [market.add](https://vk.com/dev/market.add).
+
 ## Синтаксис
 ``` csharp
 public long Add(MarketProductParams @params)

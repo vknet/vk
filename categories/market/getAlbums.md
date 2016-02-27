@@ -8,6 +8,7 @@ comments: true
 Возвращает список подборок с товарами.
 
 Страница документации ВКонтакте [market.getAlbums](https://vk.com/dev/market.getAlbums).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<MarketAlbum> GetAlbums(

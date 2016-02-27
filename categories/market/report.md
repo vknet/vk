@@ -8,6 +8,7 @@ comments: true
 Позволяет отправить жалобу на товар.
 
 Страница документации ВКонтакте [market.report](https://vk.com/dev/market.report).
+
 ## Синтаксис
 ``` csharp
 public bool Report(long ownerId, long itemId, ReportReason reason)

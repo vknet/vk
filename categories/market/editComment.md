@@ -8,6 +8,7 @@ comments: true
 Изменяет текст комментария к товару.
 
 Страница документации ВКонтакте [market.editComment](https://vk.com/dev/market.editComment).
+
 ## Синтаксис
 ``` csharp
 public bool EditComment(long ownerId, long commentId, string message, IEnumerable<MediaAttachment> attachments = null)

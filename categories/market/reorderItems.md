@@ -8,6 +8,7 @@ comments: true
 Изменяет положение товара в подборке.
 
 Страница документации ВКонтакте [market.reorderItems](https://vk.com/dev/market.reorderItems).
+
 ## Синтаксис
 ``` csharp
 public bool ReorderItems(long ownerId, long albumId, long itemId, long? before, long? after)

@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о товарах по идентификаторам.
 
 Страница документации ВКонтакте [market.getById](https://vk.com/dev/market.getById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false)

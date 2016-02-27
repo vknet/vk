@@ -8,6 +8,7 @@ comments: true
 Редактирует подборку с товарами.
 
 Страница документации ВКонтакте [market.editAlbum](https://vk.com/dev/market.editAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool EditAlbum(long ownerId, long albumId, string title, long? photoId)

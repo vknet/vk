@@ -8,6 +8,7 @@ comments: true
 Восстанавливает удаленный товар.
 
 Страница документации ВКонтакте [market.restore](https://vk.com/dev/market.restore).
+
 ## Синтаксис
 ``` csharp
 public bool Restore(long ownerId, long itemId)
