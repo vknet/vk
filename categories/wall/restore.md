@@ -8,6 +8,7 @@ comments: true
 Восстанавливает удаленную запись на стене пользователя или сообщества.
 
 Страница документации ВКонтакте [wall.restore](https://vk.com/dev/wall.restore).
+
 ## Синтаксис
 ``` csharp
 public bool Restore(long? ownerId, long? postId)

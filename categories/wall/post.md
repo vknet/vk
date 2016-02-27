@@ -8,6 +8,7 @@ comments: true
 Публикует новую запись на своей или чужой стене.
 
 Страница документации ВКонтакте [wall.post](https://vk.com/dev/wall.post).
+
 ## Синтаксис
 ``` csharp
 public long Post(WallPostParams @params)

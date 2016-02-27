@@ -8,6 +8,7 @@ comments: true
 Удаляет запись со стены.
 
 Страница документации ВКонтакте [wall.delete](https://vk.com/dev/wall.delete).
+
 ## Синтаксис
 ``` csharp
 public bool Delete(long? ownerId = null, long? postId = null)

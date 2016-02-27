@@ -8,6 +8,7 @@ comments: true
 Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене.
 
 Страница документации ВКонтакте [wall.restoreComment](https://vk.com/dev/wall.restoreComment).
+
 ## Синтаксис
 ``` csharp
 public bool RestoreComment(long commentId, long? ownerId)

@@ -8,6 +8,7 @@ comments: true
 Позволяет пожаловаться на запись.
 
 Страница документации ВКонтакте [wall.reportPost](https://vk.com/dev/wall.reportPost).
+
 ## Синтаксис
 ``` csharp
 public bool ReportPost(long ownerId, long postId, ReportReason? reason = null)

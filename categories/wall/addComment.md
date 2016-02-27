@@ -8,6 +8,7 @@ comments: true
 Добавляет комментарий к записи на стене пользователя или сообщества.
 
 Страница документации ВКонтакте [wall.addComment](https://vk.com/dev/wall.addComment).
+
 ## Синтаксис
 ``` csharp
 public long AddComment(WallAddCommentParams @params)

@@ -8,6 +8,7 @@ comments: true
 Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
 
 Страница документации ВКонтакте [wall.getById](https://vk.com/dev/wall.getById).
+
 ## Синтаксис
 ``` csharp
 public WallGetObject GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null)

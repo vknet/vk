@@ -8,6 +8,7 @@ comments: true
 Отменяет закрепление записи на стене.
 
 Страница документации ВКонтакте [wall.unpin](https://vk.com/dev/wall.unpin).
+
 ## Синтаксис
 ``` csharp
 public bool Unpin(long? ownerId, long postId)

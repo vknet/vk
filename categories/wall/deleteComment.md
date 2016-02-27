@@ -8,6 +8,7 @@ comments: true
 Удаляет комментарий текущего пользователя к записи на своей или чужой стене.
 
 Страница документации ВКонтакте [wall.deleteComment](https://vk.com/dev/wall.deleteComment).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteComment(long? ownerId, long commentId)

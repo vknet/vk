@@ -8,6 +8,7 @@ comments: true
 Редактирует запись на стене.
 
 Страница документации ВКонтакте [wall.edit](https://vk.com/dev/wall.edit).
+
 ## Синтаксис
 ``` csharp
 public bool Edit(WallEditParams @params)

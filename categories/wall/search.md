@@ -8,6 +8,7 @@ comments: true
 Метод, позволяющий осуществлять поиск по стенам пользователей.
 
 Страница документации ВКонтакте [wall.search](https://vk.com/dev/wall.search).
+
 ## Синтаксис
 ``` csharp
 public bool Search(WallSearchParams @params)

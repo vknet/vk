@@ -8,6 +8,7 @@ comments: true
 Закрепляет запись на стене (запись будет отображаться выше остальных).
 
 Страница документации ВКонтакте [wall.pin](https://vk.com/dev/wall.pin).
+
 ## Синтаксис
 ``` csharp
 public bool Pin(long? ownerId, long postId)

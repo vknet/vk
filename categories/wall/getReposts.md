@@ -8,6 +8,7 @@ comments: true
 Позволяет получать список репостов заданной записи.
 
 Страница документации ВКонтакте [wall.getReposts](https://vk.com/dev/wall.getReposts).
+
 ## Синтаксис
 ``` csharp
 public WallGetObject GetReposts(long? ownerId, long? postId, long? offset, long? count)

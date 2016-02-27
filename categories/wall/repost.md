@@ -8,6 +8,7 @@ comments: true
 Копирует объект на стену пользователя или сообщества.
 
 Страница документации ВКонтакте [wall.repost](https://vk.com/dev/wall.repost).
+
 ## Синтаксис
 ``` csharp
 public RepostResult Repost(string @object, string message, long? groupId, string @ref)

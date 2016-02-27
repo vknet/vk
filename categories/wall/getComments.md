@@ -8,6 +8,7 @@ comments: true
 Возвращает список комментариев к записи на стене.
 
 Страница документации ВКонтакте [wall.getComments](https://vk.com/dev/wall.getComments).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Comment> GetComments(out int totalCount, WallGetCommentsParams @params)

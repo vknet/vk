@@ -8,6 +8,7 @@ comments: true
 Возвращает список записей со стены пользователя или сообщества.
 
 Страница документации ВКонтакте [wall.get](https://vk.com/dev/wall.get).
+
 ## Синтаксис
 ``` csharp
 public WallGetObject Get(WallGetParams @params)
