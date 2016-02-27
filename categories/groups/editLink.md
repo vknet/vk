@@ -8,6 +8,7 @@ comments: true
 Позволяет редактировать ссылки в сообществе.
 
 Страница документации ВКонтакте [groups.editLink](https://vk.com/dev/groups.editLink).
+
 ## Синтаксис
 ``` csharp
 public bool EditLink(long groupId, long linkId, string text)

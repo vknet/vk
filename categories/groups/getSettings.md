@@ -8,6 +8,7 @@ comments: true
 Позволяет получать данные, необходимые для отображения страницы редактирования данных сообщества.
 
 Страница документации ВКонтакте [groups.getSettings](https://vk.com/dev/groups.getSettings).
+
 ## Синтаксис
 ``` csharp
 public GroupInfo GetSettings(long groupId)

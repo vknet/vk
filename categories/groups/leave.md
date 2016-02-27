@@ -8,6 +8,7 @@ comments: true
 Позволяет покинуть сообщество.
 
 Страница документации ВКонтакте [groups.leave](https://vk.com/dev/groups.leave).
+
 ## Синтаксис
 ``` csharp
 public bool Leave(long groupId)

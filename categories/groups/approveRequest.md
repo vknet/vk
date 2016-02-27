@@ -8,6 +8,7 @@ comments: true
 Позволяет одобрить заявку в группу от пользователя.
 
 Страница документации ВКонтакте [groups.approveRequest](https://vk.com/dev/groups.approveRequest).
+
 ## Синтаксис
 ``` csharp
 public bool ApproveRequest(long groupId, long userId)

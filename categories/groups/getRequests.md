@@ -8,6 +8,7 @@ comments: true
 Возвращает список заявок на вступление в сообщество.
 
 Страница документации ВКонтакте [groups.getRequests](https://vk.com/dev/groups.getRequests).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields)

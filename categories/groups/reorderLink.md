@@ -8,6 +8,7 @@ comments: true
 Позволяет менять местоположение ссылки в списке.
 
 Страница документации ВКонтакте [groups.reorderLink](https://vk.com/dev/groups.reorderLink).
+
 ## Синтаксис
 ``` csharp
 public bool ReorderLink(long groupId, long linkId, long? after)

@@ -8,6 +8,7 @@ comments: true
 Позволяет назначить/разжаловать руководителя в сообществе или изменить уровень его полномочий.
 
 Страница документации ВКонтакте [groups.editManager](https://vk.com/dev/groups.editManager).
+
 ## Синтаксис
 ``` csharp
 public bool EditManager(GroupsEditManagerParams @params)

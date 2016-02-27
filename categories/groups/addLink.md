@@ -8,6 +8,7 @@ comments: true
 Позволяет добавлять ссылки в сообщество.
 
 Страница документации ВКонтакте [groups.addLink](https://vk.com/dev/groups.addLink).
+
 ## Синтаксис
 ``` csharp
 public bool AddLink(long groupId, string link, string text)

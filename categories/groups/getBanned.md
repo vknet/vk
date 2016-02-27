@@ -8,6 +8,7 @@ comments: true
 Возвращает список забаненных пользователей в сообществе.
 
 Страница документации ВКонтакте [groups.getBanned](https://vk.com/dev/groups.getBanned).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? userId = null)

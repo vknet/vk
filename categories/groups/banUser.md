@@ -8,6 +8,7 @@ comments: true
 Добавляет пользователя в черный список сообщества.
 
 Страница документации ВКонтакте [groups.banUser](https://vk.com/dev/groups.banUser).
+
 ## Синтаксис
 ``` csharp
 public bool BanUser(GroupsBanUserParams @params)

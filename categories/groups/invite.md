@@ -8,6 +8,7 @@ comments: true
 Позволяет приглашать друзей в группу.
 
 Страница документации ВКонтакте [groups.invite](https://vk.com/dev/groups.invite).
+
 ## Синтаксис
 ``` csharp
 public bool Invite(long groupId, long userId)

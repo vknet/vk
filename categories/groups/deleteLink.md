@@ -8,6 +8,7 @@ comments: true
 Позволяет удалить ссылки из сообщества.
 
 Страница документации ВКонтакте [groups.deleteLink](https://vk.com/dev/groups.deleteLink).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteLink(long groupId, long linkId)

@@ -8,6 +8,7 @@ comments: true
 Осуществляет поиск сообществ по заданной подстроке.
 
 Страница документации ВКонтакте [groups.search](https://vk.com/dev/groups.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Group> Search(out int totalCount, GroupsSearchParams @params)

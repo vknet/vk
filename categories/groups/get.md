@@ -8,6 +8,7 @@ comments: true
 Возвращает список сообществ указанного пользователя.
 
 Страница документации ВКонтакте [groups.get](https://vk.com/dev/groups.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Group> Get(GroupsGetParams @params)

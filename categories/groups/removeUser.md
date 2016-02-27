@@ -8,6 +8,7 @@ comments: true
 Позволяет исключить пользователя из группы или отклонить заявку на вступление.
 
 Страница документации ВКонтакте [groups.removeUser](https://vk.com/dev/groups.removeUser).
+
 ## Синтаксис
 ``` csharp
 public bool RemoveUser(long groupId, long userId)

@@ -8,6 +8,7 @@ comments: true
 Данный метод возвращает список приглашений в сообщества и встречи текущего пользователя.
 
 Страница документации ВКонтакте [groups.getInvites](https://vk.com/dev/groups.getInvites).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Group> GetInvites( long? count, long? offset, bool? extended = null)

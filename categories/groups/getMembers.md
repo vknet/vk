@@ -8,6 +8,7 @@ comments: true
 Возвращает список участников сообщества.
 
 Страница документации ВКонтакте [groups.getMembers](https://vk.com/dev/groups.getMembers).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetMembers(out int totalCount, GroupsGetMembersParams @params)

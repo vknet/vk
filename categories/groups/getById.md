@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о заданном сообществе или о нескольких сообществах.
 
 Страница документации ВКонтакте [groups.getById](https://vk.com/dev/groups.getById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields)

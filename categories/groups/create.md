@@ -8,6 +8,7 @@ comments: true
 Создает новое сообщество.
 
 Страница документации ВКонтакте [groups.create](https://vk.com/dev/groups.create).
+
 ## Синтаксис
 ``` csharp
 public Group Create(string title, string description, GroupType type, GroupSubType? subtype)

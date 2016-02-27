@@ -8,6 +8,7 @@ comments: true
 Данный метод позволяет вступить в группу, публичную страницу, а также подтвердить участие во встрече.
 
 Страница документации ВКонтакте [groups.join](https://vk.com/dev/groups.join).
+
 ## Синтаксис
 ``` csharp
 public bool Join(long? groupId, bool? notSure = null

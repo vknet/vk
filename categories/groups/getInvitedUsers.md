@@ -8,6 +8,7 @@ comments: true
 Возвращает список пользователей, которые были приглашены в группу.
 
 Страница документации ВКонтакте [groups.getInvitedUsers](https://vk.com/dev/groups.getInvitedUsers).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetInvitedUsers(long groupId, out int userCount, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)

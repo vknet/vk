@@ -8,6 +8,7 @@ comments: true
 Редактирует сообщество.
 
 Страница документации ВКонтакте [groups.edit](https://vk.com/dev/groups.edit).
+
 ## Синтаксис
 ``` csharp
 public bool Edit(long groupId, GroupInfo groupInfo)

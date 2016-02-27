@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о том, является ли пользователь участником сообщества.
 
 Страница документации ВКонтакте [groups.isMember](https://vk.com/dev/groups.isMember).
+
 ## Синтаксис
 ``` csharp
 public bool IsMember(string groupId, long? userId, IEnumerable<string> userIds, bool? extended)

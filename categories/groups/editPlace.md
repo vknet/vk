@@ -8,6 +8,7 @@ comments: true
 Позволяет редактировать информацию о месте группы.
 
 Страница документации ВКонтакте [groups.editPlace](https://vk.com/dev/groups.editPlace).
+
 ## Синтаксис
 ``` csharp
 public bool EditPlace(long groupId, Place place = null)

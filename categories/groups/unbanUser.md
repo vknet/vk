@@ -8,6 +8,7 @@ comments: true
 Убирает пользователя из черного списка сообщества.
 
 Страница документации ВКонтакте [groups.unbanUser](https://vk.com/dev/groups.unbanUser).
+
 ## Синтаксис
 ``` csharp
 public bool UnbanUser(long groupId, long userId)
