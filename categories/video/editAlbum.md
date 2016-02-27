@@ -8,6 +8,7 @@ comments: true
 Редактирует название альбома видеозаписей.
 
 Страница документации ВКонтакте [video.editAlbum](https://vk.com/dev/video.editAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool EditAlbum(long albumId, string title, long? groupId = null, Privacy privacy = null)

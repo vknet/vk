@@ -8,6 +8,7 @@ comments: true
 Редактирует данные видеозаписи.
 
 Страница документации ВКонтакте [video.edit](https://vk.com/dev/video.edit).
+
 ## Синтаксис
 ``` csharp
 public bool Edit(VideoEditParams @params)

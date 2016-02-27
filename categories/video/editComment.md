@@ -8,6 +8,7 @@ comments: true
 Изменяет текст комментария к видеозаписи.
 
 Страница документации ВКонтакте [video.editComment](https://vk.com/dev/video.editComment).
+
 ## Синтаксис
 ``` csharp
 public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)

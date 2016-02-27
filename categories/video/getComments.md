@@ -8,6 +8,7 @@ comments: true
 Возвращает список комментариев к видеозаписи.
 
 Страница документации ВКонтакте [video.getComments](https://vk.com/dev/video.getComments).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Comment> GetComments(VideoGetCommentsParams @params)

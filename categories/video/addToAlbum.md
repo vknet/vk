@@ -8,6 +8,7 @@ comments: true
 Позволяет добавить видеозапись в альбом.
 
 Страница документации ВКонтакте [video.addToAlbum](https://vk.com/dev/video.addToAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null)

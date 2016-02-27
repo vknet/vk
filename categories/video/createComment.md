@@ -8,6 +8,7 @@ comments: true
 Cоздает новый комментарий к видеозаписи
 
 Страница документации ВКонтакте [video.createComment](https://vk.com/dev/video.createComment).
+
 ## Синтаксис
 ``` csharp
 public long CreateComment(VideoCreateCommentParams @params)

@@ -8,6 +8,7 @@ comments: true
 Удаляет комментарий к видеозаписи.
 
 Страница документации ВКонтакте [video.deleteComment](https://vk.com/dev/video.deleteComment).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteComment(long commentId, long? ownerId = null)

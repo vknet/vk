@@ -8,6 +8,7 @@ comments: true
 Позволяет получить информацию об альбоме с видео.
 
 Страница документации ВКонтакте [video.getAlbumById](https://vk.com/dev/video.getAlbumById).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Video> GetAlbumById(long albumId, long? ownerId = null)

@@ -8,6 +8,7 @@ comments: true
 Позволяет получить представление каталога видео.
 
 Страница документации ВКонтакте [video.getCatalog](https://vk.com/dev/video.getCatalog).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<VideoCatalog> GetCatalog(long? count, long? itemsCount, string from, bool? extended)

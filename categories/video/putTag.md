@@ -8,6 +8,7 @@ comments: true
 Добавляет отметку на видеозапись.
 
 Страница документации ВКонтакте [video.putTag](https://vk.com/dev/video.putTag).
+
 ## Синтаксис
 ``` csharp
 public long PutTag(long videoId, long userId, long? ownerId, string taggedName)

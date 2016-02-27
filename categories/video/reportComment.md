@@ -8,6 +8,7 @@ comments: true
 Позволяет пожаловаться на комментарий к видеозаписи.
 
 Страница документации ВКонтакте [video.reportComment](https://vk.com/dev/video.reportComment).
+
 ## Синтаксис
 ``` csharp
 public bool ReportComment(long commentId, long ownerId, ReportReason reason)

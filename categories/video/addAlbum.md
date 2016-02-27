@@ -8,6 +8,7 @@ comments: true
 Создает пустой альбом видеозаписей.
 
 Страница документации ВКонтакте [video.addAlbum](https://vk.com/dev/video.addAlbum).
+
 ## Синтаксис
 ``` csharp
 public long AddAlbum(string title, long? groupId = null, IEnumerable<Privacy> privacy = null)

@@ -8,6 +8,7 @@ comments: true
 Позволяет получить отдельный блок видеокаталога.
 
 Страница документации ВКонтакте [video.getCatalogSection](https://vk.com/dev/video.getCatalogSection).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<VideoCatalogItem> GetCatalogSection(

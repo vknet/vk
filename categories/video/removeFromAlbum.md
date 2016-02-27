@@ -8,6 +8,7 @@ comments: true
 Позволяет убрать видеозапись из альбома.
 
 Страница документации ВКонтакте [video.removeFromAlbum](https://vk.com/dev/video.removeFromAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool RemoveFromAlbum(

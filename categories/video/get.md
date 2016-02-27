@@ -8,6 +8,7 @@ comments: true
 Возвращает информацию о видеозаписях.
 
 Страница документации ВКонтакте [video.get](https://vk.com/dev/video.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Video> Get(VideoGetParams @params)

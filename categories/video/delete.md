@@ -8,6 +8,7 @@ comments: true
 Удаляет видеозапись со страницы пользователя.
 
 Страница документации ВКонтакте [video.delete](https://vk.com/dev/video.delete).
+
 ## Синтаксис
 ``` csharp
 public bool Delete(long videoId, long? ownerId = null, long? targetId = null)

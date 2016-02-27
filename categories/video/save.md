@@ -8,6 +8,7 @@ comments: true
 Возвращает адрес сервера (необходимый для загрузки) и данные видеозаписи.
 
 Страница документации ВКонтакте [video.save](https://vk.com/dev/video.save).
+
 ## Синтаксис
 ``` csharp
 public Video Save(VideoSaveParams @params)

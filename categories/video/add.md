@@ -8,6 +8,7 @@ comments: true
 Добавляет видеозапись в список пользователя.
 
 Страница документации ВКонтакте [video.add](https://vk.com/dev/video.add).
+
 ## Синтаксис
 ``` csharp
 public long Add(long videoId, long ownerId, long? targetId = null)

@@ -8,6 +8,7 @@ comments: true
 Возвращает список видеозаписей, на которых отмечен пользователь.
 
 Страница документации ВКонтакте [video.getUserVideos](https://vk.com/dev/video.getUserVideos).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Video> GetUserVideos(long? userId, long? offset, long? count, bool? extended)

@@ -8,6 +8,7 @@ comments: true
 Возвращает список альбомов видеозаписей пользователя или сообщества.
 
 Страница документации ВКонтакте [video.getAlbums](https://vk.com/dev/video.getAlbums).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<VideoAlbum> GetAlbums(

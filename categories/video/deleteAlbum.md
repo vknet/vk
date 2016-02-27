@@ -8,6 +8,7 @@ comments: true
 Удаляет альбом видеозаписей.
 
 Страница документации ВКонтакте [video.deleteAlbum](https://vk.com/dev/video.deleteAlbum).
+
 ## Синтаксис
 ``` csharp
 public bool DeleteAlbum(long albumId, long? groupId = null)

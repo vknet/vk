@@ -8,6 +8,7 @@ comments: true
 Возвращает список отметок на видеозаписи.
 
 Страница документации ВКонтакте [video.getTags](https://vk.com/dev/video.getTags).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Tag> GetTags(long videoId, long? ownerId)

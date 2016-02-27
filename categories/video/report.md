@@ -8,6 +8,7 @@ comments: true
 Позволяет пожаловаться на видеозапись.
 
 Страница документации ВКонтакте [video.report](https://vk.com/dev/video.report).
+
 ## Синтаксис
 ``` csharp
 public bool Report(

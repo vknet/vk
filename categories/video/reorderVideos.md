@@ -8,6 +8,7 @@ comments: true
 Позволяет переместить видеозапись в альбоме.
 
 Страница документации ВКонтакте [video.reorderVideos](https://vk.com/dev/video.reorderVideos).
+
 ## Синтаксис
 ``` csharp
 public bool ReorderVideos(VideoReorderVideosParams @params)

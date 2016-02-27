@@ -8,6 +8,7 @@ comments: true
 Возвращает список видеозаписей, на которых есть непросмотренные отметки.
 
 Страница документации ВКонтакте [video.getNewTags](https://vk.com/dev/video.getNewTags).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Video> GetNewTags(int? count = null, int? offset = null)

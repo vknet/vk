@@ -8,6 +8,7 @@ comments: true
 Восстанавливает удаленный комментарий к видеозаписи.
 
 Страница документации ВКонтакте [video.restoreComment](https://vk.com/dev/video.restoreComment).
+
 ## Синтаксис
 ``` csharp
 public bool RestoreComment(long commentId, long? ownerId = null)

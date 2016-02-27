@@ -8,6 +8,7 @@ comments: true
 Возвращает список видеозаписей в соответствии с заданным критерием поиска.
 
 Страница документации ВКонтакте [video.search](https://vk.com/dev/video.search).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Video> Search(VideoSearchParams @params)

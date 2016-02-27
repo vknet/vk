@@ -8,6 +8,7 @@ comments: true
 Восстанавливает удаленную видеозапись.
 
 Страница документации ВКонтакте [video.restore](https://vk.com/dev/video.restore).
+
 ## Синтаксис
 ``` csharp
 public bool Restore(long videoId, long? ownerId = null)

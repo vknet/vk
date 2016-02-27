@@ -8,6 +8,7 @@ comments: true
 Удаляет отметку с видеозаписи.
 
 Страница документации ВКонтакте [video.removeTag](https://vk.com/dev/video.removeTag).
+
 ## Синтаксис
 ``` csharp
 public bool RemoveTag(long tagId, long videoId, long? ownerId)

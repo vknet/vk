@@ -8,6 +8,7 @@ comments: true
 Позволяет изменить порядок альбомов с видео.
 
 Страница документации ВКонтакте [video.reorderAlbums](https://vk.com/dev/video.reorderAlbums).
+
 ## Синтаксис
 ``` csharp
 public bool ReorderAlbums(long? ownerId, long albumId, long? before, long? after)

@@ -8,6 +8,7 @@ comments: true
 Возвращает список альбомов, в которых находится видеозапись.
 
 Страница документации ВКонтакте [video.getAlbumsByVideo](https://vk.com/dev/video.getAlbumsByVideo).
+
 ## Синтаксис
 ``` csharp
 public bool GetAlbumsByVideo(long? targetId, long ownerId, long videoId, bool? extended)

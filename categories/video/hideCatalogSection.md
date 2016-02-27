@@ -8,6 +8,7 @@ comments: true
 Скрывает для пользователя раздел видеокаталога.
 
 Страница документации ВКонтакте [video.hideCatalogSection](https://vk.com/dev/video.hideCatalogSection).
+
 ## Синтаксис
 ``` csharp
 public bool HideCatalogSection(long sectionId)
