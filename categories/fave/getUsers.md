@@ -8,6 +8,7 @@ comments: true
 Возвращает список пользователей, добавленных текущим пользователем в закладки.
 
 Страница документации ВКонтакте [fave.getUsers](https://vk.com/dev/fave.getUsers).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)

@@ -8,6 +8,7 @@ comments: true
 Удаляет пользователя из закладок.
 
 Страница документации ВКонтакте [fave.removeUser](https://vk.com/dev/fave.removeUser).
+
 ## Синтаксис
 ``` csharp
 public bool RemoveUser(long userId)

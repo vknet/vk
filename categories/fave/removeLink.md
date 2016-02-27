@@ -8,6 +8,7 @@ comments: true
 Удаляет ссылку из закладок.
 
 Страница документации ВКонтакте [fave.removeLink](https://vk.com/dev/fave.removeLink).
+
 ## Синтаксис
 ``` csharp
 public bool RemoveLink(string linkId)

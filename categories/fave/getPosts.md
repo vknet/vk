@@ -8,6 +8,7 @@ comments: true
 Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
 
 Страница документации ВКонтакте [fave.getPosts](https://vk.com/dev/fave.getPosts).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Post> GetPosts(int? count = null, int? offset = null)

@@ -8,6 +8,7 @@ comments: true
 Возвращает ссылки, добавленные в закладки текущим пользователем.
 
 Страница документации ВКонтакте [fave.getLinks](https://vk.com/dev/fave.getLinks).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)

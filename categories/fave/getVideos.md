@@ -8,6 +8,7 @@ comments: true
 Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
 
 Страница документации ВКонтакте [fave.getVideos](https://vk.com/dev/fave.getVideos).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)

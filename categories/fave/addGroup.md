@@ -8,6 +8,7 @@ comments: true
 Добавляет сообщество в закладки.
 
 Страница документации ВКонтакте [fave.addGroup](https://vk.com/dev/fave.addGroup).
+
 ## Синтаксис
 ``` csharp
 public bool AddGroup(long groupId)

@@ -8,6 +8,7 @@ comments: true
 Удаляет сообщество из закладок.
 
 Страница документации ВКонтакте [fave.removeGroup](https://vk.com/dev/fave.removeGroup).
+
 ## Синтаксис
 ``` csharp
 public bool RemoveGroup(long groupId)

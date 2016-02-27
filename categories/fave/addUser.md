@@ -8,6 +8,7 @@ comments: true
 Добавляет пользователя в закладки.
 
 Страница документации ВКонтакте [fave.addUser](https://vk.com/dev/fave.addUser).
+
 ## Синтаксис
 ``` csharp
 public bool AddUser(long userId)

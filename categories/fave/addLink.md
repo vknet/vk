@@ -8,6 +8,7 @@ comments: true
 Добавляет ссылку в закладки.
 
 Страница документации ВКонтакте [fave.addLink](https://vk.com/dev/fave.addLink).
+
 ## Синтаксис
 ``` csharp
 public bool AddLink(string link, string text)

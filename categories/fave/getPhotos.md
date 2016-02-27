@@ -8,6 +8,7 @@ comments: true
 Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне нравится".
 
 Страница документации ВКонтакте [fave.getPhotos](https://vk.com/dev/fave.getPhotos).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null)
