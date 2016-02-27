@@ -8,6 +8,7 @@ comments: true
 Возвращает статистику для записи на стене.
 
 Страница документации ВКонтакте [stats.getPostReach](https://vk.com/dev/stats.getPostReach).
+
 ## Синтаксис
 ``` csharp
 public PostReach GetPostReach(long ownerId, long postId)

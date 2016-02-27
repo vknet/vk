@@ -8,6 +8,7 @@ comments: true
 Добавляет данные о текущем сеансе в статистику посещаемости приложения.
 
 Страница документации ВКонтакте [stats.trackVisitor](https://vk.com/dev/stats.trackVisitor).
+
 ## Синтаксис
 ``` csharp
 public bool TrackVisitor()

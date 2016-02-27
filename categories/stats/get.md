@@ -8,6 +8,7 @@ comments: true
 Возвращает статистику сообщества или приложения.
 
 Страница документации ВКонтакте [stats.get](https://vk.com/dev/stats.get).
+
 ## Синтаксис
 ``` csharp
 public ReadOnlyCollection<StatsPeriod> GetByGroup(long groupId, DateTime dateFrom, DateTime? dateTo = null)
