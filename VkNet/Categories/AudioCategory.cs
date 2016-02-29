@@ -184,11 +184,11 @@ namespace VkNet.Categories
 				throw new ArgumentException("Query is null or empty.", "query");
 			}
 
-			VkResponseArray response = _vk.Call("audio.search", @params);
+			var response = _vk.Call("audio.search", @params);
 
-			totalCount = response[0];
+			totalCount = response["count"];
 
-			return response.Skip(1).ToReadOnlyCollectionOf<Audio>(r => r);
+			return response["items"].ToReadOnlyCollectionOf<Audio>(r => r);
 		}
 
 		/// <summary>
@@ -233,8 +233,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "aid", audioId },
-				{ "oid", ownerId }
+				{ "audio_id", audioId },
+				{ "owner_id", ownerId }
 			};
 
 			return _vk.Call("audio.delete", parameters);
@@ -288,8 +288,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "aid", audioId },
-				{ "oid", ownerId }
+				{ "audio_id", audioId },
+				{ "owner_id", ownerId }
 			};
 
 			return _vk.Call("audio.restore", parameters);

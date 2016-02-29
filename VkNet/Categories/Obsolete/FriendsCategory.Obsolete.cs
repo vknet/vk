@@ -122,16 +122,7 @@ namespace VkNet.Categories
         {
             VkErrors.ThrowIfNumberIsNegative(() => userId);
 
-            var parameters = new VkParameters
-                {
-                    {"user_id", userId},
-                    {"text", text},
-                    {"captcha_sid", captchaSid},
-                    {"captcha_key", captchaKey}
-                };
-
-            var response = _vk.Call("friends.add", parameters);
-            return response;
+            return Add(userId, text, null, captchaSid, captchaKey);
         }
 
         /// <summary>

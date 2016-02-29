@@ -268,24 +268,23 @@
 				@"{
                     'response': [
                       {
-                        'uid': 24181068,
+                        'user_id': 24181068,
                         'friend_status': 0
                       },
                       {
-                        'uid': 22911407,
+                        'user_id': 22911407,
                         'friend_status': 3
                       },
                       {
-                        'uid': 155810539,
+                        'user_id': 155810539,
                         'friend_status': 2
                       },
                       {
-                        'uid': 3505305,
+                        'user_id': 3505305,
                         'friend_status': 1
                       }
                     ]
                   }";
-
 			var friends = GetMockedFriendsCategory(url, json);
 			var dict = friends.AreFriends(new long[] { 24181068, 22911407, 155810539, 3505305 });
 
@@ -451,7 +450,7 @@
 		[Test]
 		public void Add_WithCaptcha_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&captcha_sid=1247329&captcha_key=hug2z&access_token=token";
+			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&captcha_sid=1247329&captcha_key=hug2z&v=5.44&access_token=token";
 			const string json =
 				@"{
                     'response': 1

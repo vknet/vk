@@ -210,15 +210,7 @@ namespace VkNet.Categories
         [Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
         public bool MoveToAlbum(IEnumerable<long> videoIds, long albumId, long? groupId = null)
         {
-            if (videoIds == null)
-                throw new ArgumentNullException("videoIds", "Не указаны идентификаторы видеозаписей.");
-
-            VkErrors.ThrowIfNumberIsNegative(() => albumId);
-
-            var parameters = new VkParameters { { "album_id", albumId }, { "group_id", groupId } };
-            parameters.Add("video_ids", videoIds);
-
-            return _vk.Call("video.moveToAlbum", parameters);
+	        throw new System.Exception("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.");
         }
 
         /// <summary>

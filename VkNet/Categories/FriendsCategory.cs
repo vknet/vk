@@ -156,7 +156,7 @@ namespace VkNet.Categories
 
 			VkResponseArray ids = _vk.Call("friends.areFriends", parameters);
 
-			return ids.ToDictionary(r => (long)r["uid"], r => (FriendStatus)r["friend_status"]);
+			return ids.ToDictionary(r => (long)r["user_id"], r => (FriendStatus)r["friend_status"]);
 		}
 
 		/// <summary>

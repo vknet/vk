@@ -578,7 +578,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public bool AddChatUser(long chatId, long userId)
 		{
-			var parameters = new VkParameters { { "chat_id", chatId }, { "uid", userId } };
+			var parameters = new VkParameters { { "chat_id", chatId }, { "user_id", userId } };
 
 			return _vk.Call("messages.addChatUser", parameters);
 		}

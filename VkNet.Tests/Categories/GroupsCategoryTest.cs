@@ -417,14 +417,14 @@
 			This.Action(() => groups.GetById(1)).Throws<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Test, Ignore("Это открытый метод, не требующий access_token.")]
 		public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var g = new GroupsCategory(new VkApi());
 			This.Action(() => g.IsMember(2, 1)).Throws<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Test, Ignore("Это открытый метод, не требующий access_token.")]
 		public void IsMemeber_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 		{
 			const string url = "https://api.vk.com/method/groups.isMember?gid=637247&uid=4793858&access_token=token";
@@ -467,7 +467,7 @@
 		[Test]
 		public void IsMember_WrongGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?gid=0&uid=4793858&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=0&user_ids=4793858&v=5.44&access_token=token";
 			const string json =
 				@"{
 					'error': {
@@ -506,24 +506,27 @@
 		[Test]
 		public void IsMember_WrongUid_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?gid=637247&uid=0&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=1000000000000&v=5.44&access_token=token";
 			const string json =
 				@"{
-					'response': 0
+					response: 0
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			var result = groups.IsMember(637247, 0);
+			var result = groups.IsMember(637247, 1000000000000);
 			Assert.That(result, Is.False);
 		}
 
 		[Test]
 		public void IsMemeber_UserIsAMember_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?gid=637247&uid=4793858&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=4793858&v=5.44&access_token=token";
 			const string json =
 				@"{
-					'response': 1
+					response: [{
+						member: 1,
+						user_id: 4793858
+					}]
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
@@ -534,10 +537,13 @@
 		[Test]
 		public void IsMemeber_UserNotAMember_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?gid=17683660&uid=4793858&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=17683660&user_ids=4793858&v=5.44&access_token=token";
 			const string json =
 				@"{
-					'response': 0
+					response: [{
+						member: 0,
+						user_id: 4793858
+					}]
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
