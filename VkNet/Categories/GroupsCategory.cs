@@ -85,7 +85,7 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => @params.UserId);
 			var response = _vk.Call("groups.get", @params);
 			// в первой записи количество членов группы для (response["items"])
-			if (!@params.Extended.Value)
+			if (@params.Extended == null || !@params.Extended.Value)
 			{
 				return response["items"].ToReadOnlyCollectionOf(id => new Group { Id = id });
 			}
@@ -177,7 +177,7 @@ namespace VkNet.Categories
 					{
 						throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
 					}
-					userIds.ToList().Add((long) userId);
+					userIds.ToList().Add(userId.Value);
 				}
 				else
 				{
@@ -187,7 +187,7 @@ namespace VkNet.Categories
 					}
 					userIds = new List<long>
 					{
-						(long) userId
+						userId.Value
 					};
 				}
 			}
@@ -354,10 +354,10 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			var parameters = new VkParameters
-				{
-					{"group_id", groupId},
-					{"user_id", userId}
-				};
+			{
+				{"group_id", groupId},
+				{"user_id", userId}
+			};
 
 			return _vk.Call("groups.unbanUser", parameters);
 		}
