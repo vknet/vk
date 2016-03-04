@@ -13,10 +13,6 @@
         /// </summary>
         public long? UserId { get; set; }
 
-        /// <summary>
-        /// Идентификатор диалога, историю сообщений которого необходимо получить.
-        /// </summary>
-        public long? ChatId { get; set; }
 
         /// <summary>
         /// Идентификатор назначения.
@@ -26,7 +22,7 @@
         /// <summary>
         /// Количество сообщений, которое необходимо получить (но не более 200)
         /// </summary>
-        public uint Count { get; set; }
+        public long? Count { get; set; }
 
         /// <summary>
         /// Смещение, необходимое для выборки определенного подмножества сообщений,
@@ -57,7 +53,6 @@
                 { "offset", p.Offset },
                 { "count", p.Count },
                 { "user_id", p.UserId },
-                { "chat_id", p.ChatId },
                 { "peer_id", p.PeerId },
                 { "start_message_id", p.StartMessageId },
                 { "rev", p.Reversed }
