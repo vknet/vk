@@ -1026,8 +1026,8 @@ namespace VkNet.Categories
 			var server = responseJson["server"].ToString();
 			var hash = responseJson["hash"].ToString();
 			var photo = responseJson["photo"].ToString();
-			var cropData = responseJson["crop_data"].ToString();
-			var cropHash = responseJson["crop_hash"].ToString();
+			var cropData = responseJson["crop_data"]?.ToString();
+			var cropHash = responseJson["crop_hash"]?.ToString();
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
 				{ "photo", photo },
