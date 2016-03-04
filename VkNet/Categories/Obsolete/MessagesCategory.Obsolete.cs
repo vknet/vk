@@ -93,7 +93,7 @@ namespace VkNet.Categories
                 Offset = offset,
                 StartMessageId = startMessageId,
                 Reversed = inReverse,
-                ChatId = isChat ? id : (long?)null,
+                PeerId = isChat ? id : (long?)null,
                 UserId = isChat ? (long?)null : id,
                 Count = count.Value
             };
