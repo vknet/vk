@@ -36,8 +36,8 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.20.0.0")]
-[assembly: AssemblyFileVersion("1.20.0.0")]
+[assembly: AssemblyVersion("1.21.0.0")]
+[assembly: AssemblyFileVersion("1.21.0.0")]
 [assembly: InternalsVisibleTo("VkNet.Tests")]
 [assembly: InternalsVisibleTo("VkApiRunner")]
 [assembly: InternalsVisibleTo("Injector")]
