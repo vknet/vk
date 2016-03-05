@@ -161,6 +161,11 @@
                     var img = Convert.ToString(response["captcha_img"]);
                     throw new CaptchaNeededException(sid, img);
                 }
+                case 17:
+                {
+                    var redirectUri = Convert.ToString(response["redirect_uri"]);
+                    throw new NeedValidationException(message, redirectUri);
+                }
                 case 5:
                 {
                     throw new UserAuthorizationFailException(message, code);
