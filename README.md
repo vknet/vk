@@ -8,13 +8,12 @@ Coverity: [![Coverity Scan Build Status](https://scan.coverity.com/projects/6249
 
 Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-# Roadmap
-Задачи на 1.21 версию:
+#В nuget доступна версия 1.21#
 
-- [x] Привести реализованные методы к актуальному состоянию API на текущий момент v 5.45
-- [x] Актуализировать справку по реализованым методам
-- [ ] Переписать все тесты (Многие из них устарели). 
-- [x] Перевести справку на новый движок markdown
+# План развития проекта
+
+- [ ] Переписать все тесты (Многие из них устарели), а так же перейти на версию NUnit3.
+- [ ] Добавить в справку примеры использования, для реализованых методов.
 
 --------------------------------------------
-Пожертвование для [@inyutin-maxim](https://github.com/inyutin-maxim): [PayPal](https://paypal.me/inyutinmaxim) или [Яндекс.Деньги](https://money.yandex.ru/to/410012783295317).
+Пожертвование на развитие проекта [@inyutin-maxim](https://github.com/inyutin-maxim): [PayPal](https://paypal.me/inyutinmaxim) или [Яндекс.Деньги](https://money.yandex.ru/to/410012783295317).
