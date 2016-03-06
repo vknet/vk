@@ -70,6 +70,7 @@
     <Compile Include="Enums\SafetyEnums\FeedType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
+    <Compile Include="Exception\NeedValidationException.cs" />
     <Compile Include="Exception\OutOfLimitsException.cs" />
     <Compile Include="Model\AccountChangePasswordResult.cs" />
     <Compile Include="Model\DocumentType.cs" />
