@@ -31,7 +31,7 @@
         public static readonly Settings Photos = RegisterPossibleValue(1 << 2, "photos");
 
         /// <summary>
-        /// Доступ к аудиозаписям.
+        /// Доступ к аудио записям.
         /// </summary>
         public static readonly Settings Audio = RegisterPossibleValue(1 << 3, "audio");
 
@@ -117,7 +117,7 @@
 		public static readonly Settings Market = RegisterPossibleValue(1 << 27, "market");
 
 		/// <summary>
-		/// Доступ ко всем возможным операциям (без Offline и NoHttps).
+		/// Доступ ко всем возможным операциям (без Off line и NoHttps).
 		/// </summary>
 		public static readonly Settings All = Notify | Friends | Photos | Audio | Video | Documents | Notes | Pages | Status | Wall | Groups | Messages | Notifications
                                               | Statistic | Ads | Market;

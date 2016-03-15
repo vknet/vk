@@ -22,13 +22,22 @@
     /// <param name="api">Экземпляр API у которого истекло время токена</param>
     public delegate void VkApiDelegate(VkApi api);
 
-    /// <summary>
-    /// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
-    /// группами и т.п.).
-    /// </summary>
-    public class VkApi
+	/// <summary>
+	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
+	/// группами и т.п.).
+	/// </summary>
+	public class VkApi
     {
-        internal ApiAuthParams _ap;
+		/// <summary>
+		/// Версия API vk.com.
+		/// </summary>
+		[NotNull]
+		public readonly string VkApiVersion = "5.50";
+
+		/// <summary>
+		/// Параметры авторизации.
+		/// </summary>
+		private ApiAuthParams _ap;
         /// <summary>
         /// Таймер.
         /// </summary>
@@ -40,7 +49,7 @@
         /// </summary>
         private int _requestsPerSecond;
         /// <summary>
-        /// Минимальное время, которое должно пройти между запросами чтобы не привысить кол-во запросов в секунду.
+        /// Минимальное время, которое должно пройти между запросами чтобы не превысить кол-во запросов в секунду.
         /// </summary>
         private int _minInterval;
 
@@ -117,7 +126,7 @@
         public GroupsCategory Groups
         { get; private set; }
         /// <summary>
-        /// API для работы с аудиозаписями.
+        /// API для работы с аудио записями.
         /// </summary>
         public AudioCategory Audio
         { get; private set; }
@@ -142,7 +151,7 @@
         public FaveCategory Fave
         { get; private set; }
         /// <summary>
-        /// API для работы с видеофайлами.
+        /// API для работы с видео файлами.
         /// </summary>
         public VideoCategory Video
         { get; private set; }
@@ -294,8 +303,8 @@
         /// <param name="emailOrPhone">Email или телефон</param>
         /// <param name="password">Пароль</param>
         /// <param name="settings">Права доступа для приложения</param>
-        /// <param name="code">Делегат получения кода для двухфакторной авторизации</param>
-        /// <param name="captchaSid">Идентикикатор капчи</param>
+        /// <param name="code">Делегат получения кода для двух факторной авторизации</param>
+        /// <param name="captchaSid">Идентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи</param>
         [Obsolete("Устаревший метод, будет удален. Используйте метод Get(Authorize @params)")]
         public void Authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null)
@@ -322,6 +331,7 @@
             rTask.Start();
             return rTask;
         }
+
         /// <summary>
         /// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
         /// </summary>
@@ -329,20 +339,25 @@
         /// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
         public void Authorize(string accessToken, long? userId = null)
         {
-            if (!string.IsNullOrWhiteSpace(accessToken))
-            {
-                StopTimer();
+	        if (string.IsNullOrWhiteSpace(accessToken))
+	        {
+		        return;
+	        }
 
-                AccessToken = accessToken;
-                UserId = userId;
-                _ap = new ApiAuthParams();
-            }
+	        StopTimer();
+
+	        AccessToken = accessToken;
+	        UserId = userId;
+	        _ap = new ApiAuthParams();
         }
 
-        /// <summary>
-        /// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
-        /// </summary>
-        /// <param name="code">Делегат двухфакторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
+		/// <summary>
+		/// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.
+		/// </summary>
+		/// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
+		/// <exception cref="AggregateException">
+		/// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля
+		/// </exception>
 		public void RefreshToken(Func<string> code = null)
         {
             if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
@@ -364,7 +379,7 @@
         /// <summary>
         /// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
         /// </summary>
-        /// <param name="code">Делегат двухфакторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
+        /// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
         public Task RefreshTokenAsync(Func<string> code = null)
         {
             var rTask = new Task(() =>
@@ -382,8 +397,8 @@
         /// <param name="appId">Идентификатор приложения</param>
         /// <param name="emailOrPhone">Email или телефон</param>
         /// <param name="password">Пароль</param>
-        /// <param name="code">Делегат получения кода для двухфакторной авторизации</param>
-        /// <param name="captchaSid">Идентикикатор капчи</param>
+        /// <param name="code">Делегат получения кода для двух факторной авторизации</param>
+        /// <param name="captchaSid">Идентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи</param>
         /// <param name="settings">Права доступа для приложения</param>
         /// <param name="host">Имя узла прокси-сервера.</param>
@@ -453,23 +468,17 @@
         /// <param name="parameters">Параметры.</param>
         /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
         /// <param name="apiVersion">Версия API.</param>
-        /// <returns></returns>
+        /// <returns>Результат выполнения запроса.</returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
         internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, string apiVersion = null)
         {
             if (!parameters.ContainsKey("v"))
             {
-                if (!string.IsNullOrEmpty(apiVersion))
-                    parameters.Add("v", apiVersion);
-                else
-                {
-                    //TODO: WARN: раскомментировать после добавления аннотаций ко всем методам
-                    //throw new InvalidParameterException("You must use ApiVersionAttribute except adding \"v\" parameter to VkParameters");
-                }
+	            parameters.Add("v", !string.IsNullOrEmpty(apiVersion) ? apiVersion : VkApiVersion);
             }
             else
             {
-                //TODO: WARN: раскомментировать, исправив ошибки в существующем коде
+                //TODO: WARN: рас комментировать, исправив ошибки в существующем коде
                 //throw new InvalidParameterException("You must use ApiVersionAttribute except adding \"v\" parameter to VkParameters");
             }
 
@@ -514,7 +523,7 @@
                 throw new AccessTokenInvalidException();
             }
 
-            // Защита от превышения кол-ва запросов в секунду
+            // Защита от превышения количества запросов в секунду
             if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
                 lock (_expireTimer)

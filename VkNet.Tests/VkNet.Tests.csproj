@@ -38,22 +38,19 @@
     <CodeAnalysisRuleSet>..\VkNet\VkNet.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNUnit, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentNUnit.0.2\lib\net35\FluentNUnit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.0\lib\net40\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTest.cs" />
     <Compile Include="Categories\AccountCategoryTest.cs" />
     <Compile Include="Categories\AudioCategoryTest.cs" />
     <Compile Include="Categories\DatabaseCategoryTest.cs" />
@@ -83,6 +80,7 @@
     <Compile Include="Categories\UsersCategoryTest.cs" />
     <Compile Include="Enum\Filters\VideoFiltersTest.cs" />
     <Compile Include="Enum\SafetyEnums\PhotoAlbumTypeTest.cs" />
+    <Compile Include="Helper\DateHelper.cs" />
     <Compile Include="VkApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\VkErrorsTest.cs" />

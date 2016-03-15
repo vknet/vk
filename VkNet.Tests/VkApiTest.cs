@@ -1,7 +1,4 @@
-﻿using System.CodeDom;
-using System.IO;
-
-namespace VkNet.Tests
+﻿namespace VkNet.Tests
 {
 	using System;
 	using System.Collections.Generic;
@@ -10,37 +7,21 @@ namespace VkNet.Tests
 	using Exception;
 	using Enums.Filters;
 	using VkNet.Utils;
-	using FluentNUnit;
 
 	[TestFixture]
-	public class VkApiTest
+	public class VkApiTest : BaseTest
 	{
-		private const string Email = "test@test.com";
-		private const string Password = "pwd1234";
-		private const int AppId = 123;
-
-		private VkApi _vk;
-		private IDictionary<string, string> _values;
-
-		[SetUp]
-		public void SetUp()
-		{
-			_vk = new VkApi { AccessToken = "token" };
-			_values = new Dictionary<string, string>();
-		}
-		
 		[Test]
 		public void GetApiUrl_IntArray()
 		{
-			var arr = new[] {1, 65};
+			var arr = new[] { 1, 65 };
 
-			//var parameters = new VkParameters { { "country_ids", arr } };
 			var parameters = new VkParameters();
 			parameters.Add<int>("country_ids", arr);
 
 			const string expected = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&access_token=token";
 
-			var url = _vk.GetApiUrl("database.getCountriesById", parameters);
+			var url = Api.GetApiUrl("database.getCountriesById", parameters);
 
 			Assert.That(url, Is.EqualTo(expected));
 		}
@@ -48,32 +29,41 @@ namespace VkNet.Tests
 		[Test]
 		public void VkApi_Constructor_SetDefaultMethodCategories()
 		{
-			Assert.That(_vk.Users, Is.Not.Null);
-			Assert.That(_vk.Friends, Is.Not.Null);
-			Assert.That(_vk.Status, Is.Not.Null);
-			Assert.That(_vk.Messages, Is.Not.Null);
-			Assert.That(_vk.Groups, Is.Not.Null);
-			Assert.That(_vk.Audio, Is.Not.Null);
-			Assert.That(_vk.Wall, Is.Not.Null);
-			Assert.That(_vk.Database, Is.Not.Null);
-			Assert.That(_vk.Utils, Is.Not.Null);
-
-			_vk.Fave.ShouldNotBeNull();
-			_vk.Video.ShouldNotBeNull();
-			_vk.Account.ShouldNotBeNull();
-			_vk.Photo.ShouldNotBeNull();
-			// TODO: continue later
+			Assert.That(Api.Users, Is.Not.Null);
+			Assert.That(Api.Friends, Is.Not.Null);
+			Assert.That(Api.Status, Is.Not.Null);
+			Assert.That(Api.Messages, Is.Not.Null);
+			Assert.That(Api.Groups, Is.Not.Null);
+			Assert.That(Api.Audio, Is.Not.Null);
+			Assert.That(Api.Wall, Is.Not.Null);
+			Assert.That(Api.Database, Is.Not.Null);
+			Assert.That(Api.Utils, Is.Not.Null);
+			Assert.That(Api.Fave, Is.Not.Null);
+			Assert.That(Api.Video, Is.Not.Null);
+			Assert.That(Api.Account, Is.Not.Null);
+			Assert.That(Api.Photo, Is.Not.Null);
+			Assert.That(Api.Docs, Is.Not.Null);
+			Assert.That(Api.Likes, Is.Not.Null);
+			Assert.That(Api.Pages, Is.Not.Null);
+			Assert.That(Api.Gifts, Is.Not.Null);
+			Assert.That(Api.Apps, Is.Not.Null);
+			Assert.That(Api.NewsFeed, Is.Not.Null);
+			Assert.That(Api.Stats, Is.Not.Null);
+			Assert.That(Api.Auth, Is.Not.Null);
+			Assert.That(Api.Markets, Is.Not.Null);
 		}
 
 		[Test]
 		public void GetApiUrl_GetProfile_RightUrl()
 		{
-			_values.Add("uid", "66748");
-			const string expected = "https://api.vk.com/method/getProfiles?uid=66748&access_token=token";
+			Parameters.Add("uid", "66748");
 
-			var output = _vk.GetApiUrl("getProfiles", _values);
+			var output = Api.GetApiUrl("getProfiles", Parameters);
 
 			Assert.That(output, Is.Not.Null.Or.Empty);
+
+			const string expected = "https://api.vk.com/method/getProfiles?uid=66748&access_token=token";
+
 			Assert.That(output, Is.EqualTo(expected));
 		}
 
@@ -81,32 +71,34 @@ namespace VkNet.Tests
 		public void GetApiUrl_GetProfile_WithFields()
 		{
 			var fields = ProfileFields.FirstName | ProfileFields.Domain | ProfileFields.Education;
-			_values.Add("uid", "66748");
-			_values.Add("fields", fields.ToString().Replace(" ", ""));
-			const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,domain,education&access_token=token";
 
-			var output = _vk.GetApiUrl("getProfiles", _values);
+			Parameters.Add("uid", "66748");
+			Parameters.Add("fields", fields);
+
+			var output = Api.GetApiUrl("getProfiles", Parameters);
+
+			const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,domain,education&access_token=token";
 
 			Assert.That(output, Is.EqualTo(expected));
 		}
 
 		//[Test]
-		//[Ignore]
+		//[Ignore("")]
 		//public void Authorize_BadLoginOrPasswrod_ThrowVkApiAuthorizationException()
 		//{
-		//   const string urlWithBadLoginOrPassword = "http://oauth.vk.com/oauth/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&m=4&email=mail";            
+		//   const string urlWithBadLoginOrPassword = "http://oauth.vk.com/oauth/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&m=4&email=mail";
 		//    var browser = new Mock<IBrowser>();
 		//    browser.Setup(b => b.Authorize(AppId, Email, Password, Settings.Friends)).Returns(VkAuthorization.From(new Uri(urlWithBadLoginOrPassword)));
 		//
-		//    _vk.Browser = browser.Object;
-		//    var ex = This.Action(() => _vk.Authorize(AppId, Email, Password, Settings.Friends)).Throws<VkApiAuthorizationException>();
+		//    Api.Browser = browser.Object;
+		//    var ex = This.Action(() => Api.Authorize(AppId, Email, Password, Settings.Friends)).Throws<VkApiAuthorizationException>();
 		//    ex.Message.ShouldEqual(VkApi.InvalidAuthorization);
 		//}
 
 		[Test]
 		public void Call_ThrowsCaptchaNeededException()
 		{
-			const string json =
+			Json =
 				@"{
 					'error': {
 					  'error_code': 14,
@@ -141,17 +133,14 @@ namespace VkNet.Tests
 					  'captcha_img': 'http://api.vk.com/captcha.php?sid=548747100284&s=1'
 					}
 				  }";
-
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == json);
-			var api = new VkApi {Browser = browser};
-
-			var ex = This.Action(() => api.Call("messages.send", VkParameters.Empty, true)).Throws<CaptchaNeededException>();
-
-			ex.Sid.ShouldEqual(548747100691);
-			ex.Img.ShouldEqual(new Uri("http://api.vk.com/captcha.php?sid=548747100284&s=1"));
+			var ex = Assert.Throws<CaptchaNeededException>(() => Api.Call("messages.send", VkParameters.Empty, true));
+			Assert.That(ex.Sid, Is.EqualTo(548747100691));
+			Assert.That(ex.Img, Is.EqualTo(new Uri("http://api.vk.com/captcha.php?sid=548747100284&s=1")));
+			// TODO Перенести в VkErrorsTest
 		}
 
-		[Test, Ignore("Почему то тест стал падать")]
+		[Test]
+		[Ignore("Не работает ")] // TODO не работает
 		public void Call_NotMoreThen3CallsPerSecond()
 		{
 			var invocationCount = 0;
@@ -160,7 +149,7 @@ namespace VkNet.Tests
 				   .Returns(@"{ ""response"": 2 }")
 				   .Callback(() => invocationCount++);
 
-			var api = new VkApi {Browser = browser.Object};
+			var api = new VkApi { Browser = browser.Object };
 
 			var start = DateTimeOffset.Now;
 			while (true)
@@ -183,27 +172,45 @@ namespace VkNet.Tests
 		[Test]
 		public void Invoke_VkParams()
 		{
-			const string resultJson = @"{ 'response' : [] }";
+			Json = @"{ 'response' : [] }";
+			Parameters = new VkParameters { { "count", 23 } };
+			var json = Api.Invoke("example.get", Parameters, true);
 
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == resultJson);
-			var api = new VkApi{Browser =  browser};
-			var parameters = new VkParameters {{"count", 23}};
-			var json = api.Invoke("example.get", parameters, true);
-
-			json.ShouldEqual(resultJson);
+			StringAssert.AreEqualIgnoringCase(json, Json);
 		}
 
 		[Test]
 		public void Invoke_DictionaryParams()
 		{
-			const string resultJson = @"{ 'response' : [] }";
-
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(It.IsAny<string>()) == resultJson);
-			var api = new VkApi { Browser = browser };
+			Json = @"{ 'response' : [] }";
 			var parameters = new Dictionary<string, string> { { "count", "23" } };
-			var json = api.Invoke("example.get", parameters, true);
+			var json = Api.Invoke("example.get", parameters, true);
 
-			json.ShouldEqual(resultJson);
+			StringAssert.AreEqualIgnoringCase(json, Json);
+		}
+
+		[Test]
+		public void AuthorizeByToken()
+		{
+			Api.Authorize("token", 1);
+			Assert.That(Api.AccessToken, Is.EqualTo("token"));
+			Assert.That(Api.UserId, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void AuthorizeByTokenNegative()
+		{
+			Api = new VkApi(); // В базовом классе предопределено свойство AccessToken
+			Api.Authorize("", 1);
+			Assert.That(Api.AccessToken, Is.Null);
+			Assert.That(Api.UserId, Is.Null);
+		}
+
+		[Test]
+		public void RefreshTokenNegative()
+		{
+			var ex = Assert.Throws<AggregateException>(() => Api.RefreshToken());
+			Assert.That(ex.Message, Is.EqualTo("Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля"));
 		}
 	}
 }

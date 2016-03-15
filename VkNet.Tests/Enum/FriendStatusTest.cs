@@ -1,4 +1,6 @@
-﻿using FluentNUnit;
+﻿
+
+using VkNet.Exception;
 
 namespace VkNet.Tests.Enum
 {
@@ -15,8 +17,8 @@ namespace VkNet.Tests.Enum
         [Test]
         public void GetFriendStatus_WrongInput_ThrowArgumentException()
         {
-            This.Action(() => Utilities.EnumFrom<FriendStatus>(5)).Throws<ArgumentException>();
-        }
+			Assert.Throws<ArgumentException>(() => Utilities.EnumFrom<FriendStatus>(5));
+		}
 
         [Test]
         public void GetFriendStatus_IterateAllValues_Success()

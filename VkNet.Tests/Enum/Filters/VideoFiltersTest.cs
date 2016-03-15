@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using VkNet.Enums.Filters;
-using FluentNUnit;
+
 
 namespace VkNet.Tests.Enum.Filters
 {
@@ -18,13 +18,13 @@ namespace VkNet.Tests.Enum.Filters
             var all = VideoFilters.All;
             var shortLong = videoFilters | filters;
 
-            mp4.ToString().ShouldEqual("mp4");
-            youtube.ToString().ShouldEqual("youtube");
-            vimeo.ToString().ShouldEqual("vimeo");
-            filters.ToString().ShouldEqual("long");
-            videoFilters.ToString().ShouldEqual("short");
-            all.ToString().ShouldEqual("mp4,youtube,vimeo,short,long");
-            shortLong.ToString().ShouldEqual("short,long");
-        }
+			Assert.That(mp4.ToString(), Is.EqualTo("mp4"));
+			Assert.That(youtube.ToString(), Is.EqualTo("youtube"));
+			Assert.That(vimeo.ToString(), Is.EqualTo("vimeo"));
+			Assert.That(filters.ToString(), Is.EqualTo("long"));
+			Assert.That(videoFilters.ToString(), Is.EqualTo("short"));
+			Assert.That(all.ToString(), Is.EqualTo("mp4,youtube,vimeo,short,long"));
+			Assert.That(shortLong.ToString(), Is.EqualTo("short,long"));
+		}
     }
 }
