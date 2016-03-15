@@ -14,6 +14,8 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 
 - [ ] Переписать все тесты (Многие из них устарели), а так же перейти на версию NUnit3.
 - [ ] Добавить в справку примеры использования, для реализованых методов.
+- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии.
+- [ ] Выпилить Injector.
 
 --------------------------------------------
 Пожертвование на развитие проекта [@inyutin-maxim](https://github.com/inyutin-maxim): [PayPal](https://paypal.me/inyutinmaxim) или [Яндекс.Деньги](https://money.yandex.ru/to/410012783295317).
