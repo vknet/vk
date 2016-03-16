@@ -15,8 +15,19 @@ namespace VkNet.Tests
 		/// </summary>
 		public VkApi Api;
 
+		/// <summary>
+		/// Ответ от сервера.
+		/// </summary>
 		public string Json = null;
 
+		/// <summary>
+		/// Url запроса.
+		/// </summary>
+		public string Url = null;
+
+		/// <summary>
+		/// Параметры запроса.
+		/// </summary>
 		public VkParameters Parameters = new VkParameters();
 
 		/// <summary>
@@ -26,14 +37,23 @@ namespace VkNet.Tests
 		public void Init()
 		{
 			var browser = new Mock<IBrowser>();
-			browser.Setup(m => m.GetJson(It.IsAny<string>())).Returns(() =>
-			{
-				if (string.IsNullOrWhiteSpace(Json))
+			browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url)))
+				.Callback(() =>
 				{
-					throw new ArgumentNullException(nameof(Json), "Json не может быть равен null. Обновите значение поля Json");
-				}
-				return Json;
-			});
+					if (string.IsNullOrWhiteSpace(Url))
+					{
+						throw new ArgumentNullException(nameof(Json), "Url не может быть равен null. Обновите значение поля Url");
+					}
+				})
+				.Returns(() =>
+				{
+					if (string.IsNullOrWhiteSpace(Json))
+					{
+						throw new ArgumentNullException(nameof(Json), "Json не может быть равен null. Обновите значение поля Json");
+					}
+					browser.VerifyAll();
+					return Json;
+				});
 			Api = new VkApi
 			{
 				AccessToken = "token",
@@ -49,6 +69,7 @@ namespace VkNet.Tests
 		{
 			Json = null;
 			Parameters = new VkParameters();
+			Url = null;
 		}
 	}
 }

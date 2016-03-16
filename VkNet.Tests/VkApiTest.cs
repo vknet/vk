@@ -98,6 +98,7 @@
 		[Test]
 		public void Call_ThrowsCaptchaNeededException()
 		{
+			Url = "https://api.vk.com/method/messages.send?v=5.50&access_token=token";
 			Json =
 				@"{
 					'error': {
@@ -172,6 +173,7 @@
 		[Test]
 		public void Invoke_VkParams()
 		{
+			Url = "https://api.vk.com/method/example.get?count=23&access_token=token";
 			Json = @"{ 'response' : [] }";
 			Parameters = new VkParameters { { "count", 23 } };
 			var json = Api.Invoke("example.get", Parameters, true);
@@ -182,6 +184,7 @@
 		[Test]
 		public void Invoke_DictionaryParams()
 		{
+			Url = "https://api.vk.com/method/example.get?count=23&access_token=token";
 			Json = @"{ 'response' : [] }";
 			var parameters = new Dictionary<string, string> { { "count", "23" } };
 			var json = Api.Invoke("example.get", parameters, true);

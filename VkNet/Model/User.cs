@@ -510,7 +510,7 @@ namespace VkNet.Model
 				FriendLists = response["lists"],
 				Domain = response["domain"],
 				HasMobile = response["has_mobile"],
-				MobilePhone = response["mobile_phone"],
+				MobilePhone = response["mobile_phone"] ?? response["phone"],
 				HomePhone = response["home_phone"],
 				Connections = response,
 				Site = response["site"],
