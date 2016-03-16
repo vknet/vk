@@ -259,9 +259,10 @@
             NewsFeed = new NewsFeedCategory(this);
             Stats = new StatsCategory(this);
             Auth = new AuthCategory(this);
-			Markets = new MarketsCategory(this);
+            Markets = new MarketsCategory(this);
 
             RequestsPerSecond = 3;
+            LastInvokeTime = DateTimeOffset.Now;
         }
 
         /// <summary>
