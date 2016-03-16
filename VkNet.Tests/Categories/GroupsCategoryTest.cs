@@ -1280,7 +1280,8 @@
 		[Test]
 		public void BanUser_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/groups.banUser?group_id=6596823&user_id=242506753&comment=просто комментарий&comment_visible=1&access_token=token";
+			const string url =
+				"https://api.vk.com/method/groups.banUser?group_id=6596823&user_id=242506753&comment=просто комментарий&comment_visible=1&v=5.50&access_token=token";
 			const string json =
 				@"{
 					'response': 1

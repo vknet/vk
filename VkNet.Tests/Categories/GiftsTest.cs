@@ -13,6 +13,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCase()
 		{
+			Url = "https://api.vk.com/method/gifts.get?user_id=32190123&v=5.44&access_token=token";
 			Json =
 				@"{
 					response: {
