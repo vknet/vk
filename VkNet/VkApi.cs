@@ -262,7 +262,6 @@
             Markets = new MarketsCategory(this);
 
             RequestsPerSecond = 3;
-            LastInvokeTime = DateTimeOffset.Now;
         }
 
         /// <summary>
@@ -334,6 +333,7 @@
             {
                 StopTimer();
 
+            	LastInvokeTime = DateTimeOffset.Now;
                 AccessToken = accessToken;
                 UserId = userId;
                 _ap = new ApiAuthParams();
@@ -394,7 +394,8 @@
                                string host = null, int? port = null)
         {
             StopTimer();
-
+            
+            LastInvokeTime = DateTimeOffset.Now;
             var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
             if (!authorization.IsAuthorized)
             {
