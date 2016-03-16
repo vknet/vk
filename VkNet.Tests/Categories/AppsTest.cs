@@ -1,31 +1,21 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Moq;
 using NUnit.Framework;
-using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class AppsTest
+	public class AppsTest : BaseTest
 	{
-		private AppsCategory GetMockedAppsCategory(string url, string json)
-		{
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-			return new AppsCategory(new VkApi { AccessToken = "token", Browser = browser });
-		}
-
 		[Test]
 		public void GetCatalog_NormalCase()
 		{
-
-			const string url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=5.44&access_token=token";
-			const string json =
+			Url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': {
 						'count': 8710,
@@ -90,9 +80,9 @@ namespace VkNet.Tests.Categories
 						}]
 						}
 				  }";
-			var mock = GetMockedAppsCategory(url, json);
+
 			long total;
-			var app = mock.GetCatalog(out total, new AppGetCatalogParams());
+			var app = Api.Apps.GetCatalog(out total, new AppGetCatalogParams());
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("Подземелья!"));
 		}
@@ -100,10 +90,9 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCase()
 		{
-
-			const string url =
+			Url =
 				"https://api.vk.com/method/apps.get?app_ids=4268118&platform=web&extended=0&return_friends=0&v=5.44&access_token=token";
-			const string json =
+			Json =
 				@"{
 					'response': {
 						'count': 1,
@@ -129,9 +118,9 @@ namespace VkNet.Tests.Categories
 						}]
 					}
 				  }";
-			var mock = GetMockedAppsCategory(url, json);
+
 			long total;
-			var app = mock.Get(out total, new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
+			var app = Api.Apps.Get(out total, new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
 			Assert.That(total, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("raventestapp"));
 		}
@@ -139,31 +128,31 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteAppRequests_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/apps.deleteAppRequests?v=5.44&access_token=token";
-			const string json =
+			Url = "https://api.vk.com/method/apps.deleteAppRequests?v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': 1
 				  }";
-			var mock = GetMockedAppsCategory(url, json);
+
 			long total;
-			var app = mock.DeleteAppRequests();
+			var app = Api.Apps.DeleteAppRequests();
 			Assert.That(app, Is.True);
 		}
 
 		[Test]
 		public void GetFriendsList_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/apps.getFriendsList?type=invite&v=5.44&access_token=token";
-			const string json =
+			Url = "https://api.vk.com/method/apps.getFriendsList?type=invite&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': {
 						'count': 130,
 						'items': [310881357, 221634238, 72815776, 138230483, 228907945, 63838918, 229634083, 325170546, 131518798, 239679269, 114253497, 224688907, 319045109, 197866462, 204823258, 283140346, 74653727, 159042291, 241237764, 50894115]
 					}
 				  }";
-			var mock = GetMockedAppsCategory(url, json);
+
 			long total;
-			var app = mock.GetFriendsList(out total, AppRequestType.Invite);
+			var app = Api.Apps.GetFriendsList(out total, AppRequestType.Invite);
 			Assert.That(total, Is.GreaterThan(0));
 			Assert.That(app, Is.Not.Null);
 		}
@@ -171,8 +160,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetFriendsListEx_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/apps.getFriendsList?extended=1&offset=1&type=invite&fields=online&count=5&v=5.44&access_token=token";
-			const string json =
+			Url = "https://api.vk.com/method/apps.getFriendsList?extended=1&offset=1&type=invite&fields=online&count=5&v=5.44&access_token=token";
+			Json =
 				@"{
 					'response': {
 						'count': 130,
@@ -199,9 +188,9 @@ namespace VkNet.Tests.Categories
 						}]
 					}
 				  }";
-			var mock = GetMockedAppsCategory(url, json);
+
 			long total;
-			var app = mock.GetFriendsList(out total, AppRequestType.Invite, true, 5, 1, UsersFields.Online);
+			var app = Api.Apps.GetFriendsList(out total, AppRequestType.Invite, true, 5, 1, UsersFields.Online);
 			Assert.That(total, Is.GreaterThan(0));
 			Assert.That(app, Is.Not.Null);
 		}
