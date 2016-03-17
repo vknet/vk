@@ -1,4 +1,7 @@
-﻿namespace VkNet.Tests.Categories
+﻿using System;
+using VkNet.Exception;
+
+namespace VkNet.Tests.Categories
 {
 	using System.Linq;
 	using NUnit.Framework;
@@ -21,8 +24,8 @@
 		[Test]
 		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			//This.Action(() => friendsCategory.Get(1)).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.Get(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -105,8 +108,8 @@
 		[Test]
 		public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			//This.Action(() => friendsCategory.GetAppUsers()).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.GetAppUsers(), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -150,8 +153,8 @@
 		[Test]
 		public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			//This.Action(() => friendsCategory.GetOnline(1)).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.GetOnline(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -192,8 +195,8 @@
 		[Test]
 		public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			//This.Action(() => friendsCategory.GetMutual(2, 3)).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.GetMutual(2, 3), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -237,15 +240,15 @@
 		[Test]
 		public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			//This.Action(() => friendsCategory.AreFriends(new long[] { 2, 3 })).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.AreFriends(new long[] { 2, 3 }), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void AreFriends_NullInput_ThrowArgumentNullException()
 		{
-			//var friendsCategory = new FriendsCategory(new VkApi { AccessToken = "token" });
-			//This.Action(() => friendsCategory.AreFriends(null)).Throws<ArgumentNullException>();
+			var cat = GetMockedFriendsCategory("", "");
+			Assert.That(() => cat.AreFriends(null), Throws.InstanceOf<ArgumentNullException>());
 		}
 
 		[Test]
@@ -323,14 +326,14 @@
 		public void AddList_NameIsEmpty_ThrowException()
 		{
 			var cat = GetMockedFriendsCategory("", "");
-			//This.Action(() => cat.AddList("")).Throws<ArgumentNullException>();
+			Assert.That(() => cat.AddList(""), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
 		public void DeleteList_IdIsNegative_ThrowException()
 		{
 			var cat = GetMockedFriendsCategory("", "");
-			//This.Action(() => cat.DeleteList(-1)).Throws<ArgumentException>();
+			Assert.That(() => cat.DeleteList(-1), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -400,7 +403,7 @@
 		public void EditList_ListIdIsNegative_ThrowException()
 		{
 			var cat = GetMockedFriendsCategory("", "");
-			//This.Action(() => cat.EditList(-1)).Throws<ArgumentException>();
+			Assert.That(()=> cat.EditList(-1), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -483,8 +486,9 @@
 
 			var ids = cat.GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
 
-			//ids.Count.ShouldEqual(1);
-			//ids[0].ShouldEqual(242508111);
+			Assert.That(ids, Is.Not.Null);
+			Assert.That(ids.Count, Is.EqualTo(1));
+			Assert.That(ids[0], Is.EqualTo(242508111));
 		}
 
 		[Test]
@@ -503,8 +507,9 @@
 
 			var ids = cat.GetRequests(offset: 0, count: 3);
 
-			//ids.Count.ShouldEqual(1);
-			//ids[0].ShouldEqual(242508111);
+			Assert.That(ids, Is.Not.Null);
+			Assert.That(ids.Count, Is.EqualTo(1));
+			Assert.That(ids[0], Is.EqualTo(242508111));
 		}
 
 		[Test]
@@ -520,8 +525,8 @@
 
 			var ids = cat.GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
 
-			//ids.ShouldNotBeNull();
-			//ids.Count.ShouldEqual(0);
+			Assert.That(ids, Is.Not.Null);
+			Assert.That(ids.Count, Is.EqualTo(0));
 		}
 
 		[Test]
@@ -539,9 +544,9 @@
 
 			var ids = cat.GetRecent(3);
 
-			//ids.ShouldNotBeNull();
-			//ids.Count.ShouldEqual(1);
-			//ids[0].ShouldEqual(242508111);
+			Assert.That(ids, Is.Not.Null);
+			Assert.That(ids.Count, Is.EqualTo(1));
+			Assert.That(ids[0], Is.EqualTo(242508111));
 		}
 
 		[Test]
@@ -557,7 +562,7 @@
 
 			var result = cat.Edit(242508111, new long[] { 2 });
 
-			//result.ShouldBeTrue();
+			Assert.That(result, Is.True);
 		}
 	}
 }
