@@ -225,12 +225,17 @@
         /// <summary>
         /// Была ли произведена авторизация каким либо образом
         /// </summary>
-        public bool IsAuthorized { get { return !string.IsNullOrWhiteSpace(AccessToken); } }
-        /// <summary>
+        public bool IsAuthorized
+        {
+            private get { return !string.IsNullOrWhiteSpace(AccessToken); }
+            set {}
+        }
+
+	    /// <summary>
         /// Токен для доступа к методам API
         /// </summary>
-        public string AccessToken
-        { get; internal set; }
+        private string AccessToken
+        { get; set; }
 
         /// <summary>
         /// Идентификатор пользователя, от имени которого была проведена авторизация.
@@ -491,7 +496,7 @@
         /// <param name="methodName">Название метода.</param>
         /// <param name="parameters">Параметры.</param>
         /// <returns></returns>
-        internal string GetApiUrl(string methodName, IDictionary<string, string> parameters)
+        internal string GetApiUrl(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
         {
             var builder = new StringBuilder();
 
@@ -501,7 +506,7 @@
             {
                 builder.AppendFormat("{0}={1}&", pair.Key, pair.Value);
             }
-            builder.AppendFormat("access_token={0}", AccessToken);
+            builder.AppendFormat("access_token={0}", skipAuthorization ? "" : AccessToken);
 
             return builder.ToString();
         }
@@ -537,9 +542,9 @@
                 }
             }
 
-            var url = GetApiUrl(methodName, parameters);
+            var url = GetApiUrl(methodName, parameters, skipAuthorization);
 
-            var answer = Browser.GetJson(url);
+            var answer = Browser.GetJson(url.Replace("\'", "%27"));
 
 #if DEBUG && !UNIT_TEST
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
