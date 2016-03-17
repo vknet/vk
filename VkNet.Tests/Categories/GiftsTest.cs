@@ -21,8 +21,7 @@ namespace VkNet.Tests.Categories
 						items: [{
 							id: 577952355,
 							from_id: 103942820,
-							message: 'С Днём Рождения!!!
-							Пущай в доме твоём всегда будут уют, тепло, весёлость и вкусняшки ^.^',
+							message: 'С Днём Рождения!!! Пущай в доме твоём всегда будут уют, тепло, весёлость и вкусняшки ^.^',
 							date: 1452854355,
 							gift: {
 								id: 658,
@@ -57,7 +56,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(gift, Is.Not.Null);
 			Assert.That(gift.Id, Is.EqualTo(577952355));
 			Assert.That(gift.FromId, Is.EqualTo(103942820));
-			Assert.That(gift.Message, Is.EqualTo("С Днём Рождения!!!\r\n\t\t\t\t\t\t\tПущай в доме твоём всегда будут уют, тепло, весёлость и вкусняшки ^.^"));
+			Assert.That(gift.Message, Is.EqualTo("С Днём Рождения!!! Пущай в доме твоём всегда будут уют, тепло, весёлость и вкусняшки ^.^"));
 			Assert.That(gift.Date.Value, Is.EqualTo(DateHelper.TimeStampToDateTime(1452854355)));
 			Assert.That(gift.Gift.Id, Is.EqualTo(658));
 			Assert.That(gift.Gift.Thumb256, Is.EqualTo(new Uri("https://vk.com/images/gift/658/256.jpg")));
