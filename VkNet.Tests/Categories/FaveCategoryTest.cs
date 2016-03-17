@@ -1,4 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Security.Policy;
+using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Categories
 {
@@ -38,12 +44,13 @@ namespace VkNet.Tests.Categories
 			var cat = GetMockedFaveCategory(url, json);
 
 			var users = cat.GetUsers(3, 1);
-
-			//users.ShouldNotBeNull();
-			//users.Count.ShouldEqual(1);
-			//users[0].Id.ShouldEqual(1);
-			//users[0].FirstName.ShouldEqual("Павел");
-			//users[0].LastName.ShouldEqual("Дуров");
+			Assert.That(users, Is.Not.Null);
+			Assert.That(users.Count, Is.EqualTo(1));
+			var user = users.FirstOrDefault();
+			Assert.That(user, Is.Not.Null);
+			Assert.That(user.Id, Is.EqualTo(1));
+			Assert.That(user.FirstName, Is.EqualTo("Павел"));
+			Assert.That(user.LastName, Is.EqualTo("Дуров"));
 		}
 
 		[Test]
@@ -89,34 +96,35 @@ namespace VkNet.Tests.Categories
 			var cat = GetMockedFaveCategory(url, json);
 
 			var photos = cat.GetPhotos(3, 1);
+			Assert.That(photos, Is.Not.Null);
+			Assert.That(photos.Count, Is.EqualTo(2));
+			var photo = photos.FirstOrDefault();
 
-			//photos.ShouldNotBeNull();
-			//photos.Count.ShouldEqual(2);
+			Assert.That(photo.Id, Is.EqualTo(263113261));
+			Assert.That(photo.AlbumId, Is.EqualTo(136592355));
+			Assert.That(photo.OwnerId, Is.EqualTo(1));
+			Assert.That(photo.Photo75, Is.EqualTo(new Uri("http://cs9591.vk.me/u00001/136592355/s_47267f71.jpg")));
+			Assert.That(photo.Photo130, Is.EqualTo(new Uri("http://cs9591.vk.me/u00001/136592355/m_dc54094a.jpg")));
+			Assert.That(photo.Photo604, Is.EqualTo(new Uri("http://cs9591.vk.me/u00001/136592355/x_3216ccc1.jpg")));
+			Assert.That(photo.Photo807, Is.EqualTo(new Uri("http://cs9591.vk.me/u00001/136592355/y_e10ee835.jpg")));
+			Assert.That(photo.Photo1280, Is.EqualTo(new Uri("http://cs9591.vk.me/u00001/136592355/z_a8fd75ba.jpg")));
+			Assert.That(photo.Photo2560, Is.EqualTo(new Uri("http://cs9591.vk.me/u00001/136592355/w_62aef149.jpg")));
+			Assert.That(photo.Text, Is.EqualTo(""));
+			Assert.That(photo.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1307628890)));
 
-			//photos[0].Id.ShouldEqual(263113261);
-			//photos[0].AlbumId.ShouldEqual(136592355);
-			//photos[0].OwnerId.ShouldEqual(1);
-			//photos[0].Photo75.ShouldEqual(new Uri("http://cs9591.vk.me/u00001/136592355/s_47267f71.jpg"));
-			//photos[0].Photo130.ShouldEqual(new Uri("http://cs9591.vk.me/u00001/136592355/m_dc54094a.jpg"));
-			//photos[0].Photo604.ShouldEqual(new Uri("http://cs9591.vk.me/u00001/136592355/x_3216ccc1.jpg"));
-			//photos[0].Photo807.ShouldEqual(new Uri("http://cs9591.vk.me/u00001/136592355/y_e10ee835.jpg"));
-			//photos[0].Photo1280.ShouldEqual(new Uri("http://cs9591.vk.me/u00001/136592355/z_a8fd75ba.jpg"));
-			//photos[0].Photo2560.ShouldEqual(new Uri("http://cs9591.vk.me/u00001/136592355/w_62aef149.jpg"));
-			//photos[0].Text.ShouldEqual("");
-			//photos[0].CreateTime.ShouldEqual(new DateTime(2011, 6, 9, 14, 14, 50, DateTimeKind.Utc).ToLocalTime());
-
-			//photos[1].Id.ShouldEqual(319770573);
-			//photos[1].AlbumId.ShouldEqual(-7);
-			//photos[1].OwnerId.ShouldEqual(-25397178);
-			//photos[1].UserId.ShouldEqual(100);
-			//photos[1].Photo75.ShouldEqual(new Uri("http://cs310923.vk.me/v310923070/c28b/VEtf7pX6MXM.jpg"));
-			//photos[1].Photo130.ShouldEqual(new Uri("http://cs310923.vk.me/v310923070/c28c/cjCqKn_EGxE.jpg"));
-			//photos[1].Photo604.ShouldEqual(new Uri("http://cs310923.vk.me/v310923070/c28d/IFtj16H-KwI.jpg"));
-			//photos[1].Width.ShouldEqual(604);
-			//photos[1].Height.ShouldEqual(530);
-			//photos[1].Text.ShouldEqual("");
-			//photos[1].PostId.ShouldEqual(88997);
-			//photos[1].CreateTime.ShouldEqual(new DateTime(2014, 1, 24, 3, 25, 4, DateTimeKind.Utc).ToLocalTime());
+			var photo2 = photos.Skip(1).FirstOrDefault();
+			Assert.That(photo2.Id, Is.EqualTo(319770573));
+			Assert.That(photo2.AlbumId, Is.EqualTo(-7));
+			Assert.That(photo2.OwnerId, Is.EqualTo(-25397178));
+			Assert.That(photo2.UserId, Is.EqualTo(100));
+			Assert.That(photo2.Photo75, Is.EqualTo(new Uri("http://cs310923.vk.me/v310923070/c28b/VEtf7pX6MXM.jpg")));
+			Assert.That(photo2.Photo130, Is.EqualTo(new Uri("http://cs310923.vk.me/v310923070/c28c/cjCqKn_EGxE.jpg")));
+			Assert.That(photo2.Photo604, Is.EqualTo(new Uri("http://cs310923.vk.me/v310923070/c28d/IFtj16H-KwI.jpg")));
+			Assert.That(photo2.Width, Is.EqualTo(604));
+			Assert.That(photo2.Height, Is.EqualTo(530));
+			Assert.That(photo2.Text, Is.EqualTo(""));
+			Assert.That(photo2.PostId, Is.EqualTo(88997));
+			Assert.That(photo2.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1390533904)));
 		}
 
 		[Test]
@@ -179,24 +187,22 @@ namespace VkNet.Tests.Categories
 			var cat = GetMockedFaveCategory(url, json);
 
 			var photos = cat.GetPhotos(3, 1, true);
+			Assert.That(photos, Is.Not.Null);
+			Assert.That(photos.Count, Is.EqualTo(1));
+			var photo = photos.FirstOrDefault();
 
-			//photos.ShouldNotBeNull();
-			//photos.Count.ShouldEqual(1);
-
-			//photos[0].Id.ShouldEqual(390044361);
-			//photos[0].AlbumId.ShouldEqual(-7);
-			//photos[0].OwnerId.ShouldEqual(-66589869);
-			//photos[0].UserId.ShouldEqual(100);
-			//Assert.That(photos[0].Sizes[0].Height, Is.EqualTo(67));
-			//Assert.That(photos[0].Sizes[0].Src, Is.EqualTo(new Url("http://cs629301.vk.me/v629301456/1caaf/XpHNgelMOc0.jpg")));
-			//Assert.That(photos[0].Sizes[0].Width, Is.EqualTo(75));
-			//Assert.That(photos[0].Sizes[0].Type, Is.EqualTo(PhotoSizeType.S));
-			//photos[0].Text.ShouldEqual("");
-			//// Unix timestamp is seconds past epoch
-			//var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			//photos[0].CreateTime.ShouldEqual(dt.AddSeconds(1447419206).ToLocalTime());
-			//photos[0].PostId.ShouldEqual(154560);
-			//photos[0].AccessKey.ShouldEqual("1e2008462f1a012b95");
+			Assert.That(photo.Id, Is.EqualTo(390044361));
+			Assert.That(photo.AlbumId, Is.EqualTo(-7));
+			Assert.That(photo.OwnerId, Is.EqualTo(-66589869));
+			Assert.That(photo.UserId, Is.EqualTo(100));
+			Assert.That(photos[0].Sizes[0].Height, Is.EqualTo(67));
+			Assert.That(photos[0].Sizes[0].Src, Is.EqualTo(new Url("http://cs629301.vk.me/v629301456/1caaf/XpHNgelMOc0.jpg")));
+			Assert.That(photos[0].Sizes[0].Width, Is.EqualTo(75));
+			Assert.That(photos[0].Sizes[0].Type, Is.EqualTo(PhotoSizeType.S));
+			Assert.That(photo.Text, Is.EqualTo(""));
+			Assert.That(photo.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1447419206)));
+			Assert.That(photo.PostId, Is.EqualTo(154560));
+			Assert.That(photo.AccessKey, Is.EqualTo("1e2008462f1a012b95"));
 		}
 
 		[Test]
@@ -227,18 +233,17 @@ namespace VkNet.Tests.Categories
 			var cat = GetMockedFaveCategory(url, json);
 
 			var videos = cat.GetVideos(3, 1);
-
-			//videos.Count.ShouldEqual(1);
-
-			//videos[0].Id.ShouldEqual(164841344);
-			//videos[0].OwnerId.ShouldEqual(1);
-			//videos[0].Title.ShouldEqual("This is SPARTA");
-			//videos[0].Duration.ShouldEqual(16);
-			//videos[0].Date.ShouldEqual(new DateTime(2013, 4, 20, 21, 57, 55, DateTimeKind.Utc).ToLocalTime());
-			//videos[0].ViewsCount.ShouldEqual(215502);
-			//videos[0].CommentsCount.ShouldEqual(2559);
-			//videos[0].Photo130.ShouldEqual(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg"));
-			//videos[0].Photo320.ShouldEqual(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg"));
+			Assert.That(videos.Count, Is.EqualTo(1));
+			var video = videos.FirstOrDefault();
+			Assert.That(video.Id, Is.EqualTo(164841344));
+			Assert.That(video.OwnerId, Is.EqualTo(1));
+			Assert.That(video.Title, Is.EqualTo("This is SPARTA"));
+			Assert.That(video.Duration, Is.EqualTo(16));
+			Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1366495075)));
+			Assert.That(video.ViewsCount, Is.EqualTo(215502));
+			Assert.That(video.CommentsCount, Is.EqualTo(2559));
+			Assert.That(video.Photo130, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
+			Assert.That(video.Photo320, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
 		}
 
 		[Test]
@@ -255,9 +260,7 @@ namespace VkNet.Tests.Categories
 							owner_id: -30666517,
 							date: 1447668333,
 							post_type: 'post',
-							text: 'Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
-
-							#videos@tproger',
+							text: 'Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.',
 							attachments: [{
 								type: 'video',
 								video: {
@@ -331,43 +334,40 @@ namespace VkNet.Tests.Categories
 
 			var posts = cat.GetPostsEx(3, 1);
 
-			//posts.TotalCount.ShouldEqual(2623u);
+			Assert.That(posts.TotalCount, Is.EqualTo(2623u));
 
-			//posts.WallPosts[0].Id.ShouldEqual(1258365);
-			//posts.WallPosts[0].FromId.ShouldEqual(-30666517);
-			//posts.WallPosts[0].OwnerId.ShouldEqual(-30666517);
-			//// 2015-11-16 13:05:33.000
-			//var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			//posts.WallPosts[0].Date.ShouldEqual(dt.AddSeconds(1447668333).ToLocalTime());
-			//posts.WallPosts[0].PostType.ShouldEqual(PostType.Post);
-			//posts.WallPosts[0].Text.ShouldEqual(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
+			var wallPost = posts.WallPosts.FirstOrDefault();
 
-			//				#videos@tproger");
-			//posts.WallPosts[0].PostSource.Type.ShouldEqual(PostSourceType.Vk);
-			//posts.WallPosts[0].Comments.CanPost.ShouldEqual(true);
-			//posts.WallPosts[0].Comments.Count.ShouldEqual(9);
-			//posts.WallPosts[0].Likes.Count.ShouldEqual(413);
-			//posts.WallPosts[0].Likes.UserLikes.ShouldEqual(true);
-			//posts.WallPosts[0].Likes.CanLike.ShouldEqual(false);
-			//posts.WallPosts[0].Likes.CanPublish.ShouldEqual(true);
-			//posts.WallPosts[0].Reposts.UserReposted.ShouldEqual(false);
-			//posts.WallPosts[0].Reposts.Count.ShouldEqual(91);
-			//posts.WallPosts[0].Attachments.Count.ShouldEqual(1);
+			Assert.That(wallPost.Id, Is.EqualTo(1258365));
+			Assert.That(wallPost.FromId, Is.EqualTo(-30666517));
+			Assert.That(wallPost.OwnerId, Is.EqualTo(-30666517));
+			Assert.That(wallPost.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1447668333)));
+			Assert.That(wallPost.PostType, Is.EqualTo(PostType.Post));
+			Assert.That(wallPost.Text, Is.EqualTo(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально."));
+			Assert.That(wallPost.PostSource.Type, Is.EqualTo(PostSourceType.Vk));
+			Assert.That(wallPost.Comments.CanPost, Is.EqualTo(true));
+			Assert.That(wallPost.Comments.Count, Is.EqualTo(9));
+			Assert.That(wallPost.Likes.Count, Is.EqualTo(413));
+			Assert.That(wallPost.Likes.UserLikes, Is.EqualTo(true));
+			Assert.That(wallPost.Likes.CanLike, Is.EqualTo(false));
+			Assert.That(wallPost.Likes.CanPublish, Is.EqualTo(true));
+			Assert.That(wallPost.Reposts.UserReposted, Is.EqualTo(false));
+			Assert.That(wallPost.Reposts.Count, Is.EqualTo(91));
+			Assert.That(wallPost.Attachments.Count, Is.EqualTo(1));
 
-			//var video = posts.WallPosts[0].Attachments[0].Instance as Video;
-			//video.ShouldNotBeNull();
-			//video.Id.ShouldEqual(171514588);
-			//video.OwnerId.ShouldEqual(235845316);
-			//video.Title.ShouldEqual("Clean Code: Learn to write clean, maintainable and robust code");
-			//video.Duration.ShouldEqual(2058);
-			//video.ViewsCount.ShouldEqual(1613);
-			//video.CommentsCount.ShouldEqual(0);
-			//video.Photo130.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg"));
-			//video.Photo320.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg"));
-			//video.Photo640.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg"));
-			//dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			//video.Date.ShouldEqual(dt.AddSeconds(1447535648).ToLocalTime());
-			//video.AccessKey.ShouldEqual("733701ff4d7eb85ed7");
+			var video = posts.WallPosts[0].Attachments[0].Instance as Video;
+			Assert.That(video, Is.Not.Null);
+			Assert.That(video.Id, Is.EqualTo(171514588));
+			Assert.That(video.OwnerId, Is.EqualTo(235845316));
+			Assert.That(video.Title, Is.EqualTo("Clean Code: Learn to write clean, maintainable and robust code"));
+			Assert.That(video.Duration, Is.EqualTo(2058));
+			Assert.That(video.ViewsCount, Is.EqualTo(1613));
+			Assert.That(video.CommentsCount, Is.EqualTo(0));
+			Assert.That(video.Photo130, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg")));
+			Assert.That(video.Photo320, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg")));
+			Assert.That(video.Photo640, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg")));
+			Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1447535648)));
+			Assert.That(video.AccessKey, Is.EqualTo("733701ff4d7eb85ed7"));
 		}
 
 		[Test]
@@ -384,9 +384,7 @@ namespace VkNet.Tests.Categories
 							owner_id: -30666517,
 							date: 1447668333,
 							post_type: 'post',
-							text: 'Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
-
-							#videos@tproger',
+							text: 'Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.',
 							attachments: [{
 								type: 'video',
 								video: {
@@ -460,63 +458,64 @@ namespace VkNet.Tests.Categories
 
 			var posts = cat.GetPostsEx(3, 1);
 
-			//posts.TotalCount.ShouldEqual(2623u);
+			Assert.That(posts.TotalCount, Is.EqualTo(2623u));
 
-			//posts.WallPosts[0].Id.ShouldEqual(1258365);
-			//posts.WallPosts[0].FromId.ShouldEqual(-30666517);
-			//posts.WallPosts[0].OwnerId.ShouldEqual(-30666517);
-			//// 2015-11-16 13:05:33.000
-			//var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			//posts.WallPosts[0].Date.ShouldEqual(dt.AddSeconds(1447668333).ToLocalTime());
-			//posts.WallPosts[0].PostType.ShouldEqual(PostType.Post);
-			//posts.WallPosts[0].Text.ShouldEqual(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.
+			var wallPost = posts.WallPosts.FirstOrDefault();
+			Assert.That(wallPost, Is.Not.Null);
+			Assert.That(wallPost.Id, Is.EqualTo(1258365));
+			Assert.That(wallPost.FromId, Is.EqualTo(-30666517));
+			Assert.That(wallPost.OwnerId, Is.EqualTo(-30666517));
+			Assert.That(wallPost.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1447668333)));
+			Assert.That(wallPost.PostType, Is.EqualTo(PostType.Post));
+			Assert.That(wallPost.Text, Is.EqualTo(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально."));
+			Assert.That(wallPost.PostSource.Type, Is.EqualTo(PostSourceType.Vk));
+			Assert.That(wallPost.Comments.CanPost, Is.EqualTo(true));
+			Assert.That(wallPost.Comments.Count, Is.EqualTo(9));
+			Assert.That(wallPost.Likes.Count, Is.EqualTo(413));
+			Assert.That(wallPost.Likes.UserLikes, Is.EqualTo(true));
+			Assert.That(wallPost.Likes.CanLike, Is.EqualTo(false));
+			Assert.That(wallPost.Likes.CanPublish, Is.EqualTo(true));
+			Assert.That(wallPost.Reposts.UserReposted, Is.EqualTo(false));
+			Assert.That(wallPost.Reposts.Count, Is.EqualTo(91));
+			Assert.That(wallPost.Attachments.Count, Is.EqualTo(1));
 
-			//				#videos@tproger");
-			//posts.WallPosts[0].PostSource.Type.ShouldEqual(PostSourceType.Vk);
-			//posts.WallPosts[0].Comments.CanPost.ShouldEqual(true);
-			//posts.WallPosts[0].Comments.Count.ShouldEqual(9);
-			//posts.WallPosts[0].Likes.Count.ShouldEqual(413);
-			//posts.WallPosts[0].Likes.UserLikes.ShouldEqual(true);
-			//posts.WallPosts[0].Likes.CanLike.ShouldEqual(false);
-			//posts.WallPosts[0].Likes.CanPublish.ShouldEqual(true);
-			//posts.WallPosts[0].Reposts.UserReposted.ShouldEqual(false);
-			//posts.WallPosts[0].Reposts.Count.ShouldEqual(91);
-			//posts.WallPosts[0].Attachments.Count.ShouldEqual(1);
+			var video = posts.WallPosts[0].Attachments[0].Instance as Video;
+			Assert.That(video, Is.Not.Null);
+			Assert.That(video.Id, Is.EqualTo(171514588));
+			Assert.That(video.OwnerId, Is.EqualTo(235845316));
+			Assert.That(video.Title, Is.EqualTo("Clean Code: Learn to write clean, maintainable and robust code"));
+			Assert.That(video.Duration, Is.EqualTo(2058));
+			Assert.That(video.ViewsCount, Is.EqualTo(1613));
+			Assert.That(video.CommentsCount, Is.EqualTo(0));
+			Assert.That(video.Photo130, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg")));
+			Assert.That(video.Photo320, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg")));
+			Assert.That(video.Photo640, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg")));
+			Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1447535648)));
+			Assert.That(video.AccessKey, Is.EqualTo("733701ff4d7eb85ed7"));
 
-			//var video = posts.WallPosts[0].Attachments[0].Instance as Video;
-			//video.ShouldNotBeNull();
-			//video.Id.ShouldEqual(171514588);
-			//video.OwnerId.ShouldEqual(235845316);
-			//video.Title.ShouldEqual("Clean Code: Learn to write clean, maintainable and robust code");
-			//video.Duration.ShouldEqual(2058);
-			//video.ViewsCount.ShouldEqual(1613);
-			//video.CommentsCount.ShouldEqual(0);
-			//video.Photo130.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg"));
-			//video.Photo320.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg"));
-			//video.Photo640.ShouldEqual(new Uri("https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg"));
-			//dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			//video.Date.ShouldEqual(dt.AddSeconds(1447535648).ToLocalTime());
-			//video.AccessKey.ShouldEqual("733701ff4d7eb85ed7");
+			var profile = posts.Profiles.FirstOrDefault();
+			Assert.That(profile, Is.Not.Null);
+			Assert.That(profile.Id, Is.EqualTo(235845316));
+			Assert.That(profile.FirstName, Is.EqualTo("Лапанильда"));
+			Assert.That(profile.LastName, Is.EqualTo("Кошкодавленко"));
+			Assert.That(profile.Sex, Is.EqualTo(Sex.Female));
+			Assert.That(profile.ScreenName, Is.EqualTo("deadlymanul"));
+			Assert.That(profile.PhotoPreviews.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg")));
+			Assert.That(profile.PhotoPreviews.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg")));
+			Assert.That(profile.Online, Is.EqualTo(true));
 
-			//posts.Profiles[0].Id.ShouldEqual(235845316);
-			//posts.Profiles[0].FirstName.ShouldEqual("Лапанильда");
-			//posts.Profiles[0].LastName.ShouldEqual("Кошкодавленко");
-			//posts.Profiles[0].Sex.ShouldEqual(Sex.Female);
-			//posts.Profiles[0].ScreenName.ShouldEqual("deadlymanul");
-			//posts.Profiles[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg"));
-			//posts.Profiles[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg"));
-			//posts.Profiles[0].Online.ShouldEqual(true);
-
-			//posts.Groups[0].Id.ShouldEqual(30666517);
-			//posts.Groups[0].Name.ShouldEqual("Типичный программист | tproger");
-			//posts.Groups[0].ScreenName.ShouldEqual("tproger");
-			//posts.Groups[0].IsClosed.ShouldEqual(GroupPublicity.Public);
-			//posts.Groups[0].Type.ShouldEqual(GroupType.Page);
-			//posts.Groups[0].IsAdmin.ShouldEqual(false);
-			//posts.Groups[0].IsMember.ShouldEqual(true);
-			//posts.Groups[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg"));
-			//posts.Groups[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg"));
-			//posts.Groups[0].PhotoPreviews.Photo200.ShouldEqual(new Uri("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg"));
+			var group = posts.Groups.FirstOrDefault();
+			Assert.That(group, Is.Not.Null);
+			Assert.That(group.Id, Is.EqualTo(30666517));
+			Assert.That(group.Name, Is.EqualTo("Типичный программист | tproger"));
+			Assert.That(group.ScreenName, Is.EqualTo("tproger"));
+			Assert.That(group.IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(group.Type, Is.EqualTo(GroupType.Page));
+			Assert.That(group.IsAdmin, Is.EqualTo(false));
+			Assert.That(group.IsMember, Is.EqualTo(true));
+			Assert.That(group.PhotoPreviews.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg")));
+			Assert.That(group.PhotoPreviews.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg")));
+			Assert.That(group.PhotoPreviews.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg")));
 		}
 
 		[Test]
@@ -542,13 +541,15 @@ namespace VkNet.Tests.Categories
 
 			var links = cat.GetLinks(1, 1);
 
-			//links.Count.ShouldEqual(1);
-			//links[0].Id.ShouldEqual("2_32190123_1");
-			//links[0].Url.ShouldEqual("https://vk.com/apiclub");
-			//links[0].Name.ShouldEqual("ВКонтакте API");
-			//links[0].Description.ShouldEqual("Сообщество");
-			//links[0].Photo50.ShouldEqual("https://pp.vk.me/c400/g00001/e_5ba03323.jpg");
-			//links[0].Photo100.ShouldEqual("https://pp.vk.me/c400/g00001/e_5ba03323.jpg");
+			Assert.That(links.Count, Is.EqualTo(1));
+			var link = links.FirstOrDefault();
+			Assert.That(link, Is.Not.Null);
+			Assert.That(link.Id, Is.EqualTo("2_32190123_1"));
+			Assert.That(link.Url, Is.EqualTo("https://vk.com/apiclub"));
+			Assert.That(link.Name, Is.EqualTo("ВКонтакте API"));
+			Assert.That(link.Description, Is.EqualTo("Сообщество"));
+			Assert.That(link.Photo50, Is.EqualTo("https://pp.vk.me/c400/g00001/e_5ba03323.jpg"));
+			Assert.That(link.Photo100, Is.EqualTo("https://pp.vk.me/c400/g00001/e_5ba03323.jpg"));
 		}
 	}
 }
