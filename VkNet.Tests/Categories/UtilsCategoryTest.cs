@@ -1,11 +1,11 @@
 ﻿using System;
 using NUnit.Framework;
 using VkNet.Categories;
+using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Categories
 {
-
-
 	[TestFixture]
 	public class UtilsCategoryTest : BaseTest
 	{
@@ -14,14 +14,6 @@ namespace VkNet.Tests.Categories
 			Json = json;
 			Url = url;
 			return new UtilsCategory(Api);
-		}
-
-		[Test]
-		[Ignore("null передать нельзя")]
-		public void CheckLink_NullAsLink()
-		{
-			//var utils = GetMockedUtilsCategory("", "");
-			//This.Action(() => utils.CheckLink(null)).Throws<ArgumentNullException>();
 		}
 
 		[Test]
@@ -39,12 +31,11 @@ namespace VkNet.Tests.Categories
 			var utils = GetMockedUtilsCategory(url, json);
 
 			var type = utils.CheckLink("http://www.kreml.ru/‎");
+			Assert.That(type, Is.EqualTo(LinkAccessType.Banned));
 
-			//type.ShouldEqual(LinkAccessType.Banned);
+			type = utils.CheckLink(new Uri("http://www.kreml.ru/‎"));
 
-			//type = utils.CheckLink(new Uri("http://www.kreml.ru/‎"));
-
-			//type.ShouldEqual(LinkAccessType.Banned);
+			Assert.That(type, Is.EqualTo(LinkAccessType.Banned));
 		}
 
 		[Test]
@@ -62,7 +53,7 @@ namespace VkNet.Tests.Categories
 			var utils = GetMockedUtilsCategory(url, json);
 			var type = utils.CheckLink("hsfasfsf");
 
-			//type.ShouldEqual(LinkAccessType.NotBanned);
+			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
 		}
 
 		[Test]
@@ -81,11 +72,11 @@ namespace VkNet.Tests.Categories
 
 			var type = utils.CheckLink("https://www.google.ru/");
 
-			//type.ShouldEqual(LinkAccessType.NotBanned);
+			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
 
-			//type = utils.CheckLink(new Uri("https://www.google.ru/"));
+			type = utils.CheckLink(new Uri("https://www.google.ru/"));
 
-			//type.ShouldEqual(LinkAccessType.NotBanned);
+			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
 		}
 
 
@@ -98,13 +89,11 @@ namespace VkNet.Tests.Categories
                     'response': 1391153956
                   }";
 
-			var expected = new DateTime(2014, 1, 31, 7, 39, 16, DateTimeKind.Utc).ToLocalTime();
-
 			var utils = GetMockedUtilsCategory(url, json);
 
 			var time = utils.GetServerTime();
 
-			//time.ShouldEqual(expected);
+			Assert.That(time, Is.EqualTo(DateHelper.TimeStampToDateTime(1391153956)));
 		}
 
 		[Test]
@@ -120,7 +109,7 @@ namespace VkNet.Tests.Categories
 
 			var obj = utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
 
-			//obj.ShouldBeNull();
+			Assert.That(obj, Is.Null);
 		}
 
 		[Test]
@@ -140,9 +129,9 @@ namespace VkNet.Tests.Categories
 			var obj = utils.ResolveScreenName("azhidkov");
 
 			// assert
-			//obj.ShouldNotBeNull();
-			//         obj.Id.ShouldEqual(186085938);
-			//         obj.Type.ShouldEqual(VkObjectType.User);
+			Assert.That(obj, Is.Not.Null);
+			Assert.That(obj.Id, Is.EqualTo(186085938));
+			Assert.That(obj.Type, Is.EqualTo(VkObjectType.User));
 		}
 
 		[Test]
@@ -162,9 +151,9 @@ namespace VkNet.Tests.Categories
 			var obj = utils.ResolveScreenName("azhidkov");
 
 			// assert
-			//obj.ShouldNotBeNull();
-			//         obj.Id.ShouldEqual(922337203685471);
-			//         obj.Type.ShouldEqual(VkObjectType.User);
+			Assert.That(obj, Is.Not.Null);
+			Assert.That(obj.Id, Is.EqualTo(922337203685471));
+			Assert.That(obj.Type, Is.EqualTo(VkObjectType.User));
 		}
 
 		[Test]
@@ -184,16 +173,16 @@ namespace VkNet.Tests.Categories
 			var obj = utils.ResolveScreenName("mdk");
 
 			// assert
-			//obj.ShouldNotBeNull();
-			//         obj.Type.ShouldEqual(VkObjectType.Group);
-			//         obj.Id.ShouldEqual(10639516);
+			Assert.That(obj, Is.Not.Null);
+			Assert.That(obj.Type, Is.EqualTo(VkObjectType.Group));
+			Assert.That(obj.Id, Is.EqualTo(10639516));
 		}
 
 		[Test]
 		public void ResolveScreenName_EmptyStringName_ThrowException()
 		{
 			var utils = GetMockedUtilsCategory("", "");
-			//This.Action(() => utils.ResolveScreenName(string.Empty)).Throws<ArgumentNullException>();
+			Assert.That(() => utils.ResolveScreenName(string.Empty), Throws.InstanceOf<ArgumentNullException>());
 		}
 	}
 }
