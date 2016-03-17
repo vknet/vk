@@ -793,7 +793,7 @@ namespace VkNet.Tests.Categories
 			Json = @"{ 'response': { changed: 1 } }";
 
 			ChangeNameRequest request;
-			Assert.That(Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
+			Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
 			{
 				FirstName = "fn",
 				LastName = "ln",
@@ -817,13 +817,13 @@ namespace VkNet.Tests.Categories
 			Json = @"{ 'response': { changed: 1 } }";
 
 			ChangeNameRequest request;
-			Assert.That(Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
+			Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
 			{
 				BirthDate = new DateTime(1984, 11, 15).ToShortDateString()
 			}),
 			Is.True);
 			Url = "https://api.vk.com/method/account.saveProfileInfo?bdate=08.09.2014&v=5.45&access_token=token";
-			Assert.That(Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
+			Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
 			{
 				BirthDate = new DateTime(2014, 9, 8).ToShortDateString()
 			}),
