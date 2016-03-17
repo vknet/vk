@@ -134,7 +134,6 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			long total;
 			var app = Api.Apps.DeleteAppRequests();
 			Assert.That(app, Is.True);
 		}

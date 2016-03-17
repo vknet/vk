@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
+using VkNet.Exception;
 
 namespace VkNet.Tests.Categories
 {
@@ -42,9 +44,10 @@ namespace VkNet.Tests.Categories
                   }";
 
             var db = GetMockedDatabaseCategory(url, json);
-            // This.Action(() => db.GetStreetsById()).Throws<InvalidParameterException>()
-              //  .Message.ShouldEqual("One of the parameters specified was missing or invalid: street_ids is undefined");
-        }
+
+			var ex = Assert.Throws<InvalidParameterException>(() => db.GetStreetsById());
+			Assert.That(ex.Message, Is.EqualTo("One of the parameters specified was missing or invalid: street_ids is undefined"));
+		}
 
         [Test]
         public void GetUniversities_FindVstu()
@@ -131,16 +134,15 @@ namespace VkNet.Tests.Categories
         public void GetCities_CountryIdIsNegative_ThrowException()
         {
             var db = GetMockedDatabaseCategory("", "");
-            // This.Action(() => db.GetCities(-1)).Throws<ArgumentException>();
-        }
+			Assert.That(() => db.GetCities(-1), Throws.InstanceOf<ArgumentException>());
+		}
 
         [Test]
         public void GetCities_RegionIdIsNegative_ThrowException()
         {
             var db = GetMockedDatabaseCategory("", "");
-            // This.Action(() => db.GetCities(1, -2)).Throws<ArgumentException>();
-
-        }
+			Assert.That(() => db.GetCities(1, -2), Throws.InstanceOf<ArgumentException>());
+		}
 
         [Test]
         public void GetCitiesById_EmptyList()
@@ -295,22 +297,22 @@ namespace VkNet.Tests.Categories
         public void GetRegions_CountryIdIsNegative_ThrowArgumentException()
         {
             var db = GetMockedDatabaseCategory("", "");
-			// This.Action(() => db.GetRegions(-1)).Throws<ArgumentException>();
-        }
+			Assert.That(() => db.GetRegions(-1), Throws.InstanceOf<ArgumentException>());
+		}
 
         [Test]
         public void GetRegions_CountIsNegative_ThrowArgumentException()
         {
             var db = GetMockedDatabaseCategory("", "");
-			// This.Action(() => db.GetRegions(1, count: -2)).Throws<ArgumentException>();
-        }
+			Assert.That(() => db.GetRegions(1, count: -2), Throws.InstanceOf<ArgumentException>());
+		}
 
         [Test]
         public void GetRegions_OffsetIsNegative_ThrowArgumentException()
         {
             var db = GetMockedDatabaseCategory("", "");
-			// This.Action(() => db.GetRegions(1, offset: -2)).Throws<ArgumentException>();
-        }
+			Assert.That(() => db.GetRegions(1, offset: -2), Throws.InstanceOf<ArgumentException>());
+		}
 
         [Test]
         public void GetRegions_NormalCase_ListOfRegions()
@@ -339,15 +341,15 @@ namespace VkNet.Tests.Categories
         public void GetCountries_CountIsNegative_ThrowArgumentException()
         {
             var db = GetMockedDatabaseCategory("", "");
-            // This.Action(() => db.GetCountries(count: -2)).Throws<ArgumentException>();
-        }
+			Assert.That(() => db.GetCountries(count: -2), Throws.InstanceOf<ArgumentException>());
+		}
 
         [Test]
         public void GetCountries_OffsetIsNegative_ThrowArgumentException()
         {
             var db = GetMockedDatabaseCategory("", "");
-            // This.Action(() => db.GetCountries(offset: -2)).Throws<ArgumentException>();
-        }
+			Assert.That(() => db.GetCountries(offset: -2), Throws.InstanceOf<ArgumentException>());
+		}
 
         [Test]
         public void GetCountries_ListOfCodes_ListOfCountries()
@@ -560,6 +562,5 @@ namespace VkNet.Tests.Categories
             Assert.That(faculties[2].Id, Is.EqualTo(3162));
             Assert.That(faculties[2].Title, Is.EqualTo("Электроники и вычислительной техники"));
         }
-
     }
 }
