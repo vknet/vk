@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using VkNet.Categories;
+using VkNet.Exception;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Categories
@@ -18,7 +20,7 @@ namespace VkNet.Tests.Categories
         public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
             var status = new StatusCategory(new VkApi());
-            // This.Action(() => status.Get(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => status.Get(1), Throws.InstanceOf<AccessTokenInvalidException>());
         }
 
         [Test]
@@ -52,16 +54,16 @@ namespace VkNet.Tests.Categories
                   }";
 
             var status = GetMockedStatusCategory(url, json);
-            // This.Action(() => status.Get(1)).Throws<AccessDeniedException>()
-                //.Message.ShouldEqual("Permission to perform this action is denied");
-        }
+			var ex = Assert.Throws<AccessDeniedException>(() => status.Get(1));
+			Assert.That(ex.Message, Is.EqualTo("Permission to perform this action is denied"));
+		}
 
         [Test]
         public void Set_AccessTokenInvalid_ThrowAccessTokenInvalidException()
         {
-            var status = new StatusCategory(new VkApi());
-            // This.Action(() => status.Set("test")).Throws<AccessTokenInvalidException>();
-        }
+			var status = new StatusCategory(new VkApi());
+			Assert.That(() => status.Set("test"), Throws.InstanceOf<AccessTokenInvalidException>());
+		}
 
         [Test]
         public void Set_AccessDenied_ThrowAccessDeniedException()
@@ -94,15 +96,15 @@ namespace VkNet.Tests.Categories
                   }";
 
             var status = GetMockedStatusCategory(url, json);
-            // This.Action(() => status.Set("test")).Throws<AccessDeniedException>();
-        }
+			Assert.That(() => status.Set("test"), Throws.InstanceOf<AccessDeniedException>());
+		}
 
         [Test]
         public void Set_TextIsNull_ThrowArgumentNullException()
         {
-            //var status = new StatusCategory(new VkApi { AccessToken = "token" });
-            // This.Action(() => status.Set(null)).Throws<NullReferenceException>();
-        }
+			var status = GetMockedStatusCategory("","");
+			Assert.That(() => status.Set(null), Throws.InstanceOf<NullReferenceException>());
+		}
 
         [Test]
         [Ignore("Данный метод устарел. Пожалуйста используйте метод Audio.SetBroadcast")]
@@ -137,9 +139,9 @@ namespace VkNet.Tests.Categories
 
             var status = GetMockedStatusCategory(url, json);
             var audio = new Audio {Id = 0, OwnerId = 0};
-            // This.Action(() => status.Set(audio)).Throws<AccessDeniedException>()
-                //.Message.ShouldEqual("User disabled track name broadcast");
-        }
+			var ex = Assert.Throws<AccessDeniedException>(() => status.Set(audio));
+			Assert.That(ex.Message, Is.EqualTo("User disabled track name broadcast"));
+		}
 
         [Test]
         public void Set_SimpleText_ReturnTrue()
