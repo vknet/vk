@@ -515,24 +515,25 @@
             {
                 throw new AccessTokenInvalidException();
             }
-
+            
+            string url = "";
+            string answer = "";
+            
             // Защита от превышения кол-ва запросов в секунду
             if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
                 lock (_expireTimer)
                 {
                     var span = LastInvokeTimeSpan.Value;
-                    LastInvokeTime = DateTimeOffset.Now;
                     if (span.TotalMilliseconds < _minInterval)
                     {
                         Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
                     }
+                    url = GetApiUrl(methodName, parameters);
+                    answer = Browser.GetJson(url);
+                    LastInvokeTime = DateTimeOffset.Now;
                 }
             }
-
-            var url = GetApiUrl(methodName, parameters);
-
-            var answer = Browser.GetJson(url);
 
 #if DEBUG && !UNIT_TEST
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
