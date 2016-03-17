@@ -530,8 +530,8 @@
                         Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
                     }
                     url = GetApiUrl(methodName, parameters);
-                    answer = Browser.GetJson(url);
                     LastInvokeTime = DateTimeOffset.Now;
+                    answer = Browser.GetJson(url);
                 }
             }
 
