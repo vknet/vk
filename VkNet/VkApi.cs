@@ -28,13 +28,12 @@
 	/// </summary>
 	public class VkApi
     {
-		/// <summary>
-		/// Версия API vk.com.
-		/// </summary>
-		[NotNull]
-		public readonly string VkApiVersion = "5.50";
+	    /// <summary>
+	    /// Версия API vk.com.
+	    /// </summary>
+	    public const string VkApiVersion = "5.50";
 
-		/// <summary>
+	    /// <summary>
 		/// Параметры авторизации.
 		/// </summary>
 		private ApiAuthParams _ap;
