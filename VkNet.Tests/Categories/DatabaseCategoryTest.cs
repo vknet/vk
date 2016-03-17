@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Moq;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
-using VkNet.Exception;
-using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
-    using System.Collections.ObjectModel;
-
-    [TestFixture]
-    public class DatabaseCategoryTest
+	[TestFixture]
+    public class DatabaseCategoryTest : BaseTest
     {
         private DatabaseCategory GetMockedDatabaseCategory(string url, string json)
         {
-            var browser = Mock.Of<IBrowser>(b => b.GetJson(url.Replace('\'', '"')) == json);
-            return new DatabaseCategory(new VkApi{Browser = browser});
+            Json = json;
+            Url = url;
+            return new DatabaseCategory(Api);
         }
 
         [Test]

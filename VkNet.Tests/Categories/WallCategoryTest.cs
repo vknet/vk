@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -11,15 +10,13 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
-
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class WallCategoryTest
+	public class WallCategoryTest : BaseTest
 	{
 		private WallCategory _defaultWall;
 
@@ -31,8 +28,9 @@ namespace VkNet.Tests.Categories
 
 		private WallCategory GetMockedWallCategory(string url, string json)
 		{
-		    var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-			return new WallCategory(new VkApi { AccessToken = "token", Browser = browser });
+            Json = json;
+            Url = url;
+            return new WallCategory(Api);
 		}
 
 		#region Wall.Get
@@ -309,7 +307,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 		{
-			const string url = "https://api.vk.com/method/wall.get?owner_id=10&offset=1&count=1&filter=owner&extended=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=10&offset=1&count=1&filter=owner&extended=1&v=5.44&access_token=";
 			const string json =
 			    @"{
                     'response': {
@@ -774,7 +772,7 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_WithPoll_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=-103292418&offset=0&count=1&extended=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=-103292418&offset=0&count=1&extended=0&v=5.44&access_token=";
 			const string json =
 				@"{
 					response: {
@@ -837,7 +835,7 @@ namespace VkNet.Tests.Categories
         [Test]
 	    public void Get_Document_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&extended=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&extended=0&v=5.44&access_token=";
 			const string json =
                 @"{
                     'response': {
@@ -1035,7 +1033,7 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_With_PhotoListAttachment()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&extended=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&extended=0&v=5.44&access_token=";
 			const string json =
                 @"{
                     'response': {

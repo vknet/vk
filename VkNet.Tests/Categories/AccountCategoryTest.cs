@@ -184,7 +184,7 @@ namespace VkNet.Tests.Categories
 		public void RegisterDevice_NullOrEmptyToken_ThrowArgumentNullException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+			var account = new AccountCategory(Api);
 			Assert.That(() => account.RegisterDevice(new AccountRegisterDeviceParams
 			{
 				Token = null,
@@ -261,7 +261,7 @@ namespace VkNet.Tests.Categories
 		public void UnregisterDevice_NullOrEmptyToken_ThrowArgumentNullException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
 			Assert.That(() => account.UnregisterDevice(null), Throws.InstanceOf<ArgumentNullException>());
@@ -302,7 +302,7 @@ namespace VkNet.Tests.Categories
 		public void SetSilenceMode_NullOrEmptyToken_ThrowArgumentNullException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
 			Assert.That(() => account.SetSilenceMode(null), Throws.InstanceOf<ArgumentNullException>());
@@ -358,7 +358,7 @@ namespace VkNet.Tests.Categories
 		public void BanUser_IncorrectUserID_ThrowArgumentException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
 			Assert.That(() => account.BanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userId"));
@@ -398,7 +398,7 @@ namespace VkNet.Tests.Categories
 		public void UnbanUser_IncorrectUserID_ThrowArgumentException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
 			Assert.That(() => account.UnbanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userId"));
@@ -439,7 +439,7 @@ namespace VkNet.Tests.Categories
 		public void GetBanned_IncorrectParameters_ThrowArgumentException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+			var account = new AccountCategory(Api);
 
 			int buf;
 			Assert.That(() => account.GetBanned(out buf, offset: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("offset"));
@@ -622,7 +622,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetInfo_IncorrectUserID_ThrowArgumentException()
 		{
-			var account = new AccountCategory(new VkApi { AccessToken = "token", Browser = null });
+			var account = new AccountCategory(Api);
 
 			Assert.That(() => account.SetInfo(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("intro"));
 		}

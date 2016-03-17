@@ -1,33 +1,23 @@
 ﻿namespace VkNet.Tests.Categories
 {
 	using System;
-	using System.Collections.ObjectModel;
 	using System.Linq;
-	using Moq;
 	using NUnit.Framework;
 	using VkNet.Categories;
-	using VkNet.Utils;
-
 	using Enums;
-	using Exception;
 	using Model;
 	using Enums.Filters;
 	using Enums.SafetyEnums;
 
 
 	[TestFixture]
-	public class GroupsCategoryTest
+	public class GroupsCategoryTest : BaseTest
 	{
-		[SetUp]
-		public void SetUp()
-		{
-
-		}
-
 		private GroupsCategory GetMockedGroupCategory(string url, string json)
 		{
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-			return new GroupsCategory(new VkApi { AccessToken = "token", Browser = browser });
+            Json = json;
+            Url = url;
+            return new GroupsCategory(Api);
 		}
 
 		[Test]
@@ -505,7 +495,7 @@
 		[Test]
 		public void IsMember_WrongUid_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=1000000000000&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=1000000000000&v=5.44&access_token=";
 			const string json =
 				@"{
 					response: 0
@@ -519,7 +509,7 @@
 		[Test]
 		public void IsMemeber_UserIsAMember_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=4793858&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=4793858&v=5.44&access_token=";
 			const string json =
 				@"{
 					response: [{
@@ -536,7 +526,7 @@
 		[Test]
 		public void IsMemeber_UserNotAMember_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=17683660&user_ids=4793858&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=17683660&user_ids=4793858&v=5.44&access_token=";
 			const string json =
 				@"{
 					response: [{
@@ -553,7 +543,7 @@
 		[Test]
 		public void GetMembers_NormalCase_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&v=5.44&access_token=";
 			const string json =
                 @"{
 					'response': {
@@ -592,7 +582,7 @@
 		[Test]
 		public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&sort=id_asc&offset=15&count=7&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&sort=id_asc&offset=15&count=7&v=5.44&access_token=";
 			const string json =
 				@"{
 					'response': {
@@ -628,7 +618,7 @@
 		[Test]
 		public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?group_id=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=0&v=5.44&access_token=";
 			const string json =
 				@"{
 					'error': {
@@ -674,7 +664,7 @@
 		{
 			int totalCount;
 
-			var groups = new GroupsCategory(new VkApi { AccessToken = "token" });
+			var groups = new GroupsCategory(Api);
 			// This.Action(() => groups.Search("", out totalCount)).Throws<ArgumentNullException>();
 		}
 

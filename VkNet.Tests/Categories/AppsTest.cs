@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCatalog_NormalCase()
 		{
-			Url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=5.44&access_token=";
 			Json =
 				@"{
 					'response': {

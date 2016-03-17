@@ -1,20 +1,19 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
-using VkNet.Utils;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class NewsFeedCategoryTest
+	public class NewsFeedCategoryTest : BaseTest
 	{
 		private NewsFeedCategory GetMockedNewsFeedCategory(string url, string json)
 		{
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-			return new NewsFeedCategory(new VkApi { AccessToken = "token", Browser = browser });
+            Json = json;
+            Url = url;
+            return new NewsFeedCategory(Api);
 		}
 
 		[Test]

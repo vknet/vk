@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
-using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
     [TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class PhotosCategoryTest
-    {
+	public class PhotosCategoryTest : BaseTest
+	{
         public PhotoCategory GetMockedPhotosCategory(string url, string json)
         {
-            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-            return new PhotoCategory(new VkApi{Browser = browser, AccessToken = "token"});
+            Json = json;
+            Url = url;
+            return new PhotoCategory(Api);
         }
 
         #region GetProfileUploadServer
@@ -390,7 +387,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.search?q=%d0%bf%d0%be%d1%80%d0%bd%d0%be&offset=2&count=3&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.search?q=%d0%bf%d0%be%d1%80%d0%bd%d0%be&offset=2&count=3&v=5.44&access_token=";
 			const string json =
                 @"{
                     'response': {
@@ -468,7 +465,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_Error26_Lat_and_Long_in_output_photo()
         {
-			const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=5.44&access_token=";
 			const string json =
                 @"{
                     'response': {

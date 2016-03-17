@@ -1,33 +1,21 @@
 ﻿namespace VkNet.Tests.Categories
 {
-	using System;
-	using System.Collections.ObjectModel;
 	using System.Linq;
-	using Moq;
 	using NUnit.Framework;
 
 
 	using VkNet.Categories;
-	using VkNet.Utils;
-
 	using Enums.Filters;
 	using Enums;
-	using Exception;
-	using Model;
 
 	[TestFixture]
-	public class FriendsCategoryTest
+	public class FriendsCategoryTest : BaseTest
 	{
-		[SetUp]
-		public void SetUp()
-		{
-
-		}
-
 		public FriendsCategory GetMockedFriendsCategory(string url, string json)
 		{
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-			return new FriendsCategory(new VkApi { AccessToken = "token", Browser = browser });
+            Json = json;
+            Url = url;
+            return new FriendsCategory(Api);
 		}
 
 		[Test]
@@ -256,7 +244,7 @@
 		[Test]
 		public void AreFriends_NullInput_ThrowArgumentNullException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi { AccessToken = "token" });
+			//var friendsCategory = new FriendsCategory(new VkApi { AccessToken = "token" });
 			//This.Action(() => friendsCategory.AreFriends(null)).Throws<ArgumentNullException>();
 		}
 

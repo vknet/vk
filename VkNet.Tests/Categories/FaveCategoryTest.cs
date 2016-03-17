@@ -1,27 +1,20 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Security.Policy;
-using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Categories
 {
-	using Model.Attachments;
-
-	using System;
-	using Moq;
 	using NUnit.Framework;
 	using VkNet.Categories;
-	using VkNet.Utils;
 
 
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class FaveCategoryTest
+	public class FaveCategoryTest : BaseTest
 	{
 		private FaveCategory GetMockedFaveCategory(string url, string json)
 		{
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(url.Replace('\'', '"')) == json);
-			return new FaveCategory(new VkApi {AccessToken = "token", Browser = browser});
+            Json = json;
+            Url = url;
+            return new FaveCategory(Api);
 		}
 
 		[Test]

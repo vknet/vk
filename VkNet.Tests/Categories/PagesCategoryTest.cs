@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-
-using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class PagesCategoryTest
+	public class PagesCategoryTest : BaseTest
 	{
 		private PagesCategory GetMockedPagesCategory(string url, string json)
 		{
-			var browser = Mock.Of<IBrowser>(b => b.GetJson(url.Replace('\'', '"')) == json);
-			return new PagesCategory(new VkApi { AccessToken = "token", Browser = browser });
+		    Json = json;
+		    Url = url;
+			return new PagesCategory(Api);
 		}
 
 		[Test]

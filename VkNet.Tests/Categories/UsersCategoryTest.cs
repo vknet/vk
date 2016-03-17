@@ -1,49 +1,35 @@
 ﻿namespace VkNet.Tests.Categories
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Collections.Generic;
+	using System.Collections.Generic;
     using System.Linq;
     using Moq;
     using NUnit.Framework;
     using VkNet.Categories;
-
-    using Enums;
-    using Exception;
-    using Model;
-    using Model.RequestParams;
+	using Exception;
+	using Model.RequestParams;
     using Enums.Filters;
     using Enums.SafetyEnums;
 
     using VkNet.Utils;
-    
+
 
     [TestFixture]
-    public class UsersCategoryTest
-    {
+    public class UsersCategoryTest : BaseTest
+	{
         private const string Query = "Masha Ivanova";
-
-        [SetUp]
-        public void SetUp()
-        {
-
-        }
 
         private UsersCategory GetMockedUsersCategory(string url, string json)
         {
-#if false // async version
-            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json && m.GetJsonAsync(url) == Task.FromResult(json));
-#endif
-            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json && m.GetJson(url) == json);
-
-            return new UsersCategory(new VkApi { AccessToken = "token", Browser = browser});
+            Json = json;
+            Url = url;
+            return new UsersCategory(Api);
         }
 
 		[Test, Ignore("")]
 		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
 			// Метод Get не требует AccessToken
-            var users = new UsersCategory(new VkApi { AccessToken = null });
+            //var users = new UsersCategory(new VkApi { AccessToken = null });
 
             //This.Action(() => users.Get(1)).Throws<AccessTokenInvalidException>();
         }
@@ -54,7 +40,7 @@
             var mockBrowser = new Mock<IBrowser>();
             mockBrowser.Setup(f => f.GetJson(It.IsAny<string>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
 
-            var users = new UsersCategory(new VkApi {AccessToken = "asgsstsfast", Browser = mockBrowser.Object});
+            //var users = new UsersCategory(new VkApi {AccessToken = "asgsstsfast", Browser = mockBrowser.Object});
 
             //var ex = This.Action(() => users.Get(1)).Throws<VkApiException>();
             //ex.Message.ShouldEqual("The remote name could not be resolved: 'api.vk.com'");
@@ -223,7 +209,7 @@
         [Test]
         public void Get_EmptyListOfUids_ThrowArgumentNullException()
         {
-            var users = new UsersCategory(new VkApi { AccessToken = "token" });
+            //var users = new UsersCategory(new VkApi { AccessToken = "token" });
             IEnumerable<long> userIds = null;
             //This.Action(() => users.Get(userIds)).Throws<ArgumentNullException>();
         }
@@ -364,7 +350,7 @@
         public void Search_EmptyQuery_ThrowArgumentException()
         {
             int count;
-            var vk = new VkApi { AccessToken = "token" };
+            //var vk = new VkApi { AccessToken = "token" };
             //This.Action(() => vk.Users.Search(out count, new UserSearchParams { Query = "" })).Throws<ArgumentException>()
             //    .Message.ShouldEqual("Query can not be null or empty.");
         }

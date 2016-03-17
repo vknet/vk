@@ -1,22 +1,21 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
     [TestFixture]
     [SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-    public class LikesCategoryTest
-    {
+    public class LikesCategoryTest : BaseTest
+	{
         private LikesCategory GetMockedLikesCategory(string url, string json)
         {
-            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-            return new LikesCategory(new VkApi { AccessToken = "token", Browser = browser });
+            Json = json;
+            Url = url;
+            return new LikesCategory(Api);
         }
 
         [Test]
@@ -70,7 +69,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetList_NormalCase()
         {
-            const string url = "https://api.vk.com/method/likes.getList?item_id=701&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/likes.getList?item_id=701&v=5.44&access_token=";
             const string json =
                 @"{
 					response: {
@@ -89,7 +88,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetListEx_NormalCase()
         {
-            const string url = "https://api.vk.com/method/likes.getList?item_id=701&extended=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/likes.getList?item_id=701&extended=1&v=5.44&access_token=";
             const string json =
                 @"{
 					response: {

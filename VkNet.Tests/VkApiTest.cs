@@ -98,7 +98,7 @@
 		[Test]
 		public void Call_ThrowsCaptchaNeededException()
 		{
-			Url = "https://api.vk.com/method/messages.send?v=5.50&access_token=token";
+			Url = "https://api.vk.com/method/messages.send?v=5.50&access_token=";
 			Json =
 				@"{
 					'error': {
@@ -173,7 +173,7 @@
 		[Test]
 		public void Invoke_VkParams()
 		{
-			Url = "https://api.vk.com/method/example.get?count=23&access_token=token";
+			Url = "https://api.vk.com/method/example.get?count=23&access_token=";
 			Json = @"{ 'response' : [] }";
 			Parameters = new VkParameters { { "count", 23 } };
 			var json = Api.Invoke("example.get", Parameters, true);
@@ -184,7 +184,7 @@
 		[Test]
 		public void Invoke_DictionaryParams()
 		{
-			Url = "https://api.vk.com/method/example.get?count=23&access_token=token";
+			Url = "https://api.vk.com/method/example.get?count=23&access_token=";
 			Json = @"{ 'response' : [] }";
 			var parameters = new Dictionary<string, string> { { "count", "23" } };
 			var json = Api.Invoke("example.get", parameters, true);
@@ -196,7 +196,6 @@
 		public void AuthorizeByToken()
 		{
 			Api.Authorize("token", 1);
-			Assert.That(Api.AccessToken, Is.EqualTo("token"));
 			Assert.That(Api.UserId, Is.EqualTo(1));
 		}
 
@@ -205,7 +204,6 @@
 		{
 			Api = new VkApi(); // В базовом классе предопределено свойство AccessToken
 			Api.Authorize("", 1);
-			Assert.That(Api.AccessToken, Is.Null);
 			Assert.That(Api.UserId, Is.Null);
 		}
 

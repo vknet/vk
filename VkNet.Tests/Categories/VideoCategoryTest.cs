@@ -1,27 +1,20 @@
 ﻿namespace VkNet.Tests.Categories
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using Moq;
-    using NUnit.Framework;
+	using NUnit.Framework;
     using VkNet.Categories;
-    using VkNet.Utils;
-
-
-    using Enums;
-    using Model;
-    using Enums.Filters;
+	using Enums;
+	using Enums.Filters;
     using Enums.SafetyEnums;
-    using Model.Attachments;
 
 
-    [TestFixture]
-    public class VideoCategoryTest
-    {
+	[TestFixture]
+    public class VideoCategoryTest : BaseTest
+	{
          private VideoCategory GetMockedVideoCategory(string url, string json)
          {
-             var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-             return new VideoCategory(new VkApi{AccessToken = "token", Browser = browser});
+            Json = json;
+            Url = url;
+            return new VideoCategory(Api);
          }
 
          [Test]

@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Categories
 {
@@ -13,32 +12,21 @@ namespace VkNet.Tests.Categories
 
 	using Enums;
 	using Enums.Filters;
-	using Exception;
 	using Model.RequestParams;
 
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class MessagesCategoryTest
+	public class MessagesCategoryTest : BaseTest
 	{
-		public string Json;
-		public string Url;
-
 		public MessagesCategory Cat
 		{
 			get { return GetMockedMessagesCategory(); }
 		}
 
-		[SetUp]
-		public void SetUp()
-		{
-			Url = "";
-			Json = "";
-		}
-
 		private MessagesCategory GetMockedMessagesCategory()
 		{
 			var browser = Mock.Of<IBrowser>(m => m.GetJson(Url) == Json);
-			return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser});
+			return new MessagesCategory(Api);
 		}
 
 		[Test]
@@ -989,8 +977,10 @@ namespace VkNet.Tests.Categories
 		//BUG: не работает, т.к. апостроф (в test chat's title) парсится в %27
 		public void CreateChat_NormalCase_ChatId()
 		{
-			Url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test chat's title&v=5.44&access_token=token";
-			Json =
+			Url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test chat%27s title&v=5.44&access_token=token";
+                  
+
+            Json =
 				@"{
 					'response': 3
 				  }";

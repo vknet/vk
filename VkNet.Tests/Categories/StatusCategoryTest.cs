@@ -1,26 +1,17 @@
-﻿using System;
-
-using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Categories;
-using VkNet.Exception;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
     [TestFixture]
-    public class StatusCategoryTest
-    {
-        [SetUp]
-        public void SetUp()
-        {
-        }
-
+    public class StatusCategoryTest : BaseTest
+	{
         private StatusCategory GetMockedStatusCategory(string url, string json)
         {
-            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-            return new StatusCategory(new VkApi { AccessToken = "token", Browser = browser });
+            Json = json;
+            Url = url;
+            return new StatusCategory(Api);
         }
 
         [Test]
@@ -109,7 +100,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Set_TextIsNull_ThrowArgumentNullException()
         {
-            var status = new StatusCategory(new VkApi { AccessToken = "token" });
+            //var status = new StatusCategory(new VkApi { AccessToken = "token" });
             // This.Action(() => status.Set(null)).Throws<NullReferenceException>();
         }
 

@@ -1,7 +1,5 @@
 ﻿
 
-using VkNet.Exception;
-
 namespace VkNet.Tests.Enum
 {
     using System;
