@@ -1,4 +1,6 @@
-﻿namespace VkNet.Tests.Categories
+﻿using VkNet.Exception;
+
+namespace VkNet.Tests.Categories
 {
 	using System;
 	using System.Linq;
@@ -55,8 +57,8 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			//// This.Action(() => groups.Join(0, true)).Throws<AccessDeniedException>()
-			//	.Message.ShouldEqual("Access denied: you can not join this private community");
+			var ex = Assert.Throws<AccessDeniedException>(() => groups.Join(0, true));
+			Assert.That(ex.Message, Is.EqualTo("Access denied: you can not join this private community"));
 		}
 
 		[Test]
@@ -150,8 +152,7 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-
-			//// This.Action(() => groups.Join(2, true)).Throws<AccessDeniedException>();
+			Assert.That(() => groups.Join(2, true), Throws.InstanceOf<AccessDeniedException>());
 		}
 
 		[Test]
@@ -185,21 +186,21 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			// This.Action(() => groups.Leave(2)).Throws<AccessDeniedException>();
+			Assert.That(() => groups.Leave(2), Throws.InstanceOf<AccessDeniedException>());
 		}
 
 		[Test]
 		public void Join_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			// This.Action(() => groups.Join(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => groups.Join(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void Leave_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			// This.Action(() => groups.Leave(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => groups.Leave(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -233,7 +234,7 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			// This.Action(() => groups.Join(1)).Throws<UserAuthorizationFailException>();
+			Assert.That(() => groups.Join(1), Throws.InstanceOf<UserAuthorizationFailException>());
 		}
 
 		[Test]
@@ -267,14 +268,14 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			// This.Action(() => groups.Leave(1)).Throws<UserAuthorizationFailException>();
+			Assert.That(() => groups.Leave(1), Throws.InstanceOf<UserAuthorizationFailException>());
 		}
 
 		[Test]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			// This.Action(() => groups.Get(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => groups.Get(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -403,14 +404,14 @@
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			// This.Action(() => groups.GetById(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => groups.GetById(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test, Ignore("Это открытый метод, не требующий access_token.")]
 		public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var g = new GroupsCategory(new VkApi());
-			// This.Action(() => g.IsMember(2, 1)).Throws<AccessTokenInvalidException>();
+			var groups = new GroupsCategory(new VkApi());
+			Assert.That(() => groups.IsMember(2, 1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test, Ignore("Это открытый метод, не требующий access_token.")]
@@ -448,15 +449,14 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-
-			// This.Action(() => groups.IsMember(637247, 4793858)).Throws<UserAuthorizationFailException>()
-				//.Message.ShouldEqual("User authorization failed: access_token was given to another ip address.");
+			var ex = Assert.Throws<UserAuthorizationFailException>(() => groups.IsMember(637247, 4793858));
+			Assert.That(ex.Message, Is.EqualTo("User authorization failed: access_token was given to another ip address."));
 		}
 
 		[Test]
 		public void IsMember_WrongGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=0&user_ids=4793858&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=0&user_ids=4793858&v=5.44&access_token=";
 			const string json =
 				@"{
 					'error': {
@@ -488,8 +488,8 @@
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			// This.Action(() => groups.IsMember(0, 4793858)).Throws<InvalidParameterException>()
-				//.Message.ShouldEqual("Invalid group id");
+			var ex = Assert.Throws<InvalidParameterException>(() => groups.IsMember(0, 4793858));
+			Assert.That(ex.Message, Is.EqualTo("Invalid group id"));
 		}
 
 		[Test]
@@ -648,7 +648,7 @@
 			var groups = GetMockedGroupCategory(url, json);
 
 			int totalCount;
-			// This.Action(() => groups.GetMembers(0, out totalCount)).Throws<InvalidParameterException>();
+			Assert.That(() => groups.GetMembers(0, out totalCount), Throws.InstanceOf<InvalidParameterException>());
 		}
 
 		[Test]
@@ -656,7 +656,7 @@
 		{
 			int totalCount;
 			var groups = new GroupsCategory(new VkApi());
-			// This.Action(() => groups.Search("Music", out totalCount)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => groups.Search("Music", out totalCount), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -665,7 +665,7 @@
 			int totalCount;
 
 			var groups = new GroupsCategory(Api);
-			// This.Action(() => groups.Search("", out totalCount)).Throws<ArgumentNullException>();
+			Assert.That(() => groups.Search("", out totalCount), Throws.InstanceOf<ArgumentNullException>());
 		}
 
 		[Test]
@@ -847,7 +847,7 @@
 		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			// This.Action(() => groups.GetById(2)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => groups.GetById(2), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -919,7 +919,7 @@
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			// This.Action(() => cat.GetById(0)).Throws<InvalidParameterException>();
+			Assert.That(() => cat.GetById(0), Throws.InstanceOf<InvalidParameterException>());
 		}
 
 		[Test]
@@ -994,7 +994,7 @@
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			// This.Action(() => cat.GetById(new long[] { 0 })).Throws<InvalidParameterException>();
+			Assert.That(() => cat.GetById(new long[] { 0 }), Throws.InstanceOf<InvalidParameterException>());
 		}
 
 		[Test]
@@ -1232,20 +1232,21 @@
 
 			var groups = cat.GetInvites(3, 0);
 
-			//groups.ShouldNotBeNull();
-			//groups.Count.ShouldEqual(1);
-
-			Assert.That(groups[0].Id, Is.EqualTo(66528333));
-			//groups[0].Name.ShouldEqual("группа 123");
-			//groups[0].ScreenName.ShouldEqual("club66528333");
-			//groups[0].IsClosed.ShouldEqual(GroupPublicity.Closed);
-			//groups[0].Type.ShouldEqual(GroupType.Group);
-			//groups[0].IsAdmin.ShouldBeFalse();
-			//groups[0].IsMember.ShouldEqual(false);
-			//groups[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://vk.com/images/community_50.gif"));
-			//groups[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://vk.com/images/community_100.gif"));
-			//groups[0].PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://vk.com/images/question_a.gif"));
-			Assert.That(groups[0].InvitedBy, Is.EqualTo(242508789));
+			Assert.That(groups, Is.Not.Null);
+			Assert.That(groups.Count, Is.EqualTo(1));
+			var group = groups.FirstOrDefault();
+			Assert.That(group, Is.Not.Null);
+			Assert.That(group.Id, Is.EqualTo(66528333));
+			Assert.That(group.Name, Is.EqualTo("группа 123"));
+			Assert.That(group.ScreenName, Is.EqualTo("club66528333"));
+			Assert.That(group.IsClosed, Is.EqualTo(GroupPublicity.Closed));
+			Assert.That(group.Type, Is.EqualTo(GroupType.Group));
+			Assert.That(group.IsAdmin, Is.False);
+			Assert.That(group.IsMember, Is.EqualTo(false));
+			Assert.That(group.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://vk.com/images/community_50.gif")));
+			Assert.That(group.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://vk.com/images/community_100.gif")));
+			Assert.That(group.PhotoPreviews.PhotoMax, Is.EqualTo(new Uri("http://vk.com/images/question_a.gif")));
+			Assert.That(group.InvitedBy, Is.EqualTo(242508789));
 		}
 
 		[Test]
@@ -1263,8 +1264,8 @@
 
 			var groups = cat.GetInvites(3, 0);
 
-			//groups.ShouldNotBeNull();
-			//groups.Count.ShouldEqual(0);
+			Assert.That(groups, Is.Not.Null);
+			Assert.That(groups.Count, Is.EqualTo(0));
 		}
 
 		[Test]
@@ -1281,7 +1282,7 @@
 
 			var result = cat.BanUser(6596823, 242506753, comment: "просто комментарий", commentVisible: true);
 
-			//result.ShouldBeTrue();
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -1311,17 +1312,19 @@
 
 			var users = cat.GetBanned(65968111,null, 3);
 
-			//users.ShouldNotBeNull();
-			//users.Count.ShouldEqual(1);
+			Assert.That(users, Is.Not.Null);
+			Assert.That(users.Count, Is.EqualTo(1));
 
-			users[0].Id = 242508345;
-			users[0].FirstName = "Маша";
-			users[0].LastName = "Иванова";
-			//users[0].BanInfo.AdminId.ShouldEqual(234695672);
-			//users[0].BanInfo.Date.ShouldEqual(new DateTime(2014, 2, 16, 9, 35, 1, DateTimeKind.Utc).ToLocalTime());
-			//users[0].BanInfo.Reason.ShouldEqual(BanReason.Spam);
-			//users[0].BanInfo.Comment.ShouldEqual("просто комментарий");
-			//users[0].BanInfo.EndDate.ShouldEqual(new DateTime(2014, 2, 19, 9, 34, 57, DateTimeKind.Utc).ToLocalTime());
+			var user = users.FirstOrDefault();
+			Assert.That(user, Is.Not.Null);
+			Assert.That(user.Id, Is.EqualTo(242508345));
+			Assert.That(user.FirstName, Is.EqualTo("Маша"));
+			Assert.That(user.LastName, Is.EqualTo("Иванова"));
+			Assert.That(user.BanInfo.AdminId, Is.EqualTo(234695672));
+			Assert.That(user.BanInfo.Date, Is.EqualTo(new DateTime(2014, 2, 16, 9, 35, 1, DateTimeKind.Utc).ToLocalTime()));
+			Assert.That(user.BanInfo.Reason, Is.EqualTo(BanReason.Spam));
+			Assert.That(user.BanInfo.Comment, Is.EqualTo("просто комментарий"));
+			Assert.That(user.BanInfo.EndDate, Is.EqualTo(new DateTime(2014, 2, 19, 9, 34, 57, DateTimeKind.Utc).ToLocalTime()));
 		}
 
 		[Test]
@@ -1337,7 +1340,7 @@
 
 			var result = cat.UnbanUser(65960, 242508);
 
-			//result.ShouldBeTrue();
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -1509,7 +1512,7 @@
 
 			var groups = cat.GetSettings(103292418);
 
-			//groups.ShouldNotBeNull();
+			Assert.That(groups, Is.Not.Null);
 		}
 
 		[Test]
@@ -1528,7 +1531,7 @@
 			};
 			var groups = cat.Edit(103292418, group);
 
-			//groups.ShouldBeTrue();
+			Assert.That(groups, Is.True);
 		}
 
 		[Test]
@@ -1555,7 +1558,7 @@
 			};
 			var groups = cat.EditPlace(103292418, place);
 
-			//groups.ShouldBeTrue();
+			Assert.That(groups, Is.True);
 		}
 
 		[Test]
@@ -1581,12 +1584,13 @@
 			int count;
 			var users = cat.GetInvitedUsers(103292418, out count, 0, 20, UsersFields.BirthDate, NameCase.Dat);
 
-			//users.ShouldNotBeNull();
-
-			users[0].Id = 221634238;
-			users[0].FirstName = "Александру";
-			users[0].LastName = "Инютину";
-			users[0].BirthDate = "23.6.2000";
+			Assert.That(users, Is.Not.Null);
+			var user = users.FirstOrDefault();
+			Assert.That(user, Is.Not.Null);
+			Assert.That(user.Id, Is.EqualTo(221634238));
+			Assert.That(user.FirstName, Is.EqualTo("Александру"));
+			Assert.That(user.LastName, Is.EqualTo("Инютину"));
+			Assert.That(user.BirthDate, Is.EqualTo("23.6.2000"));
 		}
 
 		[Test]
@@ -1601,7 +1605,7 @@
 			var cat = GetMockedGroupCategory(url, json);
 			var users = cat.Invite(103292418, 221634238);
 
-			//users.ShouldBeTrue();
+			Assert.That(users, Is.True);
 		}
 	}
 }
