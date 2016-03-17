@@ -34,20 +34,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		#region Wall.Get
-
-		[Test, Ignore("Метод не требует AccessToken")]
-		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			//
-			int totalCount;
-			//This.Action(() => _defaultWall.Get(1, out totalCount)).Throws<AccessTokenInvalidException>();
-
-			//ReadOnlyCollection<Post> posts;
-			//ReadOnlyCollection<User> profiles;
-			//ReadOnlyCollection<Group> groups;
-			//This.Action(() => _defaultWall.GetExtended(1, out posts, out profiles, out groups)).Throws<AccessTokenInvalidException>();
-		}
-
 		[Test]
 		public void Get_IncorrectParameters_ThrowArgumentException()
 		{
@@ -414,7 +400,7 @@ namespace VkNet.Tests.Categories
 		public void GetComments_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			int totalCount;
-			//This.Action(() => _defaultWall.GetComments(12312, 12345, out totalCount, SortOrderBy.Asc, true)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => _defaultWall.GetComments(12312, 12345, out totalCount, SortOrderBy.Asc, true), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -604,7 +590,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Post_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			//This.Action(() => _defaultWall.Post(message: "message")).Throws<AccessTokenInvalidException>();
+			Assert.That(() => _defaultWall.Post(message: "message"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -655,7 +641,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Repost_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			//This.Action(() => _defaultWall.Repost("id")).Throws<AccessTokenInvalidException>();
+			Assert.That(() => _defaultWall.Repost("id"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -681,12 +667,11 @@ namespace VkNet.Tests.Categories
 					} }";
 
 			var result = GetMockedWallCategory(url, json).Repost("id", "example", 50);
-
-			//result.ShouldNotBeNull();
-		 //   result.Success.ShouldBeTrue();
-		 //   result.PostId.ShouldEqual(2587);
-		 //   result.RepostsCount.ShouldEqual(21);
-		 //   result.LikesCount.ShouldEqual(105);
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Success, Is.True);
+			Assert.That(result.PostId, Is.EqualTo(2587));
+			Assert.That(result.RepostsCount, Is.EqualTo(21));
+			Assert.That(result.LikesCount, Is.EqualTo(105));
 		}
 
 
@@ -720,7 +705,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Edit_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			//This.Action(() => _defaultWall.Edit(1, message: "message")).Throws<AccessTokenInvalidException>();
+			Assert.That(() => _defaultWall.Edit(1, message: "message"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -763,10 +748,11 @@ namespace VkNet.Tests.Categories
 
 
 		[Test]
-		[Ignore("")]
+		//[Ignore("")]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			//This.Action(() => _defaultWall.Delete(1, 1)).Throws<AccessTokenInvalidException>();
+			//This.Action(() => ).Throws<AccessTokenInvalidException>();
+			Assert.That(() => _defaultWall.Delete(1, 1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 	    [Test]
@@ -808,29 +794,30 @@ namespace VkNet.Tests.Categories
 			}";
             var posts = GetMockedWallCategory(url, json).Get(new WallGetParams { OwnerId = -103292418, Count = 1 });
 
-			//posts.TotalCount.ShouldEqual(2u);
-	  //      posts.WallPosts.Count.ShouldEqual(1);
+			Assert.That(posts.TotalCount, Is.EqualTo(2u));
+			Assert.That(posts.WallPosts.Count, Is.EqualTo(1));
 
-	  //      posts.WallPosts[0].Id.ShouldEqual(3);
-	  //      posts.WallPosts[0].FromId.ShouldEqual(-103292418);
-	  //      posts.WallPosts[0].OwnerId.ShouldEqual(-103292418);
-			//// Unix timestamp is seconds past epoch
-			//var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			//posts.WallPosts[0].Date.ShouldEqual(dt.AddSeconds(1447252575).ToLocalTime());
-	  //      posts.WallPosts[0].PostType.ShouldEqual(PostType.Post);
-   //         posts.WallPosts[0].Text.ShouldEqual("Тест");
-   //         posts.WallPosts[0].CanDelete.ShouldBeTrue();
-   //         posts.WallPosts[0].CanEdit.ShouldBeFalse();
-	  //      posts.WallPosts[0].PostSource.Type.ShouldEqual(PostSourceType.Api);
-	  //      posts.WallPosts[0].Comments.CanPost.ShouldBeTrue();
-	  //      posts.WallPosts[0].Comments.Count.ShouldEqual(0);
-	  //      posts.WallPosts[0].Likes.Count.ShouldEqual(0);
-   //         posts.WallPosts[0].Likes.UserLikes.ShouldBeFalse();
-   //         posts.WallPosts[0].Likes.CanLike.ShouldBeTrue();
-	  //      posts.WallPosts[0].Likes.CanPublish.ShouldEqual(true);
-	  //      posts.WallPosts[0].Reposts.Count.ShouldEqual(0);
-   //         posts.WallPosts[0].Reposts.UserReposted.ShouldBeFalse();
-	    }
+		    var post = posts.WallPosts.FirstOrDefault();
+			Assert.That(post, Is.Not.Null);
+
+			Assert.That(post.Id, Is.EqualTo(3));
+			Assert.That(post.FromId, Is.EqualTo(-103292418));
+			Assert.That(post.OwnerId, Is.EqualTo(-103292418));
+			Assert.That(post.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1447252575)));
+			Assert.That(post.PostType, Is.EqualTo(PostType.Post));
+			Assert.That(post.Text, Is.EqualTo("Тест"));
+			Assert.That(post.CanDelete, Is.True);
+			Assert.That(post.CanEdit, Is.False);
+			Assert.That(post.PostSource.Type, Is.EqualTo(PostSourceType.Api));
+			Assert.That(post.Comments, Is.Not.Null);
+			Assert.That(post.Comments.Count, Is.EqualTo(0));
+			Assert.That(post.Likes.Count, Is.EqualTo(0));
+			Assert.That(post.Likes.UserLikes, Is.False);
+			Assert.That(post.Likes.CanLike, Is.True);
+			Assert.That(post.Likes.CanPublish, Is.EqualTo(true));
+			Assert.That(post.Reposts.Count, Is.EqualTo(0));
+			Assert.That(post.Reposts.UserReposted, Is.False);
+		}
 
         [Test]
 	    public void Get_Document_NormalCase()
@@ -892,21 +879,20 @@ namespace VkNet.Tests.Categories
 				Offset = 2
 			});
 
-			//posts.TotalCount.ShouldEqual(100u);
-
-   //         posts.WallPosts[0].Attachments.Count.ShouldEqual(1);
-            var doc = (Document)posts.WallPosts[0].Attachment.Instance;
-
-            //doc.Id.ShouldEqual(237844408);
-            //doc.OwnerId.ShouldEqual(26033241);
-            //doc.Title.ShouldEqual("2e857c8f-aaf8-4399-9856-e4fda3199e3d.gif");
-            //doc.Size.ShouldEqual(2006654);
-            //doc.Ext.ShouldEqual("gif");
-            //doc.Url.ShouldEqual("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1");
-            //doc.Photo100.ShouldEqual("http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg");
-            //doc.Photo130.ShouldEqual("http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg");
-            //doc.AccessKey.ShouldEqual("5bf7103aa95aacb8ad");
-	    }
+			Assert.That(posts.TotalCount, Is.EqualTo(100u));
+			Assert.That(posts.WallPosts[0].Attachments.Count, Is.EqualTo(1));
+			var doc = (Document)posts.WallPosts[0].Attachment.Instance;
+			Assert.That(doc, Is.Not.Null);
+			Assert.That(doc.Id, Is.EqualTo(237844408));
+			Assert.That(doc.OwnerId, Is.EqualTo(26033241));
+			Assert.That(doc.Title, Is.EqualTo("2e857c8f-aaf8-4399-9856-e4fda3199e3d.gif"));
+			Assert.That(doc.Size, Is.EqualTo(2006654));
+			Assert.That(doc.Ext, Is.EqualTo("gif"));
+			Assert.That(doc.Url, Is.EqualTo("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1"));
+			Assert.That(doc.Photo100, Is.EqualTo("http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg"));
+			Assert.That(doc.Photo130, Is.EqualTo("http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg"));
+			Assert.That(doc.AccessKey, Is.EqualTo("5bf7103aa95aacb8ad"));
+		}
 
         [Test, Ignore("undone")]
 	    public void Get_Geo_NormalCase()
@@ -1025,9 +1011,10 @@ namespace VkNet.Tests.Categories
 	        int total;
             var posts = GetMockedWallCategory(url, json).Get(1563369, out total, 2, 3);
 
-	        //total.ShouldEqual(165);
+			Assert.That(total, Is.EqualTo(165));
+			Assert.That(posts, Is.Not.Null);
 
-            Assert.Fail("undone");
+			Assert.Fail("undone");
 	    }
 
 	    [Test]
@@ -1089,14 +1076,16 @@ namespace VkNet.Tests.Categories
 
 	        int totalCount;
 	        var posts = GetMockedWallCategory(url, json).Get(46476924, out totalCount, 1, 213, WallFilter.Owner);
+			Assert.That(totalCount, Is.EqualTo(1724));
+			Assert.That(posts, Is.Not.Null);
+			Assert.That(posts.Count, Is.EqualTo(1));
+			Assert.That(posts[0].CopyHistory, Is.Not.Null);
+			Assert.That(posts[0].CopyHistory.Count, Is.EqualTo(1));
 
-			//totalCount.ShouldEqual(1724);
-	  //      posts.Count.ShouldEqual(1);
-	  //      posts[0].CopyHistory.ShouldNotBeNull().Count.ShouldEqual(1);
-
-	  //      var attach = posts[0].CopyHistory[0].Attachment.ShouldNotBeNull();
-			//attach.Type = typeof (PhotosList);
-	  //      attach.Instance.ShouldBeNull();
-	    }
+			var attach = posts[0].CopyHistory[0].Attachment;
+			Assert.That(attach, Is.Not.Null);
+			Assert.That(attach.Type, Is.EqualTo(typeof (PhotosList)));
+			Assert.That(attach.Instance, Is.Null);
+		}
 	}
 }
