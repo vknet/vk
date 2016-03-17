@@ -295,8 +295,8 @@ namespace VkNet.Tests.Categories
 			var db = GetMockedPagesCategory(url, json);
 
 			var cache = db.ClearCache(new Uri("https://www.vk.com/dev/groups.addLink"));
-			//cache.ShouldBeTrue();
 
+			Assert.That(cache, Is.True);
 		}
 	}
 }
