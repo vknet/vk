@@ -141,21 +141,20 @@
 		}
 
 		[Test]
-		[Ignore("Не работает ")] // TODO не работает
 		public void Call_NotMoreThen3CallsPerSecond()
 		{
+			Json = @"{ ""response"": 2 }";
+			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
 			var invocationCount = 0;
-			var browser = new Mock<IBrowser>();
-			browser.Setup(m => m.GetJson(It.IsAny<string>()))
-				   .Returns(@"{ ""response"": 2 }")
-				   .Callback(() => invocationCount++);
-
-			var api = new VkApi { Browser = browser.Object };
+			Mock.Get(Api.Browser)
+				.Setup(m => m.GetJson(It.IsAny<string>()))
+				.Returns(Json)
+				.Callback(() => invocationCount++);
 
 			var start = DateTimeOffset.Now;
 			while (true)
 			{
-				api.Call("someMethod", VkParameters.Empty, true);
+				Api.Call("someMethod", VkParameters.Empty, true);
 
 				var total = (int)(DateTimeOffset.Now - start).TotalMilliseconds;
 				if (total > 999)
@@ -166,8 +165,7 @@
 
 			// Не больше 4 раз, т.к. 4-ый раз вызывается через 1002 мс после первого вызова, а total выходит через 1040 мс
 			// переписать тест, когда придумаю более подходящий метод проверки
-			// TODO почему то стал падать тест в этом месте
-			browser.Verify(m => m.GetJson(It.IsAny<string>()), Times.AtMost(4));
+			Mock.Get(Api.Browser).Verify(m => m.GetJson(It.IsAny<string>()), Times.AtMost(4));
 		}
 
 		[Test]
@@ -205,13 +203,6 @@
 			Api = new VkApi(); // В базовом классе предопределено свойство AccessToken
 			Api.Authorize("", 1);
 			Assert.That(Api.UserId, Is.Null);
-		}
-
-		[Test]
-		public void RefreshTokenNegative()
-		{
-			var ex = Assert.Throws<AggregateException>(() => Api.RefreshToken());
-			Assert.That(ex.Message, Is.EqualTo("Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля"));
 		}
 	}
 }

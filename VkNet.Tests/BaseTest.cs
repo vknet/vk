@@ -74,7 +74,14 @@ namespace VkNet.Tests
             {
                 Browser = browser.Object
             };
-            Api.Authorize("token", 1);
+            Api.Authorize(new ApiAuthParams()
+            {
+	            ApplicationId = 1,
+				Login = "login",
+				Password = "pass",
+				Settings = Settings.All
+            });
+	        Api.RequestsPerSecond = 10000; // Чтобы тесты быстрее выполнялись
         }
 
         /// <summary>
