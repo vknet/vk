@@ -783,7 +783,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(request.Status, Is.EqualTo(ChangeNameStatus.Success));
 		}
 
-        [Test, Ignore("почему то падает")]
+        [Test]
         public void SaveProfileInfo_AllPArameters_UrlIsCreatedCorrectly()
 		{
 			Url =
@@ -810,7 +810,7 @@ namespace VkNet.Tests.Categories
 			Is.True);
 		}
 
-		[Test, Ignore("почему то падает")]
+		[Test]
 		public void SaveProfileInfo_DateIsParsedCorrectly()
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo?bdate=15.11.1984&v=" + VkApi.VkApiVersion + "&access_token=token";
