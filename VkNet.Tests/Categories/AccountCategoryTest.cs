@@ -616,39 +616,61 @@ namespace VkNet.Tests.Categories
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.SetInfo(10), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => account.SetInfo("intro", "10"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
-		public void SetInfo_IncorrectUserID_ThrowArgumentException()
+		public void SetInfo_IncorrectUserID_ThrowInvalidParameterException()
 		{
 			var account = new AccountCategory(Api);
-
-			Assert.That(() => account.SetInfo(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("intro"));
+			Url = "https://api.vk.com/method/account.setInfo?name=intro&value=-10&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				error: {
+					error_code: 100,
+					error_msg: 'One of the parameters specified was missing or invalid: value should be positive',
+					request_params: [{
+						key: 'oauth',
+						value: '1'
+					}, {
+						key: 'method',
+						value: 'account.setInfo'
+					}, {
+						key: 'name',
+						value: 'intro'
+					}, {
+						key: 'v',
+						value: '5.50'
+					}, {
+						key: 'value',
+						value: '-10'
+					}]
+				}
+			}";
+			Assert.That(() => account.SetInfo("intro", "-10"), Throws.InstanceOf<InvalidParameterException>());
 		}
 
 		[Test]
 		public void SetInfo_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.setInfo?own_posts_default=1&no_wall_replies=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setInfo?name=own_posts_default&value=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json = @"{ 'response': 1 }";
-			Assert.That(Api.Account.SetInfo(), Is.True);
+			Assert.That(Api.Account.SetInfo("own_posts_default", "1"), Is.True);
 		}
 
 		[Test]
 		public void SetInfo_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setInfo?own_posts_default=1&no_wall_replies=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setInfo?name=own_posts_default&value=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json = @"{ 'response': 0 }";
-			Assert.That(Api.Account.SetInfo(), Is.False);
+			Assert.That(Api.Account.SetInfo("own_posts_default", "1"), Is.False);
 		}
 
 		[Test]
 		public void SetInfo_WithIntroParameter_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setInfo?intro=10&own_posts_default=1&no_wall_replies=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setInfo?name=intro&value=10&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json = @"{ 'response': 1 }";
-			Assert.That(Api.Account.SetInfo(10), Is.True);
+			Assert.That(Api.Account.SetInfo("intro", "10"), Is.True);
 		}
 
 		#endregion
