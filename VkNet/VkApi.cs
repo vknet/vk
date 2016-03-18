@@ -22,13 +22,13 @@
     /// <param name="api">Экземпляр API у которого истекло время токена</param>
     public delegate void VkApiDelegate(VkApi api);
 
-	/// <summary>
-	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
-	/// группами и т.п.).
-	/// </summary>
-	public class VkApi
+    /// <summary>
+    /// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
+    /// группами и т.п.).
+    /// </summary>
+    public class VkApi
     {
-	    /// <summary>
+        /// <summary>
 	    /// Версия API vk.com.
 	    /// </summary>
 	    public const string VkApiVersion = "5.50";
@@ -230,7 +230,7 @@
             set {}
         }
 
-	    /// <summary>
+        /// <summary>
         /// Токен для доступа к методам API
         /// </summary>
         private string AccessToken
@@ -344,20 +344,21 @@
         public void Authorize(string accessToken, long? userId = null)
         {
 	        if (string.IsNullOrWhiteSpace(accessToken))
-	        {
+            {
 		        return;
 	        }
 
-	        StopTimer();
+                StopTimer();
 
-	        AccessToken = accessToken;
-	        UserId = userId;
-	        _ap = new ApiAuthParams();
-        }
+            	LastInvokeTime = DateTimeOffset.Now;
+                AccessToken = accessToken;
+                UserId = userId;
+                _ap = new ApiAuthParams();
+            }
 
-		/// <summary>
+        /// <summary>
 		/// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.
-		/// </summary>
+        /// </summary>
 		/// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
 		/// <exception cref="AggregateException">
 		/// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля
@@ -413,6 +414,7 @@
         {
             StopTimer();
 
+            LastInvokeTime = DateTimeOffset.Now;
             var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
             if (!authorization.IsAuthorized)
             {
@@ -527,23 +529,24 @@
                 throw new AccessTokenInvalidException();
             }
 
-            // Защита от превышения количества запросов в секунду
-            if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
+            string url = "";
+            string answer = "";
+
+			// Защита от превышения количества запросов в секунду
+			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
                 lock (_expireTimer)
                 {
                     var span = LastInvokeTimeSpan.Value;
-                    LastInvokeTime = DateTimeOffset.Now;
                     if (span.TotalMilliseconds < _minInterval)
                     {
                         Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
                     }
+                    url = GetApiUrl(methodName, parameters, skipAuthorization);
+                    LastInvokeTime = DateTimeOffset.Now;
+                    answer = Browser.GetJson(url.Replace("\'", "%27"));
                 }
             }
-
-            var url = GetApiUrl(methodName, parameters, skipAuthorization);
-
-            var answer = Browser.GetJson(url.Replace("\'", "%27"));
 
 #if DEBUG && !UNIT_TEST
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
