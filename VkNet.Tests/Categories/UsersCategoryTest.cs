@@ -36,7 +36,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_WrongAccesToken_Throw_ThrowUserAuthorizationException()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 
             const string json =
                 @"{
@@ -72,7 +72,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_WithSomeFields_FirstNameLastNameEducation()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=first_name,last_name,education&user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=first_name,last_name,education&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -111,7 +111,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_CountersFields_CountersObject()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=counters&user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=counters&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -163,7 +163,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_DefaultFields_UidFirstNameLastName()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -203,7 +203,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_Mutliple_TwoUidsDefaultFields_TwoProfiles()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=1,672&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=1,672&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -238,7 +238,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_TwoUidsEducationField_TwoProfiles()
         {
-			const string url = "https://api.vk.com/method/users.get?fields=education&user_ids=1,5041431&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.get?fields=education&user_ids=1,5041431&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -312,7 +312,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_BadQuery_EmptyList()
         {
-			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
 					response: {
@@ -333,7 +333,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_EducationField_ListofProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 
 			const string json =
 				@"{
@@ -402,7 +402,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_DefaultFields_ListOfProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
 				response: {
@@ -453,7 +453,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void IsAppUser_5_5_version_of_api_return_false()
         {
-            const string url = "https://api.vk.com/method/users.isAppUser?user_id=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.isAppUser?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': 0
@@ -470,7 +470,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void IsAppUser_5_5_version_of_api_return_true()
         {
-            const string url = "https://api.vk.com/method/users.isAppUser?user_id=123&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.isAppUser?user_id=123&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': 1
@@ -487,7 +487,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_ListOfUsers()
         {
-			const string url = "https://api.vk.com/method/users.get?fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.get?fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -670,7 +670,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_SingleUser()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -851,7 +851,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void Get_DeletedUser()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=first_name,last_name,education&user_ids=4793858&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=first_name,last_name,education&user_ids=4793858&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -879,7 +879,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetSubscriptions_Extended()
         {
-            const string url = "https://api.vk.com/method/users.getSubscriptions?user_id=1&extended=1&offset=3&count=2&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.getSubscriptions?user_id=1&extended=1&offset=3&count=2&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': {
@@ -951,7 +951,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void GetFollowers_WithoutFields()
         {
-            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -976,7 +976,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void GetFollowers_WithAllFields()
         {
-            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -1182,7 +1182,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void Report_NormalCase()
         {
-            const string url = "https://api.vk.com/method/users.report?user_id=243663122&type=insult&comment=комментарий&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.report?user_id=243663122&type=insult&comment=комментарий&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': 1
@@ -1199,7 +1199,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_DmAndDurov_ListOfUsers()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -1258,7 +1258,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_Dimon_SingleUser()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=dm&fields=first_name,last_name,sex,city&name_case=gen&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=dm&fields=first_name,last_name,sex,city&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -1296,7 +1296,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public async Task Async_GetAsync_DmAndDurov_ListOfUsers()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [

@@ -26,7 +26,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetUsers_OneItem()
 		{
-			const string url = "https://api.vk.com/method/fave.getUsers?count=3&offset=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getUsers?count=3&offset=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 			@"{
 					'response': {
@@ -56,7 +56,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetPhotos_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/fave.getPhotos?count=3&offset=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getPhotos?count=3&offset=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 			@"{
 					'response': {
@@ -130,7 +130,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetPhotos_ExtendedCase()
 		{
-			const string url = "https://api.vk.com/method/fave.getPhotos?count=3&offset=1&photo_sizes=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getPhotos?count=3&offset=1&photo_sizes=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 			@"{
 				response: {
@@ -208,7 +208,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetVideos_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/fave.getVideos?count=3&offset=1&extended=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getVideos?count=3&offset=1&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 			@"{
 					'response': {
@@ -249,7 +249,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetPosts_NotExtended()
 		{
-			const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&extended=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 			@"{
 					response: {
@@ -373,7 +373,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetPosts_Extended()
 		{
-			const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&extended=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 			@"{
 					response: {
@@ -521,7 +521,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLinks_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/fave.getLinks?count=1&offset=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getLinks?count=1&offset=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json = @"
 			{
 				response: {

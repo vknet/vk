@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCatalog_NormalCase()
 		{
-			Url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=5.44&access_token=";
+			Url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=" + VkApi.VkApiVersion + "&access_token=";
 			Json =
 				@"{
 					'response': {
@@ -91,7 +91,7 @@ namespace VkNet.Tests.Categories
 		public void Get_NormalCase()
 		{
 			Url =
-				"https://api.vk.com/method/apps.get?app_ids=4268118&platform=web&extended=0&return_friends=0&v=5.44&access_token=token";
+				"https://api.vk.com/method/apps.get?app_ids=4268118&platform=web&extended=0&return_friends=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -128,7 +128,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteAppRequests_NormalCase()
 		{
-			Url = "https://api.vk.com/method/apps.deleteAppRequests?v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/apps.deleteAppRequests?v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -141,7 +141,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetFriendsList_NormalCase()
 		{
-			Url = "https://api.vk.com/method/apps.getFriendsList?type=invite&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/apps.getFriendsList?type=invite&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -159,7 +159,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetFriendsListEx_NormalCase()
 		{
-			Url = "https://api.vk.com/method/apps.getFriendsList?extended=1&offset=1&type=invite&fields=online&count=5&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/apps.getFriendsList?extended=1&offset=1&type=invite&fields=online&count=5&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': {
