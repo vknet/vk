@@ -1,46 +1,37 @@
-﻿namespace VkNet.Tests.Categories
+﻿using System;
+using VkNet.Exception;
+
+namespace VkNet.Tests.Categories
 {
-	using System;
-	using System.Collections.ObjectModel;
 	using System.Linq;
-	using Moq;
 	using NUnit.Framework;
-	using FluentNUnit;
+
 
 	using VkNet.Categories;
-	using VkNet.Utils;
-
 	using Enums.Filters;
 	using Enums;
-	using Exception;
-	using Model;
 
 	[TestFixture]
-	public class FriendsCategoryTest
+	public class FriendsCategoryTest : BaseTest
 	{
-		[SetUp]
-		public void SetUp()
-		{
-
-		}
-
 		public FriendsCategory GetMockedFriendsCategory(string url, string json)
 		{
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-			return new FriendsCategory(new VkApi { AccessToken = "token", Browser = browser });
+            Json = json;
+            Url = url;
+            return new FriendsCategory(Api);
 		}
 
 		[Test]
 		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			This.Action(() => friendsCategory.Get(1)).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.Get(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void Get_FriendsForDurov_ListOfFriends()
 		{
-			const string url = "https://api.vk.com/method/friends.get?user_id=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.get?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': [
@@ -66,7 +57,7 @@
 		[Test]
 		public void Get_FirstNameLastName_ListOfObjects()
 		{
-			const string url = "https://api.vk.com/method/friends.get?user_id=1&count=3&fields=first_name,last_name&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.get?user_id=1&count=3&fields=first_name,last_name&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 			   @"{
                     'response': {
@@ -117,14 +108,14 @@
 		[Test]
 		public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			This.Action(() => friendsCategory.GetAppUsers()).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.GetAppUsers(), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetAppUsers_NoOne_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/friends.getAppUsers?v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getAppUsers?v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': []
@@ -140,7 +131,7 @@
 		[Test]
 		public void GetAppUsers_ThreeUsers_ListOfObjects()
 		{
-			const string url = "https://api.vk.com/method/friends.getAppUsers?v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getAppUsers?v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': [
@@ -162,14 +153,14 @@
 		[Test]
 		public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			This.Action(() => friendsCategory.GetOnline(1)).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.GetOnline(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetOnline_NoOne_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/friends.getOnline?user_id=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getOnline?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': []
@@ -184,7 +175,7 @@
 		[Test]
 		public void GetOnline_FiveUsers_ListOfObjects()
 		{
-			const string url = "https://api.vk.com/method/friends.getOnline?user_id=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getOnline?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     response: [5, 467, 2943, 4424, 13033]
@@ -204,14 +195,14 @@
 		[Test]
 		public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			This.Action(() => friendsCategory.GetMutual(2, 3)).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.GetMutual(2, 3), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetMutual_ThreeUsers_ListOfObjects()
 		{
-			const string url = "https://api.vk.com/method/friends.getMutual?source_uid=1&target_uid=2&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getMutual?source_uid=1&target_uid=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': [
@@ -233,7 +224,7 @@
 		[Test]
 		public void GetMutual_NoOne_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/friends.getMutual?source_uid=1&target_uid=2&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getMutual?source_uid=1&target_uid=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': []
@@ -249,21 +240,21 @@
 		[Test]
 		public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi());
-			This.Action(() => friendsCategory.AreFriends(new long[] { 2, 3 })).Throws<AccessTokenInvalidException>();
+			var cat = new FriendsCategory(new VkApi());
+			Assert.That(() => cat.AreFriends(new long[] { 2, 3 }), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void AreFriends_NullInput_ThrowArgumentNullException()
 		{
-			var friendsCategory = new FriendsCategory(new VkApi { AccessToken = "token" });
-			This.Action(() => friendsCategory.AreFriends(null)).Throws<ArgumentNullException>();
+			var cat = GetMockedFriendsCategory("", "");
+			Assert.That(() => cat.AreFriends(null), Throws.InstanceOf<ArgumentNullException>());
 		}
 
 		[Test]
 		public void AreFriends_FourTypes_RightFriendStatuses()
 		{
-			const string url = "https://api.vk.com/method/friends.areFriends?user_ids=24181068,22911407,155810539,3505305&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.areFriends?user_ids=24181068,22911407,155810539,3505305&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': [
@@ -298,7 +289,7 @@
 		[Test]
 		public void AddList_OnlyName_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.addList?name=тестовая метка&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.addList?name=тестовая метка&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': {
@@ -316,7 +307,7 @@
 		[Test]
 		public void AddList_WithUserIds_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.addList?name=тестовая метка&user_ids=1,2&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.addList?name=тестовая метка&user_ids=1,2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': {
@@ -335,20 +326,20 @@
 		public void AddList_NameIsEmpty_ThrowException()
 		{
 			var cat = GetMockedFriendsCategory("", "");
-			This.Action(() => cat.AddList("")).Throws<ArgumentNullException>();
+			Assert.That(() => cat.AddList(""), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
 		public void DeleteList_IdIsNegative_ThrowException()
 		{
 			var cat = GetMockedFriendsCategory("", "");
-			This.Action(() => cat.DeleteList(-1)).Throws<ArgumentException>();
+			Assert.That(() => cat.DeleteList(-1), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
 		public void DeleteList_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.deleteList?list_id=2&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.deleteList?list_id=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': 1
@@ -364,7 +355,7 @@
 		[Test]
 		public void GetLists_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.getLists?v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getLists?v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': [
@@ -395,7 +386,7 @@
 		[Test]
 		public void EditList_EditName_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.editList?name=new тестовая метка&list_id=2&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.editList?name=new тестовая метка&list_id=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': 1
@@ -412,13 +403,13 @@
 		public void EditList_ListIdIsNegative_ThrowException()
 		{
 			var cat = GetMockedFriendsCategory("", "");
-			This.Action(() => cat.EditList(-1)).Throws<ArgumentException>();
+			Assert.That(()=> cat.EditList(-1), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
 		public void DeleteAllRequests_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.deleteAllRequests?v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.deleteAllRequests?v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': 1
@@ -434,7 +425,7 @@
 		[Test]
 		public void Add_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': 1
@@ -450,7 +441,7 @@
 		[Test]
 		public void Add_WithCaptcha_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&captcha_sid=1247329&captcha_key=hug2z&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&captcha_sid=1247329&captcha_key=hug2z&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': 1
@@ -466,7 +457,7 @@
 		[Test]
 		public void Delete_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.delete?user_id=24250&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.delete?user_id=24250&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': 2
@@ -482,7 +473,7 @@
 		[Test]
 		public void GetRequests_Extended_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&extended=1&need_mutual=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&extended=1&need_mutual=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json = @"{
 				'response': {
 					items: [{
@@ -495,14 +486,15 @@
 
 			var ids = cat.GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
 
-			ids.Count.ShouldEqual(1);
-			ids[0].ShouldEqual(242508111);
+			Assert.That(ids, Is.Not.Null);
+			Assert.That(ids.Count, Is.EqualTo(1));
+			Assert.That(ids[0], Is.EqualTo(242508111));
 		}
 
 		[Test]
 		public void GetRequests_Basic_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
 
 			const string json =
 				@"{
@@ -515,14 +507,15 @@
 
 			var ids = cat.GetRequests(offset: 0, count: 3);
 
-			ids.Count.ShouldEqual(1);
-			ids[0].ShouldEqual(242508111);
+			Assert.That(ids, Is.Not.Null);
+			Assert.That(ids.Count, Is.EqualTo(1));
+			Assert.That(ids[0], Is.EqualTo(242508111));
 		}
 
 		[Test]
 		public void GetRequest_EmptyCollection()
 		{
-			const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&extended=1&need_mutual=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&extended=1&need_mutual=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': []
@@ -532,14 +525,14 @@
 
 			var ids = cat.GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
 
-			ids.ShouldNotBeNull();
-			ids.Count.ShouldEqual(0);
+			Assert.That(ids, Is.Not.Null);
+			Assert.That(ids.Count, Is.EqualTo(0));
 		}
 
 		[Test]
 		public void GetRecent_OneItem()
 		{
-			const string url = "https://api.vk.com/method/friends.getRecent?count=3&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getRecent?count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': [
@@ -551,15 +544,15 @@
 
 			var ids = cat.GetRecent(3);
 
-			ids.ShouldNotBeNull();
-			ids.Count.ShouldEqual(1);
-			ids[0].ShouldEqual(242508111);
+			Assert.That(ids, Is.Not.Null);
+			Assert.That(ids.Count, Is.EqualTo(1));
+			Assert.That(ids[0], Is.EqualTo(242508111));
 		}
 
 		[Test]
 		public void Edit_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.edit?user_id=242508111&list_ids=2&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/friends.edit?user_id=242508111&list_ids=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': 1
@@ -569,7 +562,7 @@
 
 			var result = cat.Edit(242508111, new long[] { 2 });
 
-			result.ShouldBeTrue();
+			Assert.That(result, Is.True);
 		}
 	}
 }

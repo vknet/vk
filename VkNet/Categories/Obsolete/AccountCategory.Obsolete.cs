@@ -73,7 +73,7 @@ namespace VkNet.Categories
                 Sex = sex.Value,
                 Relation = relation.Value,
                 RelationPartner = relationPartnerId.HasValue ? new User { Id = relationPartnerId.Value } : null,
-                BirthDate = birthDate.HasValue ? birthDate.Value.ToShortDateString() : null,
+                BirthDate = birthDate?.ToShortDateString(),
                 BirthdayVisibility = birthDateVisibility.Value,
                 HomeTown = homeTown,
                 Country = new Country { Id = countryId },
@@ -119,7 +119,7 @@ namespace VkNet.Categories
                 {
                     Id = relationPartnerId.Value
                 } : null,
-                BirthDate = birthDate.HasValue ? birthDate.Value.ToShortDateString() : null,
+                BirthDate = birthDate?.ToShortDateString(),
                 BirthdayVisibility = birthDateVisibility.Value,
                 HomeTown = homeTown,
                 Country = new Country { Id = countryId },

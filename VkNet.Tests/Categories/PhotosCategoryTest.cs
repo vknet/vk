@@ -1,30 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using FluentNUnit;
-using Moq;
+using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
     [TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class PhotosCategoryTest
-    {
+	public class PhotosCategoryTest : BaseTest
+	{
         public PhotoCategory GetMockedPhotosCategory(string url, string json)
         {
-            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json);
-            return new PhotoCategory(new VkApi{Browser = browser, AccessToken = "token"});
+            Json = json;
+            Url = url;
+            return new PhotoCategory(Api);
         }
 
         #region GetProfileUploadServer
         [Test]
         public void GetProfileUploadServer_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
                 @"{
                     'response': {
@@ -33,16 +33,17 @@ namespace VkNet.Tests.Categories
                   }";
 
             var info = GetMockedPhotosCategory(url, json).GetProfileUploadServer();
+			Assert.That(info, Is.Not.Null);
 
-			info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh");
-        }
+			Assert.That(info.UploadUrl, Is.EqualTo("http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh"));
+		}
         #endregion
 
         #region GetMessagesUploadServer
         [Test]
         public void GetMessagesUploadServer_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getMessagesUploadServer?v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getMessagesUploadServer?v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
                 @"{
                     'response': {
@@ -53,11 +54,12 @@ namespace VkNet.Tests.Categories
                   }";
 
             var info = GetMockedPhotosCategory(url, json).GetMessagesUploadServer();
+			Assert.That(info, Is.Not.Null);
 
-			info.UploadUrl.ShouldEqual("http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1");
-            info.AlbumId.ShouldEqual(-3);
-            info.UserId.ShouldEqual(234618);
-        }
+			Assert.That(info.UploadUrl, Is.EqualTo("http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1"));
+			Assert.That(info.AlbumId, Is.EqualTo(-3));
+			Assert.That(info.UserId, Is.EqualTo(234618));
+		}
         #endregion
 
         #region CreateAlbum
@@ -65,7 +67,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void CreateAlbum_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.createAlbum?title=hello world&description=description for album&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.createAlbum?title=hello world&description=description for album&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': {
@@ -88,19 +90,19 @@ namespace VkNet.Tests.Categories
 					Title= "hello world",
 					Description = "description for album"
                 });
+			Assert.That(album, Is.Not.Null);
+			Assert.That(album.Id, Is.EqualTo(197266686));
+			Assert.That(album.ThumbId, Is.EqualTo(-1));
+			Assert.That(album.OwnerId, Is.EqualTo(234698));
+			Assert.That(album.Title, Is.EqualTo("hello world"));
+			Assert.That(album.Description, Is.EqualTo("description for album"));
+			Assert.That(album.Created, Is.EqualTo(DateHelper.TimeStampToDateTime(1403185184)));
+			Assert.That(album.Updated, Is.EqualTo(DateHelper.TimeStampToDateTime(1403185184)));
+			Assert.That(album.PrivacyView[0], Is.EqualTo(Privacy.All));
+			Assert.That(album.PrivacyComment[0], Is.EqualTo(Privacy.All));
 
-			album.Id.ShouldEqual(197266686);
-            album.ThumbId.ShouldEqual(-1);
-            album.OwnerId.ShouldEqual(234698);
-            album.Title.ShouldEqual("hello world");
-            album.Description.ShouldEqual("description for album");
-            album.Created.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
-            album.Updated.ShouldEqual(new DateTime(2014, 6, 19, 13, 39, 44, DateTimeKind.Utc).ToLocalTime());
-			Assert.IsTrue(album.PrivacyView[0].ToString().Equals("all"));
-			Assert.IsTrue(album.PrivacyComment[0].ToString().Equals("all"));
-
-			album.Size.ShouldEqual(0);
-        }
+			Assert.That(album.Size, Is.EqualTo(0));
+		}
 
         #endregion
 
@@ -108,7 +110,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void EditAlbum_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.editAlbum?album_id=19726&title=new album title&description=new description&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.editAlbum?album_id=19726&title=new album title&description=new description&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
                 @"{
                     'response': 1
@@ -121,7 +123,8 @@ namespace VkNet.Tests.Categories
 				Description = "new description"
 			});
 
-			result.ShouldBeTrue();
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result, Is.True);
         }
         #endregion
 
@@ -129,7 +132,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAlbums_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getAlbums?owner_id=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAlbums?owner_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
                 @"{
                     'response': {
@@ -153,25 +156,25 @@ namespace VkNet.Tests.Categories
             {
 				OwnerId = 1
 			});
+			Assert.That(albums, Is.Not.Null);
+			Assert.That(albums.Count, Is.EqualTo(1));
 
-			count.ShouldEqual(1);
-
-            albums.Count.ShouldEqual(1);
-
-            albums[0].Id.ShouldEqual(136592355);
-            albums[0].ThumbId.ShouldEqual(321112194);
-            albums[0].OwnerId.ShouldEqual(1);
-            albums[0].Title.ShouldEqual("Здесь будут новые фотографии для прессы-службы");
-            albums[0].Description.ShouldEqual(string.Empty);
-	        albums[0].Created.ShouldEqual(new DateTime(2011, 6, 9, 14, 12, 58, DateTimeKind.Utc).ToLocalTime());
-           	albums[0].Updated.ShouldEqual(new DateTime(2014, 4, 27, 19, 4, 33).ToLocalTime());
-            albums[0].Size.ShouldEqual(8);
-        }
+			var album = albums.FirstOrDefault();
+			Assert.That(album, Is.Not.Null);
+			Assert.That(album.Id, Is.EqualTo(136592355));
+			Assert.That(album.ThumbId, Is.EqualTo(321112194));
+			Assert.That(album.OwnerId, Is.EqualTo(1));
+			Assert.That(album.Title, Is.EqualTo("Здесь будут новые фотографии для прессы-службы"));
+			Assert.That(album.Description, Is.EqualTo(string.Empty));
+			Assert.That(album.Created, Is.EqualTo(DateHelper.TimeStampToDateTime(1307628778)));
+			Assert.That(album.Updated, Is.EqualTo(DateHelper.TimeStampToDateTime(1398625473)));
+			Assert.That(album.Size, Is.EqualTo(8));
+		}
 
 		[Test]
 		public void GetAlbums_PrivacyCase()
 		{
-			const string url = "https://api.vk.com/method/photos.getAlbums?album_ids=110637109&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAlbums?album_ids=110637109&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     response: {
@@ -200,22 +203,24 @@ namespace VkNet.Tests.Categories
 				}
 			});
 
-			count.ShouldEqual(1);
+			Assert.That(albums, Is.Not.Null);
+			Assert.That(albums.Count, Is.EqualTo(1));
 
-			albums.Count.ShouldEqual(1);
+			var album = albums.FirstOrDefault();
+			Assert.That(album, Is.Not.Null);
 
-			albums[0].Id.ShouldEqual(110637109);
-			albums[0].ThumbId.ShouldEqual(326631163);
-			albums[0].OwnerId.ShouldEqual(32190123);
-			albums[0].Title.ShouldEqual("Я");
-			albums[0].Description.ShouldEqual(string.Empty);
-			albums[0].Created.ShouldEqual(new DateTime(2011, 6, 9, 14, 12, 58, DateTimeKind.Utc).ToLocalTime());
-			albums[0].Updated.ShouldEqual(new DateTime(2014, 4, 27, 19, 4, 33).ToLocalTime());
-			albums[0].Size.ShouldEqual(6);
-			albums[0].ThumbIsLast.ShouldBeTrue();
-			Assert.IsTrue(albums[0].PrivacyView[0].ToString().Equals("list28"));
-			Assert.IsTrue(albums[0].PrivacyComment[0].ToString().Equals("list28"));
-			Assert.IsTrue(albums[0].PrivacyComment[1].ToString().Equals("-list1"));
+			Assert.That(album.Id, Is.EqualTo(110637109));
+			Assert.That(album.ThumbId, Is.EqualTo(326631163));
+			Assert.That(album.OwnerId, Is.EqualTo(32190123));
+			Assert.That(album.Title, Is.EqualTo("Я"));
+			Assert.That(album.Description, Is.EqualTo(string.Empty));
+			Assert.That(album.Created, Is.EqualTo(new DateTime(2011, 6, 9, 14, 12, 58, DateTimeKind.Utc).ToLocalTime()));
+			Assert.That(album.Updated, Is.EqualTo(new DateTime(2014, 4, 27, 19, 4, 33).ToLocalTime()));
+			Assert.That(album.Size, Is.EqualTo(6));
+			Assert.That(album.ThumbIsLast, Is.True);
+			Assert.That(album.PrivacyView[0].ToString(), Is.EqualTo("list28"));
+			Assert.That(album.PrivacyComment[0].ToString(), Is.EqualTo("list28"));
+			Assert.That(album.PrivacyComment[1].ToString(), Is.EqualTo("-list1"));
 		}
 		#endregion
 
@@ -223,14 +228,16 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void GetAlbumsCount_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
                 @"{
                     'response': 1
                   }";
 
             var count = GetMockedPhotosCategory(url, json).GetAlbumsCount(1);
-			count.ShouldEqual(1);
+
+			Assert.That(count, Is.Not.Null);
+			Assert.That(count, Is.EqualTo(1));
         }
         #endregion
 
@@ -238,14 +245,15 @@ namespace VkNet.Tests.Categories
         [Test]
         public void DeleteAlbum_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.deleteAlbum?album_id=197303&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.deleteAlbum?album_id=197303&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
                 @"{
                     'response': 1
                   }";
 
             var result = GetMockedPhotosCategory(url, json).DeleteAlbum(197303);
-			result.ShouldBeTrue();
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result, Is.True);
         }
         #endregion
 
@@ -253,7 +261,7 @@ namespace VkNet.Tests.Categories
         [Test, Ignore("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
         public void GetProfile_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getProfile?owner_id=1&rev=1&extended=1&count=2&offset=3&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/photos.getProfile?owner_id=1&rev=1&extended=1&count=2&offset=3&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -310,23 +318,26 @@ namespace VkNet.Tests.Categories
                   }";
 
             var photos = GetMockedPhotosCategory(url, json).GetProfile(ownerId: 1, offset: 3, rev: true, count: 2, extended:true);
-			photos.Count.ShouldEqual(2);
-            photos[0].Id.ShouldEqual(278184324);
-            photos[0].PostId.ShouldEqual(45430);
-            photos[0].Likes.Count.ShouldEqual(471203);
-            photos[0].Likes.UserLikes.ShouldEqual(false);
-            photos[0].Comments.Count.ShouldEqual(1);
-            photos[0].CanComment.ShouldEqual(false);
-            photos[0].Tags.Count.ShouldEqual(0);
+			Assert.That(photos, Is.Not.Null);
+			Assert.That(photos.Count, Is.EqualTo(2));
 
-        }
+			var photo = photos.FirstOrDefault();
+			Assert.That(photo, Is.Not.Null);
+			Assert.That(photo.Id, Is.EqualTo(278184324));
+			Assert.That(photo.PostId, Is.EqualTo(45430));
+			Assert.That(photo.Likes.Count, Is.EqualTo(471203));
+			Assert.That(photo.Likes.UserLikes, Is.EqualTo(false));
+			Assert.That(photo.Comments.Count, Is.EqualTo(1));
+			Assert.That(photo.CanComment, Is.EqualTo(false));
+			Assert.That(photo.Tags.Count, Is.EqualTo(0));
+		}
         #endregion
 
         #region GetAll
         [Test]
         public void GetAll_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getAll?owner_id=1&offset=4&count=2&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAll?owner_id=1&offset=4&count=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
                     'response': {
@@ -369,28 +380,32 @@ namespace VkNet.Tests.Categories
 				Offset = 4,
 				Count = 2
 			});
-			photos.Count.ShouldEqual(2);
+			Assert.That(photos, Is.Not.Null);
+			Assert.That(photos.Count, Is.EqualTo(2));
 
-            photos[0].Id.ShouldEqual(328693256);
-            photos[0].AlbumId.ShouldEqual(-7);
-            photos[0].OwnerId.ShouldEqual(1);
-            photos[0].Photo75.ShouldEqual(new Uri("http://cs7004.vk.me/c7006/v7006001/26e37/xOF6D9lY3CU.jpg"));
-            photos[0].Photo130.ShouldEqual(new Uri("http://cs7004.vk.me/c7006/v7006001/26e38/3atNlPEJpaA.jpg"));
-            photos[0].Photo604.ShouldEqual(new Uri("http://cs7004.vk.me/c7006/v7006001/26e39/OfHtSC9qtuA.jpg"));
-            photos[0].Photo807.ShouldEqual(new Uri("http://cs7004.vk.me/c7006/v7006001/26e3a/el6ZcXa9WSc.jpg"));
-            photos[0].Width.ShouldEqual(609);
-            photos[0].Height.ShouldEqual(574);
-            photos[0].Text.ShouldEqual("Сегодня должности раздаются чиновниками, которые боятся конкуренции и подбирают себе все менее талантливых и все более беспомощных подчиненных. Государственные посты должны распределяться на основе прозрачных механизмов, в том числе, прямых выборов.");
-			photos[0].CreateTime.ShouldEqual(new DateTime(2014, 4, 28, 4, 12, 7, DateTimeKind.Utc).ToLocalTime());
-        }
+			var photo = photos.FirstOrDefault();
+			Assert.That(photo, Is.Not.Null);
 
-#endregion
+			Assert.That(photo.Id, Is.EqualTo(328693256));
+			Assert.That(photo.AlbumId, Is.EqualTo(-7));
+			Assert.That(photo.OwnerId, Is.EqualTo(1));
+			Assert.That(photo.Photo75, Is.EqualTo(new Uri("http://cs7004.vk.me/c7006/v7006001/26e37/xOF6D9lY3CU.jpg")));
+			Assert.That(photo.Photo130, Is.EqualTo(new Uri("http://cs7004.vk.me/c7006/v7006001/26e38/3atNlPEJpaA.jpg")));
+			Assert.That(photo.Photo604, Is.EqualTo(new Uri("http://cs7004.vk.me/c7006/v7006001/26e39/OfHtSC9qtuA.jpg")));
+			Assert.That(photo.Photo807, Is.EqualTo(new Uri("http://cs7004.vk.me/c7006/v7006001/26e3a/el6ZcXa9WSc.jpg")));
+			Assert.That(photo.Width, Is.EqualTo(609));
+			Assert.That(photo.Height, Is.EqualTo(574));
+			Assert.That(photo.Text, Is.EqualTo("Сегодня должности раздаются чиновниками, которые боятся конкуренции и подбирают себе все менее талантливых и все более беспомощных подчиненных. Государственные посты должны распределяться на основе прозрачных механизмов, в том числе, прямых выборов."));
+			Assert.That(photo.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1398658327)));
+		}
 
-        #region Search
-        [Test]
+		#endregion
+
+		#region Search
+		[Test]
         public void Search_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.search?q=%d0%bf%d0%be%d1%80%d0%bd%d0%be&offset=2&count=3&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.search?q=%d0%bf%d0%be%d1%80%d0%bd%d0%be&offset=2&count=3&v=" + VkApi.VkApiVersion + "&access_token=";
 			const string json =
                 @"{
                     'response': {
@@ -448,27 +463,30 @@ namespace VkNet.Tests.Categories
 				Offset = 2,
 				Count = 3
 			});
+			Assert.That(photos, Is.Not.Null);
+			Assert.That(photos.Count, Is.EqualTo(3));
 
-			photos.Count.ShouldEqual(3);
+			var photo = photos.FirstOrDefault();
+			Assert.That(photo, Is.Not.Null);
 
-            photos[0].Id.ShouldEqual(331520481);
-            photos[0].AlbumId.ShouldEqual(182104020);
-            photos[0].OwnerId.ShouldEqual(-49512556);
-            photos[0].UserId.ShouldEqual(100);
-            photos[0].Photo75.ShouldEqual(new Uri("http://cs620223.vk.me/v620223385/bd1f/SajcsJOh7hk.jpg"));
-            photos[0].Photo130.ShouldEqual(new Uri("http://cs620223.vk.me/v620223385/bd20/85-Qkc4oNH8.jpg"));
-            photos[0].Photo604.ShouldEqual(new Uri("http://cs620223.vk.me/v620223385/bd21/88vFsC-Z_FE.jpg"));
-            photos[0].Photo807.ShouldEqual(new Uri("http://cs620223.vk.me/v620223385/bd22/YqRauv0neMY.jpg"));
-            photos[0].Width.ShouldEqual(807);
-            photos[0].Height.ShouldEqual(515);
-            photos[0].Text.ShouldEqual("🍓 [club49512556|ЗАХОДИ К НАМ]\nчастное фото секси обнаженные девочки малолетки порно голые сиськи попки эротика няша шлюха грудь секс instagirls instagram лето\n#секс #девушки #девочки #instagram #instagirls #няша #InstaSize #лето #ПОПКИ");
-			photos[0].CreateTime.ShouldEqual(new DateTime(2014, 6, 22, 16, 49, 48, DateTimeKind.Utc).ToLocalTime());  //  2014-06-22 20:49:48.000
-        }
+			Assert.That(photo.Id, Is.EqualTo(331520481));
+			Assert.That(photo.AlbumId, Is.EqualTo(182104020));
+			Assert.That(photo.OwnerId, Is.EqualTo(-49512556));
+			Assert.That(photo.UserId, Is.EqualTo(100));
+			Assert.That(photo.Photo75, Is.EqualTo(new Uri("http://cs620223.vk.me/v620223385/bd1f/SajcsJOh7hk.jpg")));
+			Assert.That(photo.Photo130, Is.EqualTo(new Uri("http://cs620223.vk.me/v620223385/bd20/85-Qkc4oNH8.jpg")));
+			Assert.That(photo.Photo604, Is.EqualTo(new Uri("http://cs620223.vk.me/v620223385/bd21/88vFsC-Z_FE.jpg")));
+			Assert.That(photo.Photo807, Is.EqualTo(new Uri("http://cs620223.vk.me/v620223385/bd22/YqRauv0neMY.jpg")));
+			Assert.That(photo.Width, Is.EqualTo(807));
+			Assert.That(photo.Height, Is.EqualTo(515));
+			Assert.That(photo.Text, Is.EqualTo("🍓 [club49512556|ЗАХОДИ К НАМ]\nчастное фото секси обнаженные девочки малолетки порно голые сиськи попки эротика няша шлюха грудь секс instagirls instagram лето\n#секс #девушки #девочки #instagram #instagirls #няша #InstaSize #лето #ПОПКИ"));
+			Assert.That(photo.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1403455788)));  //  2014-06-22 20:49:48.000
+		}
 
         [Test]
         public void Search_Error26_Lat_and_Long_in_output_photo()
         {
-			const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=" + VkApi.VkApiVersion + "&access_token=";
 			const string json =
                 @"{
                     'response': {
@@ -516,21 +534,28 @@ namespace VkNet.Tests.Categories
 				Longitude = 30,
 				Count = 2
 			});
-			photos.Count.ShouldEqual(2);
+			Assert.That(photos, Is.Not.Null);
+			Assert.That(photos.Count, Is.EqualTo(2));
 
-            photos[0].Latitude.ShouldEqual(29.999996185302734);
-            photos[0].Longitude.ShouldEqual(29.999996185302734);
+	        var photo = photos.FirstOrDefault();
+			Assert.That(photo, Is.Not.Null);
 
-            photos[1].Latitude.ShouldEqual(29.942251205444336);
-            photos[1].Longitude.ShouldEqual(29.882818222045898);
-        }
+			Assert.That(photo.Latitude, Is.EqualTo(29.999996185302734));
+			Assert.That(photo.Longitude, Is.EqualTo(29.999996185302734));
+
+			var photo1 = photos.Skip(1).FirstOrDefault();
+			Assert.That(photo1, Is.Not.Null);
+
+			Assert.That(photo1.Latitude, Is.EqualTo(29.942251205444336));
+			Assert.That(photo1.Longitude, Is.EqualTo(29.882818222045898));
+		}
 #endregion
 
         #region SaveWallPhoto
         [Test]
         public void SaveWallPhoto_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=[]&server=631223&hash=163abf8b9e4e4513577012d5275cafbb&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=[]&server=631223&hash=163abf8b9e4e4513577012d5275cafbb&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json = @"{
     'response': [
         {
@@ -554,25 +579,24 @@ namespace VkNet.Tests.Categories
 				,""hash"":""163abf8b9e4e4513577012d5275cafbb""}";
 
 			var result = GetMockedPhotosCategory(url, json).SaveWallPhoto(response, 1234, 123);
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Count, Is.EqualTo(1));
 
-            result.Count.ShouldEqual(1);
-
-            var photo = result[0];
-			photo.ShouldNotBeNull();
-            photo.Id.ShouldEqual(3446123);
-            photo.AlbumId.ShouldEqual(-12);
-            photo.OwnerId.ShouldEqual(234695890);
-            photo.Photo75.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c39/XZJpyifpfkM.jpg"));
-            photo.Photo130.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3a/cYyzeNiQCwg.jpg"));
-            photo.Photo604.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3b/b9rHdTFfLuw.jpg"));
-            photo.Photo807.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3c/POYM67dCGZg.jpg"));
-            photo.Photo1280.ShouldEqual(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3d/OWWWGO1gkOI.jpg"));
-            photo.Width.ShouldEqual(1256);
-            photo.Height.ShouldEqual(320);
-            photo.Text.ShouldEqual(string.Empty);
-			photo.CreateTime.ShouldEqual(new DateTime(2014, 11, 10, 14, 27, 31, DateTimeKind.Utc).ToLocalTime());
-        }
+			var photo = result[0];
+			Assert.That(photo, Is.Not.Null);
+			Assert.That(photo.Id, Is.EqualTo(3446123));
+			Assert.That(photo.AlbumId, Is.EqualTo(-12));
+			Assert.That(photo.OwnerId, Is.EqualTo(234695890));
+			Assert.That(photo.Photo75, Is.EqualTo(new Uri("http://cs7004.vk.me/c625725/v625725118/8c39/XZJpyifpfkM.jpg")));
+			Assert.That(photo.Photo130, Is.EqualTo(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3a/cYyzeNiQCwg.jpg")));
+			Assert.That(photo.Photo604, Is.EqualTo(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3b/b9rHdTFfLuw.jpg")));
+			Assert.That(photo.Photo807, Is.EqualTo(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3c/POYM67dCGZg.jpg")));
+			Assert.That(photo.Photo1280, Is.EqualTo(new Uri("http://cs7004.vk.me/c625725/v625725118/8c3d/OWWWGO1gkOI.jpg")));
+			Assert.That(photo.Width, Is.EqualTo(1256));
+			Assert.That(photo.Height, Is.EqualTo(320));
+			Assert.That(photo.Text, Is.EqualTo(string.Empty));
+			Assert.That(photo.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1415629651)));
+		}
         #endregion
-
     }
 }

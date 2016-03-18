@@ -24,6 +24,7 @@ namespace VkNet.Model.RequestParams
 			Country = null;
 			City = null;
 			Status = null;
+			Phone = null;
 		}
 
 		/// <summary>
@@ -47,25 +48,25 @@ namespace VkNet.Model.RequestParams
 		public string ScreenName { get; set; }
 
 		/// <summary>
-		/// Пол пользователя. Возможные значения: 
-		/// 
-		/// 1 — женский; 
-		/// 2 — мужской. 
+		/// Пол пользователя. Возможные значения:
+		///
+		/// 1 — женский;
+		/// 2 — мужской.
 		/// положительное число.
 		/// </summary>
 		public Sex? Sex { get; set; }
 
 		/// <summary>
-		/// Семейное положение пользователя. Возможные значения: 
-		/// 
-		/// 1 — не женат/не замужем; 
-		/// 2 — есть друг/есть подруга; 
-		/// 3 — помолвлен/помолвлена; 
-		/// 4 — женат/замужем; 
-		/// 5 — всё сложно; 
-		/// 6 — в активном поиске; 
-		/// 7 — влюблён/влюблена; 
-		/// 0 — не указано. 
+		/// Семейное положение пользователя. Возможные значения:
+		///
+		/// 1 — не женат/не замужем;
+		/// 2 — есть друг/есть подруга;
+		/// 3 — помолвлен/помолвлена;
+		/// 4 — женат/замужем;
+		/// 5 — всё сложно;
+		/// 6 — в активном поиске;
+		/// 7 — влюблён/влюблена;
+		/// 0 — не указано.
 		/// положительное число.
 		/// </summary>
 		public RelationType? Relation { get; set; }
@@ -81,11 +82,10 @@ namespace VkNet.Model.RequestParams
 		public string BirthDate { get; set; }
 
 		/// <summary>
-		/// Видимость даты рождения. Возможные значения: 
-		/// 
-		/// 1 — показывать дату рождения; 
-		/// 2 — показывать только месяц и день; 
-		/// 0 — не показывать дату рождения. 
+		/// Видимость даты рождения. Возможные значения:
+		/// 1 — показывать дату рождения;
+		/// 2 — показывать только месяц и день;
+		/// 0 — не показывать дату рождения.
 		/// положительное число.
 		/// </summary>
 		public BirthdayVisibility? BirthdayVisibility { get; set; }
@@ -111,12 +111,35 @@ namespace VkNet.Model.RequestParams
 		public string Status { get; set; }
 
 		/// <summary>
+		/// Телефон.
+		/// </summary>
+		/// <remarks>
+		/// Обнаружено опытным путем.
+		/// </remarks>
+		public string Phone { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns>Объект типа <see cref="AccountSaveProfileInfoParams"/></returns>
 		internal static VkParameters ToVkParameters(AccountSaveProfileInfoParams p)
 		{
+			if (p.RelationPartner != null)
+			{
+				VkErrors.ThrowIfNumberIsNegative(() => p.RelationPartner.Id);
+			}
+
+			if (p.Country != null)
+			{
+				VkErrors.ThrowIfNumberIsNegative(() => p.Country.Id);
+			}
+
+			if (p.City != null)
+			{
+				VkErrors.ThrowIfNumberIsNegative(() => p.City.Id);
+			}
+
 			var result = new VkParameters
 			{
 				{ "first_name", p.FirstName },
@@ -125,13 +148,14 @@ namespace VkNet.Model.RequestParams
 				{ "screen_name", p.ScreenName },
 				{ "sex", p.Sex },
 				{ "relation", p.Relation },
-				{ "relation_partner_id", p.RelationPartner.Id },
+				{ "relation_partner_id", p.RelationPartner?.Id },
 				{ "bdate", p.BirthDate },
 				{ "bdate_visibility", p.BirthdayVisibility },
 				{ "home_town", p.HomeTown },
-				{ "country_id", p.Country.Id },
-				{ "city_id", p.City.Id },
-				{ "status", p.Status }
+				{ "country_id", p.Country?.Id },
+				{ "city_id", p.City?.Id },
+				{ "status", p.Status },
+				{ "phone", p.Phone }
 			};
 
 			return result;

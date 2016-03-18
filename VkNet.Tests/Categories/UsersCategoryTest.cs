@@ -1,69 +1,42 @@
-﻿namespace VkNet.Tests.Categories
+﻿using System;
+using VkNet.Enums;
+
+namespace VkNet.Tests.Categories
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Collections.Generic;
+	using System.Collections.Generic;
     using System.Linq;
     using Moq;
     using NUnit.Framework;
     using VkNet.Categories;
-
-    using Enums;
-    using Exception;
-    using Model;
-    using Model.RequestParams;
+	using Exception;
+	using Model.RequestParams;
     using Enums.Filters;
     using Enums.SafetyEnums;
 
-    using VkNet.Utils;
-    using FluentNUnit;
-
-    [TestFixture]
-    public class UsersCategoryTest
-    {
+	[TestFixture]
+    public class UsersCategoryTest : BaseTest
+	{
         private const string Query = "Masha Ivanova";
-
-        [SetUp]
-        public void SetUp()
-        {
-
-        }
 
         private UsersCategory GetMockedUsersCategory(string url, string json)
         {
-#if false // async version
-            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json && m.GetJsonAsync(url) == Task.FromResult(json));
-#endif
-            var browser = Mock.Of<IBrowser>(m => m.GetJson(url) == json && m.GetJson(url) == json);
-
-            return new UsersCategory(new VkApi { AccessToken = "token", Browser = browser});
-        }
-
-		[Test, Ignore]
-		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
-        {
-			// Метод Get не требует AccessToken
-            var users = new UsersCategory(new VkApi { AccessToken = null });
-
-            This.Action(() => users.Get(1)).Throws<AccessTokenInvalidException>();
+            Json = json;
+            Url = url;
+            return new UsersCategory(Api);
         }
 
         [Test]
         public void Get_NotAccessToInternet_ThrowVkApiException()
         {
-            var mockBrowser = new Mock<IBrowser>();
-            mockBrowser.Setup(f => f.GetJson(It.IsAny<string>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
-
-            var users = new UsersCategory(new VkApi {AccessToken = "asgsstsfast", Browser = mockBrowser.Object});
-
-            var ex = This.Action(() => users.Get(1)).Throws<VkApiException>();
-            ex.Message.ShouldEqual("The remote name could not be resolved: 'api.vk.com'");
-        }
+			Mock.Get(Api.Browser).Setup(f => f.GetJson(It.IsAny<string>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
+			var ex = Assert.Throws<VkApiException>(() => Api.Users.Get(1));
+			Assert.That(ex.Message, Is.EqualTo("The remote name could not be resolved: 'api.vk.com'"));
+		}
 
         [Test]
         public void Get_WrongAccesToken_Throw_ThrowUserAuthorizationException()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 
             const string json =
                 @"{
@@ -92,14 +65,14 @@
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-            var ex = This.Action(() => users.Get(1)).Throws<UserAuthorizationFailException>();
-            ex.Message.ShouldEqual("User authorization failed: invalid access_token.");
-        }
+			var ex = Assert.Throws<UserAuthorizationFailException>(() => users.Get(1));
+			Assert.That(ex.Message, Is.EqualTo("User authorization failed: invalid access_token."));
+		}
 
         [Test]
         public void Get_WithSomeFields_FirstNameLastNameEducation()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=first_name,last_name,education&user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=first_name,last_name,education&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -138,7 +111,7 @@
         [Test]
         public void Get_CountersFields_CountersObject()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=counters&user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=counters&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -190,7 +163,7 @@
         [Test]
         public void Get_DefaultFields_UidFirstNameLastName()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -217,21 +190,20 @@
         public void Get_Multiple_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new UsersCategory(new VkApi());
-            This.Action(() => users.Get(new long[] {1, 2})).Throws<AccessTokenInvalidException>();
-        }
+			Assert.That(() => users.Get(new long[] { 1, 2 }), Throws.InstanceOf<AccessTokenInvalidException>());
+		}
 
         [Test]
         public void Get_EmptyListOfUids_ThrowArgumentNullException()
         {
-            var users = new UsersCategory(new VkApi { AccessToken = "token" });
             IEnumerable<long> userIds = null;
-            This.Action(() => users.Get(userIds)).Throws<ArgumentNullException>();
+			Assert.That(() => Api.Users.Get(userIds), Throws.InstanceOf<ArgumentNullException>());
         }
 
         [Test]
         public void Get_Mutliple_TwoUidsDefaultFields_TwoProfiles()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=1,672&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=1,672&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -266,7 +238,7 @@
         [Test]
         public void Get_TwoUidsEducationField_TwoProfiles()
         {
-			const string url = "https://api.vk.com/method/users.get?fields=education&user_ids=1,5041431&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.get?fields=education&user_ids=1,5041431&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -326,30 +298,7 @@
         public void IsAppUser_EmptyAccessToken_ThrowAccessTokenInvalidException()
         {
             var users = new UsersCategory(new VkApi());
-            This.Action(() => users.IsAppUser(1)).Throws<AccessTokenInvalidException>();
-        }
-
-        [Test, Ignore("Метод устарел. Используйте вместо него account.getAppPermissions")]
-        public void GetUserSettings_EmptyAccessToken_ThrowAccessTokenInvalidException()
-        {
-            var vk = new VkApi();
-            This.Action(() => vk.Users.GetUserSettings(100)).Throws<AccessTokenInvalidException>();
-        }
-
-        [Test, Ignore("Метод устарел. Используйте вместо него account.getAppPermissions")]
-        public void GetUserSettings_AccessToFriends_Return2()
-        {
-            const string url = "https://api.vk.com/method/getUserSettings?uid=1&v=5.44&access_token=token";
-
-            const string json =
-                @"{
-                    'response': 2
-                  }";
-
-            var users = GetMockedUsersCategory(url, json);
-            var settings = users.GetUserSettings(1);
-
-			Assert.That(settings, Is.EqualTo(2));
+            //This.Action(() => users.IsAppUser(1)).Throws<AccessTokenInvalidException>();
         }
 
         [Test]
@@ -357,22 +306,13 @@
         {
             var vk = new VkApi();
             int count;
-            This.Action(() => vk.Users.Search(out count, new UserSearchParams { Query = Query })).Throws<AccessTokenInvalidException>();
-        }
-
-        [Test, Ignore("Query может быть пустым")]
-        public void Search_EmptyQuery_ThrowArgumentException()
-        {
-            int count;
-            var vk = new VkApi { AccessToken = "token" };
-            This.Action(() => vk.Users.Search(out count, new UserSearchParams { Query = "" })).Throws<ArgumentException>()
-                .Message.ShouldEqual("Query can not be null or empty.");
+			Assert.That(()=> vk.Users.Search(out count, new UserSearchParams { Query = Query }), Throws.InstanceOf<AccessTokenInvalidException>());
         }
 
         [Test]
         public void Search_BadQuery_EmptyList()
         {
-			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
 					response: {
@@ -393,7 +333,7 @@
         [Test]
         public void Search_EducationField_ListofProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 
 			const string json =
 				@"{
@@ -462,7 +402,7 @@
         [Test]
         public void Search_DefaultFields_ListOfProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
 				response: {
@@ -513,7 +453,7 @@
         [Test]
         public void IsAppUser_5_5_version_of_api_return_false()
         {
-            const string url = "https://api.vk.com/method/users.isAppUser?user_id=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.isAppUser?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': 0
@@ -523,13 +463,14 @@
 
 			var result = cat.IsAppUser(1);
 
-            result.ShouldBeFalse();
-        }
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result, Is.False);
+		}
 
         [Test]
         public void IsAppUser_5_5_version_of_api_return_true()
         {
-            const string url = "https://api.vk.com/method/users.isAppUser?user_id=123&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.isAppUser?user_id=123&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': 1
@@ -539,13 +480,14 @@
 
 			var result = cat.IsAppUser(123);
 
-            result.ShouldBeTrue();
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result, Is.True);
         }
 
         [Test]
         public void Get_ListOfUsers()
         {
-			const string url = "https://api.vk.com/method/users.get?fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=5.44&access_token=token";
+			const string url = "https://api.vk.com/method/users.get?fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -647,87 +589,88 @@
 
 			var result = cat.Get(new long[] {1}, ProfileFields.All, NameCase.Gen);
 
-            result.ShouldNotBeNull();
-            result.Count.ShouldEqual(1);
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Count, Is.EqualTo(1));
 
-            var user = result[0];
-            user.Id.ShouldEqual(1);
-            user.FirstName.ShouldEqual("Павла");
-            user.LastName.ShouldEqual("Дурова");
-            user.Sex.ShouldEqual(Sex.Male);
-            user.Nickname.ShouldEqual(string.Empty);
-            user.Domain.ShouldEqual("durov");
-            user.BirthDate.ShouldEqual("10.10.1984");
-            user.City.ShouldNotBeNull();
-            user.City.Id.ShouldEqual(2);
-            user.City.Title.ShouldEqual("Санкт-Петербург");
-            user.Country.ShouldNotBeNull();
-            user.Country.Id.ShouldEqual(1);
-            user.Country.Title.ShouldEqual("Россия");
-            user.Timezone.ShouldEqual(3);
-            user.PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
-            user.PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
-            user.PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
-            user.PhotoPreviews.Photo400.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg"));
-            user.PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
-            user.HasMobile.HasValue.ShouldBeTrue();
-            user.HasMobile.Value.ShouldBeTrue();
-            user.Online.HasValue.ShouldBeTrue();
-            user.Online.Value.ShouldBeTrue();
-            user.CanPost.ShouldBeFalse();
-            user.CanSeeAllPosts.ShouldBeFalse();
-            user.CanSeeAudio.ShouldBeFalse();
-            user.CanWritePrivateMessage.ShouldBeFalse();
-            user.Connections.Twitter.ShouldEqual("durov");
-            user.Site.ShouldEqual(string.Empty);
-            user.Status.ShouldEqual(string.Empty);
-            // TODO: u.LastSeen
-            user.CommonCount.Value.ShouldEqual(0);
-            user.Counters.Albums.ShouldEqual(1);
-            user.Counters.Videos.ShouldEqual(8);
-            user.Counters.Audios.ShouldEqual(0);
-            user.Counters.Notes.Value.ShouldEqual(6);
-            user.Counters.Photos.Value.ShouldEqual(153);
-            user.Counters.Friends.Value.ShouldEqual(688);
-            user.Counters.OnlineFriends.ShouldEqual(146);
-            user.Counters.MutualFriends.ShouldEqual(0);
-            user.Counters.Followers.ShouldEqual(5934786);
-            user.Counters.Subscriptions.ShouldEqual(0);
-            user.Counters.Pages.ShouldEqual(51);
-            user.Universities.Count.ShouldEqual(1);
-            user.Universities[0].Id.ShouldEqual(1);
-            user.Universities[0].Country.ShouldEqual(1);
-            user.Universities[0].City.ShouldEqual(2);
-            user.Universities[0].Name.ShouldEqual("СПбГУ");
-            user.Universities[0].Graduation.ShouldEqual(2006);
+			var user = result.FirstOrDefault();
+			Assert.That(user, Is.Not.Null);
+			Assert.That(user.Id, Is.EqualTo(1));
+			Assert.That(user.FirstName, Is.EqualTo("Павла"));
+			Assert.That(user.LastName, Is.EqualTo("Дурова"));
+			Assert.That(user.Sex, Is.EqualTo(Sex.Male));
+			Assert.That(user.Nickname, Is.EqualTo(string.Empty));
+			Assert.That(user.Domain, Is.EqualTo("durov"));
+			Assert.That(user.BirthDate, Is.EqualTo("10.10.1984"));
+			Assert.That(user.City, Is.Not.Null);
+			Assert.That(user.City.Id, Is.EqualTo(2));
+			Assert.That(user.City.Title, Is.EqualTo("Санкт-Петербург"));
+			Assert.That(user.Country, Is.Not.Null);
+			Assert.That(user.Country.Id, Is.EqualTo(1));
+			Assert.That(user.Country.Title, Is.EqualTo("Россия"));
+			Assert.That(user.Timezone, Is.EqualTo(3));
+			Assert.That(user.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg")));
+			Assert.That(user.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg")));
+			Assert.That(user.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg")));
+			Assert.That(user.PhotoPreviews.Photo400, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg")));
+			Assert.That(user.PhotoPreviews.PhotoMax, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg")));
+			Assert.That(user.HasMobile.HasValue, Is.True);
+			Assert.That(user.HasMobile.Value, Is.True);
+			Assert.That(user.Online.HasValue, Is.True);
+			Assert.That(user.Online.Value, Is.True);
+			Assert.That(user.CanPost, Is.False);
+			Assert.That(user.CanSeeAllPosts, Is.False);
+			Assert.That(user.CanSeeAudio, Is.False);
+			Assert.That(user.CanWritePrivateMessage, Is.False);
+			Assert.That(user.Connections.Twitter, Is.EqualTo("durov"));
+			Assert.That(user.Site, Is.EqualTo(string.Empty));
+			Assert.That(user.Status, Is.EqualTo(string.Empty));
+			// TODO: u.LastSeen
+			Assert.That(user.CommonCount.Value, Is.EqualTo(0));
+			Assert.That(user.Counters.Albums, Is.EqualTo(1));
+			Assert.That(user.Counters.Videos, Is.EqualTo(8));
+			Assert.That(user.Counters.Audios, Is.EqualTo(0));
+			Assert.That(user.Counters.Notes.Value, Is.EqualTo(6));
+			Assert.That(user.Counters.Photos.Value, Is.EqualTo(153));
+			Assert.That(user.Counters.Friends.Value, Is.EqualTo(688));
+			Assert.That(user.Counters.OnlineFriends, Is.EqualTo(146));
+			Assert.That(user.Counters.MutualFriends, Is.EqualTo(0));
+			Assert.That(user.Counters.Followers, Is.EqualTo(5934786));
+			Assert.That(user.Counters.Subscriptions, Is.EqualTo(0));
+			Assert.That(user.Counters.Pages, Is.EqualTo(51));
+			Assert.That(user.Universities.Count, Is.EqualTo(1));
+			Assert.That(user.Universities[0].Id, Is.EqualTo(1));
+			Assert.That(user.Universities[0].Country, Is.EqualTo(1));
+			Assert.That(user.Universities[0].City, Is.EqualTo(2));
+			Assert.That(user.Universities[0].Name, Is.EqualTo("СПбГУ"));
+			Assert.That(user.Universities[0].Graduation, Is.EqualTo(2006));
 
-            user.Schools.Count.ShouldEqual(2);
-            user.Schools[0].Id.ShouldEqual(1035386);
-            user.Schools[0].Country.ShouldEqual(88);
-            user.Schools[0].City.ShouldEqual(16);
-            user.Schools[0].Name.ShouldEqual("Sc.Elem. Coppino - Falletti di Barolo");
-            user.Schools[0].YearFrom.ShouldEqual(1990);
-            user.Schools[0].YearTo.ShouldEqual(1992);
-            user.Schools[0].Class.ShouldEqual(string.Empty);
+			Assert.That(user.Schools.Count, Is.EqualTo(2));
+			Assert.That(user.Schools[0].Id, Is.EqualTo(1035386));
+			Assert.That(user.Schools[0].Country, Is.EqualTo(88));
+			Assert.That(user.Schools[0].City, Is.EqualTo(16));
+			Assert.That(user.Schools[0].Name, Is.EqualTo("Sc.Elem. Coppino - Falletti di Barolo"));
+			Assert.That(user.Schools[0].YearFrom, Is.EqualTo(1990));
+			Assert.That(user.Schools[0].YearTo, Is.EqualTo(1992));
+			Assert.That(user.Schools[0].Class, Is.EqualTo(string.Empty));
 
-            user.Schools[1].Id.ShouldEqual(1);
-            user.Schools[1].Country.ShouldEqual(1);
-            user.Schools[1].City.ShouldEqual(2);
-            user.Schools[1].Name.ShouldEqual("Академическая (АГ) СПбГУ");
-            user.Schools[1].YearFrom.ShouldEqual(1996);
-            user.Schools[1].YearTo.ShouldEqual(2001);
-            user.Schools[1].YearGraduated.ShouldEqual(2001);
-            user.Schools[1].Class.ShouldEqual("о");
-            user.Schools[1].Type.ShouldEqual(1);
-            user.Schools[1].TypeStr.ShouldEqual("Гимназия");
+			Assert.That(user.Schools[1].Id, Is.EqualTo(1));
+			Assert.That(user.Schools[1].Country, Is.EqualTo(1));
+			Assert.That(user.Schools[1].City, Is.EqualTo(2));
+			Assert.That(user.Schools[1].Name, Is.EqualTo("Академическая (АГ) СПбГУ"));
+			Assert.That(user.Schools[1].YearFrom, Is.EqualTo(1996));
+			Assert.That(user.Schools[1].YearTo, Is.EqualTo(2001));
+			Assert.That(user.Schools[1].YearGraduated, Is.EqualTo(2001));
+			Assert.That(user.Schools[1].Class, Is.EqualTo("о"));
+			Assert.That(user.Schools[1].Type, Is.EqualTo(1));
+			Assert.That(user.Schools[1].TypeStr, Is.EqualTo("Гимназия"));
 
-            user.Relatives.Count.ShouldEqual(0);
-        }
+			Assert.That(user.Relatives.Count, Is.EqualTo(0));
+		}
 
         [Test]
         public void Get_SingleUser()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -829,84 +772,86 @@
 
             var user = cat.Get(1, ProfileFields.All, NameCase.Gen);
 
-			user.ShouldNotBeNull();
-            user.Id.ShouldEqual(1);
-            user.FirstName.ShouldEqual("Павла");
-            user.LastName.ShouldEqual("Дурова");
-            user.Sex.ShouldEqual(Sex.Male);
-            user.Nickname.ShouldEqual(string.Empty);
-            user.Domain.ShouldEqual("durov");
-            user.BirthDate.ShouldEqual("10.10.1984");
-            user.City.ShouldNotBeNull();
-            user.City.Id.ShouldEqual(2);
-            user.City.Title.ShouldEqual("Санкт-Петербург");
-            user.Country.ShouldNotBeNull();
-            user.Country.Id.ShouldEqual(1);
-            user.Country.Title.ShouldEqual("Россия");
-            user.Timezone.ShouldEqual(3);
-            user.PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
-            user.PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
-            user.PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
-            user.PhotoPreviews.Photo400.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg"));
-            user.PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
-            user.HasMobile.HasValue.ShouldBeTrue();
-            user.HasMobile.Value.ShouldBeTrue();
-            user.Online.HasValue.ShouldBeTrue();
-            user.Online.Value.ShouldBeTrue();
-            user.CanPost.ShouldBeFalse();
-            user.CanSeeAllPosts.ShouldBeFalse();
-            user.CanSeeAudio.ShouldBeFalse();
-            user.CanWritePrivateMessage.ShouldBeFalse();
-            user.Connections.Twitter.ShouldEqual("durov");
-            user.Site.ShouldEqual(string.Empty);
-            user.Status.ShouldEqual(string.Empty);
-            // TODO: u.LastSeen
-            user.CommonCount.Value.ShouldEqual(0);
-            user.Counters.Albums.ShouldEqual(1);
-            user.Counters.Videos.ShouldEqual(8);
-            user.Counters.Audios.ShouldEqual(0);
-            user.Counters.Notes.Value.ShouldEqual(6);
-            user.Counters.Photos.Value.ShouldEqual(153);
-            user.Counters.Friends.Value.ShouldEqual(688);
-            user.Counters.OnlineFriends.ShouldEqual(146);
-            user.Counters.MutualFriends.ShouldEqual(0);
-            user.Counters.Followers.ShouldEqual(5934786);
-            user.Counters.Subscriptions.ShouldEqual(0);
-            user.Counters.Pages.ShouldEqual(51);
-            user.Universities.Count.ShouldEqual(1);
-            user.Universities[0].Id.ShouldEqual(1);
-            user.Universities[0].Country.ShouldEqual(1);
-            user.Universities[0].City.ShouldEqual(2);
-            user.Universities[0].Name.ShouldEqual("СПбГУ");
-            user.Universities[0].Graduation.ShouldEqual(2006);
+			Assert.That(user, Is.Not.Null);
 
-            user.Schools.Count.ShouldEqual(2);
-            user.Schools[0].Id.ShouldEqual(1035386);
-            user.Schools[0].Country.ShouldEqual(88);
-            user.Schools[0].City.ShouldEqual(16);
-            user.Schools[0].Name.ShouldEqual("Sc.Elem. Coppino - Falletti di Barolo");
-            user.Schools[0].YearFrom.ShouldEqual(1990);
-            user.Schools[0].YearTo.ShouldEqual(1992);
-            user.Schools[0].Class.ShouldEqual(string.Empty);
+			Assert.That(user.Id, Is.EqualTo(1));
+			Assert.That(user.FirstName, Is.EqualTo("Павла"));
+			Assert.That(user.LastName, Is.EqualTo("Дурова"));
+			Assert.That(user.Sex, Is.EqualTo(Sex.Male));
+			Assert.That(user.Nickname, Is.EqualTo(string.Empty));
+			Assert.That(user.Domain, Is.EqualTo("durov"));
+			Assert.That(user.BirthDate, Is.EqualTo("10.10.1984"));
+			Assert.That(user.City, Is.Not.Null);
+			Assert.That(user.City.Id, Is.EqualTo(2));
+			Assert.That(user.City.Title, Is.EqualTo("Санкт-Петербург"));
+			Assert.That(user.Country, Is.Not.Null);
+			Assert.That(user.Country.Id, Is.EqualTo(1));
+			Assert.That(user.Country.Title, Is.EqualTo("Россия"));
+			Assert.That(user.Timezone, Is.EqualTo(3));
+			Assert.That(user.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg")));
+			Assert.That(user.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg")));
+			Assert.That(user.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg")));
+			Assert.That(user.PhotoPreviews.Photo400, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg")));
+			Assert.That(user.PhotoPreviews.PhotoMax, Is.EqualTo(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg")));
+			Assert.That(user.HasMobile.HasValue, Is.True);
+			Assert.That(user.HasMobile.Value, Is.True);
+			Assert.That(user.Online.HasValue, Is.True);
+			Assert.That(user.Online.Value, Is.True);
+			Assert.That(user.CanPost, Is.False);
+			Assert.That(user.CanSeeAllPosts, Is.False);
+			Assert.That(user.CanSeeAudio, Is.False);
+			Assert.That(user.CanWritePrivateMessage, Is.False);
+			Assert.That(user.Connections.Twitter, Is.EqualTo("durov"));
+			Assert.That(user.Site, Is.EqualTo(string.Empty));
+			Assert.That(user.Status, Is.EqualTo(string.Empty));
+			// TODO: u.LastSeen
+			Assert.That(user.CommonCount.Value, Is.EqualTo(0));
+			Assert.That(user.Counters.Albums, Is.EqualTo(1));
+			Assert.That(user.Counters.Videos, Is.EqualTo(8));
+			Assert.That(user.Counters.Audios, Is.EqualTo(0));
+			Assert.That(user.Counters.Notes.Value, Is.EqualTo(6));
+			Assert.That(user.Counters.Photos.Value, Is.EqualTo(153));
+			Assert.That(user.Counters.Friends.Value, Is.EqualTo(688));
+			Assert.That(user.Counters.OnlineFriends, Is.EqualTo(146));
+			Assert.That(user.Counters.MutualFriends, Is.EqualTo(0));
+			Assert.That(user.Counters.Followers, Is.EqualTo(5934786));
+			Assert.That(user.Counters.Subscriptions, Is.EqualTo(0));
+			Assert.That(user.Counters.Pages, Is.EqualTo(51));
 
-            user.Schools[1].Id.ShouldEqual(1);
-            user.Schools[1].Country.ShouldEqual(1);
-            user.Schools[1].City.ShouldEqual(2);
-            user.Schools[1].Name.ShouldEqual("Академическая (АГ) СПбГУ");
-            user.Schools[1].YearFrom.ShouldEqual(1996);
-            user.Schools[1].YearTo.ShouldEqual(2001);
-            user.Schools[1].YearGraduated.ShouldEqual(2001);
-            user.Schools[1].Class.ShouldEqual("о");
-            user.Schools[1].Type.ShouldEqual(1);
-            user.Schools[1].TypeStr.ShouldEqual("Гимназия");
+			Assert.That(user.Universities.Count, Is.EqualTo(1));
+			Assert.That(user.Universities[0].Id, Is.EqualTo(1));
+			Assert.That(user.Universities[0].Country, Is.EqualTo(1));
+			Assert.That(user.Universities[0].City, Is.EqualTo(2));
+			Assert.That(user.Universities[0].Name, Is.EqualTo("СПбГУ"));
+			Assert.That(user.Universities[0].Graduation, Is.EqualTo(2006));
 
-            user.Relatives.Count.ShouldEqual(0);
-        }
+			Assert.That(user.Schools.Count, Is.EqualTo(2));
+			Assert.That(user.Schools[0].Id, Is.EqualTo(1035386));
+			Assert.That(user.Schools[0].Country, Is.EqualTo(88));
+			Assert.That(user.Schools[0].City, Is.EqualTo(16));
+			Assert.That(user.Schools[0].Name, Is.EqualTo("Sc.Elem. Coppino - Falletti di Barolo"));
+			Assert.That(user.Schools[0].YearFrom, Is.EqualTo(1990));
+			Assert.That(user.Schools[0].YearTo, Is.EqualTo(1992));
+			Assert.That(user.Schools[0].Class, Is.EqualTo(string.Empty));
 
-        [Test]
+			Assert.That(user.Schools[1].Id, Is.EqualTo(1));
+			Assert.That(user.Schools[1].Country, Is.EqualTo(1));
+			Assert.That(user.Schools[1].City, Is.EqualTo(2));
+			Assert.That(user.Schools[1].Name, Is.EqualTo("Академическая (АГ) СПбГУ"));
+			Assert.That(user.Schools[1].YearFrom, Is.EqualTo(1996));
+			Assert.That(user.Schools[1].YearTo, Is.EqualTo(2001));
+			Assert.That(user.Schools[1].YearGraduated, Is.EqualTo(2001));
+			Assert.That(user.Schools[1].Class, Is.EqualTo("о"));
+			Assert.That(user.Schools[1].Type, Is.EqualTo(1));
+			Assert.That(user.Schools[1].TypeStr, Is.EqualTo("Гимназия"));
+
+			Assert.That(user.Relatives.Count, Is.EqualTo(0));
+		}
+
+		[Test]
         public void Get_DeletedUser()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=first_name,last_name,education&user_ids=4793858&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=first_name,last_name,education&user_ids=4793858&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': [
@@ -922,19 +867,19 @@
             var cat = GetMockedUsersCategory(url, json);
 
 			var user = cat.Get(4793858, ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education);
+			Assert.That(user, Is.Not.Null);
 
-            user.ShouldNotBeNull();
-            user.Id.ShouldEqual(4793858);
-            user.FirstName.ShouldEqual("Антон");
-            user.LastName.ShouldEqual("Жидков");
-            user.DeactiveReason.ShouldEqual(Deactivated.Deleted);
-            user.IsDeactivated.ShouldBeTrue();
-        }
+			Assert.That(user.Id, Is.EqualTo(4793858));
+			Assert.That(user.FirstName, Is.EqualTo("Антон"));
+			Assert.That(user.LastName, Is.EqualTo("Жидков"));
+			Assert.That(user.DeactiveReason, Is.EqualTo(Deactivated.Deleted));
+			Assert.That(user.IsDeactivated, Is.True);
+		}
 
         [Test]
         public void GetSubscriptions_Extended()
         {
-            const string url = "https://api.vk.com/method/users.getSubscriptions?user_id=1&extended=1&offset=3&count=2&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.getSubscriptions?user_id=1&extended=1&offset=3&count=2&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': {
@@ -971,35 +916,42 @@
             var cat = GetMockedUsersCategory(url, json);
 
 			var result = cat.GetSubscriptions(1, 2, 3);
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Count, Is.EqualTo(2));
 
-            result.Count.ShouldEqual(2);
-			Assert.That(result[0].Id, Is.EqualTo(32295218));
-			result[0].Name.ShouldEqual("LIVE Экспресс");
-            result[0].ScreenName.ShouldEqual("liveexp");
-            result[0].IsClosed.ShouldEqual(GroupPublicity.Public);
-            result[0].Type.ShouldEqual(GroupType.Page);
-            result[0].IsAdmin.ShouldBeFalse();
-            result[0].IsMember.ShouldEqual(false);
-            result[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs412129.vk.me/v412129558/6cea/T3jVq9A5hN4.jpg"));
-            result[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs412129.vk.me/v412129558/6ce9/Rs47ldlt4Ko.jpg"));
-            result[0].PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs412129.vk.me/v412129604/1238/RhEgZqrsv-w.jpg"));
+			var @group = result.FirstOrDefault();
+			Assert.That(@group, Is.Not.Null);
 
-			Assert.That(result[1].Id, Is.EqualTo(43694972));
-			result[1].Name.ShouldEqual("Sophie Ellis-Bextor");
-            result[1].ScreenName.ShouldEqual("sophieellisbextor");
-            result[1].IsClosed.ShouldEqual(GroupPublicity.Public);
-            result[1].Type.ShouldEqual(GroupType.Page);
-            result[1].IsAdmin.ShouldEqual(false);
-            result[1].IsMember.ShouldEqual(false);
-            result[1].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs417031.vk.me/v417031989/59cb/65zF-xnOQsk.jpg"));
-            result[1].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs417031.vk.me/v417031989/59ca/eOJ7ER_eJok.jpg"));
-            result[1].PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs417031.vk.me/v417031989/59c8/zI9aAlI-PHc.jpg"));
-        }
+			Assert.That(@group.Id, Is.EqualTo(32295218));
+			Assert.That(@group.Name, Is.EqualTo("LIVE Экспресс"));
+			Assert.That(@group.ScreenName, Is.EqualTo("liveexp"));
+			Assert.That(@group.IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(@group.Type, Is.EqualTo(GroupType.Page));
+			Assert.That(@group.IsAdmin, Is.False);
+			Assert.That(@group.IsMember, Is.EqualTo(false));
+			Assert.That(@group.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs412129.vk.me/v412129558/6cea/T3jVq9A5hN4.jpg")));
+			Assert.That(@group.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs412129.vk.me/v412129558/6ce9/Rs47ldlt4Ko.jpg")));
+			Assert.That(@group.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs412129.vk.me/v412129604/1238/RhEgZqrsv-w.jpg")));
 
-        [Test]
+			var @group1 = result.Skip(1).FirstOrDefault();
+			Assert.That(@group1, Is.Not.Null);
+
+			Assert.That(@group1.Id, Is.EqualTo(43694972));
+			Assert.That(@group1.Name, Is.EqualTo("Sophie Ellis-Bextor"));
+			Assert.That(@group1.ScreenName, Is.EqualTo("sophieellisbextor"));
+			Assert.That(@group1.IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(@group1.Type, Is.EqualTo(GroupType.Page));
+			Assert.That(@group1.IsAdmin, Is.EqualTo(false));
+			Assert.That(@group1.IsMember, Is.EqualTo(false));
+			Assert.That(@group1.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs417031.vk.me/v417031989/59cb/65zF-xnOQsk.jpg")));
+			Assert.That(@group1.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs417031.vk.me/v417031989/59ca/eOJ7ER_eJok.jpg")));
+			Assert.That(@group1.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs417031.vk.me/v417031989/59c8/zI9aAlI-PHc.jpg")));
+		}
+
+		[Test]
         public void GetFollowers_WithoutFields()
         {
-            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -1014,17 +966,17 @@
             var cat = GetMockedUsersCategory(url, json);
 
 			var result = cat.GetFollowers(1, 2, 3);
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Count, Is.EqualTo(2));
 
-            result.ShouldNotBeNull();
-            result.Count.ShouldEqual(2);
-            result[0].Id.ShouldEqual(5984118);
-            result[1].Id.ShouldEqual(179652233);
-        }
+			Assert.That(result[0].Id, Is.EqualTo(5984118));
+			Assert.That(result[1].Id, Is.EqualTo(179652233));
+		}
 
-        [Test]
+		[Test]
         public void GetFollowers_WithAllFields()
         {
-            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=uid,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -1144,89 +1096,93 @@
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var result = cat.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen);
+			var users = cat.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen);
+			Assert.That(users, Is.Not.Null);
+			Assert.That(users.Count, Is.EqualTo(2));
 
-            result.ShouldNotBeNull();
-            result.Count.ShouldEqual(2);
+			var user = users.FirstOrDefault();
+			Assert.That(user, Is.Not.Null);
 
-            result[0].Id.ShouldEqual(243663122);
-            result[0].FirstName.ShouldEqual("Ивана");
-            result[0].LastName.ShouldEqual("Радюна");
-            result[0].Sex.ShouldEqual(Sex.Male);
-            result[0].Nickname.ShouldEqual(string.Empty);
-            result[0].Domain.ShouldEqual("id243663122");
-            result[0].BirthDate.ShouldEqual("27.8.1985");
-            result[0].City.Id.ShouldEqual(18632);
-            result[0].City.Title.ShouldEqual("Вороново");
-            result[0].Country.Id.ShouldEqual(3);
-            result[0].Country.Title.ShouldEqual("Беларусь");
-            result[0].Timezone.ShouldEqual(3);
-            result[0].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs606327.vk.me/v606327122/35ac/R57FNUr34iw.jpg"));
-            result[0].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs606327.vk.me/v606327122/35ab/HUsGNVxBoQU.jpg"));
-            result[0].PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg"));
-            result[0].PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg"));
-            result[0].HasMobile.ShouldEqual(true);
-            result[0].Online.ShouldEqual(true);
-            result[0].OnlineMobile.ShouldEqual(true);
-            result[0].CanPost.ShouldEqual(false);
-            result[0].CanSeeAllPosts.ShouldEqual(true);
-            result[0].CanSeeAudio.ShouldEqual(true);
-            result[0].CanWritePrivateMessage.ShouldEqual(true);
-            result[0].MobilePhone.ShouldEqual(string.Empty);
-            result[0].HomePhone.ShouldEqual(string.Empty);
-            result[0].Site.ShouldEqual(string.Empty);
-            result[0].Status.ShouldEqual("Пусть ветер гудит в проводах пусть будет осенняя влага пусть люди забудут о нас,но ни забудем друг друга.");
-            result[0].LastSeen.Time.ShouldEqual(new DateTime(2014, 2, 18, 8, 2, 19, DateTimeKind.Utc).ToLocalTime());
-            result[0].CommonCount.ShouldEqual(0);
-            result[0].Universities.Count.ShouldEqual(0);
-            result[0].Relation.ShouldEqual(RelationType.InActiveSearch);
-            result[0].Schools.Count.ShouldEqual(0);
-            result[0].Relatives.Count.ShouldEqual(0);
+			Assert.That(user.Id, Is.EqualTo(243663122));
+			Assert.That(user.FirstName, Is.EqualTo("Ивана"));
+			Assert.That(user.LastName, Is.EqualTo("Радюна"));
+			Assert.That(user.Sex, Is.EqualTo(Sex.Male));
+			Assert.That(user.Nickname, Is.EqualTo(string.Empty));
+			Assert.That(user.Domain, Is.EqualTo("id243663122"));
+			Assert.That(user.BirthDate, Is.EqualTo("27.8.1985"));
+			Assert.That(user.City.Id, Is.EqualTo(18632));
+			Assert.That(user.City.Title, Is.EqualTo("Вороново"));
+			Assert.That(user.Country.Id, Is.EqualTo(3));
+			Assert.That(user.Country.Title, Is.EqualTo("Беларусь"));
+			Assert.That(user.Timezone, Is.EqualTo(3));
+			Assert.That(user.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs606327.vk.me/v606327122/35ac/R57FNUr34iw.jpg")));
+			Assert.That(user.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs606327.vk.me/v606327122/35ab/HUsGNVxBoQU.jpg")));
+			Assert.That(user.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg")));
+			Assert.That(user.PhotoPreviews.PhotoMax, Is.EqualTo(new Uri("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg")));
+			Assert.That(user.HasMobile, Is.EqualTo(true));
+			Assert.That(user.Online, Is.EqualTo(true));
+			Assert.That(user.OnlineMobile, Is.EqualTo(true));
+			Assert.That(user.CanPost, Is.EqualTo(false));
+			Assert.That(user.CanSeeAllPosts, Is.EqualTo(true));
+			Assert.That(user.CanSeeAudio, Is.EqualTo(true));
+			Assert.That(user.CanWritePrivateMessage, Is.EqualTo(true));
+			Assert.That(user.MobilePhone, Is.EqualTo(string.Empty));
+			Assert.That(user.HomePhone, Is.EqualTo(string.Empty));
+			Assert.That(user.Site, Is.EqualTo(string.Empty));
+			Assert.That(user.Status, Is.EqualTo("Пусть ветер гудит в проводах пусть будет осенняя влага пусть люди забудут о нас,но ни забудем друг друга."));
+			Assert.That(user.LastSeen.Time, Is.EqualTo(DateHelper.TimeStampToDateTime(1392710539)));
+			Assert.That(user.CommonCount, Is.EqualTo(0));
+			Assert.That(user.Universities.Count, Is.EqualTo(0));
+			Assert.That(user.Relation, Is.EqualTo(RelationType.InActiveSearch));
+			Assert.That(user.Schools.Count, Is.EqualTo(0));
+			Assert.That(user.Relatives.Count, Is.EqualTo(0));
 
-            result[1].Id.ShouldEqual(239897398);
-            result[1].FirstName.ShouldEqual("Софійки");
-            result[1].LastName.ShouldEqual("Довгалюк");
-            result[1].Sex.ShouldEqual(Sex.Female);
-            result[1].Nickname.ShouldEqual(string.Empty);
-            result[1].Domain.ShouldEqual("id239897398");
-            result[1].BirthDate.ShouldEqual("16.6.2000");
-            result[1].City.Id.ShouldEqual(1559);
-            result[1].City.Title.ShouldEqual("Тернополь");
-            result[1].Country.Id.ShouldEqual(2);
-            result[1].Country.Title.ShouldEqual("Украина");
-            result[1].Timezone.ShouldEqual(1);
-            result[1].PhotoPreviews.Photo50.ShouldEqual(new Uri("http://cs310121.vk.me/v310121398/8023/LMm-uoyk1-M.jpg"));
-            result[1].PhotoPreviews.Photo100.ShouldEqual(new Uri("http://cs310121.vk.me/v310121398/8022/KajnVK0lvFA.jpg"));
-            result[1].PhotoPreviews.Photo200.ShouldEqual(new Uri("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg"));
-            result[1].PhotoPreviews.PhotoMax.ShouldEqual(new Uri("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg"));
-            result[1].HasMobile.ShouldEqual(true);
-            result[1].Online.ShouldEqual(true);
-            result[1].CanPost.ShouldEqual(false);
-            result[1].CanSeeAllPosts.ShouldEqual(true);
-            result[1].CanSeeAudio.ShouldEqual(true);
-            result[1].CanWritePrivateMessage.ShouldEqual(true);
-            result[1].MobilePhone.ShouldEqual("**********");
-            result[1].HomePhone.ShouldEqual("*****");
-            result[1].Connections.Skype.ShouldEqual("немає");
-            result[1].Site.ShouldEqual(string.Empty);
-            result[1].Status.ShouldEqual("Не варто ображатися на людей за те, що вони не виправдали наших очікувань... ми самі винні, що чекали від них більше, ніж варто було!");
-            result[1].LastSeen.Time.ShouldEqual(new DateTime(2014, 2, 18, 8, 1, 14, DateTimeKind.Utc).ToLocalTime());
-            result[1].CommonCount.ShouldEqual(0);
-            result[1].Universities.Count.ShouldEqual(0);
-            result[1].Relation.ShouldEqual(RelationType.Unknown);
-            result[1].Schools.Count.ShouldEqual(0);
-            result[1].Relatives.Count.ShouldEqual(2);
-            result[1].Relatives[0].Id.ShouldEqual(222462523);
-            result[1].Relatives[0].Type.ShouldEqual(RelativeType.Sibling);
+			var user1 = users.Skip(1).FirstOrDefault();
+			Assert.That(user1, Is.Not.Null);
 
-            result[1].Relatives[1].Id.ShouldEqual(207105159);
-            result[1].Relatives[1].Type.ShouldEqual(RelativeType.Sibling);
-        }
+			Assert.That(user1.Id, Is.EqualTo(239897398));
+			Assert.That(user1.FirstName, Is.EqualTo("Софійки"));
+			Assert.That(user1.LastName, Is.EqualTo("Довгалюк"));
+			Assert.That(user1.Sex, Is.EqualTo(Sex.Female));
+			Assert.That(user1.Nickname, Is.EqualTo(string.Empty));
+			Assert.That(user1.Domain, Is.EqualTo("id239897398"));
+			Assert.That(user1.BirthDate, Is.EqualTo("16.6.2000"));
+			Assert.That(user1.City.Id, Is.EqualTo(1559));
+			Assert.That(user1.City.Title, Is.EqualTo("Тернополь"));
+			Assert.That(user1.Country.Id, Is.EqualTo(2));
+			Assert.That(user1.Country.Title, Is.EqualTo("Украина"));
+			Assert.That(user1.Timezone, Is.EqualTo(1));
+			Assert.That(user1.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs310121.vk.me/v310121398/8023/LMm-uoyk1-M.jpg")));
+			Assert.That(user1.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs310121.vk.me/v310121398/8022/KajnVK0lvFA.jpg")));
+			Assert.That(user1.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg")));
+			Assert.That(user1.PhotoPreviews.PhotoMax, Is.EqualTo(new Uri("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg")));
+			Assert.That(user1.HasMobile, Is.EqualTo(true));
+			Assert.That(user1.Online, Is.EqualTo(true));
+			Assert.That(user1.CanPost, Is.EqualTo(false));
+			Assert.That(user1.CanSeeAllPosts, Is.EqualTo(true));
+			Assert.That(user1.CanSeeAudio, Is.EqualTo(true));
+			Assert.That(user1.CanWritePrivateMessage, Is.EqualTo(true));
+			Assert.That(user1.MobilePhone, Is.EqualTo("**********"));
+			Assert.That(user1.HomePhone, Is.EqualTo("*****"));
+			Assert.That(user1.Connections.Skype, Is.EqualTo("немає"));
+			Assert.That(user1.Site, Is.EqualTo(string.Empty));
+			Assert.That(user1.Status, Is.EqualTo("Не варто ображатися на людей за те, що вони не виправдали наших очікувань... ми самі винні, що чекали від них більше, ніж варто було!"));
+			Assert.That(user1.LastSeen.Time, Is.EqualTo(new DateTime(2014, 2, 18, 8, 1, 14, DateTimeKind.Utc).ToLocalTime()));
+			Assert.That(user1.CommonCount, Is.EqualTo(0));
+			Assert.That(user1.Universities.Count, Is.EqualTo(0));
+			Assert.That(user1.Relation, Is.EqualTo(RelationType.Unknown));
+			Assert.That(user1.Schools.Count, Is.EqualTo(0));
+			Assert.That(user1.Relatives.Count, Is.EqualTo(2));
+			Assert.That(user1.Relatives[0].Id, Is.EqualTo(222462523));
+			Assert.That(user1.Relatives[0].Type, Is.EqualTo(RelativeType.Sibling));
+			Assert.That(user1.Relatives[1].Id, Is.EqualTo(207105159));
+			Assert.That(user1.Relatives[1].Type, Is.EqualTo(RelativeType.Sibling));
+		}
 
-        [Test]
+		[Test]
         public void Report_NormalCase()
         {
-            const string url = "https://api.vk.com/method/users.report?user_id=243663122&type=insult&comment=комментарий&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.report?user_id=243663122&type=insult&comment=комментарий&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': 1
@@ -1236,13 +1192,14 @@
 
 			var result = cat.Report(243663122, ReportType.Insult, "комментарий");
 
-            result.ShouldBeTrue();
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result, Is.True);
         }
 
         [Test]
         public void Get_DmAndDurov_ListOfUsers()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -1275,26 +1232,33 @@
             var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
 			var users = cat.Get(screenNames, fields, NameCase.Gen);
 
-            users.Count.ShouldEqual(2);
-            users[0].Id.ShouldEqual(53083705);
-            users[0].FirstName.ShouldEqual("Дмитрия");
-            users[0].LastName.ShouldEqual("Медведева");
-            users[0].Sex.ShouldEqual(Sex.Male);
-            users[0].City.Id.ShouldEqual(1);
-            users[0].City.Title.ShouldEqual("Москва");
+			Assert.That(users, Is.Not.Null);
+			Assert.That(users.Count, Is.EqualTo(2));
 
-            users[1].Id.ShouldEqual(1);
-            users[1].FirstName.ShouldEqual("Павла");
-            users[1].LastName.ShouldEqual("Дурова");
-            users[1].Sex.ShouldEqual(Sex.Male);
-            users[1].City.Id.ShouldEqual(2);
-            users[1].City.Title.ShouldEqual("Санкт-Петербург");
-        }
+	        var user = users.FirstOrDefault();
+			Assert.That(user, Is.Not.Null);
+
+			Assert.That(user.Id, Is.EqualTo(53083705));
+			Assert.That(user.FirstName, Is.EqualTo("Дмитрия"));
+			Assert.That(user.LastName, Is.EqualTo("Медведева"));
+			Assert.That(user.Sex, Is.EqualTo(Sex.Male));
+			Assert.That(user.City.Id, Is.EqualTo(1));
+			Assert.That(user.City.Title, Is.EqualTo("Москва"));
+
+			var user1 = users.Skip(1).FirstOrDefault();
+			Assert.That(user1, Is.Not.Null);
+			Assert.That(user1.Id, Is.EqualTo(1));
+			Assert.That(user1.FirstName, Is.EqualTo("Павла"));
+			Assert.That(user1.LastName, Is.EqualTo("Дурова"));
+			Assert.That(user1.Sex, Is.EqualTo(Sex.Male));
+			Assert.That(user1.City.Id, Is.EqualTo(2));
+			Assert.That(user1.City.Title, Is.EqualTo("Санкт-Петербург"));
+		}
 
         [Test]
         public void Get_Dimon_SingleUser()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=dm&fields=first_name,last_name,sex,city&name_case=gen&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=dm&fields=first_name,last_name,sex,city&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -1316,15 +1280,15 @@
 			var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
             var user = cat.Get("dm", fields, NameCase.Gen);
 
-			user.ShouldNotBeNull();
+			Assert.That(user, Is.Not.Null);
 
-            user.Id.ShouldEqual(53083705);
-            user.FirstName.ShouldEqual("Дмитрия");
-            user.LastName.ShouldEqual("Медведева");
-            user.Sex.ShouldEqual(Sex.Male);
-            user.City.Id.ShouldEqual(1);
-            user.City.Title.ShouldEqual("Москва");
-        }
+			Assert.That(user.Id, Is.EqualTo(53083705));
+			Assert.That(user.FirstName, Is.EqualTo("Дмитрия"));
+			Assert.That(user.LastName, Is.EqualTo("Медведева"));
+			Assert.That(user.Sex, Is.EqualTo(Sex.Male));
+			Assert.That(user.City.Id, Is.EqualTo(1));
+			Assert.That(user.City.Title, Is.EqualTo("Москва"));
+		}
 
 #if false
         #region Async methods
@@ -1332,7 +1296,7 @@
         [Test]
         public async Task Async_GetAsync_DmAndDurov_ListOfUsers()
         {
-            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=5.44&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?user_ids=dm,durov&fields=first_name,last_name,sex,city&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [

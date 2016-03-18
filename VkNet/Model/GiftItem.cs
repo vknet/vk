@@ -41,6 +41,11 @@ namespace VkNet.Model
 		/// </summary>
 		public GiftPrivacy Privacy { get; set; }
 
+		/// <summary>
+		/// Хеш подарка
+		/// </summary>
+		public string GiftHash { get; set; }
+
 
 		/// <summary>
 		/// Разобрать из json.
@@ -49,17 +54,16 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static GiftItem FromJson(VkResponse response)
 		{
-			var giftItem = new GiftItem
+			return new GiftItem
 			{
 				Id = response["id"],
 				FromId = response["from_id"],
 				Message = response["message"],
 				Date = response["date"],
 				Gift = response["gift"],
-				Privacy = response["privacy"]
+				Privacy = response["privacy"],
+				GiftHash = response["gift_hash"]
 			};
-
-			return giftItem;
 		}
 	}
 }

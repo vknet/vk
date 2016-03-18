@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using VkNet.Enums.Filters;
-using FluentNUnit;
+
 
 namespace VkNet.Tests.Enum.Filters
 {
@@ -29,25 +29,25 @@ namespace VkNet.Tests.Enum.Filters
         [Test]
         public void Value_Iterate_InitializedValues()
         {
-            Settings.Notify.Value.ShouldEqual((ulong)1);
-			Settings.Friends.Value.ShouldEqual((ulong)2);
-			Settings.Photos.Value.ShouldEqual((ulong)4);
-			Settings.Audio.Value.ShouldEqual((ulong)8);
-			Settings.Video.Value.ShouldEqual((ulong)16);
-			Settings.Documents.Value.ShouldEqual((ulong)131072);
-			Settings.Notes.Value.ShouldEqual((ulong)2048);
-			Settings.Pages.Value.ShouldEqual((ulong)128);
-			Settings.AddLinkToLeftMenu.Value.ShouldEqual((ulong)256);
-			Settings.Status.Value.ShouldEqual((ulong)1024);
-			Settings.Wall.Value.ShouldEqual((ulong)8192);
-			Settings.Groups.Value.ShouldEqual((ulong)262144);
-			Settings.Messages.Value.ShouldEqual((ulong)4096);
-			Settings.Email.Value.ShouldEqual((ulong)4194304);
-			Settings.Notifications.Value.ShouldEqual((ulong)524288);
-			Settings.Statistic.Value.ShouldEqual((ulong)1048576);
-			Settings.Ads.Value.ShouldEqual((ulong)32768);
-			Settings.Offline.Value.ShouldEqual((ulong)65536);
-        }
+			Assert.That(Settings.Notify.Value, Is.EqualTo(1));
+			Assert.That(Settings.Friends.Value, Is.EqualTo(2));
+			Assert.That(Settings.Photos.Value, Is.EqualTo(4));
+			Assert.That(Settings.Audio.Value, Is.EqualTo(8));
+			Assert.That(Settings.Video.Value, Is.EqualTo(16));
+			Assert.That(Settings.Documents.Value, Is.EqualTo(131072));
+			Assert.That(Settings.Notes.Value, Is.EqualTo(2048));
+			Assert.That(Settings.Pages.Value, Is.EqualTo(128));
+			Assert.That(Settings.AddLinkToLeftMenu.Value, Is.EqualTo(256));
+			Assert.That(Settings.Status.Value, Is.EqualTo(1024));
+			Assert.That(Settings.Wall.Value, Is.EqualTo(8192));
+			Assert.That(Settings.Groups.Value, Is.EqualTo(262144));
+			Assert.That(Settings.Messages.Value, Is.EqualTo(4096));
+			Assert.That(Settings.Email.Value, Is.EqualTo(4194304));
+			Assert.That(Settings.Notifications.Value, Is.EqualTo(524288));
+			Assert.That(Settings.Statistic.Value, Is.EqualTo(1048576));
+			Assert.That(Settings.Ads.Value, Is.EqualTo(32768));
+			Assert.That(Settings.Offline.Value, Is.EqualTo(65536));
+		}
 
         [Test]
         public void ToString_ComplexExpresstion_NotPrintEmptyNames()

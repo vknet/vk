@@ -1,7 +1,6 @@
 ﻿using System;
 
 using NUnit.Framework;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -12,7 +11,7 @@ namespace VkNet.Tests.Utils
     [TestFixture]
     public class VkAuthorizationTest
     {
-/*        
+/*
         private const string Email = "test@test.com";
         private const string Password = "pwd1234";
         private const int AppId = 123;
@@ -48,14 +47,19 @@ namespace VkNet.Tests.Utils
         }
 
         [Test]
-        [ExpectedException(typeof(VkApiException), ExpectedMessage = "UserId is not integer value.")]
         public void Authorize_BadUserId_ThrowVkApiException()
         {
-            const string urlWithBadUserId = "http://oauth.vk.com/blank.html#access_token=token&expires_in=86400&user_id=4793858sd";
+			// TODO [ExpectedException(typeof(VkApiException), ExpectedMessage = "UserId is not integer value.")]
+			const string urlWithBadUserId = "http://oauth.vk.com/blank.html#access_token=token&expires_in=86400&user_id=4793858sd";
 
-            var authorization = VkAuthorization.From(new Uri(urlWithBadUserId));
+			var ex = Assert.Throws<VkApiException>(() =>
+			{
+				var authorization = VkAuthorization.From(new Uri(urlWithBadUserId));
 
-            var userId = authorization.UserId;
+				var userId = authorization.UserId;
+			});
+
+			Assert.That(ex.Message, Is.EqualTo("UserId is not integer value."));
 		}
 
         [Test]

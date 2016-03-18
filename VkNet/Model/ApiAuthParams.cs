@@ -26,7 +26,7 @@ namespace VkNet
         /// </summary>
         public Settings Settings { get; set; }
         /// <summary>
-        /// Функция двухфакторной авторизации
+        /// Функция двух факторной авторизации
         /// </summary>
         public Func<string> TwoFactorAuthorization { get; set; }
         /// <summary>

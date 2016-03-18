@@ -35,8 +35,8 @@
         /// <param name="email">Логин пользователя ВКонтакте (его почта).</param>
         /// <param name="password">Пароль пользователя.</param>
         /// <param name="settings">Запрашиваемые для работы разрешения.</param>
-        /// <param name="code">Провайдер кода для двухфакторной авторизации.</param>
-        /// <param name="captchaSid">Индентификатор капчи</param>
+        /// <param name="code">Провайдер кода для двух факторной авторизации.</param>
+        /// <param name="captchaSid">Идентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи.</param>
         /// <param name="host">Имя узла прокси-сервера.</param>
         /// <param name="port">Номер порта используемого Host.</param>

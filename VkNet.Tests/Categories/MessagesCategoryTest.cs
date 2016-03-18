@@ -1,44 +1,29 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using VkNet.Exception;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Categories
 {
 	using System;
 	using System.Linq;
-	using Moq;
 	using NUnit.Framework;
 	using VkNet.Categories;
-	using VkNet.Utils;
-	using FluentNUnit;
-
 	using Enums;
 	using Enums.Filters;
-	using Exception;
 	using Model.RequestParams;
 
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class MessagesCategoryTest
+	public class MessagesCategoryTest : BaseTest
 	{
-		public string Json;
-		public string Url;
-
 		public MessagesCategory Cat
 		{
 			get { return GetMockedMessagesCategory(); }
 		}
 
-		[SetUp]
-		public void SetUp()
-		{
-			Url = "";
-			Json = "";
-		}
-
 		private MessagesCategory GetMockedMessagesCategory()
 		{
-			var browser = Mock.Of<IBrowser>(m => m.GetJson(Url) == Json);
-			return new MessagesCategory(new VkApi { AccessToken = "token", Browser = browser});
+			return new MessagesCategory(Api);
 		}
 
 		[Test]
@@ -46,7 +31,7 @@ namespace VkNet.Tests.Categories
 		{
 			var cat = new MessagesCategory(new VkApi());
 			int totalCount;
-			This.Action(() => cat.Get(MessageType.Received, out totalCount)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.Get(MessageType.Received, out totalCount), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -55,13 +40,14 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(new VkApi());
 			int totalCount;
 			int unreadCount;
-			This.Action(() => cat.GetDialogs(out totalCount, out unreadCount, 0, 201)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.GetDialogs(out totalCount, out unreadCount, 0, 201), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
-		[Test, Ignore]
+		[Test]
+		[Ignore("")]
 		public void GetDialogs_NormalCase_Messages()
 		{
-			Url = "https://api.vk.com/method/messages.getDialogs?count=77128&offset=0&unread=0&preview_length=3&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.getDialogs?count=77128&offset=0&unread=0&preview_length=3&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -98,13 +84,13 @@ namespace VkNet.Tests.Categories
 		{
 			var cat = new MessagesCategory(new VkApi());
 			int totalCount;
-			This.Action(() => cat.GetHistory(out totalCount, false, 1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.GetHistory(out totalCount, false, 1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetHistory_ContainsSticker_Error47()
 		{
-			Url = "https://api.vk.com/method/messages.getHistory?offset=5&count=3&user_id=7712&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.getHistory?offset=5&count=3&user_id=7712&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json = @"{
 	'response': {
 		'count': 6,
@@ -136,35 +122,37 @@ namespace VkNet.Tests.Categories
 	}
 }";
 			int totalCount;
-			var msg = Cat.GetHistory(out totalCount, false, 7712,  5, 3).ToList();
+			var msgs = Cat.GetHistory(out totalCount, false, 7712,  5, 3).ToList();
 
 			// asserts
-			totalCount.ShouldEqual(6);
-			msg.Count.ShouldEqual(1);
-			msg[0].Attachments.Count.ShouldEqual(1);
+			Assert.That(totalCount, Is.EqualTo(6));
+			Assert.That(msgs.Count, Is.EqualTo(1));
+			var msg = msgs.FirstOrDefault();
 
-			var sticker = msg[0].Attachments[0].Instance as Sticker;
-			sticker.ShouldNotBeNull();
+			Assert.That(msg, Is.Not.Null);
+			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
 
-			sticker.Id.ShouldEqual(12345);
-			sticker.ProductId.ShouldEqual(54321);
-			sticker.Photo64.ShouldEqual("https: //vk.com/im...ckers/134/64b.png");
-			sticker.Photo128.ShouldEqual("https: //vk.com/im...kers/134/128b.png");
-			sticker.Photo256.ShouldEqual("https: //vk.com/im...kers/134/256b.png");
-			sticker.Width.ShouldEqual(256);
-			sticker.Height.ShouldEqual(256);
+			var sticker = msg.Attachments[0].Instance as Sticker;
+			Assert.That(sticker, Is.Not.Null);
 
+			Assert.That(sticker.Id, Is.EqualTo(12345));
+			Assert.That(sticker.ProductId, Is.EqualTo(54321));
+			Assert.That(sticker.Photo64, Is.EqualTo("https: //vk.com/im...ckers/134/64b.png"));
+			Assert.That(sticker.Photo128, Is.EqualTo("https: //vk.com/im...kers/134/128b.png"));
+			Assert.That(sticker.Photo256, Is.EqualTo("https: //vk.com/im...kers/134/256b.png"));
+			Assert.That(sticker.Width, Is.EqualTo(256));
+			Assert.That(sticker.Height, Is.EqualTo(256));
 		}
 
 		[Test]
 		public void GetHistory_ContainsRepost_Error46()
 		{
-			Url = "https://api.vk.com/method/messages.getHistory?offset=5&count=3&user_id=7712&rev=1&v=5.44&access_token=token";
-			Json = @"{  
-			   'response':{  
+			Url = "https://api.vk.com/method/messages.getHistory?offset=5&count=3&user_id=7712&rev=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+			   'response':{
 				  'count':1940,
-				  'items':[  
-					 {  
+				  'items':[
+					 {
 						'id':1234,
 						'body':'',
 						'user_id':4321,
@@ -172,20 +160,20 @@ namespace VkNet.Tests.Categories
 						'date':1414993364,
 						'read_state':1,
 						'out':1,
-						'attachments':[  
-						   {  
+						'attachments':[
+						   {
 							  'type':'wall',
-							  'wall':{  
+							  'wall':{
 								 'id':6194,
 								 'from_id':-1267,
 								 'to_id':-7654,
 								 'date':1414992610,
 								 'post_type':'post',
 								 'text':'',
-								 'attachments':[  
-									{  
+								 'attachments':[
+									{
 									   'type':'photo',
-									   'photo':{  
+									   'photo':{
 										  'id':76352,
 										  'album_id':-7,
 										  'owner_id':-9816,
@@ -202,20 +190,20 @@ namespace VkNet.Tests.Categories
 									   }
 									}
 								 ],
-								 'post_source':{  
+								 'post_source':{
 									'type':'api'
 								 },
-								 'comments':{  
+								 'comments':{
 									'count':3,
 									'can_post':0
 								 },
-								 'likes':{  
+								 'likes':{
 									'count':9191,
 									'user_likes':1,
 									'can_like':0,
 									'can_publish':1
 								 },
-								 'reposts':{ 
+								 'reposts':{
 									'count':953,
 									'user_reposted':0
 								 }
@@ -228,39 +216,39 @@ namespace VkNet.Tests.Categories
 			}";
 
 			int totalCount;
-			var msg = Cat.GetHistory(out totalCount, false, 7712,  5, 3, null, true).ToList();
+			var msgs = Cat.GetHistory(out totalCount, false, 7712,  5, 3, null, true).ToList();
 
 			// assertions
-			totalCount.ShouldEqual(1940);
-			msg[0].Attachments.Count.ShouldEqual(1);
+			Assert.That(totalCount, Is.EqualTo(1940));
+			var msg = msgs.FirstOrDefault();
+			Assert.That(msg, Is.Not.Null);
+			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
 
-			var wall = msg[0].Attachments[0].Instance as Wall;
-			wall.ShouldNotBeNull();
+			var wall = msg.Attachments[0].Instance as Wall;
 
-			wall.Id.ShouldEqual(6194);
-			wall.FromId.ShouldEqual(-1267);
-			wall.ToId.ShouldEqual(-7654);
-			wall.Date.ShouldEqual(new DateTime(2014, 11, 3, 5, 30, 10, DateTimeKind.Utc).ToLocalTime());
-			wall.PostType.ShouldEqual("post");
-			wall.Text.ShouldEqual(string.Empty);
+			Assert.That(wall, Is.Not.Null);
+			Assert.That(wall.Id, Is.EqualTo(6194));
+			Assert.That(wall.FromId, Is.EqualTo(-1267));
+			Assert.That(wall.ToId, Is.EqualTo(-7654));
+			Assert.That(wall.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1414992610)));
+			Assert.That(wall.PostType, Is.EqualTo("post"));
+			Assert.That(wall.Text, Is.EqualTo(string.Empty));
+			Assert.That(wall.Comments.Count, Is.EqualTo(3));
+			Assert.That(wall.Comments.CanPost, Is.False);
+			Assert.That(wall.Likes.Count, Is.EqualTo(9191));
+			Assert.That(wall.Likes.UserLikes, Is.True);
+			Assert.That(wall.Likes.CanLike, Is.False);
+			Assert.That(wall.Likes.CanPublish, Is.EqualTo(true));
+			Assert.That(wall.Reposts.Count, Is.EqualTo(953));
+			Assert.That(wall.Reposts.UserReposted, Is.False);
+			Assert.That(wall.Attachments.Count, Is.EqualTo(1));
 
-			wall.Comments.Count.ShouldEqual(3);
-			wall.Comments.CanPost.ShouldBeFalse();
-
-			wall.Likes.Count.ShouldEqual(9191);
-			wall.Likes.UserLikes.ShouldBeTrue();
-			wall.Likes.CanLike.ShouldBeFalse();
-			wall.Likes.CanPublish.ShouldEqual(true);
-
-			wall.Reposts.Count.ShouldEqual(953);
-			wall.Reposts.UserReposted.ShouldBeFalse();
-
-			wall.Attachments.Count.ShouldEqual(1);
 			var photo = wall.Attachments[0].Instance as Photo;
-			photo.ShouldNotBeNull();
+			Assert.That(photo, Is.Not.Null);
 		}
 
-		[Test, Ignore]
+		[Test]
+		[Ignore("")]
 		public void GetHistory_NormalCaseAllFields_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory?uid=7712&offset=5&count=3&rev=1&access_token=token";
@@ -297,7 +285,7 @@ namespace VkNet.Tests.Categories
 					  }
 					]
 				  }";
-			
+
 			int totalCount;
 			var msgs = Cat.GetHistory( out totalCount, false, 7712, 5, 3,null, true).ToList();
 
@@ -307,7 +295,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2010, 9, 25, 18, 34, 4, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
 			Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Sended));
-			
+
 			Assert.That(totalCount, Is.EqualTo(18));
 			Assert.That(msgs.Count, Is.EqualTo(3));
 
@@ -317,7 +305,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2010, 9, 25, 18, 24, 48, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
 			Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Sended));
-			
+
 			Assert.That(msgs[1].Body, Is.EqualTo("в одноклассниках и в майле есть."));
 			Assert.That(msgs[1].Id, Is.EqualTo(2094));
 			Assert.That(msgs[1].UserId, Is.EqualTo(7712));
@@ -325,26 +313,27 @@ namespace VkNet.Tests.Categories
 			Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
 			Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Received));
 		}
-		
+
 		[Test]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.GetById(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.GetById(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(new VkApi());
 			int totalCount;
-			This.Action(() => cat.GetById(out totalCount, new ulong[] { 1, 3, 5 })).Throws<AccessTokenInvalidException>();
+			var cat = new MessagesCategory(new VkApi());
+			Assert.That(() => cat.GetById(out totalCount, new ulong[] { 1, 3, 5 }), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
-		[Test, Ignore]
+		[Test]
+		[Ignore("")]
 		public void GetById_NormalCase_Message()
 		{
-			Url = "https://api.vk.com/method/messages.getById?message_ids=1&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.getById?message_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -372,10 +361,11 @@ namespace VkNet.Tests.Categories
 			Assert.That(msg.Body, Is.EqualTo("Привеееет!!!!!!!!!!!"));
 		}
 
-		[Test, Ignore]
+		[Test]
+		[Ignore("")]
 		public void GetById_Multiple_NormalCase_Messages()
 		{
-			Url = "https://api.vk.com/method/messages.getById?message_ids=1,3,5&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.getById?message_ids=1,3,5&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -409,7 +399,7 @@ namespace VkNet.Tests.Categories
 					  }
 					]
 				  }";
-			
+
 			int totalCount;
 			var msgs = Cat.GetById(out totalCount, new ulong[] { 1, 3, 5 }).ToList();
 
@@ -444,13 +434,13 @@ namespace VkNet.Tests.Categories
 		public void SearchDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.SearchDialogs("hello")).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.SearchDialogs("hello"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
 		{
-			Url = "https://api.vk.com/method/messages.searchDialogs?q=привет&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.searchDialogs?q=привет&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json = @"{
                     'response': []
                   }";
@@ -463,7 +453,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SearchDialogs_NastyaQuery_TwoProfiles()
 		{
-			Url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.searchDialogs?q=Настя&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -497,7 +487,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SearchDialogs_ProfileAndChat_Response()
 		{
-			Url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.searchDialogs?q=Маша&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -540,16 +530,16 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(new VkApi());
 			int totalCount;
-			This.Action(() => cat.Search("привет", out totalCount)).Throws<AccessTokenInvalidException>();
+			var cat = new MessagesCategory(new VkApi());
+			Assert.That(() => cat.Search("привет", out totalCount), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void Search_NormalCase_Messages()
 		{
-			Url = "https://api.vk.com/method/messages.search?q=привет&count=3&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.search?q=привет&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json = @"{
 				response: {
 					count: 18,
@@ -602,7 +592,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
 			Assert.That(msgs[1].Title, Is.EqualTo(" ... "));
 			Assert.That(msgs[1].Body, Is.EqualTo("привет))"));
-			
+
 			Assert.That(msgs[0].Id, Is.EqualTo(4442));
 			Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2012, 7, 31, 20, 2, 52, DateTimeKind.Utc).ToLocalTime()));
 			Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Received));
@@ -613,10 +603,10 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void Search_NotExistedQuery_EmptyList()
 		{
-			Url = "https://api.vk.com/method/messages.search?q=fsjkadoivhjioashdpfisd&count=3&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.search?q=fsjkadoivhjioashdpfisd&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -631,18 +621,18 @@ namespace VkNet.Tests.Categories
 			Assert.That(totalCount, Is.EqualTo(0));
 			Assert.That(msgs.Count, Is.EqualTo(0));
 		}
-		
+
 		[Test]
 		public void Send_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.Send(new MessagesSendParams {UserId = 1, Message = "Привет, Паша!" })).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.Send(new MessagesSendParams { UserId = 1, Message = "Привет, Паша!" }), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void Send_DefaultFields_MessageId()
 		{
-			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=Test+from+vk.net+%3b)+%23+2&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=Test+from+vk.net+%3b)+%23+2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 4457
@@ -659,7 +649,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Send_RussianText_MessageId()
 		{
-			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=%d0%a0%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d0%b5%d1%82+%23+2+--++%d0%b5%d1%89%d0%b5+%d1%80%d0%b0%d0%b7%d0%be%d0%ba&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=%d0%a0%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d0%b5%d1%82+%23+2+--++%d0%b5%d1%89%d0%b5+%d1%80%d0%b0%d0%b7%d0%be%d0%ba&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 4464
@@ -675,27 +665,27 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Send_EmptyMessage_ThrowsInvalidParameterException()
 		{
-			This.Action(() => Cat.Send(1, false, "")).Throws<ArgumentException>();
+			Assert.That(() => Cat.Send(1, false, ""), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.Delete(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.Delete(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void Delete_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.Delete(new ulong[] { 1 })).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.Delete(new ulong[] { 1 }), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void Delete_Id4446_True()
 		{
-			Url = "https://api.vk.com/method/messages.delete?message_ids=4446&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.delete?message_ids=4446&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -711,7 +701,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Multipre_4457And4464_True()
 		{
-			Url = "https://api.vk.com/method/messages.delete?message_ids=4457,4464&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.delete?message_ids=4457,4464&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -730,7 +720,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_Id999999_False()
 		{
-			Url = "https://api.vk.com/method/messages.delete?message_ids=999999&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.delete?message_ids=999999&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'error': {
@@ -757,20 +747,20 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			This.Action(() => Cat.Delete(999999)).Throws<VkApiException>();
+			Assert.That(() => Cat.Delete(999999), Throws.InstanceOf<VkApiException>());
 		}
-		
+
 		[Test]
 		public void DeleteDialog_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.DeleteDialog(111, false)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.DeleteDialog(111, false), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void DeleteDialog_UserId_DeleteAllMessages()
 		{
-			Url = "https://api.vk.com/method/messages.deleteDialog?user_id=4460019&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.deleteDialog?user_id=4460019&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -784,7 +774,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteDialog_WithAllInputParams_DeleteTwoMessages()
 		{
-			Url = "https://api.vk.com/method/messages.deleteDialog?user_id=4460019&offset=2&count=2&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.deleteDialog?user_id=4460019&offset=2&count=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -794,18 +784,18 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(result, Is.True);
 		}
-		
+
 		[Test]
 		public void Restore_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.Restore(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.Restore(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void Restore_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.restore?message_id=134&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.restore?message_id=134&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -815,17 +805,17 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(result, Is.True);
 		}
-		
+
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void MarkAsNew_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.MarkAsNew(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.MarkAsRead(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void MarkAsNew_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.markAsNew?mids=1&access_token=token";
@@ -840,7 +830,7 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore]
+		[Ignore("")]
 		public void MarkAsNew_Multiple_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.markAsNew?mids=2,3&access_token=token";
@@ -858,13 +848,13 @@ namespace VkNet.Tests.Categories
 		public void MarkAsRead_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.MarkAsRead(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.MarkAsRead(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void MarkAsRead_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.markAsRead?message_ids=1&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.markAsRead?message_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -878,7 +868,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void MarkAsRead_Multiple_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.markAsRead?message_ids=2,3&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.markAsRead?message_ids=2,3&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -893,13 +883,13 @@ namespace VkNet.Tests.Categories
 		public void SetActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.SetActivity(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.SetActivity(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void SetActivity_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.setActivity?used_id=7550525&type=typing&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.setActivity?used_id=7550525&type=typing&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -909,18 +899,18 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(result, Is.True);
 		}
-		
+
 		[Test]
 		public void GetLastActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.GetLastActivity(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.GetLastActivity(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetLastActivity_NormalCast_LastActivityObject()
 		{
-			Url = "https://api.vk.com/method/messages.getLastActivity?user_id=77128&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.getLastActivity?user_id=77128&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -940,13 +930,13 @@ namespace VkNet.Tests.Categories
 		public void GetChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.GetChat(1)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.GetChat(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetChat_NormalCase_ChatObject()
 		{
-			Url = "https://api.vk.com/method/messages.getChat?chat_id=2&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.getChat?chat_id=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -972,21 +962,21 @@ namespace VkNet.Tests.Categories
 			Assert.That(chat.Users.ElementAt(1), Is.EqualTo(5041431));
 			Assert.That(chat.Users.ElementAt(2), Is.EqualTo(10657891));
 		}
-		
+
 		[Test]
 		public void CreateChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.CreateChat(new ulong[] { 1, 2 }, "hi, friends")).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.CreateChat(new ulong[] { 1, 2 }, "hi, friends"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
-		
-		//BUG: не работает, т.к. апостроф (в test chat's title) парсится в %27
 		public void CreateChat_NormalCase_ChatId()
 		{
-			Url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test chat's title&v=5.44&access_token=token";
-			Json =
+			Url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test chat%27s title&v=" + VkApi.VkApiVersion + "&access_token=token";
+
+
+            Json =
 				@"{
 					'response': 3
 				  }";
@@ -995,12 +985,12 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(chatId, Is.EqualTo(3));
 		}
-		
+
 		[Test]
 		public void EditChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.EditChat(2, "new title")).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.EditChat(2, "new title"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -1011,8 +1001,8 @@ namespace VkNet.Tests.Categories
 			Json =
 				@"{
 					'response': 1
-				  }"; 
-			
+				  }";
+
 			var result = Cat.EditChat(2, "new title");
 		}
 
@@ -1020,13 +1010,13 @@ namespace VkNet.Tests.Categories
 		public void GetChatUsers_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.GetChatUsers(2)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.GetChatUsers(2), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetChatUsers_ChatId_UserIds()
 		{
-			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -1047,7 +1037,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetChatUsers_ChatIdWithFields_Users()
 		{
-			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&fields=education&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&fields=education&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': [
@@ -1110,39 +1100,39 @@ namespace VkNet.Tests.Categories
 			Assert.That(users[2].Education.Graduation, Is.EqualTo(2011));
 			Assert.That(users[2].InvitedBy, Is.EqualTo(4793858));
 		}
-		
+
 		[Test]
 		public void AddChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.AddChatUser(2, 2)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.AddChatUser(2, 2), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void AddChatUser_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&user_id=7550525&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.addChatUser?chat_id=2&user_id=7550525&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 1
-				  }"; 
+				  }";
 
 			var result = Cat.AddChatUser(2, 7550525);
 
 			Assert.That(result, Is.True);
 		}
-		
+
 		[Test]
 		public void RemoveChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.RemoveChatUser(2, 2)).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.RemoveChatUser(2, 2), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void RemoveChatUser_NormalCase_True()
 		{
-			Url = "https://api.vk.com/method/messages.removeChatUser?chat_id=2&user_id=7550525&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.removeChatUser?chat_id=2&user_id=7550525&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 1
@@ -1154,24 +1144,23 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[ExpectedException(typeof(AccessTokenInvalidException))]
-		[Ignore]
 		public void GetLongPollHistory_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-
+			var cat = new MessagesCategory(new VkApi());
+			Assert.That(() => cat.GetLongPollHistory(new MessagesGetLongPollHistoryParams()), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetLongPollServer_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			This.Action(() => cat.GetLongPollServer()).Throws<AccessTokenInvalidException>();
+			Assert.That(() => cat.GetLongPollServer(), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetLongPollServer_NormalCase_LongPollServerResponse()
 		{
-			Url = "https://api.vk.com/method/messages.getLongPollServer?use_ssl=0&need_pts=0&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.getLongPollServer?use_ssl=0&need_pts=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -1194,20 +1183,20 @@ namespace VkNet.Tests.Categories
 		{
 			int total;
 
-			This.Action(() => Cat.Get(MessageType.Received, out total, 201)).Throws<ArgumentException>();
-			This.Action(() => Cat.Get(MessageType.Received, out total, offset: 0)).Throws<ArgumentException>();
+			Assert.That(() => Cat.Get(MessageType.Received, out total, 201), Throws.InstanceOf<ArgumentException>());
+			Assert.That(() => Cat.Get(MessageType.Received, out total, offset: 0), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
 		public void Get_WithLastMessageIdParam_NormalCase_V521()
 		{
-			Url = "https://api.vk.com/method/messages.get?out=0&count=0&preview_length=0&last_message_id=30&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.get?out=0&count=0&preview_length=0&last_message_id=30&v=" + VkApi.VkApiVersion + "&access_token=token";
 
 			Json =
 				@"{
 					'response': {
 					  'count': 5,
-					  'items': [                        
+					  'items': [
 						{
 						  'id': 31,
 						  'date': 1398242412,
@@ -1224,22 +1213,25 @@ namespace VkNet.Tests.Categories
 			int total;
 			var messages = Cat.Get(MessageType.Received, out total, lastMessageId: 30);
 
-			total.ShouldEqual(5);
-			messages.Count.ShouldEqual(1);
+			Assert.That(total, Is.EqualTo(5));
+			Assert.That(messages, Is.Not.Null);
+			Assert.That(messages.Count, Is.EqualTo(1));
 
-			messages[0].Id.ShouldEqual(31);
-			messages[0].Date.ShouldEqual(new DateTime(2014, 4, 23, 8, 40, 12, DateTimeKind.Utc).ToLocalTime());
-			messages[0].Type.ShouldEqual(MessageType.Received);
-			messages[0].UserId.ShouldEqual(123508789);
-			messages[0].ReadState.ShouldEqual(MessageReadState.Unreaded);
-			messages[0].Title.ShouldEqual(" ... ");
-			messages[0].Body.ShouldEqual("may");
+			var message = messages.FirstOrDefault();
+			Assert.That(message, Is.Not.Null);
+			Assert.That(message.Id, Is.EqualTo(31));
+			Assert.That(message.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1398242412)));
+			Assert.That(message.Type, Is.EqualTo(MessageType.Received));
+			Assert.That(message.UserId, Is.EqualTo(123508789));
+			Assert.That(message.ReadState, Is.EqualTo(MessageReadState.Unreaded));
+			Assert.That(message.Title, Is.EqualTo(" ... "));
+			Assert.That(message.Body, Is.EqualTo("may"));
 		}
 
 		[Test]
 		public void Get_NormalCase_V521()
 		{
-			Url = "https://api.vk.com/method/messages.get?out=0&count=0&preview_length=0&v=5.44&access_token=token";
+			Url = "https://api.vk.com/method/messages.get?out=0&count=0&preview_length=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': {
@@ -1270,24 +1262,29 @@ namespace VkNet.Tests.Categories
 			int total;
 			var messages = Cat.Get(MessageType.Received, out total, 2);
 
-			total.ShouldEqual(5);
-			messages.Count.ShouldEqual(2);
+			Assert.That(total, Is.EqualTo(5));
+			Assert.That(messages, Is.Not.Null);
+			Assert.That(messages.Count, Is.EqualTo(2));
 
-			messages[0].Body.ShouldEqual("fun");
-			messages[0].Id.ShouldEqual(34);
-			messages[0].Date.ShouldEqual(new DateTime(2014, 4, 23, 8, 40, 16, DateTimeKind.Utc).ToLocalTime());
-			messages[0].ReadState.ShouldEqual(MessageReadState.Unreaded);
-			messages[0].Type.ShouldEqual(MessageType.Received);
-			messages[0].UserId.ShouldEqual(562508789);
-			messages[0].Title.ShouldEqual(" ... ");
-			
-			messages[1].Body.ShouldEqual("very");
-			messages[1].Id.ShouldEqual(33);
-			messages[1].Date.ShouldEqual(new DateTime(2014, 4, 23, 8, 40, 15, DateTimeKind.Utc).ToLocalTime());
-			messages[1].ReadState.ShouldEqual(MessageReadState.Unreaded);
-			messages[1].Type.ShouldEqual(MessageType.Received);
-			messages[1].UserId.ShouldEqual(562508789);
-			messages[1].Title.ShouldEqual(" ... ");
+			var message = messages.FirstOrDefault();
+			Assert.That(message, Is.Not.Null);
+			Assert.That(message.Body, Is.EqualTo("fun"));
+			Assert.That(message.Id, Is.EqualTo(34));
+			Assert.That(message.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1398242416)));
+			Assert.That(message.ReadState, Is.EqualTo(MessageReadState.Unreaded));
+			Assert.That(message.Type, Is.EqualTo(MessageType.Received));
+			Assert.That(message.UserId, Is.EqualTo(562508789));
+			Assert.That(message.Title, Is.EqualTo(" ... "));
+
+			var message1 = messages.Skip(1).FirstOrDefault();
+			Assert.That(message1, Is.Not.Null);
+			Assert.That(message1.Body, Is.EqualTo("very"));
+			Assert.That(message1.Id, Is.EqualTo(33));
+			Assert.That(message1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1398242415)));
+			Assert.That(message1.ReadState, Is.EqualTo(MessageReadState.Unreaded));
+			Assert.That(message1.Type, Is.EqualTo(MessageType.Received));
+			Assert.That(message1.UserId, Is.EqualTo(562508789));
+			Assert.That(message1.Title, Is.EqualTo(" ... "));
 		}
 		#endregion
 	}

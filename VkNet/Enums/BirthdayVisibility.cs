@@ -13,7 +13,7 @@ namespace VkNet.Enums
 		[DefaultValue]
 		Invisible = 0,
 		/// <summary>
-		/// ПОказывать дату рождения.
+		/// Показывать дату рождения.
 		/// </summary>
 		Full = 1,
 		/// <summary>

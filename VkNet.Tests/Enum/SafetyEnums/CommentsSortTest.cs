@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
-using FluentNUnit;
+
 
 namespace VkNet.Tests.Enum.SafetyEnums
 {
@@ -12,8 +12,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
         {
             var sort = CommentsSort.Asc;
 
-			var type = sort.ToString();
-            type.ShouldEqual("asc");
+			Assert.That(sort.ToString(), Is.EqualTo("asc"));
         }
 
         [Test]
@@ -21,9 +20,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
         {
             var sort = CommentsSort.Desc;
 
-			var type = sort.ToString();
-
-            type.ShouldEqual("desc");
-        }
+			Assert.That(sort.ToString(), Is.EqualTo("desc"));
+		}
     }
 }
