@@ -22,8 +22,8 @@ public AccountSaveProfileInfoParams GetProfileInfo()
 
 ## Пример
 ``` csharp
-// Пример кода
+var profileInfo = _api.Account.GetProfileInfo();
 ```
 
-## Версия Вконтакте API v.5.45
+## Версия Вконтакте API v.5.50
 Дата обновления: 10.02.2016 13:55:10
