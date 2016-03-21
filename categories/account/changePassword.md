@@ -30,7 +30,7 @@ public AccountChangePasswordResult ChangePassword(
 
 ## Пример
 ``` csharp
-// Пример кода
+_api.Account.ChangePassword("oldPass", "newPass");
 ```
 
 ## Версия Вконтакте API v.5.45
