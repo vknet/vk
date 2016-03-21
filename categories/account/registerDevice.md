@@ -32,7 +32,11 @@ public bool RegisterDevice(AccountRegisterDeviceParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var registerDevice = _api.Account.RegisterDevice(new AccountRegisterDeviceParams
+{
+	Token = "token",
+	DeviceId = "deviceId"
+});
 ```
 
 ## Версия Вконтакте API v.5.45
