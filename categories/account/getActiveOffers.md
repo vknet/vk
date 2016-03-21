@@ -24,7 +24,7 @@ public InformationAboutOffers GetActiveOffers(ulong? offset = null, ulong? count
 
 ## Пример
 ``` csharp
-var offers = GetActiveOffers();
+var offers = _api.Account.GetActiveOffers();
 ```
 
 ## Версия Вконтакте API v.5.45
