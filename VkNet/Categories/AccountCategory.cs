@@ -184,17 +184,16 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="deviceId">Идентификатор устройства для сервиса push уведомлений.</param>
 		/// <param name="time">Время в секундах на которое требуется отключить уведомления. (-1 - отключить навсегда)</param>
-		/// <param name="chatId">Идентификатор чата, для которого следует отключить уведомления.</param>
-		/// <param name="userId">Идентификатор пользователя, для которого следует отключить уведомления.</param>
-		/// <param name="sound">Включить звук в данном диалоге. (параметр работает только если указан <paramref name="userId" /> или <paramref name="chatId" /> )</param>
+		/// <param name="peerId">Идентификатор чата, для которого следует отключить уведомления.</param>
+		/// <param name="sound">1 - включить звук в данном диалоге, 0 - отключить звук (параметр работает только если указан в peer_id передан идентификатор групповой беседы или пользователя)</param>
 		/// <returns>
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setSilenceMode" />.
 		/// </remarks>
-		[ApiVersion("5.45")]
-		public bool SetSilenceMode([NotNull] string deviceId, int? time = null, int? chatId = null, int? userId = null, bool? sound = null)
+		[ApiVersion("5.50")]
+		public bool SetSilenceMode([NotNull] string deviceId, int? time = null, int? peerId = null, bool? sound = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => deviceId);
 
@@ -202,8 +201,7 @@ namespace VkNet.Categories
 			{
 				{ "device_id", deviceId },
 				{ "time", time },
-				{ "chat_id", chatId },
-				{ "user_id", userId },
+				{ "peer_id", peerId },
 				{ "sound", sound }
 			};
 

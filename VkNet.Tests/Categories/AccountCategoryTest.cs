@@ -330,15 +330,15 @@ namespace VkNet.Tests.Categories
 		public void SetSilenceMode_AllParametersAddsToUrlCorrectly()
 		{
 			{
-				Url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&time=10&chat_id=15&user_id=42&sound=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+				Url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&time=10&peer_id=15&sound=1&v=" + VkApi.VkApiVersion + "&access_token=token";
 				Json = @"{ 'response': 0 }";
-				Assert.That(() => Api.Account.SetSilenceMode("tokenVal", 10, 15, 42, true), Is.False);
+				Assert.That(() => Api.Account.SetSilenceMode("tokenVal", 10, 15, true), Is.False);
 			}
 
 			{
-				Url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&time=-1&user_id=10&v=" + VkApi.VkApiVersion + "&access_token=token";
+				Url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&time=-1&peer_id=10&v=" + VkApi.VkApiVersion + "&access_token=token";
 				Json = @"{ 'response': 0 }";
-				Assert.That(() => Api.Account.SetSilenceMode("tokenVal", -1, userId: 10, sound: false), Is.False);
+				Assert.That(() => Api.Account.SetSilenceMode("tokenVal", -1, 10, false), Is.False);
 			}
 		}
 
