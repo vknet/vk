@@ -69,6 +69,7 @@
     <Compile Include="Categories\Obsolete\WallCategory.Obsolete.cs" />
     <Compile Include="Enums\DocFilter.cs" />
     <Compile Include="Enums\SafetyEnums\FeedType.cs" />
+    <Compile Include="Enums\SafetyEnums\MediaType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
     <Compile Include="Exception\NeedValidationException.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Model\RequestParams\Groups\GroupsGetParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsSearchParams.cs" />
     <Compile Include="Model\RequestParams\Likes\LikesAddParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesGetHistoryAttachmentsParams.cs" />
     <Compile Include="Model\RequestParams\Messages\MessagesSendStickerParams.cs" />
     <Compile Include="Model\RequestParams\Pages\PagesGetParams.cs" />
     <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />

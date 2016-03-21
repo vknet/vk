@@ -745,5 +745,29 @@ namespace VkNet.Categories
 
 			return _vk.Call("messages.sendSticker", parameters);
 		}
+
+		/// <summary>
+		/// Возвращает материалы диалога или беседы..
+		/// </summary>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает массив объектов photo, video, audio или doc, в зависимости от значения media_type, а также дополнительное поле next_from, содержащее новое значение start_from.
+		/// Если в media_type передано значение link, возвращает список объектов-ссылок:
+		/// url URL ссылки.
+		///  строка title заголовок сниппета.
+		///  строка description описание сниппета.
+		///  строка image_src URL изображения сниппета.
+		///  строка.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistoryAttachments" />.
+		/// </remarks>
+		[ApiVersion("5.50")]
+		public ReadOnlyCollection<Attachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params)
+		{
+			var parameters = @params;
+
+			return _vk.Call("messages.getHistoryAttachments", parameters).ToReadOnlyCollectionOf<Attachment>(o => o);
+		}
 	}
 }
