@@ -11,7 +11,7 @@ comments: true
 
 ## Синтаксис
 ``` csharp
-public long GetAppPermissions(long userId)
+public long GetAppPermissions(long? userId = null)
 ```
 
 ## Параметры
@@ -26,7 +26,7 @@ public long GetAppPermissions(long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var myPermission = _api.Account.GetAppPermissions();
 ```
 
 ## Версия Вконтакте API v.5.45
