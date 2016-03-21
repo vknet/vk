@@ -44,8 +44,8 @@ google
 
 ## Пример
 ``` csharp
-// Пример кода
+var lookupContacts = _api.Account.LookupContacts(new List<string> {"test@mail.ru"}, Services.Email);
 ```
 
-## Версия Вконтакте API v.5.45
+## Версия Вконтакте API v.5.50
 Дата обновления: 10.02.2016 13:55:10
