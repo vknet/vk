@@ -25,7 +25,7 @@ public FaveVideoEx GetVideosEx(int? count = null, int? offset = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getVideos = _api.Fave.GetVideos();
 ```
 
 ## Версия Вконтакте API v.5.44

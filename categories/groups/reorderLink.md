@@ -24,7 +24,7 @@ public bool ReorderLink(long groupId, long linkId, long? after)
 
 ## Пример
 ``` csharp
-// Пример кода
+var reorderLink = _api.Groups.ReorderLink(groupId: 0, linkId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

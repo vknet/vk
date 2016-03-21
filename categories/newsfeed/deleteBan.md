@@ -23,7 +23,7 @@ public bool DeleteBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteBan = _api.Newsfeed.DeleteBan();
 ```
 
 ## Версия Вконтакте API v.5.44

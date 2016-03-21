@@ -30,7 +30,9 @@ public ReadOnlyCollection<User> Search(FriendsSearchParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var search = _api.Friends.Search(new FriendsSearchParams{
+	userId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -23,7 +23,7 @@ public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> tar
 
 ## Пример
 ``` csharp
-// Пример кода
+var setBroadcast = _api.Audio.SetBroadcast();
 ```
 
 ## Версия Вконтакте API v.5.44

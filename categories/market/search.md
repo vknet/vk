@@ -34,7 +34,9 @@ public ReadOnlyCollection<Market> Search(MarketSearchParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var search = _api.Market.Search(new MarketSearchParams{
+	ownerId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

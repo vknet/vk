@@ -26,7 +26,7 @@ public bool Edit(long ownerId, long docId, string title, IEnumerable<string> tag
 
 ## Пример
 ``` csharp
-// Пример кода
+var edit = _api.Docs.Edit(ownerId: 0, docId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

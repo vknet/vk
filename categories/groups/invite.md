@@ -23,7 +23,7 @@ public bool Invite(long groupId, long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var invite = _api.Groups.Invite(groupId: 0, userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

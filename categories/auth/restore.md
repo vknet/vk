@@ -35,7 +35,7 @@ code – код, полученный через SMS.
 
 ## Пример
 ``` csharp
-// Пример кода
+var restore = _api.Auth.Restore(phone: "phone");
 ```
 
 ## Версия Вконтакте API v.5.44

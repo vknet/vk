@@ -23,7 +23,7 @@ public long AddAlbum(string title, long? groupId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var addAlbum = _api.Audio.AddAlbum(title: "title");
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -60,7 +60,9 @@ list{идентификатор списка новостей} - список н
 
 ## Пример
 ``` csharp
-// Пример кода
+var get = _api.Newsfeed.Get(new NewsfeedGetParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

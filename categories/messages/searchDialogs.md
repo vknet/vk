@@ -31,7 +31,7 @@ public SearchDialogsResponse SearchDialogs(
 
 ## Пример
 ``` csharp
-// Пример кода
+var searchDialogs = _api.Messages.SearchDialogs();
 ```
 
 ## Версия Вконтакте API v.5.44

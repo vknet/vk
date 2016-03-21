@@ -37,7 +37,7 @@ public ReadOnlyCollection<NewsUserListItem> GetLists(
 
 ## Пример
 ``` csharp
-// Пример кода
+var getLists = _api.Newsfeed.GetLists();
 ```
 
 ## Версия Вконтакте API v.5.44

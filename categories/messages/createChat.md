@@ -23,7 +23,7 @@ public long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title)
 
 ## Пример
 ``` csharp
-// Пример кода
+var createChat = _api.Messages.CreateChat(userIds: );
 ```
 
 ## Версия Вконтакте API v.5.44

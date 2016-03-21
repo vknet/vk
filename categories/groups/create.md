@@ -36,7 +36,7 @@ public — публичная страница.
 
 ## Пример
 ``` csharp
-// Пример кода
+var create = _api.Groups.Create(title: "title");
 ```
 
 ## Версия Вконтакте API v.5.44

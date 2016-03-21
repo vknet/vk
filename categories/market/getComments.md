@@ -34,7 +34,10 @@ public ReadOnlyCollection<MarketComment> GetComments(MarketGetCommentsParams @pa
 
 ## Пример
 ``` csharp
-// Пример кода
+var getComments = _api.Market.GetComments(new MarketGetCommentsParams{
+	ownerId = 0,
+	itemId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

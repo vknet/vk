@@ -24,7 +24,7 @@ public bool Restore(long ownerId, long itemId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var restore = _api.Market.Restore(ownerId: 0, itemId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

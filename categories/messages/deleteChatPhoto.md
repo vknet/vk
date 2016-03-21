@@ -25,7 +25,7 @@ public Chat DeleteChatPhoto(out ulong messageId, ulong chatId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteChatPhoto = _api.Messages.DeleteChatPhoto(chatId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

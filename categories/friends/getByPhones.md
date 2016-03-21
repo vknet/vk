@@ -26,7 +26,7 @@ public ReadOnlyCollection<User> GetByPhones(IEnumerable<string> phones, ProfileF
 
 ## Пример
 ``` csharp
-// Пример кода
+var getByPhones = _api.Friends.GetByPhones();
 ```
 
 ## Версия Вконтакте API v.5.44

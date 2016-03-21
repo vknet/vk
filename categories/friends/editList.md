@@ -26,7 +26,7 @@ public bool EditList(long listId, string name = null, IEnumerable<long> userIds 
 
 ## Пример
 ``` csharp
-// Пример кода
+var editList = _api.Friends.EditList(listId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

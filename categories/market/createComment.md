@@ -42,7 +42,10 @@ photo100172_166443618,photo66748_265827614
 
 ## Пример
 ``` csharp
-// Пример кода
+var createComment = _api.Market.CreateComment(new MarketCreateCommentParams{
+	ownerId = 0,
+	itemId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

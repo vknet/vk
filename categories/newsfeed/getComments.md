@@ -44,7 +44,9 @@ note — новые комментарии к заметкам.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getComments = _api.Newsfeed.GetComments(new NewsfeedGetCommentsParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -33,7 +33,9 @@ request – в случае если пользователь уже устан�
 
 ## Пример
 ``` csharp
-// Пример кода
+var sendRequest = _api.Apps.SendRequest(new AppsSendRequestParams{
+	userId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -32,7 +32,7 @@ public ReadOnlyCollection<Document> Save(
 
 ## Пример
 ``` csharp
-// Пример кода
+var save = _api.Docs.Save(file: "file");
 ```
 
 ## Версия Вконтакте API v.5.44

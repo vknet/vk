@@ -33,7 +33,7 @@ public ReadOnlyCollection<Market> Get(
 
 ## Пример
 ``` csharp
-// Пример кода
+var get = _api.Market.Get(ownerId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

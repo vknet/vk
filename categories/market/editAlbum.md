@@ -27,7 +27,7 @@ public bool EditAlbum(long ownerId, long albumId, string title, long? photoId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var editAlbum = _api.Market.EditAlbum(ownerId: 0, albumId: 0, title: "title");
 ```
 
 ## Версия Вконтакте API v.5.44

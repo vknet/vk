@@ -24,7 +24,7 @@ public ReadOnlyCollection<Document> Search(string query, long? count = null, lon
 
 ## Пример
 ``` csharp
-// Пример кода
+var search = _api.Docs.Search(q: "q");
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -35,7 +35,7 @@ name — название секции.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getCategories = _api.Market.GetCategories();
 ```
 
 ## Версия Вконтакте API v.5.44

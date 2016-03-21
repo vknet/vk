@@ -22,7 +22,7 @@ public bool RemoveGroup(long groupId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var removeGroup = _api.Fave.RemoveGroup(groupId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

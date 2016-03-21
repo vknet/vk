@@ -26,7 +26,7 @@ public ReadOnlyCollection<User> GetAvailableForCall(ProfileFields fields, NameCa
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAvailableForCall = _api.Friends.GetAvailableForCall();
 ```
 
 ## Версия Вконтакте API v.5.44

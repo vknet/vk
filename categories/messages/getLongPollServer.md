@@ -25,7 +25,7 @@ public LongPollServerResponse GetLongPollServer(bool useSsl = false, bool needPt
 
 ## Пример
 ``` csharp
-// Пример кода
+var getLongPollServer = _api.Messages.GetLongPollServer();
 ```
 
 ## Версия Вконтакте API v.5.44

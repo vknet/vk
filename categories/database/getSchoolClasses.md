@@ -22,7 +22,7 @@ public ReadOnlyCollection<SchoolClass> GetSchoolClasses(long countryId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getSchoolClasses = _api.Database.GetSchoolClasses();
 ```
 
 ## Версия Вконтакте API v.5.44

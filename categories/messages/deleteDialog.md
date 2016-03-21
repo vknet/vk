@@ -37,7 +37,7 @@ public bool DeleteDialog(
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteDialog = _api.Messages.DeleteDialog();
 ```
 
 ## Версия Вконтакте API v.5.44

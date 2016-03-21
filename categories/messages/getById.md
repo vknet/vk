@@ -28,7 +28,7 @@ public ReadOnlyCollection<Message> GetById(
 
 ## Пример
 ``` csharp
-// Пример кода
+var getById = _api.Messages.GetById(messageIds: );
 ```
 
 ## Версия Вконтакте API v.5.44

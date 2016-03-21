@@ -37,7 +37,9 @@ public MessagesGetObject GetHistory(MessagesGetHistoryParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getHistory = _api.Messages.GetHistory(new MessagesGetHistoryParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

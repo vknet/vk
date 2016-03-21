@@ -33,7 +33,9 @@ public IDictionary<long, ReadOnlyCollection<long>> GetRequests(FriendsGetRequest
 
 ## Пример
 ``` csharp
-// Пример кода
+var getRequests = _api.Friends.GetRequests(new FriendsGetRequestsParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

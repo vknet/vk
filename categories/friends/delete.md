@@ -34,7 +34,7 @@ suggestion_deleted  — отклонена рекомендация друга
 
 ## Пример
 ``` csharp
-// Пример кода
+var delete = _api.Friends.Delete(userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -30,7 +30,7 @@ public NewsSuggestions GetSuggestedSources(
 
 ## Пример
 ``` csharp
-// Пример кода
+var getSuggestedSources = _api.Newsfeed.GetSuggestedSources();
 ```
 
 ## Версия Вконтакте API v.5.44

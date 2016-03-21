@@ -23,7 +23,7 @@ public ReadOnlyCollection<Document> GetById(IEnumerable<Document> docs)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getById = _api.Docs.GetById(docs: );
 ```
 
 ## Версия Вконтакте API v.5.44

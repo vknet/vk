@@ -32,7 +32,7 @@ public ReadOnlyCollection<Audio> GetRecommendations(
 
 ## Пример
 ``` csharp
-// Пример кода
+var getRecommendations = _api.Audio.GetRecommendations();
 ```
 
 ## Версия Вконтакте API v.5.44

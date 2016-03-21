@@ -24,7 +24,7 @@ public bool RestoreComment(long ownerId, long commentId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var restoreComment = _api.Market.RestoreComment(ownerId: 0, commentId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

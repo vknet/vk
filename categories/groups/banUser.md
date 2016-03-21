@@ -37,7 +37,10 @@ public bool BanUser(GroupsBanUserParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var banUser = _api.Groups.BanUser(new GroupsBanUserParams{
+	groupId = 0,
+	userId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

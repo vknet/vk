@@ -43,7 +43,7 @@ public ReadOnlyCollection<Document> Get(
 
 ## Пример
 ``` csharp
-// Пример кода
+var get = _api.Docs.Get();
 ```
 
 ## Версия Вконтакте API v.5.44

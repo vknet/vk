@@ -22,7 +22,7 @@ public bool AddGroup(long groupId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var addGroup = _api.Fave.AddGroup(groupId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -24,7 +24,7 @@ public bool MarkAsRead(IEnumerable<string> messageIds, string peerId, long? star
 
 ## Пример
 ``` csharp
-// Пример кода
+var markAsRead = _api.Messages.MarkAsRead();
 ```
 
 ## Версия Вконтакте API v.5.44

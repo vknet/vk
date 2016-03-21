@@ -22,7 +22,7 @@ public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds)
 
 ## Пример
 ``` csharp
-// Пример кода
+var delete = _api.Messages.Delete();
 ```
 
 ## Версия Вконтакте API v.5.44

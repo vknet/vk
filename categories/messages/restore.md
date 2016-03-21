@@ -22,7 +22,7 @@ public bool Restore(long messageId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var restore = _api.Messages.Restore(messageId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

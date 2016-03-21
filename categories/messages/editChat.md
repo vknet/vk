@@ -23,7 +23,7 @@ public bool EditChat(long chatId, [NotNull] string title)
 
 ## Пример
 ``` csharp
-// Пример кода
+var editChat = _api.Messages.EditChat(chatId: 0, title: "title");
 ```
 
 ## Версия Вконтакте API v.5.44

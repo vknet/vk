@@ -29,7 +29,7 @@ public NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase
 
 ## Пример
 ``` csharp
-// Пример кода
+var getBanned = _api.Newsfeed.GetBanned();
 ```
 
 ## Версия Вконтакте API v.5.44

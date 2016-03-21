@@ -22,7 +22,7 @@ public bool RemoveLink(string linkId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var removeLink = _api.Fave.RemoveLink(linkId: "link_id");
 ```
 
 ## Версия Вконтакте API v.5.44

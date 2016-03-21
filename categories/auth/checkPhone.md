@@ -25,7 +25,7 @@ public bool CheckPhone(string phone, string clientSecret, long? clientId = null,
 
 ## Пример
 ``` csharp
-// Пример кода
+var checkPhone = _api.Auth.CheckPhone(phone: "phone", clientSecret: "client_secret");
 ```
 
 ## Версия Вконтакте API v.5.44

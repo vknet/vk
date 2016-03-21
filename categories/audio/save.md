@@ -24,7 +24,7 @@ public Audio Save(string response, string artist = null, string title = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var save = _api.Audio.Save(server: 0, audio: "audio");
 ```
 
 ## Версия Вконтакте API v.5.44

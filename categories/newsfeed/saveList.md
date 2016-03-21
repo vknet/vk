@@ -25,7 +25,7 @@ public long SaveList(string title, IEnumerable<long> sourceIds, long? listId = n
 
 ## Пример
 ``` csharp
-// Пример кода
+var saveList = _api.Newsfeed.SaveList(title: "title");
 ```
 
 ## Версия Вконтакте API v.5.44

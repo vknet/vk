@@ -25,7 +25,7 @@ public bool RemoveFromAlbum(long ownerId, long itemId, IEnumerable<string> album
 
 ## Пример
 ``` csharp
-// Пример кода
+var removeFromAlbum = _api.Market.RemoveFromAlbum(ownerId: 0, itemId: 0, albumIds: );
 ```
 
 ## Версия Вконтакте API v.5.44

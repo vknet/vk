@@ -36,7 +36,9 @@ public NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getRecommended = _api.Newsfeed.GetRecommended(new NewsfeedGetRecommendedParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

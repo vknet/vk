@@ -22,7 +22,7 @@ public GroupInfo GetSettings(long groupId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getSettings = _api.Groups.GetSettings(groupId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

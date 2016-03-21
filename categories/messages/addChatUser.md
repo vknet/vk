@@ -23,7 +23,7 @@ public bool AddChatUser(long chatId, long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var addChatUser = _api.Messages.AddChatUser(chatId: 0, userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

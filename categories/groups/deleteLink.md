@@ -23,7 +23,7 @@ public bool DeleteLink(long groupId, long linkId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteLink = _api.Groups.DeleteLink(groupId: 0, linkId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

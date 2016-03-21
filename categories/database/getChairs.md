@@ -24,7 +24,7 @@ public ReadOnlyCollection<Chair> GetChairs(long facultyId, int? count = null, in
 
 ## Пример
 ``` csharp
-// Пример кода
+var getChairs = _api.Database.GetChairs(facultyId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

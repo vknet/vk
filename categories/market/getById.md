@@ -25,7 +25,7 @@ public ReadOnlyCollection<Market> GetById(IEnumerable<string> itemIds, bool exte
 
 ## Пример
 ``` csharp
-// Пример кода
+var getById = _api.Market.GetById(itemIds: );
 ```
 
 ## Версия Вконтакте API v.5.44

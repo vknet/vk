@@ -22,7 +22,7 @@ public bool DeleteList(long listId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteList = _api.Friends.DeleteList(listId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -27,7 +27,7 @@ public bool ReorderItems(long ownerId, long albumId, long itemId, long? before, 
 
 ## Пример
 ``` csharp
-// Пример кода
+var reorderItems = _api.Market.ReorderItems(ownerId: 0, itemId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

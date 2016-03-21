@@ -23,7 +23,7 @@ public bool AddLink(string link, string text)
 
 ## Пример
 ``` csharp
-// Пример кода
+var addLink = _api.Fave.AddLink(link: "link");
 ```
 
 ## Версия Вконтакте API v.5.44

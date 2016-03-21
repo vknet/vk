@@ -33,7 +33,9 @@ public ReadOnlyCollection<App> Get(out long totalCount, AppGetParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var get = _api.Apps.Get(new AppsGetParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

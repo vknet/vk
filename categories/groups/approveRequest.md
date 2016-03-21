@@ -23,7 +23,7 @@ public bool ApproveRequest(long groupId, long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var approveRequest = _api.Groups.ApproveRequest(groupId: 0, userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

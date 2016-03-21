@@ -25,7 +25,7 @@ public ReadOnlyCollection<Group> GetInvites( long? count, long? offset, bool? ex
 
 ## Пример
 ``` csharp
-// Пример кода
+var getInvites = _api.Groups.GetInvites();
 ```
 
 ## Версия Вконтакте API v.5.44

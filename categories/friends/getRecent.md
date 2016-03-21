@@ -22,7 +22,7 @@ public ReadOnlyCollection<long> GetRecent(long? count = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getRecent = _api.Friends.GetRecent();
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -24,7 +24,7 @@ public long Add(long ownerId, long docId, string accessKey = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var add = _api.Docs.Add(ownerId: 0, docId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

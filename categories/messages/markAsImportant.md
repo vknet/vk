@@ -23,7 +23,7 @@ public ReadOnlyCollection<long> MarkAsImportant(IEnumerable<long> messageIds, bo
 
 ## Пример
 ``` csharp
-// Пример кода
+var markAsImportant = _api.Messages.MarkAsImportant();
 ```
 
 ## Версия Вконтакте API v.5.44

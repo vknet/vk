@@ -30,7 +30,7 @@ public ReadOnlyCollection<Chat> GetChat(
 
 ## Пример
 ``` csharp
-// Пример кода
+var getChat = _api.Messages.GetChat();
 ```
 
 ## Версия Вконтакте API v.5.44

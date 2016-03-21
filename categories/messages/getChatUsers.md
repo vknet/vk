@@ -26,7 +26,7 @@ public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFie
 
 ## Пример
 ``` csharp
-// Пример кода
+var getChatUsers = _api.Messages.GetChatUsers();
 ```
 
 ## Версия Вконтакте API v.5.44

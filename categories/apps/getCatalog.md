@@ -45,7 +45,9 @@ featured — возвращает список приложений, устан�
 
 ## Пример
 ``` csharp
-// Пример кода
+var getCatalog = _api.Apps.GetCatalog(new AppsGetCatalogParams{
+	count = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

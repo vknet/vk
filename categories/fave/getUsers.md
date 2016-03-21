@@ -23,7 +23,7 @@ public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getUsers = _api.Fave.GetUsers();
 ```
 
 ## Версия Вконтакте API v.5.44

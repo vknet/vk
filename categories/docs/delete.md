@@ -23,7 +23,7 @@ public bool Delete(long ownerId, long docId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var delete = _api.Docs.Delete(ownerId: 0, docId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

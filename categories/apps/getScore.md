@@ -22,7 +22,7 @@ public long GetScore(long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getScore = _api.Apps.GetScore(userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

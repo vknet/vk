@@ -30,7 +30,7 @@ public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getDialogs = _api.Messages.GetDialogs();
 ```
 
 ## Версия Вконтакте API v.5.44

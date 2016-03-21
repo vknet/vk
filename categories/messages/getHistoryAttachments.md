@@ -50,7 +50,9 @@ share — ссылки, товары и записи.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getHistoryAttachments = _api.Messages.GetHistoryAttachments(new MessagesGetHistoryAttachmentsParams{
+	peerId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.50

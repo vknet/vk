@@ -25,7 +25,7 @@ public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId 
 
 ## Пример
 ``` csharp
-// Пример кода
+var moveToAlbum = _api.Audio.MoveToAlbum(audioIds: );
 ```
 
 ## Версия Вконтакте API v.5.44

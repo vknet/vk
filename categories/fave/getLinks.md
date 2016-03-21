@@ -23,7 +23,7 @@ public ReadOnlyCollection<ExternalLink> GetLinks(int? count = null, int? offset 
 
 ## Пример
 ``` csharp
-// Пример кода
+var getLinks = _api.Fave.GetLinks();
 ```
 
 ## Версия Вконтакте API v.5.44

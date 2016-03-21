@@ -25,7 +25,7 @@ public long SetChatPhoto(out long messageId, string file)
 
 ## Пример
 ``` csharp
-// Пример кода
+var setChatPhoto = _api.Messages.SetChatPhoto(file: "file");
 ```
 
 ## Версия Вконтакте API v.5.44

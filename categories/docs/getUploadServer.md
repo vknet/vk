@@ -22,7 +22,7 @@ public UploadServerInfo GetUploadServer(long? groupId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getUploadServer = _api.Docs.GetUploadServer();
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -30,7 +30,7 @@ note — заметка. строка, обязательный параметр
 
 ## Пример
 ``` csharp
-// Пример кода
+var unsubscribe = _api.Newsfeed.Unsubscribe(type: "type", itemId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

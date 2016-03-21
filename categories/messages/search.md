@@ -32,7 +32,7 @@ public ReadOnlyCollection<Message> Search(
 
 ## Пример
 ``` csharp
-// Пример кода
+var search = _api.Messages.Search(q: "q");
 ```
 
 ## Версия Вконтакте API v.5.44

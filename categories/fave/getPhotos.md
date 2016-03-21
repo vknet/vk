@@ -25,7 +25,7 @@ public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null
 
 ## Пример
 ``` csharp
-// Пример кода
+var getPhotos = _api.Fave.GetPhotos();
 ```
 
 ## Версия Вконтакте API v.5.44

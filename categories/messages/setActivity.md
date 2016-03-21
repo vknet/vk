@@ -29,7 +29,7 @@ public bool SetActivity(long userId, long? peerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var setActivity = _api.Messages.SetActivity();
 ```
 
 ## Версия Вконтакте API v.5.44

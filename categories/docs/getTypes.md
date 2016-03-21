@@ -25,7 +25,7 @@ public ReadOnlyCollection<DocumentType> GetTypes(long ownerId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getTypes = _api.Docs.GetTypes(ownerId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

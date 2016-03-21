@@ -22,7 +22,7 @@ public bool AddUser(long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var addUser = _api.Fave.AddUser(userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

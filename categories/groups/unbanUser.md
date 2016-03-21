@@ -23,7 +23,7 @@ public bool UnbanUser(long groupId, long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var unbanUser = _api.Groups.UnbanUser(groupId: 0, userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

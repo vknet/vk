@@ -23,7 +23,7 @@ public bool RemoveChatUser(long chatId, long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var removeChatUser = _api.Messages.RemoveChatUser(chatId: 0, userId: "user_id");
 ```
 
 ## Версия Вконтакте API v.5.44

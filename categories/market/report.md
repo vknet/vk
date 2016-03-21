@@ -33,7 +33,7 @@ public bool Report(long ownerId, long itemId, ReportReason reason)
 
 ## Пример
 ``` csharp
-// Пример кода
+var report = _api.Market.Report(ownerId: 0, itemId: 0, reason: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

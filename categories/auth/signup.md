@@ -35,7 +35,13 @@ public string Signup(AuthSignupParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var signup = _api.Auth.Signup(new AuthSignupParams{
+	firstName = "first_name",
+	lastName = "last_name",
+	clientId = 0,
+	clientSecret = "client_secret",
+	phone = "phone"
+});
 ```
 
 ## Версия Вконтакте API v.5.44

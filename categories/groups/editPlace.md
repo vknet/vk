@@ -33,7 +33,9 @@ address – адрес отформатированный в виде строк
 
 ## Пример
 ``` csharp
-// Пример кода
+var editPlace = _api.Groups.EditPlace(new GroupsEditPlaceParams{
+	groupId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

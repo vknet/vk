@@ -25,7 +25,7 @@ public bool AddToAlbum(long ownerId, long itemId, IEnumerable<string> albumIds)
 
 ## Пример
 ``` csharp
-// Пример кода
+var addToAlbum = _api.Market.AddToAlbum(ownerId: 0, itemId: 0, albumIds: );
 ```
 
 ## Версия Вконтакте API v.5.44

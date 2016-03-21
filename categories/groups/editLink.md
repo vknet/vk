@@ -24,7 +24,7 @@ public bool EditLink(long groupId, long linkId, string text)
 
 ## Пример
 ``` csharp
-// Пример кода
+var editLink = _api.Groups.EditLink(groupId: 0, linkId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

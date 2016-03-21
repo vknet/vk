@@ -36,7 +36,7 @@ id идентификатор подборки.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAlbums = _api.Market.GetAlbums(ownerId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

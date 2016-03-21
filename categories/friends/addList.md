@@ -23,7 +23,7 @@ public long AddList(string name, IEnumerable<long> userIds)
 
 ## Пример
 ``` csharp
-// Пример кода
+var addList = _api.Friends.AddList(name: "name");
 ```
 
 ## Версия Вконтакте API v.5.44

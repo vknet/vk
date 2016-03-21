@@ -30,7 +30,7 @@ public ReadOnlyCollection<Audio> GetPopular(
 
 ## Пример
 ``` csharp
-// Пример кода
+var getPopular = _api.Audio.GetPopular();
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -35,7 +35,7 @@ sitepage — страница сайта, на котором установле
 
 ## Пример
 ``` csharp
-// Пример кода
+var delete = _api.Likes.Delete(type: "type", itemId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

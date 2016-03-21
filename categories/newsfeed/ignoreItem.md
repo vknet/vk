@@ -31,7 +31,7 @@ audio — аудиозапись.
 
 ## Пример
 ``` csharp
-// Пример кода
+var ignoreItem = _api.Newsfeed.IgnoreItem(type: "type", ownerId: 0, itemId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

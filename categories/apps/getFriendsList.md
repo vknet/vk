@@ -38,7 +38,7 @@ request — доступные для отправки запроса (уже и
 
 ## Пример
 ``` csharp
-// Пример кода
+var getFriendsList = _api.Apps.GetFriendsList();
 ```
 
 ## Версия Вконтакте API v.5.44

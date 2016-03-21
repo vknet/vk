@@ -22,7 +22,7 @@ public bool DeleteAllRequests()
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteAllRequests = _api.Friends.DeleteAllRequests();
 ```
 
 ## Версия Вконтакте API v.5.44

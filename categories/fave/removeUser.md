@@ -22,7 +22,7 @@ public bool RemoveUser(long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var removeUser = _api.Fave.RemoveUser(userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

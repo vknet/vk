@@ -35,7 +35,15 @@ public bool Edit(MarketEditParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var edit = _api.Market.Edit(new MarketEditParams{
+	ownerId = 0,
+	itemId = 0,
+	name = "name",
+	description = "description",
+	categoryId = 0,
+	price = 0,
+	mainPhotoId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

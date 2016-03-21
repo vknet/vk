@@ -55,7 +55,9 @@ photo100172_166443618
 
 ## Пример
 ``` csharp
-// Пример кода
+var send = _api.Messages.Send(new MessagesSendParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

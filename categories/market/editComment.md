@@ -39,7 +39,7 @@ photo100172_166443618,photo66748_265827614
 
 ## Пример
 ``` csharp
-// Пример кода
+var editComment = _api.Market.EditComment(ownerId: 0, commentId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

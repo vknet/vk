@@ -34,7 +34,10 @@ administrator — администратор.
 
 ## Пример
 ``` csharp
-// Пример кода
+var editManager = _api.Groups.EditManager(new GroupsEditManagerParams{
+	groupId = 0,
+	userId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

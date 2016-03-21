@@ -41,7 +41,7 @@ admin_id идентификатор администратора, который
 
 ## Пример
 ``` csharp
-// Пример кода
+var getBanned = _api.Groups.GetBanned(groupId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

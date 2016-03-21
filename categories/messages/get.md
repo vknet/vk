@@ -30,7 +30,9 @@ public MessagesGetObject Get(MessagesGetParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var get = _api.Messages.Get(new MessagesGetParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

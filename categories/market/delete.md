@@ -24,7 +24,7 @@ public bool Delete(long ownerId, long itemId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var delete = _api.Market.Delete(ownerId: 0, itemId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

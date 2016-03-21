@@ -25,7 +25,7 @@ public LastActivity GetLastActivity(long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getLastActivity = _api.Messages.GetLastActivity(userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

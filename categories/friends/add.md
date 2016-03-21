@@ -27,7 +27,7 @@ public AddFriendStatus Add(long userId, string text = "", bool? follow = null, l
 
 ## Пример
 ``` csharp
-// Пример кода
+var add = _api.Friends.Add(userId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

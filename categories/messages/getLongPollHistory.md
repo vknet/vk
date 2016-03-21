@@ -37,7 +37,9 @@ public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryPara
 
 ## Пример
 ``` csharp
-// Пример кода
+var getLongPollHistory = _api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

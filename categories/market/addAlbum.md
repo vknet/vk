@@ -27,7 +27,7 @@ public long AddAlbum(long ownerId, string title, long? photoId = null, bool main
 
 ## Пример
 ``` csharp
-// Пример кода
+var addAlbum = _api.Market.AddAlbum(ownerId: 0, title: "title");
 ```
 
 ## Версия Вконтакте API v.5.44

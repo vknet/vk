@@ -27,7 +27,7 @@ public ReadOnlyCollection<User> GetInvitedUsers(long groupId, out int userCount,
 
 ## Пример
 ``` csharp
-// Пример кода
+var getInvitedUsers = _api.Groups.GetInvitedUsers(groupId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

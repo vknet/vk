@@ -27,7 +27,7 @@ public ReadOnlyCollection<User> GetRequests(long groupId, long? offset, long? co
 
 ## Пример
 ``` csharp
-// Пример кода
+var getRequests = _api.Groups.GetRequests(groupId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -41,7 +41,9 @@ public ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var search = _api.Newsfeed.Search(new NewsfeedSearchParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

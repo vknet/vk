@@ -30,7 +30,12 @@ public AuthConfirmResult Confirm(AuthConfirmParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var confirm = _api.Auth.Confirm(new AuthConfirmParams{
+	clientId = 0,
+	clientSecret = "client_secret",
+	phone = "phone",
+	code = "code"
+});
 ```
 
 ## Версия Вконтакте API v.5.44

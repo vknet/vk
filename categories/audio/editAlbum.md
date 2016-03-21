@@ -24,7 +24,7 @@ public bool EditAlbum(string title, long albumId, long? groupId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var editAlbum = _api.Audio.EditAlbum(albumId: 0, title: "title");
 ```
 
 ## Версия Вконтакте API v.5.44

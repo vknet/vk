@@ -22,7 +22,7 @@ public bool DeleteAppRequests()
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteAppRequests = _api.Apps.DeleteAppRequests();
 ```
 
 ## Версия Вконтакте API v.5.44

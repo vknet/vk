@@ -128,7 +128,9 @@ public bool Edit(long groupId, GroupInfo groupInfo)
 
 ## Пример
 ``` csharp
-// Пример кода
+var edit = _api.Groups.Edit(new GroupsEditParams{
+	groupId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

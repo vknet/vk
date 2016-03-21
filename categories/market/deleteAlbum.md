@@ -24,7 +24,7 @@ public bool DeleteAlbum(long ownerId, long albumId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteAlbum = _api.Market.DeleteAlbum(ownerId: 0, albumId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -28,7 +28,7 @@ title — название альбома.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAlbums = _api.Audio.GetAlbums();
 ```
 
 ## Версия Вконтакте API v.5.44
