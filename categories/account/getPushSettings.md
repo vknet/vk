@@ -27,7 +27,7 @@ public AccountPushSettings GetPushSettings(string deviceId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var pushSettings = _api.Account.GetPushSettings("token");
 ```
 
 ## Версия Вконтакте API v.5.45
