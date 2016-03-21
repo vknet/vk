@@ -55,7 +55,11 @@ public bool SaveProfileInfo(AccountSaveProfileInfoParams @params)
 changed – возвращает **true** — если информация была сохранена, 0 — если ни одно из полей не было сохранено. 
 ## Пример
 ``` csharp
-// Пример кода
+ChangeNameRequest change;
+var saveProfileInfo = _api.Account.SaveProfileInfo(out change, new AccountSaveProfileInfoParams
+{
+
+});
 ```
 
 ## Версия Вконтакте API v.5.45
