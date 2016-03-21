@@ -22,7 +22,7 @@ public bool BanUser(long userId)
 
 ## Пример
 ``` csharp
-// Пример кода
+_api.Account.BanUser(1); // Забаним Пашу
 ```
 
 ## Версия Вконтакте API v.5.45
