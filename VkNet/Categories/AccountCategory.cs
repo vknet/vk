@@ -229,6 +229,7 @@ namespace VkNet.Categories
 			{
 				{ "device_id", deviceId }
 			};
+
 			return _vk.Call("account.getPushSettings", parameters);
 		}
 

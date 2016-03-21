@@ -79,6 +79,8 @@
     <Compile Include="Model\FriendOnline.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
+    <Compile Include="Model\MessagesPushSettings.cs" />
+    <Compile Include="Model\PushSettings.cs" />
     <Compile Include="Model\RequestParams\Account\AccountSaveProfileInfoParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioEditParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioGetParams.cs" />
@@ -254,7 +256,7 @@
     <Compile Include="Enums\SafetyEnums\OccupationType.cs" />
     <Compile Include="Model\PhotoSize.cs" />
     <Compile Include="Model\PostReach.cs" />
-    <Compile Include="Model\PushSettings.cs" />
+    <Compile Include="Model\ChatPushSettings.cs" />
     <Compile Include="Model\RequestParams\Account\AccountRegisterDeviceParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioSearchParams.cs" />
     <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />

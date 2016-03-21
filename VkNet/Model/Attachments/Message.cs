@@ -149,7 +149,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Настройки уведомлений для беседы, если они есть. sound и disabled_until
 		/// </summary>
-		public PushSettings PushSettings
+		public ChatPushSettings ChatPushSettings
 		{ get; set; }
 
 		/// <summary>
@@ -242,7 +242,7 @@ namespace VkNet.Model
 				UsersCount = response["users_count"],
 				AdminId = response["admin_id"],
 				PhotoPreviews = response,
-				PushSettings = response["push_settings"],
+				ChatPushSettings = response["push_settings"],
 				Action = response["action"],
 				ActionMid = response["action_mid"],
 				ActionEmail = response["action_email"],
