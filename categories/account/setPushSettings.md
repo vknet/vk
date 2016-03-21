@@ -21,12 +21,12 @@ public bool SetPushSettings(string deviceId, PushSettings settings, string key, 
 + **value** - Новое значение уведомления в специальном формате. список слов, разделенных через запятую
 
 ## Результат
-Возвращает 1 в случае успешного выполнения метода.
+Возвращает **true** в случае успешного выполнения метода.
 
 ## Пример
 ``` csharp
-// Пример кода
+var setPushSettings = _api.Account.SetPushSettings(deviceId: "device_id");
 ```
 
-## Версия Вконтакте API v.5.45
+## Версия Вконтакте API v.5.50
 Дата обновления: 10.02.2016 13:55:10
