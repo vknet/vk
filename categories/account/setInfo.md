@@ -30,8 +30,8 @@ public bool SetInfo(
 
 ## Пример
 ``` csharp
-// Пример кода
+var setInfo = _api.Account.SetInfo("own_posts_default", "1");
 ```
 
-## Версия Вконтакте API v.5.45
+## Версия Вконтакте API v.5.50
 Дата обновления: 10.02.2016 13:55:10
