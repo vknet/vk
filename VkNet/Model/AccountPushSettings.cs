@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -23,7 +24,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Список, содержащий настройки конкретных диалогов, и их количество первым элементом.
 		/// </summary>
-		public object Conversations
+		public IEnumerable<ChatPushSettings> Conversations
 		{ get; set; }
 
 		/// <summary>
@@ -43,7 +44,7 @@ namespace VkNet.Model
 			{
 				Disabled = response["disabled"],
 				DisabledUntil = response["disabled_until"],
-				Conversations = response["conversations"],
+				Conversations = response["conversations"].ToReadOnlyCollectionOf<ChatPushSettings>(o => o),
 				Settings = response["settings"]
 			};
 		}

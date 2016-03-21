@@ -11,9 +11,14 @@ namespace VkNet.Model
 	public class ChatPushSettings
 	{
 		/// <summary>
+		/// Идентификатор собеседника.
+		/// </summary>
+		public long? PeerId { get; set; }
+
+		/// <summary>
 		/// Состояние звукового оповещения
 		/// </summary>
-		public bool Sound { get; set; }
+		public bool? Sound { get; set; }
 
 		/// <summary>
 		/// Неизвестный параметр
@@ -27,12 +32,14 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static ChatPushSettings FromJson(VkResponse response)
 		{
-			var settings = new ChatPushSettings
+			var result = new ChatPushSettings
 			{
-				Sound = response.ContainsKey("sound") && response["sound"],
-				DisabledUntil = response.ContainsKey("disabled_until") ? response["disabled_until"] : null
+				PeerId = response["peer_id"],
+				Sound = response["sound"],
+				DisabledUntil = response["disabled_until"]
 			};
-			return settings;
+
+			return result;
 		}
 	}
 }
