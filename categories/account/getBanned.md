@@ -11,7 +11,7 @@ comments: true
 
 ## Синтаксис
 ``` csharp
-public IEnumerable<User> GetBanned(out int total, int? offset = null, int? count = null)
+public ReadOnlyCollection<User> GetBanned(out int total, int? offset = null, int? count = null)
 ```
 
 ## Параметры
@@ -23,8 +23,9 @@ public IEnumerable<User> GetBanned(out int total, int? offset = null, int? count
 
 ## Пример
 ``` csharp
-// Пример кода
+int total;
+var bannedUsers = _api.Account.GetBanned(out total);
 ```
 
-## Версия Вконтакте API v.5.45
+## Версия Вконтакте API v.5.50
 Дата обновления: 10.02.2016 13:55:10
