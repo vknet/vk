@@ -32,7 +32,7 @@ List<string> types = new List<string>();
 		var pattern = @"public\s+(sealed\s+)?struct ([a-zA-Z]+?)\s*(:\s*[a-zA-Z]+)?\s*{";
 
 		var matches = Regex.Matches(text, pattern, RegexOptions.Multiline);
-		
+
 		foreach (var match in matches)
 		{
 			var type = Regex.Replace(match.ToString(), pattern, @"$2", RegexOptions.Multiline);

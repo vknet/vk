@@ -41,15 +41,16 @@ namespace VkNet.Model.RequestParams
 		{ get; set; }
 
 		/// <summary>
-		/// Текст личного cообщения (является обязательным, если не задан параметр attachment)
+		/// Текст личного сообщения (является обязательным, если не задан параметр attachment)
 		/// </summary>
 		public string Message
 		{ get; set; }
 
 		/// <summary>
 		/// Уникальный идентификатор, предназначенный для предотвращения повторной отправки одинакового сообщения.
+		/// Сохраняется вместе с сообщением и доступен в истории сообщений.
 		/// </summary>
-		public string Guid
+		public long? RandomId
 		{ get; set; }
 
 		/// <summary>
@@ -93,7 +94,7 @@ namespace VkNet.Model.RequestParams
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
-		/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id сообщества. 
+		/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id сообщества.
 		/// </summary>
 		public long? PeerId { get; set; }
 
@@ -111,7 +112,7 @@ namespace VkNet.Model.RequestParams
 				{ "chat_id", p.ChatId },
 				{ "user_ids", p.UserIds },
 				{ "message", HttpUtility.UrlEncode(p.Message) },
-				{ "guid", p.Guid },
+				{ "random_id", p.RandomId },
 				{ "lat", p.Lat },
 				{ "long", p.Longitude },
 				{ "attachment", p.Attachments },

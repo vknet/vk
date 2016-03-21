@@ -93,6 +93,7 @@
     <Compile Include="Model\RequestParams\Groups\GroupsGetParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsSearchParams.cs" />
     <Compile Include="Model\RequestParams\Likes\LikesAddParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesSendStickerParams.cs" />
     <Compile Include="Model\RequestParams\Pages\PagesGetParams.cs" />
     <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
     <Compile Include="Model\RequestParams\Video\VideoCreateCommentParams.cs" />

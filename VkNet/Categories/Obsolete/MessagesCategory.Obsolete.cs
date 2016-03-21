@@ -212,7 +212,7 @@ namespace VkNet.Categories
             bool fromChat = false,
             double? latitude = null,
             double? longitude = null,
-            string guid = null,
+            long? randomId = null,
             long? captchaSid = null,
             string captchaKey = null)
         {
@@ -224,7 +224,7 @@ namespace VkNet.Categories
                 ForwardMessages = forwardMessagedIds,
                 Lat = latitude,
                 Attachments = attachment == null ? null : new List<MediaAttachment> { attachment },
-                Guid = guid,
+                RandomId = randomId,
                 CaptchaKey = captchaKey,
                 CaptchaSid = captchaSid,
                 Longitude = longitude,
@@ -345,6 +345,5 @@ namespace VkNet.Categories
             var users = GetChatUsers(chatId, null);
             return users.Select(x => x.Id).ToReadOnlyCollection();
         }
-
-    }
+	}
 }
