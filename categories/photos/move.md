@@ -24,7 +24,7 @@ public bool Move(long targetAlbumId, ulong photoId, long? ownerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var move = _api.Photos.Move(targetAlbumId: 0, photoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

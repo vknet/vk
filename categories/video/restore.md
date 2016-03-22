@@ -23,7 +23,7 @@ public bool Restore(long videoId, long? ownerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var restore = _api.Video.Restore(videoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

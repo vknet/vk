@@ -22,7 +22,7 @@ public UploadServerInfo GetWallUploadServer(long? groupId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getWallUploadServer = _api.Photos.GetWallUploadServer();
 ```
 
 ## Версия Вконтакте API v.5.44

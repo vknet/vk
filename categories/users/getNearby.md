@@ -36,7 +36,10 @@ public ReadOnlyCollection<User> GetNearby(UsersGetNearbyParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getNearby = _api.Users.GetNearby(new UsersGetNearbyParams{
+	latitude = 0,
+	longitude = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

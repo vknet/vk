@@ -22,7 +22,7 @@ public UploadServerInfo GetMarketAlbumUploadServer(long groupId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getMarketAlbumUploadServer = _api.Photos.GetMarketAlbumUploadServer(groupId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

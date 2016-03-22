@@ -23,7 +23,7 @@ public bool Delete(long? ownerId = null, long? postId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var delete = _api.Wall.Delete();
 ```
 
 ## Версия Вконтакте API v.5.44

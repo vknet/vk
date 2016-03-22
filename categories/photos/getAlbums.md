@@ -48,7 +48,9 @@ public ReadOnlyCollection<PhotoAlbum> GetAlbums(out int count, PhotoGetAlbumsPar
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAlbums = _api.Photos.GetAlbums(new PhotosGetAlbumsParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

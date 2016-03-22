@@ -33,7 +33,7 @@ public bool ReportPost(long ownerId, long postId, ReportReason? reason = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var reportPost = _api.Wall.ReportPost(ownerId: 0, postId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -24,7 +24,7 @@ public bool Report(long ownerId, ulong photoId, ReportReason reason)
 
 ## Пример
 ``` csharp
-// Пример кода
+var report = _api.Photos.Report(ownerId: 0, photoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

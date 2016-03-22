@@ -35,7 +35,7 @@ groups — содержит объекты сообществ.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getById = _api.Wall.GetById(posts: );
 ```
 
 ## Версия Вконтакте API v.5.44

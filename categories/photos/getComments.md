@@ -42,7 +42,9 @@ can_like — информация о том, может ли текущий по
 
 ## Пример
 ``` csharp
-// Пример кода
+var getComments = _api.Photos.GetComments(new PhotosGetCommentsParams{
+	photoId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -24,7 +24,7 @@ public long Copy(long ownerId, ulong photoId, string accessKey = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var copy = _api.Photos.Copy(ownerId: 0, photoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

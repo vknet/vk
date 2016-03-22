@@ -23,7 +23,7 @@ public bool Unpin(long? ownerId, long postId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var unpin = _api.Wall.Unpin(postId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

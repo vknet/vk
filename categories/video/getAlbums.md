@@ -36,7 +36,7 @@ title — название альбома.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAlbums = _api.Video.GetAlbums();
 ```
 
 ## Версия Вконтакте API v.5.44

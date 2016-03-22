@@ -31,7 +31,10 @@ public bool ReorderVideos(VideoReorderVideosParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var reorderVideos = _api.Video.ReorderVideos(new VideoReorderVideosParams{
+	ownerId = 0,
+	videoId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

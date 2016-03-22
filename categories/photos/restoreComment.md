@@ -23,7 +23,7 @@ public long RestoreComment(ulong commentId, long? ownerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var restoreComment = _api.Photos.RestoreComment(commentId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

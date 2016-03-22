@@ -34,7 +34,7 @@ public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? exten
 
 ## Пример
 ``` csharp
-// Пример кода
+var getById = _api.Photos.GetById(photos: );
 ```
 
 ## Версия Вконтакте API v.5.44

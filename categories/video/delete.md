@@ -25,7 +25,7 @@ public bool Delete(long videoId, long? ownerId = null, long? targetId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var delete = _api.Video.Delete(videoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

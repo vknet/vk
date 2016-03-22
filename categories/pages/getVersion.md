@@ -25,7 +25,7 @@ public Page GetVersion(long versionId, long groupId, bool needHtml = false, long
 
 ## Пример
 ``` csharp
-// Пример кода
+var getVersion = _api.Pages.GetVersion(versionId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

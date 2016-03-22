@@ -25,7 +25,7 @@ public long AddAlbum(string title, long? groupId = null, IEnumerable<Privacy> pr
 
 ## Пример
 ``` csharp
-// Пример кода
+var addAlbum = _api.Video.AddAlbum();
 ```
 
 ## Версия Вконтакте API v.5.44

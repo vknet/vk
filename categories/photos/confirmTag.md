@@ -24,7 +24,7 @@ public bool ConfirmTag(ulong photoId, ulong tagId, long? ownerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var confirmTag = _api.Photos.ConfirmTag(photoId: "photo_id", tagId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

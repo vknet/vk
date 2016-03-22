@@ -37,7 +37,9 @@ all — все записи на стене (owner + others).
 
 ## Пример
 ``` csharp
-// Пример кода
+var get = _api.Wall.Get(new WallGetParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -40,7 +40,7 @@ public long SaveAccess(
 
 ## Пример
 ``` csharp
-// Пример кода
+var saveAccess = _api.Pages.SaveAccess(pageId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

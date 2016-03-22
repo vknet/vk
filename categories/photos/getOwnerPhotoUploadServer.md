@@ -22,7 +22,7 @@ public UploadServerInfo GetOwnerPhotoUploadServer(long? ownerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getOwnerPhotoUploadServer = _api.Photos.GetOwnerPhotoUploadServer();
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -22,7 +22,7 @@ public bool ClearCache(Uri url)
 
 ## Пример
 ``` csharp
-// Пример кода
+var clearCache = _api.Pages.ClearCache(url: "url");
 ```
 
 ## Версия Вконтакте API v.5.44

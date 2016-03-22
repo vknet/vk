@@ -23,7 +23,7 @@ public bool Delete(ulong photoId, long? ownerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var delete = _api.Photos.Delete(photoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

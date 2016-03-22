@@ -25,7 +25,7 @@ public long Add(long videoId, long ownerId, long? targetId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var add = _api.Video.Add(videoId: 0, ownerId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

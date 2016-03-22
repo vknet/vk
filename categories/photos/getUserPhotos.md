@@ -36,7 +36,7 @@ public ReadOnlyCollection<Photo> GetUserPhotos(out int count, PhotoGetUserPhotos
 
 ## Пример
 ``` csharp
-// Пример кода
+var getUserPhotos = _api.Photos.GetUserPhotos();
 ```
 
 ## Версия Вконтакте API v.5.44

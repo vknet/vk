@@ -23,7 +23,7 @@ public bool Pin(long? ownerId, long postId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var pin = _api.Wall.Pin(postId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

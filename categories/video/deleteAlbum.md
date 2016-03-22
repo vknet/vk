@@ -23,7 +23,7 @@ public bool DeleteAlbum(long albumId, long? groupId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteAlbum = _api.Video.DeleteAlbum();
 ```
 
 ## Версия Вконтакте API v.5.44

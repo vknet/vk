@@ -31,7 +31,9 @@ public long CreateComment(PhotoCreateCommentParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var createComment = _api.Photos.CreateComment(new PhotosCreateCommentParams{
+	photoId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

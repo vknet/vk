@@ -24,7 +24,7 @@ public bool MakeCover(ulong photoId, long? ownerId = null, long? albumId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var makeCover = _api.Photos.MakeCover(photoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

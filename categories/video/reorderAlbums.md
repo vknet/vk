@@ -25,7 +25,7 @@ public bool ReorderAlbums(long? ownerId, long albumId, long? before, long? after
 
 ## Пример
 ``` csharp
-// Пример кода
+var reorderAlbums = _api.Video.ReorderAlbums(albumId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

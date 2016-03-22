@@ -24,7 +24,7 @@ public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId = 
 
 ## Пример
 ``` csharp
-// Пример кода
+var saveWallPhoto = _api.Photos.SaveWallPhoto(photo: "photo");
 ```
 
 ## Версия Вконтакте API v.5.44

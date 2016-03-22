@@ -25,7 +25,7 @@ public bool EditComment(ulong commentId, string message, long? ownerId = null, I
 
 ## Пример
 ``` csharp
-// Пример кода
+var editComment = _api.Photos.EditComment(commentId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

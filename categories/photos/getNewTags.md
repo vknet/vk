@@ -27,7 +27,7 @@ public ReadOnlyCollection<Photo> GetNewTags(out int countTotal, uint? offset = n
 
 ## Пример
 ``` csharp
-// Пример кода
+var getNewTags = _api.Photos.GetNewTags();
 ```
 
 ## Версия Вконтакте API v.5.44

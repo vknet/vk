@@ -39,7 +39,7 @@ public bool Report(
 
 ## Пример
 ``` csharp
-// Пример кода
+var report = _api.Video.Report(ownerId: 0, videoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -42,7 +42,9 @@ reposts — число репостов фотографии.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAll = _api.Photos.GetAll(new PhotosGetAllParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

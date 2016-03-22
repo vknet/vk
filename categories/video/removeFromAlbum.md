@@ -32,7 +32,7 @@ public bool RemoveFromAlbum(
 
 ## Пример
 ``` csharp
-// Пример кода
+var removeFromAlbum = _api.Video.RemoveFromAlbum(ownerId: 0, videoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

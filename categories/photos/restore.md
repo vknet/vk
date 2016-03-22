@@ -23,7 +23,7 @@ public bool Restore(ulong photoId, long? ownerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var restore = _api.Photos.Restore(photoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

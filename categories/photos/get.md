@@ -43,7 +43,9 @@ public ReadOnlyCollection<Photo> Get(out int count, PhotoGetParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var get = _api.Photos.Get(new PhotosGetParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -30,7 +30,7 @@ public ReadOnlyCollection<Tag> GetTags(long videoId, long? ownerId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getTags = _api.Video.GetTags(videoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

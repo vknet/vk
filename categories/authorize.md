@@ -28,7 +28,13 @@ string pass = "password";              	// пароль для авториза�
 Settings scope = Settings.Friends;  	// Приложение имеет доступ к друзьям
 
 var vk = new VkApi();
-vk.Authorize(appID, email, pass, scope);
+vk.Authorize(new ApiAuthParams
+{
+	ApplicationId = appID,
+	Login = email,
+	Password = pass,
+	Settings = scope
+};
 ```
 
 ### Пример двухфакторной авторизации
@@ -55,7 +61,14 @@ namespace Sandbox
             };
 
             var api = new VkApi();
-            api.Authorize(12345678, "my@email.com", "pwd", Settings.All, code);
+            api.Authorize(new ApiAuthParams
+			{
+				ApplicationId = 12345678,
+				Login = "my@email.com",
+				Password = "pwd",
+				Settings = Settings.All,				
+				TwoFactorAuthorization = code
+			};
 
             var records = api.Audio.Get(api.UserId.Value); // получаем список треков текущего пользователя
 

@@ -35,7 +35,7 @@ can_like — информация о том, может ли текущий по
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAllComments = _api.Photos.GetAllComments();
 ```
 
 ## Версия Вконтакте API v.5.44

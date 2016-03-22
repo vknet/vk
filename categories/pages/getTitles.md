@@ -22,7 +22,7 @@ public ReadOnlyCollection<Page> GetTitles(long groupId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getTitles = _api.Pages.GetTitles();
 ```
 
 ## Версия Вконтакте API v.5.44

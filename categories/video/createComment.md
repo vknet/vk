@@ -42,7 +42,9 @@ photo100172_166443618,photo66748_265827614
 
 ## Пример
 ``` csharp
-// Пример кода
+var createComment = _api.Video.CreateComment(new VideoCreateCommentParams{
+	videoId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -44,7 +44,9 @@ public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var createAlbum = _api.Photos.CreateAlbum(new PhotosCreateAlbumParams{
+	title = "title"
+});
 ```
 
 ## Версия Вконтакте API v.5.44

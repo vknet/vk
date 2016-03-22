@@ -25,7 +25,7 @@ public bool EditComment(long commentId, string message, long? ownerId = null, IE
 
 ## Пример
 ``` csharp
-// Пример кода
+var editComment = _api.Wall.EditComment(commentId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

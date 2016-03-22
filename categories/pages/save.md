@@ -26,7 +26,7 @@ public long Save(string text, long groupId, long userId, long? pageId = null, st
 
 ## Пример
 ``` csharp
-// Пример кода
+var save = _api.Pages.Save();
 ```
 
 ## Версия Вконтакте API v.5.44

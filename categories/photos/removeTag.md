@@ -24,7 +24,7 @@ public bool RemoveTag(ulong tagId, ulong photoId, long? ownerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var removeTag = _api.Photos.RemoveTag(photoId: 0, tagId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

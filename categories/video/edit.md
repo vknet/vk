@@ -32,7 +32,9 @@ public bool Edit(VideoEditParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var edit = _api.Video.Edit(new VideoEditParams{
+	videoId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

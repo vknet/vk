@@ -80,7 +80,7 @@ count число видеозаписей в альбоме.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getCatalog = _api.Video.GetCatalog();
 ```
 
 ## Версия Вконтакте API v.5.44

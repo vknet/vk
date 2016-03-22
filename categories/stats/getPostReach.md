@@ -35,7 +35,7 @@ public PostReach GetPostReach(long ownerId, long postId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getPostReach = _api.Stats.GetPostReach(ownerId: 0, postId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

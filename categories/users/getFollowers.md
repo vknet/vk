@@ -28,7 +28,7 @@ public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = n
 
 ## Пример
 ``` csharp
-// Пример кода
+var getFollowers = _api.Users.GetFollowers();
 ```
 
 ## Версия Вконтакте API v.5.44

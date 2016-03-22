@@ -27,7 +27,7 @@ public bool GetAlbumsByVideo(long? targetId, long ownerId, long videoId, bool? e
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAlbumsByVideo = _api.Video.GetAlbumsByVideo(ownerId: 0, videoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

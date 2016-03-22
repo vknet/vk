@@ -25,7 +25,7 @@ public UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, u
 
 ## Пример
 ``` csharp
-// Пример кода
+var getChatUploadServer = _api.Photos.GetChatUploadServer(chatId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

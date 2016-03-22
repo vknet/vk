@@ -22,7 +22,7 @@ public bool TrackVisitor()
 
 ## Пример
 ``` csharp
-// Пример кода
+var trackVisitor = _api.Stats.TrackVisitor();
 ```
 
 ## Версия Вконтакте API v.5.44

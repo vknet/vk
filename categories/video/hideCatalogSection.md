@@ -22,7 +22,7 @@ public bool HideCatalogSection(long sectionId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var hideCatalogSection = _api.Video.HideCatalogSection(sectionId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

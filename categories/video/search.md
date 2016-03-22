@@ -43,7 +43,9 @@ long — возвращать только длинные видеозаписи
 
 ## Пример
 ``` csharp
-// Пример кода
+var search = _api.Video.Search(new VideoSearchParams{
+	q = "q"
+});
 ```
 
 ## Версия Вконтакте API v.5.44

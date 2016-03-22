@@ -27,7 +27,7 @@ tag_id — идентификатор отметки.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getNewTags = _api.Video.GetNewTags();
 ```
 
 ## Версия Вконтакте API v.5.44

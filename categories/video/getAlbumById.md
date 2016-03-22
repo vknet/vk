@@ -31,7 +31,7 @@ public ReadOnlyCollection<Video> GetAlbumById(long albumId, long? ownerId = null
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAlbumById = _api.Video.GetAlbumById(albumId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

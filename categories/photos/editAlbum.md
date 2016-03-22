@@ -32,7 +32,9 @@ public bool EditAlbum(PhotoEditAlbumParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода.
+var editAlbum = _api.Photos.EditAlbum(new PhotosEditAlbumParams{
+	albumId = 0
+});.
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -23,7 +23,7 @@ public string ParseWiki(string text, ulong groupId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var parseWiki = _api.Pages.ParseWiki(text: "text");
 ```
 
 ## Версия Вконтакте API v.5.44

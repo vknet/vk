@@ -24,7 +24,7 @@ public bool RemoveTag(long tagId, long videoId, long? ownerId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var removeTag = _api.Video.RemoveTag(tagId: 0, videoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

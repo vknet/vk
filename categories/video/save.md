@@ -36,7 +36,9 @@ public Video Save(VideoSaveParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var save = _api.Video.Save(new VideoSaveParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

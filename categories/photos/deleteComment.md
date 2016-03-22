@@ -23,7 +23,7 @@ public bool DeleteComment(ulong commentId, long? ownerId = null)
 
 ## Пример
 ``` csharp
-// Пример кода
+var deleteComment = _api.Photos.DeleteComment(commentId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

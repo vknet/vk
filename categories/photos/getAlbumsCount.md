@@ -23,7 +23,7 @@ public int GetAlbumsCount(long? userId, long? groupId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var getAlbumsCount = _api.Photos.GetAlbumsCount();
 ```
 
 ## Версия Вконтакте API v.5.44

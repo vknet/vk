@@ -29,7 +29,7 @@ groups — содержит информацию о сообществах.
 
 ## Пример
 ``` csharp
-// Пример кода
+var getReposts = _api.Wall.GetReposts();
 ```
 
 ## Версия Вконтакте API v.5.44

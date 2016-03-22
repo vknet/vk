@@ -23,7 +23,7 @@ public bool Restore(long? ownerId, long? postId)
 
 ## Пример
 ``` csharp
-// Пример кода
+var restore = _api.Wall.Restore();
 ```
 
 ## Версия Вконтакте API v.5.44

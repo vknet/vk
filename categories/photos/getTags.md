@@ -32,7 +32,7 @@ public ReadOnlyCollection<Tag> GetTags(ulong photoId, long? ownerId = null, stri
 
 ## Пример
 ``` csharp
-// Пример кода
+var getTags = _api.Photos.GetTags(photoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

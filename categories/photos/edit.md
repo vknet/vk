@@ -31,7 +31,9 @@ public bool Edit(PhotoEditParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var edit = _api.Photos.Edit(new PhotosEditParams{
+	photoId = 0
+});
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -32,7 +32,9 @@ public ReadOnlyCollection<Photo> Search(out int count, PhotoSearchParams @params
 
 ## Пример
 ``` csharp
-// Пример кода
+var search = _api.Photos.Search(new PhotosSearchParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

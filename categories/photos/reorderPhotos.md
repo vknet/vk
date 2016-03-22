@@ -25,7 +25,7 @@ public bool ReorderPhotos(ulong photoId, long? ownerId = null, long? before = nu
 
 ## Пример
 ``` csharp
-// Пример кода
+var reorderPhotos = _api.Photos.ReorderPhotos(photoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

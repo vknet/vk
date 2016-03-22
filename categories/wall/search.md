@@ -32,7 +32,9 @@ public bool Search(WallSearchParams @params)
 
 ## Пример
 ``` csharp
-// Пример кода
+var search = _api.Wall.Search(new WallSearchParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

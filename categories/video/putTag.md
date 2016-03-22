@@ -25,7 +25,7 @@ public long PutTag(long videoId, long userId, long? ownerId, string taggedName)
 
 ## Пример
 ``` csharp
-// Пример кода
+var putTag = _api.Video.PutTag(userId: 0, videoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

@@ -28,7 +28,7 @@ public bool AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds,
 
 ## Пример
 ``` csharp
-// Пример кода
+var addToAlbum = _api.Video.AddToAlbum(ownerId: 0, videoId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44

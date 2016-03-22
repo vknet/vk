@@ -22,7 +22,7 @@ public Photo SaveOwnerPhoto(string response)
 
 ## Пример
 ``` csharp
-// Пример кода
+var saveOwnerPhoto = _api.Photos.SaveOwnerPhoto();
 ```
 
 ## Версия Вконтакте API v.5.44

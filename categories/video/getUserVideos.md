@@ -28,7 +28,7 @@ public ReadOnlyCollection<Video> GetUserVideos(long? userId, long? offset, long?
 
 ## Пример
 ``` csharp
-// Пример кода
+var getUserVideos = _api.Video.GetUserVideos();
 ```
 
 ## Версия Вконтакте API v.5.44

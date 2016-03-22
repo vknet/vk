@@ -23,7 +23,7 @@ public ReadOnlyCollection<Photo> SaveMarketAlbumPhoto(long groupId, string respo
 
 ## Пример
 ``` csharp
-// Пример кода
+var saveMarketAlbumPhoto = _api.Photos.SaveMarketAlbumPhoto(groupId: 0, photo: "photo", server: 0, hash: "hash");
 ```
 
 ## Версия Вконтакте API v.5.44

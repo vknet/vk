@@ -53,7 +53,9 @@ photo66748_265827614,http://habrahabr.ru
 
 ## Пример
 ``` csharp
-// Пример кода
+var post = _api.Wall.Post(new WallPostParams{
+	
+});
 ```
 
 ## Версия Вконтакте API v.5.44

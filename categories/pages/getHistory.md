@@ -30,7 +30,7 @@ public ReadOnlyCollection<History> GetHistory(long pageId, long groupId, long? u
 
 ## Пример
 ``` csharp
-// Пример кода
+var getHistory = _api.Pages.GetHistory(pageId: 0);
 ```
 
 ## Версия Вконтакте API v.5.44
