@@ -1657,7 +1657,137 @@ namespace VkNet.Tests.Categories
 			Assert.That(group2.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c629511/v629511851/2dec6/FqIHKdp4u2U.jpg")));
 			Assert.That(group2.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c629511/v629511851/2dec5/h10vBfOoRnk.jpg")));
 			Assert.That(group2.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg")));
-		}
-		#endregion
-	}
+        }
+
+        [Test]
+        public void GetCatalog_WithAllParams()
+        {
+            Url = "https://api.vk.com/method/groups.getCatalog?category_id=11&subcategory_id=12&v=" + VkApi.VkApiVersion + "&access_token=";
+            Json = @"{
+				response: {
+	                count: 35,
+	                items: [{
+		                id: 50245628,
+		                name: 'СвадьбанаБали.СвадебнаяцеремониянаБали.',
+		                screen_name: 'svadbanabali',
+		                is_closed: 0,
+		                type: 'group',
+		                is_admin: 0,
+		                is_member: 0,
+		                photo_50: 'https://pp.vk.me/c620330/v620330740/cf2a/4Lal9LxRuII.jpg',
+		                photo_100: 'https://pp.vk.me/c620330/v620330740/cf29/6anB7BfUduc.jpg',
+		                photo_200: 'https://pp.vk.me/c620330/v620330740/cf28/wPYJcCw4dJA.jpg'
+	                },
+	                {
+		                id: 34267994,
+		                name: 'Логотип.Лендинг.Оформлениегрупп.Реклама',
+		                screen_name: 'pixelike',
+		                is_closed: 0,
+		                type: 'page',
+		                is_admin: 0,
+		                is_member: 0,
+		                photo_50: 'https://pp.vk.me/c631129/v631129289/a7b2/IsslJ3YB_Ho.jpg',
+		                photo_100: 'https://pp.vk.me/c631129/v631129289/a7b1/Ud8vrcXY4jE.jpg',
+		                photo_200: 'https://pp.vk.me/c631129/v631129289/a7b0/1Xle1sPdGWU.jpg'
+	                }]
+                }
+			}";
+            var catalog = Api.Groups.GetCatalog(11, 12);
+            Assert.That(catalog, Is.Not.Null);
+            Assert.That(catalog.TotalCount, Is.EqualTo(35));
+            Assert.That(catalog.Count, Is.EqualTo(2));
+
+            var group1 = catalog.FirstOrDefault();
+            Assert.That(group1, Is.Not.Null);
+            Assert.That(group1.Id, Is.EqualTo(50245628));
+            Assert.That(group1.Name, Is.EqualTo("СвадьбанаБали.СвадебнаяцеремониянаБали."));
+            Assert.That(group1.ScreenName, Is.EqualTo("svadbanabali"));
+            Assert.That(group1.IsClosed, Is.EqualTo(GroupPublicity.Public));
+            Assert.That(group1.Type, Is.EqualTo(GroupType.Group));
+            Assert.That(group1.IsAdmin, Is.False);
+            Assert.That(group1.IsMember, Is.False);
+            Assert.That(group1.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c620330/v620330740/cf2a/4Lal9LxRuII.jpg")));
+            Assert.That(group1.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c620330/v620330740/cf29/6anB7BfUduc.jpg")));
+            Assert.That(group1.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c620330/v620330740/cf28/wPYJcCw4dJA.jpg")));
+
+            var group2 = catalog.Skip(1).FirstOrDefault();
+            Assert.That(group2, Is.Not.Null);
+            Assert.That(group2.Id, Is.EqualTo(34267994));
+            Assert.That(group2.Name, Is.EqualTo("Логотип.Лендинг.Оформлениегрупп.Реклама"));
+            Assert.That(group2.ScreenName, Is.EqualTo("pixelike"));
+            Assert.That(group2.IsClosed, Is.EqualTo(GroupPublicity.Public));
+            Assert.That(group2.Type, Is.EqualTo(GroupType.Page));
+            Assert.That(group2.IsAdmin, Is.False);
+            Assert.That(group2.IsMember, Is.False);
+            Assert.That(group2.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c631129/v631129289/a7b2/IsslJ3YB_Ho.jpg")));
+            Assert.That(group2.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c631129/v631129289/a7b1/Ud8vrcXY4jE.jpg")));
+            Assert.That(group2.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c631129/v631129289/a7b0/1Xle1sPdGWU.jpg")));
+        }
+
+        [Test]
+        public void GetCatalog_WithParamCategoryId()
+        {
+            Url = "https://api.vk.com/method/groups.getCatalog?category_id=11&v=" + VkApi.VkApiVersion + "&access_token=";
+            Json = @"{
+				response: {
+	                count: 693,
+	                items: [{
+		                id: 21528946,
+		                name: 'Kochut.Ювелирныеизделияподзаказ',
+		                screen_name: 'kochut',
+		                is_closed: 0,
+		                type: 'group',
+		                is_admin: 0,
+		                is_member: 0,
+		                photo_50: 'https://cs7062.vk.me/c628023/v628023574/45681/YL78hc3tDzE.jpg',
+		                photo_100: 'https://cs7062.vk.me/c628023/v628023574/45680/ga_NTah7dDo.jpg',
+		                photo_200: 'https://cs7062.vk.me/c628023/v628023574/4567f/QD1aAZsZVHE.jpg'
+	                },
+	                {
+		                id: 81178058,
+		                name: 'Подушкисмайлы|интернетмагазин',
+		                screen_name: 'emoji.shop',
+		                is_closed: 0,
+		                type: 'group',
+		                is_admin: 0,
+		                is_member: 0,
+		                photo_50: 'https://pp.vk.me/c629121/v629121767/1fb3a/nzbm9sfxlnI.jpg',
+		                photo_100: 'https://pp.vk.me/c629121/v629121767/1fb39/fz0oilONN9A.jpg',
+		                photo_200: 'https://pp.vk.me/c629121/v629121767/1fb38/gz5b7w4k7u4.jpg'
+	                }]
+                }
+			}";
+            var catalog = Api.Groups.GetCatalog(11);
+            Assert.That(catalog, Is.Not.Null);
+            Assert.That(catalog.TotalCount, Is.EqualTo(693));
+            Assert.That(catalog.Count, Is.EqualTo(2));
+
+            var group1 = catalog.FirstOrDefault();
+            Assert.That(group1, Is.Not.Null);
+            Assert.That(group1.Id, Is.EqualTo(21528946));
+            Assert.That(group1.Name, Is.EqualTo("Kochut.Ювелирныеизделияподзаказ"));
+            Assert.That(group1.ScreenName, Is.EqualTo("kochut"));
+            Assert.That(group1.IsClosed, Is.EqualTo(GroupPublicity.Public));
+            Assert.That(group1.Type, Is.EqualTo(GroupType.Group));
+            Assert.That(group1.IsAdmin, Is.False);
+            Assert.That(group1.IsMember, Is.False);
+            Assert.That(group1.Photo50, Is.EqualTo(new Uri("https://cs7062.vk.me/c628023/v628023574/45681/YL78hc3tDzE.jpg")));
+            Assert.That(group1.Photo100, Is.EqualTo(new Uri("https://cs7062.vk.me/c628023/v628023574/45680/ga_NTah7dDo.jpg")));
+            Assert.That(group1.Photo200, Is.EqualTo(new Uri("https://cs7062.vk.me/c628023/v628023574/4567f/QD1aAZsZVHE.jpg")));
+
+            var group2 = catalog.Skip(1).FirstOrDefault();
+            Assert.That(group2, Is.Not.Null);
+            Assert.That(group2.Id, Is.EqualTo(81178058));
+            Assert.That(group2.Name, Is.EqualTo("Подушкисмайлы|интернетмагазин"));
+            Assert.That(group2.ScreenName, Is.EqualTo("emoji.shop"));
+            Assert.That(group2.IsClosed, Is.EqualTo(GroupPublicity.Public));
+            Assert.That(group2.Type, Is.EqualTo(GroupType.Group));
+            Assert.That(group2.IsAdmin, Is.False);
+            Assert.That(group2.IsMember, Is.False);
+            Assert.That(group2.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c629121/v629121767/1fb3a/nzbm9sfxlnI.jpg")));
+            Assert.That(group2.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c629121/v629121767/1fb39/fz0oilONN9A.jpg")));
+            Assert.That(group2.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c629121/v629121767/1fb38/gz5b7w4k7u4.jpg")));
+        }
+        #endregion
+    }
 }
