@@ -11,7 +11,6 @@ namespace VkNet.Tests.Categories
 	using Enums.Filters;
 	using Enums.SafetyEnums;
 
-
 	[TestFixture]
 	public class GroupsCategoryTest : BaseTest
 	{
@@ -1592,5 +1591,73 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(users, Is.True);
 		}
+
+		#region GetCatalog
+
+		[Test]
+		public void GetCatalog_WithoutParams()
+		{
+			Url = "https://api.vk.com/method/groups.getCatalog?v=" + VkApi.VkApiVersion + "&access_token=";
+			Json = @"{
+				response: {
+					count: 27,
+					items: [{
+						id: 15911874,
+						name: 'Собака.ru',
+						screen_name: 'sobaka_ru',
+						is_closed: 0,
+						type: 'page',
+						is_admin: 0,
+						is_member: 0,
+						photo_50: 'https://pp.vk.me/c629209/v629209418/39246/tARC41vYcko.jpg',
+						photo_100: 'https://pp.vk.me/c629209/v629209418/39245/oqo-rj5a3JY.jpg',
+						photo_200: 'https://pp.vk.me/c629209/v629209418/39244/LNkpNaZWlkE.jpg'
+					},
+					{
+						id: 79794,
+						name: 'CirqueduSoleil|ЦиркдюСолей',
+						screen_name: 'cds',
+						is_closed: 0,
+						type: 'group',
+						is_admin: 0,
+						is_member: 0,
+						photo_50: 'https://pp.vk.me/c629511/v629511851/2dec6/FqIHKdp4u2U.jpg',
+						photo_100: 'https://pp.vk.me/c629511/v629511851/2dec5/h10vBfOoRnk.jpg',
+						photo_200: 'https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg'
+					}]
+				}
+			}";
+			var catalog = Api.Groups.GetCatalog();
+			Assert.That(catalog, Is.Not.Null);
+			Assert.That(catalog.TotalCount, Is.EqualTo(27));
+			Assert.That(catalog.Count, Is.EqualTo(2));
+
+			var group1 = catalog.FirstOrDefault();
+			Assert.That(group1, Is.Not.Null);
+			Assert.That(group1.Id, Is.EqualTo(15911874));
+			Assert.That(group1.Name, Is.EqualTo("Собака.ru"));
+			Assert.That(group1.ScreenName, Is.EqualTo("sobaka_ru"));
+			Assert.That(group1.IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(group1.Type, Is.EqualTo(GroupType.Page));
+			Assert.That(group1.IsAdmin, Is.False);
+			Assert.That(group1.IsMember, Is.False);
+			Assert.That(group1.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c629209/v629209418/39246/tARC41vYcko.jpg")));
+			Assert.That(group1.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c629209/v629209418/39245/oqo-rj5a3JY.jpg")));
+			Assert.That(group1.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c629209/v629209418/39244/LNkpNaZWlkE.jpg")));
+
+			var group2 = catalog.Skip(1).FirstOrDefault();
+			Assert.That(group2, Is.Not.Null);
+			Assert.That(group2.Id, Is.EqualTo(79794));
+			Assert.That(group2.Name, Is.EqualTo("CirqueduSoleil|ЦиркдюСолей"));
+			Assert.That(group2.ScreenName, Is.EqualTo("cds"));
+			Assert.That(group2.IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(group2.Type, Is.EqualTo(GroupType.Group));
+			Assert.That(group2.IsAdmin, Is.False);
+			Assert.That(group2.IsMember, Is.False);
+			Assert.That(group2.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c629511/v629511851/2dec6/FqIHKdp4u2U.jpg")));
+			Assert.That(group2.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c629511/v629511851/2dec5/h10vBfOoRnk.jpg")));
+			Assert.That(group2.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg")));
+		}
+		#endregion
 	}
 }

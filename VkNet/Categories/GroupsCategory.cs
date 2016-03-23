@@ -756,5 +756,26 @@ namespace VkNet.Categories
 
 			return _vk.Call("groups.getRequests", parameters).ToReadOnlyCollectionOf<User>(x => x);
 		}
+
+		/// <summary>
+		/// Возвращает список сообществ выбранной категории каталога..
+		/// </summary>
+		/// <param name="categoryId">Идентификатор категории, полученный в методе groups.getCatalogInfo. положительное число (Положительное число).</param>
+		/// <param name="subcategoryId">Идентификатор подкатегории, полученный в методе groups.getCatalogInfo. положительное число, максимальное значение 99 (Положительное число, максимальное значение 99).</param>
+		/// <returns>
+		/// Возвращает список объектов сообществ в соответствии с выбранной категорией каталога..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getCatalog" />.
+		/// </remarks>
+		public VkCollection<Group> GetCatalog(ulong? categoryId = null, ulong? subcategoryId = null)
+		{
+			var parameters = new VkParameters {
+				{ "category_id", categoryId },
+				{ "subcategory_id", subcategoryId }
+			};
+
+			return new VkCollection<Group>(_vk.Call("groups.getCatalog", parameters, true));
+		}
 	}
 }

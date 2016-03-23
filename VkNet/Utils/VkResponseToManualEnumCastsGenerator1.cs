@@ -3,7 +3,7 @@
 using VkNet.Enums;
 namespace VkNet.Utils
 {
-    partial class VkResponse
+	public partial class VkResponse
     {
 		public static implicit operator AddFriendStatus(VkResponse response)
 		{

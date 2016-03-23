@@ -10,7 +10,7 @@
 using VkNet.Enums.SafetyEnums;
 namespace VkNet.Utils
 {
-    partial class VkResponse
+    public partial class VkResponse
     {
 <#
 	var path = Directory.GetParent(Host.ResolvePath("")) + @"\Enums\SafetyEnums";
@@ -28,7 +28,7 @@ List<string> types = new List<string>();
 		var pattern = @"public\s+(sealed\s+)?class ([a-zA-Z]+?)\s*:\s*SafetyEnum\s*\<\s*[a-zA-Z]+\s*\>\s*{";
 
 		var matches = Regex.Matches(text, pattern, RegexOptions.Multiline);
-		
+
 		foreach (var match in matches)
 		{
 			var type = Regex.Replace(match.ToString(), pattern, @"$2", RegexOptions.Multiline);

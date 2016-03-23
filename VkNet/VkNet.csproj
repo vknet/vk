@@ -361,12 +361,14 @@
     <Compile Include="Utils\DefaultValueAttribute.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
+    <Compile Include="Utils\IVkModel.cs" />
     <Compile Include="Utils\ModelToVkParametrsCastGenerator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelToVkParametrsCastGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\Tuple.cs" />
+    <Compile Include="Utils\VkCollection.cs" />
     <Compile Include="Utils\VkResponseToManualEnumCastsGenerator1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

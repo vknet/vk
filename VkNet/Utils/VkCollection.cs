@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace VkNet.Utils
 {
@@ -6,7 +8,7 @@ namespace VkNet.Utils
 	/// Коллекция данных возвращенных от vk.com
 	/// </summary>
 	/// <typeparam name="T">Тип данных.</typeparam>
-	public class VkCollection<T> : ReadOnlyCollectionBase where T: class, IVkModel, new()
+	public class VkCollection<T> : ReadOnlyCollectionBase, IEnumerable<T> where T : class, IVkModel, new()
 	{
 		/// <summary>
 		/// Общее количество элементов.
@@ -29,5 +31,19 @@ namespace VkNet.Utils
 				InnerList.AddRange(response["items"].ToReadOnlyCollectionOf(o => (T)new T().FromJson(o)));
 			}
 		}
+
+		/// <summary>
+		/// Текущий элемент.
+		/// </summary>
+		/// <param name="index">Индекс.</param>
+		public T this[int index] => (T)InnerList[index];
+
+		/// <summary>
+		/// Возвращает перечислитель, выполняющий итерацию в коллекции.
+		/// </summary>
+		/// <returns>
+		/// Интерфейс <see cref="T:System.Collections.Generic.IEnumerator`1"/>, который может использоваться для перебора элементов коллекции.
+		/// </returns>
+		public new IEnumerator<T> GetEnumerator() => InnerList.Cast<T>().GetEnumerator();
 	}
 }

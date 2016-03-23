@@ -13,7 +13,7 @@ using VkNet.Model.RequestParams;
 using System.Collections.ObjectModel;
 namespace VkNet.Utils
 {
-    partial class VkResponse
+    public partial class VkResponse
     {
 <#
 	var path = Directory.GetParent(Host.ResolvePath("")) + @"\Model";

@@ -8,7 +8,7 @@
 
 	using Enums;
 
-	internal sealed partial class VkResponse
+	public sealed partial class VkResponse
 	{
 		private readonly JToken _token;
 		public string RawJson { get; set; }

@@ -17,7 +17,7 @@ namespace VkNet.Model
     /// </summary>
     [DebuggerDisplay("[{Id}] {Name}")]
     [Serializable]
-    public class Group
+    public class Group : IVkModel
 	{
 		#region Стандартные поля
 
@@ -293,5 +293,15 @@ namespace VkNet.Model
 		}
 
 		#endregion
+
+	    /// <summary>
+	    /// Преобразовать из JSON
+	    /// </summary>
+	    /// <param name="response">Ответ от сервера.</param>
+	    /// <returns></returns>
+	    IVkModel IVkModel.FromJson(VkResponse response)
+	    {
+		    return FromJson(response);
+	    }
 	}
 }
