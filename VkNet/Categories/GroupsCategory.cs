@@ -391,6 +391,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public GroupInfo GetSettings(long groupId)
 		{
+			// TODO требует доработки
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
 			{
@@ -413,6 +414,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public bool Edit(long groupId, GroupInfo groupInfo)
 		{
+			// TODO требует доработки
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
 			{
@@ -777,5 +779,7 @@ namespace VkNet.Categories
 
 			return new VkCollection<Group>(_vk.Call("groups.getCatalog", parameters, true));
 		}
+
+		// TODO Реализовать метод groups.getCatalogInfo
 	}
 }
