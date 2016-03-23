@@ -6,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
     [TestFixture]
-    public class VkErrorsTest
+    public class VkErrorsTest : BaseTest
     {
         private class TestClass
         {
@@ -49,7 +49,7 @@ namespace VkNet.Tests.Utils
             var param = string.Empty;
 			var ex = Assert.Throws<ArgumentNullException>(() => VkErrors.ThrowIfNullOrEmpty(() => param));
 
-			//StringAssert.StartsWith("Значение не может быть неопределенным", ex.Message);
+			StringAssert.StartsWith("Значение не может быть неопределенным", ex.Message);
 			StringAssert.Contains("param", ex.Message);
 
         }
@@ -70,10 +70,10 @@ namespace VkNet.Tests.Utils
         {
             const long paramName = -1;
 
-            //var ex = // This.Action(() => VkErrors.ThrowIfNumberIsNegative(() => paramName)).Throws<ArgumentException>();
-
-            //ex.Message.ShouldStartsWith("Отрицательное значение.").ShouldContains("paramName");
-        }
+			var ex = Assert.Throws<ArgumentException>(() => VkErrors.ThrowIfNumberIsNegative(() => paramName));
+			StringAssert.StartsWith("Отрицательное значение.", ex.Message);
+			StringAssert.Contains("paramName", ex.Message);
+		}
 
         [Test]
         public void IfErrorThrowException_NormalCase_NothingExceptions()
@@ -159,20 +159,61 @@ namespace VkNet.Tests.Utils
                       ]
                     }
                   }";
-
-            // This.Action(() => VkErrors.IfErrorThrowException(json)).Throws<AccessDeniedException>()
-                //.Message.ShouldEqual("Access to the groups list is denied due to the user privacy settings.");
+	        var ex = Assert.Throws<AccessDeniedException>(() => VkErrors.IfErrorThrowException(json));
+			StringAssert.AreEqualIgnoringCase("Access to the groups list is denied due to the user privacy settings.", ex.Message);
         }
 
         [Test]
         public void IfErrorThrowException_WrongJson_ThrowVkApiException()
         {
             const string json = "ThisIsNotJson";
-			// This.Action(() => VkErrors.IfErrorThrowException(json)).Throws<VkApiException>()
-			// .Message.ShouldEqual("Wrong json data.");
 			var ex = Assert.Throws<VkApiException>(() => VkErrors.IfErrorThrowException(json));
 
 			Assert.That(ex.Message, Is.EqualTo("Wrong json data."));
 		}
-    }
+
+		[Test]
+		public void Call_ThrowsCaptchaNeededException()
+		{
+			Url = "https://api.vk.com/method/messages.send?v=" + VkApi.VkApiVersion + "&access_token=";
+			Json =
+				@"{
+					'error': {
+					  'error_code': 14,
+					  'error_msg': 'Captcha needed',
+					  'request_params': [
+						{
+						  'key': 'oauth',
+						  'value': '1'
+						},
+						{
+						  'key': 'method',
+						  'value': 'messages.send'
+						},
+						{
+						  'key': 'uid',
+						  'value': '242508553'
+						},
+						{
+						  'key': 'message',
+						  'value': 'hello10'
+						},
+						{
+						  'key': 'type',
+						  'value': '0'
+						},
+						{
+						  'key': 'access_token',
+						  'value': '1fe7889c3395722934b1'
+						}
+					  ],
+					  'captcha_sid': '548747100691',
+					  'captcha_img': 'http://api.vk.com/captcha.php?sid=548747100284&s=1'
+					}
+				  }";
+			var ex = Assert.Throws<CaptchaNeededException>(() => Api.Call("messages.send", VkParameters.Empty, true));
+			Assert.That(ex.Sid, Is.EqualTo(548747100691));
+			Assert.That(ex.Img, Is.EqualTo(new Uri("http://api.vk.com/captcha.php?sid=548747100284&s=1")));
+		}
+	}
 }

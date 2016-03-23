@@ -82,63 +82,7 @@
 			Assert.That(output, Is.EqualTo(expected));
 		}
 
-		//[Test]
-		//[Ignore("")]
-		//public void Authorize_BadLoginOrPasswrod_ThrowVkApiAuthorizationException()
-		//{
-		//   const string urlWithBadLoginOrPassword = "http://oauth.vk.com/oauth/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&m=4&email=mail";
-		//    var browser = new Mock<IBrowser>();
-		//    browser.Setup(b => b.Authorize(AppId, Email, Password, Settings.Friends)).Returns(VkAuthorization.From(new Uri(urlWithBadLoginOrPassword)));
-		//
-		//    Api.Browser = browser.Object;
-		//    var ex = This.Action(() => Api.Authorize(AppId, Email, Password, Settings.Friends)).Throws<VkApiAuthorizationException>();
-		//    ex.Message.ShouldEqual(VkApi.InvalidAuthorization);
-		//}
 
-		[Test]
-		public void Call_ThrowsCaptchaNeededException()
-		{
-			Url = "https://api.vk.com/method/messages.send?v=5.50&access_token=";
-			Json =
-				@"{
-					'error': {
-					  'error_code': 14,
-					  'error_msg': 'Captcha needed',
-					  'request_params': [
-						{
-						  'key': 'oauth',
-						  'value': '1'
-						},
-						{
-						  'key': 'method',
-						  'value': 'messages.send'
-						},
-						{
-						  'key': 'uid',
-						  'value': '242508553'
-						},
-						{
-						  'key': 'message',
-						  'value': 'hello10'
-						},
-						{
-						  'key': 'type',
-						  'value': '0'
-						},
-						{
-						  'key': 'access_token',
-						  'value': '1fe7889c3395722934b1'
-						}
-					  ],
-					  'captcha_sid': '548747100691',
-					  'captcha_img': 'http://api.vk.com/captcha.php?sid=548747100284&s=1'
-					}
-				  }";
-			var ex = Assert.Throws<CaptchaNeededException>(() => Api.Call("messages.send", VkParameters.Empty, true));
-			Assert.That(ex.Sid, Is.EqualTo(548747100691));
-			Assert.That(ex.Img, Is.EqualTo(new Uri("http://api.vk.com/captcha.php?sid=548747100284&s=1")));
-			// TODO Перенести в VkErrorsTest
-		}
 
 		[Test]
 		public void Call_NotMoreThen3CallsPerSecond()
@@ -149,7 +93,7 @@
 			Mock.Get(Api.Browser)
 				.Setup(m => m.GetJson(It.IsAny<string>()))
 				.Returns(Json)
-				.Callback(() => invocationCount++);
+				.Callback(delegate { invocationCount++; });
 
 			var start = DateTimeOffset.Now;
 			while (true)
