@@ -46,7 +46,7 @@ namespace VkNet.Tests.Utils
         [Test]
         public void ThrowIfNullOrEmpty_EmptyString_ThrowException()
         {
-            var param = string.Empty;
+            const string param = "";
 			var ex = Assert.Throws<ArgumentNullException>(() => VkErrors.ThrowIfNullOrEmpty(() => param));
 
 			StringAssert.StartsWith("Значение не может быть неопределенным", ex.Message);
