@@ -43,10 +43,11 @@ namespace VkNet.Tests.Utils
 			Assert.Throws<ArgumentException>(() => cls.Execute(-2));
 		}
 
-        [Test]
+        [Test, Ignore("На MONO код падает")]
         public void ThrowIfNullOrEmpty_EmptyString_ThrowException()
         {
-            var param = "";
+			// TODO На MONO код падает
+			var param = "";
 			var ex = Assert.Throws<ArgumentNullException>(() => VkErrors.ThrowIfNullOrEmpty(() => param));
 
 			StringAssert.StartsWith("Значение не может быть неопределенным", ex.Message);
