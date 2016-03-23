@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetProfileUploadServer_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=" + VkApi.VkApiVersion + "&access_token=";
 			const string json =
                 @"{
                     'response': {
@@ -228,7 +228,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void GetAlbumsCount_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=";
 			const string json =
                 @"{
                     'response': 1

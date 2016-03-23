@@ -17,16 +17,9 @@ namespace VkNet.Tests.Categories
 		#region GetCounters
 
 		[Test]
-		public void GetCounters_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var account = new AccountCategory(new VkApi());
-			Assert.Throws<AccessTokenInvalidException>(() => account.GetCounters(CountersFilter.All));
-		}
-
-		[Test]
 		public void GetCounters_WhenServerReturnsEmptyResponse()
 		{
-			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=";
 			Json = @"{ 'response': [] }";
 
 			var counters = Api.Account.GetCounters(CountersFilter.All);
@@ -36,7 +29,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCounters_WhenServerReturnsAllFields()
 		{
-			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=";
 			Json = @"{
 				'response': {
 					friends:1,
@@ -70,14 +63,6 @@ namespace VkNet.Tests.Categories
 		#region SetNameInMenu
 
 		[Test]
-		public void SetNameInMenu_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			var account = new AccountCategory(new VkApi());
-			Assert.Throws<AccessTokenInvalidException>(() => account.GetCounters(CountersFilter.All));
-		}
-
-		[Test]
 		public void SetNameInMenu_EmptyName_ThrowArgumentNullException()
 		{
 			Assert.Throws<ArgumentNullException>(() => Api.Account.SetNameInMenu(null));
@@ -87,7 +72,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetNameInMenu_SetsCorrectly_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.SetNameInMenu("example"), Is.True);
 		}
@@ -95,7 +80,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetNameInMenu_NotSets_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=";
 			Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.SetNameInMenu("example"), Is.False);
 		}

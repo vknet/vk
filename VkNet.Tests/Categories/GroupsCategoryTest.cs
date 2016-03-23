@@ -272,16 +272,9 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var groups = new GroupsCategory(new VkApi());
-			Assert.That(() => groups.Get(1), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
 		public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 		{
-			const string url = "https://api.vk.com/method/groups.get?user_id=4793858&offset=0&count=1000&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/groups.get?user_id=4793858&offset=0&count=1000&v=" + VkApi.VkApiVersion + "&access_token=";
 
 			const string json =
 				@"{
@@ -652,14 +645,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			int totalCount;
-			var groups = new GroupsCategory(new VkApi());
-			Assert.That(() => groups.Search("Music", out totalCount), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
 		public void Search_EmptyQuery_ThrowsArgumentException()
 		{
 			int totalCount;
@@ -671,7 +656,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_DefaultCase_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&v=" + VkApi.VkApiVersion + "&access_token=";
 			const string json =
 				@"{
 					'response': {
@@ -736,7 +721,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_DefaulCaseAllParams_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&offset=20&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&offset=20&count=3&v=" + VkApi.VkApiVersion + "&access_token=";
 			const string json =
 				@"{
 					'response': {
@@ -824,7 +809,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_GroupsNotFounded_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&sort=0&offset=20&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&sort=0&offset=20&count=3&v=" + VkApi.VkApiVersion + "&access_token=";
 
 			const string json =
 				@"{

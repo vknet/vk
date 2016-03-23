@@ -39,8 +39,8 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// Возвращает информацию о вики-странице в виде объекта page. 
-		/// Если был задан параметр need_source равный 1, дополнительно будет возвращено поле source. 
+		/// Возвращает информацию о вики-странице в виде объекта page.
+		/// Если был задан параметр need_source равный 1, дополнительно будет возвращено поле source.
 		/// Если был задан параметр need_html равный 1, дополнительно будет возвращено поле html..
 		/// </returns>
 		/// <remarks>
@@ -176,7 +176,7 @@ namespace VkNet.Categories
 				{ "user_id", userId }
 			};
 			VkResponseArray result = _vk.Call("pages.getHistory", parameters);
-			
+
 			return result.ToReadOnlyCollectionOf<History>(x => x);
 		}
 
@@ -228,7 +228,7 @@ namespace VkNet.Categories
 				{ "need_html", needHtml }
 			};
 
-			return _vk.Call("pages.getVersion", parameters);
+			return _vk.Call("pages.getVersion", parameters, true);
 		}
 
 

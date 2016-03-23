@@ -295,24 +295,9 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        public void IsAppUser_EmptyAccessToken_ThrowAccessTokenInvalidException()
-        {
-            var users = new UsersCategory(new VkApi());
-            //This.Action(() => users.IsAppUser(1)).Throws<AccessTokenInvalidException>();
-        }
-
-        [Test]
-        public void Search_EmptyAccessToken_ThrowAccessTokenInvalidException()
-        {
-            var vk = new VkApi();
-            int count;
-			Assert.That(()=> vk.Users.Search(out count, new UserSearchParams { Query = Query }), Throws.InstanceOf<AccessTokenInvalidException>());
-        }
-
-        [Test]
         public void Search_BadQuery_EmptyList()
         {
-			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=";
 			const string json =
 				@"{
 					response: {
@@ -333,7 +318,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_EducationField_ListofProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=" + VkApi.VkApiVersion + "&access_token=";
 
 			const string json =
 				@"{
@@ -402,7 +387,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_DefaultFields_ListOfProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=";
 			const string json =
 				@"{
 				response: {
@@ -453,7 +438,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void IsAppUser_5_5_version_of_api_return_false()
         {
-            const string url = "https://api.vk.com/method/users.isAppUser?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/users.isAppUser?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=";
             const string json =
                 @"{
                     'response': 0
@@ -470,7 +455,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void IsAppUser_5_5_version_of_api_return_true()
         {
-            const string url = "https://api.vk.com/method/users.isAppUser?user_id=123&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/users.isAppUser?user_id=123&v=" + VkApi.VkApiVersion + "&access_token=";
             const string json =
                 @"{
                     'response': 1

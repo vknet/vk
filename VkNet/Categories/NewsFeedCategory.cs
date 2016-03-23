@@ -401,8 +401,7 @@ namespace VkNet.Categories
 			{
 				parameters.Add("count", count);
 			}
-			return _vk.Call("newsfeed.getSuggestedSources", parameters);
+			return _vk.Call("newsfeed.getSuggestedSources", parameters, true);
 		}
-
 	}
 }

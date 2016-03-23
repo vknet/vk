@@ -620,7 +620,7 @@ namespace VkNet.Categories
 				{ "active", active }
 			};
 
-			return _vk.Call("audio.getBroadcastList", parameters);
+			return _vk.Call("audio.getBroadcastList", parameters, true);
 		}
 
 		/// <summary>

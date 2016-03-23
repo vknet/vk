@@ -44,7 +44,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.45")]
 		public Counters GetCounters(CountersFilter filter)
 		{
-			return _vk.Call("account.getCounters", new VkParameters { { "filter", filter } });
+			return _vk.Call("account.getCounters", new VkParameters { { "filter", filter } }, true);
 		}
 
 		/// <summary>
@@ -68,7 +68,7 @@ namespace VkNet.Categories
 				{ "name", name },
 				{ "user_id", userId}
 			};
-			return _vk.Call("account.setNameInMenu", parameters);
+			return _vk.Call("account.setNameInMenu", parameters, true);
 		}
 
 		/// <summary>
@@ -280,7 +280,7 @@ namespace VkNet.Categories
 			{
 				{ "user_id", userId}
 			};
-			return _vk.Call("account.getAppPermissions", parameters);
+			return _vk.Call("account.getAppPermissions", parameters, true);
 		}
 
 		/// <summary>
@@ -303,7 +303,7 @@ namespace VkNet.Categories
 				{ "offset", offset },
 				{ "count", count }
 			};
-			return _vk.Call("account.getActiveOffers", parameters);
+			return _vk.Call("account.getActiveOffers", parameters, true);
 		}
 
 		/// <summary>

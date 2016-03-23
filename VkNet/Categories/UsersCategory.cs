@@ -42,7 +42,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @params)
 		{
-			var response = _vk.Call("users.search", @params);
+			var response = _vk.Call("users.search", @params, true);
 
 			itemsCount = response["count"];
 
@@ -67,7 +67,7 @@ namespace VkNet.Categories
 				{ "user_id", userId }
 			};
 
-			return _vk.Call("users.isAppUser", parameters);
+			return _vk.Call("users.isAppUser", parameters, true);
 		}
 
 		/// <summary>
@@ -196,7 +196,7 @@ namespace VkNet.Categories
 					{ "count", count },
 					{ "fields", fields }
 				};
-			
+
 			VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
 
 			return response.ToReadOnlyCollectionOf<Group>(x => x);

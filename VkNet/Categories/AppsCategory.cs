@@ -73,7 +73,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// В случае удачного выполнения метод возвращает идентификатор созданного запроса, например: 
+		/// В случае удачного выполнения метод возвращает идентификатор созданного запроса, например:
 		/// 10013.
 		/// </returns>
 		/// <remarks>
@@ -82,7 +82,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public long SendRequest(AppSendRequestParams @params)
 		{
-			return _vk.Call("apps.sendRequest", @params); 
+			return _vk.Call("apps.sendRequest", @params);
 		}
 
 		/// <summary>
@@ -137,10 +137,10 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает рейтинг пользователей в игре.
 		/// </summary>
-		/// <param name="type">Level — рейтинг по уровням, 
-		/// points — рейтинг по очкам, начисленным за выполнение миссий. 
+		/// <param name="type">Level — рейтинг по уровням,
+		/// points — рейтинг по очкам, начисленным за выполнение миссий.
 		/// score — рейтинг по очкам, начисленным напрямую (apps.getScore). строка, обязательный параметр (Строка, обязательный параметр).</param>
-		/// <param name="global">1 — глобальный рейтинг по всем игрокам, 
+		/// <param name="global">1 — глобальный рейтинг по всем игрокам,
 		/// 0 — рейтинг по друзьям пользователя флаг, может принимать значения 1 или 0, по умолчанию 1 (Флаг, может принимать значения 1 или 0, по умолчанию 1).</param>
 		/// <param name="extended">1 — дополнительно возвращает информацию о пользователе. флаг, может принимать значения 1 или 0, по умолчанию 0 (Флаг, может принимать значения 1 или 0, по умолчанию 0).</param>
 		/// <returns>
@@ -158,8 +158,8 @@ namespace VkNet.Categories
 			//	{ "global", global },
 			//	{ "extended", extended }
 			//};
-			//return _vk.Call("apps.getLeaderboard", parameters);
-			throw new NotImplementedException(); // TODO: Методы доступны только приложениям, размещенным в игровом каталоге. 
+			//return _vk.Call("apps.getLeaderboard", parameters, true);
+			throw new NotImplementedException(); // TODO: Методы доступны только приложениям, размещенным в игровом каталоге.
 		}
 
 		/// <summary>
@@ -180,7 +180,7 @@ namespace VkNet.Categories
 			{
 				{ "user_id", userId }
 			};
-			return _vk.Call("apps.getScore", parameters);
+			return _vk.Call("apps.getScore", parameters, true);
 		}
 	}
 }

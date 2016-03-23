@@ -124,7 +124,7 @@ namespace VkNet.Categories
 				{ "owner_id", ownerId },
 				{ "post_id", postId }
 			};
-			return _vk.Call("stats.getPostReach", parameters);
+			return _vk.Call("stats.getPostReach", parameters, true);
 		}
 
 	}
