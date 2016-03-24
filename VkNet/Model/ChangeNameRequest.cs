@@ -1,11 +1,9 @@
-﻿using VkNet.Enums;
-using VkNet.Utils;
+﻿using VkNet.Utils;
+using System;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model
 {
-    using System;
-
-
     /// <summary>
     /// Информация о заявке на смену имени.
     /// </summary>
@@ -20,7 +18,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Статус заявки
 		/// </summary>
-		public ChangeNameStatus? Status { get; set; }
+		public ChangeNameStatus Status { get; set; }
 
 		/// <summary>
 		/// Дата, после которой возможна повторная подача заявки.
@@ -51,48 +49,13 @@ namespace VkNet.Model
 				Id = response["id"],
 				FirstName = response["first_name"],
 				LastName = response["last_name"],
-
-				//TODO: проверить на реальном аккаунте, так ли расположены эти поля в ответе
-				Status = ParseStatus(response["status"]),
+				Status = response["status"],
 				RepeatDate = response["repeat_date"]
 			};
 
 			return request;
 		}
-
-		private static ChangeNameStatus? ParseStatus(string status)
-		{
-			if (string.IsNullOrEmpty(status))
-				return null;
-			switch (status)
-			{
-				case "success":
-					{
-						return ChangeNameStatus.Success;
-					}
-				case "processing":
-					{
-						return ChangeNameStatus.Processing;
-					}
-				case "declined":
-					{
-						return ChangeNameStatus.Declined;
-					}
-				case "was_accepted":
-					{
-						return ChangeNameStatus.WasAccepted;
-					}
-				case "was_declined":
-					{
-						return ChangeNameStatus.WasDeclined;
-					}
-				default:
-					{
-						throw new ArgumentException(string.Format("Enum value {0} not defined!", status), "status");
-					}
-			}
-		}
-
+        
 		#endregion
 
 	}

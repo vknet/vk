@@ -173,7 +173,7 @@
     <Compile Include="Enums\AudioSort.cs" />
     <Compile Include="Enums\BanReason.cs" />
     <Compile Include="Enums\BirthdayVisibility.cs" />
-    <Compile Include="Enums\ChangeNameStatus.cs" />
+    <Compile Include="Enums\SafetyEnums\ChangeNameStatus.cs" />
     <Compile Include="Enums\DeleteFriendStatus.cs" />
     <Compile Include="Enums\Filters\GroupSubType.cs" />
     <Compile Include="Enums\Filters\UsersFields.cs" />

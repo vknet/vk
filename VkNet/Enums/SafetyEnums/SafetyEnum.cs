@@ -14,6 +14,8 @@ namespace VkNet.Enums.SafetyEnums
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
     public class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
 	{
+        // TODO сделать парсинг строки и возвращать значение если оно есть
+
 		/// <summary>
 		/// Аналог enum, типобезопасен.
 		/// </summary>
