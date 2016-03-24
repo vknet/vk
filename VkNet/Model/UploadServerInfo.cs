@@ -34,7 +34,7 @@
 			{
 				UploadUrl = response["upload_url"],
 				AlbumId = Utilities.GetNullableLongId(response["album_id"] ?? response["aid"]),
-				UserId = Utilities.GetNullableLongId(response["user_id"] ?? response["mid"])
+				UserId = Utilities.GetNullableLongId(response["user_id"] ?? response["message_id"] ?? response["mid"])
 			};
 
 			return info;

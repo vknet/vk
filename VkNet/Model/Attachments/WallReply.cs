@@ -56,8 +56,8 @@ namespace VkNet.Model.Attachments
 		{
 			var wallReply = new WallReply
 			{
-				Id = response["id"] ?? response["cid"],
-				FromId = response["from_id"] ?? response["uid"],
+				Id = response["comment_id"] ?? response["cid"] ?? response["id"],
+				FromId = response["from_id"] ?? response["user_id"] ?? response["uid"],
 				Date = response["date"],
 				Text = response["text"],
 				Likes = response["likes"],

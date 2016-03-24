@@ -498,7 +498,7 @@ namespace VkNet.Model
 		{
 			var user = new User
 			{
-				Id = response["uid"] ?? response["id"] ?? 0,
+				Id = response["user_id"] ?? response["uid"] ?? response["id"] ?? 0,
 				FirstName = response["first_name"],
 				LastName = response["last_name"],
 				Sex = response["sex"],

@@ -74,7 +74,7 @@ namespace VkNet.Model.Attachments
 		{
 			var audio = new Audio
 			{
-				Id = response["id"] ?? response["aid"],
+				Id = response["audio_id"] ?? response["aid"] ?? response["id"],
 				OwnerId = response["owner_id"],
 				Artist = response["artist"],
 				Title = response["title"],

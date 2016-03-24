@@ -973,7 +973,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void CreateChat_NormalCase_ChatId()
 		{
-			Url = "https://api.vk.com/method/messages.createChat?uids=5041431,10657891&title=test chat%27s title&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/messages.createChat?user_ids=5041431,10657891&title=test chat%27s title&v=" + VkApi.VkApiVersion + "&access_token=token";
 
 
             Json =

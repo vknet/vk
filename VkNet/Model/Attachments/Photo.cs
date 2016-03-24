@@ -46,7 +46,7 @@ namespace VkNet.Model.Attachments
 		public Uri Photo807 { get; set; }
 
 		/// <summary>
-		/// Url фотографии с максимальным размером 1280x1024px. 
+		/// Url фотографии с максимальным размером 1280x1024px.
 		/// </summary>
 		public Uri Photo1280 { get; set; }
 
@@ -61,12 +61,12 @@ namespace VkNet.Model.Attachments
 		public int? Width { get; set; }
 
 		/// <summary>
-		/// Высота оригинала фотографии в пикселах. 
+		/// Высота оригинала фотографии в пикселах.
 		/// </summary>
 		public int? Height { get; set; }
 
 		/// <summary>
-		/// Текст описания фотографии. 
+		/// Текст описания фотографии.
 		/// </summary>
 		public string Text { get; set; }
 
@@ -171,7 +171,7 @@ namespace VkNet.Model.Attachments
 		{
 			var photo = new Photo
 			{
-				Id = response["pid"] ?? response["id"],
+				Id = response["photo_id"] ?? response["pid"] ?? response["id"],
 				AlbumId = response["album_id"] ?? response["aid"],
 				OwnerId = response["owner_id"],
 				Photo75 = response["photo_75"] ?? response["src_small"],

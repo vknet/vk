@@ -500,7 +500,7 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "uids", userIds },
+				{ "user_ids", userIds },
 				{ "title", title }
 			};
 

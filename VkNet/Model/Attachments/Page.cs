@@ -116,7 +116,7 @@ namespace VkNet.Model.Attachments
 		{
 			var page = new Page
 			{
-				Id = response["pid"] ?? response["page_id"] ?? response["id"],
+				Id = response["page_id"] ?? response["pid"] ?? response["id"],
 				GroupId = response["group_id"] ?? response["gid"],
 				CreatorId = response["creator_id"],
 				Title = response["title"],

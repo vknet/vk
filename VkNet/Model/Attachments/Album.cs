@@ -51,7 +51,7 @@ namespace VkNet.Model.Attachments
 		{
 			return new Album
 			{
-				Id = response["aid"] ?? response["id"],
+				Id = response["album_id"] ?? response["aid"] ?? response["id"],
 				Thumb = response["thumb"],
 				OwnerId = response["owner_id"],
 				Title = response["title"],

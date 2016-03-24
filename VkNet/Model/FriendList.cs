@@ -27,7 +27,7 @@ namespace VkNet.Model
 		{
 			var list = new FriendList
 			{
-				Id = response["lid"],
+				Id = response["list_id"] ?? response["lid"],
 				Name = response["name"]
 			};
 

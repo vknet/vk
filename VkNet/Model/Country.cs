@@ -30,7 +30,7 @@ namespace VkNet.Model
 		{
 			var country = new Country
 			{
-				Id = response["cid"] ?? response["id"],
+				Id = response["comment_id"] ?? response["cid"] ?? response["id"],
 				Title = response["title"] ?? response["name"]
 			};
 

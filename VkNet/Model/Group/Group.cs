@@ -244,7 +244,7 @@ namespace VkNet.Model
 		{
 			var group = new Group
 			{
-				Id = response["id"] ?? response["gid"],
+				Id = response["group_id"] ?? response["gid"] ?? response["id"],
 				Name = response["name"],
 				ScreenName = response["screen_name"],
 				IsClosed = response["is_closed"],

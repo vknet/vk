@@ -71,7 +71,7 @@ namespace VkNet.Model.Attachments
         {
 	        var document = new Document
 	        {
-		        Id = response["did"] ?? response["id"],
+		        Id = response["doc_id"] ?? response["did"] ?? response["id"],
 		        OwnerId = response["owner_id"],
 		        Title = response["title"],
 		        Size = response["size"],

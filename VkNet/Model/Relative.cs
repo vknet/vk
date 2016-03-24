@@ -37,7 +37,7 @@ namespace VkNet.Model
 		{
 			var relative = new Relative
 			{
-				Id = response["id"] ?? response["uid"],
+				Id = response["user_id"] ?? response["uid"] ?? response["id"],
 				Type = response["type"],
 				Name = response["name"]
 			};

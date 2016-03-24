@@ -46,7 +46,7 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static City FromJson(VkResponse response)
         {
-			string id = response["cid"] ?? response["id"];
+			string id = response["comment_id"] ?? response["cid"] ?? response["id"];
 	        return new City
 			{
 				Id = Convert.ToInt64(id),

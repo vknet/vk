@@ -11,7 +11,7 @@ namespace VkNet.Enums.Filters
         /// <summary>
         /// Для получения поля <see cref="User.Id"/>. Это поле возвращается всегда, поэтому его можно не указывать.
         /// </summary>
-        public static readonly ProfileFields Uid = RegisterPossibleValue(1L << 0, "uid");
+        public static readonly ProfileFields Uid = RegisterPossibleValue(1L << 0, "user_id");
 
         /// <summary>
         /// Для получения поля <see cref="User.FirstName"/>. Это поле возвращается всегда, поэтому его можно не указывать.

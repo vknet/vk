@@ -65,22 +65,22 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="tag">Ответ сервера.</param>
+		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Tag FromJson(VkResponse tag)
+		internal static Tag FromJson(VkResponse response)
 		{
 			var result = new Tag
 			{
-				Id = tag["tag_id"],
-				TaggedName = tag["tagged_name"],
-				UserId = tag["uid"],
-				PlacerId = tag["placer_id"],
-				Date = tag["tag_created"] ?? tag["date"],
-				IsViewed = tag["viewed"],
-				X = tag["x"],
-				Y = tag["y"],
-				X2 = tag["x2"],
-				Y2 = tag["y2"]
+				Id = response["tag_id"],
+				TaggedName = response["tagged_name"],
+				UserId = response["user_id"] ?? response["uid"],
+				PlacerId = response["placer_id"],
+				Date = response["tag_created"] ?? response["date"],
+				IsViewed = response["viewed"],
+				X = response["x"],
+				Y = response["y"],
+				X2 = response["x2"],
+				Y2 = response["y2"]
 			};
 
 			return result;

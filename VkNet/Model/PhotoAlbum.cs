@@ -52,7 +52,7 @@ namespace VkNet.Model
         public int? Size { get; set; }
 
 		/// <summary>
-		/// Настройки приватности для альбома в формате настроек приватности; (не приходит для системных альбомов) 
+		/// Настройки приватности для альбома в формате настроек приватности; (не приходит для системных альбомов)
 		/// </summary>
 		public ReadOnlyCollection<Privacy> PrivacyView
 		{ get; set; }
@@ -99,8 +99,8 @@ namespace VkNet.Model
 		/// </remarks>
 		public bool ThumbIsLast
 		{ get; set; }
-	    
-	    
+
+
 		#region Methods
 		/// <summary>
 		/// Разобрать из json.
@@ -113,7 +113,7 @@ namespace VkNet.Model
 			VkResponseArray privacyComment = response["privacy_comment"];
             return new PhotoAlbum
 	        {
-		        Id = response["aid"] ?? response["id"],
+		        Id = response["album_id"] ?? response["aid"] ?? response["id"],
 		        ThumbId = Utilities.GetNullableLongId(response["thumb_id"]),
 		        OwnerId = Utilities.GetNullableLongId(response["owner_id"]),
 		        Title = response["title"],
