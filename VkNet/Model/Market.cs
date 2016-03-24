@@ -10,12 +10,12 @@ namespace VkNet.Model
 	/// Информация о продукте.
 	/// </summary>
 	[Serializable]
-	public class Market
+	public class Market:IVkModel
 	{
 		/// <summary>
 		/// Идентификатор
 		/// </summary>
-		public long? Id { get; set; }
+		public long Id { get; set; }
 
 		/// <summary>
 		/// Идентификатор владельца товара
@@ -23,7 +23,7 @@ namespace VkNet.Model
 		public long? OwnerId { get; set; }
 
 		/// <summary>
-		/// Название товара 
+		/// Название товара
 		/// </summary>
 		public string Title { get; set; }
 
@@ -31,7 +31,7 @@ namespace VkNet.Model
 		/// Текст описания товара
 		/// </summary>
 		public string Description { get; set; }
-		
+
 		/// <summary>
 		/// Цена
 		/// </summary>
@@ -48,7 +48,7 @@ namespace VkNet.Model
 		public Uri ThumbPhoto { get; set; }
 
 		/// <summary>
-		/// Дата создания товара в формате Unixtime. 
+		/// Дата создания товара в формате Unixtime.
 		/// </summary>
 		public DateTime? Date { get; set; }
 
@@ -76,7 +76,6 @@ namespace VkNet.Model
 		/// Информация об отметках «Мне нравится»
 		/// </summary>
 		public Likes Likes { get; set; }
-		
 
 		/// <summary>
 		/// Разобрать из json.
@@ -85,9 +84,9 @@ namespace VkNet.Model
 		/// <returns></returns>
 		internal static Market FromJson(VkResponse response)
 		{
-			var product = new Market
+			var result = new Market
 			{
-				Id = response["id"],
+				Id = response["id"] ?? -1,
 				OwnerId = response["owner_id"],
 				Title = response["title"],
 				Description = response["description"],
@@ -102,7 +101,17 @@ namespace VkNet.Model
 				Likes = response["likes"]
 			};
 
-			return product;
+			return result;
+		}
+
+		/// <summary>
+		/// Преобразовать из JSON
+		/// </summary>
+		/// <param name="response">Ответ от сервера.</param>
+		/// <returns></returns>
+		IVkModel IVkModel.FromJson(VkResponse response)
+		{
+			return FromJson(response);
 		}
 	}
 }

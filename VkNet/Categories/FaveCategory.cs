@@ -3,8 +3,6 @@
 namespace VkNet.Categories
 {
 	using System.Collections.ObjectModel;
-	using JetBrains.Annotations;
-
 	using Model;
 	using Model.Attachments;
 	using Utils;
@@ -328,5 +326,27 @@ namespace VkNet.Categories
 			return _vk.Call("fave.removeLink", parameters);
 		}
 
+		/// <summary>
+		/// Возвращает товары, добавленные в закладки текущим пользователем.
+		/// </summary>
+		/// <param name="count">Число товаров, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества товаров. положительное число, по умолчанию 0 (Положительное число, по умолчанию 0).</param>
+		/// <param name="extended">1 — будут возвращены дополнительные поля likes, can_comment, can_repost, photos. По умолчанию данные поля не возвращается. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов товаров.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getMarketItems" />.
+		/// </remarks>
+		public VkCollection<Market> GetMarketItems(ulong? count = null, ulong? offset = null, bool? extended = null)
+		{
+			var parameters = new VkParameters {
+				{ "count", count },
+				{ "offset", offset },
+				{ "extended", extended }
+			};
+
+			return new VkCollection<Market>(_vk.Call("fave.getMarketItems", parameters));
+		}
 	}
 }
