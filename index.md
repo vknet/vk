@@ -51,6 +51,8 @@ comments: false
 + [Groups.Join](/vk/groups/join/) - Данный метод позволяет вступить в группу, публичную страницу, а также подтвердить участие во встрече.
 + [Groups.Leave](/vk/groups/leave/) - Позволяет покинуть сообщество.
 + [Groups.Search](/vk/groups/search/) - Осуществляет поиск сообществ по заданной подстроке.
++ [Groups.GetCatalog](/vk/groups/getCatalog/) - Возвращает список сообществ выбранной категории каталога.
++ [Groups.GetCatalogInfo](/vk/groups/getCatalogInfo/) - Возвращает список категорий для каталога сообществ.
 + [Groups.GetInvites](/vk/groups/getInvites/) - Данный метод возвращает список приглашений в сообщества и встречи текущего пользователя.
 + [Groups.GetInvitedUsers](/vk/groups/getInvitedUsers/) - Возвращает список пользователей, которые были приглашены в группу.
 + [Groups.BanUser](/vk/groups/banUser/) - Добавляет пользователя в черный список сообщества.
@@ -69,6 +71,7 @@ comments: false
 + [Groups.ReorderLink](/vk/groups/reorderLink/) - Позволяет менять местоположение ссылки в списке.
 + [Groups.RemoveUser](/vk/groups/removeUser/) - Позволяет исключить пользователя из группы или отклонить заявку на вступление.
 + [Groups.ApproveRequest](/vk/groups/approveRequest/) - Позволяет одобрить заявку в группу от пользователя.
+
 
 ## Аудиозаписи
 + [Audio.Get](/vk/audio/get/) - Возвращает список аудиозаписей пользователя или сообщества.
