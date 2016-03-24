@@ -119,8 +119,8 @@
 		/// <summary>
 		/// Доступ ко всем возможным операциям (без Off line и NoHttps).
 		/// </summary>
-		public static readonly Settings All = Notify | Friends | Photos | Audio | Video | Documents | Notes | Pages | Status | Wall | Groups | Messages | Notifications
-                                              | Statistic | Ads | Market;
+		public static readonly Settings All = Notify | Friends | Photos | Audio | Video | Pages | Status | Notes | Messages
+			| Wall | Ads | Documents | Groups | Notifications | Statistic | Email | Market;
 
-    }
+	}
 }
