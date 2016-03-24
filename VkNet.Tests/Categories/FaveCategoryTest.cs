@@ -551,5 +551,196 @@ namespace VkNet.Tests.Categories
 			Assert.That(link.Photo50, Is.EqualTo("https://pp.vk.me/c400/g00001/e_5ba03323.jpg"));
 			Assert.That(link.Photo100, Is.EqualTo("https://pp.vk.me/c400/g00001/e_5ba03323.jpg"));
 		}
+
+		#region GetMarketItems
+
+
+		[Test]
+		public void GetMarketItems_WithoutParams()
+		{
+			Url = "https://api.vk.com/method/fave.getMarketItems?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: {
+					count: 1,
+					items: [{
+						id: 94992,
+						owner_id: -103292418,
+						title: 'Название',
+						description: 'Описание',
+						price: {
+							amount: '12300',
+							currency: {
+								id: 643,
+								name: 'RUB'
+							},
+							text: '123руб.'
+						},
+						category: {
+							id: 300,
+							name: 'Компьютеры',
+							section: {
+								id: 3,
+								name: 'Компьютернаятехника'
+							}
+						},
+						date: 1452002460,
+						thumb_photo: 'https://pp.vk.me/c628717/v628717123/3852b/Kli3SztJwDE.jpg',
+						availability: 0
+					}]
+				}
+			}";
+
+			var marketItems = Api.Fave.GetMarketItems();
+			Assert.NotNull(marketItems);
+			Assert.That(marketItems.TotalCount, Is.EqualTo(1));
+			CollectionAssert.IsNotEmpty(marketItems);
+		}
+
+		[Test]
+		public void GetMarketItems_count()
+		{
+			Url = "https://api.vk.com/method/fave.getMarketItems?count=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: {
+					count: 1,
+					items: [{
+						id: 94992,
+						owner_id: -103292418,
+						title: 'Название',
+						description: 'Описание',
+						price: {
+							amount: '12300',
+							currency: {
+								id: 643,
+								name: 'RUB'
+							},
+							text: '123руб.'
+						},
+						category: {
+							id: 300,
+							name: 'Компьютеры',
+							section: {
+								id: 3,
+								name: 'Компьютернаятехника'
+							}
+						},
+						date: 1452002460,
+						thumb_photo: 'https://pp.vk.me/c628717/v628717123/3852b/Kli3SztJwDE.jpg',
+						availability: 0
+					}]
+				}
+			}";
+
+			var marketItems = Api.Fave.GetMarketItems(1);
+			Assert.NotNull(marketItems);
+			Assert.That(marketItems.TotalCount, Is.EqualTo(1));
+			CollectionAssert.IsNotEmpty(marketItems);
+		}
+
+		[Test]
+		public void GetMarketItems_countAndOffset()
+		{
+			Url = "https://api.vk.com/method/fave.getMarketItems?count=1&offset=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: {
+					count: 1,
+					items: [{
+						id: 94992,
+						owner_id: -103292418,
+						title: 'Название',
+						description: 'Описание',
+						price: {
+							amount: '12300',
+							currency: {
+								id: 643,
+								name: 'RUB'
+							},
+							text: '123руб.'
+						},
+						category: {
+							id: 300,
+							name: 'Компьютеры',
+							section: {
+								id: 3,
+								name: 'Компьютернаятехника'
+							}
+						},
+						date: 1452002460,
+						thumb_photo: 'https://pp.vk.me/c628717/v628717123/3852b/Kli3SztJwDE.jpg',
+						availability: 0
+					}]
+				}
+			}";
+
+			var marketItems = Api.Fave.GetMarketItems(1,0);
+			Assert.NotNull(marketItems);
+			Assert.That(marketItems.TotalCount, Is.EqualTo(1));
+			CollectionAssert.IsNotEmpty(marketItems);
+		}
+
+		[Test]
+		public void GetMarketItems_AllParams()
+		{
+			Url = "https://api.vk.com/method/fave.getMarketItems?count=1&offset=0&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: {
+					count: 1,
+					items: [{
+						id: 94992,
+						owner_id: -103292418,
+						title: 'Название',
+						description: 'Описание',
+						price: {
+							amount: '12300',
+							currency: {
+								id: 643,
+								name: 'RUB'
+							},
+							text: '123руб.'
+						},
+						category: {
+							id: 300,
+							name: 'Компьютеры',
+							section: {
+								id: 3,
+								name: 'Компьютернаятехника'
+							}
+						},
+						date: 1452002460,
+						thumb_photo: 'https://pp.vk.me/c628717/v628717123/3852b/Kli3SztJwDE.jpg',
+						availability: 0,
+						albums_ids: [1],
+						photos: [{
+							id: 396740679,
+							album_id: -53,
+							owner_id: -103292418,
+							user_id: 32190123,
+							photo_75: 'https://pp.vk.me/c628717/v628717123/38520/w70n0UtkOm0.jpg',
+							photo_130: 'https://pp.vk.me/c628717/v628717123/38521/mi9r7yOxsUQ.jpg',
+							photo_604: 'https://pp.vk.me/c628717/v628717123/38522/o--iWrn5qgI.jpg',
+							width: 550,
+							height: 412,
+							text: '',
+							date: 1452002447
+						}],
+						can_comment: 1,
+						can_repost: 1,
+						likes: {
+							user_likes: 1,
+							count: 1
+						},
+						views_count: 10
+					}]
+				}
+			}";
+
+			var marketItems = Api.Fave.GetMarketItems(1, 0, true);
+			Assert.NotNull(marketItems);
+			Assert.That(marketItems.TotalCount, Is.EqualTo(1));
+			CollectionAssert.IsNotEmpty(marketItems);
+		}
+
+		#endregion
+
 	}
 }
