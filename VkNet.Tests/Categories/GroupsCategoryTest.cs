@@ -1,4 +1,5 @@
 ﻿using VkNet.Exception;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
@@ -1509,14 +1510,15 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
-			var group = new GroupInfo
-			{
-				Title = "Raven"
+			var group = new GroupsEditParams
+            {
+                GroupId = 103292418,
+                Title = "Raven"
 			};
-			var groups = cat.Edit(103292418, group);
+            var groups = cat.Edit(group);
 
-			Assert.That(groups, Is.True);
-		}
+            Assert.That(groups, Is.True);
+        }
 
 		[Test]
 		public void EditPlace_NormalCase()
