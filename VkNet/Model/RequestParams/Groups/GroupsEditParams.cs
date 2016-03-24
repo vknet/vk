@@ -7,7 +7,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.edit
 	/// </summary>
-	public struct GroupsEditParams
+	public class GroupsEditParams
 	{
 		/// <summary>
 		/// Параметры метода groups.edit
@@ -305,5 +305,61 @@ namespace VkNet.Model.RequestParams
 
 			return result;
 		}
-	}
+
+
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        internal static GroupsEditParams FromJson(VkResponse response)
+        {
+            var marketCountry = (VkResponseArray) response["market_country"];
+            var marketCity = (VkResponseArray) response["market_city"];
+            var result = new GroupsEditParams
+            {
+                GroupId = response["group_id"] ?? 0UL,
+                Title = response["title"],
+                Description = response["description"],
+                ScreenName = response["screen_name"],
+                Access = response["access"],
+                Website = response["website"],
+                Subject = response["seubject"],
+                Email = response["email"],
+                Phone = response["phone"],
+                Rss = response["rss"],
+                EventStartDate = response["event_start_date"],
+                EventFinishDate = response["event_finish_date"],
+                EventGroupId = response["event_group_id"],
+                PublicCategory = response["public_category"],
+                PublicSubcategory = response["public_subcategory"],
+                PublicDate = response["public_date"],
+                Wall = response["wall"],
+                Topics = response["topics"],
+                Photos = response["photos"],
+                Video = response["video"],
+                Audio = response["audio"],
+                Links = response["links"],
+                Events = response["events"],
+                Places = response["places"],
+                Contacts = response["contacts"],
+                Docs = response["docs"],
+                Wiki = response["wiki"],
+                Messages = response["messages"],
+                AgeLimits = response["age_limits"],
+                Market = response["market"],
+                MarketComments = response["market_comments"],
+                MarketCountry = marketCountry.ToCollectionOf<ulong>(o => o),
+                MarketCity = marketCity.ToCollectionOf<ulong>(o => o),
+                MarketCurrency = response["market_currency"],
+                MarketContact = response["market_contact"],
+                MarketWiki = response["market_wiki"],
+                ObsceneFilter = response["obscene_filter"],
+                ObsceneStopwords = response["obscene_stopwords"],
+                ObsceneWords = response["obscene_words"].ToReadOnlyCollectionOf<string>(o => o)
+            };
+
+            return result;
+        }
+    }
 }

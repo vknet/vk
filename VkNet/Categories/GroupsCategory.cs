@@ -389,16 +389,17 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getSettings" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public GroupInfo GetSettings(long groupId)
+		public GroupsEditParams GetSettings(ulong groupId)
 		{
-			// TODO требует доработки
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
 			{
 				{"group_id", groupId}
 			};
 
-			return _vk.Call("groups.getSettings", parameters);
+            GroupsEditParams result = _vk.Call("groups.getSettings", parameters);
+		    result.GroupId = groupId; // Требует метод edit но getSettings не возвращает
+
+            return result;
 		}
 
 

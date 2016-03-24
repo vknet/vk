@@ -16,12 +16,9 @@ namespace VkNet.Utils
     public partial class VkResponse
     {
 <#
+	
 	var path = Directory.GetParent(Host.ResolvePath("")) + @"\Model";
-	List<string> files = Directory.GetFiles(path).Where(s => Path.GetExtension(s) == ".cs").ToList();
-	foreach (var directory in Directory.GetDirectories(path))
-	{
-		files.AddRange(Directory.GetFiles(directory).Where(s => Path.GetExtension(s) == ".cs").ToList());
-	}
+	List<string> files = Directory.GetFiles(path, "*.cs", SearchOption.AllDirectories).ToList();
 
 List<string> types = new List<string>();
 
@@ -35,7 +32,7 @@ List<string> types = new List<string>();
 		foreach (var match in matches)
 		{
 			var type = Regex.Replace(match.ToString(), pattern, @"$2", RegexOptions.Multiline);
-			if (Regex.IsMatch(text, String.Format(@"static {0} FromJson\(VkResponse [a-zA-Z]*?\)", type),
+			if (Regex.IsMatch(text, string.Format(@"static {0} FromJson\(VkResponse [a-zA-Z]*?\)", type),
 								RegexOptions.Multiline))
 				types.Add(type);
 		}

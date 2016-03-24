@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums
 {
 	/// <summary>
 	/// Идентификатор валюты магазина.
@@ -8,6 +10,7 @@
 		/// <summary>
 		/// 643 — российский рубль;
 		/// </summary>
+		[DefaultValue]
 		Rub = 643,
 		/// <summary>
 		/// 980 — украинская гривна;

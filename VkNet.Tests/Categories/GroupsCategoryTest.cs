@@ -1498,6 +1498,7 @@ namespace VkNet.Tests.Categories
 			var groups = cat.GetSettings(103292418);
 
 			Assert.That(groups, Is.Not.Null);
+            Assert.That(groups.GroupId, Is.EqualTo(103292418));
 		}
 
 		[Test]

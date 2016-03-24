@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums
 {
 	/// <summary>
 	/// Уровень доступа к сообществу.
@@ -8,6 +10,7 @@
 		/// <summary>
 		/// 0 — открытая;
 		/// </summary>
+		[DefaultValue]
 		Open = 0,
 		/// <summary>
 		/// Закрытая

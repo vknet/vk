@@ -14,11 +14,7 @@ namespace VkNet.Utils
     {
 <#
 	var path = Directory.GetParent(Host.ResolvePath("")) + @"\Enums";
-	List<string> files = Directory.GetFiles(path).Where(s => Path.GetExtension(s) == ".cs").ToList();
-	foreach (var directory in Directory.GetDirectories(path))
-	{
-		files.AddRange(Directory.GetFiles(directory).Where(s => Path.GetExtension(s) == ".cs").ToList());
-	}
+	List<string> files = Directory.GetFiles(path, "*.cs", SearchOption.AllDirectories).ToList();
 
 List<string> types = new List<string>();
 
@@ -30,8 +26,8 @@ List<string> types = new List<string>();
 		
 		
 		
-		var typePattern = @"public\s+enum\s+([a-zA-Z]+?)\s*\{[^\[]*\[DefaultValue\][^\]]*\}";
-		var defaultValuePattern = @"(\[DefaultValue\]\s*?([a-zA-Z][a-zA-Z0-9]*))";
+		var typePattern = @"public\s+enum\s+([a-zA-Z]+?)\s*\{(?:\s*\[\w+[^\]]*\]){0,}?[^\[]*\[DefaultValue\](?:\s*\[\w+[^\]]*\]){0,}?[^\}]*\}";
+		var defaultValuePattern = @"((\[.*\]*$)?\[DefaultValue\](?:\s*\[\w+[^\]]*\]){0,}?\s*?([a-zA-Z][a-zA-Z0-9]*))";
 		
 		var matches = Regex.Matches(text, typePattern, RegexOptions.Multiline | RegexOptions.IgnoreCase);
 		foreach (var match in matches)
@@ -39,12 +35,14 @@ List<string> types = new List<string>();
 			var type = Regex.Replace(match.ToString(), typePattern, @"$1", RegexOptions.Multiline);
 			
 			string value = Regex.Match(match.ToString(), defaultValuePattern, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace).ToString();
-			value = Regex.Replace(value, defaultValuePattern, @"$2", RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace);
+			value = Regex.Replace(value, defaultValuePattern, @"$3", RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace);
 #>
 		public static implicit operator <#= type #>(VkResponse response)
 		{
-			if (response == null)
+			if (response == null) {
 				return <#= type #>.<#= value #>;
+			}
+
 			return Utilities.EnumFrom<<#= type #>>(response);
 		}
 
