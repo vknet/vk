@@ -234,6 +234,7 @@ comments: false
 + [Fave.GetPosts](/vk/fave/getPosts/) - Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
 + [Fave.GetVideos](/vk/fave/getVideos/) - Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
 + [Fave.GetLinks](/vk/fave/getLinks/) - Возвращает ссылки, добавленные в закладки текущим пользователем.
++ [Fave.GetMarketItems](/vk/fave/getMarketItems/) - Возвращает товары, добавленные в закладки текущим пользователем.
 + [Fave.AddUser](/vk/fave/addUser/) - Добавляет пользователя в закладки.
 + [Fave.RemoveUser](/vk/fave/removeUser/) - Удаляет пользователя из закладок.
 + [Fave.AddGroup](/vk/fave/addGroup/) - Добавляет сообщество в закладки.
