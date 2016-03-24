@@ -612,15 +612,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getBroadcastList" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public UserOrGroup GetBroadcastList(string filter, bool? active)
+		public UserOrGroup GetBroadcastList(string filter = null, bool? active = null)
 		{
-			// TODO Проверить
 			var parameters = new VkParameters {
 				{ "filter", filter },
 				{ "active", active }
 			};
 
-			return _vk.Call("audio.getBroadcastList", parameters, true);
+			return _vk.Call("audio.getBroadcastList", parameters);
 		}
 
 		/// <summary>

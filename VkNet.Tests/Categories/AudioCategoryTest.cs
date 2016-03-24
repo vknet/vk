@@ -1273,5 +1273,195 @@
 			Assert.That(ids[0], Is.EqualTo(234695118));
 			Assert.That(ids[1], Is.EqualTo(-65968880));
 		}
+
+		#region GetBroadcastList
+
+		[Test]
+		public void GetBroadcastList()
+		{
+			Url = "https://api.vk.com/method/audio.getBroadcastList?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: [{
+					type: 'profile',
+					id: 221634238,
+					first_name: 'Александр',
+					last_name: 'Инютин'
+				},
+				{
+					id: 103292418,
+					name: 'Work',
+					screen_name: 'club103292418',
+					is_closed: 0,
+					type: 'group',
+					is_admin: 1,
+					admin_level: 3,
+					is_member: 1,
+					photo_50: 'https://vk.com/images/community_50.png',
+					photo_100: 'https://vk.com/images/community_100.png',
+					photo_200: 'https://vk.com/images/community_200.png',
+					status_audio: {
+						id: 456239026,
+						owner_id: 32190123,
+						artist: 'Sabaton',
+						title: 'TheFinalSolution',
+						duration: 296,
+						date: 1458726613,
+						url: 'https://cs1-19v4.vk-cdn.net/p34/d091232184d4e8.mp3?extra=pCRnYEhg5iNEEXxx4CnhWTLczsj3CqOcLLGbZ8gP2ec43A34V5Yhgt88CvnpJOvq_KZZejwMNc7dT-2u05uCNTRcZqNf67skerA44ZDWLx_3VZQ7dn4GBIA2UqskfNq8_TDqdLw-E1mP',
+						lyrics_id: 8771021,
+						genre_id: 18
+					}
+				}]
+			}";
+
+			var broadcastList = Api.Audio.GetBroadcastList();
+			Assert.NotNull(broadcastList);
+			CollectionAssert.IsNotEmpty(broadcastList.Groups);
+			CollectionAssert.IsNotEmpty(broadcastList.Users);
+		}
+
+		[Test]
+		public void GetBroadcastList_FilterGroups()
+		{
+			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=groups&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: [{
+					id: 103292418,
+					name: 'Work',
+					screen_name: 'club103292418',
+					is_closed: 0,
+					type: 'group',
+					is_admin: 1,
+					admin_level: 3,
+					is_member: 1,
+					photo_50: 'https://vk.com/images/community_50.png',
+					photo_100: 'https://vk.com/images/community_100.png',
+					photo_200: 'https://vk.com/images/community_200.png',
+					status_audio: {
+						id: 456239025,
+						owner_id: 32190123,
+						artist: 'ЛюбителиТишины',
+						title: 'Замокпламеникостров',
+						duration: 208,
+						date: 1458661957,
+						url: 'https://psv4.vk.me/c613221/u131374929/audios/cbf90bdb4a97.mp3?extra=vQ54NRALdBHNochOTjYPGkx4UrHmS5yEtqe8-ohU5lNKOndzfUO6VaDaU_mX9p3aaEwHcWiND6WPsMnmGsOG11CH_ss4bAeShUIvg96a-A5tJjDorKTpsUhqpgGd6UEpOmSAWXDJOYEy',
+						genre_id: 18
+					}
+				}]
+			}";
+
+			var broadcastList = Api.Audio.GetBroadcastList("groups");
+			Assert.NotNull(broadcastList);
+			CollectionAssert.IsNotEmpty(broadcastList.Groups);
+			CollectionAssert.IsEmpty(broadcastList.Users);
+		}
+
+		[Test]
+		public void GetBroadcastList_FilterFriends()
+		{
+			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=friends&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: [{
+					type: 'profile',
+					id: 178383030,
+					first_name: 'Дмитрий',
+					last_name: 'Иванов',
+					status_audio: {
+						id: 456239176,
+						owner_id: 281149252,
+						artist: 'GatoBeatZ Prod',
+						title: 'Рома Минус',
+						duration: 250,
+						date: 1458739117,
+						url: 'https://psv4.vk.m...rZ0nYs4fhbLEwHSf60A',
+						genre_id: 18
+					}
+				}]
+			}";
+
+			var broadcastList = Api.Audio.GetBroadcastList("friends");
+			Assert.NotNull(broadcastList);
+			CollectionAssert.IsEmpty(broadcastList.Groups);
+			CollectionAssert.IsNotEmpty(broadcastList.Users);
+		}
+
+		[Test]
+		public void GetBroadcastList_FilterFriends_AllParams()
+		{
+			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=friends&active=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: [{
+					type: 'profile',
+					id: 178383030,
+					first_name: 'Дмитрий',
+					last_name: 'Иванов',
+					status_audio: {
+						id: 456239176,
+						owner_id: 281149252,
+						artist: 'GatoBeatZ Prod',
+						title: 'Рома Минус',
+						duration: 250,
+						date: 1458739117,
+						url: 'https://psv4.vk.m...rZ0nYs4fhbLEwHSf60A',
+						genre_id: 18
+					}
+				}]
+			}";
+
+			var broadcastList = Api.Audio.GetBroadcastList("friends", true);
+			Assert.NotNull(broadcastList);
+			CollectionAssert.IsEmpty(broadcastList.Groups);
+			CollectionAssert.IsNotEmpty(broadcastList.Users);
+		}
+
+		[Test]
+		public void GetBroadcastList_FilterGroups_AllParams()
+		{
+			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=groups&active=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: [{
+					id: 103292418,
+					name: 'Work',
+					screen_name: 'club103292418',
+					is_closed: 0,
+					type: 'group',
+					is_admin: 1,
+					admin_level: 3,
+					is_member: 1,
+					photo_50: 'https://vk.com/images/community_50.png',
+					photo_100: 'https://vk.com/images/community_100.png',
+					photo_200: 'https://vk.com/images/community_200.png',
+					status_audio: {
+						id: 456239025,
+						owner_id: 32190123,
+						artist: 'ЛюбителиТишины',
+						title: 'Замокпламеникостров',
+						duration: 208,
+						date: 1458661957,
+						url: 'https://psv4.vk.me/c613221/u131374929/audios/cbf90bdb4a97.mp3?extra=vQ54NRALdBHNochOTjYPGkx4UrHmS5yEtqe8-ohU5lNKOndzfUO6VaDaU_mX9p3aaEwHcWiND6WPsMnmGsOG11CH_ss4bAeShUIvg96a-A5tJjDorKTpsUhqpgGd6UEpOmSAWXDJOYEy',
+						genre_id: 18
+					}
+				}]
+			}";
+
+			var broadcastList = Api.Audio.GetBroadcastList("groups", true);
+			Assert.NotNull(broadcastList);
+			CollectionAssert.IsNotEmpty(broadcastList.Groups);
+			CollectionAssert.IsEmpty(broadcastList.Users);
+		}
+
+		[Test]
+		public void GetBroadcastList_FilterGroups_Empty()
+		{
+			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=groups&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Json = @"{
+				response: []
+			}";
+
+			var broadcastList = Api.Audio.GetBroadcastList("groups");
+			Assert.Null(broadcastList);
+		}
+
+		#endregion
+
 	}
 }
