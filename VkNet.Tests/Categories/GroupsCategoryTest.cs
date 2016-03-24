@@ -1788,6 +1788,345 @@ namespace VkNet.Tests.Categories
             Assert.That(group2.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c629121/v629121767/1fb39/fz0oilONN9A.jpg")));
             Assert.That(group2.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c629121/v629121767/1fb38/gz5b7w4k7u4.jpg")));
         }
-        #endregion
-    }
+		#endregion
+
+		#region GetCatalogInfo
+
+		[Test]
+		public void GetCatalogInfo()
+		{
+			Url = "https://api.vk.com/method/groups.getCatalogInfo?v=" + VkApi.VkApiVersion + "&access_token=";
+			Json = @"{
+				response: {
+					enabled: 1,
+					categories: [{
+						id: 0,
+						name: 'Рекомендации'
+					},
+					{
+						id: 1,
+						name: 'Новости'
+					},
+					{
+						id: 2,
+						name: 'Спорт'
+					},
+					{
+						id: 3,
+						name: 'Музыка'
+					},
+					{
+						id: 9,
+						name: 'Радиоителевидение'
+					},
+					{
+						id: 7,
+						name: 'Наукаитехнологии'
+					},
+					{
+						id: 4,
+						name: 'Развлеченияиюмор'
+					},
+					{
+						id: 12,
+						name: 'Красотаистиль'
+					},
+					{
+						id: 8,
+						name: 'Культураиискусство'
+					},
+					{
+						id: 10,
+						name: 'Игрыикиберспорт'
+					},
+					{
+						id: 13,
+						name: 'Автомобили'
+					},
+					{
+						id: 6,
+						name: 'Бренды'
+					},
+					{
+						id: 11,
+						name: 'Магазины'
+					}]
+				}
+			}";
+
+			var catalogInfo = Api.Groups.GetCatalogInfo();
+			Assert.That(catalogInfo, Is.Not.Null);
+			Assert.That(catalogInfo.Enabled, Is.True);
+			CollectionAssert.IsNotEmpty(catalogInfo.Categories);
+			Assert.That(catalogInfo.Categories.Count(), Is.EqualTo(13));
+
+			var category = catalogInfo.Categories.FirstOrDefault();
+			Assert.That(category, Is.Not.Null);
+			Assert.That(category.Id, Is.EqualTo(0));
+			Assert.That(category.Name, Is.EqualTo("Рекомендации"));
+		}
+
+		[Test]
+		public void GetCatalogInfo_Extended()
+		{
+			Url = "https://api.vk.com/method/groups.getCatalogInfo?extended=1&v=" + VkApi.VkApiVersion + "&access_token=";
+			Json = @"{
+				response: {
+					enabled: 1,
+					categories: [{
+						id: 0,
+						name: 'Рекомендации',
+						page_count: 30,
+						page_previews: [{
+							id: 111572021,
+							name: 'Реалити-шоу«НаЭкране»',
+							screen_name: 'na_ekrane',
+							is_closed: 0,
+							type: 'page',
+							is_admin: 0,
+							is_member: 0,
+							photo_50: 'https://pp.vk.me/c629531/v629531353/29e68/1P32EV5zAxM.jpg',
+							photo_100: 'https://pp.vk.me/c629531/v629531353/29e67/g-eu6gNO768.jpg',
+							photo_200: 'https://pp.vk.me/c629531/v629531353/29e66/8rHS3aC7Nps.jpg'
+						},
+						{
+							id: 101982925,
+							name: 'МатчТВ',
+							screen_name: 'matchtv',
+							is_closed: 0,
+							type: 'page',
+							is_admin: 0,
+							is_member: 0,
+							photo_50: 'https://pp.vk.me/c627817/v627817317/2c710/_0BJ4mIYCW8.jpg',
+							photo_100: 'https://pp.vk.me/c627817/v627817317/2c70f/qkYU3iMrO30.jpg',
+							photo_200: 'https://pp.vk.me/c627817/v627817317/2c70d/2fuHkWrOUro.jpg'
+						}]
+					},
+					{
+						id: 1,
+						name: 'Новости',
+						page_count: 21,
+						page_previews: [{
+							id: 68263002,
+							name: 'TheNextWeb',
+							screen_name: 'thenextweb',
+							is_closed: 0,
+							type: 'page',
+							is_admin: 0,
+							is_member: 0,
+							photo_50: 'https://pp.vk.me/c616216/v616216614/5f1a/EAgnMHjtbFc.jpg',
+							photo_100: 'https://pp.vk.me/c616216/v616216614/5f19/WSyBxalc3cE.jpg',
+							photo_200: 'https://pp.vk.me/c616216/v616216614/5f18/_5nXyMOAwr8.jpg'
+						},
+						{
+							id: 43986871,
+							name: 'Парламентскаягазета',
+							screen_name: 'pnpru',
+							is_closed: 0,
+							type: 'page',
+							is_admin: 0,
+							is_member: 0,
+							photo_50: 'https://pp.vk.me/c307503/v307503831/6e62/z1EpCTQPyZQ.jpg',
+							photo_100: 'https://pp.vk.me/c307503/v307503831/6e61/RP_fl1Q9tIw.jpg',
+							photo_200: 'https://pp.vk.me/c307503/v307503831/6e60/bJnb2-6SSeA.jpg'
+						}]
+					}]
+				}
+			}";
+
+			var catalogInfo = Api.Groups.GetCatalogInfo(true);
+			Assert.That(catalogInfo, Is.Not.Null);
+			Assert.That(catalogInfo.Enabled, Is.True);
+			CollectionAssert.IsNotEmpty(catalogInfo.Categories);
+			Assert.That(catalogInfo.Categories.Count(), Is.EqualTo(2));
+
+			var category = catalogInfo.Categories.FirstOrDefault();
+			Assert.That(category, Is.Not.Null);
+			Assert.That(category.Id, Is.EqualTo(0));
+			Assert.That(category.Name, Is.EqualTo("Рекомендации"));
+			Assert.That(category.PageCount, Is.EqualTo(30));
+			Assert.That(category.PagePreviews.Count(), Is.EqualTo(2));
+
+			var category1 = catalogInfo.Categories.Skip(1).FirstOrDefault();
+			Assert.That(category1, Is.Not.Null);
+			Assert.That(category1.Id, Is.EqualTo(1));
+			Assert.That(category1.Name, Is.EqualTo("Новости"));
+			Assert.That(category1.PageCount, Is.EqualTo(21));
+			Assert.That(category1.PagePreviews.Count(), Is.EqualTo(2));
+		}
+
+		[Test]
+		public void GetCatalogInfo_AllParams()
+		{
+			Url = "https://api.vk.com/method/groups.getCatalogInfo?extended=1&subcategories=1&v=" + VkApi.VkApiVersion + "&access_token=";
+			Json = @"{
+				response: {
+					enabled: 1,
+					categories: [{
+						id: 6,
+						name: 'Бренды',
+						page_count: 162,
+						page_previews: [{
+							id: 30637940,
+							name: 'KFCРоссия',
+							screen_name: 'kfcrussia',
+							is_closed: 0,
+							type: 'page',
+							is_admin: 0,
+							is_member: 0,
+							photo_50: 'https://pp.vk.me/c631322/v631322521/2389b/G9mB6ONcyG8.jpg',
+							photo_100: 'https://pp.vk.me/c631322/v631322521/2389a/qVAjs1J9yT8.jpg',
+							photo_200: 'https://pp.vk.me/c631322/v631322521/23899/VDXY8eWi9JE.jpg'
+						}]
+					},
+					{
+						id: 11,
+						name: 'Магазины',
+						page_count: 696,
+						page_previews: [{
+							id: 55525992,
+							name: 'АвточехлыSEATEX®|Автомобильныечехлы',
+							screen_name: 'seatex',
+							is_closed: 0,
+							type: 'group',
+							is_admin: 0,
+							is_member: 0,
+							photo_50: 'https://pp.vk.me/c625729/v625729577/42d90/-ayhVQKKwuA.jpg',
+							photo_100: 'https://pp.vk.me/c625729/v625729577/42d8f/zfp_vADJZ_E.jpg',
+							photo_200: 'https://pp.vk.me/c625729/v625729577/42d8e/OtJWRTBoLrk.jpg'
+						}],
+						subcategories: [
+						{
+							id: 1,
+							name: 'Детскиетовары',
+							page_count: 63,
+							page_previews: [{
+								id: 104472144,
+								name: 'Мягкаяигрушка""Мимиляндия""',
+								screen_name: 'mimilyandiya',
+								is_closed: 0,
+								type: 'group',
+								is_admin: 0,
+								is_member: 0,
+								photo_50: 'https://pp.vk.me/c628830/v628830962/1d8c7/zSJxvXXSsZk.jpg',
+								photo_100: 'https://pp.vk.me/c628830/v628830962/1d8c6/XhyjV9Mwvp8.jpg',
+								photo_200: 'https://pp.vk.me/c628830/v628830962/1d8c5/8PmGXLlDgqQ.jpg'
+							}]
+						},
+						{
+							id: 2,
+							name: 'Электроника',
+							page_count: 38,
+							page_previews: [{
+								id: 97587446,
+								name: 'AstroBuy-купитьтелескоп,
+								микроскоп,
+								бинокль',
+								screen_name: 'astrobuy',
+								is_closed: 0,
+								type: 'group',
+								is_admin: 0,
+								is_member: 0,
+								photo_50: 'https://pp.vk.me/c628823/v628823905/277c4/3N1nHMnv2so.jpg',
+								photo_100: 'https://pp.vk.me/c628823/v628823905/277c3/S1tPjT1fkqI.jpg',
+								photo_200: 'https://pp.vk.me/c628823/v628823905/277c1/2zCWcZ-zQk4.jpg'
+							}]
+						}]
+					}]
+				}
+			}";
+
+			var catalogInfo = Api.Groups.GetCatalogInfo(true, true);
+			Assert.That(catalogInfo, Is.Not.Null);
+			Assert.That(catalogInfo.Enabled, Is.True);
+			CollectionAssert.IsNotEmpty(catalogInfo.Categories);
+			Assert.That(catalogInfo.Categories.Count(), Is.EqualTo(2));
+
+			var category = catalogInfo.Categories.FirstOrDefault();
+			Assert.That(category, Is.Not.Null);
+			Assert.That(category.Id, Is.EqualTo(6));
+			Assert.That(category.Name, Is.EqualTo("Бренды"));
+			Assert.That(category.PageCount, Is.EqualTo(162));
+			Assert.That(category.PagePreviews.Count(), Is.EqualTo(1));
+
+			var category1 = catalogInfo.Categories.Skip(1).FirstOrDefault();
+			Assert.That(category1, Is.Not.Null);
+			Assert.That(category1.Id, Is.EqualTo(11));
+			Assert.That(category1.Name, Is.EqualTo("Магазины"));
+			Assert.That(category1.PageCount, Is.EqualTo(696));
+			Assert.That(category1.PagePreviews.Count(), Is.EqualTo(1));
+			CollectionAssert.IsNotEmpty(category1.Subcategories);
+
+			var sub1 = category1.Subcategories.FirstOrDefault();
+			Assert.That(sub1, Is.Not.Null);
+			Assert.That(sub1.Id, Is.EqualTo(1));
+			Assert.That(sub1.Name, Is.EqualTo("Детскиетовары"));
+			Assert.That(sub1.PageCount, Is.EqualTo(63));
+			CollectionAssert.IsNotEmpty(sub1.PagePreviews);
+
+			var sub2 = category1.Subcategories.Skip(1).FirstOrDefault();
+			Assert.That(sub2, Is.Not.Null);
+			Assert.That(sub2.Id, Is.EqualTo(2));
+			Assert.That(sub2.Name, Is.EqualTo("Электроника"));
+			Assert.That(sub2.PageCount, Is.EqualTo(38));
+			CollectionAssert.IsNotEmpty(sub2.PagePreviews);
+		}
+
+		[Test]
+		public void GetCatalogInfo_Subcategories()
+		{
+			Url = "https://api.vk.com/method/groups.getCatalogInfo?extended=1&subcategories=1&v=" + VkApi.VkApiVersion + "&access_token=";
+			Json = @"{
+				response: {
+					enabled: 1,
+					categories: [
+					{
+						id: 6,
+						name: 'Бренды'
+					},
+					{
+						id: 11,
+						name: 'Магазины',
+						subcategories: [
+						{
+							id: 1,
+							name: 'Детскиетовары'
+						},
+						{
+							id: 2,
+							name: 'Электроника'
+						}]
+					}]
+				}
+			}";
+			var catalogInfo = Api.Groups.GetCatalogInfo(true, true);
+			Assert.That(catalogInfo, Is.Not.Null);
+			Assert.That(catalogInfo.Enabled, Is.True);
+			CollectionAssert.IsNotEmpty(catalogInfo.Categories);
+			Assert.That(catalogInfo.Categories.Count(), Is.EqualTo(2));
+
+			var category = catalogInfo.Categories.FirstOrDefault();
+			Assert.That(category, Is.Not.Null);
+			Assert.That(category.Id, Is.EqualTo(6));
+			Assert.That(category.Name, Is.EqualTo("Бренды"));
+
+			var category1 = catalogInfo.Categories.Skip(1).FirstOrDefault();
+			Assert.That(category1, Is.Not.Null);
+			Assert.That(category1.Id, Is.EqualTo(11));
+			Assert.That(category1.Name, Is.EqualTo("Магазины"));
+			CollectionAssert.IsNotEmpty(category1.Subcategories);
+
+			var sub1 = category1.Subcategories.FirstOrDefault();
+			Assert.That(sub1, Is.Not.Null);
+			Assert.That(sub1.Id, Is.EqualTo(1));
+			Assert.That(sub1.Name, Is.EqualTo("Детскиетовары"));
+
+			var sub2 = category1.Subcategories.Skip(1).FirstOrDefault();
+			Assert.That(sub2, Is.Not.Null);
+			Assert.That(sub2.Id, Is.EqualTo(2));
+			Assert.That(sub2.Name, Is.EqualTo("Электроника"));
+		}
+		#endregion
+
+	}
 }

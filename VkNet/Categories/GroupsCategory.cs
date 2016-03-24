@@ -780,6 +780,34 @@ namespace VkNet.Categories
 			return new VkCollection<Group>(_vk.Call("groups.getCatalog", parameters, true));
 		}
 
-		// TODO Реализовать метод groups.getCatalogInfo
+		/// <summary>
+		/// Возвращает список категорий для каталога сообществ..
+		/// </summary>
+		/// <param name="extended">1 — вернуть информацию о количестве сообществ в категории и три сообщества для предпросмотра.
+		/// По умолчанию 0. флаг, может принимать значения 1 или 0, по умолчанию 0, доступен начиная с версии 5.37 (Флаг, может принимать значения 1 или 0, по умолчанию 0, доступен начиная с версии 5.37).</param>
+		/// <param name="subcategories">1 — вернуть информацию об подкатегориях.
+		/// По умолчанию 0. флаг, может принимать значения 1 или 0, по умолчанию 0, доступен начиная с версии 5.37 (Флаг, может принимать значения 1 или 0, по умолчанию 0, доступен начиная с версии 5.37).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает поле enabled (0 — каталог недоступен для пользователя, 1 — каталог доступен), и, если enabled=1, массив categories объектов — категорий товаров.
+		/// Объект массива categories — категория каталога товаров.
+		/// id идентификатор категории.
+		///  положительное число name название категории.
+		///  строка subcategories поле возвращается при использовании subcategories=1. Массив объектов-подкатегорий. Каждый из объектов содержит поля id и name, содержащие идентификатор и название подкатегории.
+		/// Дополнительные поля (extended=1)
+		/// page_count количество сообществ в категории.
+		///  положительное число page_previews массив объектов сообществ для предпросмотра..
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getCatalogInfo" />.
+		/// </remarks>
+		public GroupsCatalogInfo GetCatalogInfo(bool? extended = null, bool? subcategories = null)
+		{
+			var parameters = new VkParameters {
+				{ "extended", extended },
+				{ "subcategories", subcategories }
+			};
+
+			return _vk.Call("groups.getCatalogInfo", parameters, true);
+		}
 	}
 }
