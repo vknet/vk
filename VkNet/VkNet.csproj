@@ -67,11 +67,14 @@
     <Compile Include="Categories\Obsolete\UsersCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\VideoCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\WallCategory.Obsolete.cs" />
+    <Compile Include="Enums\GroupAccess.cs" />
+    <Compile Include="Enums\MarketCurrencyId.cs" />
     <Compile Include="Enums\DocFilter.cs" />
     <Compile Include="Enums\SafetyEnums\FeedType.cs" />
     <Compile Include="Enums\SafetyEnums\MediaType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
+    <Compile Include="Enums\WallContentAccess.cs" />
     <Compile Include="Exception\NeedValidationException.cs" />
     <Compile Include="Exception\OutOfLimitsException.cs" />
     <Compile Include="Model\AccountChangePasswordResult.cs" />
@@ -94,6 +97,7 @@
     <Compile Include="Model\RequestParams\Friends\FriendsSearchParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsBanUserParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsEditManagerParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsEditParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsGetMembersParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsGetParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsSearchParams.cs" />

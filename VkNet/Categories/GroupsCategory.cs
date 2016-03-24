@@ -401,51 +401,20 @@ namespace VkNet.Categories
 			return _vk.Call("groups.getSettings", parameters);
 		}
 
+
 		/// <summary>
-		/// Позволяет редактировать информацию групп.
+		/// Редактирует сообщество.
 		/// </summary>
-		/// <param name="groupId">Идентификатор группы.</param>
-		/// <param name="groupInfo">Информация о группе.</param>
-		/// <returns></returns>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// В случае успеха возвращает <c>true</c>.
+		/// </returns>
 		/// <remarks>
-		/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором группы.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.edit"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.edit" />.
 		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Edit(long groupId, GroupInfo groupInfo)
+		public bool Edit(GroupsEditParams @params)
 		{
-			// TODO требует доработки
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			var parameters = new VkParameters
-			{
-				{ "group_id", groupId },
-				{ "title", groupInfo.Title },
-				{ "description", groupInfo.Description },
-				{ "screen_name", groupInfo.ScreenName },
-				{ "access", groupInfo.Access },
-				{ "website", groupInfo.Website },
-				{ "subject", groupInfo.Subject },
-				{ "email", groupInfo.Email },
-				{ "phone", groupInfo.Phone },
-				{ "rss", groupInfo.Rss },
-				{ "event_start_date", groupInfo.EventStartDate },
-				{ "event_finish_date", groupInfo.EventFinishDate },
-				{ "event_group_id", groupInfo.EventGroupId },
-				{ "public_category", groupInfo.PublicCategory },
-				{ "public_subcategory", groupInfo.PublicSubcategory },
-				{ "public_date", groupInfo.PublicDate },
-				{ "wall", groupInfo.Wall },
-				{ "topics", groupInfo.Topics },
-				{ "photos", groupInfo.Photos },
-				{ "video", groupInfo.Video },
-				{ "audio", groupInfo.Audio },
-				{ "links", groupInfo.Links },
-				{ "events", groupInfo.Events },
-				{ "places", groupInfo.Places },
-				{ "contacts", groupInfo.Contacts },
-				{ "docs", groupInfo.Docs },
-				{ "wiki", groupInfo.Wiki }
-			};
+			var parameters = @params;
 
 			return _vk.Call("groups.edit", parameters);
 		}
@@ -760,12 +729,12 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает список сообществ выбранной категории каталога..
+		/// Возвращает список сообществ выбранной категории каталога.
 		/// </summary>
 		/// <param name="categoryId">Идентификатор категории, полученный в методе groups.getCatalogInfo. положительное число (Положительное число).</param>
 		/// <param name="subcategoryId">Идентификатор подкатегории, полученный в методе groups.getCatalogInfo. положительное число, максимальное значение 99 (Положительное число, максимальное значение 99).</param>
 		/// <returns>
-		/// Возвращает список объектов сообществ в соответствии с выбранной категорией каталога..
+		/// Возвращает список объектов сообществ в соответствии с выбранной категорией каталога.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getCatalog" />.
@@ -781,7 +750,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает список категорий для каталога сообществ..
+		/// Возвращает список категорий для каталога сообществ.
 		/// </summary>
 		/// <param name="extended">1 — вернуть информацию о количестве сообществ в категории и три сообщества для предпросмотра.
 		/// По умолчанию 0. флаг, может принимать значения 1 или 0, по умолчанию 0, доступен начиная с версии 5.37 (Флаг, может принимать значения 1 или 0, по умолчанию 0, доступен начиная с версии 5.37).</param>
@@ -795,7 +764,7 @@ namespace VkNet.Categories
 		///  строка subcategories поле возвращается при использовании subcategories=1. Массив объектов-подкатегорий. Каждый из объектов содержит поля id и name, содержащие идентификатор и название подкатегории.
 		/// Дополнительные поля (extended=1)
 		/// page_count количество сообществ в категории.
-		///  положительное число page_previews массив объектов сообществ для предпросмотра..
+		///  положительное число page_previews массив объектов сообществ для предпросмотра.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getCatalogInfo" />.
