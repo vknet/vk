@@ -32,38 +32,5 @@ namespace VkNet.Enums.SafetyEnums
         /// Предыдущая заявка была отклонена, повторную заявку можно подать не раньше даты, указанной в поле <see cref="ChangeNameRequest.RepeatDate"/>
         /// </summary>
         public static readonly ChangeNameStatus WasDeclined = RegisterPossibleValue("was_declined");
-
-
-        /// <summary>
-        /// Разобрать из json.
-        /// </summary>
-        /// <param name="response">Ответ сервера.</param>
-        /// <returns></returns>
-        internal static ChangeNameStatus FromJson(VkResponse response)
-        {
-            switch (response.ToString())
-            {
-                case "processing":
-                    {
-                        return Processing;
-                    }
-                case "declined":
-                    {
-                        return Declined;
-                    }
-                case "success":
-                    {
-                        return Success;
-                    }
-                case "was_accepted":
-                    {
-                        return WasAccepted;
-                    }
-                default:
-                    {
-                        return WasDeclined;
-                    }
-            }
-        }
-    }
+	}
 }

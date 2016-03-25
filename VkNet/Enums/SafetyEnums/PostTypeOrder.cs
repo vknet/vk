@@ -18,29 +18,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// По посещаемости
 		/// </summary>
 		public static readonly PostTypeOrder Copy = RegisterPossibleValue("copy");
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static PostTypeOrder FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "post":
-					{
-						return Post;
-					}
-				case "copy":
-					{
-						return Copy;
-					}
-				default:
-					{
-						return null;
-					}
-			}
-		}
 	}
 }

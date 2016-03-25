@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;

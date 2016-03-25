@@ -17,29 +17,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// Подборки видеозаписей.
 		/// </summary>
 		public static readonly VideoCatalogType Category = RegisterPossibleValue("category");
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static VideoCatalogType FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "channel":
-					{
-						return Channel;
-					}
-				case "category":
-					{
-						return Category;
-					}
-				default:
-					{
-						return null;
-					}
-			}
-		}
 	}
 }

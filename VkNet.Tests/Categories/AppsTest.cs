@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories

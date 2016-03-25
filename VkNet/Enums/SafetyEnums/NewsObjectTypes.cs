@@ -41,45 +41,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// Аудиозапись.
 		/// </summary>
 		public static readonly NewsObjectTypes Audio = RegisterPossibleValue("audio");
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static NewsObjectTypes FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "wall":
-					{
-						return Wall;
-					}
-				case "tag":
-					{
-						return Tag;
-					}
-				case "profilephoto":
-					{
-						return ProfilePhoto;
-					}
-				case "video":
-					{
-						return Video;
-					}
-				case "photo":
-					{
-						return Photo;
-					}
-				case "audio":
-					{
-						return Audio;
-					}
-				default:
-					{
-						return null;
-					}
-			}
-		}
 	}
 }

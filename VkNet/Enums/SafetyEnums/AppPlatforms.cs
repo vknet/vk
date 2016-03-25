@@ -1,6 +1,4 @@
-﻿using VkNet.Enums.SafetyEnums;
-
-namespace VkNet.Enums
+﻿namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Платформа для которой необходимо вернуть приложения.

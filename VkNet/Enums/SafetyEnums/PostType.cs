@@ -33,40 +33,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// По посещаемости
 		/// </summary>
 		public static readonly PostType Suggest = RegisterPossibleValue("suggest");
-        /// <summary>
-        /// Разобрать из json.
-        /// </summary>
-        /// <param name="response">Ответ сервера.</param>
-        /// <returns></returns>
-        internal static PostType FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "post":
-					{
-						return Post;
-					}
-				case "copy":
-					{
-						return Copy;
-					}
-                case "reply":
-                    {
-                        return Reply;
-                    }
-                case "postpone":
-                    {
-                        return Postpone;
-                    }
-                case "suggest":
-                    {
-                        return Suggest;
-                    }
-                default:
-					{
-						return null;
-					}
-			}
-		}
 	}
 }

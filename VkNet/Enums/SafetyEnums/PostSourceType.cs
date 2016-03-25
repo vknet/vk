@@ -33,42 +33,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// Запись создана посредством отправки SMS-сообщения на специальный номер.
 		/// </summary>
 		public static readonly PostSourceType Sms = RegisterPossibleValue("sms");
-
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static PostSourceType FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "vk":
-					{
-						return Vk;
-					}
-				case "widget":
-					{
-						return Widget;
-					}
-				case "api":
-					{
-						return Api;
-					}
-				case "rss":
-					{
-						return Rss;
-					}
-				case "sms":
-					{
-						return Sms;
-					}
-				default:
-					{
-						return null;
-					}
-			}
-		}
 	}
 }

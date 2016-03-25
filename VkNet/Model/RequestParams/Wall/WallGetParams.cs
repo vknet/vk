@@ -1,8 +1,8 @@
-﻿namespace VkNet.Model.RequestParams
-{
-    using Enums;
+﻿using VkNet.Enums.SafetyEnums;
 
-    using Utils;
+namespace VkNet.Model.RequestParams
+{
+	using Utils;
 
     /// <summary>
     /// Список параметров для метода Wall.Get

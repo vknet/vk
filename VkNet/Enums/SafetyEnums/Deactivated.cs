@@ -24,29 +24,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		[DefaultValue]
 		public static readonly Deactivated Activated = RegisterPossibleValue("activated");
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static Deactivated FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "deleted":
-					{
-						return Deleted;
-					}
-				case "banned":
-					{
-						return Banned;
-					}
-				default:
-				{
-					return Activated;
-				}
-			}
-		}
 	}
 }

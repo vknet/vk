@@ -41,45 +41,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// Новые заметки.
 		/// </summary>
 		public static readonly NewsTypes Note = RegisterPossibleValue("note");
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static NewsTypes FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "post":
-					{
-						return Post;
-					}
-				case "not_banned":
-					{
-						return Photo;
-					}
-				case "processing":
-					{
-						return PhotoTag;
-					}
-				case "WallPhoto":
-					{
-						return WallPhoto;
-					}
-				case "Friend":
-					{
-						return Friend;
-					}
-				case "Note":
-					{
-						return Note;
-					}
-				default:
-					{
-						return null;
-					}
-			}
-		}
 	}
 }

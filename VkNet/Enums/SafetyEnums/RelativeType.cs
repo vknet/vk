@@ -37,41 +37,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// Внук.
 		/// </summary>
 		public static readonly RelativeType Grandchild = RegisterPossibleValue("grandchild");
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static RelativeType FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "sibling":
-					{
-						return Sibling;
-					}
-				case "parent":
-					{
-						return Parent;
-					}
-				case "child":
-					{
-						return Child;
-					}
-				case "grandparent":
-					{
-						return Grandparent;
-					}
-				case "grandchild":
-					{
-						return Grandchild;
-					}
-				default:
-					{
-						return null;
-					}
-			}
-		}
 	}
 }

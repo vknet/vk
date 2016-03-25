@@ -22,33 +22,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// wphone.
 		/// </summary>
 		public static readonly Platform WindowsPhone = RegisterPossibleValue("wphone");
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static Platform FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "android":
-					{
-						return Android;
-					}
-				case "iphone":
-					{
-						return IPhone;
-					}
-				case "wphone":
-					{
-						return WindowsPhone;
-					}
-				default:
-					{
-						return null;
-					}
-			}
-		}
 	}
 }

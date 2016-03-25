@@ -1,7 +1,6 @@
-﻿using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
+﻿using VkNet.Utils;
 
-namespace VkNet.Enums
+namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Способ сортировки приложений

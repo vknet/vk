@@ -69,17 +69,19 @@
     <Compile Include="Categories\GiftsTest.cs" />
     <Compile Include="Categories\WallCategoryTest.cs" />
     <Compile Include="Enum\BirthdayVisibilityTest.cs" />
-    <Compile Include="Enum\SafetyEnums\CommentsSortTest.cs" />
     <Compile Include="Enum\FriendStatusTest.cs" />
     <Compile Include="Enum\Filters\GroupsFieldsTest.cs" />
     <Compile Include="Enum\Filters\GroupsFiltersTest.cs" />
-    <Compile Include="Enum\SafetyEnums\GroupTypeTest.cs" />
     <Compile Include="Enum\Filters\ProfileFieldsTest.cs" />
     <Compile Include="Enum\Filters\SettingsTest.cs" />
     <Compile Include="Categories\FriendsCategoryTest.cs" />
     <Compile Include="Categories\UsersCategoryTest.cs" />
     <Compile Include="Enum\Filters\VideoFiltersTest.cs" />
-    <Compile Include="Enum\SafetyEnums\PhotoAlbumTypeTest.cs" />
+    <Compile Include="Enum\SafetyEnums\SafetyEnumTests.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SafetyEnumTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="Helper\DateHelper.cs" />
     <Compile Include="VkApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,7 +98,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Enum\SafetyEnums\SafetyEnumTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SafetyEnumTests.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

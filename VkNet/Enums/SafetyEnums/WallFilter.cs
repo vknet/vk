@@ -1,7 +1,6 @@
-﻿using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
+﻿using VkNet.Utils;
 
-namespace VkNet.Enums
+namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Фильтр для задания типов сообщений, которые необходимо получить со стены.
@@ -16,7 +15,7 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Необходимо получить сообщения на стене не от владельца стены.
 		/// </summary>
-		public static readonly WallFilter Others = RegisterPossibleValue("Others");
+		public static readonly WallFilter Others = RegisterPossibleValue("others");
 
 		/// <summary>
 		/// Необходимо получить все сообщения на стене (Owner + Others).

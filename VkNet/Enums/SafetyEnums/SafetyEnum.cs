@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
@@ -12,10 +13,8 @@ namespace VkNet.Enums.SafetyEnums
     /// <typeparam name="TFilter">Непосредственно наследник</typeparam>
     [Serializable]
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
-    public class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
+    public abstract class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
 	{
-        // TODO сделать парсинг строки и возвращать значение если оно есть
-
 		/// <summary>
 		/// Аналог enum, типобезопасен.
 		/// </summary>
@@ -63,6 +62,8 @@ namespace VkNet.Enums.SafetyEnums
 			get { return _mask; }
 		}
 
+	    protected string Value => PossibleValues[Mask];
+
 		/// <summary>
 		/// Регистрирует возможное значение.
 		/// </summary>
@@ -76,6 +77,13 @@ namespace VkNet.Enums.SafetyEnums
 			{
 				throw new ArgumentException("Mask must be a power of 2 (i.e. only one bit must be equal to 1)", "mask");
 			}
+
+			if (PossibleValues.ContainsValue(value))
+			{
+				var result = PossibleValues.FirstOrDefault(o => o.Value == value);
+				return new TFilter { _mask = result.Key };
+			}
+
 			PossibleValues.Add(mask, value);
 
 			return CreateFromMask(mask);
@@ -95,6 +103,12 @@ namespace VkNet.Enums.SafetyEnums
 			if (mask == 0 || (mask & (mask - 1)) != 0)
 			{
 				throw new ArgumentException("Mask must be a power of 2 (i.e. only one bit must be equal to 1)", "mask");
+			}
+
+			if (PossibleValues.ContainsValue(value))
+			{
+				var result = PossibleValues.FirstOrDefault(o => o.Value == value);
+				return new TFilter { _mask = result.Key };
 			}
 
 			PossibleValues.Add(mask, value);
@@ -141,6 +155,23 @@ namespace VkNet.Enums.SafetyEnums
 		}
 
 		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
+		public static TFilter FromJson(VkResponse response)
+	    {
+		    var value = response.ToString();
+		    if (!PossibleValues.ContainsValue(value))
+		    {
+			    return null;
+		    }
+
+		    var result = PossibleValues.FirstOrDefault(o => o.Value == response.ToString());
+		    return new TFilter { _mask = result.Key };
+	    }
+
+	    /// <summary>
 		/// Сравнение с другим перечислением.
 		/// </summary>
 		/// <param name="other">Другое перечисление.</param>

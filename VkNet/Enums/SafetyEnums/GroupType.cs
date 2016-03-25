@@ -2,8 +2,6 @@
 {
 	using System;
 
-	using Utils;
-
 	/// <summary>
 	/// Тип сообщества
 	/// </summary>
@@ -29,28 +27,5 @@
 		/// Не определено.
 		/// </summary>
 		public static readonly GroupType Undefined = RegisterPossibleValue("undefined");
-
-		internal static GroupType FromJson(VkResponse response)
-		{
-			switch ((string)response)
-			{
-				case "page":
-					{
-						return Page;
-					}
-				case "event":
-					{
-						return Event;
-					}
-				case "group":
-					{
-						return Group;
-					}
-				default:
-					{
-						return Undefined;
-					}
-			}
-		}
 	}
 }

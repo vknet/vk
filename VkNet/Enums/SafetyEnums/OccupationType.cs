@@ -23,33 +23,5 @@ namespace VkNet.Enums.SafetyEnums
 		/// ВУЗ.
 		/// </summary>
 		public static readonly OccupationType University = RegisterPossibleValue("university");
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		internal static OccupationType FromJson(VkResponse response)
-		{
-			switch (response.ToString())
-			{
-				case "work":
-					{
-						return Work;
-					}
-				case "school":
-					{
-						return School;
-					}
-				case "university":
-					{
-						return University;
-					}
-				default:
-					{
-						return null;
-					}
-			}
-		}
 	}
 }
