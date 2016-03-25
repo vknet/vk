@@ -162,16 +162,26 @@ namespace VkNet.Enums.SafetyEnums
 		public static TFilter FromJson(VkResponse response)
 	    {
 		    var value = response.ToString();
-		    if (!PossibleValues.ContainsValue(value))
-		    {
-			    return null;
-		    }
-
-		    var result = PossibleValues.FirstOrDefault(o => o.Value == response.ToString());
-		    return new TFilter { _mask = result.Key };
+		    return FromJson(value);
 	    }
 
-	    /// <summary>
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
+		public static TFilter FromJson(string response)
+		{
+			if (!PossibleValues.ContainsValue(response))
+			{
+				return null;
+			}
+
+			var result = PossibleValues.FirstOrDefault(o => o.Value == response);
+			return new TFilter { _mask = result.Key };
+		}
+
+		/// <summary>
 		/// Сравнение с другим перечислением.
 		/// </summary>
 		/// <param name="other">Другое перечисление.</param>

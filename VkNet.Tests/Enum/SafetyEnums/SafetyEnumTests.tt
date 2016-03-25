@@ -31,7 +31,10 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		[Test]
         public void <#=type.Name #>Test()
         {
-<#GenerateTest(type);#>
+			// get test
+<#GenerateEqualsTest(type);#>
+			// parse test
+<#GenerateParseTest(type);#>
 		}
 
 <#
@@ -42,11 +45,25 @@ namespace VkNet.Tests.Enum.SafetyEnums
 
 <#+
 
-	public void GenerateTest(Type type)
+	public void GenerateEqualsTest(Type type)
 	{
 		foreach (var info in type.GetFields()) {
 #>
 			Assert.That(<#= type.Name#>.<#= info.Name#>.ToString(), Is.EqualTo("<#= info.GetValue(info).ToString()#>"));
+<#+
+		}
+	}
+
+#>
+
+<#+
+
+	public void GenerateParseTest(Type type)
+	{
+		foreach (var info in type.GetFields()) {
+#>
+			var var<#= info.Name #> = <#= type.Name#>.FromJson("<#= info.GetValue(info).ToString()#>");
+			Assert.That(var<#= info.Name #>, Is.EqualTo(<#= type.Name#>.<#= info.Name#>));
 <#+
 		}
 	}
