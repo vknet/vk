@@ -68,8 +68,11 @@
     <Compile Include="Categories\VideoCategoryTest.cs" />
     <Compile Include="Categories\GiftsTest.cs" />
     <Compile Include="Categories\WallCategoryTest.cs" />
-    <Compile Include="Enum\BirthdayVisibilityTest.cs" />
-    <Compile Include="Enum\FriendStatusTest.cs" />
+    <Compile Include="Enum\EnumTests.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="Enum\Filters\GroupsFieldsTest.cs" />
     <Compile Include="Enum\Filters\GroupsFiltersTest.cs" />
     <Compile Include="Enum\Filters\ProfileFieldsTest.cs" />
@@ -99,6 +102,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Enum\EnumTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EnumTests.cs</LastGenOutput>
+    </Content>
     <Content Include="Enum\SafetyEnums\SafetyEnumTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SafetyEnumTests.cs</LastGenOutput>

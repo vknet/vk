@@ -24,7 +24,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 				&& t.BaseType.Name == typeof(SafetyEnum<>).Name
 				&& t.Name != typeof(MultivaluedFilter<>).Name
 		);
-	foreach (var type in safetyEnumTypes)
+	foreach (var type in safetyEnumTypes.OrderBy(o => o.Name))
 	{
 
 #>
