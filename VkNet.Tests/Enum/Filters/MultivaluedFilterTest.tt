@@ -6,14 +6,13 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="VkNet" #>
 <#@ import namespace="VkNet.Enums.Filters" #>
-<#@ import namespace="VkNet.Enums.SafetyEnums" #>
 using NUnit.Framework;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.Filters;
 
 namespace VkNet.Tests.Enum.SafetyEnums
 {
 	[TestFixture]
-    public class SafetyEnumsTest
+    public class MultivaluedFilterTest
     {
 
 <#
@@ -21,8 +20,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		.GetTypes()
 		.Where(
 			t => t.BaseType != null
-				&& t.BaseType.Name == typeof(SafetyEnum<>).Name
-				&& t.Name != typeof(MultivaluedFilter<>).Name
+				&& t.BaseType.Name == typeof(MultivaluedFilter<>).Name
 		);
 	foreach (var type in safetyEnumTypes.OrderBy(o => o.Name))
 	{

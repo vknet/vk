@@ -19,7 +19,9 @@ namespace VkNet.Tests.Enum
 	var safetyEnumTypes = Assembly.GetAssembly(typeof(VkApi))
 		.GetTypes()
 		.Where(
-			t => t.IsEnum && t.Namespace.StartsWith("VkNet"));
+			t => t.IsEnum
+			&& t.Namespace.StartsWith("VkNet")
+		);
 	foreach (var type in safetyEnumTypes.OrderBy(o => o.Name))
 	{
 

@@ -8,7 +8,7 @@
 		/// <summary>
 		/// Страна.
 		/// </summary>
-		public static readonly AccountFields Country = RegisterPossibleValue("Country");
+		public static readonly AccountFields Country = RegisterPossibleValue("country");
 
 		/// <summary>
 		/// Обязательно HTTPS.

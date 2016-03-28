@@ -75,6 +75,11 @@
     </Compile>
     <Compile Include="Enum\Filters\GroupsFieldsTest.cs" />
     <Compile Include="Enum\Filters\GroupsFiltersTest.cs" />
+    <Compile Include="Enum\Filters\MultivaluedFilterTest.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultivaluedFilterTest.tt</DependentUpon>
+    </Compile>
     <Compile Include="Enum\Filters\ProfileFieldsTest.cs" />
     <Compile Include="Enum\Filters\SettingsTest.cs" />
     <Compile Include="Categories\FriendsCategoryTest.cs" />
@@ -105,6 +110,10 @@
     <Content Include="Enum\EnumTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EnumTests.cs</LastGenOutput>
+    </Content>
+    <Content Include="Enum\Filters\MultivaluedFilterTest.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MultivaluedFilterTest.cs</LastGenOutput>
     </Content>
     <Content Include="Enum\SafetyEnums\SafetyEnumTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

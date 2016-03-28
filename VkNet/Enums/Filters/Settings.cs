@@ -45,15 +45,15 @@
         /// </summary>
         public static readonly Settings Pages = RegisterPossibleValue(1 << 7, "pages");
 
-        /// <summary>
-        /// Добавление ссылки на приложение в меню слева.
-        /// </summary>
-        public static readonly Settings AddLinkToLeftMenu = RegisterPossibleValue(1 << 8, "");
+		/// <summary>
+		/// Добавление ссылки на приложение в меню слева.
+		/// </summary>
+		public static readonly Settings AddLinkToLeftMenu = RegisterPossibleValue(1 << 8, "addLinkToLeftMenu");
 
-        /// <summary>
-        /// Доступ к статусу пользователя.
-        /// </summary>
-        public static readonly Settings Status = RegisterPossibleValue(1 << 10, "status");
+		/// <summary>
+		/// Доступ к статусу пользователя.
+		/// </summary>
+		public static readonly Settings Status = RegisterPossibleValue(1 << 10, "status");
 
         /// <summary>
         /// Доступ заметкам пользователя.
