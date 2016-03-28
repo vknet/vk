@@ -3,7 +3,7 @@
     /// <summary>
     /// Возможные значения параметра display, задающего внешний вид окна авторизации.
     /// </summary>
-    internal sealed class Display : SafetyEnum<Display>
+    public sealed class Display : SafetyEnum<Display>
     {
 		/// <summary>
         /// Обычная страница.
