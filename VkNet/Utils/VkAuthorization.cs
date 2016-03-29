@@ -11,9 +11,16 @@
     /// </summary>
     public class VkAuthorization
     {
-        private readonly List<NameValue> _decodedAnswer;
+		/// <summary>
+		/// Список наименования полей.
+		/// </summary>
+		private readonly List<NameValue> _decodedAnswer;
 
-        private VkAuthorization(Uri responseUrl)
+		/// <summary>
+		/// Конструктор.
+		/// </summary>
+		/// <param name="responseUrl">URL ответа.</param>
+		private VkAuthorization(Uri responseUrl)
         {
             _decodedAnswer = Decode(responseUrl);
         }
@@ -81,7 +88,7 @@
         /// <summary>
         /// ID капчи, если она появилась
         /// </summary>
-        public long? CaptchaID
+        public long? CaptchaId
         {
             get
             {
@@ -94,45 +101,84 @@
             }
         }
 
-        private string GetFieldValue(string fieldName)
+		/// <summary>
+		/// Получить значение поля.
+		/// </summary>
+		/// <param name="fieldName">Наименование поля.</param>
+		/// <returns>Значение поля.</returns>
+		private string GetFieldValue(string fieldName)
         {
             return _decodedAnswer.Where(i => i.Name == fieldName).Select(i => i.Value).FirstOrDefault();
         }
 
-        internal sealed class NameValue
+		/// <summary>
+		/// Наименование поля.
+		/// </summary>
+		internal sealed class NameValue
         {
-            public string Name { get; set; }
+			/// <summary>
+			/// Наименование.
+			/// </summary>
+			public string Name { get; set; }
 
-            public string Value { get; set; }
+			/// <summary>
+			/// Значение.
+			/// </summary>
+			public string Value { get; set; }
 
-            public NameValue(string name, string value)
+			/// <summary>
+			/// Конструктор.
+			/// </summary>
+			/// <param name="name">Наименование.</param>
+			/// <param name="value">Значение.</param>
+			public NameValue(string name, string value)
             {
                 Name = name;
                 Value = value;
             }
 
-            public override string ToString()
+			/// <summary>
+			/// Преобразовать в строку.
+			/// </summary>
+			public override string ToString()
             {
-                return string.Format("{0}={1}", Name, Value);
+                return $"{Name}={Value}";
             }
         }
 
-        private static List<NameValue> Decode(Uri url)
+		/// <summary>
+		/// Расшифровывает указанный URL.
+		/// </summary>
+		/// <param name="url">URL.</param>
+		/// <returns>Список наименования полей.</returns>
+		private static List<NameValue> Decode(Uri url)
         {
-            if (!string.IsNullOrEmpty(url.Query))
-                return DecodeQuery(url);
+			if (!string.IsNullOrEmpty(url.Query))
+			{
+				return DecodeQuery(url);
+			}
 
             return DecodeFragment(url);
         }
 
-        private static List<NameValue> DecodeQuery(Uri url)
+		/// <summary>
+		/// Расшифровывает вопрос.
+		/// </summary>
+		/// <param name="url">URL.</param>
+		/// <returns>Список наименования полей.</returns>
+		private static List<NameValue> DecodeQuery(Uri url)
         {
             var urlQuery = url.Query;
             var query = urlQuery.StartsWith("?") || urlQuery.StartsWith("#") ? urlQuery.Substring(1) : urlQuery;
             return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Split('=')).Select(s => new NameValue(s[0], s[1])).ToList();
         }
 
-        private static List<NameValue> DecodeFragment(Uri url)
+		/// <summary>
+		/// Расшифровывает фрагмент.
+		/// </summary>
+		/// <param name="url">URL.</param>
+		/// <returns>Список наименования полей.</returns>
+		private static List<NameValue> DecodeFragment(Uri url)
         {
             var urlQuery = url.Fragment;
             var query = urlQuery.StartsWith("#") ? urlQuery.Substring(1) : urlQuery;

@@ -122,8 +122,8 @@
             }
 
             var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
-            if (authorization.CaptchaID.HasValue)
-                throw new CaptchaNeededException(authorization.CaptchaID.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaID.Value);
+            if (authorization.CaptchaId.HasValue)
+                throw new CaptchaNeededException(authorization.CaptchaId.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaId.Value);
             if (!authorization.IsAuthorizationRequired)
                 return authorization;
 
