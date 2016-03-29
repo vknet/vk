@@ -7,7 +7,7 @@ namespace VkNet.Model.Attachments
 
 	/// <summary>
 	/// Информация о медиавложении в записи.
-	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. 
+	/// См. описание <see href="http://vk.com/dev/attachments_w"/>.
 	/// </summary>
 	[Serializable]
 	public class Attachment
@@ -159,7 +159,6 @@ namespace VkNet.Model.Attachments
 		/// <returns></returns>
 		internal static Attachment FromJson(VkResponse response)
 		{
-			// TODO: Complete it later
 			var attachment = new Attachment();
 
 			string type = response["type"];

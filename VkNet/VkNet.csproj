@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\ExecuteCategory.cs" />
     <Compile Include="Categories\Obsolete\AccountCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\AudioCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\FriendsCategory.Obsolete.cs" />
@@ -367,6 +368,7 @@
     <Compile Include="Utils\DefaultValueAttribute.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
+    <Compile Include="Utils\ErrorCode.cs" />
     <Compile Include="Utils\IVkModel.cs" />
     <Compile Include="Utils\ModelToVkParametrsCastGenerator.cs">
       <AutoGen>True</AutoGen>

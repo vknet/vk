@@ -127,13 +127,6 @@
         /// <exception cref="VkApiException">
         /// Неправильный данные JSON.
         /// </exception>
-        /// <exception cref="CaptchaNeededException"></exception>
-        /// <exception cref="UserAuthorizationFailException"></exception>
-        /// <exception cref="InvalidParameterException"></exception>
-        /// <exception cref="TooManyRequestsException"></exception>
-        /// <exception cref="AccessDeniedException"></exception>
-        /// <exception cref="PostLimitException"></exception>
-        /// <exception cref="VkNet.Exception.OutOfLimitsException"></exception>
         public static void IfErrorThrowException(string json)
         {
             JObject obj;
@@ -155,62 +148,54 @@
 
             switch (code)
             {
-                case 14:
+                case ErrorCode.CaptchaNeeded:
                 {
                     var sid = Convert.ToInt64((string) response["captcha_sid"]);
                     var img = Convert.ToString(response["captcha_img"]);
                     throw new CaptchaNeededException(sid, img);
                 }
-                case 17:
+                case ErrorCode.NeedValidationOfUser:
                 {
                     var redirectUri = Convert.ToString(response["redirect_uri"]);
                     throw new NeedValidationException(message, redirectUri);
                 }
-                case 5:
+                case ErrorCode.AuthorizationFailed:
                 {
                     throw new UserAuthorizationFailException(message, code);
                 }
 
-                case 4: // Incorrect signature.
-                case 113: // Invalid user id.
-                case 125: // Invalid group id.
-                case 100: // One of the parameters specified was missing or invalid.
-                case 120:
+                case ErrorCode.InvalidSignature:
+                case ErrorCode.InvalidUserId:
+                case ErrorCode.InvalidGroupId:
+                case ErrorCode.ParameterMissingOrInvalid:
+                case ErrorCode.InvalidParameter:
                 {
-                    // Invalid message.
                     throw new InvalidParameterException(message, code);
                 }
-                case 6:
+                case ErrorCode.TooManyRequestsPerSecond:
                 {
-                    // Too many requests per second.
                     throw new TooManyRequestsException(message, code);
                 }
-                case 7: // Permission to perform this action is denied by user.
-				case 15: // Access denied: 1) groups list of this user are under privacy.	2) cannot blacklist yourself
-				case 148: // Access to the menu of the user denied
-                case 170: // Access to user's friends list denied.
-                case 201: // Access denied.
-                case 203: // Access to the group is denied.
-                case 220: // Access to status denied.
-                case 221: // User disabled track name broadcast.
-                case 260: // Access to the groups list is denied due to the user's privacy settings.
-                case 500:
+                case ErrorCode.PermissionToPerformThisAction:
+				case ErrorCode.CannotBlacklistYourself:
+				case ErrorCode.AccessToMenuDenied:
+                case ErrorCode.UserAccessDenied:
+                case ErrorCode.AudioAccessDenied:
+                case ErrorCode.GroupAccessDenied:
+                case ErrorCode.StatusAccessDenied:
+                case ErrorCode.UserDisabledTrackNameBroadcast:
+                case ErrorCode.GroupsListAccessDenied:
+                case ErrorCode.PermissionDenied:
                 {
                     // Permission denied. You must enable votes processing in application settings.
                     throw new AccessDeniedException(message, code);
                 }
-                case 214:
+                case ErrorCode.AccessToAddingPostDenied:
                 {
                     // Access to adding post denied: you can only add 50 posts a day.
                     throw new PostLimitException(message);
                 }
-                /*
-                case 1: // Unknown error occurred.
-                case 2: // Application is disabled. Enable your application or use test mode.
-                case 10: // Internal server error.
-                case 202:
-                 */
-                case 103:
+				case ErrorCode.OutOfLimits:
                 {
                     throw new OutOfLimitsException(message);
                 }
