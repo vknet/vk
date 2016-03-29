@@ -29,6 +29,8 @@ namespace VkNet.Model.RequestParams
 			Long = null;
 			PlaceId = null;
 			PostId = null;
+			CaptchaSid = null;
+			CaptchaKey = null;
 		}
 
 
@@ -55,29 +57,29 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Список объектов, приложенных к записи и разделённых символом ",". Поле attachments представляется в формате:
 		/// &lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt;,&lt;type&gt;&lt;owner_id&gt;_&lt;media_id&gt;
-		///  
-		/// &lt;type&gt; — тип медиа-приложения: 
-		/// 
-		/// photo — фотография; 
-		/// video — видеозапись ; 
-		/// audio — аудиозапись; 
-		/// doc — документ; 
-		/// page — wiki-страница; 
-		/// note — заметка; 
-		/// poll — опрос. 
-		/// album — альбом. 
-		/// 
-		/// &lt;owner_id&gt; — идентификатор владельца медиа-приложения (обратите внимание, если объект находится в сообществе, этот параметр должен быть отрицательным). 
-		/// &lt;media_id&gt; — идентификатор медиа-приложения. 
-		/// 
+		///
+		/// &lt;type&gt; — тип медиа-приложения:
+		///
+		/// photo — фотография;
+		/// video — видеозапись ;
+		/// audio — аудиозапись;
+		/// doc — документ;
+		/// page — wiki-страница;
+		/// note — заметка;
+		/// poll — опрос.
+		/// album — альбом.
+		///
+		/// &lt;owner_id&gt; — идентификатор владельца медиа-приложения (обратите внимание, если объект находится в сообществе, этот параметр должен быть отрицательным).
+		/// &lt;media_id&gt; — идентификатор медиа-приложения.
+		///
 		/// Например:
 		/// photo100172_166443618,photo66748_265827614
-		/// 
+		///
 		/// Также в поле attachments может быть указана ссылка на внешнюю страницу, которую Вы хотите разместить в записи, например:
 		/// photo66748_265827614,http://habrahabr.ru
-		/// 
-		/// При попытке приложить больше одной ссылки будет возвращена ошибка. 
-		/// 
+		///
+		/// При попытке приложить больше одной ссылки будет возвращена ошибка.
+		///
 		/// Параметр является обязательным, если не задан параметр message. список строк, разделенных через запятую.
 		/// </summary>
 		public IEnumerable<MediaAttachment> Attachments { get; set; }
@@ -118,13 +120,23 @@ namespace VkNet.Model.RequestParams
 		public long? PostId { get; set; }
 
 		/// <summary>
+		/// Идентификатор капчи
+		/// </summary>
+		public long? CaptchaSid { get; set; }
+
+		/// <summary>
+		/// Текст капчи, который ввел пользователь
+		/// </summary>
+		public string CaptchaKey { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
 		internal static VkParameters ToVkParameters(WallPostParams p)
 		{
-			var parameters = new VkParameters
+			var result = new VkParameters
 			{
 				{ "owner_id", p.OwnerId },
 				{ "friends_only", p.FriendsOnly },
@@ -137,10 +149,12 @@ namespace VkNet.Model.RequestParams
 				{ "lat", p.Lat },
 				{ "long", p.Long },
 				{ "place_id", p.PlaceId },
-				{ "post_id", p.PostId }
+				{ "post_id", p.PostId },
+				{ "captcha_sid", p.CaptchaSid },
+				{ "captcha_key", p.CaptchaKey }
 			};
 
-			return parameters;
+			return result;
 		}
 	}
 }

@@ -73,18 +73,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EnumTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Enum\Filters\GroupsFieldsTest.cs" />
-    <Compile Include="Enum\Filters\GroupsFiltersTest.cs" />
     <Compile Include="Enum\Filters\MultivaluedFilterTest.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MultivaluedFilterTest.tt</DependentUpon>
     </Compile>
-    <Compile Include="Enum\Filters\ProfileFieldsTest.cs" />
-    <Compile Include="Enum\Filters\SettingsTest.cs" />
     <Compile Include="Categories\FriendsCategoryTest.cs" />
     <Compile Include="Categories\UsersCategoryTest.cs" />
-    <Compile Include="Enum\Filters\VideoFiltersTest.cs" />
     <Compile Include="Enum\SafetyEnums\SafetyEnumTests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
