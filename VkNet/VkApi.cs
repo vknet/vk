@@ -213,6 +213,11 @@
 		/// API для работы с Авторизацией.
 		/// </summary>
 		public AuthCategory Auth { get; set; }
+
+		/// <summary>
+		/// API для работы с универсальным методом.
+		/// </summary>
+		public ExecuteCategory Execute { get; private set; }
 		#endregion
 
 		/// <summary>
@@ -273,11 +278,13 @@
             Stats = new StatsCategory(this);
             Auth = new AuthCategory(this);
 			Markets = new MarketsCategory(this);
+			Execute = new ExecuteCategory(this);
 
             RequestsPerSecond = 3;
         }
 
-        /// <summary>
+
+	    /// <summary>
         /// Авторизация и получение токена
         /// </summary>
         /// <param name="params">Данные авторизации</param>
@@ -481,11 +488,6 @@
             if (!parameters.ContainsKey("v"))
             {
 	            parameters.Add("v", !string.IsNullOrEmpty(apiVersion) ? apiVersion : VkApiVersion);
-            }
-            else
-            {
-                //TODO: WARN: рас комментировать, исправив ошибки в существующем коде
-                //throw new InvalidParameterException("You must use ApiVersionAttribute except adding \"v\" parameter to VkParameters");
             }
 
             return Call(methodName, parameters, skipAuthorization);

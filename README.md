@@ -18,5 +18,14 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 - [x] Добавить в справку примеры использования, для реализованых методов. (Примеры были сгенерированы автоматически, возможно потребуется исправление)
 - [x] Проверить реализованные классы и добавить недостающие методы
 
---------------------------------------------
+#Credits
+
+Большое спасибо следующим организациям и проектам, работа которых имеет важное значение для развития проекта:
+- [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
+- [Json.Net](http://www.newtonsoft.com/json)
+- [HtmlAgilityPack](http://htmlagilitypack.codeplex.com/)
+- [NUnit](http://www.nunit.org/)
+- [Moq](https://github.com/moq/moq4)
+
+----------------------------------------------------------------------------------------------------------------------------------
 Пожертвование на развитие проекта [@inyutin-maxim](https://github.com/inyutin-maxim): [PayPal](https://paypal.me/inyutinmaxim) или [Яндекс.Деньги](https://money.yandex.ru/to/410012783295317).

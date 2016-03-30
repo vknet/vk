@@ -211,7 +211,6 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Video> GetUserVideos(long? userId, long? offset, long? count, bool? extended)
 		{
-			// TODO ЭТОТ МЕТОД ВЫБРАСЫВАЕТ ИСКЛЮЧЕНИЕ НА СЕРВЕРЕ ВК!!!
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
