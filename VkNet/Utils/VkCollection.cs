@@ -8,28 +8,23 @@ namespace VkNet.Utils
 	/// Коллекция данных возвращенных от vk.com
 	/// </summary>
 	/// <typeparam name="T">Тип данных.</typeparam>
-	public class VkCollection<T> : ReadOnlyCollectionBase, IEnumerable<T> where T : class, IVkModel, new()
+	public class VkCollection<T> : ReadOnlyCollectionBase, IEnumerable<T>
 	{
 		/// <summary>
 		/// Общее количество элементов.
 		/// </summary>
-		public ulong TotalCount { get; set; }
+		public ulong TotalCount { get; private set; }
 
 		/// <summary>
 		/// Конструктор.
 		/// </summary>
-		/// <param name="response">Ответ от сервера.</param>
-		public VkCollection(VkResponse response)
+		/// <param name="totalCount">Общее количество.</param>
+		/// <param name="list">Список элементов.</param>
+		public VkCollection(ulong totalCount, IEnumerable<T> list)
 		{
-			if (response.ContainsKey("count"))
-			{
-				TotalCount = response["count"];
-			}
+			TotalCount = totalCount;
 
-			if (response.ContainsKey("items"))
-			{
-				InnerList.AddRange(response["items"].ToReadOnlyCollectionOf(o => (T)new T().FromJson(o)));
-			}
+			InnerList.AddRange(list.ToArray());
 		}
 
 		/// <summary>
