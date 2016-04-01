@@ -8,15 +8,15 @@ namespace VkNet.Model
 	/// </summary>
 	public class UserOrGroup
 	{
-        /// <summary>
+		/// <summary>
 		/// Общее количество элементов.
 		/// </summary>
-		public ulong TotalCount { get; set; }
+		public ulong TotalCount { get;  private set; }
 
-        /// <summary>
-        /// Список пользователей.
-        /// </summary>
-        public List<User> Users { get; set; }
+		/// <summary>
+		/// Список пользователей.
+		/// </summary>
+		public List<User> Users { get; set; }
 
 		/// <summary>
 		/// Список групп.
@@ -31,18 +31,18 @@ namespace VkNet.Model
 		/// <exception cref="System.Exception">"Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"</exception>
 		internal static UserOrGroup FromJson(VkResponse response)
 		{
-            var userOrGroup = new UserOrGroup
+			var userOrGroup = new UserOrGroup
 			{
 				Users = new List<User>(),
 				Groups = new List<Group>()
 			};
 
-		    if (response.ContainsKey("count"))
-		    {
-		        userOrGroup.TotalCount = response["count"];
-            }
+			if (response.ContainsKey("count"))
+			{
+				userOrGroup.TotalCount = response["count"];
+			}
 
-		    VkResponseArray result = response;
+			VkResponseArray result = response;
 			foreach (var item in result)
 			{
 				switch (item["type"].ToString())
