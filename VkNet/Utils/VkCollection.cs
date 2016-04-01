@@ -13,12 +13,13 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Общее количество элементов.
 		/// </summary>
-		public ulong TotalCount { get; set; }
+		public ulong TotalCount { get; private set; }
 
 		/// <summary>
 		/// Конструктор.
 		/// </summary>
-		/// <param name="response">Ответ от сервера.</param>
+		/// <param name="totalCount">Общее количество.</param>
+		/// <param name="list">Список элементов.</param>
 		public VkCollection(ulong totalCount, IEnumerable<T> list)
 		{
 			TotalCount = totalCount;
