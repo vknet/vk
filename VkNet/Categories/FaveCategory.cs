@@ -346,7 +346,7 @@ namespace VkNet.Categories
 				{ "extended", extended }
 			};
 
-			return new VkCollection<Market>(_vk.Call("fave.getMarketItems", parameters));
+			return _vk.Call("fave.getMarketItems", parameters).ToVkCollectionOf<Market>(x => x);
 		}
 	}
 }

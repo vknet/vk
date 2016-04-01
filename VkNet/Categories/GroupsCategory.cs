@@ -747,7 +747,7 @@ namespace VkNet.Categories
 				{ "subcategory_id", subcategoryId }
 			};
 
-			return new VkCollection<Group>(_vk.Call("groups.getCatalog", parameters, true));
+			return _vk.Call("groups.getCatalog", parameters, true).ToVkCollectionOf<Group>(x => x);
 		}
 
 		/// <summary>

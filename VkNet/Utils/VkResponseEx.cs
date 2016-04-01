@@ -79,5 +79,25 @@
 
             return responses.Select(selector).ToList();
         }
-    }
+		// --------------------------------------------------------------------------------------------
+
+		public static VkCollection<T> ToVkCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector)
+		{
+			if (response == null)
+			{
+				return new VkCollection<T>(0, Enumerable.Empty<T>());
+			}
+
+			ulong totalCount = 0;
+
+			if (response.ContainsKey("count"))
+			{
+				totalCount = response["count"];
+			}
+
+			VkResponseArray data = response.ContainsKey("items") ? response["items"] : response;
+
+			return new VkCollection<T>(totalCount, data.ToCollectionOf<T>(selector));
+		}
+	}
 }
