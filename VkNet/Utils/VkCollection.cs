@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace VkNet.Utils
@@ -8,7 +8,7 @@ namespace VkNet.Utils
 	/// Коллекция данных возвращенных от vk.com
 	/// </summary>
 	/// <typeparam name="T">Тип данных.</typeparam>
-	public class VkCollection<T> : ReadOnlyCollectionBase, IEnumerable<T>
+	public class VkCollection<T> : ReadOnlyCollection<T>, IEnumerable<T>
 	{
 		/// <summary>
 		/// Общее количество элементов.
@@ -20,18 +20,16 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="totalCount">Общее количество.</param>
 		/// <param name="list">Список элементов.</param>
-		public VkCollection(ulong totalCount, IEnumerable<T> list)
+		public VkCollection(ulong totalCount, IEnumerable<T> list) : base(list.ToList())
 		{
 			TotalCount = totalCount;
-
-			InnerList.AddRange(list.ToArray());
 		}
 
 		/// <summary>
 		/// Текущий элемент.
 		/// </summary>
 		/// <param name="index">Индекс.</param>
-		public T this[int index] => (T)InnerList[index];
+		public new T this[int index] => Items[index];
 
 		/// <summary>
 		/// Возвращает перечислитель, выполняющий итерацию в коллекции.
@@ -39,6 +37,6 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Интерфейс <see cref="T:System.Collections.Generic.IEnumerator`1"/>, который может использоваться для перебора элементов коллекции.
 		/// </returns>
-		public new IEnumerator<T> GetEnumerator() => InnerList.Cast<T>().GetEnumerator();
+		public new IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
 	}
 }
