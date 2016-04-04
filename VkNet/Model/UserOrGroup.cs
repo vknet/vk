@@ -9,6 +9,11 @@ namespace VkNet.Model
 	public class UserOrGroup
 	{
 		/// <summary>
+		/// Общее количество элементов.
+		/// </summary>
+		public ulong TotalCount { get;  private set; }
+
+		/// <summary>
 		/// Список пользователей.
 		/// </summary>
 		public List<User> Users { get; set; }
@@ -31,6 +36,12 @@ namespace VkNet.Model
 				Users = new List<User>(),
 				Groups = new List<Group>()
 			};
+
+			if (response.ContainsKey("count"))
+			{
+				userOrGroup.TotalCount = response["count"];
+			}
+
 			VkResponseArray result = response;
 			foreach (var item in result)
 			{
