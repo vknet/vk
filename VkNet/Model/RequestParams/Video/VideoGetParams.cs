@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -69,7 +70,7 @@ namespace VkNet.Model.RequestParams
 			var parameters = new VkParameters
 			{
 				{ "owner_id", p.OwnerId },
-				{ "videos", p.Videos },
+				{ "videos", p.Videos.Select(o => $"{o.OwnerId}_{o.Id}") },
 				{ "album_id", p.AlbumId },
 				{ "count", p.Count },
 				{ "offset", p.Offset },

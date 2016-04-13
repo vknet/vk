@@ -173,6 +173,11 @@ namespace VkNet.Model.Attachments
 	        return result;
         }
 
-        #endregion
+		public override string ToString()
+		{
+			return $"video{OwnerId}_{Id}";
+		}
+
+		#endregion
     }
 }
