@@ -52,6 +52,16 @@ namespace VkNet.Model.RequestParams
 		{ get; set; }
 
 		/// <summary>
+		/// Идентификатор капчи
+		/// </summary>
+		public long? CaptchaSid { get; set; }
+
+		/// <summary>
+		/// Текст капчи, который ввел пользователь
+		/// </summary>
+		public string CaptchaKey { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
@@ -66,8 +76,10 @@ namespace VkNet.Model.RequestParams
                 { "count", p.Count },
                 { "filter", p.Filter },
                 { "extended", p.Extended },
-                { "fields", p.Fields }
-            };
+                { "fields", p.Fields },
+				{ "captcha_sid", p.CaptchaSid },
+				{ "captcha_key", p.CaptchaKey }
+			};
         }
     }
 }
