@@ -229,13 +229,9 @@
         /// <summary>
         /// Была ли произведена авторизация каким либо образом
         /// </summary>
-        public bool IsAuthorized
-        {
-            private get { return !string.IsNullOrWhiteSpace(AccessToken); }
-            set {}
-        }
+        public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
 
-        /// <summary>
+	    /// <summary>
         /// Токен для доступа к методам API
         /// </summary>
         private string AccessToken
