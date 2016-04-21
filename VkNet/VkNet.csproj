@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Categories\ExecuteCategory.cs" />
     <Compile Include="Categories\Obsolete\AccountCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\AppsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\AudioCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\FriendsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\GroupsCategory.Obsolete.cs" />
