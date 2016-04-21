@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -27,7 +26,6 @@ namespace VkNet.Categories
 			_vk = vk;
 		}
 
-
 		/// <summary>
 		/// Метод возвращает список товаров в сообществе.
 		/// </summary>
@@ -43,7 +41,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.get" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
+		public VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -53,7 +51,7 @@ namespace VkNet.Categories
 				{ "extended", extended }
 			};
 
-			return _vk.Call("market.get", parameters).ToReadOnlyCollectionOf<Market>(x => x);
+			return _vk.Call("market.get", parameters).ToVkCollectionOf<Market>(x => x);
 		}
 
 		/// <summary>
@@ -68,16 +66,15 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false)
+		public VkCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false)
 		{
 			var parameters = new VkParameters {
 				{ "item_ids", itemIds },
 				{ "extended", extended }
 			};
 
-			return _vk.Call("market.getById", parameters).ToReadOnlyCollectionOf<Market>(x => x);
+			return _vk.Call("market.getById", parameters).ToVkCollectionOf<Market>(x => x);
 		}
-
 
 		/// <summary>
 		/// Поиск товаров в каталоге сообщества.
@@ -90,11 +87,10 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Market> Search(MarketSearchParams @params)
+		public VkCollection<Market> Search(MarketSearchParams @params)
 		{
-			return _vk.Call("market.search", @params).ToReadOnlyCollectionOf<Market>(x => x);
+			return _vk.Call("market.search", @params).ToVkCollectionOf<Market>(x => x);
 		}
-
 
 		/// <summary>
 		/// Возвращает список подборок с товарами.
@@ -109,7 +105,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getAlbums" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
+		public VkCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -117,9 +113,8 @@ namespace VkNet.Categories
 				{ "count", count }
 			};
 
-			return _vk.Call("market.getAlbums", parameters).ToReadOnlyCollectionOf<MarketAlbum>(x => x);
+			return _vk.Call("market.getAlbums", parameters).ToVkCollectionOf<MarketAlbum>(x => x);
 		}
-
 
 		/// <summary>
 		/// Метод возвращает данные подборки с товарами.
@@ -133,18 +128,15 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getAlbumById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<MarketAlbum> GetAlbumById(long ownerId, IEnumerable<long> albumIds)
+		public VkCollection<MarketAlbum> GetAlbumById(long ownerId, IEnumerable<long> albumIds)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
 				{ "album_ids", albumIds }
 			};
 
-			return _vk.Call("market.getAlbumById", parameters).ToReadOnlyCollectionOf<MarketAlbum>(x => x);
+			return _vk.Call("market.getAlbumById", parameters).ToVkCollectionOf<MarketAlbum>(x => x);
 		}
-
-
-
 
 		/// <summary>
 		/// Создает новый комментарий к товару.
@@ -162,8 +154,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.createComment", @params);
 		}
 
-
-
 		/// <summary>
 		/// Возвращает список комментариев к товару.
 		/// </summary>
@@ -175,11 +165,10 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getComments" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<MarketComment> GetComments(MarketGetCommentsParams @params)
+		public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params)
 		{
-			return _vk.Call("market.getComments", @params).ToReadOnlyCollectionOf<MarketComment>(x => x);
+			return _vk.Call("market.getComments", @params).ToVkCollectionOf<MarketComment>(x => x);
 		}
-
 
 		/// <summary>
 		/// Удаляет комментарий к товару.
@@ -203,7 +192,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.deleteComment", parameters);
 		}
 
-
 		/// <summary>
 		/// Восстанавливает удаленный комментарий к товару.
 		/// </summary>
@@ -225,7 +213,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.restoreComment", parameters);
 		}
-
 
 		/// <summary>
 		/// Изменяет текст комментария к товару.
@@ -253,7 +240,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.editComment", parameters);
 		}
 
-
 		/// <summary>
 		/// Позволяет оставить жалобу на комментарий к товару.
 		/// </summary>
@@ -277,7 +263,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.reportComment", parameters);
 		}
-
 
 		/// <summary>
 		/// Позволяет отправить жалобу на товар.
@@ -319,7 +304,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.add", @params)["market_item_id"];
 		}
 
-
 		/// <summary>
 		/// Редактирует товар.
 		/// </summary>
@@ -335,7 +319,6 @@ namespace VkNet.Categories
 		{
 			return _vk.Call("market.edit", @params);
 		}
-
 
 		/// <summary>
 		/// Удаляет товар.
@@ -359,7 +342,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.delete", parameters);
 		}
 
-
 		/// <summary>
 		/// Восстанавливает удаленный товар.
 		/// </summary>
@@ -381,7 +363,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.restore", parameters);
 		}
-
 
 		/// <summary>
 		/// Изменяет положение товара в подборке.
@@ -411,7 +392,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.reorderItems", parameters);
 		}
 
-
 		/// <summary>
 		/// Изменяет положение подборки с товарами в списке.
 		/// </summary>
@@ -437,7 +417,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.reorderAlbums", parameters);
 		}
-
 
 		/// <summary>
 		/// Добавляет новую подборку с товарами.
@@ -465,7 +444,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.addAlbum", parameters)["market_album_id"];
 		}
 
-
 		/// <summary>
 		/// Редактирует подборку с товарами.
 		/// </summary>
@@ -492,7 +470,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.editAlbum", parameters);
 		}
 
-
 		/// <summary>
 		/// Удаляет подборку с товарами.
 		/// </summary>
@@ -514,7 +491,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.deleteAlbum", parameters);
 		}
-
 
 		/// <summary>
 		/// Удаляет товар из одной или нескольких выбранных подборок.
@@ -540,7 +516,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.removeFromAlbum", parameters);
 		}
 
-
 		/// <summary>
 		/// Добавляет товар в одну или несколько выбранных подборок.
 		/// </summary>
@@ -565,7 +540,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.addToAlbum", parameters);
 		}
 
-
 		/// <summary>
 		/// Возвращает список категорий для товаров..
 		/// </summary>
@@ -578,14 +552,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getCategories" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<MarketCategory> GetCategories(long? count, long? offset)
+		public VkCollection<MarketCategory> GetCategories(long? count, long? offset)
 		{
 			var parameters = new VkParameters {
 				{ "count", count },
 				{ "offset", offset }
 			};
 
-			return _vk.Call("market.getCategories", parameters).ToReadOnlyCollectionOf<MarketCategory>(x => x);
+			return _vk.Call("market.getCategories", parameters).ToVkCollectionOf<MarketCategory>(x => x);
 		}
 	}
 }
