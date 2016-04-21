@@ -205,6 +205,32 @@ namespace VkNet.Categories
             };
 
             return Edit(parameters);
-        }
-    }
+		}
+
+		/// <summary>
+		/// Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
+		/// </summary>
+		/// <param name="params">Критерии поиска</param>
+		/// <param name="totalCount">Общее кол-во аудиозаписей, найденных по этим критериям</param>
+		/// <returns>Список объектов класса Audio.</returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Данный метод устарел. Используйте Search(AudioSearchParams @params)")]
+		public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out long totalCount)
+		{
+			if (string.IsNullOrEmpty(@params.Query))
+			{
+				throw new ArgumentNullException("Query is null or empty.", "query");
+			}
+
+			var response = Search(@params);
+
+			totalCount = Convert.ToInt64(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+	}
 }
