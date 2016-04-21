@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Security.Policy;
-using VkNet.Model.Attachments;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
@@ -13,6 +9,9 @@ namespace VkNet.Categories
 	using Model;
 	using Utils;
 	using Model.RequestParams;
+	using System.Linq;
+
+	using Model.Attachments;
 
 	/// <summary>
 	/// Методы для работы с сообществами (группами).
@@ -80,16 +79,16 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Group> Get(GroupsGetParams @params)
+		public VkCollection<Group> Get(GroupsGetParams @params)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.UserId);
 			var response = _vk.Call("groups.get", @params, true);
 			// в первой записи количество членов группы для (response["items"])
 			if (@params.Extended == null || !@params.Extended.Value)
 			{
-				return response["items"].ToReadOnlyCollectionOf(id => new Group { Id = id });
+				return response.ToVkCollectionOf(id => new Group { Id = id });
 			}
-			return response["items"].ToReadOnlyCollectionOf<Group>(r => r);
+			return response.ToVkCollectionOf<Group>(r => r);
 		}
 
 		/// <summary>
@@ -120,7 +119,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список участников сообщества.
 		/// </summary>
-		/// <param name="totalCount">Общее количество участников.</param>
 		/// <param name="params">Входные параметры выборки.</param>
 		/// <returns>
 		/// Возвращает общее количество участников сообщества count и список идентификаторов пользователей items.
@@ -134,12 +132,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetMembers(out int totalCount, GroupsGetMembersParams @params)
+		public VkCollection<User> GetMembers(GroupsGetMembersParams @params)
 		{
-			var response = _vk.Call("groups.getMembers", @params, true);
-			totalCount = response["count"];
-			VkResponseArray users = response["items"];
-			return users.ToReadOnlyCollectionOf<User>(x => @params.Fields != null? x : new User {Id = x});
+			return _vk.Call("groups.getMembers", @params, true).ToVkCollectionOf(x => @params.Fields != null? x : new User {Id = x});
 		}
 
 		/// <summary>
@@ -205,7 +200,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Осуществляет поиск сообществ по заданной подстроке.
 		/// </summary>
-		/// <param name="totalCount">Общее количество групп удовлетворяющих запросу.</param>
 		/// <param name="params">Входные параметры выборки.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов group.
@@ -214,13 +208,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Group> Search(out int totalCount, GroupsSearchParams @params)
+		public VkCollection<Group> Search(GroupsSearchParams @params)
 		{
-			var response = _vk.Call("groups.search", @params, true);
-
-			totalCount = response["count"];
-
-			return response["items"].ToReadOnlyCollectionOf<Group>(r => r);
+			return _vk.Call("groups.search", @params, true).ToVkCollectionOf<Group>(r => r);
 		}
 
 		/// <summary>
@@ -237,7 +227,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvites" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Group> GetInvites( long? count, long? offset, bool? extended = null)
+		public VkCollection<Group> GetInvites(long? count, long? offset, bool? extended = null)
 		{
 			var parameters = new VkParameters {
 				{ "offset", offset },
@@ -245,39 +235,7 @@ namespace VkNet.Categories
 				{ "extended", extended }
 			};
 
-			return _vk.Call("groups.getInvites", parameters).ToReadOnlyCollectionOf<Group>(x => x);
-		}
-
-		/// <summary>
-		/// Добавляет пользователя в черный список группы.
-		/// </summary>
-		/// <param name="groupId">Идентификатор группы.</param>
-		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в черный список.</param>
-		/// <param name="endDate">Дата завершения срока действия бана. Если параметр не указан пользователь будет заблокирован навсегда.</param>
-		/// <param name="reason">Причина бана <see cref="BanReason"/>.</param>
-		/// <param name="comment">Текст комментария к бану.</param>
-		/// <param name="commentVisible"><see langword="true"/> – текст комментария будет отображаться пользователю. false – текст комментария не доступен
-		/// пользователю (по умолчанию).</param>
-		/// <returns>После успешного выполнения возвращает true.</returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.banUser"/>.
-		/// </remarks>
-		public bool BanUser(long groupId, long userId, DateTime? endDate = null, BanReason? reason = null,
-							string comment = "", bool commentVisible = false)
-		{
-			VkErrors.ThrowIfNumberIsNegative(() => groupId);
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-			var parameters = new VkParameters
-			{
-				{"group_id", groupId},
-				{"user_id", userId},
-				{"end_date", endDate},
-				{"comment", comment},
-				{"comment_visible", commentVisible},
-				{"reason", reason}
-			};
-
-			return _vk.Call("groups.banUser", parameters);
+			return _vk.Call("groups.getInvites", parameters).ToVkCollectionOf<Group>(x => x);
 		}
 
 		/// <summary>
@@ -326,7 +284,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? userId = null)
+		public VkCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? userId = null)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -336,7 +294,7 @@ namespace VkNet.Categories
 				{ "user_id", userId }
 			};
 
-			return _vk.Call("groups.getBanned", parameters).ToReadOnlyCollectionOf<User>(x => x);
+			return _vk.Call("groups.getBanned", parameters).ToVkCollectionOf<User>(x => x);
 		}
 
 		/// <summary>
@@ -402,7 +360,6 @@ namespace VkNet.Categories
             return result;
 		}
 
-
 		/// <summary>
 		/// Редактирует сообщество.
 		/// </summary>
@@ -467,7 +424,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvitedUsers" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetInvitedUsers(long groupId, out int userCount, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)
+		public VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
@@ -478,9 +435,8 @@ namespace VkNet.Categories
 				{ "fields", fields },
 				{ "name_case", nameCase }
 			};
-			var response = _vk.Call("groups.getInvitedUsers", parameters);
-			userCount = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<User>(x => x);
+
+			return _vk.Call("groups.getInvitedUsers", parameters).ToVkCollectionOf<User>(x => x);
 		}
 
 		/// <summary>
@@ -529,13 +485,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.addLink" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public Link AddLink(long groupId, Url link, string text)
+		public Link AddLink(long groupId, Uri link, string text)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
 			{
 				{ "group_id", groupId },
-				{ "link", link.Value },
+				{ "link", link },
 				{ "text", text }
 			};
 
@@ -717,7 +673,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getRequests" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields)
+		public VkCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -726,7 +682,7 @@ namespace VkNet.Categories
 				{ "fields", fields }
 			};
 
-			return _vk.Call("groups.getRequests", parameters).ToReadOnlyCollectionOf<User>(x => x);
+			return _vk.Call("groups.getRequests", parameters).ToVkCollectionOf<User>(x => x);
 		}
 
 		/// <summary>
