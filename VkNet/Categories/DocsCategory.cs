@@ -1,22 +1,19 @@
-﻿using Newtonsoft.Json.Linq;
-using VkNet.Enums;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
 	using System.Linq;
 	using JetBrains.Annotations;
-
+	using Newtonsoft.Json.Linq;
+	using Enums;
 	using Utils;
-
 	using Model.Attachments;
 	using Model;
 
 	/// <summary>
 	/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
 	/// </summary>
-	public class DocsCategory
+	public partial class DocsCategory
 	{
 		/// <summary>
 		/// API
@@ -35,7 +32,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает расширенную информацию о документах пользователя или сообщества.
 		/// </summary>
-		/// <param name="totalCount">Общее количество документов.</param>
 		/// <param name="count">Количество документов, информацию о которых нужно вернуть. По умолчанию — все документы.</param>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества документов. Положительное число.</param>
 		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат документы. Целое число, по умолчанию идентификатор текущего пользователя.</param>
@@ -48,7 +44,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Document> Get(out int totalCount, int? count = null, int? offset = null, long? ownerId = null, DocFilter? filter = null)
+		public VkCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null, DocFilter? filter = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -61,33 +57,7 @@ namespace VkNet.Categories
 				{ "type", filter }
 			};
 
-			var response = _vk.Call("docs.get", parameters);
-
-			totalCount = response["count"];
-
-			VkResponseArray items = response["items"];
-			return items.ToReadOnlyCollectionOf<Document>(r => r);
-		}
-
-		/// <summary>
-		/// Возвращает расширенную информацию о документах пользователя или сообщества.
-		/// </summary>
-		/// <param name="count">Количество документов, информацию о которых нужно вернуть. По умолчанию — все документы.</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества документов. Положительное число.</param>
-		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат документы. Целое число, по умолчанию идентификатор текущего пользователя.</param>
-		/// <param name="filter">Фильтр по типу документа.</param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов документов.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.get" />.
-		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null, DocFilter? filter = null)
-		{
-			int totalCount;
-			return Get(out totalCount, count, offset, ownerId, filter);
+			return _vk.Call("docs.get", parameters).ToVkCollectionOf<Document>(r => r);
 		}
 
 		/// <summary>
@@ -118,7 +88,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает адрес сервера для загрузки документов. 
+		/// Возвращает адрес сервера для загрузки документов.
 		/// </summary>
 		/// <param name="groupId">Идентификатор сообщества (если необходимо загрузить документ в список документов сообщества). Если документ нужно загрузить в список пользователя, метод вызывается без дополнительных параметров. Положительное число</param>
 		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/></returns>
@@ -140,7 +110,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает адрес сервера для загрузки документов в папку Отправленные, для последующей отправки документа на стену или личным сообщением. 
+		/// Возвращает адрес сервера для загрузки документов в папку Отправленные, для последующей отправки документа на стену или личным сообщением.
 		/// </summary>
 		/// <param name="groupId">Идентификатор сообщества, в которое нужно загрузить документ. Положительное число.</param>
 		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/></returns>
@@ -192,7 +162,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Удаляет документ пользователя или группы. 
+		/// Удаляет документ пользователя или группы.
 		/// </summary>
 		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит документ. Целое число, обязательный параметр</param>
 		/// <param name="docId">Идентификатор документа. Положительное число, обязательный параметр</param>
@@ -242,24 +212,24 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат документы. целое число, по умолчанию идентификатор текущего пользователя, обязательный параметр (Целое число, по умолчанию идентификатор текущего пользователя, обязательный параметр).</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов type. 
-		/// Объект type — тип документов.  
-		/// id идентификатор типа. 
-		/// положительное число name название типа. 
-		/// строка count число документов; 
+		/// После успешного выполнения возвращает список объектов type.
+		/// Объект type — тип документов.
+		/// id идентификатор типа.
+		/// положительное число name название типа.
+		/// строка count число документов;
 		/// int (числовое значение).
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.getTypes" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<DocumentType> GetTypes(long ownerId)
+		public VkCollection<DocumentType> GetTypes(long ownerId)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId }
 			};
 
-			return _vk.Call("docs.getTypes", parameters).ToReadOnlyCollectionOf<DocumentType>(x => x);
+			return _vk.Call("docs.getTypes", parameters).ToVkCollectionOf<DocumentType>(x => x);
 		}
 
 		/// <summary>
@@ -275,7 +245,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Document> Search(string query, long? count = null, long? offset = null)
+		public VkCollection<Document> Search(string query, long? count = null, long? offset = null)
 		{
 			var parameters = new VkParameters {
 				{ "q", query },
@@ -283,13 +253,13 @@ namespace VkNet.Categories
 				{ "offset", offset }
 			};
 
-			return _vk.Call("docs.search", parameters).ToReadOnlyCollectionOf<Document>(x => x);
+			return _vk.Call("docs.search", parameters).ToVkCollectionOf<Document>(x => x);
 		}
 
 		/// <summary>
 		/// Редактирует документ пользователя или группы.
 		/// </summary>
-		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит документ. 
+		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит документ.
 		/// Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя, обязательный параметр (Целое число, по умолчанию идентификатор текущего пользователя, обязательный параметр).</param>
 		/// <param name="docId">Идентификатор документа. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
 		/// <param name="title">Название документа. строка, максимальная длина 128 (Строка, максимальная длина 128).</param>

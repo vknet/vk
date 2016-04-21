@@ -60,6 +60,7 @@
     <Compile Include="Categories\Obsolete\AccountCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\AppsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\AudioCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\DocsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\FriendsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\GroupsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
