@@ -1,14 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
 	using System.Collections.Generic;
 	using JetBrains.Annotations;
 	using Model;
 	using Model.RequestParams;
 	using Utils;
+	using Enums.Filters;
+	using Enums.SafetyEnums;
 
 	/// <summary>
 	/// Методы этого класса позволяют производить действия с аккаунтом пользователя.
@@ -190,7 +188,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setSilenceMode" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.setSilenceMode" />.
 		/// </remarks>
 		[ApiVersion("5.50")]
 		public bool SetSilenceMode([NotNull] string deviceId, int? time = null, int? peerId = null, bool? sound = null)
@@ -351,7 +349,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список пользователей, находящихся в черном списке.
 		/// </summary>
-		/// <param name="total">Возвращает общее количество находящихся в черном списке пользователей.</param>
 		/// <param name="offset">Смещение необходимое для выборки определенного подмножества черного списка. положительное число (Положительное число).</param>
 		/// <param name="count">Количество записей, которое необходимо вернуть. положительное число, по умолчанию 20, максимальное значение 200 (Положительное число, по умолчанию 20, максимальное значение 200).</param>
 		/// <returns>
@@ -360,8 +357,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getBanned" />.
 		/// </remarks>
-		[ApiVersion("5.45")]
-		public ReadOnlyCollection<User> GetBanned(out int total, int? offset = null, int? count = null)
+		public VkCollection<User> GetBanned(int? offset = null, int? count = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -371,21 +367,18 @@ namespace VkNet.Categories
 				{ "offset", offset },
 				{ "count", count }
 			};
-			var response = _vk.Call("account.getBanned", parameters);
 
-			total = response["count"];
-
-			return response["items"].ToReadOnlyCollectionOf<User>(vkResponse => vkResponse);
+			return _vk.Call("account.getBanned", parameters).ToVkCollectionOf<User>(vkResponse => vkResponse);
 		}
 
 		/// <summary>
 		/// Возвращает информацию о текущем аккаунте.
 		/// </summary>
-		/// <param name="fields">Список полей, которые необходимо вернуть. Возможные значения: (country, https_required, own_posts_default, no_wall_replies, intro, lang, По умолчанию будут возвращены все поля. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
+		/// <param name="fields">Список полей, которые необходимо вернуть. Возможные значения: (country, http_required, own_posts_default, no_wall_replies, intro, lang, По умолчанию будут возвращены все поля. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
 		/// <returns>
 		/// Метод возвращает объект, содержащий следующие поля:
 		/// country – строковой код страны, определенный по IP адресу, с которого сделан запрос;
-		/// https_required – 1 - пользователь установил на сайте настройку "Всегда использовать безопасное соединение"; 0 - безопасное соединение не требуется;
+		/// http_required – 1 - пользователь установил на сайте настройку "Всегда использовать безопасное соединение"; 0 - безопасное соединение не требуется;
 		/// own_posts_default – 1 - на стене пользователя по-умолчанию должны отображаться только собственные записи. Соответствует настройке на сайте "Показывать только мои записи", 0 - на стене пользователя должны отображаться все записи;
 		/// no_wall_replies – 1 - пользователь отключил комментирование записей на стене, 0 - комментирование записей разрешено;
 		/// intro – битовая маска отвечающая за прохождение обучения использованию приложения;
@@ -430,7 +423,7 @@ namespace VkNet.Categories
 		/// <param name="oldPassword">Текущий пароль пользователя. строка (Строка).</param>
 		/// <param name="newPassword">Новый пароль, который будет установлен в качестве текущего. строка, минимальная длина 6, обязательный параметр (Строка, минимальная длина 6, обязательный параметр).</param>
 		/// <returns>
-		/// В результате выполнения этого метода будет возвращен объект с полем token, содержащим новый токен, и полем secret в случае, если токен был nohttps.
+		/// В результате выполнения этого метода будет возвращен объект с полем token, содержащим новый токен, и полем secret в случае, если токен был nohttp.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.changePassword" />.
@@ -453,7 +446,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <returns>Информация о текущем профиле в виде <see cref="Model.User"/></returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getProfileInfo" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.getProfileInfo" />.
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.45")]
@@ -486,7 +479,7 @@ namespace VkNet.Categories
 		/// <returns>Результат отмены заявки.</returns>
 		/// <remarks>Метод вынесен как отдельный, потому что если в запросе передан параметр <paramref name="cancelRequestId"/>, все остальные параметры игнорируются.</remarks>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.saveProfileInfo" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.saveProfileInfo" />.
 		/// </remarks>
 		[ApiVersion("5.45")]
 		public bool SaveProfileInfo(int cancelRequestId)
@@ -505,7 +498,7 @@ namespace VkNet.Categories
 		/// Результат отмены заявки.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.saveProfileInfo" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.saveProfileInfo" />.
 		/// </remarks>
 		[ApiVersion("5.45")]
 		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveProfileInfoParams @params)

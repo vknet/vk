@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -127,6 +128,29 @@ namespace VkNet.Categories
             };
 
             return SaveProfileInfo(out changeNameRequest, parameters);
-        }
-    }
+		}
+
+		/// <summary>
+		/// Возвращает список пользователей, находящихся в черном списке.
+		/// </summary>
+		/// <param name="total">Возвращает общее количество находящихся в черном списке пользователей.</param>
+		/// <param name="offset">Смещение необходимое для выборки определенного подмножества черного списка. положительное число (Положительное число).</param>
+		/// <param name="count">Количество записей, которое необходимо вернуть. положительное число, по умолчанию 20, максимальное значение 200 (Положительное число, по умолчанию 20, максимальное значение 200).</param>
+		/// <returns>
+		/// Возвращает набор объектов пользователей, находящихся в черном списке.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getBanned" />.
+		/// </remarks>
+		[ApiVersion("5.45")]
+		[Obsolete("Метод устарел, пожалуйста используйте метод GetBanned(int? offset = null, int? count = null)")]
+		public ReadOnlyCollection<User> GetBanned(out int total, int? offset = null, int? count = null)
+		{
+			var response = GetBanned(offset, count);
+
+			total = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+	}
 }
