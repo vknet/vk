@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using JetBrains.Annotations;
+using VkNet.Model;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -29,7 +32,31 @@ namespace VkNet.Categories
         public int GetUserSettings(long uid)
         {
             throw new System.Exception("Метод устарел. Используйте вместо него account.getAppPermissions");
-        }
+		}
 
-    }
+		/// <summary>
+		/// Возвращает список пользователей в соответствии с заданным критерием поиска.
+		/// </summary>
+		/// <param name="itemsCount">Общее количество пользователей, удовлетворяющих условиям запроса.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов пользователей, найденных в соответствии с заданными критериями.
+		/// </returns>
+		/// <exception cref="ArgumentException">Query can not be <c>null</c> or empty.</exception>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search" />.
+		/// </remarks>
+		[Pure]
+		[ApiVersion("5.44")]
+		[Obsolete("Метод устарел. Используйте вместо него Search(UserSearchParams @params)")]
+		public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @params)
+		{
+			var response = Search(@params);
+
+			itemsCount = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+	}
 }

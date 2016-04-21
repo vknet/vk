@@ -100,7 +100,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public bool TrackVisitor()
 		{
-			return _vk.Call("stats.trackVisitor", new VkParameters());
+			return _vk.Call("stats.trackVisitor", VkParameters.Empty);
 		}
 
 		/// <summary>
