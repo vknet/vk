@@ -55,15 +55,14 @@ namespace VkNet.Tests.Categories
             const string url = "https://api.vk.com/method/database.getUniversities?q=ВолгГТУ&country_id=1&city_id=10&v=" + VkApi.VkApiVersion + "&access_token=";
             const string json =
                 @"{
-                    'response': [
-                      1,
-                      {
+                    'response': {
+                      count: 1,
+                      items: [{
                         'id': 431,
                         'title': 'ВолгГТУ'
-                      }
-                    ]
+                      }]
+					}
                   }";
-
 
             var db = GetMockedDatabaseCategory(url, json);
 
@@ -79,10 +78,11 @@ namespace VkNet.Tests.Categories
         {
             const string url = "https://api.vk.com/method/database.getUniversities?q=ThisUniverDoesNotExist&country_id=1&city_id=1&v=" + VkApi.VkApiVersion + "&access_token=";
             const string json =
-                @"{
-                    'response': [
-                      0
-                    ]
+				@"{
+                    response: {
+						count: 0,
+						items: []
+					}
                   }";
 
             var db = GetMockedDatabaseCategory(url, json);
@@ -476,10 +476,11 @@ namespace VkNet.Tests.Categories
         {
             const string url = "https://api.vk.com/method/database.getSchools?q=SchoolDoesNotExist&city_id=10&v=" + VkApi.VkApiVersion + "&access_token=";
             const string json =
-                @"{
-                    'response': [
-                      0
-                    ]
+				@"{
+                    response: {
+						count: 0,
+						items: []
+					}
                   }";
 
             var db = GetMockedDatabaseCategory(url, json);
@@ -530,9 +531,9 @@ namespace VkNet.Tests.Categories
             const string url = "https://api.vk.com/method/database.getFaculties?university_id=431&offset=2&count=3&v=" + VkApi.VkApiVersion + "&access_token=";
             const string json =
                 @"{
-                    'response': [
-                      10,
-                      {
+                    'response': {
+                      count: 10,
+                      items: [{
                         'id': 3160,
                         'title': 'Автоматизированных систем и технологической информатики (бывш. Машиностроительный)'
                       },
@@ -543,8 +544,8 @@ namespace VkNet.Tests.Categories
                       {
                         'id': 3162,
                         'title': 'Электроники и вычислительной техники'
-                      }
-                    ]
+                      }]
+					}
                   }";
 
             var db = GetMockedDatabaseCategory(url, json);
