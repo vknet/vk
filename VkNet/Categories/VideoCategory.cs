@@ -1,23 +1,18 @@
-﻿using VkNet.Model.RequestParams;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
-    using System;
-    using System.Collections.Generic;
+	using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using JetBrains.Annotations;
-
-    using Enums;
-    using Enums.Filters;
-    using Enums.SafetyEnums;
+	using Enums;
+	using Enums.SafetyEnums;
     using Model;
     using Model.Attachments;
     using Utils;
+	using Model.RequestParams;
 
-    /// <summary>
-    /// Методы для работы с видеофайлами.
-    /// </summary>
-    public partial class VideoCategory
+	/// <summary>
+	/// Методы для работы с видеофайлами.
+	/// </summary>
+	public partial class VideoCategory
     {
         private readonly VkApi _vk;
 
@@ -51,15 +46,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.get" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Video> Get(VideoGetParams @params)
+		public VkCollection<Video> Get(VideoGetParams @params)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.AlbumId);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Offset);
 
-			VkResponseArray response = _vk.Call("video.get", @params);
-
-			return response.ToReadOnlyCollectionOf<Video>(x => x);
+			return _vk.Call("video.get", @params).ToVkCollectionOf<Video>(x => x);
 		}
 
 		/// <summary>
@@ -185,14 +178,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Video> Search(VideoSearchParams @params)
+		public VkCollection<Video> Search(VideoSearchParams @params)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => @params.Query);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Offset);
 
-			VkResponseArray response = _vk.Call("video.search", @params);
-			return response.ToReadOnlyCollectionOf<Video>(x => x);
+			return _vk.Call("video.search", @params).ToVkCollectionOf<Video>(x => x);
 		}
 
 		/// <summary>
@@ -209,7 +201,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getUserVideos" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Video> GetUserVideos(long? userId, long? offset, long? count, bool? extended)
+		public VkCollection<Video> GetUserVideos(long? userId, long? offset, long? count, bool? extended)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -222,9 +214,7 @@ namespace VkNet.Categories
 				{ "extended", extended }
 			};
 
-			VkResponseArray response = _vk.Call("video.getUserVideos", parameters);
-
-			return response.ToReadOnlyCollectionOf<Video>(x => x);
+			return _vk.Call("video.getUserVideos", parameters).ToVkCollectionOf<Video>(x => x);
 		}
 
 		/// <summary>
@@ -246,7 +236,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbums" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<VideoAlbum> GetAlbums(long? ownerId = null, long? offset = null, long? count = null, bool? extended = null, bool? needSystem = null)
+		public VkCollection<VideoAlbum> GetAlbums(long? ownerId = null, long? offset = null, long? count = null, bool? extended = null, bool? needSystem = null)
 		{
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -259,9 +249,7 @@ namespace VkNet.Categories
 				{ "need_system", needSystem }
 			};
 
-			VkResponseArray response = _vk.Call("video.getAlbums", parameters);
-
-            return response.ToReadOnlyCollectionOf<VideoAlbum>(x => x);
+            return _vk.Call("video.getAlbums", parameters).ToVkCollectionOf<VideoAlbum>(x => x);
         }
 
 		/// <summary>
@@ -371,15 +359,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getComments" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Comment> GetComments(VideoGetCommentsParams @params)
+		public VkCollection<Comment> GetComments(VideoGetCommentsParams @params)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.VideoId);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Offset);
 
-			var response = _vk.Call("video.getComments", @params);
-
-			return response.ToReadOnlyCollectionOf<Comment>(x => x);
+			return _vk.Call("video.getComments", @params).ToVkCollectionOf<Comment>(x => x);
 		}
 
 		/// <summary>
@@ -600,7 +586,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getNewTags" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Video> GetNewTags(int? count = null, int? offset = null)
+		public VkCollection<Video> GetNewTags(int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => count);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -611,9 +597,7 @@ namespace VkNet.Categories
                 {"offset", offset}
             };
 
-            VkResponseArray response = _vk.Call("video.getNewTags", parameters);
-
-            return response.ToReadOnlyCollectionOf<Video>(x => x);
+            return _vk.Call("video.getNewTags", parameters).ToVkCollectionOf<Video>(x => x);
         }
 
 		/// <summary>
@@ -708,14 +692,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbumById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Video> GetAlbumById(long albumId, long? ownerId = null)
+		public Video GetAlbumById(long albumId, long? ownerId = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
 				{ "album_id", albumId }
 			};
 
-			return _vk.Call("video.getAlbumById", parameters).ToReadOnlyCollectionOf<Video>(x => x);
+			return _vk.Call("video.getAlbumById", parameters);
 		}
 
 		/// <summary>
@@ -845,7 +829,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("video.getAlbumsByVideo", parameters);
 		}
-
 
 		/// <summary>
 		/// Позволяет получить представление каталога видео.

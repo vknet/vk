@@ -50,7 +50,7 @@ namespace VkNet.Categories
                 Offset = offset,
                 Extended = extended
             };
-            return Get(parameters);
+            return Get(parameters).ToReadOnlyCollection();
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace VkNet.Categories
                 Count = count
             };
 
-            return Search(parameters);
+            return Search(parameters).ToReadOnlyCollection();
         }
 
         /// <summary>
@@ -247,7 +247,8 @@ namespace VkNet.Categories
                 Offset = offset,
                 Sort = sort
             };
-            return GetComments(parameters);
+
+            return GetComments(parameters).ToReadOnlyCollection();
         }
 
         /// <summary>
