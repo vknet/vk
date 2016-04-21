@@ -1,117 +1,182 @@
 ﻿namespace VkNet.Utils
 {
-    using System.Net;
-    using System.Text;
+	using System.Net;
+	using System.Text;
 
-    using Exception;
+	using Exception;
 
-    internal sealed class WebCall
-    {
-        private HttpWebRequest Request { get; set; }
+	/// <summary>
+	/// WebCall
+	/// </summary>
+	internal sealed class WebCall
+	{
+		/// <summary>
+		/// Получить HTTP запрос.
+		/// </summary>
+		private HttpWebRequest Request { get; }
 
-        private WebCallResult Result { get; set; }
+		/// <summary>
+		/// Результат.
+		/// </summary>
+		private WebCallResult Result { get; }
 
-        private WebCall(string url, Cookies cookies, string host = null, int? port = null)
-        {
-            Request = (HttpWebRequest)WebRequest.Create(url);
-            Request.Accept = "text/html";
-            Request.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)";
-            Request.CookieContainer = cookies.Container;
+		/// <summary>
+		/// WebCall.
+		/// </summary>
+		/// <param name="url">URL.</param>
+		/// <param name="cookies">Cookies.</param>
+		/// <param name="host">Хост.</param>
+		/// <param name="port">Порт.</param>
+		private WebCall(string url, Cookies cookies, string host = null, int? port = null)
+		{
+			Request = (HttpWebRequest)WebRequest.Create(url);
+			Request.Accept = "text/html";
+			Request.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)";
+			Request.CookieContainer = cookies.Container;
 
-            if (host != null && port != null)
-                Request.Proxy = new WebProxy(host, port.Value);
-            
-            if (Request.Proxy != null)
-            {
-                // Авторизация с реквизитами по умолчанию (для NTLM прокси)
-                Request.Proxy.Credentials = CredentialCache.DefaultCredentials;
-            }
+			if (host != null && port != null)
+				Request.Proxy = new WebProxy(host, port.Value);
 
-            Result = new WebCallResult(url, cookies);
-        }
+			if (Request.Proxy != null)
+			{
+				// Авторизация с реквизитами по умолчанию (для NTLM прокси)
+				Request.Proxy.Credentials = CredentialCache.DefaultCredentials;
+			}
 
-        public static WebCallResult MakeCall(string url, string host = null, int? port = null)
-        {
-            var call = new WebCall(url, new Cookies(), host, port);
+			Result = new WebCallResult(url, cookies);
+		}
 
-            return call.MakeRequest(host, port);
-        }
+		/// <summary>
+		/// Выполнить запрос.
+		/// </summary>
+		/// <param name="url">URL.</param>
+		/// <param name="host">Хост.</param>
+		/// <param name="port">Порт.</param>
+		/// <returns>Результат</returns>
+		public static WebCallResult MakeCall(string url, string host = null, int? port = null)
+		{
+			var call = new WebCall(url, new Cookies(), host, port);
+
+			return call.MakeRequest(host, port);
+		}
 
 #if false // async version for PostCall
 #endif
 
-        public static WebCallResult PostCall(string url, string parameters, string host = null, int? port = null)
-        {
-            var call = new WebCall(url, new Cookies(), host, port);
-            call.Request.Method = "POST";
-            call.Request.ContentType = "application/x-www-form-urlencoded";
-            var data = Encoding.UTF8.GetBytes(parameters);
-            call.Request.ContentLength = data.Length;
+		/// <summary>
+		/// Выполнить POST запрос.
+		/// </summary>
+		/// <param name="url">URL.</param>
+		/// <param name="parameters">Параметры запроса.</param>
+		/// <param name="host">Хост.</param>
+		/// <param name="port">Порт.</param>
+		/// <returns>Результат</returns>
+		public static WebCallResult PostCall(string url, string parameters, string host = null, int? port = null)
+		{
+			var call = new WebCall(url, new Cookies(), host, port)
+			{
+				Request =
+				{
+					Method = "POST",
+					ContentType = "application/x-www-form-urlencoded"
+				}
+			};
 
-            using (var requestStream = call.Request.GetRequestStream())
-                requestStream.Write(data, 0, data.Length);
+			var data = Encoding.UTF8.GetBytes(parameters);
+			call.Request.ContentLength = data.Length;
 
-            return call.MakeRequest(host, port);
-        }
+			using (var requestStream = call.Request.GetRequestStream())
+				requestStream.Write(data, 0, data.Length);
 
-        public static WebCallResult Post(WebForm form, string host = null, int? port = null)
-        {
-            var call = new WebCall(form.ActionUrl, form.Cookies, host, port);
+			return call.MakeRequest(host, port);
+		}
 
-            var request = call.Request;
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-            var formRequest = form.GetRequest();
-            request.ContentLength = formRequest.Length;
-            request.Referer = form.OriginalUrl;
-            request.GetRequestStream().Write(formRequest, 0, formRequest.Length);
-            request.AllowAutoRedirect = false;
+		/// <summary>
+		/// Post запрос из формы.
+		/// </summary>
+		/// <param name="form">Форма.</param>
+		/// <param name="host">Хост.</param>
+		/// <param name="port">Порт.</param>
+		/// <returns>Результат</returns>
+		public static WebCallResult Post(WebForm form, string host = null, int? port = null)
+		{
+			var call = new WebCall(form.ActionUrl, form.Cookies, host, port);
 
-            return call.MakeRequest(host, port);
-        }
+			var request = call.Request;
+			request.Method = "POST";
+			request.ContentType = "application/x-www-form-urlencoded";
+			var formRequest = form.GetRequest();
+			request.ContentLength = formRequest.Length;
+			request.Referer = form.OriginalUrl;
+			request.GetRequestStream().Write(formRequest, 0, formRequest.Length);
+			request.AllowAutoRedirect = false;
 
-        private WebCallResult RedirectTo(string url, string host = null, int? port = null)
-        {
-            var call = new WebCall(url, Result.Cookies, host, port);
+			return call.MakeRequest(host, port);
+		}
 
-            var request = call.Request;
-            request.Method = "GET";
-            request.ContentType = "text/html";
-            request.Referer = Request.Referer;
+		/// <summary>
+		/// Пере адресация.
+		/// </summary>
+		/// <param name="url">URL.</param>
+		/// <param name="host">Хост.</param>
+		/// <param name="port">Порт.</param>
+		/// <returns>Результат</returns>
+		private WebCallResult RedirectTo(string url, string host = null, int? port = null)
+		{
+			var call = new WebCall(url, Result.Cookies, host, port);
 
-            return call.MakeRequest(host, port);
-        }
+			var request = call.Request;
+			request.Method = "GET";
+			request.ContentType = "text/html";
+			request.Referer = Request.Referer;
 
-        private WebCallResult MakeRequest(string host = null, int? port = null)
-        {
-            using (var response = GetResponse())
-            using (var stream = response.GetResponseStream())
-            {
-                if (stream == null)
-                    throw new VkApiException("Response is null.");
+			return call.MakeRequest(host, port);
+		}
 
-                var encoding = response.CharacterSet != null ? Encoding.GetEncoding(response.CharacterSet) : Encoding.UTF8;
-                Result.SaveResponse(response.ResponseUri, stream, encoding);
+		/// <summary>
+		/// Выполнить запрос.
+		/// </summary>
+		/// <param name="host">Хост.</param>
+		/// <param name="port">Порт.</param>
+		/// <returns>Результат</returns>
+		/// <exception cref="VkApiException">Response is null.</exception>
+		private WebCallResult MakeRequest(string host = null, int? port = null)
+		{
+			using (var response = GetResponse())
+			{
+				using (var stream = response.GetResponseStream())
+				{
+					if (stream == null)
+					{
+						throw new VkApiException("Response is null.");
+					}
 
-                Result.SaveCookies(response.Cookies);
+					var encoding = response.CharacterSet != null ? Encoding.GetEncoding(response.CharacterSet) : Encoding.UTF8;
+					Result.SaveResponse(response.ResponseUri, stream, encoding);
 
-                if (response.StatusCode == HttpStatusCode.Redirect)
-                    return RedirectTo(response.Headers["Location"], host, port);
+					Result.SaveCookies(response.Cookies);
 
-                return Result;
-            }
-        }
+					return response.StatusCode == HttpStatusCode.Redirect
+						? RedirectTo(response.Headers["Location"], host, port)
+						: Result;
+				}
+			}
+		}
 
-        private HttpWebResponse GetResponse()
-        {
-            try
-            {
-                return (HttpWebResponse)Request.GetResponse();
-            }
-            catch (WebException ex)
-            {
-                throw new VkApiException(ex.Message, ex);
-            }
-        }
-    }
+		/// <summary>
+		/// Получить запрос.
+		/// </summary>
+		/// <returns>Запрос</returns>
+		/// <exception cref="VkApiException">Ошибка запроса</exception>
+		private HttpWebResponse GetResponse()
+		{
+			try
+			{
+				return (HttpWebResponse)Request.GetResponse();
+			} catch (WebException ex)
+			{
+				throw new VkApiException(ex.Message, ex);
+			}
+		}
+	}
 }
