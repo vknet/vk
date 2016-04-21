@@ -344,6 +344,55 @@ namespace VkNet.Categories
         {
             var users = GetChatUsers(chatId, null);
             return users.Select(x => x.Id).ToReadOnlyCollection();
-        }
+		}
+
+		/// <summary>
+		/// Возвращает сообщения по их идентификаторам.
+		/// </summary>
+		/// <param name="messageIds">Идентификаторы сообщений, которые необходимо вернуть (не более 100).</param>
+		/// <param name="totalCount">Общее количество сообщений.</param>
+		/// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение.
+		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).</param>
+		/// <returns>Запрошенные сообщения.</returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
+		/// </remarks>
+		[Pure]
+		[ApiVersion("5.44")]
+		[Obsolete("Устаревшая версия API. Используйте метод GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)")]
+		public ReadOnlyCollection<Message> GetById(out int totalCount, [NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)
+		{
+			var response = GetById(messageIds, previewLength);
+
+			totalCount = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+		/// <summary>
+		/// Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
+		/// </summary>
+		/// <param name="totalCount">Общее количество найденных сообщений.</param>
+		/// <param name="query">Подстрока, по которой будет производиться поиск.строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. Укажите ''0'', если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).положительное число (Положительное число).</param>
+		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений из списка найденных.положительное число (Положительное число).</param>
+		/// <param name="count">Количество сообщений, которое необходимо получить.положительное число, по умолчанию 20, максимальное значение 100 (Положительное число, по умолчанию 20, максимальное значение 100).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает  объектов , найденных в соответствии с поисковым запросом '''q'''.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Устаревшая версия API. Используйте метод Search([NotNull] string query, long? previewLength, long? offset, long? count)")]
+		public ReadOnlyCollection<Message> Search(out int totalCount, [NotNull] string query, long? previewLength, long? offset, long? count)
+		{
+			var response = Search(query, previewLength, offset, count);
+
+			totalCount = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
 	}
 }

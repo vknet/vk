@@ -76,28 +76,32 @@ namespace VkNet.Categories
 		/// Возвращает сообщения по их идентификаторам.
 		/// </summary>
 		/// <param name="messageIds">Идентификаторы сообщений, которые необходимо вернуть (не более 100).</param>
-		/// <param name="totalCount">Общее количество сообщений.</param>
 		/// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение.
 		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).</param>
-		/// <returns>Запрошенные сообщения.</returns>
+		/// <returns>
+		/// Запрошенные сообщения.
+		/// </returns>
+		/// <exception cref="System.Exception">messageIds не может быть пустой</exception>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById" />.
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Message> GetById(out int totalCount, [NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)
+		public VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)
 		{
 			if (!messageIds.Any())
 			{
 				throw new Exception("messageIds не может быть пустой");
 			}
-			var parameters = new VkParameters { { "message_ids", messageIds }, { "preview_length", previewLength } };
 
-			var response = _vk.Call("messages.getById", parameters);
+			var parameters = new VkParameters
+			{
+				{ "message_ids", messageIds },
+				{ "preview_length", previewLength }
+			};
 
-			totalCount = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<Message>(r => r);
+			return _vk.Call("messages.getById", parameters).ToVkCollectionOf<Message>(r => r);
 		}
 
 		/// <summary>
@@ -115,8 +119,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public Message GetById(ulong messageId, uint? previewLength = null)
 		{
-			int totalCount;
-			var result = GetById(out totalCount, new[] { messageId }, previewLength);
+			var result = GetById(new[] { messageId }, previewLength);
 			if (result.Count > 0)
 			{
 				return result.First();
@@ -168,7 +171,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
 		/// </summary>
-		/// <param name="totalCount">Общее количество найденных сообщений.</param>
 		/// <param name="query">Подстрока, по которой будет производиться поиск.строка, обязательный параметр (Строка, обязательный параметр).</param>
 		/// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. Укажите ''0'', если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).положительное число (Положительное число).</param>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений из списка найденных.положительное число (Положительное число).</param>
@@ -176,11 +178,12 @@ namespace VkNet.Categories
 		/// <returns>
 		/// После успешного выполнения возвращает  объектов , найденных в соответствии с поисковым запросом '''q'''.
 		/// </returns>
+		/// <exception cref="System.ArgumentException">Query can not be null or empty.;query</exception>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Message> Search(out int totalCount, [NotNull] string query, long? previewLength, long? offset, long? count)
+		public VkCollection<Message> Search([NotNull] string query, long? previewLength, long? offset, long? count)
 		{
 			if (string.IsNullOrWhiteSpace(query))
 			{
@@ -194,11 +197,7 @@ namespace VkNet.Categories
 				{ "count", count }
 			};
 
-			VkResponseArray response = _vk.Call("messages.search", parameters);
-
-			totalCount = response["count"];
-
-			return response["items"].ToReadOnlyCollectionOf<Message>(r => r);
+			return _vk.Call("messages.search", parameters).ToVkCollectionOf<Message>(r => r);
 		}
 
 		/// <summary>
@@ -261,18 +260,18 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Удаляет сообщения пользователя.
 		/// </summary>
-		/// <param name="messageIds">
-		/// Идентификаторы удаляемых сообщений.
-		/// </param>
+		/// <param name="messageIds">Идентификаторы удаляемых сообщений.</param>
 		/// <returns>
-		/// Возвращает словарь (идентификатор сообщения -> признак было ли удаление сообщения успешным).
+		/// Возвращает словарь (идентификатор сообщения -&gt; признак было ли удаление сообщения успешным).
 		/// </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete"/>.
-		/// </remarks>
+		/// <exception cref="System.ArgumentNullException">messageIds;Parameter messageIds can not be null.</exception>
+		/// <exception cref="System.ArgumentException">Parameter messageIds has no elements.;messageIds</exception>
 		/// <exception cref="ArgumentNullException">Параметр <paramref name="key" /> имеет значение null.</exception>
 		/// <exception cref="ArgumentException">Элемент с таким ключом уже существует в словаре <see cref="T:System.Collections.Generic.Dictionary`2" />.</exception>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete" />.
+		/// </remarks>
 		[ApiVersion("5.44")]
 		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds)
 		{
@@ -302,19 +301,17 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Удаляет личное сообщение пользователя с заданным идентификатором.
 		/// </summary>
-		/// <param name="messageId">
-		/// Идентификатор удаляемого сообщения.
-		/// </param>
+		/// <param name="messageId">Идентификатор удаляемого сообщения.</param>
 		/// <returns>
 		/// Признак было ли удаление сообщения успешным.
 		/// </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete"/>.
-		/// </remarks>
 		/// <exception cref="ArgumentNullException">Параметр <paramref name="key" /> имеет значение null.</exception>
 		/// <exception cref="KeyNotFoundException">Свойство получено и параметр <paramref name="key" /> не найден.</exception>
 		/// <exception cref="NotSupportedException">Свойство задано, и объект <see cref="T:System.Collections.Generic.IDictionary`2" /> доступен только для чтения.</exception>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete" />.
+		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool Delete(ulong messageId)
 		{
@@ -420,19 +417,13 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает информацию о беседе
+		/// Gets the chat.
 		/// </summary>
-		/// <param name="chatId">Идентификатор беседы.</param>
-		/// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть.</param>
-		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя. </param>
-		/// <returns>
-		/// После успешного выполнения возварщает список объектов, описывающих беседу (мультидиалог).
-		/// </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// <a href="http://vk.com/dev/messages.getChat"/>Страница документации ВКонтакте</a> .
-		/// </remarks>
-		public Chat GetChat(long chatId, ProfileFields fields = null, Enums.SafetyEnums.NameCase nameCase = null)
+		/// <param name="chatId">The chat identifier.</param>
+		/// <param name="fields">The fields.</param>
+		/// <param name="nameCase">The name case.</param>
+		/// <returns></returns>
+		public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			return GetChat(new[] { chatId }, fields, nameCase).FirstOrDefault();
 		}
@@ -440,7 +431,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает информацию о беседе.
 		/// </summary>
-		/// <param name="chatId">Идентификатор беседы. целое число (Целое число).</param>
 		/// <param name="chatIds">Список идентификаторов бесед. список целых чисел, разделенных запятыми (Список целых чисел, разделенных запятыми).</param>
 		/// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть.
 		/// Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, counters, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
@@ -449,6 +439,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает объект (или список объектов) мультидиалога.
 		/// Если был задан параметр fields, поле users содержит список объектов пользователей с дополнительным полем invited_by, содержащим идентификатор пользователя, пригласившего в беседу.
 		/// </returns>
+		/// <exception cref="System.ArgumentException">At least one chat ID must be defined;chatIds</exception>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChat" />.
 		/// </remarks>
@@ -476,8 +467,6 @@ namespace VkNet.Categories
 			}
 			return new ReadOnlyCollection<Chat>(new List<Chat> { response });
 		}
-
-
 
 		/// <summary>
 		/// Создаёт беседу с несколькими участниками.
@@ -561,7 +550,7 @@ namespace VkNet.Categories
 
 			var response = _vk.Call("messages.getChatUsers", parameters);
 
-			return response.ToReadOnlyCollectionOf<User>(x => fields != null ? x : new User { Id = (long)x });
+			return response.ToReadOnlyCollectionOf(x => fields != null ? x : new User { Id = (long)x });
 		}
 
 		/// <summary>
@@ -703,7 +692,6 @@ namespace VkNet.Categories
 			return result["chat"];
 		}
 
-
 		/// <summary>
 		/// Помечает сообщения как важные либо снимает отметку.
 		/// </summary>
@@ -750,24 +738,27 @@ namespace VkNet.Categories
 		/// Возвращает материалы диалога или беседы..
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
+		/// <param name="nextFrom">Новое значение start_from. </param>
 		/// <returns>
 		/// После успешного выполнения возвращает массив объектов photo, video, audio или doc, в зависимости от значения media_type, а также дополнительное поле next_from, содержащее новое значение start_from.
 		/// Если в media_type передано значение link, возвращает список объектов-ссылок:
 		/// url URL ссылки.
-		///  строка title заголовок сниппета.
-		///  строка description описание сниппета.
-		///  строка image_src URL изображения сниппета.
-		///  строка.
+		/// строка title заголовок сниппета.
+		/// строка description описание сниппета.
+		/// строка image_src URL изображения сниппета.
+		/// строка.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistoryAttachments" />.
 		/// </remarks>
 		[ApiVersion("5.50")]
-		public ReadOnlyCollection<Attachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params)
+		public ReadOnlyCollection<Attachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
 		{
-			var parameters = @params;
+			var result = _vk.Call("messages.getHistoryAttachments", @params);
 
-			return _vk.Call("messages.getHistoryAttachments", parameters).ToReadOnlyCollectionOf<Attachment>(o => o);
+			nextFrom = result["next_from"];
+
+			return result.ToReadOnlyCollectionOf<Attachment>(o => o);
 		}
 	}
 }
