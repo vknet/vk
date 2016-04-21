@@ -1,18 +1,16 @@
-﻿using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
 	using System.Linq;
 	using JetBrains.Annotations;
-
 	using Enums;
 	using Model;
 	using Utils;
+	using Enums.Filters;
+	using Enums.SafetyEnums;
+	using Model.RequestParams;
 
 	/// <summary>
 	/// Методы для работы с друзьями.
@@ -31,18 +29,16 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="params">Входные параметры выборки.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список идентификаторов (id) друзей пользователя, если параметр fields не использовался. 
+		/// После успешного выполнения возвращает список идентификаторов (id) друзей пользователя, если параметр fields не использовался.
 		/// При использовании параметра fields  возвращает список объектов пользователей, но не более 5000.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> Get(FriendsGetParams @params)
+		public VkCollection<User> Get(FriendsGetParams @params)
 		{
-			var response = _vk.Call("friends.get", @params);
-
-			return response.ToReadOnlyCollectionOf<User>(x => @params.Fields != null ? x : new User { Id = x });
+			return _vk.Call("friends.get", @params).ToVkCollectionOf(x => @params.Fields != null ? x : new User { Id = x });
 		}
 
 		/// <summary>
@@ -67,7 +63,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="params">Входные параметры выборки.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список идентификаторов (id) друзей, находящихся сейчас на сайте, у пользователя с идентификатором uid и входящих в список с идентификатором lid. 
+		/// После успешного выполнения возвращает список идентификаторов (id) друзей, находящихся сейчас на сайте, у пользователя с идентификатором uid и входящих в список с идентификатором lid.
 		/// При использовании параметра online_mobile=1 также возвращается поле online_mobile, содержащее список идентификатор друзей, находящихся на сайте с мобильного устройства.
 		/// </returns>
 		/// <remarks>
@@ -86,7 +82,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="params">Входные параметры выборки.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список идентификаторов (id) друзей, находящихся сейчас на сайте, у пользователя с идентификатором uid и входящих в список с идентификатором lid. 
+		/// После успешного выполнения возвращает список идентификаторов (id) друзей, находящихся сейчас на сайте, у пользователя с идентификатором uid и входящих в список с идентификатором lid.
 		/// При использовании параметра online_mobile=1 также возвращается поле online_mobile, содержащее список идентификатор друзей, находящихся на сайте с мобильного устройства.
 		/// </returns>
 		/// <remarks>
@@ -120,22 +116,22 @@ namespace VkNet.Categories
 		/// Возвращает информацию о том, добавлен ли текущий пользователь в друзья у указанных пользователей.
 		/// </summary>
 		/// <param name="userIds">Идентификаторы пользователей, статус дружбы с которыми нужно проверить. список целых чисел, разделенных запятыми, обязательный параметр (Список целых чисел, разделенных запятыми, обязательный параметр).</param>
-		/// <param name="needSign">1 – необходимо вернуть поле sign которое равно: 
-		/// md5("{id}_{user_id}_{friends_status}_{application_secret}"), где id - это идентификатор пользователя, для которого выполняется запрос. 
-		/// и позволяет на сервере убедиться что данные не были подделаны на клиенте. 
+		/// <param name="needSign">1 – необходимо вернуть поле sign которое равно:
+		/// md5("{id}_{user_id}_{friends_status}_{application_secret}"), где id - это идентификатор пользователя, для которого выполняется запрос.
+		/// и позволяет на сервере убедиться что данные не были подделаны на клиенте.
 		/// 0 – поле sign возвращать не нужно. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
 		/// <returns>
-		/// После успешного выполнения возвращает массив объектов status, каждый из которых содержит следующие поля: 
-		/// 
-		/// user_id — идентификатор пользователя (из числа переданных в параметре user_ids); 
-		/// friend_status — статус дружбы с пользователем: 
-		/// 
-		/// 0 – пользователь не является другом, 
-		/// 1 – отправлена заявка/подписка пользователю, 
-		/// 2 – имеется входящая заявка/подписка от пользователя, 
-		/// 3 – пользователь является другом; 
-		/// 
-		/// request_message — текст сообщения, прикрепленного к заявке в друзья (если есть). 
+		/// После успешного выполнения возвращает массив объектов status, каждый из которых содержит следующие поля:
+		///
+		/// user_id — идентификатор пользователя (из числа переданных в параметре user_ids);
+		/// friend_status — статус дружбы с пользователем:
+		///
+		/// 0 – пользователь не является другом,
+		/// 1 – отправлена заявка/подписка пользователю,
+		/// 2 – имеется входящая заявка/подписка от пользователя,
+		/// 3 – пользователь является другом;
+		///
+		/// request_message — текст сообщения, прикрепленного к заявке в друзья (если есть).
 		/// read_state — статус заявки (0 — не просмотрена, 1 — просмотрена), возвращается только если friend_status = 2;.
 		/// </returns>
 		/// <remarks>
@@ -149,6 +145,7 @@ namespace VkNet.Categories
 			{
 				throw new ArgumentNullException("userIds");
 			}
+
 			var parameters = new VkParameters {
 				{ "user_ids", userIds },
 				{ "need_sign", needSign }
@@ -199,7 +196,7 @@ namespace VkNet.Categories
 
 			return response["list_id"];
 		}
-		
+
 		/// <summary>
 		/// Удаляет существующий список друзей текущего пользователя.
 		/// </summary>
@@ -226,27 +223,25 @@ namespace VkNet.Categories
 		/// <param name="userId">Идентификатор пользователя. положительное число, по умолчанию идентификатор текущего пользователя (Положительное число, по умолчанию идентификатор текущего пользователя).</param>
 		/// <param name="returnSystem">Возвращать ли системный список публичных меток друзей пользователя. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов, каждый из которых содержит следующие поля: 
-		/// 
-		/// name — название списка друзей; 
+		/// После успешного выполнения возвращает список объектов, каждый из которых содержит следующие поля:
+		///
+		/// name — название списка друзей;
 		/// id — идентификатор списка друзей.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getLists" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<FriendList> GetLists(long? userId = null, bool? returnSystem = null)
+		public VkCollection<FriendList> GetLists(long? userId = null, bool? returnSystem = null)
 		{
 			var parameters = new VkParameters {
 				{ "user_id", userId },
 				{ "return_system", returnSystem }
 			};
 
-			VkResponseArray response = _vk.Call("friends.getLists", parameters);
-
-			return response.ToReadOnlyCollectionOf<FriendList>(x => x);
+			return _vk.Call("friends.getLists", parameters).ToVkCollectionOf<FriendList>(x => x);
 		}
-		
+
 		/// <summary>
 		/// Редактирует существующий список друзей текущего пользователя.
 		/// </summary>
@@ -301,10 +296,10 @@ namespace VkNet.Categories
 		/// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
 		/// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
 		/// <returns>
-		/// После успешного выполнения возвращает одно из следующих значений: 
-		/// 
-		/// 1 — заявка на добавление данного пользователя в друзья отправлена; 
-		/// 2 — заявка на добавление в друзья от данного пользователя одобрена; 
+		/// После успешного выполнения возвращает одно из следующих значений:
+		///
+		/// 1 — заявка на добавление данного пользователя в друзья отправлена;
+		/// 2 — заявка на добавление в друзья от данного пользователя одобрена;
 		/// 4 — повторная отправка заявки.
 		/// </returns>
 		/// <remarks>
@@ -329,18 +324,18 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="userId">Идентификатор пользователя, которого необходимо удалить из списка друзей, либо заявку от которого необходимо отклонить. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
 		/// <returns>
-		/// После успешного выполнения начиная с версии 5.28 возвращается объект с полями: 
-		/// 
-		/// success — удалось успешно удалить друга 
-		/// friend_deleted — был удален друг 
-		/// out_request_deleted  — отменена исходящая заявка 
-		/// in_request_deleted  — отклонена входящая заявка 
-		/// suggestion_deleted  — отклонена рекомендация друга 
-		/// 
-		/// Для версии 5.27 и более старых возвращает одно из следующих значений: 
-		/// 
-		/// 1 — пользователь удален из списка друзей; 
-		/// 2 — заявка на добавление в друзья данного пользователя отклонена (входящая или исходящая); 
+		/// После успешного выполнения начиная с версии 5.28 возвращается объект с полями:
+		///
+		/// success — удалось успешно удалить друга
+		/// friend_deleted — был удален друг
+		/// out_request_deleted  — отменена исходящая заявка
+		/// in_request_deleted  — отклонена входящая заявка
+		/// suggestion_deleted  — отклонена рекомендация друга
+		///
+		/// Для версии 5.27 и более старых возвращает одно из следующих значений:
+		///
+		/// 1 — пользователь удален из списка друзей;
+		/// 2 — заявка на добавление в друзья данного пользователя отклонена (входящая или исходящая);
 		/// 3 — рекомендация добавить в друзья данного пользователя удалена.
 		/// </returns>
 		/// <remarks>
@@ -357,7 +352,7 @@ namespace VkNet.Categories
 
 			return _vk.Call("friends.delete", parameters);
 		}
-		
+
 		/// <summary>
 		/// Редактирует списки друзей для выбранного друга.
 		/// </summary>
@@ -408,7 +403,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="params">Входные параметры выборки.</param>
 		/// <returns>
-		/// Если не установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по времени подачи заявки список идентификаторов (id) пользователей (кому или от кого пришла заявка). 
+		/// Если не установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по времени подачи заявки список идентификаторов (id) пользователей (кому или от кого пришла заявка).
 		/// Если установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по времени подачи заявки массив объектов, содержащих информацию о заявках на добавление в друзья.
 		/// Каждый из объектов содержит поле uid, являющийся идентификатором пользователя.
 		/// При наличии общих друзей, в объекте будет содержаться поле mutual, в котором будет находиться список идентификаторов общих друзей.
@@ -420,7 +415,7 @@ namespace VkNet.Categories
 		public IDictionary<long, ReadOnlyCollection<long>> GetRequests(FriendsGetRequestsParams @params)
 		{
 			VkResponseArray response = _vk.Call("friends.getRequests", @params);
-			
+
 			// Проверка возвращается ли список объектов или идентификаторы пользователя
 			if (response.Count > 0 && response[0].ContainsKey("user_id"))
 			{
@@ -451,7 +446,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getSuggestions" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null, UsersFields fields = null, NameCase nameCase = null)
+		public VkCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null, UsersFields fields = null, NameCase nameCase = null)
 		{
 			var parameters = new VkParameters {
 				{ "filter", filter },
@@ -461,7 +456,7 @@ namespace VkNet.Categories
 				{ "name_case", nameCase }
 			};
 
-			return _vk.Call("friends.getSuggestions", parameters).ToReadOnlyCollectionOf<User>(x => x);
+			return _vk.Call("friends.getSuggestions", parameters).ToVkCollectionOf<User>(x => x);
 		}
 
 		/// <summary>
@@ -470,7 +465,7 @@ namespace VkNet.Categories
 		/// <param name="phones">Список телефонных номеров в формате MSISDN, разделеннных запятыми. Например
 		/// +79219876543,+79111234567
 		/// Максимальное количество номеров в списке — 1000. список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
-		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. 
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть.
 		/// Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, counters, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов пользователей с дополнительным полем phone, в котором содержится номер из списка заданных для поиска номеров.
@@ -490,28 +485,28 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Позволяет получить список идентификаторов пользователей, доступных для вызова в приложении, используя метод JSAPI callUser. 
+		/// Позволяет получить список идентификаторов пользователей, доступных для вызова в приложении, используя метод JSAPI callUser.
 		/// Подробнее о схеме вызова из приложений.
 		/// </summary>
-		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. 
+		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть.
 		/// Доступные значения: nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. строка, по умолчанию Nom (Строка, по умолчанию Nom).</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список идентификаторов (id) друзей пользователя, доступных для вызова, если параметр fields не использовался. 
+		/// После успешного выполнения возвращает список идентификаторов (id) друзей пользователя, доступных для вызова, если параметр fields не использовался.
 		/// При использовании параметра fields  возвращает список объектов пользователей.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getAvailableForCall" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetAvailableForCall(ProfileFields fields, NameCase nameCase)
+		public VkCollection<User> GetAvailableForCall(ProfileFields fields, NameCase nameCase)
 		{
 			var parameters = new VkParameters {
 				{ "fields", fields },
 				{ "name_case", nameCase }
 			};
-			VkResponseArray result = _vk.Call("friends.getAvailableForCall", parameters);
-			return result.ToReadOnlyCollectionOf<User>(x => fields != null ? new User { Id = x} : x);
+
+			return _vk.Call("friends.getAvailableForCall", parameters).ToVkCollectionOf(x => fields != null ? new User { Id = x} : x);
 		}
 
 		/// <summary>
@@ -525,10 +520,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> Search(FriendsSearchParams @params)
+		public VkCollection<User> Search(FriendsSearchParams @params)
 		{
-			return _vk.Call("friends.search", @params).ToReadOnlyCollectionOf<User>(x => x);
+			return _vk.Call("friends.search", @params).ToVkCollectionOf<User>(x => x);
 		}
-
 	}
 }

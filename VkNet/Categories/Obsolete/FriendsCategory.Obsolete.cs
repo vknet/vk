@@ -51,7 +51,7 @@ namespace VkNet.Categories
                 Order = order
             };
 
-            return Get(parameters);
+            return Get(parameters).ToReadOnlyCollection();
         }
 
         /// <summary>
