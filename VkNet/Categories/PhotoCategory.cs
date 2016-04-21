@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using VkNet.Model.RequestParams;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
@@ -9,6 +6,8 @@ namespace VkNet.Categories
 	using Enums;
 	using Model;
 	using Model.Attachments;
+	using Newtonsoft.Json.Linq;
+	using Model.RequestParams;
 
 	/// <summary>
 	/// Методы для работы с фотографиями.
@@ -30,7 +29,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает объект <see cref="PhotoAlbum" />
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.createAlbum" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.createAlbum" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
@@ -46,7 +45,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.editAlbum" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.editAlbum" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool EditAlbum(PhotoEditAlbumParams @params)
@@ -57,38 +56,32 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список альбомов пользователя или сообщества.
 		/// </summary>
-		/// <param name="count">Количество альбомов.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
 		/// Возвращает список объектов <see cref="PhotoAlbum" />
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAlbums" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getAlbums" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<PhotoAlbum> GetAlbums(out int count, PhotoGetAlbumsParams @params)
+		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params)
 		{
-			var response = _vk.Call("photos.getAlbums", @params);
-			count = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<PhotoAlbum>(x => x);
+			return _vk.Call("photos.getAlbums", @params).ToVkCollectionOf<PhotoAlbum>(x => x);
 		}
 
 		/// <summary>
 		/// Возвращает список фотографий в альбоме.
 		/// </summary>
-		/// <param name="count">Количество альбомов.</param>
 		/// <param name="params">Параметры запроса.</param>
-		/// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>.</returns>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.get"/>.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.get" />.
 		/// </remarks>
-		[ApiMethodName("photos.get", Skip = true)]
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Photo> Get(out int count, PhotoGetParams @params)
+		public VkCollection<Photo> Get(PhotoGetParams @params)
 		{
-			var response = _vk.Call("photos.get", @params);
-			count = response["count"];
-			return response.ToReadOnlyCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.get", @params).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
@@ -162,7 +155,7 @@ namespace VkNet.Categories
 		/// <param name="groupId">Идентификатор сообщества, которому принадлежит альбом (если необходимо загрузить фотографию в альбом сообщества). целое число (Целое число).</param>
 		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/></returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getUploadServer"/>.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getUploadServer"/>.
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public UploadServerInfo GetUploadServer(long albumId, long? groupId = null)
@@ -308,7 +301,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/>.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getMessagesUploadServer"/>.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getMessagesUploadServer"/>.
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public UploadServerInfo GetMessagesUploadServer()
@@ -322,7 +315,7 @@ namespace VkNet.Categories
 		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
 		/// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveMessagesPhoto"/>.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.saveMessagesPhoto"/>.
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Photo> SaveMessagesPhoto(string response)
@@ -412,7 +405,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Осуществляет поиск изображений по местоположению или описанию.
 		/// </summary>
-		/// <param name="count">Количество альбомов.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов фотографий.
@@ -421,11 +413,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Photo> Search(out int count, PhotoSearchParams @params)
+		public VkCollection<Photo> Search(PhotoSearchParams @params)
 		{
-			var response = _vk.Call("photos.search", @params, true);
-			count = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.search", @params, true).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
@@ -436,7 +426,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.save" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.save" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
@@ -592,7 +582,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает все фотографии пользователя или сообщества в антихронологическом порядке.
 		/// </summary>
-		/// <param name="count">Количество пользователей, которым нравится текущая фотография.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
@@ -604,31 +593,28 @@ namespace VkNet.Categories
 		/// </remarks>
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAll" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getAll" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Photo> GetAll(out int count, PhotoGetAllParams @params)
+		public VkCollection<Photo> GetAll(PhotoGetAllParams @params)
 		{
-			var response = _vk.Call("photos.getAll", @params);
-			count = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.getAll", @params).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
 		/// Возвращает список фотографий, на которых отмечен пользователь.
 		/// </summary>
-		/// <param name="count">Количество.</param>
 		/// <param name="params">Параметры запроса.</param>
-		/// <returns>После успешного выполнения возвращает список объектов photo.</returns>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов photo.
+		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Photo> GetUserPhotos(out int count, PhotoGetUserPhotosParams @params)
+		public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params)
 		{
-			var response = _vk.Call("photos.getUserPhotos", @params, true);
-			count = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.getUserPhotos", @params, true).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
@@ -727,7 +713,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список комментариев к фотографии.
 		/// </summary>
-		/// <param name="count">Количество.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
@@ -736,17 +721,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Comment> GetComments(out int count, PhotoGetCommentsParams @params)
+		public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params)
 		{
-			var response = _vk.Call("photos.getComments", @params);
-			count = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<Comment>(x => x);
+			return _vk.Call("photos.getComments", @params).ToVkCollectionOf<Comment>(x => x);
 		}
 
 		/// <summary>
 		/// Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
 		/// </summary>
-		/// <param name="count">Количество комментариев</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
@@ -755,11 +737,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Comment> GetAllComments(out int count, PhotoGetAllCommentsParams @params)
+		public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params)
 		{
-			var response = _vk.Call("photos.getAllComments", @params);
-			count = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<Comment>(x => x);
+			return _vk.Call("photos.getAllComments", @params).ToVkCollectionOf<Comment>(x => x);
 		}
 
 		/// <summary>
@@ -936,7 +916,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список фотографий, на которых есть непросмотренные отметки.
 		/// </summary>
-		/// <param name="countTotal">Общее количество.</param>
 		/// <param name="offset">Смещение, необходимое для получения определённого подмножества фотографий. целое число (Целое число).</param>
 		/// <param name="count">Количество фотографий, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20 (Положительное число, максимальное значение 100, по умолчанию 20).</param>
 		/// <returns>
@@ -946,17 +925,15 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Photo> GetNewTags(out int countTotal, uint? offset = null, uint? count = null)
+		public VkCollection<Photo> GetNewTags(uint? offset = null, uint? count = null)
 		{
 			var parameters = new VkParameters
-				{
-					{"offset", offset},
-					{"count", count}
-				};
+			{
+				{"offset", offset},
+				{"count", count}
+			};
 
-			var response = _vk.Call("photos.getNewTags", parameters);
-			countTotal = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.getNewTags", parameters).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
@@ -986,7 +963,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("photos.getMarketUploadServer", parameters);
 		}
-
 
 		/// <summary>
 		/// Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.

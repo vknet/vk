@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Model;
 using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -69,7 +70,185 @@ namespace VkNet.Categories
 				""hash"": " + hash + @"
 			}";
             return SaveOwnerPhoto(response);
-        }
+		}
 
-    }
+		/// <summary>
+		/// Возвращает список альбомов пользователя или сообщества.
+		/// </summary>
+		/// <param name="count">Количество альбомов.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// Возвращает список объектов <see cref="PhotoAlbum" />
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAlbums" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Метод устарел. Используйте вместо него GetAlbums(PhotoGetAlbumsParams @params)")]
+		public ReadOnlyCollection<PhotoAlbum> GetAlbums(out int count, PhotoGetAlbumsParams @params)
+		{
+			var response = GetAlbums(@params);
+
+			count = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+		/// <summary>
+		/// Возвращает список фотографий в альбоме.
+		/// </summary>
+		/// <param name="count">Количество альбомов.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.get"/>.
+		/// </remarks>
+		[Obsolete("Метод устарел. Используйте вместо него Get(PhotoGetParams @params)")]
+		public ReadOnlyCollection<Photo> Get(out int count, PhotoGetParams @params)
+		{
+			var response = Get(@params);
+
+			count = Convert.ToInt32(response.TotalCount);;
+
+			return response.ToReadOnlyCollection();
+		}
+
+		/// <summary>
+		/// Осуществляет поиск изображений по местоположению или описанию.
+		/// </summary>
+		/// <param name="count">Количество альбомов.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов фотографий.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.search" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Метод устарел. Используйте вместо него Search(PhotoSearchParams @params)")]
+		public ReadOnlyCollection<Photo> Search(out int count, PhotoSearchParams @params)
+		{
+			var response = Search(@params);
+
+			count = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+		/// <summary>
+		/// Возвращает все фотографии пользователя или сообщества в антихронологическом порядке.
+		/// </summary>
+		/// <param name="count">Количество пользователей, которым нравится текущая фотография.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// <remarks>
+		/// Если был задан параметр extended — будет возвращено поле likes:
+		/// user_likes: 1 — текущему пользователю нравится данная фотография, 0 - не указано.
+		/// count — количество пользователей, которым нравится текущая фотография.
+		/// Если был задан параметр photo_sizes=1, вместо полей width и height возвращаются размеры копий фотографии в специальном формате.
+		/// </remarks>
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAll" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Метод устарел. Используйте вместо него GetAll(PhotoGetAllParams @params)")]
+		public ReadOnlyCollection<Photo> GetAll(out int count, PhotoGetAllParams @params)
+		{
+			var response = GetAll(@params);
+
+			count = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+		/// <summary>
+		/// Возвращает список фотографий, на которых отмечен пользователь.
+		/// </summary>
+		/// <param name="count">Количество.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>После успешного выполнения возвращает список объектов photo.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Метод устарел. Используйте вместо него GetUserPhotos(PhotoGetUserPhotosParams @params)")]
+		public ReadOnlyCollection<Photo> GetUserPhotos(out int count, PhotoGetUserPhotosParams @params)
+		{
+			var response = GetUserPhotos(@params);
+
+			count = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+		/// <summary>
+		/// Возвращает список комментариев к фотографии.
+		/// </summary>
+		/// <param name="count">Количество.</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Метод устарел. Используйте вместо него GetComments(PhotoGetCommentsParams @params)")]
+		public ReadOnlyCollection<Comment> GetComments(out int count, PhotoGetCommentsParams @params)
+		{
+			var response = GetComments(@params);
+
+			count = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+		/// <summary>
+		/// Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
+		/// </summary>
+		/// <param name="count">Количество комментариев</param>
+		/// <param name="params">Параметры запроса.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Метод устарел. Используйте вместо него GetAllComments(PhotoGetAllCommentsParams @params)")]
+		public ReadOnlyCollection<Comment> GetAllComments(out int count, PhotoGetAllCommentsParams @params)
+		{
+			var response = GetAllComments(@params);
+
+			count = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+		/// <summary>
+		/// Возвращает список фотографий, на которых есть непросмотренные отметки.
+		/// </summary>
+		/// <param name="countTotal">Общее количество.</param>
+		/// <param name="offset">Смещение, необходимое для получения определённого подмножества фотографий. целое число (Целое число).</param>
+		/// <param name="count">Количество фотографий, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20 (Положительное число, максимальное значение 100, по умолчанию 20).</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Метод устарел. Используйте вместо него GetNewTags(uint? offset = null, uint? count = null)")]
+		public ReadOnlyCollection<Photo> GetNewTags(out int countTotal, uint? offset = null, uint? count = null)
+		{
+			var response = GetNewTags(offset,count);
+
+			countTotal = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+	}
 }
