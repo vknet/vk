@@ -8,6 +8,12 @@ Coverity: [![Coverity Scan Build Status](https://scan.coverity.com/projects/6249
 
 Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+# Как использовать
+
+1. [Создайте приложение](https://vk.com/editapp?act=create)
+2. Авторизуйтесь как указано в [документации](https://vknet.github.io/vk/authorize/)
+3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
+
 #В nuget доступна версия 1.21#
 
 # План развития проекта
