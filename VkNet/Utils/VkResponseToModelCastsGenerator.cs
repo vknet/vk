@@ -1228,6 +1228,5 @@ namespace VkNet.Utils
             return response.ToCollectionOf<WallReply>(a => a);
         }
 
-
 	}
 }

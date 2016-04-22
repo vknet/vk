@@ -110,7 +110,6 @@ namespace VkNet.Model
 		/// </summary>
 		public Geo Geo { get; set; }
 
-
 		/// <summary>
 		/// Если запись закрепленная - вернет true
 		/// </summary>

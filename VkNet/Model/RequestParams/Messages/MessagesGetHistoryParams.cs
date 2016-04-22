@@ -13,7 +13,6 @@
         /// </summary>
         public long? UserId { get; set; }
 
-
         /// <summary>
         /// Идентификатор назначения.
         /// </summary>

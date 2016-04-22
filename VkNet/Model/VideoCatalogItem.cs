@@ -29,7 +29,6 @@ namespace VkNet.Model
 		/// </summary>
 		public VideoCatalogItemType Type { get; set; }
 
-
 		/// <summary>
 		/// длительность в секундах. положительное число.
 		/// </summary>
@@ -79,7 +78,6 @@ namespace VkNet.Model
 		/// наличие возможности редактировать видео. флаг, может принимать значения 1 или 0.
 		/// </summary>
 		public bool? CanEdit { get; set; }
-
 
 		/// <summary>
 		/// число видеозаписей в альбоме. положительное число.

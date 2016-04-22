@@ -25,7 +25,6 @@ namespace VkNet.Model.RequestParams
 			Count = null;
 		}
 
-
 		/// <summary>
 		/// Текст поискового запроса. строка, обязательный параметр.
 		/// </summary>

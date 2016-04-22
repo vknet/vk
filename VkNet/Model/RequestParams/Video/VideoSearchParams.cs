@@ -29,7 +29,6 @@ namespace VkNet.Model.RequestParams
 			Extended = null;
 		}
 
-
 		/// <summary>
 		/// Строка поискового запроса. Например, The Beatles. строка, обязательный параметр.
 		/// </summary>

@@ -69,7 +69,6 @@ namespace VkNet.Model
 		public ulong? CopyPostId
 		{ get; set; }
 
-
 		/// <summary>
 		/// Идентификатор сообщества где было сделано упоминание.
 		/// </summary>

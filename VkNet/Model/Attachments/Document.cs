@@ -55,7 +55,6 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public DateTime? Date { get; set; }
 
-
         /// <summary>
         /// Gets or sets the preview.
         /// </summary>

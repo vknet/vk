@@ -35,7 +35,6 @@ namespace VkNet.Model
 		/// </summary>
 		public string LastName { get; set; }
 
-
 		#region Методы
 		/// <summary>
 		/// Разобрать из json.

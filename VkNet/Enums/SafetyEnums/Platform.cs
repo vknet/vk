@@ -11,12 +11,10 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		public static readonly Platform Android = RegisterPossibleValue("android");
 
-
 		/// <summary>
 		/// iPhone.
 		/// </summary>
 		public static readonly Platform IPhone = RegisterPossibleValue("iphone");
-
 
 		/// <summary>
 		/// wphone.
