@@ -93,7 +93,6 @@ namespace VkNet.Categories
             return Convert.ToInt32(result.TotalCount);
         }
 
-
         /// <summary>
         /// Возвращает список комментариев к записи на стене пользователя.
         /// </summary>
@@ -229,6 +228,7 @@ namespace VkNet.Categories
                 PlaceId = placeId,
                 PostId = postId
             };
+
             return Post(parameters);
         }
 
@@ -299,8 +299,38 @@ namespace VkNet.Categories
                 Long = @long,
                 PlaceId = placeId
             };
-            return Edit(parameters);
-        }
 
-    }
+            return Edit(parameters);
+		}
+
+		/// <summary>
+		/// Возвращает список комментариев к записи на стене.
+		/// </summary>
+		/// <param name="totalCount">Общее количество комментариев к записи.</param>
+		/// <param name="params">Входные параметры выборки.</param>
+		/// <returns>
+		/// После успешного выполнения возвращает список объектов комментариев.
+		/// Если был задан параметр need_likes=1, у объектов комментариев возвращается дополнительное поле likes:
+		/// count — число пользователей, которым понравился комментарий;
+		/// user_likes — наличие отметки «Мне нравится» от текущего пользователя
+		/// (1 — есть, 0 — нет);
+		/// can_like — информация о том, может ли текущий пользователь поставить отметку «Мне нравится»
+		/// (1 — может, 0 — не может).
+		/// Если был передан параметр start_comment_id, будет также возвращено поле real_offset – итоговое смещение данного подмножества комментариев (оно может быть отрицательным, если был указан отрицательный offset).
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments" />.
+		/// </remarks>
+		[ApiVersion("5.44")]
+		[Obsolete("Данный метод устарел. Используйте GetComments(WallGetCommentsParams @params)")]
+		public ReadOnlyCollection<Comment> GetComments(out int totalCount, WallGetCommentsParams @params)
+		{
+			var response = GetComments(@params);
+
+			totalCount = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
+		}
+
+	}
 }
