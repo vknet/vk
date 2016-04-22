@@ -103,7 +103,6 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public string VersionCreated { get; set; }
 
-
 		/// <summary>
 		/// Количество просмотров вики-страницы.
 		/// </summary>

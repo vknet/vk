@@ -54,7 +54,6 @@ namespace VkNet.Categories
 			return response.ToReadOnlyCollectionOf<User>(x => x);
 		}
 
-
 		/// <summary>
 		/// Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне нравится".
 		/// </summary>
@@ -222,7 +221,6 @@ namespace VkNet.Categories
 			};
 			return _vk.Call("fave.addUser", parameters);
 		}
-
 
 		/// <summary>
 		/// Удаляет пользователя из закладок.

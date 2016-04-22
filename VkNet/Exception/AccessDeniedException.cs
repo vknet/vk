@@ -3,7 +3,6 @@
     using System;
     using System.Runtime.Serialization;
 
-
     /// <summary>
     /// Исключение, которое выбрасывается при отказе в доступе на выполнение операции сервером ВКонтакте.
     /// </summary>

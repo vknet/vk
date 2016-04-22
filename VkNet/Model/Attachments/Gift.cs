@@ -47,7 +47,6 @@ namespace VkNet.Model.Attachments
 				Thumb256 = response["thumb_256"]
 			};
 
-
 			return gift;
 		}
 	}

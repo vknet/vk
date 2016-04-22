@@ -10,7 +10,6 @@ namespace VkNet.Model.RequestParams
 	public struct MarketSearchParams
 	{
 
-
 		/// <summary>
 		/// Параметры запроса market.search
 		/// </summary>

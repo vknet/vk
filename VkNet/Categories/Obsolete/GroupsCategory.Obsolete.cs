@@ -103,7 +103,6 @@ namespace VkNet.Categories
             return GetById(new List<string>(), gid.ToString(), fields).FirstOrDefault();
         }
 
-
         /// <summary>
         /// Возвращает информацию о заданной группе.
         /// </summary>

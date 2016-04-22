@@ -175,7 +175,6 @@
         public LikesCategory Likes
         { get; private set; }
 
-
         /// <summary>
         /// API для работы с wiki.
         /// </summary>
@@ -278,7 +277,6 @@
 
             RequestsPerSecond = 3;
         }
-
 
 	    /// <summary>
         /// Авторизация и получение токена

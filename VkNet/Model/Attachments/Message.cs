@@ -26,7 +26,6 @@ namespace VkNet.Model
 		}
 		#region Стандартные поля
 
-
 		/// <summary>
 		/// Идентификатор автора сообщения (для исходящего сообщения — идентификатор получателя).
 		/// </summary>
@@ -110,7 +109,6 @@ namespace VkNet.Model
 		/// </summary>
 		public long? FromId
 		{ get; set; }
-
 
 		#endregion
 
@@ -254,7 +252,6 @@ namespace VkNet.Model
 				InRead = response["in_read"],
 				OutRead = response["out_read"]
 			};
-
 
 			return message;
 		}

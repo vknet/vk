@@ -402,7 +402,6 @@ namespace VkNet.Categories
             return result;
 		}
 
-
 		/// <summary>
 		/// Редактирует сообщество.
 		/// </summary>

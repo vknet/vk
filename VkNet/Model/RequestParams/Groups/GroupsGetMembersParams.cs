@@ -23,7 +23,6 @@ namespace VkNet.Model.RequestParams
 			Filter = null;
 		}
 
-
 		/// <summary>
 		/// Идентификатор или короткое имя сообщества. строка.
 		/// </summary>

@@ -34,7 +34,6 @@
             Password = password;
         }
 
-
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="AccessTokenInvalidException"/> на основе ранее сериализованных данных.
         /// </summary>

@@ -97,8 +97,6 @@ namespace VkNet.Categories
 			return response.ToReadOnlyCollectionOf<Audio>(x => x);
 		}
 
-
-
 		/// <summary>
 		/// Возвращает информацию об аудиозаписях.
 		/// </summary>
@@ -570,7 +568,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("audio.save", parameters);
 		}
-
 
 		/// <summary>
 		/// Возвращает список друзей, которые транслируют музыку в статус.

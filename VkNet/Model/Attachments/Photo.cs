@@ -149,7 +149,6 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public double? Longitude { get; set; }
 
-
 		/// <summary>
 		/// Url фотографии с максимальным размером.
 		/// </summary>

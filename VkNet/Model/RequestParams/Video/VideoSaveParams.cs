@@ -27,7 +27,6 @@ namespace VkNet.Model.RequestParams
 			Repeat = null;
 		}
 
-
 		/// <summary>
 		/// Название видеофайла. строка, по умолчанию No name.
 		/// </summary>

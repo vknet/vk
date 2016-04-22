@@ -846,7 +846,6 @@ namespace VkNet.Categories
 			return _vk.Call("video.getAlbumsByVideo", parameters);
 		}
 
-
 		/// <summary>
 		/// Позволяет получить представление каталога видео.
 		/// </summary>

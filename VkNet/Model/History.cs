@@ -35,7 +35,6 @@
 		/// </summary>
 		public string EditorName { get; set; }
 
-
 		#region Методы
 
 		/// <summary>

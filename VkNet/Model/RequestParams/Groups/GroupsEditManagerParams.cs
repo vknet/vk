@@ -23,7 +23,6 @@ namespace VkNet.Model.RequestParams
 			ContactEmail = null;
 		}
 
-
 		/// <summary>
 		/// Идентификатор сообщества (указывается без знака «минус»). положительное число, обязательный параметр.
 		/// </summary>

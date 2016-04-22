@@ -987,7 +987,6 @@ namespace VkNet.Categories
 			return _vk.Call("photos.getMarketUploadServer", parameters);
 		}
 
-
 		/// <summary>
 		/// Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
 		/// </summary>

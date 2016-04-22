@@ -306,7 +306,6 @@ namespace VkNet.Model.RequestParams
 			return result;
 		}
 
-
         /// <summary>
         /// Разобрать из json.
         /// </summary>

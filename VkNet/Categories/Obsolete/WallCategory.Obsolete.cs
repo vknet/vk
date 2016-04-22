@@ -93,7 +93,6 @@ namespace VkNet.Categories
             return Convert.ToInt32(result.TotalCount);
         }
 
-
         /// <summary>
         /// Возвращает список комментариев к записи на стене пользователя.
         /// </summary>

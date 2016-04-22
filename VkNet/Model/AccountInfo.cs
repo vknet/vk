@@ -38,7 +38,6 @@ namespace VkNet.Model
 		/// </summary>
 		public bool? NoWallReplies { get; set; }
 
-
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
