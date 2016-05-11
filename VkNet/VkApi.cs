@@ -342,20 +342,22 @@
         /// </summary>
         /// <param name="accessToken">Маркер доступа, полученный извне.</param>
         /// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
-        public void Authorize(string accessToken, long? userId = null)
+        /// <param name="expireTime">Время, в течении которого действует токен доступа (0 - бесконечно).</param>
+        public void Authorize(string accessToken, long? userId = null, int expireTime = 0)
         {
 	        if (string.IsNullOrWhiteSpace(accessToken))
             {
 		        return;
 	        }
 
-                StopTimer();
+            StopTimer();
 
-            	LastInvokeTime = DateTimeOffset.Now;
-                AccessToken = accessToken;
-                UserId = userId;
-                _ap = new ApiAuthParams();
-            }
+            LastInvokeTime = DateTimeOffset.Now;
+            SetTimer(expireTime);
+            AccessToken = accessToken;
+            UserId = userId;
+            _ap = new ApiAuthParams();
+        }
 
         /// <summary>
 		/// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.
@@ -419,15 +421,23 @@
             var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
             if (!authorization.IsAuthorized)
             {
-                throw new VkApiAuthorizationException("Invalid authorization", emailOrPhone, password);
+                throw new VkApiAuthorizationException("Invalid authorization with {0} - {1}", emailOrPhone, password);
             }
             var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
+            SetTimer(expireTime);
+            AccessToken = authorization.AccessToken;
+            UserId = authorization.UserId;
+        }
+        private void SetTimer(int expireTime)
+        {
             if (expireTime > 0)
             {
                 _expireTimer = new Timer(AlertExpires, null, expireTime, Timeout.Infinite);
             }
-            AccessToken = authorization.AccessToken;
-            UserId = authorization.UserId;
+            else
+            {
+                _expireTimer = new Timer(AlertExpires, null, Timeout.Infinite, Timeout.Infinite);
+            }
         }
         /// <summary>
         /// Прекращает работу таймера оповещения

@@ -45,8 +45,8 @@ namespace VkNet.Categories
             var result = Get(new WallGetParams
             {
                 OwnerId = ownerId,
-                Count = (ulong)count,
-                Offset = (ulong)offset,
+                Count = (ulong)(count ?? 0),
+                Offset = (ulong)(offset ?? 0),
                 Filter = filter
             });
             totalCount = Convert.ToInt32(result.TotalCount);
