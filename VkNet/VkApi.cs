@@ -237,6 +237,12 @@
         { get; set; }
 
         /// <summary>
+        /// Токен для доступа к методам API
+        /// </summary>
+        public string Token
+        { get { return AccessToken; } }
+
+        /// <summary>
         /// Идентификатор пользователя, от имени которого была проведена авторизация.
         /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings,Func{string},long?,string)"/>,
         /// то возвращается null.
