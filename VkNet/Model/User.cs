@@ -335,7 +335,6 @@ namespace VkNet.Model
 		public string ScreenName
 		{ get; set; }
 
-
 		#endregion
 
 		#region Поля, доступные через запрос https://vk.com/dev/account.getProfileInfo

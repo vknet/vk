@@ -47,7 +47,5 @@ namespace VkNet.Enums.Filters
 		/// </summary>
 		public static readonly SubscribeFilter All = Message | Friend | Call | Reply | Mention | Group | Like;
 
-
-
 	}
 }

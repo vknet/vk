@@ -22,7 +22,6 @@ namespace VkNet.Model.RequestParams
 			NeedHtml = null;
 		}
 
-
 		/// <summary>
 		/// Идентификатор владельца вики-страницы. целое число.
 		/// </summary>

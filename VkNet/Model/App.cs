@@ -195,7 +195,6 @@ namespace VkNet.Model
 				PlatformId = response["platform_id"]
 			};
 
-
 			return application;
 		}
 	}

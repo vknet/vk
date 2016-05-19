@@ -27,7 +27,6 @@ namespace VkNet.Model
 		/// </summary>
 		public int? LikesCount { get; set; }
 
-
 		#region Методы
 		/// <summary>
 		/// Разобрать из json.

@@ -52,8 +52,6 @@ namespace VkNet.Enums.SafetyEnums
 			return new TFilter { _mask = mask };
 		}
 
-
-
 		/// <summary>
 		/// Маска.
 		/// </summary>

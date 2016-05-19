@@ -119,7 +119,6 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public Tag Tag { get; set; }
 
-
 		/// <summary>
 		/// Поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1. Обратите внимание, в этом случае в поле duration содержится значение 0.
 		/// </summary>
@@ -173,6 +172,11 @@ namespace VkNet.Model.Attachments
 	        return result;
         }
 
-        #endregion
+		public override string ToString()
+		{
+			return $"video{OwnerId}_{Id}";
+		}
+
+		#endregion
     }
 }

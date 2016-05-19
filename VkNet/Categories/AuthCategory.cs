@@ -49,7 +49,6 @@ namespace VkNet.Categories
 			return _vk.Call("auth.checkPhone", parameters);
 		}
 
-
 		/// <summary>
 		/// Регистрирует нового пользователя по номеру телефона.
 		/// </summary>

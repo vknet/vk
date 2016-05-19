@@ -46,7 +46,6 @@ namespace VkNet.Model
 		/// </summary>
 		public string GiftHash { get; set; }
 
-
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>

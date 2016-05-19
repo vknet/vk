@@ -20,7 +20,6 @@ namespace VkNet.Model
 		public List<Group> Groups
 		{ get; set; }
 
-
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>

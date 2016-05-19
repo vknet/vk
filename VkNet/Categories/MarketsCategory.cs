@@ -27,7 +27,6 @@ namespace VkNet.Categories
 			_vk = vk;
 		}
 
-
 		/// <summary>
 		/// Метод возвращает список товаров в сообществе.
 		/// </summary>
@@ -78,7 +77,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.getById", parameters).ToReadOnlyCollectionOf<Market>(x => x);
 		}
 
-
 		/// <summary>
 		/// Поиск товаров в каталоге сообщества.
 		/// </summary>
@@ -94,7 +92,6 @@ namespace VkNet.Categories
 		{
 			return _vk.Call("market.search", @params).ToReadOnlyCollectionOf<Market>(x => x);
 		}
-
 
 		/// <summary>
 		/// Возвращает список подборок с товарами.
@@ -120,7 +117,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.getAlbums", parameters).ToReadOnlyCollectionOf<MarketAlbum>(x => x);
 		}
 
-
 		/// <summary>
 		/// Метод возвращает данные подборки с товарами.
 		/// </summary>
@@ -143,9 +139,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.getAlbumById", parameters).ToReadOnlyCollectionOf<MarketAlbum>(x => x);
 		}
 
-
-
-
 		/// <summary>
 		/// Создает новый комментарий к товару.
 		/// </summary>
@@ -162,8 +155,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.createComment", @params);
 		}
 
-
-
 		/// <summary>
 		/// Возвращает список комментариев к товару.
 		/// </summary>
@@ -179,7 +170,6 @@ namespace VkNet.Categories
 		{
 			return _vk.Call("market.getComments", @params).ToReadOnlyCollectionOf<MarketComment>(x => x);
 		}
-
 
 		/// <summary>
 		/// Удаляет комментарий к товару.
@@ -203,7 +193,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.deleteComment", parameters);
 		}
 
-
 		/// <summary>
 		/// Восстанавливает удаленный комментарий к товару.
 		/// </summary>
@@ -225,7 +214,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.restoreComment", parameters);
 		}
-
 
 		/// <summary>
 		/// Изменяет текст комментария к товару.
@@ -253,7 +241,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.editComment", parameters);
 		}
 
-
 		/// <summary>
 		/// Позволяет оставить жалобу на комментарий к товару.
 		/// </summary>
@@ -277,7 +264,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.reportComment", parameters);
 		}
-
 
 		/// <summary>
 		/// Позволяет отправить жалобу на товар.
@@ -319,7 +305,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.add", @params)["market_item_id"];
 		}
 
-
 		/// <summary>
 		/// Редактирует товар.
 		/// </summary>
@@ -335,7 +320,6 @@ namespace VkNet.Categories
 		{
 			return _vk.Call("market.edit", @params);
 		}
-
 
 		/// <summary>
 		/// Удаляет товар.
@@ -359,7 +343,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.delete", parameters);
 		}
 
-
 		/// <summary>
 		/// Восстанавливает удаленный товар.
 		/// </summary>
@@ -381,7 +364,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.restore", parameters);
 		}
-
 
 		/// <summary>
 		/// Изменяет положение товара в подборке.
@@ -411,7 +393,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.reorderItems", parameters);
 		}
 
-
 		/// <summary>
 		/// Изменяет положение подборки с товарами в списке.
 		/// </summary>
@@ -437,7 +418,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.reorderAlbums", parameters);
 		}
-
 
 		/// <summary>
 		/// Добавляет новую подборку с товарами.
@@ -465,7 +445,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.addAlbum", parameters)["market_album_id"];
 		}
 
-
 		/// <summary>
 		/// Редактирует подборку с товарами.
 		/// </summary>
@@ -492,7 +471,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.editAlbum", parameters);
 		}
 
-
 		/// <summary>
 		/// Удаляет подборку с товарами.
 		/// </summary>
@@ -514,7 +492,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.deleteAlbum", parameters);
 		}
-
 
 		/// <summary>
 		/// Удаляет товар из одной или нескольких выбранных подборок.
@@ -540,7 +517,6 @@ namespace VkNet.Categories
 			return _vk.Call("market.removeFromAlbum", parameters);
 		}
 
-
 		/// <summary>
 		/// Добавляет товар в одну или несколько выбранных подборок.
 		/// </summary>
@@ -564,7 +540,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("market.addToAlbum", parameters);
 		}
-
 
 		/// <summary>
 		/// Возвращает список категорий для товаров..

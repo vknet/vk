@@ -477,8 +477,6 @@ namespace VkNet.Categories
 			return new ReadOnlyCollection<Chat>(new List<Chat> { response });
 		}
 
-
-
 		/// <summary>
 		/// Создаёт беседу с несколькими участниками.
 		/// </summary>
@@ -702,7 +700,6 @@ namespace VkNet.Categories
 			messageId = result["message_id"];
 			return result["chat"];
 		}
-
 
 		/// <summary>
 		/// Помечает сообщения как важные либо снимает отметку.

@@ -22,7 +22,6 @@ namespace VkNet.Model.RequestParams
 			Suggested = null;
 		}
 
-
 		/// <summary>
 		/// Смещение, необходимое для выборки определенного подмножества заявок на добавление в друзья. положительное число.
 		/// </summary>

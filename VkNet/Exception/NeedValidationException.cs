@@ -24,7 +24,6 @@
         /// </summary>
         public Uri redirectUri { get; private set; }
 
-
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="VkApiAuthorizationException"/>.
         /// </summary>
@@ -34,7 +33,6 @@
         {
             redirectUri = new Uri(strRedirectUri);
         }
-
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="AccessTokenInvalidException"/> на основе ранее сериализованных данных.

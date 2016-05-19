@@ -18,7 +18,6 @@
         /// </summary>
         public Uri Img { get; private set; }
 
-
         /// <summary>
         /// Создания экземпляра <see cref="CaptchaNeededException"/>
         /// </summary>

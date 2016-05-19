@@ -500,7 +500,6 @@ namespace JetBrains.Annotations
     [AttributeUsage(AttributeTargets.Parameter, Inherited = true)]
     public sealed class InstantHandleAttribute : Attribute { }
 
-
     /// <summary>
     /// Indicates that a method does not make any observable state changes.
     /// The same as <see cref="System.Diagnostics.Contracts.PureAttribute"/>

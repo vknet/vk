@@ -148,7 +148,6 @@ namespace VkNet.Categories
 			return _vk.Call("pages.saveAccess", parameters);
 		}
 
-
 		/// <summary>
 		/// Возвращает список всех старых версий вики-страницы.
 		/// </summary>
@@ -180,7 +179,6 @@ namespace VkNet.Categories
 			return result.ToReadOnlyCollectionOf<History>(x => x);
 		}
 
-
 		/// <summary>
 		/// Возвращает список вики-страниц в группе.
 		/// </summary>
@@ -202,7 +200,6 @@ namespace VkNet.Categories
 
 			return result.ToReadOnlyCollectionOf<Page>(x => x);
 		}
-
 
 		/// <summary>
 		/// Возвращает текст одной из старых версий страницы.
@@ -231,7 +228,6 @@ namespace VkNet.Categories
 			return _vk.Call("pages.getVersion", parameters, true);
 		}
 
-
 		/// <summary>
 		/// Возвращает html-представление вики-разметки.
 		/// </summary>
@@ -254,7 +250,6 @@ namespace VkNet.Categories
 
 			return _vk.Call("pages.parseWiki", parameters);
 		}
-
 
 		/// <summary>
 		/// Позволяет очистить кеш отдельных внешних страниц, которые могут быть прикреплены к записям ВКонтакте.

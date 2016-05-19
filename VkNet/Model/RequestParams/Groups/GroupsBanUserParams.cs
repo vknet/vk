@@ -23,7 +23,6 @@ namespace VkNet.Model.RequestParams
 			CommentVisible = null;
 		}
 
-
 		/// <summary>
 		/// Идентификатор группы. положительное число, обязательный параметр.
 		/// </summary>
