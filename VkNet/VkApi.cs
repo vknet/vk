@@ -260,7 +260,7 @@
         /// <summary>
         /// Обработчик распознавания капчи
         /// </summary>
-        public ICaptchaSolver CaptchaSolver;
+        private readonly ICaptchaSolver _captchaSolver;
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="VkApi" />.
@@ -297,7 +297,7 @@
             RequestsPerSecond = 3;
 
             MaxCaptchaRecognitionCount = 5;
-            CaptchaSolver = captchaSolver;
+            _captchaSolver = captchaSolver;
         }
 
         /// <summary>
@@ -468,13 +468,14 @@
         private void AuthorizeEx(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null,
                                string host = null, int? port = null)
         {
-            if (CaptchaSolver == null)
+            if (_captchaSolver == null)
             {
                 Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
             }
             else
             {
-                var numberOfRemainingAttempts = MaxCaptchaRecognitionCount + 1;
+                var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
+                var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
                 var captchaSidTemp = captchaSid;
                 var captchaKeyTemp = captchaKey;
                 var authorizationCompleted = false;
@@ -483,19 +484,30 @@
                 {
                     try
                     {
+                        numberOfRemainingAttemptsToAuthorize--;
                         Authorize(appId, emailOrPhone, password, settings, code, captchaSidTemp, captchaKeyTemp, host, port);
 
                         authorizationCompleted = true;
-                        return;
                     }
                     catch (CaptchaNeededException captchaNeededException)
                     {
-                        if (numberOfRemainingAttempts <= MaxCaptchaRecognitionCount) { CaptchaSolver?.CaptchaIsFalse(); }
+                        // Если мы обрабатываем исключение не первый раз, сообщаем решателю капчи
+                        // об ошибке распознавания предыдущей капчи
+                        if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
+                        {
+                            _captchaSolver?.CaptchaIsFalse();
+                        }
+
+                        if (numberOfRemainingAttemptsToSolveCaptcha <= 0) continue;
                         captchaSidTemp = captchaNeededException.Sid;
-                        captchaKeyTemp = CaptchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
-                        numberOfRemainingAttempts--;
+                        captchaKeyTemp = _captchaSolver.Solve(captchaNeededException.Img.AbsoluteUri);
+                        numberOfRemainingAttemptsToSolveCaptcha--;
                     }
-                } while (numberOfRemainingAttempts > 0 & !authorizationCompleted);
+                } while (numberOfRemainingAttemptsToAuthorize > 0 && !authorizationCompleted);
+
+                // Повторно выбрасываем исключение, если капча ни разу не была распознана верно
+                if (!authorizationCompleted && captchaSidTemp != null)
+                    throw new CaptchaNeededException((long) captchaSidTemp, captchaKeyTemp);
             }
         }
 
@@ -544,16 +556,17 @@
         {
             string answer = null;
 
-            if (CaptchaSolver == null)
+            if (_captchaSolver == null)
             {
                 answer = Invoke(methodName, parameters, skipAuthorization);
             }
             else
             {
-                var numberOfRemainingAttempts = MaxCaptchaRecognitionCount + 1;
+                var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
+                var numberOfRemainingAttemptsToCall = MaxCaptchaRecognitionCount + 1;
                 long? captchaSidTemp = null;
                 string captchaKeyTemp = null;
-                var authorizationCompleted = false;
+                var callCompleted = false;
 
                 do
                 {
@@ -561,19 +574,30 @@
                     {
                         parameters.Add("captcha_sid", captchaSidTemp);
                         parameters.Add("captcha_key", captchaKeyTemp);
+                        numberOfRemainingAttemptsToCall--;
                         answer = Invoke(methodName, parameters, skipAuthorization);
 
-                        authorizationCompleted = true;
-                        break;
+                        callCompleted = true;
                     }
                     catch (CaptchaNeededException captchaNeededException)
                     {
-                        if (numberOfRemainingAttempts <= MaxCaptchaRecognitionCount) { CaptchaSolver?.CaptchaIsFalse(); }
+                        // Если мы обрабатываем исключение не первый раз, сообщаем решателю капчи
+                        // об ошибке распознавания предыдущей капчи
+                        if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
+                        {
+                            _captchaSolver.CaptchaIsFalse();
+                        }
+
+                        if (numberOfRemainingAttemptsToSolveCaptcha <= 0) continue;
                         captchaSidTemp = captchaNeededException.Sid;
-                        captchaKeyTemp = CaptchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
-                        numberOfRemainingAttempts--;
+                        captchaKeyTemp = _captchaSolver.Solve(captchaNeededException.Img.AbsoluteUri);
+                        numberOfRemainingAttemptsToSolveCaptcha--;
                     }
-                } while (numberOfRemainingAttempts > 0 & !authorizationCompleted);
+                } while (numberOfRemainingAttemptsToCall > 0 && !callCompleted);
+
+                // Повторно выбрасываем исключение, если капча ни разу не была распознана верно
+                if (!callCompleted && captchaSidTemp != null)
+                    throw new CaptchaNeededException((long) captchaSidTemp, captchaKeyTemp);
             }
 
             var json = JObject.Parse(answer);
