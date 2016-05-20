@@ -16,6 +16,8 @@
     using Utils;
     using Enums.Filters;
 
+    using Utils.AntiCaptcha;
+
     /// <summary>
     /// Служит для оповещения об истечении токена
     /// </summary>
@@ -29,14 +31,14 @@
     public class VkApi
     {
         /// <summary>
-	    /// Версия API vk.com.
-	    /// </summary>
-	    public const string VkApiVersion = "5.50";
+        /// Версия API vk.com.
+        /// </summary>
+        public const string VkApiVersion = "5.50";
 
-	    /// <summary>
-		/// Параметры авторизации.
-		/// </summary>
-		private ApiAuthParams _ap;
+        /// <summary>
+        /// Параметры авторизации.
+        /// </summary>
+        private ApiAuthParams _ap;
         /// <summary>
         /// Таймер.
         /// </summary>
@@ -203,26 +205,26 @@
         public GiftsCategory Gifts
         { get; set; }
 
-		/// <summary>
-		/// API для работы с товарами.
-		/// </summary>
-		public MarketsCategory Markets { get; set; }
+        /// <summary>
+        /// API для работы с товарами.
+        /// </summary>
+        public MarketsCategory Markets { get; set; }
 
-		/// <summary>
-		/// API для работы с Авторизацией.
-		/// </summary>
-		public AuthCategory Auth { get; set; }
+        /// <summary>
+        /// API для работы с Авторизацией.
+        /// </summary>
+        public AuthCategory Auth { get; set; }
 
-		/// <summary>
-		/// API для работы с универсальным методом.
-		/// </summary>
-		public ExecuteCategory Execute { get; private set; }
-		#endregion
+        /// <summary>
+        /// API для работы с универсальным методом.
+        /// </summary>
+        public ExecuteCategory Execute { get; private set; }
+        #endregion
 
-		/// <summary>
-		/// Браузер.
-		/// </summary>
-		internal IBrowser Browser
+        /// <summary>
+        /// Браузер.
+        /// </summary>
+        internal IBrowser Browser
         { get; set; }
 
         /// <summary>
@@ -230,7 +232,7 @@
         /// </summary>
         public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
 
-	    /// <summary>
+        /// <summary>
         /// Токен для доступа к методам API
         /// </summary>
         private string AccessToken
@@ -251,9 +253,20 @@
         { get; set; }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkApi"/>.
+        /// Максимальное количество попыток распознавания капчи c помощью зарегистрированного обработчика
         /// </summary>
-        public VkApi()
+        public int MaxCaptchaRecognitionCount { get; set; }
+
+        /// <summary>
+        /// Обработчик распознавания капчи
+        /// </summary>
+        public ICaptchaSolver CaptchaSolver;
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkApi" />.
+        /// </summary>
+        /// <param name="captchaSolver">Обработчик распознавания капчи.</param>
+        public VkApi(ICaptchaSolver captchaSolver = null)
         {
             Browser = new Browser();
 
@@ -278,19 +291,22 @@
             NewsFeed = new NewsFeedCategory(this);
             Stats = new StatsCategory(this);
             Auth = new AuthCategory(this);
-			Markets = new MarketsCategory(this);
-			Execute = new ExecuteCategory(this);
+            Markets = new MarketsCategory(this);
+            Execute = new ExecuteCategory(this);
 
             RequestsPerSecond = 3;
+
+            MaxCaptchaRecognitionCount = 5;
+            CaptchaSolver = captchaSolver;
         }
 
-	    /// <summary>
+        /// <summary>
         /// Авторизация и получение токена
         /// </summary>
         /// <param name="params">Данные авторизации</param>
         public void Authorize(ApiAuthParams @params)
         {
-            Authorize(
+            AuthorizeEx(
                 @params.ApplicationId,
                 @params.Login,
                 @params.Password,
@@ -351,10 +367,10 @@
         /// <param name="expireTime">Время, в течении которого действует токен доступа (0 - бесконечно).</param>
         public void Authorize(string accessToken, long? userId = null, int expireTime = 0)
         {
-	        if (string.IsNullOrWhiteSpace(accessToken))
+            if (string.IsNullOrWhiteSpace(accessToken))
             {
-		        return;
-	        }
+                return;
+            }
 
             StopTimer();
 
@@ -366,17 +382,17 @@
         }
 
         /// <summary>
-		/// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.
+        /// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.
         /// </summary>
-		/// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
-		/// <exception cref="AggregateException">
-		/// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля
-		/// </exception>
-		public void RefreshToken(Func<string> code = null)
+        /// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
+        /// <exception cref="AggregateException">
+        /// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля
+        /// </exception>
+        public void RefreshToken(Func<string> code = null)
         {
             if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
             {
-                Authorize(
+                AuthorizeEx(
                     _ap.ApplicationId,
                     _ap.Login,
                     _ap.Password,
@@ -424,6 +440,7 @@
             StopTimer();
 
             LastInvokeTime = DateTimeOffset.Now;
+
             var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
             if (!authorization.IsAuthorized)
             {
@@ -434,6 +451,54 @@
             AccessToken = authorization.AccessToken;
             UserId = authorization.UserId;
         }
+
+        /// <summary>
+        /// Авторизация и получение токена
+        /// </summary>
+        /// <param name="appId">Идентификатор приложения</param>
+        /// <param name="emailOrPhone">Email или телефон</param>
+        /// <param name="password">Пароль</param>
+        /// <param name="code">Делегат получения кода для двух факторной авторизации</param>
+        /// <param name="captchaSid">Идентификатор капчи</param>
+        /// <param name="captchaKey">Текст капчи</param>
+        /// <param name="settings">Права доступа для приложения</param>
+        /// <param name="host">Имя узла прокси-сервера.</param>
+        /// <param name="port">Номер порта используемого Host.</param>
+        /// <exception cref="VkApiAuthorizationException"></exception>
+        private void AuthorizeEx(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null,
+                               string host = null, int? port = null)
+        {
+            if (CaptchaSolver == null)
+            {
+                Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
+            }
+            else
+            {
+                var numberOfRemainingAttempts = MaxCaptchaRecognitionCount + 1;
+                var captchaSidTemp = captchaSid;
+                var captchaKeyTemp = captchaKey;
+                var authorizationCompleted = false;
+
+                do
+                {
+                    try
+                    {
+                        Authorize(appId, emailOrPhone, password, settings, code, captchaSidTemp, captchaKeyTemp, host, port);
+
+                        authorizationCompleted = true;
+                        return;
+                    }
+                    catch (CaptchaNeededException captchaNeededException)
+                    {
+                        if (numberOfRemainingAttempts <= MaxCaptchaRecognitionCount) { CaptchaSolver?.CaptchaIsFalse(); }
+                        captchaSidTemp = captchaNeededException.Sid;
+                        captchaKeyTemp = CaptchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
+                        numberOfRemainingAttempts--;
+                    }
+                } while (numberOfRemainingAttempts > 0 & !authorizationCompleted);
+            }
+        }
+
         private void SetTimer(int expireTime)
         {
             if (expireTime > 0)
@@ -445,6 +510,7 @@
                 _expireTimer = new Timer(AlertExpires, null, Timeout.Infinite, Timeout.Infinite);
             }
         }
+
         /// <summary>
         /// Прекращает работу таймера оповещения
         /// </summary>
@@ -476,7 +542,39 @@
         /// <returns></returns>
         private VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {
-            var answer = Invoke(methodName, parameters, skipAuthorization);
+            string answer = null;
+
+            if (CaptchaSolver == null)
+            {
+                answer = Invoke(methodName, parameters, skipAuthorization);
+            }
+            else
+            {
+                var numberOfRemainingAttempts = MaxCaptchaRecognitionCount + 1;
+                long? captchaSidTemp = null;
+                string captchaKeyTemp = null;
+                var authorizationCompleted = false;
+
+                do
+                {
+                    try
+                    {
+                        parameters.Add("captcha_sid", captchaSidTemp);
+                        parameters.Add("captcha_key", captchaKeyTemp);
+                        answer = Invoke(methodName, parameters, skipAuthorization);
+
+                        authorizationCompleted = true;
+                        break;
+                    }
+                    catch (CaptchaNeededException captchaNeededException)
+                    {
+                        if (numberOfRemainingAttempts <= MaxCaptchaRecognitionCount) { CaptchaSolver?.CaptchaIsFalse(); }
+                        captchaSidTemp = captchaNeededException.Sid;
+                        captchaKeyTemp = CaptchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
+                        numberOfRemainingAttempts--;
+                    }
+                } while (numberOfRemainingAttempts > 0 & !authorizationCompleted);
+            }
 
             var json = JObject.Parse(answer);
 
@@ -497,7 +595,7 @@
         {
             if (!parameters.ContainsKey("v"))
             {
-	            parameters.Add("v", !string.IsNullOrEmpty(apiVersion) ? apiVersion : VkApiVersion);
+                parameters.Add("v", !string.IsNullOrEmpty(apiVersion) ? apiVersion : VkApiVersion);
             }
 
             return Call(methodName, parameters, skipAuthorization);
@@ -544,8 +642,8 @@
             string url = "";
             string answer = "";
 
-			// Защита от превышения количества запросов в секунду
-			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
+            // Защита от превышения количества запросов в секунду
+            if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
                 lock (_expireTimer)
                 {
