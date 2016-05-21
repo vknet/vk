@@ -42,6 +42,9 @@
         /// <param name="value">Значение параметра запроса.</param>
         public void Add<T>(string name, T value)
         {
+            
+            Remove(name);   // O(1)
+
             if (value == null)
                 return;
 
@@ -90,6 +93,8 @@
         /// <param name="nullableValue">Значение параметра запроса.</param>
         public void Add<T>(string name, T? nullableValue) where T : struct
         {
+            Remove(name);   // O(1)
+
             if (nullableValue == null)
             {
                 return;
@@ -106,6 +111,8 @@
         /// <param name="nullableDateTime">Значение параметра.</param>
         public void Add(string name, DateTime? nullableDateTime)
         {
+            Remove(name);   // O(1)
+
             if (nullableDateTime == null)
             {
                 return;
@@ -126,6 +133,8 @@
         /// <param name="nullableValue">Значение параметра.</param>
         public void Add(string name, bool? nullableValue)
         {
+            Remove(name);   // O(1)
+
             if (nullableValue == null || !nullableValue.Value)
             {
                 return;
