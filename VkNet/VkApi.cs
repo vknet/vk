@@ -82,7 +82,7 @@
                 if (value > 0)
                 {
                     _requestsPerSecond = value;
-                    _minInterval = 1000 / _requestsPerSecond + 1;
+                    _minInterval = (1000 / _requestsPerSecond) + 1;
                 }
                 else if (value == 0)
                     _requestsPerSecond = 0;
