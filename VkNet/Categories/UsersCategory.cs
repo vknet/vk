@@ -1,13 +1,10 @@
-﻿
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
 	using System.Linq;
 	using JetBrains.Annotations;
-
 	using Enums.Filters;
 	using Enums.SafetyEnums;
 	using Model;
@@ -29,7 +26,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список пользователей в соответствии с заданным критерием поиска.
 		/// </summary>
-		/// <param name="itemsCount">Общее количество пользователей, удовлетворяющих условиям запроса.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов пользователей, найденных в соответствии с заданными критериями.
@@ -40,13 +36,9 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @params)
+		public VkCollection<User> Search(UserSearchParams @params)
 		{
-			var response = _vk.Call("users.search", @params, true);
-
-			itemsCount = response["count"];
-
-			return response["items"].ToReadOnlyCollectionOf<User>(r => r);
+			return _vk.Call("users.search", @params, true).ToVkCollectionOf<User>(r => r);
 		}
 
 		/// <summary>
@@ -85,7 +77,7 @@ namespace VkNet.Categories
 		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
-			var users = Get(new[] {userId}, fields, nameCase);
+			var users = Get(new[] { userId }, fields, nameCase);
 			return users.FirstOrDefault();
 		}
 
@@ -160,13 +152,12 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
-		[Pure, CanBeNull, ContractAnnotation("ScreenName:null => halt")]
 		[ApiVersion("5.44")]
 		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
-			var users = Get(new[] {screenName}, fields, nameCase);
+			var users = Get(new[] { screenName }, fields, nameCase);
 			return users.Count > 0 ? users[0] : null;
 		}
 
@@ -176,30 +167,31 @@ namespace VkNet.Categories
 		/// <param name="userId">Идентификатор пользователя, подписки которого необходимо получить</param>
 		/// <param name="count">Количество подписок, которые необходимо вернуть</param>
 		/// <param name="offset">Смещение необходимое для выборки определенного подмножества подписок</param>
-		/// <returns>Пока возвращается только список групп.</returns>
+		/// <param name="fields">Список дополнительных полей для объектов user и group, которые необходимо вернуть.</param>
+		/// <returns>
+		/// Пока возвращается только список групп.
+		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions"/>.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions" />.
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null)
+		public VkCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 
 			var parameters = new VkParameters
-				{
-					{ "user_id", userId },
-					{ "extended", true },
-					{ "offset", offset },
-					{ "count", count },
-					{ "fields", fields }
-				};
+			{
+				{ "user_id", userId },
+				{ "extended", true },
+				{ "offset", offset },
+				{ "count", count },
+				{ "fields", fields }
+			};
 
-			VkResponseArray response = _vk.Call("users.getSubscriptions", parameters);
-
-			return response.ToReadOnlyCollectionOf<Group>(x => x);
+			return _vk.Call("users.getSubscriptions", parameters).ToVkCollectionOf<Group>(x => x);
 		}
 
 		/// <summary>
@@ -216,7 +208,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
+		public VkCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -231,15 +223,7 @@ namespace VkNet.Categories
 				{ "name_case", nameCase }
 			};
 
-			VkResponseArray response = _vk.Call("users.getFollowers", parameters);
-
-			// проверка: возвращается массив объектов или только идентификаторы пользователей
-			if (response.Count > 0 && response[0].ContainsKey("id"))
-			{
-				return response.ToReadOnlyCollectionOf<User>(x => x);
-			}
-
-			return response.ToReadOnlyCollectionOf(x => new User{Id = x});
+			return _vk.Call("users.getFollowers", parameters).ToVkCollectionOf(x => x.ContainsKey("id") ? x : new User { Id = x });
 		}
 
 		/// <summary>
@@ -278,9 +262,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getNearby" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetNearby(UsersGetNearbyParams @params)
+		public VkCollection<User> GetNearby(UsersGetNearbyParams @params)
 		{
-			return _vk.Call("users.getNearby", @params).ToReadOnlyCollectionOf<User>(x => x);
+			return _vk.Call("users.getNearby", @params).ToVkCollectionOf<User>(x => x);
 		}
 	}
 }

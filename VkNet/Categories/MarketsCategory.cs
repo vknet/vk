@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -42,7 +41,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.get" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
+		public VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -52,7 +51,7 @@ namespace VkNet.Categories
 				{ "extended", extended }
 			};
 
-			return _vk.Call("market.get", parameters).ToReadOnlyCollectionOf<Market>(x => x);
+			return _vk.Call("market.get", parameters).ToVkCollectionOf<Market>(x => x);
 		}
 
 		/// <summary>
@@ -67,14 +66,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false)
+		public VkCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false)
 		{
 			var parameters = new VkParameters {
 				{ "item_ids", itemIds },
 				{ "extended", extended }
 			};
 
-			return _vk.Call("market.getById", parameters).ToReadOnlyCollectionOf<Market>(x => x);
+			return _vk.Call("market.getById", parameters).ToVkCollectionOf<Market>(x => x);
 		}
 
 		/// <summary>
@@ -88,9 +87,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Market> Search(MarketSearchParams @params)
+		public VkCollection<Market> Search(MarketSearchParams @params)
 		{
-			return _vk.Call("market.search", @params).ToReadOnlyCollectionOf<Market>(x => x);
+			return _vk.Call("market.search", @params).ToVkCollectionOf<Market>(x => x);
 		}
 
 		/// <summary>
@@ -106,7 +105,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getAlbums" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
+		public VkCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -114,7 +113,7 @@ namespace VkNet.Categories
 				{ "count", count }
 			};
 
-			return _vk.Call("market.getAlbums", parameters).ToReadOnlyCollectionOf<MarketAlbum>(x => x);
+			return _vk.Call("market.getAlbums", parameters).ToVkCollectionOf<MarketAlbum>(x => x);
 		}
 
 		/// <summary>
@@ -129,14 +128,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getAlbumById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<MarketAlbum> GetAlbumById(long ownerId, IEnumerable<long> albumIds)
+		public VkCollection<MarketAlbum> GetAlbumById(long ownerId, IEnumerable<long> albumIds)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
 				{ "album_ids", albumIds }
 			};
 
-			return _vk.Call("market.getAlbumById", parameters).ToReadOnlyCollectionOf<MarketAlbum>(x => x);
+			return _vk.Call("market.getAlbumById", parameters).ToVkCollectionOf<MarketAlbum>(x => x);
 		}
 
 		/// <summary>
@@ -166,9 +165,9 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getComments" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<MarketComment> GetComments(MarketGetCommentsParams @params)
+		public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params)
 		{
-			return _vk.Call("market.getComments", @params).ToReadOnlyCollectionOf<MarketComment>(x => x);
+			return _vk.Call("market.getComments", @params).ToVkCollectionOf<MarketComment>(x => x);
 		}
 
 		/// <summary>
@@ -553,14 +552,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getCategories" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<MarketCategory> GetCategories(long? count, long? offset)
+		public VkCollection<MarketCategory> GetCategories(long? count, long? offset)
 		{
 			var parameters = new VkParameters {
 				{ "count", count },
 				{ "offset", offset }
 			};
 
-			return _vk.Call("market.getCategories", parameters).ToReadOnlyCollectionOf<MarketCategory>(x => x);
+			return _vk.Call("market.getCategories", parameters).ToVkCollectionOf<MarketCategory>(x => x);
 		}
 	}
 }

@@ -1,5 +1,4 @@
-﻿using System.Web;
-using Newtonsoft.Json.Linq;
+﻿using System.Net;
 
 namespace VkNet.Categories
 {
@@ -13,6 +12,8 @@ namespace VkNet.Categories
 	using Model.RequestParams;
 	using Model.Attachments;
 	using Utils;
+	using System.Web;
+	using Newtonsoft.Json.Linq;
 
 	/// <summary>
 	/// Методы для работы с аудиозаписями.
@@ -25,7 +26,7 @@ namespace VkNet.Categories
 		/// Методы для работы с аудиозаписями.
 		/// </summary>
 		/// <param name="vk">Api vk.com</param>
-		internal AudioCategory(VkApi vk)
+		public AudioCategory(VkApi vk)
 		{
 			_vk = vk;
 		}
@@ -168,25 +169,23 @@ namespace VkNet.Categories
 		/// Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
 		/// </summary>
 		/// <param name="params">Критерии поиска</param>
-		/// <param name="totalCount">Общее кол-во аудиозаписей, найденных по этим критериям</param>
-		/// <returns>Список объектов класса Audio.</returns>
+		/// <returns>
+		/// Список объектов класса Audio.
+		/// </returns>
+		/// <exception cref="System.ArgumentNullException">Query is null or empty.;query</exception>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio" />.
+		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out long totalCount)
+		public VkCollection<Audio> Search(AudioSearchParams @params)
 		{
 			if (string.IsNullOrEmpty(@params.Query))
 			{
 				throw new ArgumentNullException("Query is null or empty.", "query");
 			}
 
-			var response = _vk.Call("audio.search", @params);
-
-			totalCount = response["count"];
-
-			return response["items"].ToReadOnlyCollectionOf<Audio>(r => r);
+			return _vk.Call("audio.search", @params).ToVkCollectionOf<Audio>(r => r);
 		}
 
 		/// <summary>
@@ -398,7 +397,7 @@ namespace VkNet.Categories
 		/// Возвращает список аудиозаписей из раздела "Популярное".
 		/// </summary>
 		/// <param name="onlyEng">1 – возвращать только зарубежные аудиозаписи. 0 – возвращать все аудиозаписи. (по умолчанию) флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
-		/// <param name="genreId">Идентификатор жанра из списка жанров. положительное число (Положительное число).</param>
+		/// <param name="genre">Идентификатор жанра из списка жанров. положительное число (Положительное число).</param>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества аудиозаписей. положительное число (Положительное число).</param>
 		/// <param name="count">Количество возвращаемых аудиозаписей. положительное число, максимальное значение 1000, по умолчанию 100 (Положительное число, максимальное значение 1000, по умолчанию 100).</param>
 		/// <returns>
@@ -442,7 +441,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getAlbums" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<AudioAlbum> GetAlbums(long ownerId, uint? count = null, uint? offset = null)
+		public VkCollection<AudioAlbum> GetAlbums(long ownerId, uint? count = null, uint? offset = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -450,9 +449,7 @@ namespace VkNet.Categories
 				{ "count", count }
 			};
 
-			VkResponseArray response = _vk.Call("audio.getAlbums", parameters);
-
-			return response.Skip(1).ToReadOnlyCollectionOf<AudioAlbum>(x => x);
+			return _vk.Call("audio.getAlbums", parameters).ToVkCollectionOf<AudioAlbum>(x => x);
 		}
 
 		/// <summary>
@@ -560,7 +557,7 @@ namespace VkNet.Categories
 			var parameters = new VkParameters
 			{
 				{ "server", server },
-				{ "audio", HttpUtility.UrlEncode(audio) },
+				{ "audio", Uri.EscapeDataString(audio) },
 				{ "hash", hash },
 				{ "artist", artist },
 				{ "title", title }

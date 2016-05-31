@@ -1,14 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
 	using System.Collections.Generic;
 	using JetBrains.Annotations;
 	using Model;
 	using Model.RequestParams;
 	using Utils;
+	using Enums.Filters;
+	using Enums.SafetyEnums;
 
 	/// <summary>
 	/// Методы этого класса позволяют производить действия с аккаунтом пользователя.
@@ -190,7 +188,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.setSilenceMode" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.setSilenceMode" />.
 		/// </remarks>
 		[ApiVersion("5.50")]
 		public bool SetSilenceMode([NotNull] string deviceId, int? time = null, int? peerId = null, bool? sound = null)
@@ -351,7 +349,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список пользователей, находящихся в черном списке.
 		/// </summary>
-		/// <param name="total">Возвращает общее количество находящихся в черном списке пользователей.</param>
 		/// <param name="offset">Смещение необходимое для выборки определенного подмножества черного списка. положительное число (Положительное число).</param>
 		/// <param name="count">Количество записей, которое необходимо вернуть. положительное число, по умолчанию 20, максимальное значение 200 (Положительное число, по умолчанию 20, максимальное значение 200).</param>
 		/// <returns>
@@ -360,8 +357,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getBanned" />.
 		/// </remarks>
-		[ApiVersion("5.45")]
-		public ReadOnlyCollection<User> GetBanned(out int total, int? offset = null, int? count = null)
+		public VkCollection<User> GetBanned(int? offset = null, int? count = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -371,17 +367,14 @@ namespace VkNet.Categories
 				{ "offset", offset },
 				{ "count", count }
 			};
-			var response = _vk.Call("account.getBanned", parameters);
 
-			total = response["count"];
-
-			return response["items"].ToReadOnlyCollectionOf<User>(vkResponse => vkResponse);
+			return _vk.Call("account.getBanned", parameters).ToVkCollectionOf<User>(vkResponse => vkResponse);
 		}
 
 		/// <summary>
 		/// Возвращает информацию о текущем аккаунте.
 		/// </summary>
-		/// <param name="fields">Список полей, которые необходимо вернуть. Возможные значения: (country, https_required, own_posts_default, no_wall_replies, intro, lang, По умолчанию будут возвращены все поля. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
+		/// <param name="fields">Список полей, которые необходимо вернуть. Возможные значения: (country, http_required, own_posts_default, no_wall_replies, intro, lang, По умолчанию будут возвращены все поля. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
 		/// <returns>
 		/// Метод возвращает объект, содержащий следующие поля:
 		/// country – строковой код страны, определенный по IP адресу, с которого сделан запрос;
@@ -453,7 +446,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <returns>Информация о текущем профиле в виде <see cref="Model.User"/></returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.getProfileInfo" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.getProfileInfo" />.
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.45")]
@@ -486,7 +479,7 @@ namespace VkNet.Categories
 		/// <returns>Результат отмены заявки.</returns>
 		/// <remarks>Метод вынесен как отдельный, потому что если в запросе передан параметр <paramref name="cancelRequestId"/>, все остальные параметры игнорируются.</remarks>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.saveProfileInfo" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.saveProfileInfo" />.
 		/// </remarks>
 		[ApiVersion("5.45")]
 		public bool SaveProfileInfo(int cancelRequestId)
@@ -505,7 +498,7 @@ namespace VkNet.Categories
 		/// Результат отмены заявки.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.saveProfileInfo" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.saveProfileInfo" />.
 		/// </remarks>
 		[ApiVersion("5.45")]
 		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveProfileInfoParams @params)

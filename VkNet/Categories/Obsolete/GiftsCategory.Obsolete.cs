@@ -1,30 +1,16 @@
-﻿using VkNet.Model;
+﻿using System;
+using System.Collections.ObjectModel;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для работы с подарками.
-	/// </summary>
 	public partial class GiftsCategory
 	{
 		/// <summary>
-		/// API.
-		/// </summary>
-		private readonly VkApi _vk;
-
-		/// <summary>
-		/// Методы для работы с подарками.
-		/// </summary>
-		/// <param name="vk">API.</param>
-		internal GiftsCategory(VkApi vk)
-		{
-			_vk = vk;
-		}
-
-		/// <summary>
 		/// Возвращает список полученных подарков пользователя.
 		/// </summary>
+		/// <param name="totalCount">Количество полученных подарков.</param>
 		/// <param name="userId">Идентификатор пользователя, для которого необходимо получить список подарков.</param>
 		/// <param name="count">Количество подарков, которое нужно вернуть.</param>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества подарков.</param>
@@ -46,17 +32,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/gifts.get" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<GiftItem> Get(long userId, int? count = null, int? offset = null)
+		[Obsolete("Данный метод устарел. Используйте Get(long userId, int? count = null, int? offset = null)")]
+		public ReadOnlyCollection<GiftItem> Get(out int totalCount, long userId, int? count = null, int? offset = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-			var parameters = new VkParameters
-			{
-				{ "user_id", userId },
-				{ "count", count },
-				{ "offset", offset }
-			};
+			var response = Get(userId, count, offset);
 
-			return _vk.Call("gifts.get", parameters).ToVkCollectionOf<GiftItem>(x => x);
+			totalCount = Convert.ToInt32(response.TotalCount);
+
+			return response.ToReadOnlyCollection();
 		}
 	}
 }

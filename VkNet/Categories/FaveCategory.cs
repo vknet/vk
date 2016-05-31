@@ -1,8 +1,6 @@
-﻿using System.Security.Policy;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
-	using System.Collections.ObjectModel;
+	using System;
 	using Model;
 	using Model.Attachments;
 	using Utils;
@@ -21,7 +19,7 @@ namespace VkNet.Categories
 		/// Методы для работы с закладками.
 		/// </summary>
 		/// <param name="vk">API.</param>
-		internal FaveCategory(VkApi vk)
+		public FaveCategory(VkApi vk)
 		{
 			_vk = vk;
 		}
@@ -38,7 +36,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getUsers" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetUsers(int? count = null, int? offset = null)
+		public VkCollection<User> GetUsers(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -49,9 +47,7 @@ namespace VkNet.Categories
 					{ "offset", offset }
 				};
 
-			VkResponseArray response = _vk.Call("fave.getUsers", parameters);
-
-			return response.ToReadOnlyCollectionOf<User>(x => x);
+			return _vk.Call("fave.getUsers", parameters).ToVkCollectionOf<User>(x => x);
 		}
 
 		/// <summary>
@@ -67,8 +63,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPhotos" />.
 		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null)
+		public VkCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -80,12 +75,11 @@ namespace VkNet.Categories
 					{ "photo_sizes", photoSizes }
 				};
 
-			VkResponseArray response = _vk.Call("fave.getPhotos", parameters);
-			return response.ToReadOnlyCollectionOf<Photo>(x => x);
+			return _vk.Call("fave.getPhotos", parameters).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
-		/// Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
+		/// Возвращает записи, на которых текущий пользователь поставил отметку "Мне нравится".
 		/// </summary>
 		/// <param name="offset">Смещение, необходимо для выборки определенного подмножества записей. По умолчанию — 0. положительное число (Положительное число).</param>
 		/// <param name="count">Количество записей, информацию о которых нужно вернуть (но не более 100). положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
@@ -96,14 +90,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Post> GetPosts(int? count = null, int? offset = null)
+		public VkCollection<Post> GetPosts(int? count = null, int? offset = null)
 		{
 			var response = GetPostsEx(count, offset);
-			return response.WallPosts;
+			return new VkCollection<Post>(response.TotalCount, response.WallPosts);
 		}
 
 		/// <summary>
-		/// Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
+		/// Возвращает записи, на которых текущий пользователь поставил отметку "Мне нравится".
 		/// </summary>
 		/// <param name="offset">Смещение, необходимо для выборки определенного подмножества записей. По умолчанию — 0. положительное число (Положительное число).</param>
 		/// <param name="count">Количество записей, информацию о которых нужно вернуть (но не более 100). положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
@@ -130,7 +124,7 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
+		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку "Мне нравится".
 		/// </summary>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества видеозаписей. положительное число (Положительное число).</param>
 		/// <param name="count">Количество видеозаписей, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
@@ -141,14 +135,14 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Video> GetVideos(int? count = null, int? offset = null)
+		public VkCollection<Video> GetVideos(int? count = null, int? offset = null)
 		{
 			var response = GetVideosEx(count, offset);
-			return response.Video;
+			return new VkCollection<Video>((ulong) response.Count, response.Video);
 		}
 
 		/// <summary>
-		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
+		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку "Мне нравится".
 		/// </summary>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества видеозаписей. положительное число (Положительное число).</param>
 		/// <param name="count">Количество видеозаписей, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
@@ -165,11 +159,11 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 
 			var parameters = new VkParameters
-				{
-					{ "count", count },
-					{ "offset", offset },
-					{ "extended", true }
-				};
+			{
+				{ "count", count },
+				{ "offset", offset },
+				{ "extended", true }
+			};
 
 			return _vk.Call("fave.getVideos", parameters);
 		}
@@ -180,26 +174,24 @@ namespace VkNet.Categories
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества ссылок. положительное число (Положительное число).</param>
 		/// <param name="count">Количество ссылок, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
 		/// <returns>
-		/// После успешного выполнения возвращает общее количество ссылок и массив объектов link, каждый из которых содержит поля id, url, title, description, photo_50 и photo_100.
+		/// После успешного выполнения возвращает общее количество ссылок и массив объектов link, каждый из которых содержит поля id, URL, title, description, photo_50 и photo_100.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
+		public VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 
 			var parameters = new VkParameters
-				{
-					{ "count", count },
-					{ "offset", offset}
-				};
+			{
+				{ "count", count },
+				{ "offset", offset}
+			};
 
-			VkResponseArray response = _vk.Call("fave.getLinks", parameters);
-
-			return response.ToReadOnlyCollectionOf<ExternalLink>(x => x);
+			return _vk.Call("fave.getLinks", parameters).ToVkCollectionOf<ExternalLink>(x => x);
 		}
 
 		/// <summary>
@@ -294,11 +286,11 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addLink" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public bool AddLink(Url link, string text)
+		public bool AddLink(Uri link, string text)
 		{
 			var parameters = new VkParameters
 			{
-				{ "link", link.Value },
+				{ "link", link },
 				{ "text", text }
 			};
 			return _vk.Call("fave.addLink", parameters);

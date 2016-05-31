@@ -89,7 +89,6 @@
                     }
                   }";
 
-
 			var lyrics = Api.Audio.GetLyrics(2662381);
 
 			Assert.That(lyrics.Id, Is.EqualTo(2662381));
@@ -178,7 +177,6 @@
                       }
                     ]
                   }";
-
 
 			var audios = Api.Audio.GetById("4793858_158073513", "2_63937759");
 
@@ -311,7 +309,6 @@
                     ]
                   }";
 
-
 			var audios = Api.Audio.GetFromGroup(28622822);
 
 			Assert.That(audios.Count, Is.EqualTo(2));
@@ -435,8 +432,6 @@
 					}
                   }";
 
-
-
 			long totalCount;
 			var auds = Api.Audio.Search("ThisQueryDoesNotExistAtAll", out totalCount);
 
@@ -485,7 +480,6 @@
                       }]
 					}
                   }";
-
 
 			long totalCount;
 			var auds = Api.Audio.Search("иуфедуы", out totalCount, true, AudioSort.Duration, true, 3, 5);
@@ -575,7 +569,6 @@
                     'response': 159200195
                   }";
 
-
 			var id = Api.Audio.Add(141104180, 2289065);
 			Assert.That(id, Is.EqualTo(159200195));
 		}
@@ -588,7 +581,6 @@
 				@"{
                     'response': 160532304
                   }";
-
 
 			var id = Api.Audio.Add(141104180, 2289065, 1158263);
 			Assert.That(id, Is.EqualTo(160532304));
@@ -611,7 +603,6 @@
                     'response': 1
                   }";
 
-
 			var result = Api.Audio.Delete(159203048, 4793858);
 
 			Assert.That(result, Is.True);
@@ -625,7 +616,6 @@
 				@"{
                     'response': 1
                   }";
-
 
 			var result = Api.Audio.Delete(160532304, -1158263);
 
@@ -712,7 +702,6 @@
 				@"{
                     'response': 26350163
                   }";
-
 
 			var id = Api.Audio.Edit(159207130, 4793858, "Test Artist", "Test Title", "Test Text", null, AudioGenre.Rock);
 
@@ -834,7 +823,6 @@
                     }
                   }";
 
-
 			var audio = Api.Audio.Restore(159209928);
 
 			Assert.That(audio.Id, Is.EqualTo(159209928));
@@ -944,7 +932,6 @@
                     'response': 1
                   }";
 
-
 			var result = Api.Audio.Reorder(159210112, 4793858, 159104443, 158945986);
 			Assert.That(result, Is.True);
 		}
@@ -1021,7 +1008,6 @@
                     'response': 1
                   }";
 
-
 			var result = Api.Audio.EditAlbum("audio category 222", albumId: 45302272, groupId: 65968885);
 
 			Assert.That(result, Is.True);
@@ -1054,8 +1040,6 @@
                     'response': 1
                   }";
 
-
-
 			var result = Api.Audio.DeleteAlbum(45282792);
 
 			Assert.That(result, Is.True);
@@ -1069,8 +1053,6 @@
 			@"{
                     'response': 1
                   }";
-
-
 
 			var result = Api.Audio.DeleteAlbum(45302272, 65968885);
 
@@ -1116,8 +1098,6 @@
                     ]
                   }";
 
-
-
 			var result = Api.Audio.GetPopular(genre: AudioGenre.RapAndHipHop, count: 3, offset: 2);
 
 			Assert.That(result.Count, Is.EqualTo(3));
@@ -1155,9 +1135,9 @@
 			Url = "https://api.vk.com/method/audio.getAlbums?owner_id=23465118&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
-                    'response': [
-                      2,
-                      {
+                    'response': {
+                      count: 2,
+                      items : [{
                         'owner_id': 23465118,
                         'album_id': 45303161,
                         'title': 'первый альбом'
@@ -1166,11 +1146,9 @@
                         'owner_id': 23465118,
                         'album_id': 45284861,
                         'title': 'еще один альбом'
-                      }
-                    ]
+                      }]
+					}
                   }";
-
-
 
 			var result = Api.Audio.GetAlbums(23465118);
 
@@ -1193,9 +1171,6 @@
 			   @"{
                     'response': 1
                   }";
-
-
-
 
 			var result = Api.Audio.MoveToAlbum(45303161, new long[] { 258542771, 258542571 });
 
@@ -1230,8 +1205,6 @@
                     ]
                   }";
 
-
-
 			var result = Api.Audio.GetRecommendations(targetAudio: "2314852_190922480", count: 2);
 
 			Assert.That(result.Count, Is.EqualTo(2));
@@ -1264,8 +1237,6 @@
                       -65968880
                     ]
                   }";
-
-
 
 			var ids = Api.Audio.SetBroadcast("210002_66529476", new long[] { 234695118, -65968880 });
 

@@ -82,8 +82,8 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			long total;
-			var app = Api.Apps.GetCatalog(out total, new AppGetCatalogParams());
-			Assert.That(total, Is.AtLeast(0));
+			var app = Api.Apps.GetCatalog( new AppGetCatalogParams());
+			Assert.That(app.TotalCount, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("Подземелья!"));
 		}
 
@@ -120,8 +120,8 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			long total;
-			var app = Api.Apps.Get(out total, new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
-			Assert.That(total, Is.AtLeast(0));
+			var app = Api.Apps.Get(new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
+			Assert.That(app.TotalCount, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("raventestapp"));
 		}
 
@@ -150,9 +150,8 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			long total;
-			var app = Api.Apps.GetFriendsList(out total, AppRequestType.Invite);
-			Assert.That(total, Is.GreaterThan(0));
+			var app = Api.Apps.GetFriendsList(AppRequestType.Invite);
+			Assert.That(app.TotalCount, Is.GreaterThan(0));
 			Assert.That(app, Is.Not.Null);
 		}
 
@@ -188,9 +187,8 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			long total;
-			var app = Api.Apps.GetFriendsList(out total, AppRequestType.Invite, true, 5, 1, UsersFields.Online);
-			Assert.That(total, Is.GreaterThan(0));
+			var app = Api.Apps.GetFriendsList(AppRequestType.Invite, true, 5, 1, UsersFields.Online);
+			Assert.That(app.TotalCount, Is.GreaterThan(0));
 			Assert.That(app, Is.Not.Null);
 		}
 	}

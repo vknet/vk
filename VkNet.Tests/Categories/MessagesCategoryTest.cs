@@ -614,7 +614,6 @@ namespace VkNet.Tests.Categories
 					]
 				  }";
 
-
 			int totalCount;
 			var msgs = Cat.Search("fsjkadoivhjioashdpfisd", out totalCount, 3).ToList();
 
@@ -974,7 +973,6 @@ namespace VkNet.Tests.Categories
 		public void CreateChat_NormalCase_ChatId()
 		{
 			Url = "https://api.vk.com/method/messages.createChat?user_ids=5041431,10657891&title=test chat%27s title&v=" + VkApi.VkApiVersion + "&access_token=token";
-
 
             Json =
 				@"{

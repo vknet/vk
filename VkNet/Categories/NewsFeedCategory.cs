@@ -12,7 +12,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с новостной лентой пользователя.
 	/// </summary>
-	public class NewsFeedCategory
+	public partial class NewsFeedCategory
 	{
 		/// <summary>
 		/// API.
@@ -106,7 +106,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список записей пользователей на своих стенах, в которых упоминается указанный пользователь.
 		/// </summary>
-		/// <param name="total">Количество.</param>
 		/// <param name="ownerId">Идентификатор группы или сообщества. по умолчанию идентификатор текущего пользователя</param>
 		/// <param name="startTime">Время в формате unixtime начиная с которого следует получать упоминания о пользователе.</param>
 		/// <param name="endTime">Время, в формате unixtime, до которого следует получать упоминания о пользователе.</param>
@@ -119,7 +118,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getMentions" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Mention> GetMentions(out int total, long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)
+		public VkCollection<Mention> GetMentions(long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -132,9 +131,8 @@ namespace VkNet.Categories
 			{
 				parameters.Add("count", count);
 			}
-			var response = _vk.Call("newsfeed.getMentions", parameters);
-			total = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<Mention>(x => x);
+
+			return _vk.Call("newsfeed.getMentions", parameters).ToVkCollectionOf<Mention>(x => x);
 		}
 
 		/// <summary>
@@ -147,7 +145,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public NewsBannedList GetBanned()
 		{
-			return _vk.Call("newsfeed.getBanned", new VkParameters());
+			return _vk.Call("newsfeed.getBanned", VkParameters.Empty);
 		}
 
 		/// <summary>
@@ -273,7 +271,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.search" />.
 		/// </remarks>
-		[ApiVersion("5.37")]
+		[ApiVersion("5.37")] // TODO Возвращает несколько дополнительных полей
 		public ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params)
 		{
 			VkResponseArray response = _vk.Call("newsfeed.search", @params);
@@ -283,7 +281,6 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает пользовательские списки новостей.
 		/// </summary>
-		/// <param name="total">Количество пользовательских списков.</param>
 		/// <param name="listIds">Идентификаторы списков.</param>
 		/// <param name="extended"><c>true</c> — вернуть дополнительную информацию о списке (значения source_ids и no_reposts).</param>
 		/// <returns>
@@ -293,16 +290,15 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getLists" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<NewsUserListItem> GetLists(out int total, IEnumerable<long> listIds, bool? extended = null)
+		public VkCollection<NewsUserListItem> GetLists(IEnumerable<long> listIds, bool? extended = null)
 		{
 			var parameters = new VkParameters
 			{
 				{ "list_ids", listIds },
 				{ "extended", extended }
 			};
-			var response = _vk.Call("newsfeed.getLists", parameters);
-			total = response["count"];
-			return response["items"].ToReadOnlyCollectionOf<NewsUserListItem>(x => x);
+
+			return _vk.Call("newsfeed.getLists", parameters).ToVkCollectionOf<NewsUserListItem>(x => x);
 		}
 
 		/// <summary>

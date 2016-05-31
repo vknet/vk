@@ -1195,9 +1195,9 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/groups.getInvites?offset=0&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 			@"{
-					'response': [
-					  1,
-					  {
+					'response': {
+					  count: 1,
+					  items: [{
 						'gid': 66528333,
 						'name': 'группа 123',
 						'screen_name': 'club66528333',
@@ -1209,8 +1209,8 @@ namespace VkNet.Tests.Categories
 						'photo_medium': 'http://vk.com/images/community_100.gif',
 						'photo_big': 'http://vk.com/images/question_a.gif',
 						'invited_by': 242508789
-					  }
-					]
+					  }]
+					}
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
@@ -1240,9 +1240,10 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/groups.getInvites?offset=0&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
-					'response': [
-					  0
-					]
+					response: {
+						count: 0,
+						items: []
+					}
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
@@ -1276,22 +1277,22 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/groups.getBanned?group_id=65968111&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 			@"{
-					'response': [
-					  1,
-					  {
-						'uid': 242508345,
-						'first_name': 'Маша',
-						'last_name': 'Иванова',
-						'ban_info': {
-						  'admin_id': 234695672,
-						  'date': 1392543301,
-						  'reason': 1,
-						  'comment': 'просто комментарий',
-						  'end_date': 1392802497
-						}
-					  }
-					]
-				  }";
+				'response': {
+					count: 1,
+					items: [{
+					'uid': 242508345,
+					'first_name': 'Маша',
+					'last_name': 'Иванова',
+					'ban_info': {
+						'admin_id': 234695672,
+						'date': 1392543301,
+						'reason': 1,
+						'comment': 'просто комментарий',
+						'end_date': 1392802497
+					}
+					}]
+				}
+			}";
 
 			var cat = GetMockedGroupCategory(url, json);
 

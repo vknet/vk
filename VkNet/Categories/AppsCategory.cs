@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -12,7 +10,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с приложениями.
 	/// </summary>
-	public class AppsCategory
+	public partial class AppsCategory
 	{
 		/// <summary>
 		/// API.
@@ -31,28 +29,22 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список приложений, доступных для пользователей сайта через каталог приложений.
 		/// </summary>
-		/// <param name="totalCount">Количество приложений.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает общее число найденных приложений и массив объектов приложений.
 		/// </returns>
 		/// <remarks>
 		/// К методу можно делать не более 60 запросов в минуту с одного IP или id.
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/apps.getCatalog" />.
+		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/apps.getCatalog" />.
 		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<App> GetCatalog(out long totalCount, AppGetCatalogParams @params)
+		public VkCollection<App> GetCatalog(AppGetCatalogParams @params)
 		{
-			var response = _vk.Call("apps.getCatalog", @params, !@params.ReturnFriends);
-			totalCount = response["count"];
-
-			return response["items"].ToReadOnlyCollectionOf<App>(x => x);
+			return _vk.Call("apps.getCatalog", @params, !@params.ReturnFriends).ToVkCollectionOf<App>(x => x);
 		}
 
 		/// <summary>
 		/// Возвращает данные о запрошенном приложении на платформе ВКонтакте
 		/// </summary>
-		/// <param name="totalCount">Количество приложений.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект приложения.
@@ -60,13 +52,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.get" />.
 		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<App> Get(out long totalCount, AppGetParams @params)
+		public VkCollection<App> Get(AppGetParams @params)
 		{
-			var result = _vk.Call("apps.get", @params);
-			totalCount = result["count"];
-
-			return result["items"].ToReadOnlyCollectionOf<App>(x => x);
+			return _vk.Call("apps.get", @params).ToVkCollectionOf<App>(x => x);
 		}
 
 		/// <summary>
@@ -98,18 +86,19 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public bool DeleteAppRequests()
 		{
-			var parameters = new VkParameters();
-			return _vk.Call("apps.deleteAppRequests", parameters);
+			return _vk.Call("apps.deleteAppRequests", VkParameters.Empty);
 		}
 
 		/// <summary>
 		/// Создает список друзей, который будет использоваться при отправке пользователем приглашений в приложение.
 		/// </summary>
-		/// <param name="totalCount">Количество приложений.</param>
+		/// <param name="type">Tип создаваемого списка друзей.</param>
+		/// <param name="extended">Параметр, определяющий необходимость возвращать расширенную информацию о пользователях.
+		/// 0 — возвращаются только идентификаторы;
+		/// 1 — будут дополнительно возвращены имя и фамилия. флаг, может принимать значения 1 или 0, по умолчанию 0 (Флаг, может принимать значения 1 или 0, по умолчанию 0).</param>
 		/// <param name="count">Количество пользователей в создаваемом списке.</param>
 		/// <param name="offset">Смещение относительно первого пользователя для выборки определенного подмножества.</param>
-		/// <param name="type">Tип создаваемого списка друзей.</param>
-		/// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть. См. подробное описание. </param>
+		/// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть. См. подробное описание.</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список пользователей.
 		/// </returns>
@@ -117,7 +106,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.getFriendsList" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetFriendsList(out long totalCount, AppRequestType type, bool? extended = null, long? count = null, long? offset = null, UsersFields fields = null)
+		public VkCollection<User> GetFriendsList(AppRequestType type, bool? extended = null, long? count = null, long? offset = null, UsersFields fields = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -126,13 +115,13 @@ namespace VkNet.Categories
 				{ "type", type },
 				{ "fields", fields }
 			};
+
 			if (count <= 5000)
 			{
 				parameters.Add("count", count);
 			}
-			var result = _vk.Call("apps.getFriendsList", parameters);
-			totalCount = result["count"];
-			return result["items"].ToReadOnlyCollectionOf<User>(x => fields == null ? new User {Id = x} : x);
+
+			return _vk.Call("apps.getFriendsList", parameters).ToVkCollectionOf<User>(x => x);
 		}
 
 		/// <summary>
