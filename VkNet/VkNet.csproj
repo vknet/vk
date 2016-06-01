@@ -58,10 +58,14 @@
   <ItemGroup>
     <Compile Include="Categories\ExecuteCategory.cs" />
     <Compile Include="Categories\Obsolete\AccountCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\AppsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\AudioCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\DocsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\FriendsCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\GiftsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\GroupsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\NewsFeedCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\PagesCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\PhotoCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\StatusCategory.Obsolete.cs" />
