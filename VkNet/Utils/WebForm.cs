@@ -1,134 +1,199 @@
 ﻿namespace VkNet.Utils
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Web;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text;
+	using HtmlAgilityPack;
 
-    using HtmlAgilityPack;
+	using Exception;
 
-    using Exception;
+	/// <summary>
+	/// WEB форма
+	/// </summary>
+	internal sealed class WebForm
+	{
+		/// <summary>
+		/// HTML документ
+		/// </summary>
+		private readonly HtmlDocument _html;
 
-    internal sealed class WebForm
-    {
-        private readonly HtmlDocument _html;
+		/// <summary>
+		/// Коллекция input на форме
+		/// </summary>
+		private readonly Dictionary<string, string> _inputs;
 
-        private readonly Dictionary<string, string> _inputs;
+		/// <summary>
+		/// Наименование поля
+		/// </summary>
+		private string _lastName;
 
-        private string _lastName;
+		/// <summary>
+		/// Базовый URL-ответ
+		/// </summary>
+		/// <remarks>
+		/// Если форма имеет относительный URL
+		/// </remarks>
+		private readonly string _responseBaseUrl;
 
-        private readonly string _originalUrl;
+		/// <summary>
+		/// Cookies.
+		/// </summary>
+		public Cookies Cookies { get; private set; }
 
-        private readonly string _responceBaseUrl; // if form has relative url
+		/// <summary>
+		/// WEB форма.
+		/// </summary>
+		/// <param name="result">Результат.</param>
+		private WebForm(WebCallResult result)
+		{
+			Cookies = result.Cookies;
+			OriginalUrl = result.RequestUrl.OriginalString;
 
-        public Cookies Cookies { get; private set; }
+			_html = new HtmlDocument();
+			result.LoadResultTo(_html);
 
-        private WebForm(WebCallResult result)
-        {
-            Cookies = result.Cookies;
-            _originalUrl = result.RequestUrl.OriginalString;
+			_responseBaseUrl = result.ResponseUrl.GetLeftPart(UriPartial.Authority);
 
-            _html = new HtmlDocument();
-            result.LoadResultTo(_html);
+			_inputs = ParseInputs();
+		}
 
-            _responceBaseUrl = result.ResponseUrl.GetLeftPart(UriPartial.Authority);
+		/// <summary>
+		/// Из результата.
+		/// </summary>
+		/// <param name="result">Результат.</param>
+		/// <returns>WEB форма.</returns>
+		public static WebForm From(WebCallResult result)
+		{
+			return new WebForm(result);
+		}
 
-            _inputs = ParseInputs();
-        }
+		/// <summary>
+		/// И.
+		/// </summary>
+		/// <returns>WEB форма.</returns>
+		public WebForm And()
+		{
+			return this;
+		}
 
-        public static WebForm From(WebCallResult result)
-        {
-            return new WebForm(result);
-        }
+		/// <summary>
+		/// С полем.
+		/// </summary>
+		/// <param name="name">Наименование поля.</param>
+		/// <returns>WEB форма.</returns>
+		public WebForm WithField(string name)
+		{
+			_lastName = name;
 
-        public WebForm And()
-        {
-            return this;
-        }
+			return this;
+		}
 
-        public WebForm WithField(string name)
-        {
-            _lastName = name;
+		/// <summary>
+		/// Заполнить поле с.
+		/// </summary>
+		/// <param name="value">Значение.</param>
+		/// <returns>WEB форма.</returns>
+		/// <exception cref="System.InvalidOperationException">Field name not set!</exception>
+		public WebForm FilledWith(string value)
+		{
+			if (string.IsNullOrEmpty(_lastName))
+			{
+				throw new InvalidOperationException("Field name not set!");
+			}
 
-            return this;
-        }
+			var encodedValue = Uri.EscapeDataString(value);
+			if (_inputs.ContainsKey(_lastName))
+			{
+				_inputs[_lastName] = encodedValue;
+			}
+			else
+			{
+				_inputs.Add(_lastName, encodedValue);
+			}
 
-        public WebForm FilledWith(string value)
-        {
-            if (string.IsNullOrEmpty(_lastName))
-                throw new InvalidOperationException("Field name not set!");
+			return this;
+		}
 
-            var encodedValue = HttpUtility.UrlEncode(value);
-            if (_inputs.ContainsKey(_lastName))
-                _inputs[_lastName] = encodedValue;
-            else
-                _inputs.Add(_lastName, encodedValue);
+		/// <summary>
+		/// URL действия.
+		/// </summary>
+		public string ActionUrl
+		{
+			get
+			{
+				var formNode = GetFormNode();
 
-            return this;
-        }
+				if (formNode.Attributes["action"] == null)
+				{
+					return OriginalUrl;
+				}
 
-        public string ActionUrl
-        {
-            get
-            {
-                var formNode = GetFormNode();
+				var link = formNode.Attributes["action"].Value;
+				if (!string.IsNullOrEmpty(link) && !link.StartsWith("http", StringComparison.Ordinal)) // относительный URL
+				{
+					link = _responseBaseUrl + link;
+				}
 
-                if (formNode.Attributes["action"] == null)
-                    return OriginalUrl;
+				return link; // абсолютный путь
+			}
+		}
 
-                var link = formNode.Attributes["action"].Value;
-                if (!string.IsNullOrEmpty(link) && !link.StartsWith("http")) // relative url
-                {
-                    link = _responceBaseUrl + link;
-                }
+		public string OriginalUrl { get; }
 
-                return link; // absolute path
-                //return formNode.Attributes["action"] != null ? formNode.Attributes["action"].Value : OriginalUrl;
-            }
-        }
+		/// <summary>
+		/// Получить запрос.
+		/// </summary>
+		/// <returns>Массив байт</returns>
+		public byte[] GetRequest()
+		{
+			var uri = _inputs.Select(x => $"{x.Key}={x.Value}").JoinNonEmpty("&");
+			return Encoding.UTF8.GetBytes(uri);
+		}
 
-        public string OriginalUrl
-        {
-            get { return _originalUrl; }
-        }
+		/// <summary>
+		/// Разобрать поля ввода.
+		/// </summary>
+		/// <returns>Коллекция полей ввода</returns>
+		private Dictionary<string, string> ParseInputs()
+		{
+			var inputs = new Dictionary<string, string>();
 
-        public byte[] GetRequest()
-        {
-            var uri = _inputs.Select(x => string.Format("{0}={1}", x.Key, x.Value)).JoinNonEmpty("&");
-            return Encoding.UTF8.GetBytes(uri);
-        }
+			var form = GetFormNode();
+			foreach (var node in form.SelectNodes("//input"))
+			{
+				var nameAttribute = node.Attributes["name"];
+				var valueAttribute = node.Attributes["value"];
 
-        private Dictionary<string, string> ParseInputs()
-        {
-            var inputs = new Dictionary<string, string>();
+				var name = nameAttribute != null ? nameAttribute.Value : string.Empty;
+				var value = valueAttribute != null ? valueAttribute.Value : string.Empty;
 
-            var form = GetFormNode();
-            foreach (var node in form.SelectNodes("//input"))
-            {
-                var nameAttribute = node.Attributes["name"];
-                var valueAttribute = node.Attributes["value"];
+				if (string.IsNullOrEmpty(name))
+				{
+					continue;
+				}
 
-                var name = nameAttribute != null ? nameAttribute.Value : string.Empty;
-                var value = valueAttribute != null ? valueAttribute.Value : string.Empty;
+				inputs.Add(name, Uri.EscapeDataString(value));
+			}
 
-                if (string.IsNullOrEmpty(name))
-                    continue;
+			return inputs;
+		}
 
-                inputs.Add(name, HttpUtility.UrlEncode(value));
-            }
+		/// <summary>
+		/// Получить из HTML элемента.
+		/// </summary>
+		/// <returns>HTML элемент</returns>
+		/// <exception cref="VkApiException">Элемент не найден на форме.</exception>
+		private HtmlNode GetFormNode()
+		{
+			HtmlNode.ElementsFlags.Remove("form");
+			var form = _html.DocumentNode.SelectSingleNode("//form");
+			if (form == null)
+			{
+				throw new VkApiException("Form element not found.");
+			}
 
-            return inputs;
-        }
-
-        private HtmlNode GetFormNode()
-        {
-            HtmlNode.ElementsFlags.Remove("form");
-            var form = _html.DocumentNode.SelectSingleNode("//form");
-            if (form == null)
-                throw new VkApiException("Form element not found.");
-
-            return form;
-        }
-    }
+			return form;
+		}
+	}
 }

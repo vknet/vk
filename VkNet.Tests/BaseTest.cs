@@ -19,12 +19,12 @@ namespace VkNet.Tests
         /// <summary>
         /// Ответ от сервера.
         /// </summary>
-        protected string Json = null;
+        protected string Json;
 
         /// <summary>
         /// Url запроса.
         /// </summary>
-        protected string Url = null;
+        protected string Url;
 
         /// <summary>
         /// Параметры запроса.
@@ -39,20 +39,12 @@ namespace VkNet.Tests
         {
             var browser = new Mock<IBrowser>();
             browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url)))
-                .Callback(() =>
-                {
-                    if (string.IsNullOrWhiteSpace(Url))
-                    {
-                        throw new ArgumentNullException(nameof(Json), "Url не может быть равен null. Обновите значение поля Url");
-                    }
-                    Url = Url.Replace("\'", "%27");
-
-                })
+                .Callback(Callback)
                 .Returns(() =>
                 {
                     if (string.IsNullOrWhiteSpace(Json))
                     {
-                        throw new ArgumentNullException(nameof(Json), "Json не может быть равен null. Обновите значение поля Json");
+                        throw new ArgumentNullException(nameof(Json), @"Json не может быть равен null. Обновите значение поля Json");
                     }
                     return Json;
                 });
@@ -74,7 +66,7 @@ namespace VkNet.Tests
             {
                 Browser = browser.Object
             };
-            Api.Authorize(new ApiAuthParams()
+            Api.Authorize(new ApiAuthParams
             {
 	            ApplicationId = 1,
 				Login = "login",
@@ -93,6 +85,15 @@ namespace VkNet.Tests
             Json = null;
             Parameters = new VkParameters();
             Url = null;
+        }
+
+        private void Callback()
+        {
+            if (string.IsNullOrWhiteSpace(Url))
+            {
+                throw new ArgumentNullException(nameof(Json), @"Url не может быть равен null. Обновите значение поля Url");
+            }
+            Url = Url.Replace("\'", "%27");
         }
     }
 }

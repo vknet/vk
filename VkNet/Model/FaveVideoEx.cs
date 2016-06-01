@@ -5,14 +5,14 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Расширеный объект видео для закладок
+	/// Расширенный объект видео для закладок
 	/// </summary>
 	public class FaveVideoEx
 	{
 		/// <summary>
 		/// Общее количество записей на стене.
 		/// </summary>
-		public long Count { get; set; }
+		public ulong Count { get; set; }
 		/// <summary>
 		/// Видеозаписи.
 		/// </summary>
