@@ -44,7 +44,7 @@
 		private void BugFixCookieDomain()
 		{
 			var table =
-				(Dictionary<string, string>)
+				(Hashtable)
 					Container.GetType()
 						.InvokeMember("m_domainTable", BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance, null, Container, new object[] { });
 
