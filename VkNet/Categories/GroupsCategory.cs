@@ -208,9 +208,9 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<Group> Search(GroupsSearchParams @params)
+		public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call("groups.search", @params, true).ToVkCollectionOf<Group>(r => r);
+			return _vk.Call("groups.search", @params, skipAuthorization).ToVkCollectionOf<Group>(r => r);
 		}
 
 		/// <summary>
