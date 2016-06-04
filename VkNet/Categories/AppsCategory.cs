@@ -165,12 +165,12 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public long GetScore(long userId)
 		{
-            VkErrors.ThrowIfNumberIsNegative(() => userId);
-            var parameters = new VkParameters
+			VkErrors.ThrowIfNumberIsNegative(() => userId);
+			var parameters = new VkParameters
 			{
 				{ "user_id", userId }
 			};
-			return _vk.Call("apps.getScore", parameters, true);
+			return _vk.Call("apps.getScore", parameters, false);
 		}
 	}
 }
