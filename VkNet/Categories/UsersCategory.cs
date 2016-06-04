@@ -38,7 +38,7 @@
 		[ApiVersion("5.44")]
 		public VkCollection<User> Search(UserSearchParams @params)
 		{
-			return _vk.Call("users.search", @params, true).ToVkCollectionOf<User>(r => r);
+			return _vk.Call("users.search", @params, false).ToVkCollectionOf<User>(r => r);
 		}
 
 		/// <summary>
