@@ -79,10 +79,10 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<Group> Get(GroupsGetParams @params)
+		public VkCollection<Group> Get(GroupsGetParams @params, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.UserId);
-			var response = _vk.Call("groups.get", @params, true);
+			var response = _vk.Call("groups.get", @params, skipAuthorization);
 			// в первой записи количество членов группы для (response["items"])
 			if (@params.Extended == null || !@params.Extended.Value)
 			{
