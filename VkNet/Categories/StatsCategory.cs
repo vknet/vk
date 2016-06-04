@@ -50,7 +50,7 @@ namespace VkNet.Categories
 			{
 				parameters.Add("date_to", dateTo.Value.ToString("yyyy-MM-dd"));
 			}
-			var result = _vk.Call("stats.get", parameters, true);
+			var result = _vk.Call("stats.get", parameters);
 			return result.ToReadOnlyCollectionOf<StatsPeriod>(x => x);
 		}
 
@@ -124,7 +124,7 @@ namespace VkNet.Categories
 				{ "owner_id", ownerId },
 				{ "post_id", postId }
 			};
-			return _vk.Call("stats.getPostReach", parameters, true);
+			return _vk.Call("stats.getPostReach", parameters);
 		}
 
 	}
