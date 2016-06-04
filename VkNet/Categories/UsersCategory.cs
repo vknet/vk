@@ -59,7 +59,7 @@
 				{ "user_id", userId }
 			};
 
-			return _vk.Call("users.isAppUser", parameters, true);
+			return _vk.Call("users.isAppUser", parameters);
 		}
 
 		/// <summary>
