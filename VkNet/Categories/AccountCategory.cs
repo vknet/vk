@@ -42,7 +42,7 @@
 		[ApiVersion("5.45")]
 		public Counters GetCounters(CountersFilter filter)
 		{
-			return _vk.Call("account.getCounters", new VkParameters { { "filter", filter } }, true);
+			return _vk.Call("account.getCounters", new VkParameters { { "filter", filter } }, false);
 		}
 
 		/// <summary>
@@ -66,7 +66,7 @@
 				{ "name", name },
 				{ "user_id", userId}
 			};
-			return _vk.Call("account.setNameInMenu", parameters, true);
+			return _vk.Call("account.setNameInMenu", parameters, false);
 		}
 
 		/// <summary>
@@ -278,7 +278,7 @@
 			{
 				{ "user_id", userId}
 			};
-			return _vk.Call("account.getAppPermissions", parameters, true);
+			return _vk.Call("account.getAppPermissions", parameters, false);
 		}
 
 		/// <summary>
@@ -301,7 +301,7 @@
 				{ "offset", offset },
 				{ "count", count }
 			};
-			return _vk.Call("account.getActiveOffers", parameters, true);
+			return _vk.Call("account.getActiveOffers", parameters, false);
 		}
 
 		/// <summary>
