@@ -80,8 +80,8 @@
 				if (value > 0)
 				{
 					_requestsPerSecond = value;
-                    _minInterval = (1000 / _requestsPerSecond) + 1;
-                }
+					_minInterval = (1000 / _requestsPerSecond) + 1;
+				}
 				else if (value == 0)
 					_requestsPerSecond = 0;
 				else
@@ -234,17 +234,17 @@
 		private string AccessToken
 		{ get; set; }
 
-        /// <summary>
-        /// Токен для доступа к методам API
-        /// </summary>
-        public string Token => AccessToken;
+		/// <summary>
+		/// Токен для доступа к методам API
+		/// </summary>
+		public string Token => AccessToken;
 
-	    /// <summary>
-        /// Идентификатор пользователя, от имени которого была проведена авторизация.
-        /// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings,Func{string},long?,string)"/>,
-        /// то возвращается null.
-        /// </summary>
-        public long? UserId
+		/// <summary>
+		/// Идентификатор пользователя, от имени которого была проведена авторизация.
+		/// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings,Func{string},long?,string)"/>,
+		/// то возвращается null.
+		/// </summary>
+		public long? UserId
 		{ get; set; }
 
 		/// <summary>
@@ -340,36 +340,36 @@
 			return rTask;
 		}
 
-        /// <summary>
-        /// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
-        /// </summary>
-        /// <param name="accessToken">Маркер доступа, полученный извне.</param>
-        /// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
-        /// <param name="expireTime">Время, в течении которого действует токен доступа (0 - бесконечно).</param>
-        public void Authorize(string accessToken, long? userId = null, int expireTime = 0)
-        {
-            if (string.IsNullOrWhiteSpace(accessToken))
-            {
-                return;
-            }
+		/// <summary>
+		/// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
+		/// </summary>
+		/// <param name="accessToken">Маркер доступа, полученный извне.</param>
+		/// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
+		/// <param name="expireTime">Время, в течении которого действует токен доступа (0 - бесконечно).</param>
+		public void Authorize(string accessToken, long? userId = null, int expireTime = 0)
+		{
+			if (string.IsNullOrWhiteSpace(accessToken))
+			{
+				return;
+			}
 
-            StopTimer();
+			StopTimer();
 
-            LastInvokeTime = DateTimeOffset.Now;
-            SetTimer(expireTime);
-            AccessToken = accessToken;
-            UserId = userId;
-            _ap = new ApiAuthParams();
-        }
+			LastInvokeTime = DateTimeOffset.Now;
+			SetTimer(expireTime);
+			AccessToken = accessToken;
+			UserId = userId;
+			_ap = new ApiAuthParams();
+		}
 
-        /// <summary>
-        /// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.
-        /// </summary>
-        /// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
-        /// <exception cref="AggregateException">
-        /// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля
-        /// </exception>
-        public void RefreshToken(Func<string> code = null)
+		/// <summary>
+		/// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.
+		/// </summary>
+		/// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
+		/// <exception cref="AggregateException">
+		/// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля
+		/// </exception>
+		public void RefreshToken(Func<string> code = null)
 		{
 			if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
 			{
@@ -424,31 +424,31 @@
 			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
 			if (!authorization.IsAuthorized)
 			{
-                throw new VkApiAuthorizationException("Invalid authorization with {0} - {1}", emailOrPhone, password);
-            }
+				throw new VkApiAuthorizationException("Invalid authorization with {0} - {1}", emailOrPhone, password);
+			}
 			var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
-            SetTimer(expireTime);
-            AccessToken = authorization.AccessToken;
+			SetTimer(expireTime);
+			AccessToken = authorization.AccessToken;
 			UserId = authorization.UserId;
 		}
 
-        /// <summary>
-        /// Установить значение таймера
-        /// </summary>
-        /// <param name="expireTime">Значение таймера</param>
-        private void SetTimer(int expireTime)
-        {
-            _expireTimer = new Timer(
-                AlertExpires, 
-                null, 
-                expireTime > 0 ? expireTime : Timeout.Infinite, 
-                Timeout.Infinite
-            );
-        }
-        /// <summary>
-        /// Прекращает работу таймера оповещения
-        /// </summary>
-        private void StopTimer()
+		/// <summary>
+		/// Установить значение таймера
+		/// </summary>
+		/// <param name="expireTime">Значение таймера</param>
+		private void SetTimer(int expireTime)
+		{
+			_expireTimer = new Timer(
+				AlertExpires,
+				null,
+				expireTime > 0 ? expireTime : Timeout.Infinite,
+				Timeout.Infinite
+			);
+		}
+		/// <summary>
+		/// Прекращает работу таймера оповещения
+		/// </summary>
+		private void StopTimer()
 		{
 			if (_expireTimer != null)
 			{
@@ -505,6 +505,7 @@
 		/// </summary>
 		/// <param name="methodName">Название метода.</param>
 		/// <param name="parameters">Параметры.</param>
+		/// <param name="skipAuthorization">Пропускать ли авторизацию</param>
 		/// <returns></returns>
 		internal string GetApiUrl(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
@@ -516,7 +517,11 @@
 			{
 				builder.AppendFormat("{0}={1}&", pair.Key, pair.Value);
 			}
-			builder.AppendFormat("access_token={0}", skipAuthorization ? "" : AccessToken);
+
+			if (skipAuthorization && parameters.Count != 0)
+				builder.Remove(builder.Length - 1, 1);
+			else
+				builder.AppendFormat("access_token={0}", AccessToken);
 
 			return builder.ToString();
 		}

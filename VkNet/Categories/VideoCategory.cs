@@ -1,25 +1,25 @@
 ﻿namespace VkNet.Categories
 {
 	using System.Collections.Generic;
-    using System.Collections.ObjectModel;
+	using System.Collections.ObjectModel;
 	using Enums;
 	using Enums.SafetyEnums;
-    using Model;
-    using Model.Attachments;
-    using Utils;
+	using Model;
+	using Model.Attachments;
+	using Utils;
 	using Model.RequestParams;
 
 	/// <summary>
 	/// Методы для работы с видеофайлами.
 	/// </summary>
 	public partial class VideoCategory
-    {
-        private readonly VkApi _vk;
+	{
+		private readonly VkApi _vk;
 
-        internal VideoCategory(VkApi vk)
-        {
-            _vk = vk;
-        }
+		internal VideoCategory(VkApi vk)
+		{
+			_vk = vk;
+		}
 
 		/// <summary>
 		/// Возвращает информацию о видеозаписях.
@@ -89,7 +89,7 @@
 		[ApiVersion("5.44")]
 		public long Add(long videoId, long ownerId, long? targetId = null)
 		{
-            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
 			var parameters = new VkParameters {
 				{ "target_id", targetId },
@@ -97,7 +97,7 @@
 				{ "owner_id", ownerId }
 			};
 
-            return _vk.Call("video.add", parameters);
+			return _vk.Call("video.add", parameters);
 		}
 
 		/// <summary>
@@ -155,8 +155,8 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool Restore(long videoId, long? ownerId = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
 			var parameters = new VkParameters {
 				{ "video_id", videoId },
@@ -164,7 +164,7 @@
 			};
 
 			return _vk.Call("video.restore", parameters);
-        }
+		}
 
 		/// <summary>
 		/// Возвращает список видеозаписей в соответствии с заданным критерием поиска.
@@ -238,8 +238,8 @@
 		[ApiVersion("5.44")]
 		public VkCollection<VideoAlbum> GetAlbums(long? ownerId = null, long? offset = null, long? count = null, bool? extended = null, bool? needSystem = null)
 		{
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
+			VkErrors.ThrowIfNumberIsNegative(() => count);
+			VkErrors.ThrowIfNumberIsNegative(() => offset);
 
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -249,8 +249,8 @@
 				{ "need_system", needSystem }
 			};
 
-            return _vk.Call("video.getAlbums", parameters).ToVkCollectionOf<VideoAlbum>(x => x);
-        }
+			return _vk.Call("video.getAlbums", parameters).ToVkCollectionOf<VideoAlbum>(x => x);
+		}
 
 		/// <summary>
 		/// Создает пустой альбом видеозаписей.
@@ -267,9 +267,9 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public long AddAlbum(string title, long? groupId = null, IEnumerable<Privacy> privacy = null)
-        {
-            VkErrors.ThrowIfNullOrEmpty(() => title);
-            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+		{
+			VkErrors.ThrowIfNullOrEmpty(() => title);
+			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -279,8 +279,8 @@
 
 			var response = _vk.Call("video.addAlbum", parameters);
 
-            return response["album_id"];
-        }
+			return response["album_id"];
+		}
 
 		/// <summary>
 		/// Редактирует название альбома видеозаписей.
@@ -298,10 +298,10 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool EditAlbum(long albumId, string title, long? groupId = null, Privacy privacy = null)
-        {
-            VkErrors.ThrowIfNullOrEmpty(() => title);
-            VkErrors.ThrowIfNumberIsNegative(() => albumId);
-            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+		{
+			VkErrors.ThrowIfNullOrEmpty(() => title);
+			VkErrors.ThrowIfNumberIsNegative(() => albumId);
+			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -311,7 +311,7 @@
 			};
 
 			return _vk.Call("video.editAlbum", parameters);
-        }
+		}
 
 		/// <summary>
 		/// Удаляет альбом видеозаписей.
@@ -326,8 +326,8 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool DeleteAlbum(long albumId, long? groupId = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => albumId);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => albumId);
 
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -335,7 +335,7 @@
 			};
 
 			return _vk.Call("video.deleteAlbum", parameters);
-        }
+		}
 
 		/// <summary>
 		/// Возвращает список комментариев к видеозаписи.
@@ -400,17 +400,17 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool DeleteComment(long commentId, long? ownerId)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
-            var parameters = new VkParameters
-            {
-	            { "comment_id", commentId },
+			var parameters = new VkParameters
+			{
+				{ "comment_id", commentId },
 				{ "owner_id", ownerId }
-            };
+			};
 
-            return _vk.Call("video.deleteComment", parameters);
-        }
+			return _vk.Call("video.deleteComment", parameters);
+		}
 
 		/// <summary>
 		/// Восстанавливает удаленный комментарий к видеозаписи.
@@ -425,17 +425,17 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool RestoreComment(long commentId, long? ownerId)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
-            var parameters = new VkParameters
-            {
-	            { "comment_id", commentId },
+			var parameters = new VkParameters
+			{
+				{ "comment_id", commentId },
 				{ "owner_id", ownerId }
-            };
+			};
 
-            return _vk.Call("video.restoreComment", parameters);
-        }
+			return _vk.Call("video.restoreComment", parameters);
+		}
 
 		/// <summary>
 		/// Изменяет текст комментария к видеозаписи.
@@ -464,9 +464,9 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
-        {
-            VkErrors.ThrowIfNullOrEmpty(() => message);
-            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+		{
+			VkErrors.ThrowIfNullOrEmpty(() => message);
+			VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -476,7 +476,7 @@
 			};
 
 			return _vk.Call("video.editComment", parameters);
-        }
+		}
 
 		/// <summary>
 		/// Возвращает список отметок на видеозаписи.
@@ -498,19 +498,19 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public ReadOnlyCollection<Tag> GetTags(long videoId, long? ownerId)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
-            var parameters = new VkParameters
-            {
-	            { "video_id", videoId },
+			var parameters = new VkParameters
+			{
+				{ "video_id", videoId },
 				{ "owner_id", ownerId }
-            };
+			};
 
-            VkResponseArray response = _vk.Call("video.getTags", parameters);
+			VkResponseArray response = _vk.Call("video.getTags", parameters);
 
-            return response.ToReadOnlyCollectionOf<Tag>(t => t);
-        }
+			return response.ToReadOnlyCollectionOf<Tag>(t => t);
+		}
 
 		/// <summary>
 		/// Добавляет отметку на видеозапись.
@@ -527,20 +527,20 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public long PutTag(long videoId, long userId, long? ownerId, string taggedName)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => videoId);
-            VkErrors.ThrowIfNumberIsNegative(() => userId);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => videoId);
+			VkErrors.ThrowIfNumberIsNegative(() => userId);
 
-            var parameters = new VkParameters
-                {
-                    {"user_id", userId},
-                    {"video_id", videoId},
-                    {"owner_id", ownerId},
-                    {"tagged_name", taggedName}
-                };
+			var parameters = new VkParameters
+				{
+					{"user_id", userId},
+					{"video_id", videoId},
+					{"owner_id", ownerId},
+					{"tagged_name", taggedName}
+				};
 
-            return _vk.Call("video.putTag", parameters);
-        }
+			return _vk.Call("video.putTag", parameters);
+		}
 
 		/// <summary>
 		/// Удаляет отметку с видеозаписи.
@@ -556,19 +556,19 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool RemoveTag(long tagId, long videoId, long? ownerId)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => tagId);
-            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => tagId);
+			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
-            var parameters = new VkParameters
-            {
-                { "tag_id", tagId },
-                { "video_id", videoId },
-                { "owner_id", ownerId }
-            };
+			var parameters = new VkParameters
+			{
+				{ "tag_id", tagId },
+				{ "video_id", videoId },
+				{ "owner_id", ownerId }
+			};
 
-            return _vk.Call("video.removeTag", parameters);
-        }
+			return _vk.Call("video.removeTag", parameters);
+		}
 
 		/// <summary>
 		/// Возвращает список видеозаписей, на которых есть непросмотренные отметки.
@@ -587,18 +587,18 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public VkCollection<Video> GetNewTags(int? count = null, int? offset = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => count);
+			VkErrors.ThrowIfNumberIsNegative(() => offset);
 
-            var parameters = new VkParameters
-            {
-                {"count", count},
-                {"offset", offset}
-            };
+			var parameters = new VkParameters
+			{
+				{"count", count},
+				{"offset", offset}
+			};
 
-            return _vk.Call("video.getNewTags", parameters).ToVkCollectionOf<Video>(x => x);
-        }
+			return _vk.Call("video.getNewTags", parameters).ToVkCollectionOf<Video>(x => x);
+		}
 
 		/// <summary>
 		/// Позволяет пожаловаться на видеозапись.
@@ -623,20 +623,20 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool Report(long videoId, ReportReason reason, long? ownerId, string comment = null, string searchQuery = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => videoId);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
-            var parameters = new VkParameters
-            {
-                {"video_id", videoId},
-                {"owner_id", ownerId},
-                {"reason", reason},
-                {"comment", comment},
-                {"search_query", searchQuery}
-            };
+			var parameters = new VkParameters
+			{
+				{"video_id", videoId},
+				{"owner_id", ownerId},
+				{"reason", reason},
+				{"comment", comment},
+				{"search_query", searchQuery}
+			};
 
-            return _vk.Call("video.report", parameters);
-        }
+			return _vk.Call("video.report", parameters);
+		}
 
 		/// <summary>
 		/// Позволяет пожаловаться на комментарий к видеозаписи.
@@ -659,18 +659,18 @@
 		/// </remarks>
 		[ApiVersion("5.44")]
 		public bool ReportComment(long commentId, long ownerId, ReportReason reason)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => commentId);
+		{
+			VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
-            var parameters = new VkParameters
-            {
-                {"comment_id", commentId},
-                {"owner_id", ownerId},
-                {"reason", reason}
-            };
+			var parameters = new VkParameters
+			{
+				{"comment_id", commentId},
+				{"owner_id", ownerId},
+				{"reason", reason}
+			};
 
-            return _vk.Call("video.reportComment", parameters);
-        }
+			return _vk.Call("video.reportComment", parameters);
+		}
 
 		/// <summary>
 		/// Позволяет получить информацию об альбоме с видео.
@@ -895,7 +895,7 @@
 				{ "extended", extended }
 			};
 
-			return _vk.Call("video.getCatalog", parameters, true).ToReadOnlyCollectionOf<VideoCatalog>(x => x);
+			return _vk.Call("video.getCatalog", parameters).ToReadOnlyCollectionOf<VideoCatalog>(x => x);
 		}
 
 		/// <summary>
@@ -952,7 +952,7 @@
 				{ "extended", extended }
 			};
 
-			return _vk.Call("video.getCatalogSection", parameters, true).ToReadOnlyCollectionOf<VideoCatalogItem>(x => x);
+			return _vk.Call("video.getCatalogSection", parameters).ToReadOnlyCollectionOf<VideoCatalogItem>(x => x);
 		}
 
 		/// <summary>
@@ -972,7 +972,7 @@
 				{ "section_id", sectionId }
 			};
 
-			return _vk.Call("video.hideCatalogSection", parameters, true);
+			return _vk.Call("video.hideCatalogSection", parameters);
 		}
 	}
 }

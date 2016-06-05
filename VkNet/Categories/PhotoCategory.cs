@@ -104,7 +104,7 @@
 				{"group_id", groupId}
 			};
 
-			return _vk.Call("photos.getAlbumsCount", parameters, true);
+			return _vk.Call("photos.getAlbumsCount", parameters, false);
 		}
 
 		/// <summary>
@@ -186,7 +186,7 @@
 			{
 				{"owner_id", ownerId}
 			};
-			return _vk.Call("photos.getOwnerPhotoUploadServer", parameters, true);
+			return _vk.Call("photos.getOwnerPhotoUploadServer", parameters, false);
 		}
 
 		/// <summary>
@@ -614,7 +614,7 @@
 		[ApiVersion("5.44")]
 		public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params)
 		{
-			return _vk.Call("photos.getUserPhotos", @params, true).ToVkCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.getUserPhotos", @params, false).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
