@@ -27,12 +27,12 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Географическая широта точки, в которой в данный момент находится пользователь, заданная в градусах (от -90 до 90). дробное число, обязательный параметр.
 		/// </summary>
-		public long Latitude { get; set; }
+		public float Latitude { get; set; }
 
 		/// <summary>
 		/// Географическая долгота точки, в которой в данный момент находится пользователь, заданная в градусах (от -180 до 180). дробное число, обязательный параметр.
 		/// </summary>
-		public long Longitude { get; set; }
+		public float Longitude { get; set; }
 
 		/// <summary>
 		/// Точность текущего местоположения пользователя в метрах. положительное число.
@@ -75,8 +75,8 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-				{ "latitude", p.Latitude },
-				{ "longitude", p.Longitude },
+				{ "latitude", p.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture) }, //Vk API не принимает дробные числа с запятой, нужна точка 
+				{ "longitude", p.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture) },
 				{ "accuracy", p.Accuracy },
 				{ "timeout", p.Timeout },
 				{ "radius", p.Radius },
