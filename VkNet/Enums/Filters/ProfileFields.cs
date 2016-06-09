@@ -264,12 +264,73 @@ namespace VkNet.Enums.Filters
         public static readonly ProfileFields InvitedBy = RegisterPossibleValue(1L << 50, "invited_by");
 
         /// <summary>
+        /// Для получения поля <see cref="User.BlacklistedByMe"/>.
+        /// </summary>
+        public static readonly ProfileFields BlacklistedByMe = RegisterPossibleValue(1L << 51, "blacklisted_by_me");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.Blacklisted"/>.
+        /// </summary>
+        public static readonly ProfileFields Blacklisted = RegisterPossibleValue(1L << 52, "blacklisted");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.Military"/>.
+        /// </summary>
+        public static readonly ProfileFields Military = RegisterPossibleValue(1L << 53, "military");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.Career"/>.
+        /// </summary>
+        public static readonly ProfileFields Career = RegisterPossibleValue(1L << 54, "career");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.FriendStatus"/>.
+        /// </summary>
+        public static readonly ProfileFields FriendStatus = RegisterPossibleValue(1L << 55, "friend_status");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.IsFriend"/>.
+        /// </summary>
+        public static readonly ProfileFields IsFriend = RegisterPossibleValue(1L << 56, "is_friend");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.ScreenName"/>.
+        /// </summary>
+        public static readonly ProfileFields ScreenName = RegisterPossibleValue(1L << 57, "screen_name");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.IsHiddenFromFeed"/>.
+        /// </summary>
+        public static readonly ProfileFields IsHiddenFromFeed = RegisterPossibleValue(1L << 58, "is_hidden_from_feed");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.IsFavorite"/>.
+        /// </summary>
+        public static readonly ProfileFields IsFavorite = RegisterPossibleValue(1L << 59, "is_favorite");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.CanSendFriendRequest"/>.
+        /// </summary>
+        public static readonly ProfileFields CanSendFriendRequest = RegisterPossibleValue(1L << 60, "can_send_friend_request");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.WallComments"/>.
+        /// </summary>
+        public static readonly ProfileFields WallComments = RegisterPossibleValue(1L << 61, "wall_comments");
+
+        /// <summary>
+        /// Для получения поля <see cref="User.Verified"/>.
+        /// </summary>
+        public static readonly ProfileFields Verified = RegisterPossibleValue(1L << 62, "verified");
+
+        /// <summary>
         /// Для получения всех документированных полей.
         /// </summary>
         public static readonly ProfileFields All = Uid | FirstName | LastName | Sex | BirthDate | City | Country | Photo50 | Photo100 |
             Photo200 | Photo200Orig | Photo400Orig | PhotoMax | PhotoMaxOrig | Online | FriendLists | Domain | HasMobile | Contacts |
             Connections | Site | Education | Universities | Schools | CanPost | CanSeeAllPosts | CanSeeAudio | CanWritePrivateMessage |
-            Status | LastSeen | CommonCount | Relation | Relatives | Counters | Nickname | Timezone;
+            Status | LastSeen | CommonCount | Relation | Relatives | Counters | Nickname | Timezone | Verified | WallComments | CanSendFriendRequest |
+            IsFavorite | IsHiddenFromFeed | ScreenName | IsFriend | FriendStatus | Career | Military | Blacklisted | BlacklistedByMe;
 
         /// <summary>
         /// Для получения всех полей, вколючая недокументированные.
