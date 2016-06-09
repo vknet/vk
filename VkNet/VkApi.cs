@@ -560,6 +560,7 @@
 			}
 			else if (skipAuthorization) {
 				url = GetApiUrl(methodName, parameters, skipAuthorization);
+				LastInvokeTime = DateTimeOffset.Now;
 				answer = Browser.GetJson(url.Replace("\'", "%27")); 
 			}
 			
