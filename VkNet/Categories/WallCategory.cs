@@ -44,7 +44,7 @@
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 			}
 
-			return _vk.Call("wall.get", @params);//, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
+			return _vk.Call("wall.get", @params, true);//, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
 		}
 
 		/// <summary>

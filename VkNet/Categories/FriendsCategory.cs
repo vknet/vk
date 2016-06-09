@@ -38,7 +38,7 @@
 		[ApiVersion("5.44")]
 		public VkCollection<User> Get(FriendsGetParams @params)
 		{
-			return _vk.Call("friends.get", @params).ToVkCollectionOf(x => @params.Fields != null ? x : new User { Id = x });
+			return _vk.Call("friends.get", @params, true).ToVkCollectionOf(x => @params.Fields != null ? x : new User { Id = x });
 		}
 
 		/// <summary>

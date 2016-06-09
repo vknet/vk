@@ -547,13 +547,10 @@
 			string answer = "";
 
 			// Защита от превышения количества запросов в секунду
-			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
-			{
-				lock (_expireTimer)
-				{
+			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue) {
+				lock (_expireTimer) {
 					var span = LastInvokeTimeSpan.Value;
-					if (span.TotalMilliseconds < _minInterval)
-					{
+					if (span.TotalMilliseconds < _minInterval) {
 						Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
 					}
 					url = GetApiUrl(methodName, parameters, skipAuthorization);
@@ -561,6 +558,11 @@
 					answer = Browser.GetJson(url.Replace("\'", "%27"));
 				}
 			}
+			else if (skipAuthorization) {
+				url = GetApiUrl(methodName, parameters, skipAuthorization);
+				answer = Browser.GetJson(url.Replace("\'", "%27")); 
+			}
+			
 
 #if DEBUG && !UNIT_TEST
 			Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
