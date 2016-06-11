@@ -301,7 +301,7 @@
 		/// <param name="params">Данные авторизации</param>
 		public void Authorize(ApiAuthParams @params)
 		{
-			Authorize(
+			AuthorizeWithAntiCaptcha(
 				@params.ApplicationId,
 				@params.Login,
 				@params.Password,
