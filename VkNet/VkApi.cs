@@ -12,6 +12,7 @@
 	using Categories;
 	using Exception;
 	using Utils;
+	using Utils.AntiCaptcha;
 	using Enums.Filters;
 
 	/// <summary>
@@ -248,9 +249,19 @@
 		{ get; set; }
 
 		/// <summary>
+		/// Максимальное количество попыток распознавания капчи c помощью зарегистрированного обработчика
+		/// </summary>
+		public int MaxCaptchaRecognitionCount { get; set; }
+
+		/// <summary>
+		/// Обработчик распознавания капчи
+		/// </summary>
+		private readonly ICaptchaSolver _captchaSolver;
+
+		/// <summary>
 		/// Инициализирует новый экземпляр класса <see cref="VkApi"/>.
 		/// </summary>
-		public VkApi()
+		public VkApi(ICaptchaSolver captchaSolver = null)
 		{
 			Browser = new Browser();
 
@@ -279,6 +290,9 @@
 			Execute = new ExecuteCategory(this);
 
 			RequestsPerSecond = 3;
+
+			MaxCaptchaRecognitionCount = 5;
+			_captchaSolver = captchaSolver;
 		}
 
 		/// <summary>
@@ -373,7 +387,7 @@
 		{
 			if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
 			{
-				Authorize(
+				AuthorizeWithAntiCaptcha(
 					_ap.ApplicationId,
 					_ap.Login,
 					_ap.Password,
@@ -433,6 +447,67 @@
 		}
 
 		/// <summary>
+		/// Авторизация и получение токена
+		/// </summary>
+		/// <param name="appId">Идентификатор приложения</param>
+		/// <param name="emailOrPhone">Email или телефон</param>
+		/// <param name="password">Пароль</param>
+		/// <param name="code">Делегат получения кода для двух факторной авторизации</param>
+		/// <param name="captchaSid">Идентификатор капчи</param>
+		/// <param name="captchaKey">Текст капчи</param>
+		/// <param name="settings">Права доступа для приложения</param>
+		/// <param name="host">Имя узла прокси-сервера.</param>
+		/// <param name="port">Номер порта используемого Host.</param>
+		/// <exception cref="VkApiAuthorizationException"></exception>
+		private void AuthorizeWithAntiCaptcha(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null,
+							   string host = null, int? port = null)
+		{
+			if (_captchaSolver == null)
+			{
+				Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
+			}
+			else
+			{
+				var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
+				var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
+				var captchaSidTemp = captchaSid;
+				var captchaKeyTemp = captchaKey;
+				var authorizationCompleted = false;
+
+				do
+				{
+					try
+					{
+						numberOfRemainingAttemptsToAuthorize--;
+						Authorize(appId, emailOrPhone, password, settings, code, captchaSidTemp, captchaKeyTemp, host, port);
+
+						authorizationCompleted = true;
+					}
+					catch (CaptchaNeededException captchaNeededException)
+					{
+						// Если мы обрабатываем исключение не первый раз, сообщаем решателю капчи
+						// об ошибке распознавания предыдущей капчи
+						if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
+						{
+							_captchaSolver?.CaptchaIsFalse();
+						}
+
+						if (numberOfRemainingAttemptsToSolveCaptcha <= 0) continue;
+						captchaSidTemp = captchaNeededException.Sid;
+						captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
+						numberOfRemainingAttemptsToSolveCaptcha--;
+					}
+				} while (numberOfRemainingAttemptsToAuthorize > 0 && !authorizationCompleted);
+
+				// Повторно выбрасываем исключение, если капча ни разу не была распознана верно
+				if (!authorizationCompleted && captchaSidTemp != null)
+				{
+					throw new CaptchaNeededException((long) captchaSidTemp, captchaKeyTemp);
+				}
+			}
+		}
+
+		/// <summary>
 		/// Установить значение таймера
 		/// </summary>
 		/// <param name="expireTime">Значение таймера</param>
@@ -473,7 +548,53 @@
 		/// <returns></returns>
 		private VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
-			var answer = Invoke(methodName, parameters, skipAuthorization);
+			string answer = null;
+
+			if (_captchaSolver == null)
+			{
+				answer = Invoke(methodName, parameters, skipAuthorization);
+			}
+			else
+			{
+				var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
+				var numberOfRemainingAttemptsToCall = MaxCaptchaRecognitionCount + 1;
+				long? captchaSidTemp = null;
+				string captchaKeyTemp = null;
+				var callCompleted = false;
+
+				do
+				{
+					try
+					{
+						parameters.Add("captcha_sid", captchaSidTemp);
+						parameters.Add("captcha_key", captchaKeyTemp);
+						numberOfRemainingAttemptsToCall--;
+						answer = Invoke(methodName, parameters, skipAuthorization);
+
+						callCompleted = true;
+					}
+					catch (CaptchaNeededException captchaNeededException)
+					{
+						// Если мы обрабатываем исключение не первый раз, сообщаем решателю капчи
+						// об ошибке распознавания предыдущей капчи
+						if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
+						{
+							_captchaSolver?.CaptchaIsFalse();
+						}
+
+						if (numberOfRemainingAttemptsToSolveCaptcha <= 0) continue;
+						captchaSidTemp = captchaNeededException.Sid;
+						captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
+						numberOfRemainingAttemptsToSolveCaptcha--;
+					}
+				} while (numberOfRemainingAttemptsToCall > 0 && !callCompleted);
+
+				// Повторно выбрасываем исключение, если капча ни разу не была распознана верно
+				if (!callCompleted && captchaSidTemp != null)
+				{
+					throw new CaptchaNeededException((long) captchaSidTemp, captchaKeyTemp);
+				}
+			}
 
 			var json = JObject.Parse(answer);
 
