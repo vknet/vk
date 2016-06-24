@@ -3,11 +3,12 @@
 using VkNet.Enums;
 namespace VkNet.Utils
 {
-    public partial class VkResponse
-    {
+	public partial class VkResponse
+	{
 		public static implicit operator AddFriendStatus(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return AddFriendStatus.Unknown;
 			}
 
@@ -16,7 +17,8 @@ namespace VkNet.Utils
 
 		public static implicit operator Attitude(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return Attitude.Unknown;
 			}
 
@@ -25,7 +27,8 @@ namespace VkNet.Utils
 
 		public static implicit operator BanReason(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return BanReason.Other;
 			}
 
@@ -34,7 +37,8 @@ namespace VkNet.Utils
 
 		public static implicit operator BirthdayVisibility(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return BirthdayVisibility.Invisible;
 			}
 
@@ -43,16 +47,22 @@ namespace VkNet.Utils
 
 		public static implicit operator DeleteFriendStatus(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null || response["success"] == 0)
 				return DeleteFriendStatus.Unknown;
-			}
-
-			return Utilities.EnumFrom<DeleteFriendStatus>(response);
+			if ((response["in_request_deleted"] != null && response["in_request_deleted"] == 1)
+				|| (response["out_request_deleted"] != null && response["out_request_deleted"] == 1))
+				return DeleteFriendStatus.RequestRejected;
+			if (response["suggestion_deleted"] != null && response["suggestion_deleted"] == 1)
+				return DeleteFriendStatus.RecommendationDeleted;
+			if (response["friend_deleted"] != null && response["friend_deleted"] == 1)
+				return DeleteFriendStatus.UserIsDeleted;
+			return DeleteFriendStatus.Unknown;
 		}
 
 		public static implicit operator FriendStatus(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return FriendStatus.NotFriend;
 			}
 
@@ -61,7 +71,8 @@ namespace VkNet.Utils
 
 		public static implicit operator GiftPrivacy(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return GiftPrivacy.NameHideMessageUser;
 			}
 
@@ -70,7 +81,8 @@ namespace VkNet.Utils
 
 		public static implicit operator GroupAccess(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return GroupAccess.Open;
 			}
 
@@ -79,7 +91,8 @@ namespace VkNet.Utils
 
 		public static implicit operator LeaderboardTypes(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return LeaderboardTypes.NotSupported;
 			}
 
@@ -88,7 +101,8 @@ namespace VkNet.Utils
 
 		public static implicit operator LifeMain(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return LifeMain.Unknown;
 			}
 
@@ -97,7 +111,8 @@ namespace VkNet.Utils
 
 		public static implicit operator MainSection(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return MainSection.NoSection;
 			}
 
@@ -106,7 +121,8 @@ namespace VkNet.Utils
 
 		public static implicit operator MarketCurrencyId(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return MarketCurrencyId.Rub;
 			}
 
@@ -115,7 +131,8 @@ namespace VkNet.Utils
 
 		public static implicit operator PeopleMain(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return PeopleMain.Unknown;
 			}
 
@@ -124,7 +141,8 @@ namespace VkNet.Utils
 
 		public static implicit operator PoliticalPreferences(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return PoliticalPreferences.Unknown;
 			}
 
@@ -133,7 +151,8 @@ namespace VkNet.Utils
 
 		public static implicit operator ProductAvailability(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return ProductAvailability.Unavailable;
 			}
 
@@ -142,7 +161,8 @@ namespace VkNet.Utils
 
 		public static implicit operator ProductSort(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return ProductSort.UserSort;
 			}
 
@@ -151,7 +171,8 @@ namespace VkNet.Utils
 
 		public static implicit operator RelationType(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return RelationType.Unknown;
 			}
 
@@ -160,7 +181,8 @@ namespace VkNet.Utils
 
 		public static implicit operator ReportReason(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return ReportReason.Spam;
 			}
 
@@ -169,7 +191,8 @@ namespace VkNet.Utils
 
 		public static implicit operator Sex(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return Sex.Unknown;
 			}
 
@@ -178,7 +201,8 @@ namespace VkNet.Utils
 
 		public static implicit operator WallContentAccess(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null)
+			{
 				return WallContentAccess.Off;
 			}
 
