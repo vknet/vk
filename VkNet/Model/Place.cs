@@ -15,7 +15,7 @@
         /// <summary>
         /// Идентификатор места.
         /// </summary>
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
         /// <summary>
         /// Название места.
@@ -55,7 +55,7 @@
         /// <summary>
         /// Данный параметр указывается, если местоположение является прикреплённой картой.
         /// </summary>
-        public bool ShowMap { get; set; }
+        public bool? ShowMap { get; set; }
 
         #region Поля, установленные экспериментально
 
