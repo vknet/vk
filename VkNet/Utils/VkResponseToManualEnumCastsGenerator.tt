@@ -9,8 +9,8 @@
 using VkNet.Enums;
 namespace VkNet.Utils
 {
-    public partial class VkResponse
-    {
+	public partial class VkResponse
+	{
 <#
 	var path = Directory.GetParent(Host.ResolvePath("")) + @"\Enums";
 	var files = Directory.GetFiles(path, "*.cs", SearchOption.AllDirectories).ToList();
@@ -37,10 +37,32 @@ namespace VkNet.Utils
 			continue;
 		}
 
+		if(type == "DeleteFriendStatus")
+		{
 #>
 		public static implicit operator <#= type #>(VkResponse response)
 		{
-			if (response == null) {
+			if (response == null || response["success"] == 0)
+				return <#= type #>.Unknown;
+			if ((response["in_request_deleted"] != null && response["in_request_deleted"] == 1)
+				|| (response["out_request_deleted"] != null && response["out_request_deleted"] == 1))
+				return <#= type #>.RequestRejected;
+			if (response["suggestion_deleted"] != null && response["suggestion_deleted"] == 1)
+				return <#= type #>.RecommendationDeleted;
+			if (response["friend_deleted"] != null && response["friend_deleted"] == 1)
+				return <#= type #>.UserIsDeleted;
+			return <#= type #>.Unknown;
+		}
+
+<#
+		}
+		else
+		{
+#>
+		public static implicit operator <#= type #>(VkResponse response)
+		{
+			if (response == null)
+			{
 				return <#= type #>.<#= value #>;
 			}
 
@@ -48,6 +70,7 @@ namespace VkNet.Utils
 		}
 
 <#
+}
 	}
 #>
 	}
