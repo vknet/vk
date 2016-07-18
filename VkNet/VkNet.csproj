@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9CB320EE-5F9B-4DF3-9897-C3D20C296DE7}</ProjectGuid>
+    <ProjectGuid>{8B031A92-84D4-4418-8551-18F1AFEECC6C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VkNet</RootNamespace>
