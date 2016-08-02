@@ -346,5 +346,15 @@ namespace VkNet.Utils
         {
             return BoardGetTopicsParams.ToVkParameters(p);
         }
+
+        public static implicit operator VkParameters(BoardGetCommentsParams p)
+        {
+            return BoardGetCommentsParams.ToVkParameters(p);
+        }
+
+        public static implicit operator VkParameters(BoardCreateCommentParams p)
+        {
+            return BoardCreateCommentParams.ToVkParameters(p);
+        }
     }
 }

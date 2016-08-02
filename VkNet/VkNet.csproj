@@ -92,12 +92,15 @@
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
     <Compile Include="Model\GroupsCatalogInfo.cs" />
     <Compile Include="Model\MessagesPushSettings.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardCreateCommentParams.cs" />
+    <Compile Include="Model\TopicsFeed.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardGetCommentsParams.cs" />
     <Compile Include="Model\Topic.cs" />
     <Compile Include="Model\PushSettings.cs" />
     <Compile Include="Model\RequestParams\Account\AccountSaveProfileInfoParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioEditParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioGetParams.cs" />
-    <Compile Include="Model\RequestParams\Board\BoardGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardGetTopicsParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetMutualParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetOnlineParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetParams.cs" />

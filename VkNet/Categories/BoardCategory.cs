@@ -31,6 +31,44 @@
             return _vk.Call("board.getTopics", @params).ToVkCollectionOf<Topic>(x => x);
         }
 
+        /// <summary>
+        /// Возвращает список сообщений в указанной теме.
+        /// </summary>
+        /// <param name="params">Входные параметры выборки.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getComments" />.
+        /// </remarks>
+        [ApiVersion("5.44")]
+        public TopicsFeed GetComments(BoardGetCommentsParams @params)
+        {
+            var response = _vk.Call("board.getComments", @params);
+            var result = new TopicsFeed
+            {
+                Count = response["count"],
+                Items = response["items"].ToReadOnlyCollectionOf<Comment>(x => x),
+                Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(x => x),
+                Groups = response["groups"].ToReadOnlyCollectionOf<Group>(x => x)
+            };
+            return result;
+        }
+
+        /// <summary>
+        /// Возвращает список сообщений в указанной теме.
+        /// </summary>
+        /// <param name="params">Входные параметры выборки.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.createComment" />.
+        /// </remarks>
+        [ApiVersion("5.44")]
+        public long СreateComment(BoardCreateCommentParams @params)
+        {
+            return _vk.Call("board.createComment", @params)["comment_id"];
+        }
+
     }
     
 }

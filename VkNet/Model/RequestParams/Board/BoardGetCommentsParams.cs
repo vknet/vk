@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using VkNet.Enums;
+﻿using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -7,22 +6,23 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Параметры метода board.getTopics
     /// </summary>
-    public struct BoardGetTopicsParams
+    public struct BoardGetCommentsParams
     {
 		/// <summary>
 		/// Параметры метода wall.getComments
 		/// </summary>
 		/// <param name="gag">Заглушка для конструктора.</param>
-		public BoardGetTopicsParams(bool gag = true)
+		public BoardGetCommentsParams(bool gag = true)
 		{
             GroupId = null;
-            TopicIds = null;
-            Order = 1;
-			Offset = null;
-			Count = null;
-            Extended = false;
-            Preview = null;
-            PreviewLength = 90;
+            TopicId = 0;
+            NeedLikes = null;
+            StartCommentId = null;
+            Offset = null;
+            Count = null;
+            Sort = null;
+            PreviewLength = null;
+            Extended = null;
         }
 
 		/// <summary>
@@ -31,59 +31,63 @@ namespace VkNet.Model.RequestParams
 		public long? GroupId { get; set; }
 
         /// <summary>
-        /// Cписок идентификаторов тем, которые необходимо получить (не более 100).
+        /// Идентификатор обсуждения.Положительное число, обязательный параметр.
         /// </summary>
-        public IEnumerable<long> TopicIds
-        { get; set; }
+        public long TopicId { get; set; }
 
         /// <summary>
-        /// Порядок, в котором необходимо вернуть список тем.
-        /// </summary>
-        public int? Order { get; set; }
-
-		/// <summary>
-		/// Сдвиг, необходимый для получения конкретной выборки результатов. целое число.
+		/// 1 — возвращать информацию о лайках. флаг, может принимать значения 1 или 0.
 		/// </summary>
-		public long? Offset { get; set; }
-
-		/// <summary>
-		/// Число комментариев, которые необходимо получить. По умолчанию — 10, максимальное значение — 100. положительное число.
-		/// </summary>
-		public long? Count { get; set; }
+		public bool? NeedLikes { get; set; }
 
         /// <summary>
-        /// Если указать в качестве этого параметра 1, то будет возвращена информация о пользователях, являющихся создателями тем или оставившими в них последнее сообщение. По умолчанию 0.
+        /// Идентификатор комментария, начиная с которого нужно вернуть список (подробности см. ниже). положительное число, доступен начиная с версии 5.33.
+        /// </summary>
+        public long? StartCommentId { get; set; }
+
+        /// <summary>
+        /// Сдвиг, необходимый для получения конкретной выборки результатов. целое число.
+        /// </summary>
+        public long? Offset { get; set; }
+
+        /// <summary>
+        /// Число комментариев, которые необходимо получить. По умолчанию — 10, максимальное значение — 100. положительное число.
+        /// </summary>
+        public long? Count { get; set; }
+
+        /// <summary>
+        /// Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым) строка.
+        /// </summary>
+        public SortOrderBy? Sort { get; set; }
+
+        /// <summary>
+        /// Количество символов, по которому нужно обрезать текст комментария. Укажите 0, если Вы не хотите обрезатьтекст. положительное число.
+        /// </summary>
+        public long? PreviewLength { get; set; }
+
+        /// <summary>
+        /// 1 — комментарии в ответе будут возвращены в виде пронумерованных объектов, дополнительно будут возвращены списки объектов profiles, groups. флаг, может принимать значения 1 или 0, доступен начиная с версии 5.0.
         /// </summary>
         public bool? Extended { get; set; }
-
-        /// <summary>
-        /// Набор флагов, определяющий, необходимо ли вернуть вместе с информацией о темах текст первых и последних сообщений в них..
-        /// </summary>
-        public int? Preview { get; set; }
-
-        /// <summary>
-        /// Количество символов, по которому нужно обрезать первое и последнее сообщение. Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию — 90).
-        /// </summary>
-        public int? PreviewLength { get; set; }
-
 
         /// <summary>
         /// Привести к типу VkParameters.
         /// </summary>
         /// <param name="p">Параметры.</param>
         /// <returns></returns>
-        internal static VkParameters ToVkParameters(BoardGetTopicsParams p)
+        internal static VkParameters ToVkParameters(BoardGetCommentsParams p)
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", p.GroupId },
-				{ "topic_ids", p.TopicIds },
-				{ "order", p.Order },
-				{ "offset", p.Offset },
-				{ "count", p.Count },
-				{ "extended", p.Extended },
-                { "preview", p.Preview },
-                { "preview_length", p.PreviewLength }
+                { "group_id", p.GroupId },
+                { "topic_id", p.TopicId },
+                { "need_likes", p.NeedLikes },
+                { "start_comment_id", p.StartCommentId },
+                { "offset", p.Offset },
+                { "count", p.Count },
+                { "sort", p.Sort },
+                { "preview_length", p.PreviewLength },
+                { "extended", p.Extended }
             };
 
 			return parameters;
