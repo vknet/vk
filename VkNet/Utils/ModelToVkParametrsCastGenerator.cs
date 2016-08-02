@@ -341,5 +341,10 @@ namespace VkNet.Utils
 		{
             return WallSearchParams.ToVkParameters(p);
         }
-	}
+
+        public static implicit operator VkParameters(BoardGetTopicsParams p)
+        {
+            return BoardGetTopicsParams.ToVkParameters(p);
+        }
+    }
 }

@@ -72,6 +72,7 @@
     <Compile Include="Categories\Obsolete\UsersCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\VideoCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\WallCategory.Obsolete.cs" />
+    <Compile Include="Categories\WallCategory.cs" />
     <Compile Include="Enums\GroupAccess.cs" />
     <Compile Include="Enums\MarketCurrencyId.cs" />
     <Compile Include="Enums\DocFilter.cs" />
@@ -91,10 +92,12 @@
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
     <Compile Include="Model\GroupsCatalogInfo.cs" />
     <Compile Include="Model\MessagesPushSettings.cs" />
+    <Compile Include="Model\Topic.cs" />
     <Compile Include="Model\PushSettings.cs" />
     <Compile Include="Model\RequestParams\Account\AccountSaveProfileInfoParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioEditParams.cs" />
     <Compile Include="Model\RequestParams\Audio\AudioGetParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardGetCommentsParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetMutualParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetOnlineParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetParams.cs" />
@@ -170,7 +173,7 @@
     <Compile Include="Categories\MessagesCategory.cs" />
     <Compile Include="Categories\UtilsCategory.cs" />
     <Compile Include="Categories\VideoCategory.cs" />
-    <Compile Include="Categories\WallCategory.cs" />
+    <Compile Include="Categories\BoardCategory.cs" />
     <Compile Include="Enums\AddFriendStatus.cs" />
     <Compile Include="Enums\AdminLevel.cs" />
     <Compile Include="Enums\Attitude.cs" />
