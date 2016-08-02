@@ -143,10 +143,17 @@
 		/// </summary>
 		public WallCategory Wall
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с закладками.
+
+        /// <summary>
+		/// API для работы со темами групп.
 		/// </summary>
-		public FaveCategory Fave
+		public BoardCategory Board
+        { get; private set; }
+
+        /// <summary>
+        /// API для работы с закладками.
+        /// </summary>
+        public FaveCategory Fave
 		{ get; private set; }
 		/// <summary>
 		/// API для работы с видео файлами.
@@ -272,7 +279,8 @@
 			Groups = new GroupsCategory(this);
 			Audio = new AudioCategory(this);
 			Wall = new WallCategory(this);
-			Database = new DatabaseCategory(this);
+            Board = new BoardCategory(this);
+            Database = new DatabaseCategory(this);
 			Utils = new UtilsCategory(this);
 			Fave = new FaveCategory(this);
 			Video = new VideoCategory(this);
