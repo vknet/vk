@@ -66,7 +66,7 @@
         [ApiVersion("5.44")]
         public long СreateComment(BoardCreateCommentParams @params)
         {
-            return _vk.Call("board.createComment", @params)["comment_id"];
+            return _vk.Call("board.createComment", @params);
         }
 
     }
