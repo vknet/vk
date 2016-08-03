@@ -1228,5 +1228,10 @@ namespace VkNet.Utils
             return response.ToCollectionOf<WallReply>(a => a);
         }
 
-	}
+        public static implicit operator Topic(VkResponse response)
+        {
+            return response == null || response._token == null || !response._token.HasValues ? null : Topic.FromJson(response);
+        }
+
+    }
 }
