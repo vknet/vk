@@ -228,9 +228,9 @@ namespace VkNet.Model
 		/// Причина блокирования аккаунта
 		/// </summary>
 		[Obsolete("Устаревшее свойство. Используйте Deactivated")]
-		public Deactivated DeactiveReason { get { return Deactivated; } }
+		public Deactivated DeactiveReason => Deactivated;
 
-		/// <summary>
+	    /// <summary>
 		/// Причина блокирования аккаунта
 		/// </summary>
 		public Deactivated Deactivated
@@ -578,7 +578,7 @@ namespace VkNet.Model
 				Blacklisted = response["blacklisted"],
 				BlacklistedByMe = response["blacklisted_by_me"]
 			};
-			user.IsDeactivated = user.DeactiveReason != null;
+			user.IsDeactivated = user.Deactivated != null;
 			if (response["name"] != null)
 			{
 				// Разделить имя и фамилию
@@ -591,7 +591,14 @@ namespace VkNet.Model
 				user.FirstName = parts[0];
 				user.LastName = parts[1];
 			}
-			return user;
+
+		    if (user.BirthDate != null && response["bdate_visibility"] == null)
+		    {
+		        var parts = (user.BirthDate).Split('.');
+		        user.BirthdayVisibility = parts.Length > 2 ? Enums.BirthdayVisibility.Full : Enums.BirthdayVisibility.OnlyDayAndMonth;
+		    }
+
+		    return user;
 		}
 
 		#endregion
