@@ -9,6 +9,12 @@
     /// </summary>
     public struct MessagesGetParams
     {
+		
+		public MessagesGetParams()
+		{
+			Count = 20;
+		}
+		
         /// <summary>
         /// Количество сообщений, которое необходимо получить.
         /// (по умолчанию 20, максимальное значение 200)
