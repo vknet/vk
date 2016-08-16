@@ -69,6 +69,21 @@
             return _vk.Call("board.createComment", @params);
         }
 
+        /// <summary>
+        /// Удаляет сообщение в обсуждениях сообщества.
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.deleteComment" />.
+        /// </remarks>
+        [ApiVersion("5.44")]
+        public long DeleteComment(BoardDeleteCommentParams @params)
+        {
+            return _vk.Call("board.deleteComment", @params);
+        }
+
     }
     
 }

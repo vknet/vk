@@ -356,5 +356,10 @@ namespace VkNet.Utils
         {
             return BoardCreateCommentParams.ToVkParameters(p);
         }
+
+        public static implicit operator VkParameters(BoardDeleteCommentParams p)
+        {
+            return BoardDeleteCommentParams.ToVkParameters(p);
+        }
     }
 }
