@@ -92,6 +92,9 @@
     <Compile Include="Enums\SafetyEnums\PostType.cs" />
     <Compile Include="Model\GroupsCatalogInfo.cs" />
     <Compile Include="Model\MessagesPushSettings.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardEditTopicParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardTopicParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardAddTopicParams.cs" />
     <Compile Include="Model\RequestParams\Board\BoardDeleteCommentParams.cs" />
     <Compile Include="Model\RequestParams\Board\BoardCreateCommentParams.cs" />
     <Compile Include="Model\TopicsFeed.cs" />
