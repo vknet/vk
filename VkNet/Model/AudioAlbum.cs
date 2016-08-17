@@ -36,7 +36,7 @@ namespace VkNet.Model
 			var album = new AudioAlbum
 			{
 				OwnerId = response["owner_id"],
-				AlbumId = response["album_id"],
+				AlbumId = response["id"],
 				Title = response["title"]
 			};
 
