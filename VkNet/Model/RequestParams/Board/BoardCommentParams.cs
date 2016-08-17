@@ -5,13 +5,13 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.addComment
 	/// </summary>
-	public struct BoardDeleteCommentParams
+	public struct BoardCommentParams
 	{
-		/// <summary>
-		/// Параметры метода wall.addComment
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public BoardDeleteCommentParams(bool gag = true)
+        /// <summary>
+        /// Параметры метода board.deleteComment,board.restoreComment
+        /// </summary>
+        /// <param name="gag">Заглушка для конструктора.</param>
+        public BoardCommentParams(bool gag = true)
 		{
             GroupId = 0;
             TopicId = 0;
@@ -50,7 +50,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(BoardDeleteCommentParams p)
+		internal static VkParameters ToVkParameters(BoardCommentParams p)
 		{
 			var parameters = new VkParameters
 			{

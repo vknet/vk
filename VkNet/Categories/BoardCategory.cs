@@ -185,9 +185,37 @@
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.deleteComment" />.
         /// </remarks>
         [ApiVersion("5.44")]
-        public long DeleteComment(BoardDeleteCommentParams @params)
+        public int DeleteComment(BoardCommentParams @params)
         {
             return _vk.Call("board.deleteComment", @params);
+        }
+
+        /// <summary>
+        /// Редактирует одно из сообщений в обсуждении сообщества..
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.editComment" />.
+        /// </remarks>
+        public int EditComment(BoardEditCommentParams @params)
+        {
+            return _vk.Call("board.editComment", @params);
+        }
+
+        /// <summary>
+        /// Восстанавливает удаленное сообщение темы в обсуждениях группы.
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.restoreComment" />.
+        /// </remarks>
+        public int RestoreComment(BoardCommentParams @params)
+        {
+            return _vk.Call("board.restoreComment", @params);
         }
 
     }
