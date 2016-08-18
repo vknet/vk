@@ -38,10 +38,10 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<long> GetList(LikesGetListParams @params)
+		public ReadOnlyCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = true)
 		{
 		    @params.Extended = false;
-			VkResponseArray response = _vk.Call("likes.getList", @params, true);
+			VkResponseArray response = _vk.Call("likes.getList", @params, skipAuthorization);
 
             return response.ToReadOnlyCollectionOf<long>(x => x);
 		}
