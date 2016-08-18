@@ -26,9 +26,9 @@
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getTopics" />.
         /// </remarks>
         [ApiVersion("5.44")]
-        public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params)
+        public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = true)
         {
-            return _vk.Call("board.getTopics", @params).ToVkCollectionOf<Topic>(x => x);
+            return _vk.Call("board.getTopics", @params, skipAuthorization).ToVkCollectionOf<Topic>(x => x);
         }
 
         /// <summary>
@@ -41,9 +41,9 @@
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getComments" />.
         /// </remarks>
         [ApiVersion("5.44")]
-        public TopicsFeed GetComments(BoardGetCommentsParams @params)
+        public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = true)
         {
-            var response = _vk.Call("board.getComments", @params);
+            var response = _vk.Call("board.getComments", @params, skipAuthorization);
             var result = new TopicsFeed
             {
                 Count = response["count"],
