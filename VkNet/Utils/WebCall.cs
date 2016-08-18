@@ -26,7 +26,9 @@
 		/// <param name="cookies">Cookies.</param>
 		/// <param name="host">Хост.</param>
 		/// <param name="port">Порт.</param>
-		private WebCall(string url, Cookies cookies, string host = null, int? port = null)
+        /// <param name="proxyLogin">Логин прокси-сервера</param>
+        /// <param name="proxyPassword">Пароль прокси-сервера</param>
+		private WebCall(string url, Cookies cookies, string host = null, int? port = null, string proxyLogin = null, string proxyPassword =null)
 		{
 			Request = (HttpWebRequest)WebRequest.Create(url);
 			Request.Accept = "text/html";
@@ -36,43 +38,54 @@
 			if (host != null && port != null)
 				Request.Proxy = new WebProxy(host, port.Value);
 
-			if (Request.Proxy != null)
-			{
-				// Авторизация с реквизитами по умолчанию (для NTLM прокси)
-				Request.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            if (Request.Proxy != null)
+            {
+                if (proxyLogin != null && proxyPassword != null)
+                {
+                    Request.Proxy.Credentials = new NetworkCredential(proxyLogin, proxyPassword);
+                }
+                else
+                {
+                    // Авторизация с реквизитами по умолчанию (для NTLM прокси)
+                    Request.Proxy.Credentials = CredentialCache.DefaultCredentials;
+                }
 			}
 
 			Result = new WebCallResult(url, cookies);
 		}
 
-		/// <summary>
-		/// Выполнить запрос.
-		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="host">Хост.</param>
-		/// <param name="port">Порт.</param>
-		/// <returns>Результат</returns>
-		public static WebCallResult MakeCall(string url, string host = null, int? port = null)
+        /// <summary>
+        /// Выполнить запрос.
+        /// </summary>
+        /// <param name="url">URL.</param>
+        /// <param name="host">Хост.</param>
+        /// <param name="port">Порт.</param>
+        /// <param name="proxyLogin">Логин прокси-сервера</param>
+        /// <param name="proxyPassword">Пароль прокси-сервера</param>
+        /// <returns>Результат</returns>
+        public static WebCallResult MakeCall(string url, string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
 		{
-			var call = new WebCall(url, new Cookies(), host, port);
+			var call = new WebCall(url, new Cookies(), host, port, proxyLogin, proxyPassword);
 
-			return call.MakeRequest(host, port);
+			return call.MakeRequest(host, port, proxyLogin, proxyPassword);
 		}
 
 #if false // async version for PostCall
 #endif
 
-		/// <summary>
-		/// Выполнить POST запрос.
-		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="parameters">Параметры запроса.</param>
-		/// <param name="host">Хост.</param>
-		/// <param name="port">Порт.</param>
-		/// <returns>Результат</returns>
-		public static WebCallResult PostCall(string url, string parameters, string host = null, int? port = null)
+        /// <summary>
+        /// Выполнить POST запрос.
+        /// </summary>
+        /// <param name="url">URL.</param>
+        /// <param name="parameters">Параметры запроса.</param>
+        /// <param name="host">Хост.</param>
+        /// <param name="port">Порт.</param>
+        /// <param name="proxyLogin">Логин прокси-сервера</param>
+        /// <param name="proxyPassword">Пароль прокси-сервера</param>
+        /// <returns>Результат</returns>
+        public static WebCallResult PostCall(string url, string parameters, string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
 		{
-			var call = new WebCall(url, new Cookies(), host, port)
+			var call = new WebCall(url, new Cookies(), host, port, proxyLogin, proxyPassword)
 			{
 				Request =
 				{
@@ -87,19 +100,21 @@
 			using (var requestStream = call.Request.GetRequestStream())
 				requestStream.Write(data, 0, data.Length);
 
-			return call.MakeRequest(host, port);
+			return call.MakeRequest(host, port, proxyLogin, proxyPassword);
 		}
 
-		/// <summary>
-		/// Post запрос из формы.
-		/// </summary>
-		/// <param name="form">Форма.</param>
-		/// <param name="host">Хост.</param>
-		/// <param name="port">Порт.</param>
-		/// <returns>Результат</returns>
-		public static WebCallResult Post(WebForm form, string host = null, int? port = null)
+        /// <summary>
+        /// Post запрос из формы.
+        /// </summary>
+        /// <param name="form">Форма.</param>
+        /// <param name="host">Хост.</param>
+        /// <param name="port">Порт.</param>
+        /// <param name="proxyLogin">Логин прокси-сервера</param>
+        /// <param name="proxyPassword">Пароль прокси-сервера</param>
+        /// <returns>Результат</returns>
+        public static WebCallResult Post(WebForm form, string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
 		{
-			var call = new WebCall(form.ActionUrl, form.Cookies, host, port);
+			var call = new WebCall(form.ActionUrl, form.Cookies, host, port, proxyLogin, proxyPassword);
 
 			var request = call.Request;
 			request.Method = "POST";
@@ -110,36 +125,40 @@
 			request.GetRequestStream().Write(formRequest, 0, formRequest.Length);
 			request.AllowAutoRedirect = false;
 
-			return call.MakeRequest(host, port);
+			return call.MakeRequest(host, port, proxyLogin, proxyPassword);
 		}
 
-		/// <summary>
-		/// Пере адресация.
-		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="host">Хост.</param>
-		/// <param name="port">Порт.</param>
-		/// <returns>Результат</returns>
-		private WebCallResult RedirectTo(string url, string host = null, int? port = null)
+        /// <summary>
+        /// Пере адресация.
+        /// </summary>
+        /// <param name="url">URL.</param>
+        /// <param name="host">Хост.</param>
+        /// <param name="port">Порт.</param>
+        /// <param name="proxyLogin">Логин прокси-сервера</param>
+        /// <param name="proxyPassword">Пароль прокси-сервера</param>
+        /// <returns>Результат</returns>
+        private WebCallResult RedirectTo(string url, string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
 		{
-			var call = new WebCall(url, Result.Cookies, host, port);
+			var call = new WebCall(url, Result.Cookies, host, port, proxyLogin, proxyPassword);
 
 			var request = call.Request;
 			request.Method = "GET";
 			request.ContentType = "text/html";
 			request.Referer = Request.Referer;
 
-			return call.MakeRequest(host, port);
+			return call.MakeRequest(host, port, proxyLogin, proxyPassword);
 		}
 
-		/// <summary>
-		/// Выполнить запрос.
-		/// </summary>
-		/// <param name="host">Хост.</param>
-		/// <param name="port">Порт.</param>
-		/// <returns>Результат</returns>
-		/// <exception cref="VkApiException">Response is null.</exception>
-		private WebCallResult MakeRequest(string host = null, int? port = null)
+        /// <summary>
+        /// Выполнить запрос.
+        /// </summary>
+        /// <param name="host">Хост.</param>
+        /// <param name="port">Порт.</param>
+        /// <param name="proxyLogin">Логин прокси-сервера</param>
+        /// <param name="proxyPassword">Пароль прокси-сервера</param>
+        /// <returns>Результат</returns>
+        /// <exception cref="VkApiException">Response is null.</exception>
+        private WebCallResult MakeRequest(string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
 		{
 			using (var response = GetResponse())
 			{
@@ -156,7 +175,7 @@
 					Result.SaveCookies(response.Cookies);
 
 					return response.StatusCode == HttpStatusCode.Redirect
-						? RedirectTo(response.Headers["Location"], host, port)
+						? RedirectTo(response.Headers["Location"], host, port, proxyLogin, proxyPassword)
 						: Result;
 				}
 			}
