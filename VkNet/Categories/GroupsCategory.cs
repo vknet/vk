@@ -105,7 +105,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields)
+		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = true)
 		{
 			var parameters = new VkParameters {
 				{ "group_ids", groupIds },
@@ -113,7 +113,7 @@
 				{ "fields", fields }
 			};
 
-			return _vk.Call("groups.getById", parameters).ToReadOnlyCollectionOf<Group>(x => x);
+			return _vk.Call("groups.getById", parameters, skipAuthorization).ToReadOnlyCollectionOf<Group>(x => x);
 		}
 
 		/// <summary>
@@ -132,9 +132,9 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<User> GetMembers(GroupsGetMembersParams @params)
+		public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("groups.getMembers", @params, true).ToVkCollectionOf(x => @params.Fields != null? x : new User {Id = x});
+			return _vk.Call("groups.getMembers", @params, skipAuthorization).ToVkCollectionOf(x => @params.Fields != null? x : new User {Id = x});
 		}
 
 		/// <summary>
@@ -162,7 +162,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended)
+		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = true)
 		{
 			if (userId.HasValue)
 			{
@@ -192,7 +192,7 @@
 				{ "user_ids", userIds },
 				{ "extended", extended }
 			};
-			var result = _vk.Call("groups.isMember", parameters, true);
+			var result = _vk.Call("groups.isMember", parameters, skipAuthorization);
 
 			return result.ToReadOnlyCollectionOf<GroupMember>(x => x);
 		}
