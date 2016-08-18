@@ -55,9 +55,115 @@
         }
 
         /// <summary>
-        /// Возвращает список сообщений в указанной теме.
+        /// Создает новую тему в списке обсуждений группы.
         /// </summary>
-        /// <param name="params">Входные параметры выборки.</param>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.addTopic" />.
+        /// </remarks>
+        [ApiVersion("5.53")]
+        public long AddTopic(BoardAddTopicParams @params)
+        {
+            return _vk.Call("board.addTopic", @params);
+        }
+
+        /// <summary>
+        /// Удаляет тему в обсуждениях группы.
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.deleteTopic" />.
+        /// </remarks>
+        [ApiVersion("5.53")]
+        public int DeleteTopic(BoardTopicParams @params)
+        {
+            return _vk.Call("board.deleteTopic", @params);
+        }
+
+        /// <summary>
+        /// Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять новые сообщения).
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.closeTopic" />.
+        /// </remarks>
+        [ApiVersion("5.53")]
+        public int CloseTopic(BoardTopicParams @params)
+        {
+            return _vk.Call("board.closeTopic", @params);
+        }
+
+        /// <summary>
+        /// Открывает ранее закрытую тему (в ней станет возможно оставлять новые сообщения).
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.openTopic" />.
+        /// </remarks>
+        [ApiVersion("5.53")]
+        public int OpenTopic(BoardTopicParams @params)
+        {
+            return _vk.Call("board.openTopic", @params);
+        }
+
+        /// <summary>
+        /// Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке выводится выше остальных).
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.fixTopic" />.
+        /// </remarks>
+        [ApiVersion("5.53")]
+        public int FixTopic(BoardTopicParams @params)
+        {
+            return _vk.Call("board.fixTopic", @params);
+        }
+
+        /// <summary>
+        /// Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться согласно выбранной сортировке).
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.unfixTopic" />.
+        /// </remarks>
+        [ApiVersion("5.53")]
+        public int UnFixTopic(BoardTopicParams @params)
+        {
+            return _vk.Call("board.unfixTopic", @params);
+        }
+
+
+        /// <summary>
+        /// Изменяет заголовок темы в списке обсуждений группы.
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.editTopicc" />.
+        /// </remarks>
+        [ApiVersion("5.53")]
+        public int EditTopic(BoardEditTopicParams @params)
+        {
+            return _vk.Call("board.editTopic", @params);
+        }
+
+        /// <summary>
+        /// Добавляет новый комментарий в обсуждении.
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
         /// <returns>
         /// </returns>
         /// <remarks>
@@ -67,6 +173,21 @@
         public long СreateComment(BoardCreateCommentParams @params)
         {
             return _vk.Call("board.createComment", @params);
+        }
+
+        /// <summary>
+        /// Удаляет сообщение в обсуждениях сообщества.
+        /// </summary>
+        /// <param name="params">Входные параметры.</param>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.deleteComment" />.
+        /// </remarks>
+        [ApiVersion("5.44")]
+        public long DeleteComment(BoardDeleteCommentParams @params)
+        {
+            return _vk.Call("board.deleteComment", @params);
         }
 
     }

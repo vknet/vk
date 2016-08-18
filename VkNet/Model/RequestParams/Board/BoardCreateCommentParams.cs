@@ -21,6 +21,8 @@ namespace VkNet.Model.RequestParams
             FromGroup = null;
             Attachments = null;
 			StickerId = null;
+		    CaptchaKey = null;
+		    CaptchaSid = null;
             Guid = null;
 		}
 
@@ -67,6 +69,16 @@ namespace VkNet.Model.RequestParams
         public long? StickerId { get; set; }
 
         /// <summary>
+        /// Идентификатор капчи
+        /// </summary>
+        public long? CaptchaSid { get; set; }
+
+        /// <summary>
+        /// текст, который ввел пользователь
+        /// </summary>
+        public string CaptchaKey { get; set; }
+
+        /// <summary>
         /// уникальный идентификатор, предназначенный для предотвращения повторной отправки одинакового комментария. 
         /// </summary>
         public string Guid { get; set; }
@@ -86,7 +98,9 @@ namespace VkNet.Model.RequestParams
 				{ "message", p.Message },
 				{ "attachments", p.Attachments },
 				{ "sticker_id", p.StickerId },
-				{ "guid", p.Guid}
+                { "captcha_sid", p.CaptchaSid},
+                { "captcha_key", p.CaptchaKey},
+                { "guid", p.Guid}
 			};
 
 			return parameters;
