@@ -45,7 +45,7 @@
 		/// <summary>
 		/// Запросов в секунду.
 		/// </summary>
-		private int _requestsPerSecond;
+		private float _requestsPerSecond;
 		/// <summary>
 		/// Минимальное время, которое должно пройти между запросами чтобы не превысить кол-во запросов в секунду.
 		/// </summary>
@@ -73,7 +73,7 @@
 		/// <summary>
 		/// Ограничение на кол-во запросов в секунду
 		/// </summary>
-		public int RequestsPerSecond
+		public float RequestsPerSecond
 		{
 			get { return _requestsPerSecond; }
 			set
