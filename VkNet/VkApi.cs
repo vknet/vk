@@ -81,7 +81,7 @@
 				if (value > 0)
 				{
 					_requestsPerSecond = value;
-					_minInterval = (1000 / _requestsPerSecond) + 1;
+					_minInterval = (int)(1000 / _requestsPerSecond) + 1;
 				}
 				else if (value == 0)
 					_requestsPerSecond = 0;
@@ -144,16 +144,16 @@
 		public WallCategory Wall
 		{ get; private set; }
 
-        /// <summary>
+		/// <summary>
 		/// API для работы со темами групп.
 		/// </summary>
 		public BoardCategory Board
-        { get; private set; }
+		{ get; private set; }
 
-        /// <summary>
-        /// API для работы с закладками.
-        /// </summary>
-        public FaveCategory Fave
+		/// <summary>
+		/// API для работы с закладками.
+		/// </summary>
+		public FaveCategory Fave
 		{ get; private set; }
 		/// <summary>
 		/// API для работы с видео файлами.
@@ -279,8 +279,8 @@
 			Groups = new GroupsCategory(this);
 			Audio = new AudioCategory(this);
 			Wall = new WallCategory(this);
-            Board = new BoardCategory(this);
-            Database = new DatabaseCategory(this);
+			Board = new BoardCategory(this);
+			Database = new DatabaseCategory(this);
 			Utils = new UtilsCategory(this);
 			Fave = new FaveCategory(this);
 			Video = new VideoCategory(this);
