@@ -98,6 +98,7 @@
     <Compile Include="Model\RequestParams\Board\BoardAddTopicParams.cs" />
     <Compile Include="Model\RequestParams\Board\BoardCommentParams.cs" />
     <Compile Include="Model\RequestParams\Board\BoardCreateCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Friends\FriendsSearchParams.cs" />
     <Compile Include="Model\TopicsFeed.cs" />
     <Compile Include="Model\RequestParams\Board\BoardGetCommentsParams.cs" />
     <Compile Include="Model\Topic.cs" />
@@ -110,7 +111,6 @@
     <Compile Include="Model\RequestParams\Friends\FriendsGetOnlineParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetParams.cs" />
     <Compile Include="Model\RequestParams\Friends\FriendsGetRequestsParams.cs" />
-    <Compile Include="Model\RequestParams\Friends\FriendsSearchParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsBanUserParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsEditManagerParams.cs" />
     <Compile Include="Model\RequestParams\Groups\GroupsEditParams.cs" />
