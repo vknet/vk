@@ -24,6 +24,14 @@
         /// Порт
         /// </summary>
         private int? _port;
+        /// <summary>
+        /// Логин для прокси-сервера
+        /// </summary>
+        private string _proxyLogin;
+        /// <summary>
+        /// Пароль для прокси-сервера
+        /// </summary>
+        private string _proxyPassword;
 
         /// <summary>
         /// Получение json по url-адресу
@@ -36,7 +44,7 @@
             var methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
             var parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
 
-            return WebCall.PostCall(methodUrl, parameters, _host, _port).Response;
+            return WebCall.PostCall(methodUrl, parameters, _host, _port, _proxyLogin, _proxyPassword).Response;
         }
 
         /// <summary>
@@ -98,21 +106,25 @@
         /// <param name="captchaKey">Текст капчи</param>
         /// <param name="host">Имя узла прокси-сервера.</param>
         /// <param name="port">Номер порта используемого Host.</param>
+        /// <param name="proxyLogin">Логин для прокси-сервера.</param>
+        /// <param name="proxyPassword">Пароль для прокси-сервера</param>
         /// <returns>Информация об авторизации приложения</returns>
         public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null,
-                                         string host = null, int? port = null)
+                                         string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
         {
             _host = string.IsNullOrWhiteSpace(host) ? null : host;
             _port = port;
+            _proxyLogin = string.IsNullOrWhiteSpace(proxyLogin) ? null : proxyLogin;
+            _proxyPassword = string.IsNullOrWhiteSpace(proxyPassword) ? null : proxyPassword;
 
             var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, host, port);
+            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, host, port, proxyLogin, proxyPassword);
 
             // Заполнить логин и пароль
             var loginForm = WebForm.From(authorizeUrlResult).WithField("email").FilledWith(email).And().WithField("pass").FilledWith(password);
             if (captchaSid.HasValue)
                 loginForm.WithField("captcha_sid").FilledWith(captchaSid.Value.ToString()).WithField("captcha_key").FilledWith(captchaKey);
-            var loginFormPostResult = WebCall.Post(loginForm, host, port);
+            var loginFormPostResult = WebCall.Post(loginForm, host, port, proxyLogin, proxyPassword);
 
             // Заполнить код двухфакторной авторизации
             if (code != null)
@@ -129,7 +141,7 @@
 
             // Отправить данные
             var authorizationForm = WebForm.From(loginFormPostResult);
-            var authorizationFormPostResult = WebCall.Post(authorizationForm, host, port);
+            var authorizationFormPostResult = WebCall.Post(authorizationForm, host, port, proxyLogin, proxyPassword);
 
             return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
         }
