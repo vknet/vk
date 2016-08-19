@@ -20,6 +20,7 @@
         /// Возвращает список тем в обсуждениях указанной группы.
         /// </summary>
         /// <param name="params">Входные параметры выборки.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
         /// <returns>
         /// </returns>
         /// <remarks>
@@ -35,6 +36,7 @@
         /// Возвращает список сообщений в указанной теме.
         /// </summary>
         /// <param name="params">Входные параметры выборки.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
         /// <returns>
         /// </returns>
         /// <remarks>
