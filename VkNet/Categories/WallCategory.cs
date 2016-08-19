@@ -37,14 +37,14 @@
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public WallGetObject Get(WallGetParams @params)
+		public WallGetObject Get(WallGetParams @params, bool skipAuthorization = true)
 		{
 			if (@params.Filter != null && @params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
 			{
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 			}
 
-			return _vk.Call("wall.get", @params, true);//, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
+			return _vk.Call("wall.get", @params, skipAuthorization);//, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
 		}
 
 		/// <summary>
@@ -66,9 +66,9 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<Comment> GetComments(WallGetCommentsParams @params)
+		public VkCollection<Comment> GetComments(WallGetCommentsParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("wall.getComments", @params).ToVkCollectionOf<Comment>(x => x);
+			return _vk.Call("wall.getComments", @params, skipAuthorization).ToVkCollectionOf<Comment>(x => x);
 		}
 
 		/// <summary>
@@ -97,7 +97,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public WallGetObject GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null)
+		public WallGetObject GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null, bool skipAuthorization = true)
 		{
 			if (posts == null)
 			{
@@ -116,7 +116,7 @@
 				{ "fields", fields }
 			};
 
-			return _vk.Call("wall.getById", parameters);
+			return _vk.Call("wall.getById", parameters, skipAuthorization);
 		}
 
 		/// <summary>
@@ -300,9 +300,9 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<Post> Search(WallSearchParams @params)
+		public VkCollection<Post> Search(WallSearchParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("wall.search", @params).ToVkCollectionOf<Post>(x => x);
+			return _vk.Call("wall.search", @params, skipAuthorization).ToVkCollectionOf<Post>(x => x);
 		}
 
 		/// <summary>
@@ -323,7 +323,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getReposts" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public WallGetObject GetReposts(long? ownerId, long? postId, long? offset, long? count)
+		public WallGetObject GetReposts(long? ownerId, long? postId, long? offset, long? count, bool skipAuthorization = true)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -332,7 +332,7 @@
 				{ "count", count }
 			};
 
-			return _vk.Call("wall.getReposts", parameters);
+			return _vk.Call("wall.getReposts", parameters, skipAuthorization);
 		}
 
 		/// <summary>

@@ -64,9 +64,9 @@
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getAlbums" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params)
+		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("photos.getAlbums", @params).ToVkCollectionOf<PhotoAlbum>(x => x);
+			return _vk.Call("photos.getAlbums", @params, skipAuthorization).ToVkCollectionOf<PhotoAlbum>(x => x);
 		}
 
 		/// <summary>
@@ -79,9 +79,9 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.get" />.
 		/// </remarks>
-		public VkCollection<Photo> Get(PhotoGetParams @params)
+		public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("photos.get", @params).ToVkCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.get", @params, skipAuthorization).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
@@ -134,7 +134,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null)
+		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null, bool skipAuthorization = true)
 		{
 			var parameters = new VkParameters
 				{
@@ -143,7 +143,7 @@
 					{"photo_sizes", photoSizes}
 				};
 
-			VkResponseArray response = _vk.Call("photos.getById", parameters);
+			VkResponseArray response = _vk.Call("photos.getById", parameters, skipAuthorization);
 
 			return response.ToReadOnlyCollectionOf<Photo>(x => x);
 		}
@@ -413,9 +413,9 @@
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<Photo> Search(PhotoSearchParams @params)
+		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("photos.search", @params, true).ToVkCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.search", @params, skipAuthorization).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
