@@ -37,7 +37,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Год начала работы.
 		/// </summary>
-		public int From { get; set; }
+		public int? From { get; set; }
 
 		/// <summary>
 		/// Год окончания работы.

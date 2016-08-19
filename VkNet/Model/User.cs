@@ -473,12 +473,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация о карьере пользователя.
 		/// </summary>
-		public Career Career { get; set; }
+		public Collection<Career> Career { get; set; }
 
-		/// <summary>
-		/// Информация о военной службе пользователя.
-		/// </summary>
-		public Military Military { get; set; }
+        /// <summary>
+        /// Информация о военной службе пользователя.
+        /// </summary>
+        public Military Military { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если текущий пользователь находится в черном списке у запрашиваемого пользователя.
