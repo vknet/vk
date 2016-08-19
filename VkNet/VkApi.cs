@@ -49,7 +49,7 @@
 		/// <summary>
 		/// Минимальное время, которое должно пройти между запросами чтобы не превысить кол-во запросов в секунду.
 		/// </summary>
-		private int _minInterval;
+		private float _minInterval;
 
 		/// <summary>
 		/// Время вызова последнего метода этим объектом
@@ -686,7 +686,7 @@
 				lock (_expireTimer) {
 					var span = LastInvokeTimeSpan.Value;
 					if (span.TotalMilliseconds < _minInterval) {
-						Thread.Sleep(_minInterval - (int)span.TotalMilliseconds);
+						Thread.Sleep((int)_minInterval - (int)span.TotalMilliseconds);
 					}
 					url = GetApiUrl(methodName, parameters, skipAuthorization);
 					LastInvokeTime = DateTimeOffset.Now;
