@@ -68,6 +68,7 @@
 		/// <param name="userId">Идентификатор пользователя.</param>
 		/// <param name="fields">Поля профиля, которые необходимо возвратить.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Объект, содержащий запрошенную информацию о пользователе.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
@@ -87,6 +88,7 @@
 		/// <param name="userIds">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
 		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
@@ -118,6 +120,7 @@
 		/// <param name="screenNames">Короткие имена пользователей, о которых необходимо получить информацию.</param>
 		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
@@ -148,6 +151,7 @@
 		/// <param name="screenName">Короткое имя пользователя</param>
 		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Объект <see cref="User"/> с запрошенной информацией о пользователе.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
@@ -168,6 +172,7 @@
 		/// <param name="count">Количество подписок, которые необходимо вернуть</param>
 		/// <param name="offset">Смещение необходимое для выборки определенного подмножества подписок</param>
 		/// <param name="fields">Список дополнительных полей для объектов user и group, которые необходимо вернуть.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// Пока возвращается только список групп.
 		/// </returns>
@@ -202,6 +207,7 @@
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества подписчиков</param>
 		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Список подписчиков</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getFollowers"/>.
