@@ -45,7 +45,7 @@
 		/// <summary>
 		/// Запросов в секунду.
 		/// </summary>
-		private int _requestsPerSecond;
+		private float _requestsPerSecond;
 		/// <summary>
 		/// Минимальное время, которое должно пройти между запросами чтобы не превысить кол-во запросов в секунду.
 		/// </summary>
@@ -73,7 +73,7 @@
 		/// <summary>
 		/// Ограничение на кол-во запросов в секунду
 		/// </summary>
-		public int RequestsPerSecond
+		public float RequestsPerSecond
 		{
 			get { return _requestsPerSecond; }
 			set
@@ -318,7 +318,9 @@
 				@params.CaptchaSid,
 				@params.CaptchaKey,
 				@params.Host,
-				@params.Port
+				@params.Port,
+                @params.ProxyLogin,
+                @params.ProxyPassword
 				);
 
 			_ap = @params;
@@ -423,27 +425,29 @@
 			return rTask;
 		}
 
-		#region Private & Internal Methods
-		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="appId">Идентификатор приложения</param>
-		/// <param name="emailOrPhone">Email или телефон</param>
-		/// <param name="password">Пароль</param>
-		/// <param name="code">Делегат получения кода для двух факторной авторизации</param>
-		/// <param name="captchaSid">Идентификатор капчи</param>
-		/// <param name="captchaKey">Текст капчи</param>
-		/// <param name="settings">Права доступа для приложения</param>
-		/// <param name="host">Имя узла прокси-сервера.</param>
-		/// <param name="port">Номер порта используемого Host.</param>
-		/// <exception cref="VkApiAuthorizationException"></exception>
-		private void Authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null,
-							   string host = null, int? port = null)
+        #region Private & Internal Methods
+        /// <summary>
+        /// Авторизация и получение токена
+        /// </summary>
+        /// <param name="appId">Идентификатор приложения</param>
+        /// <param name="emailOrPhone">Email или телефон</param>
+        /// <param name="password">Пароль</param>
+        /// <param name="code">Делегат получения кода для двух факторной авторизации</param>
+        /// <param name="captchaSid">Идентификатор капчи</param>
+        /// <param name="captchaKey">Текст капчи</param>
+        /// <param name="settings">Права доступа для приложения</param>
+        /// <param name="host">Имя узла прокси-сервера.</param>
+        /// <param name="port">Номер порта используемого Host.</param>
+        /// <param name="proxyLogin">Логин для прокси-сервера.</param>
+        /// <param name="proxyPassword">Пароль для прокси-сервера</param>
+        /// <exception cref="VkApiAuthorizationException"></exception>
+        private void Authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null,
+							   string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
 		{
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
+			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port, proxyLogin, proxyPassword);
 			if (!authorization.IsAuthorized)
 			{
 				throw new VkApiAuthorizationException("Invalid authorization with {0} - {1}", emailOrPhone, password);
@@ -454,25 +458,27 @@
 			UserId = authorization.UserId;
 		}
 
-		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="appId">Идентификатор приложения</param>
-		/// <param name="emailOrPhone">Email или телефон</param>
-		/// <param name="password">Пароль</param>
-		/// <param name="code">Делегат получения кода для двух факторной авторизации</param>
-		/// <param name="captchaSid">Идентификатор капчи</param>
-		/// <param name="captchaKey">Текст капчи</param>
-		/// <param name="settings">Права доступа для приложения</param>
-		/// <param name="host">Имя узла прокси-сервера.</param>
-		/// <param name="port">Номер порта используемого Host.</param>
-		/// <exception cref="VkApiAuthorizationException"></exception>
-		private void AuthorizeWithAntiCaptcha(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null,
-							   string host = null, int? port = null)
+        /// <summary>
+        /// Авторизация и получение токена
+        /// </summary>
+        /// <param name="appId">Идентификатор приложения</param>
+        /// <param name="emailOrPhone">Email или телефон</param>
+        /// <param name="password">Пароль</param>
+        /// <param name="code">Делегат получения кода для двух факторной авторизации</param>
+        /// <param name="captchaSid">Идентификатор капчи</param>
+        /// <param name="captchaKey">Текст капчи</param>
+        /// <param name="settings">Права доступа для приложения</param>
+        /// <param name="host">Имя узла прокси-сервера.</param>
+        /// <param name="port">Номер порта используемого Host.</param>
+        /// <param name="proxyLogin">Логин для прокси-сервера.</param>
+        /// <param name="proxyPassword">Пароль для прокси-сервера</param>
+        /// <exception cref="VkApiAuthorizationException"></exception>
+        private void AuthorizeWithAntiCaptcha(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null,
+							   string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
 		{
 			if (_captchaSolver == null)
 			{
-				Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port);
+				Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port, proxyLogin, proxyPassword);
 			}
 			else
 			{
@@ -487,7 +493,7 @@
 					try
 					{
 						numberOfRemainingAttemptsToAuthorize--;
-						Authorize(appId, emailOrPhone, password, settings, code, captchaSidTemp, captchaKeyTemp, host, port);
+						Authorize(appId, emailOrPhone, password, settings, code, captchaSidTemp, captchaKeyTemp, host, port, proxyLogin, proxyPassword);
 
 						authorizationCompleted = true;
 					}

@@ -40,9 +40,11 @@
         /// <param name="captchaKey">Текст капчи.</param>
         /// <param name="host">Имя узла прокси-сервера.</param>
         /// <param name="port">Номер порта используемого Host.</param>
+        /// <param name="proxyLogin">Логин для прокси-сервера.</param>
+        /// <param name="proxyPassword">Пароль для прокси-сервера</param>
         /// <returns>
         /// Информация об авторизации приложения.
         /// </returns>
-        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey, string host, int? port);
+        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey, string host, int? port, string proxyLogin, string proxyPassword);
     }
 }

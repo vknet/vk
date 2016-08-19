@@ -45,5 +45,13 @@ namespace VkNet
         /// Номер порта используемого Host.
         /// </summary>
         public int? Port { get; set; }
+        /// <summary>
+        /// Логин для прокси с авторизацией. Если прокси без авторизации - оставить пустым
+        /// </summary>                                                                    
+        public string ProxyLogin { get; set; }
+        /// <summary>
+        /// Пароль для прокси с авторищацией. Если прокси без авторизации - оставить пустым
+        /// </summary>
+        public string ProxyPassword { get; set; }
     }
 }
