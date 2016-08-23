@@ -450,7 +450,7 @@
 			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port, proxyLogin, proxyPassword);
 			if (!authorization.IsAuthorized)
 			{
-				throw new VkApiAuthorizationException("Invalid authorization with {0} - {1}", emailOrPhone, password);
+				throw new VkApiAuthorizationException($"Invalid authorization with {emailOrPhone} - {password}", emailOrPhone, password);
 			}
 			var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
 			SetTimer(expireTime);
