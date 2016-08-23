@@ -22,12 +22,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор страны.
 		/// </summary>
-		public long CountryId { get; set; }
+		public long? CountryId { get; set; }
 
 		/// <summary>
 		/// Идентификатор города (если доступно, иначе city_name).
 		/// </summary>
-		public long CityId { get; set; }
+		public long? CityId { get; set; }
 
 		/// <summary>
 		/// Название города (если доступно, иначе city_id).
