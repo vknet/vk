@@ -154,7 +154,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.editTopicc" />.
+        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.editTopic" />.
         /// </remarks>
         [ApiVersion("5.53")]
         public long EditTopic(BoardEditTopicParams @params)

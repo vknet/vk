@@ -176,7 +176,9 @@
 					{
 						throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
 					}
-					userIds.ToList().Add(userId.Value);
+				    var tempList = userIds.ToList();
+				    tempList.Add(userId.Value);
+                    userIds = tempList;
 				}
 				else
 				{
@@ -194,7 +196,7 @@
 			{
 				{ "group_id", groupId },
 				{ "user_ids", userIds },
-				{ "extended", extended }
+				{ "extended", Convert.ToInt32(extended) }
 			};
 			var result = _vk.Call("groups.isMember", parameters, skipAuthorization);
 
