@@ -19,12 +19,21 @@ namespace VkNet.Model
     [Serializable]
     public class Group : IVkModel
 	{
-		#region Стандартные поля
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="gag">Заглушка для конструктора.</param>
+        public Group(bool gag = true)
+        {
+            Type = new GroupType();
+        }
 
-		/// <summary>
-		/// Идентификатор сообщества.
-		/// </summary>
-		public long Id { get; set; }
+        #region Стандартные поля
+
+        /// <summary>
+        /// Идентификатор сообщества.
+        /// </summary>
+        public long Id { get; set; }
 
 		/// <summary>
 		/// Название сообщества.
@@ -251,7 +260,7 @@ namespace VkNet.Model
 				IsAdmin = response["is_admin"],
 				AdminLevel = response["admin_level"],
 				IsMember = response["is_member"],
-				Type = response["type"],
+                Type = response["type"],
 				PhotoPreviews = response,
 				Deactivated = response["deactivated"],
 				HasPhoto = response["has_photo"],

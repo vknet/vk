@@ -71,6 +71,7 @@
 		/// Возвращает список сообществ указанного пользователя.
 		/// </summary>
 		/// <param name="params">Входные параметры выборки.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список идентификаторов сообществ id, в которых состоит пользователь user_id.
 		/// Если был задан параметр extended=1,  возвращает список объектов group.
@@ -97,6 +98,7 @@
 		/// <param name="groupIds">Идентификаторы или короткие имена сообществ. Максимальное число идентификаторов — 500. список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
 		/// <param name="groupId">Идентификатор или короткое имя сообщества. строка (Строка).</param>
 		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. Возможные значения: city, country, place, description, wiki_page, members_count, counters, start_date, finish_date, can_post, can_see_all_posts, activity, status, contacts, links, fixed_post, verified, site,ban_info.
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// Обратите внимание, для получения некоторых полей требуется право доступа groups. Подробнее см. описание полей объекта group список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
 		/// <returns>
 		/// После успешного выполнения возвращает массив объектов group.
@@ -105,7 +107,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields)
+		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = true)
 		{
 			var parameters = new VkParameters {
 				{ "group_ids", groupIds },
@@ -113,13 +115,14 @@
 				{ "fields", fields }
 			};
 
-			return _vk.Call("groups.getById", parameters).ToReadOnlyCollectionOf<Group>(x => x);
+			return _vk.Call("groups.getById", parameters, skipAuthorization).ToReadOnlyCollectionOf<Group>(x => x);
 		}
 
 		/// <summary>
 		/// Возвращает список участников сообщества.
 		/// </summary>
 		/// <param name="params">Входные параметры выборки.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// Возвращает общее количество участников сообщества count и список идентификаторов пользователей items.
 		/// Если был передан параметр filter=managers, возвращается дополнительное поле role, которое содержит уровень полномочий руководителя:
@@ -132,9 +135,9 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<User> GetMembers(GroupsGetMembersParams @params)
+		public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("groups.getMembers", @params, true).ToVkCollectionOf(x => @params.Fields != null? x : new User {Id = x});
+			return _vk.Call("groups.getMembers", @params, skipAuthorization).ToVkCollectionOf(x => @params.Fields != null? x : new User {Id = x});
 		}
 
 		/// <summary>
@@ -144,6 +147,7 @@
 		/// <param name="userId">Идентификатор пользователя. положительное число (Положительное число).</param>
 		/// <param name="userIds">Идентификаторы пользователей, не более 500. список положительных чисел, разделенных запятыми (Список положительных чисел, разделенных запятыми).</param>
 		/// <param name="extended">1  — вернуть ответ в расширенной форме. По умолчанию — 0. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// возвращает <c>true</c> в случае, если пользователь с идентификатором user_id является участником сообщества с идентификатором group_id, иначе 0.
 		///
@@ -162,7 +166,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended)
+		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = true)
 		{
 			if (userId.HasValue)
 			{
@@ -172,7 +176,9 @@
 					{
 						throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
 					}
-					userIds.ToList().Add(userId.Value);
+				    var tempList = userIds.ToList();
+				    tempList.Add(userId.Value);
+                    userIds = tempList;
 				}
 				else
 				{
@@ -190,9 +196,9 @@
 			{
 				{ "group_id", groupId },
 				{ "user_ids", userIds },
-				{ "extended", extended }
+				{ "extended", Convert.ToInt32(extended) }
 			};
-			var result = _vk.Call("groups.isMember", parameters, true);
+			var result = _vk.Call("groups.isMember", parameters, skipAuthorization);
 
 			return result.ToReadOnlyCollectionOf<GroupMember>(x => x);
 		}
@@ -201,6 +207,7 @@
 		/// Осуществляет поиск сообществ по заданной подстроке.
 		/// </summary>
 		/// <param name="params">Входные параметры выборки.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов group.
 		/// </returns>

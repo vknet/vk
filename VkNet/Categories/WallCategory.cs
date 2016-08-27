@@ -28,6 +28,7 @@
 		/// Возвращает список записей со стены пользователя или сообщества.
 		/// </summary>
 		/// <param name="params">Входные параметры.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// В случае успеха возвращается запрошенный список записей со стены.
 		/// </returns>
@@ -37,14 +38,14 @@
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public WallGetObject Get(WallGetParams @params)
+		public WallGetObject Get(WallGetParams @params, bool skipAuthorization = true)
 		{
 			if (@params.Filter != null && @params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
 			{
 				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
 			}
 
-			return _vk.Call("wall.get", @params, true);//, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
+			return _vk.Call("wall.get", @params, skipAuthorization);//, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
 		}
 
 		/// <summary>
@@ -52,6 +53,7 @@
 		/// </summary>
 		/// <param name="totalCount">Общее количество комментариев к записи.</param>
 		/// <param name="params">Входные параметры выборки.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов комментариев.
 		/// Если был задан параметр need_likes=1, у объектов комментариев возвращается дополнительное поле likes:
@@ -66,9 +68,9 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<Comment> GetComments(WallGetCommentsParams @params)
+		public VkCollection<Comment> GetComments(WallGetCommentsParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("wall.getComments", @params).ToVkCollectionOf<Comment>(x => x);
+			return _vk.Call("wall.getComments", @params, skipAuthorization).ToVkCollectionOf<Comment>(x => x);
 		}
 
 		/// <summary>
@@ -83,6 +85,7 @@
 		/// copy_history_depth=2 — copy_history будет содержать два элемента, добавляется информация о записи, репостом которой является первый элемент, и так далее (при условии, что иерархия репостов требуемой глубины для текущей записи существует). целое число, по умолчанию 2 (Целое число, по умолчанию 2).</param>
 		/// <param name="fields">Список дополнительных полей для профилей и  групп, которые необходимо вернуть. См. описание полей объекта user и описание полей объекта group.
 		/// Обратите внимание, этот параметр учитывается только при extended=1. список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов записей со стены.
 		/// Если был задан параметр extended=1, ответ содержит три отдельных списка:
@@ -97,7 +100,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public WallGetObject GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null)
+		public WallGetObject GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null, bool skipAuthorization = true)
 		{
 			if (posts == null)
 			{
@@ -116,7 +119,7 @@
 				{ "fields", fields }
 			};
 
-			return _vk.Call("wall.getById", parameters);
+			return _vk.Call("wall.getById", parameters, skipAuthorization);
 		}
 
 		/// <summary>
@@ -293,6 +296,7 @@
 		/// Метод, позволяющий осуществлять поиск по стенам пользователей.
 		/// </summary>
 		/// <param name="params">Входные параметры выборки.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов записей на стене.
 		/// </returns>
@@ -300,9 +304,9 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<Post> Search(WallSearchParams @params)
+		public VkCollection<Post> Search(WallSearchParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("wall.search", @params).ToVkCollectionOf<Post>(x => x);
+			return _vk.Call("wall.search", @params, skipAuthorization).ToVkCollectionOf<Post>(x => x);
 		}
 
 		/// <summary>
@@ -312,6 +316,7 @@
 		/// <param name="postId">Идентификатор записи на стене. положительное число (Положительное число).</param>
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества записей. положительное число (Положительное число).</param>
 		/// <param name="count">Количество записей, которое необходимо получить. положительное число, по умолчанию 20, максимальное значение 1000 (Положительное число, по умолчанию 20, максимальное значение 1000).</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий поля:
 		///
@@ -323,7 +328,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getReposts" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public WallGetObject GetReposts(long? ownerId, long? postId, long? offset, long? count)
+		public WallGetObject GetReposts(long? ownerId, long? postId, long? offset, long? count, bool skipAuthorization = true)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -332,7 +337,7 @@
 				{ "count", count }
 			};
 
-			return _vk.Call("wall.getReposts", parameters);
+			return _vk.Call("wall.getReposts", parameters, skipAuthorization);
 		}
 
 		/// <summary>

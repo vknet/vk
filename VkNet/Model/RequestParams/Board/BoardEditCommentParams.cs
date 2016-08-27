@@ -7,23 +7,21 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.addComment
 	/// </summary>
-	public struct BoardCreateCommentParams
+	public struct BoardEditCommentParams
 	{
 		/// <summary>
 		/// Параметры метода wall.addComment
 		/// </summary>
 		/// <param name="gag">Заглушка для конструктора.</param>
-		public BoardCreateCommentParams(bool gag = true)
+		public BoardEditCommentParams(bool gag = true)
 		{
             GroupId = null;
             TopicId = 0;
+            CommentId = 0;
             Message = null;
-            FromGroup = null;
             Attachments = null;
-			StickerId = null;
 		    CaptchaKey = null;
 		    CaptchaSid = null;
-            Guid = null;
 		}
 
         /// <summary>
@@ -37,7 +35,12 @@ namespace VkNet.Model.RequestParams
         public long TopicId { get; set; }
 
         /// <summary>
-        /// текст комментария. Обязательный параметр, если не передано значение attachments. 
+        /// идентификатор комментария в обсуждении.положительное число, обязательный параметр.
+        /// </summary>
+        public long CommentId { get; set; }
+
+        /// <summary>
+        /// новый текст комментария (является обязательным, если не задан параметр attachments). 
         /// </summary>
         public string Message { get; set; }
 
@@ -57,17 +60,7 @@ namespace VkNet.Model.RequestParams
 		/// Параметр является обязательным, если не задан параметр text. список строк, разделенных через запятую.
 		/// </summary>
 		public IEnumerable<MediaAttachment> Attachments { get; set; }
-
-        /// <summary>
-        /// 1 — сообщение будет опубликовано от имени группы, 0 — сообщение будет опубликовано от имени пользователя (по умолчанию).
-        /// </summary>
-        public bool? FromGroup { get; set; }
-
-        /// <summary>
-        /// Идентификатор стикера. положительное число.
-        /// </summary>
-        public long? StickerId { get; set; }
-
+   
         /// <summary>
         /// Идентификатор капчи
         /// </summary>
@@ -78,29 +71,22 @@ namespace VkNet.Model.RequestParams
         /// </summary>
         public string CaptchaKey { get; set; }
 
-        /// <summary>
-        /// уникальный идентификатор, предназначенный для предотвращения повторной отправки одинакового комментария. 
-        /// </summary>
-        public string Guid { get; set; }
-
 		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(BoardCreateCommentParams p)
+		internal static VkParameters ToVkParameters(BoardEditCommentParams p)
 		{
 			var parameters = new VkParameters
 			{
 				{ "group_id", p.GroupId },
 				{ "topic_id", p.TopicId },
-				{ "from_group", p.FromGroup },
-				{ "message", p.Message },
+                { "comment_id", p.CommentId },
+                { "message", p.Message },
 				{ "attachments", p.Attachments },
-				{ "sticker_id", p.StickerId },
                 { "captcha_sid", p.CaptchaSid},
-                { "captcha_key", p.CaptchaKey},
-                { "guid", p.Guid}
+                { "captcha_key", p.CaptchaKey}
 			};
 
 			return parameters;

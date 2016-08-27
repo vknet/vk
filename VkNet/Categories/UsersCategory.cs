@@ -68,16 +68,17 @@
 		/// <param name="userId">Идентификатор пользователя.</param>
 		/// <param name="fields">Поля профиля, которые необходимо возвратить.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Объект, содержащий запрошенную информацию о пользователе.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null)
+		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
-			var users = Get(new[] { userId }, fields, nameCase);
+			var users = Get(new[] { userId }, fields, nameCase, skipAuthorization);
 			return users.FirstOrDefault();
 		}
 
@@ -87,13 +88,14 @@
 		/// <param name="userIds">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
 		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null)
+		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
 		{
 			if (userIds == null)
 			{
@@ -107,7 +109,7 @@
 				{ "user_ids", userIds }
 			};
 
-			VkResponseArray response = _vk.Call("users.get", parameters);
+			VkResponseArray response = _vk.Call("users.get", parameters, skipAuthorization);
 
 			return response.ToReadOnlyCollectionOf<User>(x => x);
 		}
@@ -118,13 +120,14 @@
 		/// <param name="screenNames">Короткие имена пользователей, о которых необходимо получить информацию.</param>
 		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
 		[Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null)
+		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
 		{
 			if (screenNames == null)
 			{
@@ -138,7 +141,7 @@
 					{ "name_case", nameCase }
 				};
 
-			VkResponseArray response = _vk.Call("users.get", parameters);
+			VkResponseArray response = _vk.Call("users.get", parameters, skipAuthorization);
 			return response.ToReadOnlyCollectionOf<User>(x => x);
 		}
 
@@ -148,16 +151,17 @@
 		/// <param name="screenName">Короткое имя пользователя</param>
 		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Объект <see cref="User"/> с запрошенной информацией о пользователе.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null)
+		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
-			var users = Get(new[] { screenName }, fields, nameCase);
+			var users = Get(new[] { screenName }, fields, nameCase, skipAuthorization);
 			return users.Count > 0 ? users[0] : null;
 		}
 
@@ -168,6 +172,7 @@
 		/// <param name="count">Количество подписок, которые необходимо вернуть</param>
 		/// <param name="offset">Смещение необходимое для выборки определенного подмножества подписок</param>
 		/// <param name="fields">Список дополнительных полей для объектов user и group, которые необходимо вернуть.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// Пока возвращается только список групп.
 		/// </returns>
@@ -176,7 +181,7 @@
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public VkCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null)
+		public VkCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null, bool skipAuthorization = true)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -191,7 +196,7 @@
 				{ "fields", fields }
 			};
 
-			return _vk.Call("users.getSubscriptions", parameters).ToVkCollectionOf<Group>(x => x);
+			return _vk.Call("users.getSubscriptions", parameters, skipAuthorization).ToVkCollectionOf<Group>(x => x);
 		}
 
 		/// <summary>
@@ -202,13 +207,14 @@
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества подписчиков</param>
 		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>Список подписчиков</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getFollowers"/>.
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public VkCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null)
+		public VkCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -223,7 +229,7 @@
 				{ "name_case", nameCase }
 			};
 
-			return _vk.Call("users.getFollowers", parameters).ToVkCollectionOf(x => x.ContainsKey("id") ? x : new User { Id = x });
+			return _vk.Call("users.getFollowers", parameters, skipAuthorization).ToVkCollectionOf(x => x.ContainsKey("id") ? x : new User { Id = x });
 		}
 
 		/// <summary>

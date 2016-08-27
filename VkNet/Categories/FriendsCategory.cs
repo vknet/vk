@@ -28,6 +28,7 @@
 		/// Возвращает список идентификаторов друзей пользователя или расширенную информацию о друзьях пользователя (при использовании параметра fields).
 		/// </summary>
 		/// <param name="params">Входные параметры выборки.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список идентификаторов (id) друзей пользователя, если параметр fields не использовался.
 		/// При использовании параметра fields  возвращает список объектов пользователей, но не более 5000.
@@ -36,9 +37,9 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<User> Get(FriendsGetParams @params)
+		public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("friends.get", @params, true).ToVkCollectionOf(x => @params.Fields != null ? x : new User { Id = x });
+			return _vk.Call("friends.get", @params, skipAuthorization).ToVkCollectionOf(x => @params.Fields != null ? x : new User { Id = x });
 		}
 
 		/// <summary>

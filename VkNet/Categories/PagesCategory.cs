@@ -110,7 +110,7 @@ namespace VkNet.Categories
 			var parameters = new VkParameters
 			{
 				{ "text", text },
-				{ "groupId", groupId },
+				{ "group_id", groupId },
 				{ "user_id", userId },
 				{ "title", title },
 				{ "page_id", pageId }

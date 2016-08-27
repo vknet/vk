@@ -57,6 +57,7 @@
 		/// Возвращает список альбомов пользователя или сообщества.
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// Возвращает список объектов <see cref="PhotoAlbum" />
 		/// </returns>
@@ -64,24 +65,25 @@
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getAlbums" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params)
+		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("photos.getAlbums", @params).ToVkCollectionOf<PhotoAlbum>(x => x);
+			return _vk.Call("photos.getAlbums", @params, skipAuthorization).ToVkCollectionOf<PhotoAlbum>(x => x);
 		}
 
 		/// <summary>
 		/// Возвращает список фотографий в альбоме.
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.get" />.
 		/// </remarks>
-		public VkCollection<Photo> Get(PhotoGetParams @params)
+		public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("photos.get", @params).ToVkCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.get", @params, skipAuthorization).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>
@@ -117,6 +119,7 @@
 		/// Поле access_key будет возвращено вместе с остальными данными фотографии в методах, которые возвращают фотографии, закрытые приватностью но доступные в данном контексте. Например данное поле имеют фотографии, возвращаемые методом newsfeed.get. список строк, разделенных через запятую, обязательный параметр (Список строк, разделенных через запятую, обязательный параметр).</param>
 		/// <param name="extended">1 — будут возвращены дополнительные поля likes, comments, tags, can_comment, can_repost. Поля comments и tags содержат только количество объектов. По умолчанию данные поля не возвращается. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
 		/// <param name="photoSizes">Возвращать ли доступные размеры фотографии в специальном формате. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает массив объектов photo.
 		/// Если к фотографии прикреплено местоположение, также возвращаются поля lat и long, содержащие географические координаты отметки.
@@ -134,7 +137,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null)
+		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null, bool skipAuthorization = true)
 		{
 			var parameters = new VkParameters
 				{
@@ -143,7 +146,7 @@
 					{"photo_sizes", photoSizes}
 				};
 
-			VkResponseArray response = _vk.Call("photos.getById", parameters);
+			VkResponseArray response = _vk.Call("photos.getById", parameters, skipAuthorization);
 
 			return response.ToReadOnlyCollectionOf<Photo>(x => x);
 		}
@@ -406,6 +409,7 @@
 		/// Осуществляет поиск изображений по местоположению или описанию.
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
+		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов фотографий.
 		/// </returns>
@@ -413,9 +417,9 @@
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<Photo> Search(PhotoSearchParams @params)
+		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = true)
 		{
-			return _vk.Call("photos.search", @params, true).ToVkCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.search", @params, skipAuthorization).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>

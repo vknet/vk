@@ -550,7 +550,22 @@ namespace VkNet.Categories
 
 			var response = _vk.Call("messages.getChatUsers", parameters);
 
-			return response.ToReadOnlyCollectionOf(x => fields != null ? x : new User { Id = (long)x });
+			var list = new List<User>();
+
+			foreach ( var chatId in chatIds )
+			{
+				var chatResponse = response[chatId.ToString()];
+				var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null ? x : new User { Id = (long) x });
+
+				foreach ( var user in users )
+				{
+					bool exist = list.Exists(first => first.Id == user.Id);
+					if ( !exist )
+						list.Add(user);
+				}
+			}
+
+			return list.ToReadOnlyCollection();
 		}
 
 		/// <summary>
