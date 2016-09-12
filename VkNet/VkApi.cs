@@ -683,6 +683,7 @@
 
 			// Защита от превышения количества запросов в секунду
 			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue) {
+				if(_expireTimer==null) SetTimer(0);
 				lock (_expireTimer) {
 					var span = LastInvokeTimeSpan.Value;
 					if (span.TotalMilliseconds < _minInterval) {
