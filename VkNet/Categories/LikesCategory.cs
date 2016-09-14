@@ -1,4 +1,5 @@
-﻿using VkNet.Model.RequestParams;
+﻿using VkNet.Utils;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
 {
@@ -39,12 +40,10 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = true)
+		public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = true)
 		{
 		    @params.Extended = false;
-			VkResponseArray response = _vk.Call("likes.getList", @params, skipAuthorization);
-
-            return response.ToReadOnlyCollectionOf<long>(x => x);
+			return _vk.Call("likes.getList", @params, skipAuthorization).ToVkCollectionOf<long>(x => x);
 		}
 
 		/// <summary>
