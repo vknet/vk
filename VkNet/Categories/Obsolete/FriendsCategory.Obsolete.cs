@@ -118,7 +118,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.add"/>.
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте Add(long userId, string text, bool? follow = null, long? captchaSid = null, string captchaKey = null)")]
-		public AddFriendStatus Add(long userId, string text = "", long? captchaSid = null, string captchaKey = null)
+		public AddFriendStatus Add(long userId, string text, long? captchaSid = null, string captchaKey = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 
