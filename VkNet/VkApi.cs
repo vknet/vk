@@ -1,25 +1,24 @@
 ﻿namespace VkNet
 {
-	using System;
-	using System.Runtime.CompilerServices;
-	using JetBrains.Annotations;
-	using System.Collections.Generic;
-	using System.Diagnostics;
-	using System.Text;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using Newtonsoft.Json.Linq;
-	using Categories;
-	using Exception;
-	using Utils;
-	using Utils.AntiCaptcha;
-	using Enums.Filters;
+    using System;
+    using System.Runtime.CompilerServices;
+    using JetBrains.Annotations;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Newtonsoft.Json.Linq;
+    using Categories;
+    using Exception;
+    using Utils;
+    using Utils.AntiCaptcha;
+    using Enums.Filters;
 
-	/// <summary>
-	/// Служит для оповещения об истечении токена
-	/// </summary>
-	/// <param name="api">Экземпляр API у которого истекло время токена</param>
-	public delegate void VkApiDelegate(VkApi api);
+    /// <summary>
+    /// Служит для оповещения об истечении токена
+    /// </summary>
+    /// <param name="api">Экземпляр API у которого истекло время токена</param>
+    public delegate void VkApiDelegate(VkApi api);
 
 	/// <summary>
 	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
@@ -30,7 +29,7 @@
 		/// <summary>
 		/// Версия API vk.com.
 		/// </summary>
-		public const string VkApiVersion = "5.50";
+		public const string VkApiVersion = "5.53";
 
 		/// <summary>
 		/// Параметры авторизации.
@@ -75,18 +74,18 @@
 		/// </summary>
 		public float RequestsPerSecond
 		{
-			get { return _requestsPerSecond; }
+		    private get { return _requestsPerSecond; }
 			set
 			{
-				if (value > 0)
+			    if (value < 0)
+                {
+                    throw new ArgumentException(@"Value must be positive", $@"RequestsPerSecond");
+                }
+                _requestsPerSecond = value;
+                if (_requestsPerSecond > 0)
 				{
-					_requestsPerSecond = value;
 					_minInterval = (int)(1000 / _requestsPerSecond) + 1;
 				}
-				else if (value == 0)
-					_requestsPerSecond = 0;
-				else
-					throw new ArgumentException("Value must be positive", "RequestsPerSecond");
 			}
 		}
 		#endregion
@@ -514,9 +513,9 @@
 				} while (numberOfRemainingAttemptsToAuthorize > 0 && !authorizationCompleted);
 
 				// Повторно выбрасываем исключение, если капча ни разу не была распознана верно
-				if (!authorizationCompleted && captchaSidTemp != null)
+				if (!authorizationCompleted && captchaSidTemp.HasValue)
 				{
-					throw new CaptchaNeededException((long) captchaSidTemp, captchaKeyTemp);
+					throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
 				}
 			}
 		}
@@ -539,10 +538,7 @@
 		/// </summary>
 		private void StopTimer()
 		{
-			if (_expireTimer != null)
-			{
-				_expireTimer.Dispose();
-			}
+		    _expireTimer?.Dispose();
 		}
 		/// <summary>
 		/// Создает событие оповещения об окончании времени токена
@@ -604,9 +600,9 @@
 				} while (numberOfRemainingAttemptsToCall > 0 && !callCompleted);
 
 				// Повторно выбрасываем исключение, если капча ни разу не была распознана верно
-				if (!callCompleted && captchaSidTemp != null)
+				if (!callCompleted && captchaSidTemp.HasValue)
 				{
-					throw new CaptchaNeededException((long) captchaSidTemp, captchaKeyTemp);
+					throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
 				}
 			}
 
@@ -629,7 +625,7 @@
 		{
 			if (!parameters.ContainsKey("v"))
 			{
-				parameters.Add("v", !string.IsNullOrEmpty(apiVersion) ? apiVersion : VkApiVersion);
+				parameters.Add("v", VkApiVersion);
 			}
 
 			return Call(methodName, parameters, skipAuthorization);
@@ -644,19 +640,21 @@
 		/// <returns></returns>
 		internal string GetApiUrl(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
-			var builder = new StringBuilder();
-
-			builder.AppendFormat("{0}{1}?", "https://api.vk.com/method/", methodName);
+			var builder = new StringBuilder($"https://api.vk.com/method/{methodName}?");
 
 			foreach (var pair in parameters)
 			{
-				builder.AppendFormat("{0}={1}&", pair.Key, pair.Value);
+			    builder.AppendFormat($"{pair.Key}={pair.Value}&");
 			}
 
-			if (skipAuthorization && parameters.Count != 0)
-				builder.Remove(builder.Length - 1, 1);
-			else
-				builder.AppendFormat("access_token={0}", AccessToken);
+		    if (skipAuthorization && parameters.Count != 0)
+		    {
+		        builder.Remove(builder.Length - 1, 1);
+		    }
+		    else
+		    {
+		        builder.AppendFormat("access_token={0}", AccessToken);
+		    }
 
 			return builder.ToString();
 		}
@@ -678,34 +676,40 @@
 				throw new AccessTokenInvalidException();
 			}
 
-			string url = "";
-			string answer = "";
+			var url = "";
+			var answer = "";
 
-			// Защита от превышения количества запросов в секунду
-			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue) {
-				if(_expireTimer==null) SetTimer(0);
-				lock (_expireTimer) {
-					var span = LastInvokeTimeSpan.Value;
-					if (span.TotalMilliseconds < _minInterval) {
-						Thread.Sleep((int)_minInterval - (int)span.TotalMilliseconds);
-					}
-					url = GetApiUrl(methodName, parameters, skipAuthorization);
-					LastInvokeTime = DateTimeOffset.Now;
-					answer = Browser.GetJson(url.Replace("\'", "%27"));
-				}
-			}
-			else if (skipAuthorization) {
-				url = GetApiUrl(methodName, parameters, skipAuthorization);
-				LastInvokeTime = DateTimeOffset.Now;
-				answer = Browser.GetJson(url.Replace("\'", "%27")); 
-			}
-			
+            // Защита от превышения количества запросов в секунду
+            if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
+            {
+                if (_expireTimer == null)
+                {
+                    SetTimer(0);
+                }
+                lock (_expireTimer)
+                {
+                    var span = LastInvokeTimeSpan?.TotalMilliseconds;
+                    if (span < _minInterval)
+                    {
+                        Thread.Sleep((int)_minInterval - (int)span);
+                    }
+                    url = GetApiUrl(methodName, parameters, skipAuthorization);
+                    LastInvokeTime = DateTimeOffset.Now;
+                    answer = Browser.GetJson(url.Replace("\'", "%27"));
+                }
+            } else if (skipAuthorization)
+            {
+                url = GetApiUrl(methodName, parameters, skipAuthorization: true);
+                LastInvokeTime = DateTimeOffset.Now;
+                answer = Browser.GetJson(url.Replace("\'", "%27"));
+            }
+
 
 #if DEBUG && !UNIT_TEST
 			Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
 			Trace.WriteLine(Utilities.PreetyPrintJson(answer));
 #endif
-			VkErrors.IfErrorThrowException(answer);
+            VkErrors.IfErrorThrowException(answer);
 
 			return answer;
 		}
