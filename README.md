@@ -19,10 +19,11 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 
 # План развития проекта
 
-- [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.52.
+- [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.53.
 - [x] Вместо ReadOnlyCollectin<T> возвращать VkCollection<T> которая содержит поле TotalCount (Поле 'count' из ответа API VK). При этом код методов содержащих out параметрами будет объявлен как устаревший
 - [ ] Асинхронные методы
 - [ ] Недостающие классы и методы
+- [ ] Переход на UWP
 
 #Credits
 
