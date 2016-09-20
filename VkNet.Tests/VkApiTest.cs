@@ -115,10 +115,10 @@
 		[Test]
 		public void Invoke_VkParams()
 		{
-			Url = "https://api.vk.com/method/example.get?count=23&access_token=";
-			Json = @"{ 'response' : [] }";
-			Parameters = new VkParameters { { "count", 23 } };
-			var json = Api.Invoke("example.get", Parameters, true);
+		    Url = "https://api.vk.com/method/example.get?count=23";
+            Json = @"{ 'response' : [] }";
+            var parameters = new VkParameters { { "count", 23 } };
+			var json = Api.Invoke("example.get", parameters, true);
 
 			StringAssert.AreEqualIgnoringCase(json, Json);
 		}
@@ -126,7 +126,7 @@
 		[Test]
 		public void Invoke_DictionaryParams()
 		{
-			Url = "https://api.vk.com/method/example.get?count=23&access_token=";
+			Url = "https://api.vk.com/method/example.get?count=23";
 			Json = @"{ 'response' : [] }";
 			var parameters = new Dictionary<string, string> { { "count", "23" } };
 			var json = Api.Invoke("example.get", parameters, true);

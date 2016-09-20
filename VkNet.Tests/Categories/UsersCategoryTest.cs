@@ -33,7 +33,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(ex.Message, Is.EqualTo("The remote name could not be resolved: 'api.vk.com'"));
 		}
 
-        [Test]
+        [Test, Ignore("Метод может быть вызван без авторизации")]
         public void Get_WrongAccesToken_Throw_ThrowUserAuthorizationException()
         {
             const string url = "https://api.vk.com/method/users.get?user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
@@ -93,7 +93,7 @@ namespace VkNet.Tests.Categories
 
 			// act
 			var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education;
-            var user = users.Get(1, fields);
+            var user = users.Get(1, fields, skipAuthorization: false);
 
 			// assert
 			Assert.That(user, Is.Not.Null);
@@ -139,7 +139,7 @@ namespace VkNet.Tests.Categories
 
             var users = GetMockedUsersCategory(url, json);
             // act
-            var user = users.Get(1, ProfileFields.Counters);
+            var user = users.Get(1, ProfileFields.Counters, skipAuthorization: false);
 
 			// assert
 			Assert.That(user, Is.Not.Null);
@@ -178,20 +178,13 @@ namespace VkNet.Tests.Categories
             var users = GetMockedUsersCategory(url, json);
 
 			// act
-			var user = users.Get(1);
+			var user = users.Get(1, skipAuthorization: false);
 
             // assert
             Assert.That(user.Id, Is.EqualTo(1));
             Assert.That(user.FirstName, Is.EqualTo("Павел"));
             Assert.That(user.LastName, Is.EqualTo("Дуров"));
         }
-
-        [Test]
-        public void Get_Multiple_EmptyAccessToken_ThrowAccessTokenInvalidException()
-        {
-            var users = new UsersCategory(new VkApi());
-			Assert.That(() => users.Get(new long[] { 1, 2 }), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
 
         [Test]
         public void Get_EmptyListOfUids_ThrowArgumentNullException()
@@ -221,7 +214,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Get(new long[] {1, 672});
+            var lst = users.Get(new long[] {1, 672}, skipAuthorization: false);
 
 			Assert.That(lst.Count, Is.EqualTo(2));
             Assert.That(lst[0], Is.Not.Null);
@@ -268,7 +261,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-			var lst = users.Get(new long[] {1, 5041431}, ProfileFields.Education);
+			var lst = users.Get(new long[] {1, 5041431}, ProfileFields.Education, skipAuthorization:false);
 
             Assert.That(lst.Count == 2);
             Assert.That(lst[0], Is.Not.Null);
@@ -297,8 +290,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_BadQuery_EmptyList()
         {
-			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=";
-			const string json =
+			const string url = "https://api.vk.com/method/users.search?q=fa&#39;sosjvsoidf&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					response: {
 						count: 0,
@@ -306,11 +299,10 @@ namespace VkNet.Tests.Categories
 					}
 				}";
 
-			int count;
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Search(out count, new UserSearchParams { Query = "fa'sosjvsoidf" });
+            var lst = users.Search(new UserSearchParams { Query = "fa'sosjvsoidf" });
 
-            Assert.That(count, Is.EqualTo(0));
+            Assert.That(lst.TotalCount, Is.EqualTo(0));
             Assert.That(lst, Is.Not.Null);
             Assert.That(lst.Count, Is.EqualTo(0));
         }
@@ -318,9 +310,9 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_EducationField_ListofProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
 
-			const string json =
+            const string json =
 				@"{
 					response: {
 						count: 26953,
@@ -387,8 +379,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_DefaultFields_ListOfProfileObjects()
         {
-			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=";
-			const string json =
+			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 				response: {
 					count: 26953,
@@ -438,7 +430,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void IsAppUser_5_5_version_of_api_return_false()
         {
-            const string url = "https://api.vk.com/method/users.isAppUser?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=";
+            const string url = "https://api.vk.com/method/users.isAppUser?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': 0
@@ -455,7 +447,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void IsAppUser_5_5_version_of_api_return_true()
         {
-            const string url = "https://api.vk.com/method/users.isAppUser?user_id=123&v=" + VkApi.VkApiVersion + "&access_token=";
+            const string url = "https://api.vk.com/method/users.isAppUser?user_id=123&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': 1
@@ -472,7 +464,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_ListOfUsers()
         {
-			const string url = "https://api.vk.com/method/users.get?fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/users.get?fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -572,7 +564,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var result = cat.Get(new long[] {1}, ProfileFields.All, NameCase.Gen);
+			var result = cat.Get(new long[] {1}, ProfileFields.All, NameCase.Gen, false);
 
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Count, Is.EqualTo(1));
@@ -655,7 +647,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_SingleUser()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -755,7 +747,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-            var user = cat.Get(1, ProfileFields.All, NameCase.Gen);
+            var user = cat.Get(1, ProfileFields.All, NameCase.Gen, false);
 
 			Assert.That(user, Is.Not.Null);
 
@@ -851,7 +843,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var user = cat.Get(4793858, ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education);
+			var user = cat.Get(4793858, ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education, skipAuthorization: false);
 			Assert.That(user, Is.Not.Null);
 
 			Assert.That(user.Id, Is.EqualTo(4793858));
@@ -900,7 +892,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var result = cat.GetSubscriptions(1, 2, 3);
+			var result = cat.GetSubscriptions(1, 2, 3, skipAuthorization: false);
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Count, Is.EqualTo(2));
 
@@ -950,7 +942,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var result = cat.GetFollowers(1, 2, 3);
+			var result = cat.GetFollowers(1, 2, 3, skipAuthorization: false);
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Count, Is.EqualTo(2));
 
@@ -961,7 +953,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void GetFollowers_WithAllFields()
         {
-            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': {
@@ -1081,7 +1073,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var users = cat.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen);
+			var users = cat.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen, false);
 			Assert.That(users, Is.Not.Null);
 			Assert.That(users.Count, Is.EqualTo(2));
 
@@ -1215,7 +1207,7 @@ namespace VkNet.Tests.Categories
 
 			var screenNames = new [] {"dm", "durov"};
             var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
-			var users = cat.Get(screenNames, fields, NameCase.Gen);
+			var users = cat.Get(screenNames, fields, NameCase.Gen, false);
 
 			Assert.That(users, Is.Not.Null);
 			Assert.That(users.Count, Is.EqualTo(2));
@@ -1263,7 +1255,7 @@ namespace VkNet.Tests.Categories
             var cat = GetMockedUsersCategory(url, json);
 
 			var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
-            var user = cat.Get("dm", fields, NameCase.Gen);
+            var user = cat.Get("dm", fields, NameCase.Gen, false);
 
 			Assert.That(user, Is.Not.Null);
 

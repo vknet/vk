@@ -29,10 +29,7 @@
         /// <summary>
         /// Параметры для запроса без параметров.
         /// </summary>
-        public static VkParameters Empty
-        {
-            get { return new VkParameters(); }
-        }
+        public static VkParameters Empty => new VkParameters();
 
         /// <summary>
         /// Добавляет параметр запроса.
@@ -45,7 +42,9 @@
             Remove(name);
 
             if (value == null)
+            {
                 return;
+            }
 
             if (typeof(T).IsEnum)
             {
@@ -54,8 +53,10 @@
             }
 
             var stringValue = value.ToString();
-            if (!string.IsNullOrEmpty(stringValue))
+            if (!string.IsNullOrWhiteSpace(stringValue))
+            {
                 base.Add(name, stringValue);
+            }
         }
 
         /// <summary>

@@ -176,7 +176,7 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void Call_ThrowsCaptchaNeededException()
 		{
-			Url = "https://api.vk.com/method/messages.send?v=" + VkApi.VkApiVersion + "&access_token=";
+			Url = "https://api.vk.com/method/messages.send?v=" + VkApi.VkApiVersion ;
 			Json =
 				@"{
 					'error': {

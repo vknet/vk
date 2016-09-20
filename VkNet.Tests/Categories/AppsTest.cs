@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCatalog_NormalCase()
 		{
-			Url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=" + VkApi.VkApiVersion + "&access_token=";
+			Url = "https://api.vk.com/method/apps.getCatalog?offset=0&count=0&extended=0&return_friends=0&v=" + VkApi.VkApiVersion ;
 			Json =
 				@"{
 					'response': {
@@ -119,8 +119,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			long total;
-			var app = Api.Apps.Get(new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
+			var app = Api.Apps.Get(new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web }, false);
 			Assert.That(app.TotalCount, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("raventestapp"));
 		}

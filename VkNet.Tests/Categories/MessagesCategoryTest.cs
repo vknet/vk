@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using VkNet.Exception;
 using VkNet.Model.Attachments;
 
@@ -1017,11 +1018,12 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
-					'response': [
+					'response': {
+                        2: [
 					  4793858,
 					  5041431,
 					  10657891
-					]
+					]}
 				  }";
 
 			var users = Cat.GetChatUsers(2).ToList();
@@ -1036,10 +1038,10 @@ namespace VkNet.Tests.Categories
 		public void GetChatUsers_ChatIdWithFields_Users()
 		{
 			Url = "https://api.vk.com/method/messages.getChatUsers?chat_ids=2&fields=education&v=" + VkApi.VkApiVersion + "&access_token=token";
-			Json =
+            Json =
 				@"{
-					'response': [
-					  {
+					'response': {
+                        2: [{
 						'uid': 4793858,
 						'first_name': 'Антон',
 						'last_name': 'Жидков',
@@ -1072,12 +1074,12 @@ namespace VkNet.Tests.Categories
 						'graduation': 2011,
 						'invited_by': 4793858
 					  }
-					]
+					]}
 				  }";
 
-			var users = Cat.GetChatUsers(2, UsersFields.Education).ToList();
+            var users = Cat.GetChatUsers(2, UsersFields.Education);
 
-			Assert.That(users.Count, Is.EqualTo(3));
+            Assert.That(users.Count, Is.EqualTo(3));
 			Assert.That(users[0].Id, Is.EqualTo(4793858));
 			Assert.That(users[0].FirstName, Is.EqualTo("Антон"));
 			Assert.That(users[0].LastName, Is.EqualTo("Жидков"));

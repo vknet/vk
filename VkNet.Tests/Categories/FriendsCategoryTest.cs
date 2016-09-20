@@ -1,5 +1,6 @@
 ﻿using System;
 using VkNet.Exception;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
@@ -14,14 +15,14 @@ namespace VkNet.Tests.Categories
 	[TestFixture]
 	public class FriendsCategoryTest : BaseTest
 	{
-		public FriendsCategory GetMockedFriendsCategory(string url, string json)
+	    private FriendsCategory GetMockedFriendsCategory(string url, string json)
 		{
             Json = json;
             Url = url;
             return new FriendsCategory(Api);
 		}
 
-		[Test]
+		[Test, Ignore("Этот метод можно вызвать без ключа доступа. Возвращаются только общедоступные данные.")]
 		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
@@ -31,7 +32,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_FriendsForDurov_ListOfFriends()
 		{
-			const string url = "https://api.vk.com/method/friends.get?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.get?list_id=1&v=" + VkApi.VkApiVersion;
 			const string json =
 				@"{
                     'response': [
@@ -44,7 +45,10 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var friends = GetMockedFriendsCategory(url, json);
-			var users = friends.Get(1).ToList();
+			var users = friends.Get(new FriendsGetParams
+			{
+			    ListId = 1
+			}).ToList();
 
 			Assert.That(users.Count, Is.EqualTo(5));
 			Assert.That(users[0].Id, Is.EqualTo(2));
@@ -58,7 +62,7 @@ namespace VkNet.Tests.Categories
 		public void Get_FirstNameLastName_ListOfObjects()
 		{
 			const string url = "https://api.vk.com/method/friends.get?user_id=1&count=3&fields=first_name,last_name&v=" + VkApi.VkApiVersion + "&access_token=token";
-			const string json =
+            const string json =
 			   @"{
                     'response': {
                       'count': 690,
@@ -86,9 +90,16 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var friends = GetMockedFriendsCategory(url, json);
-			var lst = friends.Get(1, ProfileFields.FirstName | ProfileFields.LastName, 3);
 
-			Assert.That(lst.Count, Is.EqualTo(3));
+            var lst = friends.Get(new FriendsGetParams
+            {
+                Count = 3,
+                Fields = ProfileFields.FirstName | ProfileFields.LastName,
+                UserId = 1
+            },
+            false);
+
+            Assert.That(lst.Count, Is.EqualTo(3));
 			Assert.That(lst[0].Id, Is.EqualTo(2));
 			Assert.That(lst[0].FirstName, Is.EqualTo("Александра"));
 			Assert.That(lst[0].LastName, Is.EqualTo("Владимирова"));
@@ -458,9 +469,12 @@ namespace VkNet.Tests.Categories
 		public void Delete_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/friends.delete?user_id=24250&v=" + VkApi.VkApiVersion + "&access_token=token";
-			const string json =
-				@"{
-                    'response': 2
+            const string json =
+                @"{
+                    response: {
+                        success: 2,
+                        out_request_deleted: 1
+                    }
                   }";
 
 			var cat = GetMockedFriendsCategory(url, json);

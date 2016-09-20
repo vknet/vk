@@ -274,7 +274,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 		{
-			const string url = "https://api.vk.com/method/groups.get?user_id=4793858&offset=0&count=1000&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.get?user_id=4793858&offset=0&count=1000&v=" + VkApi.VkApiVersion + "&access_token=token";
 
 			const string json =
 				@"{
@@ -393,7 +393,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
 		}
 
-		[Test]
+		[Test, Ignore("Этот метод можно вызвать без ключа доступа. Возвращаются только общедоступные данные.")]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -449,7 +449,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMember_WrongGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=0&user_ids=4793858&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=0&user_ids=4793858&extended=0&v=" + VkApi.VkApiVersion ;
 			const string json =
 				@"{
 					'error': {
@@ -488,7 +488,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMember_WrongUid_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=1000000000000&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=1000000000000&extended=0&v=" + VkApi.VkApiVersion ;
 			const string json =
 				@"{
 					response: 0
@@ -502,7 +502,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMemeber_UserIsAMember_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=4793858&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=4793858&extended=0&v=" + VkApi.VkApiVersion ;
 			const string json =
 				@"{
 					response: [{
@@ -519,7 +519,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMemeber_UserNotAMember_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=17683660&user_ids=4793858&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=17683660&user_ids=4793858&extended=0&v=" + VkApi.VkApiVersion ;
 			const string json =
 				@"{
 					response: [{
@@ -536,7 +536,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMembers_NormalCase_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&v=" + VkApi.VkApiVersion ;
 			const string json =
                 @"{
 					'response': {
@@ -575,7 +575,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&sort=id_asc&offset=15&count=7&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&sort=id_asc&offset=15&count=7&v=" + VkApi.VkApiVersion ;
 			const string json =
 				@"{
 					'response': {
@@ -611,7 +611,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?group_id=0&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=0&v=" + VkApi.VkApiVersion ;
 			const string json =
 				@"{
 					'error': {
@@ -656,7 +656,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_DefaultCase_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&v=" + VkApi.VkApiVersion ;
 			const string json =
 				@"{
 					'response': {
@@ -690,10 +690,12 @@ namespace VkNet.Tests.Categories
 
 			int totalCount;
 			var category = GetMockedGroupCategory(url, json);
-			var groups = category.Search("Music", out totalCount).ToList();
-
-			Assert.That(groups.Count, Is.EqualTo(2));
-			Assert.That(totalCount, Is.EqualTo(78152));
+            var groups = category.Search(new GroupsSearchParams
+            {
+                Query = "Music"
+            }, true);
+            Assert.That(groups.Count, Is.EqualTo(2));
+			Assert.That(groups.TotalCount, Is.EqualTo(78152));
 
 			Assert.That(groups[1].Id, Is.EqualTo(27895931));
 			Assert.That(groups[1].Name, Is.EqualTo("MUSIC 2012"));
@@ -721,7 +723,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_DefaulCaseAllParams_ListOfGroups()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&offset=20&count=3&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.search?q=Music&sort=0&offset=20&count=3&v=" + VkApi.VkApiVersion ;
 			const string json =
 				@"{
 					'response': {
@@ -767,10 +769,15 @@ namespace VkNet.Tests.Categories
 
 			int totalCount;
 			var category = GetMockedGroupCategory(url, json);
-			var groups = category.Search("Music", out totalCount, 20, 3).ToList();
+            var groups = category.Search(new GroupsSearchParams
+            {
+                Query = "Music",
+                Offset = 20,
+                Count = 3
+            }, true);
 
-			Assert.That(groups.Count, Is.EqualTo(3));
-			Assert.That(totalCount, Is.EqualTo(78152));
+            Assert.That(groups.Count, Is.EqualTo(3));
+			Assert.That(groups.TotalCount, Is.EqualTo(78152));
 
 			Assert.That(groups[2].Id, Is.EqualTo(23995866));
 			Assert.That(groups[2].Name, Is.EqualTo(@"E:\music\"));
@@ -809,7 +816,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_GroupsNotFounded_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&sort=0&offset=20&count=3&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/groups.search?q=ThisQueryDoesNotExistAtAll&sort=0&offset=20&count=3&v=" + VkApi.VkApiVersion ;
 
 			const string json =
 				@"{
@@ -821,14 +828,18 @@ namespace VkNet.Tests.Categories
 
 			var category = GetMockedGroupCategory(url, json);
 
-			int totalCount;
-			var groups = category.Search("ThisQueryDoesNotExistAtAll", out totalCount, 20, 3).ToList();
+            var groups = category.Search(new GroupsSearchParams
+            {
+                Query = "ThisQueryDoesNotExistAtAll",
+                Offset = 20,
+                Count = 3
+            }, true);
 
-			Assert.That(groups.Count, Is.EqualTo(0));
-			Assert.That(totalCount, Is.EqualTo(0));
+            Assert.That(groups.Count, Is.EqualTo(0));
+			Assert.That(groups.TotalCount, Is.EqualTo(0));
 		}
 
-		[Test]
+		[Test, Ignore("Этот метод можно вызвать без ключа доступа. Возвращаются только общедоступные данные.")]
 		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -838,7 +849,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=17683660&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=17683660&v=" + VkApi.VkApiVersion;
 			const string json =
 				@"{
 					'response': [
@@ -875,7 +886,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=0&v=" + VkApi.VkApiVersion;
 			const string json =
 				@"{
 					'error': {
@@ -910,7 +921,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_BanInfo()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=66464944&fields=ban_info&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_id=66464944&fields=ban_info&v=" + VkApi.VkApiVersion;
 			const string json =
 				@"{
                     'response': [
@@ -979,13 +990,13 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			Assert.That(() => cat.GetById(new long[] { 0 }), Throws.InstanceOf<InvalidParameterException>());
+			Assert.That(() => cat.GetById(new long[] { 0 }), Throws.InstanceOf<ArgumentNullException>());
 		}
 
 		[Test]
 		public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_ids=17683660,637247&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/groups.getById?group_ids=17683660,637247&v=" + VkApi.VkApiVersion;
 			const string json =
 				@"{
 					'response': [
@@ -1601,7 +1612,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCatalog_WithoutParams()
 		{
-			Url = "https://api.vk.com/method/groups.getCatalog?v=" + VkApi.VkApiVersion + "&access_token=";
+			Url = "https://api.vk.com/method/groups.getCatalog?v=" + VkApi.VkApiVersion ;
 			Json = @"{
 				response: {
 					count: 27,
@@ -1666,7 +1677,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCatalog_WithAllParams()
         {
-            Url = "https://api.vk.com/method/groups.getCatalog?category_id=11&subcategory_id=12&v=" + VkApi.VkApiVersion + "&access_token=";
+            Url = "https://api.vk.com/method/groups.getCatalog?category_id=11&subcategory_id=12&v=" + VkApi.VkApiVersion ;
             Json = @"{
 				response: {
 	                count: 35,
@@ -1731,7 +1742,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCatalog_WithParamCategoryId()
         {
-            Url = "https://api.vk.com/method/groups.getCatalog?category_id=11&v=" + VkApi.VkApiVersion + "&access_token=";
+            Url = "https://api.vk.com/method/groups.getCatalog?category_id=11&v=" + VkApi.VkApiVersion ;
             Json = @"{
 				response: {
 	                count: 693,
@@ -1799,7 +1810,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCatalogInfo()
 		{
-			Url = "https://api.vk.com/method/groups.getCatalogInfo?v=" + VkApi.VkApiVersion + "&access_token=";
+			Url = "https://api.vk.com/method/groups.getCatalogInfo?v=" + VkApi.VkApiVersion ;
 			Json = @"{
 				response: {
 					enabled: 1,
@@ -1873,7 +1884,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCatalogInfo_Extended()
 		{
-			Url = "https://api.vk.com/method/groups.getCatalogInfo?extended=1&v=" + VkApi.VkApiVersion + "&access_token=";
+			Url = "https://api.vk.com/method/groups.getCatalogInfo?extended=1&v=" + VkApi.VkApiVersion ;
 			Json = @"{
 				response: {
 					enabled: 1,
@@ -1962,7 +1973,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCatalogInfo_AllParams()
 		{
-			Url = "https://api.vk.com/method/groups.getCatalogInfo?extended=1&subcategories=1&v=" + VkApi.VkApiVersion + "&access_token=";
+			Url = "https://api.vk.com/method/groups.getCatalogInfo?extended=1&subcategories=1&v=" + VkApi.VkApiVersion ;
 			Json = @"{
 				response: {
 					enabled: 1,
@@ -2079,7 +2090,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCatalogInfo_Subcategories()
 		{
-			Url = "https://api.vk.com/method/groups.getCatalogInfo?extended=1&subcategories=1&v=" + VkApi.VkApiVersion + "&access_token=";
+			Url = "https://api.vk.com/method/groups.getCatalogInfo?extended=1&subcategories=1&v=" + VkApi.VkApiVersion ;
 			Json = @"{
 				response: {
 					enabled: 1,

@@ -19,8 +19,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCounters_WhenServerReturnsEmptyResponse()
 		{
-			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=";
-			Json = @"{ 'response': [] }";
+			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=token";
+            Json = @"{ 'response': [] }";
 
 			var counters = Api.Account.GetCounters(CountersFilter.All);
 			Assert.That(counters, Is.Null);
@@ -29,8 +29,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCounters_WhenServerReturnsAllFields()
 		{
-			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=";
-			Json = @"{
+			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=token";
+            Json = @"{
 				'response': {
 					friends:1,
 					messages: 2,
@@ -72,7 +72,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetNameInMenu_SetsCorrectly_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=";
+			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.SetNameInMenu("example"), Is.True);
 		}
@@ -80,8 +80,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetNameInMenu_NotSets_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=";
-			Json = @"{ 'response': 0 }";
+			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=token";
+            Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.SetNameInMenu("example"), Is.False);
 		}
 

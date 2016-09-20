@@ -104,8 +104,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Save1_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/pages.save?text=123&groupId=103292418&user_id=32190123&title=Свежие новости&v=" + VkApi.VkApiVersion + "&access_token=token";
-			const string json =
+			const string url = "https://api.vk.com/method/pages.save?text=123&group_id=103292418&user_id=32190123&title=Свежие новости&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					'response': 50050492
 				  }";
@@ -120,7 +120,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Save2_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/pages.save?text=123&groupId=103292418&user_id=32190123&page_id=50050492&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/pages.save?text=123&group_id=103292418&user_id=32190123&page_id=50050492&v=" + VkApi.VkApiVersion + "&access_token=token";
 			const string json =
 				@"{
 					'response': 50050492
@@ -249,8 +249,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetVersion_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/pages.getVersion?version_id=184657135&group_id=103292418&need_html=0&v=" + VkApi.VkApiVersion + "&access_token=";
-			const string json =
+			const string url = "https://api.vk.com/method/pages.getVersion?version_id=184657135&group_id=103292418&need_html=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					'response': {
 						'id': 184657135,

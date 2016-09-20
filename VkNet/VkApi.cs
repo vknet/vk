@@ -1,4 +1,6 @@
-﻿namespace VkNet
+﻿using System.Diagnostics;
+
+namespace VkNet
 {
     using System;
     using System.Runtime.CompilerServices;

@@ -293,7 +293,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 		{
-			const string url = "https://api.vk.com/method/wall.get?owner_id=10&offset=1&count=1&filter=owner&extended=1&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=10&offset=1&count=1&filter=owner&extended=1&v=" + VkApi.VkApiVersion ;
 			const string json =
 			    @"{
                     'response': {
@@ -397,13 +397,6 @@ namespace VkNet.Tests.Categories
 		#region Wall.GetComments
 
 		[Test]
-		public void GetComments_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			int totalCount;
-			Assert.That(() => _defaultWall.GetComments(12312, 12345, out totalCount, SortOrderBy.Asc, true), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
 		public void GetComments_IncorrectParameters_ThrowArgumentException()
 		{
 			int id;
@@ -417,8 +410,10 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetComments_ReturnLikesAndAttachments()
 		{
-			const string url = "https://api.vk.com/method/wall.getComments?owner_id=12312&post_id=12345&need_likes=1&sort=1&preview_length=0&v=" + VkApi.VkApiVersion + "&access_token=token";
-			const string json =
+		    const string url = "https://api.vk.com/method/wall.getComments?owner_id=12312&post_id=12345&need_likes=1&sort=1&v=" +
+		        VkApi.VkApiVersion + "&access_token=token";
+
+            const string json =
                 @"{
                     'response': {
                       'count': 2,
@@ -461,10 +456,15 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			int totalCount;
-			var comments = GetMockedWallCategory(url, json).GetComments(12312, 12345, out totalCount, SortOrderBy.Asc, true);
+            var comments = GetMockedWallCategory(url, json).GetComments(new WallGetCommentsParams
+            {
+                OwnerId = 12312,
+                PostId = 12345,
+                Sort = SortOrderBy.Asc,
+                NeedLikes = true
+            }, false);
 
-			Assert.That(totalCount, Is.EqualTo(2));
+            Assert.That(comments.TotalCount, Is.EqualTo(2));
 			Assert.That(comments.Count, Is.EqualTo(2));
 
 			var comment0 = comments[0];
@@ -509,8 +509,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			Assert.That(() => _defaultWall.GetById(new[] { "93388_21539", "93388_20904", "2943_4276" }), Throws.TypeOf<AccessTokenInvalidException>());
-			Assert.That(() => _defaultWall.GetById(new[] { new KeyValuePair<long, long>(10, 20), new KeyValuePair<long, long>(10, 20) }), Throws.TypeOf<AccessTokenInvalidException>());
+			Assert.That(() => _defaultWall.GetById(new[] { "93388_21539", "93388_20904", "2943_4276" }, skipAuthorization:false), Throws.TypeOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -526,7 +525,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_ReturnWallRecords()
 		{
-			const string url = "https://api.vk.com/method/wall.getById?posts=1_619,1_617,1_616&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.getById?posts=1_619,1_617,1_616&v=" + VkApi.VkApiVersion;
 			const string json =
 				@"{
                     response: [{
@@ -758,7 +757,7 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_WithPoll_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=-103292418&offset=0&count=1&extended=0&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=-103292418&offset=0&count=1&extended=0&v=" + VkApi.VkApiVersion ;
 			const string json =
 				@"{
 					response: {
@@ -822,7 +821,7 @@ namespace VkNet.Tests.Categories
         [Test]
 	    public void Get_Document_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&extended=0&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&extended=0&v=" + VkApi.VkApiVersion ;
 			const string json =
                 @"{
                     'response': {
@@ -1020,7 +1019,7 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_With_PhotoListAttachment()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&extended=0&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&extended=0&v=" + VkApi.VkApiVersion ;
 			const string json =
                 @"{
                     'response': {

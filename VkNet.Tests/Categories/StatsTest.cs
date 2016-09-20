@@ -19,8 +19,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetByApp_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/stats.get?app_id=1&date_from=2015-11-11&v=" + VkApi.VkApiVersion + "&access_token=";
-			const string json =
+			const string url = "https://api.vk.com/method/stats.get?app_id=1&date_from=2015-11-11&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					response: [{
 						day: '2015-11-11',
@@ -246,8 +246,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetByGroup_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/stats.get?group_id=1&date_from=2015-11-11&v=" + VkApi.VkApiVersion + "&access_token=";
-			const string json =
+			const string url = "https://api.vk.com/method/stats.get?group_id=1&date_from=2015-11-11&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					response: [{
 						day: '2015-11-11',

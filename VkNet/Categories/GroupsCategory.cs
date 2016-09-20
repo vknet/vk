@@ -92,21 +92,21 @@
 			return response.ToVkCollectionOf<Group>(r => r);
 		}
 
-		/// <summary>
-		/// Возвращает информацию о заданном сообществе или о нескольких сообществах.
-		/// </summary>
-		/// <param name="groupIds">Идентификаторы или короткие имена сообществ. Максимальное число идентификаторов — 500. список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
-		/// <param name="groupId">Идентификатор или короткое имя сообщества. строка (Строка).</param>
-		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть. Возможные значения: city, country, place, description, wiki_page, members_count, counters, start_date, finish_date, can_post, can_see_all_posts, activity, status, contacts, links, fixed_post, verified, site,ban_info.
-		/// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
-		/// Обратите внимание, для получения некоторых полей требуется право доступа groups. Подробнее см. описание полей объекта group список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает массив объектов group.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
+        /// <summary>
+        /// Возвращает информацию о заданном сообществе или о нескольких сообществах.
+        /// </summary>
+        /// <param name="groupIds">Идентификаторы или короткие имена сообществ. Максимальное число идентификаторов — 500. список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
+        /// <param name="groupId">Идентификатор или короткое имя сообщества. строка (Строка).</param>
+        /// <param name="fields">Список дополнительных полей, которые необходимо вернуть. Возможные значения: city, country, place, description, wiki_page, members_count, counters, start_date, finish_date, can_post, can_see_all_posts, activity, status, contacts, links, fixed_post, verified, site,ban_info.
+        /// Обратите внимание, для получения некоторых полей требуется право доступа groups. Подробнее см. описание полей объекта group список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
+        /// <param name="skipAuthorization">Если <c>true<c/>, то пропустить авторизацию</param>
+        /// <returns>
+        /// После успешного выполнения возвращает массив объектов group.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById" />.
+        /// </remarks>
+        [ApiVersion("5.44")]
 		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = true)
 		{
 			var parameters = new VkParameters {

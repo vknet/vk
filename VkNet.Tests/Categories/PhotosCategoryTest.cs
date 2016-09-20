@@ -24,8 +24,8 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetProfileUploadServer_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=" + VkApi.VkApiVersion + "&access_token=";
-			const string json =
+			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
                 @"{
                     'response': {
                       'upload_url': 'http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh'
@@ -151,11 +151,11 @@ namespace VkNet.Tests.Categories
                       ]
                     }
                   }";
-	        int count;
-            var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new PhotoGetAlbumsParams
+            var albums = GetMockedPhotosCategory(url, json).GetAlbums(new PhotoGetAlbumsParams
             {
 				OwnerId = 1
-			});
+			},
+            false);
 			Assert.That(albums, Is.Not.Null);
 			Assert.That(albums.Count, Is.EqualTo(1));
 
@@ -194,14 +194,13 @@ namespace VkNet.Tests.Categories
 						}]
 					}
                   }";
-			int count;
-			var albums = GetMockedPhotosCategory(url, json).GetAlbums(out count, new PhotoGetAlbumsParams
+			var albums = GetMockedPhotosCategory(url, json).GetAlbums(new PhotoGetAlbumsParams
 			{
 				AlbumIds = new List<long>
 				{
 					110637109
 				}
-			});
+			}, false);
 
 			Assert.That(albums, Is.Not.Null);
 			Assert.That(albums.Count, Is.EqualTo(1));
@@ -228,8 +227,8 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void GetAlbumsCount_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=";
-			const string json =
+			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
                 @"{
                     'response': 1
                   }";
@@ -405,7 +404,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void Search_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.search?q=%d0%bf%d0%be%d1%80%d0%bd%d0%be&offset=2&count=3&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/photos.search?q=%d0%bf%d0%be%d1%80%d0%bd%d0%be&offset=2&count=3&v=" + VkApi.VkApiVersion ;
 			const string json =
                 @"{
                     'response': {
@@ -486,7 +485,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_Error26_Lat_and_Long_in_output_photo()
         {
-			const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=" + VkApi.VkApiVersion + "&access_token=";
+			const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=" + VkApi.VkApiVersion ;
 			const string json =
                 @"{
                     'response': {
