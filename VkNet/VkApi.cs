@@ -646,7 +646,7 @@ namespace VkNet
 
 			foreach (var pair in parameters)
 			{
-			    builder.AppendFormat($"{pair.Key}={pair.Value}&");
+			    builder.Append($"{pair.Key}={pair.Value}&");
 			}
 
 		    if (skipAuthorization && parameters.Count != 0)
@@ -655,7 +655,7 @@ namespace VkNet
 		    }
 		    else
 		    {
-		        builder.AppendFormat("access_token={0}", AccessToken);
+		        builder.Append($"access_token={AccessToken}");
 		    }
 
 			return builder.ToString();
