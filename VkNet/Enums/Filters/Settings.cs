@@ -9,13 +9,9 @@
         /// <summary>
         /// Объединенные права доступа.
         /// </summary>
-        internal ulong Value
-        {
-            get { return Mask; }
+        internal ulong Value => Mask;
 
-        }
-
-		/// <summary>
+        /// <summary>
         /// Пользователь разрешил отправлять ему уведомления.
         /// </summary>
         public static readonly Settings Notify = RegisterPossibleValue(1 << 0, "notify");
@@ -84,12 +80,6 @@
         /// Доступ к документам.
         /// </summary>
         public static readonly Settings Documents = RegisterPossibleValue(1 << 17, "docs");
-
-        // <summary>
-        // Возможность осуществлять запросы к API без HTTPS.
-        // Внимание, данная возможность находится на этапе тестирования и может быть изменена.
-        // </summary>
-        //public static readonly Settings NoHttps = RegisterPossibleValue(1 << 16, "nohttps");
 
         /// <summary>
         /// Доступ к группам пользователя.
