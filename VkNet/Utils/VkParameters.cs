@@ -1,4 +1,6 @@
-﻿namespace VkNet.Utils
+﻿using System.Globalization;
+
+namespace VkNet.Utils
 {
     using System;
     using System.Collections.Generic;
@@ -118,7 +120,6 @@
                 return;
             }
 
-            //var offset = DateTime.Now - nullableDateTime.Value;
             var totalSeconds = (nullableDateTime.Value.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
             var offset = Convert.ToInt64(totalSeconds);
 
@@ -154,6 +155,37 @@
             Remove(name);
 
             base.Add(name, value ? "1" : "0");
+        }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, decimal value)
+        {
+            Remove(name);
+
+            base.Add(name, value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, decimal? value)
+        {
+            Remove(name);
+
+            if (!value.HasValue)
+            {
+                return;
+            }
+
+            base.Add(name, value.Value.ToString(CultureInfo.InvariantCulture));
         }
     }
 }
