@@ -42,7 +42,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Год окончания работы.
 		/// </summary>
-		public int? Until { get; set; }
+		public ulong? Until { get; set; }
 
 		/// <summary>
 		/// Должность.

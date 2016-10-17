@@ -594,7 +594,7 @@ namespace VkNet.Model
 
 		    if (user.BirthDate != null && response["bdate_visibility"] == null)
 		    {
-		        var parts = (user.BirthDate).Split('.');
+		        var parts = user.BirthDate.Split('.');
 		        user.BirthdayVisibility = parts.Length > 2 ? Enums.BirthdayVisibility.Full : Enums.BirthdayVisibility.OnlyDayAndMonth;
 		    }
 

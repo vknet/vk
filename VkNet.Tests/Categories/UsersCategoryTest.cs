@@ -377,6 +377,54 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
+        public void Search_CarierCase()
+        {
+            const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&offset=123&count=3&fields=education&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+
+            const string json =
+                @"{
+					response: {
+						count: 26953,
+						items: [
+							{
+								'uid': 165614770,
+								'first_name': 'Маша',
+								'last_name': 'Иванова',
+								'university': '0',
+								'university_name': '',
+								'faculty': '0',
+								'faculty_name': '',
+								'graduation': '0',
+                                'career': [{
+                                  'company': 'ООО Рога и копыта',
+                                  'country_id': 1,
+                                  'city_id': 1041822,
+                                  'until': 9.2233720368547779E+18,
+                                  'position': '　'
+                                }],
+							}
+						]
+					}
+				}";
+
+            int count;
+            var users = GetMockedUsersCategory(url, json);
+            var lst = users.Search(out count, new UserSearchParams { Query = Query, Fields = ProfileFields.Education, Count = 3, Offset = 123 }).ToList();
+
+            Assert.That(count, Is.EqualTo(26953));
+            Assert.That(lst.Count, Is.EqualTo(1));
+
+            var maria = lst.FirstOrDefault();
+            Assert.That(maria, Is.Not.Null);
+            Assert.That(maria.Id, Is.EqualTo(165614770));
+            Assert.That(maria.FirstName, Is.EqualTo("Маша"));
+            Assert.That(maria.LastName, Is.EqualTo("Иванова"));
+            Assert.That(maria.Education, Is.Null);
+            Assert.That(maria.Career.Count, Is.EqualTo(1));
+            Assert.That(maria.Career.FirstOrDefault()?.Until, Is.EqualTo(9223372036854777856));
+        }
+
+        [Test]
         public void Search_DefaultFields_ListOfProfileObjects()
         {
 			const string url = "https://api.vk.com/method/users.search?q=Masha Ivanova&sort=0&sex=0&v=" + VkApi.VkApiVersion + "&access_token=token";
