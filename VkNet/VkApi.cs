@@ -31,7 +31,7 @@ namespace VkNet
 		/// <summary>
 		/// Версия API vk.com.
 		/// </summary>
-		public const string VkApiVersion = "5.53";
+		public const string VkApiVersion = "5.58";
 
 		/// <summary>
 		/// Параметры авторизации.
@@ -550,17 +550,23 @@ namespace VkNet
 		{
 			OnTokenExpires?.Invoke(this);
 		}
-
-		/// <summary>
-		/// Вызвать метод.
-		/// </summary>
-		/// <param name="methodName">Название метода.</param>
-		/// <param name="parameters">Параметры.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
-		/// <returns></returns>
-		private VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
+        #endregion
+        /// <summary>
+        /// Вызвать метод.
+        /// </summary>
+        /// <param name="methodName">Название метода.</param>
+        /// <param name="parameters">Параметры.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
-			string answer = null;
+            if (!parameters.ContainsKey("v"))
+            {
+                parameters.Add("v", VkApiVersion);
+            }
+
+            string answer = null;
 
 			if (_captchaSolver == null)
 			{
@@ -614,24 +620,6 @@ namespace VkNet
 
 			return new VkResponse(rawResponse) { RawJson = answer };
 		}
-		/// <summary>
-		/// Вызвать метод.
-		/// </summary>
-		/// <param name="methodName">Название метода.</param>
-		/// <param name="parameters">Параметры.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
-		/// <param name="apiVersion">Версия API.</param>
-		/// <returns>Результат выполнения запроса.</returns>
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		internal VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, string apiVersion = null)
-		{
-			if (!parameters.ContainsKey("v"))
-			{
-				parameters.Add("v", VkApiVersion);
-			}
-
-			return Call(methodName, parameters, skipAuthorization);
-		}
 
 		/// <summary>
 		/// Получить URL для API.
@@ -640,7 +628,7 @@ namespace VkNet
 		/// <param name="parameters">Параметры.</param>
 		/// <param name="skipAuthorization">Пропускать ли авторизацию</param>
 		/// <returns></returns>
-		internal string GetApiUrl(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
+		public string GetApiUrl(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
 			var builder = new StringBuilder($"https://api.vk.com/method/{methodName}?");
 
@@ -660,7 +648,7 @@ namespace VkNet
 
 			return builder.ToString();
 		}
-		#endregion
+		
 
 		/// <summary>
 		/// Прямой вызов API-метода

@@ -1,10 +1,11 @@
-﻿namespace VkNet.Tests
+﻿using System.Linq;
+
+namespace VkNet.Tests
 {
 	using System;
 	using System.Collections.Generic;
 	using Moq;
 	using NUnit.Framework;
-	using Exception;
 	using Enums.Filters;
 	using VkNet.Utils;
 
@@ -148,5 +149,35 @@
 			Api.Authorize("", 1);
 			Assert.That(Api.UserId, Is.Null);
 		}
-	}
+
+        [Test]
+	    public void VkCallShouldBePublic()
+        {
+            // arrange
+            var myType = (typeof(VkApi));
+            var myArrayMethodInfo = myType.GetMethods();
+
+            // act
+            var callMethod = myArrayMethodInfo.FirstOrDefault(x => x.Name.Contains("Call"));
+
+            // Assert
+            Assert.IsNotNull(callMethod);
+            Assert.IsTrue(callMethod.IsPublic);
+        }
+
+        [Test]
+        public void VkGetApiUrlShouldBePublic()
+        {
+            // arrange
+            var myType = (typeof(VkApi));
+            var myArrayMethodInfo = myType.GetMethods();
+
+            // act
+            var getApiUrlMethod = myArrayMethodInfo.FirstOrDefault(x => x.Name.Contains("GetApiUrl"));
+
+            // Assert
+            Assert.IsNotNull(getApiUrlMethod);
+            Assert.IsTrue(getApiUrlMethod.IsPublic);
+        }
+    }
 }
