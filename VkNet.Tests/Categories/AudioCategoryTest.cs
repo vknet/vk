@@ -228,7 +228,22 @@
 			Assert.That(uploadUrl, Is.EqualTo(new Uri("http://cs6173.vk.com/upload.php?act=add_audio&mid=4793858&aid=0&gid=0&hash=a1ec03d21addb2d8cf371db90c79f592&rhash=e5eda6ac5b469953c4d15d0c02d364f2&api=1")));
 		}
 
-		[Test]
+        [Test]
+        public void uriConvertJsonResponseTrue()
+        {
+            Url = "https://api.vk.com/method/audio.getUploadServer?v=" + VkApi.VkApiVersion + "&access_token=token";
+            Json = @"{
+                    'response': {
+                      'upload_url': 'false'
+                    }
+                  }";
+
+            var uploadUrl = Api.Audio.GetUploadServer();
+
+            Assert.IsNull(uploadUrl);
+        }
+
+        [Test]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки

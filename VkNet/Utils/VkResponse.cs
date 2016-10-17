@@ -362,7 +362,9 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Uri(VkResponse response)
 		{
-			return !string.IsNullOrWhiteSpace(response) ? new Uri(response) : null;
+		    Uri uriResult;
+
+		    return Uri.TryCreate(response, UriKind.Absolute, out uriResult) ? uriResult : null;
 		}
 
 		#endregion
