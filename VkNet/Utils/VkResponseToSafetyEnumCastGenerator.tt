@@ -34,11 +34,18 @@ namespace VkNet.Utils
 	foreach (var type in types.OrderBy(s => s))
 	{
 #>
-
+		/// <summary>
+        /// Преобразовать из <see cref="VkResponse"/> в <see cref="<#= type #>"/>.
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
 		public static implicit operator <#= type #>(VkResponse response)
 		{
 			return response == null ? null : <#= type #>.FromJson(response);
 		}
+
 <#
 	}
 #>

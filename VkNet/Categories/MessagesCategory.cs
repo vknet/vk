@@ -266,7 +266,6 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException">messageIds;Parameter messageIds can not be null.</exception>
 		/// <exception cref="System.ArgumentException">Parameter messageIds has no elements.;messageIds</exception>
-		/// <exception cref="ArgumentNullException">Параметр <paramref name="key" /> имеет значение null.</exception>
 		/// <exception cref="ArgumentException">Элемент с таким ключом уже существует в словаре <see cref="T:System.Collections.Generic.Dictionary`2" />.</exception>
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
@@ -305,8 +304,6 @@ namespace VkNet.Categories
 		/// <returns>
 		/// Признак было ли удаление сообщения успешным.
 		/// </returns>
-		/// <exception cref="ArgumentNullException">Параметр <paramref name="key" /> имеет значение null.</exception>
-		/// <exception cref="KeyNotFoundException">Свойство получено и параметр <paramref name="key" /> не найден.</exception>
 		/// <exception cref="NotSupportedException">Свойство задано, и объект <see cref="T:System.Collections.Generic.IDictionary`2" /> доступен только для чтения.</exception>
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.

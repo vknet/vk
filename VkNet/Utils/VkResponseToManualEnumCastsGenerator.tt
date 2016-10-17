@@ -40,6 +40,13 @@ namespace VkNet.Utils
 		if(type == "DeleteFriendStatus")
 		{
 #>
+		/// <summary>
+        /// Преобразовать из <see cref="VkResponse"/> в <see cref="<#= type #>"/>.
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
 		public static implicit operator <#= type #>(VkResponse response)
 		{
 			if (response == null || response["success"] == 0)
@@ -59,6 +66,13 @@ namespace VkNet.Utils
 		else
 		{
 #>
+		/// <summary>
+        /// Преобразовать из <see cref="VkResponse"/> в <see cref="<#= type #>"/>.
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
 		public static implicit operator <#= type #>(VkResponse response)
 		{
 			if (response == null)

@@ -398,7 +398,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VkResponseToManualEnumCastsGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Utils\VkResponseToModelCastsGenerator.cs">
+    <Compile Include="Utils\VkResponseToModelCastsGenerator1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VkResponseToModelCastsGenerator.tt</DependentUpon>
@@ -464,7 +464,7 @@
     </None>
     <None Include="Utils\VkResponseToModelCastsGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VkResponseToModelCastsGenerator.cs</LastGenOutput>
+      <LastGenOutput>VkResponseToModelCastsGenerator1.cs</LastGenOutput>
     </None>
     <None Include="VkNet.ruleset" />
   </ItemGroup>

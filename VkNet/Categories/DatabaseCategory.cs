@@ -171,7 +171,7 @@ namespace VkNet.Categories
         /// <param name="cityIds">Идентификаторы городов.</param>
         /// <returns>Информация о городах.</returns>
         /// <remarks>
-        /// Идентификаторы городов могут быть получены с помощью методов <see cref="UsersCategory.Get(long,ProfileFields,NameCase)"/>"/>,
+        /// Идентификаторы городов могут быть получены с помощью методов UsersCategory.Get,
         /// places.getById, places.search, places.getCheckins.
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCitiesById"/>.
         /// </remarks>

@@ -38,11 +38,25 @@ namespace VkNet.Utils
 	foreach (var type in types.OrderBy(s => s))
 		{
 #>
+		/// <summary>
+        /// Преобразовать из <see cref="VkResponse"/> в <see cref="<#= type #>"/>.
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
 		public static implicit operator <#= type #>(VkResponse response)
 		{
-            return response == null || response._token == null || !response._token.HasValues ? null :  <#= type #>.FromJson(response);
+            return response?._token == null || !response._token.HasValues ? null :  <#= type #>.FromJson(response);
         }
 
+		/// <summary>
+        /// Преобразовать из <see cref="VkResponse"/> в <see cref="Collection{<#= type #>}"/>.
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
 		public static implicit operator Collection<<#= type #>>(VkResponse response)
         {
             return response.ToCollectionOf<<#= type #>>(a => a);

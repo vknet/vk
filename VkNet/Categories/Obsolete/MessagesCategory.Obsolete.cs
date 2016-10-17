@@ -177,31 +177,30 @@ namespace VkNet.Categories
 			return Search(out totalCount, query, null, offset, count);
 		}
 
-		/// <summary>
-		/// Посылает личное сообщение.
-		/// </summary>
-		/// <param name="id">
-		/// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, которому необходимо послать сообщение.
-		/// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, к которой будет относиться сообщение.
-		/// </param>
-		/// <param name="isChat">Признак посылается ли сообщение в беседу (true) или указанному пользователю (false).</param>
-		/// <param name="message">Текст личного cообщения (является обязательным, если не задан параметр <paramref name="attachment"/>).</param>
-		/// <param name="title">Заголовок сообщения.</param>
-		/// <param name="attachment">Медиа-приложение к личному сообщению.</param>
-		/// <param name="forwardMessagedIds">Идентификаторы пересылаемых сообщений. Перечисленные сообщения отправителя будут отображаться
-		/// в теле письма у получателя.</param>
-		/// <param name="fromChat">Задайте false для обычного сообщения и true для сообщения из часта.</param>
-		/// <param name="latitude">Широта при добавлении местоположения.</param>
-		/// <param name="longitude">Долгота при добавлении местоположения.</param>
-		/// <param name="guid">Уникальный строковой идентификатор, предназначенный для предотвращения повторной отправки одинакового сообщения.</param>
-		/// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
-		/// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
-		/// <returns>Возвращается идентификатор отправленного сообщения.</returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.send"/>.
-		/// </remarks>
-		[Obsolete("Устаревшая версия API. Используйте метод Send(MessageSendParams @params)")]
+	    /// <summary>
+	    /// Посылает личное сообщение.
+	    /// </summary>
+	    /// <param name="id">
+	    /// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, которому необходимо послать сообщение.
+	    /// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, к которой будет относиться сообщение.
+	    /// </param>
+	    /// <param name="isChat">Признак посылается ли сообщение в беседу (true) или указанному пользователю (false).</param>
+	    /// <param name="message">Текст личного cообщения (является обязательным, если не задан параметр <paramref name="attachment"/>).</param>
+	    /// <param name="title">Заголовок сообщения.</param>
+	    /// <param name="attachment">Медиа-приложение к личному сообщению.</param>
+	    /// <param name="forwardMessagedIds">Идентификаторы пересылаемых сообщений. Перечисленные сообщения отправителя будут отображаться
+	    /// в теле письма у получателя.</param>
+	    /// <param name="fromChat">Задайте false для обычного сообщения и true для сообщения из часта.</param>
+	    /// <param name="latitude">Широта при добавлении местоположения.</param>
+	    /// <param name="longitude">Долгота при добавлении местоположения.</param>
+	    /// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
+	    /// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
+	    /// <returns>Возвращается идентификатор отправленного сообщения.</returns>
+	    /// <remarks>
+	    /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
+	    /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.send"/>.
+	    /// </remarks>
+	    [Obsolete("Устаревшая версия API. Используйте метод Send(MessageSendParams @params)")]
 		public long Send(
 			long id,
 			bool isChat,

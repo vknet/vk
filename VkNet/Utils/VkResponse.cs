@@ -168,14 +168,14 @@ namespace VkNet.Utils
 			return response != null ? (ulong?)response._token : null;
 		}
 
-		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в коллекцию <see cref="Collection`1[System.Int64]"/>.
-		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Collection<long>(VkResponse response)
+        /// <summary>
+        /// Выполняет неявное преобразование из <see cref="VkResponse" /> в коллекцию Collection&lt;long&gt;.
+        /// </summary>
+        /// <param name="response">Ответ vk.com</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator Collection<long>(VkResponse response)
 		{
 			return response?.ToCollectionOf<long>(i => i);
 		}
@@ -288,14 +288,14 @@ namespace VkNet.Utils
 			return response == null ? null : WebUtility.HtmlDecode((string)response._token);
 		}
 
-		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в коллекцию <see cref="Collection`1[System.String]"/>.
-		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Collection<string>(VkResponse response)
+        /// <summary>
+        /// Выполняет неявное преобразование из <see cref="VkResponse" /> в коллекцию Collection&lt;string&gt;.
+        /// </summary>
+        /// <param name="response">Ответ vk.com</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator Collection<string>(VkResponse response)
 		{
 			return response.ToCollectionOf<string>(s => s);
 		}
