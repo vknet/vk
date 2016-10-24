@@ -65,14 +65,15 @@
 		/// <param name="separator">Разделитель.</param>
 		/// <returns>Строковое представление коллекции через разделитель.</returns>
 		public static string JoinNonEmpty<T>(this IEnumerable<T> collection, string separator = ",")
-        {
-	        if (collection == null)
-	        {
-		        return string.Empty;
-	        }
-
-            return string.Join(separator, collection.Select(i => i.ToString().Trim()).Where(s => !string.IsNullOrWhiteSpace(s)).ToArray());
-        }
+		{
+		    return collection == null ? 
+                string.Empty : 
+                string.Join(
+                    separator, 
+                    collection.Select(i => i.ToString().Trim())
+                    .Where(s => !string.IsNullOrWhiteSpace(s)
+                ).ToArray());
+		}
 
 		/// <summary>
 		/// Преобразовать массив объектов ответа сервера vk.com.
@@ -82,14 +83,9 @@
 		/// <param name="selector">Функция фильтрации.</param>
 		/// <returns>Коллекция данных указанного типа.</returns>
 		public static IEnumerable<T> Convert<T>(this VkResponseArray response, Func<VkResponse, T> selector)
-        {
-	        if (response == null)
-	        {
-		        return Enumerable.Empty<T>();
-	        }
-
-            return response.Select(selector).ToList();
-        }
+		{
+		    return response?.Select(selector).ToList() ?? Enumerable.Empty<T>();
+		}
 
 		/// <summary>
 		/// Вывести в консоль URL API.
@@ -123,7 +119,9 @@
                 {
                     var line = reader.ReadLine();
                     if (line == null)
+                    {
                         break;
+                    }
 
                     if (!isFirst)
                     {

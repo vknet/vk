@@ -14,7 +14,7 @@
 		/// <summary>
 		/// Список наименования полей.
 		/// </summary>
-		private readonly List<NameValue> _decodedAnswer;
+		private readonly List<NameValue> _nameValues;
 
 		/// <summary>
 		/// Конструктор.
@@ -22,7 +22,7 @@
 		/// <param name="responseUrl">URL ответа.</param>
 		private VkAuthorization(Uri responseUrl)
         {
-            _decodedAnswer = Decode(responseUrl);
+            _nameValues = Decode(responseUrl);
         }
 
         /// <summary>
@@ -40,34 +40,22 @@
         /// <summary>
         /// Возвращает признак была ли авторизация успешной.
         /// </summary>
-        public bool IsAuthorized
-        {
-            get { return AccessToken != null; }
-        }
+        public bool IsAuthorized => AccessToken != null;
 
         /// <summary>
         /// Проверяет требуется ли получения у авторизации на запрошенные приложением действия (при установке приложения пользователю).
         /// </summary>
-        public bool IsAuthorizationRequired
-        {
-            get { return GetFieldValue("__q_hash") != null; }
-        }
+        public bool IsAuthorizationRequired => GetFieldValue("__q_hash") != null;
 
         /// <summary>
         /// Маркер доступа, который необходимо использовать для доступа к API ВКонтакте.
         /// </summary>
-        public string AccessToken
-        {
-            get { return GetFieldValue("access_token"); }
-        }
+        public string AccessToken => GetFieldValue("access_token");
 
         /// <summary>
         /// Время истечения срока действия маркера доступа.
         /// </summary>
-        public string ExpiresIn
-        {
-            get { return GetFieldValue("expires_in"); }
-        }
+        public string ExpiresIn => GetFieldValue("expires_in");
 
         /// <summary>
         /// Идентификатор пользователя, у которого работает приложение (от имени которого был произведен вход).
@@ -79,7 +67,9 @@
                 var userIdFieldValue = GetFieldValue("user_id");
                 long userId;
                 if (!long.TryParse(userIdFieldValue, out userId))
+                {
                     throw new VkApiException("UserId is not integer value.");
+                }
 
                 return userId;
             }
@@ -108,7 +98,9 @@
 		/// <returns>Значение поля.</returns>
 		private string GetFieldValue(string fieldName)
         {
-            return _decodedAnswer.Where(i => i.Name == fieldName).Select(i => i.Value).FirstOrDefault();
+            return _nameValues.Where(i => i.Name == fieldName)
+                .Select(i => i.Value)
+                .FirstOrDefault();
         }
 
 		/// <summary>
@@ -146,31 +138,26 @@
             }
         }
 
-		/// <summary>
-		/// Расшифровывает указанный URL.
-		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <returns>Список наименования полей.</returns>
-		private static List<NameValue> Decode(Uri url)
-        {
-			if (!string.IsNullOrEmpty(url.Query))
-			{
-				return DecodeQuery(url);
-			}
+        /// <summary>
+        /// Расшифровывает указанный URL.
+        /// </summary>
+        /// <param name="url">URL.</param>
+        /// <returns>Список наименования полей.</returns>
+        private static List<NameValue> Decode(Uri url) => string.IsNullOrWhiteSpace(url.Query) ? DecodeFragment(url) : DecodeQuery(url);
 
-            return DecodeFragment(url);
-        }
-
-		/// <summary>
-		/// Расшифровывает вопрос.
-		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <returns>Список наименования полей.</returns>
-		private static List<NameValue> DecodeQuery(Uri url)
+        /// <summary>
+        /// Расшифровывает вопрос.
+        /// </summary>
+        /// <param name="url">URL.</param>
+        /// <returns>Список наименования полей.</returns>
+        private static List<NameValue> DecodeQuery(Uri url)
         {
             var urlQuery = url.Query;
             var query = urlQuery.StartsWith("?") || urlQuery.StartsWith("#") ? urlQuery.Substring(1) : urlQuery;
-            return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Split('=')).Select(s => new NameValue(s[0], s[1])).ToList();
+            return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(s => s.Split('='))
+                        .Select(s => new NameValue(s[0], s[1]))
+                        .ToList();
         }
 
 		/// <summary>
@@ -182,7 +169,10 @@
         {
             var urlQuery = url.Fragment;
             var query = urlQuery.StartsWith("#") ? urlQuery.Substring(1) : urlQuery;
-            return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Split('=')).Select(s => new NameValue(s[0], s[1])).ToList();
+            return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(s => s.Split('='))
+                .Select(s => new NameValue(s[0], s[1]))
+                .ToList();
         }
     }
 }

@@ -21,15 +21,17 @@
         public static void ThrowIfNullOrEmpty(Expression<Func<string>>  expr)
         {
             var body = expr.Body as MemberExpression;
-            if (body != null)
+            if (body == null)
             {
-                var paramName = body.Member.Name;
-                var value = expr.Compile()();
+                return;
+            }
 
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException(paramName);
-                }
+            var paramName = body.Member.Name;
+            var value = expr.Compile()();
+
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException(paramName);
             }
         }
 
@@ -44,7 +46,9 @@
         public static void ThrowIfNumberNotInRange<T>(T value, T min, T max) where T : struct, IComparable<T>
         {
             if (value.CompareTo(min) < 0 || value.CompareTo(max) > 0)
+            {
                 throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>
@@ -93,19 +97,19 @@
         private static Tuple<string, T> ThrowIfNumberIsNegative<T>(Expression<T> expr)
         {
             if (expr == null)
-                throw new ArgumentNullException("expr");
+            {
+                throw new ArgumentNullException(nameof(expr));
+            }
 
             var name = string.Empty;
 
             // Если значение передатеся из вызывающего метода
             var unary = expr.Body as UnaryExpression;
-            if (unary != null)
+            var member = unary?.Operand as MemberExpression;
+
+            if (member != null)
             {
-                var member = unary.Operand as MemberExpression;
-                if (member != null)
-                {
-                    name = member.Member.Name;
-                }
+                name = member.Member.Name;
             }
 
             // Если в метод передается значение напрямую

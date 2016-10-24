@@ -35,8 +35,10 @@
 			Request.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)";
 			Request.CookieContainer = cookies.Container;
 
-			if (host != null && port != null)
-				Request.Proxy = new WebProxy(host, port.Value);
+		    if (host != null && port != null)
+		    {
+		        Request.Proxy = new WebProxy(host, port.Value);
+		    }
 
             if (Request.Proxy != null)
             {
@@ -97,8 +99,10 @@
 			var data = Encoding.UTF8.GetBytes(parameters);
 			call.Request.ContentLength = data.Length;
 
-			using (var requestStream = call.Request.GetRequestStream())
-				requestStream.Write(data, 0, data.Length);
+		    using (var requestStream = call.Request.GetRequestStream())
+		    {
+		        requestStream.Write(data, 0, data.Length);
+		    }
 
 			return call.MakeRequest(host, port, proxyLogin, proxyPassword);
 		}
