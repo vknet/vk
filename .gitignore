@@ -10,3 +10,4 @@ Debug/
 Release/
 
 /GCopLog.txt
+VkNet/Utils/*Generator*.cs

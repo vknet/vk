@@ -339,7 +339,7 @@ namespace VkNet
 		/// <param name="code">Делегат получения кода для двух факторной авторизации</param>
 		/// <param name="captchaSid">Идентификатор капчи</param>
 		/// <param name="captchaKey">Текст капчи</param>
-		[Obsolete("Устаревший метод, будет удален. Используйте метод Get(Authorize @params)")]
+		[Obsolete("Устаревший метод, будет удален. Используйте метод Authorize(ApiAuthParams @params)")]
 		public void Authorize(int appId, string emailOrPhone, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => appId);
@@ -360,7 +360,7 @@ namespace VkNet
 		/// <param name="params">Данные авторизации</param>
 		public Task AuthorizeAsync(ApiAuthParams @params)
 		{
-			var rTask = new Task(() => { Authorize(@params); });
+			var rTask = new Task(() => Authorize(@params));
 			rTask.Start();
 			return rTask;
 		}
@@ -418,10 +418,7 @@ namespace VkNet
 		/// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
 		public Task RefreshTokenAsync(Func<string> code = null)
 		{
-			var rTask = new Task(() =>
-			{
-				RefreshToken(code);
-			});
+			var rTask = new Task(() => RefreshToken(code));
 			rTask.Start();
 			return rTask;
 		}
@@ -507,7 +504,10 @@ namespace VkNet
 							_captchaSolver?.CaptchaIsFalse();
 						}
 
-						if (numberOfRemainingAttemptsToSolveCaptcha <= 0) continue;
+					    if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
+					    {
+					        continue;
+					    }
 						captchaSidTemp = captchaNeededException.Sid;
 						captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
 						numberOfRemainingAttemptsToSolveCaptcha--;
@@ -600,7 +600,10 @@ namespace VkNet
 							_captchaSolver?.CaptchaIsFalse();
 						}
 
-						if (numberOfRemainingAttemptsToSolveCaptcha <= 0) continue;
+					    if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
+					    {
+					        continue;
+					    }
 						captchaSidTemp = captchaNeededException.Sid;
 						captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
 						numberOfRemainingAttemptsToSolveCaptcha--;
