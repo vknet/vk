@@ -215,7 +215,7 @@ namespace VkNet.Categories
 		[ApiVersion("5.44")]
 		public long Send(MessagesSendParams @params)
 		{
-			if (string.IsNullOrEmpty(@params.Message))
+			if ((string.IsNullOrEmpty(@params.Message))&&(@params.Attachments==null))
 			{
 				throw new ArgumentException("Message can not be null.", "Message");
 			}
