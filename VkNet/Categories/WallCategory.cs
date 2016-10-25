@@ -38,7 +38,7 @@
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public WallGetObject Get(WallGetParams @params, bool skipAuthorization = true)
+		public WallGetObject Get(WallGetParams @params, bool skipAuthorization = false)
 		{
 			if (@params.Filter != null && @params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
 			{
