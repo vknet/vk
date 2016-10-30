@@ -1,0 +1,9 @@
+﻿<Properties StartupConfiguration="{4C9E8D81-3E14-47B7-BEA9-05A08E7F4570}|Default">
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Tools.VkApiRunner PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
