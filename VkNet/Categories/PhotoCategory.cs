@@ -65,7 +65,7 @@
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getAlbums" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = true)
+		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("photos.getAlbums", @params, skipAuthorization).ToVkCollectionOf<PhotoAlbum>(x => x);
 		}
@@ -81,7 +81,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.get" />.
 		/// </remarks>
-		public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = true)
+		public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("photos.get", @params, skipAuthorization).ToVkCollectionOf<Photo>(x => x);
 		}
@@ -137,7 +137,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getById" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null, bool skipAuthorization = true)
+		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null, bool skipAuthorization = false)
 		{
 			var parameters = new VkParameters
 				{
@@ -417,7 +417,7 @@
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.search" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = true)
+		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("photos.search", @params, skipAuthorization).ToVkCollectionOf<Photo>(x => x);
 		}

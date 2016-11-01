@@ -40,7 +40,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = true)
+		public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false)
 		{
 		    @params.Extended = false;
 			return _vk.Call("likes.getList", @params, skipAuthorization).ToVkCollectionOf<long>(x => x);

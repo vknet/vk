@@ -75,7 +75,7 @@
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
+		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			var users = Get(new[] { userId }, fields, nameCase, skipAuthorization);
@@ -95,7 +95,7 @@
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
+		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			if (userIds == null)
 			{
@@ -127,7 +127,7 @@
 		/// </remarks>
 		[Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
+		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			if (screenNames == null)
 			{
@@ -157,7 +157,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
+		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
@@ -181,7 +181,7 @@
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public VkCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null, bool skipAuthorization = true)
+		public VkCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -214,7 +214,7 @@
 		/// </remarks>
 		[Pure]
 		[ApiVersion("5.44")]
-		public VkCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = true)
+		public VkCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);

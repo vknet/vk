@@ -37,7 +37,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = true)
+		public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("friends.get", @params, skipAuthorization).ToVkCollectionOf(x => @params.Fields != null ? x : new User { Id = x });
 		}

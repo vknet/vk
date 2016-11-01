@@ -107,7 +107,7 @@
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById" />.
         /// </remarks>
         [ApiVersion("5.44")]
-		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = true)
+		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = false)
 		{
 			var parameters = new VkParameters {
 				{ "group_ids", groupIds },
@@ -135,7 +135,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = true)
+		public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("groups.getMembers", @params, skipAuthorization).ToVkCollectionOf(x => @params.Fields != null? x : new User {Id = x});
 		}
@@ -166,7 +166,7 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = true)
+		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = false)
 		{
 			if (userId.HasValue)
 			{
