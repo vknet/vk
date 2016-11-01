@@ -52,7 +52,7 @@ namespace VkNet.Categories
 
 			totalCount = Convert.ToInt64(response.TotalCount);
 
-			return response.ToReadOnlyCollection();
+			return response.Apps;
 		}
 
 		/// <summary>

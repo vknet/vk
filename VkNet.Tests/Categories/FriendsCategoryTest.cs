@@ -32,8 +32,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_FriendsForDurov_ListOfFriends()
 		{
-			const string url = "https://api.vk.com/method/friends.get?list_id=1&v=" + VkApi.VkApiVersion;
-			const string json =
+			const string url = "https://api.vk.com/method/friends.get?list_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
                     'response': [
                       2,

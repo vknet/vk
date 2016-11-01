@@ -293,8 +293,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 		{
-			const string url = "https://api.vk.com/method/wall.get?owner_id=10&offset=1&count=1&filter=owner&extended=1&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/wall.get?owner_id=10&offset=1&count=1&filter=owner&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 			    @"{
                     'response': {
 							count: 42,
@@ -525,8 +525,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_ReturnWallRecords()
 		{
-			const string url = "https://api.vk.com/method/wall.getById?posts=1_619,1_617,1_616&v=" + VkApi.VkApiVersion;
-			const string json =
+			const string url = "https://api.vk.com/method/wall.getById?posts=1_619,1_617,1_616&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
                     response: [{
 						id: 617,
@@ -757,8 +757,8 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_WithPoll_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=-103292418&offset=0&count=1&extended=0&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/wall.get?owner_id=-103292418&offset=0&count=1&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					response: {
 					count: 2,
@@ -821,8 +821,8 @@ namespace VkNet.Tests.Categories
         [Test]
 	    public void Get_Document_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&extended=0&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
                 @"{
                     'response': {
                       'count': 100,
@@ -1019,8 +1019,8 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_With_PhotoListAttachment()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&extended=0&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
                 @"{
                     'response': {
                       'count': 1724,

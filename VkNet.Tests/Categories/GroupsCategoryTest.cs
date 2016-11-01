@@ -449,8 +449,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMember_WrongGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=0&user_ids=4793858&extended=0&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=0&user_ids=4793858&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					'error': {
 					  'error_code': 125,
@@ -488,8 +488,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMember_WrongUid_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=1000000000000&extended=0&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=1000000000000&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					response: 0
 				  }";
@@ -502,8 +502,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMemeber_UserIsAMember_ReturnTrue()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=4793858&extended=0&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=637247&user_ids=4793858&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					response: [{
 						member: 1,
@@ -519,8 +519,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void IsMemeber_UserNotAMember_ReturnFalse()
 		{
-			const string url = "https://api.vk.com/method/groups.isMember?group_id=17683660&user_ids=4793858&extended=0&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.isMember?group_id=17683660&user_ids=4793858&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					response: [{
 						member: 0,
@@ -536,8 +536,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMembers_NormalCase_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
                 @"{
 					'response': {
 					  'count': 861,
@@ -575,8 +575,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&sort=id_asc&offset=15&count=7&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=17683660&sort=id_asc&offset=15&count=7&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					'response': {
 					  'count': 861,
@@ -611,8 +611,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getMembers?group_id=0&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.getMembers?group_id=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					'error': {
 					  'error_code': 125,
@@ -849,8 +849,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=17683660&v=" + VkApi.VkApiVersion;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.getById?group_id=17683660&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					'response': [
 					  {
@@ -886,8 +886,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_InvalidGid_ThrowsInvalidParameterException()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=0&v=" + VkApi.VkApiVersion;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.getById?group_id=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					'error': {
 					  'error_code': 125,
@@ -921,8 +921,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_BanInfo()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_id=66464944&fields=ban_info&v=" + VkApi.VkApiVersion;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.getById?group_id=66464944&fields=ban_info&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
                     'response': [
                       {
@@ -990,14 +990,14 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			Assert.That(() => cat.GetById(new long[] { 0 }), Throws.InstanceOf<ArgumentNullException>());
+			Assert.That(() => cat.GetById(new long[] { 0 }), Throws.InstanceOf<InvalidParameterException>());
 		}
 
 		[Test]
 		public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
 		{
-			const string url = "https://api.vk.com/method/groups.getById?group_ids=17683660,637247&v=" + VkApi.VkApiVersion;
-			const string json =
+			const string url = "https://api.vk.com/method/groups.getById?group_ids=17683660,637247&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string json =
 				@"{
 					'response': [
 					  {

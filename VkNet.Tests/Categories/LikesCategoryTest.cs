@@ -69,7 +69,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetList_NormalCase()
         {
-            const string url = "https://api.vk.com/method/likes.getList?item_id=701&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/likes.getList?item_id=701&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
 					response: {
