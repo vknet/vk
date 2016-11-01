@@ -16,7 +16,7 @@ namespace VkNet.Utils
     public partial class VkResponse
     {
 <#
-	var path = Directory.GetParent(Host.ResolvePath("")) + @"\Model";
+	var path = Path.Combine(Directory.GetParent(Host.ResolvePath("")).ToString(), "Model");
 	var files = Directory.GetFiles(path, "*.cs", SearchOption.AllDirectories).ToList();
 
 	var types = new List<string>();
