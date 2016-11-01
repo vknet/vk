@@ -38,9 +38,9 @@ namespace VkNet.Categories
 		/// К методу можно делать не более 60 запросов в минуту с одного IP или id.
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/apps.getCatalog" />.
 		/// </remarks>
-		public AppGetObject GetCatalog(AppGetCatalogParams @params, bool skipAuthorization = false)
+		public VkCollection<App> GetCatalog(AppGetCatalogParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call("apps.getCatalog", @params, skipAuthorization);
+			return _vk.Call("apps.getCatalog", @params, skipAuthorization).ToVkCollectionOf<App>(x => x);
 		}
 
 		/// <summary>
@@ -54,9 +54,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.get" />.
 		/// </remarks>
-		public VkCollection<App> Get(AppGetParams @params, bool skipAuthorization = false)
+		public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call("apps.get", @params, skipAuthorization).ToVkCollectionOf<App>(x => x);
+			return _vk.Call("apps.get", @params, skipAuthorization);
 		}
 
 		/// <summary>
