@@ -84,6 +84,7 @@
     <Compile Include="Exception\NeedValidationException.cs" />
     <Compile Include="Exception\OutOfLimitsException.cs" />
     <Compile Include="Model\AccountChangePasswordResult.cs" />
+    <Compile Include="Model\AppGetObject.cs" />
     <Compile Include="Model\CategoryGroup.cs" />
     <Compile Include="Model\DocumentType.cs" />
     <Compile Include="Model\Chair.cs" />
