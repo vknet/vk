@@ -1,0 +1,13 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "DotNet.Contracts": "1.10.20606.1",
+    "HtmlAgilityPack": "1.4.9.5",
+    "Newtonsoft.Json": "9.0.1",
+    "PCLStorage": "1.0.2",
+    "System.Runtime.Serialization.Primitives": "4.1.1"
+  },
+  "frameworks": {
+    ".NETPortable,Version=v4.5,Profile=Profile7": {}
+  }
+}

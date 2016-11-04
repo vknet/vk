@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4AE8CA7F-5C34-44FE-9FF0-A1EAFEE18569}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VkNet.UWP</RootNamespace>
+    <AssemblyName>VkNet.UWP</AssemblyName>
+    <DefaultLanguage>ru-RU</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="project.json" />
+    <None Include="project.lock.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Categories\AccountCategory.cs" />
+    <Compile Include="Categories\AppsCategory.cs" />
+    <Compile Include="Categories\AudioCategory.cs" />
+    <Compile Include="Categories\AuthCategory.cs" />
+    <Compile Include="Categories\BoardCategory.cs" />
+    <Compile Include="Categories\DatabaseCategory.cs" />
+    <Compile Include="Categories\DocsCategory.cs" />
+    <Compile Include="Categories\ExecuteCategory.cs" />
+    <Compile Include="Categories\FaveCategory.cs" />
+    <Compile Include="Categories\FriendsCategory.cs" />
+    <Compile Include="Categories\GiftsCategory.cs" />
+    <Compile Include="Categories\GroupsCategory.cs" />
+    <Compile Include="Categories\LikesCategory.cs" />
+    <Compile Include="Categories\MarketsCategory.cs" />
+    <Compile Include="Categories\MessagesCategory.cs" />
+    <Compile Include="Categories\NewsFeedCategory.cs" />
+    <Compile Include="Categories\Obsolete\AccountCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\AppsCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\AudioCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\DocsCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\FriendsCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\GiftsCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\GroupsCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\NewsFeedCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\PagesCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\PhotoCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\StatusCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\UsersCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\VideoCategory.Obsolete.cs" />
+    <Compile Include="Categories\Obsolete\WallCategory.Obsolete.cs" />
+    <Compile Include="Categories\PagesCategory.cs" />
+    <Compile Include="Categories\PhotoCategory.cs" />
+    <Compile Include="Categories\StatsCategory.cs" />
+    <Compile Include="Categories\StatusCategory.cs" />
+    <Compile Include="Categories\UsersCategory.cs" />
+    <Compile Include="Categories\UtilsCategory.cs" />
+    <Compile Include="Categories\VideoCategory.cs" />
+    <Compile Include="Categories\WallCategory.cs" />
+    <Compile Include="Enums\AccessPages.cs" />
+    <Compile Include="Enums\AddFriendStatus.cs" />
+    <Compile Include="Enums\AdminLevel.cs" />
+    <Compile Include="Enums\Attitude.cs" />
+    <Compile Include="Enums\AudioGenre.cs" />
+    <Compile Include="Enums\AudioSort.cs" />
+    <Compile Include="Enums\BanReason.cs" />
+    <Compile Include="Enums\BirthdayVisibility.cs" />
+    <Compile Include="Enums\ContentAccess.cs" />
+    <Compile Include="Enums\DeleteFriendStatus.cs" />
+    <Compile Include="Enums\DocFilter.cs" />
+    <Compile Include="Enums\Filters\AccountFields.cs" />
+    <Compile Include="Enums\Filters\AppFilter.cs" />
+    <Compile Include="Enums\Filters\CountersFilter.cs" />
+    <Compile Include="Enums\Filters\GroupsFields.cs" />
+    <Compile Include="Enums\Filters\GroupsFilters.cs" />
+    <Compile Include="Enums\Filters\GroupSort.cs" />
+    <Compile Include="Enums\Filters\GroupSubType.cs" />
+    <Compile Include="Enums\Filters\MultivaluedFilter.cs" />
+    <Compile Include="Enums\Filters\ProfileFields.cs" />
+    <Compile Include="Enums\Filters\Settings.cs" />
+    <Compile Include="Enums\Filters\SubscribeFilter.cs" />
+    <Compile Include="Enums\Filters\UsersFields.cs" />
+    <Compile Include="Enums\Filters\VideoFilters.cs" />
+    <Compile Include="Enums\FriendStatus.cs" />
+    <Compile Include="Enums\GiftPrivacy.cs" />
+    <Compile Include="Enums\GroupAccess.cs" />
+    <Compile Include="Enums\GroupPublicity.cs" />
+    <Compile Include="Enums\GroupSubjects.cs" />
+    <Compile Include="Enums\Iso3166.cs" />
+    <Compile Include="Enums\LeaderboardTypes.cs" />
+    <Compile Include="Enums\LifeMain.cs" />
+    <Compile Include="Enums\MainSection.cs" />
+    <Compile Include="Enums\MaritalStatus.cs" />
+    <Compile Include="Enums\MarketCurrencyId.cs" />
+    <Compile Include="Enums\MessageReadState.cs" />
+    <Compile Include="Enums\MessagesFilter.cs" />
+    <Compile Include="Enums\MessageType.cs" />
+    <Compile Include="Enums\PageAccessKind.cs" />
+    <Compile Include="Enums\PeopleMain.cs" />
+    <Compile Include="Enums\PoliticalPreferences.cs" />
+    <Compile Include="Enums\ProductAvailability.cs" />
+    <Compile Include="Enums\ProductSort.cs" />
+    <Compile Include="Enums\RelationType.cs" />
+    <Compile Include="Enums\ReportReason.cs" />
+    <Compile Include="Enums\SafetyEnums\AppPlatforms.cs" />
+    <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
+    <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
+    <Compile Include="Enums\SafetyEnums\AppSort.cs" />
+    <Compile Include="Enums\SafetyEnums\ChangeNameStatus.cs" />
+    <Compile Include="Enums\SafetyEnums\CommentObjectType.cs" />
+    <Compile Include="Enums\SafetyEnums\CommentsSort.cs" />
+    <Compile Include="Enums\SafetyEnums\Deactivated.cs" />
+    <Compile Include="Enums\SafetyEnums\Display.cs" />
+    <Compile Include="Enums\SafetyEnums\FeedType.cs" />
+    <Compile Include="Enums\SafetyEnums\FriendsFilter.cs" />
+    <Compile Include="Enums\SafetyEnums\FriendsOrder.cs" />
+    <Compile Include="Enums\SafetyEnums\GroupsSort.cs" />
+    <Compile Include="Enums\SafetyEnums\GroupType.cs" />
+    <Compile Include="Enums\SafetyEnums\LikeObjectType.cs" />
+    <Compile Include="Enums\SafetyEnums\LikesFilter.cs" />
+    <Compile Include="Enums\SafetyEnums\LinkAccessType.cs" />
+    <Compile Include="Enums\SafetyEnums\MediaType.cs" />
+    <Compile Include="Enums\SafetyEnums\NameCase.cs" />
+    <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
+    <Compile Include="Enums\SafetyEnums\NewsTypes.cs" />
+    <Compile Include="Enums\SafetyEnums\OccupationType.cs" />
+    <Compile Include="Enums\SafetyEnums\PhotoAlbumType.cs" />
+    <Compile Include="Enums\SafetyEnums\PhotoFeedType.cs" />
+    <Compile Include="Enums\SafetyEnums\PhotoSearchRadius.cs" />
+    <Compile Include="Enums\SafetyEnums\PhotoSizeType.cs" />
+    <Compile Include="Enums\SafetyEnums\Platform.cs" />
+    <Compile Include="Enums\SafetyEnums\PostSourceType.cs" />
+    <Compile Include="Enums\SafetyEnums\PostType.cs" />
+    <Compile Include="Enums\SafetyEnums\PostTypeOrder.cs" />
+    <Compile Include="Enums\SafetyEnums\Privacy.cs" />
+    <Compile Include="Enums\SafetyEnums\RelativeType.cs" />
+    <Compile Include="Enums\SafetyEnums\ReportType.cs" />
+    <Compile Include="Enums\SafetyEnums\SafetyEnum.cs" />
+    <Compile Include="Enums\SafetyEnums\Services.cs" />
+    <Compile Include="Enums\SafetyEnums\UserSection.cs" />
+    <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
+    <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
+    <Compile Include="Enums\SafetyEnums\WallFilter.cs" />
+    <Compile Include="Enums\Sex.cs" />
+    <Compile Include="Enums\SortOrderBy.cs" />
+    <Compile Include="Enums\UserSort.cs" />
+    <Compile Include="Enums\VideoSort.cs" />
+    <Compile Include="Enums\VideoWidth.cs" />
+    <Compile Include="Enums\VkObjectType.cs" />
+    <Compile Include="Enums\WallContentAccess.cs" />
+    <Compile Include="Exception\AccessDeniedException.cs" />
+    <Compile Include="Exception\AccessTokenInvalidException.cs" />
+    <Compile Include="Exception\CaptchaNeededException.cs" />
+    <Compile Include="Exception\InvalidParameterException.cs" />
+    <Compile Include="Exception\NeedValidationException.cs" />
+    <Compile Include="Exception\OutOfLimitsException.cs" />
+    <Compile Include="Exception\PostLimitException.cs" />
+    <Compile Include="Exception\TooManyRequestsException.cs" />
+    <Compile Include="Exception\UserAuthorizationFailException.cs" />
+    <Compile Include="Exception\VkApiAuthorizationException.cs" />
+    <Compile Include="Exception\VkApiException.cs" />
+    <Compile Include="Exception\VkApiMethodInvokeException.cs" />
+    <Compile Include="Model\AccountChangePasswordResult.cs" />
+    <Compile Include="Model\AccountInfo.cs" />
+    <Compile Include="Model\AccountPushSettings.cs" />
+    <Compile Include="Model\ApiAuthParams.cs" />
+    <Compile Include="Model\App.cs" />
+    <Compile Include="Model\AppGetObject.cs" />
+    <Compile Include="Model\Application.cs" />
+    <Compile Include="Model\Attachments\Album.cs" />
+    <Compile Include="Model\Attachments\ApplicationContent.cs" />
+    <Compile Include="Model\Attachments\Attachment.cs" />
+    <Compile Include="Model\Attachments\Audio.cs" />
+    <Compile Include="Model\Attachments\Document.cs" />
+    <Compile Include="Model\Attachments\Gift.cs" />
+    <Compile Include="Model\Attachments\Graffiti.cs" />
+    <Compile Include="Model\Attachments\Link.cs" />
+    <Compile Include="Model\Attachments\MarketAlbum.cs" />
+    <Compile Include="Model\Attachments\MediaAttachment.cs" />
+    <Compile Include="Model\Attachments\Message.cs" />
+    <Compile Include="Model\Attachments\Note.cs" />
+    <Compile Include="Model\Attachments\Page.cs" />
+    <Compile Include="Model\Attachments\Photo.cs" />
+    <Compile Include="Model\Attachments\PhotosList.cs" />
+    <Compile Include="Model\Attachments\Poll.cs" />
+    <Compile Include="Model\Attachments\Post.cs" />
+    <Compile Include="Model\Attachments\Sticker.cs" />
+    <Compile Include="Model\Attachments\Video.cs" />
+    <Compile Include="Model\Attachments\Wall.cs" />
+    <Compile Include="Model\Attachments\WallReply.cs" />
+    <Compile Include="Model\AudioAlbum.cs" />
+    <Compile Include="Model\AuthConfirmResult.cs" />
+    <Compile Include="Model\BanInfo.cs" />
+    <Compile Include="Model\Button.cs" />
+    <Compile Include="Model\Career.cs" />
+    <Compile Include="Model\CategoryGroup.cs" />
+    <Compile Include="Model\Chair.cs" />
+    <Compile Include="Model\ChangeNameRequest.cs" />
+    <Compile Include="Model\Chat.cs" />
+    <Compile Include="Model\ChatPushSettings.cs" />
+    <Compile Include="Model\City.cs" />
+    <Compile Include="Model\Comment.cs" />
+    <Compile Include="Model\Comments.cs" />
+    <Compile Include="Model\Connections.cs" />
+    <Compile Include="Model\Contact.cs" />
+    <Compile Include="Model\Contacts.cs" />
+    <Compile Include="Model\Coordinates.cs" />
+    <Compile Include="Model\Counters.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\CropPhoto.cs" />
+    <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\DocumentType.cs" />
+    <Compile Include="Model\Education.cs" />
+    <Compile Include="Model\Exports.cs" />
+    <Compile Include="Model\ExternalLink.cs" />
+    <Compile Include="Model\Faculty.cs" />
+    <Compile Include="Model\FaveVideoEx.cs" />
+    <Compile Include="Model\FriendList.cs" />
+    <Compile Include="Model\FriendOnline.cs" />
+    <Compile Include="Model\Geo.cs" />
+    <Compile Include="Model\GiftItem.cs" />
+    <Compile Include="Model\GroupsCatalogInfo.cs" />
+    <Compile Include="Model\Group\Group.cs" />
+    <Compile Include="Model\Group\GroupInfo.cs" />
+    <Compile Include="Model\Group\GroupMember.cs" />
+    <Compile Include="Model\History.cs" />
+    <Compile Include="Model\InformationAboutOffers.cs" />
+    <Compile Include="Model\LastActivity.cs" />
+    <Compile Include="Model\LastSeen.cs" />
+    <Compile Include="Model\Likes.cs" />
+    <Compile Include="Model\LongPollHistoryResponse.cs" />
+    <Compile Include="Model\LongPollServerResponse.cs" />
+    <Compile Include="Model\LookupContactsOther.cs" />
+    <Compile Include="Model\LookupContactsResult.cs" />
+    <Compile Include="Model\Lyrics.cs" />
+    <Compile Include="Model\Market.cs" />
+    <Compile Include="Model\MarketCategory.cs" />
+    <Compile Include="Model\MarketCategorySection.cs" />
+    <Compile Include="Model\MarketComment.cs" />
+    <Compile Include="Model\Mention.cs" />
+    <Compile Include="Model\MessagesGetObject.cs" />
+    <Compile Include="Model\MessagesPushSettings.cs" />
+    <Compile Include="Model\Military.cs" />
+    <Compile Include="Model\NewsBannedExList.cs" />
+    <Compile Include="Model\NewsBannedList.cs" />
+    <Compile Include="Model\NewsFeed.cs" />
+    <Compile Include="Model\NewsItem.cs" />
+    <Compile Include="Model\NewsSearchResult.cs" />
+    <Compile Include="Model\NewsSuggestions.cs" />
+    <Compile Include="Model\NewsUserListItem.cs" />
+    <Compile Include="Model\Occupation.cs" />
+    <Compile Include="Model\PhotoAlbum.cs" />
+    <Compile Include="Model\PhotoSize.cs" />
+    <Compile Include="Model\Place.cs" />
+    <Compile Include="Model\PollAnswer.cs" />
+    <Compile Include="Model\PostReach.cs" />
+    <Compile Include="Model\PostSource.cs" />
+    <Compile Include="Model\PostSourceData.cs" />
+    <Compile Include="Model\Previews.cs" />
+    <Compile Include="Model\Price.cs" />
+    <Compile Include="Model\PushSettings.cs" />
+    <Compile Include="Model\Rating.cs" />
+    <Compile Include="Model\Rect.cs" />
+    <Compile Include="Model\Region.cs" />
+    <Compile Include="Model\Relative.cs" />
+    <Compile Include="Model\RepostResult.cs" />
+    <Compile Include="Model\Reposts.cs" />
+    <Compile Include="Model\RequestParams\Account\AccountRegisterDeviceParams.cs" />
+    <Compile Include="Model\RequestParams\Account\AccountSaveProfileInfoParams.cs" />
+    <Compile Include="Model\RequestParams\App\AppGetCatalogParams.cs" />
+    <Compile Include="Model\RequestParams\App\AppGetParams.cs" />
+    <Compile Include="Model\RequestParams\App\AppSendRequestParams.cs" />
+    <Compile Include="Model\RequestParams\Audio\AudioEditParams.cs" />
+    <Compile Include="Model\RequestParams\Audio\AudioGetParams.cs" />
+    <Compile Include="Model\RequestParams\Audio\AudioSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />
+    <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardAddTopicParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardCreateCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardEditCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardEditTopicParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardGetTopicsParams.cs" />
+    <Compile Include="Model\RequestParams\Board\BoardTopicParams.cs" />
+    <Compile Include="Model\RequestParams\Friends\FriendsGetMutualParams.cs" />
+    <Compile Include="Model\RequestParams\Friends\FriendsGetOnlineParams.cs" />
+    <Compile Include="Model\RequestParams\Friends\FriendsGetParams.cs" />
+    <Compile Include="Model\RequestParams\Friends\FriendsGetRequestsParams.cs" />
+    <Compile Include="Model\RequestParams\Friends\FriendsSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsBanUserParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsEditManagerParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsEditParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsGetMembersParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsGetParams.cs" />
+    <Compile Include="Model\RequestParams\Groups\GroupsSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Likes\LikesAddParams.cs" />
+    <Compile Include="Model\RequestParams\Likes\LikesGetListParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketCreateCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketProductParams.cs" />
+    <Compile Include="Model\RequestParams\Market\MarketSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesDialogsGetParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesGetHistoryAttachmentsParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesGetHistoryParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesGetLongPollHistoryParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesGetParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesSendParams.cs" />
+    <Compile Include="Model\RequestParams\Messages\MessagesSendStickerParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedGetParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedGetRecommendedParams.cs" />
+    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Pages\PagesGetParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoCreateAlbumParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoCreateCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoEditAlbumParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoEditParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoGetAlbumsParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoGetAllCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoGetAllParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoGetParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoGetUserPhotosParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoPutTagParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoSaveParams.cs" />
+    <Compile Include="Model\RequestParams\Photo\PhotoSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Users\UserSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoCreateCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoEditParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoGetParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoReorderVideosParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoSaveParams.cs" />
+    <Compile Include="Model\RequestParams\Video\VideoSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallAddCommentParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallEditParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallGetCommentsParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallGetParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallPostParams.cs" />
+    <Compile Include="Model\RequestParams\Wall\WallSearchParams.cs" />
+    <Compile Include="Model\School.cs" />
+    <Compile Include="Model\SchoolClass.cs" />
+    <Compile Include="Model\SearchDialogsResponse.cs" />
+    <Compile Include="Model\StandInLife.cs" />
+    <Compile Include="Model\StatsPeriod.cs" />
+    <Compile Include="Model\StatStruct.cs" />
+    <Compile Include="Model\Status.cs" />
+    <Compile Include="Model\Store.cs" />
+    <Compile Include="Model\Street.cs" />
+    <Compile Include="Model\Tag.cs" />
+    <Compile Include="Model\Tags.cs" />
+    <Compile Include="Model\Topic.cs" />
+    <Compile Include="Model\TopicsFeed.cs" />
+    <Compile Include="Model\University.cs" />
+    <Compile Include="Model\UploadServerInfo.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserOrGroup.cs" />
+    <Compile Include="Model\VideoAlbum.cs" />
+    <Compile Include="Model\VideoCatalog.cs" />
+    <Compile Include="Model\VideoCatalogItem.cs" />
+    <Compile Include="Model\VkObject.cs" />
+    <Compile Include="Model\WallGetObject.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\AntiCaptcha\ICaptchaSolver.cs" />
+    <Compile Include="Utils\ApiVersionAttribute.cs" />
+    <Compile Include="Utils\Browser.cs" />
+    <Compile Include="Utils\Cookies.cs" />
+    <Compile Include="Utils\DataAnnotations.cs" />
+    <Compile Include="Utils\DateTimeHelper.cs" />
+    <Compile Include="Utils\DefaultValueAttribute.cs" />
+    <Compile Include="Utils\ErrorCode.cs" />
+    <Compile Include="Utils\File.cs" />
+    <Compile Include="Utils\IBrowser.cs" />
+    <Compile Include="Utils\IVkModel.cs" />
+    <Compile Include="Utils\ModelToVkParametrsCastGenerator1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelToVkParametrsCastGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Tuple.cs" />
+    <Compile Include="Utils\Utilities.cs" />
+    <Compile Include="Utils\VkAuthorization.cs" />
+    <Compile Include="Utils\VkCollection.cs" />
+    <Compile Include="Utils\VkErrors.cs" />
+    <Compile Include="Utils\VkParameters.cs" />
+    <Compile Include="Utils\VkResponse.cs" />
+    <Compile Include="Utils\VkResponseArray.cs" />
+    <Compile Include="Utils\VkResponseEx.cs" />
+    <Compile Include="Utils\VkResponseToManualEnumCastsGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkResponseToManualEnumCastsGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\VkResponseToModelCastsGenerator1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkResponseToModelCastsGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\VkResponseToSafetyEnumCastGenerator1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkResponseToSafetyEnumCastGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\WebCall.cs" />
+    <Compile Include="Utils\WebCallResult.cs" />
+    <Compile Include="Utils\WebClient.cs" />
+    <Compile Include="Utils\WebForm.cs" />
+    <Compile Include="VkApi.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Utils\ModelToVkParametrsCastGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelToVkParametrsCastGenerator1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Utils\VkResponseToManualEnumCastsGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToManualEnumCastsGenerator.cs</LastGenOutput>
+    </Content>
+    <Content Include="Utils\VkResponseToModelCastsGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToModelCastsGenerator1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Utils\VkResponseToSafetyEnumCastGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToSafetyEnumCastGenerator1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
