@@ -53,8 +53,9 @@ namespace VkNet.Utils
 
 			_html = new HtmlDocument();
 			result.LoadResultTo(_html);
+		    var uri = result.ResponseUrl;
 
-			_responseBaseUrl = result.ResponseUrl.GetLeftPart(UriPartial.Authority);
+            _responseBaseUrl = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
 
 			_inputs = ParseInputs();
 		}
@@ -142,27 +143,35 @@ namespace VkNet.Utils
 
 		public string OriginalUrl { get; }
 
-		/// <summary>
+        /// <summary>
+        /// Получить запрос.
+        /// </summary>
+        /// <returns>Массив байт</returns>
+        public byte[] GetRequest()
+        {
+            return Encoding.UTF8.GetBytes(GetRequestAsStringArray().JoinNonEmpty("&"));
+        }
+
+        /// <summary>
 		/// Получить запрос.
 		/// </summary>
 		/// <returns>Массив байт</returns>
-		public byte[] GetRequest()
-		{
-			var uri = _inputs.Select(x => $"{x.Key}={x.Value}").JoinNonEmpty("&");
-			return Encoding.UTF8.GetBytes(uri);
-		}
+		public IEnumerable<string> GetRequestAsStringArray()
+        {
+            return _inputs.Select(x => $"{x.Key}={x.Value}");
+        }
 
-		/// <summary>
-		/// Разобрать поля ввода.
-		/// </summary>
-		/// <returns>Коллекция полей ввода</returns>
-		private Dictionary<string, string> ParseInputs()
+        /// <summary>
+        /// Разобрать поля ввода.
+        /// </summary>
+        /// <returns>Коллекция полей ввода</returns>
+        private Dictionary<string, string> ParseInputs()
 		{
 			var inputs = new Dictionary<string, string>();
 
 			var form = GetFormNode();
-			foreach (var node in form.SelectNodes("//input"))
-			{
+			foreach (var node in form.Descendants("input")) // .SelectNodes("//input"))
+            {
 				var nameAttribute = node.Attributes["name"];
 				var valueAttribute = node.Attributes["value"];
 
@@ -188,8 +197,9 @@ namespace VkNet.Utils
 		private HtmlNode GetFormNode()
 		{
 			HtmlNode.ElementsFlags.Remove("form");
-			var form = _html.DocumentNode.SelectSingleNode("//form");
-			if (form == null)
+			var form = _html.DocumentNode.Descendants("form").FirstOrDefault(); // .SelectSingleNode("//form");
+
+            if (form == null)
 			{
 				throw new VkApiException("Form element not found.");
 			}

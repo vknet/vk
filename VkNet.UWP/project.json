@@ -1,10 +1,14 @@
 ﻿{
   "supports": {},
   "dependencies": {
+    "AngleSharp": "0.9.9",
     "DotNet.Contracts": "1.10.20606.1",
     "HtmlAgilityPack": "1.4.9.5",
+    "Microsoft.Net.Http": "2.2.29",
     "Newtonsoft.Json": "9.0.1",
     "PCLStorage": "1.0.2",
+    "System.Net.Http": "4.1.0",
+    "System.Net.Primitives": "4.0.11",
     "System.Runtime.Serialization.Primitives": "4.1.1"
   },
   "frameworks": {

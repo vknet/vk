@@ -47,7 +47,7 @@ namespace VkNet.Utils
             var methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
             var parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
 
-            return WebCall.PostCall(methodUrl, parameters, _host, _port, _proxyLogin, _proxyPassword).Response;
+            return WebCall.PostCall(methodUrl, parameters, WebProxy.GetProxy(_host, _port, _proxyLogin, _proxyPassword)).Response;
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace VkNet.Utils
             _proxyPassword = string.IsNullOrWhiteSpace(proxyPassword) ? null : proxyPassword;
 
             var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, host, port, proxyLogin, proxyPassword);
+            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
 
             // Заполнить логин и пароль
             var loginForm = WebForm.From(authorizeUrlResult)
@@ -141,16 +141,14 @@ namespace VkNet.Utils
                     .WithField("captcha_key")
                     .FilledWith(captchaKey);
             }
-            var loginFormPostResult = WebCall.Post(loginForm, host, port, proxyLogin, proxyPassword);
+            var loginFormPostResult = WebCall.Post(loginForm, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
 
             // Заполнить код двухфакторной авторизации
-            if (code != null)
-            {
-                var codeForm = WebForm.From(loginFormPostResult)
-                                    .WithField("code")
-                                    .FilledWith(code());
-                loginFormPostResult = WebCall.Post(codeForm, host, port);
-            }
+
+            var codeForm = WebForm.From(loginFormPostResult)
+                                .WithField("code")
+                                .FilledWith(code?.Invoke());
+            loginFormPostResult = WebCall.Post(codeForm, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
 
             var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
             if (authorization.CaptchaId.HasValue)
@@ -164,7 +162,7 @@ namespace VkNet.Utils
 
             // Отправить данные
             var authorizationForm = WebForm.From(loginFormPostResult);
-            var authorizationFormPostResult = WebCall.Post(authorizationForm, host, port, proxyLogin, proxyPassword);
+            var authorizationFormPostResult = WebCall.Post(authorizationForm, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
 
             return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
         }

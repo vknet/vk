@@ -38,16 +38,16 @@ namespace VkNet
 		/// Параметры авторизации.
 		/// </summary>
 		private ApiAuthParams _ap;
-		/// <summary>
-		/// Таймер.
-		/// </summary>
-		private Timer _expireTimer;
+        /// <summary>
+        /// Таймер.
+        /// </summary>
+        // private Timer _expireTimer;  todo fix UWP
 
-		#region Requests limit stuff
-		/// <summary>
-		/// Запросов в секунду.
-		/// </summary>
-		private float _requestsPerSecond;
+        #region Requests limit stuff
+        /// <summary>
+        /// Запросов в секунду.
+        /// </summary>
+        private float _requestsPerSecond;
 		/// <summary>
 		/// Минимальное время, которое должно пройти между запросами чтобы не превысить кол-во запросов в секунду.
 		/// </summary>
@@ -529,25 +529,25 @@ namespace VkNet
 		/// <param name="expireTime">Значение таймера</param>
 		private void SetTimer(int expireTime)
 		{
-			_expireTimer = new Timer(
-				AlertExpires,
-				null,
-				expireTime > 0 ? expireTime : Timeout.Infinite,
-				Timeout.Infinite
-			);
-		}
-		/// <summary>
-		/// Прекращает работу таймера оповещения
-		/// </summary>
-		private void StopTimer()
+            //_expireTimer = new Timer(
+            //	AlertExpires,
+            //	null,
+            //	expireTime > 0 ? expireTime : Timeout.Infinite,
+            //	Timeout.Infinite
+            //);  todo fix UWP
+        }
+        /// <summary>
+        /// Прекращает работу таймера оповещения
+        /// </summary>
+        private void StopTimer()
 		{
-		    _expireTimer?.Dispose();
-		}
-		/// <summary>
-		/// Создает событие оповещения об окончании времени токена
-		/// </summary>
-		/// <param name="state"></param>
-		private void AlertExpires(object state)
+            //_expireTimer?.Dispose();  todo fix UWP
+        }
+        /// <summary>
+        /// Создает событие оповещения об окончании времени токена
+        /// </summary>
+        /// <param name="state"></param>
+        private void AlertExpires(object state)
 		{
 			OnTokenExpires?.Invoke(this);
 		}
@@ -667,7 +667,7 @@ namespace VkNet
 		{
 			if (!skipAuthorization && !IsAuthorized)
 			{
-				throw new AccessTokenInvalidException();
+				throw new AccessTokenInvalidException($@"Метод '{methodName}' нельзя вызывать без авторизации");
 			}
 
 			var url = "";
@@ -676,16 +676,18 @@ namespace VkNet
             // Защита от превышения количества запросов в секунду
             if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
-                if (_expireTimer == null)
-                {
-                    SetTimer(0);
-                }
-                lock (_expireTimer)
+                //if (_expireTimer == null)
+                //{
+                //    SetTimer(0);
+                //}  todo fix UWP
+                object expireTimer = null; //  todo fix UWP убрать эту строку
+                lock (expireTimer)
                 {
                     var span = LastInvokeTimeSpan?.TotalMilliseconds;
                     if (span < _minInterval)
                     {
-                        Thread.Sleep((int)_minInterval - (int)span);
+                        //Thread.Sleep((int)_minInterval - (int)span); todo fix UWP
+                        Task.Delay((int) _minInterval - (int) span).Wait();
                     }
                     url = GetApiUrl(methodName, parameters, skipAuthorization);
                     LastInvokeTime = DateTimeOffset.Now;
@@ -700,8 +702,9 @@ namespace VkNet
 
 
 #if DEBUG && !UNIT_TEST
-			Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
-			Trace.WriteLine(Utilities.PreetyPrintJson(answer));
+            Debug.WriteLine(Utilities.PreetyPrintApiUrl(url));
+
+            Debug.WriteLine(Utilities.PreetyPrintJson(answer));
 #endif
             VkErrors.IfErrorThrowException(answer);
 

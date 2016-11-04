@@ -428,6 +428,7 @@
     <Compile Include="Utils\WebCallResult.cs" />
     <Compile Include="Utils\WebClient.cs" />
     <Compile Include="Utils\WebForm.cs" />
+    <Compile Include="Utils\WebProxy.cs" />
     <Compile Include="VkApi.cs" />
   </ItemGroup>
   <ItemGroup>
