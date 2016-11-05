@@ -681,8 +681,8 @@ namespace VkNet
                 //    SetTimer(0);
                 //}  todo fix UWP
                 object expireTimer = null; //  todo fix UWP убрать эту строку
-                lock (expireTimer)
-                {
+                //lock (expireTimer)
+                //{
                     var span = LastInvokeTimeSpan?.TotalMilliseconds;
                     if (span < _minInterval)
                     {
@@ -692,7 +692,7 @@ namespace VkNet
                     url = GetApiUrl(methodName, parameters, skipAuthorization);
                     LastInvokeTime = DateTimeOffset.Now;
                     answer = Browser.GetJson(url.Replace("\'", "%27"));
-                }
+                //}
             } else if (skipAuthorization)
             {
                 url = GetApiUrl(methodName, parameters, skipAuthorization: true);

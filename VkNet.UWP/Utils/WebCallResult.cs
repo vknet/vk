@@ -1,14 +1,10 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.IO;
+using System.Net;
+using System.Text;
 
 namespace VkNet.Utils
 {
-    using System;
-    using System.IO;
-    using System.Net;
-    using System.Text;
-
-    using HtmlAgilityPack;
-
     internal sealed class WebCallResult
     {
         /// <summary>
@@ -68,13 +64,13 @@ namespace VkNet.Utils
             }
         }
 
-        /// <summary>
-        /// Загрузить результат в.
-        /// </summary>
-        /// <param name="htmlDocument">HTML документ.</param>
-        public void LoadResultTo([NotNull] HtmlDocument htmlDocument)
-        {
-            htmlDocument.LoadHtml(Response);
-        }
+        ///// <summary>
+        ///// Загрузить результат в.
+        ///// </summary>
+        ///// <param name="htmlDocument">HTML документ.</param>
+        //public void LoadResultTo([NotNull] HtmlDocument htmlDocument)
+        //{
+        //    htmlDocument.LoadHtml(Response);
+        //}
     }
 }

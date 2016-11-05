@@ -50,10 +50,6 @@ namespace VkNet.Utils
                                             .GetRuntimeFields()
                                             .FirstOrDefault(x => x.Name == "m_domainTable")
                                             .GetValue(Container);
-            //var table =
-            //	(Dictionary<string, object>)
-            //		Container.GetType().GetRuntimeField("m_domainTable")
-            //			.InvokeMember("m_domainTable", BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance, null, Container, new object[] { });
             var keys = table.Keys.OfType<string>().ToList();
             foreach (var key in table.Keys.OfType<string>().ToList())
             {

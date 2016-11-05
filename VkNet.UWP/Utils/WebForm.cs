@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HtmlAgilityPack;
+using AngleSharp.Dom.Html;
+using AngleSharp.Parser.Html;
 
 namespace VkNet.Utils
 {
@@ -17,7 +18,7 @@ namespace VkNet.Utils
 		/// <summary>
 		/// HTML документ
 		/// </summary>
-		private readonly HtmlDocument _html;
+		private readonly IHtmlDocument _html;
 
 		/// <summary>
 		/// Коллекция input на форме
@@ -51,8 +52,9 @@ namespace VkNet.Utils
 			Cookies = result.Cookies;
 			OriginalUrl = result.RequestUrl.OriginalString;
 
-			_html = new HtmlDocument();
-			result.LoadResultTo(_html);
+            var parser = new HtmlParser();
+            _html = parser.Parse(result.Response);
+
 		    var uri = result.ResponseUrl;
 
             _responseBaseUrl = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
@@ -170,7 +172,7 @@ namespace VkNet.Utils
 			var inputs = new Dictionary<string, string>();
 
 			var form = GetFormNode();
-			foreach (var node in form.Descendants("input")) // .SelectNodes("//input"))
+			foreach (var node in form.GetElementsByTagName("input"))
             {
 				var nameAttribute = node.Attributes["name"];
 				var valueAttribute = node.Attributes["value"];
@@ -194,10 +196,9 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <returns>HTML элемент</returns>
 		/// <exception cref="VkApiException">Элемент не найден на форме.</exception>
-		private HtmlNode GetFormNode()
+		private IHtmlFormElement GetFormNode()
 		{
-			HtmlNode.ElementsFlags.Remove("form");
-			var form = _html.DocumentNode.Descendants("form").FirstOrDefault(); // .SelectSingleNode("//form");
+		    var form = _html.Forms.FirstOrDefault();
 
             if (form == null)
 			{
