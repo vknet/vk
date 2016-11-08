@@ -181,7 +181,7 @@ namespace VkNet.Utils
         {
             Remove(name);
 
-            if (!value.HasValue)
+            if (value == null)
             {
                 return;
             }

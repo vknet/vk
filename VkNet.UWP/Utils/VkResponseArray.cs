@@ -32,7 +32,7 @@ namespace VkNet.Utils
         /// The <see cref="VkResponse"/>.
         /// </value>
         /// <param name="key">Ключ.</param>
-        /// <returns></returns>
+        /// <returns>Текущий объект</returns>
         public VkResponse this[object key]
         {
             get
@@ -56,10 +56,7 @@ namespace VkNet.Utils
         /// <returns>
         /// Интерфейс <see cref="T:System.Collections.Generic.IEnumerator`1" />, который может использоваться для перебора элементов коллекции.
         /// </returns>
-        public IEnumerator<VkResponse> GetEnumerator()
-        {
-            return _array.Select(i => new VkResponse(i)).GetEnumerator();
-        }
+        public IEnumerator<VkResponse> GetEnumerator() => _array.Select(i => new VkResponse(i)).GetEnumerator();
 
         /// <summary>
         /// Возвращает перечислитель, который осуществляет перебор элементов коллекции.
@@ -67,9 +64,6 @@ namespace VkNet.Utils
         /// <returns>
         /// Объект <see cref="T:System.Collections.IEnumerator" />, который может использоваться для перебора элементов коллекции.
         /// </returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

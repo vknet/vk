@@ -1,11 +1,10 @@
-﻿namespace VkNet.Utils
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using VkNet.Exception;
+
+namespace VkNet.Utils
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Exception;
-
     /// <summary>
     /// Информация об авторизации приложения на действия.
     /// </summary>
@@ -32,10 +31,7 @@
         /// URL, на которую произошло перенаправление при авторизации.
         /// </param>
         /// <returns>Информация об авторизации.</returns>
-        public static VkAuthorization From(Uri responseUrl)
-        {
-            return new VkAuthorization(responseUrl);
-        }
+        public static VkAuthorization From(Uri responseUrl) => new VkAuthorization(responseUrl);
 
         /// <summary>
         /// Возвращает признак была ли авторизация успешной.
@@ -60,19 +56,18 @@
         /// <summary>
         /// Идентификатор пользователя, у которого работает приложение (от имени которого был произведен вход).
         /// </summary>
-        public long UserId
-        {
-            get
-            {
-                var userIdFieldValue = GetFieldValue("user_id");
-                long userId;
-                if (!long.TryParse(userIdFieldValue, out userId))
-                {
-                    throw new VkApiException("UserId is not integer value.");
-                }
+        public long UserId => GetUserId();
 
-                return userId;
+        private long GetUserId()
+        {
+            var userIdFieldValue = GetFieldValue("user_id");
+            long userId;
+            if (!long.TryParse(userIdFieldValue, out userId))
+            {
+                throw new VkApiException("UserId is not integer value.");
             }
+
+            return userId;
         }
 
         /// <summary>
@@ -132,10 +127,7 @@
 			/// <summary>
 			/// Преобразовать в строку.
 			/// </summary>
-			public override string ToString()
-            {
-                return $"{Name}={Value}";
-            }
+			public override string ToString() => $"{Name}={Value}";
         }
 
         /// <summary>

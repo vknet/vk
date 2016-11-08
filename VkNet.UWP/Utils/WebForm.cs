@@ -67,26 +67,20 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="result">Результат.</param>
 		/// <returns>WEB форма.</returns>
-		public static WebForm From(WebCallResult result)
-		{
-			return new WebForm(result);
-		}
+		public static WebForm From(WebCallResult result) => new WebForm(result);
 
-		/// <summary>
-		/// И.
-		/// </summary>
-		/// <returns>WEB форма.</returns>
-		public WebForm And()
-		{
-			return this;
-		}
+        /// <summary>
+        /// И.
+        /// </summary>
+        /// <returns>WEB форма.</returns>
+        public WebForm And() => this;
 
-		/// <summary>
-		/// С полем.
-		/// </summary>
-		/// <param name="name">Наименование поля.</param>
-		/// <returns>WEB форма.</returns>
-		public WebForm WithField(string name)
+        /// <summary>
+        /// С полем.
+        /// </summary>
+        /// <param name="name">Наименование поля.</param>
+        /// <returns>WEB форма.</returns>
+        public WebForm WithField(string name)
 		{
 			_lastName = name;
 
@@ -149,21 +143,15 @@ namespace VkNet.Utils
         /// Получить запрос.
         /// </summary>
         /// <returns>Массив байт</returns>
-        public byte[] GetRequest()
-        {
-            return Encoding.UTF8.GetBytes(GetRequestAsStringArray().JoinNonEmpty("&"));
-        }
+        public byte[] GetRequest() => Encoding.UTF8.GetBytes(GetRequestAsStringArray().JoinNonEmpty("&"));
 
-        /// <summary>
+	    /// <summary>
 		/// Получить запрос.
 		/// </summary>
 		/// <returns>Массив байт</returns>
-		public IEnumerable<string> GetRequestAsStringArray()
-        {
-            return _inputs.Select(x => $"{x.Key}={x.Value}");
-        }
+		public IEnumerable<string> GetRequestAsStringArray() => _inputs.Select(x => $"{x.Key}={x.Value}");
 
-        /// <summary>
+	    /// <summary>
         /// Разобрать поля ввода.
         /// </summary>
         /// <returns>Коллекция полей ввода</returns>

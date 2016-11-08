@@ -1,14 +1,11 @@
 ﻿using System.Net;
+using System;
+using System.Collections.ObjectModel;
+using Newtonsoft.Json.Linq;
+using VkNet.Enums;
 
 namespace VkNet.Utils
 {
-	using System;
-	using System.Collections.ObjectModel;
-
-	using Newtonsoft.Json.Linq;
-
-	using Enums;
-
 	/// <summary>
 	/// Ответ vk.com
 	/// </summary>

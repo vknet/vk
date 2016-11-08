@@ -1,11 +1,13 @@
-﻿namespace VkNet.Utils
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using Newtonsoft.Json.Linq;
+
+namespace VkNet.Utils
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using Newtonsoft.Json.Linq;
+    
 
 	/// <summary>
 	/// Утилиты.
@@ -66,13 +68,16 @@
 		/// <returns>Строковое представление коллекции через разделитель.</returns>
 		public static string JoinNonEmpty<T>(this IEnumerable<T> collection, string separator = ",")
 		{
-		    return collection == null ? 
-                string.Empty : 
-                string.Join(
+		    if (collection == null)
+		    {
+		        return string.Empty;
+		    }
+
+            return string.Join(
                     separator, 
                     collection.Select(i => i.ToString().Trim())
                     .Where(s => !string.IsNullOrWhiteSpace(s)
-                ).ToArray());
+                ));
 		}
 
 		/// <summary>
@@ -92,12 +97,9 @@
 		/// </summary>
 		/// <param name="url">URL API.</param>
 		/// <returns>URL</returns>
-		public static string PreetyPrintApiUrl(string url)
-        {
-            return $"            Uri = \"{url}\";";
-        }
+		public static string PreetyPrintApiUrl(string url) => $"            Uri = \"{url}\";";
 
-		/// <summary>
+        /// <summary>
 		/// Вывести в консоль Json.
 		/// </summary>
 		/// <param name="json">Json.</param>

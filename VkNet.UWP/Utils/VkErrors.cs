@@ -1,13 +1,11 @@
-﻿namespace VkNet.Utils
+﻿using System;
+using System.Linq.Expressions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using VkNet.Exception;
+
+namespace VkNet.Utils
 {
-    using System;
-    using System.Linq.Expressions;
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
-
-    using Exception;
-
     /// <summary>
     /// Ошибки VK
     /// </summary>
@@ -16,8 +14,8 @@
         /// <summary>
         /// Ошибка если строка null или пустая.
         /// </summary>
-        /// <param name="expr">The expr.</param>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <param name="expr">Выражение.</param>
+        /// <exception cref="System.ArgumentNullException">Параметр не должен быть равен null</exception>
         public static void ThrowIfNullOrEmpty(Expression<Func<string>>  expr)
         {
             var body = expr.Body as MemberExpression;
@@ -31,23 +29,23 @@
 
             if (string.IsNullOrEmpty(value))
             {
-                throw new ArgumentNullException(paramName);
+                throw new ArgumentNullException(paramName, "Параметр не должен быть равен null");
             }
         }
 
         /// <summary>
         /// Ошибка если число не в диапозоне.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">Тип данных</typeparam>
         /// <param name="value">Значение.</param>
         /// <param name="min">Минимальное значение.</param>
         /// <param name="max">Максимальное значение.</param>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Значение {value} не должно выходить за пределы диапозона [{min}, {max}]</exception>
         public static void ThrowIfNumberNotInRange<T>(T value, T min, T max) where T : struct, IComparable<T>
         {
             if (value.CompareTo(min) < 0 || value.CompareTo(max) > 0)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException($@"Значение {value} не должно выходить за пределы диапозона [{min}, {max}]");
             }
         }
 
@@ -90,15 +88,15 @@
         /// <summary>
         /// Ошибка если число отрицательное.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">Тип данных</typeparam>
         /// <param name="expr">Выражение.</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">expr</exception>
+        /// <returns>Результат проверки</returns>
+        /// <exception cref="System.ArgumentNullException">Выражение не может быть равно null</exception>
         private static Tuple<string, T> ThrowIfNumberIsNegative<T>(Expression<T> expr)
         {
             if (expr == null)
             {
-                throw new ArgumentNullException(nameof(expr));
+                throw new ArgumentNullException(nameof(expr), "Выражение не может быть равно null");
             }
 
             var name = string.Empty;

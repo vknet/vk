@@ -8,8 +8,6 @@ using VkNet.Exception;
 
 namespace VkNet.Utils
 {
-
-
     /// <summary>
     /// WebCall
     /// </summary>
@@ -18,12 +16,12 @@ namespace VkNet.Utils
         /// <summary>
         /// Получить HTTP запрос.
         /// </summary>
-        private HttpClient Request { get; }
+        private readonly HttpClient _request;
 
         /// <summary>
         /// Результат.
         /// </summary>
-        private WebCallResult Result { get; }
+        private readonly WebCallResult _result;
 
         /// <summary>
         /// WebCall.
@@ -31,6 +29,7 @@ namespace VkNet.Utils
         /// <param name="url">URL.</param>
         /// <param name="cookies">Cookies.</param>
         /// <param name="webProxy">Хост.</param>
+        /// <param name="allowAutoRedirect">Разрешить авто редиррект</param>
         private WebCall(string url, Cookies cookies, IWebProxy webProxy = null, bool allowAutoRedirect = true)
         {
             var baseAddress = new Uri(url);
@@ -42,7 +41,7 @@ namespace VkNet.Utils
                 Proxy = webProxy,
                 AllowAutoRedirect = allowAutoRedirect
             };
-            Request = new HttpClient(handler)
+            _request = new HttpClient(handler)
             {
                 BaseAddress = baseAddress,
                 DefaultRequestHeaders =
@@ -50,7 +49,7 @@ namespace VkNet.Utils
                         Accept = {MediaTypeWithQualityHeaderValue.Parse("text/html")}
                     }
             };
-            Result = new WebCallResult(url, cookies);
+            _result = new WebCallResult(url, cookies);
         }
 
         /// <summary>
@@ -63,13 +62,10 @@ namespace VkNet.Utils
         {
             using (var call = new WebCall(url, new Cookies(), webProxy))
             {
-                var response = call.Request.GetAsync(url).Result;
+                var response = call._request.GetAsync(url).Result;
                 return call.MakeRequest(response, new Uri(url), webProxy);
             }
         }
-
-#if false // async version for PostCall
-#endif
 
         /// <summary>
         /// Выполнить POST запрос.
@@ -82,11 +78,9 @@ namespace VkNet.Utils
         {
             using (var call = new WebCall(url, new Cookies(), webProxy))
             {
-
-
                 var data = Encoding.UTF8.GetBytes(parameters);
 
-                var headers = call.Request.DefaultRequestHeaders;
+                var headers = call._request.DefaultRequestHeaders;
                 headers.Add("Method", "POST");
                 headers.Add("ContentType", "application/x-www-form-urlencoded");
                 headers.Add("ContentLength", data.Length.ToString());
@@ -105,7 +99,7 @@ namespace VkNet.Utils
                     paramList.Add(key, value);
                 }
 
-                var request = call.Request.PostAsync(url, new FormUrlEncodedContent(paramList)).Result;
+                var request = call._request.PostAsync(url, new FormUrlEncodedContent(paramList)).Result;
                 return call.MakeRequest(request, new Uri(url), webProxy);
             }
         }
@@ -122,7 +116,7 @@ namespace VkNet.Utils
             {
                 var formRequest = form.GetRequest();
 
-                var headers = call.Request.DefaultRequestHeaders;
+                var headers = call._request.DefaultRequestHeaders;
                 headers.Add("Method", "POST");
                 headers.Add("ContentType", "application/x-www-form-urlencoded");
 
@@ -143,7 +137,7 @@ namespace VkNet.Utils
                     paramList.Add(key, value);
                 }
 
-                var request = call.Request.PostAsync(form.ActionUrl, new FormUrlEncodedContent(paramList)).Result;
+                var request = call._request.PostAsync(form.ActionUrl, new FormUrlEncodedContent(paramList)).Result;
                 return call.MakeRequest(request, new Uri(form.ActionUrl), webProxy);
             }
         }
@@ -156,13 +150,13 @@ namespace VkNet.Utils
         /// <returns>Результат</returns>
         private WebCallResult RedirectTo(string url, IWebProxy webProxy = null)
         {
-            using (var call = new WebCall(url, Result.Cookies, webProxy))
+            using (var call = new WebCall(url, _result.Cookies, webProxy))
             {
-                var headers = call.Request.DefaultRequestHeaders;
+                var headers = call._request.DefaultRequestHeaders;
                 headers.Add("Method", "GET");
                 headers.Add("ContentType", "text/html");
 
-                var response = call.Request.GetAsync(url).Result;
+                var response = call._request.GetAsync(url).Result;
 
                 return call.MakeRequest(response, new Uri(url), webProxy);
             }
@@ -186,14 +180,14 @@ namespace VkNet.Utils
                 }
 
                 var encoding = Encoding.UTF8;
-                Result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
+                _result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
 
                 var cookies = new CookieContainer();
 
-                Result.SaveCookies(cookies.GetCookies(uri));
+                _result.SaveCookies(cookies.GetCookies(uri));
                 return response.StatusCode == HttpStatusCode.Redirect
                         ? RedirectTo(response.Headers.Location.AbsoluteUri, webProxy)
-                        : Result;
+                        : _result;
             }
         }
 
@@ -201,7 +195,7 @@ namespace VkNet.Utils
 
         public void Dispose()
         {
-            Request.Dispose();
+            _request?.Dispose();
         }
 
         #endregion

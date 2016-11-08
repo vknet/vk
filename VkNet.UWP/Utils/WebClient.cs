@@ -14,14 +14,14 @@ namespace VkNet.UWP.Utils
         /// <summary>
         /// HTTP клиент
         /// </summary>
-        private readonly HttpClient client;
+        private readonly HttpClient _client;
 
         /// <summary>
         /// Инициализация класса
         /// </summary>
         public WebClient()
         {
-            client = new HttpClient();
+            _client = new HttpClient();
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace VkNet.UWP.Utils
         /// </summary>
         /// <param name="address">URI ресурса, на этот файл. Например ftp://localhost/samplefile.txt. </param>
         /// <param name="fileName">Файл для отправки на ресурс. Например «samplefile.txt».</param>
-        /// <returns></returns>
+        /// <returns>Массив байтов</returns>
         public byte[] UploadFile([NotNull] string address, [NotNull] string fileName)
         {
             var content = new MultipartFormDataContent();
@@ -47,7 +47,7 @@ namespace VkNet.UWP.Utils
                 content.Add(streamContent);
             }
 
-            var response = client.PostAsync(new Uri(address), content).Result;
+            var response = _client.PostAsync(new Uri(address), content).Result;
             return response.Content.ReadAsByteArrayAsync().Result;
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace VkNet.UWP.Utils
         /// <param name="fileName">Имя локального файла, который будет получать данные.</param>
         public void DownloadFile([NotNull] string address, [NotNull] string fileName)
         {
-            using (var response = client.GetAsync(address).Result)
+            using (var response = _client.GetAsync(address).Result)
             {
                 response.EnsureSuccessStatusCode();
 
@@ -71,7 +71,7 @@ namespace VkNet.UWP.Utils
         /// </summary>
         public void Dispose()
         {
-            client.Dispose();
+            _client.Dispose();
         }
 
         #endregion

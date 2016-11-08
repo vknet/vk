@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using VkNet.UWP.Utils;
 
 namespace VkNet
 {
@@ -7,7 +8,6 @@ namespace VkNet
     using JetBrains.Annotations;
     using System.Collections.Generic;
     using System.Text;
-    using System.Threading;
     using System.Threading.Tasks;
     using Newtonsoft.Json.Linq;
     using Categories;
@@ -15,7 +15,6 @@ namespace VkNet
     using Utils;
     using Utils.AntiCaptcha;
     using Enums.Filters;
-    using System.Threading;
 
     /// <summary>
     /// Служит для оповещения об истечении токена
@@ -446,7 +445,7 @@ namespace VkNet
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port, proxyLogin, proxyPassword);
+			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
 			if (!authorization.IsAuthorized)
 			{
 				throw new VkApiAuthorizationException($"Invalid authorization with {emailOrPhone} - {password}", emailOrPhone, password);

@@ -22,19 +22,7 @@ namespace VkNet.Utils
         /// <summary>
         /// Адрес хоста
         /// </summary>
-        private string _host;
-        /// <summary>
-        /// Порт
-        /// </summary>
-        private int? _port;
-        /// <summary>
-        /// Логин для прокси-сервера
-        /// </summary>
-        private string _proxyLogin;
-        /// <summary>
-        /// Пароль для прокси-сервера
-        /// </summary>
-        private string _proxyPassword;
+        private IWebProxy _webProxy;
 
         /// <summary>
         /// Получение json по url-адресу
@@ -47,7 +35,7 @@ namespace VkNet.Utils
             var methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
             var parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
 
-            return WebCall.PostCall(methodUrl, parameters, WebProxy.GetProxy(_host, _port, _proxyLogin, _proxyPassword)).Response;
+            return WebCall.PostCall(methodUrl, parameters, _webProxy).Response;
         }
 
         /// <summary>
@@ -111,21 +99,14 @@ namespace VkNet.Utils
         /// <param name="code">Код двухфакторной авторизации</param>
         /// <param name="captchaSid">Идентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи</param>
-        /// <param name="host">Имя узла прокси-сервера.</param>
-        /// <param name="port">Номер порта используемого Host.</param>
-        /// <param name="proxyLogin">Логин для прокси-сервера.</param>
-        /// <param name="proxyPassword">Пароль для прокси-сервера</param>
+        /// <param name="webProxy">Прокси-сервер.</param>
         /// <returns>Информация об авторизации приложения</returns>
         public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null,
-                                         string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
+                                         IWebProxy webProxy = null)
         {
-            _host = string.IsNullOrWhiteSpace(host) ? null : host;
-            _port = port;
-            _proxyLogin = string.IsNullOrWhiteSpace(proxyLogin) ? null : proxyLogin;
-            _proxyPassword = string.IsNullOrWhiteSpace(proxyPassword) ? null : proxyPassword;
-
+            _webProxy = webProxy;
             var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
+            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, _webProxy);
 
             // Заполнить логин и пароль
             var loginForm = WebForm.From(authorizeUrlResult)
@@ -141,14 +122,14 @@ namespace VkNet.Utils
                     .WithField("captcha_key")
                     .FilledWith(captchaKey);
             }
-            var loginFormPostResult = WebCall.Post(loginForm, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
+            var loginFormPostResult = WebCall.Post(loginForm, _webProxy);
 
             // Заполнить код двухфакторной авторизации
 
             var codeForm = WebForm.From(loginFormPostResult)
                                 .WithField("code")
                                 .FilledWith(code?.Invoke());
-            loginFormPostResult = WebCall.Post(codeForm, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
+            loginFormPostResult = WebCall.Post(codeForm, _webProxy);
 
             var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
             if (authorization.CaptchaId.HasValue)
@@ -162,7 +143,7 @@ namespace VkNet.Utils
 
             // Отправить данные
             var authorizationForm = WebForm.From(loginFormPostResult);
-            var authorizationFormPostResult = WebCall.Post(authorizationForm, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
+            var authorizationFormPostResult = WebCall.Post(authorizationForm, _webProxy);
 
             return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
         }
@@ -173,9 +154,9 @@ namespace VkNet.Utils
         /// <param name="appId">Идентификатор приложения.</param>
         /// <param name="settings">Настройки прав доступа.</param>
         /// <param name="display">Вид окна авторизации.</param>
-        /// <returns></returns>
+        /// <returns>Возвращает Uri для авторизации</returns>
         [NotNull]
-        internal static string CreateAuthorizeUrlFor(ulong appId, [NotNull] Settings settings, [NotNull] Display display)
+        private static string CreateAuthorizeUrlFor(ulong appId, [NotNull] Settings settings, [NotNull] Display display)
         {
             var builder = new StringBuilder("https://oauth.vk.com/authorize?");
 

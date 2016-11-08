@@ -20,7 +20,7 @@ namespace VkNet.Utils
         /// <summary>
         /// Получить URL ответа.
         /// </summary>
-        public Uri ResponseUrl { get; set; }
+        public Uri ResponseUrl { get; private set; }
 
         /// <summary>
         /// Ответ.
@@ -63,14 +63,5 @@ namespace VkNet.Utils
                 Response = reader.ReadToEnd();
             }
         }
-
-        ///// <summary>
-        ///// Загрузить результат в.
-        ///// </summary>
-        ///// <param name="htmlDocument">HTML документ.</param>
-        //public void LoadResultTo([NotNull] HtmlDocument htmlDocument)
-        //{
-        //    htmlDocument.LoadHtml(Response);
-        //}
     }
 }
