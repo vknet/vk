@@ -19,12 +19,14 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 
 Внимание! В следующих версиях будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов 
 
+#Появилась публичная альфа [UWP сборки](https://github.com/vknet/vk/releases/tag/v1.25.0.0)
+
 # План развития проекта
 
-- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.53.
+- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.60.
 - [ ] Асинхронные методы
 - [ ] Недостающие классы и методы
-- [ ] Переход на UWP
+- [x] Переход на UWP
 
 #Credits
 
@@ -32,6 +34,7 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 - [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
 - [Json.Net](http://www.newtonsoft.com/json)
 - [HtmlAgilityPack](http://htmlagilitypack.codeplex.com/)
+- [AngleSharp](https://anglesharp.github.io/)
 - [NUnit](http://www.nunit.org/)
 - [Moq](https://github.com/moq/moq4)
 
