@@ -71,7 +71,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(PhotoCreateAlbumParams p)
+		public static VkParameters ToVkParameters(PhotoCreateAlbumParams p)
 		{
 			if (p.View == null)
 			{

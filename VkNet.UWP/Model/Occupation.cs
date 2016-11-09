@@ -31,7 +31,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Occupation FromJson(VkResponse response)
+		public static Occupation FromJson(VkResponse response)
 		{
 			var occupation = new Occupation
 			{

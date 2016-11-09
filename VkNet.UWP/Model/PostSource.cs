@@ -40,7 +40,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static PostSource FromJson(VkResponse response)
+		public static PostSource FromJson(VkResponse response)
 		{
 			var postSource = new PostSource
 			{

@@ -227,7 +227,7 @@ namespace VkNet.Tests.Categories
             Assert.That(actual.Audio.Artist, Is.EqualTo("Тараканы!"));
             Assert.That(actual.Audio.Title, Is.EqualTo("Собачье Сердце"));
             Assert.That(actual.Audio.Duration, Is.EqualTo(230));
-            Assert.That(actual.Audio.Url.OriginalString, Is.EqualTo("http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
+            Assert.That(actual.Audio.Uri.OriginalString, Is.EqualTo("http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
             Assert.That(actual.Audio.LyricsId, Is.EqualTo(7985406));
             Assert.That(actual.Audio.AlbumId, Is.Null);
         }

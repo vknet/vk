@@ -75,7 +75,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(WallGetCommentsParams p)
+		public static VkParameters ToVkParameters(WallGetCommentsParams p)
 		{
 			var parameters = new VkParameters
 			{

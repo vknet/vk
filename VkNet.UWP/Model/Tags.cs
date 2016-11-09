@@ -16,14 +16,14 @@ namespace VkNet.Model
 		/// </summary>
 		public int Count { get; set; }
 
-		#region Internal methods
+		#region public methods
 
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Tags FromJson(VkResponse response)
+		public static Tags FromJson(VkResponse response)
 		{
 			var tags = new Tags
 			{

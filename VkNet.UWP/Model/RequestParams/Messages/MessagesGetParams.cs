@@ -66,7 +66,7 @@
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(MessagesGetParams p)
+		public static VkParameters ToVkParameters(MessagesGetParams p)
 		{
 			return new VkParameters
 			{

@@ -47,7 +47,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static LongPollHistoryResponse FromJson(VkResponse response)
+		public static LongPollHistoryResponse FromJson(VkResponse response)
 		{
             var fromJson = new LongPollHistoryResponse
             {

@@ -25,7 +25,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Rating FromJson(VkResponse response)
+		public static Rating FromJson(VkResponse response)
 		{
 			var rating = new Rating
 			{

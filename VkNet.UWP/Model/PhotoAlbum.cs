@@ -107,7 +107,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static PhotoAlbum FromJson(VkResponse response)
+		public static PhotoAlbum FromJson(VkResponse response)
         {
 			VkResponseArray privacy = response["privacy_view"];
 			VkResponseArray privacyComment = response["privacy_comment"];

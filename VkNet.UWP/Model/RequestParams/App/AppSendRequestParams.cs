@@ -49,7 +49,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(AppSendRequestParams p)
+		public static VkParameters ToVkParameters(AppSendRequestParams p)
 		{
 			var parameters = new VkParameters
 			{

@@ -494,7 +494,7 @@ namespace VkNet.Model
 
 		#region Методы
 
-		internal static User FromJson(VkResponse response)
+		public static User FromJson(VkResponse response)
 		{
 			var user = new User
 			{

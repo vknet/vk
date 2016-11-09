@@ -17,13 +17,13 @@ namespace VkNet.Model
         /// </summary>
         public string Title { get; set; }
 
-		#region Internal Methods
+		#region public Methods
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Chair FromJson(VkResponse response)
+		public static Chair FromJson(VkResponse response)
 		{
 			var result = new Chair
 			{

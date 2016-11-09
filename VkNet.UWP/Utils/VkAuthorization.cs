@@ -101,7 +101,7 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Наименование поля.
 		/// </summary>
-		internal sealed class NameValue
+		public sealed class NameValue
         {
 			/// <summary>
 			/// Наименование.

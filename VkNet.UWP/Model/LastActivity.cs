@@ -31,7 +31,7 @@
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static LastActivity FromJson(VkResponse re)
+		public static LastActivity FromJson(VkResponse re)
 		{
 			var lastActivity = new LastActivity
 			{

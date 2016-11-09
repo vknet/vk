@@ -6,7 +6,7 @@ namespace VkNet.UWP.Utils
     /// <summary>
     /// Реализация WebProxy
     /// </summary>
-    internal class WebProxy : IWebProxy
+    public class WebProxy : IWebProxy
     {
         /// <summary>
         /// Данные авторизации

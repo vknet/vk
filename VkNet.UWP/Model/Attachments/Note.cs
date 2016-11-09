@@ -50,7 +50,7 @@ namespace VkNet.Model.Attachments
 		public Uri ViewUrl { get; set; }
 		#region Методы
 
-		internal static Note FromJson(VkResponse response)
+		public static Note FromJson(VkResponse response)
 		{
 			var note = new Note
 			{

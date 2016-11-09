@@ -52,7 +52,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static GiftItem FromJson(VkResponse response)
+		public static GiftItem FromJson(VkResponse response)
 		{
 			return new GiftItem
 			{

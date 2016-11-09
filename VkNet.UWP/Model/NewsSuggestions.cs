@@ -25,7 +25,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static NewsSuggestions FromJson(VkResponse response)
+		public static NewsSuggestions FromJson(VkResponse response)
 		{
 			var newsSuggestions = new NewsSuggestions
 			{

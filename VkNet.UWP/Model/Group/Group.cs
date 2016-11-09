@@ -250,7 +250,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Group FromJson(VkResponse response)
+		public static Group FromJson(VkResponse response)
 		{
 			var group = new Group
 			{

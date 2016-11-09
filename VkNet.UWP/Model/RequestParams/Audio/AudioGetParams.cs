@@ -57,7 +57,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(AudioGetParams p)
+		public static VkParameters ToVkParameters(AudioGetParams p)
 		{
 			var parameters = new VkParameters
 			{

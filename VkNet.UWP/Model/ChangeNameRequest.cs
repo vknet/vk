@@ -42,7 +42,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static ChangeNameRequest FromJson(VkResponse response)
+		public static ChangeNameRequest FromJson(VkResponse response)
 		{
 			var request = new ChangeNameRequest
 			{

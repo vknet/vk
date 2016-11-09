@@ -94,7 +94,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public string CopyText { get; set; }
 
-		internal static Wall FromJson(VkResponse response)
+		public static Wall FromJson(VkResponse response)
 		{
 			var wall = new Wall
 			{

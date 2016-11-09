@@ -70,7 +70,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static InformationAboutOffers FromJson(VkResponse response)
+		public static InformationAboutOffers FromJson(VkResponse response)
 		{
 			return new InformationAboutOffers
 			{

@@ -33,7 +33,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static RepostResult FromJson(VkResponse response)
+		public static RepostResult FromJson(VkResponse response)
 		{
 			var result = new RepostResult
 			{

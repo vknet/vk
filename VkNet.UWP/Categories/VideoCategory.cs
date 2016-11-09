@@ -16,7 +16,7 @@
 	{
 		private readonly VkApi _vk;
 
-		internal VideoCategory(VkApi vk)
+	    public VideoCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

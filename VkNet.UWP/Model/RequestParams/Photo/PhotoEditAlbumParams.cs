@@ -77,7 +77,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(PhotoEditAlbumParams p)
+		public static VkParameters ToVkParameters(PhotoEditAlbumParams p)
 		{
 			if (p.View == null)
 			{

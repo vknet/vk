@@ -6,7 +6,7 @@ namespace VkNet.Utils
 	/// Версия VK API, для которой реализован метод.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-	internal class ApiVersionAttribute : Attribute
+	public class ApiVersionAttribute : Attribute
 	{
 		/// <summary>
 		/// Версия VK API

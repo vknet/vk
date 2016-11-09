@@ -61,7 +61,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static StandInLife FromJson(VkResponse response)
+		public static StandInLife FromJson(VkResponse response)
 		{
 			var standInLife = new StandInLife
 			{

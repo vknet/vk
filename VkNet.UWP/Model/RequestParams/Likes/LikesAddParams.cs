@@ -78,7 +78,7 @@ namespace VkNet.Model.RequestParams
         /// </summary>
         /// <param name="p">Параметры.</param>
         /// <returns></returns>
-        internal static VkParameters ToVkParameters(LikesAddParams p)
+        public static VkParameters ToVkParameters(LikesAddParams p)
         {
             var result = new VkParameters
                 {

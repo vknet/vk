@@ -32,7 +32,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static CropPhoto FromJson(VkResponse response)
+		public static CropPhoto FromJson(VkResponse response)
 		{
 			var cropPhoto = new CropPhoto
 			{

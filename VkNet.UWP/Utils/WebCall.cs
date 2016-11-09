@@ -11,7 +11,7 @@ namespace VkNet.Utils
     /// <summary>
     /// WebCall
     /// </summary>
-    internal sealed class WebCall : IDisposable
+    public sealed class WebCall : IDisposable
     {
         /// <summary>
         /// Получить HTTP запрос.

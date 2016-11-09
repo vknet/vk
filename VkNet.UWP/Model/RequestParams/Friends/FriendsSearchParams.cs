@@ -59,7 +59,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(FriendsSearchParams p)
+		public static VkParameters ToVkParameters(FriendsSearchParams p)
 		{
 			var parameters = new VkParameters
 			{

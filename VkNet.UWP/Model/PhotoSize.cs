@@ -40,7 +40,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static PhotoSize FromJson(VkResponse response)
+		public static PhotoSize FromJson(VkResponse response)
 		{
 			var giftItem = new PhotoSize
 			{

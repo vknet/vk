@@ -115,7 +115,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static PushSettings FromJson(VkResponse response)
+		public static PushSettings FromJson(VkResponse response)
 		{
 			var result = new PushSettings
 			{

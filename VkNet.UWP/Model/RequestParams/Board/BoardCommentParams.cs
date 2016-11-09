@@ -50,7 +50,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(BoardCommentParams p)
+		public static VkParameters ToVkParameters(BoardCommentParams p)
 		{
 			var parameters = new VkParameters
 			{

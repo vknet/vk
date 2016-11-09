@@ -67,7 +67,7 @@ namespace VkNet.Model.Attachments
         /// </summary>
         /// <param name="response">Ответ сервера.</param>
         /// <returns></returns>
-        internal static Document FromJson(VkResponse response)
+        public static Document FromJson(VkResponse response)
         {
 	        var document = new Document
 	        {

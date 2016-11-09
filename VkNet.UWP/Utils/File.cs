@@ -7,7 +7,7 @@ namespace VkNet.UWP.Utils
     /// <summary>
     /// Работа с файлами
     /// </summary>
-    internal static class File
+    public static class File
     {
         /// <summary>
         /// Создать файл

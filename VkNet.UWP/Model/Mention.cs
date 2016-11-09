@@ -109,7 +109,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Mention FromJson(VkResponse response)
+		public static Mention FromJson(VkResponse response)
 		{
 			var mention = new Mention
 			{

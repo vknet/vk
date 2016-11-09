@@ -12,7 +12,7 @@ namespace VkNet.Utils
 	/// <summary>
 	/// Утилиты.
 	/// </summary>
-	internal static class Utilities
+	public static class Utilities
     {
 		/// <summary>
 		/// Преобразовать в перечисление из числа.

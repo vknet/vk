@@ -31,7 +31,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static AudioAlbum FromJson(VkResponse response)
+		public static AudioAlbum FromJson(VkResponse response)
 		{
 			var album = new AudioAlbum
 			{

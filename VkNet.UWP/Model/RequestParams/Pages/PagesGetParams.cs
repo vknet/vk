@@ -62,7 +62,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns>Объект типа <see cref="PagesGetParams"/></returns>
-		internal static VkParameters ToVkParameters(PagesGetParams p)
+		public static VkParameters ToVkParameters(PagesGetParams p)
 		{
 			var result = new VkParameters
 			{

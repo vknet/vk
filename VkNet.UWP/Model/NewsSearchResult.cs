@@ -80,7 +80,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static NewsSearchResult FromJson(VkResponse response)
+		public static NewsSearchResult FromJson(VkResponse response)
 		{
 			var newsSearchResult = new NewsSearchResult
 			{

@@ -36,7 +36,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static StatsStruct FromJson(VkResponse response)
+		public static StatsStruct FromJson(VkResponse response)
 		{
 			var statsStruct = new StatsStruct
 			{

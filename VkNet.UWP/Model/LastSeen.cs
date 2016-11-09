@@ -25,7 +25,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static LastSeen FromJson(VkResponse response)
+		public static LastSeen FromJson(VkResponse response)
 		{
 			var giftItem = new LastSeen
 			{

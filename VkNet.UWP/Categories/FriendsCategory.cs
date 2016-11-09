@@ -19,7 +19,7 @@
 	{
 		private readonly VkApi _vk;
 
-		internal FriendsCategory(VkApi vk)
+	    public FriendsCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

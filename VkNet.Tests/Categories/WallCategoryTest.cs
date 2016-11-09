@@ -283,7 +283,7 @@ namespace VkNet.Tests.Categories
 			var attach1 = (Photo)records[0].Attachments.ElementAt(0).Instance;
 			Assert.That(attach1.Id, Is.EqualTo(283337039));
 			var attach2 = (Link)records[0].Attachments.ElementAt(1).Instance;
-			Assert.That(attach2.Url, Is.EqualTo(new Uri("http://vk.com/link")));
+			Assert.That(attach2.Uri, Is.EqualTo(new Uri("http://vk.com/link")));
 
 			Assert.That(records[1].Attachments.Count(), Is.EqualTo(1));
 			var attach3 = (Audio)records[1].Attachments.ElementAt(0).Instance;
@@ -887,7 +887,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(doc.Title, Is.EqualTo("2e857c8f-aaf8-4399-9856-e4fda3199e3d.gif"));
 			Assert.That(doc.Size, Is.EqualTo(2006654));
 			Assert.That(doc.Ext, Is.EqualTo("gif"));
-			Assert.That(doc.Url, Is.EqualTo("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1"));
+			Assert.That(doc.Uri, Is.EqualTo("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1"));
 			Assert.That(doc.Photo100, Is.EqualTo("http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg"));
 			Assert.That(doc.Photo130, Is.EqualTo("http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg"));
 			Assert.That(doc.AccessKey, Is.EqualTo("5bf7103aa95aacb8ad"));

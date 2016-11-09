@@ -53,7 +53,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static WallReply FromJson(VkResponse response)
+		public static WallReply FromJson(VkResponse response)
 		{
 			var wallReply = new WallReply
 			{

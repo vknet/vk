@@ -48,7 +48,7 @@ namespace VkNet.Model.Attachments
 
         #region Методы
 
-		internal static Album FromJson(VkResponse response)
+		public static Album FromJson(VkResponse response)
 		{
 			return new Album
 			{

@@ -45,7 +45,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static VideoCatalog FromJson(VkResponse response)
+		public static VideoCatalog FromJson(VkResponse response)
 		{
 			var item = new VideoCatalog
 			{

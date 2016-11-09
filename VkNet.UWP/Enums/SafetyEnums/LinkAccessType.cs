@@ -27,7 +27,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static LinkAccessType FromJson (VkResponse response)
+		public static LinkAccessType FromJson (VkResponse response)
         {
             string status = response["status"];
 

@@ -24,7 +24,7 @@
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Lyrics FromJson(VkResponse response)
+		public static Lyrics FromJson(VkResponse response)
         {
 			return new Lyrics
 			{

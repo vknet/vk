@@ -25,7 +25,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Button FromJson(VkResponse response)
+		public static Button FromJson(VkResponse response)
 		{
 			var button = new Button
 			{

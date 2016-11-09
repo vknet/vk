@@ -73,7 +73,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(AuthSignupParams p)
+		public static VkParameters ToVkParameters(AuthSignupParams p)
 		{
 			var parameters = new VkParameters
 			{

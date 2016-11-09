@@ -30,7 +30,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Currency FromJson(VkResponse response)
+		public static Currency FromJson(VkResponse response)
 		{
 			var currency = new Currency
 			{

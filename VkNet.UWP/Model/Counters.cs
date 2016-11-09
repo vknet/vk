@@ -138,7 +138,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Counters FromJson(VkResponse response)
+		public static Counters FromJson(VkResponse response)
 		{
 			var counters = new Counters
 			{

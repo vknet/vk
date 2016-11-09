@@ -24,7 +24,7 @@ namespace VkNet.Categories
 		/// Методы для работы с wiki.
 		/// </summary>
 		/// <param name="vk">API.</param>
-		internal PagesCategory(VkApi vk)
+		public PagesCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

@@ -20,7 +20,7 @@
 	{
 		private readonly VkApi _vk;
 
-		internal GroupsCategory(VkApi vk)
+	    public GroupsCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

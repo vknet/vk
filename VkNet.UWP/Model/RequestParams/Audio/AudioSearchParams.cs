@@ -54,7 +54,7 @@
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(AudioSearchParams p)
+		public static VkParameters ToVkParameters(AudioSearchParams p)
         {
             return new VkParameters
             {

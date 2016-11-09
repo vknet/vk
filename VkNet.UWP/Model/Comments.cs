@@ -31,7 +31,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ от vk.</param>
 		/// <returns></returns>
-		internal static Comments FromJson(VkResponse response)
+		public static Comments FromJson(VkResponse response)
 		{
 			return new Comments
             {

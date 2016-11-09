@@ -34,7 +34,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Relative FromJson(VkResponse response)
+		public static Relative FromJson(VkResponse response)
 		{
 			var relative = new Relative
 			{

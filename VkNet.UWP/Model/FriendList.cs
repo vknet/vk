@@ -17,13 +17,13 @@ namespace VkNet.Model
 		/// </summary>
 		public string Name { get; set; }
 
-		#region Internal Methods
+		#region public Methods
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static FriendList FromJson(VkResponse response)
+		public static FriendList FromJson(VkResponse response)
 		{
 			var list = new FriendList
 			{

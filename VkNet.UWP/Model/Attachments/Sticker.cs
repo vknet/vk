@@ -58,7 +58,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Sticker FromJson(VkResponse response)
+		public static Sticker FromJson(VkResponse response)
 		{
 			var sticker = new Sticker
 			{

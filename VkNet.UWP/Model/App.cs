@@ -164,7 +164,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static App FromJson(VkResponse response)
+		public static App FromJson(VkResponse response)
 		{
 			var application = new App
 			{

@@ -23,7 +23,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Region FromJson(VkResponse response)
+		public static Region FromJson(VkResponse response)
         {
 			var region = new Region
 			{

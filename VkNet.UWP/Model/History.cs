@@ -42,7 +42,7 @@
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static History FromJson(VkResponse response)
+		public static History FromJson(VkResponse response)
 		{
 			var reposts = new History
 			{

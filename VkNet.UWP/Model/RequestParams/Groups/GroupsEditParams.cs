@@ -258,7 +258,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns>Объект типа <see cref="GroupsEditParams"/></returns>
-		internal static VkParameters ToVkParameters(GroupsEditParams p)
+		public static VkParameters ToVkParameters(GroupsEditParams p)
 		{
 			var result = new VkParameters
 			{
@@ -311,7 +311,7 @@ namespace VkNet.Model.RequestParams
         /// </summary>
         /// <param name="response">Ответ сервера.</param>
         /// <returns></returns>
-        internal static GroupsEditParams FromJson(VkResponse response)
+        public static GroupsEditParams FromJson(VkResponse response)
         {
             var marketCountry = (VkResponseArray) response["market_country"];
             var marketCity = (VkResponseArray) response["market_city"];

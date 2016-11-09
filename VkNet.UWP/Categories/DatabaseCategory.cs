@@ -18,7 +18,7 @@ namespace VkNet.Categories
     {
         private readonly VkApi _vk;
 
-        internal DatabaseCategory(VkApi vk)
+        public DatabaseCategory(VkApi vk)
         {
             _vk = vk;
         }

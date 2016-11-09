@@ -38,7 +38,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static CategoryGroup FromJson(VkResponse response)
+		public static CategoryGroup FromJson(VkResponse response)
 		{
 			return new CategoryGroup
 			{

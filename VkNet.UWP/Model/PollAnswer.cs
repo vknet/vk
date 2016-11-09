@@ -36,7 +36,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static PollAnswer FromJson(VkResponse response)
+		public static PollAnswer FromJson(VkResponse response)
 		{
 			var answer = new PollAnswer
 			{

@@ -47,7 +47,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static ExternalLink FromJson(VkResponse response)
+		public static ExternalLink FromJson(VkResponse response)
         {
 	        var contact = new ExternalLink
 	        {

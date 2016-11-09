@@ -60,7 +60,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static PostReach FromJson(VkResponse response)
+		public static PostReach FromJson(VkResponse response)
 		{
 			var postReach = new PostReach
 			{

@@ -35,7 +35,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Geo FromJson(VkResponse response)
+		public static Geo FromJson(VkResponse response)
 		{
 			// TODO: TEST IT!!!!!
 			var geo = new Geo

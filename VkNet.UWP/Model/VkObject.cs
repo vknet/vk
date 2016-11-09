@@ -26,7 +26,7 @@
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static VkObject FromJson(VkResponse response)
+		public static VkObject FromJson(VkResponse response)
 		{
 			var obj = new VkObject
 			{

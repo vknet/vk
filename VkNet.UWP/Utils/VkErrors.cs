@@ -9,7 +9,7 @@ namespace VkNet.Utils
     /// <summary>
     /// Ошибки VK
     /// </summary>
-    internal static class VkErrors
+    public static class VkErrors
     {
         /// <summary>
         /// Ошибка если строка null или пустая.

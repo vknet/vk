@@ -26,7 +26,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static AccountChangePasswordResult FromJson(VkResponse response)
+		public static AccountChangePasswordResult FromJson(VkResponse response)
 		{
 			var item = new AccountChangePasswordResult
 			{

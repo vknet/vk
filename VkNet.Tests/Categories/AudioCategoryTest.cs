@@ -187,7 +187,7 @@
 			Assert.That(audios[0].Artist, Is.EqualTo("Тараканы!"));
 			Assert.That(audios[0].Title, Is.EqualTo("Собачье Сердце"));
 			Assert.That(audios[0].Duration, Is.EqualTo(230));
-			Assert.That(audios[0].Url.OriginalString, Is.EqualTo("http://cs1-48v4.vk.me/p9/67e26e496a90c9.mp3?extra=ANx_RCt9IR0J__5W_mtAZnymMBpWtoUN2jpxv4nGoRAKughoGmcNqpIlN6zQNW83aHlVqUMNoqi12XEcmSV-8STD68aRVj4"));
+			Assert.That(audios[0].Uri.OriginalString, Is.EqualTo("http://cs1-48v4.vk.me/p9/67e26e496a90c9.mp3?extra=ANx_RCt9IR0J__5W_mtAZnymMBpWtoUN2jpxv4nGoRAKughoGmcNqpIlN6zQNW83aHlVqUMNoqi12XEcmSV-8STD68aRVj4"));
 			Assert.That(audios[0].LyricsId, Is.EqualTo(7985406));
 			Assert.That(audios[0].Genre, Is.EqualTo(AudioGenre.Other));
 
@@ -196,7 +196,7 @@
 			Assert.That(audios[1].Artist, Is.EqualTo("Madonna"));
 			Assert.That(audios[1].Title, Is.EqualTo("Celebration"));
 			Assert.That(audios[1].Duration, Is.EqualTo(215));
-			Assert.That(audios[1].Url.OriginalString, Is.EqualTo("http://cs1-17v4.vk.me/p10/588a7dc76504b2.mp3?extra=s-AY9VvYoFoyqWr89mbugo9Br7exgc3R1PORbScZsV1BUSZ1RYUXXVmiwE7tfelVyVk2Hv429VYXvJKO5xLJmQ"));
+			Assert.That(audios[1].Uri.OriginalString, Is.EqualTo("http://cs1-17v4.vk.me/p10/588a7dc76504b2.mp3?extra=s-AY9VvYoFoyqWr89mbugo9Br7exgc3R1PORbScZsV1BUSZ1RYUXXVmiwE7tfelVyVk2Hv429VYXvJKO5xLJmQ"));
 			Assert.That(audios[1].LyricsId, Is.EqualTo(2195871));
 			Assert.That(audios[1].AlbumId, Is.EqualTo(26758146));
 			Assert.That(audios[1].Genre, Is.EqualTo(AudioGenre.Pop));
@@ -287,14 +287,14 @@
 			Assert.That(audios[0].Artist, Is.EqualTo("Дядя Женя"));
 			Assert.That(audios[0].Title, Is.EqualTo("Вопреки законам природы"));
 			Assert.That(audios[0].Duration, Is.EqualTo(204));
-			Assert.That(audios[0].Url.OriginalString, Is.EqualTo("http://cs4517.vkontakte.ru/u50781326/audio/d20ef68f7848.mp3"));
+			Assert.That(audios[0].Uri.OriginalString, Is.EqualTo("http://cs4517.vkontakte.ru/u50781326/audio/d20ef68f7848.mp3"));
 			Assert.That(audios[0].LyricsId, Is.EqualTo(4002932));
 			Assert.That(audios[1].Id, Is.EqualTo(158945986));
 			Assert.That(audios[1].OwnerId, Is.EqualTo(4793858));
 			Assert.That(audios[1].Artist, Is.EqualTo("Дядя Женя"));
 			Assert.That(audios[1].Title, Is.EqualTo("Финал: Без правил"));
 			Assert.That(audios[1].Duration, Is.EqualTo(380));
-			Assert.That(audios[1].Url.OriginalString, Is.EqualTo("http://cs4259.vkontakte.ru/u1622813/audio/61bf620e698e.mp3"));
+			Assert.That(audios[1].Uri.OriginalString, Is.EqualTo("http://cs4259.vkontakte.ru/u1622813/audio/61bf620e698e.mp3"));
 			Assert.That(audios[1].LyricsId, Is.EqualTo(3004301));
 		}
 
@@ -332,13 +332,13 @@
 			Assert.That(audios[0].Artist, Is.EqualTo("Дискотека Авария (www.primemusic.ru)"));
 			Assert.That(audios[0].Title, Is.EqualTo("Недетское Время"));
 			Assert.That(audios[0].Duration, Is.EqualTo(238));
-			Assert.That(audios[0].Url.OriginalString, Is.EqualTo("http://cs5002.vkontakte.ru/u40615612/audio/9f34e8775a94.mp3"));
+			Assert.That(audios[0].Uri.OriginalString, Is.EqualTo("http://cs5002.vkontakte.ru/u40615612/audio/9f34e8775a94.mp3"));
 			Assert.That(audios[1].Id, Is.EqualTo(111400883));
 			Assert.That(audios[1].OwnerId, Is.EqualTo(-28622822));
 			Assert.That(audios[1].Artist, Is.EqualTo("Дискотека Авария"));
 			Assert.That(audios[1].Title, Is.EqualTo("Нано Техно (NEW 2011)"));
 			Assert.That(audios[1].Duration, Is.EqualTo(206));
-			Assert.That(audios[1].Url.OriginalString, Is.EqualTo("http://cs4676.vkontakte.ru/u45593256/audio/423512410072.mp3"));
+			Assert.That(audios[1].Uri.OriginalString, Is.EqualTo("http://cs4676.vkontakte.ru/u45593256/audio/423512410072.mp3"));
 		}
 
 		[Test]
@@ -400,21 +400,21 @@
 			Assert.That(audios[0].Artist, Is.EqualTo("Марш Люфтваффе(немецкая народная песня)"));
 			Assert.That(audios[0].Title, Is.EqualTo("Was wollen wir trinken!"));
 			Assert.That(audios[0].Duration, Is.EqualTo(298));
-			Assert.That(audios[0].Url.OriginalString, Is.EqualTo("http://cs4696.vkontakte.ru/u78355164/audio/e9a8e73e283b.mp3"));
+			Assert.That(audios[0].Uri.OriginalString, Is.EqualTo("http://cs4696.vkontakte.ru/u78355164/audio/e9a8e73e283b.mp3"));
 			Assert.That(audios[0].LyricsId, Is.EqualTo(7257154));
 			Assert.That(audios[1].Id, Is.EqualTo(157469004));
 			Assert.That(audios[1].OwnerId, Is.EqualTo(4793858));
 			Assert.That(audios[1].Artist, Is.EqualTo("Титаник-гитара=)"));
 			Assert.That(audios[1].Title, Is.EqualTo("титаник"));
 			Assert.That(audios[1].Duration, Is.EqualTo(227));
-			Assert.That(audios[1].Url.OriginalString, Is.EqualTo("http://cs4770.vkontakte.ru/u12282005/audio/946096f61144.mp3"));
+			Assert.That(audios[1].Uri.OriginalString, Is.EqualTo("http://cs4770.vkontakte.ru/u12282005/audio/946096f61144.mp3"));
 			Assert.That(audios[1].LyricsId, Is.EqualTo(5540676));
 			Assert.That(audios[2].Id, Is.EqualTo(157187769));
 			Assert.That(audios[2].OwnerId, Is.EqualTo(4793858));
 			Assert.That(audios[2].Artist, Is.EqualTo("И.В.Сталин"));
 			Assert.That(audios[2].Title, Is.EqualTo("Речь И.В.Сталина 7 ноября 1941"));
 			Assert.That(audios[2].Duration, Is.EqualTo(185));
-			Assert.That(audios[2].Url.OriginalString, Is.EqualTo("http://cs1338.vkontakte.ru/u3201669/audio/7d67c7278b65.mp3"));
+			Assert.That(audios[2].Uri.OriginalString, Is.EqualTo("http://cs1338.vkontakte.ru/u3201669/audio/7d67c7278b65.mp3"));
 		}
 
 		[Test]
@@ -507,7 +507,7 @@
 			Assert.That(auds[2].Artist, Is.EqualTo("2558 The BEATLES (цикл передач на РАДИО СВОБОДА)"));
 			Assert.That(auds[2].Title, Is.EqualTo("Музыка БИТЛЗ у других исполнителей"));
 			Assert.That(auds[2].Duration, Is.EqualTo(3179));
-			Assert.That(auds[2].Url.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/6768fd4bfece.mp3"));
+			Assert.That(auds[2].Uri.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/6768fd4bfece.mp3"));
 			Assert.That(auds[2].LyricsId, Is.EqualTo(23484929));
 			Assert.That(auds[2].AlbumId, Is.EqualTo(24110176));
 
@@ -516,7 +516,7 @@
 			Assert.That(auds[1].Artist, Is.EqualTo("2556 The BEATLES (цикл передач на РАДИО СВОБОДА)"));
 			Assert.That(auds[1].Title, Is.EqualTo("БИТЛЗ. Песни, подаренные другим"));
 			Assert.That(auds[1].Duration, Is.EqualTo(3179));
-			Assert.That(auds[1].Url.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/5f36b4e2c652.mp3"));
+			Assert.That(auds[1].Uri.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/5f36b4e2c652.mp3"));
 			Assert.That(auds[1].LyricsId, Is.EqualTo(23484936));
 			Assert.That(auds[1].AlbumId, Is.EqualTo(24110176));
 
@@ -525,7 +525,7 @@
 			Assert.That(auds[0].Artist, Is.EqualTo("2560 The BEATLES (цикл передач на РАДИО СВОБОДА)"));
 			Assert.That(auds[0].Title, Is.EqualTo("Джон, Пол, Ждордж, Ринго - работа для кино"));
 			Assert.That(auds[0].Duration, Is.EqualTo(3180));
-			Assert.That(auds[0].Url.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/7af351f23650.mp3"));
+			Assert.That(auds[0].Uri.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/7af351f23650.mp3"));
 			Assert.That(auds[0].LyricsId, Is.EqualTo(23484916));
 			Assert.That(auds[0].AlbumId, Is.EqualTo(24110176));
 		}
@@ -845,7 +845,7 @@
 			Assert.That(audio.Artist, Is.EqualTo("2560 The BEATLES (цикл передач на РАДИО СВОБОДА)"));
 			Assert.That(audio.Title, Is.EqualTo("Джон, Пол, Ждордж, Ринго - работа для кино"));
 			Assert.That(audio.Duration, Is.EqualTo(3180));
-			Assert.That(audio.Url.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/4529541451fe.mp3"));
+			Assert.That(audio.Uri.OriginalString, Is.EqualTo("http://cs5045.vkontakte.ru/u17922696/audio/4529541451fe.mp3"));
 			Assert.That(audio.LyricsId, Is.EqualTo(23484916));
 
 		}
@@ -1122,7 +1122,7 @@
 			Assert.That(result[0].Artist, Is.EqualTo("ЯрмаК feat. Лев, Фир, Тоф "));
 			Assert.That(result[0].Title, Is.EqualTo("Улетай (2014)"));
 			Assert.That(result[0].Duration, Is.EqualTo(252));
-			Assert.That(result[0].Url, Is.EqualTo(new Uri("http://cs9-11v4.vk.me/p21/ab488503b6d761.mp3")));
+			Assert.That(result[0].Uri, Is.EqualTo(new Uri("http://cs9-11v4.vk.me/p21/ab488503b6d761.mp3")));
 			Assert.That(result[0].Genre, Is.EqualTo(AudioGenre.RapAndHipHop));
 
 			Assert.That(result[1].Id, Is.EqualTo(104973590));
@@ -1130,7 +1130,7 @@
 			Assert.That(result[1].Artist, Is.EqualTo("Die Antwoord"));
 			Assert.That(result[1].Title, Is.EqualTo("Rich Bitch"));
 			Assert.That(result[1].Duration, Is.EqualTo(212));
-			Assert.That(result[1].Url, Is.EqualTo(new Uri("http://cs9-6v4.vk.me/p24/4f070b4cbc0648.mp3")));
+			Assert.That(result[1].Uri, Is.EqualTo(new Uri("http://cs9-6v4.vk.me/p24/4f070b4cbc0648.mp3")));
 			Assert.That(result[1].LyricsId, Is.EqualTo(10501388));
 			Assert.That(result[1].Genre, Is.EqualTo(AudioGenre.RapAndHipHop));
 
@@ -1139,7 +1139,7 @@
 			Assert.That(result[2].Artist, Is.EqualTo("Тимати (feat. LOne и Сергей Мазаев)"));
 			Assert.That(result[2].Title, Is.EqualTo("GQ"));
 			Assert.That(result[2].Duration, Is.EqualTo(209));
-			Assert.That(result[2].Url, Is.EqualTo(new Uri("http://cs9-12v4.vk.me/p16/11fc1ad07ef625.mp3")));
+			Assert.That(result[2].Uri, Is.EqualTo(new Uri("http://cs9-12v4.vk.me/p16/11fc1ad07ef625.mp3")));
 			Assert.That(result[2].LyricsId, Is.EqualTo(126521441));
 			Assert.That(result[2].Genre, Is.EqualTo(AudioGenre.RapAndHipHop));
 		}
@@ -1229,7 +1229,7 @@
 			Assert.That(result[0].Artist, Is.EqualTo("Helloween"));
 			Assert.That(result[0].Title, Is.EqualTo("If I Could Fly"));
 			Assert.That(result[0].Duration, Is.EqualTo(249));
-			Assert.That(result[0].Url, Is.EqualTo(new Uri("http://cs4528.vk.me/u36851245/audios/1243be024abd.mp3")));
+			Assert.That(result[0].Uri, Is.EqualTo(new Uri("http://cs4528.vk.me/u36851245/audios/1243be024abd.mp3")));
 			Assert.That(result[0].Genre, Is.EqualTo(AudioGenre.Other));
 
 			Assert.That(result[1].Id, Is.EqualTo(151029625));
@@ -1237,7 +1237,7 @@
 			Assert.That(result[1].Artist, Is.EqualTo("Helloween"));
 			Assert.That(result[1].Title, Is.EqualTo("In The Middle Of A Heartbeat"));
 			Assert.That(result[1].Duration, Is.EqualTo(270));
-			Assert.That(result[1].Url, Is.EqualTo(new Uri("http://cs4431.vk.me/u1988945/audios/7f2657a01cbe.mp3?extra=cCSpaW9F1X5StA3UYs2Tpw_hyjRQAAL0r9LfAzcQjcV6orUA1FFHej4llC_hk0Tqfp9DQrYYw9IZXddhcCEGm_AmZVsQAxov")));
+			Assert.That(result[1].Uri, Is.EqualTo(new Uri("http://cs4431.vk.me/u1988945/audios/7f2657a01cbe.mp3?extra=cCSpaW9F1X5StA3UYs2Tpw_hyjRQAAL0r9LfAzcQjcV6orUA1FFHej4llC_hk0Tqfp9DQrYYw9IZXddhcCEGm_AmZVsQAxov")));
 			Assert.That(result[1].Genre, Is.EqualTo(AudioGenre.Other));
 		}
 

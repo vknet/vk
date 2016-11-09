@@ -21,13 +21,13 @@ namespace VkNet.Model
         /// </summary>
         public string Title { get; set; }
 
-		#region Internal Methods
+		#region public Methods
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Country FromJson(VkResponse response)
+		public static Country FromJson(VkResponse response)
 		{
 			var country = new Country
 			{

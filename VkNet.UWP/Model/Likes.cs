@@ -38,7 +38,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Likes FromJson(VkResponse response)
+		public static Likes FromJson(VkResponse response)
 		{
 			var likes = new Likes
 			{

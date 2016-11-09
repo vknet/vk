@@ -45,7 +45,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Connections FromJson(VkResponse response)
+		public static Connections FromJson(VkResponse response)
 		{
 			var connections = new Connections
 			{

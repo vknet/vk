@@ -21,7 +21,7 @@ namespace VkNet.Categories
 		/// Методы для работы с приложениями.
 		/// </summary>
 		/// <param name="vk">API.</param>
-		internal MarketsCategory(VkApi vk)
+		public MarketsCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

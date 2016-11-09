@@ -68,7 +68,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(GroupsGetMembersParams p)
+		public static VkParameters ToVkParameters(GroupsGetMembersParams p)
 		{
 			var parameters = new VkParameters
 			{

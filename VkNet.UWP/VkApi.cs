@@ -229,7 +229,7 @@ namespace VkNet
 		/// <summary>
 		/// Браузер.
 		/// </summary>
-		internal IBrowser Browser
+		public IBrowser Browser
 		{ get; set; }
 
 		/// <summary>
@@ -423,7 +423,7 @@ namespace VkNet
 			return rTask;
 		}
 
-        #region Private & Internal Methods
+        #region Private & public Methods
         /// <summary>
         /// Авторизация и получение токена
         /// </summary>

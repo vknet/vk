@@ -68,7 +68,7 @@ namespace VkNet.Model
         /// </summary>
         /// <param name="response">Ответ сервера.</param>
         /// <returns></returns>
-        internal static Topic FromJson(VkResponse response)
+        public static Topic FromJson(VkResponse response)
 		{
 			var topicItem = new Topic
             {

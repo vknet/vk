@@ -45,7 +45,7 @@
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static VideoAlbum FromJson(VkResponse response)
+		public static VideoAlbum FromJson(VkResponse response)
 		{
 			var album = new VideoAlbum
 			{

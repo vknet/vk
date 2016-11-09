@@ -19,7 +19,7 @@
 	{
 		private readonly VkApi _vk;
 
-		internal WallCategory(VkApi vk)
+		public WallCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

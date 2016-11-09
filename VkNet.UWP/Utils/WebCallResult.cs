@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VkNet.Utils
 {
-    internal sealed class WebCallResult
+    public sealed class WebCallResult
     {
         /// <summary>
         /// URL запроса.

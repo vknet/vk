@@ -45,7 +45,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static City FromJson(VkResponse response)
+		public static City FromJson(VkResponse response)
         {
 			string id = response["comment_id"] ?? response["cid"] ?? response["id"];
 	        return new City

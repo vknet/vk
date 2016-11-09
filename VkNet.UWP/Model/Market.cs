@@ -83,7 +83,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Market FromJson(VkResponse response)
+		public static Market FromJson(VkResponse response)
 		{
 			var result = new Market
 			{

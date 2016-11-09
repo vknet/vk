@@ -78,7 +78,7 @@ namespace VkNet.Model.RequestParams
         /// </summary>
         /// <param name="p">Параметры.</param>
         /// <returns></returns>
-        internal static VkParameters ToVkParameters(PhotoCreateCommentParams p)
+        public static VkParameters ToVkParameters(PhotoCreateCommentParams p)
 		{
 			if (p.Message.Length > 2048)
 			{

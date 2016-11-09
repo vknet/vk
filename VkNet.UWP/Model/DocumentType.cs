@@ -27,7 +27,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns>Тип документа.</returns>
-		internal static DocumentType FromJson(VkResponse response)
+		public static DocumentType FromJson(VkResponse response)
 		{
 			var result = new DocumentType
 			{

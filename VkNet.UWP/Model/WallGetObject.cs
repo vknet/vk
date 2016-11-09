@@ -35,7 +35,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static WallGetObject FromJson(VkResponse response)
+		public static WallGetObject FromJson(VkResponse response)
 		{
 			WallGetObject wallGetObject;
 			if (response.ContainsKey("items"))

@@ -87,7 +87,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static StatsPeriod FromJson(VkResponse response)
+		public static StatsPeriod FromJson(VkResponse response)
 		{
 			var statsPeriod = new StatsPeriod
 			{

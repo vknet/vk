@@ -40,7 +40,7 @@ namespace VkNet.Categories
 		public ReadOnlyCollection<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			User user;
-			return InternalGet("gid", gid, out user, albumId, aids, false, count, offset);
+			return publicGet("gid", gid, out user, albumId, aids, false, count, offset);
 		}
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace VkNet.Categories
 		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
 		public ReadOnlyCollection<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
-			return InternalGet("uid", (long)uid, out user, albumId, aids, true, count, offset);
+			return publicGet("uid", (long)uid, out user, albumId, aids, true, count, offset);
 		}
 
 		/// <summary>
@@ -86,7 +86,7 @@ namespace VkNet.Categories
 		public ReadOnlyCollection<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			User user;
-			return InternalGet("uid", (long)uid, out user, albumId, aids, false, count, offset);
+			return publicGet("uid", (long)uid, out user, albumId, aids, false, count, offset);
 		}
 
 		/// <summary>
@@ -104,7 +104,7 @@ namespace VkNet.Categories
 		[Pure]
 		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
-		private ReadOnlyCollection<Audio> InternalGet(
+		private ReadOnlyCollection<Audio> publicGet(
 			string paramId,
 			long id,
 			out User user,

@@ -45,7 +45,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static ApplicationContent FromJson(VkResponse response)
+		public static ApplicationContent FromJson(VkResponse response)
         {
 	        var application = new ApplicationContent
 	        {

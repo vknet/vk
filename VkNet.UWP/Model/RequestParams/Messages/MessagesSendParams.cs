@@ -98,7 +98,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(MessagesSendParams p)
+		public static VkParameters ToVkParameters(MessagesSendParams p)
 		{
 			return new VkParameters
 			{

@@ -227,7 +227,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ от vk.</param>
 		/// <returns></returns>
-		internal static GroupInfo FromJson(VkResponse response)
+		public static GroupInfo FromJson(VkResponse response)
 		{
 			var group = new GroupInfo
 			{

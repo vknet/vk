@@ -24,7 +24,7 @@
 		/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.).
 		/// </summary>
 		/// <param name="vk">API.</param>
-		internal DocsCategory(VkApi vk)
+		public DocsCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

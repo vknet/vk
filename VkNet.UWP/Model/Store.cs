@@ -25,7 +25,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Store FromJson(VkResponse response)
+		public static Store FromJson(VkResponse response)
 		{
 			var store = new Store
 			{

@@ -103,7 +103,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Link FromJson(VkResponse response)
+		public static Link FromJson(VkResponse response)
 		{
 			var link = new Link
 			{

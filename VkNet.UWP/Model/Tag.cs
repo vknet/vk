@@ -69,7 +69,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Tag FromJson(VkResponse response)
+		public static Tag FromJson(VkResponse response)
 		{
 			var result = new Tag
 			{

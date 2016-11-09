@@ -18,7 +18,7 @@
 	{
 		private readonly VkApi _vk;
 
-		internal UsersCategory(VkApi vk)
+		public UsersCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

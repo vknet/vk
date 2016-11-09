@@ -83,7 +83,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(NewsFeedSearchParams p)
+		public static VkParameters ToVkParameters(NewsFeedSearchParams p)
 		{
 			var parameters = new VkParameters
 			{

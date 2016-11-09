@@ -32,7 +32,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static SearchDialogsResponse FromJson(VkResponse response)
+		public static SearchDialogsResponse FromJson(VkResponse response)
 		{
 			var result = new SearchDialogsResponse
 			{

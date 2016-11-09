@@ -22,7 +22,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static AuthConfirmResult FromJson(VkResponse response)
+		public static AuthConfirmResult FromJson(VkResponse response)
 		{
 			return new AuthConfirmResult
 			{

@@ -68,7 +68,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(VideoReorderVideosParams p)
+		public static VkParameters ToVkParameters(VideoReorderVideosParams p)
 		{
 			var parameters = new VkParameters
 			{

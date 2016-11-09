@@ -23,7 +23,7 @@ namespace VkNet.Categories
 		/// Методы для работы с новостной лентой пользователя.
 		/// </summary>
 		/// <param name="vk">API.</param>
-		internal NewsFeedCategory(VkApi vk)
+		public NewsFeedCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

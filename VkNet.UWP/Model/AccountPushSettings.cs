@@ -38,7 +38,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static AccountPushSettings FromJson(VkResponse response)
+		public static AccountPushSettings FromJson(VkResponse response)
 		{
 			return new AccountPushSettings
 			{

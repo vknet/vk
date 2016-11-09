@@ -19,7 +19,7 @@ namespace VkNet.Categories
 		/// Методы для работы со статистикой.
 		/// </summary>
 		/// <param name="vk">API.</param>
-		internal StatsCategory(VkApi vk)
+		public StatsCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

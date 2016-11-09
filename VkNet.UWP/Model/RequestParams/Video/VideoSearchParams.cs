@@ -97,7 +97,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(VideoSearchParams p)
+		public static VkParameters ToVkParameters(VideoSearchParams p)
 		{
 			var parameters = new VkParameters
 			{

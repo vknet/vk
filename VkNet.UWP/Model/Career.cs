@@ -55,7 +55,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Career FromJson(VkResponse response)
+		public static Career FromJson(VkResponse response)
 		{
 			var career = new Career
 			{

@@ -14,7 +14,7 @@ namespace VkNet.Categories
     {
         private readonly VkApi _vk;
 
-        internal UtilsCategory(VkApi vk)
+        public UtilsCategory(VkApi vk)
         {
             _vk = vk;
         }

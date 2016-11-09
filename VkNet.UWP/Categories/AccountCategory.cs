@@ -22,7 +22,7 @@
 		/// Методы для работы с аккаунтом пользователя.
 		/// </summary>
 		/// <param name="vk">API.</param>
-		internal AccountCategory(VkApi vk)
+		public AccountCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

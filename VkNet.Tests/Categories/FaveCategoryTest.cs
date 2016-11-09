@@ -545,7 +545,7 @@ namespace VkNet.Tests.Categories
 			var link = links.FirstOrDefault();
 			Assert.That(link, Is.Not.Null);
 			Assert.That(link.Id, Is.EqualTo("2_32190123_1"));
-			Assert.That(link.Url, Is.EqualTo("https://vk.com/apiclub"));
+			Assert.That(link.Uri, Is.EqualTo("https://vk.com/apiclub"));
 			Assert.That(link.Name, Is.EqualTo("ВКонтакте API"));
 			Assert.That(link.Description, Is.EqualTo("Сообщество"));
 			Assert.That(link.Photo50, Is.EqualTo("https://pp.vk.me/c400/g00001/e_5ba03323.jpg"));

@@ -140,7 +140,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="video">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Video FromJson(VkResponse video)
+		public static Video FromJson(VkResponse video)
         {
 	        var result = new Video
 	        {

@@ -56,7 +56,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Poll FromJson(VkResponse response)
+		public static Poll FromJson(VkResponse response)
         {
 			var poll = new Poll
 			{

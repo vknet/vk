@@ -23,7 +23,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static LookupContactsResult FromJson(VkResponse response)
+		public static LookupContactsResult FromJson(VkResponse response)
 		{
 			return new LookupContactsResult
 			{

@@ -1,7 +1,7 @@
 ﻿namespace VkNet.Utils
 {
 #if NET35
-    internal class Tuple<T, U>
+    public class Tuple<T, U>
     {
         public T Item1 { get; private set; }
         public U Item2 { get; private set; }

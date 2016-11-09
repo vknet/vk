@@ -158,7 +158,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Attachment FromJson(VkResponse response)
+		public static Attachment FromJson(VkResponse response)
 		{
 			var attachment = new Attachment();
 

@@ -34,7 +34,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static NewsUserListItem FromJson(VkResponse response)
+		public static NewsUserListItem FromJson(VkResponse response)
 		{
 			var newsUserListItem = new NewsUserListItem
 			{

@@ -43,7 +43,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static AccountInfo FromJson(VkResponse response)
+		public static AccountInfo FromJson(VkResponse response)
 		{
 			return new AccountInfo
 			{

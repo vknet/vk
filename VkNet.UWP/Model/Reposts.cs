@@ -29,7 +29,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Reposts FromJson(VkResponse response)
+		public static Reposts FromJson(VkResponse response)
 		{
 			var reposts = new Reposts
 			{

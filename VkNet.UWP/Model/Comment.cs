@@ -76,7 +76,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Comment FromJson(VkResponse response)
+		public static Comment FromJson(VkResponse response)
 		{
 			var comment = new Comment
 			{

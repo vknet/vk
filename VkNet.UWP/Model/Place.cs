@@ -79,7 +79,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Place FromJson(VkResponse response)
+		public static Place FromJson(VkResponse response)
 		{
 			var place = new Place
 			{

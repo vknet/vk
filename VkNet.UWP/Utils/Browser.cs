@@ -156,7 +156,7 @@ namespace VkNet.Utils
         /// <param name="display">Вид окна авторизации.</param>
         /// <returns>Возвращает Uri для авторизации</returns>
         [NotNull]
-        private static string CreateAuthorizeUrlFor(ulong appId, [NotNull] Settings settings, [NotNull] Display display)
+        public static string CreateAuthorizeUrlFor(ulong appId, [NotNull] Settings settings, [NotNull] Display display)
         {
             var builder = new StringBuilder("https://oauth.vk.com/authorize?");
 

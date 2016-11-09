@@ -167,7 +167,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Photo FromJson(VkResponse response)
+		public static Photo FromJson(VkResponse response)
 		{
 			var photo = new Photo
 			{

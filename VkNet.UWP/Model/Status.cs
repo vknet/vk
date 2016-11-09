@@ -26,7 +26,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Status FromJson(VkResponse response)
+		public static Status FromJson(VkResponse response)
 		{
 			var status = new Status
 			{

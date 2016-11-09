@@ -13,7 +13,7 @@ namespace VkNet.Utils
     /// <summary>
     /// WEB форма
     /// </summary>
-    internal sealed class WebForm
+    public sealed class WebForm
 	{
 		/// <summary>
 		/// HTML документ

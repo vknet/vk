@@ -23,7 +23,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static FriendOnline FromJson(VkResponse response)
+		public static FriendOnline FromJson(VkResponse response)
 		{
 			VkResponseArray mobile = response["online_mobile"];
 			VkResponseArray pc = response["online"];

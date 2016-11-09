@@ -36,7 +36,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static FaveVideoEx FromJson(VkResponse response)
+		public static FaveVideoEx FromJson(VkResponse response)
 		{
 			var wallGetObject = new FaveVideoEx
 			{

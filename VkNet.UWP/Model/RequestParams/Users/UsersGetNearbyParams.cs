@@ -71,7 +71,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(UsersGetNearbyParams p)
+		public static VkParameters ToVkParameters(UsersGetNearbyParams p)
 		{
 			var parameters = new VkParameters
 			{

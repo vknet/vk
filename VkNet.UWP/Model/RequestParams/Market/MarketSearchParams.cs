@@ -121,7 +121,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(MarketSearchParams p)
+		public static VkParameters ToVkParameters(MarketSearchParams p)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", p.OwnerId },

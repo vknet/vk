@@ -42,7 +42,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(PhotoGetAllCommentsParams p)
+		public static VkParameters ToVkParameters(PhotoGetAllCommentsParams p)
 		{
 			var parameters = new VkParameters
 			{

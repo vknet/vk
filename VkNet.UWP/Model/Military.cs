@@ -40,7 +40,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Military FromJson(VkResponse response)
+		public static Military FromJson(VkResponse response)
 		{
 			var military = new Military
 			{

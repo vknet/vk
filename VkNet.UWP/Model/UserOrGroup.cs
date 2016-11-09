@@ -29,7 +29,7 @@ namespace VkNet.Model
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
 		/// <exception cref="System.Exception">"Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"</exception>
-		internal static UserOrGroup FromJson(VkResponse response)
+		public static UserOrGroup FromJson(VkResponse response)
 		{
 			var userOrGroup = new UserOrGroup
 			{

@@ -49,7 +49,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(PhotoSaveParams p)
+		public static VkParameters ToVkParameters(PhotoSaveParams p)
 		{
 			var responseJson = JObject.Parse(p.SaveFileResponse);
 			var server = responseJson["server"].ToString();

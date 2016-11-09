@@ -17,7 +17,7 @@ namespace VkNet.Categories
 		/// Методы для работы с подарками.
 		/// </summary>
 		/// <param name="vk">API.</param>
-		internal GiftsCategory(VkApi vk)
+		public GiftsCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

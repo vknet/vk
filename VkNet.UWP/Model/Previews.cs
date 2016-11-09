@@ -54,7 +54,7 @@ namespace VkNet.Model
         /// </summary>
         /// <param name="response">Ответ сервера.</param>
         /// <returns></returns>
-        internal static Previews FromJson(VkResponse response)
+        public static Previews FromJson(VkResponse response)
         {
 
             var previews = new Previews

@@ -11,7 +11,7 @@
 	{
 		private readonly VkApi _vk;
 
-		internal BoardCategory(VkApi vk)
+		public BoardCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

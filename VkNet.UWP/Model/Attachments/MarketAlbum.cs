@@ -40,7 +40,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static MarketAlbum FromJson(VkResponse response)
+		public static MarketAlbum FromJson(VkResponse response)
 		{
 			var application = new MarketAlbum
 			{

@@ -35,7 +35,7 @@
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static LongPollServerResponse FromJson(VkResponse response)
+		public static LongPollServerResponse FromJson(VkResponse response)
 		{
 			var longPollServerResponse = new LongPollServerResponse
 			{

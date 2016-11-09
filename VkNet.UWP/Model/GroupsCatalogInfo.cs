@@ -23,7 +23,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static GroupsCatalogInfo FromJson(VkResponse response)
+		public static GroupsCatalogInfo FromJson(VkResponse response)
 		{
 			var result = new GroupsCatalogInfo
 			{

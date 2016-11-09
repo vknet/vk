@@ -25,7 +25,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static NewsBannedExList FromJson(VkResponse response)
+		public static NewsBannedExList FromJson(VkResponse response)
 		{
 			VkResponseArray names = response["groups"];
 			VkResponseArray profiles = response["profiles"];

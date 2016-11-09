@@ -59,7 +59,7 @@
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Chat FromJson(VkResponse response)
+		public static Chat FromJson(VkResponse response)
 		{
 			var chat = new Chat
 			{

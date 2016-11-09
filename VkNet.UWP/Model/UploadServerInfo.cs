@@ -28,7 +28,7 @@
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static UploadServerInfo FromJson(VkResponse response)
+		public static UploadServerInfo FromJson(VkResponse response)
 		{
 			var info = new UploadServerInfo
 			{

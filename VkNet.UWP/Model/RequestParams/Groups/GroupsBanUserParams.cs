@@ -66,7 +66,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(GroupsBanUserParams p)
+		public static VkParameters ToVkParameters(GroupsBanUserParams p)
 		{
 			var parameters = new VkParameters
 			{

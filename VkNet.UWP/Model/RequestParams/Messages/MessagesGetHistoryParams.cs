@@ -45,7 +45,7 @@
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(MessagesGetHistoryParams p)
+		public static VkParameters ToVkParameters(MessagesGetHistoryParams p)
         {
             return new VkParameters
             {

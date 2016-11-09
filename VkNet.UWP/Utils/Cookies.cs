@@ -11,7 +11,7 @@ namespace VkNet.Utils
     /// <summary>
     /// Cookies
     /// </summary>
-    internal sealed class Cookies
+    public sealed class Cookies
     {
         /// <summary>
         /// Получить контейнер Cookies.

@@ -57,7 +57,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Education FromJson(VkResponse response)
+		public static Education FromJson(VkResponse response)
 		{
 			if (response["university"] == null || response["university"].ToString() == "0")
 				return null;

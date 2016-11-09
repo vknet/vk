@@ -71,7 +71,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Audio FromJson(VkResponse response)
+		public static Audio FromJson(VkResponse response)
 		{
 			var audio = new Audio
 			{

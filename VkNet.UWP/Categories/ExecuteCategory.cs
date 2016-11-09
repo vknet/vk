@@ -17,7 +17,7 @@ namespace VkNet.Categories
 		/// Методы для работы с универсальным методом.
 		/// </summary>
 		/// <param name="vk">API.</param>
-		internal ExecuteCategory(VkApi vk)
+		public ExecuteCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

@@ -61,7 +61,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns>Объект типа <see cref="AccountRegisterDeviceParams"/></returns>
-		internal static VkParameters ToVkParameters(AccountRegisterDeviceParams p)
+		public static VkParameters ToVkParameters(AccountRegisterDeviceParams p)
 		{
 			var result = new VkParameters
 			{

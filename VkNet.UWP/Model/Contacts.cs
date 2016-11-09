@@ -22,7 +22,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Contacts FromJson(VkResponse response)
+		public static Contacts FromJson(VkResponse response)
 		{
 			var contacts = new Contacts
 			{

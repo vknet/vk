@@ -54,7 +54,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(PhotoPutTagParams p)
+		public static VkParameters ToVkParameters(PhotoPutTagParams p)
 		{
 			var parameters = new VkParameters
 			{

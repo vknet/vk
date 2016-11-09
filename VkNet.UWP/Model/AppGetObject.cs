@@ -27,7 +27,7 @@ namespace VkNet.Model
         /// </summary>
         /// <param name="response">Ответ сервера.</param>
         /// <returns></returns>
-        internal static AppGetObject FromJson(VkResponse response)
+        public static AppGetObject FromJson(VkResponse response)
         {
             AppGetObject appGetObject;
             if (response.ContainsKey("items"))

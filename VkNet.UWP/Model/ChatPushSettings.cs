@@ -31,7 +31,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static ChatPushSettings FromJson(VkResponse response)
+		public static ChatPushSettings FromJson(VkResponse response)
 		{
 			var result = new ChatPushSettings
 			{

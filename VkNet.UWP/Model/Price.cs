@@ -30,7 +30,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Price FromJson(VkResponse response)
+		public static Price FromJson(VkResponse response)
 		{
 			var price = new Price
 			{

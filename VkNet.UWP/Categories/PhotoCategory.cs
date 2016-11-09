@@ -16,7 +16,7 @@
 	{
 		private readonly VkApi _vk;
 
-		internal PhotoCategory(VkApi vk)
+	    public PhotoCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

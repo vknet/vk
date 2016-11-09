@@ -26,7 +26,7 @@ namespace VkNet.Categories
 		/// Методы для работы с сообщениями.
 		/// </summary>
 		/// <param name="vk">API</param>
-		internal MessagesCategory(VkApi vk)
+		public MessagesCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

@@ -23,7 +23,7 @@ namespace VkNet.Categories
 		/// API для работы с лайками.
 		/// </summary>
 		/// <param name="vk">The vk.</param>
-		internal LikesCategory(VkApi vk)
+		public LikesCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

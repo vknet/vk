@@ -32,7 +32,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Coordinates FromJson(VkResponse response)
+		public static Coordinates FromJson(VkResponse response)
 		{
 			// TODO: TEST IT!!!!!
 			var latitudeWithLongitude = ((string)response).Split(' ');

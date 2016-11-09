@@ -123,7 +123,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns>Объект типа <see cref="AccountSaveProfileInfoParams"/></returns>
-		internal static VkParameters ToVkParameters(AccountSaveProfileInfoParams p)
+		public static VkParameters ToVkParameters(AccountSaveProfileInfoParams p)
 		{
 			if (p.RelationPartner != null)
 			{

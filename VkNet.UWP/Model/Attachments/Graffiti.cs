@@ -36,7 +36,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Graffiti FromJson(VkResponse response)
+		public static Graffiti FromJson(VkResponse response)
         {
 	        var graffiti = new Graffiti
 	        {

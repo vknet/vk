@@ -13,7 +13,7 @@ namespace VkNet.Categories
 	{
 		private readonly VkApi _vk;
 
-		internal StatusCategory(VkApi vk)
+	    public StatusCategory(VkApi vk)
 		{
 			_vk = vk;
 		}

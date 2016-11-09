@@ -38,7 +38,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static Gift FromJson(VkResponse response)
+		public static Gift FromJson(VkResponse response)
 		{
 			var gift = new Gift
 			{

@@ -44,7 +44,7 @@
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
-		internal static VkParameters ToVkParameters(MessagesDialogsGetParams p)
+		public static VkParameters ToVkParameters(MessagesDialogsGetParams p)
         {
             return new VkParameters
             {

@@ -50,7 +50,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static BanInfo FromJson(VkResponse response)
+		public static BanInfo FromJson(VkResponse response)
 		{
 			var info = new BanInfo
 			{

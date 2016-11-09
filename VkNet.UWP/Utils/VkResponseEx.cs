@@ -9,7 +9,7 @@ namespace VkNet.Utils
     /// <summary>
 	/// Методы расширения для ответов vk.com
 	/// </summary>
-	internal static class VkResponseEx
+	public static class VkResponseEx
     {
 		/// <summary>
 		/// В коллекцию.

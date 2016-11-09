@@ -5,7 +5,7 @@ namespace VkNet.Utils
     /// <summary>
     /// Методы расширения для даты
     /// </summary>
-    internal static class DateTimeHelper
+    public static class DateTimeHelper
     {
         /// <summary>
         /// Приветси дату в строковый вид в формате "DD.MM.YYYY"

@@ -15,7 +15,7 @@ namespace VkNet.Model.Attachments
 
         #region Private Methods
 
-        internal static PhotosList FromJson(VkResponse response)
+        public static PhotosList FromJson(VkResponse response)
         {
             var list = new PhotosList();
 

@@ -186,7 +186,7 @@ namespace VkNet.Model
 
 		#region Методы
 
-		internal static Post FromJson(VkResponse response)
+		public static Post FromJson(VkResponse response)
 		{
 			if (response["id"] == null)
 			{

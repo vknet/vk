@@ -212,7 +212,7 @@ namespace VkNet.Model
 
 		#region Методы
 
-		internal static Message FromJson(VkResponse response)
+		public static Message FromJson(VkResponse response)
 		{
 			if (response.ContainsKey("message"))
 			{

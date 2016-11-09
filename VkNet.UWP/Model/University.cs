@@ -77,7 +77,7 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		internal static University FromJson(VkResponse response)
+		public static University FromJson(VkResponse response)
 		{
 			var university = new University
 			{

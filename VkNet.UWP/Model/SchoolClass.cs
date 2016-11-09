@@ -23,7 +23,7 @@ namespace VkNet.Model
         /// </summary>
         /// <param name="response">Ответ сервера.</param>
         /// <returns></returns>
-        internal static SchoolClass FromJson(VkResponse response)
+        public static SchoolClass FromJson(VkResponse response)
         {
             var schoolClass = new SchoolClass
             {

@@ -112,7 +112,7 @@ namespace VkNet.Model.Attachments
 
 		#region Методы
 
-		internal static Page FromJson(VkResponse response)
+		public static Page FromJson(VkResponse response)
 		{
 			var page = new Page
 			{

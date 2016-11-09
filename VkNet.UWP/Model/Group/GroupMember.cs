@@ -42,7 +42,7 @@
 		/// </summary>
 		/// <param name="response">Jndtn.</param>
 		/// <returns></returns>
-		internal static GroupMember FromJson(VkResponse response)
+		public static GroupMember FromJson(VkResponse response)
 		{
 			var group = new GroupMember
 			{
