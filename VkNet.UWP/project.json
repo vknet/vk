@@ -2,10 +2,10 @@
   "supports": {},
   "dependencies": {
     "AngleSharp": "0.9.9",
-    "Newtonsoft.Json": "9.0.1",
-    "PCLStorage": "1.0.2"
+    "NETStandard.Library": "1.6.0",
+    "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
-    ".NETPortable,Version=v4.5,Profile=Profile7": {}
+    "netstandard1.2": {}
   }
 }

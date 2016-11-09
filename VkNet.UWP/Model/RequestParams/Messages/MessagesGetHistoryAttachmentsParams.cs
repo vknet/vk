@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams

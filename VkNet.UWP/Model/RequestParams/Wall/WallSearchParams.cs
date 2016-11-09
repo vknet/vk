@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using VkNet.Enums.Filters;
+﻿using VkNet.Enums.Filters;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams

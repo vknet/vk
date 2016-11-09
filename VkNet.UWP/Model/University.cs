@@ -2,7 +2,6 @@
 
 namespace VkNet.Model
 {
-    using System;
     using Utils;
 
     /// <summary>
@@ -79,25 +78,23 @@ namespace VkNet.Model
 		/// <returns></returns>
 		public static University FromJson(VkResponse response)
 		{
-			var university = new University
-			{
-				Id = response["id"],
-				Country = response["country"],
-				City = response["city"],
-				Name = response["name"] ?? response["title"],
-				Faculty = response["faculty"],
-				FacultyName = response["faculty_name"],
-				Chair = response["chair"],
-				ChairName = response["chair_name"],
-				Graduation = response["graduation"],
+			return new University
+            {
+                Id = response["id"],
+                Country = response["country"],
+                City = response["city"],
+                Name = response["name"] ?? response["title"],
+                Faculty = response["faculty"],
+                FacultyName = response["faculty_name"],
+                Chair = response["chair"],
+                ChairName = response["chair_name"],
+                Graduation = response["graduation"],
 
-				// установлено экcпериментальным путем
-				EducationForm = response["education_form"],
-				EducationStatus = response["education_status"]
-			};
-
-			return university;
-		}
+                // установлено экcпериментальным путем
+                EducationForm = response["education_form"],
+                EducationStatus = response["education_status"]
+            };
+        }
 
 		#endregion
 	}

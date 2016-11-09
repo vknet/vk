@@ -1,5 +1,4 @@
 ﻿using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {

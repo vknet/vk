@@ -1,6 +1,4 @@
-﻿using VkNet.Utils;
-
-namespace VkNet.Enums.SafetyEnums
+﻿namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Указывает, следует ли вернуть всех пользователей, добавивших объект в список "Мне нравится" или только тех, которые рассказали о нем друзьям

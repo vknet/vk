@@ -1,6 +1,4 @@
-﻿using VkNet.Utils;
-
-namespace VkNet.Enums.SafetyEnums
+﻿namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Названия списков новостей, которые необходимо получить.

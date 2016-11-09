@@ -3,8 +3,6 @@
     using System;
     using System.Runtime.Serialization;
 
-    using Enums.Filters;
-
     /// <summary>
     /// Исключение, которое выбрасывается в случаях, 
     /// когда требуется дополнительная проверка пользователя, 

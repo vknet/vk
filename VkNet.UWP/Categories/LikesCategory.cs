@@ -1,11 +1,8 @@
-﻿using VkNet.Utils;
-using VkNet.Model.RequestParams;
+﻿using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
 {
-	using System.Collections.ObjectModel;
-
-	using Enums.SafetyEnums;
+    using Enums.SafetyEnums;
 	using Utils;
 	using Model;
 

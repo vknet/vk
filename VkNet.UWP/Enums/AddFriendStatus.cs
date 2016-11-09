@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using VkNet.Utils;
+﻿using VkNet.Utils;
 
 namespace VkNet.Enums
 {
@@ -8,9 +7,10 @@ namespace VkNet.Enums
     /// </summary>
     public enum AddFriendStatus
     {
-		/// <summary>
-		/// Статус в случае ошибки ответа
-		/// </summary>
+        /// <summary>
+        /// Статус в случае ошибки ответа
+        /// </summary>
+        [DefaultValue]
         Unknown = 0,
 
 		/// <summary>

@@ -5,9 +5,6 @@ namespace VkNet.Categories
 {
     using System.Collections.ObjectModel;
     using JetBrains.Annotations;
-
-    using Enums.Filters;
-    using Enums.SafetyEnums;
     using Model;
     using Utils;
 

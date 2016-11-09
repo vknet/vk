@@ -2,8 +2,6 @@
 
 namespace VkNet.Model
 {
-    using System;
-
     using Categories;
     using Utils;
 

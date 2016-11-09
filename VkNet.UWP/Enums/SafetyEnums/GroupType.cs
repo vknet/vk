@@ -2,9 +2,7 @@
 
 namespace VkNet.Enums.SafetyEnums
 {
-	using System;
-
-	/// <summary>
+    /// <summary>
 	/// Тип сообщества
 	/// </summary>
 	[DataContract]

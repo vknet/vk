@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using VkNet.Enums;
+﻿using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
 

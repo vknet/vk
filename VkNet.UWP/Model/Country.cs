@@ -3,8 +3,6 @@ using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using System;
-
     /// <summary>
     /// Информация о стране.
     /// </summary>

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams

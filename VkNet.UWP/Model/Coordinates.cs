@@ -2,9 +2,7 @@
 
 namespace VkNet.Model
 {
-	using System;
-
-	using Exception;
+    using Exception;
 	using Utils;
 
 	/// <summary>

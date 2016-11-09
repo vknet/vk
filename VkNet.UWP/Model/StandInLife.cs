@@ -2,7 +2,6 @@
 
 namespace VkNet.Model
 {
-    using System;
     using System.Collections.ObjectModel;
 
     using Enums;

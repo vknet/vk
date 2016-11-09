@@ -1,6 +1,4 @@
-﻿using VkNet.Utils;
-
-namespace VkNet.Enums.Filters
+﻿namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Список типов уведомлений.

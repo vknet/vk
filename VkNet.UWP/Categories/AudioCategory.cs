@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;

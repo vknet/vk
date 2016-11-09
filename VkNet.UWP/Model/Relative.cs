@@ -3,8 +3,7 @@ using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model
 {
-    using System;
-	using Utils;
+    using Utils;
 
     /// <summary>
     /// Информация о родственнике.

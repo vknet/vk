@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using PCLStorage;
 
 namespace VkNet.UWP.Utils
 {
@@ -16,12 +15,12 @@ namespace VkNet.UWP.Utils
         /// <param name="data"></param>
         public static async void Create(string filePath, byte[] data)
         {
-            var folder = FileSystem.Current.LocalStorage;
-            var file = await folder.CreateFileAsync(filePath, CreationCollisionOption.ReplaceExisting);
-            using (var stream = await file.OpenAsync(FileAccess.ReadAndWrite))
-            {
-                stream.Write(data, 0, data.Length);
-            }
+            //var folder = FileSystem.Current.LocalStorage;
+            //var file = await folder.CreateFileAsync(filePath, CreationCollisionOption.ReplaceExisting);
+            //using (var stream = await file.OpenAsync(FileAccess.ReadAndWrite))
+            //{
+            //    stream.Write(data, 0, data.Length);
+            //}
         }
 
         /// <summary>
@@ -31,15 +30,16 @@ namespace VkNet.UWP.Utils
         /// <returns></returns>
         public static async Task<byte[]> Read(string filePath)
         {
-            var file = await FileSystem.Current.GetFileFromPathAsync(filePath);
-            using (var stream = await file.OpenAsync(FileAccess.ReadAndWrite))
-            {
-                using (var memoryStream = new MemoryStream())
-                {
-                    stream.CopyTo(memoryStream);
-                    return memoryStream.ToArray();
-                }
-            }
+            //var file = await FileSystem.Current.GetFileFromPathAsync(filePath);
+            //using (var stream = await file.OpenAsync(FileAccess.ReadAndWrite))
+            //{
+            //    using (var memoryStream = new MemoryStream())
+            //    {
+            //        stream.CopyTo(memoryStream);
+            //        return memoryStream.ToArray();
+            //    }
+            //}
+            return new byte[] {};
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-
-namespace VkNet.Enums
+﻿namespace VkNet.Enums
 {
 	/// <summary>
 	/// Сортировка результатов: 1 - по дате регистрации, 0 - по популярности целое число.

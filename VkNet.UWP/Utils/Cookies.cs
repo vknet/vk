@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace VkNet.Utils
+﻿namespace VkNet.Utils
 {
 	using System;
 	using System.Collections;

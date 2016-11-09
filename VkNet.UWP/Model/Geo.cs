@@ -2,9 +2,7 @@
 
 namespace VkNet.Model
 {
-	using System;
-
-	using Utils;
+    using Utils;
 
 	/// <summary>
 	/// Информация о географическом месте, в котором была сделана запись.

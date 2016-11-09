@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System.Threading;
 using VkNet.UWP.Utils;
 
 namespace VkNet
@@ -40,7 +40,7 @@ namespace VkNet
         /// <summary>
         /// Таймер.
         /// </summary>
-        // private Timer _expireTimer;  todo fix UWP
+        private Timer _expireTimer;
 
         #region Requests limit stuff
         /// <summary>
@@ -528,19 +528,19 @@ namespace VkNet
 		/// <param name="expireTime">Значение таймера</param>
 		private void SetTimer(int expireTime)
 		{
-            //_expireTimer = new Timer(
-            //	AlertExpires,
-            //	null,
-            //	expireTime > 0 ? expireTime : Timeout.Infinite,
-            //	Timeout.Infinite
-            //);  todo fix UWP
+            _expireTimer = new Timer(
+                AlertExpires,
+                null,
+                expireTime > 0 ? expireTime : Timeout.Infinite,
+                Timeout.Infinite
+            );
         }
         /// <summary>
         /// Прекращает работу таймера оповещения
         /// </summary>
         private void StopTimer()
 		{
-            //_expireTimer?.Dispose();  todo fix UWP
+            _expireTimer?.Dispose();
         }
         /// <summary>
         /// Создает событие оповещения об окончании времени токена
@@ -675,23 +675,21 @@ namespace VkNet
             // Защита от превышения количества запросов в секунду
             if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
-                //if (_expireTimer == null)
-                //{
-                //    SetTimer(0);
-                //}  todo fix UWP
-                object expireTimer = null; //  todo fix UWP убрать эту строку
-                //lock (expireTimer)
-                //{
+                if (_expireTimer == null)
+                {
+                    SetTimer(0);
+                }
+                lock (_expireTimer)
+                {
                     var span = LastInvokeTimeSpan?.TotalMilliseconds;
                     if (span < _minInterval)
                     {
-                        //Thread.Sleep((int)_minInterval - (int)span); todo fix UWP
                         Task.Delay((int) _minInterval - (int) span).Wait();
                     }
                     url = GetApiUrl(methodName, parameters, skipAuthorization);
                     LastInvokeTime = DateTimeOffset.Now;
                     answer = Browser.GetJson(url.Replace("\'", "%27"));
-                //}
+                }
             } else if (skipAuthorization)
             {
                 url = GetApiUrl(methodName, parameters, skipAuthorization: true);

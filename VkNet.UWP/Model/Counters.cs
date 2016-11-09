@@ -2,8 +2,7 @@
 
 namespace VkNet.Model
 {
-	using System;
-	using Utils;
+    using Utils;
 
 	/// <summary>
 	/// Количество различных объектов у пользователя.

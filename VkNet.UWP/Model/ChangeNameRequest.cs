@@ -1,5 +1,4 @@
 ﻿using VkNet.Utils;
-using System;
 using System.Runtime.Serialization;
 using VkNet.Enums.SafetyEnums;
 

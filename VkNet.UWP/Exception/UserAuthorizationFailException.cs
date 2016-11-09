@@ -1,6 +1,5 @@
 ﻿namespace VkNet.Exception
 {
-    using System;
     using System.Runtime.Serialization;
 
     /// <summary>
