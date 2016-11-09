@@ -131,7 +131,7 @@ namespace VkNet.Tests.Categories
 		public void GetPhotos_ExtendedCase()
 		{
 			const string url = "https://api.vk.com/method/fave.getPhotos?count=3&offset=1&photo_sizes=1&v=" + VkApi.VkApiVersion + "&access_token=token";
-			const string json =
+            const string json =
 			@"{
 				response: {
 					count: 1061,
@@ -146,32 +146,32 @@ namespace VkNet.Tests.Categories
 							height: 67,
 							type: 's'
 							}, {
-							src: 'http://cs629301.v...ab0/khhRkq0uhoo.jpg',
+							src: 'http://cs629301.vab0/khhRkq0uhoo.jpg',
 							width: 130,
 							height: 116,
 							type: 'm'
 							}, {
-							src: 'http://cs629301.v...ab1/cNehIdjHNXg.jpg',
+							src: 'http://cs629301.vab1/cNehIdjHNXg.jpg',
 							width: 604,
 							height: 537,
 							type: 'x'
 							}, {
-							src: 'http://cs629301.v...ab2/reFF7eJG23U.jpg',
+							src: 'http://cs629301.vab2/reFF7eJG23U.jpg',
 							width: 130,
 							height: 116,
 							type: 'o'
 							}, {
-							src: 'http://cs629301.v...ab3/6YYP7c34Vp4.jpg',
+							src: 'http://cs629301.vab3/6YYP7c34Vp4.jpg',
 							width: 200,
 							height: 178,
 							type: 'p'
 							}, {
-							src: 'http://cs629301.v...ab4/I3fCEQCPuec.jpg',
+							src: 'http://cs629301.vab4/I3fCEQCPuec.jpg',
 							width: 320,
 							height: 285,
 							type: 'q'
 							}, {
-							src: 'http://cs629301.v...ab5/VtX_ZADIFXg.jpg',
+							src: 'http://cs629301.vab5/VtX_ZADIFXg.jpg',
 							width: 510,
 							height: 453,
 							type: 'r'
@@ -196,7 +196,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(photo.OwnerId, Is.EqualTo(-66589869));
 			Assert.That(photo.UserId, Is.EqualTo(100));
 			Assert.That(photos[0].Sizes[0].Height, Is.EqualTo(67));
-			Assert.That(photos[0].Sizes[0].Src, Is.EqualTo(new Url("http://cs629301.vk.me/v629301456/1caaf/XpHNgelMOc0.jpg")));
+			Assert.That(photos[0].Sizes[0].Src, Is.EqualTo(new Uri("http://cs629301.vk.me/v629301456/1caaf/XpHNgelMOc0.jpg")));
 			Assert.That(photos[0].Sizes[0].Width, Is.EqualTo(75));
 			Assert.That(photos[0].Sizes[0].Type, Is.EqualTo(PhotoSizeType.S));
 			Assert.That(photo.Text, Is.EqualTo(""));

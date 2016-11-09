@@ -29,11 +29,9 @@ namespace VkNet.Categories
         /// </remarks>
         [Pure]
         [ApiVersion("5.44")]
-        public LinkAccessType CheckLink([NotNull] string url)
+        public LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true)
         {
-            var parameters = new VkParameters { { "url", url } };
-
-            return _vk.Call("utils.checkLink", parameters, true);
+            return CheckLink(new Uri(url), skipAuthorization);
         }
 
         /// <summary>
@@ -46,11 +44,11 @@ namespace VkNet.Categories
         /// </remarks>
         [Pure]
         [ApiVersion("5.44")]
-        public LinkAccessType CheckLink([NotNull] Uri url)
+        public LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true)
         {
             var parameters = new VkParameters { { "url", url } };
 
-            return _vk.Call("utils.checkLink", parameters, true);
+            return _vk.Call("utils.checkLink", parameters, skipAuthorization);
         }
 
         /// <summary>

@@ -34,7 +34,7 @@ namespace VkNet.Tests.Categories
 		public void ExecuteErrorTest()
 		{
 			Url =
-				"https://api.vk.com/method/execute?code=return+API.users.get(%7b%22user_ids%22%3a+API.audio.search(%7b%22q%22%3a%22Beatles%22%2c+%22count%22%3a3%7d).items%40.owner_id%7d)%40.last_name&v=" + VkApi.VkApiVersion + "&access_token=token";
+                "https://api.vk.com/method/execute?code=return+API.users.get(%7B%22user_ids%22%3A+API.audio.search(%7B%22q%22%3A%22Beatles%22%2C+%22count%22%3A3%7D).items%40.owner_id%7D)%40.last_name&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json = @"{
 				error: {
 					error_code: 12,

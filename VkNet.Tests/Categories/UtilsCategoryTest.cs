@@ -19,8 +19,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void CheckLink_BannedLink()
 		{
-			const string url = "https://api.vk.com/method/utils.checkLink?url=http://www.kreml.ru/‎&v=" + VkApi.VkApiVersion ;
-			const string json =
+			const string url = "https://api.vk.com/method/utils.checkLink?url=http://www.kreml.ru/&v=" + VkApi.VkApiVersion ;
+            const string json =
 				@"{
                     'response': {
                       'status': 'banned',
@@ -51,10 +51,9 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var utils = GetMockedUtilsCategory(url, json);
-			var type = utils.CheckLink("hsfasfsf");
 
-			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
-		}
+            Assert.That(() => utils.CheckLink("hsfasfsf"), Throws.InstanceOf<UriFormatException>());
+        }
 
 		[Test]
 		public void CheckLink_GoogleLink()
