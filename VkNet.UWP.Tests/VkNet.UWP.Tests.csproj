@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71327F8E-F176-4B67-8256-A9D8EBC2AD9C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VkNet.UWP.Tests</RootNamespace>
+    <AssemblyName>VkNet.UWP.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.5.28.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.5.28\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\VkNet.Shared.Tests\BaseTest.cs">
+      <Link>BaseTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\AccountCategoryTest.cs">
+      <Link>Categories\AccountCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\AppsTest.cs">
+      <Link>Categories\AppsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\AudioCategoryTest.cs">
+      <Link>Categories\AudioCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\DatabaseCategoryTest.cs">
+      <Link>Categories\DatabaseCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\ExecuteCategoryTest.cs">
+      <Link>Categories\ExecuteCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\FaveCategoryTest.cs">
+      <Link>Categories\FaveCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\FriendsCategoryTest.cs">
+      <Link>Categories\FriendsCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\GiftsTest.cs">
+      <Link>Categories\GiftsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\GroupsCategoryTest.cs">
+      <Link>Categories\GroupsCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\LikesCategoryTest.cs">
+      <Link>Categories\LikesCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\MarketCategoryTest.cs">
+      <Link>Categories\MarketCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\MessagesCategoryTest.cs">
+      <Link>Categories\MessagesCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\NewsFeedCategoryTest.cs">
+      <Link>Categories\NewsFeedCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\PagesCategoryTest.cs">
+      <Link>Categories\PagesCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\PhotosCategoryTest.cs">
+      <Link>Categories\PhotosCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\StatsTest.cs">
+      <Link>Categories\StatsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\StatusCategoryTest.cs">
+      <Link>Categories\StatusCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\UsersCategoryTest.cs">
+      <Link>Categories\UsersCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\UtilsCategoryTest.cs">
+      <Link>Categories\UtilsCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\VideoCategoryTest.cs">
+      <Link>Categories\VideoCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\WallCategoryTest.cs">
+      <Link>Categories\WallCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Enum\EnumTests.cs">
+      <Link>Enum\EnumTests.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Enum\Filters\MultivaluedFilterTest.cs">
+      <Link>Enum\Filters\MultivaluedFilterTest.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultivaluedFilterTest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Enum\SafetyEnums\SafetyEnumTests.cs">
+      <Link>Enum\SafetyEnums\SafetyEnumTests.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SafetyEnumTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Helper\DateHelper.cs">
+      <Link>Helper\DateHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Utils\VkAuthorizationTest.cs">
+      <Link>Utils\VkAuthorizationTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Utils\VkErrorsTest.cs">
+      <Link>Utils\VkErrorsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\VkApiTest.cs">
+      <Link>VkApiTest.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\MoqAnalyzer.1.0.5922.38414\analyzers\dotnet\cs\MoqAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\VkNet.Shared.Tests\Enum\EnumTests.tt">
+      <Link>Enum\EnumTests.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EnumTests.cs</LastGenOutput>
+    </Content>
+    <Content Include="..\VkNet.Shared.Tests\Enum\Filters\MultivaluedFilterTest.tt">
+      <Link>Enum\Filters\MultivaluedFilterTest.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MultivaluedFilterTest.cs</LastGenOutput>
+    </Content>
+    <Content Include="..\VkNet.Shared.Tests\Enum\SafetyEnums\SafetyEnumTests.tt">
+      <Link>Enum\SafetyEnums\SafetyEnumTests.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SafetyEnumTests.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VkNet.UWP\VkNet.UWP.csproj">
+      <Project>{776ec153-f6b0-4065-b902-970bcda6e636}</Project>
+      <Name>VkNet.UWP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
