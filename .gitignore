@@ -11,3 +11,4 @@ Release/
 
 /GCopLog.txt
 VkNet/Utils/*Generator*.cs
+/VkNet*/Utils/ModelToVkParametrsCastGenerator*.cs
