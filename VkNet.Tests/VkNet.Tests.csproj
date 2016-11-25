@@ -50,70 +50,130 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseTest.cs" />
-    <Compile Include="Categories\AccountCategoryTest.cs" />
-    <Compile Include="Categories\AudioCategoryTest.cs" />
-    <Compile Include="Categories\DatabaseCategoryTest.cs" />
-    <Compile Include="Categories\MarketCategoryTest.cs" />
-    <Compile Include="Categories\ExecuteCategoryTest.cs" />
-    <Compile Include="Categories\FaveCategoryTest.cs" />
-    <Compile Include="Categories\AppsTest.cs" />
-    <Compile Include="Categories\StatsTest.cs" />
-    <Compile Include="Categories\LikesCategoryTest.cs" />
-    <Compile Include="Categories\NewsFeedCategoryTest.cs" />
-    <Compile Include="Categories\GroupsCategoryTest.cs" />
-    <Compile Include="Categories\MessagesCategoryTest.cs" />
-    <Compile Include="Categories\PagesCategoryTest.cs" />
-    <Compile Include="Categories\PhotosCategoryTest.cs" />
-    <Compile Include="Categories\StatusCategoryTest.cs" />
-    <Compile Include="Categories\UtilsCategoryTest.cs" />
-    <Compile Include="Categories\VideoCategoryTest.cs" />
-    <Compile Include="Categories\GiftsTest.cs" />
-    <Compile Include="Categories\WallCategoryTest.cs" />
-    <Compile Include="Enum\EnumTests.cs">
+    <Compile Include="..\VkNet.Shared.Tests\BaseTest.cs">
+      <Link>BaseTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\AccountCategoryTest.cs">
+      <Link>Categories\AccountCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\AppsTest.cs">
+      <Link>Categories\AppsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\AudioCategoryTest.cs">
+      <Link>Categories\AudioCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\DatabaseCategoryTest.cs">
+      <Link>Categories\DatabaseCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\ExecuteCategoryTest.cs">
+      <Link>Categories\ExecuteCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\FaveCategoryTest.cs">
+      <Link>Categories\FaveCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\FriendsCategoryTest.cs">
+      <Link>Categories\FriendsCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\GiftsTest.cs">
+      <Link>Categories\GiftsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\GroupsCategoryTest.cs">
+      <Link>Categories\GroupsCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\LikesCategoryTest.cs">
+      <Link>Categories\LikesCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\MarketCategoryTest.cs">
+      <Link>Categories\MarketCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\MessagesCategoryTest.cs">
+      <Link>Categories\MessagesCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\NewsFeedCategoryTest.cs">
+      <Link>Categories\NewsFeedCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\PagesCategoryTest.cs">
+      <Link>Categories\PagesCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\PhotosCategoryTest.cs">
+      <Link>Categories\PhotosCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\StatsTest.cs">
+      <Link>Categories\StatsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\StatusCategoryTest.cs">
+      <Link>Categories\StatusCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\UsersCategoryTest.cs">
+      <Link>Categories\UsersCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\UtilsCategoryTest.cs">
+      <Link>Categories\UtilsCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\VideoCategoryTest.cs">
+      <Link>Categories\VideoCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Categories\WallCategoryTest.cs">
+      <Link>Categories\WallCategoryTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Enum\EnumTests.cs">
+      <Link>Enum\EnumTests.cs</Link>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EnumTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Enum\Filters\MultivaluedFilterTest.cs">
+    <Compile Include="..\VkNet.Shared.Tests\Enum\Filters\MultivaluedFilterTest.cs">
+      <Link>Enum\Filters\MultivaluedFilterTest.cs</Link>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MultivaluedFilterTest.tt</DependentUpon>
     </Compile>
-    <Compile Include="Categories\FriendsCategoryTest.cs" />
-    <Compile Include="Categories\UsersCategoryTest.cs" />
-    <Compile Include="Enum\SafetyEnums\SafetyEnumTests.cs">
+    <Compile Include="..\VkNet.Shared.Tests\Enum\SafetyEnums\SafetyEnumTests.cs">
+      <Link>Enum\SafetyEnums\SafetyEnumTests.cs</Link>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SafetyEnumTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Helper\DateHelper.cs" />
-    <Compile Include="VkApiTest.cs" />
+    <Compile Include="..\VkNet.Shared.Tests\Helper\DateHelper.cs">
+      <Link>Helper\DateHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Utils\VkAuthorizationTest.cs">
+      <Link>Utils\VkAuthorizationTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\Utils\VkErrorsTest.cs">
+      <Link>Utils\VkErrorsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.Shared.Tests\VkApiTest.cs">
+      <Link>VkApiTest.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\VkErrorsTest.cs" />
-    <Compile Include="Utils\VkAuthorizationTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Enum\EnumTests.tt">
+    <Content Include="..\VkNet.Shared.Tests\Enum\EnumTests.tt">
+      <Link>Enum\EnumTests.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EnumTests.cs</LastGenOutput>
     </Content>
-    <Content Include="Enum\Filters\MultivaluedFilterTest.tt">
+    <Content Include="..\VkNet.Shared.Tests\Enum\Filters\MultivaluedFilterTest.tt">
+      <Link>Enum\Filters\MultivaluedFilterTest.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MultivaluedFilterTest.cs</LastGenOutput>
     </Content>
-    <Content Include="Enum\SafetyEnums\SafetyEnumTests.tt">
+    <Content Include="..\VkNet.Shared.Tests\Enum\SafetyEnums\SafetyEnumTests.tt">
+      <Link>Enum\SafetyEnums\SafetyEnumTests.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SafetyEnumTests.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <ProjectReference Include="..\VkNet\VkNet.csproj">
+      <Project>{8b031a92-84d4-4418-8551-18f1afeecc6c}</Project>
+      <Name>VkNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
