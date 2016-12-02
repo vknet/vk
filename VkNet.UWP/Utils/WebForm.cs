@@ -100,14 +100,13 @@ namespace VkNet.Utils
 				throw new InvalidOperationException("Field name not set!");
 			}
 
-			var encodedValue = Uri.EscapeDataString(value);
 			if (_inputs.ContainsKey(_lastName))
 			{
-				_inputs[_lastName] = encodedValue;
+				_inputs[_lastName] = value;
 			}
 			else
 			{
-				_inputs.Add(_lastName, encodedValue);
+				_inputs.Add(_lastName, value);
 			}
 
 			return this;
