@@ -46,7 +46,7 @@
         {
             var table = (IDictionary)Container.GetType()
                                             .GetRuntimeFields()
-                                            .FirstOrDefault(x => x.Name == "m_domainTable")
+                                            .FirstOrDefault(x => x.Name == "m_domainTable" || x.Name == "_domainTable")
                                             .GetValue(Container);
             var keys = table.Keys.OfType<string>().ToList();
             foreach (var key in table.Keys.OfType<string>().ToList())

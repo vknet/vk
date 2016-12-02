@@ -183,7 +183,7 @@ namespace VkNet.Utils
                 var encoding = Encoding.UTF8;
                 _result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
 
-                var cookies = new CookieContainer();
+                var cookies = _result.Cookies.Container;
 
                 _result.SaveCookies(cookies.GetCookies(uri));
                 return response.StatusCode == HttpStatusCode.Redirect
