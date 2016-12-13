@@ -91,12 +91,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VkNet\VkNet.csproj">
-      <Project>{8b031a92-84d4-4418-8551-18f1afeecc6c}</Project>
-      <Name>VkNet</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="unit_test_template.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

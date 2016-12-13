@@ -8,6 +8,9 @@ Coverity: [![Coverity Scan Build Status](https://scan.coverity.com/projects/6249
 
 Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+# Supported by
+[![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/).
+
 # Как использовать
 
 1. [Создайте приложение](https://vk.com/editapp?act=create)
@@ -15,15 +18,18 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
 4. [Список часто задаваемых вопросов](https://github.com/vknet/vk/wiki/FAQ)
 
-#В nuget доступна версия 1.21#
+#В nuget доступна версия 1.25
+
+Внимание! В следующих версиях будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов 
+
+#Появилась публичная альфа [UWP сборки](https://github.com/vknet/vk/releases/tag/v1.25.0.0)
 
 # План развития проекта
 
-- [x] Выпилить Injector.
-- [x] Перейти на версию NUnit3.
-- [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.50.
-- [x] Добавить в справку примеры использования, для реализованых методов. (Примеры были сгенерированы автоматически, возможно потребуется исправление)
-- [x] Проверить реализованные классы и добавить недостающие методы
+- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.60.
+- [ ] Асинхронные методы
+- [ ] Недостающие классы и методы
+- [x] Переход на UWP
 
 #Credits
 
@@ -31,6 +37,7 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 - [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
 - [Json.Net](http://www.newtonsoft.com/json)
 - [HtmlAgilityPack](http://htmlagilitypack.codeplex.com/)
+- [AngleSharp](https://anglesharp.github.io/)
 - [NUnit](http://www.nunit.org/)
 - [Moq](https://github.com/moq/moq4)
 

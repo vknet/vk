@@ -1,0 +1,229 @@
+﻿namespace VkNet.Utils
+{
+	/// <summary>
+	/// Список кодов ошибок.
+	/// </summary>
+	public class ErrorCode
+	{
+		/// <summary>
+		/// Произошла неизвестная ошибка.
+		/// Попробуйте повторить запрос позже.
+		/// </summary>
+		public const int Unknown = 1;
+
+		/// <summary>
+		/// Приложение выключено.
+		/// Необходимо включить приложение в настройках https://vk.com/editapp?id={Ваш API_ID} или использовать тестовый режим (test_mode=1)
+		/// </summary>
+		public const int AppOff = 2;
+
+		/// <summary>
+		/// Передан неизвестный метод.
+		/// Проверьте, правильно ли указано название вызываемого метода: http://vk.com/dev/methods.
+		/// </summary>
+		public const int UnknownMethod = 3;
+
+		/// <summary>
+		/// Неверная подпись.
+		/// Проверьте правильность формирования подписи запроса: https://vk.com/dev/api_nohttps
+		/// </summary>
+		public const int InvalidSignature = 4;
+
+		/// <summary>
+		/// Авторизация пользователя не удалась.
+		/// Убедитесь, что Вы используете верную схему авторизации. Для работы с методами без префикса secure Вам нужно авторизовать пользователя одним из этих способов: http://vk.com/dev/auth_sites, http://vk.com/dev/auth_mobile.
+		/// </summary>
+		public const int AuthorizationFailed = 5;
+
+		/// <summary>
+		/// Слишком много запросов в секунду.
+		/// Задайте больший интервал между вызовами или используйте метод execute. Подробнее об ограничениях на частоту вызовов см. на странице http://vk.com/dev/api_requests.
+		/// </summary>
+		public const int TooManyRequestsPerSecond = 6;
+
+		/// <summary>
+		/// Нет прав для выполнения этого действия.
+		/// Проверьте, получены ли нужные права доступа при авторизации. Это можно сделать с помощью метода account.getAppPermissions.
+		/// </summary>
+		public const int PermissionToPerformThisAction = 7;
+
+		/// <summary>
+		/// Неверный запрос.
+		/// Проверьте синтаксис запроса и список используемых параметров (его можно найти на странице с описанием метода).
+		/// </summary>
+		public const int InvalidRequest = 8;
+
+		/// <summary>
+		/// Слишком много однотипных действий.
+		/// Нужно сократить число однотипных обращений. Для более эффективной работы Вы можете использовать execute или JSONP.
+		/// </summary>
+		public const int TooMuchOfTheSameTypeOfAction = 9;
+
+		/// <summary>
+		/// Произошла внутренняя ошибка сервера.
+		/// Попробуйте повторить запрос позже.
+		/// </summary>
+		public const int publicServerError = 10;
+
+		/// <summary>
+		/// В тестовом режиме приложение должно быть выключено или пользователь должен быть залогинен.
+		/// Выключите приложение в настройках https://vk.com/editapp?id={Ваш API_ID}
+		/// </summary>
+		public const int OffAppOrLogin = 11;
+
+		/// <summary>
+		/// Требуется ввод кода с картинки (Captcha).
+		/// Процесс обработки этой ошибки подробно описан на отдельной странице.
+		/// </summary>
+		public const int CaptchaNeeded = 14;
+
+		/// <summary>
+		/// Доступ запрещён.
+		/// Убедитесь, что Вы используете верные идентификаторы, и доступ к контенту для текущего пользователя есть в полной версии сайта.
+		/// </summary>
+		public const int CannotBlacklistYourself = 15;
+
+		/// <summary>
+		/// Требуется выполнение запросов по протоколу HTTPS, т.к. пользователь включил настройку, требующую работу через безопасное соединение.
+		/// Чтобы избежать появления такой ошибки, в Standalone-приложении Вы можете предварительно проверять состояние этой настройки у пользователя методом account.getInfo.
+		/// </summary>
+		public const int NeedHttps = 16;
+
+		/// <summary>
+		/// Требуется валидация пользователя.
+		/// Действие требует подтверждения — необходимо перенаправить пользователя на служебную страницу для валидации.
+		/// </summary>
+		public const int NeedValidationOfUser = 17;
+
+		/// <summary>
+		/// Данное действие запрещено для не Standalone приложений.
+		/// Если ошибка возникает несмотря на то, что Ваше приложение имеет тип Standalone, убедитесь, что при авторизации Вы используете redirect_uri=https://oauth.vk.com/blank.html. Подробнее см. http://vk.com/dev/auth_mobile.
+		/// </summary>
+		public const int NonStandaloneApplications = 20;
+
+		/// <summary>
+		/// Данное действие разрешено только для Standalone и Open API приложений.
+		/// </summary>
+		public const int OnlySandaloneOrOpenApi = 21;
+
+		/// <summary>
+		/// Метод был выключен.
+		/// Все актуальные методы ВК API, которые доступны в настоящий момент, перечислены здесь: http://vk.com/dev/methods.
+		/// </summary>
+		public const int MethodHasBeenSwitchedOff = 23;
+
+		/// <summary>
+		/// Требуется подтверждение со стороны пользователя.
+		/// </summary>
+		public const int ConfirmationUser = 24;
+
+		/// <summary>
+		/// Один из необходимых параметров был не передан или неверен.
+		/// Проверьте список требуемых параметров и их формат на странице с описанием метода.
+		/// </summary>
+		public const int ParameterMissingOrInvalid = 100;
+
+		/// <summary>
+		/// Неверный API ID приложения.
+		/// Найдите приложение в списке администрируемых на странице http://vk.com/apps?act=settings и укажите в запросе верный API_ID (идентификатор приложения).
+		/// </summary>
+		public const int Er101 = 101;
+
+		/// <summary>
+		/// Выход за пределы.
+		/// </summary>
+		public const int OutOfLimits = 103;
+
+		/// <summary>
+		/// Неверный идентификатор пользователя.
+		/// Убедитесь, что Вы используете верный идентификатор. Получить ID по короткому имени можно методом utils.resolveScreenName.
+		/// </summary>
+		public const int InvalidUserId = 113;
+
+		/// <summary>
+		/// Неверный параметр.
+		/// </summary>
+		public const int InvalidParameter = 120;
+
+		/// <summary>
+		/// Неверный идентификатор сообщества.
+		/// </summary>
+		public const int InvalidGroupId = 125;
+
+		/// <summary>
+		/// Доступ к меню запрещен.
+		/// </summary>
+		public const int AccessToMenuDenied = 148;
+
+		/// <summary>
+		/// Неверный timestamp.
+		/// Получить актуальное значение Вы можете методом utils.getServerTime.
+		/// </summary>
+		public const int Er150 = 150;
+
+		/// <summary>
+		/// Доступ к пользователю запрещён.
+		/// </summary>
+		public const int UserAccessDenied = 170;
+
+		/// <summary>
+		/// Доступ к альбому запрещён.
+		/// Убедитесь, что Вы используете верные идентификаторы (для пользователей owner_id положительный, для сообществ — отрицательный), и доступ к запрашиваемому контенту для текущего пользователя есть в полной версии сайта.
+		/// </summary>
+		public const int AlbumAccessDenied = 200;
+
+		/// <summary>
+		/// Доступ к аудио запрещён.
+		/// Убедитесь, что Вы используете верные идентификаторы (для пользователей owner_id положительный, для сообществ — отрицательный), и доступ к запрашиваемому контенту для текущего пользователя есть в полной версии сайта.
+		/// </summary>
+		public const int AudioAccessDenied = 201;
+
+		/// <summary>
+		/// Доступ к группе запрещён.
+		/// Убедитесь, что текущий пользователь является участником или руководителем сообщества (для закрытых и частных групп и встреч).
+		/// </summary>
+		public const int GroupAccessDenied = 203;
+
+		/// <summary>
+		/// Доступ к добавлению постов запрещён.
+		/// </summary>
+		public const int AccessToAddingPostDenied = 214;
+
+		/// <summary>
+		/// Доступ к статусу запрещён.
+		/// </summary>
+		public const int StatusAccessDenied = 220;
+
+		/// <summary>
+		/// Пользователь отключил вещание названия трека.
+		/// </summary>
+		public const int UserDisabledTrackNameBroadcast = 221;
+
+		/// <summary>
+		/// Доступ к списку групп запрещен из-за настроек конфиденциальности пользователя.
+		/// </summary>
+		public const int GroupsListAccessDenied = 260;
+
+		/// <summary>
+		/// Альбом переполнен.
+		/// Перед продолжением работы нужно удалить лишние объекты из альбома или использовать другой альбом.
+		/// </summary>
+		public const int AlbumIsFull = 300;
+
+		/// <summary>
+		/// Действие запрещено. Вы должны включить переводы голосов в настройках приложения.
+		/// Проверьте настройки приложения: http://vk.com/editapp?id={Ваш API_ID}&amp;section=payments
+		/// </summary>
+		public const int PermissionDenied = 500;
+
+		/// <summary>
+		/// Нет прав на выполнение данных операций с рекламным кабинетом.
+		/// </summary>
+		public const int AsdAccessDenied = 600;
+
+		/// <summary>
+		/// Произошла ошибка при работе с рекламным кабинетом.
+		/// </summary>
+		public const int ErrorWorkWithAds = 603;
+	}
+}

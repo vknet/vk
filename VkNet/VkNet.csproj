@@ -13,6 +13,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +24,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>VkNet.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <RegisterForComInterop>false</RegisterForComInterop>
     <DocumentationFile>..\Debug\VkNet.xml</DocumentationFile>
@@ -38,428 +41,1208 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>..\Release\VkNet.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>VkNet.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\packages\AngleSharp.0.9.9\lib\net40\AngleSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Categories\ExecuteCategory.cs" />
-    <Compile Include="Categories\Obsolete\AccountCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\AudioCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\FriendsCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\GroupsCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\PagesCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\PhotoCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\StatusCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\UsersCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\VideoCategory.Obsolete.cs" />
-    <Compile Include="Categories\Obsolete\WallCategory.Obsolete.cs" />
-    <Compile Include="Enums\GroupAccess.cs" />
-    <Compile Include="Enums\MarketCurrencyId.cs" />
-    <Compile Include="Enums\DocFilter.cs" />
-    <Compile Include="Enums\SafetyEnums\FeedType.cs" />
-    <Compile Include="Enums\SafetyEnums\MediaType.cs" />
-    <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
-    <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
-    <Compile Include="Enums\WallContentAccess.cs" />
-    <Compile Include="Exception\NeedValidationException.cs" />
-    <Compile Include="Exception\OutOfLimitsException.cs" />
-    <Compile Include="Model\AccountChangePasswordResult.cs" />
-    <Compile Include="Model\CategoryGroup.cs" />
-    <Compile Include="Model\DocumentType.cs" />
-    <Compile Include="Model\Chair.cs" />
-    <Compile Include="Model\FriendOnline.cs" />
-    <Compile Include="Categories\MarketsCategory.cs" />
-    <Compile Include="Enums\SafetyEnums\PostType.cs" />
-    <Compile Include="Model\GroupsCatalogInfo.cs" />
-    <Compile Include="Model\MessagesPushSettings.cs" />
-    <Compile Include="Model\PushSettings.cs" />
-    <Compile Include="Model\RequestParams\Account\AccountSaveProfileInfoParams.cs" />
-    <Compile Include="Model\RequestParams\Audio\AudioEditParams.cs" />
-    <Compile Include="Model\RequestParams\Audio\AudioGetParams.cs" />
-    <Compile Include="Model\RequestParams\Friends\FriendsGetMutualParams.cs" />
-    <Compile Include="Model\RequestParams\Friends\FriendsGetOnlineParams.cs" />
-    <Compile Include="Model\RequestParams\Friends\FriendsGetParams.cs" />
-    <Compile Include="Model\RequestParams\Friends\FriendsGetRequestsParams.cs" />
-    <Compile Include="Model\RequestParams\Friends\FriendsSearchParams.cs" />
-    <Compile Include="Model\RequestParams\Groups\GroupsBanUserParams.cs" />
-    <Compile Include="Model\RequestParams\Groups\GroupsEditManagerParams.cs" />
-    <Compile Include="Model\RequestParams\Groups\GroupsEditParams.cs" />
-    <Compile Include="Model\RequestParams\Groups\GroupsGetMembersParams.cs" />
-    <Compile Include="Model\RequestParams\Groups\GroupsGetParams.cs" />
-    <Compile Include="Model\RequestParams\Groups\GroupsSearchParams.cs" />
-    <Compile Include="Model\RequestParams\Likes\LikesAddParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\MessagesGetHistoryAttachmentsParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\MessagesSendStickerParams.cs" />
-    <Compile Include="Model\RequestParams\Pages\PagesGetParams.cs" />
-    <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
-    <Compile Include="Model\RequestParams\Video\VideoCreateCommentParams.cs" />
-    <Compile Include="Model\RequestParams\Video\VideoEditParams.cs" />
-    <Compile Include="Model\RequestParams\Video\VideoGetCommentsParams.cs" />
-    <Compile Include="Model\RequestParams\Video\VideoGetParams.cs" />
-    <Compile Include="Model\RequestParams\Video\VideoReorderVideosParams.cs" />
-    <Compile Include="Model\RequestParams\Video\VideoSaveParams.cs" />
-    <Compile Include="Model\RequestParams\Video\VideoSearchParams.cs" />
-    <Compile Include="Model\RequestParams\Wall\WallAddCommentParams.cs" />
-    <Compile Include="Model\RequestParams\Wall\WallEditParams.cs" />
-    <Compile Include="Model\RequestParams\Wall\WallGetCommentsParams.cs" />
-    <Compile Include="Model\RequestParams\Wall\WallPostParams.cs" />
-    <Compile Include="Model\RequestParams\Wall\WallSearchParams.cs" />
-    <Compile Include="Model\SchoolClass.cs" />
-    <Compile Include="Enums\SafetyEnums\FriendsFilter.cs" />
-    <Compile Include="Model\MarketComment.cs" />
-    <Compile Include="Model\Attachments\MarketAlbum.cs" />
-    <Compile Include="Enums\MainSection.cs" />
-    <Compile Include="Enums\ProductSort.cs" />
-    <Compile Include="Enums\SafetyEnums\Deactivated.cs" />
-    <Compile Include="Enums\SafetyEnums\Platform.cs" />
-    <Compile Include="Enums\SafetyEnums\RelativeType.cs" />
-    <Compile Include="Model\ApiAuthParams.cs" />
-    <Compile Include="Categories\AccountCategory.cs" />
-    <Compile Include="Categories\AudioCategory.cs" />
-    <Compile Include="Categories\AuthCategory.cs" />
-    <Compile Include="Categories\DocsCategory.cs" />
-    <Compile Include="Categories\AppsCategory.cs" />
-    <Compile Include="Categories\NewsFeedCategory.cs" />
-    <Compile Include="Categories\GiftsCategory.cs" />
-    <Compile Include="Categories\LikesCategory.cs" />
-    <Compile Include="Categories\PagesCategory.cs" />
-    <Compile Include="Categories\PhotoCategory.cs">
-      <SubType>Code</SubType>
+    <Compile Include="..\VkNet.UWP\Categories\AccountCategory.cs">
+      <Link>Categories\AccountCategory.cs</Link>
     </Compile>
-    <Compile Include="Categories\StatsCategory.cs" />
-    <Compile Include="Enums\AccessPages.cs" />
-    <Compile Include="Enums\Filters\AppFilter.cs" />
-    <Compile Include="Enums\Filters\AccountFields.cs" />
-    <Compile Include="Enums\Iso3166.cs" />
-    <Compile Include="Enums\MaritalStatus.cs" />
-    <Compile Include="Enums\SafetyEnums\AppPlatforms.cs" />
-    <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
-    <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
-    <Compile Include="Enums\SafetyEnums\CommentObjectType.cs" />
-    <Compile Include="Enums\SafetyEnums\PhotoSearchRadius.cs" />
-    <Compile Include="Enums\SafetyEnums\PhotoSizeType.cs" />
-    <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
-    <Compile Include="Enums\SafetyEnums\LikesFilter.cs" />
-    <Compile Include="Enums\SafetyEnums\PostTypeOrder.cs" />
-    <Compile Include="Enums\SafetyEnums\AppSort.cs" />
-    <Compile Include="Enums\SafetyEnums\Privacy.cs" />
-    <Compile Include="Enums\ContentAccess.cs" />
-    <Compile Include="Enums\Filters\CountersFilter.cs" />
-    <Compile Include="Categories\DatabaseCategory.cs" />
-    <Compile Include="Categories\FaveCategory.cs" />
-    <Compile Include="Categories\GroupsCategory.cs" />
-    <Compile Include="Categories\MessagesCategory.cs" />
-    <Compile Include="Categories\UtilsCategory.cs" />
-    <Compile Include="Categories\VideoCategory.cs" />
-    <Compile Include="Categories\WallCategory.cs" />
-    <Compile Include="Enums\AddFriendStatus.cs" />
-    <Compile Include="Enums\AdminLevel.cs" />
-    <Compile Include="Enums\Attitude.cs" />
-    <Compile Include="Enums\AudioGenre.cs" />
-    <Compile Include="Enums\AudioSort.cs" />
-    <Compile Include="Enums\BanReason.cs" />
-    <Compile Include="Enums\BirthdayVisibility.cs" />
-    <Compile Include="Enums\SafetyEnums\ChangeNameStatus.cs" />
-    <Compile Include="Enums\DeleteFriendStatus.cs" />
-    <Compile Include="Enums\Filters\GroupSubType.cs" />
-    <Compile Include="Enums\Filters\UsersFields.cs" />
-    <Compile Include="Enums\Filters\GroupSort.cs" />
-    <Compile Include="Enums\FriendStatus.cs" />
-    <Compile Include="Enums\GiftPrivacy.cs" />
-    <Compile Include="Enums\GroupSubjects.cs" />
-    <Compile Include="Enums\GroupPublicity.cs" />
-    <Compile Include="Enums\LeaderboardTypes.cs" />
-    <Compile Include="Enums\LifeMain.cs" />
-    <Compile Include="Enums\MessageReadState.cs" />
-    <Compile Include="Enums\MessagesFilter.cs" />
-    <Compile Include="Enums\MessageType.cs" />
-    <Compile Include="Enums\PageAccessKind.cs" />
-    <Compile Include="Enums\PeopleMain.cs" />
-    <Compile Include="Enums\PoliticalPreferences.cs" />
-    <Compile Include="Enums\RelationType.cs" />
-    <Compile Include="Enums\SafetyEnums\Services.cs" />
-    <Compile Include="Enums\SafetyEnums\UserSection.cs" />
-    <Compile Include="Enums\SafetyEnums\NewsTypes.cs" />
-    <Compile Include="Enums\SafetyEnums\LikeObjectType.cs" />
-    <Compile Include="Enums\SafetyEnums\PhotoAlbumType.cs" />
-    <Compile Include="Enums\SafetyEnums\PhotoFeedType.cs" />
-    <Compile Include="Enums\Sex.cs" />
-    <Compile Include="Enums\SortOrderBy.cs" />
-    <Compile Include="Enums\UserSort.cs" />
-    <Compile Include="Enums\ReportReason.cs" />
-    <Compile Include="Enums\VideoSort.cs" />
-    <Compile Include="Enums\VideoWidth.cs" />
-    <Compile Include="Enums\VkObjectType.cs" />
-    <Compile Include="Enums\SafetyEnums\WallFilter.cs" />
-    <Compile Include="Enums\SafetyEnums\SafetyEnum.cs" />
-    <Compile Include="Enums\Filters\MultivaluedFilter.cs" />
-    <Compile Include="Enums\SafetyEnums\CommentsSort.cs" />
-    <Compile Include="Enums\SafetyEnums\Display.cs" />
-    <Compile Include="Enums\Filters\GroupsFields.cs" />
-    <Compile Include="Enums\Filters\GroupsFilters.cs" />
-    <Compile Include="Enums\SafetyEnums\GroupsSort.cs" />
-    <Compile Include="Enums\SafetyEnums\GroupType.cs" />
-    <Compile Include="Enums\SafetyEnums\LinkAccessType.cs" />
-    <Compile Include="Enums\SafetyEnums\FriendsOrder.cs" />
-    <Compile Include="Enums\SafetyEnums\NameCase.cs" />
-    <Compile Include="Enums\Filters\ProfileFields.cs" />
-    <Compile Include="Enums\SafetyEnums\ReportType.cs" />
-    <Compile Include="Enums\Filters\Settings.cs" />
-    <Compile Include="Enums\Filters\SubscribeFilter.cs" />
-    <Compile Include="Enums\Filters\VideoFilters.cs" />
-    <Compile Include="Exception\AccessDeniedException.cs" />
-    <Compile Include="Exception\AccessTokenInvalidException.cs" />
-    <Compile Include="Exception\CaptchaNeededException.cs" />
-    <Compile Include="Exception\InvalidParameterException.cs" />
-    <Compile Include="Exception\PostLimitException.cs" />
-    <Compile Include="Exception\TooManyRequestsException.cs" />
-    <Compile Include="Exception\UserAuthorizationFailException.cs" />
-    <Compile Include="Exception\VkApiMethodInvokeException.cs" />
-    <Compile Include="Categories\FriendsCategory.cs" />
-    <Compile Include="Model\AccountInfo.cs" />
-    <Compile Include="Model\AccountPushSettings.cs" />
-    <Compile Include="Model\App.cs" />
-    <Compile Include="Model\Application.cs" />
-    <Compile Include="Model\AuthConfirmResult.cs" />
-    <Compile Include="Model\Button.cs" />
-    <Compile Include="Model\Career.cs" />
-    <Compile Include="Model\Chat.cs" />
-    <Compile Include="Model\Comment.cs" />
-    <Compile Include="Model\Contacts.cs" />
-    <Compile Include="Model\Currency.cs" />
-    <Compile Include="Model\LastSeen.cs" />
-    <Compile Include="Model\Military.cs" />
-    <Compile Include="Enums\SafetyEnums\PostSourceType.cs" />
-    <Compile Include="Model\PostSourceData.cs" />
-    <Compile Include="Model\Price.cs" />
-    <Compile Include="Model\Market.cs" />
-    <Compile Include="Enums\ProductAvailability.cs" />
-    <Compile Include="Model\MarketCategory.cs" />
-    <Compile Include="Model\MarketCategorySection.cs" />
-    <Compile Include="Model\Rating.cs" />
-    <Compile Include="Model\Rect.cs" />
-    <Compile Include="Model\CropPhoto.cs" />
-    <Compile Include="Model\Exports.cs" />
-    <Compile Include="Model\InformationAboutOffers.cs" />
-    <Compile Include="Model\LookupContactsOther.cs" />
-    <Compile Include="Model\LookupContactsResult.cs" />
-    <Compile Include="Model\MessagesGetObject.cs" />
-    <Compile Include="Model\LongPollHistoryResponse.cs" />
-    <Compile Include="Model\Mention.cs" />
-    <Compile Include="Model\Occupation.cs" />
-    <Compile Include="Enums\SafetyEnums\OccupationType.cs" />
-    <Compile Include="Model\PhotoSize.cs" />
-    <Compile Include="Model\PostReach.cs" />
-    <Compile Include="Model\ChatPushSettings.cs" />
-    <Compile Include="Model\RequestParams\Account\AccountRegisterDeviceParams.cs" />
-    <Compile Include="Model\RequestParams\Audio\AudioSearchParams.cs" />
-    <Compile Include="Model\RequestParams\Auth\AuthConfirmParams.cs" />
-    <Compile Include="Model\RequestParams\Auth\AuthSignupParams.cs" />
-    <Compile Include="Model\RequestParams\Likes\LikesGetListParams.cs" />
-    <Compile Include="Model\RequestParams\Market\MarketCreateCommentParams.cs" />
-    <Compile Include="Model\RequestParams\Market\MarketGetCommentsParams.cs" />
-    <Compile Include="Model\RequestParams\Market\MarketProductParams.cs" />
-    <Compile Include="Model\RequestParams\Market\MarketSearchParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\MessagesDialogsGetParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\MessagesGetLongPollHistoryParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\MessagesGetHistoryParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\MessagesSendParams.cs" />
-    <Compile Include="Model\NewsBannedExList.cs" />
-    <Compile Include="Model\NewsBannedList.cs" />
-    <Compile Include="Model\NewsFeed.cs" />
-    <Compile Include="Model\NewsItem.cs" />
-    <Compile Include="Model\NewsSearchResult.cs" />
-    <Compile Include="Model\NewsSuggestions.cs" />
-    <Compile Include="Model\NewsUserListItem.cs" />
-    <Compile Include="Model\RequestParams\App\AppGetCatalogParams.cs" />
-    <Compile Include="Model\Attachments\Album.cs" />
-    <Compile Include="Model\Attachments\ApplicationContent.cs" />
-    <Compile Include="Model\Attachments\Gift.cs" />
-    <Compile Include="Model\Attachments\MediaAttachment.cs" />
-    <Compile Include="Model\Attachments\PhotosList.cs" />
-    <Compile Include="Model\Attachments\Sticker.cs" />
-    <Compile Include="Model\Attachments\Wall.cs" />
-    <Compile Include="Model\Attachments\WallReply.cs" />
-    <Compile Include="Model\AudioAlbum.cs" />
-    <Compile Include="Model\BanInfo.cs" />
-    <Compile Include="Model\ChangeNameRequest.cs" />
-    <Compile Include="Model\City.cs" />
-    <Compile Include="Model\Connections.cs" />
-    <Compile Include="Model\Contact.cs" />
-    <Compile Include="Model\Country.cs" />
-    <Compile Include="Model\ExternalLink.cs" />
-    <Compile Include="Model\Faculty.cs" />
-    <Compile Include="Model\FriendList.cs" />
-    <Compile Include="Model\Attachments\Graffiti.cs" />
-    <Compile Include="Model\Attachments\Link.cs" />
-    <Compile Include="Model\Attachments\Poll.cs" />
-    <Compile Include="Model\GiftItem.cs" />
-    <Compile Include="Model\Group\GroupInfo.cs" />
-    <Compile Include="Model\Group\GroupMember.cs" />
-    <Compile Include="Model\History.cs" />
-    <Compile Include="Model\PhotoAlbum.cs" />
-    <Compile Include="Model\PollAnswer.cs" />
-    <Compile Include="Model\PostSource.cs" />
-    <Compile Include="Model\Previews.cs" />
-    <Compile Include="Model\Region.cs" />
-    <Compile Include="Model\Relative.cs" />
-    <Compile Include="Model\RepostResult.cs" />
-    <Compile Include="Model\RequestParams\App\AppGetParams.cs" />
-    <Compile Include="Model\RequestParams\App\AppSendRequestParams.cs" />
-    <Compile Include="Model\RequestParams\Messages\MessagesGetParams.cs" />
-    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedGetCommentsParams.cs" />
-    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedSearchParams.cs" />
-    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedGetRecommendedParams.cs" />
-    <Compile Include="Model\RequestParams\NewsFeed\NewsFeedGetParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoCreateAlbumParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoEditAlbumParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoGetAlbumsParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoCreateCommentParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoEditParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoGetAllCommentsParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoGetAllParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoGetCommentsParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoGetParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoGetUserPhotosParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoPutTagParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoSaveParams.cs" />
-    <Compile Include="Model\RequestParams\Photo\PhotoSearchParams.cs" />
-    <Compile Include="Model\RequestParams\Wall\WallGetParams.cs" />
-    <Compile Include="Model\School.cs" />
-    <Compile Include="Model\StandInLife.cs" />
-    <Compile Include="Model\StatsPeriod.cs" />
-    <Compile Include="Model\StatStruct.cs" />
-    <Compile Include="Model\Store.cs" />
-    <Compile Include="Model\Street.cs" />
-    <Compile Include="Model\Tag.cs" />
-    <Compile Include="Model\Tags.cs" />
-    <Compile Include="Model\University.cs" />
-    <Compile Include="Model\UploadServerInfo.cs" />
-    <Compile Include="Model\RequestParams\Users\UserSearchParams.cs" />
-    <Compile Include="Model\UserOrGroup.cs" />
-    <Compile Include="Model\VideoAlbum.cs" />
-    <Compile Include="Model\VideoCatalog.cs" />
-    <Compile Include="Model\VideoCatalogItem.cs" />
-    <Compile Include="Model\VkObject.cs" />
-    <Compile Include="Model\FaveVideoEx.cs" />
-    <Compile Include="Model\WallGetObject.cs" />
+    <Compile Include="..\VkNet.UWP\Categories\AppsCategory.cs">
+      <Link>Categories\AppsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\AudioCategory.cs">
+      <Link>Categories\AudioCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\AuthCategory.cs">
+      <Link>Categories\AuthCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\BoardCategory.cs">
+      <Link>Categories\BoardCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\DatabaseCategory.cs">
+      <Link>Categories\DatabaseCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\DocsCategory.cs">
+      <Link>Categories\DocsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\ExecuteCategory.cs">
+      <Link>Categories\ExecuteCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\FaveCategory.cs">
+      <Link>Categories\FaveCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\FriendsCategory.cs">
+      <Link>Categories\FriendsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\GiftsCategory.cs">
+      <Link>Categories\GiftsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\GroupsCategory.cs">
+      <Link>Categories\GroupsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\LikesCategory.cs">
+      <Link>Categories\LikesCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\MarketsCategory.cs">
+      <Link>Categories\MarketsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\MessagesCategory.cs">
+      <Link>Categories\MessagesCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\NewsFeedCategory.cs">
+      <Link>Categories\NewsFeedCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\AccountCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\AccountCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\AppsCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\AppsCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\AudioCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\AudioCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\DocsCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\DocsCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\FriendsCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\FriendsCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\GiftsCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\GiftsCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\GroupsCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\GroupsCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\MessagesCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\MessagesCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\NewsFeedCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\NewsFeedCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\PagesCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\PagesCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\PhotoCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\PhotoCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\StatusCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\StatusCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\UsersCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\UsersCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\VideoCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\VideoCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\Obsolete\WallCategory.Obsolete.cs">
+      <Link>Categories\Obsolete\WallCategory.Obsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\PagesCategory.cs">
+      <Link>Categories\PagesCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\PhotoCategory.cs">
+      <Link>Categories\PhotoCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\StatsCategory.cs">
+      <Link>Categories\StatsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\StatusCategory.cs">
+      <Link>Categories\StatusCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\UsersCategory.cs">
+      <Link>Categories\UsersCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\UtilsCategory.cs">
+      <Link>Categories\UtilsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\VideoCategory.cs">
+      <Link>Categories\VideoCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\WallCategory.cs">
+      <Link>Categories\WallCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\AccessPages.cs">
+      <Link>Enums\AccessPages.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\AddFriendStatus.cs">
+      <Link>Enums\AddFriendStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\AdminLevel.cs">
+      <Link>Enums\AdminLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Attitude.cs">
+      <Link>Enums\Attitude.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\AudioGenre.cs">
+      <Link>Enums\AudioGenre.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\AudioSort.cs">
+      <Link>Enums\AudioSort.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\BanReason.cs">
+      <Link>Enums\BanReason.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\BirthdayVisibility.cs">
+      <Link>Enums\BirthdayVisibility.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\ContentAccess.cs">
+      <Link>Enums\ContentAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\DeleteFriendStatus.cs">
+      <Link>Enums\DeleteFriendStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\DocFilter.cs">
+      <Link>Enums\DocFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\AccountFields.cs">
+      <Link>Enums\Filters\AccountFields.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\AppFilter.cs">
+      <Link>Enums\Filters\AppFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\CountersFilter.cs">
+      <Link>Enums\Filters\CountersFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\GroupsFields.cs">
+      <Link>Enums\Filters\GroupsFields.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\GroupsFilters.cs">
+      <Link>Enums\Filters\GroupsFilters.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\GroupSort.cs">
+      <Link>Enums\Filters\GroupSort.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\GroupSubType.cs">
+      <Link>Enums\Filters\GroupSubType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\MultivaluedFilter.cs">
+      <Link>Enums\Filters\MultivaluedFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\ProfileFields.cs">
+      <Link>Enums\Filters\ProfileFields.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\Settings.cs">
+      <Link>Enums\Filters\Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\SubscribeFilter.cs">
+      <Link>Enums\Filters\SubscribeFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\UsersFields.cs">
+      <Link>Enums\Filters\UsersFields.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Filters\VideoFilters.cs">
+      <Link>Enums\Filters\VideoFilters.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\FriendStatus.cs">
+      <Link>Enums\FriendStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\GiftPrivacy.cs">
+      <Link>Enums\GiftPrivacy.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\GroupAccess.cs">
+      <Link>Enums\GroupAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\GroupPublicity.cs">
+      <Link>Enums\GroupPublicity.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\GroupSubjects.cs">
+      <Link>Enums\GroupSubjects.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Iso3166.cs">
+      <Link>Enums\Iso3166.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\LeaderboardTypes.cs">
+      <Link>Enums\LeaderboardTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\LifeMain.cs">
+      <Link>Enums\LifeMain.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\MainSection.cs">
+      <Link>Enums\MainSection.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\MaritalStatus.cs">
+      <Link>Enums\MaritalStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\MarketCurrencyId.cs">
+      <Link>Enums\MarketCurrencyId.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\MessageReadState.cs">
+      <Link>Enums\MessageReadState.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\MessagesFilter.cs">
+      <Link>Enums\MessagesFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\MessageType.cs">
+      <Link>Enums\MessageType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\PageAccessKind.cs">
+      <Link>Enums\PageAccessKind.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\PeopleMain.cs">
+      <Link>Enums\PeopleMain.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\PoliticalPreferences.cs">
+      <Link>Enums\PoliticalPreferences.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\ProductAvailability.cs">
+      <Link>Enums\ProductAvailability.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\ProductSort.cs">
+      <Link>Enums\ProductSort.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\RelationType.cs">
+      <Link>Enums\RelationType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\ReportReason.cs">
+      <Link>Enums\ReportReason.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\AppPlatforms.cs">
+      <Link>Enums\SafetyEnums\AppPlatforms.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\AppRatingType.cs">
+      <Link>Enums\SafetyEnums\AppRatingType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\AppRequestType.cs">
+      <Link>Enums\SafetyEnums\AppRequestType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\AppSort.cs">
+      <Link>Enums\SafetyEnums\AppSort.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\ChangeNameStatus.cs">
+      <Link>Enums\SafetyEnums\ChangeNameStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\CommentObjectType.cs">
+      <Link>Enums\SafetyEnums\CommentObjectType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\CommentsSort.cs">
+      <Link>Enums\SafetyEnums\CommentsSort.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\Deactivated.cs">
+      <Link>Enums\SafetyEnums\Deactivated.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\Display.cs">
+      <Link>Enums\SafetyEnums\Display.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\FeedType.cs">
+      <Link>Enums\SafetyEnums\FeedType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\FriendsFilter.cs">
+      <Link>Enums\SafetyEnums\FriendsFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\FriendsOrder.cs">
+      <Link>Enums\SafetyEnums\FriendsOrder.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\GroupsSort.cs">
+      <Link>Enums\SafetyEnums\GroupsSort.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\GroupType.cs">
+      <Link>Enums\SafetyEnums\GroupType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\LikeObjectType.cs">
+      <Link>Enums\SafetyEnums\LikeObjectType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\LikesFilter.cs">
+      <Link>Enums\SafetyEnums\LikesFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\LinkAccessType.cs">
+      <Link>Enums\SafetyEnums\LinkAccessType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\MediaType.cs">
+      <Link>Enums\SafetyEnums\MediaType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\NameCase.cs">
+      <Link>Enums\SafetyEnums\NameCase.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\NewsObjectTypes.cs">
+      <Link>Enums\SafetyEnums\NewsObjectTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\NewsTypes.cs">
+      <Link>Enums\SafetyEnums\NewsTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\OccupationType.cs">
+      <Link>Enums\SafetyEnums\OccupationType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\PhotoAlbumType.cs">
+      <Link>Enums\SafetyEnums\PhotoAlbumType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\PhotoFeedType.cs">
+      <Link>Enums\SafetyEnums\PhotoFeedType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\PhotoSearchRadius.cs">
+      <Link>Enums\SafetyEnums\PhotoSearchRadius.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\PhotoSizeType.cs">
+      <Link>Enums\SafetyEnums\PhotoSizeType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\Platform.cs">
+      <Link>Enums\SafetyEnums\Platform.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\PostSourceType.cs">
+      <Link>Enums\SafetyEnums\PostSourceType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\PostType.cs">
+      <Link>Enums\SafetyEnums\PostType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\PostTypeOrder.cs">
+      <Link>Enums\SafetyEnums\PostTypeOrder.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\Privacy.cs">
+      <Link>Enums\SafetyEnums\Privacy.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\RelativeType.cs">
+      <Link>Enums\SafetyEnums\RelativeType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\ReportType.cs">
+      <Link>Enums\SafetyEnums\ReportType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\SafetyEnum.cs">
+      <Link>Enums\SafetyEnums\SafetyEnum.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\Services.cs">
+      <Link>Enums\SafetyEnums\Services.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\UserSection.cs">
+      <Link>Enums\SafetyEnums\UserSection.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\VideoCatalogItemType.cs">
+      <Link>Enums\SafetyEnums\VideoCatalogItemType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\VideoCatalogType.cs">
+      <Link>Enums\SafetyEnums\VideoCatalogType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\WallFilter.cs">
+      <Link>Enums\SafetyEnums\WallFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\Sex.cs">
+      <Link>Enums\Sex.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SortOrderBy.cs">
+      <Link>Enums\SortOrderBy.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\UserSort.cs">
+      <Link>Enums\UserSort.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\VideoSort.cs">
+      <Link>Enums\VideoSort.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\VideoWidth.cs">
+      <Link>Enums\VideoWidth.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\VkObjectType.cs">
+      <Link>Enums\VkObjectType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\WallContentAccess.cs">
+      <Link>Enums\WallContentAccess.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AccessDeniedException.cs">
+      <Link>Exception\AccessDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AccessTokenInvalidException.cs">
+      <Link>Exception\AccessTokenInvalidException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CaptchaNeededException.cs">
+      <Link>Exception\CaptchaNeededException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\InvalidParameterException.cs">
+      <Link>Exception\InvalidParameterException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\NeedValidationException.cs">
+      <Link>Exception\NeedValidationException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\OutOfLimitsException.cs">
+      <Link>Exception\OutOfLimitsException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\PostLimitException.cs">
+      <Link>Exception\PostLimitException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\TooManyRequestsException.cs">
+      <Link>Exception\TooManyRequestsException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\UserAuthorizationFailException.cs">
+      <Link>Exception\UserAuthorizationFailException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\VkApiAuthorizationException.cs">
+      <Link>Exception\VkApiAuthorizationException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\VkApiException.cs">
+      <Link>Exception\VkApiException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\VkApiMethodInvokeException.cs">
+      <Link>Exception\VkApiMethodInvokeException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\AccountChangePasswordResult.cs">
+      <Link>Model\AccountChangePasswordResult.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\AccountInfo.cs">
+      <Link>Model\AccountInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\AccountPushSettings.cs">
+      <Link>Model\AccountPushSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\ApiAuthParams.cs">
+      <Link>Model\ApiAuthParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\App.cs">
+      <Link>Model\App.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\AppGetObject.cs">
+      <Link>Model\AppGetObject.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Application.cs">
+      <Link>Model\Application.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Album.cs">
+      <Link>Model\Attachments\Album.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\ApplicationContent.cs">
+      <Link>Model\Attachments\ApplicationContent.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Attachment.cs">
+      <Link>Model\Attachments\Attachment.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Audio.cs">
+      <Link>Model\Attachments\Audio.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Document.cs">
+      <Link>Model\Attachments\Document.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Gift.cs">
+      <Link>Model\Attachments\Gift.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Graffiti.cs">
+      <Link>Model\Attachments\Graffiti.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Link.cs">
+      <Link>Model\Attachments\Link.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\MarketAlbum.cs">
+      <Link>Model\Attachments\MarketAlbum.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\MediaAttachment.cs">
+      <Link>Model\Attachments\MediaAttachment.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Message.cs">
+      <Link>Model\Attachments\Message.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Note.cs">
+      <Link>Model\Attachments\Note.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Page.cs">
+      <Link>Model\Attachments\Page.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Photo.cs">
+      <Link>Model\Attachments\Photo.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\PhotosList.cs">
+      <Link>Model\Attachments\PhotosList.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Poll.cs">
+      <Link>Model\Attachments\Poll.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Post.cs">
+      <Link>Model\Attachments\Post.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Sticker.cs">
+      <Link>Model\Attachments\Sticker.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Video.cs">
+      <Link>Model\Attachments\Video.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\Wall.cs">
+      <Link>Model\Attachments\Wall.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\WallReply.cs">
+      <Link>Model\Attachments\WallReply.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\AudioAlbum.cs">
+      <Link>Model\AudioAlbum.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\AuthConfirmResult.cs">
+      <Link>Model\AuthConfirmResult.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\BanInfo.cs">
+      <Link>Model\BanInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Button.cs">
+      <Link>Model\Button.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Career.cs">
+      <Link>Model\Career.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\CategoryGroup.cs">
+      <Link>Model\CategoryGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Chair.cs">
+      <Link>Model\Chair.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\ChangeNameRequest.cs">
+      <Link>Model\ChangeNameRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Chat.cs">
+      <Link>Model\Chat.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\ChatPushSettings.cs">
+      <Link>Model\ChatPushSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\City.cs">
+      <Link>Model\City.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Comment.cs">
+      <Link>Model\Comment.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Comments.cs">
+      <Link>Model\Comments.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Connections.cs">
+      <Link>Model\Connections.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Contact.cs">
+      <Link>Model\Contact.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Contacts.cs">
+      <Link>Model\Contacts.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Coordinates.cs">
+      <Link>Model\Coordinates.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Counters.cs">
+      <Link>Model\Counters.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Country.cs">
+      <Link>Model\Country.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\CropPhoto.cs">
+      <Link>Model\CropPhoto.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Currency.cs">
+      <Link>Model\Currency.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\DocumentType.cs">
+      <Link>Model\DocumentType.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Education.cs">
+      <Link>Model\Education.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Exports.cs">
+      <Link>Model\Exports.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\ExternalLink.cs">
+      <Link>Model\ExternalLink.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Faculty.cs">
+      <Link>Model\Faculty.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\FaveVideoEx.cs">
+      <Link>Model\FaveVideoEx.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\FriendList.cs">
+      <Link>Model\FriendList.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\FriendOnline.cs">
+      <Link>Model\FriendOnline.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Geo.cs">
+      <Link>Model\Geo.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\GiftItem.cs">
+      <Link>Model\GiftItem.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\GroupsCatalogInfo.cs">
+      <Link>Model\GroupsCatalogInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Group\Group.cs">
+      <Link>Model\Group\Group.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Group\GroupInfo.cs">
+      <Link>Model\Group\GroupInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Group\GroupMember.cs">
+      <Link>Model\Group\GroupMember.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\History.cs">
+      <Link>Model\History.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\InformationAboutOffers.cs">
+      <Link>Model\InformationAboutOffers.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\LastActivity.cs">
+      <Link>Model\LastActivity.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\LastSeen.cs">
+      <Link>Model\LastSeen.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Likes.cs">
+      <Link>Model\Likes.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\LongPollHistoryResponse.cs">
+      <Link>Model\LongPollHistoryResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\LongPollServerResponse.cs">
+      <Link>Model\LongPollServerResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\LookupContactsOther.cs">
+      <Link>Model\LookupContactsOther.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\LookupContactsResult.cs">
+      <Link>Model\LookupContactsResult.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Lyrics.cs">
+      <Link>Model\Lyrics.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Market.cs">
+      <Link>Model\Market.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\MarketCategory.cs">
+      <Link>Model\MarketCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\MarketCategorySection.cs">
+      <Link>Model\MarketCategorySection.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\MarketComment.cs">
+      <Link>Model\MarketComment.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Mention.cs">
+      <Link>Model\Mention.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\MessagesGetObject.cs">
+      <Link>Model\MessagesGetObject.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\MessagesPushSettings.cs">
+      <Link>Model\MessagesPushSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Military.cs">
+      <Link>Model\Military.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\NewsBannedExList.cs">
+      <Link>Model\NewsBannedExList.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\NewsBannedList.cs">
+      <Link>Model\NewsBannedList.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\NewsFeed.cs">
+      <Link>Model\NewsFeed.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\NewsItem.cs">
+      <Link>Model\NewsItem.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\NewsSearchResult.cs">
+      <Link>Model\NewsSearchResult.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\NewsSuggestions.cs">
+      <Link>Model\NewsSuggestions.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\NewsUserListItem.cs">
+      <Link>Model\NewsUserListItem.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Occupation.cs">
+      <Link>Model\Occupation.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\PhotoAlbum.cs">
+      <Link>Model\PhotoAlbum.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\PhotoSize.cs">
+      <Link>Model\PhotoSize.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Place.cs">
+      <Link>Model\Place.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\PollAnswer.cs">
+      <Link>Model\PollAnswer.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\PostReach.cs">
+      <Link>Model\PostReach.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\PostSource.cs">
+      <Link>Model\PostSource.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\PostSourceData.cs">
+      <Link>Model\PostSourceData.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Previews.cs">
+      <Link>Model\Previews.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Price.cs">
+      <Link>Model\Price.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\PushSettings.cs">
+      <Link>Model\PushSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Rating.cs">
+      <Link>Model\Rating.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Rect.cs">
+      <Link>Model\Rect.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Region.cs">
+      <Link>Model\Region.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Relative.cs">
+      <Link>Model\Relative.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RepostResult.cs">
+      <Link>Model\RepostResult.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Reposts.cs">
+      <Link>Model\Reposts.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Account\AccountRegisterDeviceParams.cs">
+      <Link>Model\RequestParams\Account\AccountRegisterDeviceParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Account\AccountSaveProfileInfoParams.cs">
+      <Link>Model\RequestParams\Account\AccountSaveProfileInfoParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\App\AppGetCatalogParams.cs">
+      <Link>Model\RequestParams\App\AppGetCatalogParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\App\AppGetParams.cs">
+      <Link>Model\RequestParams\App\AppGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\App\AppSendRequestParams.cs">
+      <Link>Model\RequestParams\App\AppSendRequestParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Audio\AudioEditParams.cs">
+      <Link>Model\RequestParams\Audio\AudioEditParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Audio\AudioGetParams.cs">
+      <Link>Model\RequestParams\Audio\AudioGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Audio\AudioSearchParams.cs">
+      <Link>Model\RequestParams\Audio\AudioSearchParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Auth\AuthConfirmParams.cs">
+      <Link>Model\RequestParams\Auth\AuthConfirmParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Auth\AuthSignupParams.cs">
+      <Link>Model\RequestParams\Auth\AuthSignupParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Board\BoardAddTopicParams.cs">
+      <Link>Model\RequestParams\Board\BoardAddTopicParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Board\BoardCommentParams.cs">
+      <Link>Model\RequestParams\Board\BoardCommentParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Board\BoardCreateCommentParams.cs">
+      <Link>Model\RequestParams\Board\BoardCreateCommentParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Board\BoardEditCommentParams.cs">
+      <Link>Model\RequestParams\Board\BoardEditCommentParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Board\BoardEditTopicParams.cs">
+      <Link>Model\RequestParams\Board\BoardEditTopicParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Board\BoardGetCommentsParams.cs">
+      <Link>Model\RequestParams\Board\BoardGetCommentsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Board\BoardGetTopicsParams.cs">
+      <Link>Model\RequestParams\Board\BoardGetTopicsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Board\BoardTopicParams.cs">
+      <Link>Model\RequestParams\Board\BoardTopicParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Friends\FriendsGetMutualParams.cs">
+      <Link>Model\RequestParams\Friends\FriendsGetMutualParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Friends\FriendsGetOnlineParams.cs">
+      <Link>Model\RequestParams\Friends\FriendsGetOnlineParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Friends\FriendsGetParams.cs">
+      <Link>Model\RequestParams\Friends\FriendsGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Friends\FriendsGetRequestsParams.cs">
+      <Link>Model\RequestParams\Friends\FriendsGetRequestsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Friends\FriendsSearchParams.cs">
+      <Link>Model\RequestParams\Friends\FriendsSearchParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Groups\GroupsBanUserParams.cs">
+      <Link>Model\RequestParams\Groups\GroupsBanUserParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Groups\GroupsEditManagerParams.cs">
+      <Link>Model\RequestParams\Groups\GroupsEditManagerParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Groups\GroupsEditParams.cs">
+      <Link>Model\RequestParams\Groups\GroupsEditParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Groups\GroupsGetMembersParams.cs">
+      <Link>Model\RequestParams\Groups\GroupsGetMembersParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Groups\GroupsGetParams.cs">
+      <Link>Model\RequestParams\Groups\GroupsGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Groups\GroupsSearchParams.cs">
+      <Link>Model\RequestParams\Groups\GroupsSearchParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Likes\LikesAddParams.cs">
+      <Link>Model\RequestParams\Likes\LikesAddParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Likes\LikesGetListParams.cs">
+      <Link>Model\RequestParams\Likes\LikesGetListParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Market\MarketCreateCommentParams.cs">
+      <Link>Model\RequestParams\Market\MarketCreateCommentParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Market\MarketGetCommentsParams.cs">
+      <Link>Model\RequestParams\Market\MarketGetCommentsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Market\MarketProductParams.cs">
+      <Link>Model\RequestParams\Market\MarketProductParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Market\MarketSearchParams.cs">
+      <Link>Model\RequestParams\Market\MarketSearchParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Messages\MessagesDialogsGetParams.cs">
+      <Link>Model\RequestParams\Messages\MessagesDialogsGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Messages\MessagesGetHistoryAttachmentsParams.cs">
+      <Link>Model\RequestParams\Messages\MessagesGetHistoryAttachmentsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Messages\MessagesGetHistoryParams.cs">
+      <Link>Model\RequestParams\Messages\MessagesGetHistoryParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Messages\MessagesGetLongPollHistoryParams.cs">
+      <Link>Model\RequestParams\Messages\MessagesGetLongPollHistoryParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Messages\MessagesGetParams.cs">
+      <Link>Model\RequestParams\Messages\MessagesGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Messages\MessagesSendParams.cs">
+      <Link>Model\RequestParams\Messages\MessagesSendParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Messages\MessagesSendStickerParams.cs">
+      <Link>Model\RequestParams\Messages\MessagesSendStickerParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\NewsFeed\NewsFeedGetCommentsParams.cs">
+      <Link>Model\RequestParams\NewsFeed\NewsFeedGetCommentsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\NewsFeed\NewsFeedGetParams.cs">
+      <Link>Model\RequestParams\NewsFeed\NewsFeedGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\NewsFeed\NewsFeedGetRecommendedParams.cs">
+      <Link>Model\RequestParams\NewsFeed\NewsFeedGetRecommendedParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\NewsFeed\NewsFeedSearchParams.cs">
+      <Link>Model\RequestParams\NewsFeed\NewsFeedSearchParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Pages\PagesGetParams.cs">
+      <Link>Model\RequestParams\Pages\PagesGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoCreateAlbumParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoCreateAlbumParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoCreateCommentParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoCreateCommentParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoEditAlbumParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoEditAlbumParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoEditParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoEditParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoGetAlbumsParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoGetAlbumsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoGetAllCommentsParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoGetAllCommentsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoGetAllParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoGetAllParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoGetCommentsParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoGetCommentsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoGetParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoGetUserPhotosParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoGetUserPhotosParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoPutTagParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoPutTagParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoSaveParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoSaveParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Photo\PhotoSearchParams.cs">
+      <Link>Model\RequestParams\Photo\PhotoSearchParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Users\UserSearchParams.cs">
+      <Link>Model\RequestParams\Users\UserSearchParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Users\UsersGetNearbyParams.cs">
+      <Link>Model\RequestParams\Users\UsersGetNearbyParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Video\VideoCreateCommentParams.cs">
+      <Link>Model\RequestParams\Video\VideoCreateCommentParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Video\VideoEditParams.cs">
+      <Link>Model\RequestParams\Video\VideoEditParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Video\VideoGetCommentsParams.cs">
+      <Link>Model\RequestParams\Video\VideoGetCommentsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Video\VideoGetParams.cs">
+      <Link>Model\RequestParams\Video\VideoGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Video\VideoReorderVideosParams.cs">
+      <Link>Model\RequestParams\Video\VideoReorderVideosParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Video\VideoSaveParams.cs">
+      <Link>Model\RequestParams\Video\VideoSaveParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Video\VideoSearchParams.cs">
+      <Link>Model\RequestParams\Video\VideoSearchParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Wall\WallAddCommentParams.cs">
+      <Link>Model\RequestParams\Wall\WallAddCommentParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Wall\WallEditParams.cs">
+      <Link>Model\RequestParams\Wall\WallEditParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Wall\WallGetCommentsParams.cs">
+      <Link>Model\RequestParams\Wall\WallGetCommentsParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Wall\WallGetParams.cs">
+      <Link>Model\RequestParams\Wall\WallGetParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Wall\WallPostParams.cs">
+      <Link>Model\RequestParams\Wall\WallPostParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Wall\WallSearchParams.cs">
+      <Link>Model\RequestParams\Wall\WallSearchParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\School.cs">
+      <Link>Model\School.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\SchoolClass.cs">
+      <Link>Model\SchoolClass.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\SearchDialogsResponse.cs">
+      <Link>Model\SearchDialogsResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\StandInLife.cs">
+      <Link>Model\StandInLife.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\StatsPeriod.cs">
+      <Link>Model\StatsPeriod.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\StatStruct.cs">
+      <Link>Model\StatStruct.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Status.cs">
+      <Link>Model\Status.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Store.cs">
+      <Link>Model\Store.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Street.cs">
+      <Link>Model\Street.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Tag.cs">
+      <Link>Model\Tag.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Tags.cs">
+      <Link>Model\Tags.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Topic.cs">
+      <Link>Model\Topic.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\TopicsFeed.cs">
+      <Link>Model\TopicsFeed.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\University.cs">
+      <Link>Model\University.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\UploadServerInfo.cs">
+      <Link>Model\UploadServerInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\User.cs">
+      <Link>Model\User.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\UserOrGroup.cs">
+      <Link>Model\UserOrGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\VideoAlbum.cs">
+      <Link>Model\VideoAlbum.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\VideoCatalog.cs">
+      <Link>Model\VideoCatalog.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\VideoCatalogItem.cs">
+      <Link>Model\VideoCatalogItem.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\VkObject.cs">
+      <Link>Model\VkObject.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\WallGetObject.cs">
+      <Link>Model\WallGetObject.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\AntiCaptcha\ICaptchaSolver.cs">
+      <Link>Utils\AntiCaptcha\ICaptchaSolver.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\ApiVersionAttribute.cs">
+      <Link>Utils\ApiVersionAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\Browser.cs">
+      <Link>Utils\Browser.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\Cookies.cs">
+      <Link>Utils\Cookies.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\DataAnnotations.cs">
+      <Link>Utils\DataAnnotations.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\DateTimeHelper.cs">
+      <Link>Utils\DateTimeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\DefaultValueAttribute.cs">
+      <Link>Utils\DefaultValueAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\ErrorCode.cs">
+      <Link>Utils\ErrorCode.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\File.cs">
+      <Link>Utils\File.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\IBrowser.cs">
+      <Link>Utils\IBrowser.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\IVkModel.cs">
+      <Link>Utils\IVkModel.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\ModelToVkParametrsCastGenerator.cs">
+      <Link>Utils\ModelToVkParametrsCastGenerator.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelToVkParametrsCastGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\Tuple.cs">
+      <Link>Utils\Tuple.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\TypeHelper.cs">
+      <Link>Utils\TypeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\Utilities.cs">
+      <Link>Utils\Utilities.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkAuthorization.cs">
+      <Link>Utils\VkAuthorization.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkCollection.cs">
+      <Link>Utils\VkCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkErrors.cs">
+      <Link>Utils\VkErrors.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkParameters.cs">
+      <Link>Utils\VkParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkResponse.cs">
+      <Link>Utils\VkResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkResponseArray.cs">
+      <Link>Utils\VkResponseArray.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkResponseEx.cs">
+      <Link>Utils\VkResponseEx.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.cs">
+      <Link>Utils\VkResponseToManualEnumCastsGenerator.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkResponseToManualEnumCastsGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkResponseToModelCastsGenerator.cs">
+      <Link>Utils\VkResponseToModelCastsGenerator.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkResponseToModelCastsGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.cs">
+      <Link>Utils\VkResponseToSafetyEnumCastGenerator.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkResponseToSafetyEnumCastGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\WebCall.cs">
+      <Link>Utils\WebCall.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\WebCallResult.cs">
+      <Link>Utils\WebCallResult.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\WebClient.cs">
+      <Link>Utils\WebClient.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\WebForm.cs">
+      <Link>Utils\WebForm.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\WebProxy.cs">
+      <Link>Utils\WebProxy.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Utils\WebUtilityHelper.cs">
+      <Link>Utils\WebUtilityHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\VkApi.cs">
+      <Link>VkApi.cs</Link>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utils\ApiMethodNameAttribute.cs" />
-    <Compile Include="Utils\ApiVersionAttribute.cs" />
-    <Compile Include="Utils\DefaultValueAttribute.cs" />
-    <Compile Include="Utils\Cookies.cs" />
-    <Compile Include="Utils\DataAnnotations.cs" />
-    <Compile Include="Utils\ErrorCode.cs" />
-    <Compile Include="Utils\IVkModel.cs" />
-    <Compile Include="Utils\ModelToVkParametrsCastGenerator.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelToVkParametrsCastGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Utils\Tuple.cs" />
-    <Compile Include="Utils\VkCollection.cs" />
-    <Compile Include="Utils\VkResponseToManualEnumCastsGenerator1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VkResponseToManualEnumCastsGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Utils\VkResponseToModelCastsGenerator.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VkResponseToModelCastsGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Utils\VkResponseToSafetyEnumCastGenerator.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VkResponseToSafetyEnumCastGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Utils\VkValueAttribute.cs" />
-    <Compile Include="Utils\WebCallResult.cs" />
-    <Compile Include="Model\Coordinates.cs" />
-    <Compile Include="Utils\WebCall.cs" />
-    <Compile Include="Utils\VkParameters.cs" />
-    <Compile Include="Model\Attachments\Attachment.cs" />
-    <Compile Include="Model\Attachments\Audio.cs" />
-    <Compile Include="Model\Comments.cs" />
-    <Compile Include="Model\Counters.cs" />
-    <Compile Include="Model\Attachments\Document.cs" />
-    <Compile Include="Model\Geo.cs" />
-    <Compile Include="Model\Group\Group.cs" />
-    <Compile Include="Model\LastActivity.cs" />
-    <Compile Include="Model\Likes.cs" />
-    <Compile Include="Model\LongPollServerResponse.cs" />
-    <Compile Include="Model\Lyrics.cs" />
-    <Compile Include="Model\Attachments\Message.cs" />
-    <Compile Include="Model\SearchDialogsResponse.cs" />
-    <Compile Include="Model\Attachments\Note.cs" />
-    <Compile Include="Model\Attachments\Page.cs" />
-    <Compile Include="Model\Attachments\Photo.cs" />
-    <Compile Include="Model\Place.cs" />
-    <Compile Include="Model\Reposts.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Exception\VkApiAuthorizationException.cs" />
-    <Compile Include="Exception\VkApiException.cs" />
-    <Compile Include="Model\Education.cs" />
-    <Compile Include="Categories\StatusCategory.cs" />
-    <Compile Include="Model\Status.cs" />
-    <Compile Include="Categories\UsersCategory.cs" />
-    <Compile Include="Model\Attachments\Video.cs" />
-    <Compile Include="Model\Attachments\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\Browser.cs" />
-    <Compile Include="Utils\IBrowser.cs" />
-    <Compile Include="Utils\VkResponseArray.cs" />
-    <Compile Include="Utils\VkResponse.cs" />
-    <Compile Include="Utils\Utilities.cs" />
-    <Compile Include="Utils\VkResponseEx.cs" />
-    <Compile Include="Utils\WebForm.cs" />
-    <Compile Include="VkApi.cs" />
-    <Compile Include="Utils\VkErrors.cs" />
-    <Compile Include="Utils\VkAuthorization.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Utils\VkResponseToManualEnumCastsGenerator.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VkResponseToManualEnumCastsGenerator1.cs</LastGenOutput>
-    </None>
-    <None Include="Utils\VkResponseToSafetyEnumCastGenerator.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VkResponseToSafetyEnumCastGenerator.cs</LastGenOutput>
-    </None>
-    <None Include="Utils\VkResponseToModelCastsGenerator.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VkResponseToModelCastsGenerator.cs</LastGenOutput>
-    </None>
-    <None Include="VkNet.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Utils\ModelToVkParametrsCastGenerator.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelToVkParametrsCastGenerator.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -468,11 +1251,44 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\VkNet.UWP\Utils\ModelToVkParametrsCastGenerator.tt">
+      <Link>Utils\ModelToVkParametrsCastGenerator.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelToVkParametrsCastGenerator.cs</LastGenOutput>
+    </Content>
+    <Content Include="..\VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.tt">
+      <Link>Utils\VkResponseToManualEnumCastsGenerator.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToManualEnumCastsGenerator.cs</LastGenOutput>
+    </Content>
+    <Content Include="..\VkNet.UWP\Utils\VkResponseToModelCastsGenerator.tt">
+      <Link>Utils\VkResponseToModelCastsGenerator.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToModelCastsGenerator.cs</LastGenOutput>
+    </Content>
+    <Content Include="..\VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.tt">
+      <Link>Utils\VkResponseToSafetyEnumCastGenerator.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToSafetyEnumCastGenerator.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent Condition=" '$(OS)' != 'Unix' ">"$(TargetDir)Injector.exe"</PostBuildEvent>
     <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">mono "$(TargetDir)Injector.exe"</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent />
+  </PropertyGroup>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
