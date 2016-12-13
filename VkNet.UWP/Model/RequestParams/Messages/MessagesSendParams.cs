@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using VkNet.Model.Attachments;
+using System;
 
 namespace VkNet.Model.RequestParams
 {
@@ -108,8 +109,8 @@ namespace VkNet.Model.RequestParams
 				{ "user_ids", p.UserIds },
 				{ "message", WebUtilityHelper.UrlEncode(p.Message) },
 				{ "random_id", p.RandomId },
-				{ "lat", p.Lat },
-				{ "long", p.Longitude },
+				{ "lat", p.Lat?.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) },
+				{ "long", p.Longitude?.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) },
 				{ "attachment", p.Attachments },
 				{ "forward_messages", p.ForwardMessages },
 				{ "sticker_id", p.StickerId },
