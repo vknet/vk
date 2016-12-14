@@ -77,7 +77,7 @@ namespace VkNet
 		/// </summary>
 		public float RequestsPerSecond
 		{
-		    private get { return _requestsPerSecond; }
+		    get { return _requestsPerSecond; }
 			set
 			{
 			    if (value < 0)
