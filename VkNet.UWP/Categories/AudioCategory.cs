@@ -192,6 +192,8 @@
 		/// <param name="ownerId">Идентификатор владельца аудиозаписи (пользователь или сообщество). целое число, обязательный параметр (Целое число, обязательный параметр).</param>
 		/// <param name="groupId">Идентификатор сообщества (если аудиозапись необходимо скопировать в список сообщества). целое число (Целое число).</param>
 		/// <param name="albumId">Идентификатор альбома, в который нужно переместить аудиозапись. положительное число (Положительное число).</param>
+		/// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
+		/// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
 		/// <returns>
 		/// После успешного выполнения  возвращает идентификатор созданной аудиозаписи.
 		/// </returns>
@@ -199,13 +201,15 @@
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.add" />.
 		/// </remarks>
 		[ApiVersion("5.44")]
-		public long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null)
+		public long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null, long? captchaSid = null, string captchaKey = null)
 		{
 			var parameters = new VkParameters {
 				{ "audio_id", audioId },
 				{ "owner_id", ownerId },
 				{ "group_id", groupId },
-				{ "album_id", albumId }
+				{ "album_id", albumId },
+				{ "captcha_sid", captchaSid },
+				{ "captcha_key", captchaKey }
 			};
 
 			return _vk.Call("audio.add", parameters);
