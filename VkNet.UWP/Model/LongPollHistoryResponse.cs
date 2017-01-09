@@ -43,6 +43,11 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
+		/// Если true — это означает, что нужно запросить оставшиеся данные с помощью запроса с параметром max_msg_id
+		/// </summary>
+		public bool More { get; set; }
+
+		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
@@ -54,7 +59,8 @@ namespace VkNet.Model
                 UnreadMessages = response["messages"]["count"],
 				Messages = response["messages"]["items"].ToReadOnlyCollectionOf<Message>(x => x),
 				Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(x => x),
-				NewPts = response["new_pts"]
+				NewPts = response["new_pts"],
+				More = response["more"]
 			};
 			VkResponseArray historys = response["history"];
 			foreach (var history in historys)
