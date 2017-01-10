@@ -1,5 +1,5 @@
-﻿using VkNet.Enums;
-using VkNet.Enums.Filters;
+﻿using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
