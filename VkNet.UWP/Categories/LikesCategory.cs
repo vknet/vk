@@ -35,9 +35,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false)
+		/// </remarks>		public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false)
 		{
 		    @params.Extended = false;
 			return _vk.Call("likes.getList", @params, skipAuthorization).ToVkCollectionOf<long>(x => x);
@@ -52,9 +50,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public UserOrGroup GetListEx(LikesGetListParams @params)
+		/// </remarks>		public UserOrGroup GetListEx(LikesGetListParams @params)
 		{
             @params.Extended = true;
             return _vk.Call("likes.getList", @params, true);
@@ -69,9 +65,7 @@ namespace VkNet.Categories
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.add" />.
-        /// </remarks>
-        [ApiVersion("5.44")]
-		public long Add(LikesAddParams @params)
+        /// </remarks>		public long Add(LikesAddParams @params)
 		{
 			var response = _vk.Call("likes.add", @params);
 
@@ -87,9 +81,7 @@ namespace VkNet.Categories
 		/// <returns>В случае успеха возвращает объект с полем likes, в котором находится текущее количество пользователей, которые добавили данный объект в свой список Мне нравится. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.delete"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long Delete(LikeObjectType type, long itemId, long? ownerId = null)
+		/// </remarks>		public long Delete(LikeObjectType type, long itemId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 				{
@@ -117,9 +109,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.isLiked" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool IsLiked(out bool copied, LikeObjectType type, long itemId,  long? userId = null, long? ownerId = null)
+		/// </remarks>		public bool IsLiked(out bool copied, LikeObjectType type, long itemId,  long? userId = null, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 				{

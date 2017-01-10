@@ -40,9 +40,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/pages.get" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public Page Get(PagesGetParams @params)
+		/// </remarks>		public Page Get(PagesGetParams @params)
 		{
 			return _vk.Call("pages.get", @params);
 		}
@@ -59,9 +57,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.save" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long Save(string text, long groupId, long pageId, long userId)
+		/// </remarks>		public long Save(string text, long groupId, long pageId, long userId)
 		{
 			return Save(text, groupId, userId, pageId, null);
 		}
@@ -78,9 +74,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.save" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long Save(string text, long groupId, string title, long userId)
+		/// </remarks>		public long Save(string text, long groupId, string title, long userId)
 		{
 			return Save(text, groupId, userId, title: title);
 		}
@@ -98,9 +92,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/pages.save" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long Save(string text, long groupId, long userId, long? pageId = null, string title = "")
+		/// </remarks>		public long Save(string text, long groupId, long userId, long? pageId = null, string title = "")
 		{
 			var parameters = new VkParameters
 			{
@@ -127,9 +119,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.saveAccess" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long SaveAccess(long pageId, long groupId, long? userId = null, AccessPages view = AccessPages.All, AccessPages edit = AccessPages.Leaders)
+		/// </remarks>		public long SaveAccess(long pageId, long groupId, long? userId = null, AccessPages view = AccessPages.All, AccessPages edit = AccessPages.Leaders)
 		{
 			var parameters = new VkParameters
 			{
@@ -159,9 +149,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.getHistory" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<History> GetHistory(long pageId, long groupId, long? userId = null)
+		/// </remarks>		public ReadOnlyCollection<History> GetHistory(long pageId, long groupId, long? userId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -183,9 +171,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.getTitles" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Page> GetTitles(long groupId)
+		/// </remarks>		public ReadOnlyCollection<Page> GetTitles(long groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -208,9 +194,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.getVersion" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public Page GetVersion(long versionId, long groupId, bool needHtml = false, long? userId = null)
+		/// </remarks>		public Page GetVersion(long versionId, long groupId, bool needHtml = false, long? userId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -233,9 +217,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.parseWiki" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public string ParseWiki(string text, ulong groupId)
+		/// </remarks>		public string ParseWiki(string text, ulong groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -257,9 +239,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.clearCache" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool ClearCache(Uri url)
+		/// </remarks>		public bool ClearCache(Uri url)
 		{
 			var parameters = new VkParameters
 			{

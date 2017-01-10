@@ -37,9 +37,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.get"/>.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел. Используйте Get(VideoGetParams @params)")]
+		[Pure]		[Obsolete("Данный метод устарел. Используйте Get(VideoGetParams @params)")]
 		public ReadOnlyCollection<Video> Get(long? ownerId = null, long? albumId = null, VideoWidth width = VideoWidth.Medium160, int? count = null, int? offset = null, bool extended = false)
 		{
 			var parameters = new VideoGetParams
@@ -93,9 +91,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.edit"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел. Используйте Edit(VideoEditParams @params)")]
+		/// </remarks>		[Obsolete("Данный метод устарел. Используйте Edit(VideoEditParams @params)")]
 		public bool Edit(long videoId, long? ownerId = null, string name = null, string description = null, IEnumerable<Privacy> privacyView = null, IEnumerable<Privacy> privacyComment = null, bool isRepeat = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -135,9 +131,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.save"/>.
 		/// Метод может быть вызван не более 5000 раз в сутки для одного сервиса.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел. Используйте Save(VideoSaveParams @params)")]
+		/// </remarks>		[Obsolete("Данный метод устарел. Используйте Save(VideoSaveParams @params)")]
 		public Video Save(string name = null, string description = null, bool isPrivate = false, bool isPostToWall = false, string link = null, long? groupId = null, long? albumId = null, bool isRepeat = false)
 		{
 			var parameters = new VideoSaveParams
@@ -174,9 +168,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.search"/>.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел. Используйте Search(VideoSearchParams @params)")]
+		[Pure]		[Obsolete("Данный метод устарел. Используйте Search(VideoSearchParams @params)")]
 		public ReadOnlyCollection<Video> Search(string query, VideoSort sort, bool isHd = false, bool isAdult = false, VideoFilters filters = null, bool isSearchOwn = false, int? count = null, int? offset = null)
 		{
 			var parameters = new VideoSearchParams
@@ -205,9 +197,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.moveToAlbum"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
+		/// </remarks>		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		public bool MoveToAlbum(IEnumerable<long> videoIds, long albumId, long? groupId = null)
 		{
 			throw new System.Exception("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.");
@@ -233,9 +223,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getComments"/>.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел. Используйте GetComments(VideoGetCommentsParams @params)")]
+		[Pure]		[Obsolete("Данный метод устарел. Используйте GetComments(VideoGetCommentsParams @params)")]
 		public ReadOnlyCollection<Comment> GetComments(long videoId, long? ownerId = null, bool needLikes = false, int? count = null, int? offset = null, CommentsSort sort = null)
 		{
 			var parameters = new VideoGetCommentsParams
@@ -267,9 +255,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Video"/>.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.createComment"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел. Используйте CreateComment(VideoCreateCommentParams @params)")]
+		/// </remarks>		[Obsolete("Данный метод устарел. Используйте CreateComment(VideoCreateCommentParams @params)")]
 		public long CreateComment(long videoId, string message, long? ownerId, bool isFromGroup = false)
 		{
 			var parameters = new VideoCreateCommentParams

@@ -27,9 +27,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getUserSettings"/>.
 		/// </remarks>
 		[Pure]
-		[Obsolete("Метод устарел. Используйте вместо него account.getAppPermissions")]
-		[ApiVersion("5.44")]
-		public int GetUserSettings(long uid)
+		[Obsolete("Метод устарел. Используйте вместо него account.getAppPermissions")]		public int GetUserSettings(long uid)
 		{
 			throw new System.Exception("Метод устарел. Используйте вместо него account.getAppPermissions");
 		}
@@ -46,9 +44,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		[Obsolete("Метод устарел. Используйте вместо него Search(UserSearchParams @params)")]
+		[Pure]		[Obsolete("Метод устарел. Используйте вместо него Search(UserSearchParams @params)")]
 		public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @params)
 		{
 			var response = Search(@params);

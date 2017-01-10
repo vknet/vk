@@ -25,9 +25,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
-        /// </remarks>
-        [ApiVersion("5.44")]
-        [Obsolete("Данный метод устарел. Пожалуйста используйте метод Audio.SetBroadcast")]
+        /// </remarks>        [Obsolete("Данный метод устарел. Пожалуйста используйте метод Audio.SetBroadcast")]
         public bool Set([NotNull] Audio audio)
         {
             _vk.Audio.SetBroadcast(string.Format("{0}_{1}", audio.OwnerId, audio.Id), new List<long>());

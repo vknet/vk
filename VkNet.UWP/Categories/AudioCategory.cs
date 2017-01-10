@@ -37,9 +37,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getCount" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long GetCount(long ownerId)
+		/// </remarks>		public long GetCount(long ownerId)
 		{
 			var parameters = new VkParameters
 			{
@@ -59,9 +57,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getLyrics" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public Lyrics GetLyrics(long lyricsId)
+		/// </remarks>		public Lyrics GetLyrics(long lyricsId)
 		{
 			var parameters = new VkParameters
 			{
@@ -80,9 +76,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Audio> GetById(IEnumerable<string> audios)
+		/// </remarks>		public ReadOnlyCollection<Audio> GetById(IEnumerable<string> audios)
 		{
 			if (!audios.Any())
 			{
@@ -104,9 +98,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Audio> GetById(params string[] audios)
+		/// </remarks>		public ReadOnlyCollection<Audio> GetById(params string[] audios)
 		{
 			return GetById((IEnumerable<string>)audios);
 		}
@@ -127,9 +119,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Audio> Get(out User user, AudioGetParams @params)
+		/// </remarks>		public ReadOnlyCollection<Audio> Get(out User user, AudioGetParams @params)
 		{
 			VkResponseArray response = _vk.Call("audio.get", @params);
 
@@ -153,9 +143,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getUploadServer" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public Uri GetUploadServer()
+		/// </remarks>		public Uri GetUploadServer()
 		{
 			var response = _vk.Call("audio.getUploadServer", VkParameters.Empty);
 
@@ -173,9 +161,7 @@
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio" />.
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<Audio> Search(AudioSearchParams @params)
+		/// </remarks>		public VkCollection<Audio> Search(AudioSearchParams @params)
 		{
 			if (string.IsNullOrEmpty(@params.Query))
 			{
@@ -199,9 +185,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.add" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null, long? captchaSid = null, string captchaKey = null)
+		/// </remarks>		public long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null, long? captchaSid = null, string captchaKey = null)
 		{
 			var parameters = new VkParameters {
 				{ "audio_id", audioId },
@@ -225,9 +209,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.delete" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Delete(long audioId, long ownerId)
+		/// </remarks>		public bool Delete(long audioId, long ownerId)
 		{
 			var parameters = new VkParameters
 			{
@@ -247,9 +229,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.edit" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long Edit(AudioEditParams @params)
+		/// </remarks>		public long Edit(AudioEditParams @params)
 		{
 			if (@params.Artist == null)
 			{
@@ -280,9 +260,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.restore" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public Audio Restore(long audioId, long? ownerId = null)
+		/// </remarks>		public Audio Restore(long audioId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -305,9 +283,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.reorder" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Reorder(long audioId, long? ownerId, long? before, long? after)
+		/// </remarks>		public bool Reorder(long audioId, long? ownerId, long? before, long? after)
 		{
 			var parameters = new VkParameters {
 				{ "audio_id", audioId },
@@ -329,9 +305,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.addAlbum" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long AddAlbum(string title, long? groupId = null)
+		/// </remarks>		public long AddAlbum(string title, long? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -356,9 +330,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.editAlbum" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool EditAlbum(string title, long albumId, long? groupId = null)
+		/// </remarks>		public bool EditAlbum(string title, long albumId, long? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 
@@ -382,9 +354,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.deleteAlbum" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool DeleteAlbum(long albumId, long? groupId = null)
+		/// </remarks>		public bool DeleteAlbum(long albumId, long? groupId = null)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -406,9 +376,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getPopular" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, uint? count = null, uint? offset = null)
+		/// </remarks>		public ReadOnlyCollection<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, uint? count = null, uint? offset = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -440,9 +408,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getAlbums" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<AudioAlbum> GetAlbums(long ownerId, uint? count = null, uint? offset = null)
+		/// </remarks>		public VkCollection<AudioAlbum> GetAlbums(long ownerId, uint? count = null, uint? offset = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -465,9 +431,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.moveToAlbum" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
+		/// </remarks>		public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -492,9 +456,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getRecommendations" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<Audio> GetRecommendations(long? userId = null, uint? count = null, uint? offset = null, bool shuffle = true, string targetAudio = "")
+		/// </remarks>		public ReadOnlyCollection<Audio> GetRecommendations(long? userId = null, uint? count = null, uint? offset = null, bool shuffle = true, string targetAudio = "")
 		{
 			var parameters = new VkParameters
 			{
@@ -520,9 +482,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.setBroadcast" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
+		/// </remarks>		public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => audio);
 
@@ -546,9 +506,7 @@
 		/// <returns>Возвращает массив из объектов с загруженными аудиозаписями.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.save"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public Audio Save(string response, string artist = null, string title = null)
+		/// </remarks>		public Audio Save(string response, string artist = null, string title = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => response);
 			var responseJson = JObject.Parse(response);
@@ -577,9 +535,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getBroadcastList"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<User> GetBroadcastListFriends(bool active = false)
+		/// </remarks>		public ReadOnlyCollection<User> GetBroadcastListFriends(bool active = false)
 		{
 			var parameters = new VkParameters
 			{
@@ -605,9 +561,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getBroadcastList" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public UserOrGroup GetBroadcastList(string filter = null, bool? active = null)
+		/// </remarks>		public UserOrGroup GetBroadcastList(string filter = null, bool? active = null)
 		{
 			var parameters = new VkParameters {
 				{ "filter", filter },

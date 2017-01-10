@@ -29,9 +29,7 @@ namespace VkNet.Categories
 		/// <returns>После успешного выполнения возвращает массив объектов <see cref="Photo"/>. В случае, если запись на стене о том, что была обновлена фотография профиля, не удалена, будет возвращено дополнительное поле post_id, содержащее идентификатор записи на стене.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getProfile"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
+		/// </remarks>		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, IEnumerable<long> photoIds = null, bool? rev = null, bool? extended = null, string feedType = null, DateTime? feed = null, bool? photoSizes = null, ulong? count = null, ulong? offset = null)
 		{
 			throw new System.Exception("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.");
@@ -59,9 +57,7 @@ namespace VkNet.Categories
 		/// <returns>После успешного выполнения возвращает объект, содержащий поля photo_hash и photo_src (при работе через VK.api метод вернёт поля photo_src, photo_src_big, photo_src_small). Параметр photo_hash необходим для подтверждения пользователем изменения его фотографии через вызов метода saveProfilePhoto Javascript API. Поле photo_src содержит путь к загруженной фотографии. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveProfilePhoto"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте метод SaveOwnerPhoto")]
+		/// </remarks>		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте метод SaveOwnerPhoto")]
 		public Photo SaveProfilePhoto(string server = null, string hash = null, string photo = null)
 		{
 			var response = @"{
@@ -82,9 +78,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAlbums" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Метод устарел. Используйте вместо него GetAlbums(PhotoGetAlbumsParams @params)")]
+		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetAlbums(PhotoGetAlbumsParams @params)")]
 		public ReadOnlyCollection<PhotoAlbum> GetAlbums(out int count, PhotoGetAlbumsParams @params)
 		{
 			var response = GetAlbums(@params);
@@ -123,9 +117,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.search" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Метод устарел. Используйте вместо него Search(PhotoSearchParams @params)")]
+		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него Search(PhotoSearchParams @params)")]
 		public ReadOnlyCollection<Photo> Search(out int count, PhotoSearchParams @params)
 		{
 			var response = Search(@params);
@@ -151,9 +143,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAll" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Метод устарел. Используйте вместо него GetAll(PhotoGetAllParams @params)")]
+		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetAll(PhotoGetAllParams @params)")]
 		public ReadOnlyCollection<Photo> GetAll(out int count, PhotoGetAllParams @params)
 		{
 			var response = GetAll(@params);
@@ -171,9 +161,7 @@ namespace VkNet.Categories
 		/// <returns>После успешного выполнения возвращает список объектов photo.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Метод устарел. Используйте вместо него GetUserPhotos(PhotoGetUserPhotosParams @params)")]
+		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetUserPhotos(PhotoGetUserPhotosParams @params)")]
 		public ReadOnlyCollection<Photo> GetUserPhotos(out int count, PhotoGetUserPhotosParams @params)
 		{
 			var response = GetUserPhotos(@params);
@@ -193,9 +181,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Метод устарел. Используйте вместо него GetComments(PhotoGetCommentsParams @params)")]
+		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetComments(PhotoGetCommentsParams @params)")]
 		public ReadOnlyCollection<Comment> GetComments(out int count, PhotoGetCommentsParams @params)
 		{
 			var response = GetComments(@params);
@@ -215,9 +201,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Метод устарел. Используйте вместо него GetAllComments(PhotoGetAllCommentsParams @params)")]
+		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetAllComments(PhotoGetAllCommentsParams @params)")]
 		public ReadOnlyCollection<Comment> GetAllComments(out int count, PhotoGetAllCommentsParams @params)
 		{
 			var response = GetAllComments(@params);
@@ -238,9 +222,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Метод устарел. Используйте вместо него GetNewTags(uint? offset = null, uint? count = null)")]
+		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetNewTags(uint? offset = null, uint? count = null)")]
 		public ReadOnlyCollection<Photo> GetNewTags(out int countTotal, uint? offset = null, uint? count = null)
 		{
 			var response = GetNewTags(offset,count);

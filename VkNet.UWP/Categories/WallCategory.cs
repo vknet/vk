@@ -36,9 +36,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get" />.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		public WallGetObject Get(WallGetParams @params, bool skipAuthorization = false)
+		[Pure]		public WallGetObject Get(WallGetParams @params, bool skipAuthorization = false)
 		{
 			if (@params.Filter != null && @params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
 			{
@@ -66,9 +64,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<Comment> GetComments(WallGetCommentsParams @params, bool skipAuthorization = false)
+		/// </remarks>		public VkCollection<Comment> GetComments(WallGetCommentsParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("wall.getComments", @params, skipAuthorization).ToVkCollectionOf<Comment>(x => x);
 		}
@@ -98,9 +94,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public WallGetObject GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null, bool skipAuthorization = false)
+		/// </remarks>		public WallGetObject GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null, bool skipAuthorization = false)
 		{
 			if (posts == null)
 			{
@@ -131,9 +125,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.post" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long Post(WallPostParams @params)
+		/// </remarks>		public long Post(WallPostParams @params)
 		{
 			return _vk.Call("wall.post", @params)["post_id"];
 		}
@@ -155,9 +147,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.repost" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public RepostResult Repost(string @object, string message, long? groupId, string @ref)
+		/// </remarks>		public RepostResult Repost(string @object, string message, long? groupId, string @ref)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => @object);
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -180,9 +170,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.edit" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Edit(WallEditParams @params)
+		/// </remarks>		public bool Edit(WallEditParams @params)
 		{
 			return _vk.Call("wall.edit", @params);
 		}
@@ -197,9 +185,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.delete" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Delete(long? ownerId = null, long? postId = null)
+		/// </remarks>		public bool Delete(long? ownerId = null, long? postId = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => postId);
 			var parameters = new VkParameters {
@@ -220,9 +206,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restore" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Restore(long? ownerId = null, long? postId = null)
+		/// </remarks>		public bool Restore(long? ownerId = null, long? postId = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -241,9 +225,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addComment" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public long AddComment(WallAddCommentParams @params)
+		/// </remarks>		public long AddComment(WallAddCommentParams @params)
 		{
 			return _vk.Call("wall.addComment", @params)["comment_id"];
 		}
@@ -258,9 +240,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteComment" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool DeleteComment(long? ownerId, long commentId)
+		/// </remarks>		public bool DeleteComment(long? ownerId, long commentId)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -280,9 +260,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restoreComment" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool RestoreComment(long commentId, long? ownerId)
+		/// </remarks>		public bool RestoreComment(long commentId, long? ownerId)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -302,9 +280,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.search" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<Post> Search(WallSearchParams @params, bool skipAuthorization = false)
+		/// </remarks>		public VkCollection<Post> Search(WallSearchParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("wall.search", @params, skipAuthorization).ToVkCollectionOf<Post>(x => x);
 		}
@@ -326,9 +302,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getReposts" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public WallGetObject GetReposts(long? ownerId, long? postId, long? offset, long? count, bool skipAuthorization = false)
+		/// </remarks>		public WallGetObject GetReposts(long? ownerId, long? postId, long? offset, long? count, bool skipAuthorization = false)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -350,9 +324,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.pin" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Pin(long postId, long? ownerId = null)
+		/// </remarks>		public bool Pin(long postId, long? ownerId = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -372,9 +344,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.unpin" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Unpin(long postId, long? ownerId = null)
+		/// </remarks>		public bool Unpin(long postId, long? ownerId = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -396,9 +366,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.editComment" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
+		/// </remarks>		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -430,9 +398,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.reportPost" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool ReportPost(long ownerId, long postId, ReportReason? reason = null)
+		/// </remarks>		public bool ReportPost(long ownerId, long postId, ReportReason? reason = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -463,9 +429,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.reportComment" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool ReportComment(long ownerId, long commentId, ReportReason? reason)
+		/// </remarks>		public bool ReportComment(long ownerId, long commentId, ReportReason? reason)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },

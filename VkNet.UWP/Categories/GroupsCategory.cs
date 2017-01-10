@@ -35,9 +35,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.join" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Join(long? groupId, bool? notSure = null)
+		/// </remarks>		public bool Join(long? groupId, bool? notSure = null)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -56,9 +54,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.leave" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Leave(long groupId)
+		/// </remarks>		public bool Leave(long groupId)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId }
@@ -78,9 +74,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<Group> Get(GroupsGetParams @params, bool skipAuthorization = false)
+		/// </remarks>		public VkCollection<Group> Get(GroupsGetParams @params, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.UserId);
 			var response = _vk.Call("groups.get", @params, skipAuthorization);
@@ -105,9 +99,7 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById" />.
-        /// </remarks>
-        [ApiVersion("5.44")]
-		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = false)
+        /// </remarks>		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = false)
 		{
 			var parameters = new VkParameters {
 				{ "group_ids", groupIds },
@@ -133,9 +125,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false)
+		/// </remarks>		public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("groups.getMembers", @params, skipAuthorization).ToVkCollectionOf(x => @params.Fields != null? x : new User {Id = x});
 		}
@@ -164,9 +154,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = false)
+		/// </remarks>		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = false)
 		{
 			if (userId.HasValue)
 			{
@@ -213,9 +201,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false)
+		/// </remarks>		public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("groups.search", @params, skipAuthorization).ToVkCollectionOf<Group>(r => r);
 		}
@@ -232,9 +218,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvites" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<Group> GetInvites(long? count, long? offset, bool? extended = null)
+		/// </remarks>		public VkCollection<Group> GetInvites(long? count, long? offset, bool? extended = null)
 		{
 			var parameters = new VkParameters {
 				{ "offset", offset },
@@ -254,9 +238,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.banUser" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool BanUser(GroupsBanUserParams @params)
+		/// </remarks>		public bool BanUser(GroupsBanUserParams @params)
 		{
 			return _vk.Call("groups.banUser", @params);
 		}
@@ -289,9 +271,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? userId = null)
+		/// </remarks>		public VkCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? userId = null)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -312,9 +292,7 @@
 		/// <returns>После успешного выполнения возвращает <c>true</c>.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.unbanUser"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool UnbanUser(long groupId, long userId)
+		/// </remarks>		public bool UnbanUser(long groupId, long userId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -336,9 +314,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool EditManager(GroupsEditManagerParams @params)
+		/// </remarks>		public bool EditManager(GroupsEditManagerParams @params)
 		{
 			return _vk.Call("groups.editManager", @params);
 		}
@@ -352,9 +328,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getSettings" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public GroupsEditParams GetSettings(ulong groupId)
+		/// </remarks>		public GroupsEditParams GetSettings(ulong groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -394,9 +368,7 @@
 		/// <remarks>
 		/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором группы.
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.editPlace"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool EditPlace(long groupId, Place place = null)
+		/// </remarks>		public bool EditPlace(long groupId, Place place = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			if (place == null)
@@ -429,9 +401,7 @@
 		/// <returns></returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvitedUsers" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)
+		/// </remarks>		public VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
@@ -456,9 +426,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.invite" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Invite(long groupId, long userId)
+		/// </remarks>		public bool Invite(long groupId, long userId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -490,9 +458,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.addLink" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public Link AddLink(long groupId, Uri link, string text)
+		/// </remarks>		public Link AddLink(long groupId, Uri link, string text)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
@@ -515,9 +481,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.deleteLink" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool DeleteLink(long groupId, ulong linkId)
+		/// </remarks>		public bool DeleteLink(long groupId, ulong linkId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
@@ -539,9 +503,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editLink" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool EditLink(long groupId, ulong linkId, string text)
+		/// </remarks>		public bool EditLink(long groupId, ulong linkId, string text)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
@@ -564,9 +526,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.reorderLink" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool ReorderLink(long groupId, long linkId, long? after)
+		/// </remarks>		public bool ReorderLink(long groupId, long linkId, long? after)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -587,9 +547,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.removeUser" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool RemoveUser(long groupId, long userId)
+		/// </remarks>		public bool RemoveUser(long groupId, long userId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -612,9 +570,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.approveRequest" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool ApproveRequest(long groupId, long userId)
+		/// </remarks>		public bool ApproveRequest(long groupId, long userId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -650,9 +606,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.create" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public Group Create(string title, string description, GroupType type, GroupSubType? subtype)
+		/// </remarks>		public Group Create(string title, string description, GroupType type, GroupSubType? subtype)
 		{
 			var parameters = new VkParameters {
 				{ "title", title },
@@ -678,9 +632,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getRequests" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields)
+		/// </remarks>		public VkCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
