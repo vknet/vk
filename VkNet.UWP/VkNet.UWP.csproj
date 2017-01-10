@@ -159,12 +159,12 @@
     <Compile Include="Enums\SafetyEnums\ReportType.cs" />
     <Compile Include="Enums\SafetyEnums\SafetyEnum.cs" />
     <Compile Include="Enums\SafetyEnums\Services.cs" />
+    <Compile Include="Enums\SafetyEnums\SortOrderBy.cs" />
     <Compile Include="Enums\SafetyEnums\UserSection.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogItemType.cs" />
     <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
     <Compile Include="Enums\SafetyEnums\WallFilter.cs" />
     <Compile Include="Enums\Sex.cs" />
-    <Compile Include="Enums\SortOrderBy.cs" />
     <Compile Include="Enums\UserSort.cs" />
     <Compile Include="Enums\VideoSort.cs" />
     <Compile Include="Enums\VideoWidth.cs" />

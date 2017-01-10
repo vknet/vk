@@ -58,7 +58,7 @@ namespace VkNet.Model.RequestParams
         /// <summary>
         /// Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым) строка.
         /// </summary>
-        public SortOrderBy? Sort { get; set; }
+        public SortOrderBy Sort { get; set; }
 
         /// <summary>
         /// Количество символов, по которому нужно обрезать текст комментария. Укажите 0, если Вы не хотите обрезатьтекст. положительное число.

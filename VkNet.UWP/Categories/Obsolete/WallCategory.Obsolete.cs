@@ -117,7 +117,7 @@ namespace VkNet.Categories
 			long ownerId,
 			long postId,
 			out int totalCount,
-			SortOrderBy? sort = null,
+			SortOrderBy sort = null,
 			bool needLikes = false,
 			int? count = null,
 			int? offset = null,
