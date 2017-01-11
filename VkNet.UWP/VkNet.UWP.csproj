@@ -165,6 +165,7 @@
     <Compile Include="Enums\SafetyEnums\VideoCatalogType.cs" />
     <Compile Include="Enums\SafetyEnums\WallFilter.cs" />
     <Compile Include="Enums\Sex.cs" />
+    <Compile Include="Enums\SortOrderBy.cs" />
     <Compile Include="Enums\UserSort.cs" />
     <Compile Include="Enums\VideoSort.cs" />
     <Compile Include="Enums\VideoWidth.cs" />

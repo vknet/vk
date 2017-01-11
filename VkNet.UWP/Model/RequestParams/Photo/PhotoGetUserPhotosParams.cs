@@ -1,4 +1,4 @@
-﻿using VkNet.Enums.SafetyEnums;
+﻿using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
