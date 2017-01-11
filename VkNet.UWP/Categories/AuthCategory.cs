@@ -35,9 +35,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/auth.checkPhone" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool CheckPhone(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
+		/// </remarks>		public bool CheckPhone(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
 		{
 			var parameters = new VkParameters {
 				{ "phone", phone },
@@ -58,9 +56,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.signup" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public string Signup(AuthSignupParams @params)
+		/// </remarks>		public string Signup(AuthSignupParams @params)
 		{
 			return _vk.Call("auth.signup", @params);
 		}
@@ -74,9 +70,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.confirm" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public AuthConfirmResult Confirm(AuthConfirmParams @params)
+		/// </remarks>		public AuthConfirmResult Confirm(AuthConfirmParams @params)
 		{
 			return _vk.Call("auth.confirm", @params);
 		}
@@ -90,9 +84,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.restore" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public string Restore(string phone)
+		/// </remarks>		public string Restore(string phone)
 		{
 			var response = _vk.Call("auth.restore", new VkParameters { { "phone", phone } });
 			return response["sid"];

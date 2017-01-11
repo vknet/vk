@@ -387,7 +387,6 @@
     <Compile Include="Model\WallGetObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\AntiCaptcha\ICaptchaSolver.cs" />
-    <Compile Include="Utils\ApiVersionAttribute.cs" />
     <Compile Include="Utils\Browser.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />

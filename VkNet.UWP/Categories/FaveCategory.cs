@@ -34,9 +34,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getUsers" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<User> GetUsers(int? count = null, int? offset = null)
+		/// </remarks>		public VkCollection<User> GetUsers(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -88,9 +86,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<Post> GetPosts(int? count = null, int? offset = null)
+		/// </remarks>		public VkCollection<Post> GetPosts(int? count = null, int? offset = null)
 		{
 			var response = GetPostsEx(count, offset);
 			return new VkCollection<Post>(response.TotalCount, response.WallPosts);
@@ -106,9 +102,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public WallGetObject GetPostsEx(int? count = null, int? offset = null)
+		/// </remarks>		public WallGetObject GetPostsEx(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -133,9 +127,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<Video> GetVideos(int? count = null, int? offset = null)
+		/// </remarks>		public VkCollection<Video> GetVideos(int? count = null, int? offset = null)
 		{
 			var response = GetVideosEx(count, offset);
 			return new VkCollection<Video>((ulong) response.Count, response.Video);
@@ -151,9 +143,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public FaveVideoEx GetVideosEx(int? count = null, int? offset = null)
+		/// </remarks>		public FaveVideoEx GetVideosEx(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -178,9 +168,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
+		/// </remarks>		public VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -203,9 +191,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addUser" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool AddUser(long userId)
+		/// </remarks>		public bool AddUser(long userId)
 		{
 			var parameters = new VkParameters
 			{
@@ -223,9 +209,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.removeUser" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool RemoveUser(long userId)
+		/// </remarks>		public bool RemoveUser(long userId)
 		{
 			var parameters = new VkParameters
 			{
@@ -243,9 +227,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addGroup" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool AddGroup(long groupId)
+		/// </remarks>		public bool AddGroup(long groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -263,9 +245,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.removeGroup" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool RemoveGroup(long groupId)
+		/// </remarks>		public bool RemoveGroup(long groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -284,9 +264,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addLink" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool AddLink(Uri link, string text)
+		/// </remarks>		public bool AddLink(Uri link, string text)
 		{
 			var parameters = new VkParameters
 			{
@@ -305,9 +283,7 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.removeLink" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool RemoveLink(string linkId)
+		/// </remarks>		public bool RemoveLink(string linkId)
 		{
 			var parameters = new VkParameters
 			{
