@@ -1221,9 +1221,6 @@
     <Compile Include="..\VkNet.UWP\Utils\WebProxy.cs">
       <Link>Utils\WebProxy.cs</Link>
     </Compile>
-    <Compile Include="..\VkNet.UWP\Utils\WebUtilityHelper.cs">
-      <Link>Utils\WebUtilityHelper.cs</Link>
-    </Compile>
     <Compile Include="..\VkNet.UWP\VkApi.cs">
       <Link>VkApi.cs</Link>
     </Compile>

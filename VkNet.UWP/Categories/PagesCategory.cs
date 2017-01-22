@@ -221,7 +221,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "text", WebUtilityHelper.UrlEncode(text) },
+				{ "text", text },
 				{ "group_id", groupId }
 			};
 
