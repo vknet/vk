@@ -30,7 +30,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.createAlbum" />.
-		/// </remarks>		public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
+		/// </remarks>
+		public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
 		{
 			return _vk.Call("photos.createAlbum", @params);
 		}
@@ -44,7 +45,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.editAlbum" />.
-		/// </remarks>		public bool EditAlbum(PhotoEditAlbumParams @params)
+		/// </remarks>
+		public bool EditAlbum(PhotoEditAlbumParams @params)
 		{
 			return _vk.Call("photos.editAlbum", @params);
 		}
@@ -59,7 +61,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getAlbums" />.
-		/// </remarks>		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false)
+		/// </remarks>
+		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("photos.getAlbums", @params, skipAuthorization).ToVkCollectionOf<PhotoAlbum>(x => x);
 		}
@@ -90,7 +93,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbumsCount" />.
-		/// </remarks>		public int GetAlbumsCount(long? userId = null, long? groupId = null)
+		/// </remarks>
+		public int GetAlbumsCount(long? userId = null, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -127,7 +131,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getById" />.
-		/// </remarks>		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null, bool skipAuthorization = false)
+		/// </remarks>
+		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null, bool skipAuthorization = false)
 		{
 			var parameters = new VkParameters
 				{
@@ -149,7 +154,8 @@
 		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/></returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getUploadServer"/>.
-		/// </remarks>		public UploadServerInfo GetUploadServer(long albumId, long? groupId = null)
+		/// </remarks>
+		public UploadServerInfo GetUploadServer(long albumId, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -169,7 +175,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getOwnerPhotoUploadServer" />.
-		/// </remarks>		public UploadServerInfo GetOwnerPhotoUploadServer(long? ownerId = null)
+		/// </remarks>
+		public UploadServerInfo GetOwnerPhotoUploadServer(long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -190,7 +197,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getChatUploadServer" />.
-		/// </remarks>		public UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null)
+		/// </remarks>
+		public UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -212,7 +220,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveOwnerPhoto" />.
-		/// </remarks>		public Photo SaveOwnerPhoto(string response)
+		/// </remarks>
+		public Photo SaveOwnerPhoto(string response)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
@@ -234,12 +243,14 @@
 		/// <param name="userId">Идентификатор пользователя, на стену которого нужно сохранить фотографию</param>
 		/// <param name="groupId">Идентификатор сообщества, на стену которого нужно сохранить фотографию</param>
 		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
+		/// <param name="caption">Описание загружаемой фотографии</param>
 		/// <returns>
 		/// После успешного выполнения возвращает массив, содержащий объект с загруженной фотографией.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveWallPhoto" />.
-		/// </remarks>		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId = null, ulong? groupId = null)
+		/// </remarks>
+		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId = null, ulong? groupId = null, string? caption = null)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
@@ -250,6 +261,7 @@
 				{ "user_id", userId },
 				{ "group_id", groupId },
 				{ "photo", photo },
+				{ "caption", caption },
 				{ "server", server },
 				{ "hash", hash }
 			};
@@ -267,7 +279,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getWallUploadServer" />.
-		/// </remarks>		public UploadServerInfo GetWallUploadServer(long? groupId = null)
+		/// </remarks>
+		public UploadServerInfo GetWallUploadServer(long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -283,7 +296,8 @@
 		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/>.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getMessagesUploadServer"/>.
-		/// </remarks>		public UploadServerInfo GetMessagesUploadServer()
+		/// </remarks>
+		public UploadServerInfo GetMessagesUploadServer()
 		{
 			return _vk.Call("photos.getMessagesUploadServer", VkParameters.Empty);
 		}
@@ -295,7 +309,8 @@
 		/// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.saveMessagesPhoto"/>.
-		/// </remarks>		public ReadOnlyCollection<Photo> SaveMessagesPhoto(string response)
+		/// </remarks>
+		public ReadOnlyCollection<Photo> SaveMessagesPhoto(string response)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
@@ -331,7 +346,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.report" />.
-		/// </remarks>		public bool Report(long ownerId, ulong photoId, ReportReason reason)
+		/// </remarks>
+		public bool Report(long ownerId, ulong photoId, ReportReason reason)
 		{
 			var parameters = new VkParameters
 			{
@@ -363,7 +379,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reportComment" />.
-		/// </remarks>		public bool ReportComment(long ownerId, ulong commentId, ReportReason reason)
+		/// </remarks>
+		public bool ReportComment(long ownerId, ulong commentId, ReportReason reason)
 		{
 			var parameters = new VkParameters
 				{
@@ -385,7 +402,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.search" />.
-		/// </remarks>		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false)
+		/// </remarks>
+		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("photos.search", @params, skipAuthorization).ToVkCollectionOf<Photo>(x => x);
 		}
@@ -399,7 +417,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.save" />.
-		/// </remarks>		public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
+		/// </remarks>
+		public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
 		{
 			VkResponseArray response = _vk.Call("photos.save", @params);
 			return response.ToReadOnlyCollectionOf<Photo>(x => x);
@@ -416,7 +435,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.copy" />.
-		/// </remarks>		public long Copy(long ownerId, ulong photoId, string accessKey = null)
+		/// </remarks>
+		public long Copy(long ownerId, ulong photoId, string accessKey = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -437,7 +457,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.edit" />.
-		/// </remarks>		public bool Edit(PhotoEditParams @params)
+		/// </remarks>
+		public bool Edit(PhotoEditParams @params)
 		{
 			return _vk.Call("photos.edit", @params);
 		}
@@ -453,7 +474,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.move" />.
-		/// </remarks>		public bool Move(long targetAlbumId, ulong photoId, long? ownerId = null)
+		/// </remarks>
+		public bool Move(long targetAlbumId, ulong photoId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 				{
@@ -476,7 +498,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.makeCover" />.
-		/// </remarks>		public bool MakeCover(ulong photoId, long? ownerId = null, long? albumId = null)
+		/// </remarks>
+		public bool MakeCover(ulong photoId, long? ownerId = null, long? albumId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -500,7 +523,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderAlbums" />.
-		/// </remarks>		public bool ReorderAlbums(long albumId, long? ownerId = null, long? before = null, long? after = null)
+		/// </remarks>
+		public bool ReorderAlbums(long albumId, long? ownerId = null, long? before = null, long? after = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -525,7 +549,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderPhotos" />.
-		/// </remarks>		public bool ReorderPhotos(ulong photoId, long? ownerId = null, long? before = null, long? after = null)
+		/// </remarks>
+		public bool ReorderPhotos(ulong photoId, long? ownerId = null, long? before = null, long? after = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -552,7 +577,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getAll" />.
-		/// </remarks>		public VkCollection<Photo> GetAll(PhotoGetAllParams @params)
+		/// </remarks>
+		public VkCollection<Photo> GetAll(PhotoGetAllParams @params)
 		{
 			return _vk.Call("photos.getAll", @params).ToVkCollectionOf<Photo>(x => x);
 		}
@@ -566,7 +592,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos" />.
-		/// </remarks>		public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params)
+		/// </remarks>
+		public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params)
 		{
 			return _vk.Call("photos.getUserPhotos", @params, false).ToVkCollectionOf<Photo>(x => x);
 		}
@@ -581,7 +608,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteAlbum" />.
-		/// </remarks>		public bool DeleteAlbum(long albumId, long? groupId = null)
+		/// </remarks>
+		public bool DeleteAlbum(long albumId, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -602,7 +630,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.delete" />.
-		/// </remarks>		public bool Delete(ulong photoId, long? ownerId = null)
+		/// </remarks>
+		public bool Delete(ulong photoId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -623,7 +652,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.restore" />.
-		/// </remarks>		public bool Restore(ulong photoId, long? ownerId = null)
+		/// </remarks>
+		public bool Restore(ulong photoId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -645,7 +675,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.confirmTag" />.
-		/// </remarks>		public bool ConfirmTag(ulong photoId, ulong tagId, long? ownerId = null)
+		/// </remarks>
+		public bool ConfirmTag(ulong photoId, ulong tagId, long? ownerId = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -665,7 +696,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments" />.
-		/// </remarks>		public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params)
+		/// </remarks>
+		public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params)
 		{
 			return _vk.Call("photos.getComments", @params).ToVkCollectionOf<Comment>(x => x);
 		}
@@ -679,7 +711,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments" />.
-		/// </remarks>		public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params)
+		/// </remarks>
+		public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params)
 		{
 			return _vk.Call("photos.getAllComments", @params).ToVkCollectionOf<Comment>(x => x);
 		}
@@ -693,7 +726,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createComment" />.
-		/// </remarks>		public long CreateComment(PhotoCreateCommentParams @params)
+		/// </remarks>
+		public long CreateComment(PhotoCreateCommentParams @params)
 		{
 			return _vk.Call("photos.createComment", @params);
 		}
@@ -708,7 +742,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteComment" />.
-		/// </remarks>		public bool DeleteComment(ulong commentId, long? ownerId = null)
+		/// </remarks>
+		public bool DeleteComment(ulong commentId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -729,7 +764,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.restoreComment" />.
-		/// </remarks>		public long RestoreComment(ulong commentId, long? ownerId = null)
+		/// </remarks>
+		public long RestoreComment(ulong commentId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -761,7 +797,8 @@
 		/// <returns>После успешного выполнения возвращает true.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editComment" />.
-		/// </remarks>		public bool EditComment(ulong commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
+		/// </remarks>
+		public bool EditComment(ulong commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -792,7 +829,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getTags" />.
-		/// </remarks>		public ReadOnlyCollection<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null)
+		/// </remarks>
+		public ReadOnlyCollection<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -814,7 +852,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.putTag" />.
-		/// </remarks>		public ulong PutTag(PhotoPutTagParams @params)
+		/// </remarks>
+		public ulong PutTag(PhotoPutTagParams @params)
 		{
 			return _vk.Call("photos.putTag", @params);
 		}
@@ -830,7 +869,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.removeTag" />.
-		/// </remarks>		public bool RemoveTag(ulong tagId, ulong photoId, long? ownerId = null)
+		/// </remarks>
+		public bool RemoveTag(ulong tagId, ulong photoId, long? ownerId = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -851,7 +891,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags" />.
-		/// </remarks>		public VkCollection<Photo> GetNewTags(uint? offset = null, uint? count = null)
+		/// </remarks>
+		public VkCollection<Photo> GetNewTags(uint? offset = null, uint? count = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -875,7 +916,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMarketUploadServer" />.
-		/// </remarks>		public UploadServerInfo GetMarketUploadServer(long groupId, bool? mainPhoto = null, long? cropX = null, long? cropY = null, long? cropWidth = null)
+		/// </remarks>
+		public UploadServerInfo GetMarketUploadServer(long groupId, bool? mainPhoto = null, long? cropX = null, long? cropY = null, long? cropWidth = null)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -897,7 +939,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMarketAlbumUploadServer" />.
-		/// </remarks>		public UploadServerInfo GetMarketAlbumUploadServer(long groupId)
+		/// </remarks>
+		public UploadServerInfo GetMarketAlbumUploadServer(long groupId)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId }
@@ -916,7 +959,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMarketPhoto" />.
-		/// </remarks>		public ReadOnlyCollection<Photo> SaveMarketPhoto(long groupId, string response)
+		/// </remarks>
+		public ReadOnlyCollection<Photo> SaveMarketPhoto(long groupId, string response)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
@@ -946,7 +990,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMarketAlbumPhoto" />.
-		/// </remarks>		public ReadOnlyCollection<Photo> SaveMarketAlbumPhoto(long groupId, string response)
+		/// </remarks>
+		public ReadOnlyCollection<Photo> SaveMarketAlbumPhoto(long groupId, string response)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
