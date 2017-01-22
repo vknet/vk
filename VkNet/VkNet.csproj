@@ -1125,9 +1125,6 @@
     <Compile Include="..\VkNet.UWP\Utils\AntiCaptcha\ICaptchaSolver.cs">
       <Link>Utils\AntiCaptcha\ICaptchaSolver.cs</Link>
     </Compile>
-    <Compile Include="..\VkNet.UWP\Utils\ApiVersionAttribute.cs">
-      <Link>Utils\ApiVersionAttribute.cs</Link>
-    </Compile>
     <Compile Include="..\VkNet.UWP\Utils\Browser.cs">
       <Link>Utils\Browser.cs</Link>
     </Compile>

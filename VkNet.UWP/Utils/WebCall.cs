@@ -75,32 +75,11 @@ namespace VkNet.Utils
         /// <param name="parameters">Параметры запроса.</param>
         /// <param name="webProxy">Хост.</param>
         /// <returns>Результат</returns>
-        public static WebCallResult PostCall(string url, string parameters, IWebProxy webProxy)
+        public static WebCallResult PostCall(string url, IEnumerable<KeyValuePair<string, string>> parameters, IWebProxy webProxy)
         {
             using (var call = new WebCall(url, new Cookies(), webProxy))
             {
-                var data = Encoding.UTF8.GetBytes(parameters);
-
-                var headers = call._request.DefaultRequestHeaders;
-                headers.Add("Method", "POST");
-                headers.Add("ContentType", "application/x-www-form-urlencoded");
-                headers.Add("ContentLength", data.Length.ToString());
-
-                var paramList = new Dictionary<string, string>();
-                foreach (var param in parameters.Split('&'))
-                {
-                    if (paramList.ContainsKey(param))
-                    {
-                        continue;
-                    }
-
-                    var paramPair = param.Split('=');
-                    var key = paramPair[0] + "";
-                    var value = paramPair[1] + "";
-                    paramList.Add(key, value);
-                }
-
-                var request = call._request.PostAsync(url, new FormUrlEncodedContent(paramList)).Result;
+                var request = call._request.PostAsync(url, new FormUrlEncodedContent(parameters)).Result;
                 return call.MakeRequest(request, new Uri(url), webProxy);
             }
         }
@@ -208,6 +187,8 @@ namespace VkNet.Utils
     using System.Net;
     using System.Text;
     using Exception;
+    using System.Collections.Generic;
+    using System.Web;
 
     /// <summary>
     /// WebCall
@@ -265,7 +246,7 @@ namespace VkNet.Utils
         /// <param name="parameters">Параметры запроса.</param>
         /// <param name="webProxy">Хост.</param>
         /// <returns>Результат</returns>
-        public static WebCallResult PostCall(string url, string parameters, IWebProxy webProxy = null)
+        public static WebCallResult PostCall(string url, IEnumerable<KeyValuePair<string, string>> parameters, IWebProxy webProxy = null)
         {
             var call = new WebCall(url, new Cookies(), webProxy)
             {
@@ -276,7 +257,14 @@ namespace VkNet.Utils
                 }
             };
 
-            var data = Encoding.UTF8.GetBytes(parameters);
+            var pairs = new List<string>();
+            foreach (var parameter in parameters)
+            {
+                pairs.Add(string.Format("{0}={1}", parameter.Key, HttpUtility.UrlEncode(parameter.Value)));
+            }
+            string queryString = string.Join("&", pairs);
+
+            var data = Encoding.UTF8.GetBytes(queryString);
             call.Request.ContentLength = data.Length;
 
             using (var requestStream = call.Request.GetRequestStream())

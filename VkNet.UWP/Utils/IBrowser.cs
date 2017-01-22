@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using VkNet.Enums.Filters;
 
@@ -13,9 +14,10 @@ namespace VkNet.Utils
         /// <summary>
         /// Выполняет JSON-запрос к ВКонтакте.
         /// </summary>
-        /// <param name="url">URL, в котором закодированы параметры запроса.</param>
+        /// <param name="url">Адрес получения json</param>
+        /// <param name="parameters">Параметры метода api</param>
         /// <returns>Результат выполнения запроса, полученный от сервера в формате JSON.</returns>
-        string GetJson(string url);
+        string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters);
 
         /// <summary>
         /// Выполняет авторизацию ВКонтакте.

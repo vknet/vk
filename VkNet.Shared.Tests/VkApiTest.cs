@@ -22,7 +22,7 @@ namespace VkNet.Tests
 
 			const string expected = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&access_token=token";
 
-			var url = Api.GetApiUrl("database.getCountriesById", parameters);
+			var url = Api.GetApiUrlAndAddToken("database.getCountriesById", parameters);
 
 			Assert.That(url, Is.EqualTo(expected));
 		}
@@ -59,7 +59,7 @@ namespace VkNet.Tests
 		{
 			Parameters.Add("uid", "66748");
 
-			var output = Api.GetApiUrl("getProfiles", Parameters);
+			var output = Api.GetApiUrlAndAddToken("getProfiles", Parameters);
 
 			Assert.That(output, Is.Not.Null.Or.Empty);
 
@@ -76,7 +76,7 @@ namespace VkNet.Tests
 			Parameters.Add("uid", "66748");
 			Parameters.Add("fields", fields);
 
-			var output = Api.GetApiUrl("getProfiles", Parameters);
+			var output = Api.GetApiUrlAndAddToken("getProfiles", Parameters);
 
 			const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,domain,education&access_token=token";
 
