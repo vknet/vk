@@ -100,6 +100,11 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		private MarketAlbum MarketAlbum { get; set; }
 
+		/// <summary>
+		/// Товар.
+		/// </summary>
+		private Market Market { get; set; }
+
 		#endregion
 
 		/// <summary>
@@ -143,6 +148,8 @@ namespace VkNet.Model.Attachments
 					return WallReply;
 				if (Type == typeof(MarketAlbum))
 					return MarketAlbum;
+				if (Type == typeof(Market))
+					return Market;
 				return null;
 			}
 		}
@@ -266,6 +273,12 @@ namespace VkNet.Model.Attachments
 					{
 						attachment.Type = typeof(MarketAlbum);
 						attachment.MarketAlbum = response["market_album"];
+						break;
+					}
+				case "market":
+					{
+						attachment.Type = typeof(Market);
+						attachment.Market = response["market"];
 						break;
 					}
 				default:
