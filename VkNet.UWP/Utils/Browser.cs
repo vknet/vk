@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json.Linq;
@@ -25,13 +26,10 @@ namespace VkNet.Utils
         /// Получение json по url-адресу
         /// </summary>
         /// <param name="url">Адрес получения json</param>
+        /// <param name="parameters">Параметры метода api</param>
         /// <returns>Строка в формате json</returns>
-        public string GetJson(string url)
+        public string GetJson(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
         {
-            var separatorPosition = url.IndexOf('?');
-            var methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
-            var parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
-
             return WebCall.PostCall(methodUrl, parameters, _webProxy).Response;
         }
 

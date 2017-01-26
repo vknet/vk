@@ -15,7 +15,7 @@ using VkNet.Enums.Filters;
 
 namespace VkNet
 {
-    
+
 
     /// <summary>
     /// Служит для оповещения об истечении токена
@@ -632,25 +632,14 @@ namespace VkNet
 		/// <param name="parameters">Параметры.</param>
 		/// <param name="skipAuthorization">Пропускать ли авторизацию</param>
 		/// <returns></returns>
-		public string GetApiUrl(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
+		public string GetApiUrlAndAddToken(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
-			var builder = new StringBuilder($"https://api.vk.com/method/{methodName}?");
+            if (!skipAuthorization)
+            {
+                parameters.Add("access_token", AccessToken);
+            }
 
-			foreach (var pair in parameters)
-			{
-			    builder.Append($"{pair.Key}={pair.Value}&");
-			}
-
-		    if (skipAuthorization && parameters.Count != 0)
-		    {
-		        builder.Remove(builder.Length - 1, 1);
-		    }
-		    else
-		    {
-		        builder.Append($"access_token={AccessToken}");
-		    }
-
-			return builder.ToString();
+			return $"https://api.vk.com/method/{methodName}";
 		}
 
 		/// <summary>
@@ -671,6 +660,12 @@ namespace VkNet
 
 			var url = "";
 			var answer = "";
+            Action sendRequest = delegate
+            {
+                url = GetApiUrlAndAddToken(methodName, parameters, skipAuthorization);
+                LastInvokeTime = DateTimeOffset.Now;
+                answer = Browser.GetJson(url, parameters);
+            };
 
             // Защита от превышения количества запросов в секунду
             if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
@@ -690,24 +685,22 @@ namespace VkNet
 #else
                         Thread.Sleep(timeout);
 #endif
-
+                        sendRequest();
                     }
-                    url = GetApiUrl(methodName, parameters, skipAuthorization);
-                    LastInvokeTime = DateTimeOffset.Now;
-                    answer = Browser.GetJson(url.Replace("\'", "%27"));
+
                 }
             } else if (skipAuthorization)
             {
-                url = GetApiUrl(methodName, parameters, skipAuthorization: true);
-                LastInvokeTime = DateTimeOffset.Now;
-                answer = Browser.GetJson(url.Replace("\'", "%27"));
+                sendRequest();
             }
 
 #if DEBUG && !UNIT_TEST
 #if UWP
             Debug.WriteLine(Utilities.PreetyPrintApiUrl(url));
 
-            Debug.WriteLine(Utilities.PreetyPrintJson(answer));
+            //TODO: Выводить словарь параметров
+
+            Debug.WriteLine(Utilities.PreetyPrintJson(answer)); ////TODO: Исправить, это может вызвать JsonReaderException, потому что Post запрос выполняется асинхронно
 #else
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
 

@@ -38,7 +38,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkResponse Execute(string code)
 		{
-			return _vk.Call("execute", new VkParameters { { "code", WebUtilityHelper.UrlEncode(code) } });
+			return _vk.Call("execute", new VkParameters { { "code", code } });
 		}
 	}
 }

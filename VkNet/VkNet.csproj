@@ -1125,9 +1125,6 @@
     <Compile Include="..\VkNet.UWP\Utils\AntiCaptcha\ICaptchaSolver.cs">
       <Link>Utils\AntiCaptcha\ICaptchaSolver.cs</Link>
     </Compile>
-    <Compile Include="..\VkNet.UWP\Utils\ApiVersionAttribute.cs">
-      <Link>Utils\ApiVersionAttribute.cs</Link>
-    </Compile>
     <Compile Include="..\VkNet.UWP\Utils\Browser.cs">
       <Link>Utils\Browser.cs</Link>
     </Compile>
@@ -1223,9 +1220,6 @@
     </Compile>
     <Compile Include="..\VkNet.UWP\Utils\WebProxy.cs">
       <Link>Utils\WebProxy.cs</Link>
-    </Compile>
-    <Compile Include="..\VkNet.UWP\Utils\WebUtilityHelper.cs">
-      <Link>Utils\WebUtilityHelper.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\VkApi.cs">
       <Link>VkApi.cs</Link>
