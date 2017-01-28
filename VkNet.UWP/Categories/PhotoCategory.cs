@@ -250,7 +250,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveWallPhoto" />.
 		/// </remarks>
-		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId = null, ulong? groupId = null, string? caption = null)
+		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId = null, ulong? groupId = null, string caption = null)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
