@@ -44,7 +44,7 @@ namespace VkNet.Utils
         {
             Remove(name);
 
-            if (value == null)
+            if (value == null) //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'value' for null will always return false when generic type is instantiated with a value type.
             {
                 return;
             }

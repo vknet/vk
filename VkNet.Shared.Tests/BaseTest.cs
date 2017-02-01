@@ -11,7 +11,7 @@ namespace VkNet.Tests
     /// <summary>
     /// Базовый класс для тестирования категорий методов.
     /// </summary>
-    public abstract class BaseTest
+    public abstract class BaseTest //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'BaseTest' class containing IDisposable members does not itself implement IDisposable. Inspect: Api.
     {
         /// <summary>
         /// Экземпляр класса API.

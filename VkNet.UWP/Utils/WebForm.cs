@@ -13,7 +13,7 @@ namespace VkNet.Utils
     /// <summary>
     /// WEB форма
     /// </summary>
-    public sealed class WebForm
+    public sealed class WebForm //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'WebForm' class containing IDisposable members does not itself implement IDisposable. Inspect: _html. //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'WebForm' class containing IDisposable members does not itself implement IDisposable. Inspect: _html. //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'WebForm' class containing IDisposable members does not itself implement IDisposable. Inspect: _html.
 	{
 		/// <summary>
 		/// HTML документ

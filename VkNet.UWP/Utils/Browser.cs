@@ -133,7 +133,7 @@ namespace VkNet.Utils
 
 	        var codeForm = WebForm.From(loginFormPostResult)
 		        .WithField("code")
-		        .FilledWith(code?.Invoke());
+		        .FilledWith(code.Invoke()); //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'code' is always not null. The operator '?.' is excessive.
 	        loginFormPostResult = WebCall.Post(codeForm, webProxy);
 
 	        return EndAuthorize(loginFormPostResult, webProxy);
