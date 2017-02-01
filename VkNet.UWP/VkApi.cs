@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
@@ -639,7 +640,7 @@ namespace VkNet
                 parameters.Add("access_token", AccessToken);
             }
 
-			return $"https://api.vk.com/method/{methodName}";
+			return $"https://api.vk.com/method/{methodName}?{string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))}";
 		}
 
 		/// <summary>
@@ -685,10 +686,9 @@ namespace VkNet
 #else
                         Thread.Sleep(timeout);
 #endif
-                        sendRequest();
                     }
-
-                }
+					sendRequest();
+				}
             } else if (skipAuthorization)
             {
                 sendRequest();
@@ -697,13 +697,9 @@ namespace VkNet
 #if DEBUG && !UNIT_TEST
 #if UWP
             Debug.WriteLine(Utilities.PreetyPrintApiUrl(url));
-
-            //TODO: Выводить словарь параметров
-
-            Debug.WriteLine(Utilities.PreetyPrintJson(answer)); ////TODO: Исправить, это может вызвать JsonReaderException, потому что Post запрос выполняется асинхронно
+            Debug.WriteLine(Utilities.PreetyPrintJson(answer));
 #else
             Trace.WriteLine(Utilities.PreetyPrintApiUrl(url));
-
             Trace.WriteLine(Utilities.PreetyPrintJson(answer));
 #endif
 #endif

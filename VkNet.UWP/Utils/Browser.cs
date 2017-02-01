@@ -22,13 +22,13 @@ namespace VkNet.Utils
         /// </summary>
         private IWebProxy _webProxy;
 
-        /// <summary>
-        /// Получение json по url-адресу
-        /// </summary>
-        /// <param name="url">Адрес получения json</param>
-        /// <param name="parameters">Параметры метода api</param>
-        /// <returns>Строка в формате json</returns>
-        public string GetJson(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
+		/// <summary>
+		/// Получение json по url-адресу
+		/// </summary>
+		/// <param name="methodUrl">Адрес получения json</param>
+		/// <param name="parameters">Параметры метода api</param>
+		/// <returns>Строка в формате json</returns>
+		public string GetJson(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
         {
             return WebCall.PostCall(methodUrl, parameters, _webProxy).Response;
         }
@@ -101,10 +101,15 @@ namespace VkNet.Utils
         {
             _webProxy = webProxy;
             var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, _webProxy);
+            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, webProxy);
 
-            // Заполнить логин и пароль
-            var loginForm = WebForm.From(authorizeUrlResult)
+	        if (authorizeUrlResult.ResponseUrl.ToString().StartsWith("https://oauth.vk.com/blank.html#access_token=", StringComparison.Ordinal))
+	        {
+		        return EndAuthorize(authorizeUrlResult, webProxy);
+	        }
+
+			// Заполнить логин и пароль
+			var loginForm = WebForm.From(authorizeUrlResult)
                                     .WithField("email")
                                     .FilledWith(email)
                                     .And()
@@ -117,40 +122,51 @@ namespace VkNet.Utils
                     .WithField("captcha_key")
                     .FilledWith(captchaKey);
             }
-            var loginFormPostResult = WebCall.Post(loginForm, _webProxy);
 
-            // Заполнить код двухфакторной авторизации
+			var loginFormPostResult = WebCall.Post(loginForm, webProxy);
 
-            var codeForm = WebForm.From(loginFormPostResult)
-                                .WithField("code")
-                                .FilledWith(code?.Invoke());
-            loginFormPostResult = WebCall.Post(codeForm, _webProxy);
+			// Заполнить код двухфакторной авторизации
+	        if (code == null)
+	        {
+		        return EndAuthorize(loginFormPostResult, webProxy);
+	        }
 
-            var authorization = VkAuthorization.From(loginFormPostResult.ResponseUrl);
-            if (authorization.CaptchaId.HasValue)
-            {
-                throw new CaptchaNeededException(authorization.CaptchaId.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaId.Value);
-            }
-            if (!authorization.IsAuthorizationRequired)
-            {
-                return authorization;
-            }
+	        var codeForm = WebForm.From(loginFormPostResult)
+		        .WithField("code")
+		        .FilledWith(code?.Invoke());
+	        loginFormPostResult = WebCall.Post(codeForm, webProxy);
 
-            // Отправить данные
-            var authorizationForm = WebForm.From(loginFormPostResult);
-            var authorizationFormPostResult = WebCall.Post(authorizationForm, _webProxy);
+	        return EndAuthorize(loginFormPostResult, webProxy);
+		}
+		
 
-            return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
-        }
+		private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
+		{
+			var authorization = VkAuthorization.From(result.ResponseUrl);
+			if (authorization.CaptchaId.HasValue)
+			{
+				throw new CaptchaNeededException(authorization.CaptchaId.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaId.Value);
+			}
+			if (!authorization.IsAuthorizationRequired)
+			{
+				return authorization;
+			}
 
-        /// <summary>
-        /// Построить URL для авторизации.
-        /// </summary>
-        /// <param name="appId">Идентификатор приложения.</param>
-        /// <param name="settings">Настройки прав доступа.</param>
-        /// <param name="display">Вид окна авторизации.</param>
-        /// <returns>Возвращает Uri для авторизации</returns>
-        [NotNull]
+			// Отправить данные
+			var authorizationForm = WebForm.From(result);
+			var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
+
+			return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
+		}
+
+		/// <summary>
+		/// Построить URL для авторизации.
+		/// </summary>
+		/// <param name="appId">Идентификатор приложения.</param>
+		/// <param name="settings">Настройки прав доступа.</param>
+		/// <param name="display">Вид окна авторизации.</param>
+		/// <returns>Возвращает Uri для авторизации</returns>
+		[NotNull]
         public static string CreateAuthorizeUrlFor(ulong appId, [NotNull] Settings settings, [NotNull] Display display)
         {
             var builder = new StringBuilder("https://oauth.vk.com/authorize?");

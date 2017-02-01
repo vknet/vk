@@ -92,7 +92,7 @@ namespace VkNet.Tests
 			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
 			var invocationCount = 0;
 			Mock.Get(Api.Browser)
-				.Setup(m => m.GetJson(It.IsAny<string>()))
+				.Setup(m => m.GetJson(It.IsAny<string>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 				.Returns(Json)
 				.Callback(delegate { invocationCount++; });
 
@@ -110,7 +110,7 @@ namespace VkNet.Tests
 
 			// Не больше 4 раз, т.к. 4-ый раз вызывается через 1002 мс после первого вызова, а total выходит через 1040 мс
 			// переписать тест, когда придумаю более подходящий метод проверки
-			Mock.Get(Api.Browser).Verify(m => m.GetJson(It.IsAny<string>()), Times.AtMost(4));
+			Mock.Get(Api.Browser).Verify(m => m.GetJson(It.IsAny<string>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()), Times.AtMost(4));
 		}
 
 		[Test]

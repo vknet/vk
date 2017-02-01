@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using Moq;
 using NUnit.Framework;
@@ -39,7 +40,7 @@ namespace VkNet.Tests
         public void Init()
         {
             var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url)))
+            browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
                 .Callback(Callback)
                 .Returns(() =>
                 {
