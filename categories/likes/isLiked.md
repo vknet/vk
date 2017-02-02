@@ -45,7 +45,12 @@ copied — сделан ли репост текущим пользовател�
 
 ## Пример
 ``` csharp
-var isLiked = _api.Likes.IsLiked(type: "type", itemId: 0);
+bool isCopied = false;
+bool isLiked = _api.Likes.IsLiked(
+    out isCopied,
+    type: LikeObjectType.Post,
+    itemId: 123456,
+    ownerId: -987654321);
 ```
 
 ## Версия Вконтакте API v.5.44
