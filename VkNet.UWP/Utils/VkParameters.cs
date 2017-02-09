@@ -188,5 +188,67 @@ namespace VkNet.Utils
 
             base.Add(name, value.Value.ToString(CultureInfo.InvariantCulture));
         }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, double value)
+        {
+            Remove(name);
+
+            base.Add(name, value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, double? value)
+        {
+            Remove(name);
+
+            if (value == null)
+            {
+                return;
+            }
+
+            base.Add(name, value.Value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, float value)
+        {
+            Remove(name);
+
+            base.Add(name, value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, float? value)
+        {
+            Remove(name);
+
+            if (value == null)
+            {
+                return;
+            }
+
+            base.Add(name, value.Value.ToString(CultureInfo.InvariantCulture));
+        }
     }
 }

@@ -665,9 +665,27 @@ namespace VkNet.Tests.Categories
 		public void Send_EmptyMessage_ThrowsInvalidParameterException()
 		{
 			Assert.That(() => Cat.Send(1, false, ""), Throws.InstanceOf<ArgumentException>());
-		}
+        }
 
-		[Test]
+        [Test]
+        public void Send_CoordsMessage()
+        {
+            Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=г. Таганрог, ул. Фрунзе 66А&lat=47.217451&long=38.922743&v=" + VkApi.VkApiVersion + "&access_token=token";
+            Json =
+                @"{
+					'response': 4464
+				  }";
+            var id = Cat.Send(new MessagesSendParams
+            {
+                UserId = 7550525,
+                Message = "г. Таганрог, ул. Фрунзе 66А",
+                Lat = 47.217451,
+                Longitude = 38.922743
+            });
+            Assert.That(id, Is.EqualTo(4464));
+        }
+
+        [Test]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
