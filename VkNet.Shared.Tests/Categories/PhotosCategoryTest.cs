@@ -404,7 +404,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void Search_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.search?q=%D0%BF%D0%BE%D1%80%D0%BD%D0%BE&offset=2&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.search?q=порно&offset=2&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
                 @"{
                     'response': {
