@@ -312,24 +312,38 @@ namespace VkNet
 		/// <param name="params">Данные авторизации</param>
 		public void Authorize(ApiAuthParams @params)
 		{
-			AuthorizeWithAntiCaptcha(
-				@params.ApplicationId,
-				@params.Login,
-				@params.Password,
-				@params.Settings,
-				@params.TwoFactorAuthorization,
-				@params.CaptchaSid,
-				@params.CaptchaKey,
-				@params.Host,
-				@params.Port,
-                @params.ProxyLogin,
-                @params.ProxyPassword
-				);
+            //подключение браузера через прокси 
+            if (@params.Host != null)
+                Browser.Proxy = WebProxy.GetProxy(@params.Host, @params.Port, @params.ProxyLogin, @params.ProxyPassword);
+
+            //если токен не задан - обычная авторизация
+            if (@params.AccessToken == null)
+            {
+                AuthorizeWithAntiCaptcha(
+                    @params.ApplicationId,
+                    @params.Login,
+                    @params.Password,
+                    @params.Settings,
+                    @params.TwoFactorAuthorization,
+                    @params.CaptchaSid,
+                    @params.CaptchaKey
+                    );
+                // Сбросить после использования
+                @params.CaptchaSid = null;
+                @params.CaptchaKey = "";
+            }
+            //если токен задан - авторизация с помощью токена полученного извне
+            else
+            {
+                //после отказа от устаревшего метода изменить доступ на private
+                Authorize(
+                    @params.AccessToken, 
+                    @params.UserId, 
+                    @params.TokenExpireTime
+                    );
+            }
 
 			_ap = @params;
-			// Сбросить после использования
-			_ap.CaptchaSid = null;
-			_ap.CaptchaKey = "";
 		}
 		/// <summary>
 		/// Авторизация и получение токена
@@ -378,10 +392,10 @@ namespace VkNet
 		{
 			if (string.IsNullOrWhiteSpace(accessToken))
 			{
-				return;
-			}
+                throw new ArgumentNullException(accessToken);
+            }
 
-			StopTimer();
+            StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
 			SetTimer(expireTime);
@@ -437,18 +451,13 @@ namespace VkNet
         /// <param name="captchaSid">Идентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи</param>
         /// <param name="settings">Права доступа для приложения</param>
-        /// <param name="host">Имя узла прокси-сервера.</param>
-        /// <param name="port">Номер порта используемого Host.</param>
-        /// <param name="proxyLogin">Логин для прокси-сервера.</param>
-        /// <param name="proxyPassword">Пароль для прокси-сервера</param>
         /// <exception cref="VkApiAuthorizationException"></exception>
-        private void Authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null,
-							   string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
+        private void Authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
 		{
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, WebProxy.GetProxy(host, port, proxyLogin, proxyPassword));
+			var authorization = Browser.Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
 			if (!authorization.IsAuthorized)
 			{
 				throw new VkApiAuthorizationException($"Invalid authorization with {emailOrPhone} - {password}", emailOrPhone, password);
@@ -469,17 +478,12 @@ namespace VkNet
         /// <param name="captchaSid">Идентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи</param>
         /// <param name="settings">Права доступа для приложения</param>
-        /// <param name="host">Имя узла прокси-сервера.</param>
-        /// <param name="port">Номер порта используемого Host.</param>
-        /// <param name="proxyLogin">Логин для прокси-сервера.</param>
-        /// <param name="proxyPassword">Пароль для прокси-сервера</param>
         /// <exception cref="VkApiAuthorizationException"></exception>
-        private void AuthorizeWithAntiCaptcha(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null,
-							   string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
+        private void AuthorizeWithAntiCaptcha(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code, long? captchaSid = null, string captchaKey = null)
 		{
 			if (_captchaSolver == null)
 			{
-				Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey, host, port, proxyLogin, proxyPassword);
+				Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
 			}
 			else
 			{
@@ -494,7 +498,7 @@ namespace VkNet
 					try
 					{
 						numberOfRemainingAttemptsToAuthorize--;
-						Authorize(appId, emailOrPhone, password, settings, code, captchaSidTemp, captchaKeyTemp, host, port, proxyLogin, proxyPassword);
+						Authorize(appId, emailOrPhone, password, settings, code, captchaSidTemp, captchaKeyTemp);
 
 						authorizationCompleted = true;
 					}
