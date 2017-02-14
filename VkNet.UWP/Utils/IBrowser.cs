@@ -12,6 +12,11 @@ namespace VkNet.Utils
     public interface IBrowser
     {
         /// <summary>
+        /// Прокси сервер
+        /// </summary>
+        IWebProxy Proxy { get; set; }
+
+        /// <summary>
         /// Выполняет JSON-запрос к ВКонтакте.
         /// </summary>
         /// <param name="url">Адрес получения json</param>
@@ -31,10 +36,9 @@ namespace VkNet.Utils
         /// <param name="code">Провайдер кода для двух факторной авторизации.</param>
         /// <param name="captchaSid">Идентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи.</param>
-        /// <param name="webProxy">Web прокси</param>
         /// <returns>
         /// Информация об авторизации приложения.
         /// </returns>
-        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey, IWebProxy webProxy = null);
+        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey);
     }
 }

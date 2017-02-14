@@ -18,7 +18,23 @@ namespace VkNet.Utils
     public class Browser : IBrowser
     {
         /// <summary>
-        /// Адрес хоста
+        /// Прокси сервер
+        /// </summary>
+        public IWebProxy Proxy
+        {
+            get
+            {
+                return _webProxy;
+            }
+
+            set
+            {
+                _webProxy = value;
+            }
+        }
+
+        /// <summary>
+        /// Прокси сервер
         /// </summary>
         private IWebProxy _webProxy;
 
@@ -94,18 +110,16 @@ namespace VkNet.Utils
         /// <param name="code">Код двухфакторной авторизации</param>
         /// <param name="captchaSid">Идентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи</param>
-        /// <param name="webProxy">Прокси-сервер.</param>
         /// <returns>Информация об авторизации приложения</returns>
-        public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null,
-                                         IWebProxy webProxy = null)
+        public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null)
         {
-            _webProxy = webProxy;
+
             var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, webProxy);
+            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, _webProxy);
 
 	        if (authorizeUrlResult.ResponseUrl.ToString().StartsWith("https://oauth.vk.com/blank.html#access_token=", StringComparison.Ordinal))
 	        {
-		        return EndAuthorize(authorizeUrlResult, webProxy);
+		        return EndAuthorize(authorizeUrlResult, _webProxy);
 	        }
 
 			// Заполнить логин и пароль
@@ -123,20 +137,20 @@ namespace VkNet.Utils
                     .FilledWith(captchaKey);
             }
 
-			var loginFormPostResult = WebCall.Post(loginForm, webProxy);
+			var loginFormPostResult = WebCall.Post(loginForm, _webProxy);
 
 			// Заполнить код двухфакторной авторизации
 	        if (code == null)
 	        {
-		        return EndAuthorize(loginFormPostResult, webProxy);
+		        return EndAuthorize(loginFormPostResult, _webProxy);
 	        }
 
 	        var codeForm = WebForm.From(loginFormPostResult)
 		        .WithField("code")
 		        .FilledWith(code.Invoke()); //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'code' is always not null. The operator '?.' is excessive.
-	        loginFormPostResult = WebCall.Post(codeForm, webProxy);
+	        loginFormPostResult = WebCall.Post(codeForm, _webProxy);
 
-	        return EndAuthorize(loginFormPostResult, webProxy);
+	        return EndAuthorize(loginFormPostResult, _webProxy);
 		}
 		
 
