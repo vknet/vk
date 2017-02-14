@@ -32,17 +32,17 @@ namespace VkNet
         /// <summary>
         /// Токен доступа, полученный извне
         /// </summary>
-        string AccessToken { get; set; }
+        public string AccessToken { get; set; }
         /// <summary>
         /// Время, в течении которого действует токен доступа полученный извне (0 - бесконечно, по умолчанию)
         /// Используется при авторизации с помощью токена доступа, полученного извне
         /// </summary>
-        int TokenExpireTime { get; set; }
+        public int TokenExpireTime { get; set; }
         /// <summary>
         /// Идентификатор пользователя, установившего приложение 
         /// Используется при авторизации с помощью токена доступа, полученного извне
         /// </summary>
-        long UserId { get; set; }
+        public long UserId { get; set; }
         /// <summary>
         /// Идентификатор капчи (если установлена)
         /// </summary>
