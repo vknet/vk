@@ -367,13 +367,14 @@ namespace VkNet
 			return rTask;
 		}
 
-		/// <summary>
-		/// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
-		/// </summary>
-		/// <param name="accessToken">Маркер доступа, полученный извне.</param>
-		/// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
-		/// <param name="expireTime">Время, в течении которого действует токен доступа (0 - бесконечно).</param>
-		public void Authorize(string accessToken, long? userId = null, int expireTime = 0)
+        /// <summary>
+        /// Выполняет авторизацию с помощью маркера доступа (access token), полученного извне.
+        /// </summary>
+        /// <param name="accessToken">Маркер доступа, полученный извне.</param>
+        /// <param name="userId">Идентификатор пользователя, установившего приложение (необязательный параметр).</param>
+        /// <param name="expireTime">Время, в течении которого действует токен доступа (0 - бесконечно).</param>
+        [Obsolete("Устаревший метод, будет удален. Используйте метод Authorize(ApiAuthParams @params)")]
+        public void Authorize(string accessToken, long? userId = null, int expireTime = 0)
 		{
 			if (string.IsNullOrWhiteSpace(accessToken))
 			{
