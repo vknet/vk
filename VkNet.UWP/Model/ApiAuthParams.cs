@@ -21,14 +21,28 @@ namespace VkNet
         /// </summary>
         public string Password { get; set; }
         /// <summary>
-        /// Права доступа приложений.
-        /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Права_доступа_приложений"/>.
+        /// Права доступа приложений
+        /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Права_доступа_приложений"/>
         /// </summary>
         public Settings Settings { get; set; }
         /// <summary>
         /// Функция двух факторной авторизации
         /// </summary>
         public Func<string> TwoFactorAuthorization { get; set; }
+        /// <summary>
+        /// Токен доступа, полученный извне
+        /// </summary>
+        public string AccessToken { get; set; }
+        /// <summary>
+        /// Время, в течении которого действует токен доступа полученный извне (0 - бесконечно, по умолчанию)
+        /// Используется при авторизации с помощью токена доступа, полученного извне
+        /// </summary>
+        public int TokenExpireTime { get; set; }
+        /// <summary>
+        /// Идентификатор пользователя, установившего приложение 
+        /// Используется при авторизации с помощью токена доступа, полученного извне
+        /// </summary>
+        public long UserId { get; set; }
         /// <summary>
         /// Идентификатор капчи (если установлена)
         /// </summary>
