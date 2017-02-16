@@ -142,14 +142,6 @@ namespace VkNet.Tests
 			Assert.That(Api.UserId, Is.EqualTo(1));
 		}
 
-		[Test]
-		public void AuthorizeByTokenNegative()
-		{
-			Api = new VkApi(); // В базовом классе предопределено свойство AccessToken
-			Api.Authorize("", 1);
-			Assert.That(Api.UserId, Is.Null);
-		}
-
         [Test]
 	    public void VkCallShouldBePublic()
         {
