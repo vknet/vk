@@ -58,8 +58,7 @@ namespace VkNet.Tests
                 It.IsAny<Settings>(),
                 It.IsAny<Func<string>>(),
                 It.IsAny<long?>(),
-                It.IsAny<string>(),
-                It.IsAny<IWebProxy>()
+                It.IsAny<string>()
                 )
 			)
 			.Returns(VkAuthorization.From(new Uri("https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1")));
