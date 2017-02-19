@@ -34,10 +34,9 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 Большое спасибо следующим организациям и проектам, работа которых имеет важное значение для развития проекта:
 - [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
 - [Json.Net](http://www.newtonsoft.com/json)
-- [HtmlAgilityPack](http://htmlagilitypack.codeplex.com/)
 - [AngleSharp](https://anglesharp.github.io/)
 - [NUnit](http://www.nunit.org/)
 - [Moq](https://github.com/moq/moq4)
 
 ----------------------------------------------------------------------------------------------------------------------------------
-Пожертвование на развитие проекта [@inyutin-maxim](https://github.com/inyutin-maxim): [PayPal](https://paypal.me/inyutinmaxim) или [Яндекс.Деньги](https://money.yandex.ru/to/410012783295317).
+Пожертвование на развитие проекта: [PayPal](https://paypal.me/inyutinmaxim) или [Яндекс.Деньги](https://money.yandex.ru/to/410012783295317).
