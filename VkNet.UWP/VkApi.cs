@@ -33,7 +33,7 @@ namespace VkNet
 		/// <summary>
 		/// Версия API vk.com.
 		/// </summary>
-		public const string VkApiVersion = "5.60";
+		public const string VkApiVersion = "5.62";
 
 		/// <summary>
 		/// Параметры авторизации.
