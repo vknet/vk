@@ -314,7 +314,9 @@ namespace VkNet
 		{
             //подключение браузера через прокси 
             if (@params.Host != null)
+            {
                 Browser.Proxy = WebProxy.GetProxy(@params.Host, @params.Port, @params.ProxyLogin, @params.ProxyPassword);
+            }
 
             //если токен не задан - обычная авторизация
             if (@params.AccessToken == null)
@@ -642,7 +644,7 @@ namespace VkNet
 		{
             if (!skipAuthorization)
             {
-                parameters.Add("access_token", AccessToken);
+                parameters["access_token"] = AccessToken;
             }
 
 			return $"https://api.vk.com/method/{methodName}?{string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))}";
