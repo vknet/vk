@@ -1218,6 +1218,7 @@
     <Compile Include="..\VkNet.UWP\VkApi.cs">
       <Link>VkApi.cs</Link>
     </Compile>
+    <Compile Include="Enums\SafetyEnums\ManagerRole.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

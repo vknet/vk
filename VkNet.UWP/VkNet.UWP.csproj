@@ -143,6 +143,7 @@
     <Compile Include="Enums\SafetyEnums\LikeObjectType.cs" />
     <Compile Include="Enums\SafetyEnums\LikesFilter.cs" />
     <Compile Include="Enums\SafetyEnums\LinkAccessType.cs" />
+    <Compile Include="Enums\SafetyEnums\ManagerRole.cs" />
     <Compile Include="Enums\SafetyEnums\MediaType.cs" />
     <Compile Include="Enums\SafetyEnums\NameCase.cs" />
     <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
