@@ -226,12 +226,17 @@ namespace VkNet
 		/// API для работы с универсальным методом.
 		/// </summary>
 		public ExecuteCategory Execute { get; private set; }
-		#endregion
 
-		/// <summary>
-		/// Браузер.
+        /// <summary>
+		/// API для работы с опросами. 
 		/// </summary>
-		public IBrowser Browser
+		public PollsCategory PollsCategory { get; private set; }
+        #endregion
+
+        /// <summary>
+        /// Браузер.
+        /// </summary>
+        public IBrowser Browser
 		{ get; set; }
 
 		/// <summary>
@@ -299,6 +304,7 @@ namespace VkNet
 			Auth = new AuthCategory(this);
 			Markets = new MarketsCategory(this);
 			Execute = new ExecuteCategory(this);
+            PollsCategory = new PollsCategory(this);
 
 			RequestsPerSecond = 3;
 
