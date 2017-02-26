@@ -2,7 +2,7 @@
 
 namespace VkNet.Enums.Filters
 {
-	/// <summary>
+    /// <summary>
     /// Требуемые для получения поля профиля.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/>.
     /// </summary>
@@ -324,13 +324,18 @@ namespace VkNet.Enums.Filters
         public static readonly ProfileFields Verified = RegisterPossibleValue(1L << 62, "verified");
 
         /// <summary>
+        /// Для получения поля <see cref="User.FollowersCount"/>.
+        /// </summary>
+        public static readonly ProfileFields FollowersCount = RegisterPossibleValue(1L << 62, "followers_count");
+
+        /// <summary>
         /// Для получения всех документированных полей.
         /// </summary>
         public static readonly ProfileFields All = Uid | FirstName | LastName | Sex | BirthDate | City | Country | Photo50 | Photo100 |
             Photo200 | Photo200Orig | Photo400Orig | PhotoMax | PhotoMaxOrig | Online | FriendLists | Domain | HasMobile | Contacts |
             Connections | Site | Education | Universities | Schools | CanPost | CanSeeAllPosts | CanSeeAudio | CanWritePrivateMessage |
             Status | LastSeen | CommonCount | Relation | Relatives | Counters | Nickname | Timezone | Verified | WallComments | CanSendFriendRequest |
-            IsFavorite | IsHiddenFromFeed | ScreenName | IsFriend | FriendStatus | Career | Military | Blacklisted | BlacklistedByMe;
+            IsFavorite | IsHiddenFromFeed | ScreenName | IsFriend | FriendStatus | Career | Military | Blacklisted | BlacklistedByMe | FollowersCount;
 
         /// <summary>
         /// Для получения всех полей, вколючая недокументированные.
