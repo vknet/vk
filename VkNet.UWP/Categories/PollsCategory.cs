@@ -37,5 +37,15 @@ namespace VkNet.Categories
         {
             return _vk.Call("polls.getById", @params);
         }
+
+        /// <summary>
+        /// Позволяет редактировать созданные опросы.
+        /// </summary>
+        /// <param name="params">Параметры</param>
+        /// <returns></returns>
+        public bool Edit(PollsEditParams @params)
+        {
+            return _vk.Call("polls.edit", @params);
+        }
     }
 }
