@@ -37,5 +37,10 @@ namespace VkNet.Categories
         {
             return _vk.Call("polls.getById", @params);
         }
+
+        public bool Edit(PollsEditParams @params)
+        {
+            return _vk.Call("polls.edit", @params);
+        }
     }
 }
