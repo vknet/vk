@@ -30,9 +30,7 @@ namespace VkNet.Categories
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/status.get"/>.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		public Status Get(long userId, long? groupId = null)
+		[Pure]		public Status Get(long userId, long? groupId = null)
 		{
 			var parameters = new VkParameters {
 				{ "user_id", userId },
@@ -54,9 +52,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		public bool Set(string text, long? groupId = null)
+		/// </remarks>		public bool Set(string text, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{

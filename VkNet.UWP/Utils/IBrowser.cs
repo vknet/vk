@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using VkNet.Enums.Filters;
 
@@ -11,11 +12,17 @@ namespace VkNet.Utils
     public interface IBrowser
     {
         /// <summary>
+        /// Прокси сервер
+        /// </summary>
+        IWebProxy Proxy { get; set; }
+
+        /// <summary>
         /// Выполняет JSON-запрос к ВКонтакте.
         /// </summary>
-        /// <param name="url">URL, в котором закодированы параметры запроса.</param>
+        /// <param name="url">Адрес получения json</param>
+        /// <param name="parameters">Параметры метода api</param>
         /// <returns>Результат выполнения запроса, полученный от сервера в формате JSON.</returns>
-        string GetJson(string url);
+        string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters);
 
         /// <summary>
         /// Выполняет авторизацию ВКонтакте.
@@ -29,10 +36,9 @@ namespace VkNet.Utils
         /// <param name="code">Провайдер кода для двух факторной авторизации.</param>
         /// <param name="captchaSid">Идентификатор капчи</param>
         /// <param name="captchaKey">Текст капчи.</param>
-        /// <param name="webProxy">Web прокси</param>
         /// <returns>
         /// Информация об авторизации приложения.
         /// </returns>
-        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey, IWebProxy webProxy = null);
+        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey);
     }
 }

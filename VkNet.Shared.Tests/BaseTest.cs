@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using Moq;
 using NUnit.Framework;
@@ -10,7 +11,7 @@ namespace VkNet.Tests
     /// <summary>
     /// Базовый класс для тестирования категорий методов.
     /// </summary>
-    public abstract class BaseTest
+    public abstract class BaseTest //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'BaseTest' class containing IDisposable members does not itself implement IDisposable. Inspect: Api.
     {
         /// <summary>
         /// Экземпляр класса API.
@@ -39,7 +40,7 @@ namespace VkNet.Tests
         public void Init()
         {
             var browser = new Mock<IBrowser>();
-            browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url)))
+            browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
                 .Callback(Callback)
                 .Returns(() =>
                 {
@@ -57,8 +58,7 @@ namespace VkNet.Tests
                 It.IsAny<Settings>(),
                 It.IsAny<Func<string>>(),
                 It.IsAny<long?>(),
-                It.IsAny<string>(),
-                It.IsAny<IWebProxy>()
+                It.IsAny<string>()
                 )
 			)
 			.Returns(VkAuthorization.From(new Uri("https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1")));

@@ -119,24 +119,6 @@
     <Compile Include="..\VkNet.Shared.Tests\Categories\WallCategoryTest.cs">
       <Link>Categories\WallCategoryTest.cs</Link>
     </Compile>
-    <Compile Include="..\VkNet.Shared.Tests\Enum\EnumTests.cs">
-      <Link>Enum\EnumTests.cs</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EnumTests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="..\VkNet.Shared.Tests\Enum\Filters\MultivaluedFilterTest.cs">
-      <Link>Enum\Filters\MultivaluedFilterTest.cs</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MultivaluedFilterTest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="..\VkNet.Shared.Tests\Enum\SafetyEnums\SafetyEnumTests.cs">
-      <Link>Enum\SafetyEnums\SafetyEnumTests.cs</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SafetyEnumTests.tt</DependentUpon>
-    </Compile>
     <Compile Include="..\VkNet.Shared.Tests\Helper\DateHelper.cs">
       <Link>Helper\DateHelper.cs</Link>
     </Compile>
@@ -160,23 +142,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\VkNet.Shared.Tests\Enum\EnumTests.tt">
-      <Link>Enum\EnumTests.tt</Link>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EnumTests.cs</LastGenOutput>
-    </Content>
-    <Content Include="..\VkNet.Shared.Tests\Enum\Filters\MultivaluedFilterTest.tt">
-      <Link>Enum\Filters\MultivaluedFilterTest.tt</Link>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MultivaluedFilterTest.cs</LastGenOutput>
-    </Content>
-    <Content Include="..\VkNet.Shared.Tests\Enum\SafetyEnums\SafetyEnumTests.tt">
-      <Link>Enum\SafetyEnums\SafetyEnumTests.tt</Link>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SafetyEnumTests.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VkNet.UWP\VkNet.UWP.csproj">

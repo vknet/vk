@@ -30,9 +30,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/gifts.get" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел. Используйте Get(long userId, int? count = null, int? offset = null)")]
+		/// </remarks>		[Obsolete("Данный метод устарел. Используйте Get(long userId, int? count = null, int? offset = null)")]
 		public ReadOnlyCollection<GiftItem> Get(out int totalCount, long userId, int? count = null, int? offset = null)
 		{
 			var response = Get(userId, count, offset);

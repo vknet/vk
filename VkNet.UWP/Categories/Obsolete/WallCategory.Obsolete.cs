@@ -31,9 +31,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		[Obsolete("Устаревшая версия API. Используйте метод Get(WallGetParams @params)")]
+		[Pure]		[Obsolete("Устаревшая версия API. Используйте метод Get(WallGetParams @params)")]
 		public ReadOnlyCollection<Post> Get(long ownerId, out int totalCount, int? count = null, int? offset = null, WallFilter filter = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -68,9 +66,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>, для случая, когда параметр extended = 1.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		[Obsolete("Устаревшая версия API. Используйте метод Get(WallGetParams @params)")]
+		[Pure]		[Obsolete("Устаревшая версия API. Используйте метод Get(WallGetParams @params)")]
 		public int GetExtended(long ownerId, out ReadOnlyCollection<Post> wallPosts, out ReadOnlyCollection<User> profiles, out ReadOnlyCollection<Group> groups, int? count = null, int? offset = null, WallFilter filter = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -320,9 +316,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments" />.
-		/// </remarks>
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел. Используйте GetComments(WallGetCommentsParams @params)")]
+		/// </remarks>		[Obsolete("Данный метод устарел. Используйте GetComments(WallGetCommentsParams @params)")]
 		public ReadOnlyCollection<Comment> GetComments(out int totalCount, WallGetCommentsParams @params)
 		{
 			var response = GetComments(@params);

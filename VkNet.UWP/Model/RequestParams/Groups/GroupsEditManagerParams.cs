@@ -1,4 +1,4 @@
-﻿using VkNet.Enums;
+﻿using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -42,7 +42,7 @@ namespace VkNet.Model.RequestParams
 		/// 
 		/// Если параметр не задан, с пользователя user_id снимаются полномочия руководителя. строка.
 		/// </summary>
-		public AdminLevel? Role { get; set; }
+		public ManagerRole Role { get; set; }
 
 		/// <summary>
 		/// Отображать ли пользователя в блоке контактов сообщества. флаг, может принимать значения 1 или 0.

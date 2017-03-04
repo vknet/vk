@@ -27,9 +27,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
-        [Pure]
-        [ApiVersion("5.44")]
-        public LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true)
+        [Pure]        public LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true)
         {
             return CheckLink(new Uri(url), skipAuthorization);
         }
@@ -42,9 +40,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
-        [Pure]
-        [ApiVersion("5.44")]
-        public LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true)
+        [Pure]        public LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true)
         {
             var parameters = new VkParameters { { "url", url } };
 
@@ -59,9 +55,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.resolveScreenName"/>.
         /// </remarks>
-        [Pure]
-        [ApiVersion("5.44")]
-        public VkObject ResolveScreenName([NotNull] string screenName)
+        [Pure]        public VkObject ResolveScreenName([NotNull] string screenName)
         {
             VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
@@ -77,9 +71,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.getServerTime"/>.
         /// </remarks>
-        [Pure]
-        [ApiVersion("5.44")]
-        public DateTime GetServerTime()
+        [Pure]        public DateTime GetServerTime()
         {
             return _vk.Call("utils.getServerTime", VkParameters.Empty, true);
         }

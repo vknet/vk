@@ -37,12 +37,12 @@ namespace VkNet.Utils
 	        }
 
             var responseArray = (VkResponseArray) response;
-	        if (responseArray == null)
+	        if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
 	        {
 		        return new Collection<T>(new List<T>());
 	        }
 
-            return responseArray.Select(selector).Where(i => i != null).ToCollection();
+            return responseArray.Select(selector).Where(i => i != null).ToCollection(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
         }
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace VkNet.Utils
 	        }
 
             var responseArray = (VkResponseArray)response;
-	        if (responseArray == null)
+	        if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
 	        {
 		        return new ReadOnlyCollection<T>(new List<T>());
 	        }
@@ -133,12 +133,12 @@ namespace VkNet.Utils
 	        }
 
             var responseArray = (VkResponseArray)response;
-	        if (responseArray == null)
+	        if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
 	        {
 		        return new List<T>();
 	        }
 
-            return responseArray.Select(selector).Where(i => i != null).ToList();
+            return responseArray.Select(selector).Where(i => i != null).ToList(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
         }
 
 		/// <summary>

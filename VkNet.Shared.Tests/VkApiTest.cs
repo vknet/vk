@@ -22,7 +22,7 @@ namespace VkNet.Tests
 
 			const string expected = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&access_token=token";
 
-			var url = Api.GetApiUrl("database.getCountriesById", parameters);
+			var url = Api.GetApiUrlAndAddToken("database.getCountriesById", parameters);
 
 			Assert.That(url, Is.EqualTo(expected));
 		}
@@ -59,7 +59,7 @@ namespace VkNet.Tests
 		{
 			Parameters.Add("uid", "66748");
 
-			var output = Api.GetApiUrl("getProfiles", Parameters);
+			var output = Api.GetApiUrlAndAddToken("getProfiles", Parameters);
 
 			Assert.That(output, Is.Not.Null.Or.Empty);
 
@@ -76,7 +76,7 @@ namespace VkNet.Tests
 			Parameters.Add("uid", "66748");
 			Parameters.Add("fields", fields);
 
-			var output = Api.GetApiUrl("getProfiles", Parameters);
+			var output = Api.GetApiUrlAndAddToken("getProfiles", Parameters);
 
 			const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,domain,education&access_token=token";
 
@@ -92,7 +92,7 @@ namespace VkNet.Tests
 			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
 			var invocationCount = 0;
 			Mock.Get(Api.Browser)
-				.Setup(m => m.GetJson(It.IsAny<string>()))
+				.Setup(m => m.GetJson(It.IsAny<string>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 				.Returns(Json)
 				.Callback(delegate { invocationCount++; });
 
@@ -110,7 +110,7 @@ namespace VkNet.Tests
 
 			// Не больше 4 раз, т.к. 4-ый раз вызывается через 1002 мс после первого вызова, а total выходит через 1040 мс
 			// переписать тест, когда придумаю более подходящий метод проверки
-			Mock.Get(Api.Browser).Verify(m => m.GetJson(It.IsAny<string>()), Times.AtMost(4));
+			Mock.Get(Api.Browser).Verify(m => m.GetJson(It.IsAny<string>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()), Times.AtMost(4));
 		}
 
 		[Test]
@@ -140,14 +140,6 @@ namespace VkNet.Tests
 		{
 			Api.Authorize("token", 1);
 			Assert.That(Api.UserId, Is.EqualTo(1));
-		}
-
-		[Test]
-		public void AuthorizeByTokenNegative()
-		{
-			Api = new VkApi(); // В базовом классе предопределено свойство AccessToken
-			Api.Authorize("", 1);
-			Assert.That(Api.UserId, Is.Null);
 		}
 
         [Test]

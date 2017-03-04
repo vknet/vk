@@ -21,10 +21,10 @@ namespace VkNet.Model
 		/// </summary>
 		public List<ReadOnlyCollection<long>> History { get; set; }
 
-                /// <summary>
-                /// Количество непрочитанных сообщений
-                /// </summary>
-                public ulong UnreadMessages { get; set; }
+        /// <summary>
+        /// Количество непрочитанных сообщений
+        /// </summary>
+        public ulong UnreadMessages { get; set; }
 
 		/// <summary>
 		/// Колекция сообщений.
@@ -43,10 +43,10 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
-		/// Указывает, что количество событий превышает значение events_limit
-		/// </summary>  
-		public ulong More {get; set;}
-		
+		/// Если true — это означает, что нужно запросить оставшиеся данные с помощью запроса с параметром max_msg_id
+		/// </summary>
+		public bool More { get; set; }
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -54,20 +54,14 @@ namespace VkNet.Model
 		/// <returns></returns>
 		public static LongPollHistoryResponse FromJson(VkResponse response)
 		{
-                        var fromJson = new LongPollHistoryResponse
-                        {     
-                          UnreadMessages = response["messages"]["count"],
+            var fromJson = new LongPollHistoryResponse
+            {
+                UnreadMessages = response["messages"]["count"],
 				Messages = response["messages"]["items"].ToReadOnlyCollectionOf<Message>(x => x),
 				Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(x => x),
-				NewPts = response["new_pts"]
+				NewPts = response["new_pts"],
+				More = response["more"]
 			};
-			
-			try
-			{
-			   fromJson.More = response["more"];
-			}
-			catch(Exception e){};
-			
 			VkResponseArray historys = response["history"];
 			foreach (var history in historys)
 			{

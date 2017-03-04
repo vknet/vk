@@ -44,7 +44,7 @@ namespace VkNet.Utils
         {
             Remove(name);
 
-            if (value == null)
+            if (value == null) //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'value' for null will always return false when generic type is instantiated with a value type.
             {
                 return;
             }
@@ -178,6 +178,68 @@ namespace VkNet.Utils
         /// <param name="name">Имя параметра запроса.</param>
         /// <param name="value">Значение параметра.</param>
         public void Add(string name, decimal? value)
+        {
+            Remove(name);
+
+            if (value == null)
+            {
+                return;
+            }
+
+            base.Add(name, value.Value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, double value)
+        {
+            Remove(name);
+
+            base.Add(name, value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, double? value)
+        {
+            Remove(name);
+
+            if (value == null)
+            {
+                return;
+            }
+
+            base.Add(name, value.Value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, float value)
+        {
+            Remove(name);
+
+            base.Add(name, value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Добавляет параметр десятичное число.
+        /// Если передан null, то добавление не производится.
+        /// </summary>
+        /// <param name="name">Имя параметра запроса.</param>
+        /// <param name="value">Значение параметра.</param>
+        public void Add(string name, float? value)
         {
             Remove(name);
 

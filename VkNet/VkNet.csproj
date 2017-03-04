@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Debug\</OutputPath>
+    <OutputPath>..\Debug\NET40\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,18 +28,18 @@
     </CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <RegisterForComInterop>false</RegisterForComInterop>
-    <DocumentationFile>..\Debug\VkNet.xml</DocumentationFile>
+    <DocumentationFile>..\Debug\NET40\VkNet.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Release\</OutputPath>
+    <OutputPath>..\Release\NET40\</OutputPath>
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>..\Release\VkNet.xml</DocumentationFile>
+    <DocumentationFile>..\Release\NET40\VkNet.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
@@ -47,10 +47,6 @@
   <ItemGroup>
     <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.9.9\lib\net40\AngleSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -70,7 +66,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
@@ -87,7 +82,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\VkNet.UWP\Categories\AccountCategory.cs">
@@ -1125,9 +1119,6 @@
     <Compile Include="..\VkNet.UWP\Utils\AntiCaptcha\ICaptchaSolver.cs">
       <Link>Utils\AntiCaptcha\ICaptchaSolver.cs</Link>
     </Compile>
-    <Compile Include="..\VkNet.UWP\Utils\ApiVersionAttribute.cs">
-      <Link>Utils\ApiVersionAttribute.cs</Link>
-    </Compile>
     <Compile Include="..\VkNet.UWP\Utils\Browser.cs">
       <Link>Utils\Browser.cs</Link>
     </Compile>
@@ -1224,12 +1215,10 @@
     <Compile Include="..\VkNet.UWP\Utils\WebProxy.cs">
       <Link>Utils\WebProxy.cs</Link>
     </Compile>
-    <Compile Include="..\VkNet.UWP\Utils\WebUtilityHelper.cs">
-      <Link>Utils\WebUtilityHelper.cs</Link>
-    </Compile>
     <Compile Include="..\VkNet.UWP\VkApi.cs">
       <Link>VkApi.cs</Link>
     </Compile>
+    <Compile Include="Enums\SafetyEnums\ManagerRole.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

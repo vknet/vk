@@ -27,9 +27,7 @@ namespace VkNet.Categories
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.get" />.
-        /// </remarks>
-        [ApiVersion("5.44")]
-        [Obsolete("Устаревшая версия API. Используйте метод Get(PagesGetParams @params)")]
+        /// </remarks>        [Obsolete("Устаревшая версия API. Используйте метод Get(PagesGetParams @params)")]
         public Page Get(long ownerId, long? pageId, bool global = false, bool sitePreview = false, bool needSource = false, bool needHtml = false)
         {
             return Get(ownerId, "", pageId, global, sitePreview, needSource, needHtml);
@@ -51,9 +49,7 @@ namespace VkNet.Categories
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.get" />.
-        /// </remarks>
-        [ApiVersion("5.44")]
-        [Obsolete("Устаревшая версия API. Используйте метод Get(PagesGetParams @params)")]
+        /// </remarks>        [Obsolete("Устаревшая версия API. Используйте метод Get(PagesGetParams @params)")]
         public Page Get(long ownerId, string title, bool global = false, bool sitePreview = false, bool needSource = false, bool needHtml = false)
         {
             return Get(ownerId, title, null, global, sitePreview, needSource, needHtml);
@@ -76,9 +72,7 @@ namespace VkNet.Categories
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.get" />.
-        /// </remarks>
-        [ApiVersion("5.44")]
-        [Obsolete("Устаревшая версия API. Используйте метод Get(PagesGetParams @params)")]
+        /// </remarks>        [Obsolete("Устаревшая версия API. Используйте метод Get(PagesGetParams @params)")]
         private Page Get(long ownerId, string title = "", long? pageId = null, bool global = false, bool sitePreview = false, bool needSource = false, bool needHtml = false)
         {
             var parameters = new PagesGetParams

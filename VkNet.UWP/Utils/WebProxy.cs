@@ -59,7 +59,7 @@ namespace VkNet.Utils
         /// <summary>
         /// Получить прокси
         /// </summary>
-        /// <param name="host">Uri</param>
+        /// <param name="host">Имя узла прокси-сервера</param>
         /// <param name="port">Порт</param>
         /// <param name="proxyLogin">Логин</param>
         /// <param name="proxyPassword">Пароль</param>
@@ -71,8 +71,7 @@ namespace VkNet.Utils
                 return null;
             }
 
-            var proxyHost = new Uri(host);
-            return new WebProxy(new Uri($"{proxyHost.Host}:{port.Value}"))
+            return new WebProxy(new Uri($"http://{host}:{port.Value}"))
             {
                 Credentials = GetCredentials(proxyLogin, proxyPassword)
             };

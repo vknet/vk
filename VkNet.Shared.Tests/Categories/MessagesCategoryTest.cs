@@ -631,7 +631,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Send_DefaultFields_MessageId()
 		{
-			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=Test+from+vk.net+%3B)+%23+2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=Test from vk.net ;) # 2&v=" + VkApi.VkApiVersion + "&access_token=token";
             Json =
 				@"{
 					'response': 4457
@@ -648,7 +648,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Send_RussianText_MessageId()
 		{
-			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82+%23+2+--++%D0%B5%D1%89%D0%B5+%D1%80%D0%B0%D0%B7%D0%BE%D0%BA&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=Работает # 2 --  еще разок&v=" + VkApi.VkApiVersion + "&access_token=token";
 			Json =
 				@"{
 					'response': 4464
@@ -665,9 +665,27 @@ namespace VkNet.Tests.Categories
 		public void Send_EmptyMessage_ThrowsInvalidParameterException()
 		{
 			Assert.That(() => Cat.Send(1, false, ""), Throws.InstanceOf<ArgumentException>());
-		}
+        }
 
-		[Test]
+        [Test]
+        public void Send_CoordsMessage()
+        {
+            Url = "https://api.vk.com/method/messages.send?user_id=7550525&message=г. Таганрог, ул. Фрунзе 66А&lat=47.217451&long=38.922743&v=" + VkApi.VkApiVersion + "&access_token=token";
+            Json =
+                @"{
+					'response': 4464
+				  }";
+            var id = Cat.Send(new MessagesSendParams
+            {
+                UserId = 7550525,
+                Message = "г. Таганрог, ул. Фрунзе 66А",
+                Lat = 47.217451,
+                Longitude = 38.922743
+            });
+            Assert.That(id, Is.EqualTo(4464));
+        }
+
+        [Test]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
@@ -972,7 +990,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void CreateChat_NormalCase_ChatId()
 		{
-			Url = "https://api.vk.com/method/messages.createChat?user_ids=5041431,10657891&title=test chat%27s title&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/messages.createChat?user_ids=5041431,10657891&title=test chat's title&v=" + VkApi.VkApiVersion + "&access_token=token";
 
             Json =
 				@"{

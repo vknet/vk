@@ -32,9 +32,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get"/>.
 		/// </remarks>
-		[Pure]
-		[ApiVersion("5.44")]
-		[Obsolete("Данный метод устарел. Используйте Get(FriendsGetParams @params)")]
+		[Pure]		[Obsolete("Данный метод устарел. Используйте Get(FriendsGetParams @params)")]
 		public ReadOnlyCollection<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null, NameCase nameCase = null, int? listId = null)
 		{
 			if (listId != null && listId < 0)

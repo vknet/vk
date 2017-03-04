@@ -18,15 +18,13 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
 4. [Список часто задаваемых вопросов](https://github.com/vknet/vk/wiki/FAQ)
 
-#В nuget доступна версия 1.25
+#В nuget доступна версия 1.26 в двух версиях Net Standard 1.2 и .NET 4.0
 
 Внимание! В следующих версиях будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов 
 
-#Появилась публичная альфа [UWP сборки](https://github.com/vknet/vk/releases/tag/v1.25.0.0)
-
 # План развития проекта
 
-- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.60.
+- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.62.
 - [ ] Асинхронные методы
 - [ ] Недостающие классы и методы
 - [x] Переход на UWP
@@ -36,10 +34,9 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 Большое спасибо следующим организациям и проектам, работа которых имеет важное значение для развития проекта:
 - [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
 - [Json.Net](http://www.newtonsoft.com/json)
-- [HtmlAgilityPack](http://htmlagilitypack.codeplex.com/)
 - [AngleSharp](https://anglesharp.github.io/)
 - [NUnit](http://www.nunit.org/)
 - [Moq](https://github.com/moq/moq4)
 
 ----------------------------------------------------------------------------------------------------------------------------------
-Пожертвование на развитие проекта [@inyutin-maxim](https://github.com/inyutin-maxim): [PayPal](https://paypal.me/inyutinmaxim) или [Яндекс.Деньги](https://money.yandex.ru/to/410012783295317).
+Пожертвование на развитие проекта: [PayPal](https://paypal.me/inyutinmaxim) или [Яндекс.Деньги](https://money.yandex.ru/to/410012783295317).

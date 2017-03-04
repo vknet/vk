@@ -34,7 +34,6 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get" />.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте Get(GroupsGetParams @params)")]
 		public ReadOnlyCollection<Group> Get(long uid, bool extended = false, GroupsFilters filters = null, GroupsFields fields = null, uint offset = 0, uint count = 1000)
 		{
@@ -194,7 +193,6 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
 		/// </remarks>
 		[Pure]
-		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте IsMember(string groupId,Join long? userId, IEnumerable<string> userIds, bool? extended)")]
 		public bool IsMember(long gid, long uid)
 		{
@@ -315,9 +313,8 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
 		/// </remarks>
-		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте EditManager(GroupsEditManagerParams @params)")]
-		public bool EditManager(long groupId, long userId, AdminLevel? role, bool? isContact = null, string contactPosition = null, string contactPhone = null, string contactEmail = null)
+		public bool EditManager(long groupId, long userId, ManagerRole role, bool? isContact = null, string contactPosition = null, string contactPhone = null, string contactEmail = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -345,7 +342,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте EditManager(GroupsEditManagerParams @params)")]
-		public bool EditManager(long groupId, long userId, AdminLevel? role)
+		public bool EditManager(long groupId, long userId, ManagerRole role)
 		{
 			// Проверка на неотрицательные значения в след. методе
 			return EditManager(groupId, userId, role, null);
@@ -367,7 +364,6 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
 		/// </remarks>
-		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте GetMembers(GroupsGetMembersParams @params)")]
 		public ReadOnlyCollection<User> GetMembers(out int totalCount, GroupsGetMembersParams @params)
 		{
@@ -389,7 +385,6 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
 		/// </remarks>
-		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте Search(GroupsSearchParams @params)")]
 		public ReadOnlyCollection<Group> Search(out int totalCount, GroupsSearchParams @params)
 		{
@@ -446,7 +441,6 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvitedUsers" />.
 		/// </remarks>
-		[ApiVersion("5.44")]
 		[Obsolete("Данный метод устарел. Используйте GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)")]
 		public ReadOnlyCollection<User> GetInvitedUsers(long groupId, out int userCount, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)
 		{

@@ -21,18 +21,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Debug\UWP\</OutputPath>
     <DefineConstants>TRACE;DEBUG;UWP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Debug\UWP\VkNet.UWP.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>..\Release\UWP\</OutputPath>
+    <DefineConstants>TRACE;UWP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Release\UWP\VkNet.UWP.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
@@ -141,6 +143,7 @@
     <Compile Include="Enums\SafetyEnums\LikeObjectType.cs" />
     <Compile Include="Enums\SafetyEnums\LikesFilter.cs" />
     <Compile Include="Enums\SafetyEnums\LinkAccessType.cs" />
+    <Compile Include="Enums\SafetyEnums\ManagerRole.cs" />
     <Compile Include="Enums\SafetyEnums\MediaType.cs" />
     <Compile Include="Enums\SafetyEnums\NameCase.cs" />
     <Compile Include="Enums\SafetyEnums\NewsObjectTypes.cs" />
@@ -386,7 +389,6 @@
     <Compile Include="Model\WallGetObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\AntiCaptcha\ICaptchaSolver.cs" />
-    <Compile Include="Utils\ApiVersionAttribute.cs" />
     <Compile Include="Utils\Browser.cs" />
     <Compile Include="Utils\Cookies.cs" />
     <Compile Include="Utils\DataAnnotations.cs" />
@@ -431,7 +433,6 @@
     <Compile Include="Utils\WebClient.cs" />
     <Compile Include="Utils\WebForm.cs" />
     <Compile Include="Utils\WebProxy.cs" />
-    <Compile Include="Utils\WebUtilityHelper.cs" />
     <Compile Include="VkApi.cs" />
   </ItemGroup>
   <ItemGroup>
