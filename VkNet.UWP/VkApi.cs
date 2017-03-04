@@ -16,8 +16,6 @@ using VkNet.Enums.Filters;
 
 namespace VkNet
 {
-
-
     /// <summary>
     /// Служит для оповещения об истечении токена
     /// </summary>
@@ -267,6 +265,50 @@ namespace VkNet
 		/// Обработчик распознавания капчи
 		/// </summary>
 		private readonly ICaptchaSolver _captchaSolver;
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="VkApi"/>.
+        /// </summary>
+        /// <param name="accessToken">Токен для доступа к методам API</param>
+        public VkApi(string accessToken)
+        {
+            if (string.IsNullOrWhiteSpace(accessToken))
+            {
+                throw new ArgumentNullException(accessToken);
+            }
+
+            Browser = new Browser();
+
+            Users = new UsersCategory(this);
+            Friends = new FriendsCategory(this);
+            Status = new StatusCategory(this);
+            Messages = new MessagesCategory(this);
+            Groups = new GroupsCategory(this);
+            Audio = new AudioCategory(this);
+            Wall = new WallCategory(this);
+            Board = new BoardCategory(this);
+            Database = new DatabaseCategory(this);
+            Utils = new UtilsCategory(this);
+            Fave = new FaveCategory(this);
+            Video = new VideoCategory(this);
+            Account = new AccountCategory(this);
+            Photo = new PhotoCategory(this);
+            Docs = new DocsCategory(this);
+            Likes = new LikesCategory(this);
+            Pages = new PagesCategory(this);
+            Gifts = new GiftsCategory(this);
+            Apps = new AppsCategory(this);
+            NewsFeed = new NewsFeedCategory(this);
+            Stats = new StatsCategory(this);
+            Auth = new AuthCategory(this);
+            Markets = new MarketsCategory(this);
+            Execute = new ExecuteCategory(this);
+
+            RequestsPerSecond = 3;
+
+            MaxCaptchaRecognitionCount = 5;
+            AccessToken = accessToken;
+        }
 
 		/// <summary>
 		/// Инициализирует новый экземпляр класса <see cref="VkApi"/>.
