@@ -78,5 +78,15 @@ namespace VkNet.Categories
         {
             return _vk.Call("polls.getVoters", @params).ToVkCollectionOf<PollAnswerVoters>(x => x);
         }
+
+        /// <summary>
+        /// Позволяет создавать опросы, которые впоследствии можно прикреплять к записям на странице пользователя или сообщества.
+        /// </summary>
+        /// <param name="params">Параметры</param>
+        /// <returns></returns>
+        public Poll Create(PollsCreateParams @params)
+        {
+            return _vk.Call("polls.create", @params);
+        }
     }
 }
