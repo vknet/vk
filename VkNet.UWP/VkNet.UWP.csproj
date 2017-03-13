@@ -351,6 +351,7 @@
     <Compile Include="Model\RequestParams\Photo\PhotoPutTagParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoSaveParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Polls\PollsDeleteVoteParams.cs" />
     <Compile Include="Model\RequestParams\Polls\PollsEditParams.cs" />
     <Compile Include="Model\RequestParams\Polls\PollsAddVoteParams.cs" />
     <Compile Include="Model\RequestParams\Polls\PollsGetByIdParams.cs" />

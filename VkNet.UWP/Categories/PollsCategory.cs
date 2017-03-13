@@ -57,5 +57,15 @@ namespace VkNet.Categories
         {
             return _vk.Call("polls.addVote", @params);
         }
+
+        /// <summary>
+        /// Снимает голос текущего пользователя с выбранного варианта ответа в указанном опросе.
+        /// </summary>
+        /// <param name="params">Параметры</param>
+        /// <returns></returns>
+        public bool DeleteVote(PollsDeleteVoteParams @params)
+        {
+            return _vk.Call("polls.deleteVote", @params);
+        }
     }
 }
