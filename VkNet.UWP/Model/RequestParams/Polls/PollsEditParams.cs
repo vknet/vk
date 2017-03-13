@@ -61,18 +61,10 @@ namespace VkNet.Model.RequestParams
                 { "owner_id", p.OwnerId },
                 { "poll_id", p.PollId },
                 { "question", p.Question },
-                { "add_answers", Serialize(p.AddAnswers) },
-                { "edit_answers", Serialize(p.EditAnswers) },
-                { "delete_answers", Serialize(p.DeleteAnswers) },
+                { "add_answers", Utilities.SerializeToJson(p.AddAnswers) },
+                { "edit_answers", Utilities.SerializeToJson(p.EditAnswers) },
+                { "delete_answers", Utilities.SerializeToJson(p.DeleteAnswers) },
             };
-        }
-
-        private static string Serialize(object @object)
-        {
-            string result = JsonConvert.SerializeObject(@object);
-            if (result == "null")
-                return null;
-            return result;
         }
     }
 }

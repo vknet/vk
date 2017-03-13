@@ -52,16 +52,8 @@ namespace VkNet.Model.RequestParams
                 { "owner_id", p.OwnerId },
                 { "is_anonymous", p.IsAnonymous },
                 { "question", p.Question },
-                { "add_answers", Serialize(p.AddAnswers) }
+                { "add_answers", Utilities.SerializeToJson(p.AddAnswers) }
             };
-        }
-
-        private static string Serialize(object @object)
-        {
-            string result = JsonConvert.SerializeObject(@object);
-            if (result == "null")
-                return null;
-            return result;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace VkNet.Utils
 {
@@ -139,6 +140,19 @@ namespace VkNet.Utils
             result.Append("\";");
 
             return result.ToString();
+        }
+
+        /// <summary>
+        /// Сериализует объект в JSON
+        /// </summary>
+        /// <param name="object">Объект</param>
+        /// <returns></returns>
+        public static string SerializeToJson(object @object)
+        {
+            string result = JsonConvert.SerializeObject(@object);
+            if (result == "null")
+                return null;
+            return result;
         }
     }
 }
