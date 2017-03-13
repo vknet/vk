@@ -47,5 +47,15 @@ namespace VkNet.Categories
         {
             return _vk.Call("polls.edit", @params);
         }
+
+        /// <summary>
+        /// Отдает голос текущего пользователя за выбранный вариант ответа в указанном опросе.
+        /// </summary>
+        /// <param name="params">Параметры</param>
+        /// <returns></returns>
+        public bool AddVote(PollsAddVoteParams @params)
+        {
+            return _vk.Call("polls.addVote", @params);
+        }
     }
 }
