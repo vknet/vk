@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -66,6 +67,16 @@ namespace VkNet.Categories
         public bool DeleteVote(PollsDeleteVoteParams @params)
         {
             return _vk.Call("polls.deleteVote", @params);
+        }
+
+        /// <summary>
+        /// Получает список идентификаторов пользователей, которые выбрали определенные варианты ответа в опросе.
+        /// </summary>
+        /// <param name="params">Параметры</param>
+        /// <returns></returns>
+        public VkCollection<PollAnswerVoters> GetVoters(PollsGetVotersParams @params)
+        {
+            return _vk.Call("polls.getVoters", @params).ToVkCollectionOf<PollAnswerVoters>(x => x);
         }
     }
 }

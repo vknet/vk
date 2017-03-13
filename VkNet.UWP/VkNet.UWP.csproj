@@ -278,6 +278,7 @@
     <Compile Include="Model\PhotoAlbum.cs" />
     <Compile Include="Model\PhotoSize.cs" />
     <Compile Include="Model\Place.cs" />
+    <Compile Include="Model\PollAnswerVoters.cs" />
     <Compile Include="Model\PollAnswer.cs" />
     <Compile Include="Model\PostReach.cs" />
     <Compile Include="Model\PostSource.cs" />
@@ -354,6 +355,7 @@
     <Compile Include="Model\RequestParams\Polls\PollsDeleteVoteParams.cs" />
     <Compile Include="Model\RequestParams\Polls\PollsEditParams.cs" />
     <Compile Include="Model\RequestParams\Polls\PollsAddVoteParams.cs" />
+    <Compile Include="Model\RequestParams\Polls\PollsGetVotersParams.cs" />
     <Compile Include="Model\RequestParams\Polls\PollsGetByIdParams.cs" />
     <Compile Include="Model\RequestParams\Users\UserSearchParams.cs" />
     <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
