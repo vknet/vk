@@ -512,7 +512,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_ListOfUsers()
         {
-			const string url = "https://api.vk.com/method/users.get?fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/users.get?fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -695,7 +695,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Get_SingleUser()
         {
-            const string url = "https://api.vk.com/method/users.get?fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/users.get?fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count&name_case=gen&user_ids=1&v=" + VkApi.VkApiVersion + "&access_token=token";
             const string json =
             @"{
                     'response': [
@@ -1001,8 +1001,8 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void GetFollowers_WithAllFields()
         {
-            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
-            const string json =
+            const string url = "https://api.vk.com/method/users.getFollowers?user_id=1&offset=3&count=2&fields=user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count&name_case=gen&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string json =
                 @"{
                     'response': {
                       'count': 5937505,

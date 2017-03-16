@@ -1,6 +1,6 @@
 <#@ template language="C#" debug="True" #>
 <#@ output extension="cs" #>
-<#@ assembly name="$(SolutionDir)Debug\UWP\VkNet.UWP.dll" #>
+<#@ assembly name="$(SolutionDir)Debug\VkNet.dll" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Reflection" #>
 <#@ import namespace="System.Linq" #>

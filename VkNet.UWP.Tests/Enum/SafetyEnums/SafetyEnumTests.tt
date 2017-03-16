@@ -1,18 +1,19 @@
 <#@ template language="C#" debug="True" #>
 <#@ output extension="cs" #>
-<#@ assembly name="$(SolutionDir)Debug\VkNet.dll" #>
+<#@ assembly name="$(SolutionDir)Debug\UWP\VkNet.UWP.dll" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Reflection" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="VkNet" #>
 <#@ import namespace="VkNet.Enums.Filters" #>
+<#@ import namespace="VkNet.Enums.SafetyEnums" #>
 using NUnit.Framework;
-using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Enum.SafetyEnums
 {
 	[TestFixture]
-    public class MultivaluedFilterTest
+    public class SafetyEnumsTest
     {
 
 <#
@@ -20,7 +21,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		.GetTypes()
 		.Where(
 			t => t.BaseType != null
-				&& t.BaseType.Name == typeof(MultivaluedFilter<>).Name
+				&& t.BaseType.Name == typeof(SafetyEnum<>).Name
+				&& t.Name != typeof(MultivaluedFilter<>).Name
 		);
 	foreach (var type in safetyEnumTypes.OrderBy(o => o.Name))
 	{

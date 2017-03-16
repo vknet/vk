@@ -131,6 +131,21 @@
     <Compile Include="..\VkNet.Shared.Tests\VkApiTest.cs">
       <Link>VkApiTest.cs</Link>
     </Compile>
+    <Compile Include="Enum\EnumTests.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enum\Filters\MultivaluedFilterTest.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultivaluedFilterTest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enum\SafetyEnums\SafetyEnumTests.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SafetyEnumTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -147,7 +162,22 @@
     <ProjectReference Include="..\VkNet.UWP\VkNet.UWP.csproj">
       <Project>{776ec153-f6b0-4065-b902-970bcda6e636}</Project>
       <Name>VkNet.UWP</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Enum\EnumTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EnumTests.cs</LastGenOutput>
+    </Content>
+    <Content Include="Enum\Filters\MultivaluedFilterTest.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MultivaluedFilterTest.cs</LastGenOutput>
+    </Content>
+    <Content Include="Enum\SafetyEnums\SafetyEnumTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SafetyEnumTests.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

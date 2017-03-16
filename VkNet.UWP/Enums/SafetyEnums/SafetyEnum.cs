@@ -21,72 +21,17 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		protected SafetyEnum()
 		{
-			_mask = 0;
 		}
 
-		/// <summary>
-		/// Возможные значения
-		/// </summary>
-		private static readonly Dictionary<ulong, string> PossibleValues = new Dictionary<ulong, string>();
+		///// <summary>
+		///// Возможные значения
+		///// </summary>
+		//private static readonly IList<string> PossibleValues = new List<string>();
 
-		/// <summary>
-		/// Маска.
-		/// </summary>
-		private ulong _mask;
+		private string _mask;
 
-		/// <summary>
-		/// Создать из маски.
-		/// </summary>
-		/// <param name="mask">Маска.</param>
-		/// <returns></returns>
-		/// <exception cref="System.ArgumentException">mask</exception>
-		protected static TFilter CreateFromMask(ulong mask)
-		{
-			//Если в маске находятся незарегистрированные в словаре биты
-			if(PossibleValues.Select(pair => pair.Key)
-				.Where(key => (mask & key) != 0)
-				.DefaultIfEmpty((ulong)0)
-				.Aggregate(mask, (current, @ulong) => current - @ulong)
-				!= 0)
-				throw new ArgumentException(string.Format("Mask contains value(s) that not defined for type {0} (mask except known values: {1:x8})", typeof (TFilter).FullName, PossibleValues.Select(pair => pair.Key).Where(key => (mask & key) != 0).Aggregate(mask, (current, @ulong) => current - @ulong)), "mask");
 
-			return new TFilter { _mask = mask };
-		}
-
-		/// <summary>
-		/// Маска.
-		/// </summary>
-		protected ulong Mask
-		{
-			get { return _mask; }
-		}
-
-	    protected string Value => PossibleValues[Mask];
-
-		/// <summary>
-		/// Регистрирует возможное значение.
-		/// </summary>
-		/// <param name="mask">Маска.</param>
-		/// <param name="value">Значение.</param>
-		/// <returns></returns>
-		/// <exception cref="System.ArgumentException">Mask must be a power of 2 (i.e. only one bit must be equal to 1);mask</exception>
-		protected static TFilter RegisterPossibleValue(ulong mask, string value)
-		{
-			if (mask == 0 || (mask & (mask - 1)) != 0)
-			{
-				throw new ArgumentException("Mask must be a power of 2 (i.e. only one bit must be equal to 1)", "mask");
-			}
-
-			if (PossibleValues.ContainsValue(value))
-			{
-				var result = PossibleValues.FirstOrDefault(o => o.Value == value);
-				return new TFilter { _mask = result.Key };
-			}
-
-			PossibleValues.Add(mask, value);
-
-			return CreateFromMask(mask);
-		}
+		protected string Value => _mask;
 
 		/// <summary>
 		/// Регистрирует возможное значение.
@@ -96,23 +41,14 @@ namespace VkNet.Enums.SafetyEnums
 		/// <exception cref="System.ArgumentException">Mask must be a power of 2 (i.e. only one bit must be equal to 1);mask</exception>
 		protected static TFilter RegisterPossibleValue(string value)
 		{
-			var mask = PossibleValues.Select(pair => pair.Key).DefaultIfEmpty().Max();
-			mask = (mask == 0) ? 1 : (mask*2);
+			//if (!PossibleValues.Contains(value))
+			//{
+			//	PossibleValues.Add(value);
+			//}
 
-			if (mask == 0 || (mask & (mask - 1)) != 0)
-			{
-				throw new ArgumentException("Mask must be a power of 2 (i.e. only one bit must be equal to 1)", "mask");
-			}
+			//var result = PossibleValues.FirstOrDefault(o => o == value);
 
-			if (PossibleValues.ContainsValue(value))
-			{
-				var result = PossibleValues.FirstOrDefault(o => o.Value == value);
-				return new TFilter { _mask = result.Key };
-			}
-
-			PossibleValues.Add(mask, value);
-
-			return CreateFromMask(mask);
+			return new TFilter { _mask = value };
 		}
 
 		/// <summary>
@@ -120,7 +56,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		public override string ToString()
 		{
-			return string.Join(",", PossibleValues.Where(pair => (pair.Key & _mask) != 0).Select(pair => pair.Value).ToArray());
+			return _mask;
 		}
 
 		/// <summary>
@@ -171,13 +107,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
 		public static TFilter FromJson(string response)
 		{
-			if (!PossibleValues.ContainsValue(response))
-			{
-				return null;
-			}
-
-			var result = PossibleValues.FirstOrDefault(o => o.Value == response);
-			return new TFilter { _mask = result.Key };
+			return string.IsNullOrWhiteSpace(response) ? null : new TFilter { _mask = response };
 		}
 
 		/// <summary>

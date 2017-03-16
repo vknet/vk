@@ -326,7 +326,7 @@ namespace VkNet.Enums.Filters
         /// <summary>
         /// Для получения поля <see cref="User.FollowersCount"/>.
         /// </summary>
-        public static readonly ProfileFields FollowersCount = RegisterPossibleValue((ulong)1L << 63, "followers_count");
+        public static readonly ProfileFields FollowersCount = RegisterPossibleValue(1UL << 63, "followers_count");
 
         /// <summary>
         /// Для получения всех документированных полей.
