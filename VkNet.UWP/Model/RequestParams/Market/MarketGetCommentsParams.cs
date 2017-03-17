@@ -1,5 +1,5 @@
-﻿using VkNet.Enums;
-using VkNet.Enums.Filters;
+﻿using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -79,7 +79,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым) строка, по умолчанию asc (строка, по умолчанию asc).
 		/// </summary>
-		public SortOrderBy? Sort
+		public SortOrderBy Sort
 		{
 			get; set;
 		}
