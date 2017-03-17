@@ -180,7 +180,7 @@
     <Compile Include="..\VkNet.UWP\Categories\PagesCategory.cs">
       <Link>Categories\PagesCategory.cs</Link>
     </Compile>
-	<Compile Include="..\VkNet.UWP\Categories\PollsCategory.cs">
+    <Compile Include="..\VkNet.UWP\Categories\PollsCategory.cs">
       <Link>Categories\PollsCategory.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Categories\PhotoCategory.cs">
@@ -717,6 +717,12 @@
     <Compile Include="..\VkNet.UWP\Model\Likes.cs">
       <Link>Model\Likes.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Model\LinkButton.cs">
+      <Link>Model\LinkButton.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\LinkButtonAction.cs">
+      <Link>Model\LinkButtonAction.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\LongPollHistoryResponse.cs">
       <Link>Model\LongPollHistoryResponse.cs</Link>
     </Compile>
@@ -789,7 +795,7 @@
     <Compile Include="..\VkNet.UWP\Model\Place.cs">
       <Link>Model\Place.cs</Link>
     </Compile>
-	<Compile Include="..\VkNet.UWP\Model\PollAnswerVoters.cs">
+    <Compile Include="..\VkNet.UWP\Model\PollAnswerVoters.cs">
       <Link>Model\PollAnswerVoters.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\PollAnswer.cs">
@@ -1012,23 +1018,23 @@
       <Link>Model\RequestParams\Photo\PhotoSearchParams.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsCreateParams.cs">
-		<Link>Model\RequestParams\Polls\PollsCreateParams.cs</Link>
-	</Compile>
-	<Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsDeleteVoteParams.cs">
-		<Link>Model\RequestParams\Polls\PollsDeleteVoteParams.cs</Link>
-	</Compile>
-	<Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsEditParams.cs">
-		<Link>Model\RequestParams\Polls\PollsEditParams.cs</Link>
-	</Compile>
-	<Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsAddVoteParams.cs">
-		<Link>Model\RequestParams\Polls\PollsAddVoteParams.cs</Link>
-	</Compile>
-	<Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsGetVotersParams.cs">
-		<Link>Model\RequestParams\Polls\PollsGetVotersParams.cs</Link>
-	</Compile>
-	<Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsGetByIdParams.cs">
-		<Link>Model\RequestParams\Polls\PollsGetByIdParams.cs</Link>
-	</Compile>
+      <Link>Model\RequestParams\Polls\PollsCreateParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsDeleteVoteParams.cs">
+      <Link>Model\RequestParams\Polls\PollsDeleteVoteParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsEditParams.cs">
+      <Link>Model\RequestParams\Polls\PollsEditParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsAddVoteParams.cs">
+      <Link>Model\RequestParams\Polls\PollsAddVoteParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsGetVotersParams.cs">
+      <Link>Model\RequestParams\Polls\PollsGetVotersParams.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\RequestParams\Polls\PollsGetByIdParams.cs">
+      <Link>Model\RequestParams\Polls\PollsGetByIdParams.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\RequestParams\Users\UserSearchParams.cs">
       <Link>Model\RequestParams\Users\UserSearchParams.cs</Link>
     </Compile>

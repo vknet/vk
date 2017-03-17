@@ -79,7 +79,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Кнопка.
 		/// </summary>
-		public Button Button { get; set; }
+		public LinkButton Button { get; set; }
 
 		/// <summary>
 		/// Адрес страницы для предпросмотра содержимого страницы.

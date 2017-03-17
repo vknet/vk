@@ -218,6 +218,7 @@
     <Compile Include="Model\AuthConfirmResult.cs" />
     <Compile Include="Model\BanInfo.cs" />
     <Compile Include="Model\Button.cs" />
+    <Compile Include="Model\LinkButtonAction.cs" />
     <Compile Include="Model\Career.cs" />
     <Compile Include="Model\CategoryGroup.cs" />
     <Compile Include="Model\Chair.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Model\LastActivity.cs" />
     <Compile Include="Model\LastSeen.cs" />
     <Compile Include="Model\Likes.cs" />
+    <Compile Include="Model\LinkButton.cs" />
     <Compile Include="Model\LongPollHistoryResponse.cs" />
     <Compile Include="Model\LongPollServerResponse.cs" />
     <Compile Include="Model\LookupContactsOther.cs" />
