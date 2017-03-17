@@ -37,7 +37,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.get" />.
-		/// </remarks>		public NewsFeed Get(NewsFeedGetParams @params)
+		/// </remarks>
+		public NewsFeed Get(NewsFeedGetParams @params)
 		{
 			var response = _vk.Call("newsfeed.get", @params);
 			var result = new NewsFeed
@@ -60,7 +61,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getRecommended" />.
-		/// </remarks>		public NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params)
+		/// </remarks>
+		public NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params)
 		{
 			var response = _vk.Call("newsfeed.getRecommended", @params);
 			var result = new NewsFeed
@@ -83,7 +85,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getComments" />.
-		/// </remarks>		public NewsFeed GetComments(NewsFeedGetCommentsParams @params)
+		/// </remarks>
+		public NewsFeed GetComments(NewsFeedGetCommentsParams @params)
 		{
 			var response = _vk.Call("newsfeed.getComments", @params);
 			var result = new NewsFeed
@@ -110,7 +113,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getMentions" />.
-		/// </remarks>		public VkCollection<Mention> GetMentions(long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)
+		/// </remarks>
+		public VkCollection<Mention> GetMentions(long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -133,7 +137,8 @@ namespace VkNet.Categories
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getBanned" />.
-		/// </remarks>		public NewsBannedList GetBanned()
+		/// </remarks>
+		public NewsBannedList GetBanned()
 		{
 			return _vk.Call("newsfeed.getBanned", VkParameters.Empty);
 		}
@@ -148,7 +153,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getBanned" />.
-		/// </remarks>		public NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null)
+		/// </remarks>
+		public NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -169,7 +175,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.addBan" />.
-		/// </remarks>		public bool AddBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)
+		/// </remarks>
+		public bool AddBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)
 		{
 			var parameters = new VkParameters
 			{
@@ -189,7 +196,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.deleteBan" />.
-		/// </remarks>		public bool DeleteBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)
+		/// </remarks>
+		public bool DeleteBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)
 		{
 			var parameters = new VkParameters
 			{
@@ -210,7 +218,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.ignoreItem" />.
-		/// </remarks>		public bool IgnoreItem(NewsObjectTypes type, long ownerId, long itemId)
+		/// </remarks>
+		public bool IgnoreItem(NewsObjectTypes type, long ownerId, long itemId)
 		{
 			var parameters = new VkParameters
 			{
@@ -230,7 +239,8 @@ namespace VkNet.Categories
 		/// <param name="itemId">Идентификатор объекта. </param>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.unignoreItem" />.
-		/// </remarks>		public bool UnignoreItem(NewsObjectTypes type, long ownerId, long itemId)
+		/// </remarks>
+		public bool UnignoreItem(NewsObjectTypes type, long ownerId, long itemId)
 		{
 			var parameters = new VkParameters
 			{
@@ -250,7 +260,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.search" />.
-		/// </remarks>		public ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params)
+		/// </remarks>
+		public ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params)
 		{
 			VkResponseArray response = _vk.Call("newsfeed.search", @params);
 			return response.ToReadOnlyCollectionOf<NewsSearchResult>(x => x);
@@ -266,7 +277,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getLists" />.
-		/// </remarks>		public VkCollection<NewsUserListItem> GetLists(IEnumerable<long> listIds, bool? extended = null)
+		/// </remarks>
+		public VkCollection<NewsUserListItem> GetLists(IEnumerable<long> listIds, bool? extended = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -289,7 +301,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.saveList" />.
-		/// </remarks>		public long SaveList(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null)
+		/// </remarks>
+		public long SaveList(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -310,7 +323,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.deleteList" />.
-		/// </remarks>		public bool DeleteList(long listId)
+		/// </remarks>
+		public bool DeleteList(long listId)
 		{
 			var parameters = new VkParameters
 			{
@@ -330,7 +344,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.unsubscribe" />.
-		/// </remarks>		public bool Unsubscribe(CommentObjectType type, long itemId, long? ownerId = null)
+		/// </remarks>
+		public bool Unsubscribe(CommentObjectType type, long itemId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -353,7 +368,8 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/newsfeed.getSuggestedSources" />.
-		/// </remarks>		public NewsSuggestions GetSuggestedSources(long? offset = null, long? count = null, bool? shuffle = null, UsersFields fields = null)
+		/// </remarks>
+		public NewsSuggestions GetSuggestedSources(long? offset = null, long? count = null, bool? shuffle = null, UsersFields fields = null)
 		{
 			var parameters = new VkParameters
 			{

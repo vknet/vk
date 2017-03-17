@@ -60,9 +60,15 @@ namespace VkNet.Model.Attachments
         public Uri Photo640 { get; set; }
 
         /// <summary>
+        /// Uri изображения-обложки ролика с размером 800x450px (если размер есть).
+        /// </summary>
+        public Uri Photo800 { get; set; }
+
+        /// <summary>
         /// Дата добавления видеозаписи.
         /// </summary>
         public DateTime? Date { get; set; }
+
 
         /// <summary>
         /// Количество просмотров.
@@ -123,12 +129,12 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1. Обратите внимание, в этом случае в поле duration содержится значение 0.
 		/// </summary>
-		public bool Live { get; set; }
+		public bool? Live { get; set; }
 
 		/// <summary>
 		/// Поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
 		/// </summary>
-		public bool Processing { get; set; }
+		public bool? Processing { get; set; }
 
 		/// <summary>
 		/// Дата добавления видеозаписи пользователем или группой в формате unixtime.
@@ -153,7 +159,8 @@ namespace VkNet.Model.Attachments
 		        Photo130 = video["photo_130"],
 		        Photo320 = video["photo_320"],
 		        Photo640 = video["photo_640"],
-		        Date = video["date"],
+                Photo800 = video["photo_800"],
+                Date = video["date"],
 		        ViewsCount = video["views"],
 		        CommentsCount = video["comments"],
 		        Player = video["player"],

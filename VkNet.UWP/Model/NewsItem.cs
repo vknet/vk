@@ -68,7 +68,7 @@ namespace VkNet.Model
 		/// <remarks>
 		/// TODO: Установить настоящий тип данных
 		/// </remarks>
-		public ulong? CopyHistory
+		public IEnumerable<Post> CopyHistory
 		{ get; set; }
 
 		/// <summary>
@@ -166,7 +166,7 @@ namespace VkNet.Model
 				FinalPost = response["final_post"],
 				CopyOwnerId = response["copy_owner_id"],
 				CopyPostId = response["copy_post_id"],
-				CopyHistory = response["copy_history"],
+				CopyHistory = response["copy_history"].ToReadOnlyCollectionOf<Post>(o => o),
 				CopyPostDate = response["copy_post_date"],
 				Text = response["text"],
 				CanEdit = response["can_edit"],
