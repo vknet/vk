@@ -711,6 +711,9 @@
     <Compile Include="..\VkNet.UWP\Model\History.cs">
       <Link>Model\History.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Model\HistoryAttachment.cs">
+      <Link>Model\HistoryAttachment.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\InformationAboutOffers.cs">
       <Link>Model\InformationAboutOffers.cs</Link>
     </Compile>
