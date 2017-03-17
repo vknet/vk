@@ -1,6 +1,8 @@
-﻿using VkNet.Enums;
+﻿using System.Collections.Generic;
+using VkNet.Enums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model
 {
@@ -21,29 +23,17 @@ namespace VkNet.Model
 		public string Title
 		{ get; set; }
 
-		/// <summary>
-		/// Поддомен приложения (или строка idXXXXXXX, если поддомен не задан).
-		/// </summary>
-		public string ScreenName
+        /// <summary>
+        /// Uri-адрес обложки приложения шириной 278px.
+        /// </summary>
+        public string Icon278
 		{ get; set; }
 
-		/// <summary>
-		/// Описание.
-		/// </summary>
-		public string Description
-		{ get; set; }
-
-		/// <summary>
-		/// Uri-адрес обложки приложения шириной 100px.
-		/// </summary>
-		public string Icon100
-		{ get; set; }
-
-		/// <summary>
-		/// Uri-адрес обложки приложения шириной 200px.
-		/// </summary>
-		public string Icon200
-		{ get; set; }
+        /// <summary>
+        /// Uri-адрес обложки приложения шириной 139px.
+        /// </summary>
+        public string Icon139
+        { get; set; }
 
 		/// <summary>
 		/// Uri-адрес обложки приложения шириной 75px.
@@ -52,33 +42,27 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
-		/// Uri-адрес обложки приложения шириной 50px.
+		/// Uri-адрес обложки приложения шириной 150px.
 		/// </summary>
-		public string Icon50
+		public string Icon150
 		{ get; set; }
 
-		/// <summary>
-		/// Uri-адрес обложки приложения шириной 16px.
-		/// </summary>
-		public string Icon16
-		{ get; set; }
+        /// <summary>
+        /// Uri-адрес баннера шириной 560px.
+        /// </summary>
+        public string Banner560
+        { get; set; }
 
-		/// <summary>
-		/// Uri-адрес баннера шириной 186px.
-		/// </summary>
-		public string Banner186
-		{ get; set; }
-
-		/// <summary>
-		/// Uri-адрес баннера шириной 896px.
-		/// </summary>
-		public string Banner896
+        /// <summary>
+        /// Uri-адрес баннера шириной 1120px.
+        /// </summary>
+        public string Banner1120
 		{ get; set; }
 
 		/// <summary>
 		/// Тип приложения:.
 		/// </summary>
-		public string Type
+		public AppType Type
 		{ get; set; }
 
 		/// <summary>
@@ -124,12 +108,6 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
-		/// Uri-адреса изображений-скриншотов из приложения.
-		/// </summary>
-		public Photo ScreenShots
-		{ get; set; }
-
-		/// <summary>
 		/// Является ли приложение мультиязычным (<c>true</c>).
 		/// </summary>
 		public bool International
@@ -159,43 +137,74 @@ namespace VkNet.Model
 		public int? PlatformId
 		{ get; set; }
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static App FromJson(VkResponse response)
-		{
-			var application = new App
-			{
-				Id = response["id"],
-				Title = response["title"],
-				ScreenName = response["screen_name"],
-				Description = response["description"],
-				Icon100 = response["icon_100"],
-				Icon200 = response["icon_200"],
-				Icon75 = response["icon_75"],
-				Icon50 = response["icon_50"],
-				Icon16 = response["icon_16"],
-				Banner186 = response["banner_186"],
-				Banner896 = response["banner_896"],
-				Type = response["type"],
-				Section = response["section"],
-				AuthorUrl = response["author_url"],
-				AuthorId = response["author_id"],
-				AuthorGroup = response["author_group"],
-				MembersCount = response["members_count"],
-				PublishedDate = response["published_date"],
-				CatalogPosition = response["catalog_position"],
-				ScreenShots = response["screenshots"],
-				International = response["international"],
-				LeaderBoardType = response["leaderboard_type"],
-				GenreId = response["genre_id"],
-				Genre = response["genre"],
-				PlatformId = response["platform_id"]
-			};
+        /// <summary>
+        /// Доступно ли приложение в мобильном каталоге.
+        /// </summary>
+        public bool? IsInCatalog { get; set; }
 
-			return application;
-		}
+        #region Опциональные поля
+        /// <summary>
+        /// Поддомен приложения (или строка idXXXXXXX, если поддомен не задан).
+        /// </summary>
+        public string ScreenName
+        { get; set; }
+
+        /// <summary>
+        /// Описание.
+        /// </summary>
+        public string Description
+        { get; set; }
+
+        /// <summary>
+        /// Uri-адрес обложки приложения шириной 16px.
+        /// </summary>
+        public string Icon16
+        { get; set; }
+
+        /// <summary>
+        /// Uri-адреса изображений-скриншотов из приложения.
+        /// </summary>
+        public IEnumerable<Photo> ScreenShots
+        { get; set; }
+        #endregion
+
+
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static App FromJson(VkResponse response)
+		{
+			return new App
+            {
+                Id = response["id"],
+                Title = response["title"],
+                ScreenName = response["screen_name"],
+                Description = response["description"],
+                Icon278 = response["icon_278"],
+                Icon139 = response["icon_139"],
+                Icon75 = response["icon_75"],
+                Icon150 = response["icon_150"],
+                Icon16 = response["icon_16"],
+                Banner560 = response["banner_560"],
+                Banner1120 = response["banner_1120"],
+                Type = response["type"],
+                Section = response["section"],
+                AuthorUrl = response["author_url"],
+                AuthorId = response["author_id"],
+                AuthorGroup = response["author_group"],
+                MembersCount = response["members_count"],
+                PublishedDate = response["published_date"],
+                CatalogPosition = response["catalog_position"],
+                ScreenShots = response["screenshots"].ToReadOnlyCollectionOf<Photo>(o => o),
+                International = response["international"],
+                LeaderBoardType = response["leaderboard_type"],
+                GenreId = response["genre_id"],
+                Genre = response["genre"],
+                PlatformId = response["platform_id"],
+                IsInCatalog = response["is_in_catalog"]
+            };
+        }
 	}
 }

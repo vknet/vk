@@ -351,6 +351,9 @@
     <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\AppSort.cs">
       <Link>Enums\SafetyEnums\AppSort.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\AppType.cs">
+      <Link>Enums\SafetyEnums\AppType.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\ChangeNameStatus.cs">
       <Link>Enums\SafetyEnums\ChangeNameStatus.cs</Link>
     </Compile>

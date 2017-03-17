@@ -131,6 +131,7 @@
     <Compile Include="Enums\SafetyEnums\AppRatingType.cs" />
     <Compile Include="Enums\SafetyEnums\AppRequestType.cs" />
     <Compile Include="Enums\SafetyEnums\AppSort.cs" />
+    <Compile Include="Enums\SafetyEnums\AppType.cs" />
     <Compile Include="Enums\SafetyEnums\ChangeNameStatus.cs" />
     <Compile Include="Enums\SafetyEnums\CommentObjectType.cs" />
     <Compile Include="Enums\SafetyEnums\CommentsSort.cs" />
