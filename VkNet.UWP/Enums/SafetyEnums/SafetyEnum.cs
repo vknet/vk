@@ -90,11 +90,9 @@ namespace VkNet.Enums.SafetyEnums
 		public static TFilter FromJson(VkResponse response)
 	    {
 		    var value = response.ToString();
-            var result = FromJson(value);
-	        Activator.CreateInstance(result.GetType());
-	        return result;
+	        return FromJson(value);
 
-	    }
+        }
 
         /// <summary>
         /// Разобрать из json.
