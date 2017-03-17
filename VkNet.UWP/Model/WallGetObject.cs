@@ -53,7 +53,9 @@ namespace VkNet.Model
 				wallGetObject = new WallGetObject
 				{
 					WallPosts = response.ToReadOnlyCollectionOf<Post>(r => r)
-				};
+
+                };
+			    wallGetObject.TotalCount = (ulong) wallGetObject.WallPosts.Count;
 			}
 
 			return wallGetObject;
