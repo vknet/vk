@@ -38,12 +38,17 @@ namespace VkNet.Model
 		/// </summary>
 		public bool? NoWallReplies { get; set; }
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static AccountInfo FromJson(VkResponse response)
+        /// <summary>
+        /// Информация о том, включена ли двухфакторная аутентификация для аккаунта. 1 — включена, 0 — не включена.
+        /// </summary>
+        public bool? TwoFactorRequired {get;set;}
+
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static AccountInfo FromJson(VkResponse response)
 		{
 			return new AccountInfo
 			{
@@ -52,8 +57,9 @@ namespace VkNet.Model
 				Intro = response["intro"],
 				Language = response["lang"],
 				OwnPostsDefault = response["own_posts_default"],
-				NoWallReplies = response["no_wall_replies"]
-			};
+				NoWallReplies = response["no_wall_replies"],
+                TwoFactorRequired = response["2fa_required"]
+            };
 		}
 	}
 }
