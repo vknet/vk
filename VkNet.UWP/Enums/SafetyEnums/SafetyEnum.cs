@@ -41,13 +41,6 @@ namespace VkNet.Enums.SafetyEnums
 		/// <exception cref="System.ArgumentException">Mask must be a power of 2 (i.e. only one bit must be equal to 1);mask</exception>
 		protected static TFilter RegisterPossibleValue(string value)
 		{
-			//if (!PossibleValues.Contains(value))
-			//{
-			//	PossibleValues.Add(value);
-			//}
-
-			//var result = PossibleValues.FirstOrDefault(o => o == value);
-
 			return new TFilter { _mask = value };
 		}
 
@@ -97,7 +90,10 @@ namespace VkNet.Enums.SafetyEnums
 		public static TFilter FromJson(VkResponse response)
 	    {
 		    var value = response.ToString();
-		    return FromJson(value);
+            var result = FromJson(value);
+	        Activator.CreateInstance(result.GetType());
+	        return result;
+
 	    }
 
 		/// <summary>
@@ -105,7 +101,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
-		public static TFilter FromJson(string response)
+		private static TFilter FromJson(string response)
 		{
 			return string.IsNullOrWhiteSpace(response) ? null : new TFilter { _mask = response };
 		}
