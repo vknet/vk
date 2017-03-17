@@ -40,13 +40,13 @@ namespace VkNet.Model
 			WallGetObject wallGetObject;
 			if (response.ContainsKey("items"))
 			{
-				wallGetObject = new WallGetObject
-				{
-					TotalCount = response["count"],
-					WallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r),
-					Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r),
-					Groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r)
-				};
+			    wallGetObject = new WallGetObject
+			    {
+			        WallPosts = response["items"].ToReadOnlyCollectionOf<Post>(r => r),
+			        Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r),
+			        Groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r),
+			        TotalCount = response["count"] ?? 1UL
+			    };
 			}
 			else
 			{
