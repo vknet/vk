@@ -48,6 +48,11 @@ namespace VkNet.Enums
         /// <summary>
         /// Влюблен/влюблена.
         /// </summary>
-        Amorous = 7
+        Amorous = 7,
+
+        /// <summary>
+        /// В гражданском браке
+        /// </summary>
+        CivilMarriage = 8
     }
 }

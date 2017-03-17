@@ -16,8 +16,6 @@ using VkNet.Enums.Filters;
 
 namespace VkNet
 {
-
-
     /// <summary>
     /// Служит для оповещения об истечении токена
     /// </summary>
