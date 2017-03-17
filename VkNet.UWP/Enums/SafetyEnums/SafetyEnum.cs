@@ -96,15 +96,21 @@ namespace VkNet.Enums.SafetyEnums
 
 	    }
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
-		private static TFilter FromJson(string response)
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
+        public static TFilter FromJson(string response)
 		{
-			return string.IsNullOrWhiteSpace(response) ? null : new TFilter { _mask = response };
-		}
+		    if (string.IsNullOrWhiteSpace(response))
+		    {
+		        return null;
+		    }
+			var result = new TFilter { _mask = response };
+            Activator.CreateInstance(result.GetType());
+            return result;
+        }
 
 		/// <summary>
 		/// Сравнение с другим перечислением.
