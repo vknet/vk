@@ -690,6 +690,12 @@
     <Compile Include="..\VkNet.UWP\Model\GiftItem.cs">
       <Link>Model\GiftItem.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Model\GroupCover.cs">
+      <Link>Model\GroupCover.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\GroupCoverImage.cs">
+      <Link>Model\GroupCoverImage.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\GroupsCatalogInfo.cs">
       <Link>Model\GroupsCatalogInfo.cs</Link>
     </Compile>

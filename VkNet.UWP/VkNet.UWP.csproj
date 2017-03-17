@@ -218,6 +218,8 @@
     <Compile Include="Model\AuthConfirmResult.cs" />
     <Compile Include="Model\BanInfo.cs" />
     <Compile Include="Model\Button.cs" />
+    <Compile Include="Model\GroupCover.cs" />
+    <Compile Include="Model\GroupCoverImage.cs" />
     <Compile Include="Model\LinkButtonAction.cs" />
     <Compile Include="Model\Career.cs" />
     <Compile Include="Model\CategoryGroup.cs" />
