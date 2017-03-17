@@ -7,7 +7,6 @@ using Newtonsoft.Json.Linq;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
-using VkNet.Utils;
 
 namespace VkNet.Utils
 {
@@ -20,25 +19,9 @@ namespace VkNet.Utils
         /// <summary>
         /// Прокси сервер
         /// </summary>
-        public IWebProxy Proxy
-        {
-            get
-            {
-                return _webProxy;
-            }
-
-            set
-            {
-                _webProxy = value;
-            }
-        }
+        public IWebProxy Proxy { get; set; }
 
         /// <summary>
-        /// Прокси сервер
-        /// </summary>
-        private IWebProxy _webProxy;
-
-		/// <summary>
 		/// Получение json по url-адресу
 		/// </summary>
 		/// <param name="methodUrl">Адрес получения json</param>
@@ -46,7 +29,7 @@ namespace VkNet.Utils
 		/// <returns>Строка в формате json</returns>
 		public string GetJson(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
         {
-            return WebCall.PostCall(methodUrl, parameters, _webProxy).Response;
+            return WebCall.PostCall(methodUrl, parameters, Proxy).Response;
         }
 
         /// <summary>
@@ -115,15 +98,15 @@ namespace VkNet.Utils
         {
 
             var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
-            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, _webProxy);
+            var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, Proxy);
 
-	        if (authorizeUrlResult.ResponseUrl.ToString().StartsWith("https://oauth.vk.com/blank.html#access_token=", StringComparison.Ordinal))
-	        {
-		        return EndAuthorize(authorizeUrlResult, _webProxy);
-	        }
+            if (authorizeUrlResult.ResponseUrl.ToString().StartsWith("https://oauth.vk.com/blank.html#access_token=", StringComparison.Ordinal))
+            {
+                return EndAuthorize(authorizeUrlResult, Proxy);
+            }
 
-			// Заполнить логин и пароль
-			var loginForm = WebForm.From(authorizeUrlResult)
+            // Заполнить логин и пароль
+            var loginForm = WebForm.From(authorizeUrlResult)
                                     .WithField("email")
                                     .FilledWith(email)
                                     .And()
@@ -137,50 +120,50 @@ namespace VkNet.Utils
                     .FilledWith(captchaKey);
             }
 
-			var loginFormPostResult = WebCall.Post(loginForm, _webProxy);
+            var loginFormPostResult = WebCall.Post(loginForm, Proxy);
 
-			// Заполнить код двухфакторной авторизации
-	        if (code == null)
-	        {
-		        return EndAuthorize(loginFormPostResult, _webProxy);
-	        }
+            // Заполнить код двухфакторной авторизации
+            if (code == null)
+            {
+                return EndAuthorize(loginFormPostResult, Proxy);
+            }
 
-	        var codeForm = WebForm.From(loginFormPostResult)
-		        .WithField("code")
-		        .FilledWith(code.Invoke()); //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'code' is always not null. The operator '?.' is excessive.
-	        loginFormPostResult = WebCall.Post(codeForm, _webProxy);
+            var codeForm = WebForm.From(loginFormPostResult)
+                .WithField("code")
+                .FilledWith(code.Invoke()); //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'code' is always not null. The operator '?.' is excessive.
+            loginFormPostResult = WebCall.Post(codeForm, Proxy);
 
-	        return EndAuthorize(loginFormPostResult, _webProxy);
-		}
-		
+            return EndAuthorize(loginFormPostResult, Proxy);
+        }
 
-		private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
-		{
-			var authorization = VkAuthorization.From(result.ResponseUrl);
-			if (authorization.CaptchaId.HasValue)
-			{
-				throw new CaptchaNeededException(authorization.CaptchaId.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaId.Value);
-			}
-			if (!authorization.IsAuthorizationRequired)
-			{
-				return authorization;
-			}
 
-			// Отправить данные
-			var authorizationForm = WebForm.From(result);
-			var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
+        private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
+        {
+            var authorization = VkAuthorization.From(result.ResponseUrl);
+            if (authorization.CaptchaId.HasValue)
+            {
+                throw new CaptchaNeededException(authorization.CaptchaId.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaId.Value);
+            }
+            if (!authorization.IsAuthorizationRequired)
+            {
+                return authorization;
+            }
 
-			return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
-		}
+            // Отправить данные
+            var authorizationForm = WebForm.From(result);
+            var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
 
-		/// <summary>
-		/// Построить URL для авторизации.
-		/// </summary>
-		/// <param name="appId">Идентификатор приложения.</param>
-		/// <param name="settings">Настройки прав доступа.</param>
-		/// <param name="display">Вид окна авторизации.</param>
-		/// <returns>Возвращает Uri для авторизации</returns>
-		[NotNull]
+            return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
+        }
+
+        /// <summary>
+        /// Построить URL для авторизации.
+        /// </summary>
+        /// <param name="appId">Идентификатор приложения.</param>
+        /// <param name="settings">Настройки прав доступа.</param>
+        /// <param name="display">Вид окна авторизации.</param>
+        /// <returns>Возвращает Uri для авторизации</returns>
+        [NotNull]
         public static string CreateAuthorizeUrlFor(ulong appId, [NotNull] Settings settings, [NotNull] Display display)
         {
             var builder = new StringBuilder("https://oauth.vk.com/authorize?");
