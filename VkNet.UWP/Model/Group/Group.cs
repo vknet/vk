@@ -241,16 +241,21 @@ namespace VkNet.Model
 		/// Информация о главной секции в сообществе
 		/// </summary>
 		public MainSection? MainSection { get; set; }
-		#endregion
 
-		#region Методы
+        /// <summary>
+        /// Информация о том, разрешено ли сообществу отправлять сообщения текущему пользователю.
+        /// </summary>
+        public bool? IsMessagesAllowed { get; set; }
+        #endregion
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static Group FromJson(VkResponse response)
+        #region Методы
+
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static Group FromJson(VkResponse response)
 		{
 			var group = new Group
 			{
@@ -296,8 +301,9 @@ namespace VkNet.Model
 				CanUploadVideo = response["can_upload_video"],
 				MainAlbumId = response["main_album_id"],
 				IsHiddenFromFeed = response["is_hidden_from_feed"],
-				MainSection = response["main_section"]
-			};
+				MainSection = response["main_section"],
+                IsMessagesAllowed = response["is_messages_allowed"]
+            };
 
 			return group;
 		}
