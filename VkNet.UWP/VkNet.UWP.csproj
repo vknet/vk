@@ -75,6 +75,7 @@
     <Compile Include="Categories\Obsolete\WallCategory.Obsolete.cs" />
     <Compile Include="Categories\PagesCategory.cs" />
     <Compile Include="Categories\PhotoCategory.cs" />
+    <Compile Include="Categories\PollsCategory.cs" />
     <Compile Include="Categories\StatsCategory.cs" />
     <Compile Include="Categories\StatusCategory.cs" />
     <Compile Include="Categories\UsersCategory.cs" />
@@ -277,6 +278,7 @@
     <Compile Include="Model\PhotoAlbum.cs" />
     <Compile Include="Model\PhotoSize.cs" />
     <Compile Include="Model\Place.cs" />
+    <Compile Include="Model\PollAnswerVoters.cs" />
     <Compile Include="Model\PollAnswer.cs" />
     <Compile Include="Model\PostReach.cs" />
     <Compile Include="Model\PostSource.cs" />
@@ -350,6 +352,12 @@
     <Compile Include="Model\RequestParams\Photo\PhotoPutTagParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoSaveParams.cs" />
     <Compile Include="Model\RequestParams\Photo\PhotoSearchParams.cs" />
+    <Compile Include="Model\RequestParams\Polls\PollsDeleteVoteParams.cs" />
+    <Compile Include="Model\RequestParams\Polls\PollsCreateParams.cs" />
+    <Compile Include="Model\RequestParams\Polls\PollsEditParams.cs" />
+    <Compile Include="Model\RequestParams\Polls\PollsAddVoteParams.cs" />
+    <Compile Include="Model\RequestParams\Polls\PollsGetVotersParams.cs" />
+    <Compile Include="Model\RequestParams\Polls\PollsGetByIdParams.cs" />
     <Compile Include="Model\RequestParams\Users\UserSearchParams.cs" />
     <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
     <Compile Include="Model\RequestParams\Video\VideoCreateCommentParams.cs" />
@@ -456,6 +464,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
