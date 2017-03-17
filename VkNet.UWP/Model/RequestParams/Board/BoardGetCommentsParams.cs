@@ -1,4 +1,5 @@
 ﻿using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -58,7 +59,7 @@ namespace VkNet.Model.RequestParams
         /// <summary>
         /// Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым) строка.
         /// </summary>
-        public SortOrderBy? Sort { get; set; }
+        public CommentsSort Sort { get; set; }
 
         /// <summary>
         /// Количество символов, по которому нужно обрезать текст комментария. Укажите 0, если Вы не хотите обрезатьтекст. положительное число.

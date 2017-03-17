@@ -1,20 +1,20 @@
 ﻿namespace VkNet.Categories
 {
     using Model;
-	using Model.RequestParams;
-	using Utils;
+    using Model.RequestParams;
+    using Utils;
 
     /// <summary>
 	/// Методы для работы со темами группы.
 	/// </summary>
 	public class BoardCategory
-	{
-		private readonly VkApi _vk;
+    {
+        private readonly VkApi _vk;
 
-		public BoardCategory(VkApi vk)
-		{
-			_vk = vk;
-		}
+        public BoardCategory(VkApi vk)
+        {
+            _vk = vk;
+        }
 
         /// <summary>
         /// Возвращает список тем в обсуждениях указанной группы.
@@ -25,7 +25,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getTopics" />.
-        /// </remarks>        public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false)
+        /// </remarks>
+        public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false)
         {
             return _vk.Call("board.getTopics", @params, skipAuthorization).ToVkCollectionOf<Topic>(x => x);
         }
@@ -39,7 +40,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getComments" />.
-        /// </remarks>        public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false)
+        /// </remarks>
+        public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false)
         {
             var response = _vk.Call("board.getComments", @params, skipAuthorization);
             var result = new TopicsFeed
@@ -60,7 +62,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.addTopic" />.
-        /// </remarks>        public long AddTopic(BoardAddTopicParams @params)
+        /// </remarks>
+        public long AddTopic(BoardAddTopicParams @params)
         {
             return _vk.Call("board.addTopic", @params);
         }
@@ -73,7 +76,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.deleteTopic" />.
-        /// </remarks>        public long DeleteTopic(BoardTopicParams @params)
+        /// </remarks>
+        public long DeleteTopic(BoardTopicParams @params)
         {
             return _vk.Call("board.deleteTopic", @params);
         }
@@ -86,7 +90,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.closeTopic" />.
-        /// </remarks>        public long CloseTopic(BoardTopicParams @params)
+        /// </remarks>
+        public long CloseTopic(BoardTopicParams @params)
         {
             return _vk.Call("board.closeTopic", @params);
         }
@@ -99,7 +104,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.openTopic" />.
-        /// </remarks>        public long OpenTopic(BoardTopicParams @params)
+        /// </remarks>
+        public long OpenTopic(BoardTopicParams @params)
         {
             return _vk.Call("board.openTopic", @params);
         }
@@ -112,7 +118,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.fixTopic" />.
-        /// </remarks>        public long FixTopic(BoardTopicParams @params)
+        /// </remarks>
+        public long FixTopic(BoardTopicParams @params)
         {
             return _vk.Call("board.fixTopic", @params);
         }
@@ -125,7 +132,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.unfixTopic" />.
-        /// </remarks>        public long UnFixTopic(BoardTopicParams @params)
+        /// </remarks>
+        public long UnFixTopic(BoardTopicParams @params)
         {
             return _vk.Call("board.unfixTopic", @params);
         }
@@ -139,7 +147,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.editTopic" />.
-        /// </remarks>        public long EditTopic(BoardEditTopicParams @params)
+        /// </remarks>
+        public long EditTopic(BoardEditTopicParams @params)
         {
             return _vk.Call("board.editTopic", @params);
         }
@@ -152,7 +161,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.createComment" />.
-        /// </remarks>        public long СreateComment(BoardCreateCommentParams @params)
+        /// </remarks>
+        public long СreateComment(BoardCreateCommentParams @params)
         {
             return _vk.Call("board.createComment", @params);
         }
@@ -165,7 +175,8 @@
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.deleteComment" />.
-        /// </remarks>        public long DeleteComment(BoardCommentParams @params)
+        /// </remarks>
+        public long DeleteComment(BoardCommentParams @params)
         {
             return _vk.Call("board.deleteComment", @params);
         }
@@ -199,5 +210,5 @@
         }
 
     }
-    
+
 }
