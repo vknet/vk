@@ -651,7 +651,7 @@ namespace VkNet
                 parameters["access_token"] = AccessToken;
             }
 
-			return $"https://api.vk.com/method/{methodName}?{string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))}";
+			return $"https://api.vk.com/method/{methodName}";
 		}
 
 		/// <summary>
