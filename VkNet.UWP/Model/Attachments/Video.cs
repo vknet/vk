@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 using VkNet.Categories;
@@ -101,6 +102,10 @@ namespace VkNet.Model.Attachments
         public bool? Live { get; set; }
 
         #region Недокументированные
+        /// <summary>
+        /// Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
+        /// </summary>
+        public bool? CanAdd { get; set; }
 
         /// <summary>
         /// Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
@@ -143,6 +148,17 @@ namespace VkNet.Model.Attachments
         [Obsolete]
         public string Link { get; set; }
 
+        /// <summary>
+        /// Ссылки на файлы
+        /// </summary>
+        public VideoFiles Files { get; set; }
+
+        /// <summary>
+        /// Информация о репостах записи
+        /// </summary>
+        public Reposts Reposts { get; set; }
+
+        public string Platform { get; set; }
         #endregion
 
         #region Методы
@@ -172,6 +188,7 @@ namespace VkNet.Model.Attachments
                 Processing = video["processing"],
                 Live = video["live"],
                 // Устаревшие или не документированные
+                CanAdd = video["can_add"],
                 CanComment = video["can_comment"],
                 CanRepost = video["can_repost"],
                 Repeat = video["repeat"],
@@ -180,7 +197,10 @@ namespace VkNet.Model.Attachments
                 UploadUrl = video["upload_url"],
                 Link = video["link"],
                 Tag = video,
-                AddingDate = video["adding_date"]
+                AddingDate = video["adding_date"],
+                Files = video["files"],
+                Reposts = video["reposts"],
+                Platform = video["platform"]
             };
         }
 

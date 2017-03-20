@@ -399,6 +399,7 @@
     <Compile Include="Model\VideoAlbum.cs" />
     <Compile Include="Model\VideoCatalog.cs" />
     <Compile Include="Model\VideoCatalogItem.cs" />
+    <Compile Include="Model\VideoFiles.cs" />
     <Compile Include="Model\VkObject.cs" />
     <Compile Include="Model\WallGetObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

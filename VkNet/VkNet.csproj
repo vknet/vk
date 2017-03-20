@@ -1152,6 +1152,9 @@
     <Compile Include="..\VkNet.UWP\Model\VideoCatalogItem.cs">
       <Link>Model\VideoCatalogItem.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Model\VideoFiles.cs">
+      <Link>Model\VideoFiles.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\VkObject.cs">
       <Link>Model\VkObject.cs</Link>
     </Compile>
