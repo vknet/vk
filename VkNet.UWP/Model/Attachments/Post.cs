@@ -57,31 +57,24 @@ namespace VkNet.Model
 		/// <summary>
 		/// <c>true</c>, если запись была создана с опцией «Только для друзей», <c>false</c> в противном случае.
 		/// </summary>
-		public bool FriendsOnly { get; set; }
+		public bool? FriendsOnly { get; set; }
 		/// <summary>
 		/// Информация о комментариях к записи.
 		/// </summary>
-		public Comments Comments
-		{
-			get;
-			set;
-		}
+		public Comments Comments { get; set; }
 		/// <summary>
 		/// Информация о лайках к записи.
 		/// </summary>
-		public Likes Likes
-		{
-			get;
-			set;
-		}
+		public Likes Likes { get; set; }
 		/// <summary>
 		/// Информация о репостах записи («Рассказать друзьям»).
 		/// </summary>
-		public Reposts Reposts
-		{
-			get;
-			set;
-		}
+		public Reposts Reposts { get; set; }
+
+		/// <summary>
+		/// Информация о просмотрах записи. 
+		/// </summary>
+		public PostView View { get; set; }
 
 		/// <summary>
 		/// Тип записи (post, copy, reply, postpone, suggest). Если PostType равен "copy", то запись является копией записи с чужой стены.
@@ -101,10 +94,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Первое вложение.
 		/// </summary>
-		public Attachment Attachment
-		{
-			get { return Attachments.FirstOrDefault(); }
-		}
+		public Attachment Attachment => Attachments.FirstOrDefault();
 
 		/// <summary>
 		/// Информация о местоположении.
@@ -182,6 +172,11 @@ namespace VkNet.Model
 		/// Информация о том, может ли текущий пользователь закрепить запись (1 — может, 0 — не может)
 		/// </summary>
 		public bool CanPin { get; set; }
+
+		/// <summary>
+		/// Информация о том, содержит ли запись отметку "реклама"
+		/// </summary>
+		public bool MarkedAsAds { get; set; }
 		#endregion
 
 		#region Методы
@@ -222,7 +217,9 @@ namespace VkNet.Model
 				CopyCommentId = response["copy_comment_id"],
 				CanDelete = response["can_delete"],
 				CanEdit = response["can_edit"],
-				CanPin = response["can_pin"]
+				CanPin = response["can_pin"],
+				View = response["view"],
+				MarkedAsAds = response["marked_as_ads"]
 			};
 
 			return post;

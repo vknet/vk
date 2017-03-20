@@ -822,6 +822,9 @@
     <Compile Include="..\VkNet.UWP\Model\PostSourceData.cs">
       <Link>Model\PostSourceData.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Model\PostView.cs">
+      <Link>Model\PostView.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\Previews.cs">
       <Link>Model\Previews.cs</Link>
     </Compile>

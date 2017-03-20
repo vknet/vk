@@ -289,6 +289,7 @@
     <Compile Include="Model\PostReach.cs" />
     <Compile Include="Model\PostSource.cs" />
     <Compile Include="Model\PostSourceData.cs" />
+    <Compile Include="Model\PostView.cs" />
     <Compile Include="Model\Previews.cs" />
     <Compile Include="Model\Price.cs" />
     <Compile Include="Model\PushSettings.cs" />

@@ -2312,6 +2312,30 @@ namespace VkNet.Utils
         }
 
 		/// <summary>
+        /// Преобразовать из <see cref="VkResponse"/> в <see cref="PostView"/>.
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+		public static implicit operator PostView(VkResponse response)
+		{
+            return response?._token == null || !response._token.HasValues ? null :  PostView.FromJson(response);
+        }
+
+		/// <summary>
+        /// Преобразовать из <see cref="VkResponse"/> в <see cref="Collection{PostView}"/>.
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+		public static implicit operator Collection<PostView>(VkResponse response)
+        {
+            return response.ToCollectionOf<PostView>(a => a);
+        }
+
+		/// <summary>
         /// Преобразовать из <see cref="VkResponse"/> в <see cref="Previews"/>.
         /// </summary>
         /// <param name="response">Ответ.</param>
