@@ -158,7 +158,21 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public Reposts Reposts { get; set; }
 
+        /// <summary>
+        /// Платформа
+        /// </summary>
         public string Platform { get; set; }
+
+        /// <summary>
+        /// Ширина
+        /// </summary>
+        public int? Width { get; set; }
+
+        /// <summary>
+        /// Высота
+        /// </summary>
+        public int? Height { get; set; }
+        
         #endregion
 
         #region Методы
@@ -200,7 +214,9 @@ namespace VkNet.Model.Attachments
                 AddingDate = video["adding_date"],
                 Files = video["files"],
                 Reposts = video["reposts"],
-                Platform = video["platform"]
+                Platform = video["platform"],
+                Width = video["width"],
+                Height = video["height"]
             };
         }
 
