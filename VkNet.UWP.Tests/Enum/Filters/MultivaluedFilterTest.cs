@@ -31,26 +31,30 @@ namespace VkNet.Tests.Enum.SafetyEnums
         {
 			// get test
 			Assert.That(CountersFilter.Friends.ToString(), Is.EqualTo("friends"));
+			Assert.That(CountersFilter.FriendsSuggestions.ToString(), Is.EqualTo("friends_suggestions"));
 			Assert.That(CountersFilter.Messages.ToString(), Is.EqualTo("messages"));
 			Assert.That(CountersFilter.Photos.ToString(), Is.EqualTo("photos"));
 			Assert.That(CountersFilter.Videos.ToString(), Is.EqualTo("videos"));
-			Assert.That(CountersFilter.Notes.ToString(), Is.EqualTo("notes"));
 			Assert.That(CountersFilter.Gifts.ToString(), Is.EqualTo("gifts"));
 			Assert.That(CountersFilter.Events.ToString(), Is.EqualTo("events"));
 			Assert.That(CountersFilter.Groups.ToString(), Is.EqualTo("groups"));
 			Assert.That(CountersFilter.Notifications.ToString(), Is.EqualTo("notifications"));
-			Assert.That(CountersFilter.All.ToString(), Is.EqualTo("friends,messages,photos,videos,notes,gifts,events,groups,notifications"));
+			Assert.That(CountersFilter.Sdk.ToString(), Is.EqualTo("sdk"));
+			Assert.That(CountersFilter.AppRequests.ToString(), Is.EqualTo("app_requests"));
+			Assert.That(CountersFilter.All.ToString(), Is.EqualTo("friends,friends_suggestions,messages,photos,videos,gifts,events,groups,notifications,sdk,app_requests"));
 			// parse test
 			Assert.That(CountersFilter.FromJson("friends"), Is.EqualTo(CountersFilter.Friends));
+			Assert.That(CountersFilter.FromJson("friends_suggestions"), Is.EqualTo(CountersFilter.FriendsSuggestions));
 			Assert.That(CountersFilter.FromJson("messages"), Is.EqualTo(CountersFilter.Messages));
 			Assert.That(CountersFilter.FromJson("photos"), Is.EqualTo(CountersFilter.Photos));
 			Assert.That(CountersFilter.FromJson("videos"), Is.EqualTo(CountersFilter.Videos));
-			Assert.That(CountersFilter.FromJson("notes"), Is.EqualTo(CountersFilter.Notes));
 			Assert.That(CountersFilter.FromJson("gifts"), Is.EqualTo(CountersFilter.Gifts));
 			Assert.That(CountersFilter.FromJson("events"), Is.EqualTo(CountersFilter.Events));
 			Assert.That(CountersFilter.FromJson("groups"), Is.EqualTo(CountersFilter.Groups));
 			Assert.That(CountersFilter.FromJson("notifications"), Is.EqualTo(CountersFilter.Notifications));
-			Assert.That(CountersFilter.FromJson("friends,messages,photos,videos,notes,gifts,events,groups,notifications"), Is.EqualTo(CountersFilter.All));
+			Assert.That(CountersFilter.FromJson("sdk"), Is.EqualTo(CountersFilter.Sdk));
+			Assert.That(CountersFilter.FromJson("app_requests"), Is.EqualTo(CountersFilter.AppRequests));
+			Assert.That(CountersFilter.FromJson("friends,friends_suggestions,messages,photos,videos,gifts,events,groups,notifications,sdk,app_requests"), Is.EqualTo(CountersFilter.All));
 		}
 
 		[Test]

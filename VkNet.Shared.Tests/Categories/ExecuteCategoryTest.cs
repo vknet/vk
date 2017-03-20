@@ -9,7 +9,7 @@ namespace VkNet.Tests.Categories
 		public void ExecuteTest()
 		{
 			Url =
-                @"https://api.vk.com/method/execute?code=return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;&v=" + VkApi.VkApiVersion + "&access_token=token";
+                @"https://api.vk.com/method/execute";
             Json = @"{response: ['Тишко', 'Бледнов', 'Касимова']}";
 			const string code = @"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;";
 			var result = Api.Execute.Execute(code);
@@ -20,7 +20,7 @@ namespace VkNet.Tests.Categories
 		public void ExecuteErrorTest()
 		{
 			Url =
-                @"https://api.vk.com/method/execute?code=return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name&v=" + VkApi.VkApiVersion + "&access_token=token";
+                @"https://api.vk.com/method/execute";
 			Json = @"{
 				error: {
 					error_code: 12,

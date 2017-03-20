@@ -32,7 +32,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_FriendsForDurov_ListOfFriends()
 		{
-			const string url = "https://api.vk.com/method/friends.get?list_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.get";
             const string json =
 				@"{
                     'response': [
@@ -61,7 +61,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_FirstNameLastName_ListOfObjects()
 		{
-			const string url = "https://api.vk.com/method/friends.get?user_id=1&count=3&fields=first_name,last_name&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.get";
             const string json =
 			   @"{
                     'response': {
@@ -126,7 +126,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetAppUsers_NoOne_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/friends.getAppUsers?v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getAppUsers";
 			const string json =
 				@"{
                     'response': []
@@ -142,7 +142,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetAppUsers_ThreeUsers_ListOfObjects()
 		{
-			const string url = "https://api.vk.com/method/friends.getAppUsers?v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getAppUsers";
 			const string json =
 				@"{
                     'response': [
@@ -171,7 +171,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetOnline_NoOne_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/friends.getOnline?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getOnline";
 			const string json =
 				@"{
                     'response': []
@@ -186,7 +186,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetOnline_FiveUsers_ListOfObjects()
 		{
-			const string url = "https://api.vk.com/method/friends.getOnline?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getOnline";
 			const string json =
 				@"{
                     response: [5, 467, 2943, 4424, 13033]
@@ -213,7 +213,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMutual_ThreeUsers_ListOfObjects()
 		{
-			const string url = "https://api.vk.com/method/friends.getMutual?source_uid=1&target_uid=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getMutual";
 			const string json =
 				@"{
                     'response': [
@@ -235,7 +235,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMutual_NoOne_EmptyList()
 		{
-			const string url = "https://api.vk.com/method/friends.getMutual?source_uid=1&target_uid=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getMutual";
 			const string json =
 				@"{
                     'response': []
@@ -265,7 +265,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void AreFriends_FourTypes_RightFriendStatuses()
 		{
-			const string url = "https://api.vk.com/method/friends.areFriends?user_ids=24181068,22911407,155810539,3505305&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.areFriends";
 			const string json =
 				@"{
                     'response': [
@@ -300,7 +300,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void AddList_OnlyName_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.addList?name=тестовая метка&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.addList";
 			const string json =
 				@"{
                     'response': {
@@ -318,7 +318,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void AddList_WithUserIds_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.addList?name=тестовая метка&user_ids=1,2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.addList";
 			const string json =
 				@"{
                     'response': {
@@ -350,7 +350,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteList_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.deleteList?list_id=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.deleteList";
 			const string json =
 				@"{
                     'response': 1
@@ -366,7 +366,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLists_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.getLists?v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getLists";
 			const string json =
 				@"{
                     'response': [
@@ -397,7 +397,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void EditList_EditName_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.editList?name=new тестовая метка&list_id=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.editList";
 			const string json =
 				@"{
                     'response': 1
@@ -420,7 +420,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void DeleteAllRequests_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.deleteAllRequests?v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.deleteAllRequests";
 			const string json =
 				@"{
                     'response': 1
@@ -436,7 +436,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Add_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.add";
 			const string json =
 				@"{
                     'response': 1
@@ -452,7 +452,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Add_WithCaptcha_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.add?user_id=242508&text=hello, user!&captcha_sid=1247329&captcha_key=hug2z&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.add";
 			const string json =
 				@"{
                     'response': 1
@@ -468,7 +468,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.delete?user_id=24250&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.delete";
             const string json =
                 @"{
                     response: {
@@ -487,7 +487,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetRequests_Extended_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&extended=1&need_mutual=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getRequests";
 			const string json = @"{
 				'response': {
 					items: [{
@@ -508,7 +508,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetRequests_Basic_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getRequests";
 
 			const string json =
 				@"{
@@ -529,7 +529,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetRequest_EmptyCollection()
 		{
-			const string url = "https://api.vk.com/method/friends.getRequests?offset=0&count=3&extended=1&need_mutual=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getRequests";
 			const string json =
 				@"{
                     'response': []
@@ -546,7 +546,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetRecent_OneItem()
 		{
-			const string url = "https://api.vk.com/method/friends.getRecent?count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.getRecent";
 			const string json =
 				@"{
                     'response': [
@@ -566,7 +566,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Edit_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/friends.edit?user_id=242508111&list_ids=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/friends.edit";
 			const string json =
 				@"{
                     'response': 1

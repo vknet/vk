@@ -23,7 +23,7 @@ namespace VkNet.Tests.Categories
          [Test]
          public void Get_NotExtended()
          {
-			const string url = "https://api.vk.com/method/video.get?owner_id=1&count=3&offset=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/video.get";
 			const string json =
              @"{
                     'response': {
@@ -123,7 +123,7 @@ namespace VkNet.Tests.Categories
          [Test]
          public void Get_Extended()
          {
-			const string url = "https://api.vk.com/method/video.get?owner_id=1&count=3&offset=2&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/video.get";
 			const string json =
              @"{
                     'response': {
@@ -265,7 +265,7 @@ namespace VkNet.Tests.Categories
          [Test]
          public void Add_NormalCase()
          {
-             const string url = "https://api.vk.com/method/video.add?video_id=164841344&owner_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+             const string url = "https://api.vk.com/method/video.add";
              const string json =
                 @"{
                     'response': 167593944
@@ -280,7 +280,7 @@ namespace VkNet.Tests.Categories
          [Test]
          public void Delete_NormalCase()
          {
-             const string url = "https://api.vk.com/method/video.delete?video_id=167593944&v=" + VkApi.VkApiVersion + "&access_token=token";
+             const string url = "https://api.vk.com/method/video.delete";
              const string json =
                 @"{
                     'response': 1
@@ -295,7 +295,7 @@ namespace VkNet.Tests.Categories
          [Test]
          public void Restore_NormalCase()
          {
-             const string url = "https://api.vk.com/method/video.restore?video_id=167593944&v=" + VkApi.VkApiVersion + "&access_token=token";
+             const string url = "https://api.vk.com/method/video.restore";
              const string json =
                 @"{
                     'response': 1
@@ -310,7 +310,7 @@ namespace VkNet.Tests.Categories
          [Test]
          public void AddAlbum_ToCurrentUser()
          {
-             const string url = "https://api.vk.com/method/video.addAlbum?title=Новый альбом видеозаписей&v=" + VkApi.VkApiVersion + "&access_token=token";
+             const string url = "https://api.vk.com/method/video.addAlbum";
              const string json =
 				@"{
                     'response': {
@@ -327,7 +327,7 @@ namespace VkNet.Tests.Categories
 		[Test]
          public void GetAlbums_NormalCase_Extended_TwoItems()
          {
-             const string url = "https://api.vk.com/method/video.getAlbums?owner_id=234695119&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+             const string url = "https://api.vk.com/method/video.getAlbums";
              const string json =
              @"{
                     'response': {
@@ -373,7 +373,7 @@ namespace VkNet.Tests.Categories
          [Test]
          public void DeleteAlbum_NormalCase()
          {
-             const string url = "https://api.vk.com/method/video.deleteAlbum?album_id=52153813&v=" + VkApi.VkApiVersion + "&access_token=token";
+             const string url = "https://api.vk.com/method/video.deleteAlbum";
              const string json =
                 @"{
                     'response': 1
@@ -388,7 +388,7 @@ namespace VkNet.Tests.Categories
          [Test]
          public void EditAlbum_NormalCase()
          {
-             const string url = "https://api.vk.com/method/video.editAlbum?album_id=521543&title=Новое название!!!&v=" + VkApi.VkApiVersion + "&access_token=token";
+             const string url = "https://api.vk.com/method/video.editAlbum";
              const string json =
                 @"{
                     'response': 1
@@ -403,7 +403,7 @@ namespace VkNet.Tests.Categories
          [Test, Ignore("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
          public void MoveToAlbum_NormalCase()
          {
-             const string url = "https://api.vk.com/method/video.moveToAlbum?album_id=52154378&video_ids=167593938&v=" + VkApi.VkApiVersion + "&access_token=token";
+             const string url = "https://api.vk.com/method/video.moveToAlbum";
 
              const string json =
                 @"{
@@ -419,7 +419,7 @@ namespace VkNet.Tests.Categories
          [Test]
          public void GetComments_WithLikes()
          {
-			const string url = "https://api.vk.com/method/video.getComments?owner_id=1&video_id=166481021&need_likes=1&offset=3&count=2&sort=asc&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/video.getComments";
 			const string json =
              @"{
                     'response': {
@@ -483,7 +483,7 @@ namespace VkNet.Tests.Categories
 		[Test]
          public void GetComments_WithoutLikes()
          {
-			const string url = "https://api.vk.com/method/video.getComments?owner_id=1&video_id=166481021&offset=3&count=2&sort=asc&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/video.getComments";
 			const string json =
              @"{
                     'response': {
@@ -530,7 +530,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void Search_NormalCase_ListOfVideos()
         {
-			const string url = "https://api.vk.com/method/video.search?q=саша грей&sort=2&adult=1&filters=long&offset=1&count=5&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/video.search";
 			const string json =
                 @"{
                     'response': {
@@ -636,7 +636,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void CreateComment_NormalCase()
         {
-			const string url = "https://api.vk.com/method/video.createComment?owner_id=1&video_id=166613182&message=забавное видео&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/video.createComment";
 			const string json =
                 @"{
                     'response': 35634
@@ -651,7 +651,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void DeleteComment_NormalCase()
         {
-            const string url = "https://api.vk.com/method/video.deleteComment?comment_id=35634&owner_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/video.deleteComment";
             const string json =
                 @"{
                     'response': 1
@@ -666,7 +666,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void RestoreComment_NormalCase()
         {
-            const string url = "https://api.vk.com/method/video.restoreComment?comment_id=35634&owner_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/video.restoreComment";
             const string json =
                 @"{
                     'response': 1
@@ -681,7 +681,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void EditComment_NormalCase()
         {
-			const string url = "https://api.vk.com/method/video.editComment?owner_id=1&comment_id=35634&message=суперское видео&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/video.editComment";
 			const string json =
                 @"{
                     'response': 1
@@ -696,7 +696,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Report_NormalCase()
         {
-            const string url = "https://api.vk.com/method/video.report?video_id=166613182&owner_id=1&reason=4&comment=коммент&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/video.report";
             const string json =
                 @"{
                     'response': 1
@@ -711,7 +711,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void ReportComment_NormalCase()
         {
-            const string url = "https://api.vk.com/method/video.reportComment?comment_id=35637&owner_id=1&reason=5&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/video.reportComment";
             const string json =
                 @"{
                     'response': 1
@@ -726,7 +726,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Edit_NormalCase()
         {
-			const string url = "https://api.vk.com/method/video.edit?owner_id=23469&video_id=167538&name=Новое название&desc=Новое описание&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/video.edit";
 			const string json =
                 @"{
                     'response': 1
@@ -741,7 +741,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Save_NormalCase()
         {
-			const string url = "https://api.vk.com/method/video.save?name=Название из ютуба&description=Описание из ютуба&wallpost=1&link=https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/video.save";
 			const string json =
                 @"{
                     'response': {

@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCounters_WhenServerReturnsEmptyResponse()
 		{
-			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getCounters";
             Json = @"{ 'response': [] }";
 
 			var counters = Api.Account.GetCounters(CountersFilter.All);
@@ -29,7 +29,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetCounters_WhenServerReturnsAllFields()
 		{
-			Url = "https://api.vk.com/method/account.getCounters?filter=friends,messages,photos,videos,notes,gifts,events,groups,notifications&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getCounters";
             Json = @"{
 				'response': {
 					friends:1,
@@ -72,7 +72,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetNameInMenu_SetsCorrectly_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setNameInMenu";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.SetNameInMenu("example"), Is.True);
 		}
@@ -80,7 +80,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetNameInMenu_NotSets_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setNameInMenu?name=example&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setNameInMenu";
             Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.SetNameInMenu("example"), Is.False);
 		}
@@ -100,7 +100,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOnline_SetsCorrectly_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.setOnline?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setOnline";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.SetOnline(), Is.True);
 		}
@@ -108,7 +108,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOnline_NotSets_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setOnline?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setOnline";
 			Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.SetOnline(), Is.False);
 		}
@@ -116,7 +116,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOnline_WithVoipParameter()
 		{
-			Url = "https://api.vk.com/method/account.setOnline?voip=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setOnline";
 			Json = @"{ 'response': 1 }";
 			Assert.That(() => Api.Account.SetOnline(true), Is.True);
 		}
@@ -135,7 +135,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOffline_SetsCorrectly_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.setOffline?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setOffline";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.SetOffline(), Is.True);
 		}
@@ -143,7 +143,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetOffline_NotSets_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setOffline?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setOffline";
 			Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.SetOffline(), Is.False);
 		}
@@ -187,7 +187,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void RegisterDevice_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.registerDevice?token=tokenVal&device_model=deviceModelVal&system_version=systemVersionVal&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.registerDevice";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 			{
@@ -200,7 +200,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void RegisterDevice_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.registerDevice?token=tokenVal&device_model=deviceModelVal&system_version=systemVersionVal&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.registerDevice";
 			Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 			{
@@ -213,7 +213,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void RegisterDevice_ParametersAreEqualsToNullOrEmptyExceptToken_NotThrowsException()
 		{
-			Url = "https://api.vk.com/method/account.registerDevice?token=tokenVal&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.registerDevice";
 			Json = @"{ 'response': 1 }";
 			Assert.That(() => Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 			{
@@ -257,7 +257,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void UnregisterDevice_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.unregisterDevice?device_id=tokenVal&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.unregisterDevice";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.UnregisterDevice("tokenVal"), Is.True);
 		}
@@ -265,7 +265,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void UnregisterDevice_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.unregisterDevice?device_id=tokenVal&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.unregisterDevice";
 			Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.UnregisterDevice("tokenVal"), Is.False);
 		}
@@ -298,7 +298,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetSilenceMode_SetsCorrectly_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setSilenceMode";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.SetSilenceMode("tokenVal"), Is.True);
 		}
@@ -306,7 +306,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetSilenceMode_SetsCorrectly_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setSilenceMode";
 			Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.SetSilenceMode("tokenVal"), Is.False);
 		}
@@ -315,13 +315,13 @@ namespace VkNet.Tests.Categories
 		public void SetSilenceMode_AllParametersAddsToUrlCorrectly()
 		{
 			{
-				Url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&time=10&peer_id=15&sound=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+				Url = "https://api.vk.com/method/account.setSilenceMode";
 				Json = @"{ 'response': 0 }";
 				Assert.That(() => Api.Account.SetSilenceMode("tokenVal", 10, 15, true), Is.False);
 			}
 
 			{
-				Url = "https://api.vk.com/method/account.setSilenceMode?device_id=tokenVal&time=-1&peer_id=10&v=" + VkApi.VkApiVersion + "&access_token=token";
+				Url = "https://api.vk.com/method/account.setSilenceMode";
 				Json = @"{ 'response': 0 }";
 				Assert.That(() => Api.Account.SetSilenceMode("tokenVal", -1, 10, false), Is.False);
 			}
@@ -354,7 +354,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void BanUser_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.banUser?user_id=4&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.banUser";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.BanUser(4), Is.True);
 		}
@@ -362,7 +362,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void BanUser_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.banUser?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.banUser";
 			Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.BanUser(1), Is.False); // Нельзя просто так взять и забанить Дурова
 		}
@@ -394,7 +394,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void UnbanUser_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.unbanUser?user_id=4&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.unbanUser";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.UnbanUser(4), Is.True);
 		}
@@ -402,7 +402,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void UnbanUser_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.unbanUser?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.unbanUser";
 			Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.UnbanUser(1), Is.False);
 		}
@@ -435,7 +435,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WithDefaultParameters()
 		{
-			Url = "https://api.vk.com/method/account.getBanned?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getBanned";
 			Json = @"{
 				'response': {
 					count: 10,
@@ -468,7 +468,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WithCorrectCountParameter()
 		{
-			Url = "https://api.vk.com/method/account.getBanned?count=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getBanned";
 			Json = @"{
 				'response': {
 					count: 10,
@@ -494,7 +494,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WithCorrectOffsetParameter()
 		{
-			Url = "https://api.vk.com/method/account.getBanned?offset=10&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getBanned";
 			Json = @"{
 				'response': {
 					count: 10,
@@ -520,7 +520,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WhenThereIsNoBannedUsers()
 		{
-			Url = "https://api.vk.com/method/account.getBanned?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getBanned";
 			Json = @"{
 				'response': {
 					count: 0,
@@ -536,7 +536,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetBanned_WhenThereIsSomeBannedUsersButNotInTheOffsetRange()
 		{
-			Url = "https://api.vk.com/method/account.getBanned?offset=50&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getBanned";
 			Json = @"{
 				'response': {
 					count: 5,
@@ -565,7 +565,7 @@ namespace VkNet.Tests.Categories
 		public void GetInfo_WhenServerReturnsEmptyResponse()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			Url = "https://api.vk.com/method/account.getInfo?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getInfo";
 			Json = @"{ 'response': { } }";
 			Assert.That(Api.Account.GetInfo(), Is.Null);
 		}
@@ -573,7 +573,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetInfo_WhenServerReturnsAllFields()
 		{
-			Url = "https://api.vk.com/method/account.getInfo?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getInfo";
 			Json = @"{
 				'response': {
 					country: 'RU',
@@ -608,7 +608,7 @@ namespace VkNet.Tests.Categories
 		public void SetInfo_IncorrectUserID_ThrowInvalidParameterException()
 		{
 			var account = new AccountCategory(Api);
-			Url = "https://api.vk.com/method/account.setInfo?name=intro&value=-10&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setInfo";
 			Json = @"{
 				error: {
 					error_code: 100,
@@ -637,7 +637,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetInfo_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.setInfo?name=own_posts_default&value=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setInfo";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.SetInfo("own_posts_default", "1"), Is.True);
 		}
@@ -645,7 +645,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetInfo_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setInfo?name=own_posts_default&value=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setInfo";
 			Json = @"{ 'response': 0 }";
 			Assert.That(Api.Account.SetInfo("own_posts_default", "1"), Is.False);
 		}
@@ -653,7 +653,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetInfo_WithIntroParameter_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.setInfo?name=intro&value=10&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.setInfo";
 			Json = @"{ 'response': 1 }";
 			Assert.That(Api.Account.SetInfo("intro", "10"), Is.True);
 		}
@@ -673,7 +673,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetProfileInfo_WhenServerReturnAllFields()
 		{
-			Url = "https://api.vk.com/method/account.getProfileInfo?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getProfileInfo";
 			Json = @"{
 				response: {
 					first_name: 'Максим',
@@ -718,7 +718,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetProfileInfo_WhenServerReturnSomeFields()
 		{
-			Url = "https://api.vk.com/method/account.getProfileInfo?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.getProfileInfo";
 			Json = @"{
 				'response': {
 					first_name: 'Анна',
@@ -769,13 +769,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SaveProfileInfo_ResultWasParsedCorrectly_AndEmptyParametersIsProcessedCorrectly()
 		{
-			Url = "https://api.vk.com/method/account.saveProfileInfo?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			Json = @"{ 'response': { changed: 0 } }";
 			ChangeNameRequest request;
 			Assert.That(Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams()), Is.False);    //Second overload
 			Assert.That(request, Is.Null);
 
-			Url = "https://api.vk.com/method/account.saveProfileInfo?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			Json = @"{
 				'response':{
 					changed: 1,
@@ -820,7 +820,7 @@ namespace VkNet.Tests.Categories
 		[Test, Ignore("Падает на Linux")] // TODO Падает на Linux
 		public void SaveProfileInfo_DateIsParsedCorrectly()
 		{
-			Url = "https://api.vk.com/method/account.saveProfileInfo?bdate=15.11.1984&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			Json = @"{ 'response': { changed: 1 } }";
 
 			ChangeNameRequest request;
@@ -829,7 +829,7 @@ namespace VkNet.Tests.Categories
 				BirthDate = new DateTime(1984, 11, 15).ToShortDateString()
 			}),
 			Is.True);
-			Url = "https://api.vk.com/method/account.saveProfileInfo?bdate=08.09.2014&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
 			{
 				BirthDate = new DateTime(2014, 9, 8).ToShortDateString()
@@ -849,7 +849,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SaveProfileInfo_CancelChangeNameRequest_UrlIsGeneratedCorrectly()
 		{
-			Url = "https://api.vk.com/method/account.saveProfileInfo?cancel_request_id=42&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			Json = @"{ 'response': { changed: 1 } }";
 			Assert.That(Api.Account.SaveProfileInfo(42), Is.True);
 		}

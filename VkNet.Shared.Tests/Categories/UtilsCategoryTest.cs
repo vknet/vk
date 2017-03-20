@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void CheckLink_BannedLink()
 		{
-			const string url = "https://api.vk.com/method/utils.checkLink?url=http://www.kreml.ru/&v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/utils.checkLink";
             const string json =
 				@"{
                     'response': {
@@ -41,7 +41,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void CheckLink_NotLink()
 		{
-			const string url = "https://api.vk.com/method/utils.checkLink?url=hsfasfsf&v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/utils.checkLink";
 			const string json =
 				@"{
                     'response': {
@@ -58,7 +58,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void CheckLink_GoogleLink()
 		{
-			const string url = "https://api.vk.com/method/utils.checkLink?url=https://www.google.ru/&v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/utils.checkLink";
 			const string json =
 				@"{
                     'response': {
@@ -82,7 +82,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetServerTime_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/utils.getServerTime?v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/utils.getServerTime";
 			const string json =
 				@"{
                     'response': 1391153956
@@ -98,7 +98,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ResolveScreenName_BadScreenName()
 		{
-			const string url = "https://api.vk.com/method/utils.resolveScreenName?screen_name=3f625aef-b285-4006-a87f-0367a04f1138&v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/utils.resolveScreenName";
 			const string json =
 				@"{
                     'response': []
@@ -114,7 +114,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ResolveScreenName_User()
 		{
-			const string url = "https://api.vk.com/method/utils.resolveScreenName?screen_name=azhidkov&v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/utils.resolveScreenName";
 			const string json =
 				@"{
                     'response': {
@@ -136,7 +136,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ResolveScreenName_ObjectIdIsVeryBig_User()
 		{
-			const string url = "https://api.vk.com/method/utils.resolveScreenName?screen_name=azhidkov&v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/utils.resolveScreenName";
 			const string json =
 				@"{
                     'response': {
@@ -158,7 +158,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ResolveScreenName_Group()
 		{
-			const string url = "https://api.vk.com/method/utils.resolveScreenName?screen_name=mdk&v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/utils.resolveScreenName";
 			const string json =
 				@"{
                     'response': {

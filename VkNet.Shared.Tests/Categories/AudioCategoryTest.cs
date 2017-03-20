@@ -26,7 +26,7 @@
 		[Test]
 		public void GetCount_UserHasNoAudio_ReturnsZero()
 		{
-			Url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getCount";
 			Json =
 				@"{
                     response: 0
@@ -40,7 +40,7 @@
 		[Test]
 		public void GetCount_UserHasAudio_ReturnsCountOfRecords()
 		{
-			Url = "https://api.vk.com/method/audio.getCount?owner_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getCount";
 			Json =
 				@"{
                     response: 158
@@ -54,7 +54,7 @@
 		[Test]
 		public void GetCount_GroupHasAudio_ReturnsCountOfRecords()
 		{
-			Url = "https://api.vk.com/method/audio.getCount?owner_id=-1158263&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getCount";
 			Json =
 				@"{
                     response: 4
@@ -80,7 +80,7 @@
 		[Test]
 		public void GetLyrics_2662381_ReturnsLyrics()
 		{
-			Url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=2662381&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getLyrics";
 			Json =
 				@"{
                     response: {
@@ -98,7 +98,7 @@
 		[Test]
 		public void GetLyrics_WrongLyricsId_ReturnsEmptyLyrics()
 		{
-			Url = "https://api.vk.com/method/audio.getLyrics?lyrics_id=-1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getLyrics";
 			Json =
 				@"{
                     response: {
@@ -137,7 +137,7 @@
 		[Test]
 		public void GetById_WrongId_ReturnsEmptyList()
 		{
-			Url = "https://api.vk.com/method/audio.getById?audios=2e4w_67859ds194&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getById";
 			Json =
 				@"{
                     response: []
@@ -150,7 +150,7 @@
 		[Test]
 		public void GetById_NormalCase_ListOfAudioObjects()
 		{
-			Url = "https://api.vk.com/method/audio.getById?audios=4793858_158073513,2_63937759&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getById";
 			Json =
 				@"{
                     response: [
@@ -215,7 +215,7 @@
 		[Test]
 		public void GetUploadServer_NormalCase_ReturnUploadUrl()
 		{
-			Url = "https://api.vk.com/method/audio.getUploadServer?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getUploadServer";
 			Json =
 				@"{
                     'response': {
@@ -231,7 +231,7 @@
         [Test]
         public void uriConvertJsonResponseTrue()
         {
-            Url = "https://api.vk.com/method/audio.getUploadServer?v=" + VkApi.VkApiVersion + "&access_token=token";
+            Url = "https://api.vk.com/method/audio.getUploadServer";
             Json = @"{
                     'response': {
                       'upload_url': 'false'
@@ -254,7 +254,7 @@
 		[Test]
 		public void Get_NormalCaseDefaultValues_ListOfAudioObjects()
 		{
-			Url = "https://api.vk.com/method/audio.get?owner_id=4793858&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.get";
 			Json =
 				@"{
                     'response': [
@@ -301,7 +301,7 @@
 		[Test]
 		public void GetFromGroup_NormalCase_ReturnListOfAudio()
 		{
-			Url = "https://api.vk.com/method/audio.get?owner_id=28622822&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.get";
 			Json =
 				@"{
                     'response': [
@@ -344,7 +344,7 @@
 		[Test]
 		public void Get_WithOutUserAndAllFields_ReturnListOfAudio()
 		{
-			Url = "https://api.vk.com/method/audio.get?owner_id=4793858&need_user=1&offset=5&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.get";
 
 			Json =
 				@"{
@@ -438,7 +438,7 @@
 		[Test]
 		public void Search_NotExistedQuery_EmptyList()
 		{
-			Url = "https://api.vk.com/method/audio.search?q=ThisQueryDoesNotExistAtAll&count=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.search";
 			Json =
 				@"{
                     response: {
@@ -458,7 +458,7 @@
 		public void Search_NormalCaseAllFields_ListOfAudios()
 		{
 			Url =
-				"https://api.vk.com/method/audio.search?q=иуфедуы&auto_complete=1&sort=1&lyrics=1&count=3&offset=5&v=" + VkApi.VkApiVersion + "&access_token=token";
+				"https://api.vk.com/method/audio.search";
 			Json =
 				@"{
                     'response': {
@@ -541,7 +541,7 @@
 		[Test]
 		public void Add_InvalidInputParam_ThrowsInvalidParameterException()
 		{
-			Url = "https://api.vk.com/method/audio.add?audio_id=0&owner_id=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.add";
 			Json =
 				@"{
                     'error': {
@@ -578,7 +578,7 @@
 		[Test]
 		public void Add_AddToCuurentUser_AudioId()
 		{
-			Url = "https://api.vk.com/method/audio.add?audio_id=141104180&owner_id=2289065&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.add";
 			Json =
 				@"{
                     'response': 159200195
@@ -591,7 +591,7 @@
 		[Test]
 		public void Add_AddToGroup_AudioId()
 		{
-			Url = "https://api.vk.com/method/audio.add?audio_id=141104180&owner_id=2289065&group_id=1158263&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.add";
 			Json =
 				@"{
                     'response': 160532304
@@ -612,7 +612,7 @@
 		[Test]
 		public void Delete_NoramCaseUser_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/audio.delete?audio_id=159203048&owner_id=4793858&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.delete";
 			Json =
 				@"{
                     'response': 1
@@ -626,7 +626,7 @@
 		[Test]
 		public void Delete_NoramCaseGroup_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/audio.delete?audio_id=160532304&owner_id=-1158263&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.delete";
 			Json =
 				@"{
                     'response': 1
@@ -640,7 +640,7 @@
 		[Test]
 		public void Delete_WrongInputParams_ThrowsInvalidParameterException()
 		{
-			Url = "https://api.vk.com/method/audio.delete?audio_id=0&owner_id=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.delete";
 			Json =
 				@"{
                     'error': {
@@ -712,7 +712,7 @@
 		[Test]
 		public void Edit_NoramCase_ReturnLyricsId()
 		{
-			Url = "https://api.vk.com/method/audio.edit?owner_id=4793858&audio_id=159207130&artist=Test Artist&title=Test Title&text=Test Text&genre_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.edit";
 			Json =
 				@"{
                     'response': 26350163
@@ -726,7 +726,7 @@
 		[Test]
 		public void Edit_WrongInputParams_ThrowsInvalidParameterException()
 		{
-			Url = "https://api.vk.com/method/audio.edit?owner_id=0&audio_id=0&artist=Test Artist&title=Test Title&text=Test Text&genre_id=18&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.edit";
 			Json =
 				@"{
                     'error': {
@@ -787,7 +787,7 @@
 		[Test]
 		public void Restore_InvalidInputParams_ThrowsInvalidParameterException()
 		{
-			Url = "https://api.vk.com/method/audio.restore?audio_id=0&owner_id=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.restore";
 			Json =
 				@"{
                     'error': {
@@ -824,7 +824,7 @@
 		[Test]
 		public void Restore_NoramCase_ReturnAudioObject()
 		{
-			Url = "https://api.vk.com/method/audio.restore?audio_id=159209928&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.restore";
 			Json =
 				@"{
                     'response': {
@@ -853,7 +853,7 @@
 		[Test]
 		public void Restore_AudioNotDeletedYet_Throw()
 		{
-			Url = "https://api.vk.com/method/audio.restore?audio_id=159210112&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.restore";
 			Json =
 				@"{
                     'error': {
@@ -895,7 +895,7 @@
 		[Test]
 		public void Reorder_InvalidInputParams_ThrowsInvalidParameterException()
 		{
-			Url = "https://api.vk.com/method/audio.reorder?audio_id=0&owner_id=0&before=159104443&after=158945986&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.reorder";
 
 			Json =
 				@"{
@@ -941,7 +941,7 @@
 		[Test]
 		public void Reorder_NormalCase_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/audio.reorder?audio_id=159210112&owner_id=4793858&before=159104443&after=158945986&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.reorder";
 			Json =
 				@"{
                     'response': 1
@@ -954,7 +954,7 @@
 		[Test]
 		public void AddAlbum_ToUser_NormalCase()
 		{
-			Url = "https://api.vk.com/method/audio.addAlbum?title=тестовый альбом&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.addAlbum";
 			Json =
 				  @"{
                     'response': {
@@ -970,7 +970,7 @@
 		[Test]
 		public void AddAlbum_ToGroup_NormalCase()
 		{
-			Url = "https://api.vk.com/method/audio.addAlbum?group_id=65968887&title=Test audio category&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.addAlbum";
 			Json =
 			@"{
                     'response': {
@@ -1003,7 +1003,7 @@
 		[Test]
 		public void EditAlbum_EditUserAlbum_NormalCase()
 		{
-			Url = "https://api.vk.com/method/audio.editAlbum?title=еще один альбом&album_id=45284866&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.editAlbum";
 			Json =
 			@"{
                     'response': 1
@@ -1017,7 +1017,7 @@
 		[Test]
 		public void EditAlbum_EditGroupAlbum_NormalCase()
 		{
-			Url = "https://api.vk.com/method/audio.editAlbum?title=audio category 222&group_id=65968885&album_id=45302272&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.editAlbum";
 			Json =
 			@"{
                     'response': 1
@@ -1049,7 +1049,7 @@
 		[Test]
 		public void DeleteAlbum_FromUser_NormalCase()
 		{
-			Url = "https://api.vk.com/method/audio.deleteAlbum?album_id=45282792&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.deleteAlbum";
 			Json =
 				@"{
                     'response': 1
@@ -1063,7 +1063,7 @@
 		[Test]
 		public void DeleteAlbum_FromGroup_NormalCase()
 		{
-			Url = "https://api.vk.com/method/audio.deleteAlbum?group_id=65968885&album_id=45302272&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.deleteAlbum";
 			Json =
 			@"{
                     'response': 1
@@ -1077,7 +1077,7 @@
 		[Test]
 		public void GetPopular_GetOnly3RapRecords()
 		{
-			Url = "https://api.vk.com/method/audio.getPopular?only_eng=0&genre_id=3&offset=2&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getPopular";
 			Json =
 				@"{
                     'response': [
@@ -1147,7 +1147,7 @@
 		[Test]
 		public void GetAlbums_FromUser_NormalCase()
 		{
-			Url = "https://api.vk.com/method/audio.getAlbums?owner_id=23465118&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getAlbums";
 			Json =
 				@"{
                     'response': {
@@ -1181,7 +1181,7 @@
 		[Test]
 		public void MoveToAlbum_ToUserAlbum()
 		{
-			Url = "https://api.vk.com/method/audio.moveToAlbum?album_id=45303161&audio_ids=258542771,258542571&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.moveToAlbum";
 			Json =
 			   @"{
                     'response': 1
@@ -1195,7 +1195,7 @@
 		[Test]
 		public void GetRecommendations_TargetAudio_NormalCase()
 		{
-			Url = "https://api.vk.com/method/audio.getRecommendations?target_audio=2314852_190922480&count=2&shuffle=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getRecommendations";
 			Json =
 			@"{
                     'response': [
@@ -1244,7 +1244,7 @@
 		[Test]
 		public void SetBroadcast_NormalCase()
 		{
-			Url = "https://api.vk.com/method/audio.setBroadcast?audio=210002_66529476&target_ids=234695118,-65968880&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.setBroadcast";
 			Json =
 			@"{
                     'response': [
@@ -1265,7 +1265,7 @@
 		[Test]
 		public void GetBroadcastList()
 		{
-			Url = "https://api.vk.com/method/audio.getBroadcastList?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getBroadcastList";
 			Json = @"{
 				response: [{
 					type: 'profile',
@@ -1308,7 +1308,7 @@
 		[Test]
 		public void GetBroadcastList_FilterGroups()
 		{
-			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=groups&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getBroadcastList";
 			Json = @"{
 				response: [{
 					id: 103292418,
@@ -1344,7 +1344,7 @@
 		[Test]
 		public void GetBroadcastList_FilterFriends()
 		{
-			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=friends&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getBroadcastList";
 			Json = @"{
 				response: [{
 					type: 'profile',
@@ -1373,7 +1373,7 @@
 		[Test]
 		public void GetBroadcastList_FilterFriends_AllParams()
 		{
-			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=friends&active=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getBroadcastList";
 			Json = @"{
 				response: [{
 					type: 'profile',
@@ -1402,7 +1402,7 @@
 		[Test]
 		public void GetBroadcastList_FilterGroups_AllParams()
 		{
-			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=groups&active=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getBroadcastList";
 			Json = @"{
 				response: [{
 					id: 103292418,
@@ -1438,7 +1438,7 @@
 		[Test]
 		public void GetBroadcastList_FilterGroups_Empty()
 		{
-			Url = "https://api.vk.com/method/audio.getBroadcastList?filter=groups&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/audio.getBroadcastList";
 			Json = @"{
 				response: []
 			}";

@@ -20,7 +20,7 @@ namespace VkNet.Tests
 			var parameters = new VkParameters();
 			parameters.Add<int>("country_ids", arr);
 
-			const string expected = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&access_token=token";
+			const string expected = "https://api.vk.com/method/database.getCountriesById";
 
 			var url = Api.GetApiUrlAndAddToken("database.getCountriesById", parameters);
 
@@ -116,7 +116,7 @@ namespace VkNet.Tests
 		[Test]
 		public void Invoke_VkParams()
 		{
-		    Url = "https://api.vk.com/method/example.get?count=23";
+		    Url = "https://api.vk.com/method/example.get";
             Json = @"{ 'response' : [] }";
             var parameters = new VkParameters { { "count", 23 } };
 			var json = Api.Invoke("example.get", parameters, true);
@@ -127,7 +127,7 @@ namespace VkNet.Tests
 		[Test]
 		public void Invoke_DictionaryParams()
 		{
-			Url = "https://api.vk.com/method/example.get?count=23";
+			Url = "https://api.vk.com/method/example.get";
 			Json = @"{ 'response' : [] }";
 			var parameters = new Dictionary<string, string> { { "count", "23" } };
 			var json = Api.Invoke("example.get", parameters, true);

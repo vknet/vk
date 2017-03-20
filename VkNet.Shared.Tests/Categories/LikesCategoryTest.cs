@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void IsLiked_NormalCase()
         {
-            const string url = "https://api.vk.com/method/likes.isLiked?type=post&item_id=701&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/likes.isLiked";
             const string json =
                 @"{
 					response: {
@@ -39,7 +39,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Delete_NormalCase()
         {
-            const string url = "https://api.vk.com/method/likes.delete?type=post&item_id=701&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/likes.delete";
             const string json =
                 @"{
 					response: {
@@ -54,7 +54,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Add_NormalCase()
         {
-            const string url = "https://api.vk.com/method/likes.add?type=post&item_id=701&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/likes.add";
             const string json =
                 @"{
 					response: {
@@ -69,7 +69,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetList_NormalCase()
         {
-            const string url = "https://api.vk.com/method/likes.getList?item_id=701&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/likes.getList";
             const string json =
                 @"{
 					response: {
@@ -88,7 +88,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetListEx_NormalCase()
         {
-            const string url = "https://api.vk.com/method/likes.getList?item_id=701&extended=1&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/likes.getList";
             const string json =
                 @"{
 					response: {

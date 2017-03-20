@@ -54,7 +54,7 @@ namespace VkNet.Tests.Categories
 		public void Get_DefaultFields_ReturnBasicInfo()
 		{
 			const string url =
-			    "https://api.vk.com/method/wall.get?owner_id=1&count=3&offset=5&filter=owner&access_token=token";
+			    "https://api.vk.com/method/wall.get";
 			const string json = @"{
                     'response': [
                       137,
@@ -293,7 +293,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 		{
-			const string url = "https://api.vk.com/method/wall.get?owner_id=10&offset=1&count=1&filter=owner&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get";
             const string json =
 			    @"{
                     'response': {
@@ -525,7 +525,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_ReturnWallRecords()
 		{
-			const string url = "https://api.vk.com/method/wall.getById?posts=1_619,1_617,1_616&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.getById";
             const string json =
 				@"{
                     response: [{
@@ -619,7 +619,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Post_UrlIsGeneratedCorrectly()
 		{
-			const string url = "https://api.vk.com/method/wall.post?owner_id=10&friends_only=1&from_group=1&message=message&attachments=audio10_20&services=twitter&signed=1&publish_date=1388620800&lat=45&long=135&place_id=100&post_id=500&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.post";
 			const string json =
                 @"{
                     'response': {
@@ -655,7 +655,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Repost_UrlIsGeneratedCorrectly()
 		{
-			const string url = "https://api.vk.com/method/wall.repost?object=id&message=example&group_id=50&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.repost";
 			const string json =
                 @"{
                     'response': {
@@ -677,7 +677,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Repost_ReturnCorrectResults()
 		{
-			const string url = "https://api.vk.com/method/wall.repost?object=id&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.repost";
 			const string json =
                 @"{
                     'response': {
@@ -734,7 +734,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Edit_UrlIsGeneratedCorrectly()
 		{
-			const string url = "https://api.vk.com/method/wall.edit?owner_id=20&post_id=10&friends_only=1&message=message&attachments=audio10_20&services=twitter&signed=1&publish_date=1388620800&lat=45&long=135&place_id=100&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.edit";
 			const string json =	@"{	 'response': 1 }";
 
 			var result = GetMockedWallCategory(url, json).Edit(10, 20, true, "message", new[] { new Audio { Id = 20, OwnerId = 10 } }, "link",
@@ -757,7 +757,7 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_WithPoll_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=-103292418&offset=0&count=1&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get";
             const string json =
 				@"{
 					response: {
@@ -821,7 +821,7 @@ namespace VkNet.Tests.Categories
         [Test]
 	    public void Get_Document_NormalCase()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=26033241&offset=2&count=1&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get";
             const string json =
                 @"{
                     'response': {
@@ -896,7 +896,7 @@ namespace VkNet.Tests.Categories
         [Test, Ignore("undone")]
 	    public void Get_Geo_NormalCase()
 	    {
-            const string url = "https://api.vk.com/method/wall.get?owner_id=1563369&count=2&offset=3&filter=all&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/wall.get";
             const string json =
                 @"{
                     'response': {
@@ -1019,7 +1019,7 @@ namespace VkNet.Tests.Categories
 	    [Test]
 	    public void Get_With_PhotoListAttachment()
 	    {
-			const string url = "https://api.vk.com/method/wall.get?owner_id=46476924&offset=213&count=1&filter=owner&extended=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/wall.get";
             const string json =
                 @"{
                     'response': {

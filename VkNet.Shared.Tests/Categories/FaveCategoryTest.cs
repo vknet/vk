@@ -25,7 +25,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetUsers_OneItem()
 		{
-			const string url = "https://api.vk.com/method/fave.getUsers?count=3&offset=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getUsers";
 			const string json =
 			@"{
 					'response': {
@@ -55,7 +55,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetPhotos_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/fave.getPhotos?count=3&offset=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getPhotos";
 			const string json =
 			@"{
 					'response': {
@@ -129,7 +129,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetPhotos_ExtendedCase()
 		{
-			const string url = "https://api.vk.com/method/fave.getPhotos?count=3&offset=1&photo_sizes=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getPhotos";
             const string json =
 			@"{
 				response: {
@@ -207,7 +207,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetVideos_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/fave.getVideos?count=3&offset=1&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getVideos";
 			const string json =
 			@"{
 					'response': {
@@ -248,7 +248,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetPosts_NotExtended()
 		{
-			const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getPosts";
 			const string json =
 			@"{
 					response: {
@@ -372,7 +372,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetPosts_Extended()
 		{
-			const string url = "https://api.vk.com/method/fave.getPosts?count=3&offset=1&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getPosts";
 			const string json =
 			@"{
 					response: {
@@ -520,7 +520,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLinks_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/fave.getLinks?count=1&offset=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/fave.getLinks";
 			const string json = @"
 			{
 				response: {
@@ -557,7 +557,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMarketItems_WithoutParams()
 		{
-			Url = "https://api.vk.com/method/fave.getMarketItems?v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/fave.getMarketItems";
 			Json = @"{
 				response: {
 					count: 1,
@@ -598,7 +598,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMarketItems_count()
 		{
-			Url = "https://api.vk.com/method/fave.getMarketItems?count=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/fave.getMarketItems";
 			Json = @"{
 				response: {
 					count: 1,
@@ -639,7 +639,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMarketItems_countAndOffset()
 		{
-			Url = "https://api.vk.com/method/fave.getMarketItems?count=1&offset=0&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/fave.getMarketItems";
 			Json = @"{
 				response: {
 					count: 1,
@@ -680,7 +680,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetMarketItems_AllParams()
 		{
-			Url = "https://api.vk.com/method/fave.getMarketItems?count=1&offset=0&extended=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/fave.getMarketItems";
 			Json = @"{
 				response: {
 					count: 1,

@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetProfileUploadServer_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer?v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer";
             const string json =
                 @"{
                     'response': {
@@ -43,7 +43,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetMessagesUploadServer_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getMessagesUploadServer?v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getMessagesUploadServer";
 			const string json =
                 @"{
                     'response': {
@@ -67,7 +67,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void CreateAlbum_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.createAlbum?title=hello world&description=description for album&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.createAlbum";
 			const string json =
 				@"{
                     'response': {
@@ -110,7 +110,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void EditAlbum_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.editAlbum?album_id=19726&title=new album title&description=new description&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.editAlbum";
 			const string json =
                 @"{
                     'response': 1
@@ -132,7 +132,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAlbums_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getAlbums?owner_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAlbums";
 			const string json =
                 @"{
                     'response': {
@@ -174,7 +174,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetAlbums_PrivacyCase()
 		{
-			const string url = "https://api.vk.com/method/photos.getAlbums?album_ids=110637109&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAlbums";
 			const string json =
 				@"{
                     response: {
@@ -227,7 +227,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void GetAlbumsCount_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getAlbumsCount?user_id=1&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAlbumsCount";
             const string json =
                 @"{
                     'response': 1
@@ -244,7 +244,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void DeleteAlbum_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.deleteAlbum?album_id=197303&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.deleteAlbum";
 			const string json =
                 @"{
                     'response': 1
@@ -260,7 +260,7 @@ namespace VkNet.Tests.Categories
         [Test, Ignore("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
         public void GetProfile_NormalCase()
         {
-            const string url = "https://api.vk.com/method/photos.getProfile?owner_id=1&rev=1&extended=1&count=2&offset=3&v=" + VkApi.VkApiVersion + "&access_token=token";
+            const string url = "https://api.vk.com/method/photos.getProfile";
             const string json =
                 @"{
                     'response': {
@@ -336,7 +336,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetAll_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.getAll?owner_id=1&offset=4&count=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.getAll";
 			const string json =
 				@"{
                     'response': {
@@ -404,7 +404,7 @@ namespace VkNet.Tests.Categories
 		[Test]
         public void Search_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.search?q=порно&offset=2&count=3&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.search";
             const string json =
                 @"{
                     'response': {
@@ -485,7 +485,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void Search_Error26_Lat_and_Long_in_output_photo()
         {
-			const string url = "https://api.vk.com/method/photos.search?lat=30&long=30&count=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.search";
             const string json =
                 @"{
                     'response': {
@@ -554,7 +554,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void SaveWallPhoto_NormalCase()
         {
-			const string url = "https://api.vk.com/method/photos.saveWallPhoto?user_id=1234&group_id=123&photo=[]&server=631223&hash=163abf8b9e4e4513577012d5275cafbb&v=" + VkApi.VkApiVersion + "&access_token=token";
+			const string url = "https://api.vk.com/method/photos.saveWallPhoto";
 			const string json = @"{
     'response': [
         {

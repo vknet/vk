@@ -20,7 +20,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetStreetsById_EmptyList()
         {
-            const string url = "https://api.vk.com/method/database.getStreetsById?v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getStreetsById";
             const string json =
                 @"{
                     'error': {
@@ -52,7 +52,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetUniversities_FindVstu()
         {
-            const string url = "https://api.vk.com/method/database.getUniversities?q=ВолгГТУ&country_id=1&city_id=10&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getUniversities";
             const string json =
                 @"{
                     'response': {
@@ -76,7 +76,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetUniversities_ListOfUniversities()
         {
-            const string url = "https://api.vk.com/method/database.getUniversities?q=ThisUniverDoesNotExist&country_id=1&city_id=1&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getUniversities";
             const string json =
 				@"{
                     response: {
@@ -95,7 +95,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetStreetsById_1_89_437()
         {
-            const string url = "https://api.vk.com/method/database.getStreetsById?street_ids=1,89,437&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getStreetsById";
             const string json =
                 @"{
                     'response': [
@@ -147,7 +147,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCitiesById_EmptyList()
         {
-            const string url = "https://api.vk.com/method/database.getCitiesById?v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getCitiesById";
             const string json =
                 @"{
                     'response': []
@@ -163,7 +163,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCitiesById_MskSpbVlg()
         {
-            const string url = "https://api.vk.com/method/database.getCitiesById?city_ids=1,2,10&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getCitiesById";
             const string json =
                 @"{
                     'response': [
@@ -201,7 +201,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCities_GetBiggestCitiesOfRussia()
         {
-            const string url = "https://api.vk.com/method/database.getCities?country_id=1&count=3&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getCities";
             const string json =
                 @"{
                     'response': [
@@ -257,7 +257,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCities_NormalCase()
         {
-            const string url = "https://api.vk.com/method/database.getCities?country_id=1&region_id=1004118&offset=1&count=2&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getCities";
             const string json =
                 @"{
                     'response': [
@@ -317,7 +317,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetRegions_NormalCase_ListOfRegions()
         {
-            const string url = "https://api.vk.com/method/database.getRegions?country_id=1&offset=5&count=3&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getRegions";
             const string json =
                 @"{'response':{'count':83,'items':[{'id':1004118,'title':'Астраханская область'},{'id':1004565,'title':'Башкортостан'},{'id':1009404,'title':'Белгородская область'}]}}";
 
@@ -354,7 +354,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCountries_ListOfCodes_ListOfCountries()
         {
-			const string url = "https://api.vk.com/method/database.getCountries?code=RU,DE&v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/database.getCountries";
 			const string json =
                 @"{
                     'response': [
@@ -406,7 +406,7 @@ namespace VkNet.Tests.Categories
                     ]
                   }";
 
-			const string url = "https://api.vk.com/method/database.getCountries?offset=5&count=3&need_all=1&v=" + VkApi.VkApiVersion ;
+			const string url = "https://api.vk.com/method/database.getCountries";
 			var db = GetMockedDatabaseCategory(url, json);
 
              var countries = db.GetCountries(true, null, 3, 5);
@@ -426,7 +426,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCountriesById_EmptyList()
         {
-            const string url = "https://api.vk.com/method/database.getCountriesById?v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getCountriesById";
             const string json =
                 @"{
                     'response': []
@@ -443,7 +443,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetCountriesById_1And65_RussiaAndGermany()
         {
-            const string url = "https://api.vk.com/method/database.getCountriesById?country_ids=1,65&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getCountriesById";
             const string json =
                 @"{
                     'response': [
@@ -474,7 +474,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetSchools_BadQuery_EmptyList()
         {
-            const string url = "https://api.vk.com/method/database.getSchools?q=SchoolDoesNotExist&city_id=10&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getSchools";
             const string json =
 				@"{
                     response: {
@@ -493,7 +493,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetSchools_LiceumsInVolgograd_ListOfLiceums()
         {
-            const string url = "https://api.vk.com/method/database.getSchools?city_id=10&count=3&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getSchools";
             const string json =
                 @"{'response':{'count':343,'items':[{'id':51946,'title':'Астраханское речное училище (ВФ АРУ)'},{'id':207063,'title':'Библейская школа «Весть»'},{'id':224706,'title':'Библейский колледж «Новая жизнь»'}]}}";
 
@@ -517,7 +517,7 @@ namespace VkNet.Tests.Categories
         [Ignore("undone")]
         public void GetFaculties_SuchUniversityDoesNotExist()
         {
-            //            const string url = "https://api.vk.com/method/database.getFaculties?university_id=999999&v=" + VkApi.VkApiVersion ;
+            //            const string url = "https://api.vk.com/method/database.getFaculties";
             //            var db = _db;
             //
             //            List<Faculty> faculties = db.GetFaculties(999999);
@@ -528,7 +528,7 @@ namespace VkNet.Tests.Categories
         [Test]
         public void GetFaculties_ListVstuFaculties()
         {
-            const string url = "https://api.vk.com/method/database.getFaculties?university_id=431&offset=2&count=3&v=" + VkApi.VkApiVersion ;
+            const string url = "https://api.vk.com/method/database.getFaculties";
             const string json =
                 @"{
                     'response': {

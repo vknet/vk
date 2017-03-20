@@ -73,6 +73,21 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		}
 
 		[Test]
+        public void AppTypeTest()
+        {
+			// get test
+			Assert.That(AppType.App.ToString(), Is.EqualTo("app"));
+			Assert.That(AppType.Game.ToString(), Is.EqualTo("game"));
+			Assert.That(AppType.Site.ToString(), Is.EqualTo("site"));
+			Assert.That(AppType.Standalone.ToString(), Is.EqualTo("standalone"));
+			// parse test
+			Assert.That(AppType.FromJson("app"), Is.EqualTo(AppType.App));
+			Assert.That(AppType.FromJson("game"), Is.EqualTo(AppType.Game));
+			Assert.That(AppType.FromJson("site"), Is.EqualTo(AppType.Site));
+			Assert.That(AppType.FromJson("standalone"), Is.EqualTo(AppType.Standalone));
+		}
+
+		[Test]
         public void ChangeNameStatusTest()
         {
 			// get test
