@@ -74,8 +74,8 @@ namespace VkNet
 		/// </summary>
 		public float RequestsPerSecond
 		{
-		    get => _requestsPerSecond;
-		    set
+			get { return _requestsPerSecond; }
+			set
 			{
 			    if (value < 0)
                 {
@@ -671,15 +671,15 @@ namespace VkNet
 			var url = "";
 			var answer = "";
 
-		    void SendRequest()
-		    {
-		        url = GetApiUrlAndAddToken(methodName, parameters, skipAuthorization);
-		        LastInvokeTime = DateTimeOffset.Now;
-		        answer = Browser.GetJson(url, parameters);
-		    }
+			Action sendRequest = delegate
+			{
+				url = GetApiUrlAndAddToken(methodName, parameters, skipAuthorization);
+				LastInvokeTime = DateTimeOffset.Now;
+				answer = Browser.GetJson(url, parameters);
+			};
 
-		    // Защита от превышения количества запросов в секунду
-            if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
+			// Защита от превышения количества запросов в секунду
+			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
                 if (_expireTimer == null)
                 {
@@ -697,11 +697,11 @@ namespace VkNet
                         Thread.Sleep(timeout);
 #endif
                     }
-					SendRequest();
+					sendRequest();
 				}
             } else if (skipAuthorization)
             {
-                SendRequest();
+				sendRequest();
             }
 
 #if DEBUG && !UNIT_TEST
