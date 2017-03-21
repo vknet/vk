@@ -367,6 +367,7 @@
     <Compile Include="Model\RequestParams\Polls\PollsGetByIdParams.cs" />
     <Compile Include="Model\RequestParams\Users\UserSearchParams.cs" />
     <Compile Include="Model\RequestParams\Users\UsersGetNearbyParams.cs" />
+    <Compile Include="Model\RequestParams\Utils\UtilsGetShortLinkParams.cs" />
     <Compile Include="Model\RequestParams\Video\VideoCreateCommentParams.cs" />
     <Compile Include="Model\RequestParams\Video\VideoEditParams.cs" />
     <Compile Include="Model\RequestParams\Video\VideoGetCommentsParams.cs" />
@@ -383,6 +384,7 @@
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\SchoolClass.cs" />
     <Compile Include="Model\SearchDialogsResponse.cs" />
+    <Compile Include="Model\ShortLink.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\StatsPeriod.cs" />
     <Compile Include="Model\StatStruct.cs" />
