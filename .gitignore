@@ -8,7 +8,8 @@ obj/
 .nuget/
 Debug/
 Release/
+.idea/
 
 /GCopLog.txt
-VkNet/Utils/*Generator*.cs
-/VkNet*/Utils/ModelToVkParametrsCastGenerator*.cs
+/VkNet*/Utils/*Generator*.cs
+.vs/*

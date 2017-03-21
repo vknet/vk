@@ -383,6 +383,7 @@
     <Compile Include="Model\School.cs" />
     <Compile Include="Model\SchoolClass.cs" />
     <Compile Include="Model\SearchDialogsResponse.cs" />
+    <Compile Include="Model\ShortLink.cs" />
     <Compile Include="Model\StandInLife.cs" />
     <Compile Include="Model\StatsPeriod.cs" />
     <Compile Include="Model\StatStruct.cs" />

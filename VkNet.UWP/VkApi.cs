@@ -4,8 +4,6 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using VkNet.Categories;
@@ -76,8 +74,8 @@ namespace VkNet
 		/// </summary>
 		public float RequestsPerSecond
 		{
-		    get { return _requestsPerSecond; }
-			set
+		    get => _requestsPerSecond;
+		    set
 			{
 			    if (value < 0)
                 {
@@ -672,14 +670,15 @@ namespace VkNet
 
 			var url = "";
 			var answer = "";
-            Action sendRequest = delegate
-            {
-                url = GetApiUrlAndAddToken(methodName, parameters, skipAuthorization);
-                LastInvokeTime = DateTimeOffset.Now;
-                answer = Browser.GetJson(url, parameters);
-            };
 
-            // Защита от превышения количества запросов в секунду
+		    void SendRequest()
+		    {
+		        url = GetApiUrlAndAddToken(methodName, parameters, skipAuthorization);
+		        LastInvokeTime = DateTimeOffset.Now;
+		        answer = Browser.GetJson(url, parameters);
+		    }
+
+		    // Защита от превышения количества запросов в секунду
             if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
             {
                 if (_expireTimer == null)
@@ -698,11 +697,11 @@ namespace VkNet
                         Thread.Sleep(timeout);
 #endif
                     }
-					sendRequest();
+					SendRequest();
 				}
             } else if (skipAuthorization)
             {
-                sendRequest();
+                SendRequest();
             }
 
 #if DEBUG && !UNIT_TEST

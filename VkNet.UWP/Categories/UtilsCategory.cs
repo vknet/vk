@@ -27,7 +27,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
-        [Pure]        public LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true)
+        [Pure]
+        public LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true)
         {
             return CheckLink(new Uri(url), skipAuthorization);
         }
@@ -40,7 +41,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
-        [Pure]        public LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true)
+        [Pure]
+        public LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true)
         {
             var parameters = new VkParameters { { "url", url } };
 
@@ -55,7 +57,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.resolveScreenName"/>.
         /// </remarks>
-        [Pure]        public VkObject ResolveScreenName([NotNull] string screenName)
+        [Pure]
+        public VkObject ResolveScreenName([NotNull] string screenName)
         {
             VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
@@ -71,9 +74,25 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.getServerTime"/>.
         /// </remarks>
-        [Pure]        public DateTime GetServerTime()
+        [Pure]
+        public DateTime GetServerTime()
         {
             return _vk.Call("utils.getServerTime", VkParameters.Empty, true);
+        }
+
+        /// <summary>
+        /// Позволяет получить URL, сокращенный с помощью vk.cc.
+        /// </summary>
+        /// <returns>URL, сокращенный с помощью vk.cc</returns>
+        public ShortLink GetShortLink(Uri url, bool isPrivate)
+        {
+            var parameters = new VkParameters
+            {
+                { "url", url },
+                { "private", isPrivate }
+            };
+
+            return _vk.Call("utils.getShortLink", parameters);
         }
     }
 }
