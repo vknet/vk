@@ -6,6 +6,7 @@ namespace VkNet.Categories
     using JetBrains.Annotations;
     using Model;
     using Utils;
+    using VkNet.Model.RequestParams;
 
     /// <summary>
     /// Служебные методы.
@@ -27,7 +28,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
-        [Pure]        public LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true)
+        [Pure]
+        public LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true)
         {
             return CheckLink(new Uri(url), skipAuthorization);
         }
@@ -40,7 +42,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
         /// </remarks>
-        [Pure]        public LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true)
+        [Pure]
+        public LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true)
         {
             var parameters = new VkParameters { { "url", url } };
 
@@ -55,7 +58,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.resolveScreenName"/>.
         /// </remarks>
-        [Pure]        public VkObject ResolveScreenName([NotNull] string screenName)
+        [Pure]
+        public VkObject ResolveScreenName([NotNull] string screenName)
         {
             VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
@@ -71,9 +75,24 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.getServerTime"/>.
         /// </remarks>
-        [Pure]        public DateTime GetServerTime()
+        [Pure]
+        public DateTime GetServerTime()
         {
             return _vk.Call("utils.getServerTime", VkParameters.Empty, true);
+        }
+
+        /// <summary>
+        /// Позволяет получить URL, сокращенный с помощью vk.cc.
+        /// </summary>
+        /// <param name="params">Параметры</param>
+        /// <returns>URL, сокращенный с помощью vk.cc</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.getShortLink"/>.
+        /// </remarks>
+        [Pure]
+        public ShortLink GetShortLink(UtilsGetShortLinkParams @params)
+        {
+            return _vk.Call("utils.getShortLink", @params, false);
         }
     }
 }

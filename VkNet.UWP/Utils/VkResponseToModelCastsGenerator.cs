@@ -2624,6 +2624,30 @@ namespace VkNet.Utils
         }
 
 		/// <summary>
+        /// Преобразовать из <see cref="VkResponse"/> в <see cref="ShortLink"/>.
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+		public static implicit operator ShortLink(VkResponse response)
+		{
+            return response?._token == null || !response._token.HasValues ? null :  ShortLink.FromJson(response);
+        }
+
+		/// <summary>
+        /// Преобразовать из <see cref="VkResponse"/> в <see cref="Collection{ShortLink}"/>.
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+		public static implicit operator Collection<ShortLink>(VkResponse response)
+        {
+            return response.ToCollectionOf<ShortLink>(a => a);
+        }
+
+		/// <summary>
         /// Преобразовать из <see cref="VkResponse"/> в <see cref="StandInLife"/>.
         /// </summary>
         /// <param name="response">Ответ.</param>

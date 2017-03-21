@@ -1056,6 +1056,9 @@
     <Compile Include="..\VkNet.UWP\Model\RequestParams\Users\UsersGetNearbyParams.cs">
       <Link>Model\RequestParams\Users\UsersGetNearbyParams.cs</Link>
     </Compile>
+	<Compile Include="..\VkNet.UWP\Model\RequestParams\Utils\UtilsGetShortLinkParams.cs">
+      <Link>Model\RequestParams\Utils\UtilsGetShortLinkParams.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\RequestParams\Video\VideoCreateCommentParams.cs">
       <Link>Model\RequestParams\Video\VideoCreateCommentParams.cs</Link>
     </Compile>
@@ -1103,6 +1106,9 @@
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\SearchDialogsResponse.cs">
       <Link>Model\SearchDialogsResponse.cs</Link>
+    </Compile>
+	<Compile Include="..\VkNet.UWP\Model\ShortLink.cs">
+      <Link>Model\ShortLink.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\StandInLife.cs">
       <Link>Model\StandInLife.cs</Link>
