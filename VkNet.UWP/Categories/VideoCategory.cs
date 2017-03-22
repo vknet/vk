@@ -16,7 +16,7 @@
 	{
 		private readonly VkApi _vk;
 
-	    public VideoCategory(VkApi vk)
+		public VideoCategory(VkApi vk)
 		{
 			_vk = vk;
 		}
@@ -44,7 +44,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.get" />.
-		/// </remarks>		public VkCollection<Video> Get(VideoGetParams @params)
+		/// </remarks>
+		public VkCollection<Video> Get(VideoGetParams @params)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.AlbumId);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
@@ -62,7 +63,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.edit" />.
-		/// </remarks>		public bool Edit(VideoEditParams @params)
+		/// </remarks>
+		public bool Edit(VideoEditParams @params)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.VideoId);
 
@@ -81,7 +83,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.add" />.
-		/// </remarks>		public long Add(long videoId, long ownerId, long? targetId = null)
+		/// </remarks>
+		public long Add(long videoId, long ownerId, long? targetId = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
@@ -104,7 +107,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.save" />.
-		/// </remarks>		public Video Save(VideoSaveParams @params)
+		/// </remarks>
+		public Video Save(VideoSaveParams @params)
 		{
 			return _vk.Call("video.save", @params);
 		}
@@ -121,7 +125,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.delete" />.
-		/// </remarks>		public bool Delete(long videoId, long? ownerId = null, long? targetId = null)
+		/// </remarks>
+		public bool Delete(long videoId, long? ownerId = null, long? targetId = null)
 		{
 			var parameters = new VkParameters {
 				{ "video_id", videoId },
@@ -142,7 +147,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.restore" />.
-		/// </remarks>		public bool Restore(long videoId, long? ownerId = null)
+		/// </remarks>
+		public bool Restore(long videoId, long? ownerId = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
@@ -164,7 +170,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.search" />.
-		/// </remarks>		public VkCollection<Video> Search(VideoSearchParams @params)
+		/// </remarks>
+		public VkCollection<Video> Search(VideoSearchParams @params)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => @params.Query);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
@@ -185,7 +192,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getUserVideos" />.
-		/// </remarks>		public VkCollection<Video> GetUserVideos(long? userId, long? offset, long? count, bool? extended)
+		/// </remarks>
+		public VkCollection<Video> GetUserVideos(long? userId, long? offset, long? count, bool? extended)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -218,7 +226,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbums" />.
-		/// </remarks>		public VkCollection<VideoAlbum> GetAlbums(long? ownerId = null, long? offset = null, long? count = null, bool? extended = null, bool? needSystem = null)
+		/// </remarks>
+		public VkCollection<VideoAlbum> GetAlbums(long? ownerId = null, long? offset = null, long? count = null, bool? extended = null, bool? needSystem = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -246,7 +255,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.addAlbum" />.
-		/// </remarks>		public long AddAlbum(string title, long? groupId = null, IEnumerable<Privacy> privacy = null)
+		/// </remarks>
+		public long AddAlbum(string title, long? groupId = null, IEnumerable<Privacy> privacy = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -275,7 +285,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.editAlbum" />.
-		/// </remarks>		public bool EditAlbum(long albumId, string title, long? groupId = null, Privacy privacy = null)
+		/// </remarks>
+		public bool EditAlbum(long albumId, string title, long? groupId = null, Privacy privacy = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 			VkErrors.ThrowIfNumberIsNegative(() => albumId);
@@ -301,7 +312,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.deleteAlbum" />.
-		/// </remarks>		public bool DeleteAlbum(long albumId, long? groupId = null)
+		/// </remarks>
+		public bool DeleteAlbum(long albumId, long? groupId = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => albumId);
 
@@ -333,7 +345,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getComments" />.
-		/// </remarks>		public VkCollection<Comment> GetComments(VideoGetCommentsParams @params)
+		/// </remarks>
+		public VkCollection<Comment> GetComments(VideoGetCommentsParams @params)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.VideoId);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
@@ -351,7 +364,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.createComment" />.
-		/// </remarks>		public long CreateComment(VideoCreateCommentParams @params)
+		/// </remarks>
+		public long CreateComment(VideoCreateCommentParams @params)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => @params.Message);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.VideoId);
@@ -369,7 +383,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.deleteComment" />.
-		/// </remarks>		public bool DeleteComment(long commentId, long? ownerId)
+		/// </remarks>
+		public bool DeleteComment(long commentId, long? ownerId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
@@ -392,7 +407,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.restoreComment" />.
-		/// </remarks>		public bool RestoreComment(long commentId, long? ownerId)
+		/// </remarks>
+		public bool RestoreComment(long commentId, long? ownerId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
@@ -429,7 +445,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.editComment" />.
-		/// </remarks>		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
+		/// </remarks>
+		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => message);
 			VkErrors.ThrowIfNumberIsNegative(() => commentId);
@@ -461,7 +478,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getTags" />.
-		/// </remarks>		public ReadOnlyCollection<Tag> GetTags(long videoId, long? ownerId)
+		/// </remarks>
+		public ReadOnlyCollection<Tag> GetTags(long videoId, long? ownerId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
@@ -488,7 +506,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.putTag" />.
-		/// </remarks>		public long PutTag(long videoId, long userId, long? ownerId, string taggedName)
+		/// </remarks>
+		public long PutTag(long videoId, long userId, long? ownerId, string taggedName)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -515,7 +534,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.removeTag" />.
-		/// </remarks>		public bool RemoveTag(long tagId, long videoId, long? ownerId)
+		/// </remarks>
+		public bool RemoveTag(long tagId, long videoId, long? ownerId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => tagId);
 			VkErrors.ThrowIfNumberIsNegative(() => videoId);
@@ -544,7 +564,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getNewTags" />.
-		/// </remarks>		public VkCollection<Video> GetNewTags(int? count = null, int? offset = null)
+		/// </remarks>
+		public VkCollection<Video> GetNewTags(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -578,7 +599,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.report" />.
-		/// </remarks>		public bool Report(long videoId, ReportReason reason, long? ownerId, string comment = null, string searchQuery = null)
+		/// </remarks>
+		public bool Report(long videoId, ReportReason reason, long? ownerId, string comment = null, string searchQuery = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => videoId);
 
@@ -612,7 +634,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.reportComment" />.
-		/// </remarks>		public bool ReportComment(long commentId, long ownerId, ReportReason reason)
+		/// </remarks>
+		public bool ReportComment(long commentId, long ownerId, ReportReason reason)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => commentId);
 
@@ -644,7 +667,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbumById" />.
-		/// </remarks>		public Video GetAlbumById(long albumId, long? ownerId = null)
+		/// </remarks>
+		public Video GetAlbumById(long albumId, long? ownerId = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -666,7 +690,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.reorderAlbums" />.
-		/// </remarks>		public bool ReorderAlbums(long albumId, long? ownerId, long? before, long? after)
+		/// </remarks>
+		public bool ReorderAlbums(long albumId, long? ownerId, long? before, long? after)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -687,7 +712,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.reorderVideos" />.
-		/// </remarks>		public bool ReorderVideos(VideoReorderVideosParams @params)
+		/// </remarks>
+		public bool ReorderVideos(VideoReorderVideosParams @params)
 		{
 			return _vk.Call("video.reorderVideos", @params);
 		}
@@ -707,7 +733,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.addToAlbum" />.
-		/// </remarks>		public bool AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null)
+		/// </remarks>
+		public bool AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null)
 		{
 			var parameters = new VkParameters {
 				{ "target_id", targetId },
@@ -733,7 +760,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.removeFromAlbum" />.
-		/// </remarks>		public bool RemoveFromAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null)
+		/// </remarks>
+		public bool RemoveFromAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null)
 		{
 			var parameters = new VkParameters {
 				{ "target_id", targetId },
@@ -760,7 +788,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbumsByVideo" />.
-		/// </remarks>		public bool GetAlbumsByVideo(long? targetId, long ownerId, long videoId, bool? extended)
+		/// </remarks>
+		public bool GetAlbumsByVideo(long? targetId, long ownerId, long videoId, bool? extended)
 		{
 			var parameters = new VkParameters {
 				{ "target_id", targetId },
@@ -826,7 +855,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getCatalog" />.
-		/// </remarks>		public ReadOnlyCollection<VideoCatalog> GetCatalog(long? count, long? itemsCount, string from, bool? extended)
+		/// </remarks>
+		public ReadOnlyCollection<VideoCatalog> GetCatalog(long? count, long? itemsCount, string from, bool? extended)
 		{
 			var parameters = new VkParameters {
 				{ "count", count },
@@ -881,7 +911,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getCatalogSection" />.
-		/// </remarks>		public ReadOnlyCollection<VideoCatalogItem> GetCatalogSection(string sectionId, string from, long? count = null, bool? extended = null)
+		/// </remarks>
+		public ReadOnlyCollection<VideoCatalogItem> GetCatalogSection(string sectionId, string from, long? count = null, bool? extended = null)
 		{
 			var parameters = new VkParameters {
 				{ "section_id", sectionId },
@@ -902,7 +933,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.hideCatalogSection" />.
-		/// </remarks>		public bool HideCatalogSection(long sectionId)
+		/// </remarks>
+		public bool HideCatalogSection(long sectionId)
 		{
 			var parameters = new VkParameters {
 				{ "section_id", sectionId }

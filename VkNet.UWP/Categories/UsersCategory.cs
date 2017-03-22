@@ -34,7 +34,8 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search" />.
 		/// </remarks>
-		[Pure]		public VkCollection<User> Search(UserSearchParams @params)
+		[Pure]
+		public VkCollection<User> Search(UserSearchParams @params)
 		{
 			return _vk.Call("users.search", @params, false).ToVkCollectionOf<User>(r => r);
 		}
@@ -49,7 +50,8 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.isAppUser" />.
 		/// </remarks>
-		[Pure]		public bool IsAppUser(long? userId)
+		[Pure]
+		public bool IsAppUser(long? userId)
 		{
 			var parameters = new VkParameters {
 				{ "user_id", userId }
@@ -69,7 +71,8 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
 		/// </remarks>
-		[Pure]		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
+		[Pure]
+		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			var users = Get(new[] { userId }, fields, nameCase, skipAuthorization);
@@ -87,7 +90,8 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
-		[Pure]		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
+		[Pure]
+		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			if (userIds == null)
 			{
@@ -117,7 +121,8 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
 		/// </remarks>
-		[Pure, NotNull, ContractAnnotation("screenNames:null => halt")]		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
+		[Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
+		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			if (screenNames == null)
 			{
@@ -145,7 +150,8 @@
 		/// <returns>Объект <see cref="User"/> с запрошенной информацией о пользователе.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
-		/// </remarks>		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
+		/// </remarks>
+		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
@@ -167,7 +173,8 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions" />.
 		/// </remarks>
-		[Pure]		public VkCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null, bool skipAuthorization = false)
+		[Pure]
+		public VkCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -198,7 +205,8 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getFollowers"/>.
 		/// </remarks>
-		[Pure]		public VkCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
+		[Pure]
+		public VkCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -225,7 +233,8 @@
 		/// <returns>В случае успешной жалобы метод вернет true.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.report"/>.
-		/// </remarks>		public bool Report(long userId, ReportType type, string comment = "")
+		/// </remarks>
+		public bool Report(long userId, ReportType type, string comment = "")
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 
@@ -248,7 +257,8 @@
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getNearby" />.
-		/// </remarks>		public VkCollection<User> GetNearby(UsersGetNearbyParams @params)
+		/// </remarks>
+		public VkCollection<User> GetNearby(UsersGetNearbyParams @params)
 		{
 			return _vk.Call("users.getNearby", @params).ToVkCollectionOf<User>(x => x);
 		}

@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.SafetyEnums;
+﻿using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -22,6 +23,7 @@ namespace VkNet.Model.RequestParams
 			Count = null;
 			Sort = null;
 			Extended = null;
+			Fields = null;
 		}
 
 		/// <summary>
@@ -65,6 +67,11 @@ namespace VkNet.Model.RequestParams
 		public bool? Extended { get; set; }
 
 		/// <summary>
+		/// Дополнительные поля для пользователя
+		/// </summary>
+		public ProfileFields Fields { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
@@ -80,7 +87,8 @@ namespace VkNet.Model.RequestParams
 				{ "offset", p.Offset },
 				{ "count", p.Count },
 				{ "sort", p.Sort },
-				{ "extended", p.Extended }
+				{ "extended", p.Extended },
+				{ "fields", p.Fields }
 			};
 
 			return parameters;
