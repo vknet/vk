@@ -1,125 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using VkNet.Enums.SafetyEnums;
+using JetBrains.Annotations;
 using VkNet.Utils;
 
 namespace VkNet.Enums.Filters
 {
-	/// <summary>
-	/// Фильтр, хранящий несколько значений и представляющий их в виде набора строковых представлений каждого возможного значения фильтра.
-	/// Аналог enum с атрибутом [Flags].
-	/// </summary>
-	/// <typeparam name="TFilter">Непосредственно наследник</typeparam>
-	public class MultivaluedFilter <TFilter> where TFilter : MultivaluedFilter<TFilter>, new()
-	{
-		/// <summary>
-		/// Аналог enum, типобезопасен.
-		/// </summary>
-		protected MultivaluedFilter()
-		{
-			_mask = 0;
-		}
+    /// <summary>
+    /// Фильтр, хранящий несколько значений и представляющий их в виде набора строковых представлений каждого возможного значения фильтра.
+    /// Аналог enum с атрибутом [Flags].
+    /// </summary>
+    /// <typeparam name="TFilter">Непосредственно наследник</typeparam>
+    public class MultivaluedFilter<TFilter> where TFilter : MultivaluedFilter<TFilter>, new()
+    {
+        /// <summary>
+        /// Аналог enum, типобезопасен.
+        /// </summary>
+        protected MultivaluedFilter()
+        {
 
-		/// <summary>
-		/// Возможные значения
-		/// </summary>
-		private static readonly Dictionary<ulong, string> PossibleValues = new Dictionary<ulong, string>();
+        }
 
-		private static readonly IList<string> SelectedValues = new List<string>();
-		/// <summary>
-		/// Маска.
-		/// </summary>
-		private ulong _mask;
+        /// <summary>
+        /// Выбранные элементы
+        /// </summary>
+        protected internal List<string> Selected { get; private set; } = new List<string>();
 
-		/// <summary>
-		/// Создать из маски.
-		/// </summary>
-		/// <param name="mask">Маска.</param>
-		/// <returns></returns>
-		/// <exception cref="System.ArgumentException">mask</exception>
-		protected static TFilter CreateFromMask(ulong mask)
-		{
-			//Если в маске находятся незарегистрированные в словаре биты
-			if (PossibleValues.Select(pair => pair.Key)
-				.Where(key => (mask & key) != 0)
-				.DefaultIfEmpty((ulong)0)
-				.Aggregate(mask, (current, @ulong) => current - @ulong)
-				!= 0)
-				throw new ArgumentException(string.Format("Mask contains value(s) that not defined for type {0} (mask except known values: {1:x8})", typeof(TFilter).FullName, PossibleValues.Select(pair => pair.Key).Where(key => (mask & key) != 0).Aggregate(mask, (current, @ulong) => current - @ulong)), "mask");
-
-			return new TFilter { _mask = mask };
-		}
-
-		/// <summary>
-		/// Маска.
-		/// </summary>
-		protected ulong Mask => _mask;
-
-		protected string Value => PossibleValues[Mask];
-
-		/// <summary>
-		/// Регистрирует возможное значение.
-		/// </summary>
-		/// <param name="mask">Маска.</param>
-		/// <param name="value">Значение.</param>
-		/// <returns></returns>
-		/// <exception cref="System.ArgumentException">Mask must be a power of 2 (i.e. only one bit must be equal to 1);mask</exception>
-		protected static TFilter RegisterPossibleValue(ulong mask, string value)
-		{
-			if (mask == 0 || (mask & (mask - 1)) != 0)
-			{
-				throw new ArgumentException("Mask must be a power of 2 (i.e. only one bit must be equal to 1)", "mask");
-			}
-
-			if (PossibleValues.ContainsValue(value))
-			{
-				var result = PossibleValues.FirstOrDefault(o => o.Value == value);
-				return new TFilter { _mask = result.Key };
-			}
-
-			PossibleValues.Add(mask, value);
-
-			return CreateFromMask(mask);
-		}
-
-		/// <summary>
-		/// Регистрирует возможное значение.
-		/// </summary>
-		/// <param name="value">Значение.</param>
-		/// <returns></returns>
-		/// <exception cref="System.ArgumentException">Mask must be a power of 2 (i.e. only one bit must be equal to 1);mask</exception>
-		protected static TFilter RegisterPossibleValue(string value)
-		{
-			var mask = PossibleValues.Select(pair => pair.Key).DefaultIfEmpty().Max();
-			mask = (mask == 0) ? 1 : (mask *2);
-
-			if (mask == 0 || (mask & (mask - 1)) != 0)
-			{
-				throw new ArgumentException("Mask must be a power of 2 (i.e. only one bit must be equal to 1)", "mask");
-			}
-
-			if (PossibleValues.ContainsValue(value))
-			{
-				var result = PossibleValues.FirstOrDefault(o => o.Value == value);
-				return new TFilter { _mask = result.Key };
-			}
-
-			PossibleValues.Add(mask, value);
-
-			return CreateFromMask(mask);
-		}
-
-		/// <summary>
-		/// Преобразовать в строку.
-		/// </summary>
-		public override string ToString()
-		{
-			//return string.Join(",", PossibleValues);
-			return string.Join(",", PossibleValues.Where(pair => (pair.Key & _mask) != 0).Select(pair => pair.Value).ToArray());
-		}
-
-		/// <summary>
+        /// <summary>
 		/// Реализация оператора ==.
 		/// </summary>
 		/// <param name="left">Левая часть.</param>
@@ -127,16 +33,19 @@ namespace VkNet.Enums.Filters
 		/// <returns>
 		/// Результат.
 		/// </returns>
-		public static bool operator ==(MultivaluedFilter<TFilter> left, MultivaluedFilter<TFilter> right)
-		{
-			if (ReferenceEquals(right, left)) { return true; }
-			if (ReferenceEquals(null, left)) { return false; }
-			if (ReferenceEquals(null, right)) { return false; }
+        public static bool operator ==([NotNull] MultivaluedFilter<TFilter> left, [NotNull] MultivaluedFilter<TFilter> right)
+        {
+            if (ReferenceEquals(right, left))
+            { return true; }
+            if (ReferenceEquals(null, left))
+            { return false; }
+            if (ReferenceEquals(null, right))
+            { return false; }
 
-			return left._mask == right._mask;
-		}
+            return left.Selected.SequenceEqual(right.Selected);
+        }
 
-		/// <summary>
+        /// <summary>
 		/// Реализация оператора !=.
 		/// </summary>
 		/// <param name="left">Левая часть.</param>
@@ -144,91 +53,116 @@ namespace VkNet.Enums.Filters
 		/// <returns>
 		/// Результат.
 		/// </returns>
-		public static bool operator !=(MultivaluedFilter<TFilter> left, MultivaluedFilter<TFilter> right)
-		{
-			return !(left == right);
-		}
 
-		/// <summary>
-		/// Сравнение с другим перечислением.
-		/// </summary>
-		/// <param name="other">Другое перечисление.</param>
-		/// <returns></returns>
-		protected bool Equals(MultivaluedFilter<TFilter> other)
-		{
-			return _mask == other._mask;
-		}
+        public static bool operator !=(MultivaluedFilter<TFilter> left, MultivaluedFilter<TFilter> right)
+        {
+            return !(left == right);
+        }
 
-		/// <summary>
-		/// Сравнение с другим перечислением.
-		/// </summary>
-		/// <param name="obj">Другое перечисление.</param>
-		/// <returns></returns>
-		public override bool Equals(object obj)
-		{
-			if (ReferenceEquals(null, obj)) { return false; }
-			if (ReferenceEquals(this, obj)) { return true; }
-			if (obj.GetType() != GetType()) { return false; }
-			return Equals((MultivaluedFilter<TFilter>)obj);
-		}
+        /// <summary>
+        /// Регистрирует возможное значение.
+        /// </summary>
+        /// <param name="mask">Маска.</param>
+        /// <param name="value">Значение.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">Mask must be left power of 2 (i.e. only one bit must be equal to 1);mask</exception>
+        protected static TFilter RegisterPossibleValue(ulong mask, string value)
+        {
+            return FromJson(value);
+        }
 
-		/// <summary>
-		/// Возвращает хэш-код для этого экземпляра.
-		/// </summary>
-		/// <returns>
-		/// Хэш-код для этого экземпляра, подходит для использования в алгоритмах хэширования и структуры данных, как хэш-таблицы.
-		/// </returns>
-		public override int GetHashCode()
-		{
-			return _mask.GetHashCode();
-		}
+        /// <summary>
+        /// Регистрирует возможное значение.
+        /// </summary>
+        /// <param name="value">Значение.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">Mask must be left power of 2 (i.e. only one bit must be equal to 1);mask</exception>
+        protected static TFilter RegisterPossibleValue(string value)
+        {
+            return FromJson(value);
+        }
 
-		/// <summary>
-		/// Объединяет наборы фильтров
-		/// </summary>
-		/// <param name="left">Первый набор фильтров</param>
-		/// <param name="right">Второй набор фильтров</param>
-		/// <returns>Объединенный набор фильтров</returns>
-		public static TFilter operator |(MultivaluedFilter<TFilter> left, MultivaluedFilter<TFilter> right)
-		{
-			return CreateFromMask(left.Mask | right.Mask);
-		}
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
+        public static TFilter FromJson(VkResponse response)
+        {
+            var value = response.ToString();
+            return FromJson(value);
+        }
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
-		public new static TFilter FromJson(VkResponse response)
-		{
-			var value = response.ToString();
-			return FromJson(value);
-		}
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="val">Ответ сервера.</param>
+        /// <returns></returns>
+        public static TFilter FromJson(string val)
+        {
+            var vals = val.Split(',').Select(x => x.Trim());
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
-		public new static TFilter FromJson(string response)
-		{
-			var result = new TFilter();
-			var items = response.Split(new []{ ',' }, StringSplitOptions.RemoveEmptyEntries);
-			var isFirst = true;
-			foreach (var item in items)
-			{
-				if (isFirst)
-				{
-					result = CreateFromMask(RegisterPossibleValue(item).Mask);
-					isFirst = false;
-				}
-				else
-				{
-					result = result | CreateFromMask(RegisterPossibleValue(item).Mask);
-				}
-			}
+            var result = new TFilter();
 
-			return result;
-		}
-	}
+            result.Selected.AddRange(vals.OrderBy(x => x));
+
+            return result;
+        }
+
+        /// <summary>
+        /// Преобразовать в строку.
+        /// </summary>
+        public override string ToString()
+        {
+            return string.Join(",", Selected.ToArray());
+        }
+
+        /// <summary>
+        /// Объединяет наборы фильтров
+        /// </summary>
+        /// <param name="a">Первый набор фильтров</param>
+        /// <param name="b">Второй набор фильтров</param>
+        /// <returns>Объединенный набор фильтров</returns>
+        public static TFilter operator |(MultivaluedFilter<TFilter> a, MultivaluedFilter<TFilter> b)
+        {
+            return new TFilter { Selected = a.Selected.Union(b.Selected).OrderBy(x => x).ToList() };
+        }
+
+        /// <summary>
+        /// Сравнить с элементом
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        protected bool Equals(MultivaluedFilter<TFilter> other)
+        {
+            return this == other;
+        }
+
+        /// <summary>
+        /// Сравнить с элементом
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            //if (ReferenceEquals(null, obj))
+            //{
+            //    return false;
+            //}
+            //if (ReferenceEquals(this, obj))
+            //{
+            //    return true;
+            //}
+            return obj.GetType() == GetType() && Equals((MultivaluedFilter<TFilter>)obj);
+        }
+
+        /// <summary>
+        /// Полушить Хеш код
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return Selected?.GetHashCode() ?? 0;
+        }
+    }
 }

@@ -13,3 +13,4 @@ Release/
 /GCopLog.txt
 /VkNet*/Utils/*Generator*.cs
 .vs/*
+/VkNet.UWP/*.lock.json

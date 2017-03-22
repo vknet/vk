@@ -63,7 +63,7 @@ namespace VkNet.Tests
 
 			Assert.That(output, Is.Not.Null.Or.Empty);
 
-			const string expected = "https://api.vk.com/method/getProfiles?uid=66748&access_token=token";
+			const string expected = "https://api.vk.com/method/getProfiles";
 
 			Assert.That(output, Is.EqualTo(expected));
 		}
@@ -78,7 +78,7 @@ namespace VkNet.Tests
 
 			var output = Api.GetApiUrlAndAddToken("getProfiles", Parameters);
 
-			const string expected = "https://api.vk.com/method/getProfiles?uid=66748&fields=first_name,domain,education&access_token=token";
+			const string expected = "https://api.vk.com/method/getProfiles";
 
 			Assert.That(output, Is.EqualTo(expected));
 		}

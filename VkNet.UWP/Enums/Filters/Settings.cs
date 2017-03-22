@@ -7,11 +7,6 @@
     public sealed class Settings : MultivaluedFilter<Settings>
     {
         /// <summary>
-        /// Объединенные права доступа.
-        /// </summary>
-        public new ulong Value => Mask;
-
-        /// <summary>
         /// Пользователь разрешил отправлять ему уведомления.
         /// </summary>
         public static readonly Settings Notify = RegisterPossibleValue(1 << 0, "notify");
