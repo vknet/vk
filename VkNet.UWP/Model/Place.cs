@@ -25,12 +25,12 @@ namespace VkNet.Model
         /// <summary>
         /// Географическая широта, заданная в градусах (от -90 до 90).
         /// </summary>
-        public int? Latitude { get; set; }
+        public double? Latitude { get; set; }
 
         /// <summary>
         /// Географическая долгота, заданная в градусах (от -90 до 90).
         /// </summary>
-        public int? Longitude { get; set; }
+        public double? Longitude { get; set; }
 
         /// <summary>
         /// Идентификатор типа места, информацию о котором можно получить с помощью метода <see cref="DatabaseCategory.GetPlaceTypes"/> (пока не реализовано).
@@ -83,8 +83,8 @@ namespace VkNet.Model
 			{
 				Id = response["place_id"] ?? response["id"],
 				Title = response["title"],
-				Latitude = (int?)(double?)response["latitude"],       // TODO: refactor this shit
-				Longitude = (int?)(double?)response["longitude"],     // TODO: refactor this shit
+				Latitude = response["latitude"],
+				Longitude = response["longitude"],
 				TypeId = response["type"],
 				CountryId = response["country_id"],
 				CityId = response["city_id"],
