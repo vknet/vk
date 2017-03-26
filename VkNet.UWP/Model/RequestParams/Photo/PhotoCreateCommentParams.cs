@@ -30,7 +30,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Список объектов, приложенных к комментарию и разделённых символом ",". Параметр является обязательным, если не задан параметр message.
 		/// </summary>
-		public IEnumerable<Attachment> Attachments
+		public IEnumerable<MediaAttachment> Attachments
 		{ get; set; }
 
 		/// <summary>
