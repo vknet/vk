@@ -3,17 +3,15 @@ using System.Linq;
 using System.Text;
 using AngleSharp.Dom.Html;
 using AngleSharp.Parser.Html;
+using System;
+using VkNet.Exception;
 
 namespace VkNet.Utils
 {
-    using System;
-
-    using Exception;
-
-    /// <summary>
-    /// WEB форма
-    /// </summary>
-    public sealed class WebForm //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'WebForm' class containing IDisposable members does not itself implement IDisposable. Inspect: _html. //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'WebForm' class containing IDisposable members does not itself implement IDisposable. Inspect: _html. //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'WebForm' class containing IDisposable members does not itself implement IDisposable. Inspect: _html.
+	/// <summary>
+	/// WEB форма
+	/// </summary>
+	public sealed class WebForm : IDisposable
 	{
 		/// <summary>
 		/// HTML документ
@@ -52,12 +50,12 @@ namespace VkNet.Utils
 			Cookies = result.Cookies;
 			OriginalUrl = result.RequestUrl.OriginalString;
 
-            var parser = new HtmlParser();
-            _html = parser.Parse(result.Response);
+			var parser = new HtmlParser();
+			_html = parser.Parse(result.Response);
 
-		    var uri = result.ResponseUrl;
+			var uri = result.ResponseUrl;
 
-            _responseBaseUrl = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
+			_responseBaseUrl = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
 
 			_inputs = ParseInputs();
 		}
@@ -69,18 +67,18 @@ namespace VkNet.Utils
 		/// <returns>WEB форма.</returns>
 		public static WebForm From(WebCallResult result) => new WebForm(result);
 
-        /// <summary>
-        /// И.
-        /// </summary>
-        /// <returns>WEB форма.</returns>
-        public WebForm And() => this;
+		/// <summary>
+		/// И.
+		/// </summary>
+		/// <returns>WEB форма.</returns>
+		public WebForm And() => this;
 
-        /// <summary>
-        /// С полем.
-        /// </summary>
-        /// <param name="name">Наименование поля.</param>
-        /// <returns>WEB форма.</returns>
-        public WebForm WithField(string name)
+		/// <summary>
+		/// С полем.
+		/// </summary>
+		/// <param name="name">Наименование поля.</param>
+		/// <returns>WEB форма.</returns>
+		public WebForm WithField(string name)
 		{
 			_lastName = name;
 
@@ -141,29 +139,29 @@ namespace VkNet.Utils
 		/// </summary>
 		public string OriginalUrl { get; }
 
-        /// <summary>
-        /// Получить запрос.
-        /// </summary>
-        /// <returns>Массив байт</returns>
-        public byte[] GetRequest() => Encoding.UTF8.GetBytes(GetRequestAsStringArray().JoinNonEmpty("&"));
+		/// <summary>
+		/// Получить запрос.
+		/// </summary>
+		/// <returns>Массив байт</returns>
+		public byte[] GetRequest() => Encoding.UTF8.GetBytes(GetRequestAsStringArray().JoinNonEmpty("&"));
 
-	    /// <summary>
+		/// <summary>
 		/// Получить запрос.
 		/// </summary>
 		/// <returns>Массив байт</returns>
 		public IEnumerable<string> GetRequestAsStringArray() => _inputs.Select(x => $"{x.Key}={x.Value}");
 
-	    /// <summary>
-        /// Разобрать поля ввода.
-        /// </summary>
-        /// <returns>Коллекция полей ввода</returns>
-        private Dictionary<string, string> ParseInputs()
+		/// <summary>
+		/// Разобрать поля ввода.
+		/// </summary>
+		/// <returns>Коллекция полей ввода</returns>
+		private Dictionary<string, string> ParseInputs()
 		{
 			var inputs = new Dictionary<string, string>();
 
 			var form = GetFormNode();
 			foreach (var node in form.GetElementsByTagName("input"))
-            {
+			{
 				var nameAttribute = node.Attributes["name"];
 				var valueAttribute = node.Attributes["value"];
 
@@ -188,14 +186,22 @@ namespace VkNet.Utils
 		/// <exception cref="VkApiException">Элемент не найден на форме.</exception>
 		private IHtmlFormElement GetFormNode()
 		{
-		    var form = _html.Forms.FirstOrDefault();
+			var form = _html.Forms.FirstOrDefault();
 
-            if (form == null)
+			if (form == null)
 			{
 				throw new VkApiException("Form element not found.");
 			}
 
 			return form;
+		}
+
+		/// <summary>
+		/// Освободить ресурсы
+		/// </summary>
+		public void Dispose()
+		{
+			_html?.Dispose();
 		}
 	}
 }

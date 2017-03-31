@@ -406,7 +406,6 @@
     <Compile Include="Utils\AntiCaptcha\ICaptchaSolver.cs" />
     <Compile Include="Utils\Browser.cs" />
     <Compile Include="Utils\Cookies.cs" />
-    <Compile Include="Utils\DataAnnotations.cs" />
     <Compile Include="Utils\DateTimeHelper.cs" />
     <Compile Include="Utils\DefaultValueAttribute.cs" />
     <Compile Include="Utils\ErrorCode.cs" />

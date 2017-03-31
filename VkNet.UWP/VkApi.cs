@@ -79,7 +79,7 @@ namespace VkNet
 			{
 			    if (value < 0)
                 {
-                    throw new ArgumentException(@"Value must be positive", $@"RequestsPerSecond");
+                    throw new ArgumentException(@"Value must be positive", nameof(RequestsPerSecond));
                 }
                 _requestsPerSecond = value;
                 if (_requestsPerSecond > 0)

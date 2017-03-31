@@ -11,7 +11,7 @@ namespace VkNet.Model
 	/// Информация о продукте.
 	/// </summary>
 	[DataContract]
-	public class Market:IVkModel
+	public class Market
 	{
 		/// <summary>
 		/// Идентификатор
@@ -103,16 +103,6 @@ namespace VkNet.Model
 			};
 
 			return result;
-		}
-
-		/// <summary>
-		/// Преобразовать из JSON
-		/// </summary>
-		/// <param name="response">Ответ от сервера.</param>
-		/// <returns></returns>
-		IVkModel IVkModel.FromJson(VkResponse response)
-		{
-			return FromJson(response);
 		}
 	}
 }

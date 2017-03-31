@@ -8,8 +8,6 @@ using Newtonsoft.Json;
 
 namespace VkNet.Utils
 {
-    
-
 	/// <summary>
 	/// Утилиты.
 	/// </summary>
@@ -26,7 +24,7 @@ namespace VkNet.Utils
         {
 			if (!Enum.IsDefined(typeof (T), value))
 			{
-				throw new ArgumentException($"Enum value {value} not defined!", "value");
+				throw new ArgumentException($"Enum value {value} not defined!", nameof(value));
 			}
 
             return (T)(object)value;
@@ -149,10 +147,8 @@ namespace VkNet.Utils
         /// <returns></returns>
         public static string SerializeToJson(object @object)
         {
-            string result = JsonConvert.SerializeObject(@object);
-            if (result == "null")
-                return null;
-            return result;
+            var result = JsonConvert.SerializeObject(@object);
+            return result == "null" ? null : result;
         }
     }
 }
