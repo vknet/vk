@@ -13,7 +13,7 @@
 		/// <summary>
 		/// Идентификатор сообщества.
 		/// </summary>
-		public ulong UserId
+		public ulong? UserId
 		{ get; set; }
 
 		/// <summary>
@@ -25,13 +25,13 @@
 		/// <summary>
 		/// Есть ли непринятая заявка от пользователя на вступление в группу (такую заявку можно отозвать методом groups.leave).
 		/// </summary>
-		public bool Request
+		public bool? Request
 		{ get; set; }
 
 		/// <summary>
 		/// Приглашён ли пользователь в группу или встречу.
 		/// </summary>
-		public bool Invitation
+		public bool? Invitation
 		{ get; set; }
 		#endregion
 
