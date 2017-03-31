@@ -8,7 +8,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Набор Uri к картинкам с различным разрешениям.
-    /// Используется в <see cref="User"/>, <see cref="Group"/> и <see cref="Message"/>.
+    /// Используется в User
     /// </summary>
     [DataContract]
     public class Previews

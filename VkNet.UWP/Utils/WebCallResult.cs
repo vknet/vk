@@ -5,6 +5,9 @@ using System.Text;
 
 namespace VkNet.Utils
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class WebCallResult
     {
         /// <summary>
@@ -28,7 +31,7 @@ namespace VkNet.Utils
         public string Response { get; private set; }
 
         /// <summary>
-        /// Инициализация класса <see cref="WebCallResult"/>.
+        /// Инициализация класса WebCallResult
         /// </summary>
         /// <param name="url">URL.</param>
         /// <param name="cookies">Куки.</param>

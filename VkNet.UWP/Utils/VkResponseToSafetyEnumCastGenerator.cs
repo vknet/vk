@@ -6,7 +6,7 @@ namespace VkNet.Utils
 	public partial class VkResponse
 	{
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="AppFilter"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -18,7 +18,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="AppPlatforms"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -30,7 +30,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="AppRatingType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -42,7 +42,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="AppRequestType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -54,7 +54,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="AppSort"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -66,7 +66,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="AppType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -78,7 +78,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="ChangeNameStatus"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -90,7 +90,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="CommentObjectType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -102,7 +102,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="CommentsSort"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -114,7 +114,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="Deactivated"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -126,7 +126,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="Display"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -138,7 +138,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="FeedType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -150,7 +150,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="FriendsFilter"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -162,7 +162,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="FriendsOrder"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -174,7 +174,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="GroupsSort"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -186,7 +186,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="GroupType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -198,7 +198,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="LikeObjectType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -210,7 +210,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="LikesFilter"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -222,7 +222,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="LinkAccessType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -234,7 +234,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="ManagerRole"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -246,7 +246,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="MediaType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -258,7 +258,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="NameCase"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -270,7 +270,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="NewsObjectTypes"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -282,7 +282,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="NewsTypes"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -294,7 +294,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="OccupationType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -306,7 +306,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="PhotoAlbumType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -318,7 +318,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="PhotoFeedType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -330,7 +330,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="PhotoSearchRadius"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -342,7 +342,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="PhotoSizeType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -354,7 +354,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="Platform"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -366,7 +366,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="PostSourceType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -378,7 +378,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="PostType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -390,7 +390,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="PostTypeOrder"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -402,7 +402,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="Privacy"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -414,7 +414,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="RelativeType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -426,7 +426,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="ReportType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -438,7 +438,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="Services"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -450,7 +450,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="UserSection"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -462,7 +462,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="VideoCatalogItemType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -474,7 +474,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="VideoCatalogType"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>
@@ -486,7 +486,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="WallFilter"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>

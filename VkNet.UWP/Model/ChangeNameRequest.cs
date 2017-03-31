@@ -11,7 +11,7 @@ namespace VkNet.Model
     public class ChangeNameRequest
 	{
 		/// <summary>
-		/// Идентификатор заявки, необходимый для её отмены (только если <see cref="ChangeNameRequest.Status"/> равен <see cref="ChangeNameStatus.Processing"/>)
+		/// Идентификатор заявки, необходимый для её отмены (только если ChangeNameRequest.Status
 		/// </summary>
 		public int? Id { get; set; }
 

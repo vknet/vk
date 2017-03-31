@@ -23,7 +23,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список объектов документов.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.get" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.get
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте Get(int? count = null, int? offset = null, long? ownerId = null, DocFilter? filter = null)")]
 		public ReadOnlyCollection<Document> Get(out int totalCount, int? count = null, int? offset = null, long? ownerId = null, DocFilter? filter = null)

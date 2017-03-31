@@ -36,7 +36,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.get" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.get
 		/// </remarks>
 		public NewsFeed Get(NewsFeedGetParams @params)
 		{
@@ -60,7 +60,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getRecommended" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getRecommended
 		/// </remarks>
 		public NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params)
 		{
@@ -84,7 +84,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getComments" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getComments
 		/// </remarks>
 		public NewsFeed GetComments(NewsFeedGetCommentsParams @params)
 		{
@@ -112,7 +112,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getMentions" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getMentions
 		/// </remarks>
 		public VkCollection<Mention> GetMentions(long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)
 		{
@@ -136,7 +136,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getBanned" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getBanned
 		/// </remarks>
 		public NewsBannedList GetBanned()
 		{
@@ -152,7 +152,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getBanned" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getBanned
 		/// </remarks>
 		public NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null)
 		{
@@ -174,7 +174,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.addBan" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.addBan
 		/// </remarks>
 		public bool AddBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)
 		{
@@ -195,7 +195,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.deleteBan" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.deleteBan
 		/// </remarks>
 		public bool DeleteBan(IEnumerable<long> userIds, IEnumerable<long> groupIds)
 		{
@@ -217,7 +217,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.ignoreItem" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.ignoreItem
 		/// </remarks>
 		public bool IgnoreItem(NewsObjectTypes type, long ownerId, long itemId)
 		{
@@ -238,7 +238,7 @@ namespace VkNet.Categories
 		/// <param name="ownerId">Идентификатор владельца объекта (пользователь или сообщество).</param>
 		/// <param name="itemId">Идентификатор объекта. </param>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.unignoreItem" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.unignoreItem
 		/// </remarks>
 		public bool UnignoreItem(NewsObjectTypes type, long ownerId, long itemId)
 		{
@@ -259,7 +259,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.search" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.search
 		/// </remarks>
 		public ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params)
 		{
@@ -276,7 +276,7 @@ namespace VkNet.Categories
 		/// Метод возвращает список объектов пользовательских списков.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getLists" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getLists
 		/// </remarks>
 		public VkCollection<NewsUserListItem> GetLists(IEnumerable<long> listIds, bool? extended = null)
 		{
@@ -300,7 +300,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает Идентификатор списка.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.saveList" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.saveList
 		/// </remarks>
 		public long SaveList(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null)
 		{
@@ -322,7 +322,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.deleteList" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.deleteList
 		/// </remarks>
 		public bool DeleteList(long listId)
 		{
@@ -343,7 +343,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.unsubscribe" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.unsubscribe
 		/// </remarks>
 		public bool Unsubscribe(CommentObjectType type, long itemId, long? ownerId = null)
 		{
@@ -367,7 +367,7 @@ namespace VkNet.Categories
 		/// Список объектов пользователей и групп.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/newsfeed.getSuggestedSources" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getSuggestedSources
 		/// </remarks>
 		public NewsSuggestions GetSuggestedSources(long? offset = null, long? count = null, bool? shuffle = null, UsersFields fields = null)
 		{

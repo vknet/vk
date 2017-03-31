@@ -35,7 +35,7 @@ namespace VkNet.Utils
 		/// Возвращает перечислитель, выполняющий итерацию в коллекции.
 		/// </summary>
 		/// <returns>
-		/// Интерфейс <see cref="T:System.Collections.Generic.IEnumerator`1"/>, который может использоваться для перебора элементов коллекции.
+		/// Интерфейс T:System
 		/// </returns>
 		public new IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
 	}

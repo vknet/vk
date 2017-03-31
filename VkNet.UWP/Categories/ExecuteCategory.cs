@@ -34,7 +34,7 @@ namespace VkNet.Categories
 		/// При работе с методом execute структура ответа в XML ближе к JSON и может незначительно отличаться от стандартного представления других методов.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/execute" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
 		public VkResponse Execute(string code)
 		{

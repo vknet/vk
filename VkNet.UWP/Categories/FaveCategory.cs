@@ -33,8 +33,9 @@
 		/// После успешного выполнения возвращает список объектов пользователей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getUsers" />.
-		/// </remarks>		public VkCollection<User> GetUsers(int? count = null, int? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.getUsers
+		/// </remarks>
+		public VkCollection<User> GetUsers(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -59,7 +60,7 @@
 		/// После успешного выполнения возвращает список объектов фотографий.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPhotos" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPhotos
 		/// </remarks>
 		public VkCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null)
 		{
@@ -85,8 +86,9 @@
 		/// После успешного выполнения возвращает список объектов записей на стене.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts" />.
-		/// </remarks>		public VkCollection<Post> GetPosts(int? count = null, int? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPosts
+		/// </remarks>
+		public VkCollection<Post> GetPosts(int? count = null, int? offset = null)
 		{
 			var response = GetPostsEx(count, offset);
 			return new VkCollection<Post>(response.TotalCount, response.WallPosts);
@@ -101,8 +103,9 @@
 		/// После успешного выполнения возвращает список объектов записей на стене.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getPosts" />.
-		/// </remarks>		public WallGetObject GetPostsEx(int? count = null, int? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPosts
+		/// </remarks>
+		public WallGetObject GetPostsEx(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -126,8 +129,9 @@
 		/// После успешного выполнения возвращает список объектов видеозаписей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos" />.
-		/// </remarks>		public VkCollection<Video> GetVideos(int? count = null, int? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.getVideos
+		/// </remarks>
+		public VkCollection<Video> GetVideos(int? count = null, int? offset = null)
 		{
 			var response = GetVideosEx(count, offset);
 			return new VkCollection<Video>((ulong) response.Count, response.Video);
@@ -142,8 +146,9 @@
 		/// После успешного выполнения возвращает список объектов видеозаписей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getVideos" />.
-		/// </remarks>		public FaveVideoEx GetVideosEx(int? count = null, int? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.getVideos
+		/// </remarks>
+		public FaveVideoEx GetVideosEx(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -167,8 +172,9 @@
 		/// После успешного выполнения возвращает общее количество ссылок и массив объектов link, каждый из которых содержит поля id, URL, title, description, photo_50 и photo_100.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getLinks" />.
-		/// </remarks>		public VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.getLinks
+		/// </remarks>
+		public VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -190,8 +196,9 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addUser" />.
-		/// </remarks>		public bool AddUser(long userId)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.addUser
+		/// </remarks>
+		public bool AddUser(long userId)
 		{
 			var parameters = new VkParameters
 			{
@@ -208,8 +215,9 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.removeUser" />.
-		/// </remarks>		public bool RemoveUser(long userId)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeUser
+		/// </remarks>
+		public bool RemoveUser(long userId)
 		{
 			var parameters = new VkParameters
 			{
@@ -226,8 +234,9 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addGroup" />.
-		/// </remarks>		public bool AddGroup(long groupId)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.addGroup
+		/// </remarks>
+		public bool AddGroup(long groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -244,8 +253,9 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.removeGroup" />.
-		/// </remarks>		public bool RemoveGroup(long groupId)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeGroup
+		/// </remarks>
+		public bool RemoveGroup(long groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -263,8 +273,9 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.addLink" />.
-		/// </remarks>		public bool AddLink(Uri link, string text)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.addLink
+		/// </remarks>
+		public bool AddLink(Uri link, string text)
 		{
 			var parameters = new VkParameters
 			{
@@ -282,8 +293,9 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.removeLink" />.
-		/// </remarks>		public bool RemoveLink(string linkId)
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeLink
+		/// </remarks>
+		public bool RemoveLink(string linkId)
 		{
 			var parameters = new VkParameters
 			{
@@ -302,7 +314,7 @@
 		/// После успешного выполнения возвращает список объектов товаров.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/fave.getMarketItems" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/fave.getMarketItems
 		/// </remarks>
 		public VkCollection<Market> GetMarketItems(ulong? count = null, ulong? offset = null, bool? extended = null)
 		{

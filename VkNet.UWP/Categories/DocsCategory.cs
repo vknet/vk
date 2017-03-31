@@ -40,9 +40,10 @@
 		/// После успешного выполнения возвращает список объектов документов.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.get" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.get
 		/// </remarks>
-		[Pure]		public VkCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null, DocFilter? filter = null)
+		[Pure]
+		public VkCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null, DocFilter? filter = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -64,9 +65,10 @@
 		/// <param name="docs">Идентификаторы документов, информацию о которых нужно вернуть.</param>
 		/// <returns>После успешного выполнения возвращает список объектов документов.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.getById"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.getById
 		/// </remarks>
-		[Pure]		public ReadOnlyCollection<Document> GetById(IEnumerable<Document> docs)
+		[Pure]
+		public ReadOnlyCollection<Document> GetById(IEnumerable<Document> docs)
 		{
 			foreach (var doc in docs)
 			{
@@ -87,11 +89,12 @@
 		/// Возвращает адрес сервера для загрузки документов.
 		/// </summary>
 		/// <param name="groupId">Идентификатор сообщества (если необходимо загрузить документ в список документов сообщества). Если документ нужно загрузить в список пользователя, метод вызывается без дополнительных параметров. Положительное число</param>
-		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/></returns>
+		/// <returns>После успешного выполнения возвращает объект UploadServerInfo
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.getUploadServer"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.getUploadServer
 		/// </remarks>
-		[Pure]		public UploadServerInfo GetUploadServer(long? groupId = null)
+		[Pure]
+		public UploadServerInfo GetUploadServer(long? groupId = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
@@ -107,11 +110,12 @@
 		/// Возвращает адрес сервера для загрузки документов в папку Отправленные, для последующей отправки документа на стену или личным сообщением.
 		/// </summary>
 		/// <param name="groupId">Идентификатор сообщества, в которое нужно загрузить документ. Положительное число.</param>
-		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/></returns>
+		/// <returns>После успешного выполнения возвращает объект UploadServerInfo
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.getWallUploadServer"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.getWallUploadServer
 		/// </remarks>
-		[Pure]		public UploadServerInfo GetWallUploadServer(long? groupId = null)
+		[Pure]
+		public UploadServerInfo GetWallUploadServer(long? groupId = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
@@ -130,9 +134,10 @@
 		/// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
 		/// <returns>Возвращает массив с загруженными объектами. </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.save"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.save
 		/// </remarks>
-		[Pure]		public ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null, string captchaKey = null)
+		[Pure]
+		public ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null, string captchaKey = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => file);
 			VkErrors.ThrowIfNullOrEmpty(() => title);
@@ -158,9 +163,10 @@
 		/// <param name="docId">Идентификатор документа. Положительное число, обязательный параметр</param>
 		/// <returns>После успешного выполнения возвращает 1. </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.delete"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.delete
 		/// </remarks>
-		[Pure]		public bool Delete(long ownerId, long docId)
+		[Pure]
+		public bool Delete(long ownerId, long docId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
 			VkErrors.ThrowIfNumberIsNegative(() => docId);
@@ -181,9 +187,10 @@
 		/// <param name="accessKey">Ключ доступа документа. Этот параметр следует передать, если вместе с остальными данными о документе было возвращено поле access_key.</param>
 		/// <returns>После успешного выполнения возвращает идентификатор созданного документа (did).</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.add"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.add
 		/// </remarks>
-		[Pure]		public long Add(long ownerId, long docId, string accessKey = null)
+		[Pure]
+		public long Add(long ownerId, long docId, string accessKey = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
 			VkErrors.ThrowIfNumberIsNegative(() => docId);
@@ -206,8 +213,9 @@
 		/// int (числовое значение).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.getTypes" />.
-		/// </remarks>		public VkCollection<DocumentType> GetTypes(long ownerId)
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.getTypes
+		/// </remarks>
+		public VkCollection<DocumentType> GetTypes(long ownerId)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId }
@@ -226,8 +234,9 @@
 		/// После успешного выполнения возвращает список объектов документов.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.search" />.
-		/// </remarks>		public VkCollection<Document> Search(string query, long? count = null, long? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.search
+		/// </remarks>
+		public VkCollection<Document> Search(string query, long? count = null, long? offset = null)
 		{
 			var parameters = new VkParameters {
 				{ "q", query },
@@ -250,8 +259,9 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/docs.edit" />.
-		/// </remarks>		public bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags)
+		/// Страница документации ВКонтакте http://vk.com/dev/docs.edit
+		/// </remarks>
+		public bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },

@@ -15,14 +15,14 @@
         public int ErrorCode { get; private set; }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/>.
+        /// Инициализирует новый экземпляр класса VkApiMethodInvokeException
         /// </summary>
         public VkApiMethodInvokeException()
         {
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> с указанным описанием.
+        /// Инициализирует новый экземпляр класса VkApiMethodInvokeException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         public VkApiMethodInvokeException(string message) : base(message)
@@ -30,7 +30,7 @@
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> с указанным описанием и внутренним исключением.
+        /// Инициализирует новый экземпляр класса VkApiMethodInvokeException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="innerException">Внутреннее исключение.</param>
@@ -39,7 +39,7 @@
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> с указанным описанием и кодом ошибки.
+        /// Инициализирует новый экземпляр класса VkApiMethodInvokeException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="code">Код ошибки, полученный от сервера ВКонтакте.</param>
@@ -49,7 +49,7 @@
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkApiMethodInvokeException"/> с указанным описанием, кодом ошибки и внутренним исключением.
+        /// Инициализирует новый экземпляр класса VkApiMethodInvokeException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="code">Код ошибки, полученный от сервера ВКонтакте.</param>

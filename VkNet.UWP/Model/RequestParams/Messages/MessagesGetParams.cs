@@ -9,6 +9,10 @@
 	/// </summary>
 	public struct MessagesGetParams
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="gag"></param>
 		public MessagesGetParams(bool gag = true)
 		{
 			Count = 20;
@@ -33,7 +37,7 @@
 
 		/// <summary>
 		/// Тип сообщений которые необходимо получить.
-		/// Необходимо передать <see cref="MessageType.Received"/> для полученных сообщений и <see cref="MessageType.Sended"/>
+		/// Необходимо передать MessageType.Received
 		/// для отправленных пользователем сообщений.
 		/// </summary>
 		public MessageType? Out { get; set; }

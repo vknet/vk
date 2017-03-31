@@ -11,7 +11,7 @@ namespace VkNet.Model.Attachments
 	/// Фотография.
 	/// </summary>
 	/// <remarks>
-	/// См. описание <see href="http://vk.com/dev/photo"/> и <see href="http://vk.com/dev/attachments_w"/> раздел "Альбом с фотографиями".
+	/// См. описание http://vk.com/dev/photo
 	/// </remarks>
 	[DataContract]
 	public class Photo : MediaAttachment

@@ -7,7 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Информация о социальных контактах пользователя.
 	/// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/>
-	/// и <see href="http://vk.com/dev/fields"/>. Последняя страница обманывает насчет поля 'connections'.
+	/// и http://vk.com/dev/fields
 	/// Экспериментально установлено, что поля находятся непосредственно в полях объекта User.
 	/// </summary>
 	[DataContract]

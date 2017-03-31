@@ -5,7 +5,7 @@ namespace VkNet.Enums
 	/// Идентификаторы жанров музыки.
 	/// </summary>
 	/// <remarks>
-	/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio_object#/dev/audio_genres"/>.
+	/// Страница документации ВКонтакте http://vk.com/dev/audio_object
 	/// </remarks>
 	[DataContract]
 	public enum AudioGenre

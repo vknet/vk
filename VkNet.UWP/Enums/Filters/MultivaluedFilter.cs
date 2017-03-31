@@ -82,12 +82,12 @@ namespace VkNet.Enums.Filters
             return FromJson(value);
         }
 
-        /// <summary>
-        /// Разобрать из json.
-        /// </summary>
-        /// <param name="response">Ответ сервера.</param>
-        /// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
-        public static TFilter FromJson(VkResponse response)
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns>Объект перечисления типа TFilter Непосредственно наследник</returns>
+		public static TFilter FromJson(VkResponse response)
         {
             var value = response.ToString();
             return FromJson(value);

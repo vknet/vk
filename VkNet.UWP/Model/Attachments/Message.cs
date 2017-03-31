@@ -12,7 +12,7 @@ namespace VkNet.Model
 
 	/// <summary>
 	/// Личное сообщение пользователя.
-	/// См. описание <see href="http://vk.com/dev/message"/>.
+	/// См. описание http://vk.com/dev/message
 	/// </summary>
 	[DebuggerDisplay("[{UserId}-{Id}] {Body}")]
 	[DataContract]
@@ -212,6 +212,11 @@ namespace VkNet.Model
 
 		#region Методы
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="response"></param>
+		/// <returns></returns>
 		public static Message FromJson(VkResponse response)
 		{
 			if (response.ContainsKey("message"))

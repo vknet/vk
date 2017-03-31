@@ -18,6 +18,10 @@
 	{
 		private readonly VkApi _vk;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="vk"></param>
 		public UsersCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -32,7 +36,7 @@
 		/// </returns>
 		/// <exception cref="ArgumentException">Query can not be <c>null</c> or empty.</exception>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.search
 		/// </remarks>
 		[Pure]
 		public VkCollection<User> Search(UserSearchParams @params)
@@ -48,7 +52,7 @@
 		/// После успешного выполнения возвращает 1 в случае, если пользователь установил у себя данное приложение, иначе 0.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.isAppUser" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.isAppUser
 		/// </remarks>
 		[Pure]
 		public bool IsAppUser(long? userId)
@@ -69,7 +73,7 @@
 		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
 		/// <returns>Объект, содержащий запрошенную информацию о пользователе.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getProfiles"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/getProfiles
 		/// </remarks>
 		[Pure]
 		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
@@ -88,7 +92,7 @@
 		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
 		/// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
 		[Pure]
 		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
@@ -119,7 +123,7 @@
 		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
 		/// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
 		[Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
 		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
@@ -147,9 +151,9 @@
 		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
 		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
-		/// <returns>Объект <see cref="User"/> с запрошенной информацией о пользователе.</returns>
+		/// <returns>Объект User</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.get"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
 		public User Get([NotNull] string screenName, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
@@ -171,7 +175,7 @@
 		/// Пока возвращается только список групп.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getSubscriptions" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.getSubscriptions
 		/// </remarks>
 		[Pure]
 		public VkCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null, bool skipAuthorization = false)
@@ -203,7 +207,7 @@
 		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
 		/// <returns>Список подписчиков</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getFollowers"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
 		/// </remarks>
 		[Pure]
 		public VkCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
@@ -232,7 +236,7 @@
 		/// <param name="comment">Комментарий к жалобе на пользователя</param>
 		/// <returns>В случае успешной жалобы метод вернет true.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.report"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.report
 		/// </remarks>
 		public bool Report(long userId, ReportType type, string comment = "")
 		{
@@ -256,7 +260,7 @@
 		/// После успешного выполнения возвращает список объектов user.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.getNearby" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.getNearby
 		/// </remarks>
 		public VkCollection<User> GetNearby(UsersGetNearbyParams @params)
 		{

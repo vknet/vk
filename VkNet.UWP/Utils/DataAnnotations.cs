@@ -40,8 +40,8 @@ namespace JetBrains.Annotations
     public sealed class LocalizationRequiredAttribute : Attribute
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocalizationRequiredAttribute"/> class with
-        /// <see cref="Required"/> set to <see langword="true"/>.
+        /// Initializes a new instance of the LocalizationRequiredAttribute
+        /// Required
         /// </summary>
         public LocalizationRequiredAttribute()
             : this(true)
@@ -49,7 +49,7 @@ namespace JetBrains.Annotations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocalizationRequiredAttribute"/> class.
+        /// Initializes a new instance of the LocalizationRequiredAttribute
         /// </summary>
         /// <param name="required"><c>true</c> if a element should be localized; otherwise, <c>false</c>.</param>
         public LocalizationRequiredAttribute(bool required)
@@ -65,7 +65,7 @@ namespace JetBrains.Annotations
         public bool Required { get; private set; }
 
         /// <summary>
-        /// Returns whether the value of the given object is equal to the current <see cref="LocalizationRequiredAttribute"/>.
+        /// Returns whether the value of the given object is equal to the current LocalizationRequiredAttribute
         /// </summary>
         /// <param name="obj">The object to test the value equality of. </param>
         /// <returns>
@@ -80,7 +80,7 @@ namespace JetBrains.Annotations
         /// <summary>
         /// Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current <see cref="LocalizationRequiredAttribute"/>.</returns>
+        /// <returns>A hash code for the current LocalizationRequiredAttribute
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -90,7 +90,7 @@ namespace JetBrains.Annotations
     /// <summary>
     /// Indicates that the marked method builds string by format pattern and (optional) arguments. 
     /// Parameter, which contains format string, should be given in constructor.
-    /// The format string should be in <see cref="string.Format(IFormatProvider,string,object[])"/> -like form
+    /// The format string should be in string.Format
     /// </summary>
     /// <example>
     /// <code>
@@ -127,7 +127,7 @@ namespace JetBrains.Annotations
     /// <summary>
     /// Indicates that the function argument should be string literal and match one of the parameters
     /// of the caller function.
-    /// For example, ReSharper annotates the parameter of <see cref="System.ArgumentNullException"/>.
+    /// For example, ReSharper annotates the parameter of System.ArgumentNullException
     /// </summary>
     /// <example>
     /// <code>
@@ -143,7 +143,7 @@ namespace JetBrains.Annotations
 
     /// <summary>
     /// Indicates that the method is contained in a type that implements
-    /// <see cref="System.ComponentModel.INotifyPropertyChanged"/> interface
+    /// System.ComponentModel
     /// and this method is used to notify that some property value changed.
     /// </summary>
     /// <remarks>
@@ -462,7 +462,7 @@ namespace JetBrains.Annotations
     }
 
     /// <summary>
-    /// Specify what is considered used implicitly when marked with <see cref="MeansImplicitUseAttribute"/> or <see cref="UsedImplicitlyAttribute"/>
+    /// Specify what is considered used implicitly when marked with MeansImplicitUseAttribute
     /// </summary>
     [Flags]
     public enum ImplicitUseTargetFlags
@@ -502,7 +502,7 @@ namespace JetBrains.Annotations
 
     /// <summary>
     /// Indicates that a method does not make any observable state changes.
-    /// The same as <see cref="System.Diagnostics.Contracts.PureAttribute"/>
+    /// The same as System.Diagnostics
     /// </summary>
     /// <example>
     /// <code>
@@ -547,7 +547,7 @@ namespace JetBrains.Annotations
 	/// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC action.
 	/// If applied to a method, the MVC action name is calculated implicitly from the context.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, string)"/>
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
     public sealed class AspMvcActionAttribute : Attribute
@@ -566,7 +566,7 @@ namespace JetBrains.Annotations
 	/// <summary>
 	/// ASP.NET MVC attribute. Indicates that a parameter is an MVC araa.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, string)"/>
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter)]
     public sealed class AspMvcAreaAttribute : PathReferenceAttribute
@@ -587,7 +587,7 @@ namespace JetBrains.Annotations
 	/// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC controller.
 	/// If applied to a method, the MVC controller name is calculated implicitly from the context.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, string, string)"/> 
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
     public sealed class AspMvcControllerAttribute : Attribute
@@ -606,7 +606,7 @@ namespace JetBrains.Annotations
 	/// <summary>
 	/// ASP.NET MVC attribute. Indicates that a parameter is an MVC Master.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.Mvc.Controller.View(string, string)"/>
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter)]
     public sealed class AspMvcMasterAttribute : Attribute { }
@@ -614,7 +614,7 @@ namespace JetBrains.Annotations
 	/// <summary>
 	/// ASP.NET MVC attribute. Indicates that a parameter is an MVC model type.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.Mvc.Controller.View(string, object)"/>
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter)]
     public sealed class AspMvcModelTypeAttribute : Attribute { }
@@ -623,7 +623,7 @@ namespace JetBrains.Annotations
 	/// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC partial view.
 	/// If applied to a method, the MVC partial view name is calculated implicitly from the context.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper, string)"/>
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
     public sealed class AspMvcPartialViewAttribute : PathReferenceAttribute { }
@@ -637,7 +637,7 @@ namespace JetBrains.Annotations
 	/// <summary>
 	/// ASP.NET MVC attribute. Indicates that a parameter is an MVC display template.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.Mvc.Html.DisplayExtensions.DisplayForModel(HtmlHelper, string)"/>
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter)]
     public sealed class AspMvcDisplayTemplateAttribute : Attribute { }
@@ -645,7 +645,7 @@ namespace JetBrains.Annotations
 	/// <summary>
 	/// ASP.NET MVC attribute. Indicates that a parameter is an MVC editor template.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.Mvc.Html.EditorExtensions.EditorForModel(HtmlHelper, string)"/>
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter)]
     public sealed class AspMvcEditorTemplateAttribute : Attribute { }
@@ -654,7 +654,7 @@ namespace JetBrains.Annotations
 	/// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC view.
 	/// If applied to a method, the MVC view name is calculated implicitly from the context.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.Mvc.Controller.View(object)"/>
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
     public sealed class AspMvcViewAttribute : PathReferenceAttribute { }
@@ -681,7 +681,7 @@ namespace JetBrains.Annotations
 	/// <summary>
 	/// Razor attribute. Indicates that a parameter or a method is a Razor section.
 	/// Use this attribute for custom wrappers similar to 
-	/// <see cref="System.Web.WebPages.WebPageBase.RenderSection(string)"/>
+	/// System.Web
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method, Inherited = true)]
     public sealed class RazorSectionAttribute : Attribute { }

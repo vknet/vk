@@ -15,6 +15,10 @@ namespace VkNet.Categories
     {
         private readonly VkApi _vk;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vk"></param>
         public DatabaseCategory(VkApi vk)
         {
             _vk = vk;
@@ -25,16 +29,18 @@ namespace VkNet.Categories
         /// </summary>
         /// <param name="needAll">Флаг - вернуть список всех стран.</param>
         /// <param name="codes">Перечисленные через запятую двухбуквенные коды стран в стандарте ISO 3166-1 alpha-2
-        /// <see href="http://vk.com/dev/country_codes"/>.</param>
+        /// http://vk.com/dev/country_codes
+        /// </param>
         /// <param name="offset">Отступ, необходимый для выбора определенного подмножества стран.</param>
         /// <param name="count">Количество стран, которое необходимо вернуть (по умолчанию 100, максимальное значение 1000).</param>
         /// <remarks>
         /// Если не заданы параметры needAll и code, то возвращается краткий список стран, расположенных наиболее близко к стране
         /// текущего пользователя. Если задан параметр needAll, то будет возвращен список всех стран. Если задан параметр code,
         /// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCountries"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getCountries
         /// </remarks>
-        [Pure]        public VkCollection<Country> GetCountries(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null, int? offset = null)
+        [Pure]
+        public VkCollection<Country> GetCountries(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => offset);
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -59,9 +65,10 @@ namespace VkNet.Categories
         /// <param name="offset">Отступ, необходимый для выбора определенного подмножества регионов.</param>
         /// <returns>Список регионов.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getRegions"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getRegions
         /// </remarks>
-        [Pure]        public VkCollection<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null)
+        [Pure]
+        public VkCollection<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => countryId);
             VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -84,9 +91,10 @@ namespace VkNet.Categories
         /// <param name="streetIds">Идентификаторы улиц.</param>
         /// <returns>Информация об улицах.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getStreetsById"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getStreetsById
         /// </remarks>
-        [Pure]        public ReadOnlyCollection<Street> GetStreetsById(params int[] streetIds)
+        [Pure]
+        public ReadOnlyCollection<Street> GetStreetsById(params int[] streetIds)
         {
             var parameters = new VkParameters
             {
@@ -102,9 +110,10 @@ namespace VkNet.Categories
         /// <param name="countryIds">Идентификаторы стран.</param>
         /// <returns>Информация о странах.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCountriesById"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getCountriesById
         /// </remarks>
-        [Pure]        public ReadOnlyCollection<Country> GetCountriesById(params int[] countryIds)
+        [Pure]
+        public ReadOnlyCollection<Country> GetCountriesById(params int[] countryIds)
         {
             var parameters = new VkParameters
             {
@@ -125,14 +134,15 @@ namespace VkNet.Categories
         /// <param name="offset">Отступ, необходимый для получения определенного подмножества городов.</param>
         /// <returns>Cписок городов</returns>
         /// <remarks>
-        /// Возвращает коллекцию городов, каждый из которых содержит поля <see cref="City.Id"/> и <see cref="City.Title"/>.
+        /// Возвращает коллекцию городов, каждый из которых содержит поля City.Id
         /// При наличии информации о регионе и/или области, в которых находится данный город, в объекте могут дополнительно
-        /// включаться поля <see cref="City.Area"/> и <see cref="City.Region"/>.
+        /// включаться поля City.Area
         /// Если не задан параметр <paramref name="query"/>, то будет возвращен список самых крупных городов в заданной стране.
         /// Если задан параметр <paramref name="query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCities"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getCities
         /// </remarks>
-        [Pure]        public VkCollection<City> GetCities(int countryId, int? regionId = null, string query = "", bool? needAll = false, int? count = null, int? offset = null)
+        [Pure]
+        public VkCollection<City> GetCities(int countryId, int? regionId = null, string query = "", bool? needAll = false, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => countryId);
             VkErrors.ThrowIfNumberIsNegative(() => regionId);
@@ -160,9 +170,10 @@ namespace VkNet.Categories
         /// <remarks>
         /// Идентификаторы городов могут быть получены с помощью методов UsersCategory.Get,
         /// places.getById, places.search, places.getCheckins.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCitiesById"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getCitiesById
         /// </remarks>
-        [Pure]        public ReadOnlyCollection<City> GetCitiesById(params int[] cityIds)
+        [Pure]
+        public ReadOnlyCollection<City> GetCitiesById(params int[] cityIds)
         {
 	        var parameters = new VkParameters
 	        {
@@ -182,9 +193,10 @@ namespace VkNet.Categories
         /// <param name="count">Количество учебных заведений, которое необходимо вернуть.</param>
         /// <returns>Список высших учебных заведений, удовлетворяющих заданным условиям.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getUniversities"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getUniversities
         /// </remarks>
-        [Pure]        public VkCollection<University> GetUniversities(int countryId, int cityId, string query = "", int? count = null, int? offset = null)
+        [Pure]
+        public VkCollection<University> GetUniversities(int countryId, int cityId, string query = "", int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => countryId);
             VkErrors.ThrowIfNumberIsNegative(() => cityId);
@@ -212,9 +224,10 @@ namespace VkNet.Categories
         /// <param name="count">Количество школ, которое необходимо вернуть.</param>
         /// <returns>Cписок школ.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getSchools"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getSchools
         /// </remarks>
-        [Pure]        public VkCollection<School> GetSchools(int cityId, string query = "", int? offset = null, int? count = null)
+        [Pure]
+        public VkCollection<School> GetSchools(int cityId, string query = "", int? offset = null, int? count = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => cityId);
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -239,9 +252,10 @@ namespace VkNet.Categories
         /// <param name="offset">Количество факультетов которое необходимо получить.</param>
         /// <returns>Cписок факультетов.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getFaculties"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getFaculties
         /// </remarks>
-        [Pure]        public VkCollection<Faculty> GetFaculties(long universityId, int? count = null, int? offset = null)
+        [Pure]
+        public VkCollection<Faculty> GetFaculties(long universityId, int? count = null, int? offset = null)
         {
             VkErrors.ThrowIfNumberIsNegative(() => universityId);
             VkErrors.ThrowIfNumberIsNegative(() => count);
@@ -263,9 +277,10 @@ namespace VkNet.Categories
         /// <param name="countryId">Идентификатор страны, доступные классы в которой необходимо вернуть.</param>
         /// <returns>Возвращает массив, каждый элемент которого представляет собой пару: идентификатор и строковое обозначение класса.</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getSchoolClasses"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getSchoolClasses
         /// </remarks>
-        [Pure]        public ReadOnlyCollection<SchoolClass> GetSchoolClasses(long countryId)
+        [Pure]
+        public ReadOnlyCollection<SchoolClass> GetSchoolClasses(long countryId)
         {
             var parameters = new VkParameters
             {
@@ -285,9 +300,10 @@ namespace VkNet.Categories
         /// Возвращает массив, каждый элемент которого представляет собой пару: идентификатор и строковое обозначение класса.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getChairs" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/database.getChairs
         /// </remarks>
-        [Pure]        public VkCollection<Chair> GetChairs(long facultyId, int? count = null, int? offset = null)
+        [Pure]
+        public VkCollection<Chair> GetChairs(long facultyId, int? count = null, int? offset = null)
         {
             var parameters = new VkParameters
             {

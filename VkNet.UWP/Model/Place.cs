@@ -7,7 +7,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Информация о месте, в котором была сделана запись.
-    /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/> и <see href="http://vk.com/dev/fields_groups"/>. Раздел place.
+    /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/> и http://vk.com/dev/fields_groups
     /// </summary>
     [DataContract]
     public class Place
@@ -33,17 +33,17 @@ namespace VkNet.Model
         public double? Longitude { get; set; }
 
         /// <summary>
-        /// Идентификатор типа места, информацию о котором можно получить с помощью метода <see cref="DatabaseCategory.GetPlaceTypes"/> (пока не реализовано).
+        /// Идентификатор типа места, информацию о котором можно получить с помощью метода DatabaseCategory.GetPlaceTypes
         /// </summary>
         public long? TypeId { get; set; }
 
         /// <summary>
-        /// Идентификатор страны, название которой можно получить с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>.
+        /// Идентификатор страны, название которой можно получить с помощью метода DatabaseCategory.GetCountriesById
         /// </summary>
         public long? CountryId { get; set; }
 
         /// <summary>
-        /// Идентификатор города, название которого можно получить с помощью метода <see cref="DatabaseCategory.GetCitiesById"/>.
+        /// Идентификатор города, название которого можно получить с помощью метода DatabaseCategory.GetCitiesById
         /// </summary>
         public long? CityId { get; set; }
 

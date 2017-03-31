@@ -6,7 +6,7 @@ namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Информация о документе.
-	/// См. описание <see href="http://vk.com/dev/doc"/>.
+	/// См. описание http://vk.com/dev/doc
 	/// </summary>
 	[DataContract]
 	public class Document : MediaAttachment

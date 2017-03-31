@@ -34,7 +34,7 @@ namespace VkNet.Utils
 	{
 #>
 		/// <summary>
-        /// Преобразовать из <see cref="VkResponse"/> в <see cref="<#= type #>"/>.
+        /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>
         /// <returns>

@@ -19,6 +19,10 @@
 	{
 		private readonly VkApi _vk;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="vk"></param>
 		public WallCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -34,7 +38,7 @@
 		/// </returns>
 		/// <exception cref="System.ArgumentException">OwnerID must be negative in case filter equal to Suggests;ownerId</exception>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.get
 		/// </remarks>
 		[Pure]
 		public WallGetObject Get(WallGetParams @params, bool skipAuthorization = false)
@@ -50,7 +54,6 @@
 		/// <summary>
 		/// Возвращает список комментариев к записи на стене.
 		/// </summary>
-		/// <param name="totalCount">Общее количество комментариев к записи.</param>
 		/// <param name="params">Входные параметры выборки.</param>
 		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
 		/// <returns>
@@ -64,7 +67,7 @@
 		/// Если был передан параметр start_comment_id, будет также возвращено поле real_offset – итоговое смещение данного подмножества комментариев (оно может быть отрицательным, если был указан отрицательный offset).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.getComments
 		/// </remarks>
 		public VkCollection<Comment> GetComments(WallGetCommentsParams @params, bool skipAuthorization = false)
 		{
@@ -95,7 +98,7 @@
 		/// Если запись является репостом записи с другой стены, в ответе дополнительно возвращается массив copy_history записей со стены, репостом которых является текущая.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.getById
 		/// </remarks>
 		public WallGetObject GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null, bool skipAuthorization = false)
 		{
@@ -127,7 +130,7 @@
 		/// После успешного выполнения возвращает идентификатор созданной записи (post_id).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.post" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.post
 		/// </remarks>
 		public long Post(WallPostParams @params)
 		{
@@ -150,7 +153,7 @@
 		/// likes_count — число отметок «Мне нравится» у объекта.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.repost" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.repost
 		/// </remarks>
 		public RepostResult Repost(string @object, string message, long? groupId, string @ref)
 		{
@@ -174,7 +177,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.edit" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.edit
 		/// </remarks>
 		public bool Edit(WallEditParams @params)
 		{
@@ -190,7 +193,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.delete" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.delete
 		/// </remarks>
 		public bool Delete(long? ownerId = null, long? postId = null)
 		{
@@ -212,7 +215,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restore" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.restore
 		/// </remarks>
 		public bool Restore(long? ownerId = null, long? postId = null)
 		{
@@ -232,7 +235,7 @@
 		/// После успешного выполнения возвращает идентификатор добавленного комментария (comment_id).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.addComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.addComment
 		/// </remarks>
 		public long AddComment(WallAddCommentParams @params)
 		{
@@ -248,7 +251,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.deleteComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.deleteComment
 		/// </remarks>
 		public bool DeleteComment(long? ownerId, long commentId)
 		{
@@ -269,7 +272,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.restoreComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.restoreComment
 		/// </remarks>
 		public bool RestoreComment(long commentId, long? ownerId)
 		{
@@ -290,7 +293,7 @@
 		/// После успешного выполнения возвращает список объектов записей на стене.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.search" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.search
 		/// </remarks>
 		public VkCollection<Post> Search(WallSearchParams @params, bool skipAuthorization = false)
 		{
@@ -313,7 +316,7 @@
 		/// groups — содержит информацию о сообществах.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getReposts" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.getReposts
 		/// </remarks>
 		public WallGetObject GetReposts(long? ownerId, long? postId, long? offset, long? count, bool skipAuthorization = false)
 		{
@@ -336,7 +339,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.pin" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.pin
 		/// </remarks>
 		public bool Pin(long postId, long? ownerId = null)
 		{
@@ -357,7 +360,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.unpin" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.unpin
 		/// </remarks>
 		public bool Unpin(long postId, long? ownerId = null)
 		{
@@ -380,7 +383,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.editComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.editComment
 		/// </remarks>
 		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
 		{
@@ -413,7 +416,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.reportPost" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.reportPost
 		/// </remarks>
 		public bool ReportPost(long ownerId, long postId, ReportReason? reason = null)
 		{
@@ -445,7 +448,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.reportComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.reportComment
 		/// </remarks>
 		public bool ReportComment(long ownerId, long commentId, ReportReason? reason)
 		{

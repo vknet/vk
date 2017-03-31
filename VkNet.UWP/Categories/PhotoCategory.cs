@@ -16,6 +16,10 @@
 	{
 		private readonly VkApi _vk;
 
+	    /// <summary>
+	    /// 
+	    /// </summary>
+	    /// <param name="vk"></param>
 	    public PhotoCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -26,10 +30,10 @@
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает объект <see cref="PhotoAlbum" />
+		/// После успешного выполнения возвращает объект PhotoAlbum
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.createAlbum" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.createAlbum
 		/// </remarks>
 		public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
 		{
@@ -44,7 +48,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.editAlbum" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.editAlbum
 		/// </remarks>
 		public bool EditAlbum(PhotoEditAlbumParams @params)
 		{
@@ -57,10 +61,10 @@
 		/// <param name="params">Параметры запроса.</param>
 		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
 		/// <returns>
-		/// Возвращает список объектов <see cref="PhotoAlbum" />
+		/// Возвращает список объектов PhotoAlbum
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getAlbums" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getAlbums
 		/// </remarks>
 		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false)
 		{
@@ -73,10 +77,10 @@
 		/// <param name="params">Параметры запроса.</param>
 		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// После успешного выполнения возвращает список объектов Photo
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.get" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.get
 		/// </remarks>
 		public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false)
 		{
@@ -92,7 +96,7 @@
 		/// После успешного выполнения возвращает количество альбомов с учетом настроек приватности.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAlbumsCount" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getAlbumsCount
 		/// </remarks>
 		public int GetAlbumsCount(long? userId = null, long? groupId = null)
 		{
@@ -130,7 +134,7 @@
 		/// Если был задан параметр photo_sizes, вместо полей width и height возвращаются размеры копий фотографии в специальном формате.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getById" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getById
 		/// </remarks>
 		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null, bool skipAuthorization = false)
 		{
@@ -151,9 +155,9 @@
 		/// </summary>
 		/// <param name="albumId">Идентификатор альбома. целое число (Целое число).</param>
 		/// <param name="groupId">Идентификатор сообщества, которому принадлежит альбом (если необходимо загрузить фотографию в альбом сообщества). целое число (Целое число).</param>
-		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/></returns>
+		/// <returns>После успешного выполнения возвращает объект UploadServerInfo</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getUploadServer"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getUploadServer
 		/// </remarks>
 		public UploadServerInfo GetUploadServer(long albumId, long? groupId = null)
 		{
@@ -174,7 +178,7 @@
 		/// После успешного выполнения возвращает объект с единственным полем upload_url.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getOwnerPhotoUploadServer" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getOwnerPhotoUploadServer
 		/// </remarks>
 		public UploadServerInfo GetOwnerPhotoUploadServer(long? ownerId = null)
 		{
@@ -196,7 +200,7 @@
 		/// После успешного выполнения возвращает объект с единственным полем upload_url.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getChatUploadServer" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getChatUploadServer
 		/// </remarks>
 		public UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null)
 		{
@@ -219,7 +223,7 @@
 		/// После успешного выполнения возвращает объект, содержащий поля photo_hash и photo_src (при работе через VK.api метод вернёт поля photo_src, photo_src_big, photo_src_small). Параметр photo_hash необходим для подтверждения пользователем изменения его фотографии через вызов метода saveProfilePhoto Javascript API. Поле photo_src содержит путь к загруженной фотографии.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveOwnerPhoto" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 		/// </remarks>
 		public Photo SaveOwnerPhoto(string response)
 		{
@@ -248,7 +252,7 @@
 		/// После успешного выполнения возвращает массив, содержащий объект с загруженной фотографией.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveWallPhoto" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveWallPhoto
 		/// </remarks>
 		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId = null, ulong? groupId = null, string caption = null)
 		{
@@ -278,7 +282,7 @@
 		/// После успешного выполнения возвращает объект с полями upload_url, album_id, user_id.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getWallUploadServer" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getWallUploadServer
 		/// </remarks>
 		public UploadServerInfo GetWallUploadServer(long? groupId = null)
 		{
@@ -293,9 +297,9 @@
 		/// <summary>
 		/// Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
 		/// </summary>
-		/// <returns>После успешного выполнения возвращает объект <see cref="UploadServerInfo"/>.</returns>
+		/// <returns>После успешного выполнения возвращает объект UploadServerInfo</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getMessagesUploadServer"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getMessagesUploadServer
 		/// </remarks>
 		public UploadServerInfo GetMessagesUploadServer()
 		{
@@ -303,12 +307,12 @@
 		}
 
 		/// <summary>
-		/// Сохраняет фотографию после успешной загрузки на URI, полученный методом <see cref="GetMessagesUploadServer"/>.
+		/// Сохраняет фотографию после успешной загрузки на URI, полученный методом GetMessagesUploadServer
 		/// </summary>
 		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
 		/// <returns>После успешного выполнения возвращает массив с загруженной фотографией, возвращённый объект имеет поля id, pid, aid, owner_id, src, src_big, src_small, created. В случае наличия фотографий в высоком разрешении также будут возвращены адреса с названиями src_xbig и src_xxbig. </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.saveMessagesPhoto"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveMessagesPhoto
 		/// </remarks>
 		public ReadOnlyCollection<Photo> SaveMessagesPhoto(string response)
 		{
@@ -345,7 +349,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.report" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.report
 		/// </remarks>
 		public bool Report(long ownerId, ulong photoId, ReportReason reason)
 		{
@@ -378,7 +382,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reportComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.reportComment
 		/// </remarks>
 		public bool ReportComment(long ownerId, ulong commentId, ReportReason reason)
 		{
@@ -401,7 +405,7 @@
 		/// После успешного выполнения возвращает список объектов фотографий.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.search" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.search
 		/// </remarks>
 		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false)
 		{
@@ -413,10 +417,10 @@
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// После успешного выполнения возвращает список объектов Photo
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.save" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.save
 		/// </remarks>
 		public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
 		{
@@ -434,7 +438,7 @@
 		/// Возвращает идентификатор созданной фотографии.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.copy" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.copy
 		/// </remarks>
 		public long Copy(long ownerId, ulong photoId, string accessKey = null)
 		{
@@ -456,7 +460,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.edit" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.edit
 		/// </remarks>
 		public bool Edit(PhotoEditParams @params)
 		{
@@ -473,7 +477,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.move" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.move
 		/// </remarks>
 		public bool Move(long targetAlbumId, ulong photoId, long? ownerId = null)
 		{
@@ -497,7 +501,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.makeCover" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.makeCover
 		/// </remarks>
 		public bool MakeCover(ulong photoId, long? ownerId = null, long? albumId = null)
 		{
@@ -522,7 +526,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderAlbums" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.reorderAlbums
 		/// </remarks>
 		public bool ReorderAlbums(long albumId, long? ownerId = null, long? before = null, long? after = null)
 		{
@@ -548,7 +552,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.reorderPhotos" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.reorderPhotos
 		/// </remarks>
 		public bool ReorderPhotos(ulong photoId, long? ownerId = null, long? before = null, long? after = null)
 		{
@@ -567,7 +571,7 @@
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// После успешного выполнения возвращает список объектов Photo
 		/// <remarks>
 		/// Если был задан параметр extended — будет возвращено поле likes:
 		/// user_likes: 1 — текущему пользователю нравится данная фотография, 0 - не указано.
@@ -576,7 +580,7 @@
 		/// </remarks>
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.getAll" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getAll
 		/// </remarks>
 		public VkCollection<Photo> GetAll(PhotoGetAllParams @params)
 		{
@@ -591,7 +595,7 @@
 		/// После успешного выполнения возвращает список объектов photo.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getUserPhotos
 		/// </remarks>
 		public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params)
 		{
@@ -607,7 +611,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteAlbum" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.deleteAlbum
 		/// </remarks>
 		public bool DeleteAlbum(long albumId, long? groupId = null)
 		{
@@ -629,7 +633,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.delete" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.delete
 		/// </remarks>
 		public bool Delete(ulong photoId, long? ownerId = null)
 		{
@@ -651,7 +655,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.restore" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.restore
 		/// </remarks>
 		public bool Restore(ulong photoId, long? ownerId = null)
 		{
@@ -674,7 +678,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.confirmTag" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.confirmTag
 		/// </remarks>
 		public bool ConfirmTag(ulong photoId, ulong tagId, long? ownerId = null)
 		{
@@ -692,10 +696,10 @@
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
+		/// После успешного выполнения возвращает список объектов Comment
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getComments
 		/// </remarks>
 		public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params)
 		{
@@ -707,10 +711,10 @@
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
+		/// После успешного выполнения возвращает список объектов Comment
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getAllComments
 		/// </remarks>
 		public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params)
 		{
@@ -725,7 +729,7 @@
 		/// После успешного выполнения возвращает идентификатор созданного комментария.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.createComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.createComment
 		/// </remarks>
 		public long CreateComment(PhotoCreateCommentParams @params)
 		{
@@ -741,7 +745,7 @@
 		/// После успешного выполнения возвращает <c>true</c> (0, если комментарий не найден).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.deleteComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.deleteComment
 		/// </remarks>
 		public bool DeleteComment(ulong commentId, long? ownerId = null)
 		{
@@ -763,7 +767,7 @@
 		/// После успешного выполнения возвращает <c>true</c> (0, если комментарий с таким идентификатором не является удаленным).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.restoreComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.restoreComment
 		/// </remarks>
 		public long RestoreComment(ulong commentId, long? ownerId = null)
 		{
@@ -796,7 +800,7 @@
 		/// Параметр является обязательным, если не задан параметр message. список строк, разделенных через запятую</param>
 		/// <returns>После успешного выполнения возвращает true.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.editComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.editComment
 		/// </remarks>
 		public bool EditComment(ulong commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
 		{
@@ -828,7 +832,7 @@
 		/// viewed — статус отметки (1 — подтвержденная, 0 — неподтвержденная).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getTags" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getTags
 		/// </remarks>
 		public ReadOnlyCollection<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null)
 		{
@@ -851,7 +855,7 @@
 		/// После успешного выполнения возвращает идентификатор созданной отметки (tag id).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.putTag" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.putTag
 		/// </remarks>
 		public ulong PutTag(PhotoPutTagParams @params)
 		{
@@ -868,7 +872,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.removeTag" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.removeTag
 		/// </remarks>
 		public bool RemoveTag(ulong tagId, ulong photoId, long? ownerId = null)
 		{
@@ -887,10 +891,10 @@
 		/// <param name="offset">Смещение, необходимое для получения определённого подмножества фотографий. целое число (Целое число).</param>
 		/// <param name="count">Количество фотографий, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20 (Положительное число, максимальное значение 100, по умолчанию 20).</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// После успешного выполнения возвращает список объектов Photo
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getNewTags
 		/// </remarks>
 		public VkCollection<Photo> GetNewTags(uint? offset = null, uint? count = null)
 		{
@@ -915,7 +919,7 @@
 		/// После успешного выполнения возвращает объект с единственным полем upload_url.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMarketUploadServer" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getMarketUploadServer
 		/// </remarks>
 		public UploadServerInfo GetMarketUploadServer(long groupId, bool? mainPhoto = null, long? cropX = null, long? cropY = null, long? cropWidth = null)
 		{
@@ -938,7 +942,7 @@
 		/// .
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getMarketAlbumUploadServer" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getMarketAlbumUploadServer
 		/// </remarks>
 		public UploadServerInfo GetMarketAlbumUploadServer(long groupId)
 		{
@@ -958,7 +962,7 @@
 		/// После успешного выполнения возвращает массив, содержащий объект с загруженной фотографией.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMarketPhoto" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveMarketPhoto
 		/// </remarks>
 		public ReadOnlyCollection<Photo> SaveMarketPhoto(long groupId, string response)
 		{
@@ -989,7 +993,7 @@
 		/// После успешного выполнения возвращает массив, содержащий объект с загруженной фотографией.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.saveMarketAlbumPhoto" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveMarketAlbumPhoto
 		/// </remarks>
 		public ReadOnlyCollection<Photo> SaveMarketAlbumPhoto(long groupId, string response)
 		{

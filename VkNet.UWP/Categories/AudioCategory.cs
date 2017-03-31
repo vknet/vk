@@ -36,8 +36,9 @@
 		/// После успешного выполнения возвращает число, равное количеству аудиозаписей на странице пользователя или сообщества.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getCount" />.
-		/// </remarks>		public long GetCount(long ownerId)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getCount
+		/// </remarks>
+		public long GetCount(long ownerId)
 		{
 			var parameters = new VkParameters
 			{
@@ -56,8 +57,9 @@
 		/// В качестве переводов строк в тексте используется /n.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getLyrics" />.
-		/// </remarks>		public Lyrics GetLyrics(long lyricsId)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getLyrics
+		/// </remarks>
+		public Lyrics GetLyrics(long lyricsId)
 		{
 			var parameters = new VkParameters
 			{
@@ -75,8 +77,9 @@
 		/// После успешного выполнения возвращает массив объектов audio. Обратите внимание, что ссылки на аудиозаписи привязаны к ip адресу.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById" />.
-		/// </remarks>		public ReadOnlyCollection<Audio> GetById(IEnumerable<string> audios)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getById
+		/// </remarks>
+		public ReadOnlyCollection<Audio> GetById(IEnumerable<string> audios)
 		{
 			if (!audios.Any())
 			{
@@ -97,8 +100,9 @@
 		/// После успешного выполнения возвращает массив объектов audio. Обратите внимание, что ссылки на аудиозаписи привязаны к ip адресу.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getById" />.
-		/// </remarks>		public ReadOnlyCollection<Audio> GetById(params string[] audios)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getById
+		/// </remarks>
+		public ReadOnlyCollection<Audio> GetById(params string[] audios)
 		{
 			return GetById((IEnumerable<string>)audios);
 		}
@@ -118,8 +122,9 @@
 		/// Обратите внимание, что ссылки на mp3 привязаны к ip-адресу.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get" />.
-		/// </remarks>		public ReadOnlyCollection<Audio> Get(out User user, AudioGetParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.get
+		/// </remarks>
+		public ReadOnlyCollection<Audio> Get(out User user, AudioGetParams @params)
 		{
 			VkResponseArray response = _vk.Call("audio.get", @params);
 
@@ -142,8 +147,9 @@
 		/// После успешного выполнения возвращает объект с единственным полем upload_url.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getUploadServer" />.
-		/// </remarks>		public Uri GetUploadServer()
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getUploadServer
+		/// </remarks>
+		public Uri GetUploadServer()
 		{
 			var response = _vk.Call("audio.getUploadServer", VkParameters.Empty);
 
@@ -159,9 +165,10 @@
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException">Query is null or empty.;query</exception>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio" />.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search" />.
-		/// </remarks>		public VkCollection<Audio> Search(AudioSearchParams @params)
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Audio
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.search
+		/// </remarks>
+		public VkCollection<Audio> Search(AudioSearchParams @params)
 		{
 			if (string.IsNullOrEmpty(@params.Query))
 			{
@@ -184,8 +191,9 @@
 		/// После успешного выполнения  возвращает идентификатор созданной аудиозаписи.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.add" />.
-		/// </remarks>		public long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null, long? captchaSid = null, string captchaKey = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.add
+		/// </remarks>
+		public long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null, long? captchaSid = null, string captchaKey = null)
 		{
 			var parameters = new VkParameters {
 				{ "audio_id", audioId },
@@ -208,8 +216,9 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.delete" />.
-		/// </remarks>		public bool Delete(long audioId, long ownerId)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.delete
+		/// </remarks>
+		public bool Delete(long audioId, long ownerId)
 		{
 			var parameters = new VkParameters
 			{
@@ -228,8 +237,9 @@
 		/// После успешного выполнения возвращает id текста, введенного пользователем (lyrics_id), если текст не был введен, вернет 0.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.edit" />.
-		/// </remarks>		public long Edit(AudioEditParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.edit
+		/// </remarks>
+		public long Edit(AudioEditParams @params)
 		{
 			if (@params.Artist == null)
 			{
@@ -259,8 +269,9 @@
 		/// Если время хранения удаленной аудиозаписи истекло (обычно это 20 минут), сервер вернет ошибку 202 (Cache expired).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.restore" />.
-		/// </remarks>		public Audio Restore(long audioId, long? ownerId = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.restore
+		/// </remarks>
+		public Audio Restore(long audioId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -282,8 +293,9 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.reorder" />.
-		/// </remarks>		public bool Reorder(long audioId, long? ownerId, long? before, long? after)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.reorder
+		/// </remarks>
+		public bool Reorder(long audioId, long? ownerId, long? before, long? after)
 		{
 			var parameters = new VkParameters {
 				{ "audio_id", audioId },
@@ -304,8 +316,9 @@
 		/// После успешного выполнения возвращает идентификатор (album_id) созданного альбома.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.addAlbum" />.
-		/// </remarks>		public long AddAlbum(string title, long? groupId = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.addAlbum
+		/// </remarks>
+		public long AddAlbum(string title, long? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -329,8 +342,9 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.editAlbum" />.
-		/// </remarks>		public bool EditAlbum(string title, long albumId, long? groupId = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.editAlbum
+		/// </remarks>
+		public bool EditAlbum(string title, long albumId, long? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 
@@ -353,8 +367,9 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.deleteAlbum" />.
-		/// </remarks>		public bool DeleteAlbum(long albumId, long? groupId = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.deleteAlbum
+		/// </remarks>
+		public bool DeleteAlbum(long albumId, long? groupId = null)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -375,8 +390,9 @@
 		/// После успешного выполнения возвращает список объектов audio. Обратите внимание, что ссылки на аудиозаписи привязаны к ip адресу.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getPopular" />.
-		/// </remarks>		public ReadOnlyCollection<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, uint? count = null, uint? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getPopular
+		/// </remarks>
+		public ReadOnlyCollection<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, uint? count = null, uint? offset = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -407,8 +423,9 @@
 		/// title — название альбома.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getAlbums" />.
-		/// </remarks>		public VkCollection<AudioAlbum> GetAlbums(long ownerId, uint? count = null, uint? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getAlbums
+		/// </remarks>
+		public VkCollection<AudioAlbum> GetAlbums(long ownerId, uint? count = null, uint? offset = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -430,8 +447,9 @@
 		/// Обратите внимание, в одном альбоме не может быть более 1000 аудиозаписей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.moveToAlbum" />.
-		/// </remarks>		public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.moveToAlbum
+		/// </remarks>
+		public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -455,8 +473,9 @@
 		/// После успешного выполнения возвращает список объектов audio. Обратите внимание, что ссылки на аудиозаписи привязаны к ip адресу.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getRecommendations" />.
-		/// </remarks>		public ReadOnlyCollection<Audio> GetRecommendations(long? userId = null, uint? count = null, uint? offset = null, bool shuffle = true, string targetAudio = "")
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getRecommendations
+		/// </remarks>
+		public ReadOnlyCollection<Audio> GetRecommendations(long? userId = null, uint? count = null, uint? offset = null, bool shuffle = true, string targetAudio = "")
 		{
 			var parameters = new VkParameters
 			{
@@ -481,8 +500,9 @@
 		/// В случае успешного выполнения возвращает массив идентификаторов сообществ и пользователя, которым был установлен или удален аудиостатус.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.setBroadcast" />.
-		/// </remarks>		public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.setBroadcast
+		/// </remarks>
+		public ReadOnlyCollection<long> SetBroadcast(string audio, IEnumerable<long> targetIds)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => audio);
 
@@ -505,8 +525,9 @@
 		/// <param name="title">Название композиции. По умолчанию берется из ID3 тегов. </param>
 		/// <returns>Возвращает массив из объектов с загруженными аудиозаписями.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.save"/>.
-		/// </remarks>		public Audio Save(string response, string artist = null, string title = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.save
+		/// </remarks>
+		public Audio Save(string response, string artist = null, string title = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => response);
 			var responseJson = JObject.Parse(response);
@@ -534,8 +555,9 @@
 		/// установленной в статус (если аудиозапись транслируется в текущей момент).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getBroadcastList"/>.
-		/// </remarks>		public ReadOnlyCollection<User> GetBroadcastListFriends(bool active = false)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getBroadcastList
+		/// </remarks>
+		public ReadOnlyCollection<User> GetBroadcastListFriends(bool active = false)
 		{
 			var parameters = new VkParameters
 			{
@@ -560,8 +582,9 @@
 		/// После успешного выполнения возвращает список объектов друзей и сообществ с дополнительным полем status_audio — объект аудиозаписи, установленной в статус (если аудиозапись транслируется в текущей момент).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getBroadcastList" />.
-		/// </remarks>		public UserOrGroup GetBroadcastList(string filter = null, bool? active = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getBroadcastList
+		/// </remarks>
+		public UserOrGroup GetBroadcastList(string filter = null, bool? active = null)
 		{
 			var parameters = new VkParameters {
 				{ "filter", filter },
@@ -580,7 +603,7 @@
 		/// установленной в статус (если аудиозапись транслируется в текущей момент).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getBroadcastList"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getBroadcastList
 		/// </remarks>
 		public ReadOnlyCollection<Group> GetBroadcastListGroup(bool active = false)
 		{

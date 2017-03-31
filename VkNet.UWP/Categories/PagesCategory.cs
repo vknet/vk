@@ -39,8 +39,9 @@ namespace VkNet.Categories
 		/// Если был задан параметр need_html равный 1, дополнительно будет возвращено поле html..
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/pages.get" />.
-		/// </remarks>		public Page Get(PagesGetParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/pages.get
+		/// </remarks>
+		public Page Get(PagesGetParams @params)
 		{
 			return _vk.Call("pages.get", @params);
 		}
@@ -56,8 +57,9 @@ namespace VkNet.Categories
 		/// В случае успеха возвращает id созданной страницы.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.save" />.
-		/// </remarks>		public long Save(string text, long groupId, long pageId, long userId)
+		/// Страница документации ВКонтакте https://vk.com/dev/pages.save
+		/// </remarks>
+		public long Save(string text, long groupId, long pageId, long userId)
 		{
 			return Save(text, groupId, userId, pageId, null);
 		}
@@ -73,8 +75,9 @@ namespace VkNet.Categories
 		/// В случае успеха возвращает id созданной страницы.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.save" />.
-		/// </remarks>		public long Save(string text, long groupId, string title, long userId)
+		/// Страница документации ВКонтакте https://vk.com/dev/pages.save
+		/// </remarks>
+		public long Save(string text, long groupId, string title, long userId)
 		{
 			return Save(text, groupId, userId, title: title);
 		}
@@ -91,8 +94,9 @@ namespace VkNet.Categories
 		/// В случае успеха возвращает id созданной страницы..
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/pages.save" />.
-		/// </remarks>		public long Save(string text, long groupId, long userId, long? pageId = null, string title = "")
+		/// Страница документации ВКонтакте http://vk.com/dev/pages.save
+		/// </remarks>
+		public long Save(string text, long groupId, long userId, long? pageId = null, string title = "")
 		{
 			var parameters = new VkParameters
 			{
@@ -118,8 +122,9 @@ namespace VkNet.Categories
 		/// В случае успеха возвращает id страницы, доступ к которой был отредактирован.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.saveAccess" />.
-		/// </remarks>		public long SaveAccess(long pageId, long groupId, long? userId = null, AccessPages view = AccessPages.All, AccessPages edit = AccessPages.Leaders)
+		/// Страница документации ВКонтакте https://vk.com/dev/pages.saveAccess
+		/// </remarks>
+		public long SaveAccess(long pageId, long groupId, long? userId = null, AccessPages view = AccessPages.All, AccessPages edit = AccessPages.Leaders)
 		{
 			var parameters = new VkParameters
 			{
@@ -148,8 +153,9 @@ namespace VkNet.Categories
 		/// editor_name — имя редактора.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.getHistory" />.
-		/// </remarks>		public ReadOnlyCollection<History> GetHistory(long pageId, long groupId, long? userId = null)
+		/// Страница документации ВКонтакте https://vk.com/dev/pages.getHistory
+		/// </remarks>
+		public ReadOnlyCollection<History> GetHistory(long pageId, long groupId, long? userId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -170,8 +176,9 @@ namespace VkNet.Categories
 		/// Возвращает массив объектов вики-страниц.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.getTitles" />.
-		/// </remarks>		public ReadOnlyCollection<Page> GetTitles(long groupId)
+		/// Страница документации ВКонтакте https://vk.com/dev/pages.getTitles
+		/// </remarks>
+		public ReadOnlyCollection<Page> GetTitles(long groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -193,8 +200,9 @@ namespace VkNet.Categories
 		/// Возвращает объект вики-страницы.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.getVersion" />.
-		/// </remarks>		public Page GetVersion(long versionId, long groupId, bool needHtml = false, long? userId = null)
+		/// Страница документации ВКонтакте https://vk.com/dev/pages.getVersion
+		/// </remarks>
+		public Page GetVersion(long versionId, long groupId, bool needHtml = false, long? userId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -216,8 +224,9 @@ namespace VkNet.Categories
 		/// В случае успеха возвращает экранированный html, соответствующий вики-разметке.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.parseWiki" />.
-		/// </remarks>		public string ParseWiki(string text, ulong groupId)
+		/// Страница документации ВКонтакте https://vk.com/dev/pages.parseWiki
+		/// </remarks>
+		public string ParseWiki(string text, ulong groupId)
 		{
 			var parameters = new VkParameters
 			{
@@ -238,8 +247,9 @@ namespace VkNet.Categories
 		/// При удачной очистке кеша – метод возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/pages.clearCache" />.
-		/// </remarks>		public bool ClearCache(Uri url)
+		/// Страница документации ВКонтакте https://vk.com/dev/pages.clearCache
+		/// </remarks>
+		public bool ClearCache(Uri url)
 		{
 			var parameters = new VkParameters
 			{

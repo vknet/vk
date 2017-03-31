@@ -6,7 +6,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Информация о репостах записи.
-    /// См. описание <see href="http://vk.com/dev/post"/>. Раздел reposts.
+    /// См. описание http://vk.com/dev/post
     /// </summary>
     [DataContract]
     public class Reposts

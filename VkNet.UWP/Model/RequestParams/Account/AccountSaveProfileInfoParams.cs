@@ -8,6 +8,10 @@ namespace VkNet.Model.RequestParams
 	/// </summary>
 	public struct AccountSaveProfileInfoParams
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="gag"></param>
 		public AccountSaveProfileInfoParams(bool gag = false)
 		{
 			FirstName = null;
@@ -121,7 +125,7 @@ namespace VkNet.Model.RequestParams
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
-		/// <returns>Объект типа <see cref="AccountSaveProfileInfoParams"/></returns>
+		/// <returns>Объект типа AccountSaveProfileInfoParams</returns>
 		public static VkParameters ToVkParameters(AccountSaveProfileInfoParams p)
 		{
 			if (p.RelationPartner != null)

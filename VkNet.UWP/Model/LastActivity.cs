@@ -6,7 +6,7 @@
 
 	/// <summary>
 	/// Информация о последней активности пользователя.
-	/// См. описание <see href="http://vk.com/dev/messages.getLastActivity"/>.
+	/// См. описание http://vk.com/dev/messages.getLastActivity
 	/// </summary>
 	public class LastActivity
 	{
@@ -31,13 +31,13 @@
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
-		public static LastActivity FromJson(VkResponse re)
+		public static LastActivity FromJson(VkResponse response)
 		{
 			var lastActivity = new LastActivity
 			{
 
-				IsOnline = re["online"],
-				Time = re["time"]
+				IsOnline = response["online"],
+				Time = response["time"]
 			};
 
 			return lastActivity;

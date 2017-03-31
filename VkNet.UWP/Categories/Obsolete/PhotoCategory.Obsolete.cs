@@ -26,10 +26,11 @@ namespace VkNet.Categories
 		/// <param name="photoSizes">Возвращать ли размеры фотографий в специальном формате</param>
 		/// <param name="count">Положительное число, максимальное значение 1000</param>
 		/// <param name="offset">Положительное число</param>
-		/// <returns>После успешного выполнения возвращает массив объектов <see cref="Photo"/>. В случае, если запись на стене о том, что была обновлена фотография профиля, не удалена, будет возвращено дополнительное поле post_id, содержащее идентификатор записи на стене.</returns>
+		/// <returns>После успешного выполнения возвращает массив объектов Photo
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getProfile"/>.
-		/// </remarks>		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
+		/// Страница документации ВКонтакте https://vk.com/dev/photos.getProfile
+		/// </remarks>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		public ReadOnlyCollection<Photo> GetProfile(long? ownerId = null, IEnumerable<long> photoIds = null, bool? rev = null, bool? extended = null, string feedType = null, DateTime? feed = null, bool? photoSizes = null, ulong? count = null, ulong? offset = null)
 		{
 			throw new System.Exception("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.");
@@ -40,7 +41,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <returns>После успешного выполнения возвращает объект с единственным полем upload_url. </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getProfileUploadServer"/>.
+		/// Страница документации ВКонтакте https://vk.com/dev/photos.getProfileUploadServer
 		/// </remarks>
 		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте метод GetOwnerPhotoUploadServer")]
 		public UploadServerInfo GetProfileUploadServer()
@@ -56,8 +57,9 @@ namespace VkNet.Categories
 		/// <param name="photo">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
 		/// <returns>После успешного выполнения возвращает объект, содержащий поля photo_hash и photo_src (при работе через VK.api метод вернёт поля photo_src, photo_src_big, photo_src_small). Параметр photo_hash необходим для подтверждения пользователем изменения его фотографии через вызов метода saveProfilePhoto Javascript API. Поле photo_src содержит путь к загруженной фотографии. </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.saveProfilePhoto"/>.
-		/// </remarks>		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте метод SaveOwnerPhoto")]
+		/// Страница документации ВКонтакте https://vk.com/dev/photos.saveProfilePhoto
+		/// </remarks>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте метод SaveOwnerPhoto")]
 		public Photo SaveProfilePhoto(string server = null, string hash = null, string photo = null)
 		{
 			var response = @"{
@@ -74,11 +76,12 @@ namespace VkNet.Categories
 		/// <param name="count">Количество альбомов.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// Возвращает список объектов <see cref="PhotoAlbum" />
+		/// Возвращает список объектов PhotoAlbum
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAlbums" />.
-		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetAlbums(PhotoGetAlbumsParams @params)")]
+		/// Страница документации ВКонтакте https://vk.com/dev/photos.getAlbums
+		/// </remarks>
+		[Obsolete("Метод устарел. Используйте вместо него GetAlbums(PhotoGetAlbumsParams @params)")]
 		public ReadOnlyCollection<PhotoAlbum> GetAlbums(out int count, PhotoGetAlbumsParams @params)
 		{
 			var response = GetAlbums(@params);
@@ -93,9 +96,9 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="count">Количество альбомов.</param>
 		/// <param name="params">Параметры запроса.</param>
-		/// <returns>После успешного выполнения возвращает список объектов <see cref="Photo"/>.</returns>
+		/// <returns>После успешного выполнения возвращает список объектов Photo
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.get"/>.
+		/// Страница документации ВКонтакте https://vk.com/dev/photos.get
 		/// </remarks>
 		[Obsolete("Метод устарел. Используйте вместо него Get(PhotoGetParams @params)")]
 		public ReadOnlyCollection<Photo> Get(out int count, PhotoGetParams @params)
@@ -116,8 +119,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список объектов фотографий.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/photos.search" />.
-		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него Search(PhotoSearchParams @params)")]
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.search
+		/// </remarks>
+		[Obsolete("Метод устарел. Используйте вместо него Search(PhotoSearchParams @params)")]
 		public ReadOnlyCollection<Photo> Search(out int count, PhotoSearchParams @params)
 		{
 			var response = Search(@params);
@@ -133,7 +137,7 @@ namespace VkNet.Categories
 		/// <param name="count">Количество пользователей, которым нравится текущая фотография.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// После успешного выполнения возвращает список объектов Photo
 		/// <remarks>
 		/// Если был задан параметр extended — будет возвращено поле likes:
 		/// user_likes: 1 — текущему пользователю нравится данная фотография, 0 - не указано.
@@ -142,8 +146,9 @@ namespace VkNet.Categories
 		/// </remarks>
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/photos.getAll" />.
-		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetAll(PhotoGetAllParams @params)")]
+		/// Страница документации ВКонтакте https://vk.com/dev/photos.getAll
+		/// </remarks>
+		[Obsolete("Метод устарел. Используйте вместо него GetAll(PhotoGetAllParams @params)")]
 		public ReadOnlyCollection<Photo> GetAll(out int count, PhotoGetAllParams @params)
 		{
 			var response = GetAll(@params);
@@ -160,8 +165,9 @@ namespace VkNet.Categories
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>После успешного выполнения возвращает список объектов photo.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getUserPhotos" />.
-		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetUserPhotos(PhotoGetUserPhotosParams @params)")]
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getUserPhotos
+		/// </remarks>
+		[Obsolete("Метод устарел. Используйте вместо него GetUserPhotos(PhotoGetUserPhotosParams @params)")]
 		public ReadOnlyCollection<Photo> GetUserPhotos(out int count, PhotoGetUserPhotosParams @params)
 		{
 			var response = GetUserPhotos(@params);
@@ -177,11 +183,12 @@ namespace VkNet.Categories
 		/// <param name="count">Количество.</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
+		/// После успешного выполнения возвращает список объектов Comment
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getComments" />.
-		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetComments(PhotoGetCommentsParams @params)")]
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getComments
+		/// </remarks>
+		[Obsolete("Метод устарел. Используйте вместо него GetComments(PhotoGetCommentsParams @params)")]
 		public ReadOnlyCollection<Comment> GetComments(out int count, PhotoGetCommentsParams @params)
 		{
 			var response = GetComments(@params);
@@ -197,11 +204,12 @@ namespace VkNet.Categories
 		/// <param name="count">Количество комментариев</param>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Comment" />.
+		/// После успешного выполнения возвращает список объектов Comment
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getAllComments" />.
-		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetAllComments(PhotoGetAllCommentsParams @params)")]
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getAllComments
+		/// </remarks>
+		[Obsolete("Метод устарел. Используйте вместо него GetAllComments(PhotoGetAllCommentsParams @params)")]
 		public ReadOnlyCollection<Comment> GetAllComments(out int count, PhotoGetAllCommentsParams @params)
 		{
 			var response = GetAllComments(@params);
@@ -218,11 +226,12 @@ namespace VkNet.Categories
 		/// <param name="offset">Смещение, необходимое для получения определённого подмножества фотографий. целое число (Целое число).</param>
 		/// <param name="count">Количество фотографий, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20 (Положительное число, максимальное значение 100, по умолчанию 20).</param>
 		/// <returns>
-		/// После успешного выполнения возвращает список объектов <see cref="Photo" />.
+		/// После успешного выполнения возвращает список объектов Photo
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/photos.getNewTags" />.
-		/// </remarks>		[Obsolete("Метод устарел. Используйте вместо него GetNewTags(uint? offset = null, uint? count = null)")]
+		/// Страница документации ВКонтакте http://vk.com/dev/photos.getNewTags
+		/// </remarks>
+		[Obsolete("Метод устарел. Используйте вместо него GetNewTags(uint? offset = null, uint? count = null)")]
 		public ReadOnlyCollection<Photo> GetNewTags(out int countTotal, uint? offset = null, uint? count = null)
 		{
 			var response = GetNewTags(offset,count);

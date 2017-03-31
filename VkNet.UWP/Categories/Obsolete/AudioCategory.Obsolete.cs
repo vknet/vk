@@ -31,10 +31,11 @@ namespace VkNet.Categories
 		/// В случае успеха возвращает затребованный список аудиозаписей группы.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Audio
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.get
 		/// </remarks>
-		[Pure]		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
+		[Pure]
+		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
 		public ReadOnlyCollection<Audio> GetFromGroup(long gid, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			User user;
@@ -54,10 +55,11 @@ namespace VkNet.Categories
 		/// В случае успеха возвращает затребованный список аудиозаписей пользователя.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Audio
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.get
 		/// </remarks>
-		[Pure]		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
+		[Pure]
+		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
 		public ReadOnlyCollection<Audio> Get(long uid, out User user, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			return publicGet("uid", (long)uid, out user, albumId, aids, true, count, offset);
@@ -73,10 +75,11 @@ namespace VkNet.Categories
 		/// <param name="offset">Смещение относительно первой найденной аудиозаписи (для выборки определенного подмножества).</param>
 		/// <returns>В случае успеха возвращает затребованный список аудиозаписей пользователя.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.get"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Audio
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.get
 		/// </remarks>
-		[Pure]		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
+		[Pure]
+		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
 		public ReadOnlyCollection<Audio> Get(long uid, long? albumId = null, IEnumerable<long> aids = null, uint? count = null, uint? offset = null)
 		{
 			User user;
@@ -95,7 +98,8 @@ namespace VkNet.Categories
 		/// <param name="count">Требуемое количество аудиозаписей.</param>
 		/// <param name="offset">Смещение относительно первой найденной аудиозаписи (для выборки определенного подмножества).</param>
 		/// <returns></returns>
-		[Pure]		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
+		[Pure]
+		[Obsolete("Данный метод устарел. Используйте Get(out User user, AudioGetParams @params)")]
 		private ReadOnlyCollection<Audio> publicGet(
 			string paramId,
 			long id,
@@ -131,8 +135,8 @@ namespace VkNet.Categories
 		/// <param name="offset">Смещение относительно первой найденной аудиозаписи для выборки определенного подмножества.</param>
 		/// <returns>Список объектов класса Audio.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Audio
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.search
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте Search(AudioSearchParams @params, out long totalCount)")]
@@ -179,8 +183,8 @@ namespace VkNet.Categories
 		/// Text parameter can not be <see langword="null"/>.
 		/// </exception>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio" />.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.edit" />.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Audio
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.edit
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте Edit(AudioEditParams @params)")]
 		public long Edit(long audioId, long ownerId, string artist, string title, string text, bool? noSearch = null, AudioGenre? genreId = AudioGenre.Other)
@@ -206,9 +210,10 @@ namespace VkNet.Categories
 		/// <param name="totalCount">Общее кол-во аудиозаписей, найденных по этим критериям</param>
 		/// <returns>Список объектов класса Audio.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Audio"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.search"/>.
-		/// </remarks>		[Obsolete("Данный метод устарел. Используйте Search(AudioSearchParams @params)")]
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Audio
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.search
+		/// </remarks>
+		[Obsolete("Данный метод устарел. Используйте Search(AudioSearchParams @params)")]
 		public ReadOnlyCollection<Audio> Search(AudioSearchParams @params, out long totalCount)
 		{
 			if (string.IsNullOrEmpty(@params.Query))

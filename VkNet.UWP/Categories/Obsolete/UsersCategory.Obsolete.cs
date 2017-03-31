@@ -24,10 +24,11 @@ namespace VkNet.Categories
 		/// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к друзьям — Вы можете сделать 1026 &amp; 2.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/getUserSettings"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/getUserSettings
 		/// </remarks>
 		[Pure]
-		[Obsolete("Метод устарел. Используйте вместо него account.getAppPermissions")]		public int GetUserSettings(long uid)
+		[Obsolete("Метод устарел. Используйте вместо него account.getAppPermissions")]
+		public int GetUserSettings(long uid)
 		{
 			throw new System.Exception("Метод устарел. Используйте вместо него account.getAppPermissions");
 		}
@@ -42,9 +43,10 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <exception cref="ArgumentException">Query can not be <c>null</c> or empty.</exception>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/users.search" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/users.search
 		/// </remarks>
-		[Pure]		[Obsolete("Метод устарел. Используйте вместо него Search(UserSearchParams @params)")]
+		[Pure]
+		[Obsolete("Метод устарел. Используйте вместо него Search(UserSearchParams @params)")]
 		public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @params)
 		{
 			var response = Search(@params);

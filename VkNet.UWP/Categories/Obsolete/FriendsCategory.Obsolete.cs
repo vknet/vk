@@ -25,14 +25,15 @@ namespace VkNet.Categories
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества друзей.</param>
 		/// <param name="order">Порядок, в котором нужно вернуть список друзей.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя.</param>
-		/// <param name="listId">Идентификатор списка друзей, полученный методом <see cref="FriendsCategory.GetLists"/>, друзей из которого необходимо получить. Данный параметр учитывается, только когда параметр uid равен идентификатору текущего пользователя.</param>
+		/// <param name="listId">Идентификатор списка друзей, полученный методом FriendsCategory.GetLists
 		/// <returns>Список друзей пользователя с заполненными полями (указанными в параметре <paramref name="fields"/>).
 		/// Если значение поля <paramref name="fields"/> не указано, то у возвращаемых друзей заполняется только поле Id.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.get
 		/// </remarks>
-		[Pure]		[Obsolete("Данный метод устарел. Используйте Get(FriendsGetParams @params)")]
+		[Pure]
+		[Obsolete("Данный метод устарел. Используйте Get(FriendsGetParams @params)")]
 		public ReadOnlyCollection<User> Get(long uid, ProfileFields fields = null, int? count = null, int? offset = null, FriendsOrder order = null, NameCase nameCase = null, int? listId = null)
 		{
 			if (listId != null && listId < 0)
@@ -62,8 +63,8 @@ namespace VkNet.Categories
 		/// В случае успеха список идентификаторов друзей пользователя, которые сейчас находятся на сайте.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getOnline"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Friends
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getOnline
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetOnline(FriendsGetOnlineParams @params)")]
@@ -83,8 +84,8 @@ namespace VkNet.Categories
 		/// В случае успеха возвращает список идентификаторов (id) общих друзей между пользователями с идентификаторами <paramref name="targetUid"/> и <paramref name="sourceUid"/>.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getMutual"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Friends
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getMutual
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetMutual(FriendsGetMutualParams @params)")]
@@ -113,7 +114,7 @@ namespace VkNet.Categories
 		/// 4 — повторная отправка заявки.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.add"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.add
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте Add(long userId, string text, bool? follow = null, long? captchaSid = null, string captchaKey = null)")]
 		public AddFriendStatus Add(long userId, string text, long? captchaSid = null, string captchaKey = null)
@@ -147,7 +148,7 @@ namespace VkNet.Categories
 		/// котором будет находиться список идентификаторов общих друзей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getRequests"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getRequests
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetRequests(FriendsGetRequestsParams @params)")]

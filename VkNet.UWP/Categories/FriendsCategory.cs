@@ -19,6 +19,10 @@
 	{
 		private readonly VkApi _vk;
 
+	    /// <summary>
+	    /// 
+	    /// </summary>
+	    /// <param name="vk"></param>
 	    public FriendsCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -34,8 +38,9 @@
 		/// При использовании параметра fields  возвращает список объектов пользователей, но не более 5000.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.get" />.
-		/// </remarks>		public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.get
+		/// </remarks>
+		public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("friends.get", @params, skipAuthorization).ToVkCollectionOf(x => @params.Fields != null ? x : new User { Id = x });
 		}
@@ -47,8 +52,9 @@
 		/// После успешного выполнения возвращает список идентификаторов (id) друзей текущего пользователя, установивших приложение.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getAppUsers" />.
-		/// </remarks>		[Pure]
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getAppUsers
+		/// </remarks>
+		[Pure]
 		public ReadOnlyCollection<long> GetAppUsers()
 		{
 			VkResponseArray response = _vk.Call("friends.getAppUsers", VkParameters.Empty);
@@ -64,8 +70,9 @@
 		/// При использовании параметра online_mobile=1 также возвращается поле online_mobile, содержащее список идентификатор друзей, находящихся на сайте с мобильного устройства.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getOnline" />.
-		/// </remarks>		public ReadOnlyCollection<long> GetOnline(FriendsGetOnlineParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getOnline
+		/// </remarks>
+		public ReadOnlyCollection<long> GetOnline(FriendsGetOnlineParams @params)
 		{
 			@params.OnlineMobile = false;
 			VkResponseArray response = _vk.Call("friends.getOnline", @params);
@@ -81,8 +88,9 @@
 		/// При использовании параметра online_mobile=1 также возвращается поле online_mobile, содержащее список идентификатор друзей, находящихся на сайте с мобильного устройства.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getOnline" />.
-		/// </remarks>		public FriendOnline GetOnlineEx(FriendsGetOnlineParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getOnline
+		/// </remarks>
+		public FriendOnline GetOnlineEx(FriendsGetOnlineParams @params)
 		{
 			@params.OnlineMobile = true;
 			return _vk.Call("friends.getOnline", @params);
@@ -96,8 +104,9 @@
 		/// После успешного выполнения возвращает список идентификаторов (id) общих друзей между пользователями с идентификаторами source_uid и target_uid.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getMutual" />.
-		/// </remarks>		public ReadOnlyCollection<long> GetMutual(FriendsGetMutualParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getMutual
+		/// </remarks>
+		public ReadOnlyCollection<long> GetMutual(FriendsGetMutualParams @params)
 		{
 			VkResponseArray response = _vk.Call("friends.getMutual", @params);
 			return response.ToReadOnlyCollectionOf<long>(x => x);
@@ -126,8 +135,9 @@
 		/// read_state — статус заявки (0 — не просмотрена, 1 — просмотрена), возвращается только если friend_status = 2;.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.areFriends" />.
-		/// </remarks>		[Pure]
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.areFriends
+		/// </remarks>
+		[Pure]
 		public IDictionary<long, FriendStatus> AreFriends([NotNull]IEnumerable<long> userIds, bool? needSign = null)
 		{
 			if (userIds == null)
@@ -151,8 +161,8 @@
 		/// <param name="name">Название создаваемого списка друзей.</param>
 		/// <returns>После успешного выполнения возвращает идентификатор созданного списка друзей.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Friends"/>.
-		///  Страница документации ВКонтакте <see href="http://vk.com/dev/friends.addList"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Friends
+		///  Страница документации ВКонтакте http://vk.com/dev/friends.addList
 		/// </remarks>
 		public long AddList(string name)
 		{
@@ -168,8 +178,9 @@
 		/// После успешного выполнения возвращает идентификатор (list_id) созданного списка друзей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.addList" />.
-		/// </remarks>		public long AddList(string name, IEnumerable<long> userIds)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.addList
+		/// </remarks>
+		public long AddList(string name, IEnumerable<long> userIds)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => name);
 
@@ -192,8 +203,9 @@
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.deleteList" />.
-		/// </remarks>		public bool DeleteList(long listId)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.deleteList
+		/// </remarks>
+		public bool DeleteList(long listId)
 		{
 			var parameters = new VkParameters {
 				{ "list_id", listId }
@@ -214,8 +226,9 @@
 		/// id — идентификатор списка друзей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getLists" />.
-		/// </remarks>		public VkCollection<FriendList> GetLists(long? userId = null, bool? returnSystem = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getLists
+		/// </remarks>
+		public VkCollection<FriendList> GetLists(long? userId = null, bool? returnSystem = null)
 		{
 			var parameters = new VkParameters {
 				{ "user_id", userId },
@@ -237,8 +250,9 @@
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.editList" />.
-		/// </remarks>		public bool EditList(long listId, string name = null, IEnumerable<long> userIds = null, IEnumerable<long> addUserIds = null, IEnumerable<long> deleteUserIds = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.editList
+		/// </remarks>
+		public bool EditList(long listId, string name = null, IEnumerable<long> userIds = null, IEnumerable<long> addUserIds = null, IEnumerable<long> deleteUserIds = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => listId);
 
@@ -260,8 +274,9 @@
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.deleteAllRequests" />.
-		/// </remarks>		public bool DeleteAllRequests()
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.deleteAllRequests
+		/// </remarks>
+		public bool DeleteAllRequests()
 		{
 			return _vk.Call("friends.deleteAllRequests", VkParameters.Empty);
 		}
@@ -282,8 +297,9 @@
 		/// 4 — повторная отправка заявки.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.add" />.
-		/// </remarks>		public AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.add
+		/// </remarks>
+		public AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null)
 		{
 			var parameters = new VkParameters {
 				{ "user_id", userId },
@@ -316,8 +332,9 @@
 		/// 3 — рекомендация добавить в друзья данного пользователя удалена.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.delete" />.
-		/// </remarks>		public DeleteFriendStatus Delete(long userId)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.delete
+		/// </remarks>
+		public DeleteFriendStatus Delete(long userId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 
@@ -337,8 +354,9 @@
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.edit" />.
-		/// </remarks>		public bool Edit(long userId, IEnumerable<long> listIds)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.edit
+		/// </remarks>
+		public bool Edit(long userId, IEnumerable<long> listIds)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 
@@ -358,8 +376,9 @@
 		/// После успешного выполнения возвращает отсортированный в антихронологическом порядке список идентификаторов (id) недавно добавленных друзей текущего пользователя.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getRecent" />.
-		/// </remarks>		public ReadOnlyCollection<long> GetRecent(long? count = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getRecent
+		/// </remarks>
+		public ReadOnlyCollection<long> GetRecent(long? count = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 
@@ -380,8 +399,9 @@
 		/// При наличии общих друзей, в объекте будет содержаться поле mutual, в котором будет находиться список идентификаторов общих друзей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getRequests" />.
-		/// </remarks>		public IDictionary<long, ReadOnlyCollection<long>> GetRequests(FriendsGetRequestsParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getRequests
+		/// </remarks>
+		public IDictionary<long, ReadOnlyCollection<long>> GetRequests(FriendsGetRequestsParams @params)
 		{
 			VkResponseArray response = _vk.Call("friends.getRequests", @params);
 
@@ -412,8 +432,9 @@
 		/// После успешного выполнения возвращает список объектов пользователей с дополнительным полем found_with для пользователей, найденных через импорт контактов. Для некоторых пользователей, которые были найдены давно поле found_with может отсутствовать.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getSuggestions" />.
-		/// </remarks>		public VkCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null, UsersFields fields = null, NameCase nameCase = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getSuggestions
+		/// </remarks>
+		public VkCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null, UsersFields fields = null, NameCase nameCase = null)
 		{
 			var parameters = new VkParameters {
 				{ "filter", filter },
@@ -438,8 +459,9 @@
 		/// После успешного выполнения возвращает список объектов пользователей с дополнительным полем phone, в котором содержится номер из списка заданных для поиска номеров.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getByPhones" />.
-		/// </remarks>		public ReadOnlyCollection<User> GetByPhones(IEnumerable<string> phones, ProfileFields fields)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getByPhones
+		/// </remarks>
+		public ReadOnlyCollection<User> GetByPhones(IEnumerable<string> phones, ProfileFields fields)
 		{
 			var parameters = new VkParameters {
 				{ "phones", phones },
@@ -461,8 +483,9 @@
 		/// При использовании параметра fields  возвращает список объектов пользователей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.getAvailableForCall" />.
-		/// </remarks>		public VkCollection<User> GetAvailableForCall(ProfileFields fields, NameCase nameCase)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.getAvailableForCall
+		/// </remarks>
+		public VkCollection<User> GetAvailableForCall(ProfileFields fields, NameCase nameCase)
 		{
 			var parameters = new VkParameters {
 				{ "fields", fields },
@@ -480,8 +503,9 @@
 		/// После успешного выполнения метод  возвращает список объектов пользователей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/friends.search" />.
-		/// </remarks>		public VkCollection<User> Search(FriendsSearchParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/friends.search
+		/// </remarks>
+		public VkCollection<User> Search(FriendsSearchParams @params)
 		{
 			return _vk.Call("friends.search", @params).ToVkCollectionOf<User>(x => x);
 		}

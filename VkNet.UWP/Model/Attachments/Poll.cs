@@ -7,7 +7,7 @@ namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Опрос.
-	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Опрос".
+	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[DataContract]
 	public class Poll : MediaAttachment

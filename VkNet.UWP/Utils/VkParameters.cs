@@ -13,14 +13,14 @@ namespace VkNet.Utils
     public partial class VkParameters : Dictionary<string, string>
     {
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkParameters"/>.
+        /// Инициализирует новый экземпляр класса VkParameters
         /// </summary>
         public VkParameters()
         {
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkParameters"/> на основе словаря.
+        /// Инициализирует новый экземпляр класса VkParameters
         /// </summary>
         /// <param name="parameters">
         /// Параметры запроса.

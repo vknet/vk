@@ -6,7 +6,7 @@ namespace VkNet.Model
 
 	/// <summary>
 	/// Информация о количестве комментариев к записи.
-	/// См. описание <see href="http://vk.com/dev/post"/>. Раздел comments.
+	/// См. описание http://vk.com/dev/post
 	/// </summary>
 	[DataContract]
 	public class Comments

@@ -29,7 +29,7 @@ namespace VkNet.Categories
 		/// <param name="filter">Типы сообщений, которые необходимо получить (по умолчанию возвращаются все сообщения).</param>
 		/// <returns>В случае успеха возвращается запрошенный список записей со стены.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.get
 		/// </remarks>
 		[Pure]
 		[Obsolete("Устаревшая версия API. Используйте метод Get(WallGetParams @params)")]
@@ -65,7 +65,7 @@ namespace VkNet.Categories
 		/// <param name="filter">Типы сообщений, которые необходимо получить (по умолчанию возвращаются все сообщения).</param>
 		/// <returns>В случае успеха возвращается количество записей на стене.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.get"/>, для случая, когда параметр extended = 1.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.get
 		/// </remarks>
 		[Pure]
 		[Obsolete("Устаревшая версия API. Используйте метод Get(WallGetParams @params)")]
@@ -107,7 +107,7 @@ namespace VkNet.Categories
 		/// Список комментариев к записи на стене пользователя.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.getComments
 		/// </remarks>
 		[Pure]
 		[Obsolete("Устаревшая версия API. Используйте метод GetComments(out int totalCount, WallGetCommentsParams @params)")]
@@ -150,7 +150,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список объектов записей со стены.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getById"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.getById
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null)")]
@@ -179,7 +179,7 @@ namespace VkNet.Categories
 		/// <param name="message">Тескт сообщения. Обязательное поле, если список <paramref name="mediaAttachments"/> не задан или пуст.</param>
 		/// <param name="mediaAttachments">Список приложенных к записи объектов.
 		/// Обязательно наличие хотя бы одного элемента в списке, если <paramref name="message"/> не задано.
-		/// Свойства <see cref="MediaAttachment.Id"/> и <see cref="MediaAttachment.OwnerId"/> обязательно должны быть заданы. </param>
+		/// Свойства MediaAttachment.Id
 		/// <param name="url">Ссылка на внешнюю страницу. В строке может содержаться только одна ссылка.</param>
 		/// <param name="services">Список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию.
 		///  Например, twitter, facebook</param>
@@ -193,8 +193,8 @@ namespace VkNet.Categories
 		/// При публикации отложенной записи все параметры кроме owner_id и post_id игнорируются. </param>
 		/// <returns>Идентификатор созданной записи</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.post"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Wall
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.post
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте Post(WallPostParams @params)")]
 		public long Post(long? ownerId = null, bool friendsOnly = false, bool fromGroup = false,
@@ -253,7 +253,7 @@ namespace VkNet.Categories
 		/// <param name="message">Тескт сообщения. Обязательное поле, если список <paramref name="mediaAttachments"/> не задан или пуст.</param>
 		/// <param name="mediaAttachments">Список приложенных к записи объектов.
 		/// Обязательно наличие хотя бы одного элемента в списке, если <paramref name="message"/> не задано.
-		/// Свойства <see cref="MediaAttachment.Id"/> и <see cref="MediaAttachment.OwnerId"/> обязательно должны быть заданы. </param>
+		/// Свойства MediaAttachment.Id
 		/// <param name="url">Ссылка на внешнюю страницу. В строке может содержаться только одна ссылка.</param>
 		/// <param name="services">Список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию.
 		///  Например, twitter, facebook</param>
@@ -265,8 +265,8 @@ namespace VkNet.Categories
 		/// <param name="placeId">Идентификатор места, в котором отмечен пользователь (положительное число).</param>
 		/// <returns>Результат выполнения редактирования.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Wall"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.edit"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Wall
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.edit
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте Edit(WallEditParams @params)")]
 		public bool Edit(long postId, long? ownerId = null, bool friendsOnly = false,
@@ -317,7 +317,7 @@ namespace VkNet.Categories
 		/// Если был передан параметр start_comment_id, будет также возвращено поле real_offset – итоговое смещение данного подмножества комментариев (оно может быть отрицательным, если был указан отрицательный offset).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/wall.getComments" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.getComments
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте GetComments(WallGetCommentsParams @params)")]
 		public ReadOnlyCollection<Comment> GetComments(out int totalCount, WallGetCommentsParams @params)

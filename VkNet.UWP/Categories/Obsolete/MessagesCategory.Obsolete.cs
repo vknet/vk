@@ -22,7 +22,7 @@ namespace VkNet.Categories
 		/// Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
 		/// </summary>
 		/// <param name="type">Тип сообщений которые необходимо получить.
-		/// Необходимо передать <see cref="MessageType.Received"/> для полученных сообщений и <see cref="MessageType.Sended"/>
+		/// Необходимо передать MessageType.Received
 		/// для отправленных пользователем сообщений.
 		/// </param>
 		/// <param name="totalCount">Общее количество сообщений, удовлетворяющих условиям фильтрации.</param>
@@ -36,10 +36,11 @@ namespace VkNet.Categories
 		/// <param name="lastMessageId">Идентификатор сообщения, полученного перед тем, которое нужно вернуть последним (при условии, что после него было получено не более count сообщений, иначе необходимо использовать с параметром offset).</param>
 		/// <returns>Список сообщений, удовлетворяющий условиям фильтрации.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.get
 		/// </remarks>
-		[Pure]		[Obsolete("Устаревшая версия API. Используйте метод Get(MessagesGetParams @params)")]
+		[Pure]
+		[Obsolete("Устаревшая версия API. Используйте метод Get(MessagesGetParams @params)")]
 		public ReadOnlyCollection<Message> Get(
 			MessageType type,
 			out int totalCount,
@@ -77,10 +78,11 @@ namespace VkNet.Categories
 		/// <param name="inReverse">true – возвращать сообщения в хронологическом порядке. false – возвращать сообщения в обратном хронологическом порядке (по умолчанию), недоступен при переданном start_message_id.</param>
 		/// <returns></returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory" />.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
 		/// </remarks>
-		[Pure]		[Obsolete("Устаревшая версия API. Используйте метод GetHistory(MessagesGetParams @params)")]
+		[Pure]
+		[Obsolete("Устаревшая версия API. Используйте метод GetHistory(MessagesGetParams @params)")]
 		public ReadOnlyCollection<Message> GetHistory(out int totalCount, bool isChat, long id, int? offset = null, uint? count = 20,
 			long? startMessageId = null, bool inReverse = false)
 		{
@@ -121,10 +123,11 @@ namespace VkNet.Categories
 		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).</param>
 		/// <returns>Список диалогов текущего пользователя.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getDialogs" />.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getDialogs
 		/// </remarks>
-		[Pure]		[Obsolete("Устаревшая версия API. Используйте метод GetDialogs(DialogsGetParams @params)")]
+		[Pure]
+		[Obsolete("Устаревшая версия API. Используйте метод GetDialogs(DialogsGetParams @params)")]
 		public ReadOnlyCollection<Message> GetDialogs(out int totalCount, out int unreadCount, uint count = 20, int? offset = null, bool unread = false, long? startMessageId = null, uint? previewLength = null)
 		{
 			var parameters = new MessagesDialogsGetParams
@@ -160,39 +163,41 @@ namespace VkNet.Categories
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений из списка найденных.</param>
 		/// <returns>Список личных сообщений пользователя, удовлетворяющих условиям запроса.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.search
 		/// </remarks>
-		[Pure]		[Obsolete("Устаревшая версия API. Используйте метод Search(out int totalCount, [NotNull] string query, long? previewLength, long? offset, long? count)")]
+		[Pure]
+		[Obsolete("Устаревшая версия API. Используйте метод Search(out int totalCount, [NotNull] string query, long? previewLength, long? offset, long? count)")]
 		public ReadOnlyCollection<Message> Search([NotNull] string query, out int totalCount, int? count = null, int? offset = null)
 		{
 			return Search(out totalCount, query, null, offset, count);
 		}
 
-	    /// <summary>
-	    /// Посылает личное сообщение.
-	    /// </summary>
-	    /// <param name="id">
-	    /// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, которому необходимо послать сообщение.
-	    /// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, к которой будет относиться сообщение.
-	    /// </param>
-	    /// <param name="isChat">Признак посылается ли сообщение в беседу (true) или указанному пользователю (false).</param>
-	    /// <param name="message">Текст личного cообщения (является обязательным, если не задан параметр <paramref name="attachment"/>).</param>
-	    /// <param name="title">Заголовок сообщения.</param>
-	    /// <param name="attachment">Медиа-приложение к личному сообщению.</param>
-	    /// <param name="forwardMessagedIds">Идентификаторы пересылаемых сообщений. Перечисленные сообщения отправителя будут отображаться
-	    /// в теле письма у получателя.</param>
-	    /// <param name="fromChat">Задайте false для обычного сообщения и true для сообщения из часта.</param>
-	    /// <param name="latitude">Широта при добавлении местоположения.</param>
-	    /// <param name="longitude">Долгота при добавлении местоположения.</param>
-	    /// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
-	    /// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
-	    /// <returns>Возвращается идентификатор отправленного сообщения.</returns>
-	    /// <remarks>
-	    /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-	    /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.send"/>.
-	    /// </remarks>
-	    [Obsolete("Устаревшая версия API. Используйте метод Send(MessageSendParams @params)")]
+		/// <summary>
+		/// Посылает личное сообщение.
+		/// </summary>
+		/// <param name="id">
+		/// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, которому необходимо послать сообщение.
+		/// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, к которой будет относиться сообщение.
+		/// </param>
+		/// <param name="isChat">Признак посылается ли сообщение в беседу (true) или указанному пользователю (false).</param>
+		/// <param name="message">Текст личного cообщения (является обязательным, если не задан параметр <paramref name="attachment"/>).</param>
+		/// <param name="title">Заголовок сообщения.</param>
+		/// <param name="attachment">Медиа-приложение к личному сообщению.</param>
+		/// <param name="forwardMessagedIds">Идентификаторы пересылаемых сообщений. Перечисленные сообщения отправителя будут отображаться
+		/// в теле письма у получателя.</param>
+		/// <param name="fromChat">Задайте false для обычного сообщения и true для сообщения из часта.</param>
+		/// <param name="latitude">Широта при добавлении местоположения.</param>
+		/// <param name="longitude">Долгота при добавлении местоположения.</param>
+		/// <param name="randomId"></param>
+		/// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
+		/// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
+		/// <returns>Возвращается идентификатор отправленного сообщения.</returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.send
+		/// </remarks>
+		[Obsolete("Устаревшая версия API. Используйте метод Send(MessageSendParams @params)")]
 		public long Send(
 			long id,
 			bool isChat,
@@ -235,8 +240,8 @@ namespace VkNet.Categories
 		/// Возвращает true, если сообщения были успешно помечены как непрочитанные, false в противном случае.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsNew"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsNew
 		/// </remarks>
 		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		public bool MarkAsNew(IEnumerable<ulong> messageIds)
@@ -254,8 +259,8 @@ namespace VkNet.Categories
 		/// Возвращает true, если сообщение были успешно помечено как непрочитанное, false в противном случае.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsNew"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsNew
 		/// </remarks>
 		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		public bool MarkAsNew(ulong messageId)
@@ -273,9 +278,10 @@ namespace VkNet.Categories
 		/// Возвращает true, если сообщения были успешно помечены как прочитанные, false в противном случае.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsRead"/>.
-		/// </remarks>		[Obsolete("Устаревшая версия API. Используйте метод MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId)")]
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
+		/// </remarks>
+		[Obsolete("Устаревшая версия API. Используйте метод MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId)")]
 		public bool MarkAsRead(IEnumerable<long> messageIds)
 		{
 			return MarkAsRead(messageIds, null, null);
@@ -291,8 +297,8 @@ namespace VkNet.Categories
 		/// Возвращает true, если сообщение были успешно помечено как прочитанное, false в противном случае.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsRead"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
 		/// </remarks>
 		[Obsolete("Устаревшая версия API. Используйте метод MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId)")]
 		public bool MarkAsRead(long messageId)
@@ -307,10 +313,11 @@ namespace VkNet.Categories
 		/// <param name="fields">Список дополнительных полей профилей, которые необходимо вернуть.</param>
 		/// <returns>После успешного выполнения возвращает список идентификаторов участников беседы.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChatUsers"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
 		/// </remarks>
-		[Pure]		[Obsolete("Устаревшая версия API. Используйте метод GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)")]
+		[Pure]
+		[Obsolete("Устаревшая версия API. Используйте метод GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)")]
 		public ReadOnlyCollection<User> GetChatUsers(long chatId, UsersFields fields)
 		{
 			return GetChatUsers(new List<long> { chatId }, fields, null);
@@ -322,8 +329,8 @@ namespace VkNet.Categories
 		/// <param name="chatId">Идентификатор беседы.</param>
 		/// <returns>После успешного выполнения возвращает список идентификаторов участников беседы.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChatUsers"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
 		/// </remarks>
 		[Pure]
 		[Obsolete("Устаревшая версия API. Используйте метод GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)")]
@@ -342,10 +349,11 @@ namespace VkNet.Categories
 		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).</param>
 		/// <returns>Запрошенные сообщения.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 		/// </remarks>
-		[Pure]		[Obsolete("Устаревшая версия API. Используйте метод GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)")]
+		[Pure]
+		[Obsolete("Устаревшая версия API. Используйте метод GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)")]
 		public ReadOnlyCollection<Message> GetById(out int totalCount, [NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)
 		{
 			var response = GetById(messageIds, previewLength);
@@ -367,8 +375,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает  объектов , найденных в соответствии с поисковым запросом '''q'''.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search" />.
-		/// </remarks>		[Obsolete("Устаревшая версия API. Используйте метод Search([NotNull] string query, long? previewLength, long? offset, long? count)")]
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.search
+		/// </remarks>
+		[Obsolete("Устаревшая версия API. Используйте метод Search([NotNull] string query, long? previewLength, long? offset, long? count)")]
 		public ReadOnlyCollection<Message> Search(out int totalCount, [NotNull] string query, long? previewLength, long? offset, long? count)
 		{
 			var response = Search(query, previewLength, offset, count);

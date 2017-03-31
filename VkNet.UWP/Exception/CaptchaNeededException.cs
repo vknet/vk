@@ -21,7 +21,7 @@ namespace VkNet.Exception
         public Uri Img { get; private set; }
 
         /// <summary>
-        /// Создания экземпляра <see cref="CaptchaNeededException"/>
+        /// Создания экземпляра CaptchaNeededException
         /// </summary>
         /// <param name="sid">Сид</param>
         /// <param name="img">Uri-адрес изображения с капчей</param>
@@ -31,7 +31,7 @@ namespace VkNet.Exception
         }
 
         /// <summary>
-        /// Создания экземпляра <see cref="CaptchaNeededException"/>
+        /// Создания экземпляра CaptchaNeededException
         /// </summary>
         /// <param name="sid">Сид</param>
         /// <param name="img">Uri-адрес изображения с капчей</param>

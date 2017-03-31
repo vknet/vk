@@ -35,8 +35,9 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/stats.get" />.
-		/// </remarks>		private ReadOnlyCollection<StatsPeriod> Get(DateTime dateFrom, DateTime? dateTo = null, long? groupId = null, long? appId = null)
+		/// Страница документации ВКонтакте https://vk.com/dev/stats.get
+		/// </remarks>
+		private ReadOnlyCollection<StatsPeriod> Get(DateTime dateFrom, DateTime? dateTo = null, long? groupId = null, long? appId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -62,7 +63,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/stats.get" />.
+		/// Страница документации ВКонтакте https://vk.com/dev/stats.get
 		/// </remarks>
 		public ReadOnlyCollection<StatsPeriod> GetByGroup(long groupId, DateTime dateFrom, DateTime? dateTo = null)
 		{
@@ -79,7 +80,7 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/stats.get" />.
+		/// Страница документации ВКонтакте https://vk.com/dev/stats.get
 		/// </remarks>
 		public ReadOnlyCollection<StatsPeriod> GetByApp(long appId, DateTime dateFrom, DateTime? dateTo = null)
 		{
@@ -93,8 +94,9 @@ namespace VkNet.Categories
 		/// В случае успешной обработки данных метод вернет <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/stats.trackVisitor" />.
-		/// </remarks>		public bool TrackVisitor()
+		/// Страница документации ВКонтакте http://vk.com/dev/stats.trackVisitor
+		/// </remarks>
+		public bool TrackVisitor()
 		{
 			return _vk.Call("stats.trackVisitor", VkParameters.Empty);
 		}
@@ -109,8 +111,9 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// Необходимо входить в число руководителей этого сообщества.
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/stats.getPostReach" />.
-		/// </remarks>		public PostReach GetPostReach(long ownerId, long postId)
+		/// Страница документации ВКонтакте https://vk.com/dev/stats.getPostReach
+		/// </remarks>
+		public PostReach GetPostReach(long ownerId, long postId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => postId);
 			var parameters = new VkParameters

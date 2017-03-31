@@ -11,7 +11,7 @@ namespace VkNet.Model.Attachments
     /// Видеозапись пользователя или группы.
     /// </summary>
     /// <remarks>
-    /// См. описание <see href="http://vk.com/dev/video_object"/>.
+    /// См. описание http://vk.com/dev/video_object
     /// </remarks>
     [DebuggerDisplay("Id = {Id}, Title = {Title}")]
 	[DataContract]
@@ -128,12 +128,12 @@ namespace VkNet.Model.Attachments
         public bool? Repeat { get; set; }
 
         /// <summary>
-        /// Идентификатор видеоальбома <see cref="VideoAlbum"/>, к которому относится видеозапись.
+        /// Идентификатор видеоальбома VideoAlbum
         /// </summary>
         public long? AlbumId { get; set; }
 
         /// <summary>
-        /// Uri, по которому необходимо выполнить загрузку видеов (см. метод <see cref="VideoCategory.Save"/>).
+        /// Uri, по которому необходимо выполнить загрузку видеов (см. метод VideoCategory.Save
         /// </summary>
         public Uri UploadUrl { get; set; }
 
@@ -220,6 +220,9 @@ namespace VkNet.Model.Attachments
             };
         }
 
+		/// <summary>
+		/// Привести объект к строке.
+		/// </summary>
 		public override string ToString()
 		{
 			return $"video{OwnerId}_{Id}";

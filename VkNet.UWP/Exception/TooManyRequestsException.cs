@@ -13,14 +13,14 @@
     public class TooManyRequestsException : VkApiMethodInvokeException
     {
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="TooManyRequestsException"/>.
+        /// Инициализирует новый экземпляр класса TooManyRequestsException
         /// </summary>
         public TooManyRequestsException()
         {
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="TooManyRequestsException"/> с указанным описанием.
+        /// Инициализирует новый экземпляр класса TooManyRequestsException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         public TooManyRequestsException(string message) : base(message)
@@ -28,7 +28,7 @@
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="TooManyRequestsException"/> с указанным описанием и внутренним исключением.
+        /// Инициализирует новый экземпляр класса TooManyRequestsException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="innerException">Внутреннее исключение.</param>
@@ -37,7 +37,7 @@
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="TooManyRequestsException"/> с указанным описанием и кодом ошибки.
+        /// Инициализирует новый экземпляр класса TooManyRequestsException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="code">Код ошибки, полученный от сервера ВКонтакте.</param>

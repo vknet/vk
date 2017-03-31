@@ -5,7 +5,7 @@ namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Контент приложения.
-	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Контент приложения".
+	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[DataContract]
 	public class ApplicationContent : MediaAttachment

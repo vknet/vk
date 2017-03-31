@@ -37,7 +37,7 @@
         /// Возвращает объект, который может содержать поля friends, messages, photos, videos, notes, gifts, events, groups, notifications, sdk, app_requests.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getCounters" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.getCounters
         /// </remarks>
         public Counters GetCounters(CountersFilter filter)
         {
@@ -54,7 +54,7 @@
         /// Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied). Избежать этой ошибки можно с помощью метода account.getAppPermissions.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setNameInMenu" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.setNameInMenu
         /// </remarks>
         public bool SetNameInMenu([NotNull] string name, long? userId = null)
         {
@@ -75,7 +75,7 @@
         /// В случае успешного выполнения метода будет возвращён код 1.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setOnline" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.setOnline
         /// </remarks>
         public bool SetOnline(bool? voip = null)
         {
@@ -90,7 +90,7 @@
         /// В случае успешного выполнения возвращает <c>true</c>.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setOffline" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.setOffline
         /// </remarks>
         public bool SetOffline()
         {
@@ -112,7 +112,7 @@
         /// other – список контактов, которые не были найдены. Объект содержит поля contact и common_count если этот контакт также был импортирован друзьями или контактами текущего пользователя.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.lookupContacts" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.lookupContacts
         /// </remarks>
         public LookupContactsResult LookupContacts(List<string> contacts, Services service, string mycontact = null, bool? returnAll = null, UsersFields fields = null)
         {
@@ -137,7 +137,7 @@
         /// На Android будут приходить события в следующем формате.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.registerDevice" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.registerDevice
         /// </remarks>
         public bool RegisterDevice(AccountRegisterDeviceParams @params)
         {
@@ -155,7 +155,7 @@
         /// Возвращает <c>true</c> в случае успешного выполнения метода.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.unregisterDevice" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.unregisterDevice
         /// </remarks>
         public bool UnregisterDevice(string deviceId, bool? sandbox = null)
         {
@@ -181,7 +181,7 @@
         /// Возвращает результат выполнения метода.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.setSilenceMode" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.setSilenceMode
         /// </remarks>
         public bool SetSilenceMode([NotNull] string deviceId, int? time = null, int? peerId = null, bool? sound = null)
         {
@@ -210,7 +210,7 @@
         /// settings — объект с настройками Push-уведомлений в специальном формате.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getPushSettings" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.getPushSettings
         /// </remarks>
         public AccountPushSettings GetPushSettings(string deviceId)
         {
@@ -233,7 +233,7 @@
         /// Возвращает 1 в случае успешного выполнения метода.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setPushSettings" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.setPushSettings
         /// </remarks>
         public bool SetPushSettings(string deviceId, PushSettings settings, string key, List<string> value)
         {
@@ -259,7 +259,7 @@
         /// см. Список возможных настроек прав доступа.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getAppPermissions" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.getAppPermissions
         /// </remarks>
         public long GetAppPermissions(long userId)
         {
@@ -280,7 +280,7 @@
         /// В случае, если на пользователя не старгетировано ни одного специального предложения, массив будет содержать элемент 0 (количество специальных предложений).
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getActiveOffers" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.getActiveOffers
         /// </remarks>
         public InformationAboutOffers GetActiveOffers(ulong? offset = null, ulong? count = null)
         {
@@ -300,7 +300,7 @@
         /// В случае успеха метод вернет <c>true</c>.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.banUser" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.banUser
         /// </remarks>
         public bool BanUser(long userId)
         {
@@ -320,7 +320,7 @@
         /// В случае успеха метод вернет <c>true</c>.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.unbanUser" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.unbanUser
         /// </remarks>
         public bool UnbanUser(long userId)
         {
@@ -341,7 +341,7 @@
         /// Возвращает набор объектов пользователей, находящихся в черном списке.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getBanned" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.getBanned
         /// </remarks>
         public VkCollection<User> GetBanned(int? offset = null, int? count = null)
         {
@@ -371,7 +371,7 @@
         /// lang – числовой идентификатор текущего языка пользователя.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getInfo" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.getInfo
         /// </remarks>
         public AccountInfo GetInfo(AccountFields fields = null)
         {
@@ -387,7 +387,7 @@
         /// В результате успешного выполнения возвращает <c>true</c>.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.setInfo" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.setInfo
         /// </remarks>
         public bool SetInfo([NotNull]string name, [NotNull]string value)
         {
@@ -410,7 +410,7 @@
         /// В результате выполнения этого метода будет возвращен объект с полем token, содержащим новый токен, и полем secret в случае, если токен был nohttps.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/account.changePassword" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.changePassword
         /// </remarks>
         public AccountChangePasswordResult ChangePassword(string oldPassword, string newPassword, string restoreSid = null, string changePasswordHash = null)
         {
@@ -427,9 +427,9 @@
         /// <summary>
         /// Возвращает информацию о текущем профиле.
         /// </summary>
-        /// <returns>Информация о текущем профиле в виде <see cref="Model.User"/></returns>
+        /// <returns>Информация о текущем профиле в виде Model.User
         /// <remarks>
-        /// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.getProfileInfo" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.getProfileInfo
         /// </remarks>
         [Pure]
         public AccountSaveProfileInfoParams GetProfileInfo()
@@ -461,7 +461,7 @@
         /// <returns>Результат отмены заявки.</returns>
         /// <remarks>Метод вынесен как отдельный, потому что если в запросе передан параметр <paramref name="cancelRequestId"/>, все остальные параметры игнорируются.</remarks>
         /// <remarks>
-        /// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.saveProfileInfo" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
         /// </remarks>
         public bool SaveProfileInfo(int cancelRequestId)
         {
@@ -473,13 +473,13 @@
         /// Редактирует информацию текущего профиля.
         /// </summary>
         /// <param name="changeNameRequest">Если в параметрах передавалось имя или фамилия пользователя,
-        /// в этом параметре будет возвращен объект типа <see cref="ChangeNameRequest" />, содержащий информацию о заявке на смену имени.</param>
+        /// в этом параметре будет возвращен объект типа ChangeNameRequest
         /// <param name="params">The parameters.</param>
         /// <returns>
         /// Результат отмены заявки.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/account.saveProfileInfo" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
         /// </remarks>
         public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveProfileInfoParams @params)
         {

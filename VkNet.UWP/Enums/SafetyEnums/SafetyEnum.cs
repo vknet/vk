@@ -17,21 +17,9 @@ namespace VkNet.Enums.SafetyEnums
     public abstract class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
 	{
 		/// <summary>
-		/// Аналог enum, типобезопасен.
+		/// Значение
 		/// </summary>
-		protected SafetyEnum()
-		{
-		}
-
-		///// <summary>
-		///// Возможные значения
-		///// </summary>
-		//private static readonly IList<string> PossibleValues = new List<string>();
-
-		private string _mask;
-
-
-		protected string Value => _mask;
+		private string _value;
 
 		/// <summary>
 		/// Регистрирует возможное значение.
@@ -41,7 +29,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// <exception cref="System.ArgumentException">Mask must be a power of 2 (i.e. only one bit must be equal to 1);mask</exception>
 		protected static TFilter RegisterPossibleValue(string value)
 		{
-			return new TFilter { _mask = value };
+			return new TFilter { _value = value };
 		}
 
 		/// <summary>
@@ -49,7 +37,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		public override string ToString()
 		{
-			return _mask;
+			return _value;
 		}
 
 		/// <summary>
@@ -66,7 +54,7 @@ namespace VkNet.Enums.SafetyEnums
 			if (ReferenceEquals(null, left)) { return false;}
 			if (ReferenceEquals(null, right)) { return false;}
 
-			return left._mask == right._mask;
+			return left._value == right._value;
 		}
 
 		/// <summary>
@@ -86,7 +74,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
+		/// <returns>Объект перечисления типа TFilter - Непосредственно наследник</returns>
 		public static TFilter FromJson(VkResponse response)
 	    {
 		    var value = response.ToString();
@@ -94,18 +82,18 @@ namespace VkNet.Enums.SafetyEnums
 
         }
 
-        /// <summary>
-        /// Разобрать из json.
-        /// </summary>
-        /// <param name="response">Ответ сервера.</param>
-        /// <returns>Объект перечисления типа <typeparam name="TFilter">Непосредственно наследник</typeparam></returns>
-        public static TFilter FromJson(string response)
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns>Объект перечисления типа TFilter - Непосредственно наследник</returns>
+		public static TFilter FromJson(string response)
 		{
 		    if (string.IsNullOrWhiteSpace(response))
 		    {
 		        return null;
 		    }
-			var result = new TFilter { _mask = response };
+			var result = new TFilter { _value = response };
             Activator.CreateInstance(result.GetType());
             return result;
         }
@@ -117,7 +105,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// <returns></returns>
 		protected bool Equals(SafetyEnum<TFilter> other)
 		{
-			return _mask == other._mask;
+			return _value == other._value;
 		}
 
 		/// <summary>
@@ -141,7 +129,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// </returns>
 		public override int GetHashCode()
 		{
-			return _mask.GetHashCode();
+			return _value.GetHashCode();
 		}
 	}
 }

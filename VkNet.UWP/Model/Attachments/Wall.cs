@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model.Attachments
 {
@@ -10,6 +11,7 @@ namespace VkNet.Model.Attachments
 	/// <summary>
 	/// Запись на стене.
 	/// </summary>
+	[Obsolete("Необходимо использовать класс Post")]
 	[DataContract]
 	public class Wall : MediaAttachment
     {
@@ -36,8 +38,10 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public DateTime? Date { get; set; }
 
-#warning post_type must not be string
-        public string PostType { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public PostType PostType { get; set; }
 
 		/// <summary>
 		/// Текст записи.
@@ -94,6 +98,11 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public string CopyText { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="response"></param>
+		/// <returns></returns>
 		public static Wall FromJson(VkResponse response)
 		{
             return new Wall

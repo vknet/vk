@@ -15,7 +15,7 @@ namespace VkNet.Model
 	/// Запись со стены пользователя или сообщества.
 	/// </summary>
 	/// <remarks>
-	/// См. описание <see href="http://vk.com/dev/post"/>.
+	/// См. описание http://vk.com/dev/post
 	/// </remarks>
 	[DebuggerDisplay("[{Id}] {Text}")]
 	[DataContract]
@@ -181,6 +181,11 @@ namespace VkNet.Model
 
 		#region Методы
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="response"></param>
+		/// <returns></returns>
 		public static Post FromJson(VkResponse response)
 		{
 			if (response["id"] == null)

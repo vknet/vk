@@ -257,7 +257,7 @@ namespace VkNet.Model.RequestParams
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
-		/// <returns>Объект типа <see cref="GroupsEditParams"/></returns>
+		/// <returns>Объект типа GroupsEditParams
 		public static VkParameters ToVkParameters(GroupsEditParams p)
 		{
 			var result = new VkParameters

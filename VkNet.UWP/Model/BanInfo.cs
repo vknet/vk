@@ -13,7 +13,7 @@ namespace VkNet.Model
     /// Информация о забанненом (добавленном в черный список) пользователе сообщества.
     /// </summary>
     /// <remarks>
-    /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned"/>.
+    /// Страница документации ВКонтакте http://vk.com/dev/groups.getBanned
     /// </remarks>
     [DebuggerDisplay("[{AdminId}] {Comment} ({Reason})")]
     [DataContract]

@@ -11,6 +11,10 @@
     {
         private readonly VkApi _vk;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vk"></param>
         public BoardCategory(VkApi vk)
         {
             _vk = vk;
@@ -61,7 +65,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.addTopic" />.
+        /// Страница документации ВКонтакте https://vk.com/dev/board.addTopic
         /// </remarks>
         public long AddTopic(BoardAddTopicParams @params)
         {
@@ -75,7 +79,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.deleteTopic" />.
+        /// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
         /// </remarks>
         public long DeleteTopic(BoardTopicParams @params)
         {
@@ -89,7 +93,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.closeTopic" />.
+        /// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
         /// </remarks>
         public long CloseTopic(BoardTopicParams @params)
         {
@@ -103,7 +107,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.openTopic" />.
+        /// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
         /// </remarks>
         public long OpenTopic(BoardTopicParams @params)
         {
@@ -117,7 +121,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.fixTopic" />.
+        /// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
         /// </remarks>
         public long FixTopic(BoardTopicParams @params)
         {
@@ -131,7 +135,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.unfixTopic" />.
+        /// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
         /// </remarks>
         public long UnFixTopic(BoardTopicParams @params)
         {
@@ -146,7 +150,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.editTopic" />.
+        /// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
         /// </remarks>
         public long EditTopic(BoardEditTopicParams @params)
         {
@@ -188,7 +192,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.editComment" />.
+        /// Страница документации ВКонтакте https://vk.com/dev/board.editComment
         /// </remarks>
         public long EditComment(BoardEditCommentParams @params)
         {
@@ -202,7 +206,7 @@
         /// <returns>
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="https://vk.com/dev/board.restoreComment" />.
+        /// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
         /// </remarks>
         public long RestoreComment(BoardCommentParams @params)
         {

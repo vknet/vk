@@ -23,12 +23,12 @@ namespace VkNet.Enums.SafetyEnums
         public static readonly ChangeNameStatus Success = RegisterPossibleValue("success");
 
         /// <summary>
-        /// Недавно уже была одобрена заявка, повторную заявку можно подать не раньше даты, указанной в поле <see cref="ChangeNameRequest.RepeatDate"/>
+        /// Недавно уже была одобрена заявка, повторную заявку можно подать не раньше даты, указанной в поле ChangeNameRequest.RepeatDate
         /// </summary>
         public static readonly ChangeNameStatus WasAccepted = RegisterPossibleValue("was_accepted");
 
         /// <summary>
-        /// Предыдущая заявка была отклонена, повторную заявку можно подать не раньше даты, указанной в поле <see cref="ChangeNameRequest.RepeatDate"/>
+        /// Предыдущая заявка была отклонена, повторную заявку можно подать не раньше даты, указанной в поле ChangeNameRequest.RepeatDate
         /// </summary>
         public static readonly ChangeNameStatus WasDeclined = RegisterPossibleValue("was_declined");
 	}

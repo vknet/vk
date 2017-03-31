@@ -92,7 +92,7 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="PhotoAlbum"/> is thumb_is_last.
+		/// Gets or sets a value indicating whether this PhotoAlbum
 		/// </summary>
 		/// <remarks>
 		/// Получено экспериментально.

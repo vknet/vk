@@ -6,7 +6,7 @@ namespace VkNet.Model
     /// Информация об аудиоальбоме.
     /// </summary>
     /// <remarks>
-    /// Страница документации ВКонтакте <see href="http://vk.com/dev/audio.getAlbums"/>.
+    /// Страница документации ВКонтакте http://vk.com/dev/audio.getAlbums
     /// </remarks>
     public class AudioAlbum
     {

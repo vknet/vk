@@ -6,7 +6,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Школа, в которой учился пользователь.
-    /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел schools.
+    /// См. описание http://vk.com/dev/fields
     /// </summary>
     [DataContract]
     public class School

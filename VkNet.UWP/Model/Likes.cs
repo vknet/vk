@@ -6,7 +6,7 @@ namespace VkNet.Model
 
 	/// <summary>
 	/// Информация о лайках к записи.
-	/// См. описание <see href="http://vk.com/dev/post"/>. Раздел likes.
+	/// См. описание http://vk.com/dev/post
 	/// </summary>
 	[DataContract]
 	public class Likes

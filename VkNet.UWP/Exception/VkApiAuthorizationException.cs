@@ -6,7 +6,7 @@
 
     /// <summary>
     /// Исключение, которое выбрасывается при попытке неудачной авторизации, когда указан неправильный логин или пароль
-    /// при вызове метода <see cref="VkApi.Authorize(int,string,string,Settings,long?,string)"/>.
+    /// при вызове метода VkApi.Authorize
     /// </summary>
     [DataContract]
     public class VkApiAuthorizationException : VkApiException
@@ -22,7 +22,7 @@
         public string Password { get; private set; }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkApiAuthorizationException"/>.
+        /// Инициализирует новый экземпляр класса VkApiAuthorizationException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="email">Логин, который был указан при попытке авторизации.</param>

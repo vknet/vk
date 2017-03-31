@@ -14,34 +14,40 @@ namespace VkNet.Categories
     {
         private readonly VkApi _vk;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vk"></param>
         public UtilsCategory(VkApi vk)
         {
             _vk = vk;
         }
 
-        /// <summary>
-        /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
-        /// </summary>
-        /// <param name="url">Внешняя ссылка, которую необходимо проверить.</param>
-        /// <returns>Статус ссылки</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
-        /// </remarks>
-        [Pure]
+	    /// <summary>
+	    /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
+	    /// </summary>
+	    /// <param name="url">Внешняя ссылка, которую необходимо проверить.</param>
+	    /// <param name="skipAuthorization">Без авторизации</param>
+	    /// <returns>Статус ссылки</returns>
+	    /// <remarks>
+	    /// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
+	    /// </remarks>
+	    [Pure]
         public LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true)
         {
             return CheckLink(new Uri(url), skipAuthorization);
         }
 
-        /// <summary>
-        /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
-        /// </summary>
-        /// <param name="url">Внешняя ссылка, которую необходимо проверить.</param>
-        /// <returns>Статус ссылки</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.checkLink"/>.
-        /// </remarks>
-        [Pure]
+	    /// <summary>
+	    /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
+	    /// </summary>
+	    /// <param name="url">Внешняя ссылка, которую необходимо проверить.</param>
+	    /// <param name="skipAuthorization">Без авторизации</param>
+	    /// <returns>Статус ссылки</returns>
+	    /// <remarks>
+	    /// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
+	    /// </remarks>
+	    [Pure]
         public LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true)
         {
             var parameters = new VkParameters { { "url", url } };
@@ -55,7 +61,7 @@ namespace VkNet.Categories
         /// <param name="screenName">Короткое имя</param>
         /// <returns>Тип объекта</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.resolveScreenName"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/utils.resolveScreenName
         /// </remarks>
         [Pure]
         public VkObject ResolveScreenName([NotNull] string screenName)
@@ -72,7 +78,7 @@ namespace VkNet.Categories
         /// </summary>
         /// <returns>Время на сервере ВКонтакте в unixtime</returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/utils.getServerTime"/>.
+        /// Страница документации ВКонтакте http://vk.com/dev/utils.getServerTime
         /// </remarks>
         [Pure]
         public DateTime GetServerTime()

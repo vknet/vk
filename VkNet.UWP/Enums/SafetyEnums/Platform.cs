@@ -2,6 +2,9 @@
 
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	[DataContract]
 	public class Platform : SafetyEnum<Platform>
 	{

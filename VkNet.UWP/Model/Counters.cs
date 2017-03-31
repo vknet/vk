@@ -6,8 +6,8 @@ namespace VkNet.Model
 
 	/// <summary>
 	/// Количество различных объектов у пользователя.
-	/// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields"/> и
-	/// <see href="http://vk.com/dev/fields_groups"/>.
+	/// См. описание http://vk.com/dev/fields
+	/// http://vk.com/dev/fields_groups
 	/// Раздел counters.
 	/// </summary>
 	[DataContract]

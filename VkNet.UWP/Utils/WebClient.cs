@@ -11,7 +11,7 @@ namespace VkNet.Utils
     /// <summary>
     /// Подмена WebClient
     /// </summary>
-    public class WebClient : IDisposable
+    public sealed class WebClient : IDisposable
     {
         /// <summary>
         /// HTTP клиент
@@ -74,9 +74,9 @@ namespace VkNet.Utils
         public void Dispose()
         {
             _client.Dispose();
+			GC.SuppressFinalize(this);
         }
-
-#endregion
-    }
+		#endregion
+	}
 }
 #endif

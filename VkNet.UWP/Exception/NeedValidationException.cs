@@ -23,7 +23,7 @@
         public Uri redirectUri { get; private set; }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="VkApiAuthorizationException"/>.
+        /// Инициализирует новый экземпляр класса VkApiAuthorizationException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="strRedirectUri">Адрес который необходимо открыть в браузере.</param>

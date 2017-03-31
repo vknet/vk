@@ -10,14 +10,14 @@
     public class AccessTokenInvalidException : VkApiException
     {
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="AccessTokenInvalidException"/>.
+        /// Инициализирует новый экземпляр класса AccessTokenInvalidException
         /// </summary>
         public AccessTokenInvalidException()
         {
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="AccessTokenInvalidException"/> с указанным описанием.
+        /// Инициализирует новый экземпляр класса AccessTokenInvalidException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         public AccessTokenInvalidException(string message) : base(message)
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="AccessTokenInvalidException"/> с указанным описанием и внутренним исключением.
+        /// Инициализирует новый экземпляр класса AccessTokenInvalidException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="innerException">Внутреннее исключение.</param>

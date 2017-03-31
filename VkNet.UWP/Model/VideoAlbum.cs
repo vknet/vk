@@ -6,7 +6,7 @@
     /// Видеоальбом.
     /// </summary>
     /// <remarks>
-    /// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbums"/>.
+    /// Страница документации ВКонтакте http://vk.com/dev/video.getAlbums
     /// </remarks>
     public class VideoAlbum
     {

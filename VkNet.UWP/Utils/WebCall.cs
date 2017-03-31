@@ -172,7 +172,9 @@ namespace VkNet.Utils
         }
 
 #region Implementation of IDisposable
-
+		/// <summary>
+		/// 
+		/// </summary>
         public void Dispose()
         {
             _request?.Dispose();

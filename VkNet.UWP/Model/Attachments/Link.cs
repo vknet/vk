@@ -8,7 +8,7 @@ namespace VkNet.Model.Attachments
 
 	/// <summary>
 	/// Ссылка на Web-страницу.
-	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Ссылка".
+	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[DebuggerDisplay("[{Title}] {Uri}")]
 	[DataContract]

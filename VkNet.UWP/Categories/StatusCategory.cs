@@ -13,6 +13,10 @@ namespace VkNet.Categories
 	{
 		private readonly VkApi _vk;
 
+	    /// <summary>
+	    /// 
+	    /// </summary>
+	    /// <param name="vk"></param>
 	    public StatusCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -27,10 +31,11 @@ namespace VkNet.Categories
 		/// В случае успеха возвращается статус пользователдя или сообщества.
 		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/status.get"/>.
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Status
+		/// Страница документации ВКонтакте http://vk.com/dev/status.get
 		/// </remarks>
-		[Pure]		public Status Get(long userId, long? groupId = null)
+		[Pure]
+		public Status Get(long userId, long? groupId = null)
 		{
 			var parameters = new VkParameters {
 				{ "user_id", userId },
@@ -50,9 +55,10 @@ namespace VkNet.Categories
 		/// <param name="groupId"> Идентификатор сообщества, в котором будет установлен статус. По умолчанию статус устанавливается текущему пользователю. </param>
 		/// <returns>Возвращает true, если статус был успешно установлен, false в противном случае.</returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
-		/// </remarks>		public bool Set(string text, long? groupId = null)
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Status
+		/// Страница документации ВКонтакте http://vk.com/dev/status.set
+		/// </remarks>
+		public bool Set(string text, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{

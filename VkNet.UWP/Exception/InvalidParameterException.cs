@@ -10,14 +10,14 @@
     public class InvalidParameterException : VkApiMethodInvokeException
     {
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="InvalidParameterException"/>.
+        /// Инициализирует новый экземпляр класса InvalidParameterException
         /// </summary>
         public InvalidParameterException()
         {
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="InvalidParameterException"/> с указанным описанием.
+        /// Инициализирует новый экземпляр класса InvalidParameterException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         public InvalidParameterException(string message) : base(message)
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="InvalidParameterException"/> с указанным описанием и внутренним исключением.
+        /// Инициализирует новый экземпляр класса InvalidParameterException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="innerException">Внутреннее исключение.</param>
@@ -34,7 +34,7 @@
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="InvalidParameterException"/> с указанным описанием и кодом ошибки.
+        /// Инициализирует новый экземпляр класса InvalidParameterException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="code">Код ошибки, полученный от сервера ВКонтакте.</param>
@@ -43,7 +43,7 @@
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="InvalidParameterException"/> с указанным описанием, кодом ошибки и внутренним исключением.
+        /// Инициализирует новый экземпляр класса InvalidParameterException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="code">Код ошибки, полученный от сервера ВКонтакте.</param>

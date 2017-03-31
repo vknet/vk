@@ -35,7 +35,7 @@ namespace VkNet.Utils
 	{
 #>
 		/// <summary>
-        /// Преобразование класса <see cref="<#= type #>"/> в <see cref="VkParameters"/>.
+        /// Преобразование класса <see cref="<#= type #>"/> в VkParameters
         /// </summary>
         /// <param name="p">Параметр.</param>
         /// <returns>

@@ -43,8 +43,9 @@ namespace VkNet.Categories
 		/// privacy — значение приватности подарка(только для текущего пользователя; возможные значения: 0 — имя отправителя и сообщение видно всем; 1 — имя отправителя видно всем, сообщение видно только получателю; 2 — имя отправителя скрыто, сообщение видно только получателю).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/gifts.get" />.
-		/// </remarks>		public VkCollection<GiftItem> Get(long userId, int? count = null, int? offset = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/gifts.get
+		/// </remarks>
+		public VkCollection<GiftItem> Get(long userId, int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			var parameters = new VkParameters

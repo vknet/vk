@@ -21,8 +21,9 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getMentions" />.
-		/// </remarks>		[Obsolete("Устаревшая версия API. Используйте метод GetMentions(long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)")]
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getMentions
+		/// </remarks>
+		[Obsolete("Устаревшая версия API. Используйте метод GetMentions(long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)")]
 		public ReadOnlyCollection<Mention> GetMentions(out int total, long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null)
 		{
 			var response = GetMentions(ownerId, startTime, endTime, offset, count);
@@ -42,8 +43,9 @@ namespace VkNet.Categories
 		/// Метод возвращает список объектов пользовательских списков.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/newsfeed.getLists" />.
-		/// </remarks>		[Obsolete("Устаревшая версия API. Используйте метод GetLists(IEnumerable<long> listIds, bool? extended = null)")]
+		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getLists
+		/// </remarks>
+		[Obsolete("Устаревшая версия API. Используйте метод GetLists(IEnumerable<long> listIds, bool? extended = null)")]
 		public ReadOnlyCollection<NewsUserListItem> GetLists(out int total, IEnumerable<long> listIds, bool? extended = null)
 		{
 			var response = GetLists(listIds, extended);

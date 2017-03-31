@@ -31,7 +31,7 @@ namespace VkNet.Categories
 		/// Список групп
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.get
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте Get(GroupsGetParams @params)")]
@@ -58,7 +58,7 @@ namespace VkNet.Categories
 		/// <param name="fields">Список полей информации о группах</param>
 		/// <returns>Список групп</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getById
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields)")]
@@ -76,7 +76,7 @@ namespace VkNet.Categories
 		/// <param name="fields">Список полей информации о группах</param>
 		/// <returns>Список групп</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getById
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields)")]
@@ -92,7 +92,7 @@ namespace VkNet.Categories
 		/// <param name="fields">Список полей информации о группах</param>
 		/// <returns>Список групп</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getById
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields)")]
@@ -109,7 +109,7 @@ namespace VkNet.Categories
 		/// <param name="fields">Список полей информации о группах</param>
 		/// <returns>Список групп</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getById
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields)")]
@@ -132,7 +132,7 @@ namespace VkNet.Categories
 		/// Id пользователей состоящих в группе
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getMembers
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetMembers(out int totalCount, GroupsGetMembersParams @params)")]
@@ -164,7 +164,7 @@ namespace VkNet.Categories
 		/// <param name="filters">Фильтр.</param>
 		/// <returns>Id пользователей состоящих в группе</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getMembers
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetMembers(out int totalCount, GroupsGetMembersParams @params)")]
@@ -190,7 +190,7 @@ namespace VkNet.Categories
 		/// <param name="uid">Id пользователя</param>
 		/// <returns>True если пользователь состоит в группе, иначе False</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте IsMember(string groupId,Join long? userId, IEnumerable<string> userIds, bool? extended)")]
@@ -209,7 +209,7 @@ namespace VkNet.Categories
 		/// <param name="uid">Id пользователя</param>
 		/// <returns>True если пользователь состоит в группе, иначе False</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте IsMember(string groupId, long? userId, IEnumerable<string> userIds, bool? extended)")]
@@ -228,7 +228,7 @@ namespace VkNet.Categories
 		/// <param name="uids">Id пользователя</param>
 		/// <returns>True если пользователь состоит в группе, иначе False</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте IsMember(string groupId, long? userId, IEnumerable<string> userIds, bool? extended)")]
@@ -247,7 +247,7 @@ namespace VkNet.Categories
 		/// <param name="uids">Id пользователя</param>
 		/// <returns>True если пользователь состоит в группе, иначе False</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте IsMember(string groupId, long? userId, IEnumerable<string> userIds, bool? extended)")]
@@ -273,7 +273,7 @@ namespace VkNet.Categories
 		/// Список объектов групп
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.search
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте Search(out int totalCount, GroupsSearchParams @params)")]
@@ -311,7 +311,7 @@ namespace VkNet.Categories
 		/// <param name="contactEmail">Email пользователя, отображаемый в блоке контактов</param>
 		/// <returns>В случае успешного выполнения возвращает true</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.editManager
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте EditManager(GroupsEditManagerParams @params)")]
 		public bool EditManager(long groupId, long userId, ManagerRole role, bool? isContact = null, string contactPosition = null, string contactPhone = null, string contactEmail = null)
@@ -339,7 +339,7 @@ namespace VkNet.Categories
 		/// <param name="role">Уровень полномочий. Если параметр не задан, с пользователя user_id снимаются полномочия руководителя</param>
 		/// <returns>В случае успешного выполнения возвращает true</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.editManager
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте EditManager(GroupsEditManagerParams @params)")]
 		public bool EditManager(long groupId, long userId, ManagerRole role)
@@ -362,7 +362,7 @@ namespace VkNet.Categories
 		/// creator — создатель сообщества.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getMembers
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте GetMembers(GroupsGetMembersParams @params)")]
 		public ReadOnlyCollection<User> GetMembers(out int totalCount, GroupsGetMembersParams @params)
@@ -383,7 +383,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список объектов group.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.search
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте Search(GroupsSearchParams @params)")]
 		public ReadOnlyCollection<Group> Search(out int totalCount, GroupsSearchParams @params)
@@ -401,13 +401,13 @@ namespace VkNet.Categories
 		/// <param name="groupId">Идентификатор группы.</param>
 		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в черный список.</param>
 		/// <param name="endDate">Дата завершения срока действия бана. Если параметр не указан пользователь будет заблокирован навсегда.</param>
-		/// <param name="reason">Причина бана <see cref="BanReason"/>.</param>
+		/// <param name="reason">Причина бана BanReason</param>
 		/// <param name="comment">Текст комментария к бану.</param>
 		/// <param name="commentVisible"><see langword="true"/> – текст комментария будет отображаться пользователю. false – текст комментария не доступен
 		/// пользователю (по умолчанию).</param>
 		/// <returns>После успешного выполнения возвращает true.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.banUser"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.banUser
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте BanUser(GroupsBanUserParams @params)")]
 		public bool BanUser(long groupId, long userId, DateTime? endDate = null, BanReason? reason = null,
@@ -432,6 +432,7 @@ namespace VkNet.Categories
 		/// Возвращает список пользователей, которые были приглашены в группу.
 		/// </summary>
 		/// <param name="groupId">Идентификатор группы, список приглашенных в которую пользователей нужно вернуть. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="userCount"></param>
 		/// <param name="offset">Смещение, необходимое для выборки определённого подмножества пользователей. положительное число (Положительное число).</param>
 		/// <param name="count">Количество пользователей, информацию о которых нужно вернуть. положительное число, по умолчанию 20 (Положительное число, по умолчанию 20).</param>
 		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть.
@@ -439,7 +440,7 @@ namespace VkNet.Categories
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. строка (Строка).</param>
 		/// <returns></returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvitedUsers" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getInvitedUsers
 		/// </remarks>
 		[Obsolete("Данный метод устарел. Используйте GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)")]
 		public ReadOnlyCollection<User> GetInvitedUsers(long groupId, out int userCount, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)

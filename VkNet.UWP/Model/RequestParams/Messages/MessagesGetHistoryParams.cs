@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Список параметров для метода Message.GetHistory
-    /// <seealso cref="http://vk.com/dev/messages.getHistory"/>
+    /// http://vk.com/dev/messages.getHistory
     /// </summary>
     public struct MessagesGetHistoryParams
     {

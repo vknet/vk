@@ -20,6 +20,10 @@
 	{
 		private readonly VkApi _vk;
 
+	    /// <summary>
+	    /// 
+	    /// </summary>
+	    /// <param name="vk"></param>
 	    public GroupsCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -34,7 +38,7 @@
 		/// В случае успешного вступления метод вернёт 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.join" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.join
 		/// </remarks>
 		public bool Join(long? groupId, bool? notSure = null)
 		{
@@ -54,7 +58,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.leave" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.leave
 		/// </remarks>
 		public bool Leave(long groupId)
 		{
@@ -75,7 +79,7 @@
 		/// Если был задан параметр extended=1,  возвращает список объектов group.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.get" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.get
 		/// </remarks>
 		public VkCollection<Group> Get(GroupsGetParams @params, bool skipAuthorization = false)
 		{
@@ -101,7 +105,7 @@
         /// После успешного выполнения возвращает массив объектов group.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getById" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/groups.getById
         /// </remarks>
 		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = false)
 		{
@@ -128,7 +132,7 @@
 		/// creator — создатель сообщества.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getMembers" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getMembers
 		/// </remarks>
 		public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false)
 		{
@@ -158,7 +162,7 @@
 		/// При передаче нескольких идентификаторов Возвращает результат в виде массива объектов, в которых есть поля user_id и member.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.isMember" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 		/// </remarks>
 		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = false)
 		{
@@ -206,7 +210,7 @@
 		/// После успешного выполнения возвращает список объектов group.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.search" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.search
 		/// </remarks>
 		public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false)
 		{
@@ -224,7 +228,7 @@
 		/// Если был передан параметр extended=1, дополнительно будет возвращен список profiles пользователей, отправивших приглашения. Каждый объект в списке содержит поля id, first_name, last_name.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvites" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getInvites
 		/// </remarks>
 		public VkCollection<Group> GetInvites(long? count, long? offset, bool? extended = null)
 		{
@@ -245,7 +249,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.banUser" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.banUser
 		/// </remarks>
 		public bool BanUser(GroupsBanUserParams @params)
 		{
@@ -279,7 +283,7 @@
 		///  int (числовое значение).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getBanned" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getBanned
 		/// </remarks>
 		public VkCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? userId = null)
 		{
@@ -301,7 +305,7 @@
 		/// <param name="userId">Идентификатор пользователя, которого нужно убрать из черного списка</param>
 		/// <returns>После успешного выполнения возвращает <c>true</c>.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.unbanUser"/>.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.unbanUser
 		/// </remarks>
 		public bool UnbanUser(long groupId, long userId)
 		{
@@ -324,7 +328,7 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editManager" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.editManager
 		/// </remarks>
 		public bool EditManager(GroupsEditManagerParams @params)
 		{
@@ -339,7 +343,7 @@
 		/// В случае успешного выполнения метод вернет объект, содержащий данные сообщества, которые позволят отобразить форму редактирования для метода groups.edit.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getSettings" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getSettings
 		/// </remarks>
 		public GroupsEditParams GetSettings(ulong groupId)
 		{
@@ -362,7 +366,7 @@
 		/// В случае успеха возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.edit" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.edit
 		/// </remarks>
 		public bool Edit(GroupsEditParams @params)
 		{
@@ -380,7 +384,7 @@
 		/// <param name="place">Местоположение.</param>
 		/// <remarks>
 		/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором группы.
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.editPlace"/>.
+		/// Страница документации ВКонтакте https://vk.com/dev/groups.editPlace
 		/// </remarks>
 		public bool EditPlace(long groupId, Place place = null)
 		{
@@ -414,7 +418,7 @@
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. строка (Строка).</param>
 		/// <returns></returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getInvitedUsers" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getInvitedUsers
 		/// </remarks>
 		public VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null)
 		{
@@ -440,7 +444,7 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.invite" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.invite
 		/// </remarks>
 		public bool Invite(long groupId, long userId)
 		{
@@ -473,7 +477,7 @@
 		/// image_processing — возвращается 1, если превью находится в процессе обработки.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.addLink" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.addLink
 		/// </remarks>
 		public Link AddLink(long groupId, Uri link, string text)
 		{
@@ -497,7 +501,7 @@
 		/// В случае успешного выполнения метод возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.deleteLink" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.deleteLink
 		/// </remarks>
 		public bool DeleteLink(long groupId, ulong linkId)
 		{
@@ -520,7 +524,7 @@
 		/// В случае успешного редактирования ссылки метод возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.editLink" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.editLink
 		/// </remarks>
 		public bool EditLink(long groupId, ulong linkId, string text)
 		{
@@ -544,7 +548,7 @@
 		/// В случае успешного выполнение метод возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.reorderLink" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.reorderLink
 		/// </remarks>
 		public bool ReorderLink(long groupId, long linkId, long? after)
 		{
@@ -566,7 +570,7 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.removeUser" />.
+		/// Страница документации ВКонтакте https://vk.com/dev/groups.removeUser
 		/// </remarks>
 		public bool RemoveUser(long groupId, long userId)
 		{
@@ -590,7 +594,7 @@
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="https://vk.com/dev/groups.approveRequest" />.
+		/// Страница документации ВКонтакте https://vk.com/dev/groups.approveRequest
 		/// </remarks>
 		public bool ApproveRequest(long groupId, long userId)
 		{
@@ -627,7 +631,7 @@
 		/// Возвращает идентификатор созданного сообщества.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.create" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.create
 		/// </remarks>
 		public Group Create(string title, string description, GroupType type, GroupSubType? subtype)
 		{
@@ -654,7 +658,7 @@
 		/// Если было передано значение в параметре fields, возвращается список объектов пользователей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getRequests" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getRequests
 		/// </remarks>
 		public VkCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields)
 		{
@@ -677,7 +681,7 @@
 		/// Возвращает список объектов сообществ в соответствии с выбранной категорией каталога.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getCatalog" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getCatalog
 		/// </remarks>
 		public VkCollection<Group> GetCatalog(ulong? categoryId = null, ulong? subcategoryId = null)
 		{
@@ -707,7 +711,7 @@
 		///  положительное число page_previews массив объектов сообществ для предпросмотра.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/groups.getCatalogInfo" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getCatalogInfo
 		/// </remarks>
 		public GroupsCatalogInfo GetCatalogInfo(bool? extended = null, bool? subcategories = null)
 		{

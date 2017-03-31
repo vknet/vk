@@ -14,11 +14,11 @@ using VkNet.Enums.Filters;
 
 namespace VkNet
 {
-    /// <summary>
-    /// Служит для оповещения об истечении токена
-    /// </summary>
-    /// <param name="api">Экземпляр API у которого истекло время токена</param>
-    public delegate void VkApiDelegate(VkApi api);
+	/// <summary>
+	/// Служит для оповещения об истечении токена
+	/// </summary>
+	/// <param name="sender">Экземпляр API у которого истекло время токена</param>
+	public delegate void VkApiDelegate(VkApi sender);
 
 	/// <summary>
 	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
@@ -253,7 +253,7 @@ namespace VkNet
 
 		/// <summary>
 		/// Идентификатор пользователя, от имени которого была проведена авторизация.
-		/// Если авторизация не была произведена с использованием метода <see cref="Authorize(int,string,string,Settings,Func{string},long?,string)"/>,
+		/// Если авторизация не была произведена с использованием метода Authorize(int
 		/// то возвращается null.
 		/// </summary>
 		public long? UserId
@@ -270,7 +270,7 @@ namespace VkNet
 		private readonly ICaptchaSolver _captchaSolver;
 
 		/// <summary>
-		/// Инициализирует новый экземпляр класса <see cref="VkApi"/>.
+		/// Инициализирует новый экземпляр класса VkApi
 		/// </summary>
 		public VkApi(ICaptchaSolver captchaSolver = null)
 		{
@@ -733,7 +733,9 @@ namespace VkNet
 		}
 
 	    #region Implementation of IDisposable
-
+		/// <summary>
+		/// 
+		/// </summary>
 	    public void Dispose()
 	    {
 	        _expireTimer.Dispose();

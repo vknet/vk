@@ -23,9 +23,10 @@ namespace VkNet.Categories
         /// </param>
         /// <returns>Возвращает true, если статус был успешно установлен, false в противном случае.</returns>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Status"/>. 
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/status.set"/>.
-        /// </remarks>        [Obsolete("Данный метод устарел. Пожалуйста используйте метод Audio.SetBroadcast")]
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Status
+        /// Страница документации ВКонтакте http://vk.com/dev/status.set
+        /// </remarks>
+        [Obsolete("Данный метод устарел. Пожалуйста используйте метод Audio.SetBroadcast")]
         public bool Set([NotNull] Audio audio)
         {
             _vk.Audio.SetBroadcast(string.Format("{0}_{1}", audio.OwnerId, audio.Id), new List<long>());

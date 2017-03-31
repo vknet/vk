@@ -14,7 +14,7 @@ namespace VkNet.Model
 
 	/// <summary>
 	/// Информация о пользователя.
-	/// См. описание <see href="http://vk.com/dev/fields"/> и <see href="http://vk.com/pages?oid=-1&amp;p=users.get"/>.
+	/// См. описание http://vk.com/dev/fields и http://vk.com/pages?oid=-1&amp;p=users.get
 	/// </summary>
 	[DebuggerDisplay("[{Id}] {FirstName} {LastName}")]
 	[DataContract]
@@ -81,8 +81,8 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// Идентификаторы списков друзей, в которых состоит пользователь. Поле доступно только для метода
-		/// <see cref="FriendsCategory.Get"/>. Получить информацию об идентификаторах и названиях списков друзей можно с
-		/// помощью метода <see cref="FriendsCategory.GetLists"/>. Если пользователь не состоит ни в одном списке друзей, данное
+		/// FriendsCategory.Get. Получить информацию об идентификаторах и названиях списков друзей можно с
+		/// помощью метода FriendsCategory.GetLists. Если пользователь не состоит ни в одном списке друзей, данное
 		/// поле принимает значение null.
 		/// </summary>
 		public Collection<long> FriendLists { get; set; }
@@ -493,7 +493,11 @@ namespace VkNet.Model
 		#endregion
 
 		#region Методы
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="response"></param>
+		/// <returns></returns>
 		public static User FromJson(VkResponse response)
 		{
 			var user = new User

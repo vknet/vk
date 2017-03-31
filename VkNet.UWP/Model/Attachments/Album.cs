@@ -6,7 +6,7 @@ namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Альбом с фотографиями пользователя.
-	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Альбом с фотографиями".
+	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[DataContract]
 	public class Album : MediaAttachment
@@ -48,6 +48,11 @@ namespace VkNet.Model.Attachments
 
         #region Методы
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="response"></param>
+		/// <returns></returns>
 		public static Album FromJson(VkResponse response)
 		{
 			return new Album

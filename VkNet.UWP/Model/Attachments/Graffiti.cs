@@ -5,7 +5,7 @@ namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Граффити.
-	/// См. описание <see href="http://vk.com/dev/attachments_w"/>. Раздел "Граффити".
+	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[DataContract]
 	public class Graffiti : MediaAttachment

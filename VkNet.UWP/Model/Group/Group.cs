@@ -14,7 +14,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Информация о сообществе (группе).
-    /// См. описание <see href="http://vk.com/dev/fields_groups"/>.
+    /// См. описание http://vk.com/dev/fields_groups
     /// </summary>
     [DebuggerDisplay("[{Id}] {Name}")]
     [DataContract]
@@ -111,7 +111,7 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// Идентификатор страны, указанной в информации о сообществе. Возвращается идентификатор страны, который можно использовать для
-		/// получения ее названия с помощью метода <see cref="DatabaseCategory.GetCountriesById"/>. Если страна не указана, возвращается 0.
+		/// получения ее названия с помощью метода DatabaseCategory.GetCountriesById
 		/// </summary>
 		public Country Country { get; set; }
 
@@ -192,7 +192,7 @@ namespace VkNet.Model
 		/// </summary>
 		public Collection<ExternalLink> Links { get; set; }
 		/// <summary>
-		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя <see cref="WallCategory.GetById(IEnumerable{KeyValuePair{long, long}})"/>,
+		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя WallCategory.GetById
 		/// передав идентификатор в виде – {group_id}_{post_id}.
 		/// </summary>
 		public long? FixedPostId { get; set; }

@@ -7,7 +7,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Информация о родственнике.
-    /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел relatives.
+    /// См. описание http://vk.com/dev/fields
     /// </summary>
     [DataContract]
     public class Relative

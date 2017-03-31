@@ -7,7 +7,7 @@ namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Аудиозапись пользователя или группы.
-	/// См. описание <see href="http://vk.com/dev/audio_object"/>.
+	/// См. описание http://vk.com/dev/audio_object
 	/// </summary>
 	[DataContract]
 	public class Audio : MediaAttachment

@@ -37,8 +37,8 @@ namespace VkNet.Categories
         /// <param name="params">Входные параметры выборки.</param>
         /// <returns>Список сообщений, удовлетворяющий условиям фильтрации.</returns>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.get"/>.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.get
         /// </remarks>
         [Pure]
         public MessagesGetObject Get(MessagesGetParams @params)
@@ -52,8 +52,8 @@ namespace VkNet.Categories
         /// <param name="params">Входные параметры выборки.</param>
         /// <returns>Возвращает историю сообщений с указанным пользователем или из указанной беседы</returns>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistory" />.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
         /// </remarks>
         [Pure]
         public MessagesGetObject GetHistory(MessagesGetHistoryParams @params)
@@ -72,8 +72,8 @@ namespace VkNet.Categories
         /// </returns>
         /// <exception cref="System.Exception">messageIds не может быть пустой</exception>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById" />.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getById
         /// </remarks>
         [Pure]
         public VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)
@@ -100,8 +100,8 @@ namespace VkNet.Categories
         /// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).</param>
         /// <returns>Запрошенное сообщение, null если сообщение с заданным идентификатором не найдено.</returns>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getById"/>.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getById
         /// </remarks>
         [Pure]
         public Message GetById(ulong messageId, uint? previewLength = null)
@@ -137,8 +137,8 @@ namespace VkNet.Categories
         /// </returns>
         /// <exception cref="System.ArgumentException">Query can not be null or empty.;query</exception>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.searchDialogs" />.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.searchDialogs
         /// </remarks>
         [Pure]
         public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null)
@@ -165,7 +165,7 @@ namespace VkNet.Categories
         /// </returns>
         /// <exception cref="System.ArgumentException">Query can not be null or empty.;query</exception>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.search" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.search
         /// </remarks>
         public VkCollection<Message> Search([NotNull] string query, long? previewLength, long? offset, long? count)
         {
@@ -193,8 +193,8 @@ namespace VkNet.Categories
         /// </returns>
         /// <exception cref="System.ArgumentException">Message can not be <c>null</c>.</exception>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.send" />.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.send
         /// </remarks>
         public long Send(MessagesSendParams @params)
         {
@@ -221,8 +221,8 @@ namespace VkNet.Categories
         /// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке больше - метод нужно вызывать несколько раз.</param>
         /// <returns>Признак удалось ли удалить сообщения.</returns>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.deleteDialog"/>.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
         /// </remarks>
         public bool DeleteDialog(long userId, bool isChat, long? peerId = null, uint? offset = null, uint? count = null)
         {
@@ -248,10 +248,10 @@ namespace VkNet.Categories
         /// </returns>
         /// <exception cref="System.ArgumentNullException">messageIds;Parameter messageIds can not be null.</exception>
         /// <exception cref="System.ArgumentException">Parameter messageIds has no elements.;messageIds</exception>
-        /// <exception cref="ArgumentException">Элемент с таким ключом уже существует в словаре <see cref="T:System.Collections.Generic.Dictionary`2" />.</exception>
+        /// <exception cref="ArgumentException">Элемент с таким ключом уже существует в словаре T:System
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete" />.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.delete
         /// </remarks>
         public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds)
         {
@@ -285,10 +285,10 @@ namespace VkNet.Categories
         /// <returns>
         /// Признак было ли удаление сообщения успешным.
         /// </returns>
-        /// <exception cref="NotSupportedException">Свойство задано, и объект <see cref="T:System.Collections.Generic.IDictionary`2" /> доступен только для чтения.</exception>
+        /// <exception cref="NotSupportedException">Свойство задано, и объект T:System
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.delete" />.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.delete
         /// </remarks>
         public bool Delete(ulong messageId)
         {
@@ -301,8 +301,8 @@ namespace VkNet.Categories
         /// </summary>
         /// <param name="messageId">Идентификатор сообщения, которое нужно восстановить.</param>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.restore"/>.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.restore
         /// </remarks>
         public bool Restore(ulong messageId)
         {
@@ -324,7 +324,7 @@ namespace VkNet.Categories
         /// После успешного выполнения возвращает <c>true</c>.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsRead" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
         /// </remarks>
         public bool MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId = null)
         {
@@ -346,8 +346,8 @@ namespace VkNet.Categories
         /// Текст «N набирает сообщение...» отображается в течение 10 секунд после вызова метода, либо до момента отправки сообщения.
         /// </returns>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages"/>.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.setActivity"/>.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.setActivity
         /// </remarks>
         public bool SetActivity(long userId, long? peerId = null)
         {
@@ -372,7 +372,7 @@ namespace VkNet.Categories
         /// time — дата последней активности пользователя в формате unixtime.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLastActivity" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getLastActivity
         /// </remarks>
         public LastActivity GetLastActivity(long userId)
         {
@@ -414,7 +414,7 @@ namespace VkNet.Categories
         /// </returns>
         /// <exception cref="System.ArgumentException">At least one chat ID must be defined;chatIds</exception>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChat" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getChat
         /// </remarks>
         public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null)
         {
@@ -450,7 +450,7 @@ namespace VkNet.Categories
         /// После успешного выполнения возвращает  идентификатор созданного чата (chat_id).
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.createChat" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.createChat
         /// </remarks>
         public long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title)
         {
@@ -477,7 +477,7 @@ namespace VkNet.Categories
         /// После успешного выполнения возвращает <c>true</c>.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.editChat" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
         /// </remarks>
         public bool EditChat(long chatId, [NotNull] string title)
         {
@@ -507,7 +507,7 @@ namespace VkNet.Categories
         /// Если был задан параметр fields, возвращает список объектов пользователей с дополнительным полем invited_by, содержащим идентификатор пользователя, пригласившего в беседу.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getChatUsers" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
         /// </remarks>
         public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
         {
@@ -547,7 +547,7 @@ namespace VkNet.Categories
         /// После успешного выполнения возвращает <c>true</c>.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.addChatUser" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
         /// </remarks>
         public bool AddChatUser(long chatId, long userId)
         {
@@ -565,7 +565,7 @@ namespace VkNet.Categories
         /// После успешного выполнения возвращает <c>true</c>.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.removeChatUser" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.removeChatUser
         /// </remarks>
         public bool RemoveChatUser(long chatId, long userId)
         {
@@ -588,8 +588,8 @@ namespace VkNet.Categories
         /// получения приходящих сообщений и других событий.
         /// </returns>
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLongPollServer" />.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollServer
         /// </remarks>
         [Pure]
         public LongPollServerResponse GetLongPollServer(bool useSsl = false, bool needPts = false)
@@ -608,10 +608,10 @@ namespace VkNet.Categories
         /// мобильном устройстве / ПК пользователя, чтобы не получать их повторно при каждом обращении.
         /// Этот метод помогает осуществить синхронизацию локальной копии списка сообщений с актуальной версией.
         /// </summary>
-        /// <param name="params">Параметры запроса к LongPool серверу <see cref="MessagesGetLongPollHistoryParams"/></param>
+        /// <param name="params">Параметры запроса к LongPool серверу MessagesGetLongPollHistoryParams
         /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей <see cref="Settings.Messages" />.
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getLongPollHistory" />.
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory
         /// </remarks>
         public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params)
         {
@@ -634,7 +634,7 @@ namespace VkNet.Categories
         /// chat — объект мультидиалога.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.deleteChatPhoto" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
         /// </remarks>
         public Chat DeleteChatPhoto(out ulong messageId, ulong chatId)
         {
@@ -658,7 +658,7 @@ namespace VkNet.Categories
         /// chat — объект мультидиалога.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.setChatPhoto" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.setChatPhoto
         /// </remarks>
         public long SetChatPhoto(out long messageId, string file)
         {
@@ -680,7 +680,7 @@ namespace VkNet.Categories
         /// Возвращает список идентификаторов успешно помеченных сообщений.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.markAsImportant" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportant
         /// </remarks>
         public ReadOnlyCollection<long> MarkAsImportant(IEnumerable<long> messageIds, bool important = true)
         {
@@ -702,7 +702,7 @@ namespace VkNet.Categories
         /// После успешного выполнения возвращает идентификатор отправленного сообщения (mid).
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.sendSticker" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.sendSticker
         /// </remarks>
         public long SendSticker(MessagesSendStickerParams @params)
         {
@@ -726,7 +726,7 @@ namespace VkNet.Categories
         /// строка.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/messages.getHistoryAttachments" />.
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getHistoryAttachments
         /// </remarks>
         public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
         {

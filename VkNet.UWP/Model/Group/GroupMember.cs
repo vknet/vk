@@ -4,7 +4,7 @@
 
 	/// <summary>
 	/// Информация о сообществе (группе).
-	/// См. описание <see href="http://vk.com/dev/fields_groups"/>.
+	/// См. описание http://vk.com/dev/fields_groups
 	/// </summary>
 	public class GroupMember
 	{

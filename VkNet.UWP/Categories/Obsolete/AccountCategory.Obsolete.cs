@@ -21,11 +21,12 @@ namespace VkNet.Categories
 		/// <param name="deviceModel">Строковое название модели устройства.</param>
 		/// <param name="systemVersion">Строковая версия операционной системы устройства.</param>
 		/// <param name="noText">Не передавать текст сообщения в push уведомлении. (по умолчанию текст передается)</param>
-		/// <param name="subscribe">Список типов уведомлений, которые следует присылать. По умолчанию присылаются: <see cref="SubscribeFilter.Message"/>, <see cref="SubscribeFilter.Friend"/>.</param>
+		/// <param name="subscribe">Список типов уведомлений, которые следует присылать. По умолчанию присылаются: SubscribeFilter.Message
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/account.registerDevice" />.
-		/// </remarks>		[Obsolete("Функция устарела. Пожалуйста используйте функцию RegisterDevice(AccountRegisterDeviceParams @params)")]
+		/// Страница документации ВКонтакте https://vk.com/dev/account.registerDevice
+		/// </remarks>
+		[Obsolete("Функция устарела. Пожалуйста используйте функцию RegisterDevice(AccountRegisterDeviceParams @params)")]
 		public bool RegisterDevice([NotNull]string token, string deviceModel, string systemVersion, bool? noText = null, SubscribeFilter subscribe = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => token);
@@ -56,7 +57,8 @@ namespace VkNet.Categories
 		/// <param name="cityId">Идентификатор города пользователя</param>
 		/// <returns>Результат выполнения операции.</returns>
 		/// <remarks> Если передаются <paramref name="firstName"/> или <paramref name="lastName"/>, рекомендуется
-		/// использовать перегрузку с соотвествующим out параметром типа <see cref="ChangeNameRequest"/> для получения объекта заявки на смену имени.</remarks>		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
+		/// использовать перегрузку с соотвествующим out параметром типа ChangeNameRequest
+		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
 		public bool SaveProfileInfo(string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
 			string homeTown = null, long? countryId = null, long? cityId = null)
@@ -86,7 +88,7 @@ namespace VkNet.Categories
 		///  Редактирует информацию текущего профиля.
 		/// </summary>
 		/// <param name="changeNameRequest">Если в параметрах передавалось имя или фамилия пользователя,
-		/// в этом параметре будет возвращен объект типа <see cref="ChangeNameRequest"/>, содержащий информацию о заявке на смену имени.</param>
+		/// в этом параметре будет возвращен объект типа ChangeNameRequest
 		/// <param name="firstName">Имя пользователя</param>
 		/// <param name="lastName">Фамилия пользователя</param>
 		/// <param name="maidenName">Девичья фамилия пользователя</param>
@@ -98,7 +100,8 @@ namespace VkNet.Categories
 		/// <param name="homeTown">Родной город пользователя</param>
 		/// <param name="countryId">Идентификатор страны пользователя</param>
 		/// <param name="cityId">Идентификатор города пользователя</param>
-		/// <returns>Результат выполнения операции.</returns>		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
+		/// <returns>Результат выполнения операции.</returns>
+		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
 		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
 			string homeTown = null, long? countryId = null, long? cityId = null)
@@ -134,8 +137,9 @@ namespace VkNet.Categories
 		/// Возвращает набор объектов пользователей, находящихся в черном списке.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/account.getBanned" />.
-		/// </remarks>		[Obsolete("Метод устарел, пожалуйста используйте метод GetBanned(int? offset = null, int? count = null)")]
+		/// Страница документации ВКонтакте http://vk.com/dev/account.getBanned
+		/// </remarks>
+		[Obsolete("Метод устарел, пожалуйста используйте метод GetBanned(int? offset = null, int? count = null)")]
 		public ReadOnlyCollection<User> GetBanned(out int total, int? offset = null, int? count = null)
 		{
 			var response = GetBanned(offset, count);

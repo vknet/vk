@@ -6,7 +6,7 @@ namespace VkNet.Model
 
 	/// <summary>
 	/// Ответ при поиске диалогов по строке поиска.
-	/// См. описание <see href="http://vk.com/dev/messages.searchDialogs"/>.
+	/// См. описание http://vk.com/dev/messages.searchDialogs
 	/// </summary>
 	public class SearchDialogsResponse
 	{

@@ -36,7 +36,7 @@ namespace VkNet.Categories
 		/// </returns>
 		/// <remarks>
 		/// К методу можно делать не более 60 запросов в минуту с одного IP или id.
-		/// Страница документации ВКонтакте <seealso cref="http://vk.com/dev/apps.getCatalog" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/apps.getCatalog
 		/// </remarks>
 		public VkCollection<App> GetCatalog(AppGetCatalogParams @params, bool skipAuthorization = false)
 		{
@@ -52,7 +52,7 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает объект приложения.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.get" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/apps.get
 		/// </remarks>
 		public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false)
 		{
@@ -68,8 +68,9 @@ namespace VkNet.Categories
 		/// 10013.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.sendRequest" />.
-		/// </remarks>		public long SendRequest(AppSendRequestParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/apps.sendRequest
+		/// </remarks>
+		public long SendRequest(AppSendRequestParams @params)
 		{
 			return _vk.Call("apps.sendRequest", @params);
 		}
@@ -81,8 +82,9 @@ namespace VkNet.Categories
 		/// В случае успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.deleteAppRequests" />.
-		/// </remarks>		public bool DeleteAppRequests()
+		/// Страница документации ВКонтакте http://vk.com/dev/apps.deleteAppRequests
+		/// </remarks>
+		public bool DeleteAppRequests()
 		{
 			return _vk.Call("apps.deleteAppRequests", VkParameters.Empty);
 		}
@@ -101,8 +103,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список пользователей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.getFriendsList" />.
-		/// </remarks>		public VkCollection<User> GetFriendsList(AppRequestType type, bool? extended = null, long? count = null, long? offset = null, UsersFields fields = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/apps.getFriendsList
+		/// </remarks>
+		public VkCollection<User> GetFriendsList(AppRequestType type, bool? extended = null, long? count = null, long? offset = null, UsersFields fields = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -133,8 +136,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список друзей с текущим уровнем и количеством очков в игре, отсортированный по убыванию текущего уровня или количества очков.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.getLeaderboard" />.
-		/// </remarks>		public bool GetLeaderboard(AppRatingType type, bool? global = null, bool? extended = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/apps.getLeaderboard
+		/// </remarks>
+		public bool GetLeaderboard(AppRatingType type, bool? global = null, bool? extended = null)
 		{
 			//var parameters = new VkParameters
 			//{
@@ -154,15 +158,16 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает число очков для пользователя.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/apps.getScore" />.
-		/// </remarks>		public long GetScore(long userId)
+		/// Страница документации ВКонтакте http://vk.com/dev/apps.getScore
+		/// </remarks>
+		public long GetScore(long userId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 			var parameters = new VkParameters
 			{
 				{ "user_id", userId }
 			};
-			return _vk.Call("apps.getScore", parameters, false);
+			return _vk.Call("apps.getScore", parameters);
 		}
 	}
 }

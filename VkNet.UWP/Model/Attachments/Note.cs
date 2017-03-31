@@ -6,7 +6,7 @@ namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Заметка пользователя.
-	/// См. описание <see href="http://vk.com/dev/note"/>.
+	/// См. описание http://vk.com/dev/note
 	/// </summary>
 	[DataContract]
 	public class Note : MediaAttachment
@@ -50,6 +50,11 @@ namespace VkNet.Model.Attachments
 		public Uri ViewUrl { get; set; }
 		#region Методы
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="response"></param>
+		/// <returns></returns>
 		public static Note FromJson(VkResponse response)
 		{
 			var note = new Note

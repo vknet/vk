@@ -16,6 +16,10 @@
 	{
 		private readonly VkApi _vk;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="vk"></param>
 		public VideoCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -43,7 +47,7 @@
 		/// Если в Вашем приложении используется  прямая авторизация, возвращается дополнительное поле files, содержащее ссылку на файл с видео (если ролик размещен на сервере ВКонтакте) или ссылку на внешний ресурс (если ролик встроен с какого-либо видеохостинга).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.get" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.get
 		/// </remarks>
 		public VkCollection<Video> Get(VideoGetParams @params)
 		{
@@ -62,7 +66,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.edit" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.edit
 		/// </remarks>
 		public bool Edit(VideoEditParams @params)
 		{
@@ -82,7 +86,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.add" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.add
 		/// </remarks>
 		public long Add(long videoId, long ownerId, long? targetId = null)
 		{
@@ -106,7 +110,7 @@
 		/// Метод может быть вызван не более 5000 раз в сутки для одного сервиса.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.save" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.save
 		/// </remarks>
 		public Video Save(VideoSaveParams @params)
 		{
@@ -124,7 +128,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.delete" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.delete
 		/// </remarks>
 		public bool Delete(long videoId, long? ownerId = null, long? targetId = null)
 		{
@@ -146,7 +150,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.restore" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.restore
 		/// </remarks>
 		public bool Restore(long videoId, long? ownerId = null)
 		{
@@ -169,7 +173,7 @@
 		/// Если в Вашем приложении используется  прямая авторизация, возвращается дополнительное поле files, содержащее ссылку на файл с видео (если ролик размещен на сервере ВКонтакте) или ссылку на внешний ресурс (если ролик встроен с какого-либо видеохостинга).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.search" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.search
 		/// </remarks>
 		public VkCollection<Video> Search(VideoSearchParams @params)
 		{
@@ -191,7 +195,7 @@
 		/// После успешного выполнения возвращает список объектов видеозаписей.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getUserVideos" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.getUserVideos
 		/// </remarks>
 		public VkCollection<Video> GetUserVideos(long? userId, long? offset, long? count, bool? extended)
 		{
@@ -225,7 +229,7 @@
 		/// title — название альбома.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbums" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbums
 		/// </remarks>
 		public VkCollection<VideoAlbum> GetAlbums(long? ownerId = null, long? offset = null, long? count = null, bool? extended = null, bool? needSystem = null)
 		{
@@ -254,7 +258,7 @@
 		/// После успешного выполнения возвращает  идентификатор созданного альбома (album_id).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.addAlbum" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.addAlbum
 		/// </remarks>
 		public long AddAlbum(string title, long? groupId = null, IEnumerable<Privacy> privacy = null)
 		{
@@ -284,7 +288,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.editAlbum" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.editAlbum
 		/// </remarks>
 		public bool EditAlbum(long albumId, string title, long? groupId = null, Privacy privacy = null)
 		{
@@ -311,7 +315,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.deleteAlbum" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.deleteAlbum
 		/// </remarks>
 		public bool DeleteAlbum(long albumId, long? groupId = null)
 		{
@@ -344,7 +348,7 @@
 		/// Если был передан параметр start_comment_id, будет также возвращено поле real_offset – итоговое смещение данного подмножества комментариев (оно может быть отрицательным, если был указан отрицательный offset).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getComments" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.getComments
 		/// </remarks>
 		public VkCollection<Comment> GetComments(VideoGetCommentsParams @params)
 		{
@@ -363,7 +367,7 @@
 		/// После успешного выполнения возвращает идентификатор созданного комментария.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.createComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.createComment
 		/// </remarks>
 		public long CreateComment(VideoCreateCommentParams @params)
 		{
@@ -382,7 +386,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.deleteComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.deleteComment
 		/// </remarks>
 		public bool DeleteComment(long commentId, long? ownerId)
 		{
@@ -406,7 +410,7 @@
 		/// После успешного выполнения возвращает <c>true</c> (0, если комментарий с таким идентификатором не является удаленным).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.restoreComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.restoreComment
 		/// </remarks>
 		public bool RestoreComment(long commentId, long? ownerId)
 		{
@@ -444,7 +448,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.editComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.editComment
 		/// </remarks>
 		public bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null)
 		{
@@ -477,7 +481,7 @@
 		/// viewed — статус отметки (1 — подтвержденная, 0 — неподтвержденная).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getTags" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.getTags
 		/// </remarks>
 		public ReadOnlyCollection<Tag> GetTags(long videoId, long? ownerId)
 		{
@@ -505,7 +509,7 @@
 		/// После успешного выполнения возвращает идентификатор созданной отметки (tag id).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.putTag" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.putTag
 		/// </remarks>
 		public long PutTag(long videoId, long userId, long? ownerId, string taggedName)
 		{
@@ -533,7 +537,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.removeTag" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.removeTag
 		/// </remarks>
 		public bool RemoveTag(long tagId, long videoId, long? ownerId)
 		{
@@ -563,7 +567,7 @@
 		/// tag_id — идентификатор отметки.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getNewTags" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.getNewTags
 		/// </remarks>
 		public VkCollection<Video> GetNewTags(int? count = null, int? offset = null)
 		{
@@ -598,7 +602,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.report" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.report
 		/// </remarks>
 		public bool Report(long videoId, ReportReason reason, long? ownerId, string comment = null, string searchQuery = null)
 		{
@@ -633,7 +637,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.reportComment" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.reportComment
 		/// </remarks>
 		public bool ReportComment(long commentId, long ownerId, ReportReason reason)
 		{
@@ -666,7 +670,7 @@
 		/// updated_time — время последнего обновления в формате unixtime.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbumById" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbumById
 		/// </remarks>
 		public Video GetAlbumById(long albumId, long? ownerId = null)
 		{
@@ -689,7 +693,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.reorderAlbums" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.reorderAlbums
 		/// </remarks>
 		public bool ReorderAlbums(long albumId, long? ownerId, long? before, long? after)
 		{
@@ -711,7 +715,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.reorderVideos" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.reorderVideos
 		/// </remarks>
 		public bool ReorderVideos(VideoReorderVideosParams @params)
 		{
@@ -732,7 +736,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.addToAlbum" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.addToAlbum
 		/// </remarks>
 		public bool AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null)
 		{
@@ -759,7 +763,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.removeFromAlbum" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.removeFromAlbum
 		/// </remarks>
 		public bool RemoveFromAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null)
 		{
@@ -787,7 +791,7 @@
 		/// Возвращает список идентификаторов альбомов, в которых видеозапись находится у пользователя или сообщества с идентификатором target_id. Если был передан параметр extended=1, возвращается список объектов альбомов с дополнительной информацией о каждом из них.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getAlbumsByVideo" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbumsByVideo
 		/// </remarks>
 		public bool GetAlbumsByVideo(long? targetId, long ownerId, long videoId, bool? extended)
 		{
@@ -854,7 +858,7 @@
 		/// Если был передан параметр extended=1, возвращаются дополнительные объекты profiles и groups, содержащие информацию о пользователях и сообществах.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getCatalog" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.getCatalog
 		/// </remarks>
 		public ReadOnlyCollection<VideoCatalog> GetCatalog(long? count, long? itemsCount, string from, bool? extended)
 		{
@@ -910,7 +914,7 @@
 		/// Если был передан параметр extended=1, возвращаются дополнительные объекты profiles и groups, содержащие информацию о пользователях и сообществах.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.getCatalogSection" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.getCatalogSection
 		/// </remarks>
 		public ReadOnlyCollection<VideoCatalogItem> GetCatalogSection(string sectionId, string from, long? count = null, bool? extended = null)
 		{
@@ -932,7 +936,7 @@
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/video.hideCatalogSection" />.
+		/// Страница документации ВКонтакте http://vk.com/dev/video.hideCatalogSection
 		/// </remarks>
 		public bool HideCatalogSection(long sectionId)
 		{

@@ -34,8 +34,9 @@ namespace VkNet.Categories
 		/// В случае, если номер пользователя является правильным, будет возвращён <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/auth.checkPhone" />.
-		/// </remarks>		public bool CheckPhone(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/auth.checkPhone
+		/// </remarks>
+		public bool CheckPhone(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
 		{
 			var parameters = new VkParameters {
 				{ "phone", phone },
@@ -55,8 +56,9 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.signup" />.
-		/// </remarks>		public string Signup(AuthSignupParams @params)
+		/// Страница документации ВКонтакте https://vk.com/dev/auth.signup
+		/// </remarks>
+		public string Signup(AuthSignupParams @params)
 		{
 			return _vk.Call("auth.signup", @params);
 		}
@@ -69,8 +71,9 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.confirm" />.
-		/// </remarks>		public AuthConfirmResult Confirm(AuthConfirmParams @params)
+		/// Страница документации ВКонтакте https://vk.com/dev/auth.confirm
+		/// </remarks>
+		public AuthConfirmResult Confirm(AuthConfirmParams @params)
 		{
 			return _vk.Call("auth.confirm", @params);
 		}
@@ -83,8 +86,9 @@ namespace VkNet.Categories
 		/// Возвращает результат выполнения метода.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <seealso cref="https://vk.com/dev/auth.restore" />.
-		/// </remarks>		public string Restore(string phone)
+		/// Страница документации ВКонтакте https://vk.com/dev/auth.restore
+		/// </remarks>
+		public string Restore(string phone)
 		{
 			var response = _vk.Call("auth.restore", new VkParameters { { "phone", phone } });
 			return response["sid"];

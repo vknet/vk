@@ -6,7 +6,7 @@ namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Информация о вики-странице сообщества.
-	/// См. описание <see href="http://vk.com/dev/pages.get"/>.
+	/// См. описание http://vk.com/dev/pages.get
 	/// </summary>
 	[DataContract]
 	public class Page : MediaAttachment
@@ -111,6 +111,11 @@ namespace VkNet.Model.Attachments
 
 		#region Методы
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="response"></param>
+		/// <returns></returns>
 		public static Page FromJson(VkResponse response)
 		{
 			var page = new Page

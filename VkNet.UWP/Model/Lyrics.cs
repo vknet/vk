@@ -4,7 +4,7 @@
 
     /// <summary>
     /// Текст аудиозаписи.
-    /// См. описание <see href="http://vk.com/dev/audio.getLyrics"/>.
+    /// См. описание http://vk.com/dev/audio.getLyrics
     /// </summary>
     public class Lyrics
     {

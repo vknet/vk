@@ -136,6 +136,9 @@ namespace VkNet.Utils
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public string OriginalUrl { get; }
 
         /// <summary>

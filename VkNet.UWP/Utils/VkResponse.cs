@@ -66,7 +66,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse"/> в <see cref="VkResponseArray"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -96,7 +96,7 @@ namespace VkNet.Utils
 		#region System types
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="bool" />.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -105,7 +105,7 @@ namespace VkNet.Utils
 		public static implicit operator bool(VkResponse response) => response != null && response == 1;
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="System.Nullable{Boolean}"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -117,7 +117,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="long" />.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -129,7 +129,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="System.Nullable{Int64}"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -141,7 +141,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="ulong"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -153,7 +153,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="System.Nullable{UInt64}"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -165,7 +165,7 @@ namespace VkNet.Utils
 		}
 
         /// <summary>
-        /// Выполняет неявное преобразование из <see cref="VkResponse" /> в коллекцию Collection&lt;long&gt;.
+        /// Выполняет неявное преобразование из VkResponse
         /// </summary>
         /// <param name="response">Ответ vk.com</param>
         /// <returns>
@@ -177,7 +177,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="bool" />.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -189,7 +189,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="float"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -201,7 +201,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="decimal" />.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -213,7 +213,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="decimal"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -225,7 +225,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="uint" />.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -237,7 +237,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="uint"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -249,7 +249,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="int" />.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -261,7 +261,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="int"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -273,7 +273,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="string" />.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -285,7 +285,7 @@ namespace VkNet.Utils
 		}
 
         /// <summary>
-        /// Выполняет неявное преобразование из <see cref="VkResponse" /> в коллекцию Collection&lt;string&gt;.
+        /// Выполняет неявное преобразование из VkResponse
         /// </summary>
         /// <param name="response">Ответ vk.com</param>
         /// <returns>
@@ -297,7 +297,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="DateTime"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -319,7 +319,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="DateTime" />.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -350,7 +350,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="bool" />.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -368,7 +368,7 @@ namespace VkNet.Utils
 		#region Enums
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="PageAccessKind"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -380,7 +380,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="GroupPublicity"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -392,7 +392,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="ContentAccess"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -404,7 +404,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="GroupSubjects"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -416,7 +416,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="AdminLevel"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -428,7 +428,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="AudioGenre"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -440,7 +440,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="MessageType"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>
@@ -452,7 +452,7 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Выполняет неявное преобразование из <see cref="VkResponse" /> в <see cref="MessageReadState"/>.
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ vk.com</param>
 		/// <returns>

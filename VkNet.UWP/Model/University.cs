@@ -6,7 +6,7 @@ namespace VkNet.Model
 
     /// <summary>
     /// Высшее учебное заведение, в котором учился пользователь.
-    /// См. описание <see href="http://vk.com/dev/fields"/>. Раздел universities.
+    /// См. описание http://vk.com/dev/fields
     /// </summary>
     [DataContract]
     public class University

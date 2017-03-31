@@ -14,7 +14,7 @@
 
         /// <summary>
         /// Смещение, необходимое для выборки определенного подмножества диалогов.
-        /// Если указан <see cref="StartMessageId"/> то может быть отрицательным
+        /// Если указан StartMessageId
         /// </summary>
         public int Offset { get; set; }
 

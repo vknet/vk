@@ -8,6 +8,10 @@ namespace VkNet.Exception
     [DataContract]
     public class PostLimitException : VkApiException
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
         public PostLimitException(string message)
             : base(message)
         {

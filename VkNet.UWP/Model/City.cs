@@ -9,7 +9,7 @@ namespace VkNet.Model
     /// Город.
     /// </summary>
     /// <remarks>
-    /// Страница документации ВКонтакте <see href="http://vk.com/dev/database.getCities"/>.
+    /// Страница документации ВКонтакте http://vk.com/dev/database.getCities
     /// </remarks>
     [DataContract]
     public class City

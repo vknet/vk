@@ -38,8 +38,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список объектов item с дополнительным полем comments, содержащим число комментариев у товара.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.get" />.
-		/// </remarks>		public VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.get
+		/// </remarks>
+		public VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -61,8 +62,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список объектов item с дополнительным полем comments, содержащим число комментариев у товара.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getById" />.
-		/// </remarks>		public VkCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.getById
+		/// </remarks>
+		public VkCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false)
 		{
 			var parameters = new VkParameters {
 				{ "item_ids", itemIds },
@@ -80,8 +82,9 @@ namespace VkNet.Categories
 		/// Возвращает список объектов item.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.search" />.
-		/// </remarks>		public VkCollection<Market> Search(MarketSearchParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.search
+		/// </remarks>
+		public VkCollection<Market> Search(MarketSearchParams @params)
 		{
 			return _vk.Call("market.search", @params).ToVkCollectionOf<Market>(x => x);
 		}
@@ -96,8 +99,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список объектов album.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getAlbums" />.
-		/// </remarks>		public VkCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.getAlbums
+		/// </remarks>
+		public VkCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -117,8 +121,9 @@ namespace VkNet.Categories
 		/// Возвращает список объектов album.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getAlbumById" />.
-		/// </remarks>		public VkCollection<MarketAlbum> GetAlbumById(long ownerId, IEnumerable<long> albumIds)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.getAlbumById
+		/// </remarks>
+		public VkCollection<MarketAlbum> GetAlbumById(long ownerId, IEnumerable<long> albumIds)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -136,8 +141,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает идентификатор созданного комментария.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.createComment" />.
-		/// </remarks>		public long CreateComment(MarketCreateCommentParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.createComment
+		/// </remarks>
+		public long CreateComment(MarketCreateCommentParams @params)
 		{
 			return _vk.Call("market.createComment", @params);
 		}
@@ -150,8 +156,9 @@ namespace VkNet.Categories
 		/// Возвращает список объектов комментариев.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getComments" />.
-		/// </remarks>		public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.getComments
+		/// </remarks>
+		public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params)
 		{
 			return _vk.Call("market.getComments", @params).ToVkCollectionOf<MarketComment>(x => x);
 		}
@@ -165,8 +172,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1 (0, если комментарий не найден).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.deleteComment" />.
-		/// </remarks>		public bool DeleteComment(long ownerId, long commentId)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.deleteComment
+		/// </remarks>
+		public bool DeleteComment(long ownerId, long commentId)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -185,8 +193,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1 (0, если комментарий с таким идентификатором не является удаленным).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.restoreComment" />.
-		/// </remarks>		public bool RestoreComment(long ownerId, long commentId)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.restoreComment
+		/// </remarks>
+		public bool RestoreComment(long ownerId, long commentId)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -207,8 +216,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.editComment" />.
-		/// </remarks>		public bool EditComment(long ownerId, long commentId, string message, IEnumerable<MediaAttachment> attachments = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.editComment
+		/// </remarks>
+		public bool EditComment(long ownerId, long commentId, string message, IEnumerable<MediaAttachment> attachments = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -230,8 +240,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.reportComment" />.
-		/// </remarks>		public bool ReportComment(long ownerId, long commentId, ReportReason reason)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.reportComment
+		/// </remarks>
+		public bool ReportComment(long ownerId, long commentId, ReportReason reason)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -252,8 +263,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.report" />.
-		/// </remarks>		public bool Report(long ownerId, long itemId, ReportReason reason)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.report
+		/// </remarks>
+		public bool Report(long ownerId, long itemId, ReportReason reason)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -272,8 +284,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает идентификатор добавленного товара.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.add" />.
-		/// </remarks>		public long Add(MarketProductParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.add
+		/// </remarks>
+		public long Add(MarketProductParams @params)
 		{
 			return _vk.Call("market.add", @params)["market_item_id"];
 		}
@@ -286,8 +299,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.edit" />.
-		/// </remarks>		public bool Edit(MarketProductParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.edit
+		/// </remarks>
+		public bool Edit(MarketProductParams @params)
 		{
 			return _vk.Call("market.edit", @params);
 		}
@@ -301,8 +315,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.delete" />.
-		/// </remarks>		public bool Delete(long ownerId, long itemId)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.delete
+		/// </remarks>
+		public bool Delete(long ownerId, long itemId)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -321,8 +336,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1 (0, если товар не найден среди удаленных).
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.restore" />.
-		/// </remarks>		public bool Restore(long ownerId, long itemId)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.restore
+		/// </remarks>
+		public bool Restore(long ownerId, long itemId)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -344,8 +360,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.reorderItems" />.
-		/// </remarks>		public bool ReorderItems(long ownerId, long albumId, long itemId, long? before, long? after)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.reorderItems
+		/// </remarks>
+		public bool ReorderItems(long ownerId, long albumId, long itemId, long? before, long? after)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -369,8 +386,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.reorderAlbums" />.
-		/// </remarks>		public bool ReorderAlbums(long ownerId, long albumId, long? before = null, long? after = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.reorderAlbums
+		/// </remarks>
+		public bool ReorderAlbums(long ownerId, long albumId, long? before = null, long? after = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -393,8 +411,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает идентификатор созданной подборки.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.addAlbum" />.
-		/// </remarks>		public long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.addAlbum
+		/// </remarks>
+		public long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -417,8 +436,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.editAlbum" />.
-		/// </remarks>		public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.editAlbum
+		/// </remarks>
+		public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -439,8 +459,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.deleteAlbum" />.
-		/// </remarks>		public bool DeleteAlbum(long ownerId, long albumId)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.deleteAlbum
+		/// </remarks>
+		public bool DeleteAlbum(long ownerId, long albumId)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -460,8 +481,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.removeFromAlbum" />.
-		/// </remarks>		public bool RemoveFromAlbum(long ownerId, long itemId, IEnumerable<long> albumIds)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.removeFromAlbum
+		/// </remarks>
+		public bool RemoveFromAlbum(long ownerId, long itemId, IEnumerable<long> albumIds)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -482,8 +504,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.addToAlbum" />.
-		/// </remarks>		public bool AddToAlbum(long ownerId, long itemId, IEnumerable<long> albumIds)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.addToAlbum
+		/// </remarks>
+		public bool AddToAlbum(long ownerId, long itemId, IEnumerable<long> albumIds)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
@@ -503,8 +526,9 @@ namespace VkNet.Categories
 		/// После успешного выполнения возвращает список объектов category.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/market.getCategories" />.
-		/// </remarks>		public VkCollection<MarketCategory> GetCategories(long? count, long? offset)
+		/// Страница документации ВКонтакте http://vk.com/dev/market.getCategories
+		/// </remarks>
+		public VkCollection<MarketCategory> GetCategories(long? count, long? offset)
 		{
 			var parameters = new VkParameters {
 				{ "count", count },

@@ -34,8 +34,9 @@ namespace VkNet.Categories
 		/// Возвращает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
-		/// </remarks>		public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false)
+		/// Страница документации ВКонтакте http://vk.com/dev/likes.getList
+		/// </remarks>
+		public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false)
 		{
 		    @params.Extended = false;
 			return _vk.Call("likes.getList", @params, skipAuthorization).ToVkCollectionOf<long>(x => x);
@@ -49,8 +50,9 @@ namespace VkNet.Categories
 		/// Возвращает список пользователей и сообществ, которые добавили заданный объект в свой список Мне нравится.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.getList"/>.
-		/// </remarks>		public UserOrGroup GetListEx(LikesGetListParams @params)
+		/// Страница документации ВКонтакте http://vk.com/dev/likes.getList
+		/// </remarks>
+		public UserOrGroup GetListEx(LikesGetListParams @params)
 		{
             @params.Extended = true;
             return _vk.Call("likes.getList", @params, true);
@@ -64,8 +66,9 @@ namespace VkNet.Categories
         /// В случае успеха возвращает объект с полем likes, в котором находится текущее количество пользователей, которые добавили данный объект в свой список Мне нравится.
         /// </returns>
         /// <remarks>
-        /// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.add" />.
-        /// </remarks>		public long Add(LikesAddParams @params)
+        /// Страница документации ВКонтакте http://vk.com/dev/likes.add
+        /// </remarks>
+		public long Add(LikesAddParams @params)
 		{
 			var response = _vk.Call("likes.add", @params);
 
@@ -75,13 +78,14 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Удаляет указанный объект из списка Мне нравится текущего пользователя
 		/// </summary>
-		/// <param name="type">Тип объекта <see cref="LikeObjectType"/></param>
+		/// <param name="type">Тип объекта LikeObjectType
 		/// <param name="itemId">Идентификатор объекта. положительное число, обязательный параметр</param>
 		/// <param name="ownerId">Идентификатор владельца объекта. целое число, по умолчанию идентификатор текущего пользователя</param>
 		/// <returns>В случае успеха возвращает объект с полем likes, в котором находится текущее количество пользователей, которые добавили данный объект в свой список Мне нравится. </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.delete"/>.
-		/// </remarks>		public long Delete(LikeObjectType type, long itemId, long? ownerId = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/likes.delete
+		/// </remarks>
+		public long Delete(LikeObjectType type, long itemId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 				{
@@ -98,7 +102,7 @@ namespace VkNet.Categories
 		/// Проверяет, находится ли объект в списке Мне нравится заданного пользователя.
 		/// </summary>
 		/// <param name="copied">Сделан ли репост текущим пользователем.</param>
-		/// <param name="type">Тип объекта <see cref="LikeObjectType" /></param>
+		/// <param name="type">Тип объекта LikeObjectType
 		/// <param name="itemId">Идентификатор объекта. положительное число, обязательный параметр</param>
 		/// <param name="userId">Идентификатор пользователя, у которого необходимо проверить наличие объекта в списке «Мне нравится». Если параметр не задан, то считается, что он равен идентификатору текущего пользователя. положительное число, по умолчанию идентификатор текущего пользователя</param>
 		/// <param name="ownerId">Идентификатор владельца Like-объекта. Если параметр не задан, то считается, что он равен идентификатору текущего пользователя. целое число, по умолчанию идентификатор текущего пользователя</param>
@@ -108,8 +112,9 @@ namespace VkNet.Categories
 		/// true — указанный Like-объект находится в списке Мне нравится пользователя с идентификатором user_id.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте <see href="http://vk.com/dev/likes.isLiked" />.
-		/// </remarks>		public bool IsLiked(out bool copied, LikeObjectType type, long itemId,  long? userId = null, long? ownerId = null)
+		/// Страница документации ВКонтакте http://vk.com/dev/likes.isLiked
+		/// </remarks>
+		public bool IsLiked(out bool copied, LikeObjectType type, long itemId,  long? userId = null, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 				{
