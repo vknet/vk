@@ -80,7 +80,7 @@ namespace JetBrains.Annotations
         /// <summary>
         /// Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current LocalizationRequiredAttribute
+        /// <returns>A hash code for the current LocalizationRequiredAttribute</returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();

@@ -2102,30 +2102,6 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
-		public static implicit operator PhotosList(VkResponse response)
-		{
-            return response?._token == null || !response._token.HasValues ? null :  PhotosList.FromJson(response);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-		public static implicit operator Collection<PhotosList>(VkResponse response)
-        {
-            return response.ToCollectionOf<PhotosList>(a => a);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
 		public static implicit operator Place(VkResponse response)
 		{
             return response?._token == null || !response._token.HasValues ? null :  Place.FromJson(response);
@@ -3125,30 +3101,6 @@ namespace VkNet.Utils
 		public static implicit operator Collection<VkObject>(VkResponse response)
         {
             return response.ToCollectionOf<VkObject>(a => a);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-		public static implicit operator Wall(VkResponse response)
-		{
-            return response?._token == null || !response._token.HasValues ? null :  Wall.FromJson(response);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-		public static implicit operator Collection<Wall>(VkResponse response)
-        {
-            return response.ToCollectionOf<Wall>(a => a);
         }
 
 		/// <summary>

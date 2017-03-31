@@ -248,7 +248,7 @@ namespace VkNet.Categories
         /// </returns>
         /// <exception cref="System.ArgumentNullException">messageIds;Parameter messageIds can not be null.</exception>
         /// <exception cref="System.ArgumentException">Parameter messageIds has no elements.;messageIds</exception>
-        /// <exception cref="ArgumentException">Элемент с таким ключом уже существует в словаре T:System
+        /// <exception cref="ArgumentException">Элемент с таким ключом уже существует в словаре T:System</exception>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.delete
@@ -285,7 +285,7 @@ namespace VkNet.Categories
         /// <returns>
         /// Признак было ли удаление сообщения успешным.
         /// </returns>
-        /// <exception cref="NotSupportedException">Свойство задано, и объект T:System
+        /// <exception cref="NotSupportedException">Свойство задано, и объект T:System</exception>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.delete
@@ -608,7 +608,7 @@ namespace VkNet.Categories
         /// мобильном устройстве / ПК пользователя, чтобы не получать их повторно при каждом обращении.
         /// Этот метод помогает осуществить синхронизацию локальной копии списка сообщений с актуальной версией.
         /// </summary>
-        /// <param name="params">Параметры запроса к LongPool серверу MessagesGetLongPollHistoryParams
+        /// <param name="params">Параметры запроса к LongPool серверу MessagesGetLongPollHistoryParams</param>
         /// <remarks>
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory

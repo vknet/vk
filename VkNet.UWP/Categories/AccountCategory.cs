@@ -427,7 +427,7 @@
         /// <summary>
         /// Возвращает информацию о текущем профиле.
         /// </summary>
-        /// <returns>Информация о текущем профиле в виде Model.User
+        /// <returns>Информация о текущем профиле в виде Model.User</returns>
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/account.getProfileInfo
         /// </remarks>
@@ -473,7 +473,7 @@
         /// Редактирует информацию текущего профиля.
         /// </summary>
         /// <param name="changeNameRequest">Если в параметрах передавалось имя или фамилия пользователя,
-        /// в этом параметре будет возвращен объект типа ChangeNameRequest
+        /// в этом параметре будет возвращен объект типа ChangeNameRequest</param>
         /// <param name="params">The parameters.</param>
         /// <returns>
         /// Результат отмены заявки.

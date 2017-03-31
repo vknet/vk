@@ -179,7 +179,7 @@ namespace VkNet.Categories
 		/// <param name="message">Тескт сообщения. Обязательное поле, если список <paramref name="mediaAttachments"/> не задан или пуст.</param>
 		/// <param name="mediaAttachments">Список приложенных к записи объектов.
 		/// Обязательно наличие хотя бы одного элемента в списке, если <paramref name="message"/> не задано.
-		/// Свойства MediaAttachment.Id
+		/// Свойства MediaAttachment.Id</param>
 		/// <param name="url">Ссылка на внешнюю страницу. В строке может содержаться только одна ссылка.</param>
 		/// <param name="services">Список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию.
 		///  Например, twitter, facebook</param>
@@ -253,7 +253,7 @@ namespace VkNet.Categories
 		/// <param name="message">Тескт сообщения. Обязательное поле, если список <paramref name="mediaAttachments"/> не задан или пуст.</param>
 		/// <param name="mediaAttachments">Список приложенных к записи объектов.
 		/// Обязательно наличие хотя бы одного элемента в списке, если <paramref name="message"/> не задано.
-		/// Свойства MediaAttachment.Id
+		/// Свойства MediaAttachment.Id</param>
 		/// <param name="url">Ссылка на внешнюю страницу. В строке может содержаться только одна ссылка.</param>
 		/// <param name="services">Список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию.
 		///  Например, twitter, facebook</param>

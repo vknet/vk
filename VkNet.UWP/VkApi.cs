@@ -339,13 +339,8 @@ namespace VkNet
             //если токен задан - авторизация с помощью токена полученного извне
             else
             {
-                //после отказа от устаревшего метода изменить доступ на private
-                Authorize(
-                    @params.AccessToken, 
-                    @params.UserId, 
-                    @params.TokenExpireTime
-                    );
-            }
+				TokenAuth(@params.AccessToken, @params.UserId, @params.TokenExpireTime);
+			}
 
 			_ap = @params;
 		}
@@ -393,13 +388,18 @@ namespace VkNet
         /// <param name="expireTime">Время, в течении которого действует токен доступа (0 - бесконечно).</param>
         [Obsolete("Устаревший метод, будет удален. Используйте метод Authorize(ApiAuthParams @params)")]
         public void Authorize(string accessToken, long? userId = null, int expireTime = 0)
+        {
+	        TokenAuth(accessToken, userId, expireTime);
+        }
+
+		private void TokenAuth(string accessToken, long? userId, int expireTime)
 		{
 			if (string.IsNullOrWhiteSpace(accessToken))
 			{
-                throw new ArgumentNullException(accessToken);
-            }
+				throw new ArgumentNullException(accessToken);
+			}
 
-            StopTimer();
+			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
 			SetTimer(expireTime);

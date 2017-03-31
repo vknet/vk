@@ -55,7 +55,7 @@ namespace VkNet.Model.RequestParams
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
-		/// <returns>Объект типа MessagesSendStickerParams
+		/// <returns>Объект типа MessagesSendStickerParams</returns>
 		public static VkParameters ToVkParameters(MessagesSendStickerParams p)
 		{
 			var result = new VkParameters

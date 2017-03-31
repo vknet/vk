@@ -26,7 +26,7 @@ namespace VkNet.Categories
 		/// <param name="photoSizes">Возвращать ли размеры фотографий в специальном формате</param>
 		/// <param name="count">Положительное число, максимальное значение 1000</param>
 		/// <param name="offset">Положительное число</param>
-		/// <returns>После успешного выполнения возвращает массив объектов Photo
+		/// <returns>После успешного выполнения возвращает массив объектов Photo</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/photos.getProfile
 		/// </remarks>
@@ -96,7 +96,7 @@ namespace VkNet.Categories
 		/// </summary>
 		/// <param name="count">Количество альбомов.</param>
 		/// <param name="params">Параметры запроса.</param>
-		/// <returns>После успешного выполнения возвращает список объектов Photo
+		/// <returns>После успешного выполнения возвращает список объектов Photo</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/photos.get
 		/// </remarks>

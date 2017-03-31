@@ -209,7 +209,6 @@ namespace VkNet.Model.Attachments
                 Likes = video["likes"],
                 AlbumId = Utilities.GetNullableLongId(video["album_id"]),
                 UploadUrl = video["upload_url"],
-                Link = video["link"],
                 Tag = video,
                 AddingDate = video["adding_date"],
                 Files = video["files"],

@@ -21,7 +21,7 @@ namespace VkNet.Categories
 		/// <param name="deviceModel">Строковое название модели устройства.</param>
 		/// <param name="systemVersion">Строковая версия операционной системы устройства.</param>
 		/// <param name="noText">Не передавать текст сообщения в push уведомлении. (по умолчанию текст передается)</param>
-		/// <param name="subscribe">Список типов уведомлений, которые следует присылать. По умолчанию присылаются: SubscribeFilter.Message
+		/// <param name="subscribe">Список типов уведомлений, которые следует присылать. По умолчанию присылаются: SubscribeFilter.Message</param>
 		/// <returns>Возвращает результат выполнения метода.</returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/account.registerDevice
@@ -57,7 +57,7 @@ namespace VkNet.Categories
 		/// <param name="cityId">Идентификатор города пользователя</param>
 		/// <returns>Результат выполнения операции.</returns>
 		/// <remarks> Если передаются <paramref name="firstName"/> или <paramref name="lastName"/>, рекомендуется
-		/// использовать перегрузку с соотвествующим out параметром типа ChangeNameRequest
+		/// использовать перегрузку с соотвествующим out параметром типа ChangeNameRequest</remarks>
 		[Obsolete("Данный метод устарел, пожалуйста используйте метод SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveInfo @params)")]
 		public bool SaveProfileInfo(string firstName = null, string lastName = null, string maidenName = null, Sex? sex = null,
 			RelationType? relation = null, long? relationPartnerId = null, DateTime? birthDate = null, BirthdayVisibility? birthDateVisibility = null,
@@ -88,7 +88,7 @@ namespace VkNet.Categories
 		///  Редактирует информацию текущего профиля.
 		/// </summary>
 		/// <param name="changeNameRequest">Если в параметрах передавалось имя или фамилия пользователя,
-		/// в этом параметре будет возвращен объект типа ChangeNameRequest
+		/// в этом параметре будет возвращен объект типа ChangeNameRequest</param>
 		/// <param name="firstName">Имя пользователя</param>
 		/// <param name="lastName">Фамилия пользователя</param>
 		/// <param name="maidenName">Девичья фамилия пользователя</param>

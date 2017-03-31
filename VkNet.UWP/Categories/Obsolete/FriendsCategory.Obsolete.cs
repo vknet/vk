@@ -25,7 +25,7 @@ namespace VkNet.Categories
 		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества друзей.</param>
 		/// <param name="order">Порядок, в котором нужно вернуть список друзей.</param>
 		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя.</param>
-		/// <param name="listId">Идентификатор списка друзей, полученный методом FriendsCategory.GetLists
+		/// <param name="listId">Идентификатор списка друзей, полученный методом FriendsCategory.GetLists</param>
 		/// <returns>Список друзей пользователя с заполненными полями (указанными в параметре <paramref name="fields"/>).
 		/// Если значение поля <paramref name="fields"/> не указано, то у возвращаемых друзей заполняется только поле Id.
 		/// </returns>

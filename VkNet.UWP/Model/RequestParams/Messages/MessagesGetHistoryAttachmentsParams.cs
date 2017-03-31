@@ -77,7 +77,7 @@ namespace VkNet.Model.RequestParams
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
-		/// <returns>Объект типа MessagesGetHistoryAttachmentsParams
+		/// <returns>Объект типа MessagesGetHistoryAttachmentsParams</returns>
 		public static VkParameters ToVkParameters(MessagesGetHistoryAttachmentsParams p)
 		{
 			var result = new VkParameters

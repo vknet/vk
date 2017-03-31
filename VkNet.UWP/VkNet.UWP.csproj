@@ -208,12 +208,10 @@
     <Compile Include="Model\Attachments\Note.cs" />
     <Compile Include="Model\Attachments\Page.cs" />
     <Compile Include="Model\Attachments\Photo.cs" />
-    <Compile Include="Model\Attachments\PhotosList.cs" />
     <Compile Include="Model\Attachments\Poll.cs" />
     <Compile Include="Model\Attachments\Post.cs" />
     <Compile Include="Model\Attachments\Sticker.cs" />
     <Compile Include="Model\Attachments\Video.cs" />
-    <Compile Include="Model\Attachments\Wall.cs" />
     <Compile Include="Model\Attachments\WallReply.cs" />
     <Compile Include="Model\AudioAlbum.cs" />
     <Compile Include="Model\AuthConfirmResult.cs" />

@@ -71,14 +71,9 @@ namespace VkNet.Model.Attachments
 		private Album Album { get; set; }
 
 		/// <summary>
-		/// Список фотографий
-		/// </summary>
-		private PhotosList PhotosList;
-
-		/// <summary>
 		/// Запись на стене.
 		/// </summary>
-		private Wall Wall { get; set; }
+		private Post Wall { get; set; }
 
 		/// <summary>
 		/// Стикер.
@@ -136,9 +131,7 @@ namespace VkNet.Model.Attachments
 					return Page;
 				if (Type == typeof(Album))
 					return Album;
-				if (Type == typeof(PhotosList))
-					return PhotosList;
-				if (Type == typeof(Wall))
+				if (Type == typeof(Post))
 					return Wall;
 				if (Type == typeof(Sticker))
 					return Sticker;
@@ -239,15 +232,9 @@ namespace VkNet.Model.Attachments
 						attachment.Album = response["album"];
 						break;
 					}
-				case "photos_list":
-					{
-						attachment.Type = typeof(PhotosList);
-						attachment.PhotosList = response["photos_list"];
-						break;
-					}
 				case "wall":
 					{
-						attachment.Type = typeof(Wall);
+						attachment.Type = typeof(Post);
 						attachment.Wall = response["wall"];
 						break;
 					}

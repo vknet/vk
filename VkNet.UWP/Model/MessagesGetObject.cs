@@ -36,7 +36,7 @@
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект типа MessagesGetObject
+		/// <returns>Объект типа MessagesGetObject</returns>
 		public static MessagesGetObject FromJson(VkResponse response)
 		{
 			var dialogsGetObject = new MessagesGetObject

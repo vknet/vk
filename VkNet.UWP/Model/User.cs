@@ -369,7 +369,7 @@ namespace VkNet.Model
 		/// Показывать дату?
 		/// </summary>
 		[Obsolete("Пожалуйста используйте поле BirthdayVisibility")]
-		public bool? BdateVisibility { get; set; }
+		public BirthdayVisibility? BdateVisibility => BirthdayVisibility;
 
 		/// <summary>
 		/// id главной фотографии профиля пользователя в формате user_id+photo_id, например, 6492_192164258. В некоторых случаях (если фотография была установлена очень давно) это поле не возвращается.
@@ -555,7 +555,6 @@ namespace VkNet.Model
 				BirthdayVisibility = response["bdate_visibility"],
 				HomeTown = response["home_town"],
 				ChangeNameRequest = response["name_request"],
-				BdateVisibility = response["bdate_visibility"],
 				Contacts = response["contacts"],
 				Hidden = response["hidden"],
 				PhotoId = response["photo_id"],

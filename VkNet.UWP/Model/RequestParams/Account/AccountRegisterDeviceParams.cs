@@ -60,7 +60,7 @@ namespace VkNet.Model.RequestParams
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
-		/// <returns>Объект типа AccountRegisterDeviceParams
+		/// <returns>Объект типа AccountRegisterDeviceParams</returns>
 		public static VkParameters ToVkParameters(AccountRegisterDeviceParams p)
 		{
 			var result = new VkParameters
