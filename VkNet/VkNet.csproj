@@ -49,6 +49,10 @@
       <HintPath>..\packages\AngleSharp.0.9.9\lib\net40\AngleSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
       <Private>True</Private>
@@ -61,8 +65,8 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -579,9 +583,6 @@
     <Compile Include="..\VkNet.UWP\Model\Attachments\Photo.cs">
       <Link>Model\Attachments\Photo.cs</Link>
     </Compile>
-    <Compile Include="..\VkNet.UWP\Model\Attachments\PhotosList.cs">
-      <Link>Model\Attachments\PhotosList.cs</Link>
-    </Compile>
     <Compile Include="..\VkNet.UWP\Model\Attachments\Poll.cs">
       <Link>Model\Attachments\Poll.cs</Link>
     </Compile>
@@ -593,9 +594,6 @@
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\Attachments\Video.cs">
       <Link>Model\Attachments\Video.cs</Link>
-    </Compile>
-    <Compile Include="..\VkNet.UWP\Model\Attachments\Wall.cs">
-      <Link>Model\Attachments\Wall.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\Attachments\WallReply.cs">
       <Link>Model\Attachments\WallReply.cs</Link>
@@ -1104,6 +1102,9 @@
     <Compile Include="..\VkNet.UWP\Model\SearchDialogsResponse.cs">
       <Link>Model\SearchDialogsResponse.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Model\ShortLink.cs">
+      <Link>Model\ShortLink.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\StandInLife.cs">
       <Link>Model\StandInLife.cs</Link>
     </Compile>
@@ -1172,9 +1173,6 @@
     </Compile>
     <Compile Include="..\VkNet.UWP\Utils\Cookies.cs">
       <Link>Utils\Cookies.cs</Link>
-    </Compile>
-    <Compile Include="..\VkNet.UWP\Utils\DataAnnotations.cs">
-      <Link>Utils\DataAnnotations.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Utils\DateTimeHelper.cs">
       <Link>Utils\DateTimeHelper.cs</Link>
