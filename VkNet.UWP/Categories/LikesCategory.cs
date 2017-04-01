@@ -81,23 +81,28 @@ namespace VkNet.Categories
 		/// <param name="type">Тип объекта LikeObjectType</param>
 		/// <param name="itemId">Идентификатор объекта. положительное число, обязательный параметр</param>
 		/// <param name="ownerId">Идентификатор владельца объекта. целое число, по умолчанию идентификатор текущего пользователя</param>
+		/// <param name="captchaSid">Идентификатор капчи</param>
+		/// <param name="captchaKey">Текст, который ввел пользователь</param>
 		/// <returns>В случае успеха возвращает объект с полем likes, в котором находится текущее количество пользователей, которые добавили данный объект в свой список Мне нравится. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.delete
 		/// </remarks>
-		public long Delete(LikeObjectType type, long itemId, long? ownerId = null)
+		public long Delete(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null)
 		{
 			var parameters = new VkParameters
 				{
 					{ "type", type },
 					{ "item_id", itemId },
-					{ "owner_id", ownerId }
+					{ "owner_id", ownerId },
+					{ "captcha_sid", captchaSid },
+					{ "captcha_key", captchaKey }
 				};
 
 			var response = _vk.Call("likes.delete", parameters);
 
 			return response["likes"];
 		}
+
 		/// <summary>
 		/// Проверяет, находится ли объект в списке Мне нравится заданного пользователя.
 		/// </summary>
