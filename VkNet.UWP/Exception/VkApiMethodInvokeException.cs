@@ -10,11 +10,6 @@
     public class VkApiMethodInvokeException : VkApiException
     {
         /// <summary>
-        /// Код ошибки, полученный от сервера ВКонтакте.
-        /// </summary>
-        public int ErrorCode { get; private set; }
-
-        /// <summary>
         /// Инициализирует новый экземпляр класса VkApiMethodInvokeException
         /// </summary>
         public VkApiMethodInvokeException()

@@ -1,4 +1,6 @@
-﻿namespace VkNet.Exception
+﻿using VkNet.Utils;
+
+namespace VkNet.Exception
 {
     using System;
     using System.Runtime.Serialization;
@@ -51,5 +53,14 @@
         public AccessDeniedException(string message, int code, Exception innerException) : base(message, code, innerException)
         {
         }
-    }
+
+		/// <summary>
+		/// Инициализирует новый экземпляр класса AccessDeniedException
+		/// </summary>
+		/// <param name="response">Ответ от сервера vk</param>
+		public AccessDeniedException(VkResponse response) : base(response["error_msg"])
+		{
+			ErrorCode = response["error_code"];
+		}
+	}
 }

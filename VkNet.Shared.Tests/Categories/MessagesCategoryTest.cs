@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using VkNet.Exception;
+using VkNet.Model;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Categories
@@ -224,12 +225,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(msg, Is.Not.Null);
 			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
 
-			var wall = msg.Attachments[0].Instance as Wall;
+			var wall = msg.Attachments[0].Instance as Post;
 
 			Assert.That(wall, Is.Not.Null);
 			Assert.That(wall.Id, Is.EqualTo(6194));
 			Assert.That(wall.FromId, Is.EqualTo(-1267));
-			Assert.That(wall.ToId, Is.EqualTo(-7654));
+			//Assert.That(wall.ToId, Is.EqualTo(-7654));
 			Assert.That(wall.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1414992610)));
 			Assert.That(wall.PostType, Is.EqualTo("post"));
 			Assert.That(wall.Text, Is.EqualTo(string.Empty));

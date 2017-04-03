@@ -41,7 +41,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(CountersFilter.Notifications.ToString(), Is.EqualTo("notifications"));
 			Assert.That(CountersFilter.Sdk.ToString(), Is.EqualTo("sdk"));
 			Assert.That(CountersFilter.AppRequests.ToString(), Is.EqualTo("app_requests"));
-			Assert.That(CountersFilter.All.ToString(), Is.EqualTo("app_requests,events,friends,friends_suggestions,gifts,groups,messages,notifications,photos,sdk,videos"));
+			Assert.That(CountersFilter.All.ToString(), Is.EqualTo("friends,friends_suggestions,messages,photos,videos,gifts,events,groups,notifications,sdk,app_requests"));
 			// parse test
 			Assert.That(CountersFilter.FromJson("friends"), Is.EqualTo(CountersFilter.Friends));
 			Assert.That(CountersFilter.FromJson("friends_suggestions"), Is.EqualTo(CountersFilter.FriendsSuggestions));
@@ -54,7 +54,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(CountersFilter.FromJson("notifications"), Is.EqualTo(CountersFilter.Notifications));
 			Assert.That(CountersFilter.FromJson("sdk"), Is.EqualTo(CountersFilter.Sdk));
 			Assert.That(CountersFilter.FromJson("app_requests"), Is.EqualTo(CountersFilter.AppRequests));
-			Assert.That(CountersFilter.FromJson("app_requests,events,friends,friends_suggestions,gifts,groups,messages,notifications,photos,sdk,videos"), Is.EqualTo(CountersFilter.All));
+			Assert.That(CountersFilter.FromJson("friends,friends_suggestions,messages,photos,videos,gifts,events,groups,notifications,sdk,app_requests"), Is.EqualTo(CountersFilter.All));
 		}
 
 		[Test]
@@ -82,8 +82,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(GroupsFields.IsVerified.ToString(), Is.EqualTo("verified"));
 			Assert.That(GroupsFields.Site.ToString(), Is.EqualTo("site"));
 			Assert.That(GroupsFields.BanInfo.ToString(), Is.EqualTo("ban_info"));
-			Assert.That(GroupsFields.All.ToString(), Is.EqualTo("activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
-			Assert.That(GroupsFields.AllUndocumented.ToString(), Is.EqualTo("activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
+			Assert.That(GroupsFields.All.ToString(), Is.EqualTo("city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_create_topic,activity,status,contacts,links,fixed_post,verified,site,ban_info"));
+			Assert.That(GroupsFields.AllUndocumented.ToString(), Is.EqualTo("city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_upload_doc,can_create_topic,activity,status,contacts,links,fixed_post,verified,site,ban_info"));
 			// parse test
 			Assert.That(GroupsFields.FromJson("city"), Is.EqualTo(GroupsFields.CityId));
 			Assert.That(GroupsFields.FromJson("country"), Is.EqualTo(GroupsFields.CountryId));
@@ -106,8 +106,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(GroupsFields.FromJson("verified"), Is.EqualTo(GroupsFields.IsVerified));
 			Assert.That(GroupsFields.FromJson("site"), Is.EqualTo(GroupsFields.Site));
 			Assert.That(GroupsFields.FromJson("ban_info"), Is.EqualTo(GroupsFields.BanInfo));
-			Assert.That(GroupsFields.FromJson("activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"), Is.EqualTo(GroupsFields.All));
-			Assert.That(GroupsFields.FromJson("activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"), Is.EqualTo(GroupsFields.AllUndocumented));
+			Assert.That(GroupsFields.FromJson("city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_create_topic,activity,status,contacts,links,fixed_post,verified,site,ban_info"), Is.EqualTo(GroupsFields.All));
+			Assert.That(GroupsFields.FromJson("city,country,place,description,wiki_page,members_count,counters,start_date,end_date,can_post,can_see_all_posts,can_upload_doc,can_create_topic,activity,status,contacts,links,fixed_post,verified,site,ban_info"), Is.EqualTo(GroupsFields.AllUndocumented));
 		}
 
 		[Test]
@@ -120,7 +120,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(GroupsFilters.Groups.ToString(), Is.EqualTo("groups"));
 			Assert.That(GroupsFilters.Publics.ToString(), Is.EqualTo("publics"));
 			Assert.That(GroupsFilters.Events.ToString(), Is.EqualTo("events"));
-			Assert.That(GroupsFilters.All.ToString(), Is.EqualTo("admin,editor,events,groups,moder,publics"));
+			Assert.That(GroupsFilters.All.ToString(), Is.EqualTo("admin,editor,moder,groups,publics,events"));
 			// parse test
 			Assert.That(GroupsFilters.FromJson("admin"), Is.EqualTo(GroupsFilters.Administrator));
 			Assert.That(GroupsFilters.FromJson("editor"), Is.EqualTo(GroupsFilters.Editor));
@@ -128,7 +128,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(GroupsFilters.FromJson("groups"), Is.EqualTo(GroupsFilters.Groups));
 			Assert.That(GroupsFilters.FromJson("publics"), Is.EqualTo(GroupsFilters.Publics));
 			Assert.That(GroupsFilters.FromJson("events"), Is.EqualTo(GroupsFilters.Events));
-			Assert.That(GroupsFilters.FromJson("admin,editor,events,groups,moder,publics"), Is.EqualTo(GroupsFilters.All));
+			Assert.That(GroupsFilters.FromJson("admin,editor,moder,groups,publics,events"), Is.EqualTo(GroupsFilters.All));
 		}
 
 		[Test]
@@ -199,8 +199,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(ProfileFields.WallComments.ToString(), Is.EqualTo("wall_comments"));
 			Assert.That(ProfileFields.Verified.ToString(), Is.EqualTo("verified"));
 			Assert.That(ProfileFields.FollowersCount.ToString(), Is.EqualTo("followers_count"));
-			Assert.That(ProfileFields.All.ToString(), Is.EqualTo("bdate,blacklisted,blacklisted_by_me,can_post,can_see_all_posts,can_see_audio,can_send_friend_request,can_write_private_message,career,city,common_count,connections,contacts,counters,country,domain,education,first_name,followers_count,friend_status,has_mobile,is_favorite,is_friend,is_hidden_from_feed,last_name,last_seen,lists,military,nickname,online,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,screen_name,sex,site,status,timezone,universities,user_id,verified,wall_comments"));
-			Assert.That(ProfileFields.AllUndocumented.ToString(), Is.EqualTo("about,activities,bdate,blacklisted,blacklisted_by_me,books,can_post,can_see_all_posts,can_see_audio,can_send_friend_request,can_write_private_message,career,city,common_count,connections,contacts,counters,country,domain,education,first_name,followers_count,friend_status,games,has_mobile,interests,invited_by,is_favorite,is_friend,is_hidden_from_feed,lang,last_name,last_seen,lists,military,movies,music,nickname,online,online_app,online_mobile,personal,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,quotes,relation,relation_partner,relatives,schools,screen_name,sex,site,status,timezone,tv,universities,user_id,verified,wall_comments"));
+			Assert.That(ProfileFields.All.ToString(), Is.EqualTo("user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count"));
+			Assert.That(ProfileFields.AllUndocumented.ToString(), Is.EqualTo("user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,lang,online_mobile,online_app,relation_partner,personal,interests,music,activities,movies,tv,books,games,about,quotes,invited_by,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count"));
 			// parse test
 			Assert.That(ProfileFields.FromJson("user_id"), Is.EqualTo(ProfileFields.Uid));
 			Assert.That(ProfileFields.FromJson("first_name"), Is.EqualTo(ProfileFields.FirstName));
@@ -266,8 +266,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(ProfileFields.FromJson("wall_comments"), Is.EqualTo(ProfileFields.WallComments));
 			Assert.That(ProfileFields.FromJson("verified"), Is.EqualTo(ProfileFields.Verified));
 			Assert.That(ProfileFields.FromJson("followers_count"), Is.EqualTo(ProfileFields.FollowersCount));
-			Assert.That(ProfileFields.FromJson("bdate,blacklisted,blacklisted_by_me,can_post,can_see_all_posts,can_see_audio,can_send_friend_request,can_write_private_message,career,city,common_count,connections,contacts,counters,country,domain,education,first_name,followers_count,friend_status,has_mobile,is_favorite,is_friend,is_hidden_from_feed,last_name,last_seen,lists,military,nickname,online,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,screen_name,sex,site,status,timezone,universities,user_id,verified,wall_comments"), Is.EqualTo(ProfileFields.All));
-			Assert.That(ProfileFields.FromJson("about,activities,bdate,blacklisted,blacklisted_by_me,books,can_post,can_see_all_posts,can_see_audio,can_send_friend_request,can_write_private_message,career,city,common_count,connections,contacts,counters,country,domain,education,first_name,followers_count,friend_status,games,has_mobile,interests,invited_by,is_favorite,is_friend,is_hidden_from_feed,lang,last_name,last_seen,lists,military,movies,music,nickname,online,online_app,online_mobile,personal,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,quotes,relation,relation_partner,relatives,schools,screen_name,sex,site,status,timezone,tv,universities,user_id,verified,wall_comments"), Is.EqualTo(ProfileFields.AllUndocumented));
+			Assert.That(ProfileFields.FromJson("user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count"), Is.EqualTo(ProfileFields.All));
+			Assert.That(ProfileFields.FromJson("user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,lang,online_mobile,online_app,relation_partner,personal,interests,music,activities,movies,tv,books,games,about,quotes,invited_by,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count"), Is.EqualTo(ProfileFields.AllUndocumented));
 		}
 
 		[Test]
@@ -293,7 +293,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Settings.Statistic.ToString(), Is.EqualTo("stats"));
 			Assert.That(Settings.Email.ToString(), Is.EqualTo("email"));
 			Assert.That(Settings.Market.ToString(), Is.EqualTo("market"));
-			Assert.That(Settings.All.ToString(), Is.EqualTo("ads,audio,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall"));
+			Assert.That(Settings.All.ToString(), Is.EqualTo("notify,friends,photos,audio,video,pages,status,notes,messages,wall,ads,docs,groups,notifications,stats,email,market"));
 			// parse test
 			Assert.That(Settings.FromJson("notify"), Is.EqualTo(Settings.Notify));
 			Assert.That(Settings.FromJson("friends"), Is.EqualTo(Settings.Friends));
@@ -314,7 +314,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Settings.FromJson("stats"), Is.EqualTo(Settings.Statistic));
 			Assert.That(Settings.FromJson("email"), Is.EqualTo(Settings.Email));
 			Assert.That(Settings.FromJson("market"), Is.EqualTo(Settings.Market));
-			Assert.That(Settings.FromJson("ads,audio,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall"), Is.EqualTo(Settings.All));
+			Assert.That(Settings.FromJson("notify,friends,photos,audio,video,pages,status,notes,messages,wall,ads,docs,groups,notifications,stats,email,market"), Is.EqualTo(Settings.All));
 		}
 
 		[Test]
@@ -328,7 +328,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(SubscribeFilter.Mention.ToString(), Is.EqualTo("mention"));
 			Assert.That(SubscribeFilter.Group.ToString(), Is.EqualTo("group"));
 			Assert.That(SubscribeFilter.Like.ToString(), Is.EqualTo("like"));
-			Assert.That(SubscribeFilter.All.ToString(), Is.EqualTo("call,friend,group,like,mention,msg,reply"));
+			Assert.That(SubscribeFilter.All.ToString(), Is.EqualTo("msg,friend,call,reply,mention,group,like"));
 			// parse test
 			Assert.That(SubscribeFilter.FromJson("msg"), Is.EqualTo(SubscribeFilter.Message));
 			Assert.That(SubscribeFilter.FromJson("friend"), Is.EqualTo(SubscribeFilter.Friend));
@@ -337,7 +337,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(SubscribeFilter.FromJson("mention"), Is.EqualTo(SubscribeFilter.Mention));
 			Assert.That(SubscribeFilter.FromJson("group"), Is.EqualTo(SubscribeFilter.Group));
 			Assert.That(SubscribeFilter.FromJson("like"), Is.EqualTo(SubscribeFilter.Like));
-			Assert.That(SubscribeFilter.FromJson("call,friend,group,like,mention,msg,reply"), Is.EqualTo(SubscribeFilter.All));
+			Assert.That(SubscribeFilter.FromJson("msg,friend,call,reply,mention,group,like"), Is.EqualTo(SubscribeFilter.All));
 		}
 
 		[Test]
@@ -378,7 +378,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(UsersFields.CommonCount.ToString(), Is.EqualTo("common_count"));
 			Assert.That(UsersFields.Relatives.ToString(), Is.EqualTo("relatives"));
 			Assert.That(UsersFields.Counters.ToString(), Is.EqualTo("counters"));
-			Assert.That(UsersFields.All.ToString(), Is.EqualTo("bdate,can_post,can_see_all_posts,can_see_audio,can_write_private_message,city,common_count,connections,contacts,counters,country,domain,education,has_mobile,last_seen,lists,nickname,online,online_mobile,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,sex,site,status,timezone,universities"));
+			Assert.That(UsersFields.All.ToString(), Is.EqualTo("nickname,domain,sex,bdate,city,country,timezone,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,has_mobile,contacts,education,online,online_mobile,lists,relation,last_seen,status,can_write_private_message,can_see_all_posts,can_post,universities,connections,site,schools,can_see_audio,common_count,relatives,counters"));
 			// parse test
 			Assert.That(UsersFields.FromJson("nickname"), Is.EqualTo(UsersFields.Nickname));
 			Assert.That(UsersFields.FromJson("domain"), Is.EqualTo(UsersFields.Domain));
@@ -414,7 +414,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(UsersFields.FromJson("common_count"), Is.EqualTo(UsersFields.CommonCount));
 			Assert.That(UsersFields.FromJson("relatives"), Is.EqualTo(UsersFields.Relatives));
 			Assert.That(UsersFields.FromJson("counters"), Is.EqualTo(UsersFields.Counters));
-			Assert.That(UsersFields.FromJson("bdate,can_post,can_see_all_posts,can_see_audio,can_write_private_message,city,common_count,connections,contacts,counters,country,domain,education,has_mobile,last_seen,lists,nickname,online,online_mobile,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,sex,site,status,timezone,universities"), Is.EqualTo(UsersFields.All));
+			Assert.That(UsersFields.FromJson("nickname,domain,sex,bdate,city,country,timezone,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,has_mobile,contacts,education,online,online_mobile,lists,relation,last_seen,status,can_write_private_message,can_see_all_posts,can_post,universities,connections,site,schools,can_see_audio,common_count,relatives,counters"), Is.EqualTo(UsersFields.All));
 		}
 
 		[Test]
@@ -426,14 +426,14 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(VideoFilters.Vimeo.ToString(), Is.EqualTo("vimeo"));
 			Assert.That(VideoFilters.Short.ToString(), Is.EqualTo("short"));
 			Assert.That(VideoFilters.Long.ToString(), Is.EqualTo("long"));
-			Assert.That(VideoFilters.All.ToString(), Is.EqualTo("long,mp4,short,vimeo,youtube"));
+			Assert.That(VideoFilters.All.ToString(), Is.EqualTo("mp4,youtube,vimeo,short,long"));
 			// parse test
 			Assert.That(VideoFilters.FromJson("mp4"), Is.EqualTo(VideoFilters.Mp4));
 			Assert.That(VideoFilters.FromJson("youtube"), Is.EqualTo(VideoFilters.Youtube));
 			Assert.That(VideoFilters.FromJson("vimeo"), Is.EqualTo(VideoFilters.Vimeo));
 			Assert.That(VideoFilters.FromJson("short"), Is.EqualTo(VideoFilters.Short));
 			Assert.That(VideoFilters.FromJson("long"), Is.EqualTo(VideoFilters.Long));
-			Assert.That(VideoFilters.FromJson("long,mp4,short,vimeo,youtube"), Is.EqualTo(VideoFilters.All));
+			Assert.That(VideoFilters.FromJson("mp4,youtube,vimeo,short,long"), Is.EqualTo(VideoFilters.All));
 		}
 
 	}

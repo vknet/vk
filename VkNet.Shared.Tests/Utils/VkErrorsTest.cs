@@ -130,6 +130,7 @@ namespace VkNet.Tests.Utils
 			var ex = Assert.Throws<UserAuthorizationFailException>(() => VkErrors.IfErrorThrowException(json));
 
 			Assert.That(ex.Message, Is.EqualTo("User authorization failed: invalid access_token."));
+			Assert.That(ex.ErrorCode, Is.EqualTo(5));
 		}
 
         [Test]

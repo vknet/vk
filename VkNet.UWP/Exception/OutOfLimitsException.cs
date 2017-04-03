@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Exception
 {
@@ -15,6 +16,15 @@ namespace VkNet.Exception
         /// <param name="message">Описание исключения.</param>
         public OutOfLimitsException(string message) : base(message)
         {
-        }
-    }
+		}
+
+		/// <summary>
+		/// Инициализирует новый экземпляр класса NeedValidationException
+		/// </summary>
+		/// <param name="response">Ответ от сервера vk</param>
+		public OutOfLimitsException(VkResponse response) : base(response["error_msg"])
+		{
+			ErrorCode = response["error_code"];
+		}
+	}
 }

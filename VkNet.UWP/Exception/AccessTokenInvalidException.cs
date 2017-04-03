@@ -1,4 +1,6 @@
-﻿namespace VkNet.Exception
+﻿using VkNet.Utils;
+
+namespace VkNet.Exception
 {
     using System;
     using System.Runtime.Serialization;
@@ -32,5 +34,14 @@
         public AccessTokenInvalidException(string message, Exception innerException) : base(message, innerException)
         {
         }
-    }
+
+		/// <summary>
+		/// Инициализирует новый экземпляр класса VkApiException
+		/// </summary>
+		/// <param name="response">Ответ от сервера vk</param>
+		public AccessTokenInvalidException(VkResponse response) : base(response["error_msg"])
+		{
+			ErrorCode = response["error_code"];
+		}
+	}
 }

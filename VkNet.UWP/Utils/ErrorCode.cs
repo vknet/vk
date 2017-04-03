@@ -63,7 +63,7 @@
 		/// Произошла внутренняя ошибка сервера.
 		/// Попробуйте повторить запрос позже.
 		/// </summary>
-		public const int publicServerError = 10;
+		public const int PublicServerError = 10;
 
 		/// <summary>
 		/// В тестовом режиме приложение должно быть выключено или пользователь должен быть залогинен.
@@ -165,6 +165,11 @@
 		/// Доступ к пользователю запрещён.
 		/// </summary>
 		public const int UserAccessDenied = 170;
+
+		/// <summary>
+		/// Невозможно добавить в друзья самого себя.
+		/// </summary>
+		public const int CannotAddYourself = 174;
 
 		/// <summary>
 		/// Доступ к альбому запрещён.

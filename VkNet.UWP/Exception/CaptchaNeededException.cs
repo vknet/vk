@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Exception
 {
@@ -27,7 +28,7 @@ namespace VkNet.Exception
         /// <param name="img">Uri-адрес изображения с капчей</param>
         public CaptchaNeededException(long sid, string img) : this(sid, string.IsNullOrEmpty(img) ? null : new Uri(img))
         {
-
+			
         }
 
         /// <summary>
@@ -39,6 +40,17 @@ namespace VkNet.Exception
         {
             Sid = sid;
             Img = img;
-        }
-    }
+		}
+
+		/// <summary>
+		/// Инициализирует новый экземпляр класса VkApiException
+		/// </summary>
+		/// <param name="response">Ответ от сервера vk</param>
+		public CaptchaNeededException(VkResponse response) : base(response["error_msg"])
+		{
+			ErrorCode = response["error_code"];
+			Sid = response["captcha_sid"];
+			Img = response["captcha_img"];
+		}
+	}
 }

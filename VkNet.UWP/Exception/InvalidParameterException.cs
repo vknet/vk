@@ -1,4 +1,6 @@
-﻿namespace VkNet.Exception
+﻿using VkNet.Utils;
+
+namespace VkNet.Exception
 {
     using System;
     using System.Runtime.Serialization;
@@ -50,6 +52,15 @@
         /// <param name="innerException">Внутреннее исключение.</param>
         public InvalidParameterException(string message, int code, Exception innerException) : base(message, code, innerException)
         {
-        }
-    }
+		}
+
+		/// <summary>
+		/// Инициализирует новый экземпляр класса VkApiException
+		/// </summary>
+		/// <param name="response">Ответ от сервера vk</param>
+		public InvalidParameterException(VkResponse response) : base(response["error_msg"])
+		{
+			ErrorCode = response["error_code"];
+		}
+	}
 }

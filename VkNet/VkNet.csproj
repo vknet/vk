@@ -490,6 +490,9 @@
     <Compile Include="..\VkNet.UWP\Exception\AccessTokenInvalidException.cs">
       <Link>Exception\AccessTokenInvalidException.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CannotAddYourselfException.cs">
+      <Link>Exception\CannotAddYourselfException.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Exception\CaptchaNeededException.cs">
       <Link>Exception\CaptchaNeededException.cs</Link>
     </Compile>

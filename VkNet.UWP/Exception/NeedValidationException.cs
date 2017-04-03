@@ -1,4 +1,6 @@
-﻿namespace VkNet.Exception
+﻿using VkNet.Utils;
+
+namespace VkNet.Exception
 {
     using System;
     using System.Runtime.Serialization;
@@ -20,7 +22,7 @@
         /// <summary>
         /// Адрес который необходимо открыть в браузере.
         /// </summary>
-        public Uri redirectUri { get; private set; }
+        public Uri RedirectUri { get; private set; }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса VkApiAuthorizationException
@@ -29,7 +31,17 @@
         /// <param name="strRedirectUri">Адрес который необходимо открыть в браузере.</param>
         public NeedValidationException(string message, string strRedirectUri) : base(message)
         {
-            redirectUri = new Uri(strRedirectUri);
-        }
-    }
+            RedirectUri = new Uri(strRedirectUri);
+		}
+
+		/// <summary>
+		/// Инициализирует новый экземпляр класса NeedValidationException
+		/// </summary>
+		/// <param name="response">Ответ от сервера vk</param>
+		public NeedValidationException(VkResponse response) : base(response["error_msg"])
+		{
+			ErrorCode = response["error_code"];
+			RedirectUri = response["redirect_uri"];
+		}
+	}
 }

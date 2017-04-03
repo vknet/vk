@@ -1,4 +1,6 @@
-﻿namespace VkNet.Exception
+﻿using VkNet.Utils;
+
+namespace VkNet.Exception
 {
     using System;
     using System.Runtime.Serialization;
@@ -43,6 +45,15 @@
         /// <param name="code">Код ошибки, полученный от сервера ВКонтакте.</param>
         public TooManyRequestsException(string message, int code) : base(message, code)
         {
-        }
-    }
+		}
+
+		/// <summary>
+		/// Инициализирует новый экземпляр класса TooManyRequestsException
+		/// </summary>
+		/// <param name="response">Ответ от сервера vk</param>
+		public TooManyRequestsException(VkResponse response) : base(response["error_msg"])
+		{
+			ErrorCode = response["error_code"];
+		}
+	}
 }
