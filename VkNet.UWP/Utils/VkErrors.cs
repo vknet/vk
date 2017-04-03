@@ -182,6 +182,10 @@ namespace VkNet.Utils
 				case ErrorCode.CannotBlacklistYourself:
 				case ErrorCode.AccessToMenuDenied:
                 case ErrorCode.UserAccessDenied:
+		case ErrorCode.CannotAddYourself:
+		{
+		     throw new CannotAddYourselfException(message, code);
+		}
                 case ErrorCode.AudioAccessDenied:
                 case ErrorCode.GroupAccessDenied:
                 case ErrorCode.StatusAccessDenied:
