@@ -165,6 +165,11 @@
 		/// Доступ к пользователю запрещён.
 		/// </summary>
 		public const int UserAccessDenied = 170;
+		
+		/// <summary>
+		/// Невозможно добавить в друзья самого себя.
+		/// </summary>
+		public const int CannotAddYourself = 174;
 
 		/// <summary>
 		/// Доступ к альбому запрещён.
