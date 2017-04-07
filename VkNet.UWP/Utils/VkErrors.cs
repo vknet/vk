@@ -186,7 +186,19 @@ namespace VkNet.Utils
 					{
 						throw new CannotAddYourselfException(error);
 					}
-				case ErrorCode.AudioAccessDenied:
+                case ErrorCode.CannotAddYouBlacklisted:
+                    {
+                        throw new CannotAddYouBlacklistedException(error);
+                    }
+                case ErrorCode.CannotAddUserBlacklisted:
+                    {
+                        throw new CannotAddUserBlacklistedException(error);
+                    }
+                case ErrorCode.CannotAddUserNotFound:
+                    {
+                        throw new CannotAddUserNotFoundException(error);
+                    }
+                case ErrorCode.AudioAccessDenied:
 				case ErrorCode.GroupAccessDenied:
 				case ErrorCode.StatusAccessDenied:
 				case ErrorCode.UserDisabledTrackNameBroadcast:

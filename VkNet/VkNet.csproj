@@ -1268,6 +1268,9 @@
       <Link>VkApi.cs</Link>
     </Compile>
     <Compile Include="Enums\SafetyEnums\ManagerRole.cs" />
+    <Compile Include="Exception\CannotAddUserBlacklistedException.cs" />
+    <Compile Include="Exception\CannotAddUserNotFoundException.cs" />
+    <Compile Include="Exception\CannotAddYouBlacklistedException.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
