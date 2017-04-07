@@ -490,6 +490,15 @@
     <Compile Include="..\VkNet.UWP\Exception\AccessTokenInvalidException.cs">
       <Link>Exception\AccessTokenInvalidException.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CannotAddUserBlacklistedException.cs">
+      <Link>Exception\CannotAddUserBlacklistedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CannotAddUserNotFoundException.cs">
+      <Link>Exception\CannotAddUserNotFoundException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CannotAddYouBlacklistedException.cs">
+      <Link>Exception\CannotAddYouBlacklistedException.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Exception\CannotAddYourselfException.cs">
       <Link>Exception\CannotAddYourselfException.cs</Link>
     </Compile>
