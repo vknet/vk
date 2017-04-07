@@ -205,20 +205,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Различные счетчики пользователя.
 		/// </summary>
-		public Counters Counters
-		{
-			get;
-			set;
-		}
+		public Counters Counters { get; set; }
 
 		/// <summary>
 		/// Информация о блокировке пользователя
 		/// </summary>
-		public BanInfo BanInfo
-		{
-			get;
-			set;
-		}
+		public BanInfo BanInfo { get; set; }
 
 		/// <summary>
 		/// Является ли пользователь заблокированным
@@ -231,7 +223,7 @@ namespace VkNet.Model
 		[Obsolete("Устаревшее свойство. Используйте Deactivated")]
 		public Deactivated DeactiveReason => Deactivated;
 
-	    /// <summary>
+		/// <summary>
 		/// Причина блокирования аккаунта
 		/// </summary>
 		public Deactivated Deactivated
@@ -476,10 +468,10 @@ namespace VkNet.Model
 		/// </summary>
 		public Collection<Career> Career { get; set; }
 
-        /// <summary>
-        /// Информация о военной службе пользователя.
-        /// </summary>
-        public Military Military { get; set; }
+		/// <summary>
+		/// Информация о военной службе пользователя.
+		/// </summary>
+		public Military Military { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если текущий пользователь находится в черном списке у запрашиваемого пользователя.
@@ -596,13 +588,13 @@ namespace VkNet.Model
 				user.LastName = parts[1];
 			}
 
-		    if (user.BirthDate != null && response["bdate_visibility"] == null)
-		    {
-		        var parts = user.BirthDate.Split('.');
-		        user.BirthdayVisibility = parts.Length > 2 ? Enums.BirthdayVisibility.Full : Enums.BirthdayVisibility.OnlyDayAndMonth;
-		    }
+			if (user.BirthDate != null && response["bdate_visibility"] == null)
+			{
+				var parts = user.BirthDate.Split('.');
+				user.BirthdayVisibility = parts.Length > 2 ? Enums.BirthdayVisibility.Full : Enums.BirthdayVisibility.OnlyDayAndMonth;
+			}
 
-		    return user;
+			return user;
 		}
 
 		#endregion
