@@ -95,11 +95,16 @@
 		/// </summary>
 		public const int NeedValidationOfUser = 17;
 
-		/// <summary>
-		/// Данное действие запрещено для не Standalone приложений.
-		/// Если ошибка возникает несмотря на то, что Ваше приложение имеет тип Standalone, убедитесь, что при авторизации Вы используете redirect_uri=https://oauth.vk.com/blank.html. Подробнее см. http://vk.com/dev/auth_mobile.
-		/// </summary>
-		public const int NonStandaloneApplications = 20;
+        /// <summary>
+        /// Пользователь не найден или заблокирован
+        /// </summary>
+        public const int UserDeletedOrBanned = 18;
+
+        /// <summary>
+        /// Данное действие запрещено для не Standalone приложений.
+        /// Если ошибка возникает несмотря на то, что Ваше приложение имеет тип Standalone, убедитесь, что при авторизации Вы используете redirect_uri=https://oauth.vk.com/blank.html. Подробнее см. http://vk.com/dev/auth_mobile.
+        /// </summary>
+        public const int NonStandaloneApplications = 20;
 
 		/// <summary>
 		/// Данное действие разрешено только для Standalone и Open API приложений.
@@ -166,10 +171,20 @@
 		/// </summary>
 		public const int UserAccessDenied = 170;
 
-		/// <summary>
-		/// Невозможно добавить в друзья самого себя.
-		/// </summary>
-		public const int CannotAddYourself = 174;
+        /// <summary>
+        /// Создано максимальное количество списков.
+        /// </summary>
+        public const int ListAmountMaximum = 171;
+
+        /// <summary>
+        /// Недопустимый идентификатор списка.
+        /// </summary>
+        public const int ListAmountMaximum = 173;
+
+        /// <summary>
+        /// Невозможно добавить в друзья самого себя.
+        /// </summary>
+        public const int CannotAddYourself = 174;
 
         /// <summary>
         /// Невозможно добавить в друзья пользователя, который занес Вас в свой черный список. 
