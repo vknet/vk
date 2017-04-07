@@ -382,6 +382,9 @@
     <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\FriendsOrder.cs">
       <Link>Enums\SafetyEnums\FriendsOrder.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\GroupsMemberFilters.cs">
+      <Link>Enums\SafetyEnums\GroupsMemberFilters.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Enums\SafetyEnums\GroupsSort.cs">
       <Link>Enums\SafetyEnums\GroupsSort.cs</Link>
     </Compile>

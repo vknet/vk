@@ -1,18 +1,17 @@
-﻿namespace VkNet.Categories
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using VkNet.Enums;
+using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Model;
+using VkNet.Utils;
+using VkNet.Model.RequestParams;
+using System.Linq;
+using VkNet.Model.Attachments;
+
+namespace VkNet.Categories
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
-	using Enums;
-	using Enums.Filters;
-	using Enums.SafetyEnums;
-	using Model;
-	using Utils;
-	using Model.RequestParams;
-	using System.Linq;
-
-	using Model.Attachments;
-
 	/// <summary>
 	/// Методы для работы с сообществами (группами).
 	/// </summary>

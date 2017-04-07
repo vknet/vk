@@ -61,7 +61,7 @@ namespace VkNet.Model.RequestParams
 		/// managers — будут возвращены только руководители сообщества (доступно при запросе с передачей access_token от имени администратора сообщества). 
 		/// строка.
 		/// </summary>
-		public GroupsFilters Filter { get; set; }
+		public GroupsMemberFilters Filter { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.

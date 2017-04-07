@@ -136,7 +136,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetMembers(out int totalCount, GroupsGetMembersParams @params)")]
-		public ReadOnlyCollection<User> GetMembers(long gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, UsersFields fields = null, GroupsFilters filters = null)
+		public ReadOnlyCollection<User> GetMembers(long gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, UsersFields fields = null, GroupsMemberFilters filters = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => gid);
 			var parameters = new GroupsGetMembersParams
@@ -168,7 +168,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetMembers(out int totalCount, GroupsGetMembersParams @params)")]
-		public ReadOnlyCollection<User> GetMembers(string gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, UsersFields fields = null, GroupsFilters filters = null)
+		public ReadOnlyCollection<User> GetMembers(string gid, out int totalCount, uint? count = null, uint? offset = null, GroupsSort sort = null, UsersFields fields = null, GroupsMemberFilters filters = null)
 		{
 			var parameters = new GroupsGetMembersParams
 			{

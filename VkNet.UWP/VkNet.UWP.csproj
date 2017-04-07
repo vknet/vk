@@ -140,6 +140,7 @@
     <Compile Include="Enums\SafetyEnums\FeedType.cs" />
     <Compile Include="Enums\SafetyEnums\FriendsFilter.cs" />
     <Compile Include="Enums\SafetyEnums\FriendsOrder.cs" />
+    <Compile Include="Enums\SafetyEnums\GroupsMemberFilters.cs" />
     <Compile Include="Enums\SafetyEnums\GroupsSort.cs" />
     <Compile Include="Enums\SafetyEnums\GroupType.cs" />
     <Compile Include="Enums\SafetyEnums\LikeObjectType.cs" />

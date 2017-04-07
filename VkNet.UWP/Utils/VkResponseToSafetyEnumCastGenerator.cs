@@ -180,6 +180,18 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
+		public static implicit operator GroupsMemberFilters(VkResponse response)
+		{
+			return response == null ? null : GroupsMemberFilters.FromJson(response);
+		}
+
+		/// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
 		public static implicit operator GroupsSort(VkResponse response)
 		{
 			return response == null ? null : GroupsSort.FromJson(response);
