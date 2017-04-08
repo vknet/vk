@@ -4,7 +4,8 @@ using VkNet.Utils;
 namespace VkNet.Exception
 {
 	/// <summary>
-	/// 103 - Выход за пределы
+	/// Выход за пределы
+	/// Код ошибки - 103
 	/// </summary>
 	/// <seealso cref="VkNet.Exception.VkApiException" />
 	[DataContract]

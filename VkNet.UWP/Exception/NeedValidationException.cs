@@ -15,6 +15,7 @@ namespace VkNet.Exception
     /// в случае, если пользователь отменил проверку своего аккаунта. 
     /// Для тестового вызова проверки добавьте параметр test_redirect_uri=1.
     /// 
+	/// Код ошибки - 17
     /// </summary>
     [DataContract]
     public class NeedValidationException : VkApiException

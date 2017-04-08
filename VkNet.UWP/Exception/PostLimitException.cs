@@ -4,7 +4,8 @@ using VkNet.Utils;
 namespace VkNet.Exception
 {
     /// <summary>
-    /// Исключение, выбрасываемое при исчерпании лимита публикации постов в день
+    /// Исключение, выбрасываемое при исчерпании лимита публикации постов в день (не более 50 в день)
+	/// Код ошибки - 214
     /// </summary>
     [DataContract]
     public class PostLimitException : VkApiException

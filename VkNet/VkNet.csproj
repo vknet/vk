@@ -490,8 +490,32 @@
     <Compile Include="..\VkNet.UWP\Exception\AccessDeniedException.cs">
       <Link>Exception\AccessDeniedException.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AccessToCommentDeniedException.cs">
+      <Link>Exception\AccessToCommentDeniedException.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Exception\AccessTokenInvalidException.cs">
       <Link>Exception\AccessTokenInvalidException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AccessToMenuDeniedException.cs">
+      <Link>Exception\AccessToMenuDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AdsAccessDeniedException.cs">
+      <Link>Exception\AdsAccessDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AdsRecentlyPostedException.cs">
+      <Link>Exception\AdsRecentlyPostedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AlbumAccessDeniedException.cs">
+      <Link>Exception\AlbumAccessDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AlbumIsFullException.cs">
+      <Link>Exception\AlbumIsFullException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AppOffException.cs">
+      <Link>Exception\AppOffException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\AudioAccessDeniedException.cs">
+      <Link>Exception\AudioAccessDeniedException.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Exception\CannotAddUserBlacklistedException.cs">
       <Link>Exception\CannotAddUserBlacklistedException.cs</Link>
@@ -505,26 +529,158 @@
     <Compile Include="..\VkNet.UWP\Exception\CannotAddYourselfException.cs">
       <Link>Exception\CannotAddYourselfException.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CannotBlacklistYourselfException.cs">
+      <Link>Exception\CannotBlacklistYourselfException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CannotSendBlacklistedException.cs">
+      <Link>Exception\CannotSendBlacklistedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CannotSendDuePrivacyException.cs">
+      <Link>Exception\CannotSendDuePrivacyException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CannotSendToUserFirstlyException.cs">
+      <Link>Exception\CannotSendToUserFirstlyException.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Exception\CaptchaNeededException.cs">
       <Link>Exception\CaptchaNeededException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CommentsLimitReachedException.cs">
+      <Link>Exception\CommentsLimitReachedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CommentsPostAccessDeniedException.cs">
+      <Link>Exception\CommentsPostAccessDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\CommentsWallAccessDeniedException.cs">
+      <Link>Exception\CommentsWallAccessDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\ConfirmationUserException.cs">
+      <Link>Exception\ConfirmationUserException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\ContentDeniedException.cs">
+      <Link>Exception\ContentDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\ErrorWorkWithAdsException.cs">
+      <Link>Exception\ErrorWorkWithAdsException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\GroupAccessDeniedException.cs">
+      <Link>Exception\GroupAccessDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\GroupsListAccessDeniedException.cs">
+      <Link>Exception\GroupsListAccessDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\InvalidAppIdException.cs">
+      <Link>Exception\InvalidAppIdException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\InvalidGroupIdException.cs">
+      <Link>Exception\InvalidGroupIdException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\InvalidHashException.cs">
+      <Link>Exception\InvalidHashException.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Exception\InvalidParameterException.cs">
       <Link>Exception\InvalidParameterException.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\InvalidRequestException.cs">
+      <Link>Exception\InvalidRequestException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\InvalidServerException.cs">
+      <Link>Exception\InvalidServerException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\InvalidSignatureException.cs">
+      <Link>Exception\InvalidSignatureException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\InvalidTimestampException.cs">
+      <Link>Exception\InvalidTimestampException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\InvalidUserIdException.cs">
+      <Link>Exception\InvalidUserIdException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\ListAmountMaximumException.cs">
+      <Link>Exception\ListAmountMaximumException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\ListIdInvalidException.cs">
+      <Link>Exception\ListIdInvalidException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\LoadingErrorException.cs">
+      <Link>Exception\LoadingErrorException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\MethodHasBeenSwitchedOffException.cs">
+      <Link>Exception\MethodHasBeenSwitchedOffException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\NeedHttpsException.cs">
+      <Link>Exception\NeedHttpsException.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Exception\NeedValidationException.cs">
       <Link>Exception\NeedValidationException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\NonStandaloneApplicationsException.cs">
+      <Link>Exception\NonStandaloneApplicationsException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\OffAppOrLoginException.cs">
+      <Link>Exception\OffAppOrLoginException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\OnlySandaloneOrOpenApiException.cs">
+      <Link>Exception\OnlySandaloneOrOpenApiException.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Exception\OutOfLimitsException.cs">
       <Link>Exception\OutOfLimitsException.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\ParameterMissingOrInvalidException.cs">
+      <Link>Exception\ParameterMissingOrInvalidException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\PermissionToPerformThisActionException.cs">
+      <Link>Exception\PermissionToPerformThisActionException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\PostAccessDeniedException.cs">
+      <Link>Exception\PostAccessDeniedException.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Exception\PostLimitException.cs">
       <Link>Exception\PostLimitException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\PostLinksDeniedException.cs">
+      <Link>Exception\PostLinksDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\PublicServerErrorException.cs">
+      <Link>Exception\PublicServerErrorException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\StatusAccessDeniedException.cs">
+      <Link>Exception\StatusAccessDeniedException.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Exception\TooManyRequestsException.cs">
       <Link>Exception\TooManyRequestsException.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\TooMuchOfTheSameTypeOfActionException.cs">
+      <Link>Exception\TooMuchOfTheSameTypeOfActionException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\UnknownException.cs">
+      <Link>Exception\UnknownException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\UnknownMethodException.cs">
+      <Link>Exception\UnknownMethodException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\UserAccessDeniedException.cs">
+      <Link>Exception\UserAccessDeniedException.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Exception\UserAuthorizationFailException.cs">
       <Link>Exception\UserAuthorizationFailException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\UserDeletedOrBannedException.cs">
+      <Link>Exception\UserDeletedOrBannedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\UserDisabledTrackNameBroadcastException.cs">
+      <Link>Exception\UserDisabledTrackNameBroadcastException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\VideoAccessDeniedException.cs">
+      <Link>Exception\VideoAccessDeniedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\VideoAlbumIsFullException.cs">
+      <Link>Exception\VideoAlbumIsFullException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\VideoAlreadyAddedException.cs">
+      <Link>Exception\VideoAlreadyAddedException.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Exception\VideoCommentsClosedException.cs">
+      <Link>Exception\VideoCommentsClosedException.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Exception\VkApiAuthorizationException.cs">
       <Link>Exception\VkApiAuthorizationException.cs</Link>
