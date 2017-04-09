@@ -6,6 +6,7 @@ namespace VkNet.Exception
 
     /// <summary>
     /// Исключение, которое выбрасывается при отсутствии авторизации на выполнение запрошенной операции.
+	/// Код ошибки - 5
     /// </summary>
     [DataContract]
     public class UserAuthorizationFailException : VkApiMethodInvokeException

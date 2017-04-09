@@ -7,6 +7,7 @@ namespace VkNet.Exception
 
     /// <summary>
     /// Исключение, которое выбрасывается в случае, если параметр принимал недействительное значение.
+	/// Код ошибки - 120
     /// </summary>
     [DataContract]
     public class InvalidParameterException : VkApiMethodInvokeException
