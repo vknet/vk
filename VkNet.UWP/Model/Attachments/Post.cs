@@ -74,7 +74,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация о просмотрах записи. 
 		/// </summary>
-		public PostView View { get; set; }
+		public PostView Views { get; set; }
 
 		/// <summary>
 		/// Тип записи (post, copy, reply, postpone, suggest). Если PostType равен "copy", то запись является копией записи с чужой стены.
@@ -223,7 +223,7 @@ namespace VkNet.Model
 				CanDelete = response["can_delete"],
 				CanEdit = response["can_edit"],
 				CanPin = response["can_pin"],
-				View = response["view"],
+				Views = response["views"],
 				MarkedAsAds = response["marked_as_ads"]
 			};
 
