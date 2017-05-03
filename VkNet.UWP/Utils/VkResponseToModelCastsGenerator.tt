@@ -36,6 +36,8 @@ namespace VkNet.Utils
 
 	foreach (var type in types.OrderBy(s => s))
 		{
+		if (type == "Coordinates")
+			continue;
 #>
 		/// <summary>
         /// Преобразовать из VkResponse
