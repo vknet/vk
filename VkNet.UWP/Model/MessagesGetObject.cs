@@ -1,9 +1,8 @@
-﻿namespace VkNet.Model
+﻿using System.Collections.ObjectModel;
+using VkNet.Utils;
+
+namespace VkNet.Model
 {
-	using System.Collections.ObjectModel;
-
-	using Utils;
-
 	/// <summary>
 	/// Результат выполнения запроса получения диалогов
 	/// </summary>
@@ -33,6 +32,17 @@
 		public ReadOnlyCollection<Message> Messages { get; set; }
 
 		/// <summary>
+		/// Идентификатор последнего сообщения, прочитанного текущим пользователем
+		/// </summary>
+		public uint InRead{ get; set; }
+
+		/// <summary>
+		/// Идентификатор последнего сообщения, прочитанного собеседником.
+		/// </summary>
+		public uint OutRead { get; set; }
+		
+		
+		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
@@ -44,7 +54,9 @@
 				TotalCount = response["count"],
 				Unread = response["unread_dialogs"],
 				RealOffset = response["real_offset"],
-				Messages = response["items"].ToReadOnlyCollectionOf<Message>(m => m)
+				Messages = response["items"].ToReadOnlyCollectionOf<Message>(m => m),
+				InRead = response["in_read"],
+				OutRead = response["out_read"]
 			};
 
 			return dialogsGetObject;

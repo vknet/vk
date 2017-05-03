@@ -40,6 +40,16 @@
         public long? StartMessageId { get; set; }
 
 		/// <summary>
+		/// 1 — вернуть диалоги с пометкой «Важные» (для сообщений сообществ).
+		/// </summary>
+		public bool? Important { get; set; }
+
+		/// <summary>
+		/// 1 — вернуть диалоги с пометкой «Неотвеченные» (для сообщений сообществ).
+		/// </summary>
+		public bool? Unanswered { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
@@ -52,7 +62,9 @@
                 { "offset", p.Offset },
                 { "count", p.Count },
                 { "unread", p.Unread },
-                { "preview_length", p.PreviewLength }
+                { "preview_length", p.PreviewLength },
+				{ "important", p.Important },
+				{ "unanswered", p.Unanswered }
             };
         }
     }
