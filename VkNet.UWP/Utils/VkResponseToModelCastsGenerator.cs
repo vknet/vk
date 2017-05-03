@@ -638,30 +638,6 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
-		public static implicit operator Coordinates(VkResponse response)
-		{
-            return response?._token == null || !response._token.HasValues ? null :  Coordinates.FromJson(response);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-		public static implicit operator Collection<Coordinates>(VkResponse response)
-        {
-            return response.ToCollectionOf<Coordinates>(a => a);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
 		public static implicit operator Counters(VkResponse response)
 		{
             return response?._token == null || !response._token.HasValues ? null :  Counters.FromJson(response);

@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums;
+using VkNet.Model;
 
 namespace VkNet.Utils
 {
@@ -463,7 +464,34 @@ namespace VkNet.Utils
 			return response == null ? null : Utilities.NullableEnumFrom<MessageReadState>(response);
 		}
 
-		#endregion
+        #endregion
 
-	}
+        #region Model exceptions
+        
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator Coordinates( VkResponse response )
+        {
+            return response?._token == null ? null : Coordinates.FromJson( response );
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator Collection<Coordinates>( VkResponse response )
+        {
+            return response.ToCollectionOf<Coordinates>( a => a );
+        }
+
+        #endregion
+    }
 }
