@@ -529,6 +529,18 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Target Name="BeforeBuild">
+    <Message Importance="high" Text="====================" />
+    <Message Importance="high" Text="Преобразование T4 шаблонов" />
+    <Message Importance="high" Text="====================" />
+    <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\ModelToVkParametrsCastGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\ModelToVkParametrsCastGenerator.cs" />
+    <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.cs" />
+    <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToModelCastsGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToModelCastsGenerator.cs" />
+    <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.cs" />
+	<Message Importance="high" Text="====================" />
+    <Message Importance="high" Text="Преобразование T4 шаблонов успешно завершено" />
+    <Message Importance="high" Text="====================" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
