@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -53,7 +54,7 @@ namespace VkNet.Model.RequestParams
 		/// photo100172_166443618,photo66748_265827614
 		/// Параметр является обязательным, если не задан параметр message. список строк, разделенных через запятую.
 		/// </summary>
-		public IEnumerable<string> Attachments { get; set; }
+		public IEnumerable<MediaAttachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Данный параметр учитывается, если oid &lt; 0 (комментарий к видеозаписи группы). 1 — комментарий будет опубликован от имени группы, 0 — комментарий будет опубликован от имени пользователя (по умолчанию). флаг, может принимать значения 1 или 0.
