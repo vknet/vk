@@ -10,8 +10,8 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с приложениями.
 	/// </summary>
-	public partial class AppsCategory
-	{
+	public partial class AppsCategory : IAppsCategory
+    {
 		/// <summary>
 		/// API.
 		/// </summary>

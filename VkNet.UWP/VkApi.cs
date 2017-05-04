@@ -159,10 +159,11 @@ namespace VkNet
 		/// </summary>
 		public VideoCategory Video
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с аккаунтом пользователя.
-		/// </summary>
-		public AccountCategory Account
+        /// <summary>
+        /// API для работы с аккаунтом пользователя.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAccountCategory IVkApi.Account")]
+        public AccountCategory Account
 		{ get; private set; }
         /// <summary>
 		/// API для работы с аккаунтом пользователя.
@@ -194,13 +195,20 @@ namespace VkNet
 		/// <summary>
 		/// API для работы с приложениями.
 		/// </summary>
+		[Obsolete("Свойство устарело, используйте более общее IAppsCategory IVkApi.Apps")]
 		public AppsCategory Apps
 		{ get; set; }
 
-		/// <summary>
-		/// API для работы с новостной лентой.
-		/// </summary>
-		public NewsFeedCategory NewsFeed { get; set; }
+        /// <summary>
+        /// API для работы с приложениями.
+        /// </summary>
+        IAppsCategory IVkApi.Apps
+        { get; set; }
+
+        /// <summary>
+        /// API для работы с новостной лентой.
+        /// </summary>
+        public NewsFeedCategory NewsFeed { get; set; }
 
 		/// <summary>
 		/// API для работы со статистикой.
@@ -300,6 +308,7 @@ namespace VkNet
 			Pages = new PagesCategory(this);
 			Gifts = new GiftsCategory(this);
 			Apps = new AppsCategory(this);
+		    ((IVkApi) this).Apps = Apps;
 			NewsFeed = new NewsFeedCategory(this);
 			Stats = new StatsCategory(this);
 			Auth = new AuthCategory(this);

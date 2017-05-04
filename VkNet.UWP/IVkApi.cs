@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Categories;
-using VkNet.Enums.Filters;
 using VkNet.Utils;
 
 namespace VkNet
 {
     public interface IVkApi:IAuth, IAuthAsync, IDisposable
     {
+        /// <summary>
+		/// API для работы с аккаунтом пользователя.
+		/// </summary>
         IAccountCategory Account { get; }
-        AppsCategory Apps { get; set; }
+
+        /// <summary>
+        /// API для работы с приложениями.
+        /// </summary>
+        IAppsCategory Apps { get; set; }
         AudioCategory Audio { get; }
         AuthCategory Auth { get; set; }
         BoardCategory Board { get; }
