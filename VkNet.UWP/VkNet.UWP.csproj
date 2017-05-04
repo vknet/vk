@@ -244,9 +244,13 @@
     <Compile Include="Exception\VkApiAuthorizationException.cs" />
     <Compile Include="Exception\VkApiException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
+    <Compile Include="IAuth.cs" />
+    <Compile Include="IAuthAsync.cs" />
+    <Compile Include="IVkApi.cs" />
     <Compile Include="Model\AccountChangePasswordResult.cs" />
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\AccountPushSettings.cs" />
+    <Compile Include="Model\AuthParams.cs" />
     <Compile Include="Model\ApiAuthParams.cs" />
     <Compile Include="Model\App.cs" />
     <Compile Include="Model\AppGetObject.cs" />
@@ -277,6 +281,7 @@
     <Compile Include="Model\GroupCover.cs" />
     <Compile Include="Model\GroupCoverImage.cs" />
     <Compile Include="Model\HistoryAttachment.cs" />
+    <Compile Include="Model\IAuthParams.cs" />
     <Compile Include="Model\LinkButtonAction.cs" />
     <Compile Include="Model\Career.cs" />
     <Compile Include="Model\CategoryGroup.cs" />
@@ -537,7 +542,7 @@
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.cs" />
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToModelCastsGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToModelCastsGenerator.cs" />
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.cs" />
-	<Message Importance="high" Text="====================" />
+    <Message Importance="high" Text="====================" />
     <Message Importance="high" Text="Преобразование T4 шаблонов успешно завершено" />
     <Message Importance="high" Text="====================" />
   </Target>

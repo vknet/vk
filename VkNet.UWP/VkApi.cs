@@ -24,8 +24,8 @@ namespace VkNet
 	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
 	/// группами и т.п.).
 	/// </summary>
-	public class VkApi : IDisposable
-	{
+	public class VkApi : IVkApi
+    {
 		/// <summary>
 		/// Версия API vk.com.
 		/// </summary>
@@ -34,7 +34,7 @@ namespace VkNet
 		/// <summary>
 		/// Параметры авторизации.
 		/// </summary>
-		private ApiAuthParams _ap;
+		private AuthParams _ap;
         /// <summary>
         /// Таймер.
         /// </summary>
@@ -308,11 +308,20 @@ namespace VkNet
 			_captchaSolver = captchaSolver;
 		}
 
-		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="params">Данные авторизации</param>
-		public void Authorize(ApiAuthParams @params)
+	    /// <summary>
+	    /// Авторизация и получение токена
+	    /// </summary>
+	    /// <param name="params">Данные авторизации</param>
+	    public void Authorize(ApiAuthParams @params)
+	    {
+            Authorize(AuthParams.GetAuthParams(@params));
+	    }
+
+	    /// <summary>
+        /// Авторизация и получение токена
+        /// </summary>
+        /// <param name="params">Данные авторизации</param>
+        public void Authorize(AuthParams @params)
 		{
             //подключение браузера через прокси 
             if (@params.Host != null)
@@ -369,11 +378,19 @@ namespace VkNet
 				CaptchaKey = captchaKey
 			});
 		}
-		/// <summary>
+        /// <summary>
 		/// Авторизация и получение токена в асинхронном режиме
 		/// </summary>
 		/// <param name="params">Данные авторизации</param>
 		public Task AuthorizeAsync(ApiAuthParams @params)
+        {
+            return AuthorizeAsync(AuthParams.GetAuthParams(@params));
+        }
+        /// <summary>
+        /// Авторизация и получение токена в асинхронном режиме
+        /// </summary>
+        /// <param name="params">Данные авторизации</param>
+        public Task AuthorizeAsync(AuthParams @params)
 		{
 			var rTask = new Task(() => Authorize(@params));
 			rTask.Start();
@@ -405,7 +422,7 @@ namespace VkNet
 			SetTimer(expireTime);
 			AccessToken = accessToken;
 			UserId = userId;
-			_ap = new ApiAuthParams();
+			_ap = new AuthParams();
 		}
 
 		/// <summary>
