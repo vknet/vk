@@ -9,7 +9,7 @@ namespace VkNet
 {
     public interface IVkApi:IAuth, IAuthAsync, IDisposable
     {
-        AccountCategory Account { get; }
+        IAccountCategory Account { get; }
         AppsCategory Apps { get; set; }
         AudioCategory Audio { get; }
         AuthCategory Auth { get; set; }

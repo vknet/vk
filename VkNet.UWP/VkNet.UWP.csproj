@@ -54,6 +54,7 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Categories\GiftsCategory.cs" />
     <Compile Include="Categories\GroupsCategory.cs" />
+    <Compile Include="Categories\IAccountCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />

@@ -164,10 +164,15 @@ namespace VkNet
 		/// </summary>
 		public AccountCategory Account
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с фотографиями
+        /// <summary>
+		/// API для работы с аккаунтом пользователя.
 		/// </summary>
-		public PhotoCategory Photo
+		IAccountCategory IVkApi.Account => Account;
+
+        /// <summary>
+        /// API для работы с фотографиями
+        /// </summary>
+        public PhotoCategory Photo
 		{ get; private set; }
 		/// <summary>
 		/// API для работы с документами
