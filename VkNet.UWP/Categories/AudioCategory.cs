@@ -15,8 +15,8 @@
 	/// <summary>
 	/// Методы для работы с аудиозаписями.
 	/// </summary>
-	public partial class AudioCategory
-	{
+	public partial class AudioCategory : IAudioCategory
+    {
 		private readonly VkApi _vk;
 
 		/// <summary>

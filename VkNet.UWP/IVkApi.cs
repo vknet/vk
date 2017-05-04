@@ -17,7 +17,11 @@ namespace VkNet
         /// API для работы с приложениями.
         /// </summary>
         IAppsCategory Apps { get; set; }
-        AudioCategory Audio { get; }
+
+        /// <summary>
+        /// API для работы с аудио записями.
+        /// </summary>
+        IAudioCategory Audio { get; }
         AuthCategory Auth { get; set; }
         BoardCategory Board { get; }
         IBrowser Browser { get; set; }

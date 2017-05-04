@@ -122,15 +122,22 @@ namespace VkNet
 		/// </summary>
 		public GroupsCategory Groups
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с аудио записями.
-		/// </summary>
-		public AudioCategory Audio
+        /// <summary>
+        /// API для работы с аудио записями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAudioCategory IVkApi.Audio")]
+        public AudioCategory Audio
 		{ get; private set; }
-		/// <summary>
-		/// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
-		/// </summary>
-		public DatabaseCategory Database
+
+        /// <summary>
+        /// API для работы с аудио записями.
+        /// </summary>
+        IAudioCategory IVkApi.Audio => Audio;
+
+        /// <summary>
+        /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+        /// </summary>
+        public DatabaseCategory Database
 		{ get; private set; }
 		/// <summary>
 		/// API для работы со служебными методами.

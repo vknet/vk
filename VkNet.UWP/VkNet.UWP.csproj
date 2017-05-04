@@ -67,6 +67,7 @@
     <Compile Include="Categories\Obsolete\GiftsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\GroupsCategory.Obsolete.cs" />
     <Compile Include="Categories\IAppsCategory.cs" />
+    <Compile Include="Categories\IAudioCategory.cs" />
     <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\NewsFeedCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\PagesCategory.Obsolete.cs" />
