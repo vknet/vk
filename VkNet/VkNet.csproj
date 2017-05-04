@@ -66,8 +66,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -76,6 +75,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
       <Private>True</Private>
@@ -85,7 +96,6 @@
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\VkNet.UWP\Categories\AccountCategory.cs">
@@ -1495,7 +1505,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
-    <Target Name="BeforeBuild">
+  <Target Name="BeforeBuild">
     <Message Importance="high" Text="====================" />
     <Message Importance="high" Text="Преобразование T4 шаблонов" />
     <Message Importance="high" Text="====================" />
@@ -1503,7 +1513,7 @@
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.cs" />
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToModelCastsGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToModelCastsGenerator.cs" />
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.cs" />
-	<Message Importance="high" Text="====================" />
+    <Message Importance="high" Text="====================" />
     <Message Importance="high" Text="Преобразование T4 шаблонов успешно завершено" />
     <Message Importance="high" Text="====================" />
   </Target>
