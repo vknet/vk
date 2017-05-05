@@ -195,15 +195,22 @@ namespace VkNet
         /// </summary>
         public PhotoCategory Photo
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с документами
-		/// </summary>
-		public DocsCategory Docs
+        /// <summary>
+        /// API для работы с документами
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IDocsCategory IVkApi.Docs")]
+        public DocsCategory Docs
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с лайками
-		/// </summary>
-		public LikesCategory Likes
+
+        /// <summary>
+        /// API для работы с документами
+        /// </summary>
+        IDocsCategory IVkApi.Docs => Docs;
+
+        /// <summary>
+        /// API для работы с лайками
+        /// </summary>
+        public LikesCategory Likes
 		{ get; private set; }
 
 		/// <summary>
@@ -260,7 +267,13 @@ namespace VkNet
         /// <summary>
         /// API для работы с универсальным методом.
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IExecuteCategory IVkApi.Execute")]
         public ExecuteCategory Execute { get; private set; }
+
+        /// <summary>
+        /// API для работы с универсальным методом.
+        /// </summary>
+        IExecuteCategory IVkApi.Execute => Execute;
 
         /// <summary>
 		/// API для работы с опросами. 

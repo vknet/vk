@@ -42,8 +42,16 @@ namespace VkNet
         /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
         /// </summary>
         IDatabaseCategory Database { get; }
-        DocsCategory Docs { get; }
-        ExecuteCategory Execute { get; }
+
+        /// <summary>
+        /// API для работы с документами
+        /// </summary>
+        IDocsCategory Docs { get; }
+
+        /// <summary>
+        /// API для работы с универсальным методом.
+        /// </summary>
+        IExecuteCategory Execute { get; }
         FaveCategory Fave { get; }
         FriendsCategory Friends { get; }
         GiftsCategory Gifts { get; set; }

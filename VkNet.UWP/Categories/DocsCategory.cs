@@ -13,7 +13,7 @@
 	/// <summary>
 	/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
 	/// </summary>
-	public partial class DocsCategory
+	public partial class DocsCategory : IDocsCategory
 	{
 		/// <summary>
 		/// API
