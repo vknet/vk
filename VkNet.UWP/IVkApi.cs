@@ -57,7 +57,11 @@ namespace VkNet
         /// API для работы с закладками.
         /// </summary>
         IFaveCategory Fave { get; }
-        FriendsCategory Friends { get; }
+
+        /// <summary>
+        /// API для работы с друзьями.
+        /// </summary>
+        IFriendsCategory Friends { get; }
         GiftsCategory Gifts { get; set; }
         GroupsCategory Groups { get; }
         DateTimeOffset? LastInvokeTime { get; }

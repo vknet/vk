@@ -60,6 +60,7 @@
     <Compile Include="Categories\IDatabaseCategory.cs" />
     <Compile Include="Categories\IDocsCategory.cs" />
     <Compile Include="Categories\IExecuteCategory.cs" />
+    <Compile Include="Categories\IFaveCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Categories\Obsolete\GroupsCategory.Obsolete.cs" />
     <Compile Include="Categories\IAppsCategory.cs" />
     <Compile Include="Categories\IAudioCategory.cs" />
+    <Compile Include="Categories\IFriendsCategory.cs" />
     <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\NewsFeedCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\PagesCategory.Obsolete.cs" />

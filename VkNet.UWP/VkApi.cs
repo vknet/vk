@@ -102,15 +102,22 @@ namespace VkNet
 		/// </summary>
 		public UsersCategory Users
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с друзьями.
-		/// </summary>
-		public FriendsCategory Friends
+        /// <summary>
+        /// API для работы с друзьями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IFriendsCategory IVkApi.Friends")]
+        public FriendsCategory Friends
 		{ get; private set; }
-		/// <summary>
-		/// API для работы со статусом пользователя или сообщества.
-		/// </summary>
-		public StatusCategory Status
+
+        /// <summary>
+        /// API для работы с друзьями.
+        /// </summary>
+        IFriendsCategory IVkApi.Friends => Friends;
+
+        /// <summary>
+        /// API для работы со статусом пользователя или сообщества.
+        /// </summary>
+        public StatusCategory Status
 		{ get; private set; }
 		/// <summary>
 		/// API для работы с сообщениями.
