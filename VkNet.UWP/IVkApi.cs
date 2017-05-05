@@ -38,8 +38,10 @@ namespace VkNet
         /// </summary>
         IBrowser Browser { get; set; }
 
-
-        DatabaseCategory Database { get; }
+        /// <summary>
+        /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+        /// </summary>
+        IDatabaseCategory Database { get; }
         DocsCategory Docs { get; }
         ExecuteCategory Execute { get; }
         FaveCategory Fave { get; }

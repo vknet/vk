@@ -57,6 +57,7 @@
     <Compile Include="Categories\IAccountCategory.cs" />
     <Compile Include="Categories\IAuthCategory.cs" />
     <Compile Include="Categories\IBoardCategory.cs" />
+    <Compile Include="Categories\IDatabaseCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />

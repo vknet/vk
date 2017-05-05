@@ -137,8 +137,15 @@ namespace VkNet
         /// <summary>
         /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IDatabaseCategory IVkApi.Database")]
         public DatabaseCategory Database
 		{ get; private set; }
+
+        /// <summary>
+        /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+        /// </summary>
+        IDatabaseCategory IVkApi.Database => Database;
+
 		/// <summary>
 		/// API для работы со служебными методами.
 		/// </summary>
