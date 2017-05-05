@@ -233,15 +233,21 @@ namespace VkNet
 		/// </summary>
 		public MarketsCategory Markets { get; set; }
 
-		/// <summary>
-		/// API для работы с Авторизацией.
-		/// </summary>
-		public AuthCategory Auth { get; set; }
+        /// <summary>
+        /// API для работы с Авторизацией.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAuthCategory IVkApi.Auth")]
+        public AuthCategory Auth { get; set; }
 
-		/// <summary>
-		/// API для работы с универсальным методом.
-		/// </summary>
-		public ExecuteCategory Execute { get; private set; }
+        /// <summary>
+        /// API для работы с Авторизацией.
+        /// </summary>
+        IAuthCategory IVkApi.Auth { get; set; }
+
+        /// <summary>
+        /// API для работы с универсальным методом.
+        /// </summary>
+        public ExecuteCategory Execute { get; private set; }
 
         /// <summary>
 		/// API для работы с опросами. 
@@ -319,7 +325,8 @@ namespace VkNet
 			NewsFeed = new NewsFeedCategory(this);
 			Stats = new StatsCategory(this);
 			Auth = new AuthCategory(this);
-			Markets = new MarketsCategory(this);
+            ((IVkApi)this).Auth = Auth;
+            Markets = new MarketsCategory(this);
 			Execute = new ExecuteCategory(this);
             PollsCategory = new PollsCategory(this);
 
