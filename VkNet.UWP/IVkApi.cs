@@ -22,9 +22,23 @@ namespace VkNet
         /// API для работы с аудио записями.
         /// </summary>
         IAudioCategory Audio { get; }
+
+        /// <summary>
+        /// API для работы с Авторизацией.
+        /// </summary>
         IAuthCategory Auth { get; set; }
-        BoardCategory Board { get; }
+
+        /// <summary>
+        /// API для работы со темами групп.
+        /// </summary>
+        IBoardCategory Board { get; }
+
+        /// <summary>
+        /// Браузер.
+        /// </summary>
         IBrowser Browser { get; set; }
+
+
         DatabaseCategory Database { get; }
         DocsCategory Docs { get; }
         ExecuteCategory Execute { get; }

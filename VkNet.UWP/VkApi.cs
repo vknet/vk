@@ -150,16 +150,22 @@ namespace VkNet
 		public WallCategory Wall
 		{ get; private set; }
 
-		/// <summary>
-		/// API для работы со темами групп.
-		/// </summary>
-		public BoardCategory Board
+        /// <summary>
+        /// API для работы со темами групп.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IBoardCategory IVkApi.Board")]
+        public BoardCategory Board
 		{ get; private set; }
 
-		/// <summary>
-		/// API для работы с закладками.
-		/// </summary>
-		public FaveCategory Fave
+        /// <summary>
+        /// API для работы со темами групп.
+        /// </summary>
+        IBoardCategory IVkApi.Board => Board;
+
+        /// <summary>
+        /// API для работы с закладками.
+        /// </summary>
+        public FaveCategory Fave
 		{ get; private set; }
 		/// <summary>
 		/// API для работы с видео файлами.
