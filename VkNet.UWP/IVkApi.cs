@@ -52,7 +52,11 @@ namespace VkNet
         /// API для работы с универсальным методом.
         /// </summary>
         IExecuteCategory Execute { get; }
-        FaveCategory Fave { get; }
+
+        /// <summary>
+        /// API для работы с закладками.
+        /// </summary>
+        IFaveCategory Fave { get; }
         FriendsCategory Friends { get; }
         GiftsCategory Gifts { get; set; }
         GroupsCategory Groups { get; }

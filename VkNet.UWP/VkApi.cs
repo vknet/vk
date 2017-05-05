@@ -172,12 +172,19 @@ namespace VkNet
         /// <summary>
         /// API для работы с закладками.
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IFaveCategory IVkApi.Fave")]
         public FaveCategory Fave
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с видео файлами.
-		/// </summary>
-		public VideoCategory Video
+
+        /// <summary>
+        /// API для работы с закладками.
+        /// </summary>
+        IFaveCategory IVkApi.Fave => Fave;
+
+        /// <summary>
+        /// API для работы с видео файлами.
+        /// </summary>
+        public VideoCategory Video
 		{ get; private set; }
         /// <summary>
         /// API для работы с аккаунтом пользователя.
