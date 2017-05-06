@@ -180,15 +180,21 @@ namespace VkNet
         /// </summary>
         IDatabaseCategory IVkApi.Database => Database;
 
-		/// <summary>
-		/// API для работы со служебными методами.
-		/// </summary>
-		public UtilsCategory Utils
+        /// <summary>
+        /// API для работы со служебными методами.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IUtilsCategory IVkApi.Utils")]
+        public UtilsCategory Utils
 		{ get; private set; }
-		/// <summary>
-		/// API для работы со стеной пользователя.
-		/// </summary>
-		public WallCategory Wall
+
+        /// <summary>
+        /// API для работы со служебными методами.
+        /// </summary>
+        IUtilsCategory IVkApi.Utils => Utils;
+        /// <summary>
+        /// API для работы со стеной пользователя.
+        /// </summary>
+        public WallCategory Wall
 		{ get; private set; }
 
         /// <summary>

@@ -122,7 +122,11 @@ namespace VkNet
         /// API для работы с пользователями.
         /// </summary>
         IUsersCategory Users { get; }
-        UtilsCategory Utils { get; }
+
+        /// <summary>
+        /// API для работы со служебными методами.
+        /// </summary>
+        IUtilsCategory Utils { get; }
         VideoCategory Video { get; }
         WallCategory Wall { get; }
         DateTimeOffset? LastInvokeTime { get; }
