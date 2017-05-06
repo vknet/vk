@@ -97,7 +97,11 @@ namespace VkNet
         /// API для работы с wiki.
         /// </summary>
         IPagesCategory Pages { get; set; }
-        PhotoCategory Photo { get; }
+
+        /// <summary>
+        /// API для работы с фотографиями
+        /// </summary>
+        IPhotoCategory Photo { get; }
         PollsCategory PollsCategory { get; }
         float RequestsPerSecond { get; set; }
         StatsCategory Stats { get; set; }

@@ -221,8 +221,15 @@ namespace VkNet
         /// <summary>
         /// API для работы с фотографиями
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IPhotoCategory IVkApi.Photo")]
         public PhotoCategory Photo
 		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с фотографиями
+        /// </summary>
+        IPhotoCategory IVkApi.Photo => Photo;
+
         /// <summary>
         /// API для работы с документами
         /// </summary>

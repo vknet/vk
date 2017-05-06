@@ -12,7 +12,7 @@
 	/// <summary>
 	/// Методы для работы с фотографиями.
 	/// </summary>
-	public partial class PhotoCategory
+	public partial class PhotoCategory : IPhotoCategory
 	{
 		private readonly VkApi _vk;
 
