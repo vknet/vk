@@ -218,6 +218,81 @@
     <Compile Include="..\VkNet.UWP\Categories\WallCategory.cs">
       <Link>Categories\WallCategory.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IAccountCategory.cs">
+      <Link>Categories\IAccountCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IAuthCategory.cs">
+      <Link>Categories\IAuthCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IBoardCategory.cs">
+      <Link>Categories\IBoardCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IDatabaseCategory.cs">
+      <Link>Categories\IDatabaseCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IDocsCategory.cs">
+      <Link>Categories\IDocsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IExecuteCategory.cs">
+      <Link>Categories\IExecuteCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IFaveCategory.cs">
+      <Link>Categories\IFaveCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IGiftsCategory.cs">
+      <Link>Categories\IGiftsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IGroupsCategory.cs">
+      <Link>Categories\IGroupsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\ILikesCategory.cs">
+      <Link>Categories\ILikesCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IMarketsCategory.cs">
+      <Link>Categories\IMarketsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\INewsFeedCategory.cs">
+      <Link>Categories\INewsFeedCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IPhotoCategory.cs">
+      <Link>Categories\IPhotoCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IPollsCategory.cs">
+      <Link>Categories\IPollsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IStatsCategory.cs">
+      <Link>Categories\IStatsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IUtilsCategory.cs">
+      <Link>Categories\IUtilsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IVideoCategory.cs">
+      <Link>Categories\IVideoCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IWallCategory.cs">
+      <Link>Categories\IWallCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IAppsCategory.cs">
+      <Link>Categories\IAppsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IAudioCategory.cs">
+      <Link>Categories\IAudioCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IFriendsCategory.cs">
+      <Link>Categories\IFriendsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IMessagesCategory.cs">
+      <Link>Categories\IMessagesCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IPagesCategory.cs">
+      <Link>Categories\IPagesCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IStatusCategory.cs">
+      <Link>Categories\IStatusCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Categories\IUsersCategory.cs">
+      <Link>Categories\IUsersCategory.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Enums\AccessPages.cs">
       <Link>Enums\AccessPages.cs</Link>
     </Compile>
@@ -701,6 +776,24 @@
     <Compile Include="..\VkNet.UWP\Exception\VkApiMethodInvokeException.cs">
       <Link>Exception\VkApiMethodInvokeException.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\IAuth.cs">
+      <Link>IAuth.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\IAuthAsync.cs">
+      <Link>IAuthAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\ICaptcha.cs">
+      <Link>ICaptcha.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\ICategoryPack.cs">
+      <Link>ICategoryPack.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\IInvoke.cs">
+      <Link>IInvoke.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\IVkApi.cs">
+      <Link>IVkApi.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\AccountChangePasswordResult.cs">
       <Link>Model\AccountChangePasswordResult.cs</Link>
     </Compile>
@@ -709,6 +802,9 @@
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\AccountPushSettings.cs">
       <Link>Model\AccountPushSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\AuthParams.cs">
+      <Link>Model\AuthParams.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\ApiAuthParams.cs">
       <Link>Model\ApiAuthParams.cs</Link>
@@ -892,6 +988,9 @@
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\History.cs">
       <Link>Model\History.cs</Link>
+    </Compile>
+    <Compile Include="..\VkNet.UWP\Model\IAuthParams.cs">
+      <Link>Model\IAuthParams.cs</Link>
     </Compile>
     <Compile Include="..\VkNet.UWP\Model\HistoryAttachment.cs">
       <Link>Model\HistoryAttachment.cs</Link>
