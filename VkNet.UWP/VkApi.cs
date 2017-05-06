@@ -285,7 +285,14 @@ namespace VkNet
         /// <summary>
         /// API для работы с товарами.
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IMarketsCategory IVkApi.Markets")]
         public MarketsCategory Markets { get; set; }
+
+        /// <summary>
+        /// API для работы с товарами.
+        /// </summary>
+        IMarketsCategory IVkApi.Markets
+        { get; set; }
 
         /// <summary>
         /// API для работы с Авторизацией.
@@ -388,7 +395,8 @@ namespace VkNet
 			Auth = new AuthCategory(this);
             ((IVkApi)this).Auth = Auth;
             Markets = new MarketsCategory(this);
-			Execute = new ExecuteCategory(this);
+            ((IVkApi)this).Markets = Markets;
+            Execute = new ExecuteCategory(this);
             PollsCategory = new PollsCategory(this);
 
 			RequestsPerSecond = 3;
