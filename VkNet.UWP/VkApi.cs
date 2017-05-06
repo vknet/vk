@@ -295,7 +295,14 @@ namespace VkNet
         /// <summary>
         /// API для работы со статистикой.
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IStatsCategory IVkApi.Stats")]
         public StatsCategory Stats { get; set; }
+
+        /// <summary>
+        /// API для работы со статистикой.
+        /// </summary>
+        IStatsCategory IVkApi.Stats
+        { get; set; }
 
         /// <summary>
         /// API для работы с подарками.
@@ -428,6 +435,7 @@ namespace VkNet
 			NewsFeed = new NewsFeedCategory(this);
             ((IVkApi)this).NewsFeed = NewsFeed;
             Stats = new StatsCategory(this);
+            ((IVkApi)this).Stats = Stats;
 			Auth = new AuthCategory(this);
             ((IVkApi)this).Auth = Auth;
             Markets = new MarketsCategory(this);

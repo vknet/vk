@@ -107,8 +107,11 @@ namespace VkNet
         /// API для работы с опросами. 
         /// </summary>
         IPollsCategory PollsCategory { get; }
-        float RequestsPerSecond { get; set; }
-        StatsCategory Stats { get; set; }
+
+        /// <summary>
+        /// API для работы со статистикой.
+        /// </summary>
+        IStatsCategory Stats { get; set; }
         StatusCategory Status { get; }
         string Token { get; }
         long? UserId { get; set; }
@@ -119,6 +122,7 @@ namespace VkNet
         DateTimeOffset? LastInvokeTime { get; }
         TimeSpan? LastInvokeTimeSpan { get; }
         int MaxCaptchaRecognitionCount { get; set; }
+        float RequestsPerSecond { get; set; }
 
         event VkApiDelegate OnTokenExpires;
 
