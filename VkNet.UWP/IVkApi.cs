@@ -82,8 +82,11 @@ namespace VkNet
         /// API для работы с товарами.
         /// </summary>
         IMarketsCategory Markets { get; set; }
-        
-        MessagesCategory Messages { get; }
+
+        /// <summary>
+        /// API для работы с сообщениями.
+        /// </summary>
+        IMessagesCategory Messages { get; }
         NewsFeedCategory NewsFeed { get; set; }
         PagesCategory Pages { get; set; }
         PhotoCategory Photo { get; }

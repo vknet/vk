@@ -119,11 +119,18 @@ namespace VkNet
         /// </summary>
         public StatusCategory Status
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с сообщениями.
-		/// </summary>
-		public MessagesCategory Messages
+        /// <summary>
+        /// API для работы с сообщениями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IMessagesCategory IVkApi.Messages")]
+        public MessagesCategory Messages
 		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с сообщениями.
+        /// </summary>
+        IMessagesCategory IVkApi.Messages => Messages;
+
         /// <summary>
         /// API для работы с .
         /// </summary>
