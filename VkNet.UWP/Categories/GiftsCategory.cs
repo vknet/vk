@@ -6,7 +6,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с подарками.
 	/// </summary>
-	public partial class GiftsCategory
+	public partial class GiftsCategory : IGiftsCategory
 	{
 		/// <summary>
 		/// API.

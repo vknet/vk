@@ -62,7 +62,11 @@ namespace VkNet
         /// API для работы с друзьями.
         /// </summary>
         IFriendsCategory Friends { get; }
-        GiftsCategory Gifts { get; set; }
+
+        /// <summary>
+        /// API для работы с подарками.
+        /// </summary>
+        IGiftsCategory Gifts { get; set; }
         GroupsCategory Groups { get; }
         DateTimeOffset? LastInvokeTime { get; }
         TimeSpan? LastInvokeTimeSpan { get; }

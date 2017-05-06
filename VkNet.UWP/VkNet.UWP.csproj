@@ -61,6 +61,7 @@
     <Compile Include="Categories\IDocsCategory.cs" />
     <Compile Include="Categories\IExecuteCategory.cs" />
     <Compile Include="Categories\IFaveCategory.cs" />
+    <Compile Include="Categories\IGiftsCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />

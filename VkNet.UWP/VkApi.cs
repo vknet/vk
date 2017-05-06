@@ -256,16 +256,23 @@ namespace VkNet
 		/// </summary>
 		public StatsCategory Stats { get; set; }
 
-		/// <summary>
-		/// API для работы с подарками.
-		/// </summary>
-		public GiftsCategory Gifts
+        /// <summary>
+        /// API для работы с подарками.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IGiftsCategory IVkApi.Gifts")]
+        public GiftsCategory Gifts
 		{ get; set; }
 
-		/// <summary>
-		/// API для работы с товарами.
+        /// <summary>
+		/// API для работы с подарками.
 		/// </summary>
-		public MarketsCategory Markets { get; set; }
+		IGiftsCategory IVkApi.Gifts
+        { get; set; }
+
+        /// <summary>
+        /// API для работы с товарами.
+        /// </summary>
+        public MarketsCategory Markets { get; set; }
 
         /// <summary>
         /// API для работы с Авторизацией.
@@ -360,7 +367,8 @@ namespace VkNet
 			Likes = new LikesCategory(this);
 			Pages = new PagesCategory(this);
 			Gifts = new GiftsCategory(this);
-			Apps = new AppsCategory(this);
+            ((IVkApi)this).Gifts = Gifts;
+            Apps = new AppsCategory(this);
 		    ((IVkApi) this).Apps = Apps;
 			NewsFeed = new NewsFeedCategory(this);
 			Stats = new StatsCategory(this);
