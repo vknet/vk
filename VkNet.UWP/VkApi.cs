@@ -231,13 +231,19 @@ namespace VkNet
         /// <summary>
         /// API для работы с лайками
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее ILikesCategory IVkApi.Likes")]
         public LikesCategory Likes
 		{ get; private set; }
 
-		/// <summary>
-		/// API для работы с wiki.
-		/// </summary>
-		public PagesCategory Pages
+        /// <summary>
+        /// API для работы с лайками
+        /// </summary>
+        ILikesCategory IVkApi.Likes => Likes;
+
+        /// <summary>
+        /// API для работы с wiki.
+        /// </summary>
+        public PagesCategory Pages
 		{ get; set; }
 
 		/// <summary>

@@ -72,9 +72,11 @@ namespace VkNet
         /// API для работы с .
         /// </summary>
         IGroupsCategory Groups { get; }
-        DateTimeOffset? LastInvokeTime { get; }
-        TimeSpan? LastInvokeTimeSpan { get; }
-        LikesCategory Likes { get; }
+       
+        /// <summary>
+        /// API для работы с лайками
+        /// </summary>
+        ILikesCategory Likes { get; }
         MarketsCategory Markets { get; set; }
         int MaxCaptchaRecognitionCount { get; set; }
         MessagesCategory Messages { get; }
@@ -91,6 +93,8 @@ namespace VkNet
         UtilsCategory Utils { get; }
         VideoCategory Video { get; }
         WallCategory Wall { get; }
+        DateTimeOffset? LastInvokeTime { get; }
+        TimeSpan? LastInvokeTimeSpan { get; }
 
         event VkApiDelegate OnTokenExpires;
 

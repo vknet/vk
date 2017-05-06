@@ -63,6 +63,7 @@
     <Compile Include="Categories\IFaveCategory.cs" />
     <Compile Include="Categories\IGiftsCategory.cs" />
     <Compile Include="Categories\IGroupsCategory.cs" />
+    <Compile Include="Categories\ILikesCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
