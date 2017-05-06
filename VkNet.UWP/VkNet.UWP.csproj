@@ -71,6 +71,7 @@
     <Compile Include="Categories\IStatsCategory.cs" />
     <Compile Include="Categories\IUtilsCategory.cs" />
     <Compile Include="Categories\IVideoCategory.cs" />
+    <Compile Include="Categories\IWallCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />

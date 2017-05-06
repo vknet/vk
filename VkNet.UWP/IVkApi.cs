@@ -132,7 +132,11 @@ namespace VkNet
         /// API для работы с видео файлами.
         /// </summary>
         IVideoCategory Video { get; }
-        WallCategory Wall { get; }
+
+        /// <summary>
+        /// API для работы со стеной пользователя.
+        /// </summary>
+        IWallCategory Wall { get; }
         DateTimeOffset? LastInvokeTime { get; }
         TimeSpan? LastInvokeTimeSpan { get; }
         int MaxCaptchaRecognitionCount { get; set; }

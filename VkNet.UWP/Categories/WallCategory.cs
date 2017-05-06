@@ -15,7 +15,7 @@
 	/// <summary>
 	/// Методы для работы со стеной пользователя.
 	/// </summary>
-	public partial class WallCategory
+	public partial class WallCategory : IWallCategory
 	{
 		private readonly VkApi _vk;
 

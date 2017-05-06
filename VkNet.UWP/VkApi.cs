@@ -191,11 +191,18 @@ namespace VkNet
         /// API для работы со служебными методами.
         /// </summary>
         IUtilsCategory IVkApi.Utils => Utils;
+
         /// <summary>
         /// API для работы со стеной пользователя.
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IWallCategory IVkApi.Wall")]
         public WallCategory Wall
 		{ get; private set; }
+
+        /// <summary>
+        /// API для работы со стеной пользователя.
+        /// </summary>
+        IWallCategory IVkApi.Wall => Wall;
 
         /// <summary>
         /// API для работы со темами групп.
