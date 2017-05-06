@@ -102,7 +102,11 @@ namespace VkNet
         /// API для работы с фотографиями
         /// </summary>
         IPhotoCategory Photo { get; }
-        PollsCategory PollsCategory { get; }
+
+        /// <summary>
+        /// API для работы с опросами. 
+        /// </summary>
+        IPollsCategory PollsCategory { get; }
         float RequestsPerSecond { get; set; }
         StatsCategory Stats { get; set; }
         StatusCategory Status { get; }

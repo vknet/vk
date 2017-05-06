@@ -347,7 +347,13 @@ namespace VkNet
         /// <summary>
 		/// API для работы с опросами. 
 		/// </summary>
-		public PollsCategory PollsCategory { get; private set; }
+		[Obsolete("Свойство устарело, используйте более общее IPollsCategory IVkApi.PollsCategory")]
+        public PollsCategory PollsCategory { get; private set; }
+
+        /// <summary>
+        /// API для работы с опросами. 
+        /// </summary>
+        IPollsCategory IVkApi.PollsCategory => PollsCategory;
         #endregion
 
         /// <summary>
