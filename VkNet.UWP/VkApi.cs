@@ -102,6 +102,12 @@ namespace VkNet
 		/// </summary>
 		public UsersCategory Users
 		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с пользователями.
+        /// </summary>
+        IUsersCategory IVkApi.Users => Users;
+
         /// <summary>
         /// API для работы с друзьями.
         /// </summary>

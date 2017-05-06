@@ -14,8 +14,8 @@
 	/// <summary>
 	/// Методы для работы с информацией о пользователях.
 	/// </summary>
-	public partial class UsersCategory
-	{
+	public partial class UsersCategory : IUsersCategory
+    {
 		private readonly VkApi _vk;
 
 		/// <summary>

@@ -117,9 +117,11 @@ namespace VkNet
         /// API для работы со статусом пользователя или сообщества.
         /// </summary>
         IStatusCategory Status { get; }
-        string Token { get; }
-        long? UserId { get; set; }
-        UsersCategory Users { get; }
+
+        /// <summary>
+        /// API для работы с пользователями.
+        /// </summary>
+        IUsersCategory Users { get; }
         UtilsCategory Utils { get; }
         VideoCategory Video { get; }
         WallCategory Wall { get; }
@@ -127,6 +129,8 @@ namespace VkNet
         TimeSpan? LastInvokeTimeSpan { get; }
         int MaxCaptchaRecognitionCount { get; set; }
         float RequestsPerSecond { get; set; }
+        string Token { get; }
+        long? UserId { get; set; }
 
         event VkApiDelegate OnTokenExpires;
 

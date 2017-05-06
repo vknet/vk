@@ -86,6 +86,7 @@
     <Compile Include="Categories\IMessagesCategory.cs" />
     <Compile Include="Categories\IPagesCategory.cs" />
     <Compile Include="Categories\IStatusCategory.cs" />
+    <Compile Include="Categories\IUsersCategory.cs" />
     <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\NewsFeedCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\PagesCategory.Obsolete.cs" />
