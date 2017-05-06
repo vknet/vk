@@ -67,7 +67,11 @@ namespace VkNet
         /// API для работы с подарками.
         /// </summary>
         IGiftsCategory Gifts { get; set; }
-        GroupsCategory Groups { get; }
+
+        /// <summary>
+        /// API для работы с .
+        /// </summary>
+        IGroupsCategory Groups { get; }
         DateTimeOffset? LastInvokeTime { get; }
         TimeSpan? LastInvokeTimeSpan { get; }
         LikesCategory Likes { get; }

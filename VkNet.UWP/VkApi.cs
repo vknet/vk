@@ -124,11 +124,18 @@ namespace VkNet
 		/// </summary>
 		public MessagesCategory Messages
 		{ get; private set; }
-		/// <summary>
-		/// API для работы с .
-		/// </summary>
-		public GroupsCategory Groups
+        /// <summary>
+        /// API для работы с .
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IGroupsCategory IVkApi.Groups")]
+        public GroupsCategory Groups
 		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с .
+        /// </summary>
+        IGroupsCategory IVkApi.Groups => Groups;
+
         /// <summary>
         /// API для работы с аудио записями.
         /// </summary>
