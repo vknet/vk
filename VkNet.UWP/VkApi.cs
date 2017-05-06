@@ -117,8 +117,15 @@ namespace VkNet
         /// <summary>
         /// API для работы со статусом пользователя или сообщества.
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IStatusCategory IVkApi.Status")]
         public StatusCategory Status
 		{ get; private set; }
+
+        /// <summary>
+        /// API для работы со статусом пользователя или сообщества.
+        /// </summary>
+        IStatusCategory IVkApi.Status => Status;
+
         /// <summary>
         /// API для работы с сообщениями.
         /// </summary>

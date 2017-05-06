@@ -112,7 +112,11 @@ namespace VkNet
         /// API для работы со статистикой.
         /// </summary>
         IStatsCategory Stats { get; set; }
-        StatusCategory Status { get; }
+
+        /// <summary>
+        /// API для работы со статусом пользователя или сообщества.
+        /// </summary>
+        IStatusCategory Status { get; }
         string Token { get; }
         long? UserId { get; set; }
         UsersCategory Users { get; }
