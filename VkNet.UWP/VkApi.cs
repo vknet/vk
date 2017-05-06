@@ -250,13 +250,20 @@ namespace VkNet
         /// <summary>
         /// API для работы с wiki.
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IPagesCategory IVkApi.Pages")]
         public PagesCategory Pages
 		{ get; set; }
 
-		/// <summary>
-		/// API для работы с приложениями.
-		/// </summary>
-		[Obsolete("Свойство устарело, используйте более общее IAppsCategory IVkApi.Apps")]
+        /// <summary>
+        /// API для работы с wiki.
+        /// </summary>
+        IPagesCategory IVkApi.Pages
+        { get; set; }
+
+        /// <summary>
+        /// API для работы с приложениями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAppsCategory IVkApi.Apps")]
 		public AppsCategory Apps
 		{ get; set; }
 
@@ -400,7 +407,8 @@ namespace VkNet
 			Docs = new DocsCategory(this);
 			Likes = new LikesCategory(this);
 			Pages = new PagesCategory(this);
-			Gifts = new GiftsCategory(this);
+            ((IVkApi)this).Pages = Pages;
+            Gifts = new GiftsCategory(this);
             ((IVkApi)this).Gifts = Gifts;
             Apps = new AppsCategory(this);
 		    ((IVkApi) this).Apps = Apps;

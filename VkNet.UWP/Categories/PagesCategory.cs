@@ -13,8 +13,8 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с wiki.
 	/// </summary>
-	public partial class PagesCategory
-	{
+	public partial class PagesCategory : IPagesCategory
+    {
 		/// <summary>
 		/// API
 		/// </summary>

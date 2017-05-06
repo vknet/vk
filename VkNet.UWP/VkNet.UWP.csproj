@@ -81,6 +81,7 @@
     <Compile Include="Categories\IAudioCategory.cs" />
     <Compile Include="Categories\IFriendsCategory.cs" />
     <Compile Include="Categories\IMessagesCategory.cs" />
+    <Compile Include="Categories\IPagesCategory.cs" />
     <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\NewsFeedCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\PagesCategory.Obsolete.cs" />
