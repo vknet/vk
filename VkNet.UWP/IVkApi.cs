@@ -127,7 +127,11 @@ namespace VkNet
         /// API для работы со служебными методами.
         /// </summary>
         IUtilsCategory Utils { get; }
-        VideoCategory Video { get; }
+
+        /// <summary>
+        /// API для работы с видео файлами.
+        /// </summary>
+        IVideoCategory Video { get; }
         WallCategory Wall { get; }
         DateTimeOffset? LastInvokeTime { get; }
         TimeSpan? LastInvokeTimeSpan { get; }

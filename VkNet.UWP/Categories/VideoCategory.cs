@@ -12,7 +12,7 @@
 	/// <summary>
 	/// Методы для работы с видеофайлами.
 	/// </summary>
-	public partial class VideoCategory
+	public partial class VideoCategory : IVideoCategory
 	{
 		private readonly VkApi _vk;
 

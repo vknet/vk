@@ -224,8 +224,15 @@ namespace VkNet
         /// <summary>
         /// API для работы с видео файлами.
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IVideoCategory IVkApi.Video")]
         public VideoCategory Video
 		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с видео файлами.
+        /// </summary>
+        IVideoCategory IVkApi.Video => Video;
+
         /// <summary>
         /// API для работы с аккаунтом пользователя.
         /// </summary>
