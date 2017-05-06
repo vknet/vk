@@ -271,6 +271,9 @@
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
     <Compile Include="IAuth.cs" />
     <Compile Include="IAuthAsync.cs" />
+    <Compile Include="ICaptcha.cs" />
+    <Compile Include="ICategoryPack.cs" />
+    <Compile Include="IInvoke.cs" />
     <Compile Include="IVkApi.cs" />
     <Compile Include="Model\AccountChangePasswordResult.cs" />
     <Compile Include="Model\AccountInfo.cs" />

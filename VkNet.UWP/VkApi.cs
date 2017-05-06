@@ -95,305 +95,312 @@ namespace VkNet
 		/// </summary>
 		public event VkApiDelegate OnTokenExpires;
 
-		#region Categories Definition
-
-		/// <summary>
-		/// API для работы с пользователями.
-		/// </summary>
-		public UsersCategory Users
-		{ get; private set; }
+        #region ICategoryPack implementation
 
         /// <summary>
         /// API для работы с пользователями.
         /// </summary>
-        IUsersCategory IVkApi.Users => Users;
+        IUsersCategory ICategoryPack.Users => Users;
 
         /// <summary>
         /// API для работы с друзьями.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IFriendsCategory IVkApi.Friends")]
-        public FriendsCategory Friends
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы с друзьями.
-        /// </summary>
-        IFriendsCategory IVkApi.Friends => Friends;
+        IFriendsCategory ICategoryPack.Friends => Friends;
 
         /// <summary>
         /// API для работы со статусом пользователя или сообщества.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IStatusCategory IVkApi.Status")]
-        public StatusCategory Status
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы со статусом пользователя или сообщества.
-        /// </summary>
-        IStatusCategory IVkApi.Status => Status;
+        IStatusCategory ICategoryPack.Status => Status;
 
         /// <summary>
         /// API для работы с сообщениями.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IMessagesCategory IVkApi.Messages")]
-        public MessagesCategory Messages
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы с сообщениями.
-        /// </summary>
-        IMessagesCategory IVkApi.Messages => Messages;
+        IMessagesCategory ICategoryPack.Messages => Messages;
 
         /// <summary>
         /// API для работы с .
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IGroupsCategory IVkApi.Groups")]
-        public GroupsCategory Groups
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы с .
-        /// </summary>
-        IGroupsCategory IVkApi.Groups => Groups;
+        IGroupsCategory ICategoryPack.Groups => Groups;
 
         /// <summary>
         /// API для работы с аудио записями.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IAudioCategory IVkApi.Audio")]
-        public AudioCategory Audio
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы с аудио записями.
-        /// </summary>
-        IAudioCategory IVkApi.Audio => Audio;
+        IAudioCategory ICategoryPack.Audio => Audio;
 
         /// <summary>
         /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IDatabaseCategory IVkApi.Database")]
-        public DatabaseCategory Database
-		{ get; private set; }
-
-        /// <summary>
-        /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
-        /// </summary>
-        IDatabaseCategory IVkApi.Database => Database;
+        IDatabaseCategory ICategoryPack.Database => Database;
 
         /// <summary>
         /// API для работы со служебными методами.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IUtilsCategory IVkApi.Utils")]
-        public UtilsCategory Utils
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы со служебными методами.
-        /// </summary>
-        IUtilsCategory IVkApi.Utils => Utils;
+        IUtilsCategory ICategoryPack.Utils => Utils;
 
         /// <summary>
         /// API для работы со стеной пользователя.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IWallCategory IVkApi.Wall")]
-        public WallCategory Wall
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы со стеной пользователя.
-        /// </summary>
-        IWallCategory IVkApi.Wall => Wall;
+        IWallCategory ICategoryPack.Wall => Wall;
 
         /// <summary>
         /// API для работы со темами групп.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IBoardCategory IVkApi.Board")]
-        public BoardCategory Board
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы со темами групп.
-        /// </summary>
-        IBoardCategory IVkApi.Board => Board;
+        IBoardCategory ICategoryPack.Board => Board;
 
         /// <summary>
         /// API для работы с закладками.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IFaveCategory IVkApi.Fave")]
-        public FaveCategory Fave
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы с закладками.
-        /// </summary>
-        IFaveCategory IVkApi.Fave => Fave;
+        IFaveCategory ICategoryPack.Fave => Fave;
 
         /// <summary>
         /// API для работы с видео файлами.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IVideoCategory IVkApi.Video")]
-        public VideoCategory Video
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы с видео файлами.
-        /// </summary>
-        IVideoCategory IVkApi.Video => Video;
+        IVideoCategory ICategoryPack.Video => Video;
 
         /// <summary>
         /// API для работы с аккаунтом пользователя.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IAccountCategory IVkApi.Account")]
-        public AccountCategory Account
-		{ get; private set; }
-        /// <summary>
-		/// API для работы с аккаунтом пользователя.
-		/// </summary>
-		IAccountCategory IVkApi.Account => Account;
+        IAccountCategory ICategoryPack.Account => Account;
 
         /// <summary>
         /// API для работы с фотографиями
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IPhotoCategory IVkApi.Photo")]
-        public PhotoCategory Photo
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы с фотографиями
-        /// </summary>
-        IPhotoCategory IVkApi.Photo => Photo;
+        IPhotoCategory ICategoryPack.Photo => Photo;
 
         /// <summary>
         /// API для работы с документами
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IDocsCategory IVkApi.Docs")]
-        public DocsCategory Docs
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы с документами
-        /// </summary>
-        IDocsCategory IVkApi.Docs => Docs;
+        IDocsCategory ICategoryPack.Docs => Docs;
 
         /// <summary>
         /// API для работы с лайками
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее ILikesCategory IVkApi.Likes")]
-        public LikesCategory Likes
-		{ get; private set; }
-
-        /// <summary>
-        /// API для работы с лайками
-        /// </summary>
-        ILikesCategory IVkApi.Likes => Likes;
+        ILikesCategory ICategoryPack.Likes => Likes;
 
         /// <summary>
         /// API для работы с wiki.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IPagesCategory IVkApi.Pages")]
-        public PagesCategory Pages
-		{ get; set; }
-
-        /// <summary>
-        /// API для работы с wiki.
-        /// </summary>
-        IPagesCategory IVkApi.Pages
+        IPagesCategory ICategoryPack.Pages
         { get; set; }
 
         /// <summary>
         /// API для работы с приложениями.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IAppsCategory IVkApi.Apps")]
-		public AppsCategory Apps
-		{ get; set; }
-
-        /// <summary>
-        /// API для работы с приложениями.
-        /// </summary>
-        IAppsCategory IVkApi.Apps
+        IAppsCategory ICategoryPack.Apps
         { get; set; }
 
         /// <summary>
         /// API для работы с новостной лентой.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее INewsFeedCategory IVkApi.NewsFeed")]
-        public NewsFeedCategory NewsFeed { get; set; }
-
-        /// <summary>
-        /// API для работы с новостной лентой.
-        /// </summary>
-        INewsFeedCategory IVkApi.NewsFeed
+        INewsFeedCategory ICategoryPack.NewsFeed
         { get; set; }
 
         /// <summary>
         /// API для работы со статистикой.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IStatsCategory IVkApi.Stats")]
-        public StatsCategory Stats { get; set; }
-
-        /// <summary>
-        /// API для работы со статистикой.
-        /// </summary>
-        IStatsCategory IVkApi.Stats
+        IStatsCategory ICategoryPack.Stats
         { get; set; }
 
         /// <summary>
         /// API для работы с подарками.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IGiftsCategory IVkApi.Gifts")]
-        public GiftsCategory Gifts
-		{ get; set; }
-
-        /// <summary>
-		/// API для работы с подарками.
-		/// </summary>
-		IGiftsCategory IVkApi.Gifts
+        IGiftsCategory ICategoryPack.Gifts
         { get; set; }
 
         /// <summary>
         /// API для работы с товарами.
         /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IMarketsCategory IVkApi.Markets")]
-        public MarketsCategory Markets { get; set; }
-
-        /// <summary>
-        /// API для работы с товарами.
-        /// </summary>
-        IMarketsCategory IVkApi.Markets
+        IMarketsCategory ICategoryPack.Markets
         { get; set; }
-
-        /// <summary>
-        /// API для работы с Авторизацией.
-        /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IAuthCategory IVkApi.Auth")]
-        public AuthCategory Auth { get; set; }
-
-        /// <summary>
-        /// API для работы с Авторизацией.
-        /// </summary>
-        IAuthCategory IVkApi.Auth { get; set; }
-
-        /// <summary>
-        /// API для работы с универсальным методом.
-        /// </summary>
-        [Obsolete("Свойство устарело, используйте более общее IExecuteCategory IVkApi.Execute")]
-        public ExecuteCategory Execute { get; private set; }
-
-        /// <summary>
-        /// API для работы с универсальным методом.
-        /// </summary>
-        IExecuteCategory IVkApi.Execute => Execute;
-
-        /// <summary>
-		/// API для работы с опросами. 
-		/// </summary>
-		[Obsolete("Свойство устарело, используйте более общее IPollsCategory IVkApi.PollsCategory")]
-        public PollsCategory PollsCategory { get; private set; }
 
         /// <summary>
         /// API для работы с опросами. 
         /// </summary>
-        IPollsCategory IVkApi.PollsCategory => PollsCategory;
+        IPollsCategory ICategoryPack.PollsCategory => PollsCategory;
+
+        /// <summary>
+        /// API для работы с универсальным методом.
+        /// </summary>
+        IExecuteCategory ICategoryPack.Execute => Execute;
+
+        /// <summary>
+        /// API для работы с Авторизацией.
+        /// </summary>
+        IAuthCategory ICategoryPack.Auth { get; set; }
+
+        #endregion
+
+        #region Categories Definition
+
+        /// <summary>
+        /// API для работы с пользователями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IUsersCategory ICategoryPack.Users")]
+        public UsersCategory Users
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с друзьями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IFriendsCategory ICategoryPack.Friends")]
+        public FriendsCategory Friends
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы со статусом пользователя или сообщества.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IStatusCategory ICategoryPack.Status")]
+        public StatusCategory Status
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с сообщениями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IMessagesCategory ICategoryPack.Messages")]
+        public MessagesCategory Messages
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с .
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IGroupsCategory ICategoryPack.Groups")]
+        public GroupsCategory Groups
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с аудио записями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAudioCategory ICategoryPack.Audio")]
+        public AudioCategory Audio
+		{ get; private set; }
+
+        /// <summary>
+        /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IDatabaseCategory ICategoryPack.Database")]
+        public DatabaseCategory Database
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы со служебными методами.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IUtilsCategory ICategoryPack.Utils")]
+        public UtilsCategory Utils
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы со стеной пользователя.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IWallCategory ICategoryPack.Wall")]
+        public WallCategory Wall
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы со темами групп.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IBoardCategory ICategoryPack.Board")]
+        public BoardCategory Board
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с закладками.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IFaveCategory ICategoryPack.Fave")]
+        public FaveCategory Fave
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с видео файлами.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IVideoCategory ICategoryPack.Video")]
+        public VideoCategory Video
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с аккаунтом пользователя.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAccountCategory ICategoryPack.Account")]
+        public AccountCategory Account
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с фотографиями
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IPhotoCategory ICategoryPack.Photo")]
+        public PhotoCategory Photo
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с документами
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IDocsCategory ICategoryPack.Docs")]
+        public DocsCategory Docs
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с лайками
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее ILikesCategory ICategoryPack.Likes")]
+        public LikesCategory Likes
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с wiki.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IPagesCategory ICategoryPack.Pages")]
+        public PagesCategory Pages
+		{ get; set; }
+
+        /// <summary>
+        /// API для работы с приложениями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAppsCategory ICategoryPack.Apps")]
+		public AppsCategory Apps
+		{ get; set; }
+
+        /// <summary>
+        /// API для работы с новостной лентой.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее INewsFeedCategory ICategoryPack.NewsFeed")]
+        public NewsFeedCategory NewsFeed { get; set; }
+
+        /// <summary>
+        /// API для работы со статистикой.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IStatsCategory ICategoryPack.Stats")]
+        public StatsCategory Stats { get; set; }
+
+        /// <summary>
+        /// API для работы с подарками.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IGiftsCategory ICategoryPack.Gifts")]
+        public GiftsCategory Gifts
+		{ get; set; }
+
+        /// <summary>
+        /// API для работы с товарами.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IMarketsCategory ICategoryPack.Markets")]
+        public MarketsCategory Markets { get; set; }
+
+        /// <summary>
+        /// API для работы с Авторизацией.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAuthCategory ICategoryPack.Auth")]
+        public AuthCategory Auth { get; set; }
+
+        /// <summary>
+        /// API для работы с универсальным методом.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IExecuteCategory ICategoryPack.Execute")]
+        public ExecuteCategory Execute { get; private set; }
+
+        /// <summary>
+		/// API для работы с опросами. 
+		/// </summary>
+		[Obsolete("Свойство устарело, используйте более общее IPollsCategory ICategoryPack.PollsCategory")]
+        public PollsCategory PollsCategory { get; private set; }
+
         #endregion
 
         /// <summary>
@@ -435,6 +442,11 @@ namespace VkNet
 		/// Обработчик распознавания капчи
 		/// </summary>
 		private readonly ICaptchaSolver _captchaSolver;
+
+        /// <summary>
+		/// Обработчик распознавания капчи
+		/// </summary>
+        public ICaptchaSolver CaptchaSolver => _captchaSolver;
 
 		/// <summary>
 		/// Инициализирует новый экземпляр класса VkApi
