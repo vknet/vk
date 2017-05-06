@@ -87,7 +87,11 @@ namespace VkNet
         /// API для работы с сообщениями.
         /// </summary>
         IMessagesCategory Messages { get; }
-        NewsFeedCategory NewsFeed { get; set; }
+
+        /// <summary>
+        /// API для работы с новостной лентой.
+        /// </summary>
+        INewsFeedCategory NewsFeed { get; set; }
         PagesCategory Pages { get; set; }
         PhotoCategory Photo { get; }
         PollsCategory PollsCategory { get; }

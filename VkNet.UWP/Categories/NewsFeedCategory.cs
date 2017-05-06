@@ -12,7 +12,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с новостной лентой пользователя.
 	/// </summary>
-	public partial class NewsFeedCategory
+	public partial class NewsFeedCategory : INewsFeedCategory
 	{
 		/// <summary>
 		/// API.

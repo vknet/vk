@@ -269,12 +269,19 @@ namespace VkNet
         /// <summary>
         /// API для работы с новостной лентой.
         /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее INewsFeedCategory IVkApi.NewsFeed")]
         public NewsFeedCategory NewsFeed { get; set; }
 
-		/// <summary>
-		/// API для работы со статистикой.
-		/// </summary>
-		public StatsCategory Stats { get; set; }
+        /// <summary>
+        /// API для работы с новостной лентой.
+        /// </summary>
+        INewsFeedCategory IVkApi.NewsFeed
+        { get; set; }
+
+        /// <summary>
+        /// API для работы со статистикой.
+        /// </summary>
+        public StatsCategory Stats { get; set; }
 
         /// <summary>
         /// API для работы с подарками.
@@ -398,7 +405,8 @@ namespace VkNet
             Apps = new AppsCategory(this);
 		    ((IVkApi) this).Apps = Apps;
 			NewsFeed = new NewsFeedCategory(this);
-			Stats = new StatsCategory(this);
+            ((IVkApi)this).NewsFeed = NewsFeed;
+            Stats = new StatsCategory(this);
 			Auth = new AuthCategory(this);
             ((IVkApi)this).Auth = Auth;
             Markets = new MarketsCategory(this);
