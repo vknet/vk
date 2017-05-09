@@ -278,7 +278,6 @@
     <Compile Include="Model\AccountChangePasswordResult.cs" />
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\AccountPushSettings.cs" />
-    <Compile Include="Model\AuthParams.cs" />
     <Compile Include="Model\ApiAuthParams.cs" />
     <Compile Include="Model\App.cs" />
     <Compile Include="Model\AppGetObject.cs" />

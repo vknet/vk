@@ -12,7 +12,7 @@
         /// Авторизация и получение токена в асинхронном режиме
         /// </summary>
         /// <param name="params">Данные авторизации</param>
-        Task AuthorizeAsync(AuthParams @params);
+        Task AuthorizeAsync(IAuthParams @params);
 
         /// <summary>
 		/// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.

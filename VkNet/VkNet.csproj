@@ -803,9 +803,6 @@
     <Compile Include="..\VkNet.UWP\Model\AccountPushSettings.cs">
       <Link>Model\AccountPushSettings.cs</Link>
     </Compile>
-    <Compile Include="..\VkNet.UWP\Model\AuthParams.cs">
-      <Link>Model\AuthParams.cs</Link>
-    </Compile>
     <Compile Include="..\VkNet.UWP\Model\ApiAuthParams.cs">
       <Link>Model\ApiAuthParams.cs</Link>
     </Compile>

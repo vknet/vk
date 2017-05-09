@@ -16,7 +16,7 @@
         /// Авторизация и получение токена
         /// </summary>
         /// <param name="params">Данные авторизации</param>
-        void Authorize(AuthParams @params);
+        void Authorize(IAuthParams @params);
 
         /// <summary>
 		/// Токен для доступа к методам API
