@@ -742,5 +742,25 @@ namespace VkNet
 	    }
 
 	    #endregion
+
+        /// <summary>
+        /// Обход ошибки валидации: https://vk.com/dev/need_validation
+        /// </summary>
+        /// <param name="validateUrl">Адрес, на который нужно перейти для валидации</param>
+        /// <param name="phoneNumber">Номер телефона, который нужно ввести на странице валидации</param>
+	    public void Validate(string validateUrl, string phoneNumber)
+	    {
+	        StopTimer();
+
+	        LastInvokeTime = DateTimeOffset.Now;
+	        var authorization = Browser.Validate(validateUrl,phoneNumber);
+	        if (!authorization.IsAuthorized)
+	        {
+	            throw new NeedValidationException("Не удалось автоматически пройти валидацию!",validateUrl);
+	        }
+	        var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
+	        SetTimer(expireTime);
+	        AccessToken = authorization.AccessToken;
+	    }
 	}
 }

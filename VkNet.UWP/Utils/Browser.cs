@@ -136,6 +136,20 @@ namespace VkNet.Utils
             return EndAuthorize(loginFormPostResult, Proxy);
         }
 
+        public VkAuthorization Validate(string validateUrl, string phoneNumber)
+        {
+            if (string.IsNullOrEmpty(validateUrl)) throw new ArgumentException("Не задан адрес валидации!");
+            if (string.IsNullOrEmpty(phoneNumber)) throw new ArgumentException("Не задан номер телефона!");
+
+            var validateUrlResult = WebCall.MakeCall(validateUrl, Proxy);
+            var codeForm = WebForm.From(validateUrlResult)
+                .WithField("code")
+                .FilledWith(phoneNumber.Substring(1,8));
+            var codeFormPostResult = WebCall.Post(codeForm, Proxy);
+
+            return EndAuthorize(codeFormPostResult, Proxy);
+        }
+
 
         private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
         {

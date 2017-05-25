@@ -39,6 +39,15 @@ namespace VkNet.Utils
         /// <returns>
         /// Информация об авторизации приложения.
         /// </returns>
-        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code, long? captchaSid, string captchaKey);
+        VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code,
+            long? captchaSid, string captchaKey);
+
+        /// <summary>
+        /// Выполняет обход ошибки валидации: https://vk.com/dev/need_validation
+        /// </summary>
+        /// <param name="validateUrl">Адрес страницы валидации</param>
+        /// <param name="phoneNumber">Номер телефона, который необходимо ввести на странице валидации</param>
+        /// <returns>Информация об авторизации приложения.</returns>
+        VkAuthorization Validate(string validateUrl, string phoneNumber);
     }
 }
