@@ -20,6 +20,7 @@ namespace VkNet.Model.RequestParams
 			Out = null;
 			Sort = null;
 			Suggested = null;
+			NeedViewed = null;
 		}
 
 		/// <summary>
@@ -57,6 +58,11 @@ namespace VkNet.Model.RequestParams
 		/// 1 — возвращать рекомендованных другими пользователями друзей, 0 — возвращать заявки в друзья (по умолчанию). флаг, может принимать значения 1 или 0.
 		/// </summary>
 		public bool? Suggested { get; set; }
+		
+		/// <summary>
+		/// 0 - не возвращать просмотренные заявки, 1 — возвращать просмотренные заявки. (Если out = 1, данный параметр не учитывается). флаг, может принимать значения 1 или 0, по умолчанию 0.
+		/// </summary>
+		public bool? NeedViewed { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -73,7 +79,8 @@ namespace VkNet.Model.RequestParams
 				{ "need_mutual", p.NeedMutual },
 				{ "out", p.Out },
 				{ "sort", p.Sort },
-				{ "suggested", p.Suggested }
+				{ "suggested", p.Suggested },
+				{ "NeedViewed", p.NeedViewed}
 			};
 
 			return parameters;
