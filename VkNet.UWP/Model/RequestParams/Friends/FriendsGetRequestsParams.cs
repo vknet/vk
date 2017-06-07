@@ -80,7 +80,7 @@ namespace VkNet.Model.RequestParams
 				{ "out", p.Out },
 				{ "sort", p.Sort },
 				{ "suggested", p.Suggested },
-				{ "NeedViewed", p.NeedViewed}
+				{ "needViewed", p.NeedViewed}
 			};
 
 			return parameters;
