@@ -15,8 +15,8 @@
 	/// <summary>
 	/// Методы для работы с друзьями.
 	/// </summary>
-	public partial class FriendsCategory
-	{
+	public partial class FriendsCategory : IFriendsCategory
+    {
 		private readonly VkApi _vk;
 
 	    /// <summary>

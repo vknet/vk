@@ -1,36 +1,22 @@
-﻿using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Exception;
-using VkNet.Model.Attachments;
-
-namespace VkNet.Categories
+﻿namespace VkNet.Categories
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Globalization;
-    using System.Linq;
+    using Enums;
+    using Enums.Filters;
+    using Enums.SafetyEnums;
     using JetBrains.Annotations;
     using Model;
+    using Model.Attachments;
     using Model.RequestParams;
     using Utils;
 
     /// <summary>
     /// Методы для работы с сообщениями.
     /// </summary>
-    public partial class MessagesCategory : IMessagesCategory
+    public interface IMessagesCategory
     {
-        private readonly VkApi _vk;
-
-        /// <summary>
-        /// Методы для работы с сообщениями.
-        /// </summary>
-        /// <param name="vk">API</param>
-        public MessagesCategory(VkApi vk)
-        {
-            _vk = vk;
-        }
-
         /// <summary>
         /// Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
         /// </summary>
@@ -40,11 +26,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.get
         /// </remarks>
-        [Pure]
-        public MessagesGetObject Get(MessagesGetParams @params)
-        {
-            return _vk.Call("messages.get", @params);
-        }
+        MessagesGetObject Get(MessagesGetParams @params);
 
         /// <summary>
         /// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
@@ -55,11 +37,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
         /// </remarks>
-        [Pure]
-        public MessagesGetObject GetHistory(MessagesGetHistoryParams @params)
-        {
-            return _vk.Call("messages.getHistory", @params);
-        }
+        MessagesGetObject GetHistory(MessagesGetHistoryParams @params);
 
         /// <summary>
         /// Возвращает сообщения по их идентификаторам.
@@ -75,22 +53,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getById
         /// </remarks>
-        [Pure]
-        public VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)
-        {
-            if (!messageIds.Any())
-            {
-                throw new Exception("messageIds не может быть пустой");
-            }
-
-            var parameters = new VkParameters
-            {
-                { "message_ids", messageIds },
-                { "preview_length", previewLength }
-            };
-
-            return _vk.Call("messages.getById", parameters).ToVkCollectionOf<Message>(r => r);
-        }
+        VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null);
 
         /// <summary>
         /// Ворзвращает указанное сообщение по его идентификатору.
@@ -103,28 +66,14 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getById
         /// </remarks>
-        [Pure]
-        public Message GetById(ulong messageId, uint? previewLength = null)
-        {
-            var result = GetById(new[] { messageId }, previewLength);
-            if (result.Count > 0)
-            {
-                return result.First();
-            }
-            throw new VkApiException("Сообщения с таким ID не существует.");
-        }
+        Message GetById(ulong messageId, uint? previewLength = null);
 
         /// <summary>
         /// Возвращает список диалогов аккаунта
         /// </summary>
         /// <param name="params">Входные параметры выборки.</param>
         /// <returns>В случае успеха возвращает список диалогов пользователя</returns>
-        [Pure]
-        public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
-            return _vk.Call("messages.getDialogs", @params);
-        }
+        MessagesGetObject GetDialogs(MessagesDialogsGetParams @params);
 
         /// <summary>
         /// Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
@@ -140,18 +89,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.searchDialogs
         /// </remarks>
-        [Pure]
-        public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null)
-        {
-            var parameters = new VkParameters
-            {
-                { "q", query },
-                { "fields", fields },
-                { "limit", limit }
-            };
-
-            return _vk.Call("messages.searchDialogs", parameters);
-        }
+        SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null);
 
         /// <summary>
         /// Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
@@ -167,22 +105,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.search
         /// </remarks>
-        public VkCollection<Message> Search([NotNull] string query, long? previewLength, long? offset, long? count)
-        {
-            if (string.IsNullOrWhiteSpace(query))
-            {
-                throw new ArgumentException("Query can not be null or empty.", "query");
-            }
-
-            var parameters = new VkParameters {
-                { "q", query },
-                { "preview_length", previewLength },
-                { "offset", offset },
-                { "count", count }
-            };
-
-            return _vk.Call("messages.search", parameters).ToVkCollectionOf<Message>(r => r);
-        }
+        VkCollection<Message> Search([NotNull] string query, long? previewLength, long? offset, long? count);
 
         /// <summary>
         /// Посылает личное сообщение.
@@ -196,15 +119,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.send
         /// </remarks>
-        public long Send(MessagesSendParams @params)
-        {
-            if ((string.IsNullOrEmpty(@params.Message)) && (@params.Attachments == null))
-            {
-                throw new ArgumentException("Message can not be null.", "Message");
-            }
-
-            return _vk.Call("messages.send", @params);
-        }
+        long Send(MessagesSendParams @params);
 
         /// <summary>
         /// Удаляет все личные сообщения в диалоге.
@@ -224,20 +139,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
         /// </remarks>
-        public bool DeleteDialog(long userId, bool isChat, long? peerId = null, uint? offset = null, uint? count = null)
-        {
-            var parameters = new VkParameters
-            {
-                { isChat ? "chat_id" : "user_id", userId },
-                { "offset", offset },
-                { "peer_id", peerId }
-            };
-            if (count <= 10000)
-            {
-                parameters.Add("count", count);
-            }
-            return _vk.Call("messages.deleteDialog", parameters);
-        }
+        bool DeleteDialog(long userId, bool isChat, long? peerId = null, uint? offset = null, uint? count = null);
 
         /// <summary>
         /// Удаляет сообщения пользователя.
@@ -253,30 +155,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.delete
         /// </remarks>
-        public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds)
-        {
-            if (messageIds == null)
-            {
-                throw new ArgumentNullException("messageIds", "Parameter messageIds can not be null.");
-            }
-            var ids = messageIds.ToList();
-            if (ids.Count == 0)
-            {
-                throw new ArgumentException("Parameter messageIds has no elements.", "messageIds");
-            }
-            var parameters = new VkParameters { { "message_ids", ids } };
-
-            var response = _vk.Call("messages.delete", parameters);
-
-            var result = new Dictionary<ulong, bool>();
-            foreach (var id in ids)
-            {
-                bool isDeleted = response[id.ToString(CultureInfo.InvariantCulture)];
-                result.Add(id, isDeleted);
-            }
-
-            return result;
-        }
+        IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds);
 
         /// <summary>
         /// Удаляет личное сообщение пользователя с заданным идентификатором.
@@ -290,11 +169,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.delete
         /// </remarks>
-        public bool Delete(ulong messageId)
-        {
-            var result = Delete(new[] { messageId });
-            return result[messageId];
-        }
+        bool Delete(ulong messageId);
 
         /// <summary>
         /// Восстанавливает удаленное сообщение.
@@ -304,15 +179,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.restore
         /// </remarks>
-        public bool Restore(ulong messageId)
-        {
-            var parameters = new VkParameters
-            {
-                { "message_id", messageId }
-            };
-
-            return _vk.Call("messages.restore", parameters);
-        }
+        bool Restore(ulong messageId);
 
         /// <summary>
         /// Помечает сообщения как прочитанные.
@@ -326,16 +193,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
         /// </remarks>
-        public bool MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId = null)
-        {
-            var parameters = new VkParameters {
-                { "message_ids", messageIds },
-                { "peer_id", peerId },
-                { "start_message_id", startMessageId }
-            };
+        bool MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId = null);
 
-            return _vk.Call("messages.markAsRead", parameters);
-        }
         /// <summary>
         /// Изменяет статус набора текста пользователем в диалоге.
         /// </summary>
@@ -349,17 +208,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.setActivity
         /// </remarks>
-        public bool SetActivity(long userId, long? peerId = null)
-        {
-            var parameters = new VkParameters
-            {
-                { "used_id", userId },
-                { "type", "typing" },
-                { "peer_id", peerId }
-            };
-
-            return _vk.Call("messages.setActivity", parameters);
-        }
+        bool SetActivity(long userId, long? peerId = null);
 
         /// <summary>
         /// Возвращает текущий статус и дату последней активности указанного пользователя.
@@ -374,20 +223,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getLastActivity
         /// </remarks>
-        public LastActivity GetLastActivity(long userId)
-        {
-            var parameters = new VkParameters
-            {
-                { "user_id", userId }
-            };
-
-            var response = _vk.Call("messages.getLastActivity", parameters);
-
-            LastActivity activity = response;
-            activity.UserId = userId;
-
-            return activity;
-        }
+        LastActivity GetLastActivity(long userId);
 
         /// <summary>
         /// Gets the chat.
@@ -396,10 +232,7 @@ namespace VkNet.Categories
         /// <param name="fields">The fields.</param>
         /// <param name="nameCase">The name case.</param>
         /// <returns></returns>
-        public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null)
-        {
-            return GetChat(new[] { chatId }, fields, nameCase).FirstOrDefault();
-        }
+        Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null);
 
         /// <summary>
         /// Возвращает информацию о беседе.
@@ -416,30 +249,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getChat
         /// </remarks>
-        public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null)
-        {
-            var isNoEmpty = chatIds == null || !chatIds.Any();
-            if (isNoEmpty)
-            {
-                throw new ArgumentException("At least one chat ID must be defined", "chatIds");
-            }
-            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase } };
-            if (chatIds.Count() > 1)
-            {
-                parameters.Add("chat_ids", chatIds);
-            }
-            else
-            {
-                parameters.Add("chat_id", chatIds.ElementAt(0));
-            }
-            var response = _vk.Call("messages.getChat", parameters);
-
-            if (chatIds.Count() > 1)
-            {
-                return response.ToReadOnlyCollectionOf<Chat>(c => c);
-            }
-            return new ReadOnlyCollection<Chat>(new List<Chat> { response });
-        }
+        ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
 
         /// <summary>
         /// Создаёт беседу с несколькими участниками.
@@ -452,21 +262,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.createChat
         /// </remarks>
-        public long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title)
-        {
-            if (string.IsNullOrEmpty(title))
-            {
-                throw new ArgumentException("Title can not be empty or null.", "userIds");
-            }
-
-            var parameters = new VkParameters
-            {
-                { "user_ids", userIds },
-                { "title", title }
-            };
-
-            return _vk.Call("messages.createChat", parameters);
-        }
+        long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title);
 
         /// <summary>
         /// Изменяет название беседы.
@@ -479,21 +275,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
         /// </remarks>
-        public bool EditChat(long chatId, [NotNull] string title)
-        {
-            if (string.IsNullOrEmpty(title))
-            {
-                throw new ArgumentException("Title can not be empty or null.", "title");
-            }
-
-            var parameters = new VkParameters
-            {
-                { "chat_id", chatId },
-                { "title", title }
-            };
-
-            return _vk.Call("messages.editChat", parameters);
-        }
+        bool EditChat(long chatId, [NotNull] string title);
 
         /// <summary>
         /// Позволяет получить список пользователей мультидиалога по его id.
@@ -509,34 +291,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
         /// </remarks>
-        public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
-        {
-            var parameters = new VkParameters {
-
-                { "chat_ids", chatIds },
-                { "fields", fields },
-                { "name_case", nameCase }
-            };
-
-            var response = _vk.Call("messages.getChatUsers", parameters);
-
-            var list = new List<User>();
-
-            foreach (var chatId in chatIds)
-            {
-                var chatResponse = response[chatId.ToString()];
-                var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null ? x : new User { Id = (long)x });
-
-                foreach (var user in users)
-                {
-                    bool exist = list.Exists(first => first.Id == user.Id);
-                    if (!exist)
-                        list.Add(user);
-                }
-            }
-
-            return list.ToReadOnlyCollection();
-        }
+        ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
 
         /// <summary>
         /// Добавляет в мультидиалог нового пользователя.
@@ -549,12 +304,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
         /// </remarks>
-        public bool AddChatUser(long chatId, long userId)
-        {
-            var parameters = new VkParameters { { "chat_id", chatId }, { "user_id", userId } };
-
-            return _vk.Call("messages.addChatUser", parameters);
-        }
+        bool AddChatUser(long chatId, long userId);
 
         /// <summary>
         /// Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
@@ -567,15 +317,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.removeChatUser
         /// </remarks>
-        public bool RemoveChatUser(long chatId, long userId)
-        {
-            var parameters = new VkParameters {
-                { "chat_id", chatId },
-                { "user_id", userId }
-            };
-
-            return _vk.Call("messages.removeChatUser", parameters);
-        }
+        bool RemoveChatUser(long chatId, long userId);
 
         /// <summary>
         /// Возвращает данные, необходимые для подключения к Long Poll серверу.
@@ -591,16 +333,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollServer
         /// </remarks>
-        [Pure]
-        public LongPollServerResponse GetLongPollServer(bool useSsl = false, bool needPts = false)
-        {
-            var parameters = new VkParameters
-            {
-                { "use_ssl", useSsl },
-                { "need_pts", needPts }
-            };
-            return _vk.Call("messages.getLongPollServer", parameters);
-        }
+        LongPollServerResponse GetLongPollServer(bool useSsl = false, bool needPts = false);
 
         /// <summary>
         /// Возвращает обновления в личных сообщениях пользователя.
@@ -613,15 +346,7 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory
         /// </remarks>
-        public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => @params.PreviewLength);
-            VkErrors.ThrowIfNumberIsNegative(() => @params.EventsLimit);
-            VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
-            VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
-
-            return _vk.Call("messages.getLongPollHistory", @params);
-        }
+        LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params);
 
         /// <summary>
         /// Позволяет удалить фотографию мультидиалога.
@@ -636,16 +361,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
         /// </remarks>
-        public Chat DeleteChatPhoto(out ulong messageId, ulong chatId)
-        {
-            var parameters = new VkParameters
-            {
-                { "chat_id", chatId }
-            };
-            var result = _vk.Call("messages.deleteChatPhoto", parameters);
-            messageId = result["message_id"];
-            return result["chat"];
-        }
+        Chat DeleteChatPhoto(out ulong messageId, ulong chatId);
 
         /// <summary>
         /// Позволяет установить фотографию мультидиалога, загруженную с помощью метода photos.getChatUploadServer.
@@ -660,16 +376,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.setChatPhoto
         /// </remarks>
-        public long SetChatPhoto(out long messageId, string file)
-        {
-            var parameters = new VkParameters
-            {
-                { "file", file }
-            };
-            var result = _vk.Call("messages.setChatPhoto", parameters);
-            messageId = result["message_id"];
-            return result["chat"];
-        }
+        long SetChatPhoto(out long messageId, string file);
 
         /// <summary>
         /// Помечает сообщения как важные либо снимает отметку.
@@ -682,17 +389,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportant
         /// </remarks>
-        public ReadOnlyCollection<long> MarkAsImportant(IEnumerable<long> messageIds, bool important = true)
-        {
-            var parameters = new VkParameters
-            {
-                { "message_ids", messageIds },
-                { "important", important }
-            };
-
-            VkResponseArray result = _vk.Call("messages.markAsImportant", parameters);
-            return result.ToReadOnlyCollectionOf<long>(x => x);
-        }
+        ReadOnlyCollection<long> MarkAsImportant(IEnumerable<long> messageIds, bool important = true);
 
         /// <summary>
         /// Отправляет стикер.
@@ -704,12 +401,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.sendSticker
         /// </remarks>
-        public long SendSticker(MessagesSendStickerParams @params)
-        {
-            var parameters = @params;
-
-            return _vk.Call("messages.sendSticker", parameters);
-        }
+        long SendSticker(MessagesSendStickerParams @params);
 
         /// <summary>
         /// Возвращает материалы диалога или беседы..
@@ -728,13 +420,6 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getHistoryAttachments
         /// </remarks>
-        public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
-        {
-            var result = _vk.Call("messages.getHistoryAttachments", @params);
-
-            nextFrom = result["next_from"];
-
-            return result.ToReadOnlyCollectionOf<HistoryAttachment>(o => o);
-        }
+        ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom);
     }
 }

@@ -7,7 +7,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с авторизацией.
 	/// </summary>
-	public class AuthCategory
+	public class AuthCategory : IAuthCategory
 	{
 		/// <summary>
 		/// API.

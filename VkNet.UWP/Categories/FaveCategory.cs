@@ -8,7 +8,7 @@
 	/// <summary>
 	/// Категория работы с закладками.
 	/// </summary>
-	public class FaveCategory
+	public class FaveCategory : IFaveCategory
 	{
 		/// <summary>
 		/// API

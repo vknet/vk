@@ -6,7 +6,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы этого класса позволяют производить действия с универсальным методом.
 	/// </summary>
-	public class ExecuteCategory
+	public class ExecuteCategory : IExecuteCategory
 	{
 		/// <summary>
 		/// API.

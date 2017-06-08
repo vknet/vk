@@ -6,7 +6,7 @@ namespace VkNet
     /// <summary>
     /// Параметры авторизации
     /// </summary>
-    public struct ApiAuthParams
+    public class ApiAuthParams : IAuthParams
     {
         /// <summary>
         /// Идентификатор приложения с помощью которого будет авторизован пользователь

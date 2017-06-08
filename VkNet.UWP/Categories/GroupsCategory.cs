@@ -15,7 +15,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с сообществами (группами).
 	/// </summary>
-	public partial class GroupsCategory
+	public partial class GroupsCategory : IGroupsCategory
 	{
 		private readonly VkApi _vk;
 

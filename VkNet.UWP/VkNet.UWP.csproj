@@ -54,6 +54,24 @@
     <Compile Include="Categories\FriendsCategory.cs" />
     <Compile Include="Categories\GiftsCategory.cs" />
     <Compile Include="Categories\GroupsCategory.cs" />
+    <Compile Include="Categories\IAccountCategory.cs" />
+    <Compile Include="Categories\IAuthCategory.cs" />
+    <Compile Include="Categories\IBoardCategory.cs" />
+    <Compile Include="Categories\IDatabaseCategory.cs" />
+    <Compile Include="Categories\IDocsCategory.cs" />
+    <Compile Include="Categories\IExecuteCategory.cs" />
+    <Compile Include="Categories\IFaveCategory.cs" />
+    <Compile Include="Categories\IGiftsCategory.cs" />
+    <Compile Include="Categories\IGroupsCategory.cs" />
+    <Compile Include="Categories\ILikesCategory.cs" />
+    <Compile Include="Categories\IMarketsCategory.cs" />
+    <Compile Include="Categories\INewsFeedCategory.cs" />
+    <Compile Include="Categories\IPhotoCategory.cs" />
+    <Compile Include="Categories\IPollsCategory.cs" />
+    <Compile Include="Categories\IStatsCategory.cs" />
+    <Compile Include="Categories\IUtilsCategory.cs" />
+    <Compile Include="Categories\IVideoCategory.cs" />
+    <Compile Include="Categories\IWallCategory.cs" />
     <Compile Include="Categories\LikesCategory.cs" />
     <Compile Include="Categories\MarketsCategory.cs" />
     <Compile Include="Categories\MessagesCategory.cs" />
@@ -65,6 +83,13 @@
     <Compile Include="Categories\Obsolete\FriendsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\GiftsCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\GroupsCategory.Obsolete.cs" />
+    <Compile Include="Categories\IAppsCategory.cs" />
+    <Compile Include="Categories\IAudioCategory.cs" />
+    <Compile Include="Categories\IFriendsCategory.cs" />
+    <Compile Include="Categories\IMessagesCategory.cs" />
+    <Compile Include="Categories\IPagesCategory.cs" />
+    <Compile Include="Categories\IStatusCategory.cs" />
+    <Compile Include="Categories\IUsersCategory.cs" />
     <Compile Include="Categories\Obsolete\MessagesCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\NewsFeedCategory.Obsolete.cs" />
     <Compile Include="Categories\Obsolete\PagesCategory.Obsolete.cs" />
@@ -244,6 +269,12 @@
     <Compile Include="Exception\VkApiAuthorizationException.cs" />
     <Compile Include="Exception\VkApiException.cs" />
     <Compile Include="Exception\VkApiMethodInvokeException.cs" />
+    <Compile Include="IAuth.cs" />
+    <Compile Include="IAuthAsync.cs" />
+    <Compile Include="ICaptcha.cs" />
+    <Compile Include="ICategoryPack.cs" />
+    <Compile Include="IInvoke.cs" />
+    <Compile Include="IVkApi.cs" />
     <Compile Include="Model\AccountChangePasswordResult.cs" />
     <Compile Include="Model\AccountInfo.cs" />
     <Compile Include="Model\AccountPushSettings.cs" />
@@ -277,6 +308,7 @@
     <Compile Include="Model\GroupCover.cs" />
     <Compile Include="Model\GroupCoverImage.cs" />
     <Compile Include="Model\HistoryAttachment.cs" />
+    <Compile Include="Model\IAuthParams.cs" />
     <Compile Include="Model\LinkButtonAction.cs" />
     <Compile Include="Model\Career.cs" />
     <Compile Include="Model\CategoryGroup.cs" />
@@ -537,7 +569,7 @@
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToManualEnumCastsGenerator.cs" />
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToModelCastsGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToModelCastsGenerator.cs" />
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.cs" />
-	<Message Importance="high" Text="====================" />
+    <Message Importance="high" Text="====================" />
     <Message Importance="high" Text="Преобразование T4 шаблонов успешно завершено" />
     <Message Importance="high" Text="====================" />
   </Target>

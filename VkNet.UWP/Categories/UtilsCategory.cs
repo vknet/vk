@@ -10,7 +10,7 @@ namespace VkNet.Categories
     /// <summary>
     /// Служебные методы.
     /// </summary>
-    public class UtilsCategory
+    public class UtilsCategory : IUtilsCategory
     {
         private readonly VkApi _vk;
 

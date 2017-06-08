@@ -11,7 +11,7 @@
     /// <summary>
     /// Методы этого класса позволяют производить действия с аккаунтом пользователя.
     /// </summary>
-    public partial class AccountCategory
+    public partial class AccountCategory : IAccountCategory
     {
         /// <summary>
         /// API.

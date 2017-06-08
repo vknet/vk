@@ -9,8 +9,8 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы со статусом пользователя или сообщества.
 	/// </summary>
-	public partial class StatusCategory
-	{
+	public partial class StatusCategory : IStatusCategory
+    {
 		private readonly VkApi _vk;
 
 	    /// <summary>

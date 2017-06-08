@@ -24,8 +24,8 @@ namespace VkNet
 	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
 	/// группами и т.п.).
 	/// </summary>
-	public class VkApi : IDisposable
-	{
+	public class VkApi : IVkApi
+    {
 		/// <summary>
 		/// Версия API vk.com.
 		/// </summary>
@@ -34,7 +34,7 @@ namespace VkNet
 		/// <summary>
 		/// Параметры авторизации.
 		/// </summary>
-		private ApiAuthParams _ap;
+		private IAuthParams _ap;
         /// <summary>
         /// Таймер.
         /// </summary>
@@ -95,138 +95,312 @@ namespace VkNet
 		/// </summary>
 		public event VkApiDelegate OnTokenExpires;
 
-		#region Categories Definition
+        #region ICategoryPack implementation
 
-		/// <summary>
-		/// API для работы с пользователями.
-		/// </summary>
-		public UsersCategory Users
-		{ get; private set; }
-		/// <summary>
-		/// API для работы с друзьями.
-		/// </summary>
-		public FriendsCategory Friends
-		{ get; private set; }
-		/// <summary>
-		/// API для работы со статусом пользователя или сообщества.
-		/// </summary>
-		public StatusCategory Status
-		{ get; private set; }
-		/// <summary>
-		/// API для работы с сообщениями.
-		/// </summary>
-		public MessagesCategory Messages
-		{ get; private set; }
-		/// <summary>
-		/// API для работы с .
-		/// </summary>
-		public GroupsCategory Groups
-		{ get; private set; }
-		/// <summary>
-		/// API для работы с аудио записями.
-		/// </summary>
-		public AudioCategory Audio
-		{ get; private set; }
-		/// <summary>
-		/// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
-		/// </summary>
-		public DatabaseCategory Database
-		{ get; private set; }
-		/// <summary>
-		/// API для работы со служебными методами.
-		/// </summary>
-		public UtilsCategory Utils
-		{ get; private set; }
-		/// <summary>
-		/// API для работы со стеной пользователя.
-		/// </summary>
-		public WallCategory Wall
+        /// <summary>
+        /// API для работы с пользователями.
+        /// </summary>
+        IUsersCategory ICategoryPack.Users => Users;
+
+        /// <summary>
+        /// API для работы с друзьями.
+        /// </summary>
+        IFriendsCategory ICategoryPack.Friends => Friends;
+
+        /// <summary>
+        /// API для работы со статусом пользователя или сообщества.
+        /// </summary>
+        IStatusCategory ICategoryPack.Status => Status;
+
+        /// <summary>
+        /// API для работы с сообщениями.
+        /// </summary>
+        IMessagesCategory ICategoryPack.Messages => Messages;
+
+        /// <summary>
+        /// API для работы с .
+        /// </summary>
+        IGroupsCategory ICategoryPack.Groups => Groups;
+
+        /// <summary>
+        /// API для работы с аудио записями.
+        /// </summary>
+        IAudioCategory ICategoryPack.Audio => Audio;
+
+        /// <summary>
+        /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+        /// </summary>
+        IDatabaseCategory ICategoryPack.Database => Database;
+
+        /// <summary>
+        /// API для работы со служебными методами.
+        /// </summary>
+        IUtilsCategory ICategoryPack.Utils => Utils;
+
+        /// <summary>
+        /// API для работы со стеной пользователя.
+        /// </summary>
+        IWallCategory ICategoryPack.Wall => Wall;
+
+        /// <summary>
+        /// API для работы со темами групп.
+        /// </summary>
+        IBoardCategory ICategoryPack.Board => Board;
+
+        /// <summary>
+        /// API для работы с закладками.
+        /// </summary>
+        IFaveCategory ICategoryPack.Fave => Fave;
+
+        /// <summary>
+        /// API для работы с видео файлами.
+        /// </summary>
+        IVideoCategory ICategoryPack.Video => Video;
+
+        /// <summary>
+        /// API для работы с аккаунтом пользователя.
+        /// </summary>
+        IAccountCategory ICategoryPack.Account => Account;
+
+        /// <summary>
+        /// API для работы с фотографиями
+        /// </summary>
+        IPhotoCategory ICategoryPack.Photo => Photo;
+
+        /// <summary>
+        /// API для работы с документами
+        /// </summary>
+        IDocsCategory ICategoryPack.Docs => Docs;
+
+        /// <summary>
+        /// API для работы с лайками
+        /// </summary>
+        ILikesCategory ICategoryPack.Likes => Likes;
+
+        /// <summary>
+        /// API для работы с wiki.
+        /// </summary>
+        IPagesCategory ICategoryPack.Pages
+        { get; set; }
+
+        /// <summary>
+        /// API для работы с приложениями.
+        /// </summary>
+        IAppsCategory ICategoryPack.Apps
+        { get; set; }
+
+        /// <summary>
+        /// API для работы с новостной лентой.
+        /// </summary>
+        INewsFeedCategory ICategoryPack.NewsFeed
+        { get; set; }
+
+        /// <summary>
+        /// API для работы со статистикой.
+        /// </summary>
+        IStatsCategory ICategoryPack.Stats
+        { get; set; }
+
+        /// <summary>
+        /// API для работы с подарками.
+        /// </summary>
+        IGiftsCategory ICategoryPack.Gifts
+        { get; set; }
+
+        /// <summary>
+        /// API для работы с товарами.
+        /// </summary>
+        IMarketsCategory ICategoryPack.Markets
+        { get; set; }
+
+        /// <summary>
+        /// API для работы с опросами. 
+        /// </summary>
+        IPollsCategory ICategoryPack.PollsCategory => PollsCategory;
+
+        /// <summary>
+        /// API для работы с универсальным методом.
+        /// </summary>
+        IExecuteCategory ICategoryPack.Execute => Execute;
+
+        /// <summary>
+        /// API для работы с Авторизацией.
+        /// </summary>
+        IAuthCategory ICategoryPack.Auth { get; set; }
+
+        #endregion
+
+        #region Categories Definition
+
+        /// <summary>
+        /// API для работы с пользователями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IUsersCategory ICategoryPack.Users")]
+        public UsersCategory Users
 		{ get; private set; }
 
-		/// <summary>
-		/// API для работы со темами групп.
-		/// </summary>
-		public BoardCategory Board
+        /// <summary>
+        /// API для работы с друзьями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IFriendsCategory ICategoryPack.Friends")]
+        public FriendsCategory Friends
 		{ get; private set; }
 
-		/// <summary>
-		/// API для работы с закладками.
-		/// </summary>
-		public FaveCategory Fave
-		{ get; private set; }
-		/// <summary>
-		/// API для работы с видео файлами.
-		/// </summary>
-		public VideoCategory Video
-		{ get; private set; }
-		/// <summary>
-		/// API для работы с аккаунтом пользователя.
-		/// </summary>
-		public AccountCategory Account
-		{ get; private set; }
-		/// <summary>
-		/// API для работы с фотографиями
-		/// </summary>
-		public PhotoCategory Photo
-		{ get; private set; }
-		/// <summary>
-		/// API для работы с документами
-		/// </summary>
-		public DocsCategory Docs
-		{ get; private set; }
-		/// <summary>
-		/// API для работы с лайками
-		/// </summary>
-		public LikesCategory Likes
+        /// <summary>
+        /// API для работы со статусом пользователя или сообщества.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IStatusCategory ICategoryPack.Status")]
+        public StatusCategory Status
 		{ get; private set; }
 
-		/// <summary>
-		/// API для работы с wiki.
-		/// </summary>
-		public PagesCategory Pages
+        /// <summary>
+        /// API для работы с сообщениями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IMessagesCategory ICategoryPack.Messages")]
+        public MessagesCategory Messages
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с .
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IGroupsCategory ICategoryPack.Groups")]
+        public GroupsCategory Groups
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с аудио записями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAudioCategory ICategoryPack.Audio")]
+        public AudioCategory Audio
+		{ get; private set; }
+
+        /// <summary>
+        /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IDatabaseCategory ICategoryPack.Database")]
+        public DatabaseCategory Database
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы со служебными методами.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IUtilsCategory ICategoryPack.Utils")]
+        public UtilsCategory Utils
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы со стеной пользователя.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IWallCategory ICategoryPack.Wall")]
+        public WallCategory Wall
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы со темами групп.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IBoardCategory ICategoryPack.Board")]
+        public BoardCategory Board
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с закладками.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IFaveCategory ICategoryPack.Fave")]
+        public FaveCategory Fave
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с видео файлами.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IVideoCategory ICategoryPack.Video")]
+        public VideoCategory Video
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с аккаунтом пользователя.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAccountCategory ICategoryPack.Account")]
+        public AccountCategory Account
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с фотографиями
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IPhotoCategory ICategoryPack.Photo")]
+        public PhotoCategory Photo
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с документами
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IDocsCategory ICategoryPack.Docs")]
+        public DocsCategory Docs
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с лайками
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее ILikesCategory ICategoryPack.Likes")]
+        public LikesCategory Likes
+		{ get; private set; }
+
+        /// <summary>
+        /// API для работы с wiki.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IPagesCategory ICategoryPack.Pages")]
+        public PagesCategory Pages
 		{ get; set; }
 
-		/// <summary>
-		/// API для работы с приложениями.
-		/// </summary>
+        /// <summary>
+        /// API для работы с приложениями.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAppsCategory ICategoryPack.Apps")]
 		public AppsCategory Apps
 		{ get; set; }
 
-		/// <summary>
-		/// API для работы с новостной лентой.
-		/// </summary>
-		public NewsFeedCategory NewsFeed { get; set; }
+        /// <summary>
+        /// API для работы с новостной лентой.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее INewsFeedCategory ICategoryPack.NewsFeed")]
+        public NewsFeedCategory NewsFeed { get; set; }
 
-		/// <summary>
-		/// API для работы со статистикой.
-		/// </summary>
-		public StatsCategory Stats { get; set; }
+        /// <summary>
+        /// API для работы со статистикой.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IStatsCategory ICategoryPack.Stats")]
+        public StatsCategory Stats { get; set; }
 
-		/// <summary>
-		/// API для работы с подарками.
-		/// </summary>
-		public GiftsCategory Gifts
+        /// <summary>
+        /// API для работы с подарками.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IGiftsCategory ICategoryPack.Gifts")]
+        public GiftsCategory Gifts
 		{ get; set; }
 
-		/// <summary>
-		/// API для работы с товарами.
-		/// </summary>
-		public MarketsCategory Markets { get; set; }
+        /// <summary>
+        /// API для работы с товарами.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IMarketsCategory ICategoryPack.Markets")]
+        public MarketsCategory Markets { get; set; }
 
-		/// <summary>
-		/// API для работы с Авторизацией.
-		/// </summary>
-		public AuthCategory Auth { get; set; }
+        /// <summary>
+        /// API для работы с Авторизацией.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IAuthCategory ICategoryPack.Auth")]
+        public AuthCategory Auth { get; set; }
 
-		/// <summary>
-		/// API для работы с универсальным методом.
-		/// </summary>
-		public ExecuteCategory Execute { get; private set; }
+        /// <summary>
+        /// API для работы с универсальным методом.
+        /// </summary>
+        [Obsolete("Свойство устарело, используйте более общее IExecuteCategory ICategoryPack.Execute")]
+        public ExecuteCategory Execute { get; private set; }
 
         /// <summary>
 		/// API для работы с опросами. 
 		/// </summary>
-		public PollsCategory PollsCategory { get; private set; }
+		[Obsolete("Свойство устарело, используйте более общее IPollsCategory ICategoryPack.PollsCategory")]
+        public PollsCategory PollsCategory { get; private set; }
+
         #endregion
 
         /// <summary>
@@ -269,6 +443,11 @@ namespace VkNet
 		/// </summary>
 		private readonly ICaptchaSolver _captchaSolver;
 
+        /// <summary>
+		/// Обработчик распознавания капчи
+		/// </summary>
+        public ICaptchaSolver CaptchaSolver => _captchaSolver;
+
 		/// <summary>
 		/// Инициализирует новый экземпляр класса VkApi
 		/// </summary>
@@ -293,13 +472,20 @@ namespace VkNet
 			Docs = new DocsCategory(this);
 			Likes = new LikesCategory(this);
 			Pages = new PagesCategory(this);
-			Gifts = new GiftsCategory(this);
-			Apps = new AppsCategory(this);
+            ((IVkApi)this).Pages = Pages;
+            Gifts = new GiftsCategory(this);
+            ((IVkApi)this).Gifts = Gifts;
+            Apps = new AppsCategory(this);
+		    ((IVkApi) this).Apps = Apps;
 			NewsFeed = new NewsFeedCategory(this);
-			Stats = new StatsCategory(this);
+            ((IVkApi)this).NewsFeed = NewsFeed;
+            Stats = new StatsCategory(this);
+            ((IVkApi)this).Stats = Stats;
 			Auth = new AuthCategory(this);
-			Markets = new MarketsCategory(this);
-			Execute = new ExecuteCategory(this);
+            ((IVkApi)this).Auth = Auth;
+            Markets = new MarketsCategory(this);
+            ((IVkApi)this).Markets = Markets;
+            Execute = new ExecuteCategory(this);
             PollsCategory = new PollsCategory(this);
 
 			RequestsPerSecond = 3;
@@ -308,11 +494,11 @@ namespace VkNet
 			_captchaSolver = captchaSolver;
 		}
 
-		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="params">Данные авторизации</param>
-		public void Authorize(ApiAuthParams @params)
+	    /// <summary>
+        /// Авторизация и получение токена
+        /// </summary>
+        /// <param name="params">Данные авторизации</param>
+        public void Authorize(IAuthParams @params)
 		{
             //подключение браузера через прокси 
             if (@params.Host != null)
@@ -369,11 +555,12 @@ namespace VkNet
 				CaptchaKey = captchaKey
 			});
 		}
-		/// <summary>
-		/// Авторизация и получение токена в асинхронном режиме
-		/// </summary>
-		/// <param name="params">Данные авторизации</param>
-		public Task AuthorizeAsync(ApiAuthParams @params)
+
+        /// <summary>
+        /// Авторизация и получение токена в асинхронном режиме
+        /// </summary>
+        /// <param name="params">Данные авторизации</param>
+        public Task AuthorizeAsync(IAuthParams @params)
 		{
 			var rTask = new Task(() => Authorize(@params));
 			rTask.Start();
