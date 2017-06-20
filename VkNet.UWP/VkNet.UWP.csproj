@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.2</TargetFramework>
     <AssemblyName>VkNet.UWP</AssemblyName>
-    <PackageId>VkNet.UWP</PackageId>
+    <PackageId>VkNet</PackageId>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
@@ -14,10 +14,23 @@
     <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.29.1</Version>
+    <Authors>a.zhidkov, inyutin-maxim, CaCTuCaTu4ECKuu</Authors>
+    <PackageLicenseUrl>https://vk.codeplex.com/license</PackageLicenseUrl>
+    <PackageProjectUrl>https://vknet.github.io/vk/</PackageProjectUrl>
+    <PackageIconUrl>http://i1228.photobucket.com/albums/ee450/inyutin_mxim/vknet_zpsmyu5oa5i.png?t=1464596085</PackageIconUrl>
+    <RepositoryUrl>https://github.com/vknet/vk</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>vk, vk api, vknet, vkontakte api</PackageTags>
+    <PackageReleaseNotes>Исправление багов.
+
+Внимание! В следующих версиях будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD1_2, UWP</DefineConstants>
+    <DocumentationFile>bin\Debug\netstandard1.2\VkNet.UWP.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +38,52 @@
     <PackageReference Include="JetBrains.Annotations" Version="10.4.0" />
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Utils\ModelToVkParametrsCastGenerator.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ModelToVkParametrsCastGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Utils\VkResponseToManualEnumCastsGenerator.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>VkResponseToManualEnumCastsGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Utils\VkResponseToModelCastsGenerator.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>VkResponseToModelCastsGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Utils\VkResponseToSafetyEnumCastGenerator.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>VkResponseToSafetyEnumCastGenerator.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Utils\ModelToVkParametrsCastGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelToVkParametrsCastGenerator.cs</LastGenOutput>
+    </None>
+    <None Update="Utils\VkResponseToManualEnumCastsGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToManualEnumCastsGenerator.cs</LastGenOutput>
+    </None>
+    <None Update="Utils\VkResponseToModelCastsGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToModelCastsGenerator.cs</LastGenOutput>
+    </None>
+    <None Update="Utils\VkResponseToSafetyEnumCastGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkResponseToSafetyEnumCastGenerator.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

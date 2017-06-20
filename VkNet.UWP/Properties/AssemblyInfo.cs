@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // набором атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные с этой сборкой.
 [assembly: AssemblyTitle("VkNet.UWP")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Реализация ВКонтакте API для .NET. Список методов см. https://vknet.github.io/vk/")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("VkNet.UWP")]
-[assembly: AssemblyCopyright("©  2016")]
+[assembly: AssemblyCompany("VkNet")]
+[assembly: AssemblyProduct("VkNet")]
+[assembly: AssemblyCopyright("©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("ru")]
