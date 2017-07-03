@@ -10,6 +10,7 @@ namespace VkNet.Exception
     /// В настоящее время действует ограничение (один раз в три секунды) на количество однотипных запросов (вызовов методов
     /// с одним и тем же именем). Если это ограничение превышается, то сервер ВКонтакте возвращает ошибку с кодом 6 -
     /// Too many requests per second.
+	/// Код ошибки - 6
     /// </summary>
     [DataContract]
     public class TooManyRequestsException : VkApiMethodInvokeException

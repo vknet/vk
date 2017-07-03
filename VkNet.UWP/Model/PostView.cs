@@ -21,7 +21,7 @@ namespace VkNet.Model
 		{
 			return new PostView
 			{
-				Count = response["count "]
+				Count = response["count"]
 			};
 		}
 	}

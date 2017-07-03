@@ -4,7 +4,8 @@ using VkNet.Utils;
 namespace VkNet.Exception
 {
 	/// <summary>
-	/// Исключение, которые выбрасывается при попытке добавить себя в друзья. Код ошибки - 174
+	/// Исключение, которые выбрасывается при попытке добавить себя в друзья.
+	/// Код ошибки - 174
 	/// </summary>
 	[DataContract]
 	public class CannotAddYourselfException : VkApiMethodInvokeException

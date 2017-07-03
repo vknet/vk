@@ -4,7 +4,8 @@ using VkNet.Utils;
 namespace VkNet.Exception
 {
     /// <summary>
-    /// Исключение, которые выбрасывается при попытке добавить в друзья пользователя, который занесен в Ваш черный список. Код ошибки - 176
+    /// Исключение, которые выбрасывается при попытке добавить в друзья пользователя, который занесен в Ваш черный список. 
+	/// Код ошибки - 176
     /// </summary>
     [DataContract]
     public class CannotAddUserBlacklistedException : VkApiMethodInvokeException

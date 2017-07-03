@@ -1,4 +1,4 @@
-﻿#if UWP
+﻿
 using System;
 using System.IO;
 using System.Net.Http;
@@ -79,4 +79,3 @@ namespace VkNet.Utils
 		#endregion
 	}
 }
-#endif

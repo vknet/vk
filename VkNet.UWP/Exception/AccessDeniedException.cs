@@ -7,7 +7,8 @@ namespace VkNet.Exception
 
     /// <summary>
     /// Исключение, которое выбрасывается при отказе в доступе на выполнение операции сервером ВКонтакте.
-    /// </summary>
+    /// Код ошибки - 500
+	/// </summary>
     [DataContract]
     public class AccessDeniedException : VkApiMethodInvokeException
     {

@@ -139,6 +139,8 @@ namespace VkNet.Categories
 		/// данный параметр не учитывается).</param>
 		/// <param name="suggested"><c>true</c> — возвращать рекомендованных другими пользователями друзей, <c>false</c> — возвращать заявки в друзья
 		/// (по умолчанию).</param>
+		/// <param name="needViewed"><c>true</c> — возвращать просмотренные заявки, <c>false</c> — не возвращать просмотренные заявки
+		/// (по умолчанию).</param>
 		/// <returns>
 		/// - Если не установлен параметр need_mutual, то в случае успеха возвращает отсортированный в антихронологическом порядке по
 		/// времени подачи заявки список идентификаторов (id) пользователей (кому или от кого пришла заявка).
@@ -152,7 +154,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		[Pure]
 		[Obsolete("Данный метод устарел. Используйте GetRequests(FriendsGetRequestsParams @params)")]
-		public ReadOnlyCollection<long> GetRequests(int? count = null, int? offset = null, bool extended = false, bool needMutual = false, bool @out = false, bool sort = false, bool suggested = false)
+		public ReadOnlyCollection<long> GetRequests(int? count = null, int? offset = null, bool extended = false, bool needMutual = false, bool @out = false, bool sort = false, bool suggested = false, bool needViewed = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
@@ -165,7 +167,8 @@ namespace VkNet.Categories
 				NeedMutual = needMutual,
 				Out = @out,
 				Sort = sort,
-				Suggested = suggested
+				Suggested = suggested,
+				NeedViewed = needViewed
 			};
 
 			return GetRequests(parameters).Select(x => x.Key).ToReadOnlyCollection();

@@ -7,6 +7,7 @@ namespace VkNet.Exception
 
     /// <summary>
     /// Исключение, выбрасываемое при необходимости ввода капчи для вызова метода
+	/// Код ошибки - 14
     /// </summary>
     [DataContract]
     public class CaptchaNeededException : VkApiException
