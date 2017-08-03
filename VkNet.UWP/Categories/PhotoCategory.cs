@@ -225,7 +225,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 		/// </remarks>
-		public Photo SaveOwnerPhoto(string response)
+		public Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
@@ -235,7 +235,9 @@
 			{
 				{ "server", server },
 				{ "hash", hash },
-				{ "photo", photo }
+				{ "photo", photo },
+				{ "captcha_sid", captchaSid },
+				{ "captcha_key", captchaKey }
 			};
 
 			return _vk.Call("photos.saveOwnerPhoto", parameters);
