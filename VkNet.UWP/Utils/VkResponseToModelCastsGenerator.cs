@@ -3,6 +3,8 @@ using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using System.Collections.ObjectModel;
+using VkNet.UWP.Model.Attachments;
+
 namespace VkNet.Utils
 {
     public partial class VkResponse
@@ -2069,6 +2071,30 @@ namespace VkNet.Utils
 		public static implicit operator Collection<PhotoSize>(VkResponse response)
         {
             return response.ToCollectionOf<PhotoSize>(a => a);
+        }
+
+		/// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+		public static implicit operator PhotosList(VkResponse response)
+		{
+            return response?._token == null || !response._token.HasValues ? null :  PhotosList.FromJson(response);
+        }
+
+		/// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+		public static implicit operator Collection<PhotosList>(VkResponse response)
+        {
+            return response.ToCollectionOf<PhotosList>(a => a);
         }
 
 		/// <summary>

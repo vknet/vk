@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using VkNet.Exception;
 using VkNet.Utils;
+using VkNet.UWP.Model.Attachments;
 
 namespace VkNet.Model.Attachments
 {
@@ -71,6 +72,11 @@ namespace VkNet.Model.Attachments
 		private Album Album { get; set; }
 
 		/// <summary>
+		/// Список фотографий
+		/// </summary>
+		private PhotosList PhotosList;
+
+		/// <summary>
 		/// Запись на стене.
 		/// </summary>
 		private Post Wall { get; set; }
@@ -131,6 +137,8 @@ namespace VkNet.Model.Attachments
 					return Page;
 				if (Type == typeof(Album))
 					return Album;
+				if (Type == typeof(PhotosList))
+					return PhotosList;
 				if (Type == typeof(Post))
 					return Wall;
 				if (Type == typeof(Sticker))
@@ -230,6 +238,12 @@ namespace VkNet.Model.Attachments
 					{
 						attachment.Type = typeof(Album);
 						attachment.Album = response["album"];
+						break;
+					}
+				case "photos_list":
+					{
+						attachment.Type = typeof(PhotosList);
+						attachment.PhotosList = response["photos_list"];
 						break;
 					}
 				case "wall":
