@@ -10,6 +10,8 @@ using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using System.Collections.ObjectModel;
+using VkNet.UWP.Model.Attachments;
+
 namespace VkNet.Utils
 {
     public partial class VkResponse
