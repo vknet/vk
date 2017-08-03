@@ -67,7 +67,7 @@ namespace VkNet.Categories
 				""photo"":" + photo + @"
 				""hash"": " + hash + @"
 			}";
-			return SaveOwnerPhoto(response);
+			return SaveOwnerPhoto(response, null, null);
 		}
 
 		/// <summary>
