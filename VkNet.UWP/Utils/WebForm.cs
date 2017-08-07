@@ -68,6 +68,19 @@ namespace VkNet.Utils
 		public static WebForm From(WebCallResult result) => new WebForm(result);
 
 		/// <summary>
+		/// Проверка на отсутствие двухфакторной авторизации.
+		/// </summary>
+		/// <param name="result">Результат.</param>
+		/// <returns>WEB форма.</returns>
+		public static bool IsOAuthBlank(WebCallResult result)
+		{
+			var parser = new HtmlParser();
+			var html = parser.Parse(result.Response);
+
+			return html.Title.ToLowerInvariant() == "oauth blank";
+		}
+
+		/// <summary>
 		/// И.
 		/// </summary>
 		/// <returns>WEB форма.</returns>

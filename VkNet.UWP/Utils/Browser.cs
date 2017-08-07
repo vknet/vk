@@ -49,7 +49,7 @@ namespace VkNet.Utils
 				var json = JObject.Parse(answer);
 
 				var rawResponse = json["file"];
-				return new VkResponse(rawResponse) { RawJson = answer };
+				return new VkResponse(rawResponse) {RawJson = answer};
 			}
 		}
 
@@ -66,12 +66,11 @@ namespace VkNet.Utils
 			}
 		}
 
-#if false
-        /// <summary>
-        /// Асинхронное получение json по url-адресу
-        /// </summary>
-        /// <param name="url">Адрес получения json</param>
-        /// <returns>Строка в формате json</returns>
+#if false /// <summary>
+/// Асинхронное получение json по url-адресу
+/// </summary>
+/// <param name="url">Адрес получения json</param>
+/// <returns>Строка в формате json</returns>
         public async Task<string> GetJsonAsync(string url)
         {
             // todo refactor this shit
@@ -94,24 +93,25 @@ namespace VkNet.Utils
 		/// <param name="captchaSid">Идентификатор капчи</param>
 		/// <param name="captchaKey">Текст капчи</param>
 		/// <returns>Информация об авторизации приложения</returns>
-		public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings, Func<string> code = null, long? captchaSid = null, string captchaKey = null)
+		public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings,
+			Func<string> code = null, long? captchaSid = null, string captchaKey = null)
 		{
-
 			var authorizeUrl = CreateAuthorizeUrlFor(appId, settings, Display.Wap);
 			var authorizeUrlResult = WebCall.MakeCall(authorizeUrl, Proxy);
 
-			if (authorizeUrlResult.ResponseUrl.ToString().StartsWith("https://oauth.vk.com/blank.html#access_token=", StringComparison.Ordinal))
+			if (authorizeUrlResult.ResponseUrl.ToString()
+				.StartsWith("https://oauth.vk.com/blank.html#access_token=", StringComparison.Ordinal))
 			{
 				return EndAuthorize(authorizeUrlResult, Proxy);
 			}
 
 			// Заполнить логин и пароль
 			var loginForm = WebForm.From(authorizeUrlResult)
-									.WithField("email")
-									.FilledWith(email)
-									.And()
-									.WithField("pass")
-									.FilledWith(password);
+				.WithField("email")
+				.FilledWith(email)
+				.And()
+				.WithField("pass")
+				.FilledWith(password);
 			if (captchaSid.HasValue)
 			{
 				loginForm.WithField("captcha_sid")
@@ -123,7 +123,14 @@ namespace VkNet.Utils
 			var loginFormPostResult = WebCall.Post(loginForm, Proxy);
 
 			// Заполнить код двухфакторной авторизации
+			var isOAuthBlank = WebForm.IsOAuthBlank(loginFormPostResult);
+
 			if (code == null)
+			{
+				return EndAuthorize(loginFormPostResult, Proxy);
+			}
+
+			if (isOAuthBlank)
 			{
 				return EndAuthorize(loginFormPostResult, Proxy);
 			}
@@ -132,6 +139,7 @@ namespace VkNet.Utils
 				.WithField("code")
 				.FilledWith(code.Invoke());
 			loginFormPostResult = WebCall.Post(codeForm, Proxy);
+
 
 			return EndAuthorize(loginFormPostResult, Proxy);
 		}
@@ -168,7 +176,8 @@ namespace VkNet.Utils
 			var authorization = VkAuthorization.From(result.ResponseUrl);
 			if (authorization.CaptchaId.HasValue)
 			{
-				throw new CaptchaNeededException(authorization.CaptchaId.Value, "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaId.Value);
+				throw new CaptchaNeededException(authorization.CaptchaId.Value,
+					"http://api.vk.com/captcha.php?sid=" + authorization.CaptchaId.Value);
 			}
 
 			if (!authorization.IsAuthorizationRequired)
