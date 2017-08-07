@@ -34,12 +34,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор последнего сообщения, прочитанного текущим пользователем
 		/// </summary>
-		public uint InRead{ get; set; }
+		public uint? InRead { get; set; }
 
 		/// <summary>
 		/// Идентификатор последнего сообщения, прочитанного собеседником.
 		/// </summary>
-		public uint OutRead { get; set; }
+		public uint? OutRead { get; set; }
 		
 		
 		/// <summary>
