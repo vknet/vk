@@ -50,7 +50,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор, необходимый для получения следующей страницы результатов. Значение, необходимое для передачи в этом параметре, возвращается в поле ответа next_from.
 		/// </summary>
-		public long StartFrom
+		public string StartFrom
 		{ get; set; }
 
 		/// <summary>
