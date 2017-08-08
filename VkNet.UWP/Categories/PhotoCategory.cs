@@ -106,7 +106,7 @@
 				{"group_id", groupId}
 			};
 
-			return _vk.Call("photos.getAlbumsCount", parameters, false);
+			return _vk.Call("photos.getAlbumsCount", parameters);
 		}
 
 		/// <summary>
@@ -186,7 +186,7 @@
 			{
 				{"owner_id", ownerId}
 			};
-			return _vk.Call("photos.getOwnerPhotoUploadServer", parameters, false);
+			return _vk.Call("photos.getOwnerPhotoUploadServer", parameters);
 		}
 
 		/// <summary>
@@ -219,6 +219,8 @@
 		/// Позволяет сохранить главную фотографию пользователя или сообщества.
 		/// </summary>
 		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
+		/// <param name="captchaSid">Идентификатор капчи</param>
+		/// <param name="captchaKey">текст, который ввел пользователь</param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий поля photo_hash и photo_src (при работе через VK.api метод вернёт поля photo_src, photo_src_big, photo_src_small). Параметр photo_hash необходим для подтверждения пользователем изменения его фотографии через вызов метода saveProfilePhoto Javascript API. Поле photo_src содержит путь к загруженной фотографии.
 		/// </returns>
@@ -601,7 +603,7 @@
 		/// </remarks>
 		public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params)
 		{
-			return _vk.Call("photos.getUserPhotos", @params, false).ToVkCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.getUserPhotos", @params).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>

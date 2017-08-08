@@ -166,7 +166,7 @@ namespace VkNet.Categories
 				throw new ArgumentException("Posts collection must have more then 0 elements.", "posts");
 			}
 
-			return GetById(posts.Select(x => x.Key + "_" + x.Value), null, null, null).WallPosts;
+			return GetById(posts.Select(x => x.Key + "_" + x.Value)).WallPosts;
 		}
 
 		/// <summary>

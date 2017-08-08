@@ -284,7 +284,7 @@ namespace VkNet.Categories
 		[Obsolete("Устаревшая версия API. Используйте метод MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId)")]
 		public bool MarkAsRead(IEnumerable<long> messageIds)
 		{
-			return MarkAsRead(messageIds, null, null);
+			return MarkAsRead(messageIds, null);
 		}
 
 		/// <summary>

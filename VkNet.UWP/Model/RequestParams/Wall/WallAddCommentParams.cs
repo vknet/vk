@@ -23,6 +23,8 @@ namespace VkNet.Model.RequestParams
 			Attachments = null;
 			StickerId = null;
 			Ref = null;
+			CaptchaKey = null;
+			CaptchaSid = null;
 		}
 
 		/// <summary>
