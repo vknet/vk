@@ -20,6 +20,7 @@ namespace VkNet
 	/// <param name="sender">Экземпляр API у которого истекло время токена</param>
 	public delegate void VkApiDelegate(VkApi sender);
 
+	/// <inheritdoc />
 	/// <summary>
 	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
 	/// группами и т.п.).
@@ -74,7 +75,7 @@ namespace VkNet
 		/// </summary>
 		public float RequestsPerSecond
 		{
-			get { return _requestsPerSecond; }
+			get => _requestsPerSecond;
 			set
 			{
 			    if (value < 0)

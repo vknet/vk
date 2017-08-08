@@ -78,6 +78,16 @@ namespace VkNet.Model.RequestParams
 		public string Ref { get; set; }
 
 		/// <summary>
+		/// Идентификатор капчи
+		/// </summary>
+		public long? CaptchaSid { get; set; }
+
+		/// <summary>
+		/// текст, который ввел пользователь
+		/// </summary>
+		public string CaptchaKey { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
@@ -93,7 +103,9 @@ namespace VkNet.Model.RequestParams
 				{ "reply_to_comment", p.ReplyToComment },
 				{ "attachments", p.Attachments },
 				{ "sticker_id", p.StickerId },
-				{ "ref", p.Ref }
+				{ "ref", p.Ref },
+				{ "captcha_sid", p.CaptchaSid },
+				{ "captcha_key", p.CaptchaKey }
 			};
 
 			return parameters;
