@@ -16,54 +16,6 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
-		public static implicit operator AccountChangePasswordResult(VkResponse response)
-		{
-            return response?._token == null || !response._token.HasValues ? null :  AccountChangePasswordResult.FromJson(response);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-		public static implicit operator Collection<AccountChangePasswordResult>(VkResponse response)
-        {
-            return response.ToCollectionOf<AccountChangePasswordResult>(a => a);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-		public static implicit operator AccountInfo(VkResponse response)
-		{
-            return response?._token == null || !response._token.HasValues ? null :  AccountInfo.FromJson(response);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-		public static implicit operator Collection<AccountInfo>(VkResponse response)
-        {
-            return response.ToCollectionOf<AccountInfo>(a => a);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
 		public static implicit operator AccountPushSettings(VkResponse response)
 		{
             return response?._token == null || !response._token.HasValues ? null :  AccountPushSettings.FromJson(response);
@@ -2599,30 +2551,6 @@ namespace VkNet.Utils
 		public static implicit operator Collection<SearchDialogsResponse>(VkResponse response)
         {
             return response.ToCollectionOf<SearchDialogsResponse>(a => a);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-		public static implicit operator ShortLink(VkResponse response)
-		{
-            return response?._token == null || !response._token.HasValues ? null :  ShortLink.FromJson(response);
-        }
-
-		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-		public static implicit operator Collection<ShortLink>(VkResponse response)
-        {
-            return response.ToCollectionOf<ShortLink>(a => a);
         }
 
 		/// <summary>
