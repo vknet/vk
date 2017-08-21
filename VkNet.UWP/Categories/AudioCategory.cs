@@ -318,6 +318,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.addAlbum
 		/// </remarks>
+		[Obsolete("5.65 Методы audio.getAlbums, audio.addAlbum, audio.editAlbum, audio.addAlbum, audio.deleteAlbum и audio.moveToAlbum устарели. ")]
 		public long AddAlbum(string title, long? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
@@ -344,6 +345,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.editAlbum
 		/// </remarks>
+		[Obsolete("5.65 Методы audio.getAlbums, audio.addAlbum, audio.editAlbum, audio.addAlbum, audio.deleteAlbum и audio.moveToAlbum устарели. ")]
 		public bool EditAlbum(string title, long albumId, long? groupId = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
@@ -369,6 +371,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.deleteAlbum
 		/// </remarks>
+		[Obsolete("5.65 Методы audio.getAlbums, audio.addAlbum, audio.editAlbum, audio.addAlbum, audio.deleteAlbum и audio.moveToAlbum устарели. ")]
 		public bool DeleteAlbum(long albumId, long? groupId = null)
 		{
 			var parameters = new VkParameters {
@@ -425,6 +428,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getAlbums
 		/// </remarks>
+		[Obsolete("5.65 Методы audio.getAlbums, audio.addAlbum, audio.editAlbum, audio.addAlbum, audio.deleteAlbum и audio.moveToAlbum устарели. ")]
 		public VkCollection<AudioAlbum> GetAlbums(long ownerId, uint? count = null, uint? offset = null)
 		{
 			var parameters = new VkParameters {
@@ -449,6 +453,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.moveToAlbum
 		/// </remarks>
+		[Obsolete("5.65 Методы audio.getAlbums, audio.addAlbum, audio.editAlbum, audio.addAlbum, audio.deleteAlbum и audio.moveToAlbum устарели. ")]
 		public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
 		{
 			var parameters = new VkParameters
