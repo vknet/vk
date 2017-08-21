@@ -581,7 +581,7 @@ namespace VkNet.Categories
         /// Возвращает данные, необходимые для подключения к Long Poll серверу.
         /// Long Poll подключение позволит Вам моментально узнавать о приходе новых сообщений и других событий.
         /// </summary>
-        /// <param name="useSsl"><c>true</c> — Использовать SSL.</param>
+        /// <param name="lpVersion">версия для подключения к Long Poll. Актуальная версия: 2. </param>
         /// <param name="needPts"><c>true</c> — возвращать поле pts, необходимое для работы метода messages.getLongPollHistory </param>
         /// <returns>
         /// Возвращает объект, с помощью которого можно подключиться к серверу быстрых сообщений для мгновенного
@@ -592,11 +592,11 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollServer
         /// </remarks>
         [Pure]
-        public LongPollServerResponse GetLongPollServer(bool useSsl = false, bool needPts = false)
+        public LongPollServerResponse GetLongPollServer(bool needPts = false, uint lpVersion = 2)
         {
             var parameters = new VkParameters
             {
-                { "use_ssl", useSsl },
+                { "lp_version", lpVersion },
                 { "need_pts", needPts }
             };
             return _vk.Call("messages.getLongPollServer", parameters);
