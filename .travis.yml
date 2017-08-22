@@ -8,7 +8,6 @@ solution: ./VkNet.UWP.sln
 
 install:
   - sudo apt-get install nunit-console
-  - nuget restore ./VkNet.UWP.sln
 
 script:
   - dotnet restore && dotnet build ./VkNet.UWP.sln
