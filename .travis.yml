@@ -1,4 +1,9 @@
 language: csharp
+dist: trusty
+sudo: required
+mono: none
+dotnet: 1.0.1
+
 solution: ./VkNet.UWP.sln
 
 install:
@@ -6,5 +11,5 @@ install:
   - nuget restore ./VkNet.UWP.sln
 
 script:
-  - msbuild ./VkNet.UWP.sln
+  - dotnet restore && dotnet build ./VkNet.UWP.sln
   - nunit-console ./Debug/VkNet.Tests.dll
