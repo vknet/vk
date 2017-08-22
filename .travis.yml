@@ -6,5 +6,5 @@ install:
   - nuget restore ./VkNet.UWP.sln
 
 script:
-  - xbuild ./VkNet.UWP.sln
+  - msbuild ./VkNet.UWP.sln
   - nunit-console ./Debug/VkNet.Tests.dll
