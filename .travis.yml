@@ -10,5 +10,6 @@ install:
   - sudo apt-get install nunit-console
 
 script:
-  - dotnet restore && dotnet build ./VkNet.UWP.sln
+  - dotnet restore ./VkNet.UWP.sln
+  - dotnet build ./VkNet.UWP.sln
   - nunit-console ./Debug/VkNet.Tests.dll
