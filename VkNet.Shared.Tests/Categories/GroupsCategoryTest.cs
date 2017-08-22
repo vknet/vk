@@ -57,7 +57,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			var ex = Assert.Throws<AccessDeniedException>(() => groups.Join(0, true));
+			var ex = Assert.Throws<CannotBlacklistYourselfException>(() => groups.Join(0, true));
 			Assert.That(ex.Message, Is.EqualTo("Access denied: you can not join this private community"));
 		}
 
@@ -152,7 +152,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			Assert.That(() => groups.Join(2, true), Throws.InstanceOf<AccessDeniedException>());
+			Assert.That(() => groups.Join(2, true), Throws.InstanceOf<PermissionToPerformThisActionException>());
 		}
 
 		[Test]
@@ -186,7 +186,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			Assert.That(() => groups.Leave(2), Throws.InstanceOf<AccessDeniedException>());
+			Assert.That(() => groups.Leave(2), Throws.InstanceOf<PermissionToPerformThisActionException>());
 		}
 
 		[Test]
@@ -481,7 +481,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			var ex = Assert.Throws<InvalidParameterException>(() => groups.IsMember(0, 4793858));
+			var ex = Assert.Throws<InvalidGroupIdException>(() => groups.IsMember(0, 4793858));
 			Assert.That(ex.Message, Is.EqualTo("Invalid group id"));
 		}
 
@@ -641,7 +641,7 @@ namespace VkNet.Tests.Categories
 			var groups = GetMockedGroupCategory(url, json);
 
 			int totalCount;
-			Assert.That(() => groups.GetMembers(0, out totalCount), Throws.InstanceOf<InvalidParameterException>());
+			Assert.That(() => groups.GetMembers(0, out totalCount), Throws.InstanceOf<InvalidGroupIdException>());
 		}
 
 		[Test]
@@ -915,7 +915,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			Assert.That(() => cat.GetById(0), Throws.InstanceOf<InvalidParameterException>());
+			Assert.That(() => cat.GetById(0), Throws.InstanceOf<InvalidGroupIdException>());
 		}
 
 		[Test]
@@ -990,7 +990,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			Assert.That(() => cat.GetById(new long[] { 0 }), Throws.InstanceOf<InvalidParameterException>());
+			Assert.That(() => cat.GetById(new long[] { 0 }), Throws.InstanceOf<InvalidGroupIdException>());
 		}
 
 		[Test]

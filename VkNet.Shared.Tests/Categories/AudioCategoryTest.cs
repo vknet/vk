@@ -572,7 +572,7 @@
                     }
                   }";
 
-			Assert.Throws<InvalidParameterException>(() => Api.Audio.Add(0, 0));
+			Assert.Throws<ParameterMissingOrInvalidException>(() => Api.Audio.Add(0, 0));
 		}
 
 		[Test]
@@ -671,7 +671,7 @@
                     }
                   }";
 
-			Assert.Throws<InvalidParameterException>(() => Api.Audio.Delete(0, 0));
+			Assert.Throws<ParameterMissingOrInvalidException>(() => Api.Audio.Delete(0, 0));
 		}
 
 		[Test]
@@ -773,7 +773,7 @@
                     }
                   }";
 
-			Assert.Throws<InvalidParameterException>(() => Api.Audio.Edit(0, 0, "Test Artist", "Test Title", "Test Text", false, AudioGenre.Other));
+			Assert.Throws<ParameterMissingOrInvalidException>(() => Api.Audio.Edit(0, 0, "Test Artist", "Test Title", "Test Text", false, AudioGenre.Other));
 		}
 
 		[Test]
@@ -818,7 +818,7 @@
                     }
                   }";
 
-			Assert.Throws<InvalidParameterException>(() => Api.Audio.Restore(0, 0));
+			Assert.Throws<ParameterMissingOrInvalidException>(() => Api.Audio.Restore(0, 0));
 		}
 
 		[Test]
@@ -935,7 +935,7 @@
                     }
                   }";
 
-			Assert.Throws<InvalidParameterException>(() => Api.Audio.Reorder(0, 0, 159104443, 158945986));
+			Assert.Throws<ParameterMissingOrInvalidException>(() => Api.Audio.Reorder(0, 0, 159104443, 158945986));
 		}
 
 		[Test]

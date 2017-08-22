@@ -54,7 +54,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var status = GetMockedStatusCategory(url, json);
-			var ex = Assert.Throws<AccessDeniedException>(() => status.Get(1));
+			var ex = Assert.Throws<PermissionToPerformThisActionException>(() => status.Get(1));
 			Assert.That(ex.Message, Is.EqualTo("Permission to perform this action is denied"));
 		}
 
@@ -96,7 +96,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var status = GetMockedStatusCategory(url, json);
-			Assert.That(() => status.Set("test"), Throws.InstanceOf<AccessDeniedException>());
+			Assert.That(() => status.Set("test"), Throws.InstanceOf<PermissionToPerformThisActionException>());
 		}
 
         [Test]

@@ -161,7 +161,7 @@ namespace VkNet.Tests.Utils
                       ]
                     }
                   }";
-	        var ex = Assert.Throws<AccessDeniedException>(() => VkErrors.IfErrorThrowException(json));
+	        var ex = Assert.Throws<GroupsListAccessDeniedException>(() => VkErrors.IfErrorThrowException(json));
 			StringAssert.AreEqualIgnoringCase("Access to the groups list is denied due to the user privacy settings.", ex.Message);
         }
 

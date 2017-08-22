@@ -631,7 +631,7 @@ namespace VkNet.Tests.Categories
 					}]
 				}
 			}";
-			Assert.That(() => account.SetInfo("intro", "-10"), Throws.InstanceOf<InvalidParameterException>());
+			Assert.That(() => account.SetInfo("intro", "-10"), Throws.InstanceOf<ParameterMissingOrInvalidException>());
 		}
 
 		[Test]
