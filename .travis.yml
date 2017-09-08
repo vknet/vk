@@ -1,6 +1,5 @@
 language: csharp
 dist: precise
-sudo: required
 mono: none
 dotnet: 2.0.0
 
