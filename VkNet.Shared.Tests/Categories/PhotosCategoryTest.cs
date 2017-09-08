@@ -62,6 +62,25 @@ namespace VkNet.Tests.Categories
 		}
         #endregion
 
+        #region GetOwnerCoverPhotoUploadServer
+        [Test]
+        public void GetOwnerCoverPhotoUploadServer_NormalCase() {
+            const long group = 1L;
+            const string url = "https://api.vk.com/method/photos.getOwnerCoverPhotoUploadServer";
+            const string json =
+                @"{
+                    'response': {
+                      'upload_url': 'http://pu.vk.com/c837421/upload.php?_query=eyJhY3QiOiJvd25lcl9jb3ZlciIsIm9pZCI6LTkzNjY5OTI0LCJhcGkiOnRydWUsImFwaV93cmFwIjp7Imhhc2giOiIxMDA4MmRjZWJlZGIzMjZkNDQiLCJwaG90byI6IntyZXN1bHR9In0sIm1pZCI6NzY2NDA4ODIsInNlcnZlciI6ODM3NDIxLCJfb3JpZ2luIjoiaHR0cHM6XC9cL2FwaS52ay5jb20iLCJfc2lnIjoiYzZjNWM4ZGVmYmE5YWQ3YWM1ZTYzYTUxMWJjMjgzZDcifQ&_crop=0,0,1590,400'
+                    }
+                  }";
+
+            var info = GetMockedPhotosCategory(url, json).GetOwnerCoverPhotoUploadServer(group);
+            Assert.That(info, Is.Not.Null);
+
+            Assert.That(info.UploadUrl, Is.EqualTo("http://pu.vk.com/c837421/upload.php?_query=eyJhY3QiOiJvd25lcl9jb3ZlciIsIm9pZCI6LTkzNjY5OTI0LCJhcGkiOnRydWUsImFwaV93cmFwIjp7Imhhc2giOiIxMDA4MmRjZWJlZGIzMjZkNDQiLCJwaG90byI6IntyZXN1bHR9In0sIm1pZCI6NzY2NDA4ODIsInNlcnZlciI6ODM3NDIxLCJfb3JpZ2luIjoiaHR0cHM6XC9cL2FwaS52ay5jb20iLCJfc2lnIjoiYzZjNWM4ZGVmYmE5YWQ3YWM1ZTYzYTUxMWJjMjgzZDcifQ&_crop=0,0,1590,400"));
+        }
+        #endregion
+
         #region CreateAlbum
 
         [Test]
@@ -596,6 +615,82 @@ namespace VkNet.Tests.Categories
 			Assert.That(photo.Text, Is.EqualTo(string.Empty));
 			Assert.That(photo.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1415629651)));
 		}
+        #endregion
+
+        #region SaveOwnerCoverPhoto
+        [Test]
+        public void SaveOwnerCoverPhoto_NormalCase() {
+            const string url = "https://api.vk.com/method/photos.saveOwnerCoverPhoto";
+            const string json = @"{
+    'response':
+    {
+        'images': [
+        {
+            'url': 'https://cs7052.userapi.com/c837421/v837421774/52897/3TEjTwhK2uw.jpg',
+            'width': 200,
+            'height': 50
+        },
+        {
+            'url': 'https://cs7052.userapi.com/c837421/v837421774/52896/M57KWzVv6zE.jpg',
+            'width': 400,
+            'height': 101
+        },
+        {
+            'url': 'https://cs7052.userapi.com/c837421/v837421774/52893/yHkTW6fmR68.jpg',
+            'width': 795,
+            'height': 200
+        },
+        {
+            'url': 'https://cs7052.userapi.com/c837421/v837421774/52895/D6rhfBrxGow.jpg',
+            'width': 1080,
+            'height': 272
+        },
+        {
+            'url': 'https://cs7052.userapi.com/c837421/v837421774/52894/fEmF9i76g5w.jpg',
+            'width': 1590,
+            'height': 400
+        }
+        ]
+    }
+}";
+            const string response = @"{
+				""photo"":""[]""
+				,""hash"":""163abf8b9e4e4513577012d5275cafbb""
+}";
+
+            var result = GetMockedPhotosCategory(url, json).SaveOwnerCoverPhoto(response);
+            Assert.That(result, Is.Not.Null);
+
+            var images = result.Images;
+            Assert.That(images, Is.Not.Null);
+            Assert.That(images.Count, Is.EqualTo(5));
+
+            var image = images.ElementAt(0);
+            Assert.That(image, Is.Not.Null);
+            Assert.That(image.Url, Is.EqualTo(new Uri("https://cs7052.userapi.com/c837421/v837421774/52897/3TEjTwhK2uw.jpg")));
+            Assert.That(image.Width, Is.EqualTo(200));
+            Assert.That(image.Height, Is.EqualTo(50));
+            image = images.ElementAt(1);
+            Assert.That(image, Is.Not.Null);
+            Assert.That(image.Url, Is.EqualTo(new Uri("https://cs7052.userapi.com/c837421/v837421774/52896/M57KWzVv6zE.jpg")));
+            Assert.That(image.Width, Is.EqualTo(400));
+            Assert.That(image.Height, Is.EqualTo(101));
+            image = images.ElementAt(2);
+            Assert.That(image, Is.Not.Null);
+            Assert.That(image.Url, Is.EqualTo(new Uri("https://cs7052.userapi.com/c837421/v837421774/52893/yHkTW6fmR68.jpg")));
+            Assert.That(image.Width, Is.EqualTo(795));
+            Assert.That(image.Height, Is.EqualTo(200));
+            image = images.ElementAt(3);
+            Assert.That(image, Is.Not.Null);
+            Assert.That(image.Url, Is.EqualTo(new Uri("https://cs7052.userapi.com/c837421/v837421774/52895/D6rhfBrxGow.jpg")));
+            Assert.That(image.Width, Is.EqualTo(1080));
+            Assert.That(image.Height, Is.EqualTo(272));
+            image = images.ElementAt(4);
+            Assert.That(image, Is.Not.Null);
+            Assert.That(image.Url, Is.EqualTo(new Uri("https://cs7052.userapi.com/c837421/v837421774/52894/fEmF9i76g5w.jpg")));
+            Assert.That(image.Width, Is.EqualTo(1590));
+            Assert.That(image.Height, Is.EqualTo(400));
+        }
         #endregion
     }
 }
