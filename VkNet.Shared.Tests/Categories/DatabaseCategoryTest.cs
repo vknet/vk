@@ -45,7 +45,7 @@ namespace VkNet.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-			var ex = Assert.Throws<InvalidParameterException>(() => db.GetStreetsById());
+			var ex = Assert.Throws<ParameterMissingOrInvalidException>(() => db.GetStreetsById());
 			Assert.That(ex.Message, Is.EqualTo("One of the parameters specified was missing or invalid: street_ids is undefined"));
 		}
 

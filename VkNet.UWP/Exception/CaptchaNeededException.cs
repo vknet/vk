@@ -10,7 +10,7 @@ namespace VkNet.Exception
 	/// Код ошибки - 14
     /// </summary>
     [DataContract]
-    public class CaptchaNeededException : VkApiException
+    public class CaptchaNeededException : VkApiMethodInvokeException
     {
         /// <summary>
         /// Идентификатор капчи

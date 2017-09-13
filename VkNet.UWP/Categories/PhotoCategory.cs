@@ -106,7 +106,7 @@
 				{"group_id", groupId}
 			};
 
-			return _vk.Call("photos.getAlbumsCount", parameters, false);
+			return _vk.Call("photos.getAlbumsCount", parameters);
 		}
 
 		/// <summary>
@@ -186,7 +186,7 @@
 			{
 				{"owner_id", ownerId}
 			};
-			return _vk.Call("photos.getOwnerPhotoUploadServer", parameters, false);
+			return _vk.Call("photos.getOwnerPhotoUploadServer", parameters);
 		}
 
 		/// <summary>
@@ -219,13 +219,15 @@
 		/// Позволяет сохранить главную фотографию пользователя или сообщества.
 		/// </summary>
 		/// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер.</param>
+		/// <param name="captchaSid">Идентификатор капчи</param>
+		/// <param name="captchaKey">текст, который ввел пользователь</param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий поля photo_hash и photo_src (при работе через VK.api метод вернёт поля photo_src, photo_src_big, photo_src_small). Параметр photo_hash необходим для подтверждения пользователем изменения его фотографии через вызов метода saveProfilePhoto Javascript API. Поле photo_src содержит путь к загруженной фотографии.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 		/// </remarks>
-		public Photo SaveOwnerPhoto(string response)
+		public Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
@@ -235,7 +237,9 @@
 			{
 				{ "server", server },
 				{ "hash", hash },
-				{ "photo", photo }
+				{ "photo", photo },
+				{ "captcha_sid", captchaSid },
+				{ "captcha_key", captchaKey }
 			};
 
 			return _vk.Call("photos.saveOwnerPhoto", parameters);
@@ -254,7 +258,7 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveWallPhoto
 		/// </remarks>
-		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId = null, ulong? groupId = null, string caption = null)
+		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong userId, ulong? groupId = null, string caption = null)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();
@@ -330,28 +334,73 @@
 			return result.ToReadOnlyCollectionOf<Photo>(x => x);
 		}
 
-		/// <summary>
-		/// Позволяет пожаловаться на фотографию.
-		/// </summary>
-		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
-		/// <param name="photoId">Идентификатор фотографии. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-		/// <param name="reason">Причина жалобы:
-		///
-		/// 0 — спам;
-		/// 1 — детская порнография;
-		/// 2 — экстремизм;
-		/// 3 — насилие;
-		/// 4 — пропаганда наркотиков;
-		/// 5 — материал для взрослых;
-		/// 6 — оскорбление.
-		/// положительное число (Положительное число).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c>true</c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/photos.report
-		/// </remarks>
-		public bool Report(long ownerId, ulong photoId, ReportReason reason)
+        /// <summary>
+        /// Возвращает адрес сервера для загрузки обложки сообщества.
+        /// </summary>
+        /// <param name="groupId">Идентификатор сообщества, для которого необходимо загрузить обложку. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+        /// <param name="cropX">Координата X верхнего левого угла для обрезки изображения. Положительное число (Положительное число).</param>
+        /// <param name="cropY">Координата Y верхнего левого угла для обрезки изображения. Положительное число (Положительное число).</param>
+        /// <param name="cropX2">Координата X нижнего правого угла для обрезки изображения. Положительное число (Положительное число).</param>
+        /// <param name="cropY2">Координата Y нижнего правого угла для обрезки изображения. Положительное число (Положительное число).</param>
+        /// <returns>После успешного выполнения возвращает объект UploadServerInfo</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/photos.getOwnerCoverPhotoUploadServer
+        /// </remarks>
+        public UploadServerInfo GetOwnerCoverPhotoUploadServer(long groupId, long? cropX = null, long? cropY = null, long? cropX2 = 795L, long? cropY2 = 200L) {
+            var parameters = new VkParameters
+            {
+                { "group_id", groupId },
+                { "crop_x", cropX },
+                { "crop_y", cropY },
+                { "crop_x2", cropX2 },
+                { "crop_y2", cropY2 }
+            };
+
+            return _vk.Call("photos.getOwnerCoverPhotoUploadServer", parameters);
+        }
+
+        /// <summary>
+        /// Сохраняет фотографию после успешной загрузки на URI, полученный методом GetOwnerCoverPhotoUploadServer
+        /// </summary>
+        /// <param name="response">Параметр, возвращаемый в результате загрузки фотографии на сервер</param>
+        /// <returns>После успешного выполнения возвращает массив, содержащий объект с загруженной фотографией.</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerCoverPhoto
+        /// </remarks>
+        public GroupCover SaveOwnerCoverPhoto(string response) {
+            var responseJson = JObject.Parse(response);
+            var hash = responseJson["hash"].ToString();
+            var photo = responseJson["photo"].ToString();
+            var parameters = new VkParameters
+            {
+                { "photo", photo },
+                { "hash", hash }
+            };
+            return _vk.Call("photos.saveOwnerCoverPhoto", parameters);
+        }
+
+        /// <summary>
+        /// Позволяет пожаловаться на фотографию.
+        /// </summary>
+        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит фотография. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
+        /// <param name="photoId">Идентификатор фотографии. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+        /// <param name="reason">Причина жалобы:
+        ///
+        /// 0 — спам;
+        /// 1 — детская порнография;
+        /// 2 — экстремизм;
+        /// 3 — насилие;
+        /// 4 — пропаганда наркотиков;
+        /// 5 — материал для взрослых;
+        /// 6 — оскорбление.
+        /// положительное число (Положительное число).</param>
+        /// <returns>
+        /// После успешного выполнения возвращает <c>true</c>.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/photos.report
+        /// </remarks>
+        public bool Report(long ownerId, ulong photoId, ReportReason reason)
 		{
 			var parameters = new VkParameters
 			{
@@ -599,7 +648,7 @@
 		/// </remarks>
 		public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params)
 		{
-			return _vk.Call("photos.getUserPhotos", @params, false).ToVkCollectionOf<Photo>(x => x);
+			return _vk.Call("photos.getUserPhotos", @params).ToVkCollectionOf<Photo>(x => x);
 		}
 
 		/// <summary>

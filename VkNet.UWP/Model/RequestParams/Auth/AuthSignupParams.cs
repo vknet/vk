@@ -1,4 +1,5 @@
-﻿using VkNet.Enums;
+﻿using System;
+using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -18,6 +19,12 @@ namespace VkNet.Model.RequestParams
 		/// Фамилия пользователя. строка, обязательный параметр.
 		/// </summary>
 		public string LastName
+		{ get; set; }
+		
+		/// <summary>
+		/// Дата рождения пользователя. 
+		/// </summary>
+		public DateTime Birthday 
 		{ get; set; }
 
 		/// <summary>
@@ -79,6 +86,7 @@ namespace VkNet.Model.RequestParams
 			{
 				{ "first_name", p.FirstName },
 				{ "last_name", p.LastName },
+				{ "birthday", p.Birthday },
 				{ "client_id", p.ClientId },
 				{ "client_secret", p.ClientSecret },
 				{ "phone", p.Phone },

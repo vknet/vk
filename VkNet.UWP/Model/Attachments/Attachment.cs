@@ -2,10 +2,10 @@
 using System.Runtime.Serialization;
 using VkNet.Exception;
 using VkNet.Utils;
+using VkNet.UWP.Model.Attachments;
 
 namespace VkNet.Model.Attachments
 {
-
 	/// <summary>
 	/// Информация о медиавложении в записи.
 	/// См. описание http://vk.com/dev/attachments_w
@@ -71,6 +71,11 @@ namespace VkNet.Model.Attachments
 		private Album Album { get; set; }
 
 		/// <summary>
+		/// Список фотографий
+		/// </summary>
+		private PhotosList PhotosList;
+
+		/// <summary>
 		/// Запись на стене.
 		/// </summary>
 		private Post Wall { get; set; }
@@ -110,39 +115,95 @@ namespace VkNet.Model.Attachments
 			get
 			{
 				if (Type == typeof(Photo))
+				{
 					return Photo;
+				}
+
 				if (Type == typeof(Video))
+				{
 					return Video;
+				}
+
 				if (Type == typeof(Audio))
+				{
 					return Audio;
+				}
+
 				if (Type == typeof(Document))
+				{
 					return Document;
+				}
+
 				if (Type == typeof(Graffiti))
+				{
 					return Graffiti;
+				}
+
 				if (Type == typeof(Link))
+				{
 					return Link;
+				}
+
 				if (Type == typeof(Note))
+				{
 					return Note;
+				}
+
 				if (Type == typeof(ApplicationContent))
+				{
 					return ApplicationContent;
+				}
+
 				if (Type == typeof(Poll))
+				{
 					return Poll;
+				}
+
 				if (Type == typeof(Page))
+				{
 					return Page;
+				}
+
 				if (Type == typeof(Album))
+				{
 					return Album;
+				}
+
+				if (Type == typeof(PhotosList))
+				{
+					return PhotosList;
+				}
+
 				if (Type == typeof(Post))
+				{
 					return Wall;
+				}
+
 				if (Type == typeof(Sticker))
+				{
 					return Sticker;
+				}
+
 				if (Type == typeof(Gift))
+				{
 					return Gift;
+				}
+
 				if (Type == typeof(WallReply))
+				{
 					return WallReply;
+				}
+
 				if (Type == typeof(MarketAlbum))
+				{
 					return MarketAlbum;
+				}
+
 				if (Type == typeof(Market))
+				{
 					return Market;
+				}
+
 				return null;
 			}
 		}
@@ -153,6 +214,7 @@ namespace VkNet.Model.Attachments
 		public Type Type { get; set; }
 
 		#region Методы
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -167,111 +229,118 @@ namespace VkNet.Model.Attachments
 			{
 				case "photo":
 				case "posted_photo":
-					{
-						attachment.Type = typeof(Photo);
-						attachment.Photo = response[type];
-						break;
-					}
+				{
+					attachment.Type = typeof(Photo);
+					attachment.Photo = response[type];
+					break;
+				}
 				case "video":
-					{
-						attachment.Type = typeof(Video);
-						attachment.Video = response["video"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Video);
+					attachment.Video = response["video"];
+					break;
+				}
 				case "audio":
-					{
-						attachment.Type = typeof(Audio);
-						attachment.Audio = response["audio"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Audio);
+					attachment.Audio = response["audio"];
+					break;
+				}
 				case "doc":
-					{
-						attachment.Type = typeof(Document);
-						attachment.Document = response["doc"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Document);
+					attachment.Document = response["doc"];
+					break;
+				}
 				case "graffiti":
-					{
-						attachment.Type = typeof(Graffiti);
-						attachment.Graffiti = response["graffiti"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Graffiti);
+					attachment.Graffiti = response["graffiti"];
+					break;
+				}
 				case "link":
-					{
-						attachment.Type = typeof(Link);
-						attachment.Link = response["link"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Link);
+					attachment.Link = response["link"];
+					break;
+				}
 				case "note":
-					{
-						attachment.Type = typeof(Note);
-						attachment.Note = response["note"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Note);
+					attachment.Note = response["note"];
+					break;
+				}
 				case "app":
-					{
-						attachment.Type = typeof(ApplicationContent);
-						attachment.ApplicationContent = response["app"];
-						break;
-					}
+				{
+					attachment.Type = typeof(ApplicationContent);
+					attachment.ApplicationContent = response["app"];
+					break;
+				}
 				case "poll":
-					{
-						attachment.Type = typeof(Poll);
-						attachment.Poll = response["poll"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Poll);
+					attachment.Poll = response["poll"];
+					break;
+				}
 				case "page":
-					{
-						attachment.Type = typeof(Page);
-						attachment.Page = response["page"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Page);
+					attachment.Page = response["page"];
+					break;
+				}
 				case "album":
-					{
-						attachment.Type = typeof(Album);
-						attachment.Album = response["album"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Album);
+					attachment.Album = response["album"];
+					break;
+				}
+				case "photos_list":
+				{
+					attachment.Type = typeof(PhotosList);
+					attachment.PhotosList = response["photos_list"];
+					break;
+				}
 				case "wall":
-					{
-						attachment.Type = typeof(Post);
-						attachment.Wall = response["wall"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Post);
+					attachment.Wall = response["wall"];
+					break;
+				}
 				case "sticker":
-					{
-						attachment.Type = typeof(Sticker);
-						attachment.Sticker = response["sticker"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Sticker);
+					attachment.Sticker = response["sticker"];
+					break;
+				}
 				case "gift":
-					{
-						attachment.Type = typeof(Gift);
-						attachment.Gift = response["gift"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Gift);
+					attachment.Gift = response["gift"];
+					break;
+				}
 				case "wall_reply":
-					{
-						attachment.Type = typeof(WallReply);
-						attachment.WallReply = response["wall_reply"];
-						break;
-					}
+				{
+					attachment.Type = typeof(WallReply);
+					attachment.WallReply = response["wall_reply"];
+					break;
+				}
 				case "market_album":
-					{
-						attachment.Type = typeof(MarketAlbum);
-						attachment.MarketAlbum = response["market_album"];
-						break;
-					}
+				{
+					attachment.Type = typeof(MarketAlbum);
+					attachment.MarketAlbum = response["market_album"];
+					break;
+				}
 				case "market":
-					{
-						attachment.Type = typeof(Market);
-						attachment.Market = response["market"];
-						break;
-					}
+				{
+					attachment.Type = typeof(Market);
+					attachment.Market = response["market"];
+					break;
+				}
 				default:
-					{
-						throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}", type, response["date"]));
-					}
+				{
+					throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}", type,
+						response["date"]));
+				}
 			}
 
 			return attachment;

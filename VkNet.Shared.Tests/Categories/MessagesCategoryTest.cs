@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -232,7 +233,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(wall.FromId, Is.EqualTo(-1267));
 			//Assert.That(wall.ToId, Is.EqualTo(-7654));
 			Assert.That(wall.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1414992610)));
-			Assert.That(wall.PostType, Is.EqualTo("post"));
+			Assert.That(wall.PostType, Is.EqualTo(PostType.Post));
 			Assert.That(wall.Text, Is.EqualTo(string.Empty));
 			Assert.That(wall.Comments.Count, Is.EqualTo(3));
 			Assert.That(wall.Comments.CanPost, Is.False);

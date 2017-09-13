@@ -45,7 +45,7 @@
 		{
 			if (@params.Filter != null && @params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
 			{
-				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", "ownerId");
+				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests", nameof(@params));
 			}
 
 			return _vk.Call("wall.get", @params, skipAuthorization);//, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
@@ -104,12 +104,12 @@
 		{
 			if (posts == null)
 			{
-				throw new ArgumentNullException("posts");
+				throw new ArgumentNullException(nameof(posts));
 			}
 
 			if (!posts.Any())
 			{
-				throw new ArgumentException("Posts collection was empty.", "posts");
+				throw new ArgumentException("Posts collection was empty.", nameof(posts));
 			}
 
 			var parameters = new VkParameters {

@@ -1,10 +1,12 @@
-language: csharp
-solution: ./VkNet.sln
+language: csharp 
+sudo: required  
+dist: trusty  
+mono: none
+dotnet: 2.0.0
 
-install:
-  - sudo apt-get install nunit-console
-  - nuget restore ./VkNet.sln
+solution: ./VkNet.UWP.sln
 
+before_script:
+  - dotnet restore ./VkNet.UWP.sln
 script:
-  - xbuild ./VkNet.sln
-  - nunit-console ./Debug/VkNet.Tests.dll
+  - dotnet test ./VkNet.UWP.Tests/VkNet.UWP.Tests.csproj -c Release -f netcoreapp2.0

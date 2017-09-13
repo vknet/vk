@@ -764,6 +764,9 @@
     <Compile Include="..\VkNet.UWP\Model\Attachments\Photo.cs">
       <Link>Model\Attachments\Photo.cs</Link>
     </Compile>
+    <Compile Include="..\VkNet.UWP\Model\Attachments\PhotosList.cs">
+      <Link>Model\Attachments\PhotosList.cs</Link>
+    </Compile>
     <Compile Include="..\VkNet.UWP\Model\Attachments\Poll.cs">
       <Link>Model\Attachments\Poll.cs</Link>
     </Compile>
@@ -1506,7 +1509,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
   <Target Name="BeforeBuild">
-    <Message Importance="high" Text="====================" />
+    <!--<Message Importance="high" Text="====================" />
     <Message Importance="high" Text="Преобразование T4 шаблонов" />
     <Message Importance="high" Text="====================" />
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\ModelToVkParametrsCastGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\ModelToVkParametrsCastGenerator.cs" />
@@ -1515,7 +1518,7 @@
     <Exec Command="$(SolutionDir)tools\TextTransform.exe $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.tt -out $(SolutionDir)VkNet.UWP\Utils\VkResponseToSafetyEnumCastGenerator.cs" />
     <Message Importance="high" Text="====================" />
     <Message Importance="high" Text="Преобразование T4 шаблонов успешно завершено" />
-    <Message Importance="high" Text="====================" />
+    <Message Importance="high" Text="====================" />-->
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
