@@ -142,7 +142,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(ProfileFields.BirthDate.ToString(), Is.EqualTo("bdate"));
 			Assert.That(ProfileFields.City.ToString(), Is.EqualTo("city"));
 			Assert.That(ProfileFields.Country.ToString(), Is.EqualTo("country"));
-			Assert.That(ProfileFields.Photo50.ToString(), Is.EqualTo("photo_50"));
+			Assert.That(ProfileFields.CropPhoto.ToString(), Is.EqualTo("crop_photo"));
+            Assert.That(ProfileFields.Photo50.ToString(), Is.EqualTo("photo_50"));
 			Assert.That(ProfileFields.Photo100.ToString(), Is.EqualTo("photo_100"));
 			Assert.That(ProfileFields.Photo200.ToString(), Is.EqualTo("photo_200"));
 			Assert.That(ProfileFields.Photo200Orig.ToString(), Is.EqualTo("photo_200_orig"));
@@ -199,8 +200,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(ProfileFields.WallComments.ToString(), Is.EqualTo("wall_comments"));
 			Assert.That(ProfileFields.Verified.ToString(), Is.EqualTo("verified"));
 			Assert.That(ProfileFields.FollowersCount.ToString(), Is.EqualTo("followers_count"));
-			Assert.That(ProfileFields.All.ToString(), Is.EqualTo("bdate,blacklisted,blacklisted_by_me,can_post,can_see_all_posts,can_see_audio,can_send_friend_request,can_write_private_message,career,city,common_count,connections,contacts,counters,country,domain,education,first_name,followers_count,friend_status,has_mobile,is_favorite,is_friend,is_hidden_from_feed,last_name,last_seen,lists,military,nickname,online,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,screen_name,sex,site,status,timezone,universities,user_id,verified,wall_comments"));
-			Assert.That(ProfileFields.AllUndocumented.ToString(), Is.EqualTo("about,activities,bdate,blacklisted,blacklisted_by_me,books,can_post,can_see_all_posts,can_see_audio,can_send_friend_request,can_write_private_message,career,city,common_count,connections,contacts,counters,country,domain,education,first_name,followers_count,friend_status,games,has_mobile,interests,invited_by,is_favorite,is_friend,is_hidden_from_feed,lang,last_name,last_seen,lists,military,movies,music,nickname,online,online_app,online_mobile,personal,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,quotes,relation,relation_partner,relatives,schools,screen_name,sex,site,status,timezone,tv,universities,user_id,verified,wall_comments"));
+			Assert.That(ProfileFields.All.ToString(), Is.EqualTo("bdate,blacklisted,blacklisted_by_me,can_post,can_see_all_posts,can_see_audio,can_send_friend_request,can_write_private_message,career,city,common_count,connections,contacts,counters,country,crop_photo,domain,education,first_name,followers_count,friend_status,has_mobile,is_favorite,is_friend,is_hidden_from_feed,last_name,last_seen,lists,military,nickname,online,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,screen_name,sex,site,status,timezone,universities,user_id,verified,wall_comments"));
+			Assert.That(ProfileFields.AllUndocumented.ToString(), Is.EqualTo("about,activities,bdate,blacklisted,blacklisted_by_me,books,can_post,can_see_all_posts,can_see_audio,can_send_friend_request,can_write_private_message,career,city,common_count,connections,contacts,counters,country,crop_photo,domain,education,first_name,followers_count,friend_status,games,has_mobile,interests,invited_by,is_favorite,is_friend,is_hidden_from_feed,lang,last_name,last_seen,lists,military,movies,music,nickname,online,online_app,online_mobile,personal,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,quotes,relation,relation_partner,relatives,schools,screen_name,sex,site,status,timezone,tv,universities,user_id,verified,wall_comments"));
 			// parse test
 			Assert.That(ProfileFields.FromJson("user_id"), Is.EqualTo(ProfileFields.Uid));
 			Assert.That(ProfileFields.FromJson("first_name"), Is.EqualTo(ProfileFields.FirstName));
@@ -209,6 +210,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(ProfileFields.FromJson("bdate"), Is.EqualTo(ProfileFields.BirthDate));
 			Assert.That(ProfileFields.FromJson("city"), Is.EqualTo(ProfileFields.City));
 			Assert.That(ProfileFields.FromJson("country"), Is.EqualTo(ProfileFields.Country));
+			Assert.That(ProfileFields.FromJson("crop_photo"), Is.EqualTo(ProfileFields.CropPhoto));
 			Assert.That(ProfileFields.FromJson("photo_50"), Is.EqualTo(ProfileFields.Photo50));
 			Assert.That(ProfileFields.FromJson("photo_100"), Is.EqualTo(ProfileFields.Photo100));
 			Assert.That(ProfileFields.FromJson("photo_200"), Is.EqualTo(ProfileFields.Photo200));
@@ -266,8 +268,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(ProfileFields.FromJson("wall_comments"), Is.EqualTo(ProfileFields.WallComments));
 			Assert.That(ProfileFields.FromJson("verified"), Is.EqualTo(ProfileFields.Verified));
 			Assert.That(ProfileFields.FromJson("followers_count"), Is.EqualTo(ProfileFields.FollowersCount));
-			Assert.That(ProfileFields.FromJson("user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count"), Is.EqualTo(ProfileFields.All));
-			Assert.That(ProfileFields.FromJson("user_id,first_name,last_name,sex,bdate,city,country,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,lang,online_mobile,online_app,relation_partner,personal,interests,music,activities,movies,tv,books,games,about,quotes,invited_by,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count"), Is.EqualTo(ProfileFields.AllUndocumented));
+			Assert.That(ProfileFields.FromJson("user_id,first_name,last_name,sex,bdate,city,country,crop_photo,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count"), Is.EqualTo(ProfileFields.All));
+			Assert.That(ProfileFields.FromJson("user_id,first_name,last_name,sex,bdate,city,country,crop_photo,photo_50,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_max,photo_max_orig,online,lists,domain,has_mobile,contacts,connections,site,education,universities,schools,can_post,can_see_all_posts,can_see_audio,can_write_private_message,status,last_seen,common_count,relation,relatives,counters,nickname,timezone,lang,online_mobile,online_app,relation_partner,personal,interests,music,activities,movies,tv,books,games,about,quotes,invited_by,blacklisted_by_me,blacklisted,military,career,friend_status,is_friend,screen_name,is_hidden_from_feed,is_favorite,can_send_friend_request,wall_comments,verified,followers_count"), Is.EqualTo(ProfileFields.AllUndocumented));
 		}
 
 		[Test]
