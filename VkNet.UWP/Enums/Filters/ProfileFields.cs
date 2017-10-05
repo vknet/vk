@@ -329,13 +329,18 @@ namespace VkNet.Enums.Filters
         public static readonly ProfileFields FollowersCount = RegisterPossibleValue(1UL << 63, "followers_count");
 
         /// <summary>
+        /// Для получения поля User.CropPhoto
+        /// </summary>
+        public static readonly ProfileFields CropPhoto = RegisterPossibleValue(1UL << 64, "crop_photo");
+
+        /// <summary>
         /// Для получения всех документированных полей.
         /// </summary>
         public static readonly ProfileFields All = Uid | FirstName | LastName | Sex | BirthDate | City | Country | Photo50 | Photo100 |
             Photo200 | Photo200Orig | Photo400Orig | PhotoMax | PhotoMaxOrig | Online | FriendLists | Domain | HasMobile | Contacts |
             Connections | Site | Education | Universities | Schools | CanPost | CanSeeAllPosts | CanSeeAudio | CanWritePrivateMessage |
             Status | LastSeen | CommonCount | Relation | Relatives | Counters | Nickname | Timezone | Verified | WallComments | CanSendFriendRequest |
-            IsFavorite | IsHiddenFromFeed | ScreenName | IsFriend | FriendStatus | Career | Military | Blacklisted | BlacklistedByMe | FollowersCount;
+            IsFavorite | IsHiddenFromFeed | ScreenName | IsFriend | FriendStatus | Career | Military | Blacklisted | BlacklistedByMe | FollowersCount | CropPhoto;
 
         /// <summary>
         /// Для получения всех полей, вколючая недокументированные.
