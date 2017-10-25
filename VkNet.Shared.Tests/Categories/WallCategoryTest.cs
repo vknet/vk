@@ -11,6 +11,7 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
@@ -631,12 +632,53 @@ namespace VkNet.Tests.Categories
 
 		}
 
+	    [Test]
+	    public void Post_ReturnValidateNeeded()
+	    {
+	        const string json =
+	            @"
+                {
+                    'error' : {
+                    'error_code' : 17,
+                    'error_msg' : 'Validation required: please open redirect_uri in browser',
+                    'redirect_uri' : 'https://m.vk.com/activation?act=validate&api_hash=****&hash=***',
+                    'request_params' : [
+                        {
+                        'key' : 'oauth',
+                        'value' : '1'
+                        },
+                        {
+                        'key' : 'method',
+                        'value' : 'wall.post'
+                        },
+                        {
+                        'key' : 'owner_id',
+                        'value' : '-153877099'
+                        },
+                        {
+                        'key' : 'from_group',
+                        'value' : '1'
+                        },
+                        {
+                        'key' : 'message',
+                        'value' : 'Test'
+                        },
+                        {
+                        'key' : 'v',
+                        'value' : '5.64'
+                        }
+                    ]
+                    }
+                 }
+                 ";
+	        Assert.That(() => VkErrors.IfErrorThrowException(json), Throws.TypeOf<NeedValidationException>());
+	    }
 
-		#endregion
+        #endregion
 
-		#region Wall.Repost
+        #region Wall.Repost
 
-		[Test]
+        [Test]
 		public void Repost_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			Assert.That(() => _defaultWall.Repost("id"), Throws.InstanceOf<AccessTokenInvalidException>());
