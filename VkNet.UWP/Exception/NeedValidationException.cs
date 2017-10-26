@@ -18,7 +18,7 @@ namespace VkNet.Exception
 	/// Код ошибки - 17
     /// </summary>
     [DataContract]
-    public class NeedValidationException : VkApiException
+    public class NeedValidationException : VkApiMethodInvokeException
     {
         /// <summary>
         /// Адрес который необходимо открыть в браузере.
