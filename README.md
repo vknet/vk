@@ -9,7 +9,7 @@ Coverity: [![Coverity Scan Build Status](https://scan.coverity.com/projects/6249
 Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Supported by
-[![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/).
+[![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/)
 
 # Как использовать
 
