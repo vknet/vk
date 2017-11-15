@@ -7,6 +7,4 @@ dotnet: 2.0.0
 solution: ./VkNet.UWP.sln
 
 before_script:
-  - dotnet restore ./VkNet.UWP.sln
-script:
-  - dotnet test ./VkNet.UWP.Tests/VkNet.UWP.Tests.csproj -c Release -f netcoreapp2.0
+  - dotnet restore ./VkNet.sln
