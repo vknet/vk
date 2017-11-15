@@ -22,18 +22,22 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 
 Внимание! В следующих версиях будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов 
 
+# В дальнейшем будет поддерживаться сборки только для Netstandard2.0 и .NET 4.0
+
 # План развития проекта
 
 - [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.69.
 - [ ] Асинхронные методы
 - [ ] Недостающие классы и методы
+- [ ] Перевести тесты на xunit
+- [ ] Убрать T4 шаблоны
 
 # Credits
 
 Большое спасибо следующим организациям и проектам, работа которых имеет важное значение для развития проекта:
 - [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
 - [Json.Net](http://www.newtonsoft.com/json)
-- [AngleSharp](https://anglesharp.github.io/)
+- [HtmlAgilityPack](http://html-agility-pack.net/?z=codeplex)
 - [NUnit](http://www.nunit.org/)
 - [Moq](https://github.com/moq/moq4)
 
