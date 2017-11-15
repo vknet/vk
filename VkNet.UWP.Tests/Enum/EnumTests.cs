@@ -614,7 +614,6 @@ namespace VkNet.Tests.Enum
 			Assert.That(Utilities.EnumFrom<RelationType>(5), Is.EqualTo(RelationType.ItsComplex));
 			Assert.That(Utilities.EnumFrom<RelationType>(6), Is.EqualTo(RelationType.InActiveSearch));
 			Assert.That(Utilities.EnumFrom<RelationType>(7), Is.EqualTo(RelationType.Amorous));
-			Assert.That(Utilities.EnumFrom<RelationType>(8), Is.EqualTo(RelationType.CivilMarriage));
 		}
 
 		[Test]

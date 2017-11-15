@@ -73,21 +73,6 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		}
 
 		[Test]
-        public void AppTypeTest()
-        {
-			// get test
-			Assert.That(AppType.App.ToString(), Is.EqualTo("app"));
-			Assert.That(AppType.Game.ToString(), Is.EqualTo("game"));
-			Assert.That(AppType.Site.ToString(), Is.EqualTo("site"));
-			Assert.That(AppType.Standalone.ToString(), Is.EqualTo("standalone"));
-			// parse test
-			Assert.That(AppType.FromJson("app"), Is.EqualTo(AppType.App));
-			Assert.That(AppType.FromJson("game"), Is.EqualTo(AppType.Game));
-			Assert.That(AppType.FromJson("site"), Is.EqualTo(AppType.Site));
-			Assert.That(AppType.FromJson("standalone"), Is.EqualTo(AppType.Standalone));
-		}
-
-		[Test]
         public void ChangeNameStatusTest()
         {
 			// get test
@@ -278,19 +263,6 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(LinkAccessType.FromJson("not_banned"), Is.EqualTo(LinkAccessType.NotBanned));
 			Assert.That(LinkAccessType.FromJson("banned"), Is.EqualTo(LinkAccessType.Banned));
 			Assert.That(LinkAccessType.FromJson("processing"), Is.EqualTo(LinkAccessType.Processing));
-		}
-
-		[Test]
-        public void ManagerRoleTest()
-        {
-			// get test
-			Assert.That(ManagerRole.Moderator.ToString(), Is.EqualTo("moderator"));
-			Assert.That(ManagerRole.Editor.ToString(), Is.EqualTo("editor"));
-			Assert.That(ManagerRole.Administrator.ToString(), Is.EqualTo("administrator"));
-			// parse test
-			Assert.That(ManagerRole.FromJson("moderator"), Is.EqualTo(ManagerRole.Moderator));
-			Assert.That(ManagerRole.FromJson("editor"), Is.EqualTo(ManagerRole.Editor));
-			Assert.That(ManagerRole.FromJson("administrator"), Is.EqualTo(ManagerRole.Administrator));
 		}
 
 		[Test]

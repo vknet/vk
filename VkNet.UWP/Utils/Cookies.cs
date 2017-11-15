@@ -45,15 +45,15 @@
 		private void BugFixCookieDomain()
 		{
 			var table = (IDictionary)Container.GetType()
-#if UWP
+#if NET40
+                .InvokeMember("m_domainTable", BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance, null, Container, new object[] { });
+#else
 											.GetRuntimeFields()
 											.FirstOrDefault(x => x.Name == "m_domainTable" || x.Name == "_domainTable")
 											.GetValue(Container);
-#else
-			.InvokeMember("m_domainTable", BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance, null, Container, new object[] { });
 #endif
 
-			var keys = table.Keys.OfType<string>().ToList();
+      var keys = table.Keys.OfType<string>().ToList();
 			foreach (var key in table.Keys.OfType<string>().ToList())
 			{
 				if (key[0] != '.')

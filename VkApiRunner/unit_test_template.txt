@@ -1,8 +1,0 @@
-﻿[Test]
-public void <#METHOD_NAME#>_()
-{
-    <#URL#>
-    <#JSON#>
-
-    Assert.Fail("undone");
-}
