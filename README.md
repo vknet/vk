@@ -18,13 +18,13 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
 4. [Список часто задаваемых вопросов](https://github.com/vknet/vk/wiki/FAQ)
 
-# В nuget доступна версия 1.29.2 в двух версиях Net Standard 1.2 и .NET 4.0
+# В nuget доступна версия 1.29.3 в двух версиях Net Standard 1.2 и .NET 4.0
 
 Внимание! В следующих версиях будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов 
 
 # План развития проекта
 
-- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.65.
+- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.69.
 - [ ] Асинхронные методы
 - [ ] Недостающие классы и методы
 
@@ -36,3 +36,8 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 - [AngleSharp](https://anglesharp.github.io/)
 - [NUnit](http://www.nunit.org/)
 - [Moq](https://github.com/moq/moq4)
+
+# Если вы хотите поддержать проект
+[На счет](https://money.alfabank.ru/p2p/web/transfer/minyutin)
+[PayPal](https://www.paypal.me/InyutinMaxim)
+[Яндекс кошелек](https://money.yandex.ru/to/410014390443749)
