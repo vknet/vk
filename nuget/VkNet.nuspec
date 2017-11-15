@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>VkNet</id>
-        <version>1.29.2</version>
+        <version>1.29.3</version>
         <authors>a.zhidkov,inyutin-maxim,CaCTuCaTu4ECKuu</authors>
         <owners>a.zhidkov,inyutin-maxim</owners>
         <licenseUrl>https://vk.codeplex.com/license</licenseUrl>
