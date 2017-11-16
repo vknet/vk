@@ -21,6 +21,11 @@ namespace VkNet.Model
 		/// </summary>
 		public bool CanPost { get; set; }
 
+		/// <summary>
+		/// Информация о том, могут ли сообщества комментировать запись..
+		/// </summary>
+		public bool GroupsCanPost { get; set; }
+
 		#region Методы
 
 		#endregion
@@ -35,7 +40,8 @@ namespace VkNet.Model
 			return new Comments
             {
                 Count = response["count"],
-                CanPost = response["can_post"]
+                CanPost = response["can_post"],
+	            GroupsCanPost = response["groups_can_post"]
             };
         }
 	}
