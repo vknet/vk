@@ -29,8 +29,7 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 - [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.69.
 - [ ] Асинхронные методы
 - [ ] Недостающие классы и методы
-- [ ] Перевести тесты на xunit
-- [ ] Убрать T4 шаблоны
+- [x] Убрать T4 шаблоны
 
 # Credits
 
