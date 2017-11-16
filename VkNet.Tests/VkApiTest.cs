@@ -1,14 +1,13 @@
 ﻿using System.Linq;
+using System;
+using System.Collections.Generic;
+using Moq;
+using NUnit.Framework;
+using VkNet.Enums.Filters;
+using VkNet.Utils;
 
 namespace VkNet.Tests
 {
-	using System;
-	using System.Collections.Generic;
-	using Moq;
-	using NUnit.Framework;
-	using Enums.Filters;
-	using VkNet.Utils;
-
 	[TestFixture]
 	public class VkApiTest : BaseTest
 	{

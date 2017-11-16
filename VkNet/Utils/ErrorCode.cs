@@ -351,5 +351,15 @@
         /// Нельзя отправлять сообщения этому пользователю в связи с настройками приватности.
         /// </summary>
         public const int CannotSendDuePrivacy = 902;
+
+        /// <summary>
+        /// Слишком много пересланных сообщений.
+        /// </summary>
+        public const int TooMuchSentMessages = 913;
+
+        /// <summary>
+        /// Сообщение слишком длинное.
+        /// </summary>
+        public const int MessageIsTooLong = 914;
     }
 }

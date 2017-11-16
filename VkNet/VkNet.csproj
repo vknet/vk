@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	<TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
     <AssemblyName>VkNet</AssemblyName>
     <PackageId>VkNet</PackageId>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
@@ -49,13 +49,12 @@
     <PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
     <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
     <PackageReference Include="HtmlAgilityPack" Version="1.6.4" />
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29"/>
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="HtmlAgilityPack">
       <Version>1.4.9.5</Version>
     </PackageReference>
-    
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
