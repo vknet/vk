@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using Moq;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
@@ -85,6 +86,13 @@ namespace VkNet.Tests
             Json = null;
             Parameters = new VkParameters();
             Url = null;
+        }
+
+        protected VkResponse GetResponse(string json)
+        {
+            var response = JToken.Parse(json);
+
+            return new VkResponse(response) { RawJson = json };
         }
 
         private void Callback()

@@ -246,6 +246,11 @@ namespace VkNet.Model
         /// Информация о том, разрешено ли сообществу отправлять сообщения текущему пользователю.
         /// </summary>
         public bool? IsMessagesAllowed { get; set; }
+		
+		/// <summary>
+		/// Информация о том, есть ли у сообщества «огонёк».
+		/// </summary>
+		public bool Trending { get; set; }
         #endregion
 
         #region Методы
@@ -302,7 +307,8 @@ namespace VkNet.Model
 				MainAlbumId = response["main_album_id"],
 				IsHiddenFromFeed = response["is_hidden_from_feed"],
 				MainSection = response["main_section"],
-                IsMessagesAllowed = response["is_messages_allowed"]
+                IsMessagesAllowed = response["is_messages_allowed"],
+				Trending = response["trending"]
             };
 
 			return group;

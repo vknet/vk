@@ -482,6 +482,11 @@ namespace VkNet.Model
 		/// Возвращается 1, если запрашиваемый пользователь находится в черном списке у текущего пользователя.
 		/// </summary>
 		public bool BlacklistedByMe { get; set; }
+
+		/// <summary>
+		/// Возвращается 1, если запрашиваемый пользователь находится в черном списке у текущего пользователя.
+		/// </summary>
+		public bool Trending { get; set; }
 		#endregion
 
 		#region Методы
@@ -572,7 +577,8 @@ namespace VkNet.Model
 				Career = response["career"],
 				Military = response["military"],
 				Blacklisted = response["blacklisted"],
-				BlacklistedByMe = response["blacklisted_by_me"]
+				BlacklistedByMe = response["blacklisted_by_me"],
+				Trending = response["trending"]
 			};
 			user.IsDeactivated = user.Deactivated != null;
 			if (response["name"] != null)
