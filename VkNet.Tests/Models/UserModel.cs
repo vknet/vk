@@ -16,7 +16,8 @@ namespace VkNet.Tests.Models
         [Test]
         public void Trending_ShouldBeTrue()
         {
-            var response = GetResponse("{'trending':1}");
+            Json = "{'trending':1}";
+            var response = GetResponse();
             var user = User.FromJson(response);
             Assert.That(user.Trending, Is.True);
         }
@@ -24,7 +25,8 @@ namespace VkNet.Tests.Models
         [Test]
         public void Trending_ShouldBeFalse()
         {
-            var response = GetResponse("{'trending':0}");
+            Json = "{'trending':0}";
+            var response = GetResponse();
             var user = User.FromJson(response);
             Assert.That(user.Trending, Is.False);
         }
@@ -32,7 +34,8 @@ namespace VkNet.Tests.Models
         [Test]
         public void Trending_ShouldBeFalse2()
         {
-            var response = GetResponse("{}");
+            Json = "{}";
+            var response = GetResponse();
             var user = User.FromJson(response);
             Assert.That(user.Trending, Is.False);
         }

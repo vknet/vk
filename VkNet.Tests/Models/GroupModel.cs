@@ -16,7 +16,11 @@ namespace VkNet.Tests.Models
         [Test]
         public void Trending_ShouldBeTrue()
         {
-            var response = GetResponse("{'trending':1}");
+	        Json = @"{
+						'id': 1153959,
+						'trending': 1
+					  }";
+            var response = GetResponse();
             var @group = Group.FromJson(response);
             Assert.That(@group.Trending, Is.True);
         }
@@ -24,7 +28,11 @@ namespace VkNet.Tests.Models
         [Test]
         public void Trending_ShouldBeFalse()
         {
-            var response = GetResponse("{'trending':0}");
+            Json = @"{
+						'id': 1153959,
+						'trending': 0
+					  }";
+            var response = GetResponse();
             var @group = Group.FromJson(response);
             Assert.That(@group.Trending, Is.False);
         }
@@ -32,7 +40,10 @@ namespace VkNet.Tests.Models
         [Test]
         public void Trending_ShouldBeFalse2()
         {
-            var response = GetResponse("{}");
+            Json = @"{
+						'id': 1153959
+					  }";
+            var response = GetResponse();
             var @group = Group.FromJson(response);
             Assert.That(@group.Trending, Is.False);
         }

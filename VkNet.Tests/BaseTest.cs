@@ -88,11 +88,11 @@ namespace VkNet.Tests
             Url = null;
         }
 
-        protected VkResponse GetResponse(string json)
+        protected VkResponse GetResponse()
         {
-            var response = JToken.Parse(json);
+            var response = JToken.Parse(Json);
 
-            return new VkResponse(response) { RawJson = json };
+            return new VkResponse(response) { RawJson = Json };
         }
 
         private void Callback()
