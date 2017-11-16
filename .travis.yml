@@ -7,4 +7,4 @@ dotnet: 2.0.0
 before_script:
   - dotnet restore ./VkNet.sln
 script:  
-  - dotnet build -f netstandard2.0
+  - dotnet test ./VkNet.Tests/VkNet.Tests.csproj -f netcoreapp2.0
