@@ -7,7 +7,7 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Tests.Categories.Messages
 {
     [TestFixture]
-    public class MessagesSend : BaseTest
+    public class MessagesSendTests : BaseTest
     {
         private MessagesCategory Messages => GetMockedMessagesCategory();
 

@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Model
@@ -157,7 +158,7 @@ namespace VkNet.Model
 		/// <remarks>
 		/// строка, может быть chat_photo_update или chat_photo_remove, а с версии 5.14 еще и chat_create, chat_title_update, chat_invite_user, chat_kick_user
 		/// </remarks>
-		public string Action
+		public MessageAction Action
 		{ get; set; }
 
 		/// <summary>
