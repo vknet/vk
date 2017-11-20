@@ -111,7 +111,7 @@
         throw new InvalidOperationException("Field name not set!");
       }
 
-      var encodedValue = Uri.EscapeDataString(value);
+      var encodedValue = value;//Uri.EscapeDataString(value);
       if (_inputs.ContainsKey(_lastName))
       {
         _inputs[_lastName] = encodedValue;
