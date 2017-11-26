@@ -137,7 +137,11 @@ namespace VkNet.Tests
 		[Test]
 		public void AuthorizeByToken()
 		{
-			Api.Authorize("token", 1);
+			Api.Authorize(new ApiAuthParams
+			{
+				AccessToken = "token",
+				UserId = 1
+			});
 			Assert.That(Api.UserId, Is.EqualTo(1));
 		}
 

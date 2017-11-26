@@ -13,35 +13,35 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Список наименования полей.
 		/// </summary>
-		private readonly List<NameValue> _nameValues;
+		private readonly Dictionary<string, string> _nameValues;
 
 		/// <summary>
 		/// Конструктор.
 		/// </summary>
-		/// <param name="responseUrl">URL ответа.</param>
-		private VkAuthorization(Uri responseUrl)
+		/// <param name="uriFragment">URL ответа.</param>
+		private VkAuthorization(string uriFragment)
         {
-            _nameValues = Decode(responseUrl);
+            _nameValues = Decode(uriFragment);
         }
 
         /// <summary>
         /// Извлекает из URL, на которую произошло перенаправление при авторизации, информацию об авторизации.
         /// </summary>
-        /// <param name="responseUrl">
+        /// <param name="uriFragment">
         /// URL, на которую произошло перенаправление при авторизации.
         /// </param>
         /// <returns>Информация об авторизации.</returns>
-        public static VkAuthorization From(Uri responseUrl) => new VkAuthorization(responseUrl);
+        public static VkAuthorization From(string uriFragment) => new VkAuthorization(uriFragment);
 
         /// <summary>
         /// Возвращает признак была ли авторизация успешной.
         /// </summary>
-        public bool IsAuthorized => AccessToken != null;
+        public bool IsAuthorized => _nameValues.ContainsKey("access_token");
 
         /// <summary>
         /// Проверяет требуется ли получения у авторизации на запрошенные приложением действия (при установке приложения пользователю).
         /// </summary>
-        public bool IsAuthorizationRequired => GetFieldValue("__q_hash") != null;
+        public bool IsAuthorizationRequired => _nameValues.ContainsKey("__q_hash");
 
         /// <summary>
         /// Маркер доступа, который необходимо использовать для доступа к API ВКонтакте.
@@ -51,38 +51,31 @@ namespace VkNet.Utils
         /// <summary>
         /// Время истечения срока действия маркера доступа.
         /// </summary>
-        public string ExpiresIn => GetFieldValue("expires_in");
+        public int ExpiresIn => GetExpiresIn();
 
         /// <summary>
         /// Идентификатор пользователя, у которого работает приложение (от имени которого был произведен вход).
         /// </summary>
         public long UserId => GetUserId();
 
-        private long GetUserId()
-        {
-            var userIdFieldValue = GetFieldValue("user_id");
-            long userId;
-            if (!long.TryParse(userIdFieldValue, out userId))
-            {
-                throw new VkApiException("UserId is not integer value.");
-            }
-
-            return userId;
-        }
+        /// <summary>
+        /// E-mail пользователя, у которого работает приложение (от имени которого был произведен вход).
+        /// </summary>
+        public string Email => GetFieldValue("email");
 
         /// <summary>
         /// ID капчи, если она появилась
         /// </summary>
-        public long? CaptchaId
+        public bool IsCaptchaNeeded
         {
             get
             {
-                long sid;
-	            if (long.TryParse(GetFieldValue("sid"), out sid))
+	            if (long.TryParse(GetFieldValue("sid"), out var sid))
 	            {
-		            return sid;
+		            throw new CaptchaNeededException(sid,
+			            "http://api.vk.com/captcha.php?sid=" + sid);
 	            }
-	            return null;
+	            return false;
             }
         }
 
@@ -92,79 +85,55 @@ namespace VkNet.Utils
 		/// <param name="fieldName">Наименование поля.</param>
 		/// <returns>Значение поля.</returns>
 		private string GetFieldValue(string fieldName)
-        {
-            return _nameValues.Where(i => i.Name == fieldName)
-                .Select(i => i.Value)
-                .FirstOrDefault();
+		{
+			return _nameValues.ContainsKey(fieldName) 
+				? _nameValues[fieldName] 
+				: throw new KeyNotFoundException(fieldName);
         }
 
-		/// <summary>
-		/// Наименование поля.
-		/// </summary>
-		public sealed class NameValue
-        {
-			/// <summary>
-			/// Наименование.
-			/// </summary>
-			public string Name { get; set; }
+	    /// <summary>
+	    /// Расшифровывает указанный URL.
+	    /// </summary>
+	    /// <param name="urlFragment">URL.</param>
+	    /// <returns>Список наименования полей.</returns>
+	    private static Dictionary<string, string> Decode(string urlFragment)
+	    {
+		    var uri = new Uri(urlFragment);
 
-			/// <summary>
-			/// Значение.
-			/// </summary>
-			public string Value { get; set; }
+		    if (string.IsNullOrWhiteSpace(uri.Query) && string.IsNullOrWhiteSpace(uri.Fragment))
+		    {
+			    return new Dictionary<string, string>();
+		    }
 
-			/// <summary>
-			/// Конструктор.
-			/// </summary>
-			/// <param name="name">Наименование.</param>
-			/// <param name="value">Значение.</param>
-			public NameValue(string name, string value)
-            {
-                Name = name;
-                Value = value;
-            }
+		    var query = string.IsNullOrWhiteSpace(uri.Query) 
+			    ? uri.Fragment.Substring(1) 
+			    : uri.Query.Substring(1);
+		    
+		    return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)
+			    .Select(s => s.Split('='))
+			    .ToDictionary(s => s[0], s => s[1]);
+	    }
+	    
+	    private int GetExpiresIn()
+	    {
+		    var expiresInValue = GetFieldValue("expires_in");
+		    if (!int.TryParse(expiresInValue, out var expiresIn))
+		    {
+			    throw new VkApiException("ExpiresIn is not integer value.");
+		    }
 
-			/// <summary>
-			/// Преобразовать в строку.
-			/// </summary>
-			public override string ToString() => $"{Name}={Value}";
-        }
+		    return expiresIn;
+	    }
+	    
+	    private long GetUserId()
+	    {
+		    var userIdFieldValue = GetFieldValue("user_id");
+		    if (!long.TryParse(userIdFieldValue, out var userId))
+		    {
+			    throw new VkApiException("UserId is not long value.");
+		    }
 
-        /// <summary>
-        /// Расшифровывает указанный URL.
-        /// </summary>
-        /// <param name="url">URL.</param>
-        /// <returns>Список наименования полей.</returns>
-        private static List<NameValue> Decode(Uri url) => string.IsNullOrWhiteSpace(url.Query) ? DecodeFragment(url) : DecodeQuery(url);
-
-        /// <summary>
-        /// Расшифровывает вопрос.
-        /// </summary>
-        /// <param name="url">URL.</param>
-        /// <returns>Список наименования полей.</returns>
-        private static List<NameValue> DecodeQuery(Uri url)
-        {
-            var urlQuery = url.Query;
-            var query = urlQuery.StartsWith("?") || urlQuery.StartsWith("#") ? urlQuery.Substring(1) : urlQuery;
-            return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(s => s.Split('='))
-                        .Select(s => new NameValue(s[0], s[1]))
-                        .ToList();
-        }
-
-		/// <summary>
-		/// Расшифровывает фрагмент.
-		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <returns>Список наименования полей.</returns>
-		private static List<NameValue> DecodeFragment(Uri url)
-        {
-            var urlQuery = url.Fragment;
-            var query = urlQuery.StartsWith("#") ? urlQuery.Substring(1) : urlQuery;
-            return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(s => s.Split('='))
-                .Select(s => new NameValue(s[0], s[1]))
-                .ToList();
-        }
+		    return userId;
+	    }
     }
 }

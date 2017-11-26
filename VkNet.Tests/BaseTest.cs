@@ -62,7 +62,7 @@ namespace VkNet.Tests
                 It.IsAny<string>()
                 )
 			)
-			.Returns(VkAuthorization.From(new Uri("https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1")));
+			.Returns(VkAuthorization.From("https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1"));
             Api = new VkApi
             {
                 Browser = browser.Object

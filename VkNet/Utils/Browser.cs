@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using Newtonsoft.Json.Linq;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -33,56 +32,6 @@ namespace VkNet.Utils
         }
 
         /// <summary>
-        /// Загружает файл на заданный Uri
-        /// </summary>
-        /// <param name="uploadUrl">Адрес для загрузки</param>
-        /// <param name="path">Путь к файлу</param>
-        /// <returns>Cтрока, используемая далее в Vk API</returns>
-        [NotNull]
-        public static string UploadFile([NotNull] string uploadUrl, [NotNull] string path)
-        {
-            using (var client = new WebClient())
-            {
-                var uploadedFile = client.UploadFile(uploadUrl, path);
-                var answer = Encoding.UTF8.GetString(uploadedFile, 0, uploadedFile.Length);
-
-                var json = JObject.Parse(answer);
-
-                var rawResponse = json["file"];
-                return new VkResponse(rawResponse) {RawJson = answer};
-            }
-        }
-
-        /// <summary>
-        /// Скачивает файл по заданному Uri
-        /// </summary>
-        /// <param name="url">Uri для скачки</param>
-        /// <param name="path">Путь сохранения файла</param>
-        public static void DownloadFile([NotNull] string url, [NotNull] string path)
-        {
-            using (var client = new WebClient())
-            {
-                client.DownloadFile(url, path);
-            }
-        }
-
-#if false /// <summary>
-/// Асинхронное получение json по url-адресу
-/// </summary>
-/// <param name="url">Адрес получения json</param>
-/// <returns>Строка в формате json</returns>
-        public async Task<string> GetJsonAsync(string url)
-        {
-            // todo refactor this shit
-            var separatorPosition = url.IndexOf('?');
-            string methodUrl = separatorPosition < 0 ? url : url.Substring(0, separatorPosition);
-            string parameters = separatorPosition < 0 ? string.Empty : url.Substring(separatorPosition + 1);
-
-            return await WebCall.PostCallAsync(url, parameters);
-        }
-#endif
-
-        /// <summary>
         /// Авторизация на сервере ВК
         /// </summary>
         /// <param name="appId">Идентификатор приложения</param>
@@ -103,6 +52,7 @@ namespace VkNet.Utils
             {
                 return EndAuthorize(authorizeUrlResult, Proxy);
             }
+
             // Шаг 2. Заполнение формы логина
             var loginFormPostResult = FilledLoginForm(email, password, captchaSid, captchaKey, authorizeUrlResult);
 
@@ -116,21 +66,28 @@ namespace VkNet.Utils
             {
                 return EndAuthorize(loginFormPostResult, Proxy);
             }
-            
+
             var twoFactorFormResult = FilledTwoFactorForm(code, loginFormPostResult);
             if (IsAuthSuccessfull(loginFormPostResult.ResponseUrl))
             {
                 return EndAuthorize(loginFormPostResult, Proxy);
             }
+
             // Шаг 2.5.2 Капча
             var captchaForm = WebForm.From(twoFactorFormResult);
 
             var captcha = WebCall.Post(captchaForm, Proxy);
             // todo: Нужно обработать капчу
-            
+
             return EndAuthorize(captcha, Proxy);
         }
-
+        
+        /// <summary>
+        /// Заполнить форму двухфакторной авторизации
+        /// </summary>
+        /// <param name="code">Функция возвращающая код двухфакторной авторизации</param>
+        /// <param name="loginFormPostResult">Ответ сервера vk</param>
+        /// <returns>Ответ сервера vk</returns>
         private WebCallResult FilledTwoFactorForm(Func<string> code, WebCallResult loginFormPostResult)
         {
             var codeForm = WebForm.From(loginFormPostResult)
@@ -140,13 +97,19 @@ namespace VkNet.Utils
             return WebCall.Post(codeForm, Proxy);
         }
 
+        /// <summary>
+        /// Проверка наличия двухфакторной авторизации
+        /// </summary>
+        /// <param name="code">Функция возвращающая код двухфакторной авторизации</param>
+        /// <param name="loginFormPostResult">Ответ сервера vk</param>
+        /// <returns></returns>
         private static bool HasNotTwoFactor(Func<string> code, WebCallResult loginFormPostResult)
         {
             return code == null || WebForm.IsOAuthBlank(loginFormPostResult);
         }
 
         /// <summary>
-        /// Заполнить логин и пароль
+        /// Заполнить форму логин и пароль
         /// </summary>
         /// <param name="email">Логин</param>
         /// <param name="password">Пароль</param>
@@ -187,6 +150,7 @@ namespace VkNet.Utils
             {
                 throw new ArgumentException("Не задан адрес валидации!");
             }
+
             if (string.IsNullOrWhiteSpace(phoneNumber))
             {
                 throw new ArgumentException("Не задан номер телефона!");
@@ -201,17 +165,18 @@ namespace VkNet.Utils
             return EndAuthorize(codeFormPostResult, Proxy);
         }
 
-
-        private static VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
+        /// <summary>
+        /// Закончить авторизацию
+        /// </summary>
+        /// <param name="result">Результат</param>
+        /// <param name="webProxy">Настройки прокси</param>
+        /// <returns></returns>
+        /// <exception cref="CaptchaNeededException"></exception>
+        private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
         {
-            var authorization = VkAuthorization.From(result.ResponseUrl);
-            if (authorization.CaptchaId.HasValue)
-            {
-                throw new CaptchaNeededException(authorization.CaptchaId.Value,
-                    "http://api.vk.com/captcha.php?sid=" + authorization.CaptchaId.Value);
-            }
+            var authorization = VkAuthorization.From(result.ResponseUrl.ToString());
 
-            if (!authorization.IsAuthorizationRequired)
+            if (!authorization.IsAuthorizationRequired && !authorization.IsCaptchaNeeded)
             {
                 return authorization;
             }
@@ -220,7 +185,7 @@ namespace VkNet.Utils
             var authorizationForm = WebForm.From(result);
             var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
 
-            return VkAuthorization.From(authorizationFormPostResult.ResponseUrl);
+            return VkAuthorization.From(authorizationFormPostResult.ResponseUrl.ToString());
         }
 
         /// <summary>
@@ -243,17 +208,28 @@ namespace VkNet.Utils
 
             return builder.ToString();
         }
-
+        
+        /// <summary>
+        /// Открытие окна авторизации  
+        /// </summary>
+        /// <param name="appId">id приложения</param>
+        /// <param name="settings">Настройки приложения</param>
+        /// <returns></returns>
         private WebCallResult OpenAuthDialog(ulong appId, [NotNull] Settings settings)
         {
             var url = CreateAuthorizeUrlFor(appId, settings, Display.Page);
             return WebCall.MakeCall(url, Proxy);
         }
 
+        /// <summary>
+        /// Авторизация прошла успешно
+        /// </summary>
+        /// <param name="uri">Url</param>
+        /// <returns>true, если авторизация прошла успешно</returns>
         private static bool IsAuthSuccessfull(Uri uri)
         {
-            return uri.ToString()
-                .StartsWith($"https://oauth.vk.com/blank.html#access_token=", StringComparison.Ordinal);
+            return uri.Fragment
+                .StartsWith("#access_token=", StringComparison.Ordinal);
         }
     }
 }
