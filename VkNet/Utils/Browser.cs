@@ -48,7 +48,7 @@ namespace VkNet.Utils
             // Шаг 1. Открытие диалога авторизации
             var authorizeUrlResult = OpenAuthDialog(appId, settings);
 
-            if (IsAuthSuccessfull(authorizeUrlResult.ResponseUrl))
+            if (IsAuthSuccessfull(authorizeUrlResult))
             {
                 return EndAuthorize(authorizeUrlResult, Proxy);
             }
@@ -56,7 +56,7 @@ namespace VkNet.Utils
             // Шаг 2. Заполнение формы логина
             var loginFormPostResult = FilledLoginForm(email, password, captchaSid, captchaKey, authorizeUrlResult);
 
-            if (IsAuthSuccessfull(loginFormPostResult.ResponseUrl))
+            if (IsAuthSuccessfull(loginFormPostResult))
             {
                 return EndAuthorize(loginFormPostResult, Proxy);
             }
@@ -68,9 +68,9 @@ namespace VkNet.Utils
             }
 
             var twoFactorFormResult = FilledTwoFactorForm(code, loginFormPostResult);
-            if (IsAuthSuccessfull(loginFormPostResult.ResponseUrl))
+            if (IsAuthSuccessfull(twoFactorFormResult))
             {
-                return EndAuthorize(loginFormPostResult, Proxy);
+                return EndAuthorize(twoFactorFormResult, Proxy);
             }
 
             // Шаг 2.5.2 Капча
@@ -81,7 +81,7 @@ namespace VkNet.Utils
 
             return EndAuthorize(captcha, Proxy);
         }
-        
+
         /// <summary>
         /// Заполнить форму двухфакторной авторизации
         /// </summary>
@@ -174,7 +174,8 @@ namespace VkNet.Utils
         /// <exception cref="CaptchaNeededException"></exception>
         private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
         {
-            var authorization = VkAuthorization.From(result.ResponseUrl.ToString());
+            var tokenUri = GetTokenUri(result);
+            var authorization = VkAuthorization.From(tokenUri.ToString());
 
             if (!authorization.IsAuthorizationRequired && !authorization.IsCaptchaNeeded)
             {
@@ -184,8 +185,8 @@ namespace VkNet.Utils
             // Отправить данные
             var authorizationForm = WebForm.From(result);
             var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
-
-            return VkAuthorization.From(authorizationFormPostResult.ResponseUrl.ToString());
+            tokenUri = GetTokenUri(authorizationFormPostResult);
+            return VkAuthorization.From(tokenUri.ToString());
         }
 
         /// <summary>
@@ -208,7 +209,7 @@ namespace VkNet.Utils
 
             return builder.ToString();
         }
-        
+
         /// <summary>
         /// Открытие окна авторизации  
         /// </summary>
@@ -224,12 +225,39 @@ namespace VkNet.Utils
         /// <summary>
         /// Авторизация прошла успешно
         /// </summary>
-        /// <param name="uri">Url</param>
+        /// <param name="webCallResult"></param>
         /// <returns>true, если авторизация прошла успешно</returns>
-        private static bool IsAuthSuccessfull(Uri uri)
+        private static bool IsAuthSuccessfull(WebCallResult webCallResult)
+            => UriHasAccessToken(webCallResult.RequestUrl) ||
+               UriHasAccessToken(webCallResult.ResponseUrl);
+
+        /// <summary>
+        /// Проверка наличия токена в url
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        private static bool UriHasAccessToken(Uri uri) => uri.Fragment
+            .StartsWith("#access_token=", StringComparison.Ordinal);
+
+        /// <summary>
+        /// Получить токен из uri
+        /// </summary>
+        /// <param name="webCallResult">Результат запроса</param>
+        /// <returns>Возвращает uri содержащий токен</returns>
+        /// <exception cref="VkApiException">URI должен содержать токен!</exception>
+        private static Uri GetTokenUri(WebCallResult webCallResult)
         {
-            return uri.Fragment
-                .StartsWith("#access_token=", StringComparison.Ordinal);
+            if (UriHasAccessToken(webCallResult.RequestUrl))
+            {
+                return webCallResult.RequestUrl;
+            }
+
+            if (UriHasAccessToken(webCallResult.ResponseUrl))
+            {
+                return webCallResult.ResponseUrl;
+            }
+
+            throw new VkApiException("URI должен содержать токен!");
         }
     }
 }

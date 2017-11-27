@@ -66,18 +66,7 @@ namespace VkNet.Utils
         /// <summary>
         /// ID капчи, если она появилась
         /// </summary>
-        public bool IsCaptchaNeeded
-        {
-            get
-            {
-	            if (long.TryParse(GetFieldValue("sid"), out var sid))
-	            {
-		            throw new CaptchaNeededException(sid,
-			            "http://api.vk.com/captcha.php?sid=" + sid);
-	            }
-	            return false;
-            }
-        }
+        public bool IsCaptchaNeeded => _nameValues.ContainsKey("sid");
 
 		/// <summary>
 		/// Получить значение поля.
