@@ -137,12 +137,12 @@ namespace VkNet.Utils
         {
             Remove(name);
 
-            if (nullableValue == null || !nullableValue.Value)
+            if (!nullableValue.HasValue)
             {
                 return;
             }
 
-            base.Add(name, "1");
+            base.Add(name, nullableValue.Value ? "1" : "0");
         }
 
         /// <summary>
