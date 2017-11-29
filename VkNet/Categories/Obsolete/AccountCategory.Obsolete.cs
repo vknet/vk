@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -148,5 +150,36 @@ namespace VkNet.Categories
 
 			return response.ToReadOnlyCollection();
 		}
+
+        /// <summary>
+        /// Позволяет искать пользователей ВКонтакте, используя телефонные номера, email-адреса, и идентификаторы пользователей в других сервисах. Найденные пользователи могут быть также в дальнейшем получены методом friends.getSuggestions.
+        /// </summary>
+        /// <param name="contacts">Список контактов, разделенных через запятую. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
+        /// <param name="service">Строковой идентификатор сервиса, по контактам которого производится поиск. Может принимать следующие значения: (email, phone, twitter, facebook, odnoklassniki, instagram, google) строка, обязательный параметр (Строка, обязательный параметр).</param>
+        /// <param name="mycontact">Контакт текущего пользователя в заданном сервисе. строка (Строка).</param>
+        /// <param name="returnAll">1 – возвращать также контакты, найденные ранее с использованием этого сервиса, 0 – возвращать только контакты, найденные с использованием поля contacts. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+        /// <param name="fields">Список дополнительных полей, которые необходимо вернуть.
+        /// Доступные значения: nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
+        /// <returns>
+        /// В качестве результата метод возвращает два списка:
+        /// found – список объектов пользователей, расширенных полями contact – контакт, по которому был найден пользователь (не приходит если пользователь был найден при предыдущем использовании метода), request_sent – запрос на добавление в друзья уже был выслан, либо пользователь уже является другом, common_count если этот контакт также был импортирован друзьями или контактами текущего пользователя. Метод также возвращает найденные ранее контакты.
+        /// other – список контактов, которые не были найдены. Объект содержит поля contact и common_count если этот контакт также был импортирован друзьями или контактами текущего пользователя.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/account.lookupContacts
+        /// </remarks>
+        [Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
+        public LookupContactsResult LookupContacts(List<string> contacts, Services service, string mycontact = null, bool? returnAll = null, UsersFields fields = null)
+        {
+            var parameters = new VkParameters
+            {
+                { "contacts", contacts },
+                { "service", service },
+                { "mycontact", mycontact },
+                { "return_all", returnAll },
+                { "fields", fields }
+            };
+            return _vk.Call("account.lookupContacts", parameters);
+        }
 	}
 }

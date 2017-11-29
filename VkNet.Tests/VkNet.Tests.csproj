@@ -17,6 +17,6 @@
     <ProjectReference Include="..\VkNet\VkNet.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Categories\Message" />
+    <Folder Include="Categories\Account" />
   </ItemGroup>
 </Project>
