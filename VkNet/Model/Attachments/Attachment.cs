@@ -10,7 +10,7 @@ namespace VkNet.Model.Attachments
 	/// Информация о медиавложении в записи.
 	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Attachment
 	{
 		#region Поля

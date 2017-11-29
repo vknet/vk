@@ -16,7 +16,7 @@ namespace VkNet.Model
     /// Страница документации ВКонтакте http://vk.com/dev/groups.getBanned
     /// </remarks>
     [DebuggerDisplay("[{AdminId}] {Comment} ({Reason})")]
-    [DataContract]
+    [Serializable]
     public class BanInfo
     {
         /// <summary>

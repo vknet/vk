@@ -12,7 +12,7 @@ namespace VkNet.Model
 	/// в своем приложении.
 	/// См. описание http://vk.com/dev/post_source
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class PostSource
 	{
 		/// <summary>

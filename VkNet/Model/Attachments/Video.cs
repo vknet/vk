@@ -14,7 +14,7 @@ namespace VkNet.Model.Attachments
     /// См. описание http://vk.com/dev/video_object
     /// </remarks>
     [DebuggerDisplay("Id = {Id}, Title = {Title}")]
-	[DataContract]
+	[Serializable]
 	public class Video : MediaAttachment
     {
 		/// <summary>

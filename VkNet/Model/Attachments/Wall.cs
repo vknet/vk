@@ -18,7 +18,7 @@ namespace VkNet.Model
 	/// См. описание http://vk.com/dev/post
 	/// </remarks>
 	[DebuggerDisplay("[{Id}] {Text}")]
-	[DataContract]
+	[Serializable]
 	public class Wall : MediaAttachment
 	{
 		/// <summary>

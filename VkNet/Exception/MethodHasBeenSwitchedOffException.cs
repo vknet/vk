@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Все актуальные методы ВК API, которые доступны в настоящий момент, перечислены здесь: http://vk.com/dev/methods.     
 	/// Код ошибки - 23
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class MethodHasBeenSwitchedOffException : VkApiMethodInvokeException
     {
         /// <summary>

@@ -1,11 +1,12 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// На данный момент поддерживаются следующие типы источников записи на стене, значение которых указываются в поле type:
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class PostSourceType : SafetyEnum<PostSourceType>
 	{
 		/// <summary>

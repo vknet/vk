@@ -12,7 +12,7 @@ namespace VkNet.Exception
     /// Too many requests per second.
 	/// Код ошибки - 6
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class TooManyRequestsException : VkApiMethodInvokeException
     {
         /// <summary>

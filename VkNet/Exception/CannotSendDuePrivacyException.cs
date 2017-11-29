@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -7,7 +8,7 @@ namespace VkNet.Exception
     /// Исключение, которое выбрасывается при попытке отправить сообщение пользователю, в связи с настройками приватности.
 	/// Код ошибки - 902
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class CannotSendDuePrivacyException : VkApiMethodInvokeException
     {
         /// <summary>

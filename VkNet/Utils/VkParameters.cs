@@ -9,7 +9,7 @@ namespace VkNet.Utils
     /// <summary>
     /// Параметры запроса к ВКонтакте.
     /// </summary>
-    //[DataContract]
+    //[Serializable]
     public partial class VkParameters : Dictionary<string, string>
     {
         /// <summary>

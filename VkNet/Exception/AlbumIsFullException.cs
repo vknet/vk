@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Перед продолжением работы нужно удалить лишние объекты из альбома или использовать другой альбом.
 	/// Код ошибки - 300
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class AlbumIsFullException : VkApiMethodInvokeException
     {
         /// <summary>

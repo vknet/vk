@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Если ошибка возникает несмотря на то, что Ваше приложение имеет тип Standalone, убедитесь, что при авторизации Вы используете redirect_uri=https://oauth.vk.com/blank.html. Подробнее см. http://vk.com/dev/auth_mobile.
 	/// Код ошибки - 20
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class NonStandaloneApplicationsException : VkApiMethodInvokeException
     {
         /// <summary>

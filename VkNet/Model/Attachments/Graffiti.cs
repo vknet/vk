@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -7,7 +8,7 @@ namespace VkNet.Model.Attachments
 	/// Граффити.
 	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Graffiti : MediaAttachment
     {
 		/// <summary>

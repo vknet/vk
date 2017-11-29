@@ -11,7 +11,7 @@ namespace VkNet.Model.Attachments
 	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[DebuggerDisplay("[{Title}] {Uri}")]
-	[DataContract]
+	[Serializable]
 	public class Link : MediaAttachment
 	{
 		/// <summary>

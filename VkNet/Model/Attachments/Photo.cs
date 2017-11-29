@@ -13,7 +13,7 @@ namespace VkNet.Model.Attachments
 	/// <remarks>
 	/// См. описание http://vk.com/dev/photo
 	/// </remarks>
-	[DataContract]
+	[Serializable]
 	public class Photo : MediaAttachment
 	{
 		static Photo()

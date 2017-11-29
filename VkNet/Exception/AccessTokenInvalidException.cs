@@ -8,7 +8,7 @@ namespace VkNet.Exception
     /// <summary>
     /// Исключение, которое выбрасывается, в случае, если предоставленный маркер доступа является недействительным.
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class AccessTokenInvalidException : VkApiException
     {
         /// <summary>

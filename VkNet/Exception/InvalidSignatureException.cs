@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Проверьте правильность формирования подписи запроса: https://vk.com/dev/api_nohttps
 	/// Код ошибки - 4
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class InvalidSignatureException : VkApiMethodInvokeException
     {
         /// <summary>

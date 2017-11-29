@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -7,7 +8,7 @@ namespace VkNet.Exception
     /// Исключение, которое выбрасывается, если действие разрешено только для Standalone и Open API приложений.
 	/// Код ошибки - 21
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class OnlySandaloneOrOpenApiException : VkApiMethodInvokeException
     {
         /// <summary>

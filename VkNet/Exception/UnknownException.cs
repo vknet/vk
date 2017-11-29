@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Попробуйте повторить запрос позже.
 	/// Код ошибки - 1
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class UnknownException : VkApiMethodInvokeException
     {
         /// <summary>

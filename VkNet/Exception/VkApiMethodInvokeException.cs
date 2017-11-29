@@ -6,7 +6,7 @@
     /// <summary>
     /// Базовый класс, для всех исключений, которые могут произойти при вызове методов API ВКонтакте.
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class VkApiMethodInvokeException : VkApiException
     {
         /// <summary>

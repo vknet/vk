@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
 using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
@@ -6,7 +6,7 @@ namespace VkNet.Enums.SafetyEnums
 	/// <summary>
 	/// Возможные значения параметра display, задающего внешний вид окна авторизации.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public sealed class Deactivated : SafetyEnum<Deactivated>
     {
 		/// <summary>

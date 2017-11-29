@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Model
 {
@@ -8,7 +9,7 @@ namespace VkNet.Model
     /// Школа, в которой учился пользователь.
     /// См. описание http://vk.com/dev/fields
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class School
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
     /// Убедитесь, что Вы используете верный идентификатор. Получить ID по короткому имени можно методом utils.resolveScreenName.
     /// Код ошибки - 113
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class InvalidUserIdException : VkApiMethodInvokeException
     {
         /// <summary>

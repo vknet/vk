@@ -11,7 +11,7 @@ namespace VkNet.Model
     /// <remarks>
     /// Страница документации ВКонтакте http://vk.com/dev/database.getCities
     /// </remarks>
-    [DataContract]
+    [Serializable]
     public class City
     {
         /// <summary>

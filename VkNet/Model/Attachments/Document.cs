@@ -8,7 +8,7 @@ namespace VkNet.Model.Attachments
 	/// Информация о документе.
 	/// См. описание http://vk.com/dev/doc
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Document : MediaAttachment
     {
 		static Document()

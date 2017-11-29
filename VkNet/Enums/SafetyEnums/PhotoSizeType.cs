@@ -1,11 +1,12 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Порядок сортировки членов группы.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	{
 		/// <summary>

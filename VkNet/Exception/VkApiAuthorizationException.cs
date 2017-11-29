@@ -1,4 +1,6 @@
-﻿namespace VkNet.Exception
+﻿using System;
+
+namespace VkNet.Exception
 {
     using System.Runtime.Serialization;
 
@@ -8,7 +10,7 @@
     /// Исключение, которое выбрасывается при попытке неудачной авторизации, когда указан неправильный логин или пароль
     /// при вызове метода VkApi.Authorize
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class VkApiAuthorizationException : VkApiException
     {
         /// <summary>

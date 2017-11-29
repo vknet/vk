@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -9,7 +10,7 @@ namespace VkNet.Exception
     /// Чтобы избежать появления такой ошибки, в Standalone-приложении Вы можете предварительно проверять состояние этой настройки у пользователя методом account.getInfo.  
 	/// Код ошибки - 16
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class NeedHttpsException : VkApiMethodInvokeException
     {
         /// <summary>

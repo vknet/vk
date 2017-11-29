@@ -8,7 +8,7 @@ namespace VkNet.Model.Attachments
 	/// Заметка пользователя.
 	/// См. описание http://vk.com/dev/note
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Note : MediaAttachment
     {
 		/// <summary>

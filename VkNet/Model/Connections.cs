@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Model
 {
@@ -10,7 +11,7 @@ namespace VkNet.Model
 	/// и http://vk.com/dev/fields
 	/// Экспериментально установлено, что поля находятся непосредственно в полях объекта User.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Connections
 	{
 		/// <summary>

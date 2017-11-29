@@ -7,7 +7,7 @@ namespace VkNet.Model.Attachments
 	/// <summary>
 	/// Подарок.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Gift : MediaAttachment
 	{
 		/// <summary>

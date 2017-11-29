@@ -8,7 +8,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Формат описания размеров фотографи.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class PhotoSize
 	{
 		/// <summary>

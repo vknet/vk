@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -7,7 +8,7 @@ namespace VkNet.Exception
     /// Исключение, которые выбрасывается при попытке добавить в друзья пользователя, который занесен в Ваш черный список. 
 	/// Код ошибки - 176
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class CannotAddUserBlacklistedException : VkApiMethodInvokeException
     {
         /// <summary>

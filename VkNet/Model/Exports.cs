@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -6,7 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Внешние сервисы, в которые настроен экспорт из ВК
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Exports
 	{
 		/// <summary>

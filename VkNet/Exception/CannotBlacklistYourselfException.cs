@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Убедитесь, что Вы используете верные идентификаторы, и доступ к контенту для текущего пользователя есть в полной версии сайта.   
 	/// Код ошибки - 15
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class CannotBlacklistYourselfException : VkApiMethodInvokeException
     {
         /// <summary>

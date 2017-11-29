@@ -7,7 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Кнопка.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Button
 	{
 		/// <summary>

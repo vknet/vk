@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -7,7 +8,7 @@ namespace VkNet.Exception
     /// Исключение, которые выбрасывается при попытке добавить в друзья пользователя, который не найден.
 	/// Код ошибки - 177
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class CannotAddUserNotFoundException : VkApiMethodInvokeException
     {
         /// <summary>

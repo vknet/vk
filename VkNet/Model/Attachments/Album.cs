@@ -8,7 +8,7 @@ namespace VkNet.Model.Attachments
 	/// Альбом с фотографиями пользователя.
 	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Album : MediaAttachment
 	{
 		static Album()

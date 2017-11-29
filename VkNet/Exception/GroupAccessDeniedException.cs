@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Убедитесь, что текущий пользователь является участником или руководителем сообщества (для закрытых и частных групп и встреч).
 	/// Код ошибки - 203
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class GroupAccessDeniedException : VkApiMethodInvokeException
     {
         /// <summary>

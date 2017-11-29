@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Код ошибки - 103
 	/// </summary>
 	/// <seealso cref="VkNet.Exception.VkApiException" />
-	[DataContract]
+	[Serializable]
     public class OutOfLimitsException : VkApiException
     {
         /// <summary>

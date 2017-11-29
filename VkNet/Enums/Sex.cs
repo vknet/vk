@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Enums
@@ -6,7 +7,7 @@ namespace VkNet.Enums
 	/// <summary>
 	/// Пол.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public enum Sex
     {
         /// <summary>

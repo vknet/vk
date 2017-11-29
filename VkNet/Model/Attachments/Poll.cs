@@ -9,7 +9,7 @@ namespace VkNet.Model.Attachments
 	/// Опрос.
 	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Poll : MediaAttachment
     {
 		/// <summary>

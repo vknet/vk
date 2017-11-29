@@ -5,28 +5,28 @@ using System.Runtime.Serialization;
 namespace VkNet.Model.Attachments
 {
     /// <summary>
-    /// Приложенный объект, имеющий идентификатор и владельца.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
-    [DataContract]
+    [Serializable]
     public abstract class MediaAttachment
 	{
 		/// <summary>
-		/// Словарь типов
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		/// </summary>
 		private static readonly IDictionary<Type, string> Types = new Dictionary<Type, string>();
 
 		/// <summary>
-		/// Идентификатор приложенного объекта.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		/// </summary>
 		public long? Id { get; set; }
 
 		/// <summary>
-		/// Идентификатор владельца приложенного объекта.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		/// </summary>
 		public long? OwnerId { get; set; }
 
 		/// <summary>
-		/// Привести объект к строке.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 		/// </summary>
 		public override string ToString()
 		{
@@ -34,19 +34,19 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		/// Зарегистрировать тип.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
 		/// </summary>
-		/// <param name="type">Тип вложения.</param>
-		/// <param name="match">Соответствие.</param>
+		/// <param name="type">пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</param>
+		/// <param name="match">пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</param>
 		protected static void RegisterType(Type type, string match)
 		{
 			Types.Add(type, match);
 		}
 
 		/// <summary>
-		/// Соответствие типа.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 		/// </summary>
-		/// <param name="type">Тип вложения.</param>
+		/// <param name="type">пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</param>
 		/// <returns></returns>
 		private static string MatchType(Type type)
 		{

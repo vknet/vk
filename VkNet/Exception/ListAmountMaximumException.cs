@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -7,7 +8,7 @@ namespace VkNet.Exception
     /// Исключение, которое выбрасывается, если количество списков максимально.
 	/// Код ошибки - 173	
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class ListAmountMaximumException : VkApiMethodInvokeException
     {
         /// <summary>

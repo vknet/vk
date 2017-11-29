@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Exception
 {
@@ -8,7 +9,7 @@ namespace VkNet.Exception
     /// Исключение, которое выбрасывается при отсутствии авторизации на выполнение запрошенной операции.
 	/// Код ошибки - 5
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class UserAuthorizationFailException : VkApiMethodInvokeException
     {
         /// <summary>

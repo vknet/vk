@@ -12,7 +12,7 @@ namespace VkNet.Enums.SafetyEnums
     /// Аналог enum, типобезопасен.
     /// </summary>
     /// <typeparam name="TFilter">Непосредственно наследник</typeparam>
-    [DataContract]
+    [Serializable]
     [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
     public abstract class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
 	{

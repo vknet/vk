@@ -9,7 +9,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Подарок.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class GiftItem
 	{
 		/// <summary>

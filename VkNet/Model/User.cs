@@ -17,7 +17,7 @@ namespace VkNet.Model
 	/// См. описание http://vk.com/dev/fields и http://vk.com/pages?oid=-1&amp;p=users.get
 	/// </summary>
 	[DebuggerDisplay("[{Id}] {FirstName} {LastName}")]
-	[DataContract]
+	[Serializable]
 	public class User
 	{
 		#region Стандартные поля

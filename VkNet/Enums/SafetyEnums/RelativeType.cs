@@ -1,11 +1,12 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Тип родственных связей.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public sealed class RelativeType : SafetyEnum<RelativeType>
 	{
 		/// <summary>

@@ -6,9 +6,9 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Каталог товаров
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class MarketAlbum : MediaAttachment
 	{
 		static MarketAlbum()
@@ -16,29 +16,29 @@ namespace VkNet.Model
 			RegisterType(typeof(MarketAlbum), "market_album");
 		}
 		/// <summary>
-		/// Название подборки. строка
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		/// Обложка подборки, объект photo.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ photo.
 		/// </summary>
 		public Photo Photo { get; set; }
 
 		/// <summary>
-		/// Число товаров в подборке; int (числовое значение)
+		/// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ; int (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 		/// </summary>
 		public int Count { get; set; }
 
 		/// <summary>
-		/// Дата обновления подборки в формате unixtime. положительное число
+		/// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ unixtime. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		/// </summary>
 		public DateTime? UpdatedTime { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
+		/// <param name="response">пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</param>
 		/// <returns></returns>
 		public static MarketAlbum FromJson(VkResponse response)
 		{

@@ -16,7 +16,7 @@ namespace VkNet.Model
 	/// См. описание http://vk.com/dev/message
 	/// </summary>
 	[DebuggerDisplay("[{UserId}-{Id}] {Body}")]
-	[DataContract]
+	[Serializable]
 	public class Message : MediaAttachment
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -7,7 +8,7 @@ namespace VkNet.Exception
     /// Исключение, которое выбрасывается при попытке первым написать пользователю от имени группы.
 	/// Код ошибки - 901
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class CannotSendToUserFirstlyException : VkApiMethodInvokeException
     {
         /// <summary>

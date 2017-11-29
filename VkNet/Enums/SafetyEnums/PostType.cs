@@ -1,11 +1,12 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Тип записи post, copy, reply, postpone, suggest
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public sealed class PostType : SafetyEnum<PostType>
 	{
 		/// <summary>

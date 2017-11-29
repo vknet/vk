@@ -17,7 +17,7 @@ namespace VkNet.Model
     /// См. описание http://vk.com/dev/fields_groups
     /// </summary>
     [DebuggerDisplay("[{Id}] {Name}")]
-    [DataContract]
+    [Serializable]
     public class Group : IVkModel
 	{
         /// <summary>

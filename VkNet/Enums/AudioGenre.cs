@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 namespace VkNet.Enums
 {
 	/// <summary>
@@ -7,7 +8,7 @@ namespace VkNet.Enums
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/audio_object
 	/// </remarks>
-	[DataContract]
+	[Serializable]
 	public enum AudioGenre
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -9,7 +10,7 @@ namespace VkNet.Exception
     /// Либо используйте стандартный APP_ID для Android: 2890984   
 	/// Код ошибки - 101
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class InvalidAppIdException : VkApiMethodInvokeException
     {
         /// <summary>

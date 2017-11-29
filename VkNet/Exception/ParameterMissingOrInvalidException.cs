@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Проверьте список требуемых параметров и их формат на странице с описанием метода.      
 	/// Код ошибки - 100
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class ParameterMissingOrInvalidException : VkApiMethodInvokeException
     {
         /// <summary>

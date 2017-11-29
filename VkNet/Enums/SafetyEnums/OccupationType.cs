@@ -1,11 +1,12 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Информация о текущем роде занятия пользователя.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public sealed class OccupationType : SafetyEnum<OccupationType>
 	{
 		/// <summary>

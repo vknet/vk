@@ -145,9 +145,9 @@ namespace VkNet.Utils
         /// </summary>
         /// <param name="object">Объект</param>
         /// <returns></returns>
-        public static string SerializeToJson(object @object)
+        public static string SerializeToJson<T>(T @object)
         {
-            var result = JsonConvert.SerializeObject(@object);
+            var result = JsonConvert.SerializeObject(@object, Formatting.Indented);
             return result == "null" ? null : result;
         }
     }

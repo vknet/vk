@@ -1,17 +1,18 @@
+using System;
 using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	/// Контент приложения.
-	/// См. описание http://vk.com/dev/attachments_w
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	/// пїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ http://vk.com/dev/attachments_w
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class ApplicationContent : MediaAttachment
 	{
 		/// <summary>
-		/// Приложение.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		/// </summary>
 		static ApplicationContent()
 		{
@@ -19,25 +20,25 @@ namespace VkNet.Model.Attachments
 		}
 
         /// <summary>
-        /// Название приложения.
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Адрес изображения для предпросмотра.
+        /// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         /// </summary>
         public string Photo130 { get; set; }
 
         /// <summary>
-        /// Адрес полноразмерного изображения.
+        /// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         /// </summary>
         public string Photo604 { get; set; }
 
-		#region Методы
+		#region пїЅпїЅпїЅпїЅпїЅпїЅ
 		/// <summary>
-		/// Разобрать из json.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
+		/// <param name="response">пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</param>
 		/// <returns></returns>
 		public static ApplicationContent FromJson(VkResponse response)
         {

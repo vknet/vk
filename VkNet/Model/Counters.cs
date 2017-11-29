@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Model
 {
@@ -10,7 +11,7 @@ namespace VkNet.Model
 	/// http://vk.com/dev/fields_groups
 	/// Раздел counters.
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class Counters
 	{
 		/// <summary>

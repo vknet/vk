@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
     /// Выключите приложение в настройках https://vk.com/editapp?id={Ваш API_ID} 
 	/// Код ошибки - 11 
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class OffAppOrLoginException : VkApiMethodInvokeException
     {
         /// <summary>

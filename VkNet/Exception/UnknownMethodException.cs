@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Проверьте, правильно ли указано название вызываемого метода: http://vk.com/dev/methods.
 	/// Код ошибки - 3
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class UnknownMethodException : VkApiMethodInvokeException
     {
         /// <summary>

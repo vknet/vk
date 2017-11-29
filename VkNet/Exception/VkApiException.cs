@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 using System.Runtime.Serialization;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
     /// <summary>
     /// Базовый класс для всех исключений, выбрасываемых библиотекой.
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class VkApiException : System.Exception
     {
 		/// <summary>

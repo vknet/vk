@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
 	/// Проверьте синтаксис запроса и список используемых параметров (его можно найти на странице с описанием метода).   
 	/// Код ошибки - 8
 	/// </summary>
-    [DataContract]
+    [Serializable]
     public class InvalidRequestException : VkApiMethodInvokeException
     {
         /// <summary>

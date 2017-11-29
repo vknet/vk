@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -7,7 +8,7 @@ namespace VkNet.Exception
 	/// Исключение, которые выбрасывается при попытке добавить себя в друзья.
 	/// Код ошибки - 174
 	/// </summary>
-	[DataContract]
+	[Serializable]
 	public class CannotAddYourselfException : VkApiMethodInvokeException
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -8,7 +9,7 @@ namespace VkNet.Exception
     /// Доступ к альбому запрещён.
     /// Убедитесь, что Вы используете верные идентификаторы (для пользователей owner_id положительный, для сообществ — отрицательный), и доступ к запрашиваемому контенту для текущего пользователя есть в полной версии сайта.
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class AlbumAccessDeniedException : VkApiMethodInvokeException
     {
         /// <summary>

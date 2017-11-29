@@ -17,7 +17,7 @@ namespace VkNet.Exception
     /// 
 	/// Код ошибки - 17
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class NeedValidationException : VkApiMethodInvokeException
     {
         /// <summary>

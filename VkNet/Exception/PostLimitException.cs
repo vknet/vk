@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -7,7 +8,7 @@ namespace VkNet.Exception
     /// Исключение, выбрасываемое при исчерпании лимита публикации постов в день (не более 50 в день)
 	/// Код ошибки - 214
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class PostLimitException : VkApiException
     {
         /// <summary>

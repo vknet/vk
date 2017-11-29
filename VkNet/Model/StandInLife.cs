@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Model
 {
@@ -11,7 +12,7 @@ namespace VkNet.Model
     /// Жизненная позиция (Personal).
     /// Данная информация не документирована в официальном API ВКонтакте и восстановлена по ответам.
     /// </summary>
-    [DataContract]
+    [Serializable]
     public class StandInLife
     {
         /// <summary>

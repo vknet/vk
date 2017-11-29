@@ -9,7 +9,7 @@ namespace VkNet.UWP.Model.Attachments
 	/// 
 	/// </summary>
 	[Obsolete("Для версии API ниже 5.0")]
-	[DataContract]
+	[Serializable]
 	public class PhotosList: MediaAttachment
 	{
 		static PhotosList()
