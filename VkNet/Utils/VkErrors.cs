@@ -18,8 +18,7 @@ namespace VkNet.Utils
         /// <exception cref="System.ArgumentNullException">Параметр не должен быть равен null</exception>
         public static void ThrowIfNullOrEmpty(Expression<Func<string>> expr)
         {
-            var body = expr.Body as MemberExpression;
-            if (body == null)
+            if (!(expr.Body is MemberExpression body))
             {
                 return;
             }
@@ -104,16 +103,14 @@ namespace VkNet.Utils
 
             // Если значение передатеся из вызывающего метода
             var unary = expr.Body as UnaryExpression;
-            var member = unary?.Operand as MemberExpression;
 
-            if (member != null)
+            if (unary?.Operand is MemberExpression member)
             {
                 name = member.Member.Name;
             }
 
             // Если в метод передается значение напрямую
-            var body = expr.Body as MemberExpression;
-            if (body != null)
+            if (expr.Body is MemberExpression body)
             {
                 name = body.Member.Name;
             }
@@ -366,6 +363,10 @@ namespace VkNet.Utils
                 case ErrorCode.CommentsLimitReached: // Error 223
                 {
                     throw new CommentsLimitReachedException(error);
+                }
+                case ErrorCode.ToomanyAdsPosts: // Error 224
+                {
+                    throw new TooManyAdsPostsException();
                 }
                 case ErrorCode.GroupsListAccessDenied: // Error 260  
                 {

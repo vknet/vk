@@ -3,7 +3,7 @@
     /// <summary>
     /// Список кодов ошибок.
     /// </summary>
-    public class ErrorCode
+    public static class ErrorCode
     {
         /// <summary>
         /// Произошла неизвестная ошибка.
@@ -293,6 +293,11 @@
         /// Превышен лимит комментариев на стене
         /// </summary>
         public const int CommentsLimitReached = 223;
+
+        /// <summary>
+        /// Превышен лимит комментариев на стене
+        /// </summary>
+        public const int ToomanyAdsPosts = 224;
 
         /// <summary>
         /// Доступ к списку групп запрещен из-за настроек конфиденциальности пользователя.
