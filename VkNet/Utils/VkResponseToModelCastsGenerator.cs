@@ -9,6 +9,30 @@ namespace VkNet.Utils
 {
     public partial class VkResponse
     {
+	    /// <summary>
+	    /// Преобразовать из VkResponse
+	    /// </summary>
+	    /// <param name="response">Ответ.</param>
+	    /// <returns>
+	    /// Результат преобразования.
+	    /// </returns>
+	    public static implicit operator MessagesSendResult(VkResponse response)
+	    {
+		    return response?._token == null || !response._token.HasValues ? null :  MessagesSendResult.FromJson(response);
+	    }
+
+	    /// <summary>
+	    /// Преобразовать из VkResponse
+	    /// </summary>
+	    /// <param name="response">Ответ.</param>
+	    /// <returns>
+	    /// Результат преобразования.
+	    /// </returns>
+	    public static implicit operator Collection<MessagesSendResult>(VkResponse response)
+	    {
+		    return response.ToCollectionOf<MessagesSendResult>(a => a);
+	    }
+	    
 		/// <summary>
         /// Преобразовать из VkResponse
         /// </summary>

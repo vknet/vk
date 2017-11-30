@@ -203,7 +203,34 @@ namespace VkNet.Categories
                 throw new ArgumentException("Message can not be null.", "Message");
             }
 
+            if (@params.UserIds != null)
+            {
+                throw new ArgumentException("Для отправки сообщения нескольким пользователям используйте метод SendToUserIds(MessagesSendParams).", "Message");
+            }
+
             return _vk.Call("messages.send", @params);
+        }
+
+        /// <summary>
+        /// Посылает личное сообщение.
+        /// </summary>
+        /// <param name="params">Параметры запроса.</param>
+        /// <returns>
+        /// Возвращается идентификатор отправленного сообщения.
+        /// </returns>
+        /// <exception cref="System.ArgumentException">Message can not be <c>null</c>.</exception>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.send
+        /// </remarks>
+        public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
+        {
+            if (@params.UserIds == null)
+            {
+                throw new ArgumentException("Для отправки сообщения одному пользователю или в беседу используйте метод Send(MessagesSendParams).", "Message");
+            }
+
+            return _vk.Call("messages.send", @params).ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
         }
 
         /// <summary>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
@@ -139,6 +141,70 @@ namespace VkNet.Tests.Categories.Messages
                 Lat = 47.217451,
                 Longitude = 38.922743
             }), Throws.InstanceOf<MessageIsTooLongException>());
+        }
+
+        [Test]
+        public void MessagesSend_SetUserIdsParam_ArgumentException()
+        {
+            Url = "https://api.vk.com/method/messages.send";
+            Json = @"
+            {
+                'response': [{
+                    'peer_id': 32190123,
+                    'message_id': 210525
+                }]
+            }";
+            Assert.That(() => Messages.Send(new MessagesSendParams
+            {
+                UserIds = new List<long>{7550525},
+                Message = "г. Таганрог, ул. Фрунзе 66А",
+                Lat = 47.217451,
+                Longitude = 38.922743
+            }), Throws.InstanceOf<ArgumentException>());
+        }
+
+        [Test]
+        public void MessagesSendToUserIds_NoSetUserIdsParam_ArgumentException()
+        {
+            Url = "https://api.vk.com/method/messages.send";
+            Json = @"
+            {
+                'response': [{
+                    'peer_id': 32190123,
+                    'message_id': 210525
+                }]
+            }";
+            Assert.That(() => Messages.SendToUserIds(new MessagesSendParams
+            {
+                UserId = 7550525,
+                Message = "г. Таганрог, ул. Фрунзе 66А",
+                Lat = 47.217451,
+                Longitude = 38.922743
+            }), Throws.InstanceOf<ArgumentException>());
+        }
+
+        [Test]
+        public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
+        {
+            Url = "https://api.vk.com/method/messages.send";
+            Json = @"
+            {
+                'response': [{
+                    'peer_id': 32190123,
+                    'message_id': 210525
+                }]
+            }";
+            var result = Messages.SendToUserIds(new MessagesSendParams
+            {
+                UserIds = new List<long> {7550525},
+                Message = "г. Таганрог, ул. Фрунзе 66А",
+                Lat = 47.217451,
+                Longitude = 38.922743
+            });
+            Assert.IsNotEmpty(result);
+            var message = result.FirstOrDefault();
+            Assert.AreEqual(message.PeerId, 32190123);
+            Assert.AreEqual(message.MessageId, 210525);
         }
     }
 }
