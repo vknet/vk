@@ -39,5 +39,15 @@ namespace VkNet.Tests.Models
             var user = User.FromJson(response);
             Assert.That(user.Trending, Is.False);
         }
+        
+        [Test(Description = "Поле 'name' может иметь одно слово")]
+        public void Name_ShouldCanBeOneWord()
+        {
+            Json = "{'name': 'бот'}";
+            var response = GetResponse();
+            var user = User.FromJson(response);
+            Assert.That(user.FirstName, Is.EqualTo("бот"));
+            Assert.That(user.LastName, Is.Null);
+        }
     }
 }
