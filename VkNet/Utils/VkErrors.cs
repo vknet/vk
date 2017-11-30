@@ -366,7 +366,7 @@ namespace VkNet.Utils
                 }
                 case ErrorCode.ToomanyAdsPosts: // Error 224
                 {
-                    throw new TooManyAdsPostsException();
+                    throw new TooManyAdsPostsException(error);
                 }
                 case ErrorCode.GroupsListAccessDenied: // Error 260  
                 {
