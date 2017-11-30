@@ -41,6 +41,5 @@ Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 - [Moq](https://github.com/moq/moq4)
 
 # Если вы хотите поддержать проект
-- [На счет](https://money.alfabank.ru/p2p/web/transfer/minyutin)
+- [На счет в банке](https://money.alfabank.ru/p2p/web/transfer/minyutin)
 - [PayPal](https://www.paypal.me/InyutinMaxim)
-- [Яндекс кошелек](https://money.yandex.ru/to/410014390443749)
