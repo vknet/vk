@@ -5,20 +5,20 @@ namespace VkNet.Exception
 {
     /// <summary>
     /// Исключение, которое выбрасывается при превышении лимита комментариев на стене.
-	/// Код ошибки - 223
+	/// Код ошибки - 224
 	/// </summary>
     [Serializable]
     public class TooManyAdsPostsException : VkApiMethodInvokeException
     {
         /// <summary>
-        /// Инициализирует новый экземпляр класса CommentsLimitReachedException
+        /// Инициализирует новый экземпляр класса TooManyAdsPostsException
         /// </summary>
         public TooManyAdsPostsException()
         {
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса CommentsLimitReachedException
+        /// Инициализирует новый экземпляр класса TooManyAdsPostsException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         public TooManyAdsPostsException(string message) : base(message)
@@ -26,7 +26,7 @@ namespace VkNet.Exception
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса CommentsLimitReachedException
+        /// Инициализирует новый экземпляр класса TooManyAdsPostsException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="innerException">Внутреннее исключение.</param>
@@ -35,7 +35,7 @@ namespace VkNet.Exception
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса CommentsLimitReachedException
+        /// Инициализирует новый экземпляр класса TooManyAdsPostsException
         /// </summary>
         /// <param name="message">Описание исключения.</param>
         /// <param name="code">Код ошибки, полученный от сервера ВКонтакте.</param>
@@ -44,7 +44,7 @@ namespace VkNet.Exception
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса VkApiException
+        /// Инициализирует новый экземпляр класса TooManyAdsPostsException
         /// </summary>
         /// <param name="response">Ответ от сервера vk</param>
         public TooManyAdsPostsException(VkResponse response) : base(response["error_msg"])
