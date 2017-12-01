@@ -55,7 +55,7 @@ namespace VkNet.Utils
         /// <returns>Число типа long или null</returns>
         public static long? GetNullableLongId(VkResponse response)
         {
-            return !string.IsNullOrWhiteSpace(response?.ToString()) ? System.Convert.ToInt64(response.ToString()) : (long?)null;
+            return !string.IsNullOrWhiteSpace(response?.ToString()) ? System.Convert.ToInt64(response?.ToString()) : (long?)null;
         }
 
 		/// <summary>
