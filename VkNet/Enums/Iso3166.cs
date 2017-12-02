@@ -1,12 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
+﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable InconsistentNaming
 namespace VkNet.Enums
 {
 	/// <summary>
 	/// ISO 3166-1 alpha-2 — часть международного стандарта ISO 3166-1, определяющая двухсимвольные кодовые обозначения государств и зависимых территорий. 
 	/// </summary>
-	[SuppressMessage("ReSharper", "UnusedMember.Global")]
-	[SuppressMessage("ReSharper", "InconsistentNaming")]
 	public enum Iso3166
 	{
 		/// <summary>
