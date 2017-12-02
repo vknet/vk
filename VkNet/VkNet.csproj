@@ -24,7 +24,10 @@
     <PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
     <PackageReleaseNotes>Исправление багов.
 
-Внимание! В версии 1.30 (Январь 2018 года) будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов.
+        Внимание! В версии 1.30 (Январь 2018 года) будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов.
+        
+        Список изменений:
+        https://github.com/vknet/vk/milestone/2?closed=1        
     </PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
