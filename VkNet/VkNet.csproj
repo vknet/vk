@@ -14,17 +14,18 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.29.3</Version>
-    <Authors>a.zhidkov, inyutin-maxim, CaCTuCaTu4ECKuu</Authors>
-    <PackageLicenseUrl>https://vk.codeplex.com/license</PackageLicenseUrl>
+    <Version>1.29.4</Version>
+    <Authors>inyutin_maxim;azhidkov</Authors>
+    <PackageLicenseUrl>https://github.com/vknet/vk/blob/master/LICENCE</PackageLicenseUrl>
     <PackageProjectUrl>https://vknet.github.io/vk/</PackageProjectUrl>
-    <PackageIconUrl>http://i1228.photobucket.com/albums/ee450/inyutin_mxim/vknet_zpsmyu5oa5i.png?t=1464596085</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/vknet/vk/master/tools/vknet-icon.PNG</PackageIconUrl>
     <RepositoryUrl>https://github.com/vknet/vk</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
-    <PackageTags>vk, vk api, vknet, vkontakte api</PackageTags>
+    <PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
     <PackageReleaseNotes>Исправление багов.
 
-Внимание! В следующих версиях будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов</PackageReleaseNotes>
+Внимание! В версии 1.30 (Январь 2018 года) будут удалены методы объявленные как устаревшие, в связи с этим рекомендую убрать их из ваших проектов.
+    </PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;UWP</DefineConstants>
