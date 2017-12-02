@@ -364,15 +364,14 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore("")]
 		public void GetById_Multiple_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getById";
 			Json =
 				@"{
-					'response': [
-					  3,
-					  {
+					'response': {
+					  'count': 3,
+					  'items': [{
 						'id': 1,
 						'date': 1197929120,
 						'out': 0,
@@ -398,18 +397,16 @@ namespace VkNet.Tests.Categories
 						'read_state': 1,
 						'title': 'Re(2): Как там зачетная неделя продвигаетсо?)',
 						'body': 'Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)'
-					  }
-					]
+					  }]
+					}
 				  }";
 
-			int totalCount;
-			var msgs = Cat.GetById(out totalCount, new ulong[] { 1, 3, 5 }).ToList();
+			var msgs = Cat.GetById(new ulong[] { 1, 3, 5 });
 
-			Assert.That(totalCount, Is.EqualTo(3));
+			Assert.That(msgs.TotalCount, Is.EqualTo(3));
 			Assert.That(msgs.Count, Is.EqualTo(3));
 
 			Assert.That(msgs[2].Id, Is.EqualTo(5));
-			Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2007, 12, 26, 1, 16, 48)));
 			Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Received));
 			Assert.That(msgs[2].UserId, Is.EqualTo(684559));
 			Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
@@ -417,14 +414,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(msgs[2].Body, Is.EqualTo("Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)"));
 
 			Assert.That(msgs[1].Id, Is.EqualTo(3));
-			Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2007, 12, 26, 1, 9, 40)));
 			Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Sended));
 			Assert.That(msgs[1].UserId, Is.EqualTo(684559));
 			Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
 			Assert.That(msgs[1].Title, Is.EqualTo("Re: Как там зачетная неделя продвигаетсо?)"));
 			Assert.That(msgs[1].Body, Is.EqualTo("Парят и парят во все дыры)... у тебя как?"));
 			Assert.That(msgs[0].Id, Is.EqualTo(1));
-			Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2007, 12, 18, 2, 5, 20)));
 			Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Received));
 			Assert.That(msgs[0].UserId, Is.EqualTo(684559));
 			Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
@@ -948,7 +943,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore("undone")]
 		public void EditChat_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.editChat";
