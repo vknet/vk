@@ -1,4 +1,7 @@
 ﻿using VkNet.Enums.SafetyEnums;
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace VkNet.Model
 {
@@ -10,13 +13,13 @@ namespace VkNet.Model
 
     /// <summary>
     /// Информация о пользователя.
-    /// См. описание http://vk.com/dev/fields и http://vk.com/pages?oid=-1&amp;p=users.get
+    /// См. описание https://vk.com/dev/objects/user
     /// </summary>
     [DebuggerDisplay("[{Id}] {FirstName} {LastName}")]
     [Serializable]
     public class User
     {
-        #region Стандартные поля
+        #region Базовые поля
 
         /// <summary>
         /// Идентификатор пользователя.
@@ -34,6 +37,11 @@ namespace VkNet.Model
         public string LastName { get; set; }
 
         /// <summary>
+        /// Причина блокирования аккаунта
+        /// </summary>
+        public Deactivated Deactivated { get; set; }
+
+        /// <summary>
         /// Возвращается при вызове без access_token, если пользователь установил настройку «Кому в интернете видна моя страница» — «Только пользователям ВКонтакте».
         /// Обратите внимание, в этом случае дополнительные поля fields не возвращаются.
         /// </summary>
@@ -44,9 +52,14 @@ namespace VkNet.Model
         #region Опциональные поля
 
         /// <summary>
-        /// Пол пользователя.
+        /// Информация пользователя о себе.
         /// </summary>
-        public Sex Sex { get; set; }
+        public string About { get; set; }
+
+        /// <summary>
+        /// Чем занимается пользователь.
+        /// </summary>
+        public string Activities { get; set; }
 
         /// <summary>
         /// Дата рождения пользователя. Возвращается в формате DD.MM.YYYY или DD.MM (если год рождения скрыт).
@@ -55,80 +68,19 @@ namespace VkNet.Model
         public string BirthDate { get; set; }
 
         /// <summary>
-        /// Идентификатор города, указанного на странице пользователя в разделе «Контакты».
-        /// Если город не указан, или основная информация страницы скрыта настройками приватности, то 0.
+        /// Возвращается 1, если текущий пользователь находится в черном списке у запрашиваемого пользователя.
         /// </summary>
-        public City City { get; set; }
+        public bool Blacklisted { get; set; }
 
         /// <summary>
-        /// Идентификатор страны, указанной на странице пользователя в разделе «Контакты».
-        /// Если страна не указана или основная информация страницы скрыта настройками приватности, то 0.
+        /// Возвращается 1, если запрашиваемый пользователь находится в черном списке у текущего пользователя.
         /// </summary>
-        public Country Country { get; set; }
+        public bool BlacklistedByMe { get; set; }
 
         /// <summary>
-        /// Информация о ссылках на предпросмотр фотографий пользователя.
+        /// Любимые книги пользователя.
         /// </summary>
-        public Previews PhotoPreviews { get; set; }
-
-        /// <summary>
-        /// Признак находится ли пользователь сейчас на сайте.
-        /// </summary>
-        public bool? Online { get; set; }
-
-        /// <summary>
-        /// Идентификаторы списков друзей, в которых состоит пользователь. Поле доступно только для метода
-        /// FriendsCategory.Get. Получить информацию об идентификаторах и названиях списков друзей можно с
-        /// помощью метода FriendsCategory.GetLists. Если пользователь не состоит ни в одном списке друзей, данное
-        /// поле принимает значение null.
-        /// </summary>
-        public Collection<long> FriendLists { get; set; }
-
-        /// <summary>
-        /// Короткий адрес страницы пользователя. Возвращается строка, содержащая короткий адрес страницы (возвращается только
-        /// сам поддомен, например, andrew). Если он не назначен, то "id"+uid, например, id35828305.
-        /// </summary>
-        public string Domain { get; set; }
-
-        /// <summary>
-        /// Информация о том, известен ли номер мобильного телефона пользователя (true - известен, false - не известен).
-        /// </summary>
-        public bool? HasMobile { get; set; }
-
-        /// <summary>
-        /// Номер мобильного телефона (если нет записи или скрыт, то null).
-        /// </summary>
-        public string MobilePhone { get; set; }
-
-        /// <summary>
-        /// Номер домашнего телефона (если нет записи или скрыт, то null).
-        /// </summary>
-        public string HomePhone { get; set; }
-
-        /// <summary>
-        /// Данные о подключенных сервисах пользователя, таких как: skype, facebook, twitter, instagram.
-        /// </summary>
-        public Connections Connections { get; set; }
-
-        /// <summary>
-        /// Возвращает указанный в профиле сайт пользователя.
-        /// </summary>
-        public string Site { get; set; }
-
-        /// <summary>
-        /// Сведения об образовании пользователя.
-        /// </summary>
-        public Education Education { get; set; }
-
-        /// <summary>
-        /// Список высших учебных заведений, в которых учился пользователь.
-        /// </summary>
-        public Collection<University> Universities { get; set; }
-
-        /// <summary>
-        /// Школы, в которых учился пользователь.
-        /// </summary>
-        public Collection<School> Schools { get; set; }
+        public string Books { get; set; }
 
         /// <summary>
         /// Признак разрешено ли оставлять записи на стене у пользователя.
@@ -146,19 +98,25 @@ namespace VkNet.Model
         public bool CanSeeAudio { get; set; }
 
         /// <summary>
+        /// Информация о том, будет ли отправлено уведомление пользователю о заявке в друзья.
+        /// </summary>
+        public bool CanSendFriendRequest { get; set; }
+
+        /// <summary>
         /// Признак разрешено ли написание личных сообщений данному пользователю.
         /// </summary>
         public bool CanWritePrivateMessage { get; set; }
 
         /// <summary>
-        /// Строка со статусом пользователя.
+        /// Информация о карьере пользователя.
         /// </summary>
-        public string Status { get; set; }
+        public Collection<Career> Career { get; set; }
 
         /// <summary>
-        /// Время последнего посещения сайта.
+        /// Идентификатор города, указанного на странице пользователя в разделе «Контакты».
+        /// Если город не указан, или основная информация страницы скрыта настройками приватности, то 0.
         /// </summary>
-        public LastSeen LastSeen { get; set; }
+        public City City { get; set; }
 
         /// <summary>
         /// Общее количество друзей с текущим пользователем.
@@ -166,14 +124,14 @@ namespace VkNet.Model
         public int? CommonCount { get; set; }
 
         /// <summary>
-        /// Семейное положение.
+        /// Данные о подключенных сервисах пользователя, таких как: skype, facebook, twitter, instagram.
         /// </summary>
-        public RelationType Relation { get; set; }
+        public Connections Connections { get; set; }
 
         /// <summary>
-        /// Родственники пользователя.
+        /// Информация о телефонных номерах пользователя.
         /// </summary>
-        public Collection<Relative> Relatives { get; set; }
+        public Contacts Contacts { get; set; }
 
         /// <summary>
         /// Различные счетчики пользователя.
@@ -181,98 +139,71 @@ namespace VkNet.Model
         public Counters Counters { get; set; }
 
         /// <summary>
-        /// Информация о блокировке пользователя
+        /// Идентификатор страны, указанной на странице пользователя в разделе «Контакты».
+        /// Если страна не указана или основная информация страницы скрыта настройками приватности, то 0.
         /// </summary>
-        public BanInfo BanInfo { get; set; }
+        public Country Country { get; set; }
 
         /// <summary>
-        /// Является ли пользователь заблокированным
+        /// Возвращает данные о точках, по которым вырезаны профильная и миниатюрная фотографии пользователя.
         /// </summary>
-        public bool IsDeactivated { get; set; }
+        public CropPhoto CropPhoto { get; set; }
 
         /// <summary>
-        /// Причина блокирования аккаунта
+        /// Короткий адрес страницы пользователя. Возвращается строка, содержащая короткий адрес страницы (возвращается только
+        /// сам поддомен, например, andrew). Если он не назначен, то "id"+uid, например, id35828305.
         /// </summary>
-        [Obsolete("Устаревшее свойство. Используйте Deactivated")]
-        public Deactivated DeactiveReason => Deactivated;
+        public string Domain { get; set; }
 
         /// <summary>
-        /// Причина блокирования аккаунта
+        /// Сведения об образовании пользователя.
         /// </summary>
-        public Deactivated Deactivated { get; set; }
-
-        #endregion
-
-        #region Дополнительные поля из http://vk.com/pages?oid=-1&p=users.get
+        public Education Education { get; set; }
 
         /// <summary>
-        /// Прозвище (ник) пользователя.
+        /// Внешние сервисы, в которые настроен экспорт из ВК.
         /// </summary>
-        public string Nickname { get; set; }
+        public Exports Exports { get; set; }
 
         /// <summary>
-        /// Часовой пояс пользователя.
+        /// Имя в именительном падеже
         /// </summary>
-        public int? Timezone { get; set; }
-
-        #endregion
-
-        #region Поля, установленные экспериментально
+        public string FirstNameNom { get; set; }
 
         /// <summary>
-        /// Идентификатор языка, установленный в настройках.
+        /// Имя в родительном падеже
         /// </summary>
-        public long? Language { get; set; }
+        public string FirstNameGen { get; set; }
 
         /// <summary>
-        /// Признак использует ли пользователь мобильное приложение либо мобильную версию сайта.
+        /// Имя в дательном падеже
         /// </summary>
-        public bool? OnlineMobile { get; set; }
+        public string FirstNameDat { get; set; }
 
         /// <summary>
-        /// Если пользователь зашёл через приложение, то Id приложения иначе null.
+        /// Имя в винительном падеже
         /// </summary>
-        public long? OnlineApp { get; set; }
+        public string FirstNameAcc { get; set; }
 
         /// <summary>
-        /// Партнер в семейных отношениях.
+        /// Имя в творительном падеже
         /// </summary>
-        public User RelationPartner { get; set; }
+        public string FirstNameIns { get; set; }
 
         /// <summary>
-        /// Жизненные интересы.
+        /// Имя в предложном падеже
         /// </summary>
-        public StandInLife StandInLife { get; set; }
+        public string FirstNameAbl { get; set; }
 
         /// <summary>
-        /// Интересы пользователя.
+        /// Количество подписчиков пользователя.
         /// </summary>
-        public string Interests { get; set; }
+        public long? FollowersCount { get; set; }
 
         /// <summary>
-        /// Любимая музыка пользователя.
+        /// Состояние дружбы с пользователями.
         /// </summary>
-        public string Music { get; set; }
-
-        /// <summary>
-        /// Чем занимается пользователь.
-        /// </summary>
-        public string Activities { get; set; }
-
-        /// <summary>
-        /// Любимые фильмы пользователя.
-        /// </summary>
-        public string Movies { get; set; }
-
-        /// <summary>
-        /// Любимые телешоу пользователя.
-        /// </summary>
-        public string Tv { get; set; }
-
-        /// <summary>
-        /// Любимые книги пользователя.
-        /// </summary>
-        public string Books { get; set; }
+        public FriendStatus FriendStatus { get; set; }
 
         /// <summary>
         /// Любимые игры пользователя.
@@ -280,38 +211,14 @@ namespace VkNet.Model
         public string Games { get; set; }
 
         /// <summary>
-        /// Информация пользователя о себе.
+        /// Информация о том, известен ли номер мобильного телефона пользователя (true - известен, false - не известен).
         /// </summary>
-        public string About { get; set; }
+        public bool? HasMobile { get; set; }
 
         /// <summary>
-        /// Избранные пользователем цитаты.
+        /// Возвращается 1, если текущий пользователь установил фотографию для профиля.
         /// </summary>
-        public string Quotes { get; set; }
-
-        /// <summary>
-        /// Идентификатор пользователя, пригласившего пользователя в беседу (для GetChatUsers).
-        /// </summary>
-        public long? InvitedBy { get; set; }
-
-        /// <summary>
-        /// Короткое имя (поддомен) страницы пользователя.
-        /// </summary>
-        public string ScreenName { get; set; }
-
-        #endregion
-
-        #region Поля, доступные через запрос https://vk.com/dev/account.getProfileInfo
-
-        /// <summary>
-        /// Девичья фамилия (только для женского пола)
-        /// </summary>
-        public string MaidenName { get; set; }
-
-        /// <summary>
-        /// Видимость даты рождения.
-        /// </summary>
-        public BirthdayVisibility? BirthdayVisibility { get; set; }
+        public bool? HasPhoto { get; set; }
 
         /// <summary>
         /// Родной город пользователя.
@@ -319,35 +226,113 @@ namespace VkNet.Model
         public string HomeTown { get; set; }
 
         /// <summary>
-        /// Информация о заявке на смену имени.
+        /// Интересы пользователя.
         /// </summary>
-        public ChangeNameRequest ChangeNameRequest { get; set; }
+        public string Interests { get; set; }
 
         /// <summary>
-        /// Информация о телефонных номерах пользователя.
+        /// Возвращается 1, если пользователь находится в закладках у текущего пользователя.
         /// </summary>
-        public string Contacts { get; set; }
+        public bool IsFavorite { get; set; }
 
         /// <summary>
-        /// Показывать дату?
+        /// 1 – пользователь друг, 2 – пользователь не в друзьях.
         /// </summary>
-        [Obsolete("Пожалуйста используйте поле BirthdayVisibility")]
-        public BirthdayVisibility? BdateVisibility => BirthdayVisibility;
+        public bool? IsFriend { get; set; }
 
         /// <summary>
-        /// id главной фотографии профиля пользователя в формате user_id+photo_id, например, 6492_192164258. В некоторых случаях (если фотография была установлена очень давно) это поле не возвращается.
+        /// Возвращается 1, если пользователь скрыт в новостях у текущего пользователя.
         /// </summary>
-        public string PhotoId { get; set; }
+        public bool IsHiddenFromFeed { get; set; }
 
         /// <summary>
-        /// Возвращается 1, если страница пользователя верифицирована, 0 — если не верифицирована.
+        /// Фамилия в именительном падеже
         /// </summary>
-        public bool? Verified { get; set; }
+        public string LastNameNom { get; set; }
 
         /// <summary>
-        /// Возвращается 1, если текущий пользователь установил фотографию для профиля.
+        /// Фамилия в родительном падеже
         /// </summary>
-        public bool? HasPhoto { get; set; }
+        public string LastNameGen { get; set; }
+
+        /// <summary>
+        /// Фамилия в дательном падеже
+        /// </summary>
+        public string LastNameDat { get; set; }
+
+        /// <summary>
+        /// Фамилия в винительном падеже
+        /// </summary>
+        public string LastNameAcc { get; set; }
+
+        /// <summary>
+        /// Фамилия в творительном падеже
+        /// </summary>
+        public string LastNameIns { get; set; }
+
+        /// <summary>
+        /// Фамилия в предложном падеже
+        /// </summary>
+        public string LastNameAbl { get; set; }
+
+        /// <summary>
+        /// Время последнего посещения сайта.
+        /// </summary>
+        public LastSeen LastSeen { get; set; }
+
+        /// <summary>
+        /// Идентификаторы списков друзей, в которых состоит пользователь. Поле доступно только для метода
+        /// FriendsCategory.Get. Получить информацию об идентификаторах и названиях списков друзей можно с
+        /// помощью метода FriendsCategory.GetLists. Если пользователь не состоит ни в одном списке друзей, данное
+        /// поле принимает значение null.
+        /// </summary>
+        /// <remarks>
+        /// поле lists
+        /// </remarks>
+        public Collection<long> FriendLists { get; set; }
+
+        /// <summary>
+        /// Девичья фамилия (только для женского пола)
+        /// </summary>
+        public string MaidenName { get; set; }
+
+        /// <summary>
+        /// Информация о военной службе пользователя.
+        /// </summary>
+        public Military Military { get; set; }
+
+        /// <summary>
+        /// Любимые фильмы пользователя.
+        /// </summary>
+        public string Movies { get; set; }
+
+        /// <summary>
+        /// Любимая музыка пользователя.
+        /// </summary>
+        public string Music { get; set; }
+
+        /// <summary>
+        /// Прозвище (ник) пользователя.
+        /// </summary>
+        public string Nickname { get; set; }
+
+        /// <summary>
+        /// Информация о текущем роде занятия пользователя.
+        /// </summary>
+        public Occupation Occupation { get; set; }
+
+        /// <summary>
+        /// Признак находится ли пользователь сейчас на сайте.
+        /// </summary>
+        public bool? Online { get; set; }
+
+        /// <summary>
+        /// Жизненная позиция.
+        /// </summary>
+        /// <remarks>
+        /// поле <c>personal</c>
+        /// </remarks>
+        public StandInLife StandInLife { get; set; }
 
         /// <summary>
         /// url квадратной фотографии пользователя, имеющей ширину 50 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_c.gif
@@ -370,94 +355,163 @@ namespace VkNet.Model
         public Uri Photo200 { get; set; }
 
         /// <summary>
-        /// url фотографии пользователя, имеющей ширину 400 пикселей. Если у пользователя отсутствует фотография такого размера, ответ не будет содержать этого поля.
+        /// url фотографии пользователя, имеющей ширину 400 пикселей. 
+        /// Если у пользователя отсутствует фотография такого размера, ответ не будет содержать этого поля.
         /// </summary>
         public Uri Photo400Orig { get; set; }
 
         /// <summary>
-        /// url квадратной фотографии пользователя с максимальной шириной. Может быть возвращена фотография, имеющая ширину как 200, так и 100 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_b.gif.
+        /// id главной фотографии профиля пользователя в формате user_id+photo_id, например, 6492_192164258. 
+        /// В некоторых случаях (если фотография была установлена очень давно) это поле не возвращается.
+        /// </summary>
+        public string PhotoId { get; set; }
+
+        /// <summary>
+        /// url квадратной фотографии пользователя с максимальной шириной. 
+        /// Может быть возвращена фотография, имеющая ширину как 200, так и 100 пикселей. 
+        /// В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_b.gif.
         /// </summary>
         public Uri PhotoMax { get; set; }
 
         /// <summary>
-        /// url фотографии пользователя максимального размера. Может быть возвращена фотография, имеющая ширину как 400, так и 200 пикселей. В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_a.gif.
+        /// url фотографии пользователя максимального размера. 
+        /// Может быть возвращена фотография, имеющая ширину как 400, так и 200 пикселей.
+        /// В случае отсутствия у пользователя фотографии возвращается http://vk.com/images/camera_a.gif.
         /// </summary>
         public Uri PhotoMaxOrig { get; set; }
 
         /// <summary>
-        /// Количество подписчиков пользователя.
+        /// Избранные пользователем цитаты.
         /// </summary>
-        public long? FollowersCount { get; set; }
+        public string Quotes { get; set; }
 
         /// <summary>
-        /// Информация о текущем роде занятия пользователя.
+        /// Родственники пользователя.
         /// </summary>
-        public Occupation Occupation { get; set; }
+        public Collection<Relative> Relatives { get; set; }
 
         /// <summary>
-        /// Внешние сервисы, в которые настроен экспорт из ВК.
+        /// Семейное положение.
         /// </summary>
-        public Exports Exports { get; set; }
+        public RelationType Relation { get; set; }
+
+        /// <summary>
+        /// Школы, в которых учился пользователь.
+        /// </summary>
+        public Collection<School> Schools { get; set; }
+
+        /// <summary>
+        /// Короткое имя (поддомен) страницы пользователя.
+        /// </summary>
+        public string ScreenName { get; set; }
+
+        /// <summary>
+        /// Пол пользователя.
+        /// </summary>
+        public Sex Sex { get; set; }
+
+        /// <summary>
+        /// Возвращает указанный в профиле сайт пользователя.
+        /// </summary>
+        public string Site { get; set; }
+
+        /// <summary>
+        /// Строка со статусом пользователя.
+        /// </summary>
+        public string Status { get; set; }
+
+        /// <summary>
+        /// Часовой пояс пользователя.
+        /// </summary>
+        public int? Timezone { get; set; }
+
+        /// <summary>
+        /// Возвращается 1, если запрашиваемый пользователь находится в черном списке у текущего пользователя.
+        /// </summary>
+        public bool Trending { get; set; }
+
+        /// <summary>
+        /// Любимые телешоу пользователя.
+        /// </summary>
+        public string Tv { get; set; }
+
+        /// <summary>
+        /// Список высших учебных заведений, в которых учился пользователь.
+        /// </summary>
+        public Collection<University> Universities { get; set; }
+
+        /// <summary>
+        /// Возвращается 1, если страница пользователя верифицирована, 0 — если не верифицирована.
+        /// </summary>
+        public bool? Verified { get; set; }
 
         /// <summary>
         /// Доступно ли комментирование стены (1 — доступно, 0 — недоступно).
         /// </summary>
         public bool WallComments { get; set; }
 
+        #endregion
+
+        #region Поля, установленные экспериментально
+        
         /// <summary>
-        /// Информация о том, будет ли отправлено уведомление пользователю о заявке в друзья.
+        /// Информация о ссылках на предпросмотр фотографий пользователя.
         /// </summary>
-        public bool CanSendFriendRequest { get; set; }
+        public Previews PhotoPreviews { get; set; }
 
         /// <summary>
-        /// Возвращается 1, если пользователь находится в закладках у текущего пользователя.
+        /// Номер мобильного телефона (если нет записи или скрыт, то null).
         /// </summary>
-        public bool IsFavorite { get; set; }
+        public string MobilePhone { get; set; }
 
         /// <summary>
-        /// Возвращается 1, если пользователь скрыт в новостях у текущего пользователя.
+        /// Номер домашнего телефона (если нет записи или скрыт, то null).
         /// </summary>
-        public bool IsHiddenFromFeed { get; set; }
+        public string HomePhone { get; set; }
 
         /// <summary>
-        /// Возвращает данные о точках, по которым вырезаны профильная и миниатюрная фотографии пользователя.
+        /// Информация о блокировке пользователя
         /// </summary>
-        public CropPhoto CropPhoto { get; set; }
+        public BanInfo BanInfo { get; set; }
 
         /// <summary>
-        /// 1 – пользователь друг, 2 – пользователь не в друзьях.
+        /// Является ли пользователь заблокированным
         /// </summary>
-        public bool? IsFriend { get; set; }
+        public bool IsDeactivated { get; set; }
+        /// <summary>
+        /// Идентификатор языка, установленный в настройках.
+        /// </summary>
+        public long? Language { get; set; }
 
         /// <summary>
-        /// Состояние дружбы с пользователями.
+        /// Признак использует ли пользователь мобильное приложение либо мобильную версию сайта.
         /// </summary>
-        public FriendStatus FriendStatus { get; set; }
+        public bool? OnlineMobile { get; set; }
 
         /// <summary>
-        /// Информация о карьере пользователя.
+        /// Если пользователь зашёл через приложение, то Id приложения иначе null.
         /// </summary>
-        public Collection<Career> Career { get; set; }
+        public long? OnlineApp { get; set; }
 
         /// <summary>
-        /// Информация о военной службе пользователя.
+        /// Партнер в семейных отношениях.
         /// </summary>
-        public Military Military { get; set; }
+        public User RelationPartner { get; set; }
 
         /// <summary>
-        /// Возвращается 1, если текущий пользователь находится в черном списке у запрашиваемого пользователя.
+        /// Идентификатор пользователя, пригласившего пользователя в беседу (для GetChatUsers).
         /// </summary>
-        public bool Blacklisted { get; set; }
+        public long? InvitedBy { get; set; }
 
         /// <summary>
-        /// Возвращается 1, если запрашиваемый пользователь находится в черном списке у текущего пользователя.
+        /// Видимость даты рождения.
         /// </summary>
-        public bool BlacklistedByMe { get; set; }
+        public BirthdayVisibility? BirthdayVisibility { get; set; }
 
         /// <summary>
-        /// Возвращается 1, если запрашиваемый пользователь находится в черном списке у текущего пользователя.
+        /// Информация о заявке на смену имени.
         /// </summary>
-        public bool Trending { get; set; }
+        public ChangeNameRequest ChangeNameRequest { get; set; }
 
         #endregion
 
@@ -551,7 +605,19 @@ namespace VkNet.Model
                 Military = response["military"],
                 Blacklisted = response["blacklisted"],
                 BlacklistedByMe = response["blacklisted_by_me"],
-                Trending = response["trending"]
+                Trending = response["trending"],
+                FirstNameNom = response["first_name_nom"], 
+                FirstNameGen = response["first_name_gen"], 
+                FirstNameDat = response["first_name_dat"], 
+                FirstNameAcc = response["first_name_acc"], 
+                FirstNameIns = response["first_name_ins"], 
+                FirstNameAbl = response["first_name_abl"],
+                LastNameNom = response["last_name_nom"], 
+                LastNameGen = response["last_name_gen"], 
+                LastNameDat = response["last_name_dat"], 
+                LastNameAcc = response["last_name_acc"], 
+                LastNameIns = response["last_name_ins"], 
+                LastNameAbl = response["last_name_abl"] 
             };
             user.IsDeactivated = user.Deactivated != null;
             if (response["name"] != null)
@@ -575,8 +641,8 @@ namespace VkNet.Model
             }
 
             var birdthdayParts = user.BirthDate.Split('.');
-            user.BirthdayVisibility = birdthdayParts.Length > 2 
-                ? Enums.BirthdayVisibility.Full 
+            user.BirthdayVisibility = birdthdayParts.Length > 2
+                ? Enums.BirthdayVisibility.Full
                 : Enums.BirthdayVisibility.OnlyDayAndMonth;
 
 

@@ -897,7 +897,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(user.Id, Is.EqualTo(4793858));
 			Assert.That(user.FirstName, Is.EqualTo("Антон"));
 			Assert.That(user.LastName, Is.EqualTo("Жидков"));
-			Assert.That(user.DeactiveReason, Is.EqualTo(Deactivated.Deleted));
+			Assert.That(user.Deactivated, Is.EqualTo(Deactivated.Deleted));
 			Assert.That(user.IsDeactivated, Is.True);
 		}
 
