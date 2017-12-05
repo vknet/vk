@@ -1094,9 +1094,9 @@ namespace VkNet.Tests.Categories
 		
 
 		[Test]
-		public void GetLongPollServer_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		public void GetLongPollServer_ThrowArgumentNullException()
 		{
-			Assert.That(() => Api.Messages.GetLongPollServer(), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => Api.Messages.GetLongPollServer(), Throws.InstanceOf<ArgumentNullException>());
 		}
 
 		[Test]

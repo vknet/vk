@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
 
@@ -57,9 +58,9 @@ namespace VkNet.Tests.Categories.Messages
         }
 
         [Test]
-        public void GetLongPollHistory_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+        public void GetLongPollHistory_ThrowArgumentNullException()
         {
-            Assert.That(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()), Throws.InstanceOf<AccessTokenInvalidException>());
+            Assert.That(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()), Throws.InstanceOf<ArgumentNullException>());
         }
     }
 }
