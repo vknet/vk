@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using VkNet.Categories;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
 
@@ -8,13 +7,6 @@ namespace VkNet.Tests.Categories.Messages
     [TestFixture]
     public class MesagesGetLongPollHistory: BaseTest
     {
-        private MessagesCategory Messages => GetMockedMessagesCategory();
-
-        private MessagesCategory GetMockedMessagesCategory()
-        {
-            return new MessagesCategory(Api);
-        }
-        
         [Test]
         public void GroupsField()
         {
@@ -52,7 +44,7 @@ namespace VkNet.Tests.Categories.Messages
                     'new_pts': 12
                 }
             }";
-            var result = Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams
+            var result = Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams
             {
                 Ts = 1874397841,
                 PreviewLength = 0,

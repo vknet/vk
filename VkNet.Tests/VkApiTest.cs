@@ -113,20 +113,5 @@ namespace VkNet.Tests
             Assert.IsNotNull(callMethod);
             Assert.IsTrue(callMethod.IsPublic);
         }
-
-        [Test]
-        public void VkGetApiUrlShouldBePublic()
-        {
-            // arrange
-            var myType = (typeof(VkApi));
-            var myArrayMethodInfo = myType.GetMethods();
-
-            // act
-            var getApiUrlMethod = myArrayMethodInfo.FirstOrDefault(x => x.Name.Contains("GetApiUrl"));
-
-            // Assert
-            Assert.IsNotNull(getApiUrlMethod);
-            Assert.IsTrue(getApiUrlMethod.IsPublic);
-        }
     }
 }
