@@ -1091,19 +1091,12 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(result, Is.True);
 		}
-
-		[Test]
-		public void GetLongPollHistory_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetLongPollHistory(new MessagesGetLongPollHistoryParams()), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
+		
 
 		[Test]
 		public void GetLongPollServer_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetLongPollServer(), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => Api.Messages.GetLongPollServer(), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -1119,7 +1112,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var response = Cat.GetLongPollServer();
+			var response = Api.Messages.GetLongPollServer();
 
 			Assert.That(response.Key, Is.EqualTo("6f4120988efaf3a7d398054b5bb5d019c5844bz3"));
 			Assert.That(response.Server, Is.EqualTo("im46.vk.com/im1858"));

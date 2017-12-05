@@ -1,7 +1,7 @@
 ﻿using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
-using VkNet.Model.Attachments;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace VkNet.Categories
 {

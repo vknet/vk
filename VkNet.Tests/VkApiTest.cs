@@ -12,21 +12,6 @@ namespace VkNet.Tests
 	public class VkApiTest : BaseTest
 	{
 		[Test]
-		public void GetApiUrl_IntArray()
-		{
-			var arr = new[] { 1, 65 };
-
-			var parameters = new VkParameters();
-			parameters.Add<int>("country_ids", arr);
-
-			const string expected = "https://api.vk.com/method/database.getCountriesById";
-
-			var url = Api.GetApiUrlAndAddToken("database.getCountriesById", parameters);
-
-			Assert.That(url, Is.EqualTo(expected));
-		}
-
-		[Test]
 		public void VkApi_Constructor_SetDefaultMethodCategories()
 		{
 			Assert.That(Api.Users, Is.Not.Null);
@@ -52,38 +37,7 @@ namespace VkNet.Tests
 			Assert.That(Api.Auth, Is.Not.Null);
 			Assert.That(Api.Markets, Is.Not.Null);
 		}
-
-		[Test]
-		public void GetApiUrl_GetProfile_RightUrl()
-		{
-			Parameters.Add("uid", "66748");
-
-			var output = Api.GetApiUrlAndAddToken("getProfiles", Parameters);
-
-			Assert.That(output, Is.Not.Null.Or.Empty);
-
-			const string expected = "https://api.vk.com/method/getProfiles";
-
-			Assert.That(output, Is.EqualTo(expected));
-		}
-
-		[Test]
-		public void GetApiUrl_GetProfile_WithFields()
-		{
-			var fields = ProfileFields.FirstName | ProfileFields.Domain | ProfileFields.Education;
-
-			Parameters.Add("uid", "66748");
-			Parameters.Add("fields", fields);
-
-			var output = Api.GetApiUrlAndAddToken("getProfiles", Parameters);
-
-			const string expected = "https://api.vk.com/method/getProfiles";
-
-			Assert.That(output, Is.EqualTo(expected));
-		}
-
-
-
+		
 		[Test]
 		public void Call_NotMoreThen3CallsPerSecond()
 		{

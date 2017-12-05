@@ -678,24 +678,6 @@ namespace VkNet
         }
 
         /// <summary>
-        /// Получить URL для API.
-        /// </summary>
-        /// <param name="methodName">Название метода.</param>
-        /// <param name="parameters">Параметры.</param>
-        /// <param name="skipAuthorization">Пропускать ли авторизацию</param>
-        /// <returns></returns>
-        public string GetApiUrlAndAddToken(string methodName, IDictionary<string, string> parameters,
-            bool skipAuthorization = false)
-        {
-            if (!skipAuthorization)
-            {
-                parameters["access_token"] = AccessToken;
-            }
-
-            return $"https://api.vk.com/method/{methodName}";
-        }
-
-        /// <summary>
         /// Прямой вызов API-метода
         /// </summary>
         /// <param name="methodName">Название метода. Например, "wall.get".</param>
@@ -716,7 +698,7 @@ namespace VkNet
 
             Action sendRequest = delegate
             {
-                url = GetApiUrlAndAddToken(methodName, parameters, skipAuthorization);
+                url = $"https://api.vk.com/method/{methodName}";
                 LastInvokeTime = DateTimeOffset.Now;
                 answer = Browser.GetJson(url, parameters);
             };
@@ -741,12 +723,12 @@ namespace VkNet
             Task.Delay(timeout).Wait();
 #endif
                     }
-          sendRequest();
+                  sendRequest();
                 }
             }
             else if (skipAuthorization)
             {
-        sendRequest();
+                sendRequest();
             }
 
 #if DEBUG && !UNIT_TEST
