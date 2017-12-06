@@ -167,16 +167,17 @@ namespace VkNet.Utils
 		/// <typeparam name="T">Тип данных</typeparam>
 		/// <param name="response">Ответ vk.com.</param>
 		/// <param name="selector">Функция выборки.</param>
+		/// <param name="arrayName">Наименование поля массива</param>
 		/// <returns>Специальная коллекция данных vk с общим количеством.</returns>
-		public static VkCollection<T> ToVkCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector)
+		public static VkCollection<T> ToVkCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector, string arrayName = "items")
 		{
 			if (response == null)
 			{
 				return new VkCollection<T>(0, Enumerable.Empty<T>());
 			}
 
-			VkResponseArray data = response.ContainsKey("items") ?
-				response["items"]
+			VkResponseArray data = response.ContainsKey(arrayName) ?
+				response[arrayName]
 				: response;
 
 			var resultCollection = data.ToCollectionOf(selector);

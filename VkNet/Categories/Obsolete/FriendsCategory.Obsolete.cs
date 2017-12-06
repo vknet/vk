@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -171,8 +170,7 @@ namespace VkNet.Categories
 				NeedViewed = needViewed
 			};
 
-			return GetRequests(parameters).Select(x => x.Key).ToReadOnlyCollection();
+			return GetRequests(parameters);
 		}
-
 	}
 }

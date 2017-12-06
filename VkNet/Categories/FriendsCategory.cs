@@ -401,23 +401,16 @@
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.getRequests
 		/// </remarks>
-		public IDictionary<long, ReadOnlyCollection<long>> GetRequests(FriendsGetRequestsParams @params)
+		public VkCollection<long> GetRequests(FriendsGetRequestsParams @params)
 		{
-			VkResponseArray response = _vk.Call("friends.getRequests", @params);
-
-			// Проверка возвращается ли список объектов или идентификаторы пользователя
-			if (response.Count > 0 && response[0].ContainsKey("user_id"))
+			var response = _vk.Call("friends.getRequests", @params);
+			
+			if (@params.Extended.HasValue && @params.Extended.Value)
 			{
-				var dicResult = new Dictionary<long, ReadOnlyCollection<long>>();
-				foreach (var item in response)
-				{
-					VkResponseArray mutual = item["mutual"];
-					dicResult.Add(item["user_id"], mutual.ToReadOnlyCollectionOf(x => (long)x));
-				}
-				return dicResult;
+				return response.ToVkCollectionOf<long>(x => x["user_id"]);
 			}
-
-			return response.ToDictionary(x => (long)x, x => new ReadOnlyCollection<long>(new List<long>()));
+			
+			return response.ToVkCollectionOf<long>(x => x);
 		}
 
 		/// <summary>
