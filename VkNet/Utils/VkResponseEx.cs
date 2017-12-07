@@ -45,23 +45,6 @@ namespace VkNet.Utils
             return responseArray.Select(selector).Where(i => i != null).ToCollection(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
         }
 
-		/// <summary>
-		/// В коллекцию.
-		/// </summary>
-		/// <typeparam name="T">Тип данных коллекции.</typeparam>
-		/// <param name="responses">Коллекция ответов от vk.com.</param>
-		/// <param name="selector">Функция выборки.</param>
-		/// <returns>Коллекция данных.</returns>
-		public static Collection<T> ToCollectionOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector)
-        {
-	        if (responses == null)
-	        {
-		        return new Collection<T>(new List<T>());
-	        }
-
-            return responses.Select(selector).ToCollection();
-        }
-
 		// --------------------------------------------------------------------------------------------
 		/// <summary>
 		/// В коллекцию только для чтения.
@@ -82,7 +65,7 @@ namespace VkNet.Utils
 		/// <param name="selector">Функция выборки.</param>
 		/// <returns>Коллекция данных только для чтения.</returns>
 		public static ReadOnlyCollection<T> ToReadOnlyCollectionOf<T>(
-            this VkResponse response, Func<VkResponse, T> selector) where T : class
+            this VkResponse response, Func<VkResponse, T> selector) // where T : class
         {
 	        if (response == null)
 	        {
@@ -180,7 +163,7 @@ namespace VkNet.Utils
 				response[arrayName]
 				: response;
 
-			var resultCollection = data.ToCollectionOf(selector);
+			var resultCollection = data.ToReadOnlyCollectionOf(selector);
 
 			var totalCount = response.ContainsKey("count") ?
 				response["count"]

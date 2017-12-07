@@ -48,7 +48,7 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Варианты ответов
         /// </summary>
-        public Collection<PollAnswer> Answers { get; set; }
+        public ReadOnlyCollection<PollAnswer> Answers { get; set; }
 
 		#region Методы
 		/// <summary>
@@ -67,7 +67,7 @@ namespace VkNet.Model.Attachments
 				Votes = response["votes"],
 				AnswerId = response["answer_id"],
 				IsAnonymous = response["anonymous"],
-				Answers = response["answers"]
+				Answers = response["answers"].ToReadOnlyCollectionOf<PollAnswer>(x => x)
 			};
 
 			return poll;

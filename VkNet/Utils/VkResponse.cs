@@ -32,6 +32,15 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
+		/// HasToken
+		/// </summary>
+		/// <returns></returns>
+		public bool HasToken()
+		{
+			return _token == null || !_token.HasValues;
+		}
+
+		/// <summary>
 		/// Определяет, содержит ли JSON указанный ключ.
 		/// </summary>
 		/// <param name="key">Ключ.</param>
@@ -82,8 +91,7 @@ namespace VkNet.Utils
 
 			var resp = response.ContainsKey("items") ? response["items"] : response;
 
-			var array = resp._token as JArray;
-			return array == null ? null : new VkResponseArray(array);
+			return !(resp._token is JArray array) ? null : new VkResponseArray(array);
 		}
 
 		/// <summary>
@@ -165,17 +173,17 @@ namespace VkNet.Utils
 			return response != null ? (ulong?)response._token : null;
 		}
 
-        /// <summary>
-        /// Выполняет неявное преобразование из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ vk.com</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-        public static implicit operator Collection<long>(VkResponse response)
-		{
-			return response?.ToCollectionOf<long>(i => i);
-		}
+//        /// <summary>
+//        /// Выполняет неявное преобразование из VkResponse
+//        /// </summary>
+//        /// <param name="response">Ответ vk.com</param>
+//        /// <returns>
+//        /// Результат преобразования.
+//        /// </returns>
+//        public static implicit operator Collection<long>(VkResponse response)
+//		{
+//			return response?.ToCollectionOf<long>(i => i);
+//		}
 
 		/// <summary>
 		/// Выполняет неявное преобразование из VkResponse
@@ -285,17 +293,17 @@ namespace VkNet.Utils
 			return response == null ? null : WebUtility.HtmlDecode((string)response._token);
 		}
 
-        /// <summary>
-        /// Выполняет неявное преобразование из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ vk.com</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-        public static implicit operator Collection<string>(VkResponse response)
-		{
-			return response.ToCollectionOf<string>(s => s);
-		}
+//        /// <summary>
+//        /// Выполняет неявное преобразование из VkResponse
+//        /// </summary>
+//        /// <param name="response">Ответ vk.com</param>
+//        /// <returns>
+//        /// Результат преобразования.
+//        /// </returns>
+//        public static implicit operator Collection<string>(VkResponse response)
+//		{
+//			return response.ToCollectionOf<string>(s => s);
+//		}
 
 		/// <summary>
 		/// Выполняет неявное преобразование из VkResponse
@@ -307,9 +315,8 @@ namespace VkNet.Utils
 		public static implicit operator DateTime? (VkResponse response)
 		{
 			var dateStringValue = response?.ToString();
-			long unixTimeStamp;
 			if (string.IsNullOrWhiteSpace(dateStringValue) ||
-				(!long.TryParse(dateStringValue, out unixTimeStamp) || unixTimeStamp <= 0))
+				(!long.TryParse(dateStringValue, out var unixTimeStamp) || unixTimeStamp <= 0))
 			{
 				return null;
 			}
@@ -339,8 +346,7 @@ namespace VkNet.Utils
 				throw new ArgumentException("Пустое значение невозможно преобразовать в дату", nameof(response));
 			}
 
-			long unixTimeStamp;
-			if (!long.TryParse(dateStringValue, out unixTimeStamp) || unixTimeStamp <= 0)
+			if (!long.TryParse(dateStringValue, out var unixTimeStamp) || unixTimeStamp <= 0)
 			{
 				throw new ArgumentException("Невозможно преобразовать в дату", nameof(response));
 			}
@@ -359,9 +365,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Uri(VkResponse response)
 		{
-		    Uri uriResult;
-
-		    return Uri.TryCreate(response, UriKind.Absolute, out uriResult) ? uriResult : null;
+			return Uri.TryCreate(response, UriKind.Absolute, out var uriResult) ? uriResult : null;
 		}
 
 		#endregion
@@ -480,17 +484,17 @@ namespace VkNet.Utils
             return response?._token == null ? null : Coordinates.FromJson( response );
         }
 
-        /// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-        public static implicit operator Collection<Coordinates>( VkResponse response )
-        {
-            return response.ToCollectionOf<Coordinates>( a => a );
-        }
+//        /// <summary>
+//        /// Преобразовать из VkResponse
+//        /// </summary>
+//        /// <param name="response">Ответ.</param>
+//        /// <returns>
+//        /// Результат преобразования.
+//        /// </returns>
+//        public static implicit operator Collection<Coordinates>( VkResponse response )
+//        {
+//            return response.ToCollectionOf<Coordinates>( a => a );
+//        }
 
         #endregion
     }

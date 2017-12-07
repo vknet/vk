@@ -36,7 +36,7 @@ namespace VkNet.Model
     /// <summary>
     /// Список идентификаторов участников беседы.
     /// </summary>
-    public Collection<long> Users { get; set; }
+    public ReadOnlyCollection<long> Users { get; set; }
 
     /// <summary>
     /// флаг, указывающий, что пользователь покинул беседу. Всегда содержит 1.
@@ -98,7 +98,7 @@ namespace VkNet.Model
         Type = response["type"],
         Title = response["title"],
         AdminId = Utilities.GetNullableLongId(response["admin_id"]),
-        Users = response["users"],
+        Users = response["users"].ToReadOnlyCollectionOf<long>(x => x),
         Left = response.ContainsKey("left") && response["left"],
         Kicked = response["kicked"],
         Photo50 = response["photo_50"],

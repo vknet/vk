@@ -185,12 +185,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация из блока контактов публичной страницы.
 		/// </summary>
-		public Collection<Contact> Contacts { get; set; }
+		public ReadOnlyCollection<Contact> Contacts { get; set; }
 
 		/// <summary>
 		/// Информация из блока ссылок сообщества.
 		/// </summary>
-		public Collection<ExternalLink> Links { get; set; }
+		public ReadOnlyCollection<ExternalLink> Links { get; set; }
 		/// <summary>
 		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя WallCategory.GetById
 		/// передав идентификатор в виде – {group_id}_{post_id}.
@@ -295,8 +295,8 @@ namespace VkNet.Model
 				CanCreateTopic = response["can_create_topic"],
 				Activity = response["activity"],
 				Status = response["status"],
-				Contacts = response["contacts"],
-				Links = response["links"],
+				Contacts = response["contacts"].ToReadOnlyCollectionOf<Contact>(x => x),
+				Links = response["links"].ToReadOnlyCollectionOf<ExternalLink>(x => x),
 				FixedPostId = response["fixed_post"],
 				IsVerified = response["verified"],
 				Site = response["site"],

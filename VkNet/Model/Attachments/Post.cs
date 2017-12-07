@@ -139,7 +139,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Массив, содержащий историю репостов для записи. Возвращается только в том случае, если запись является репостом.
 		/// </summary>
-		public Collection<Post> CopyHistory { get; set; }
+		public ReadOnlyCollection<Post> CopyHistory { get; set; }
 
 		#region Поля, установленные экспериментально
 
@@ -215,7 +215,7 @@ namespace VkNet.Model
 				CopyOwnerId = response["copy_owner_id"],
 				CopyPostId = response["copy_post_id"],
 				CopyText = response["copy_text"],
-				CopyHistory = response["copy_history"],
+				CopyHistory = response["copy_history"].ToReadOnlyCollectionOf<Post>(x => x),
 				IsPinned = response["is_pinned"],
 				CreatedBy = response["created_by"],
 				CopyCommenterId = response["copy_commenter_id"],

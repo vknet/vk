@@ -73,7 +73,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Массив медиа-вложений (прикреплений).
 		/// </summary>
-		public Collection<Attachment> Attachments
+		public ReadOnlyCollection<Attachment> Attachments
 		{ get; set; }
 
 		/// <summary>
@@ -85,7 +85,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Массив пересланных сообщений (если есть).
 		/// </summary>
-		public Collection<Message> ForwardedMessages
+		public ReadOnlyCollection<Message> ForwardedMessages
 		{ get; set; }
 
 		/// <summary>
@@ -125,7 +125,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификаторы участников беседы.
 		/// </summary>
-		public Collection<long> ChatActiveIds
+		public ReadOnlyCollection<long> ChatActiveIds
 		{ get; set; }
 
 		/// <summary>
@@ -234,16 +234,16 @@ namespace VkNet.Model
 				Type = response["out"],
 				Title = response["title"],
 				Body = response["body"],
-				Attachments = response["attachments"],
+				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
 				Geo = response["geo"],
-				ForwardedMessages = response["fwd_messages"],
+				ForwardedMessages = response["fwd_messages"].ToReadOnlyCollectionOf<Message>(x => x),
 				ContainsEmojiSmiles = response["emoji"],
 				IsImportant = response["important"],
 				IsDeleted = response["deleted"],
 				FromId = response["from_id"],
 				// дополнительные поля бесед
 				ChatId = response["chat_id"],
-				ChatActiveIds = response["chat_active"],
+				ChatActiveIds = response["chat_active"].ToReadOnlyCollectionOf<long>(x => x),
 				UsersCount = response["users_count"],
 				AdminId = response["admin_id"],
 				PhotoPreviews = response,

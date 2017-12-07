@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.SafetyEnums;
+﻿using System.Security.Cryptography.X509Certificates;
+using VkNet.Enums.SafetyEnums;
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -110,7 +111,7 @@ namespace VkNet.Model
         /// <summary>
         /// Информация о карьере пользователя.
         /// </summary>
-        public Collection<Career> Career { get; set; }
+        public ReadOnlyCollection<Career> Career { get; set; }
 
         /// <summary>
         /// Идентификатор города, указанного на странице пользователя в разделе «Контакты».
@@ -289,7 +290,7 @@ namespace VkNet.Model
         /// <remarks>
         /// поле lists
         /// </remarks>
-        public Collection<long> FriendLists { get; set; }
+        public ReadOnlyCollection<long> FriendLists { get; set; }
 
         /// <summary>
         /// Девичья фамилия (только для женского пола)
@@ -388,7 +389,7 @@ namespace VkNet.Model
         /// <summary>
         /// Родственники пользователя.
         /// </summary>
-        public Collection<Relative> Relatives { get; set; }
+        public ReadOnlyCollection<Relative> Relatives { get; set; }
 
         /// <summary>
         /// Семейное положение.
@@ -398,7 +399,7 @@ namespace VkNet.Model
         /// <summary>
         /// Школы, в которых учился пользователь.
         /// </summary>
-        public Collection<School> Schools { get; set; }
+        public ReadOnlyCollection<School> Schools { get; set; }
 
         /// <summary>
         /// Короткое имя (поддомен) страницы пользователя.
@@ -438,7 +439,7 @@ namespace VkNet.Model
         /// <summary>
         /// Список высших учебных заведений, в которых учился пользователь.
         /// </summary>
-        public Collection<University> Universities { get; set; }
+        public ReadOnlyCollection<University> Universities { get; set; }
 
         /// <summary>
         /// Возвращается 1, если страница пользователя верифицирована, 0 — если не верифицирована.
@@ -535,7 +536,7 @@ namespace VkNet.Model
                 Country = response["country"],
                 PhotoPreviews = response,
                 Online = response["online"],
-                FriendLists = response["lists"],
+                FriendLists = response["lists"].ToReadOnlyCollectionOf<long>(x => x),
                 Domain = response["domain"],
                 HasMobile = response["has_mobile"],
                 MobilePhone = response["mobile_phone"] ?? response["phone"],
@@ -543,8 +544,8 @@ namespace VkNet.Model
                 Connections = response,
                 Site = response["site"],
                 Education = response,
-                Universities = response["universities"],
-                Schools = response["schools"],
+                Universities = response["universities"].ToReadOnlyCollectionOf<University>(x => x),
+                Schools = response["schools"].ToReadOnlyCollectionOf<School>(x => x),
                 CanPost = response["can_post"],
                 CanSeeAllPosts = response["can_see_all_posts"],
                 CanSeeAudio = response["can_see_audio"],
@@ -553,7 +554,7 @@ namespace VkNet.Model
                 LastSeen = response["last_seen"],
                 CommonCount = response["common_count"],
                 Relation = response["relation"],
-                Relatives = response["relatives"],
+                Relatives = response["relatives"].ToReadOnlyCollectionOf<Relative>(x => x),
                 Counters = response["counters"],
                 ScreenName = response["screen_name"],
                 Nickname = response["nickname"],
@@ -601,7 +602,7 @@ namespace VkNet.Model
                 CropPhoto = response["crop_photo"],
                 IsFriend = response["is_friend"] == "1",
                 FriendStatus = response["friend_status"],
-                Career = response["career"],
+                Career = response["career"].ToReadOnlyCollectionOf<Career>(x => x),
                 Military = response["military"],
                 Blacklisted = response["blacklisted"],
                 BlacklistedByMe = response["blacklisted_by_me"],

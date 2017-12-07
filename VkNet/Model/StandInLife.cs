@@ -23,7 +23,7 @@ namespace VkNet.Model
         /// <summary>
         /// Языки, на которых говорит пользователь.
         /// </summary>
-        public Collection<string> Languages { get; set; }
+        public ReadOnlyCollection<string> Languages { get; set; }
 
         /// <summary>
         /// Мировоззрение пользователя.
@@ -66,7 +66,7 @@ namespace VkNet.Model
 			var standInLife = new StandInLife
 			{
 				Political = response["political"],
-				Languages = response["langs"],
+				Languages = response["langs"].ToReadOnlyCollectionOf<string>(x => x),
 				Religion = response["religion"],
 				InspiredBy = response["inspired_by"],
 				PeopleMain = response["people_main"],

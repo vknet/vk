@@ -51,7 +51,7 @@ namespace VkNet.Model
         /// <summary>
         /// Объект, содержащий информацию о медиавложениях в комментарии. См. описание формата медиавложений.
         /// </summary>
-        public Collection<Attachment> Attachments { get; set; }
+        public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
         /// <summary>
         /// Первое приложение к комментарию.
@@ -86,7 +86,7 @@ namespace VkNet.Model
 				Text = response["text"],
 				ReplyToUserId = response["reply_to_user"],
 				ReplyToCommentId = response["reply_to_comment"],
-				Attachments = response["attachments"],
+				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
 
 				Likes = response["likes"] // установлено экcпериментальным путем
 			};
