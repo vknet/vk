@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using VkNet.Utils;
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -20,6 +19,7 @@ namespace VkNet.Model
         /// 
         /// </summary>
         [JsonProperty("mutual")]
+        [JsonConverter(typeof(VkCollectionJsonConverter), "users")]
         public VkCollection<long> Mutual { get; set; }
         
         /// <summary>
@@ -52,7 +52,7 @@ namespace VkNet.Model
         /// </returns>
         public static implicit operator FriendsGetRequestsResult(VkResponse response)
         {
-            return response.HasToken() ? FriendsGetRequestsResult.FromJson(response) : null;
+            return response.HasToken() ? FromJson(response) : null;
         }
     }
 }

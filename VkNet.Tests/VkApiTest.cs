@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using VkNet.Enums.Filters;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Tests
@@ -113,5 +113,26 @@ namespace VkNet.Tests
             Assert.IsNotNull(callMethod);
             Assert.IsTrue(callMethod.IsPublic);
         }
+
+		[Test]
+		public void CallAndConvertToType()
+		{
+			Json = @"
+            {
+                'user_id':221634238,
+                'mutual': {
+                    'count': 3,
+                    'users': [227457746, 228907945, 229634083]
+                },
+				'message':'text'
+            }";
+			Url = "https://api.vk.com/method/friends.getRequests";
+			var result = Api.Call<FriendsGetRequestsResult>("friends.getRequests", VkParameters.Empty);
+			Assert.NotNull(result);
+			Assert.That(result.UserId, Is.EqualTo(221634238));
+			Assert.That(result.Message, Is.EqualTo("text"));
+			Assert.That(result.Mutual.TotalCount, Is.EqualTo(3));
+			Assert.IsNotEmpty(result.Mutual);
+		}
     }
 }

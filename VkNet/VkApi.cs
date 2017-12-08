@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Categories;
 using VkNet.Exception;
@@ -613,6 +614,32 @@ namespace VkNet
         [MethodImpl(MethodImplOptions.NoInlining)]
         public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {
+            var answer = CallBase(methodName, parameters, skipAuthorization);
+
+            var json = JObject.Parse(answer);
+
+            var rawResponse = json["response"];
+
+            return new VkResponse(rawResponse) {RawJson = answer};
+        }
+
+        /// <summary>
+        /// Вызвать метод.
+        /// </summary>
+        /// <param name="methodName">Название метода.</param>
+        /// <param name="parameters">Параметры.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
+        {
+            var answer = CallBase(methodName, parameters, skipAuthorization);
+
+            return JsonConvert.DeserializeObject<T>(answer, new VkCollectionJsonConverter());
+        }
+
+        private string CallBase(string methodName, VkParameters parameters, bool skipAuthorization)
+        {
             if (!parameters.ContainsKey("v"))
             {
                 parameters.Add("v", VkApiVersion);
@@ -670,11 +697,7 @@ namespace VkNet
                 }
             }
 
-            var json = JObject.Parse(answer);
-
-            var rawResponse = json["response"];
-
-            return new VkResponse(rawResponse) {RawJson = answer};
+            return answer;
         }
 
         /// <summary>
