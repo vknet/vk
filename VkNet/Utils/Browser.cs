@@ -45,7 +45,7 @@ namespace VkNet.Utils
         public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings,
             Func<string> code = null, long? captchaSid = null, string captchaKey = null)
         {
-            // Шаг 1. Открытие диалога авторизации
+            VkApi.Logger?.Debug("Шаг 1. Открытие диалога авторизации");
             var authorizeUrlResult = OpenAuthDialog(appId, settings);
 
             if (IsAuthSuccessfull(authorizeUrlResult))
@@ -53,7 +53,7 @@ namespace VkNet.Utils
                 return EndAuthorize(authorizeUrlResult, Proxy);
             }
 
-            // Шаг 2. Заполнение формы логина
+            VkApi.Logger?.Debug("Шаг 2. Заполнение формы логина");
             var loginFormPostResult = FilledLoginForm(email, password, captchaSid, captchaKey, authorizeUrlResult);
 
             if (IsAuthSuccessfull(loginFormPostResult))
@@ -61,19 +61,19 @@ namespace VkNet.Utils
                 return EndAuthorize(loginFormPostResult, Proxy);
             }
 
-            // Шаг 2.5.1. Заполнить код двухфакторной авторизации
             if (HasNotTwoFactor(code, loginFormPostResult))
             {
                 return EndAuthorize(loginFormPostResult, Proxy);
             }
 
+            VkApi.Logger?.Debug("Шаг 2.5.1. Заполнить код двухфакторной авторизации");
             var twoFactorFormResult = FilledTwoFactorForm(code, loginFormPostResult);
             if (IsAuthSuccessfull(twoFactorFormResult))
             {
                 return EndAuthorize(twoFactorFormResult, Proxy);
             }
 
-            // Шаг 2.5.2 Капча
+            VkApi.Logger?.Debug("Шаг 2.5.2 Капча");
             var captchaForm = WebForm.From(twoFactorFormResult);
 
             var captcha = WebCall.Post(captchaForm, Proxy);
@@ -105,6 +105,7 @@ namespace VkNet.Utils
         /// <returns></returns>
         private static bool HasNotTwoFactor(Func<string> code, WebCallResult loginFormPostResult)
         {
+            VkApi.Logger?.Debug("Проверка наличия двухфакторной авторизации");
             return code == null || WebForm.IsOAuthBlank(loginFormPostResult);
         }
 
@@ -129,6 +130,7 @@ namespace VkNet.Utils
 
             if (captchaSid.HasValue)
             {
+                VkApi.Logger?.Debug("Шаг 2. Заполнение формы логина. Капча");
                 loginForm.WithField("captcha_sid")
                     .FilledWith(captchaSid.Value.ToString())
                     .WithField("captcha_key")
@@ -179,9 +181,10 @@ namespace VkNet.Utils
 
             if (!authorization.IsAuthorizationRequired && !authorization.IsCaptchaNeeded)
             {
+                VkApi.Logger?.Debug("Завершение авторизации");
                 return authorization;
             }
-
+            VkApi.Logger?.Debug("Требуется подтверждение прав или ввод капчи");
             // Отправить данные
             var authorizationForm = WebForm.From(result);
             var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
@@ -251,12 +254,12 @@ namespace VkNet.Utils
             {
                 return webCallResult.RequestUrl;
             }
-
+            VkApi.Logger?.Debug("Запрос: " + webCallResult.RequestUrl);
             if (UriHasAccessToken(webCallResult.ResponseUrl))
             {
                 return webCallResult.ResponseUrl;
             }
-
+            VkApi.Logger?.Debug("Ответ: " + webCallResult.ResponseUrl);
             throw new VkApiException("URI должен содержать токен!");
         }
     }

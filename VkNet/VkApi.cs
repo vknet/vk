@@ -7,6 +7,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 using VkNet.Categories;
 using VkNet.Exception;
 using VkNet.Utils;
@@ -284,6 +287,8 @@ namespace VkNet
         /// </summary>
         private readonly ICaptchaSolver _captchaSolver;
 
+        protected internal static ILogger Logger;
+        
         /// <summary>
         /// Инициализирует новый экземпляр класса VkApi
         /// </summary>
@@ -321,6 +326,7 @@ namespace VkNet
 
             MaxCaptchaRecognitionCount = 5;
             _captchaSolver = captchaSolver;
+            Logger = InitLogger();
         }
 
         /// <summary>
@@ -815,6 +821,24 @@ namespace VkNet
             var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
             SetTimer(expireTime);
             AccessToken = authorization.AccessToken;
+        }
+
+        private ILogger InitLogger()
+        {
+            // Step 1. Create configuration object 
+            var config = new LoggingConfiguration();
+            // Step 2. Create targets and add them to the configuration 
+            var consoleTarget = new ColoredConsoleTarget();
+            config.AddTarget("console", consoleTarget);
+            // Step 3. Set target properties 
+            consoleTarget.Layout = @"${date:format=HH\:mm\:ss} ${logger} ${message}";
+            // Step 4. Define rules
+            var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
+            config.LoggingRules.Add(rule1);
+            // Step 5. Activate the configuration
+            LogManager.Configuration = config;
+            // Example usage
+            return LogManager.GetLogger("VkApi");
         }
     }
 }
