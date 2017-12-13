@@ -1,12 +1,13 @@
-﻿#if NET40
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using SimpleInjector;
 
 namespace VkNet.Utils
 {
-  public static class TypeHelper
-  {
+    public static class TypeHelper
+    {
+#if NET40
     public static Type GetTypeInfo(this Type type)
     {
       return type;
@@ -16,6 +17,13 @@ namespace VkNet.Utils
     {
       return type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
     }
-  }
-}
 #endif
+        public static TService TryGetInstance<TService>(
+            this Container container)
+            where TService : class
+        {
+            IServiceProvider provider = container;
+            return (TService) provider.GetService(typeof(TService));
+        }
+    }
+}

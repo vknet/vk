@@ -4,12 +4,15 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using SimpleInjector;
 using VkNet.Categories;
 using VkNet.Exception;
 using VkNet.Utils;
@@ -289,12 +292,15 @@ namespace VkNet
 
         protected internal static ILogger Logger;
         
+        protected internal static Container Container;
+        
         /// <summary>
         /// Инициализирует новый экземпляр класса VkApi
         /// </summary>
-        public VkApi(ICaptchaSolver captchaSolver = null)
+        public VkApi(Container serviceProvider = null)
         {
-            Browser = new Browser();
+            Container = serviceProvider ?? new Container();
+            Browser = Container.TryGetInstance<IBrowser>() ?? new Browser();
 
             Users = new UsersCategory(this);
             Friends = new FriendsCategory(this);
@@ -325,7 +331,7 @@ namespace VkNet
             RequestsPerSecond = 3;
 
             MaxCaptchaRecognitionCount = 5;
-            _captchaSolver = captchaSolver;
+            _captchaSolver = Container.TryGetInstance<ICaptchaSolver>();
             Logger = InitLogger();
         }
 
