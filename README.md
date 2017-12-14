@@ -7,7 +7,7 @@ NuGet (`master`): [![](http://img.shields.io/nuget/v/VkNet.svg?style=flat-square
 Coverity: [![Coverity Scan Build Status](https://scan.coverity.com/projects/6249/badge.svg)](https://scan.coverity.com/projects/vknet)
 
 Contacts: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vknet/vk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Telegram Chat](https://patrolavia.github.io/telegram-badge/chat.png)](https://t.me/joinchat/AAAAAE0Yg4c1jDUhwaavgA)
+[![Telegram Chat](https://patrolavia.github.io/telegram-badge/chat.png)](https://t.me/joinchat/CHFCHxHqca0waHIe3-Fuqg)
 # Supported by
 [![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/)
 
