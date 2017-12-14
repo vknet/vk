@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
+using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -133,6 +134,21 @@ namespace VkNet.Tests
 			Assert.That(result.Message, Is.EqualTo("text"));
 			Assert.That(result.Mutual.TotalCount, Is.EqualTo(3));
 			Assert.IsNotEmpty(result.Mutual);
+		}
+
+		[Test]
+		public void DefaultLanguageValue()
+		{
+			var lang = Api.GetLanguage();
+			Assert.IsNull(lang);
+		}
+
+		[Test]
+		public void EnglishLanguageValue()
+		{
+			Api.SetLanguage(Language.En);
+			var lang = Api.GetLanguage();
+			Assert.AreEqual(lang, Language.En);
 		}
     }
 }

@@ -12,6 +12,7 @@ using NLog.Config;
 using NLog.Targets;
 using SimpleInjector;
 using VkNet.Categories;
+using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
@@ -291,7 +292,8 @@ namespace VkNet
         protected internal static ILogger Logger;
         
         protected internal static Container Container;
-        
+
+        private Language? _language { get; set; }
         /// <summary>
         /// Инициализирует новый экземпляр класса VkApi
         /// </summary>
@@ -333,6 +335,24 @@ namespace VkNet
             Logger = InitLogger();
         }
 
+        /// <summary>
+        /// Установить язык
+        /// </summary>
+        /// <param name="language"></param>
+        public void SetLanguage(Language language)
+        {
+            _language = language;
+        }
+
+        /// <summary>
+        /// Установить язык
+        /// </summary>
+        /// <param name="language"></param>
+        public Language? GetLanguage()
+        {
+            return _language;
+        }
+        
         /// <summary>
         /// Авторизация и получение токена
         /// </summary>
@@ -654,6 +674,11 @@ namespace VkNet
             if (!parameters.ContainsKey("v"))
             {
                 parameters.Add("v", VkApiVersion);
+            }
+
+            if (!parameters.ContainsKey("lang") && _language.HasValue)
+            {
+                parameters.Add("lang", _language);
             }
 
             string answer = null;
