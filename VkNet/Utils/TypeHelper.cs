@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SimpleInjector;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 
 namespace VkNet.Utils
 {
@@ -18,12 +22,40 @@ namespace VkNet.Utils
       return type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
     }
 #endif
-        public static TService TryGetInstance<TService>(
-            this Container container)
-            where TService : class
+
+        public static void RegisterDefaultDependencies(this IServiceCollection container)
         {
-            IServiceProvider provider = container;
-            return (TService) provider.GetService(typeof(TService));
+            container.TryAddSingleton<IBrowser, Browser>();
+            container.TryAddSingleton(InitLogger());
+        }
+        
+        /// <summary>
+        /// Initializes the logger.
+        /// </summary>
+        /// <returns></returns>
+        private static ILogger InitLogger()
+        {
+            // Step 1. Create configuration object 
+            var config = new LoggingConfiguration();
+            // Step 2. Create targets and add them to the configuration 
+            var consoleTarget = new ConsoleTarget();
+            config.AddTarget("console", consoleTarget);
+            // Step 3. Set target properties 
+            consoleTarget.Layout = @"${date:format=HH\:mm\:ss} ${logger} ${message}";
+            // Step 4. Define rules
+#if DEBUG
+            var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
+#elif UNIT_TEST
+            var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
+#else
+            var rule1 = new LoggingRule("*", LogLevel.Warn, consoleTarget);
+#endif
+            
+            config.LoggingRules.Add(rule1);
+            // Step 5. Activate the configuration
+            LogManager.Configuration = config;
+            // Example usage
+            return LogManager.GetLogger("VkApi");
         }
     }
 }

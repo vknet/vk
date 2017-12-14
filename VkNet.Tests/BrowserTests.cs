@@ -13,7 +13,7 @@ namespace VkNet.Tests
         [Test, Ignore("TODO: временно")]
         public void Authorize()
         {
-            var browser = new Browser();
+            var browser = new Browser(null);
 
             var result = browser.Authorize(123, "qwe@qwe.ru", "pass", Settings.All);
             

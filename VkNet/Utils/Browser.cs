@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using NLog;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -15,6 +16,17 @@ namespace VkNet.Utils
     /// </summary>
     public class Browser : IBrowser
     {
+        [CanBeNull] private readonly ILogger _logger;
+
+        /// <summary>
+        /// Инициализация браузера
+        /// </summary>
+        /// <param name="logger">Логгер</param>
+        public Browser([CanBeNull] ILogger logger)
+        {
+            _logger = logger;
+        }
+
         /// <summary>
         /// Прокси сервер
         /// </summary>
@@ -45,7 +57,7 @@ namespace VkNet.Utils
         public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings,
             Func<string> code = null, long? captchaSid = null, string captchaKey = null)
         {
-            VkApi.Logger?.Debug("Шаг 1. Открытие диалога авторизации");
+            _logger?.Debug("Шаг 1. Открытие диалога авторизации");
             var authorizeUrlResult = OpenAuthDialog(appId, settings);
 
             if (IsAuthSuccessfull(authorizeUrlResult))
@@ -53,7 +65,7 @@ namespace VkNet.Utils
                 return EndAuthorize(authorizeUrlResult, Proxy);
             }
 
-            VkApi.Logger?.Debug("Шаг 2. Заполнение формы логина");
+            _logger?.Debug("Шаг 2. Заполнение формы логина");
             var loginFormPostResult = FilledLoginForm(email, password, captchaSid, captchaKey, authorizeUrlResult);
 
             if (IsAuthSuccessfull(loginFormPostResult))
@@ -66,14 +78,14 @@ namespace VkNet.Utils
                 return EndAuthorize(loginFormPostResult, Proxy);
             }
 
-            VkApi.Logger?.Debug("Шаг 2.5.1. Заполнить код двухфакторной авторизации");
+            _logger?.Debug("Шаг 2.5.1. Заполнить код двухфакторной авторизации");
             var twoFactorFormResult = FilledTwoFactorForm(code, loginFormPostResult);
             if (IsAuthSuccessfull(twoFactorFormResult))
             {
                 return EndAuthorize(twoFactorFormResult, Proxy);
             }
 
-            VkApi.Logger?.Debug("Шаг 2.5.2 Капча");
+            _logger?.Debug("Шаг 2.5.2 Капча");
             var captchaForm = WebForm.From(twoFactorFormResult);
 
             var captcha = WebCall.Post(captchaForm, Proxy);
@@ -103,9 +115,9 @@ namespace VkNet.Utils
         /// <param name="code">Функция возвращающая код двухфакторной авторизации</param>
         /// <param name="loginFormPostResult">Ответ сервера vk</param>
         /// <returns></returns>
-        private static bool HasNotTwoFactor(Func<string> code, WebCallResult loginFormPostResult)
+        private bool HasNotTwoFactor(Func<string> code, WebCallResult loginFormPostResult)
         {
-            VkApi.Logger?.Debug("Проверка наличия двухфакторной авторизации");
+            _logger?.Debug("Проверка наличия двухфакторной авторизации");
             return code == null || WebForm.IsOAuthBlank(loginFormPostResult);
         }
 
@@ -130,7 +142,7 @@ namespace VkNet.Utils
 
             if (captchaSid.HasValue)
             {
-                VkApi.Logger?.Debug("Шаг 2. Заполнение формы логина. Капча");
+                _logger?.Debug("Шаг 2. Заполнение формы логина. Капча");
                 loginForm.WithField("captcha_sid")
                     .FilledWith(captchaSid.Value.ToString())
                     .WithField("captcha_key")
@@ -181,10 +193,11 @@ namespace VkNet.Utils
 
             if (!authorization.IsAuthorizationRequired && !authorization.IsCaptchaNeeded)
             {
-                VkApi.Logger?.Debug("Завершение авторизации");
+                _logger?.Debug("Завершение авторизации");
                 return authorization;
             }
-            VkApi.Logger?.Debug("Требуется подтверждение прав или ввод капчи");
+
+            _logger?.Debug("Требуется подтверждение прав или ввод капчи");
             // Отправить данные
             var authorizationForm = WebForm.From(result);
             var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
@@ -248,18 +261,20 @@ namespace VkNet.Utils
         /// <param name="webCallResult">Результат запроса</param>
         /// <returns>Возвращает uri содержащий токен</returns>
         /// <exception cref="VkApiException">URI должен содержать токен!</exception>
-        private static Uri GetTokenUri(WebCallResult webCallResult)
+        private Uri GetTokenUri(WebCallResult webCallResult)
         {
             if (UriHasAccessToken(webCallResult.RequestUrl))
             {
                 return webCallResult.RequestUrl;
             }
-            VkApi.Logger?.Debug("Запрос: " + webCallResult.RequestUrl);
+
+            _logger?.Debug("Запрос: " + webCallResult.RequestUrl);
             if (UriHasAccessToken(webCallResult.ResponseUrl))
             {
                 return webCallResult.ResponseUrl;
             }
-            VkApi.Logger?.Debug("Ответ: " + webCallResult.ResponseUrl);
+
+            _logger?.Debug("Ответ: " + webCallResult.ResponseUrl);
             throw new VkApiException("URI должен содержать токен!");
         }
     }

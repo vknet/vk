@@ -5,12 +5,10 @@ using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NLog;
-using NLog.Config;
-using NLog.Targets;
-using SimpleInjector;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
@@ -18,6 +16,7 @@ using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
 using VkNet.Enums.Filters;
 
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable EventNeverSubscribedTo.Global
@@ -289,18 +288,23 @@ namespace VkNet
         /// </summary>
         private readonly ICaptchaSolver _captchaSolver;
 
-        protected internal static ILogger Logger;
-        
-        protected internal static Container Container;
+        private ILogger _logger;
 
-        private Language? _language { get; set; }
+        private Language? Language { get; set; }
+
         /// <summary>
         /// Инициализирует новый экземпляр класса VkApi
         /// </summary>
-        public VkApi(Container serviceProvider = null)
+        public VkApi(IServiceCollection serviceCollection = null)
         {
-            Container = serviceProvider ?? new Container();
-            Browser = Container.TryGetInstance<IBrowser>() ?? new Browser();
+            var container = serviceCollection ?? new ServiceCollection();
+            
+            container.RegisterDefaultDependencies();
+
+            IServiceProvider serviceProvider = container.BuildServiceProvider();
+            Browser = serviceProvider.GetRequiredService<IBrowser>();
+            _captchaSolver = serviceProvider.GetService<ICaptchaSolver>();
+            _logger = serviceProvider.GetService<ILogger>();
 
             Users = new UsersCategory(this);
             Friends = new FriendsCategory(this);
@@ -331,8 +335,7 @@ namespace VkNet
             RequestsPerSecond = 3;
 
             MaxCaptchaRecognitionCount = 5;
-            _captchaSolver = Container.TryGetInstance<ICaptchaSolver>();
-            Logger = InitLogger();
+            _logger.Debug("VkApi Initialization successfully");
         }
 
         /// <summary>
@@ -341,18 +344,17 @@ namespace VkNet
         /// <param name="language"></param>
         public void SetLanguage(Language language)
         {
-            _language = language;
+            Language = language;
         }
 
         /// <summary>
         /// Установить язык
         /// </summary>
-        /// <param name="language"></param>
         public Language? GetLanguage()
         {
-            return _language;
+            return Language;
         }
-        
+
         /// <summary>
         /// Авторизация и получение токена
         /// </summary>
@@ -362,6 +364,7 @@ namespace VkNet
             //подключение браузера через прокси 
             if (@params.Host != null)
             {
+                _logger.Debug("Настройка прокси");
                 Browser.Proxy = WebProxy.GetProxy(
                     @params.Host,
                     @params.Port,
@@ -393,6 +396,7 @@ namespace VkNet
             }
 
             _ap = @params;
+            _logger.Debug("Авторизация прошла успешно");
         }
 
         /// <summary>
@@ -532,7 +536,7 @@ namespace VkNet
                     emailOrPhone, password);
             }
 
-			SetTokenProperties(authorization);
+            SetTokenProperties(authorization);
         }
 
         /// <summary>
@@ -549,6 +553,7 @@ namespace VkNet
         private void AuthorizeWithAntiCaptcha(ulong appId, string emailOrPhone, string password, Settings settings,
             Func<string> code, long? captchaSid = null, string captchaKey = null)
         {
+            _logger.Debug("Старт авторизации");
             if (_captchaSolver == null)
             {
                 Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
@@ -571,38 +576,43 @@ namespace VkNet
                         authorizationCompleted = true;
                     }
                     catch (CaptchaNeededException captchaNeededException)
-					{
-						RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException, ref captchaSidTemp, ref captchaKeyTemp);
-					}
+                    {
+                        RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException,
+                            ref captchaSidTemp, ref captchaKeyTemp);
+                    }
                 } while (numberOfRemainingAttemptsToAuthorize > 0 && !authorizationCompleted);
 
                 // Повторно выбрасываем исключение, если капча ни разу не была распознана верно
-                if (!authorizationCompleted && captchaSidTemp.HasValue)
+                if (authorizationCompleted || !captchaSidTemp.HasValue)
                 {
-                    throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
+                    return;
                 }
+                
+                _logger.Warn("Капча ни разу не была распознана верно");
+                throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
             }
         }
 
-		private void RepeatSolveCaptcha(ref int numberOfRemainingAttemptsToSolveCaptcha,
-			CaptchaNeededException captchaNeededException, ref long? captchaSidTemp, ref string captchaKeyTemp)
-		{
-			if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
-			{
-				_captchaSolver?.CaptchaIsFalse();
-			}
+        private void RepeatSolveCaptcha(ref int numberOfRemainingAttemptsToSolveCaptcha,
+            CaptchaNeededException captchaNeededException, ref long? captchaSidTemp, ref string captchaKeyTemp)
+        {
+            _logger.Warn("Повторная обработка капчи");
+            if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
+            {
+                _captchaSolver?.CaptchaIsFalse();
+            }
 
-			if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
-			{
-				return;
-			}
+            if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
+            {
+                return;
+            }
 
-			captchaSidTemp = captchaNeededException.Sid;
-			captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
-			numberOfRemainingAttemptsToSolveCaptcha--;
-		}
+            captchaSidTemp = captchaNeededException.Sid;
+            captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
+            numberOfRemainingAttemptsToSolveCaptcha--;
+        }
 
-		/// <summary>
+        /// <summary>
         /// Установить значение таймера
         /// </summary>
         /// <param name="expireTime">Значение таймера</param>
@@ -671,14 +681,15 @@ namespace VkNet
 
         private string CallBase(string methodName, VkParameters parameters, bool skipAuthorization)
         {
+            _logger.Debug($"Вызов метода {methodName}");
             if (!parameters.ContainsKey("v"))
             {
                 parameters.Add("v", VkApiVersion);
             }
 
-            if (!parameters.ContainsKey("lang") && _language.HasValue)
+            if (!parameters.ContainsKey("lang") && Language.HasValue)
             {
-                parameters.Add("lang", _language);
+                parameters.Add("lang", Language);
             }
 
             string answer = null;
@@ -708,8 +719,9 @@ namespace VkNet
                     }
                     catch (CaptchaNeededException captchaNeededException)
                     {
-						RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException, ref captchaSidTemp, ref captchaKeyTemp);
-					}
+                        RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException,
+                            ref captchaSidTemp, ref captchaKeyTemp);
+                    }
                 } while (numberOfRemainingAttemptsToCall > 0 && !callCompleted);
 
                 // Повторно выбрасываем исключение, если капча ни разу не была распознана верно
@@ -735,7 +747,9 @@ namespace VkNet
         {
             if (!skipAuthorization && !IsAuthorized)
             {
-                throw new AccessTokenInvalidException($@"Метод '{methodName}' нельзя вызывать без авторизации");
+                var message = $"Метод '{methodName}' нельзя вызывать без авторизации";
+                _logger.Error(message);
+                throw new AccessTokenInvalidException(message);
             }
 
             var url = "";
@@ -765,10 +779,11 @@ namespace VkNet
 #if NET40
                         Thread.Sleep(timeout);
 #else
-            Task.Delay(timeout).Wait();
+                        Task.Delay(timeout).Wait();
 #endif
                     }
-                  sendRequest();
+
+                    sendRequest();
                 }
             }
             else if (skipAuthorization)
@@ -777,6 +792,8 @@ namespace VkNet
             }
 
 #if DEBUG && !UNIT_TEST
+            _logger.Trace(Utilities.PreetyPrintApiUrl(url));
+            _logger.Trace(Utilities.PreetyPrintApiUrl(url));
 #if UWP
             Debug.WriteLine(Utilities.PreetyPrintApiUrl(url));
             Debug.WriteLine(Utilities.PreetyPrintJson(answer));
@@ -835,40 +852,18 @@ namespace VkNet
             }
 
             SetTokenProperties(authorization);
-		}
+        }
 
-		/// <summary>
-		/// Sets the token properties.
-		/// </summary>
-		/// <param name="authorization">The authorization.</param>
-		private void SetTokenProperties(VkAuthorization authorization)
-		{
-			var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
-			SetTimer(expireTime);
-			AccessToken = authorization.AccessToken;
-			UserId = authorization.UserId;
-		}
-
-		/// <summary>
-		/// Initializes the logger.
-		/// </summary>
-		/// <returns></returns>
-		private ILogger InitLogger()
+        /// <summary>
+        /// Sets the token properties.
+        /// </summary>
+        /// <param name="authorization">The authorization.</param>
+        private void SetTokenProperties(VkAuthorization authorization)
         {
-            // Step 1. Create configuration object 
-            var config = new LoggingConfiguration();
-            // Step 2. Create targets and add them to the configuration 
-            var consoleTarget = new ColoredConsoleTarget();
-            config.AddTarget("console", consoleTarget);
-            // Step 3. Set target properties 
-            consoleTarget.Layout = @"${date:format=HH\:mm\:ss} ${logger} ${message}";
-            // Step 4. Define rules
-            var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
-            config.LoggingRules.Add(rule1);
-            // Step 5. Activate the configuration
-            LogManager.Configuration = config;
-            // Example usage
-            return LogManager.GetLogger("VkApi");
+            var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
+            SetTimer(expireTime);
+            AccessToken = authorization.AccessToken;
+            UserId = authorization.UserId;
         }
     }
 }
