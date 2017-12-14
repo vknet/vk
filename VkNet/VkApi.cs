@@ -4,8 +4,6 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -514,10 +512,7 @@ namespace VkNet
                     emailOrPhone, password);
             }
 
-            var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
-            SetTimer(expireTime);
-            AccessToken = authorization.AccessToken;
-            UserId = authorization.UserId;
+			SetTokenProperties(authorization);
         }
 
         /// <summary>
@@ -556,23 +551,9 @@ namespace VkNet
                         authorizationCompleted = true;
                     }
                     catch (CaptchaNeededException captchaNeededException)
-                    {
-                        // Если мы обрабатываем исключение не первый раз, сообщаем решателю капчи
-                        // об ошибке распознавания предыдущей капчи
-                        if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
-                        {
-                            _captchaSolver?.CaptchaIsFalse();
-                        }
-
-                        if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
-                        {
-                            continue;
-                        }
-
-                        captchaSidTemp = captchaNeededException.Sid;
-                        captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
-                        numberOfRemainingAttemptsToSolveCaptcha--;
-                    }
+					{
+						RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException, ref captchaSidTemp, ref captchaKeyTemp);
+					}
                 } while (numberOfRemainingAttemptsToAuthorize > 0 && !authorizationCompleted);
 
                 // Повторно выбрасываем исключение, если капча ни разу не была распознана верно
@@ -583,7 +564,25 @@ namespace VkNet
             }
         }
 
-        /// <summary>
+		private void RepeatSolveCaptcha(ref int numberOfRemainingAttemptsToSolveCaptcha,
+			CaptchaNeededException captchaNeededException, ref long? captchaSidTemp, ref string captchaKeyTemp)
+		{
+			if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
+			{
+				_captchaSolver?.CaptchaIsFalse();
+			}
+
+			if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
+			{
+				return;
+			}
+
+			captchaSidTemp = captchaNeededException.Sid;
+			captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
+			numberOfRemainingAttemptsToSolveCaptcha--;
+		}
+
+		/// <summary>
         /// Установить значение таймера
         /// </summary>
         /// <param name="expireTime">Значение таймера</param>
@@ -684,22 +683,8 @@ namespace VkNet
                     }
                     catch (CaptchaNeededException captchaNeededException)
                     {
-                        // Если мы обрабатываем исключение не первый раз, сообщаем решателю капчи
-                        // об ошибке распознавания предыдущей капчи
-                        if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
-                        {
-                            _captchaSolver?.CaptchaIsFalse();
-                        }
-
-                        if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
-                        {
-                            continue;
-                        }
-
-                        captchaSidTemp = captchaNeededException.Sid;
-                        captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
-                        numberOfRemainingAttemptsToSolveCaptcha--;
-                    }
+						RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException, ref captchaSidTemp, ref captchaKeyTemp);
+					}
                 } while (numberOfRemainingAttemptsToCall > 0 && !callCompleted);
 
                 // Повторно выбрасываем исключение, если капча ни разу не была распознана верно
@@ -824,12 +809,26 @@ namespace VkNet
                 throw new NeedValidationException("Не удалось автоматически пройти валидацию!", validateUrl);
             }
 
-            var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
-            SetTimer(expireTime);
-            AccessToken = authorization.AccessToken;
-        }
+            SetTokenProperties(authorization);
+		}
 
-        private ILogger InitLogger()
+		/// <summary>
+		/// Sets the token properties.
+		/// </summary>
+		/// <param name="authorization">The authorization.</param>
+		private void SetTokenProperties(VkAuthorization authorization)
+		{
+			var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
+			SetTimer(expireTime);
+			AccessToken = authorization.AccessToken;
+			UserId = authorization.UserId;
+		}
+
+		/// <summary>
+		/// Initializes the logger.
+		/// </summary>
+		/// <returns></returns>
+		private ILogger InitLogger()
         {
             // Step 1. Create configuration object 
             var config = new LoggingConfiguration();

@@ -320,10 +320,8 @@ namespace VkNet.Utils
 			{
 				return null;
 			}
-
-			// Unix Timestamps is seconds past epoch
-			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			return dt.AddSeconds(unixTimeStamp).ToLocalTime();
+			
+			return TimestampToDateTime(unixTimeStamp);
 		}
 
 		/// <summary>
@@ -351,7 +349,16 @@ namespace VkNet.Utils
 				throw new ArgumentException("Невозможно преобразовать в дату", nameof(response));
 			}
 
-			// Unix Timestamps is seconds past epoch
+			return TimestampToDateTime(unixTimeStamp);
+		}
+
+		/// <summary>
+		/// Timestamps to date time.
+		/// </summary>
+		/// <param name="unixTimeStamp">The unix time stamp.</param>
+		/// <returns></returns>
+		private static DateTime TimestampToDateTime(long unixTimeStamp)
+		{
 			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 			return dt.AddSeconds(unixTimeStamp).ToLocalTime();
 		}

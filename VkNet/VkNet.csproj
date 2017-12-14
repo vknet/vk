@@ -45,7 +45,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.6.6" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.6.7" />
     <PackageReference Include="NLog" Version="5.0.0-beta11" />
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
   </ItemGroup>
