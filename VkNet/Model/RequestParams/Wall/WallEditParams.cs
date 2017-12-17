@@ -115,12 +115,22 @@ namespace VkNet.Model.RequestParams
 		/// Идентификатор места, в котором отмечен пользователь. положительное число.
 		/// </summary>
 		public long? PlaceId { get; set; }
+		
+		/// <summary>
+		/// Идентификатор капчи
+		/// </summary>
+		public long? CaptchaSid { get; set; }
+
+		/// <summary>
+		/// текст, который ввел пользователь
+		/// </summary>
+		public string CaptchaKey { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
+		/// <returns></returns>		
 		public static VkParameters ToVkParameters(WallEditParams p)
 		{
 			var parameters = new VkParameters
@@ -136,6 +146,8 @@ namespace VkNet.Model.RequestParams
 				{ "lat", p.Lat },
 				{ "long", p.Long },
 				{ "place_id", p.PlaceId }
+				{ "captcha_sid", p.CaptchaSid },
+				{ "captcha_key", p.CaptchaKey },
 			};
 
 			return parameters;
