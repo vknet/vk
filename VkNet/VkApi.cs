@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -298,7 +299,7 @@ namespace VkNet
         public VkApi(IServiceCollection serviceCollection = null)
         {
             var container = serviceCollection ?? new ServiceCollection();
-            
+
             container.RegisterDefaultDependencies();
 
             IServiceProvider serviceProvider = container.BuildServiceProvider();
@@ -453,9 +454,11 @@ namespace VkNet
         {
             if (string.IsNullOrWhiteSpace(accessToken))
             {
+                _logger.Error("Авторизация через токен. Токен не задан.");
                 throw new ArgumentNullException(accessToken);
             }
 
+            _logger.Debug("Авторизация через токен");
             StopTimer();
 
             LastInvokeTime = DateTimeOffset.Now;
@@ -486,8 +489,10 @@ namespace VkNet
             }
             else
             {
-                throw new AggregateException(
-                    "Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля");
+                const string message =
+                    "Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
+                _logger.Error(message);
+                throw new AggregateException(message);
             }
         }
 
@@ -532,10 +537,11 @@ namespace VkNet
             );
             if (!authorization.IsAuthorized)
             {
-                throw new VkApiAuthorizationException($"Invalid authorization with {emailOrPhone} - {password}",
-                    emailOrPhone, password);
+                var message = $"Invalid authorization with {emailOrPhone} - {password}";
+                _logger.Error(message);
+                throw new VkApiAuthorizationException(message, emailOrPhone, password);
             }
-
+            _logger.Debug("Авторизация прошла успешно");
             SetTokenProperties(authorization);
         }
 
@@ -570,6 +576,7 @@ namespace VkNet
                 {
                     try
                     {
+                        _logger.Debug("Авторизация с использование капчи.");
                         numberOfRemainingAttemptsToAuthorize--;
                         Authorize(appId, emailOrPhone, password, settings, code, captchaSidTemp, captchaKeyTemp);
 
@@ -587,8 +594,8 @@ namespace VkNet
                 {
                     return;
                 }
-                
-                _logger.Warn("Капча ни разу не была распознана верно");
+
+                _logger.Error("Капча ни разу не была распознана верно");
                 throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
             }
         }
@@ -681,7 +688,6 @@ namespace VkNet
 
         private string CallBase(string methodName, VkParameters parameters, bool skipAuthorization)
         {
-            _logger.Debug($"Вызов метода {methodName}");
             if (!parameters.ContainsKey("v"))
             {
                 parameters.Add("v", VkApiVersion);
@@ -692,6 +698,8 @@ namespace VkNet
                 parameters.Add("lang", Language);
             }
 
+            _logger.Debug(
+                $"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}"))}");
             string answer = null;
 
             if (_captchaSolver == null)
@@ -848,7 +856,9 @@ namespace VkNet
             var authorization = Browser.Validate(validateUrl, phoneNumber);
             if (!authorization.IsAuthorized)
             {
-                throw new NeedValidationException("Не удалось автоматически пройти валидацию!", validateUrl);
+                const string message = "Не удалось автоматически пройти валидацию!";
+                _logger.Error(message);
+                throw new NeedValidationException(message, validateUrl);
             }
 
             SetTokenProperties(authorization);
@@ -860,6 +870,7 @@ namespace VkNet
         /// <param name="authorization">The authorization.</param>
         private void SetTokenProperties(VkAuthorization authorization)
         {
+            _logger.Debug("Установка свойств токена");
             var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
             SetTimer(expireTime);
             AccessToken = authorization.AccessToken;
