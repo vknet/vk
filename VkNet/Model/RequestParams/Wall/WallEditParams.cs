@@ -28,6 +28,7 @@ namespace VkNet.Model.RequestParams
 			Lat = null;
 			Long = null;
 			PlaceId = null;
+			CaptchaKey = null;
 		}
 
 		/// <summary>
@@ -145,9 +146,9 @@ namespace VkNet.Model.RequestParams
 				{ "publish_date", p.PublishDate },
 				{ "lat", p.Lat },
 				{ "long", p.Long },
-				{ "place_id", p.PlaceId }
+				{ "place_id", p.PlaceId },
 				{ "captcha_sid", p.CaptchaSid },
-				{ "captcha_key", p.CaptchaKey },
+				{ "captcha_key", p.CaptchaKey }
 			};
 
 			return parameters;
