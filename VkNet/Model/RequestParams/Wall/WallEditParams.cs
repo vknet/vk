@@ -130,8 +130,7 @@ namespace VkNet.Model.RequestParams
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
-		
+		/// <returns></returns>		
 		public static VkParameters ToVkParameters(WallEditParams p)
 		{
 			var parameters = new VkParameters
