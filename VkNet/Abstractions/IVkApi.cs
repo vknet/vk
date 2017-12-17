@@ -93,7 +93,7 @@ namespace VkNet.Abstractions
         /// <summary>
         /// API для работы с аккаунтом пользователя.
         /// </summary>
-        AccountCategory Account { get; }
+        IAccountCategory Account { get; }
 
         /// <summary>
         /// API для работы с фотографиями
@@ -256,7 +256,7 @@ namespace VkNet.Abstractions
         /// <summary>
         /// Освобождения неуправляемых ресурсов.
         /// </summary>
-        void Dispose();
+        new void Dispose();
 
         /// <summary>
         /// Обход ошибки валидации: https://vk.com/dev/need_validation

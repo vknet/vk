@@ -184,7 +184,7 @@ namespace VkNet
         /// <summary>
         /// API для работы с аккаунтом пользователя.
         /// </summary>
-        public AccountCategory Account { get; }
+        public IAccountCategory Account { get; }
 
         /// <summary>
         /// API для работы с фотографиями
