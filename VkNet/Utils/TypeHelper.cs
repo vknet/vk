@@ -22,7 +22,10 @@ namespace VkNet.Utils
       return type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
     }
 #endif
-
+        /// <summary>
+        /// DI Register Default Dependencies
+        /// </summary>
+        /// <param name="container">DI container</param>
         public static void RegisterDefaultDependencies(this IServiceCollection container)
         {
             container.TryAddSingleton<IBrowser, Browser>();

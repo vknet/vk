@@ -1,15 +1,11 @@
-﻿using System;
-
+﻿using System.Collections.Generic;
+using JetBrains.Annotations;
+using VkNet.Model;
+using VkNet.Model.RequestParams;
+using VkNet.Utils;
+using VkNet.Enums.Filters;
 namespace VkNet.Categories
 {
-    using System.Collections.Generic;
-    using JetBrains.Annotations;
-    using Model;
-    using Model.RequestParams;
-    using Utils;
-    using Enums.Filters;
-    using Enums.SafetyEnums;
-
     /// <summary>
     /// Методы этого класса позволяют производить действия с аккаунтом пользователя.
     /// </summary>
