@@ -286,7 +286,7 @@ namespace VkNet
         /// <summary>
         /// Обработчик распознавания капчи
         /// </summary>
-        private readonly ICaptchaSolver _captchaSolver;
+        public ICaptchaSolver CaptchaSolver { get; }
 
         /// <summary>
         /// Логгер
@@ -309,7 +309,7 @@ namespace VkNet
 
             IServiceProvider serviceProvider = container.BuildServiceProvider();
             Browser = serviceProvider.GetRequiredService<IBrowser>();
-            _captchaSolver = serviceProvider.GetService<ICaptchaSolver>();
+            CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
             _logger = serviceProvider.GetService<ILogger>();
 
             Users = new UsersCategory(this);
@@ -620,7 +620,7 @@ namespace VkNet
                 $"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}"))}");
             string answer = null;
 
-            if (_captchaSolver == null)
+            if (CaptchaSolver == null)
             {
                 answer = Invoke(methodName, parameters, skipAuthorization);
             }
@@ -668,7 +668,7 @@ namespace VkNet
         private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
         {
             _logger.Debug("Старт авторизации");
-            if (_captchaSolver == null)
+            if (CaptchaSolver == null)
             {
                 BaseAuthorize(authParams);
             }
@@ -771,7 +771,7 @@ namespace VkNet
             _logger.Warn("Повторная обработка капчи");
             if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
             {
-                _captchaSolver?.CaptchaIsFalse();
+                CaptchaSolver?.CaptchaIsFalse();
             }
 
             if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
@@ -780,7 +780,7 @@ namespace VkNet
             }
 
             captchaSidTemp = captchaNeededException.Sid;
-            captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
+            captchaKeyTemp = CaptchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
             numberOfRemainingAttemptsToSolveCaptcha--;
         }
 
