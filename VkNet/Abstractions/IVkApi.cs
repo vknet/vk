@@ -118,7 +118,7 @@ namespace VkNet.Abstractions
         /// <summary>
         /// API для работы с приложениями.
         /// </summary>
-        AppsCategory Apps { get; }
+        IAppsCategory Apps { get; }
 
         /// <summary>
         /// API для работы с новостной лентой.

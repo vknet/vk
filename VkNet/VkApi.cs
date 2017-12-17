@@ -209,7 +209,7 @@ namespace VkNet
         /// <summary>
         /// API для работы с приложениями.
         /// </summary>
-        public AppsCategory Apps { get; }
+        public IAppsCategory Apps { get; }
 
         /// <summary>
         /// API для работы с новостной лентой.

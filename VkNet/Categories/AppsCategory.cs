@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -10,7 +11,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с приложениями.
 	/// </summary>
-	public partial class AppsCategory
+	public partial class AppsCategory : IAppsCategory
 	{
 		/// <summary>
 		/// API.
