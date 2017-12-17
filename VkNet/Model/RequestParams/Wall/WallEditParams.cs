@@ -29,6 +29,7 @@ namespace VkNet.Model.RequestParams
 			Long = null;
 			PlaceId = null;
 			CaptchaKey = null;
+			CaptchaSid = null;
 		}
 
 		/// <summary>
