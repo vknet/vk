@@ -377,15 +377,7 @@ namespace VkNet
             //если токен не задан - обычная авторизация
             if (@params.AccessToken == null)
             {
-                AuthorizeWithAntiCaptcha(
-                    @params.ApplicationId,
-                    @params.Login,
-                    @params.Password,
-                    @params.Settings,
-                    @params.TwoFactorAuthorization,
-                    @params.CaptchaSid,
-                    @params.CaptchaKey
-                );
+                AuthorizeWithAntiCaptcha(@params);
                 // Сбросить после использования
                 @params.CaptchaSid = null;
                 @params.CaptchaKey = "";
@@ -479,13 +471,8 @@ namespace VkNet
         {
             if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
             {
-                AuthorizeWithAntiCaptcha(
-                    _ap.ApplicationId,
-                    _ap.Login,
-                    _ap.Password,
-                    _ap.Settings,
-                    code ?? _ap.TwoFactorAuthorization
-                );
+                _ap.TwoFactorAuthorization = _ap.TwoFactorAuthorization ?? code;
+                AuthorizeWithAntiCaptcha(_ap);
             }
             else
             {
@@ -512,34 +499,19 @@ namespace VkNet
         /// <summary>
         /// Авторизация и получение токена
         /// </summary>
-        /// <param name="appId">Идентификатор приложения</param>
-        /// <param name="emailOrPhone">Email или телефон</param>
-        /// <param name="password">Пароль</param>
-        /// <param name="code">Делегат получения кода для двух факторной авторизации</param>
-        /// <param name="captchaSid">Идентификатор капчи</param>
-        /// <param name="captchaKey">Текст капчи</param>
-        /// <param name="settings">Права доступа для приложения</param>
+        /// <param name="authParams">Параметры авторизации</param>
         /// <exception cref="VkApiAuthorizationException"></exception>
-        private void Authorize(ulong appId, string emailOrPhone, string password, Settings settings, Func<string> code,
-            long? captchaSid = null, string captchaKey = null)
+        private void BaseAuthorize(ApiAuthParams authParams)
         {
             StopTimer();
 
             LastInvokeTime = DateTimeOffset.Now;
-            var authorization = Browser.Authorize(
-                appId,
-                emailOrPhone,
-                password,
-                settings,
-                code,
-                captchaSid,
-                captchaKey
-            );
+            var authorization = Browser.Authorize(authParams);
             if (!authorization.IsAuthorized)
             {
-                var message = $"Invalid authorization with {emailOrPhone} - {password}";
+                var message = $"Invalid authorization with {authParams.Login} - {authParams.Password}";
                 _logger.Error(message);
-                throw new VkApiAuthorizationException(message, emailOrPhone, password);
+                throw new VkApiAuthorizationException(message, authParams.Login, authParams.Password);
             }
             _logger.Debug("Авторизация прошла успешно");
             SetTokenProperties(authorization);
@@ -548,28 +520,21 @@ namespace VkNet
         /// <summary>
         /// Авторизация и получение токена
         /// </summary>
-        /// <param name="appId">Идентификатор приложения</param>
-        /// <param name="emailOrPhone">Email или телефон</param>
-        /// <param name="password">Пароль</param>
-        /// <param name="code">Делегат получения кода для двух факторной авторизации</param>
-        /// <param name="captchaSid">Идентификатор капчи</param>
-        /// <param name="captchaKey">Текст капчи</param>
-        /// <param name="settings">Права доступа для приложения</param>
+        /// <param name="authParams">Параметры авторизации</param>
         /// <exception cref="VkApiAuthorizationException"></exception>
-        private void AuthorizeWithAntiCaptcha(ulong appId, string emailOrPhone, string password, Settings settings,
-            Func<string> code, long? captchaSid = null, string captchaKey = null)
+        private void AuthorizeWithAntiCaptcha(ApiAuthParams authParams)
         {
             _logger.Debug("Старт авторизации");
             if (_captchaSolver == null)
             {
-                Authorize(appId, emailOrPhone, password, settings, code, captchaSid, captchaKey);
+                BaseAuthorize(authParams);
             }
             else
             {
                 var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
                 var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
-                var captchaSidTemp = captchaSid;
-                var captchaKeyTemp = captchaKey;
+                var captchaSidTemp = authParams.CaptchaSid;
+                var captchaKeyTemp = authParams.CaptchaKey;
                 var authorizationCompleted = false;
 
                 do
@@ -578,7 +543,7 @@ namespace VkNet
                     {
                         _logger.Debug("Авторизация с использование капчи.");
                         numberOfRemainingAttemptsToAuthorize--;
-                        Authorize(appId, emailOrPhone, password, settings, code, captchaSidTemp, captchaKeyTemp);
+                        BaseAuthorize(authParams);
 
                         authorizationCompleted = true;
                     }
@@ -586,6 +551,9 @@ namespace VkNet
                     {
                         RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException,
                             ref captchaSidTemp, ref captchaKeyTemp);
+                        
+                        authParams.CaptchaSid = captchaSidTemp;
+                        authParams.CaptchaKey = captchaKeyTemp;
                     }
                 } while (numberOfRemainingAttemptsToAuthorize > 0 && !authorizationCompleted);
 

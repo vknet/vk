@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using Moq;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -52,15 +51,7 @@ namespace VkNet.Tests
                     return Json;
                 });
 
-            browser.Setup(o => o.Authorize(
-                It.IsAny<ulong>(),
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<Settings>(),
-                It.IsAny<Func<string>>(),
-                It.IsAny<long?>(),
-                It.IsAny<string>()
-                )
+            browser.Setup(o => o.Authorize(It.IsAny<ApiAuthParams>())
 			)
 			.Returns(VkAuthorization.From("https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1"));
             Api = new VkApi

@@ -46,19 +46,12 @@ namespace VkNet.Utils
         /// <summary>
         /// Авторизация на сервере ВК
         /// </summary>
-        /// <param name="appId">Идентификатор приложения</param>
-        /// <param name="email">Логин - телефон или эл. почта</param>
-        /// <param name="password">Пароль</param>
-        /// <param name="settings">Уровень доступа приложения</param>
-        /// <param name="code">Код двухфакторной авторизации</param>
-        /// <param name="captchaSid">Идентификатор капчи</param>
-        /// <param name="captchaKey">Текст капчи</param>
+        /// <param name="authParams">Параметры авторизации</param>
         /// <returns>Информация об авторизации приложения</returns>
-        public VkAuthorization Authorize(ulong appId, string email, string password, Settings settings,
-            Func<string> code = null, long? captchaSid = null, string captchaKey = null)
+        public VkAuthorization Authorize(ApiAuthParams authParams)
         {
             _logger?.Debug("Шаг 1. Открытие диалога авторизации");
-            var authorizeUrlResult = OpenAuthDialog(appId, settings);
+            var authorizeUrlResult = OpenAuthDialog(authParams.ApplicationId, authParams.Settings);
 
             if (IsAuthSuccessfull(authorizeUrlResult))
             {
@@ -66,20 +59,20 @@ namespace VkNet.Utils
             }
 
             _logger?.Debug("Шаг 2. Заполнение формы логина");
-            var loginFormPostResult = FilledLoginForm(email, password, captchaSid, captchaKey, authorizeUrlResult);
+            var loginFormPostResult = FilledLoginForm(authParams.Login, authParams.Password, authParams.CaptchaSid, authParams.CaptchaKey, authorizeUrlResult);
 
             if (IsAuthSuccessfull(loginFormPostResult))
             {
                 return EndAuthorize(loginFormPostResult, Proxy);
             }
 
-            if (HasNotTwoFactor(code, loginFormPostResult))
+            if (HasNotTwoFactor(authParams.TwoFactorAuthorization, loginFormPostResult))
             {
                 return EndAuthorize(loginFormPostResult, Proxy);
             }
 
             _logger?.Debug("Шаг 2.5.1. Заполнить код двухфакторной авторизации");
-            var twoFactorFormResult = FilledTwoFactorForm(code, loginFormPostResult);
+            var twoFactorFormResult = FilledTwoFactorForm(authParams.TwoFactorAuthorization, loginFormPostResult);
             if (IsAuthSuccessfull(twoFactorFormResult))
             {
                 return EndAuthorize(twoFactorFormResult, Proxy);
