@@ -11,8 +11,10 @@ namespace VkNet.Abstractions
     /// <summary>
     /// VkApi
     /// </summary>
-    public interface IVkApi : IDisposable
+    public interface IVkApi : IDisposable, IVkApiAuth, IVkApiAuthAsync
     {
+        #region Properties
+
         /// <summary>
         /// Время вызова последнего метода этим объектом
         /// </summary>
@@ -159,11 +161,6 @@ namespace VkNet.Abstractions
         IBrowser Browser { get; set; }
 
         /// <summary>
-        /// Была ли произведена авторизация каким либо образом
-        /// </summary>
-        bool IsAuthorized { get; }
-
-        /// <summary>
         /// Токен для доступа к методам API
         /// </summary>
         string Token { get; }
@@ -188,6 +185,8 @@ namespace VkNet.Abstractions
         /// </summary>
         event VkApiDelegate OnTokenExpires;
 
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -200,18 +199,6 @@ namespace VkNet.Abstractions
         /// Установить язык
         /// </summary>
         Language? GetLanguage();
-
-        /// <summary>
-        /// Авторизация и получение токена
-        /// </summary>
-        /// <param name="params">Данные авторизации</param>
-        void Authorize(ApiAuthParams @params);
-
-        /// <summary>
-        /// Авторизация и получение токена в асинхронном режиме
-        /// </summary>
-        /// <param name="params">Данные авторизации</param>
-        Task AuthorizeAsync(ApiAuthParams @params);
 
         /// <summary>
         /// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.

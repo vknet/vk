@@ -51,7 +51,7 @@ namespace VkNet.Tests
                     return Json;
                 });
 
-            browser.Setup(o => o.Authorize(It.IsAny<ApiAuthParams>())
+            browser.Setup(o => o.Authorize(It.IsAny<IApiAuthParams>())
 			)
 			.Returns(VkAuthorization.From("https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1"));
             Api = new VkApi

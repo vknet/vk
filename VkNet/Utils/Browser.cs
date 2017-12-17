@@ -48,7 +48,7 @@ namespace VkNet.Utils
         /// </summary>
         /// <param name="authParams">Параметры авторизации</param>
         /// <returns>Информация об авторизации приложения</returns>
-        public VkAuthorization Authorize(ApiAuthParams authParams)
+        public VkAuthorization Authorize(IApiAuthParams authParams)
         {
             _logger?.Debug("Шаг 1. Открытие диалога авторизации");
             var authorizeUrlResult = OpenAuthDialog(authParams.ApplicationId, authParams.Settings);

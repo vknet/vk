@@ -44,7 +44,7 @@ namespace VkNet
         /// <summary>
         /// Параметры авторизации.
         /// </summary>
-        private ApiAuthParams _ap;
+        private IApiAuthParams _ap;
 
         /// <summary>
         /// Таймер.
@@ -365,7 +365,7 @@ namespace VkNet
         /// Авторизация и получение токена
         /// </summary>
         /// <param name="params">Данные авторизации</param>
-        public void Authorize(ApiAuthParams @params)
+        public void Authorize(IApiAuthParams @params)
         {
             //подключение браузера через прокси 
             if (@params.Host != null)
@@ -401,7 +401,7 @@ namespace VkNet
         /// Авторизация и получение токена в асинхронном режиме
         /// </summary>
         /// <param name="params">Данные авторизации</param>
-        public Task AuthorizeAsync(ApiAuthParams @params)
+        public Task AuthorizeAsync(IApiAuthParams @params)
         {
             var rTask = new Task(() => Authorize(@params));
             rTask.Start();
@@ -665,7 +665,7 @@ namespace VkNet
         /// </summary>
         /// <param name="authParams">Параметры авторизации</param>
         /// <exception cref="VkApiAuthorizationException"></exception>
-        private void AuthorizeWithAntiCaptcha(ApiAuthParams authParams)
+        private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
         {
             _logger.Debug("Старт авторизации");
             if (_captchaSolver == null)
@@ -820,7 +820,7 @@ namespace VkNet
         /// </summary>
         /// <param name="authParams">Параметры авторизации</param>
         /// <exception cref="VkApiAuthorizationException"></exception>
-        private void BaseAuthorize(ApiAuthParams authParams)
+        private void BaseAuthorize(IApiAuthParams authParams)
         {
             StopTimer();
 

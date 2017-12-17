@@ -33,7 +33,7 @@ namespace VkNet.Utils
         /// Если приложение с идентификатором <paramref name="authParams.appId"/> не было установлено у пользователя, имеющего
         /// логин <paramref name="authParams.email"/>, то производится его установка с разрешениями <paramref name="authParams.settings"/>.
         /// </remarks>
-        VkAuthorization Authorize(ApiAuthParams authParams);
+        VkAuthorization Authorize(IApiAuthParams authParams);
 
         /// <summary>
         /// Выполняет обход ошибки валидации: https://vk.com/dev/need_validation
