@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -12,7 +13,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с новостной лентой пользователя.
 	/// </summary>
-	public partial class NewsFeedCategory
+	public partial class NewsFeedCategory : INewsFeedCategory
 	{
 		/// <summary>
 		/// API.

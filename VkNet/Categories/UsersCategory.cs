@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using VkNet.Abstractions;
+
+namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
@@ -14,7 +16,7 @@
 	/// <summary>
 	/// Методы для работы с информацией о пользователях.
 	/// </summary>
-	public partial class UsersCategory
+	public partial class UsersCategory : IUsersCategory
 	{
 		private readonly VkApi _vk;
 

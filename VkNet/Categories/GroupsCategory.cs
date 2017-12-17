@@ -8,6 +8,7 @@ using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Model.RequestParams;
 using System.Linq;
+using VkNet.Abstractions;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
@@ -15,7 +16,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с сообществами (группами).
 	/// </summary>
-	public partial class GroupsCategory
+	public partial class GroupsCategory : IGroupsCategory
 	{
 		private readonly VkApi _vk;
 

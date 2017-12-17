@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using VkNet.Abstractions;
+
+namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
@@ -15,7 +17,7 @@
 	/// <summary>
 	/// Методы для работы с друзьями.
 	/// </summary>
-	public partial class FriendsCategory
+	public partial class FriendsCategory : IFriendsCategory
 	{
 		private readonly VkApi _vk;
 

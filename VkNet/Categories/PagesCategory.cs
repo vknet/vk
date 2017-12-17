@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Net;
+using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -13,7 +14,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с wiki.
 	/// </summary>
-	public partial class PagesCategory
+	public partial class PagesCategory : IPagesCategory
 	{
 		/// <summary>
 		/// API

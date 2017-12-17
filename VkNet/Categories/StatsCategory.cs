@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -8,7 +9,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы со статистикой.
 	/// </summary>
-	public class StatsCategory
+	public class StatsCategory : IStatsCategory
 	{
 		/// <summary>
 		/// API.

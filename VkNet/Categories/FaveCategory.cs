@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using VkNet.Abstractions;
+
+namespace VkNet.Categories
 {
 	using System;
 	using Model;
@@ -8,7 +10,7 @@
 	/// <summary>
 	/// Категория работы с закладками.
 	/// </summary>
-	public class FaveCategory
+	public class FaveCategory : IFaveCategory
 	{
 		/// <summary>
 		/// API

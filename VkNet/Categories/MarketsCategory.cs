@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -10,7 +11,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с товарами.
 	/// </summary>
-	public class MarketsCategory
+	public class MarketsCategory : IMarketsCategory
 	{
 		/// <summary>
 		/// API.

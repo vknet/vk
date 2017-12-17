@@ -1,4 +1,5 @@
-﻿using VkNet.Model;
+﻿using VkNet.Abstractions;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -6,7 +7,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с подарками.
 	/// </summary>
-	public partial class GiftsCategory
+	public partial class GiftsCategory : IGiftsCategory
 	{
 		/// <summary>
 		/// API.

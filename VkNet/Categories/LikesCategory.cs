@@ -1,4 +1,5 @@
-﻿using VkNet.Model.RequestParams;
+﻿using VkNet.Abstractions;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
 {
@@ -9,7 +10,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// API для работы с лайками.
 	/// </summary>
-	public class LikesCategory
+	public class LikesCategory : ILikesCategory
 	{
 		/// <summary>
 		/// API

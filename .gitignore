@@ -13,3 +13,4 @@ Release/
 /GCopLog.txt
 .vs/*
 /VkNet.UWP/*.lock.json
+/VkNet/Categories/Obsolete/

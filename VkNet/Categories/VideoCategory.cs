@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using VkNet.Abstractions;
+
+namespace VkNet.Categories
 {
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
@@ -12,7 +14,7 @@
 	/// <summary>
 	/// Методы для работы с видеофайлами.
 	/// </summary>
-	public partial class VideoCategory
+	public partial class VideoCategory : IVideoCategory
 	{
 		private readonly VkApi _vk;
 

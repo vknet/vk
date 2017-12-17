@@ -124,27 +124,27 @@ namespace VkNet
         /// <summary>
         /// API для работы с пользователями.
         /// </summary>
-        public UsersCategory Users { get; }
+        public IUsersCategory Users { get; }
 
         /// <summary>
         /// API для работы с друзьями.
         /// </summary>
-        public FriendsCategory Friends { get; }
+        public IFriendsCategory Friends { get; }
 
         /// <summary>
         /// API для работы со статусом пользователя или сообщества.
         /// </summary>
-        public StatusCategory Status { get; }
+        public IStatusCategory Status { get; }
 
         /// <summary>
         /// API для работы с сообщениями.
         /// </summary>
-        public MessagesCategory Messages { get; }
+        public IMessagesCategory Messages { get; }
 
         /// <summary>
         /// API для работы с .
         /// </summary>
-        public GroupsCategory Groups { get; }
+        public IGroupsCategory Groups { get; }
 
         /// <summary>
         /// API для работы с аудио записями.
@@ -154,32 +154,32 @@ namespace VkNet
         /// <summary>
         /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
         /// </summary>
-        public DatabaseCategory Database { get; }
+        public IDatabaseCategory Database { get; }
 
         /// <summary>
         /// API для работы со служебными методами.
         /// </summary>
-        public UtilsCategory Utils { get; }
+        public IUtilsCategory Utils { get; }
 
         /// <summary>
         /// API для работы со стеной пользователя.
         /// </summary>
-        public WallCategory Wall { get; }
+        public IWallCategory Wall { get; }
 
         /// <summary>
         /// API для работы со темами групп.
         /// </summary>
-        public BoardCategory Board { get; }
+        public IBoardCategory Board { get; }
 
         /// <summary>
         /// API для работы с закладками.
         /// </summary>
-        public FaveCategory Fave { get; }
+        public IFaveCategory Fave { get; }
 
         /// <summary>
         /// API для работы с видео файлами.
         /// </summary>
-        public VideoCategory Video { get; }
+        public IVideoCategory Video { get; }
 
         /// <summary>
         /// API для работы с аккаунтом пользователя.
@@ -189,22 +189,22 @@ namespace VkNet
         /// <summary>
         /// API для работы с фотографиями
         /// </summary>
-        public PhotoCategory Photo { get; }
+        public IPhotoCategory Photo { get; }
 
         /// <summary>
         /// API для работы с документами
         /// </summary>
-        public DocsCategory Docs { get; }
+        public IDocsCategory Docs { get; }
 
         /// <summary>
         /// API для работы с лайками
         /// </summary>
-        public LikesCategory Likes { get; }
+        public ILikesCategory Likes { get; }
 
         /// <summary>
         /// API для работы с wiki.
         /// </summary>
-        public PagesCategory Pages { get; }
+        public IPagesCategory Pages { get; }
 
         /// <summary>
         /// API для работы с приложениями.
@@ -214,22 +214,22 @@ namespace VkNet
         /// <summary>
         /// API для работы с новостной лентой.
         /// </summary>
-        public NewsFeedCategory NewsFeed { get; }
+        public INewsFeedCategory NewsFeed { get; }
 
         /// <summary>
         /// API для работы со статистикой.
         /// </summary>
-        public StatsCategory Stats { get; }
+        public IStatsCategory Stats { get; }
 
         /// <summary>
         /// API для работы с подарками.
         /// </summary>
-        public GiftsCategory Gifts { get; }
+        public IGiftsCategory Gifts { get; }
 
         /// <summary>
         /// API для работы с товарами.
         /// </summary>
-        public MarketsCategory Markets { get; }
+        public IMarketsCategory Markets { get; }
 
         /// <summary>
         /// API для работы с Авторизацией.
@@ -239,12 +239,12 @@ namespace VkNet
         /// <summary>
         /// API для работы с универсальным методом.
         /// </summary>
-        public ExecuteCategory Execute { get; }
+        public IExecuteCategory Execute { get; }
 
         /// <summary>
         /// API для работы с опросами. 
         /// </summary>
-        public PollsCategory PollsCategory { get; }
+        public IPollsCategory PollsCategory { get; }
 
         #endregion
 

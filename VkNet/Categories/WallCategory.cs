@@ -1,4 +1,6 @@
-﻿namespace VkNet.Categories
+﻿using VkNet.Abstractions;
+
+namespace VkNet.Categories
 {
   using System;
   using System.Collections.Generic;
@@ -14,7 +16,7 @@
   /// <summary>
   /// Методы для работы со стеной пользователя.
   /// </summary>
-  public partial class WallCategory
+  public partial class WallCategory : IWallCategory
   {
     private readonly VkApi _vk;
 
