@@ -454,8 +454,8 @@ namespace VkNet.Tests.Categories
 			}";
 
 			int total;
-			var items = Api.Account.GetBanned(out total);
-			Assert.That(total, Is.EqualTo(10));
+			var items = Api.Account.GetBanned();
+			Assert.That(items.TotalCount, Is.EqualTo(10));
 			Assert.That(items, Has.Count.EqualTo(2));
 			var banned = items.FirstOrDefault();
 			Assert.That(banned, Is.Not.Null);
@@ -486,7 +486,7 @@ namespace VkNet.Tests.Categories
 				}
 			}";
 			int total;
-			var items = Api.Account.GetBanned(out total, count: 2);
+			var items = Api.Account.GetBanned(count: 2);
 
 			Assert.That(items.Count, Is.EqualTo(2));
 		}
@@ -513,7 +513,7 @@ namespace VkNet.Tests.Categories
 			}";
 
 			int total;
-			var items = Api.Account.GetBanned(out total, 10);
+			var items = Api.Account.GetBanned(null, 10);
 			Assert.That(items.Count, Is.EqualTo(2));
 		}
 
@@ -528,9 +528,7 @@ namespace VkNet.Tests.Categories
 				}
 			}";
 
-			int total;
-			Assert.That(Api.Account.GetBanned(out total), Has.Count.EqualTo(0));
-			Assert.That(total, Is.EqualTo(0));
+			Assert.That(Api.Account.GetBanned(), Has.Count.EqualTo(0));
 		}
 
 		[Test]
@@ -543,10 +541,9 @@ namespace VkNet.Tests.Categories
 					items: []
 				}
 			}";
-
-			int total;
-			Assert.That(Api.Account.GetBanned(out total, offset: 50), Has.Count.EqualTo(0));
-			Assert.That(total, Is.EqualTo(5));
+			var result = Api.Account.GetBanned(offset: 50);
+			Assert.That(result, Has.Count.EqualTo(0));
+			Assert.That(result.TotalCount, Is.EqualTo(5));
 		}
 
 		#endregion
