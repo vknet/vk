@@ -234,7 +234,7 @@ namespace VkNet
         /// <summary>
         /// API для работы с Авторизацией.
         /// </summary>
-        public AuthCategory Auth { get; }
+        public IAuthCategory Auth { get; }
 
         /// <summary>
         /// API для работы с универсальным методом.

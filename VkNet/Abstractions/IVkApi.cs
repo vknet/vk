@@ -143,7 +143,7 @@ namespace VkNet.Abstractions
         /// <summary>
         /// API для работы с Авторизацией.
         /// </summary>
-        AuthCategory Auth { get; }
+        IAuthCategory Auth { get; }
 
         /// <summary>
         /// API для работы с универсальным методом.
