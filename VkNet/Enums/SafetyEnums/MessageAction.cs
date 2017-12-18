@@ -2,6 +2,9 @@
 
 namespace VkNet.Enums.SafetyEnums
 {
+    /// <summary>
+    /// Действия для сообщений
+    /// </summary>
     public class MessageAction : SafetyEnum<MessageAction>
     {
         ///<summary>

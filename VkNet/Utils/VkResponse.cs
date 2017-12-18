@@ -173,18 +173,6 @@ namespace VkNet.Utils
 			return response != null ? (ulong?)response._token : null;
 		}
 
-//        /// <summary>
-//        /// Выполняет неявное преобразование из VkResponse
-//        /// </summary>
-//        /// <param name="response">Ответ vk.com</param>
-//        /// <returns>
-//        /// Результат преобразования.
-//        /// </returns>
-//        public static implicit operator Collection<long>(VkResponse response)
-//		{
-//			return response?.ToCollectionOf<long>(i => i);
-//		}
-
 		/// <summary>
 		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
@@ -292,18 +280,6 @@ namespace VkNet.Utils
 		{
 			return response == null ? null : WebUtility.HtmlDecode((string)response._token);
 		}
-
-//        /// <summary>
-//        /// Выполняет неявное преобразование из VkResponse
-//        /// </summary>
-//        /// <param name="response">Ответ vk.com</param>
-//        /// <returns>
-//        /// Результат преобразования.
-//        /// </returns>
-//        public static implicit operator Collection<string>(VkResponse response)
-//		{
-//			return response.ToCollectionOf<string>(s => s);
-//		}
 
 		/// <summary>
 		/// Выполняет неявное преобразование из VkResponse
@@ -490,18 +466,6 @@ namespace VkNet.Utils
         {
             return response?._token == null ? null : Coordinates.FromJson( response );
         }
-
-//        /// <summary>
-//        /// Преобразовать из VkResponse
-//        /// </summary>
-//        /// <param name="response">Ответ.</param>
-//        /// <returns>
-//        /// Результат преобразования.
-//        /// </returns>
-//        public static implicit operator Collection<Coordinates>( VkResponse response )
-//        {
-//            return response.ToCollectionOf<Coordinates>( a => a );
-//        }
 
         #endregion
     }

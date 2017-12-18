@@ -9,23 +9,28 @@ using NLog.Targets;
 
 namespace VkNet.Utils
 {
+    /// <summary>
+    /// Методы расширения для типов
+    /// </summary>
     public static class TypeHelper
     {
+        
 #if NET40
+    /// <summary>
+    /// Получить информацию о типе
+    /// </summary>
+    /// <param name="type">Тип</param>
+    /// <returns>Тип</returns>
     public static Type GetTypeInfo(this Type type)
     {
       return type;
     }
 
-    public static IEnumerable<FieldInfo> GetRuntimeFields(this Type type)
-    {
-      return type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
-    }
 #endif
         /// <summary>
-        /// DI Register Default Dependencies
+        /// DI регистрация зависимостей по умолчанию
         /// </summary>
-        /// <param name="container">DI container</param>
+        /// <param name="container">DI контейнер</param>
         public static void RegisterDefaultDependencies(this IServiceCollection container)
         {
             container.TryAddSingleton<IBrowser, Browser>();
@@ -33,19 +38,15 @@ namespace VkNet.Utils
         }
         
         /// <summary>
-        /// Initializes the logger.
+        /// Инициализация логгера.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Логгер</returns>
         private static ILogger InitLogger()
         {
-            // Step 1. Create configuration object 
             var config = new LoggingConfiguration();
-            // Step 2. Create targets and add them to the configuration 
             var consoleTarget = new ConsoleTarget();
             config.AddTarget("console", consoleTarget);
-            // Step 3. Set target properties 
             consoleTarget.Layout = @"${date:format=HH\:mm\:ss} ${logger} ${message}";
-            // Step 4. Define rules
 #if DEBUG
             var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
 #elif UNIT_TEST
@@ -55,9 +56,7 @@ namespace VkNet.Utils
 #endif
             
             config.LoggingRules.Add(rule1);
-            // Step 5. Activate the configuration
             LogManager.Configuration = config;
-            // Example usage
             return LogManager.GetLogger("VkApi");
         }
     }
