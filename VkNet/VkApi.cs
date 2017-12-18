@@ -618,7 +618,7 @@ namespace VkNet
 
             _logger.Debug(
                 $"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}"))}");
-            string answer = null;
+            string answer;
 
             if (CaptchaSolver == null)
             {
@@ -626,35 +626,12 @@ namespace VkNet
             }
             else
             {
-                var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
-                var numberOfRemainingAttemptsToCall = MaxCaptchaRecognitionCount + 1;
-                long? captchaSidTemp = null;
-                string captchaKeyTemp = null;
-                var callCompleted = false;
-
-                do
+                answer = CaptchaHandler((sid, key) =>
                 {
-                    try
-                    {
-                        parameters.Add("captcha_sid", captchaSidTemp);
-                        parameters.Add("captcha_key", captchaKeyTemp);
-                        numberOfRemainingAttemptsToCall--;
-                        answer = Invoke(methodName, parameters, skipAuthorization);
-
-                        callCompleted = true;
-                    }
-                    catch (CaptchaNeededException captchaNeededException)
-                    {
-                        RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException,
-                            ref captchaSidTemp, ref captchaKeyTemp);
-                    }
-                } while (numberOfRemainingAttemptsToCall > 0 && !callCompleted);
-
-                // Повторно выбрасываем исключение, если капча ни разу не была распознана верно
-                if (!callCompleted && captchaSidTemp.HasValue)
-                {
-                    throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
-                }
+                    parameters.Add("captcha_sid", sid);
+                    parameters.Add("captcha_key", key);
+                    return Invoke(methodName, parameters, skipAuthorization);
+                });
             }
 
             return answer;
@@ -674,43 +651,57 @@ namespace VkNet
             }
             else
             {
-                var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
-                var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
-                var captchaSidTemp = authParams.CaptchaSid;
-                var captchaKeyTemp = authParams.CaptchaKey;
-                var authorizationCompleted = false;
-
-                do
+                CaptchaHandler((sid, key) =>
                 {
-                    try
-                    {
-                        _logger.Debug("Авторизация с использование капчи.");
-                        numberOfRemainingAttemptsToAuthorize--;
-                        BaseAuthorize(authParams);
-
-                        authorizationCompleted = true;
-                    }
-                    catch (CaptchaNeededException captchaNeededException)
-                    {
-                        RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException,
-                            ref captchaSidTemp, ref captchaKeyTemp);
-                        
-                        authParams.CaptchaSid = captchaSidTemp;
-                        authParams.CaptchaKey = captchaKeyTemp;
-                    }
-                } while (numberOfRemainingAttemptsToAuthorize > 0 && !authorizationCompleted);
-
-                // Повторно выбрасываем исключение, если капча ни разу не была распознана верно
-                if (authorizationCompleted || !captchaSidTemp.HasValue)
-                {
-                    return;
-                }
-
-                _logger.Error("Капча ни разу не была распознана верно");
-                throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
+                    _logger.Debug("Авторизация с использование капчи.");
+                    authParams.CaptchaSid = sid;
+                    authParams.CaptchaKey = key;
+                    BaseAuthorize(authParams);
+                    return true;
+                });
             }
         }
-        
+
+        /// <summary>
+        /// Обработка капчи
+        /// </summary>
+        /// <param name="action">Действие</param>
+        /// <typeparam name="T">Тип результата</typeparam>
+        /// <returns>Результат действия</returns>
+        /// <exception cref="CaptchaNeededException">Требуется обработка капчи.</exception>
+        private T CaptchaHandler<T>(Func<long?, string, T> action)
+        {
+            var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
+            var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
+            long? captchaSidTemp = null;
+            string captchaKeyTemp = null;
+            var callCompleted = false;
+            var result = default(T);
+            do
+            {
+                try
+                {
+                    result = action.Invoke(captchaSidTemp, captchaKeyTemp);
+                    numberOfRemainingAttemptsToAuthorize--;
+                    callCompleted = true;
+                }
+                catch (CaptchaNeededException captchaNeededException)
+                {
+                    RepeatSolveCaptcha(ref numberOfRemainingAttemptsToSolveCaptcha, captchaNeededException,
+                        ref captchaSidTemp, ref captchaKeyTemp);
+                }
+            } while (numberOfRemainingAttemptsToAuthorize > 0 && !callCompleted);
+
+            // Повторно выбрасываем исключение, если капча ни разу не была распознана верно
+            if (callCompleted || !captchaSidTemp.HasValue)
+            {
+                return result;
+            }
+
+            _logger.Error("Капча ни разу не была распознана верно");
+            throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
+        }
+
         /// <summary>
         /// Авторизация через установку токена
         /// </summary>
