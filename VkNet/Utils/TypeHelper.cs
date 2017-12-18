@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using VkNet.Exception;
 
 namespace VkNet.Utils
 {
@@ -58,6 +60,29 @@ namespace VkNet.Utils
             config.LoggingRules.Add(rule1);
             LogManager.Configuration = config;
             return LogManager.GetLogger("VkApi");
+        }
+
+        /// <summary>
+        /// Попытаться асинхронно выполнить метод.
+        /// </summary>
+        /// <param name="func">Синхронный метод.</param>
+        /// <typeparam name="T">Тип ответа</typeparam>
+        /// <returns>Результат выполнения функции.</returns>
+        public static Task<T> TryInvokeMethodAsync<T>(Func<T> func)
+        {
+            var tcs = new TaskCompletionSource<T>();
+            
+            Task.Factory.StartNew(() => {
+                try {
+                    var result = func.Invoke();
+                    tcs.SetResult(result);
+                }
+                catch (VkApiException ex) {
+                    tcs.SetException(ex);
+                }
+            });
+ 
+            return tcs.Task;
         }
     }
 }

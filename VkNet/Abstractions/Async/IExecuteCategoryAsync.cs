@@ -1,12 +1,12 @@
-﻿using VkNet.Abstractions.Async;
+﻿using System.Threading.Tasks;
 using VkNet.Utils;
 
-namespace VkNet.Abstractions
+namespace VkNet.Abstractions.Async
 {
     /// <summary>
-    /// Методы этого класса позволяют производить действия с универсальным методом.
+    /// Методы этого класса позволяют производить асинхронные действия с универсальным методом.
     /// </summary>
-    public interface IExecuteCategory: IExecuteCategoryAsync
+    public interface IExecuteCategoryAsync
     {
         /// <summary>
         /// Универсальный метод, который позволяет запускать последовательность других методов, сохраняя и фильтруя промежуточные результаты.
@@ -22,6 +22,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/execute
         /// </remarks>
-        VkResponse Execute(string code);
+        Task<VkResponse> ExecuteAsync(string code);
     }
 }

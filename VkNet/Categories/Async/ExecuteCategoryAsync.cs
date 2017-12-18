@@ -1,13 +1,28 @@
-﻿using VkNet.Abstractions.Async;
+﻿using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Utils;
 
-namespace VkNet.Abstractions
+namespace VkNet.Categories
 {
     /// <summary>
-    /// Методы этого класса позволяют производить действия с универсальным методом.
+    /// 
     /// </summary>
-    public interface IExecuteCategory: IExecuteCategoryAsync
+    public partial class ExecuteCategory
     {
+        /// <summary>
+        /// API.
+        /// </summary>
+        private readonly IVkApi _vk;
+
+        /// <summary>
+        /// Методы для работы с универсальным методом.
+        /// </summary>
+        /// <param name="vk">API.</param>
+        public ExecuteCategory(IVkApi vk)
+        {
+            _vk = vk;
+        }
+
         /// <summary>
         /// Универсальный метод, который позволяет запускать последовательность других методов, сохраняя и фильтруя промежуточные результаты.
         /// </summary>
@@ -22,6 +37,9 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/execute
         /// </remarks>
-        VkResponse Execute(string code);
+        public async Task<VkResponse> ExecuteAsync(string code)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Execute.Execute(code));
+        }
     }
 }

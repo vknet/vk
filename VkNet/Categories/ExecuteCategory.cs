@@ -7,22 +7,8 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы этого класса позволяют производить действия с универсальным методом.
 	/// </summary>
-	public class ExecuteCategory : IExecuteCategory
+	public partial class ExecuteCategory : IExecuteCategory
 	{
-		/// <summary>
-		/// API.
-		/// </summary>
-		readonly VkApi _vk;
-
-		/// <summary>
-		/// Методы для работы с универсальным методом.
-		/// </summary>
-		/// <param name="vk">API.</param>
-		public ExecuteCategory(VkApi vk)
-		{
-			_vk = vk;
-		}
-
 		/// <summary>
 		/// Универсальный метод, который позволяет запускать последовательность других методов, сохраняя и фильтруя промежуточные результаты.
 		/// </summary>
