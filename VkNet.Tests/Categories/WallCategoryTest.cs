@@ -121,10 +121,6 @@ namespace VkNet.Tests.Categories
 							}]
 							}
                   }";
-
-			ReadOnlyCollection<Post> posts;
-			ReadOnlyCollection<User> profiles;
-			ReadOnlyCollection<Group> groups;
 			// 10, out posts, out profiles, out groups, 1, 1, WallFilter.Owner
 			var count = GetMockedWallCategory(url, json).Get(new WallGetParams
 			{
@@ -677,7 +673,6 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-	        int total;
             var posts = GetMockedWallCategory(url, json).Get(new WallGetParams
             {
 	            OwnerId = 1563369,
@@ -748,7 +743,6 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-	        int totalCount;
 	        var posts = GetMockedWallCategory(url, json).Get(new WallGetParams
 	        {
 		        OwnerId = 46476924, 

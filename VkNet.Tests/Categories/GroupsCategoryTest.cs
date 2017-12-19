@@ -567,7 +567,6 @@ namespace VkNet.Tests.Categories
 
 			var groups = GetMockedGroupCategory(url, json);
 
-			int totalCount;
 			var ids = groups.GetMembers(new GroupsGetMembersParams
 			{
 				GroupId = "17683660"
@@ -607,8 +606,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			int totalCount;
-			//17683660, out totalCount, 7, 15, GroupsSort.IdAsc
+			
 			var ids = groups.GetMembers(new GroupsGetMembersParams
 			{
 				GroupId = "17683660",
@@ -661,7 +659,6 @@ namespace VkNet.Tests.Categories
 
 			var groups = GetMockedGroupCategory(url, json);
 
-			int totalCount;
 			Assert.That(() => groups.GetMembers(new GroupsGetMembersParams
 			{
 				GroupId = "0"
@@ -671,8 +668,6 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_EmptyQuery_ThrowsArgumentException()
 		{
-			int totalCount;
-
 			var groups = new GroupsCategory(Api);
 			Assert.That(() => groups.Search(new GroupsSearchParams
 			{
@@ -715,7 +710,6 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			int totalCount;
 			var category = GetMockedGroupCategory(url, json);
             var groups = category.Search(new GroupsSearchParams
             {
@@ -794,7 +788,6 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			int totalCount;
 			var category = GetMockedGroupCategory(url, json);
             var groups = category.Search(new GroupsSearchParams
             {
@@ -1613,7 +1606,6 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
-			int count;
 			var users = cat.GetInvitedUsers(103292418, 0, 20, UsersFields.BirthDate, NameCase.Dat);
 
 			Assert.That(users, Is.Not.Null);

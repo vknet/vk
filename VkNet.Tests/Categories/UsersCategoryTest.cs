@@ -351,7 +351,6 @@ namespace VkNet.Tests.Categories
 					}
 				}";
 
-            int count;
             var users = GetMockedUsersCategory(url, json);
             var lst = users.Search(new UserSearchParams { Query = Query, Fields = ProfileFields.Education, Count = 3, Offset = 123});
 
@@ -407,7 +406,6 @@ namespace VkNet.Tests.Categories
 					}
 				}";
 
-            int count;
             var users = GetMockedUsersCategory(url, json);
             var lst = users.Search(new UserSearchParams { Query = Query, Fields = ProfileFields.Education, Count = 3, Offset = 123 });
 
@@ -452,7 +450,6 @@ namespace VkNet.Tests.Categories
 					}
 				}";
 
-            int count;
             var users = GetMockedUsersCategory(url, json);
             var lst = users.Search(new UserSearchParams { Query = Query });
 

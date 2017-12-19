@@ -351,7 +351,6 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			int totalCount;
 			var cat = new MessagesCategory(new VkApi());
 			Assert.That(() => cat.GetById(new ulong[] { 1, 3, 5 }), Throws.InstanceOf<AccessTokenInvalidException>());
 		}

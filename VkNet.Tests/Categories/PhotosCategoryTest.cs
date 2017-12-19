@@ -315,7 +315,6 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			int count;
 			var photos = GetMockedPhotosCategory(url, json).GetAll(new PhotoGetAllParams
 			{
 				OwnerId = 1,
@@ -398,7 +397,7 @@ namespace VkNet.Tests.Categories
                       ]
                     }
                   }";
-	        int count;
+	        
 			var photos = GetMockedPhotosCategory(url, json).Search(new PhotoSearchParams
 			{
 				Query = "порно",
@@ -468,7 +467,6 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			int count;
 			var photos = GetMockedPhotosCategory(url, json).Search(new PhotoSearchParams
 			{
 				Query = "",
