@@ -439,13 +439,14 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.editAlbum
 		/// </remarks>
-		public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null)
+		public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
 				{ "album_id", albumId },
 				{ "title", title },
-				{ "photo_id", photoId }
+				{ "photo_id", photoId },
+				{ "main_album", mainAlbum}
 			};
 
 			return _vk.Call("market.editAlbum", parameters);

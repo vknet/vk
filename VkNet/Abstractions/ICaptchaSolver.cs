@@ -1,4 +1,5 @@
-﻿namespace VkNet.Utils.AntiCaptcha
+﻿// ReSharper disable CheckNamespace
+namespace VkNet.Utils.AntiCaptcha
 {
     /// <summary>
     /// Определяет интерфейс взаимодействия с сервисом-распознавателем капчи

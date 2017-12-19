@@ -16,6 +16,9 @@ namespace VkNet.Utils
     /// </summary>
     public class Browser : IBrowser
     {
+        /// <summary>
+        /// Логгер
+        /// </summary>
         [CanBeNull] private readonly ILogger _logger;
 
         /// <summary>

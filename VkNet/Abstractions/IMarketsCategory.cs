@@ -279,7 +279,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.editAlbum
         /// </remarks>
-        bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null);
+        bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false);
 
         /// <summary>
         /// Удаляет подборку с товарами.
