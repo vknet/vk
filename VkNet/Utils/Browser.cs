@@ -181,8 +181,7 @@ namespace VkNet.Utils
         /// <exception cref="CaptchaNeededException"></exception>
         private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
         {
-            var tokenUri = GetTokenUri(result);
-            var authorization = VkAuthorization.From(tokenUri.ToString());
+            var authorization = VkAuthorization.From(result.ResponseUrl.ToString());
 
             if (!authorization.IsAuthorizationRequired && !authorization.IsCaptchaNeeded)
             {
@@ -194,7 +193,7 @@ namespace VkNet.Utils
             // Отправить данные
             var authorizationForm = WebForm.From(result);
             var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
-            tokenUri = GetTokenUri(authorizationFormPostResult);
+            var tokenUri = GetTokenUri(authorizationFormPostResult);
             return VkAuthorization.From(tokenUri.ToString());
         }
 
