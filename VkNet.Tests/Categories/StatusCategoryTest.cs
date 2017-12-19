@@ -100,13 +100,6 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        public void Set_TextIsNull_ThrowArgumentNullException()
-        {
-            var status = GetMockedStatusCategory("", "");
-            Assert.That(() => status.Set(null), Throws.InstanceOf<NullReferenceException>());
-        }
-
-        [Test]
         public void Set_SimpleText_ReturnTrue()
         {
             const string url = "https://api.vk.com/method/status.set";

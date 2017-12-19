@@ -507,7 +507,7 @@ namespace VkNet.Tests.Categories
 
 			var groups = GetMockedGroupCategory(url, json);
 			var result = groups.IsMember("637247", 1000000000000,null,null);
-			Assert.That(result, Is.False);
+			Assert.That(result.Count > 0 && result[0].Member, Is.False);
 		}
 
 		[Test]
@@ -524,7 +524,7 @@ namespace VkNet.Tests.Categories
 
 			var groups = GetMockedGroupCategory(url, json);
 			var result = groups.IsMember("637247", 4793858,null,null);
-			Assert.That(result, Is.True);
+			Assert.That(result.Count > 0 && result[0].Member, Is.True);
 		}
 
 		[Test]
@@ -541,7 +541,7 @@ namespace VkNet.Tests.Categories
 
 			var groups = GetMockedGroupCategory(url, json);
 			var result = groups.IsMember("17683660", 4793858,null,null);
-			Assert.That(result, Is.False);
+			Assert.That(result.Count > 0 && result[0].Member, Is.False);
 		}
 
 		[Test]

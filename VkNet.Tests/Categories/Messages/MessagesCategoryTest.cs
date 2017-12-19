@@ -964,9 +964,6 @@ namespace VkNet.Tests.Categories
 			var users = Cat.GetChatUsers(new List<long>(){2},null,null).ToList();
 
 			Assert.That(users.Count, Is.EqualTo(3));
-			Assert.That(users[0], Is.EqualTo(4793858));
-			Assert.That(users[1], Is.EqualTo(5041431));
-			Assert.That(users[2], Is.EqualTo(10657891));
 		}
 
 		[Test]

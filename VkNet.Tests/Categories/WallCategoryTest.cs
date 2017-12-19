@@ -129,7 +129,7 @@ namespace VkNet.Tests.Categories
 				Offset = 1,
 				Filter = WallFilter.Owner
 			});
-			Assert.That(count, Is.EqualTo(42));
+			Assert.That(count.TotalCount, Is.EqualTo(42));
 
 			Assert.That(count.WallPosts.Count, Is.EqualTo(1));
 			Assert.That(count.WallPosts[0].Id, Is.EqualTo(41));
