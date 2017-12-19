@@ -26,7 +26,10 @@ namespace VkNet.Tests.Categories
 		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
-			Assert.That(() => cat.Get(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.Get(new FriendsGetParams
+			{
+				UserId = 1
+			}), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -165,7 +168,10 @@ namespace VkNet.Tests.Categories
 		public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
-			Assert.That(() => cat.GetOnline(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.GetOnline(new FriendsGetOnlineParams
+			{
+				UserId = 1
+			}), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -178,7 +184,10 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var friends = GetMockedFriendsCategory(url, json);
-			var users = friends.GetOnline(1).ToList();
+			var users = friends.GetOnline(new FriendsGetOnlineParams
+			{
+				UserId = 1
+			}).ToList();
 
 			Assert.That(users.Count, Is.EqualTo(0));
 		}
@@ -193,7 +202,10 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var friends = GetMockedFriendsCategory(url, json);
-			var ids = friends.GetOnline(1).ToList();
+			var ids = friends.GetOnline(new FriendsGetOnlineParams
+			{
+				UserId = 1
+			}).ToList();
 
 			Assert.That(ids.Count, Is.EqualTo(5));
 			Assert.That(ids[0], Is.EqualTo(5));
@@ -207,7 +219,11 @@ namespace VkNet.Tests.Categories
 		public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
-			Assert.That(() => cat.GetMutual(2, 3), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.GetMutual(new FriendsGetMutualParams
+			{
+				TargetUid = 2,
+				SourceUid = 3
+			}), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -224,7 +240,11 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var friends = GetMockedFriendsCategory(url, json);
-			var ids = friends.GetMutual(2, 1).ToList();
+			var ids = friends.GetMutual(new FriendsGetMutualParams
+			{
+				TargetUid = 2,
+				SourceUid = 1
+			}).ToList();
 
 			Assert.That(ids.Count, Is.EqualTo(3));
 			Assert.That(ids[0], Is.EqualTo(3));
@@ -243,7 +263,11 @@ namespace VkNet.Tests.Categories
 
 			var friends = GetMockedFriendsCategory(url, json);
 
-			var users = friends.GetMutual(2, 1).ToList();
+			var users = friends.GetMutual(new FriendsGetMutualParams
+			{
+				TargetUid = 2,
+				SourceUid = 1
+			}).ToList();
 
 			Assert.That(users.Count, Is.EqualTo(0));
 		}
@@ -497,8 +521,14 @@ namespace VkNet.Tests.Categories
 			}";
 
 			var cat = GetMockedFriendsCategory(url, json);
-
-			var ids = cat.GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
+			// GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
+			var ids = cat.GetRequests(new FriendsGetRequestsParams
+			{
+				Offset = 0,
+				Count = 3,
+				Extended = true,
+				NeedMutual = true
+			});
 
 			Assert.That(ids, Is.Not.Null);
 			Assert.That(ids.Count, Is.EqualTo(1));
@@ -519,7 +549,11 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedFriendsCategory(url, json);
 
-			var ids = cat.GetRequests(offset: 0, count: 3);
+			var ids = cat.GetRequests(new FriendsGetRequestsParams
+			{
+				Offset = 0,
+				Count = 3
+			});
 
 			Assert.That(ids, Is.Not.Null);
 			Assert.That(ids.Count, Is.EqualTo(1));
@@ -537,7 +571,13 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedFriendsCategory(url, json);
 
-			var ids = cat.GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
+			var ids = cat.GetRequests(new FriendsGetRequestsParams
+			{
+				Offset = 0,
+				Count = 3,
+				Extended = true,
+				NeedMutual = true
+			});
 
 			Assert.That(ids, Is.Not.Null);
 			Assert.That(ids.Count, Is.EqualTo(0));

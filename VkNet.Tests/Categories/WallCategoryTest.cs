@@ -35,262 +35,7 @@ namespace VkNet.Tests.Categories
 		}
 
 		#region Wall.Get
-		[Test]
-		public void Get_IncorrectParameters_ThrowArgumentException()
-		{
-			int totalCount;
-			Assert.That(() => _defaultWall.Get(1, out totalCount, count: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("count"));
-			Assert.That(() => _defaultWall.Get(1, out totalCount, offset: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("offset"));
-			Assert.That(() => _defaultWall.Get(1, out totalCount, filter: WallFilter.Suggests), Throws.ArgumentException.And.Property("ParamName").EqualTo("ownerId"));
-
-			ReadOnlyCollection<Post> posts;
-			ReadOnlyCollection<User> profiles;
-			ReadOnlyCollection<Group> groups;
-			Assert.That(() => _defaultWall.GetExtended(1, out posts, out profiles, out groups, count: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("count"));
-			Assert.That(() => _defaultWall.GetExtended(1, out posts, out profiles, out groups, offset: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("offset"));
-			Assert.That(() => _defaultWall.GetExtended(1, out posts, out profiles, out groups, filter: WallFilter.Suggests), Throws.ArgumentException.And.Property("ParamName").EqualTo("ownerId"));
-		}
-
-		[Test, Ignore("old test")]
-		public void Get_DefaultFields_ReturnBasicInfo()
-		{
-			const string url =
-			    "https://api.vk.com/method/wall.get";
-			const string json = @"{
-                    'response': [
-                      137,
-                      {
-                        'id': 619,
-                        'from_id': 4793858,
-                        'owner_id': 4793858,
-                        'date': 1341145268,
-                        'text': 'Фильмы ужасов, основанные на реальных событиях.',
-                        'copy_owner_id': 50915841,
-                        'copy_post_id': 1374,
-                        'media': {
-                          'type': 'photo',
-                          'owner_id': 50915841,
-                          'item_id': 283337039,
-                          'thumb_src': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg'
-                        },
-                        'attachment': {
-                          'type': 'photo',
-                          'photo': {
-                            'id': 283337039,
-                            'album_id': -7,
-                            'owner_id': 50915841,
-                            'photo_130': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
-                            'photo_604': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
-                            'photo_75': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
-                            'width': 450,
-                            'height': 320,
-                            'text': '',
-                            'date': 1337542384,
-                            'access_key': 'e377d6e0b55e299741'
-                          }
-                        },
-                        'attachments': [
-                          {
-                            'type': 'photo',
-                            'photo': {
-                              'id': 283337039,
-                              'album_id': -7,
-                              'owner_id': 50915841,
-                              'photo_130': 'http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg',
-                              'photo_604': 'http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg',
-                              'photo_75': 'http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg',
-                              'width': 450,
-                              'height': 320,
-                              'text': '',
-                              'date': 1337542384,
-                              'access_key': 'e377d6e0b55e299741'
-                            }
-                          },
-                          {
-                            'type': 'link',
-                            'link': {
-                              'url': 'http://vk.com/link',
-                              'title': 'Любой заголово',
-                              'description': 'Любое описание',
-                              'image_src': 'http://vk.com/images/any.gif'
-                            }
-                          }
-                        ],
-                        'comments': {
-                          'count': 0,
-                          'can_post': 1
-                        },
-                        'likes': {
-                          'count': 1,
-                          'user_likes': 1,
-                          'can_like': 0,
-                          'can_publish': 0
-                        },
-                        'reposts': {
-                          'count': 0,
-                          'user_reposted': 0
-                        }
-                      },
-                      {
-                        'id': 617,
-                        'from_id': 4793858,
-                        'owner_id': 4793858,
-                        'date': 1339684666,
-                        'text': '',
-                        'media': {
-                          'type': 'audio',
-                          'owner_id': 4793858,
-                          'item_id': 154701206
-                        },
-                        'attachment': {
-                          'type': 'audio',
-                          'audio': {
-                            'id': 154701206,
-                            'owner_id': 4793858,
-                            'performer': 'Мук',
-                            'title': 'Дорогою добра',
-                            'duration': 130
-                          }
-                        },
-                        'attachments': [
-                          {
-                            'type': 'audio',
-                            'audio': {
-                              'id': 154701206,
-                              'owner_id': 4793858,
-                              'performer': 'Мук',
-                              'title': 'Дорогою добра',
-                              'duration': 130
-                            }
-                          }
-                        ],
-                        'comments': {
-                          'count': 0,
-                          'can_post': 1
-                        },
-                        'likes': {
-                          'count': 0,
-                          'user_likes': 0,
-                          'can_like': 1,
-                          'can_publish': 0
-                        },
-                        'reposts': {
-                          'count': 0,
-                          'user_reposted': 0
-                        }
-                      },
-                      {
-                        'id': 616,
-                        'from_id': 4793858,
-                        'owner_id': 4793858,
-                        'date': 1339227157,
-                        'text': 'Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было.',
-                        'comments': {
-                          'count': 0,
-                          'can_post': 1
-                        },
-                        'likes': {
-                          'count': 1,
-                          'user_likes': 0,
-                          'can_like': 1,
-                          'can_publish': 0
-                        },
-                        'reposts': {
-                          'count': 0,
-                          'user_reposted': 0
-                        }
-                      }
-                    ]
-                  }";
-
-			int totalCount;
-			var records = GetMockedWallCategory(url, json).Get(1, out totalCount, 3, 5, WallFilter.Owner);
-
-			Assert.That(totalCount, Is.EqualTo(137));
-			Assert.That(records.Count == 3);
-
-			Assert.That(records[1].Attachment.Type == typeof(Audio));
-			//var audio = (Audio) records[1].Attachment.GetAttachment();
-			var audio = (Audio)records[1].Attachment.Instance;
-
-			Assert.That(audio.Id, Is.EqualTo(154701206));
-			Assert.That(audio.OwnerId, Is.EqualTo(4793858));
-			Assert.That(audio.Title, Is.EqualTo("Дорогою добра"));
-			Assert.That(audio.Duration, Is.EqualTo(130));
-
-			Assert.That(records[1].Id, Is.EqualTo(617));
-			Assert.That(records[1].FromId, Is.EqualTo(4793858));
-			Assert.That(records[1].OwnerId, Is.EqualTo(4793858));
-			Assert.That(records[1].Date, Is.EqualTo(new DateTime(2012, 6, 14, 18, 37, 46)));
-			Assert.That(records[1].Text, Is.Null.Or.Empty);
-			Assert.That(records[1].Comments.Count == 0);
-			Assert.That(records[1].Comments.CanPost, Is.True);
-			Assert.That(records[1].Likes.Count, Is.EqualTo(0));
-			Assert.That(records[1].Likes.UserLikes, Is.False);
-			Assert.That(records[1].Likes.CanLike, Is.True);
-			Assert.That(records[1].Likes.CanPublish, Is.False);
-			Assert.That(records[1].Reposts.Count, Is.EqualTo(0));
-			Assert.That(records[1].Reposts.UserReposted, Is.False);
-
-			Assert.That(records[2].Id, Is.EqualTo(616));
-			Assert.That(records[2].FromId, Is.EqualTo(4793858));
-			Assert.That(records[2].OwnerId, Is.EqualTo(4793858));
-			Assert.That(records[2].Date, Is.EqualTo(new DateTime(2012, 6, 9, 11, 32, 37)));
-			Assert.That(records[2].Text,
-						Is.EqualTo("Народная примета: если парень идет по улице с букетом роз, значит секса у них ещё не было."));
-			Assert.That(records[2].Comments.Count, Is.EqualTo(0));
-			Assert.That(records[2].Comments.CanPost, Is.True);
-			Assert.That(records[2].Likes.Count, Is.EqualTo(1));
-			Assert.That(records[2].Likes.UserLikes, Is.False);
-			Assert.That(records[2].Likes.CanLike, Is.True);
-			Assert.That(records[2].Likes.CanPublish, Is.False);
-			Assert.That(records[2].Reposts.Count, Is.EqualTo(0));
-			Assert.That(records[2].Reposts.UserReposted, Is.False);
-
-			Assert.That(records[0].Id, Is.EqualTo(619));
-			Assert.That(records[0].FromId, Is.EqualTo(4793858));
-			Assert.That(records[0].OwnerId, Is.EqualTo(4793858));
-			Assert.That(records[0].Date, Is.EqualTo(new DateTime(2012, 7, 1, 16, 21, 8)));
-			Assert.That(records[0].Text, Is.EqualTo("Фильмы ужасов, основанные на реальных событиях."));
-			Assert.That(records[0].CopyOwnerId, Is.EqualTo(50915841));
-			Assert.That(records[0].CopyPostId, Is.EqualTo(1374));
-			Assert.That(records[0].Comments.Count, Is.EqualTo(0));
-			Assert.That(records[0].Comments.CanPost, Is.True);
-			Assert.That(records[0].Likes.Count, Is.EqualTo(1));
-			Assert.That(records[0].Likes.UserLikes, Is.True);
-			Assert.That(records[0].Likes.CanLike, Is.False);
-			Assert.That(records[0].Likes.CanPublish, Is.False);
-			Assert.That(records[0].Reposts.Count, Is.EqualTo(0));
-			Assert.That(records[0].Reposts.UserReposted, Is.False);
-
-			Assert.That(records[0].Attachment.Type == typeof(Photo));
-			var photo = (Photo)records[0].Attachment.Instance;
-			Assert.That(photo.Id, Is.EqualTo(283337039));
-			Assert.That(photo.AlbumId, Is.EqualTo(-7));
-			Assert.That(photo.OwnerId, Is.EqualTo(50915841));
-			Assert.That(photo.Photo130.OriginalString,
-						Is.EqualTo("http://cs303810.userapi.com/v303810841/126e/H5W0B96fSVM.jpg"));
-			Assert.That(photo.Photo604.OriginalString,
-						Is.EqualTo("http://cs303810.userapi.com/v303810841/126f/35YS_xcXCJk.jpg"));
-			Assert.That(photo.Photo75.OriginalString,
-						Is.EqualTo("http://cs303810.userapi.com/v303810841/126d/qYeAGOiA5kY.jpg"));
-			Assert.That(photo.Width, Is.EqualTo(450));
-			Assert.That(photo.Height, Is.EqualTo(320));
-			Assert.That(photo.Text, Is.Null.Or.Empty);
-			Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2012, 05, 20, 23, 33, 04)));
-			//Assert.That(records[0]., Is.EqualTo());
-
-			Assert.That(records[0].Attachments.Count(), Is.EqualTo(2));
-			var attach1 = (Photo)records[0].Attachments.ElementAt(0).Instance;
-			Assert.That(attach1.Id, Is.EqualTo(283337039));
-			var attach2 = (Link)records[0].Attachments.ElementAt(1).Instance;
-			Assert.That(attach2.Uri, Is.EqualTo(new Uri("http://vk.com/link")));
-
-			Assert.That(records[1].Attachments.Count(), Is.EqualTo(1));
-			var attach3 = (Audio)records[1].Attachments.ElementAt(0).Instance;
-			Assert.That(attach3.Id, Is.EqualTo(154701206));
-		}
-
+		
 		[Test]
 		public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 		{
@@ -380,33 +125,29 @@ namespace VkNet.Tests.Categories
 			ReadOnlyCollection<Post> posts;
 			ReadOnlyCollection<User> profiles;
 			ReadOnlyCollection<Group> groups;
-			var count = GetMockedWallCategory(url, json).GetExtended(10, out posts, out profiles, out groups, 1, 1, WallFilter.Owner);
+			// 10, out posts, out profiles, out groups, 1, 1, WallFilter.Owner
+			var count = GetMockedWallCategory(url, json).Get(new WallGetParams
+			{
+				OwnerId = 10,
+				Count = 1,
+				Offset = 1,
+				Filter = WallFilter.Owner
+			});
 			Assert.That(count, Is.EqualTo(42));
 
-			Assert.That(posts.Count, Is.EqualTo(1));
-			Assert.That(posts[0].Id, Is.EqualTo(41));
+			Assert.That(count.WallPosts.Count, Is.EqualTo(1));
+			Assert.That(count.WallPosts[0].Id, Is.EqualTo(41));
 
-			Assert.That(profiles.Count, Is.EqualTo(1));
-			Assert.That(profiles[0].Id, Is.EqualTo(10));
+			Assert.That(count.Profiles.Count, Is.EqualTo(1));
+			Assert.That(count.Profiles[0].Id, Is.EqualTo(10));
 
-			Assert.That(groups.Count, Is.EqualTo(1));
-			Assert.That(groups[0].Id, Is.EqualTo(29246653));
+			Assert.That(count.Groups.Count, Is.EqualTo(1));
+			Assert.That(count.Groups[0].Id, Is.EqualTo(29246653));
 		}
 
 		#endregion
 
 		#region Wall.GetComments
-
-		[Test]
-		public void GetComments_IncorrectParameters_ThrowArgumentException()
-		{
-			int id;
-			Assert.That(() => _defaultWall.GetComments(1, -1, out id), Throws.ArgumentException.And.Property("ParamName").EqualTo("postId"));
-			Assert.That(() => _defaultWall.GetComments(1, 1, out id, count: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("count"));
-			Assert.That(() => _defaultWall.GetComments(1, 1, out id, offset: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("offset"));
-			Assert.That(() => _defaultWall.GetComments(1, 1, out id, previewLength: -1), Throws.ArgumentException.And.Property("ParamName").EqualTo("previewLength"));
-
-		}
 
 		[Test]
 		public void GetComments_ReturnLikesAndAttachments()
@@ -517,9 +258,6 @@ namespace VkNet.Tests.Categories
 		{
 			Assert.That(() => _defaultWall.GetById((IEnumerable<string>) null), Throws.TypeOf<ArgumentNullException>());
 			Assert.That(() => _defaultWall.GetById(Enumerable.Empty<string>()), Throws.TypeOf<ArgumentException>());
-
-			Assert.That(() => _defaultWall.GetById((IEnumerable<KeyValuePair<long, long>>) null), Throws.TypeOf<ArgumentNullException>());
-			Assert.That(() => _defaultWall.GetById(Enumerable.Empty<KeyValuePair<long, long>>()), Throws.TypeOf<ArgumentException>());
 		}
 
 		[Test]
@@ -558,79 +296,33 @@ namespace VkNet.Tests.Categories
 			var records = GetMockedWallCategory(url, json).GetById(
 				new[]
 				{
-					new KeyValuePair<long, long>(1, 619),
-					new KeyValuePair<long, long>(1, 617),
-					new KeyValuePair<long, long>(1,616)
+					"1_619",
+					"1_617",
+					"1_616"
 
 				});
 
-			Assert.That(records.Count == 1);
+			Assert.That(records.TotalCount == 1);
 
-			Assert.That(records[0].Id, Is.EqualTo(617));
-			Assert.That(records[0].FromId, Is.EqualTo(1));
-			Assert.That(records[0].OwnerId, Is.EqualTo(1));
-			Assert.That(records[0].Date, Is.EqualTo(new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(1171758699).ToLocalTime()));
-			Assert.That(records[0].Text, Is.Null.Or.Empty);
-			Assert.That(records[0].Comments.Count == 0);
-			Assert.That(records[0].Comments.CanPost, Is.True);
-			Assert.That(records[0].Likes.Count, Is.EqualTo(2));
-			Assert.That(records[0].Likes.UserLikes, Is.False);
-			Assert.That(records[0].Likes.CanLike, Is.True);
-			Assert.That(records[0].Likes.CanPublish, Is.False);
-			Assert.That(records[0].Reposts.Count, Is.EqualTo(0));
-			Assert.That(records[0].Reposts.UserReposted, Is.False);
+			Assert.That(records.WallPosts[0].Id, Is.EqualTo(617));
+			Assert.That(records.WallPosts[0].FromId, Is.EqualTo(1));
+			Assert.That(records.WallPosts[0].OwnerId, Is.EqualTo(1));
+			Assert.That(records.WallPosts[0].Date, Is.EqualTo(new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(1171758699).ToLocalTime()));
+			Assert.That(records.WallPosts[0].Text, Is.Null.Or.Empty);
+			Assert.That(records.WallPosts[0].Comments.Count == 0);
+			Assert.That(records.WallPosts[0].Comments.CanPost, Is.True);
+			Assert.That(records.WallPosts[0].Likes.Count, Is.EqualTo(2));
+			Assert.That(records.WallPosts[0].Likes.UserLikes, Is.False);
+			Assert.That(records.WallPosts[0].Likes.CanLike, Is.True);
+			Assert.That(records.WallPosts[0].Likes.CanPublish, Is.False);
+			Assert.That(records.WallPosts[0].Reposts.Count, Is.EqualTo(0));
+			Assert.That(records.WallPosts[0].Reposts.UserReposted, Is.False);
 		}
 
 		#endregion
 
 		#region Wall.Post
 		//TODO: Проверить покрытие кода тестами
-
-		[Test]
-		public void Post_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			Assert.That(() => _defaultWall.Post(message: "message"), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void Post_IncorrectParameters_MessageAttachmentsAndUrlAreNullOrEmpty_ThrowException()
-		{
-			Assert.That(() => _defaultWall.Post(message: null, mediaAttachments: null, url: null), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: null, mediaAttachments: null, url: string.Empty), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: null, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: null), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: null, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: null, url: null), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: null, url: string.Empty), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: null), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);
-		}
-
-		[Test]
-		public void Post_IncorrectParameters_ThrowException()
-		{
-			Assert.That(() => _defaultWall.Post(message: "message", placeId: -1), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: "message", postId: -1), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Post(message: "message", lat: 90.1), Throws.TypeOf<ArgumentOutOfRangeException>());
-			Assert.That(() => _defaultWall.Post(message: "message", lat: -90.1), Throws.TypeOf<ArgumentOutOfRangeException>());
-			Assert.That(() => _defaultWall.Post(message: "message", @long: 180.1), Throws.TypeOf<ArgumentOutOfRangeException>());
-			Assert.That(() => _defaultWall.Post(message: "message", @long: -180.1), Throws.TypeOf<ArgumentOutOfRangeException>());
-		}
-
-		[Test]
-		public void Post_UrlIsGeneratedCorrectly()
-		{
-			const string url = "https://api.vk.com/method/wall.post";
-			const string json =
-                @"{
-                    'response': {
-						   post_id: 42
-					} }";
-
-			var result = GetMockedWallCategory(url, json).Post(10, true, true, "message", new[] { new Audio { Id = 20, OwnerId = 10 } }, "link",
-													new List<Services> {Services.Twitter}, true, new DateTime(2014, 1, 2, 0,0,0, DateTimeKind.Utc).ToLocalTime(), 45, 135, 100, 500);
-			Assert.That(result, Is.EqualTo(42));
-
-		}
 
 	    [Test]
 	    public void Post_ReturnValidateNeeded()
@@ -678,21 +370,6 @@ namespace VkNet.Tests.Categories
 
         #region Wall.Repost
 
-        [Test]
-		public void Repost_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			Assert.That(() => _defaultWall.Repost("id"), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void Repost_IncorrectParameters_ThrowException()
-		{
-			Assert.That(() => _defaultWall.Repost(null), Throws.TypeOf<ArgumentNullException>());
-			Assert.That(() => _defaultWall.Repost(string.Empty), Throws.TypeOf<ArgumentNullException>());
-			Assert.That(() => _defaultWall.Repost("id", groupId: -1), Throws.ArgumentException);
-		}
-
-
 		[Test]
 		public void Repost_UrlIsGeneratedCorrectly()
 		{
@@ -706,7 +383,7 @@ namespace VkNet.Tests.Categories
 						likes_count: 105
 					} }";
 
-			var result = GetMockedWallCategory(url, json).Repost("id", "example", 50);
+			var result = GetMockedWallCategory(url, json).Repost("id", "example", 50, "");
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Success, Is.True);
 			Assert.That(result.PostId, Is.EqualTo(2587));
@@ -728,7 +405,7 @@ namespace VkNet.Tests.Categories
 						likes_count: 105
 					} }";
 
-			var result = GetMockedWallCategory(url, json).Repost("id");
+			var result = GetMockedWallCategory(url, json).Repost("id", null, null, null);
 
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Success, Is.True);
@@ -738,54 +415,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		#endregion
-
-		#region Wall.Edit
-		//TODO: Проверить покрытие кода тестами
-
-		[Test]
-		public void Edit_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			Assert.That(() => _defaultWall.Edit(1, message: "message"), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void Edit_IncorrectParameters_MessageAttachmentsAndUrlAreNullOrEmpty_ThrowException()
-		{
-			Assert.That(() => _defaultWall.Edit(1, message: null, mediaAttachments: null, url: null), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Edit(1, message: null, mediaAttachments: null, url: string.Empty), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Edit(1, message: null, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: null), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Edit(1, message: null, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Edit(1, message: string.Empty, mediaAttachments: null, url: null), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Edit(1, message: string.Empty, mediaAttachments: null, url: string.Empty), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Edit(1, message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: null), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Edit(1, message: string.Empty, mediaAttachments: Enumerable.Empty<MediaAttachment>(), url: string.Empty), Throws.ArgumentException);
-		}
-
-		[Test]
-		public void Edit_IncorrectParameters_ThrowException()
-		{
-			Assert.That(() => _defaultWall.Edit(1, message: "message", placeId: -1), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Edit(-1, message: "message"), Throws.ArgumentException);
-			Assert.That(() => _defaultWall.Edit(1, message: "message", lat: 90.1), Throws.TypeOf<ArgumentOutOfRangeException>());
-			Assert.That(() => _defaultWall.Edit(1, message: "message", lat: -90.1), Throws.TypeOf<ArgumentOutOfRangeException>());
-			Assert.That(() => _defaultWall.Edit(1, message: "message", @long: 180.1), Throws.TypeOf<ArgumentOutOfRangeException>());
-			Assert.That(() => _defaultWall.Edit(1, message: "message", @long: -180.1), Throws.TypeOf<ArgumentOutOfRangeException>());
-		}
-
-		[Test]
-		public void Edit_UrlIsGeneratedCorrectly()
-		{
-			const string url = "https://api.vk.com/method/wall.edit";
-			const string json =	@"{	 'response': 1 }";
-
-			var result = GetMockedWallCategory(url, json).Edit(10, 20, true, "message", new[] { new Audio { Id = 20, OwnerId = 10 } }, "link",
-													new List<Services> {Services.Twitter}, true, new DateTime(2014, 1, 2, 0, 0, 0, DateTimeKind.Utc).ToLocalTime(), 45, 135, 100);
-			Assert.That(result, Is.True);
-		}
-
-
-		#endregion
-
 
 		[Test]
 		//[Ignore("")]
@@ -1049,9 +678,14 @@ namespace VkNet.Tests.Categories
                   }";
 
 	        int total;
-            var posts = GetMockedWallCategory(url, json).Get(1563369, out total, 2, 3);
+            var posts = GetMockedWallCategory(url, json).Get(new WallGetParams
+            {
+	            OwnerId = 1563369,
+	            Count = 3,
+	            Offset = 2
+            });
 
-			Assert.That(total, Is.EqualTo(165));
+			Assert.That(posts.TotalCount, Is.EqualTo(165));
 			Assert.That(posts, Is.Not.Null);
 
 			Assert.Fail("undone");
@@ -1115,14 +749,20 @@ namespace VkNet.Tests.Categories
                   }";
 
 	        int totalCount;
-	        var posts = GetMockedWallCategory(url, json).Get(46476924, out totalCount, 1, 213, WallFilter.Owner);
-			Assert.That(totalCount, Is.EqualTo(1724));
-			Assert.That(posts, Is.Not.Null);
-			Assert.That(posts.Count, Is.EqualTo(1));
-			Assert.That(posts[0].CopyHistory, Is.Not.Null);
-			Assert.That(posts[0].CopyHistory.Count, Is.EqualTo(1));
+	        var posts = GetMockedWallCategory(url, json).Get(new WallGetParams
+	        {
+		        OwnerId = 46476924, 
+		        Count = 1,
+		        Offset = 213, 
+		        Filter = WallFilter.Owner
+	        });
+			Assert.That(posts.TotalCount, Is.EqualTo(1724));
+			Assert.That(posts.WallPosts, Is.Not.Null);
+			Assert.That(posts.WallPosts.Count, Is.EqualTo(1));
+			Assert.That(posts.WallPosts[0].CopyHistory, Is.Not.Null);
+			Assert.That(posts.WallPosts[0].CopyHistory.Count, Is.EqualTo(1));
 
-			var attach = posts[0].CopyHistory[0].Attachment;
+			var attach = posts.WallPosts[0].CopyHistory[0].Attachment;
 			Assert.That(attach, Is.Not.Null);
 			//Assert.That(attach.Type, Is.EqualTo(typeof (PhotosList)));
 			Assert.That(attach.Instance, Is.Null);

@@ -1,4 +1,5 @@
-﻿using VkNet.Exception;
+﻿using System.Collections.Generic;
+using VkNet.Exception;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
@@ -291,7 +292,10 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var category = GetMockedGroupCategory(url, json);
-			var groups = category.Get(4793858).ToList();
+			var groups = category.Get(new GroupsGetParams
+			{
+				UserId = 4793858
+			}).ToList();
 
 			Assert.That(groups.Count, Is.EqualTo(5));
 			Assert.That(groups[0].Id, Is.EqualTo(29689780));
@@ -359,7 +363,14 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var category = GetMockedGroupCategory(url, json);
-			var groups = category.Get(1, true, GroupsFilters.Events, GroupsFields.All).ToList();
+			// 1, true, GroupsFilters.Events, GroupsFields.All
+			var groups = category.Get(new GroupsGetParams
+			{
+				UserId = 1,
+				Extended = true,
+				Filter = GroupsFilters.Events,
+				Fields = GroupsFields.All
+			}).ToList();
 
 			Assert.That(groups[1].Id, Is.EqualTo(1181795));
 			Assert.That(groups[1].Name, Is.EqualTo("Геннадий Бачинский"));
@@ -397,14 +408,14 @@ namespace VkNet.Tests.Categories
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			Assert.That(() => groups.GetById(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => groups.GetById(new List<string>(),"1", null), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test, Ignore("Это открытый метод, не требующий access_token.")]
 		public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			Assert.That(() => groups.IsMember(2, 1), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => groups.IsMember("2", 1, null, null), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test, Ignore("Это открытый метод, не требующий access_token.")]
@@ -442,7 +453,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			var ex = Assert.Throws<UserAuthorizationFailException>(() => groups.IsMember(637247, 4793858));
+			var ex = Assert.Throws<UserAuthorizationFailException>(() => groups.IsMember("637247", 4793858, null, null));
 			Assert.That(ex.Message, Is.EqualTo("User authorization failed: access_token was given to another ip address."));
 		}
 
@@ -481,7 +492,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			var ex = Assert.Throws<InvalidGroupIdException>(() => groups.IsMember(0, 4793858));
+			var ex = Assert.Throws<InvalidGroupIdException>(() => groups.IsMember("0", 4793858,null,null));
 			Assert.That(ex.Message, Is.EqualTo("Invalid group id"));
 		}
 
@@ -495,7 +506,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			var result = groups.IsMember(637247, 1000000000000);
+			var result = groups.IsMember("637247", 1000000000000,null,null);
 			Assert.That(result, Is.False);
 		}
 
@@ -512,7 +523,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			var result = groups.IsMember(637247, 4793858);
+			var result = groups.IsMember("637247", 4793858,null,null);
 			Assert.That(result, Is.True);
 		}
 
@@ -529,7 +540,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var groups = GetMockedGroupCategory(url, json);
-			var result = groups.IsMember(17683660, 4793858);
+			var result = groups.IsMember("17683660", 4793858,null,null);
 			Assert.That(result, Is.False);
 		}
 
@@ -557,9 +568,12 @@ namespace VkNet.Tests.Categories
 			var groups = GetMockedGroupCategory(url, json);
 
 			int totalCount;
-			var ids = groups.GetMembers(17683660, out totalCount).ToList();
+			var ids = groups.GetMembers(new GroupsGetMembersParams
+			{
+				GroupId = "17683660"
+			});
 
-			Assert.That(totalCount, Is.EqualTo(861));
+			Assert.That(ids.TotalCount, Is.EqualTo(861));
 			Assert.That(ids.Count, Is.EqualTo(8));
 
 			Assert.That(ids[0].Id, Is.EqualTo(116446865));
@@ -594,9 +608,16 @@ namespace VkNet.Tests.Categories
 
 			var groups = GetMockedGroupCategory(url, json);
 			int totalCount;
-			var ids = groups.GetMembers(17683660, out totalCount, 7, 15, GroupsSort.IdAsc).ToList();
+			//17683660, out totalCount, 7, 15, GroupsSort.IdAsc
+			var ids = groups.GetMembers(new GroupsGetMembersParams
+			{
+				GroupId = "17683660",
+				Count = 7,
+				Offset = 15,
+				Sort = GroupsSort.IdAsc
+			});
 
-			Assert.That(totalCount, Is.EqualTo(861));
+			Assert.That(ids.TotalCount, Is.EqualTo(861));
 			Assert.That(ids.Count, Is.EqualTo(7));
 
 			Assert.That(ids[0].Id, Is.EqualTo(1129147));
@@ -641,7 +662,10 @@ namespace VkNet.Tests.Categories
 			var groups = GetMockedGroupCategory(url, json);
 
 			int totalCount;
-			Assert.That(() => groups.GetMembers(0, out totalCount), Throws.InstanceOf<InvalidGroupIdException>());
+			Assert.That(() => groups.GetMembers(new GroupsGetMembersParams
+			{
+				GroupId = "0"
+			}), Throws.InstanceOf<InvalidGroupIdException>());
 		}
 
 		[Test]
@@ -650,7 +674,10 @@ namespace VkNet.Tests.Categories
 			int totalCount;
 
 			var groups = new GroupsCategory(Api);
-			Assert.That(() => groups.Search("", out totalCount), Throws.InstanceOf<ArgumentNullException>());
+			Assert.That(() => groups.Search(new GroupsSearchParams
+			{
+				Query = ""
+			}), Throws.InstanceOf<ArgumentNullException>());
 		}
 
 		[Test]
@@ -843,7 +870,7 @@ namespace VkNet.Tests.Categories
 		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			Assert.That(() => groups.GetById(2), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => groups.GetById(new List<string>(), "2", null), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -869,7 +896,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
-			var g = cat.GetById(17683660);
+			var g = cat.GetById(new List<string>(), "17683660", null).FirstOrDefault();
 
 			Assert.That(g.Id, Is.EqualTo(17683660));
 			Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
@@ -915,7 +942,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			Assert.That(() => cat.GetById(0), Throws.InstanceOf<InvalidGroupIdException>());
+			Assert.That(() => cat.GetById(new List<string>(), "0", null), Throws.InstanceOf<InvalidGroupIdException>());
 		}
 
 		[Test]
@@ -946,7 +973,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			var group = cat.GetById(66464944, GroupsFields.BanInfo);
+			var group = cat.GetById(new List<string>(), "66464944", GroupsFields.BanInfo).FirstOrDefault();
 			Assert.That(group, Is.Not.Null);
 			Assert.That(group.Id, Is.EqualTo(66464944));
 			Assert.That(group.Name, Is.EqualTo("Подслушано в Ст.Кривянской"));
@@ -990,7 +1017,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			Assert.That(() => cat.GetById(new long[] { 0 }), Throws.InstanceOf<InvalidGroupIdException>());
+			Assert.That(() => cat.GetById(new [] { "0" }, null, null), Throws.InstanceOf<InvalidGroupIdException>());
 		}
 
 		[Test]
@@ -1028,7 +1055,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var cat = GetMockedGroupCategory(url, json);
-			var groups = cat.GetById(new long[] { 17683660, 637247 }).ToList();
+			var groups = cat.GetById(new [] { "17683660","637247" }, null, null).ToList();
 
 			Assert.That(groups.Count == 2);
 			Assert.That(groups[0].Id, Is.EqualTo(17683660));
@@ -1113,7 +1140,7 @@ namespace VkNet.Tests.Categories
 
 			var category = GetMockedGroupCategory(url, json);
 
-			var groups = category.GetById(new long[] { 17683660, 637247 }, GroupsFields.All).ToList();
+			var groups = category.GetById(new [] { "17683660", "637247" }, null, GroupsFields.All).ToList();
 
 			Assert.That(groups.Count, Is.EqualTo(2));
 			Assert.That(groups[0].Id, Is.EqualTo(17683660));
@@ -1182,7 +1209,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var category = GetMockedGroupCategory(url, json);
-			var @group = category.GetById(17683660, GroupsFields.All);
+			var @group = category.GetById(new List<string>(), "17683660", GroupsFields.All).FirstOrDefault();
 
 			Assert.That(@group.Id, Is.EqualTo(17683660));
 			Assert.That(@group.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
@@ -1277,7 +1304,13 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 
-			var result = cat.BanUser(6596823, 242506753, comment: "просто комментарий", commentVisible: true);
+			var result = cat.BanUser(new GroupsBanUserParams
+			{
+				GroupId = 6596823,
+				UserId = 242506753, 
+				Comment = "просто комментарий",
+				CommentVisible = true
+			});
 
 			Assert.That(result, Is.True);
 		}
@@ -1581,7 +1614,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedGroupCategory(url, json);
 			int count;
-			var users = cat.GetInvitedUsers(103292418, out count, 0, 20, UsersFields.BirthDate, NameCase.Dat);
+			var users = cat.GetInvitedUsers(103292418, 0, 20, UsersFields.BirthDate, NameCase.Dat);
 
 			Assert.That(users, Is.Not.Null);
 			var user = users.FirstOrDefault();

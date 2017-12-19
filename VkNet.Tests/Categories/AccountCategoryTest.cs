@@ -417,7 +417,7 @@ namespace VkNet.Tests.Categories
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
 			int res;
-			Assert.That(() => account.GetBanned(out res), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => account.GetBanned(), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -427,8 +427,8 @@ namespace VkNet.Tests.Categories
 			var account = new AccountCategory(Api);
 
 			int buf;
-			Assert.That(() => account.GetBanned(out buf, offset: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("offset"));
-			Assert.That(() => account.GetBanned(out buf, count: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("count"));
+			Assert.That(() => account.GetBanned(offset: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("offset"));
+			Assert.That(() => account.GetBanned(count: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("count"));
 
 		}
 
@@ -756,9 +756,7 @@ namespace VkNet.Tests.Categories
 		public void SaveProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account = new AccountCategory(new VkApi());
-			ChangeNameRequest request;
-			Assert.That(() => account.SaveProfileInfo(firstName: null), Throws.InstanceOf<AccessTokenInvalidException>());
-			Assert.That(() => account.SaveProfileInfo(out request), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => account.SaveProfileInfo(out var request,new AccountSaveProfileInfoParams()), Throws.InstanceOf<AccessTokenInvalidException>());
 			Assert.That(() => account.SaveProfileInfo(10), Throws.InstanceOf<AccessTokenInvalidException>());
 
 		}
@@ -768,8 +766,7 @@ namespace VkNet.Tests.Categories
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			Json = @"{ 'response': { changed: 0 } }";
-			ChangeNameRequest request;
-			Assert.That(Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams()), Is.False);    //Second overload
+			Assert.That(Api.Account.SaveProfileInfo(out var request, new AccountSaveProfileInfoParams()), Is.False);    //Second overload
 			Assert.That(request, Is.Null);
 
 			Url = "https://api.vk.com/method/account.saveProfileInfo";

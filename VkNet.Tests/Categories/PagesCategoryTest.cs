@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
@@ -42,7 +43,11 @@ namespace VkNet.Tests.Categories
 
 			var db = GetMockedPagesCategory(url, json);
 
-			var page = db.Get(-103292418, "Свежие новости");
+			var page = db.Get(new PagesGetParams
+			{
+				OwnerId = -103292418, 
+				Title = "Свежие новости"
+			});
 
 			Assert.That(page.Id, Is.EqualTo(50050492));
 			Assert.That(page.GroupId, Is.EqualTo(103292418));
@@ -84,7 +89,11 @@ namespace VkNet.Tests.Categories
 
 			var db = GetMockedPagesCategory(url, json);
 
-			var page = db.Get(-103292418, 50050492);
+			var page = db.Get(new PagesGetParams
+			{
+				OwnerId = -103292418, 
+				PageId = 50050492
+			});
 
 			Assert.That(page.Id, Is.EqualTo(50050492));
 			Assert.That(page.GroupId, Is.EqualTo(103292418));

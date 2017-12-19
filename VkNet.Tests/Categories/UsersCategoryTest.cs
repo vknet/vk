@@ -353,9 +353,9 @@ namespace VkNet.Tests.Categories
 
             int count;
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Search(out count, new UserSearchParams { Query = Query, Fields = ProfileFields.Education, Count = 3, Offset = 123}).ToList();
+            var lst = users.Search(new UserSearchParams { Query = Query, Fields = ProfileFields.Education, Count = 3, Offset = 123});
 
-            Assert.That(count, Is.EqualTo(26953));
+            Assert.That(lst.TotalCount, Is.EqualTo(26953));
             Assert.That(lst.Count, Is.EqualTo(3));
             Assert.That(lst[0], Is.Not.Null);
             Assert.That(lst[0].Id, Is.EqualTo(165614770));
@@ -409,9 +409,9 @@ namespace VkNet.Tests.Categories
 
             int count;
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Search(out count, new UserSearchParams { Query = Query, Fields = ProfileFields.Education, Count = 3, Offset = 123 }).ToList();
+            var lst = users.Search(new UserSearchParams { Query = Query, Fields = ProfileFields.Education, Count = 3, Offset = 123 });
 
-            Assert.That(count, Is.EqualTo(26953));
+            Assert.That(lst.TotalCount, Is.EqualTo(26953));
             Assert.That(lst.Count, Is.EqualTo(1));
 
             var maria = lst.FirstOrDefault();
@@ -454,9 +454,9 @@ namespace VkNet.Tests.Categories
 
             int count;
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Search(out count, new UserSearchParams { Query = Query }).ToList();
+            var lst = users.Search(new UserSearchParams { Query = Query });
 
-            Assert.That(count, Is.EqualTo(26953));
+            Assert.That(lst.TotalCount, Is.EqualTo(26953));
             Assert.That(lst.Count, Is.EqualTo(3));
             Assert.That(lst[0], Is.Not.Null);
             Assert.That(lst[0].Id, Is.EqualTo(449928));

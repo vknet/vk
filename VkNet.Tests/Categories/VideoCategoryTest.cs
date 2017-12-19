@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using VkNet.Exception;
+using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
@@ -75,8 +76,13 @@ namespace VkNet.Tests.Categories
                   }";
 
             var cat = GetMockedVideoCategory(url, json);
-
-            var result = cat.Get(1, width: VideoWidth.Large320, count: 3, offset: 2);
+// 1, width: VideoWidth.Large320, count: 3, offset: 2
+            var result = cat.Get(new VideoGetParams
+            {
+                OwnerId = 1,
+                Count = 3,
+                Offset = 2
+            });
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count, Is.EqualTo(3));
 
@@ -198,7 +204,13 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedVideoCategory(url, json);
 
-            var result = cat.Get(1, width: VideoWidth.Large320, count: 3, offset: 2, extended: true);
+            var result = cat.Get(new VideoGetParams
+            {
+                OwnerId = 1,
+                Count = 3,
+                Offset = 2,
+                Extended = true
+            });
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count, Is.EqualTo(3));
@@ -404,24 +416,6 @@ namespace VkNet.Tests.Categories
             Assert.That(result, Is.True);
         }
 
-        [Test,
-         Ignore(
-             "Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
-        public void MoveToAlbum_NormalCase()
-        {
-            const string url = "https://api.vk.com/method/video.moveToAlbum";
-
-            const string json =
-                @"{
-                    'response': 1
-                  }";
-
-            var cat = GetMockedVideoCategory(url, json);
-
-            var result = cat.MoveToAlbum(new long[] {167593938}, 52154378);
-            Assert.That(result, Is.True);
-        }
-
         [Test]
         public void GetComments_WithLikes()
         {
@@ -459,7 +453,15 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedVideoCategory(url, json);
 
-            var comments = cat.GetComments(166481021, 1, true, 2, 3, CommentsSort.Asc);
+            var comments = cat.GetComments(new VideoGetCommentsParams
+            {
+                VideoId = 166481021,
+                OwnerId = 1, 
+                NeedLikes = true, 
+                Count = 2, 
+                Offset = 3, 
+                Sort = CommentsSort.Asc
+            });
             Assert.That(comments, Is.Not.Null);
             Assert.That(comments.Count, Is.EqualTo(2));
 
@@ -515,7 +517,15 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedVideoCategory(url, json);
 
-            var comments = cat.GetComments(166481021, 1, false, 2, 3, CommentsSort.Asc);
+            var comments = cat.GetComments(new VideoGetCommentsParams
+            {
+                VideoId = 166481021,
+                OwnerId = 1, 
+                NeedLikes = false, 
+                Count = 2, 
+                Offset = 3, 
+                Sort = CommentsSort.Asc
+            });
             Assert.That(comments, Is.Not.Null);
             Assert.That(comments.Count, Is.EqualTo(2));
 
@@ -591,8 +601,18 @@ namespace VkNet.Tests.Categories
                   }";
 
             var cat = GetMockedVideoCategory(url, json);
-
-            var result = cat.Search("саша грей", VideoSort.Relevance, false, true, VideoFilters.Long, false, 5, 1);
+            // , VideoSort.Relevance, false, true, VideoFilters.Long, false, 5, 1
+            var result = cat.Search(new VideoSearchParams
+            {
+                Query = "саша грей",
+                Sort = VideoSort.Relevance,
+                Hd = false,
+                Adult = true,
+                Filters = VideoFilters.Long,
+                SearchOwn = false,
+                Count = 5,
+                Offset = 1
+            });
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count, Is.EqualTo(3));
 
@@ -667,7 +687,12 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedVideoCategory(url, json);
 
-            var id = cat.CreateComment(166613182, "забавное видео", 1);
+            var id = cat.CreateComment(new VideoCreateCommentParams
+            {
+                VideoId = 166613182,
+                Message = "забавное видео", 
+                OwnerId = 1
+            });
             Assert.That(id, Is.EqualTo(35634));
         }
 
@@ -757,7 +782,13 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedVideoCategory(url, json);
 
-            var result = cat.Edit(167538, 23469, "Новое название", "Новое описание");
+            var result = cat.Edit(new VideoEditParams
+            {
+                VideoId = 167538, 
+                OwnerId = 23469, 
+                Name = "Новое название", 
+                Desc = "Новое описание"
+            });
             Assert.That(result, Is.True);
         }
 
@@ -778,9 +809,13 @@ namespace VkNet.Tests.Categories
                   }";
 
             var cat = GetMockedVideoCategory(url, json);
-
-            var video = cat.Save("Название из ютуба", "Описание из ютуба", isPostToWall: true,
-                link: "https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA");
+            var video = cat.Save(new VideoSaveParams
+            {
+                Name = "Название из ютуба",
+                Description = "Описание из ютуба",
+                Wallpost = true,
+                Link = "https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA"
+            });
             Assert.That(video, Is.Not.Null);
             Assert.That(video.Id, Is.EqualTo(1673994));
             Assert.That(video.OwnerId, Is.EqualTo(2346958));

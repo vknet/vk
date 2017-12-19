@@ -32,7 +32,7 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            var info = GetMockedPhotosCategory(url, json).GetProfileUploadServer();
+            var info = GetMockedPhotosCategory(url, json).GetOwnerPhotoUploadServer();
 			Assert.That(info, Is.Not.Null);
 
 			Assert.That(info.UploadUrl, Is.EqualTo("http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh"));
@@ -275,82 +275,6 @@ namespace VkNet.Tests.Categories
         }
         #endregion
 
-        #region GetProfile
-        [Test, Ignore("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
-        public void GetProfile_NormalCase()
-        {
-            const string url = "https://api.vk.com/method/photos.getProfile";
-            const string json =
-                @"{
-                    'response': {
-                      'count': 7,
-                      'items': [
-                        {
-                          'id': 278184324,
-                          'album_id': -6,
-                          'owner_id': 1,
-                          'photo_75': 'http://cs10408.vk.me/u4172580/-6/s_24887a5a.jpg',
-                          'photo_130': 'http://cs10408.vk.me/u4172580/-6/m_79ab6f4a.jpg',
-                          'photo_604': 'http://cs10408.vk.me/u4172580/-6/x_ee97448e.jpg',
-                          'text': '',
-                          'date': 1328126422,
-                          'post_id': 45430,
-                          'likes': {
-                            'user_likes': 0,
-                            'count': 471203
-                          },
-                          'comments': {
-                            'count': 1
-                          },
-                          'can_comment': 0,
-                          'tags': {
-                            'count': 0
-                          }
-                        },
-                        {
-                          'id': 263219735,
-                          'album_id': -6,
-                          'owner_id': 1,
-                          'photo_75': 'http://cs9591.vk.me/u00001/136592355/s_39db64b7.jpg',
-                          'photo_130': 'http://cs9591.vk.me/u00001/136592355/m_5f3fd6ac.jpg',
-                          'photo_604': 'http://cs9591.vk.me/u00001/136592355/x_d51dbfac.jpg',
-                          'photo_807': 'http://cs9591.vk.me/u00001/136592355/y_8cc51452.jpg',
-                          'photo_1280': 'http://cs9591.vk.me/u00001/136592355/z_90874cc2.jpg',
-                          'photo_2560': 'http://cs9591.vk.me/u00001/136592355/w_f6a60338.jpg',
-                          'text': '',
-                          'date': 1307883759,
-                          'likes': {
-                            'user_likes': 0,
-                            'count': 670292
-                          },
-                          'comments': {
-                            'count': 6
-                          },
-                          'can_comment': 0,
-                          'tags': {
-                            'count': 0
-                          }
-                        }
-                      ]
-                    }
-                  }";
-
-            var photos = GetMockedPhotosCategory(url, json).GetProfile(ownerId: 1, offset: 3, rev: true, count: 2, extended:true);
-			Assert.That(photos, Is.Not.Null);
-			Assert.That(photos.Count, Is.EqualTo(2));
-
-			var photo = photos.FirstOrDefault();
-			Assert.That(photo, Is.Not.Null);
-			Assert.That(photo.Id, Is.EqualTo(278184324));
-			Assert.That(photo.PostId, Is.EqualTo(45430));
-			Assert.That(photo.Likes.Count, Is.EqualTo(471203));
-			Assert.That(photo.Likes.UserLikes, Is.EqualTo(false));
-			Assert.That(photo.Comments.Count, Is.EqualTo(1));
-			Assert.That(photo.CanComment, Is.EqualTo(false));
-			Assert.That(photo.Tags.Count, Is.EqualTo(0));
-		}
-        #endregion
-
         #region GetAll
         [Test]
         public void GetAll_NormalCase()
@@ -392,7 +316,7 @@ namespace VkNet.Tests.Categories
                   }";
 
 			int count;
-			var photos = GetMockedPhotosCategory(url, json).GetAll(out count, new PhotoGetAllParams
+			var photos = GetMockedPhotosCategory(url, json).GetAll(new PhotoGetAllParams
 			{
 				OwnerId = 1,
 				Offset = 4,
@@ -475,7 +399,7 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 	        int count;
-			var photos = GetMockedPhotosCategory(url, json).Search(out count, new PhotoSearchParams
+			var photos = GetMockedPhotosCategory(url, json).Search(new PhotoSearchParams
 			{
 				Query = "порно",
 				Offset = 2,
@@ -545,7 +469,7 @@ namespace VkNet.Tests.Categories
                   }";
 
 			int count;
-			var photos = GetMockedPhotosCategory(url, json).Search(out count, new PhotoSearchParams
+			var photos = GetMockedPhotosCategory(url, json).Search(new PhotoSearchParams
 			{
 				Query = "",
 				Latitude = 30,
