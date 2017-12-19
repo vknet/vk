@@ -610,6 +610,11 @@ namespace VkNet
             {
                 parameters.Add("v", VkApiVersion);
             }
+            
+            if (!parameters.ContainsKey("access_token"))
+            {
+                parameters.Add("access_token", AccessToken);
+            }
 
             if (!parameters.ContainsKey("lang") && Language.HasValue)
             {
