@@ -84,5 +84,27 @@ namespace VkNet.Utils
  
             return tcs.Task;
         }
+
+        /// <summary>
+        /// Попытаться асинхронно выполнить метод.
+        /// </summary>
+        /// <param name="func">Синхронный метод.</param>
+        /// <returns>Результат выполнения функции.</returns>
+        public static Task TryInvokeMethodAsync(Action func)
+        {
+            var tcs = new TaskCompletionSource<Task>();
+            
+            Task.Factory.StartNew(() => {
+                try {
+                    func.Invoke();
+                    tcs.SetResult(null);
+                }
+                catch (VkApiException ex) {
+                    tcs.SetException(ex);
+                }
+            });
+ 
+            return tcs.Task;
+        }
     }
 }

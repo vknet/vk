@@ -15,9 +15,9 @@ namespace VkNet.Abstractions
         Task AuthorizeAsync(IApiAuthParams @params);
         
         /// <summary>
-        /// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
+        /// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.
         /// </summary>
-        /// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
+        /// <param name="code">Делегат двух-факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
         Task RefreshTokenAsync(Func<string> code = null);
     }
 }

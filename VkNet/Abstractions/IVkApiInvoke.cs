@@ -37,6 +37,24 @@ namespace VkNet.Abstractions
         T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false);
 
         /// <summary>
+        /// Вызвать метод.
+        /// </summary>
+        /// <param name="methodName">Название метода.</param>
+        /// <param name="parameters">Параметры.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+        /// <returns></returns>
+        Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false);
+
+        /// <summary>
+        /// Вызвать метод.
+        /// </summary>
+        /// <param name="methodName">Название метода.</param>
+        /// <param name="parameters">Параметры.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+        /// <returns></returns>
+        Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false);
+
+        /// <summary>
         /// Прямой вызов API-метода
         /// </summary>
         /// <param name="methodName">Название метода. Например, "wall.get".</param>

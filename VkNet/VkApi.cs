@@ -401,11 +401,9 @@ namespace VkNet
         /// Авторизация и получение токена в асинхронном режиме
         /// </summary>
         /// <param name="params">Данные авторизации</param>
-        public Task AuthorizeAsync(IApiAuthParams @params)
+        public async Task AuthorizeAsync(IApiAuthParams @params)
         {
-            var rTask = new Task(() => Authorize(@params));
-            rTask.Start();
-            return rTask;
+           await TypeHelper.TryInvokeMethodAsync(() => Authorize(@params));
         }
 
         /// <summary>
@@ -435,11 +433,9 @@ namespace VkNet
         /// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
         /// </summary>
         /// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
-        public Task RefreshTokenAsync(Func<string> code = null)
+        public async Task RefreshTokenAsync(Func<string> code = null)
         {
-            var result = new Task(() => RefreshToken(code));
-            result.Start();
-            return result;
+            await TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code));
         }
 
         /// <summary>
@@ -468,6 +464,30 @@ namespace VkNet
         /// <param name="parameters">Параметры.</param>
         /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
         /// <returns></returns>
+        public async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => Call(methodName, parameters, skipAuthorization));
+        }
+
+        /// <summary>
+        /// Вызвать метод.
+        /// </summary>
+        /// <param name="methodName">Название метода.</param>
+        /// <param name="parameters">Параметры.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+        /// <returns></returns>
+        public async Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => Call<T>(methodName, parameters, skipAuthorization));
+        }
+
+        /// <summary>
+        /// Вызвать метод.
+        /// </summary>
+        /// <param name="methodName">Название метода.</param>
+        /// <param name="parameters">Параметры.</param>
+        /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
         {
@@ -475,6 +495,8 @@ namespace VkNet
 
             return JsonConvert.DeserializeObject<T>(answer, new VkCollectionJsonConverter());
         }
+
+        
 
         /// <summary>
         /// Прямой вызов API-метода
@@ -557,12 +579,10 @@ namespace VkNet
         /// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
         /// <returns>Ответ сервера в формате JSON.</returns>
         [CanBeNull]
-        public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters,
+        public async Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters,
             bool skipAuthorization = false)
         {
-            var result = new Task<string>(() => Invoke(methodName, parameters, skipAuthorization));
-            result.Start();
-            return result;
+            return await TypeHelper.TryInvokeMethodAsync(() => Invoke(methodName, parameters, skipAuthorization));
         }
 
         /// <summary>
