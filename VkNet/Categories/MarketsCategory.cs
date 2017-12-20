@@ -11,7 +11,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с товарами.
 	/// </summary>
-	public class MarketsCategory : IMarketsCategory
+	public partial class MarketsCategory : IMarketsCategory
 	{
 		/// <summary>
 		/// API.

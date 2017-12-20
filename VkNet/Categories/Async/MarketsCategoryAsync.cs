@@ -1,17 +1,14 @@
 ﻿using System.Collections.Generic;
-using VkNet.Abstractions.Async;
+using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
-namespace VkNet.Abstractions
+namespace VkNet.Categories
 {
-    /// <summary>
-    /// Методы для работы с товарами.
-    /// </summary>
-    public interface IMarketsCategory: IMarketsCategoryAsync
+    public partial class MarketsCategory
     {
         /// <summary>
         /// Метод возвращает список товаров в сообществе.
@@ -27,7 +24,12 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.get
         /// </remarks>
-        VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false);
+        public async Task<VkCollection<Market>> GetAsync(long ownerId, long? albumId = null, int? count = null,
+            int? offset = null, bool extended = false)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Markets.Get(ownerId, albumId, count, offset, extended));
+        }
 
         /// <summary>
         /// Возвращает информацию о товарах по идентификаторам.
@@ -40,7 +42,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.getById
         /// </remarks>
-        VkCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false);
+        public async Task<VkCollection<Market>> GetByIdAsync(IEnumerable<string> itemIds, bool extended = false)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.GetById(itemIds, extended));
+        }
 
         /// <summary>
         /// Поиск товаров в каталоге сообщества.
@@ -52,7 +57,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.search
         /// </remarks>
-        VkCollection<Market> Search(MarketSearchParams @params);
+        public async Task<VkCollection<Market>> SearchAsync(MarketSearchParams @params)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.Search(@params));
+        }
 
         /// <summary>
         /// Возвращает список подборок с товарами.
@@ -66,7 +74,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.getAlbums
         /// </remarks>
-        VkCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null);
+        public async Task<VkCollection<MarketAlbum>> GetAlbumsAsync(long ownerId, int? offset, int? count)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.GetAlbums(ownerId, offset, count));
+        }
 
         /// <summary>
         /// Метод возвращает данные подборки с товарами.
@@ -79,7 +90,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.getAlbumById
         /// </remarks>
-        VkCollection<MarketAlbum> GetAlbumById(long ownerId, IEnumerable<long> albumIds);
+        public async Task<VkCollection<MarketAlbum>> GetAlbumByIdAsync(long ownerId, IEnumerable<long> albumIds)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.GetAlbumById(ownerId, albumIds));
+        }
 
         /// <summary>
         /// Создает новый комментарий к товару.
@@ -91,7 +105,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.createComment
         /// </remarks>
-        long CreateComment(MarketCreateCommentParams @params);
+        public async Task<long> CreateCommentAsync(MarketCreateCommentParams @params)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.CreateComment(@params));
+        }
 
         /// <summary>
         /// Возвращает список комментариев к товару.
@@ -103,7 +120,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.getComments
         /// </remarks>
-        VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params);
+        public async Task<VkCollection<MarketComment>> GetCommentsAsync(MarketGetCommentsParams @params)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.GetComments(@params));
+        }
 
         /// <summary>
         /// Удаляет комментарий к товару.
@@ -116,7 +136,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.deleteComment
         /// </remarks>
-        bool DeleteComment(long ownerId, long commentId);
+        public async Task<bool> DeleteCommentAsync(long ownerId, long commentId)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.DeleteComment(ownerId, commentId));
+        }
 
         /// <summary>
         /// Восстанавливает удаленный комментарий к товару.
@@ -129,7 +152,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.restoreComment
         /// </remarks>
-        bool RestoreComment(long ownerId, long commentId);
+        public async Task<bool> RestoreCommentAsync(long ownerId, long commentId)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.RestoreComment(ownerId, commentId));
+        }
 
         /// <summary>
         /// Изменяет текст комментария к товару.
@@ -144,7 +170,12 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.editComment
         /// </remarks>
-        bool EditComment(long ownerId, long commentId, string message, IEnumerable<MediaAttachment> attachments = null);
+        public async Task<bool> EditCommentAsync(long ownerId, long commentId, string message,
+            IEnumerable<MediaAttachment> attachments = null)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Markets.EditComment(ownerId, commentId, message, attachments));
+        }
 
         /// <summary>
         /// Позволяет оставить жалобу на комментарий к товару.
@@ -158,7 +189,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.reportComment
         /// </remarks>
-        bool ReportComment(long ownerId, long commentId, ReportReason reason);
+        public async Task<bool> ReportCommentAsync(long ownerId, long commentId, ReportReason reason)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.ReportComment(ownerId, commentId, reason));
+        }
 
         /// <summary>
         /// Позволяет отправить жалобу на товар.
@@ -172,7 +206,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.report
         /// </remarks>
-        bool Report(long ownerId, long itemId, ReportReason reason);
+        public async Task<bool> ReportAsync(long ownerId, long itemId, ReportReason reason)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.Report(ownerId, itemId, reason));
+        }
 
         /// <summary>
         /// Добавляет новый товар.
@@ -184,7 +221,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.add
         /// </remarks>
-        long Add(MarketProductParams @params);
+        public async Task<long> AddAsync(MarketProductParams @params)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.Add(@params));
+        }
 
         /// <summary>
         /// Редактирует товар.
@@ -196,7 +236,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.edit
         /// </remarks>
-        bool Edit(MarketProductParams @params);
+        public async Task<bool> EditAsync(MarketProductParams @params)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.Edit(@params));
+        }
 
         /// <summary>
         /// Удаляет товар.
@@ -209,7 +252,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.delete
         /// </remarks>
-        bool Delete(long ownerId, long itemId);
+        public async Task<bool> DeleteAsync(long ownerId, long itemId)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.Delete(ownerId, itemId));
+        }
 
         /// <summary>
         /// Восстанавливает удаленный товар.
@@ -222,7 +268,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.restore
         /// </remarks>
-        bool Restore(long ownerId, long itemId);
+        public async Task<bool> RestoreAsync(long ownerId, long itemId)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.Restore(ownerId, itemId));
+        }
 
         /// <summary>
         /// Изменяет положение товара в подборке.
@@ -238,7 +287,11 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.reorderItems
         /// </remarks>
-        bool ReorderItems(long ownerId, long albumId, long itemId, long? before, long? after);
+        public async Task<bool> ReorderItemsAsync(long ownerId, long albumId, long itemId, long? before, long? after)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Markets.ReorderItems(ownerId, albumId, itemId, before, after));
+        }
 
         /// <summary>
         /// Изменяет положение подборки с товарами в списке.
@@ -253,7 +306,11 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.reorderAlbums
         /// </remarks>
-        bool ReorderAlbums(long ownerId, long albumId, long? before = null, long? after = null);
+        public async Task<bool> ReorderAlbumsAsync(long ownerId, long albumId, long? before = null, long? after = null)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Markets.ReorderAlbums(ownerId, albumId, before, after));
+        }
 
         /// <summary>
         /// Добавляет новую подборку с товарами.
@@ -268,7 +325,11 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.addAlbum
         /// </remarks>
-        long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false);
+        public async Task<long> AddAlbumAsync(long ownerId, string title, long? photoId = null, bool mainAlbum = false)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Markets.AddAlbum(ownerId, title, photoId, mainAlbum));
+        }
 
         /// <summary>
         /// Редактирует подборку с товарами.
@@ -284,7 +345,12 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.editAlbum
         /// </remarks>
-        bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false);
+        public async Task<bool> EditAlbumAsync(long ownerId, long albumId, string title, long? photoId = null,
+            bool mainAlbum = false)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Markets.EditAlbum(ownerId, albumId, title, photoId, mainAlbum));
+        }
 
         /// <summary>
         /// Удаляет подборку с товарами.
@@ -297,7 +363,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.deleteAlbum
         /// </remarks>
-        bool DeleteAlbum(long ownerId, long albumId);
+        public async Task<bool> DeleteAlbumAsync(long ownerId, long albumId)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.DeleteAlbum(ownerId, albumId));
+        }
 
         /// <summary>
         /// Удаляет товар из одной или нескольких выбранных подборок.
@@ -311,7 +380,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.removeFromAlbum
         /// </remarks>
-        bool RemoveFromAlbum(long ownerId, long itemId, IEnumerable<long> albumIds);
+        public async Task<bool> RemoveFromAlbumAsync(long ownerId, long itemId, IEnumerable<long> albumIds)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.RemoveFromAlbum(ownerId, itemId, albumIds));
+        }
 
         /// <summary>
         /// Добавляет товар в одну или несколько выбранных подборок.
@@ -325,7 +397,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.addToAlbum
         /// </remarks>
-        bool AddToAlbum(long ownerId, long itemId, IEnumerable<long> albumIds);
+        public async Task<bool> AddToAlbumAsync(long ownerId, long itemId, IEnumerable<long> albumIds)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.AddToAlbum(ownerId, itemId, albumIds));
+        }
 
         /// <summary>
         /// Возвращает список категорий для товаров..
@@ -338,6 +413,9 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/market.getCategories
         /// </remarks>
-        VkCollection<MarketCategory> GetCategories(long? count, long? offset);
+        public async Task<VkCollection<MarketCategory>> GetCategoriesAsync(long? count, long? offset)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Markets.GetCategories(count, offset));
+        }
     }
 }

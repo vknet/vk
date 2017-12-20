@@ -5,7 +5,7 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
     /// <summary>
-    /// 
+    /// Методы для работы с универсальным методом.
     /// </summary>
     public partial class ExecuteCategory
     {
