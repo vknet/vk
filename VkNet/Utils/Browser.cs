@@ -184,18 +184,31 @@ namespace VkNet.Utils
         /// <exception cref="CaptchaNeededException"></exception>
         private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
         {
-            var authorization = VkAuthorization.From(result.ResponseUrl.ToString());
+            var request = VkAuthorization.From(result.RequestUrl.ToString());
 
-            if (!authorization.IsAuthorizationRequired && !authorization.IsCaptchaNeeded)
+            if (!request.IsAuthorizationRequired && !request.IsCaptchaNeeded)
             {
                 _logger?.Debug("Завершение авторизации");
-                return authorization;
+                return request;
             }
 
+            var response = VkAuthorization.From(result.ResponseUrl.ToString());
+
+            if (!response.IsAuthorizationRequired && !response.IsCaptchaNeeded)
+            {
+                _logger?.Debug("Завершение авторизации");
+                return response;
+            }
+            
             _logger?.Debug("Требуется подтверждение прав или ввод капчи");
             // Отправить данные
             var authorizationForm = WebForm.From(result);
             var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
+            
+            if (!IsAuthSuccessfull(authorizationFormPostResult))
+            {
+                throw new VkApiException("URI должен содержать токен!");
+            }
             var tokenUri = GetTokenUri(authorizationFormPostResult);
             return VkAuthorization.From(tokenUri.ToString());
         }
@@ -270,7 +283,7 @@ namespace VkNet.Utils
             }
 
             _logger?.Debug("Ответ: " + webCallResult.ResponseUrl);
-            throw new VkApiException("URI должен содержать токен!");
+            return null;
         }
     }
 }
