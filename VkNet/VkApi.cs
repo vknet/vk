@@ -848,7 +848,6 @@ namespace VkNet
                 _logger.Error(message);
                 throw new VkApiAuthorizationException(message, authParams.Login, authParams.Password);
             }
-            _logger.Debug("Авторизация прошла успешно");
             SetTokenProperties(authorization);
         }
         

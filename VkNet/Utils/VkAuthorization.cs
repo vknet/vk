@@ -67,7 +67,11 @@ namespace VkNet.Utils
         /// ID капчи, если она появилась
         /// </summary>
         public bool IsCaptchaNeeded => _nameValues.ContainsKey("sid");
-
+	    
+	    /// <summary>
+	    /// ID капчи, если она появилась
+	    /// </summary>
+	    public long CaptchaSid => GetCaptchaSid() ;
 		/// <summary>
 		/// Получить значение поля.
 		/// </summary>
@@ -120,6 +124,17 @@ namespace VkNet.Utils
 		    if (!long.TryParse(userIdFieldValue, out var userId))
 		    {
 			    throw new VkApiException("UserId is not long value.");
+		    }
+
+		    return userId;
+	    }
+
+	    private long GetCaptchaSid()
+	    {
+		    var userIdFieldValue = GetFieldValue("sid");
+		    if (!long.TryParse(userIdFieldValue, out var userId))
+		    {
+			    throw new VkApiException("sid is not long value.");
 		    }
 
 		    return userId;
