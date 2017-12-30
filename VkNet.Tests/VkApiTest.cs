@@ -120,19 +120,20 @@ namespace VkNet.Tests
 		{
 			Json = @"
             {
-                'user_id':221634238,
-                'mutual': {
-                    'count': 3,
-                    'users': [227457746, 228907945, 229634083]
-                },
-				'message':'text'
-            }";
+				'response': {
+					'user_id':221634238,
+					'mutual': {
+						'count': 3,
+						'users': [227457746, 228907945, 229634083]
+					},
+					'message':'text'
+				}
+			}";
 			Url = "https://api.vk.com/method/friends.getRequests";
 			var result = Api.Call<FriendsGetRequestsResult>("friends.getRequests", VkParameters.Empty);
 			Assert.NotNull(result);
 			Assert.That(result.UserId, Is.EqualTo(221634238));
 			Assert.That(result.Message, Is.EqualTo("text"));
-			Assert.That(result.Mutual.TotalCount, Is.EqualTo(3));
 			Assert.IsNotEmpty(result.Mutual);
 		}
 

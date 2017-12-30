@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
+
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace VkNet.Model
@@ -7,6 +10,7 @@ namespace VkNet.Model
     /// <summary>
     /// Friends Get Requests Result
     /// </summary>
+    [Serializable]
     public class FriendsGetRequestsResult
     {
         /// <summary>

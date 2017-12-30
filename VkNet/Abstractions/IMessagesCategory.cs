@@ -10,8 +10,133 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
+    /// <summary>
+    /// Методы для работы с сообщениями.
+    /// </summary>
     public interface IMessagesCategory
     {
+        /// <summary>
+        /// Добавляет в мультидиалог нового пользователя.
+        /// </summary>
+        /// <param name="chatId">Идентификатор беседы. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+        /// <param name="userId">Идентификатор пользователя, которого необходимо включить в беседу. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+        /// <returns>
+        /// После успешного выполнения возвращает <c>true</c>.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
+        /// </remarks>
+        bool AddChatUser(long chatId, long userId);
+
+        /// <summary>
+        /// Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
+        /// </summary>
+        /// <param name="groupId">Идентификатор сообщества.</param>
+        /// <param name="key">
+        /// Произвольная строка.
+        /// Этот параметр можно использовать для идентификации пользователя.
+        /// Его значение будет возвращено в событии message_allow Callback API.
+        /// </param>
+        /// <returns>
+        /// После успешного выполнения возвращает <c>true</c>.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.allowMessagesFromGroup
+        /// </remarks>
+        bool AllowMessagesFromGroup(long groupId, string key);
+
+        /// <summary>
+        /// Создаёт беседу с несколькими участниками.
+        /// </summary>
+        /// <param name="userIds">Идентификаторы пользователей, которых нужно включить в мультидиалог. список положительных чисел, разделенных запятыми, обязательный параметр (Список положительных чисел, разделенных запятыми, обязательный параметр).</param>
+        /// <param name="title">Название беседы. строка (Строка).</param>
+        /// <returns>
+        /// После успешного выполнения возвращает  идентификатор созданного чата (chat_id).
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.createChat
+        /// </remarks>
+        long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title);
+
+        /// <summary>
+        /// Удаляет сообщения пользователя.
+        /// </summary>
+        /// <param name="messageIds">Идентификаторы удаляемых сообщений.</param>
+        /// <returns>
+        /// Возвращает словарь (идентификатор сообщения -&gt; признак было ли удаление сообщения успешным).
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">messageIds;Parameter messageIds can not be null.</exception>
+        /// <exception cref="System.ArgumentException">Parameter messageIds has no elements.;messageIds</exception>
+        /// <exception cref="ArgumentException">Элемент с таким ключом уже существует в словаре T:System</exception>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.delete
+        /// </remarks>
+        IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds);
+
+        /// <summary>
+        /// Позволяет удалить фотографию мультидиалога.
+        /// </summary>
+        /// <param name="messageId">Идентификатор отправленного системного сообщения;</param>
+        /// <param name="chatId">Идентификатор беседы. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+        /// <returns>
+        /// После успешного выполнения возвращает объект, содержащий следующие поля:
+        /// message_id — идентификатор отправленного системного сообщения;
+        /// chat — объект мультидиалога.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
+        /// </remarks>
+        Chat DeleteChatPhoto(out ulong messageId, ulong chatId);
+
+        /// <summary>
+        /// Удаляет все личные сообщения в диалоге.
+        /// </summary>
+        /// <param name="userId">
+        /// Идентификатор пользователя.
+        /// Если требуется очистить историю беседы, используйте peer_id.
+        /// </param>
+        /// <param name="peerId">
+        /// Идентификатор назначения.
+        /// Для групповой беседы: 2000000000 + id беседы.
+        /// Для сообщества: -id сообщества.
+        /// </param>
+        /// <param name="offset">Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются все сообщения,
+        ///  начиная с первого).</param>
+        /// <param name="count">Как много сообщений нужно удалить. Обратите внимание что на метод наложено ограничение, за один вызов
+        /// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке больше - метод нужно вызывать несколько раз.</param>
+        /// <returns>Признак удалось ли удалить сообщения.</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
+        /// </remarks>
+        bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
+
+        /// <summary>
+        /// Позволяет запретить отправку сообщений от сообщества текущему пользователю.
+        /// </summary>
+        /// <param name="groupId">Идентификатор сообщества. </param>
+        /// <returns>
+        /// После успешного выполнения возвращает <c>true</c>.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/messages.denyMessagesFromGroup
+        /// </remarks>
+        bool DenyMessagesFromGroup(long groupId);
+
+        /// <summary>
+        /// Изменяет название беседы.
+        /// </summary>
+        /// <param name="chatId">Идентификатор беседы. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
+        /// <param name="title">Новое название для беседы. строка, обязательный параметр (Строка, обязательный параметр).</param>
+        /// <returns>
+        /// После успешного выполнения возвращает <c>true</c>.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
+        /// </remarks>
+        bool EditChat(long chatId, [NotNull] string title);
+
         /// <summary>
         /// Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
         /// </summary>
@@ -49,19 +174,6 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getById
         /// </remarks>
         VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null);
-
-        /// <summary>
-        /// Ворзвращает указанное сообщение по его идентификатору.
-        /// </summary>
-        /// <param name="messageId">Идентификатор запрошенного сообщения.</param>
-        /// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение.
-        /// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).</param>
-        /// <returns>Запрошенное сообщение, null если сообщение с заданным идентификатором не найдено.</returns>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.getById
-        /// </remarks>
-        Message GetById(ulong messageId, uint? previewLength = null);
 
         /// <summary>
         /// Возвращает список диалогов аккаунта
@@ -131,56 +243,6 @@ namespace VkNet.Abstractions
         ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params);
 
         /// <summary>
-        /// Удаляет все личные сообщения в диалоге.
-        /// </summary>
-        /// <param name="userId">
-        /// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, из диалога с которым необходимо удалить свои личные сообщения.
-        /// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, из которой необходимо удалить свои личные сообщения.
-        /// </param>
-        /// <param name="isChat">Признак удаляются ли сообщения из беседы (true) или из диалога с указанным пользователем (false).</param>
-        /// <param name="peerId">Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id сообщества. </param>
-        /// <param name="offset">Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются все сообщения,
-        ///  начиная с первого).</param>
-        /// <param name="count">Как много сообщений нужно удалить. Обратите внимание что на метод наложено ограничение, за один вызов
-        /// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке больше - метод нужно вызывать несколько раз.</param>
-        /// <returns>Признак удалось ли удалить сообщения.</returns>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
-        /// </remarks>
-        bool DeleteDialog(long userId, bool isChat, long? peerId = null, uint? offset = null, uint? count = null);
-
-        /// <summary>
-        /// Удаляет сообщения пользователя.
-        /// </summary>
-        /// <param name="messageIds">Идентификаторы удаляемых сообщений.</param>
-        /// <returns>
-        /// Возвращает словарь (идентификатор сообщения -&gt; признак было ли удаление сообщения успешным).
-        /// </returns>
-        /// <exception cref="System.ArgumentNullException">messageIds;Parameter messageIds can not be null.</exception>
-        /// <exception cref="System.ArgumentException">Parameter messageIds has no elements.;messageIds</exception>
-        /// <exception cref="ArgumentException">Элемент с таким ключом уже существует в словаре T:System</exception>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.delete
-        /// </remarks>
-        IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds);
-
-        /// <summary>
-        /// Удаляет личное сообщение пользователя с заданным идентификатором.
-        /// </summary>
-        /// <param name="messageId">Идентификатор удаляемого сообщения.</param>
-        /// <returns>
-        /// Признак было ли удаление сообщения успешным.
-        /// </returns>
-        /// <exception cref="NotSupportedException">Свойство задано, и объект T:System</exception>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.delete
-        /// </remarks>
-        bool Delete(ulong messageId);
-
-        /// <summary>
         /// Восстанавливает удаленное сообщение.
         /// </summary>
         /// <param name="messageId">Идентификатор сообщения, которое нужно восстановить.</param>
@@ -240,8 +302,24 @@ namespace VkNet.Abstractions
         /// <param name="chatId">The chat identifier.</param>
         /// <param name="fields">The fields.</param>
         /// <param name="nameCase">The name case.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// После успешного выполнения возвращает объект (или список объектов) мультидиалога. 
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/messages.getChat
+        /// </remarks>
         Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null);
+
+        /// <summary>
+        /// Получает данные для превью чата с приглашением по ссылке.
+        /// </summary>
+        /// <param name="link">Ссылка-приглашение.</param>
+        /// <param name="fields">Список полей профилей, данные о которых нужно получить.</param>
+        /// <returns>Возвращает объект представляющий описание чата</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/messages.getChatPreview
+        /// </remarks>
+        ChatPreview GetChatPreview(string link, ProfileFields fields);
 
         /// <summary>
         /// Возвращает информацию о беседе.
@@ -258,33 +336,8 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getChat
         /// </remarks>
-        ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
-
-        /// <summary>
-        /// Создаёт беседу с несколькими участниками.
-        /// </summary>
-        /// <param name="userIds">Идентификаторы пользователей, которых нужно включить в мультидиалог. список положительных чисел, разделенных запятыми, обязательный параметр (Список положительных чисел, разделенных запятыми, обязательный параметр).</param>
-        /// <param name="title">Название беседы. строка (Строка).</param>
-        /// <returns>
-        /// После успешного выполнения возвращает  идентификатор созданного чата (chat_id).
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.createChat
-        /// </remarks>
-        long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title);
-
-        /// <summary>
-        /// Изменяет название беседы.
-        /// </summary>
-        /// <param name="chatId">Идентификатор беседы. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
-        /// <param name="title">Новое название для беседы. строка, обязательный параметр (Строка, обязательный параметр).</param>
-        /// <returns>
-        /// После успешного выполнения возвращает <c>true</c>.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
-        /// </remarks>
-        bool EditChat(long chatId, [NotNull] string title);
+        ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null,
+            NameCase nameCase = null);
 
         /// <summary>
         /// Позволяет получить список пользователей мультидиалога по его id.
@@ -301,19 +354,6 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
         /// </remarks>
         ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
-
-        /// <summary>
-        /// Добавляет в мультидиалог нового пользователя.
-        /// </summary>
-        /// <param name="chatId">Идентификатор беседы. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-        /// <param name="userId">Идентификатор пользователя, которого необходимо включить в беседу. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-        /// <returns>
-        /// После успешного выполнения возвращает <c>true</c>.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
-        /// </remarks>
-        bool AddChatUser(long chatId, long userId);
 
         /// <summary>
         /// Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
@@ -356,21 +396,6 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory
         /// </remarks>
         LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params);
-
-        /// <summary>
-        /// Позволяет удалить фотографию мультидиалога.
-        /// </summary>
-        /// <param name="messageId">Идентификатор отправленного системного сообщения;</param>
-        /// <param name="chatId">Идентификатор беседы. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-        /// <returns>
-        /// После успешного выполнения возвращает объект, содержащий следующие поля:
-        /// message_id — идентификатор отправленного системного сообщения;
-        /// chat — объект мультидиалога.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
-        /// </remarks>
-        Chat DeleteChatPhoto(out ulong messageId, ulong chatId);
 
         /// <summary>
         /// Позволяет установить фотографию мультидиалога, загруженную с помощью метода photos.getChatUploadServer.
@@ -429,6 +454,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getHistoryAttachments
         /// </remarks>
-        ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom);
+        ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params,
+            out string nextFrom);
     }
 }

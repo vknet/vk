@@ -2,6 +2,7 @@
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace VkNet.Categories
@@ -30,6 +31,63 @@ namespace VkNet.Categories
         public MessagesCategory(VkApi vk)
         {
             _vk = vk;
+        }
+
+        /// <summary>
+        /// Добавляет в мультидиалог нового пользователя.
+        /// </summary>
+        /// <param name="chatId">Идентификатор беседы. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+        /// <param name="userId">Идентификатор пользователя, которого необходимо включить в беседу. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+        /// <returns>
+        /// После успешного выполнения возвращает <c>true</c>.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
+        /// </remarks>
+        public bool AddChatUser(long chatId, long userId)
+        {
+            var parameters = new VkParameters {{"chat_id", chatId}, {"user_id", userId}};
+
+            return _vk.Call("messages.addChatUser", parameters);
+        }
+
+        /// <summary>
+        /// Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
+        /// </summary>
+        /// <param name="groupId">Идентификатор сообщества.</param>
+        /// <param name="key">
+        /// Произвольная строка.
+        /// Этот параметр можно использовать для идентификации пользователя.
+        /// Его значение будет возвращено в событии message_allow Callback API.
+        /// </param>
+        /// <returns>
+        /// После успешного выполнения возвращает <c>true</c>.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.allowMessagesFromGroup
+        /// </remarks>
+        public bool AllowMessagesFromGroup(long groupId, string key)
+        {
+            return _vk.Call("messages.allowMessagesFromGroup", new VkParameters
+            {
+                {"group_id", groupId},
+                {"key", key}
+            });
+        }
+
+        /// <summary>
+        /// Позволяет запретить отправку сообщений от сообщества текущему пользователю.
+        /// </summary>
+        /// <param name="groupId">Идентификатор сообщества. </param>
+        /// <returns>
+        /// После успешного выполнения возвращает <c>true</c>.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/messages.denyMessagesFromGroup
+        /// </remarks>
+        public bool DenyMessagesFromGroup(long groupId)
+        {
+            return _vk.Call("messages.allowMessagesFromGroup", new VkParameters {{"group_id", groupId}});
         }
 
         /// <summary>
@@ -86,8 +144,8 @@ namespace VkNet.Categories
 
             var parameters = new VkParameters
             {
-                { "message_ids", messageIds },
-                { "preview_length", previewLength }
+                {"message_ids", messageIds},
+                {"preview_length", previewLength}
             };
 
             return _vk.Call("messages.getById", parameters).ToVkCollectionOf<Message>(r => r);
@@ -107,11 +165,12 @@ namespace VkNet.Categories
         [Pure]
         public Message GetById(ulong messageId, uint? previewLength = null)
         {
-            var result = GetById(new[] { messageId }, previewLength);
+            var result = GetById(new[] {messageId}, previewLength);
             if (result.Count > 0)
             {
                 return result.First();
             }
+
             throw new VkApiException("Сообщения с таким ID не существует.");
         }
 
@@ -146,9 +205,9 @@ namespace VkNet.Categories
         {
             var parameters = new VkParameters
             {
-                { "q", query },
-                { "fields", fields },
-                { "limit", limit }
+                {"q", query},
+                {"fields", fields},
+                {"limit", limit}
             };
 
             return _vk.Call("messages.searchDialogs", parameters);
@@ -175,11 +234,12 @@ namespace VkNet.Categories
                 throw new ArgumentException("Query can not be null or empty.", "query");
             }
 
-            var parameters = new VkParameters {
-                { "q", query },
-                { "preview_length", previewLength },
-                { "offset", offset },
-                { "count", count }
+            var parameters = new VkParameters
+            {
+                {"q", query},
+                {"preview_length", previewLength},
+                {"offset", offset},
+                {"count", count}
             };
 
             return _vk.Call("messages.search", parameters).ToVkCollectionOf<Message>(r => r);
@@ -206,7 +266,9 @@ namespace VkNet.Categories
 
             if (@params.UserIds != null)
             {
-                throw new ArgumentException("Для отправки сообщения нескольким пользователям используйте метод SendToUserIds(MessagesSendParams).", "Message");
+                throw new ArgumentException(
+                    "Для отправки сообщения нескольким пользователям используйте метод SendToUserIds(MessagesSendParams).",
+                    "Message");
             }
 
             return _vk.Call("messages.send", @params);
@@ -228,21 +290,27 @@ namespace VkNet.Categories
         {
             if (@params.UserIds == null)
             {
-                throw new ArgumentException("Для отправки сообщения одному пользователю или в беседу используйте метод Send(MessagesSendParams).", "Message");
+                throw new ArgumentException(
+                    "Для отправки сообщения одному пользователю или в беседу используйте метод Send(MessagesSendParams).",
+                    "Message");
             }
 
             return _vk.Call("messages.send", @params).ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
         }
 
+
         /// <summary>
         /// Удаляет все личные сообщения в диалоге.
         /// </summary>
         /// <param name="userId">
-        /// Если параметр <paramref name="isChat"/> равен false, то задает идентификатор пользователя, из диалога с которым необходимо удалить свои личные сообщения.
-        /// Если параметр <paramref name="isChat"/> равен true, то задает идентификатор беседы, из которой необходимо удалить свои личные сообщения.
+        /// Идентификатор пользователя.
+        /// Если требуется очистить историю беседы, используйте peer_id.
         /// </param>
-        /// <param name="isChat">Признак удаляются ли сообщения из беседы (true) или из диалога с указанным пользователем (false).</param>
-        /// <param name="peerId">Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id сообщества. </param>
+        /// <param name="peerId">
+        /// Идентификатор назначения.
+        /// Для групповой беседы: 2000000000 + id беседы.
+        /// Для сообщества: -id сообщества.
+        /// </param>
         /// <param name="offset">Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются все сообщения,
         ///  начиная с первого).</param>
         /// <param name="count">Как много сообщений нужно удалить. Обратите внимание что на метод наложено ограничение, за один вызов
@@ -252,18 +320,19 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
         /// </remarks>
-        public bool DeleteDialog(long userId, bool isChat, long? peerId = null, uint? offset = null, uint? count = null)
+        public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
         {
             var parameters = new VkParameters
             {
-                { isChat ? "chat_id" : "user_id", userId },
-                { "offset", offset },
-                { "peer_id", peerId }
+                {"user_id", userId},
+                {"offset", offset},
+                {"peer_id", peerId}
             };
             if (count <= 10000)
             {
                 parameters.Add("count", count);
             }
+
             return _vk.Call("messages.deleteDialog", parameters);
         }
 
@@ -287,12 +356,14 @@ namespace VkNet.Categories
             {
                 throw new ArgumentNullException("messageIds", "Parameter messageIds can not be null.");
             }
+
             var ids = messageIds.ToList();
             if (ids.Count == 0)
             {
                 throw new ArgumentException("Parameter messageIds has no elements.", "messageIds");
             }
-            var parameters = new VkParameters { { "message_ids", ids } };
+
+            var parameters = new VkParameters {{"message_ids", ids}};
 
             var response = _vk.Call("messages.delete", parameters);
 
@@ -320,7 +391,7 @@ namespace VkNet.Categories
         /// </remarks>
         public bool Delete(ulong messageId)
         {
-            var result = Delete(new[] { messageId });
+            var result = Delete(new[] {messageId});
             return result[messageId];
         }
 
@@ -336,7 +407,7 @@ namespace VkNet.Categories
         {
             var parameters = new VkParameters
             {
-                { "message_id", messageId }
+                {"message_id", messageId}
             };
 
             return _vk.Call("messages.restore", parameters);
@@ -356,14 +427,16 @@ namespace VkNet.Categories
         /// </remarks>
         public bool MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId = null)
         {
-            var parameters = new VkParameters {
-                { "message_ids", messageIds },
-                { "peer_id", peerId },
-                { "start_message_id", startMessageId }
+            var parameters = new VkParameters
+            {
+                {"message_ids", messageIds},
+                {"peer_id", peerId},
+                {"start_message_id", startMessageId}
             };
 
             return _vk.Call("messages.markAsRead", parameters);
         }
+
         /// <summary>
         /// Изменяет статус набора текста пользователем в диалоге.
         /// </summary>
@@ -381,9 +454,9 @@ namespace VkNet.Categories
         {
             var parameters = new VkParameters
             {
-                { "used_id", userId },
-                { "type", "typing" },
-                { "peer_id", peerId }
+                {"used_id", userId},
+                {"type", "typing"},
+                {"peer_id", peerId}
             };
 
             return _vk.Call("messages.setActivity", parameters);
@@ -406,7 +479,7 @@ namespace VkNet.Categories
         {
             var parameters = new VkParameters
             {
-                { "user_id", userId }
+                {"user_id", userId}
             };
 
             var response = _vk.Call("messages.getLastActivity", parameters);
@@ -426,7 +499,25 @@ namespace VkNet.Categories
         /// <returns></returns>
         public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null)
         {
-            return GetChat(new[] { chatId }, fields, nameCase).FirstOrDefault();
+            return GetChat(new[] {chatId}, fields, nameCase).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Получает данные для превью чата с приглашением по ссылке.
+        /// </summary>
+        /// <param name="link">Ссылка-приглашение.</param>
+        /// <param name="fields">Список полей профилей, данные о которых нужно получить.</param>
+        /// <returns>Возвращает объект представляющий описание чата</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/messages.getChatPreview
+        /// </remarks>
+        public ChatPreview GetChatPreview(string link, ProfileFields fields)
+        {
+            return _vk.Call<ChatPreview>("messages.getChatPreview", new VkParameters
+            {
+                {"link", link},
+                {"fields", fields}
+            });
         }
 
         /// <summary>
@@ -444,14 +535,16 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getChat
         /// </remarks>
-        public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null)
+        public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null,
+            NameCase nameCase = null)
         {
             var isNoEmpty = chatIds == null || !chatIds.Any();
             if (isNoEmpty)
             {
                 throw new ArgumentException("At least one chat ID must be defined", "chatIds");
             }
-            var parameters = new VkParameters { { "fields", fields }, { "name_case", nameCase } };
+
+            var parameters = new VkParameters {{"fields", fields}, {"name_case", nameCase}};
             if (chatIds.Count() > 1)
             {
                 parameters.Add("chat_ids", chatIds);
@@ -460,13 +553,15 @@ namespace VkNet.Categories
             {
                 parameters.Add("chat_id", chatIds.ElementAt(0));
             }
+
             var response = _vk.Call("messages.getChat", parameters);
 
             if (chatIds.Count() > 1)
             {
                 return response.ToReadOnlyCollectionOf<Chat>(c => c);
             }
-            return new ReadOnlyCollection<Chat>(new List<Chat> { response });
+
+            return new ReadOnlyCollection<Chat>(new List<Chat> {response});
         }
 
         /// <summary>
@@ -489,8 +584,8 @@ namespace VkNet.Categories
 
             var parameters = new VkParameters
             {
-                { "user_ids", userIds },
-                { "title", title }
+                {"user_ids", userIds},
+                {"title", title}
             };
 
             return _vk.Call("messages.createChat", parameters);
@@ -516,8 +611,8 @@ namespace VkNet.Categories
 
             var parameters = new VkParameters
             {
-                { "chat_id", chatId },
-                { "title", title }
+                {"chat_id", chatId},
+                {"title", title}
             };
 
             return _vk.Call("messages.editChat", parameters);
@@ -539,11 +634,11 @@ namespace VkNet.Categories
         /// </remarks>
         public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
         {
-            var parameters = new VkParameters {
-
-                { "chat_ids", chatIds },
-                { "fields", fields },
-                { "name_case", nameCase }
+            var parameters = new VkParameters
+            {
+                {"chat_ids", chatIds},
+                {"fields", fields},
+                {"name_case", nameCase}
             };
 
             var response = _vk.Call("messages.getChatUsers", parameters);
@@ -553,7 +648,7 @@ namespace VkNet.Categories
             foreach (var chatId in chatIds)
             {
                 var chatResponse = response[chatId.ToString()];
-                var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null ? x : new User { Id = (long)x });
+                var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null ? x : new User {Id = (long) x});
 
                 foreach (var user in users)
                 {
@@ -564,24 +659,6 @@ namespace VkNet.Categories
             }
 
             return list.ToReadOnlyCollection();
-        }
-
-        /// <summary>
-        /// Добавляет в мультидиалог нового пользователя.
-        /// </summary>
-        /// <param name="chatId">Идентификатор беседы. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-        /// <param name="userId">Идентификатор пользователя, которого необходимо включить в беседу. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-        /// <returns>
-        /// После успешного выполнения возвращает <c>true</c>.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
-        /// </remarks>
-        public bool AddChatUser(long chatId, long userId)
-        {
-            var parameters = new VkParameters { { "chat_id", chatId }, { "user_id", userId } };
-
-            return _vk.Call("messages.addChatUser", parameters);
         }
 
         /// <summary>
@@ -597,9 +674,10 @@ namespace VkNet.Categories
         /// </remarks>
         public bool RemoveChatUser(long chatId, long userId)
         {
-            var parameters = new VkParameters {
-                { "chat_id", chatId },
-                { "user_id", userId }
+            var parameters = new VkParameters
+            {
+                {"chat_id", chatId},
+                {"user_id", userId}
             };
 
             return _vk.Call("messages.removeChatUser", parameters);
@@ -624,8 +702,8 @@ namespace VkNet.Categories
         {
             var parameters = new VkParameters
             {
-                { "lp_version", lpVersion },
-                { "need_pts", needPts }
+                {"lp_version", lpVersion},
+                {"need_pts", needPts}
             };
             return _vk.Call("messages.getLongPollServer", parameters);
         }
@@ -668,7 +746,7 @@ namespace VkNet.Categories
         {
             var parameters = new VkParameters
             {
-                { "chat_id", chatId }
+                {"chat_id", chatId}
             };
             var result = _vk.Call("messages.deleteChatPhoto", parameters);
             messageId = result["message_id"];
@@ -692,7 +770,7 @@ namespace VkNet.Categories
         {
             var parameters = new VkParameters
             {
-                { "file", file }
+                {"file", file}
             };
             var result = _vk.Call("messages.setChatPhoto", parameters);
             messageId = result["message_id"];
@@ -714,8 +792,8 @@ namespace VkNet.Categories
         {
             var parameters = new VkParameters
             {
-                { "message_ids", messageIds },
-                { "important", important }
+                {"message_ids", messageIds},
+                {"important", important}
             };
 
             VkResponseArray result = _vk.Call("messages.markAsImportant", parameters);
@@ -756,7 +834,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getHistoryAttachments
         /// </remarks>
-        public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
+        public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params,
+            out string nextFrom)
         {
             var result = _vk.Call("messages.getHistoryAttachments", @params);
 

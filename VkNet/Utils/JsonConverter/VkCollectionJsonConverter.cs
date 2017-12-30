@@ -4,25 +4,25 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace VkNet.Utils
+namespace VkNet.Utils.JsonConverter
 {
     /// <summary>
     /// Vk Collection Json Converter
     /// </summary>
-    public class VkCollectionJsonConverter : JsonConverter
+    public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
     {
         /// <summary>
-        /// Count
+        /// Количество
         /// </summary>
         private static string CountField => "count";
 
         /// <summary>
-        /// Collection Field
+        /// Поле с коллекцией данных
         /// </summary>
         private string CollectionField { get; }
 
         /// <summary>
-        /// Init
+        /// Инициализация
         /// </summary>
         /// <param name="collectionField">Collection Field</param>
         public VkCollectionJsonConverter(string collectionField = "items")
@@ -31,7 +31,7 @@ namespace VkNet.Utils
         }
 
         /// <summary>
-        /// Init
+        /// Инициализация
         /// </summary>
         public VkCollectionJsonConverter()
         {
@@ -39,11 +39,11 @@ namespace VkNet.Utils
         }
 
         /// <summary>
-        /// Object to Json
+        /// Сериализация объекта в Json
         /// </summary>
         /// <param name="writer">Json writer</param>
-        /// <param name="value">Value</param>
-        /// <param name="serializer">Serializer</param>
+        /// <param name="value">Значение</param>
+        /// <param name="serializer">Сериализатор</param>
         /// <exception cref="NotImplementedException"></exception>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -51,11 +51,11 @@ namespace VkNet.Utils
         }
 
         /// <summary>
-        /// JSON to VkCollection 
+        /// Преобразование JSON в VkCollection 
         /// </summary>
         /// <param name="reader">Json reader</param>
-        /// <param name="objectType">object Type</param>
-        /// <param name="existingValue">Existing value</param>
+        /// <param name="objectType">Тип объекта</param>
+        /// <param name="existingValue">Существующее значение</param>
         /// <param name="serializer">Seerilizer</param>
         /// <returns></returns>
         /// <exception cref="TypeAccessException"></exception>
@@ -81,9 +81,10 @@ namespace VkNet.Utils
             var vkCollection = typeof(VkCollection<>).MakeGenericType(keyType);
             
             var obj = JObject.Load(reader);
-            var totalCount = obj[CountField].Value<ulong>();
+            var response = obj["response"] ?? obj;
+            var totalCount = response[CountField].Value<ulong>();
             
-            foreach (var item in obj[CollectionField])
+            foreach (var item in response[CollectionField])
             {
                 list.Add(item.ToObject(keyType));
             }
@@ -92,17 +93,17 @@ namespace VkNet.Utils
         }
 
         /// <summary>
-        /// Can Convert
+        /// Может преобразовать
         /// </summary>
-        /// <param name="objectType"></param>
-        /// <returns></returns>
+        /// <param name="objectType">Тип объекта</param>
+        /// <returns><c>true</c> если можно преобразовать</returns>
         public override bool CanConvert(Type objectType)
         {
             return typeof(VkCollection<>).IsAssignableFrom(objectType);
         }
 
         /// <summary>
-        /// Can Write
+        /// Может записать
         /// </summary>
         public override bool CanWrite => false;
     }

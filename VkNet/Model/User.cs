@@ -1,5 +1,8 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -25,6 +28,7 @@ namespace VkNet.Model
         /// <summary>
         /// Идентификатор пользователя.
         /// </summary>
+        [JsonConverter(typeof(MultiPropertyNameJsonConverter), "id|uid|user_id")]
         public long Id { get; set; }
 
         /// <summary>

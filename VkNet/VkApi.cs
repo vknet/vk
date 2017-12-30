@@ -16,6 +16,8 @@ using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
+using VkNet.Utils.JsonConverter;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -493,7 +495,7 @@ namespace VkNet
         {
             var answer = CallBase(methodName, parameters, skipAuthorization);
 
-            return JsonConvert.DeserializeObject<T>(answer, new VkCollectionJsonConverter());
+            return JsonConvert.DeserializeObject<T>(answer, new VkDefaultJsonConverter(), new VkCollectionJsonConverter());
         }
 
         

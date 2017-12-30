@@ -7,23 +7,8 @@
 	/// <summary>
 	/// Список параметров для метода Messages.Get
 	/// </summary>
-	public struct MessagesGetParams
+	public class MessagesGetParams
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="gag"></param>
-		public MessagesGetParams(bool gag = true)
-		{
-			Count = 20;
-			Offset = null;
-			Out = null;
-			TimeOffset = null;
-			Filters = null;
-			PreviewLength = null;
-			LastMessageId = null;
-		}
-
 		/// <summary>
 		/// Количество сообщений, которое необходимо получить.
 		/// (по умолчанию 20, максимальное значение 200)

@@ -728,7 +728,7 @@ namespace VkNet.Tests.Categories
 		public void DeleteDialog_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.DeleteDialog(111, false), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.DeleteDialog(111, null, null, null), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -740,7 +740,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			var result = Cat.DeleteDialog(4460019, false);
+			var result = Cat.DeleteDialog(4460019, null, null);
 
 			Assert.That(result, Is.True);
 		}
@@ -754,7 +754,7 @@ namespace VkNet.Tests.Categories
 					'response': 1
 				  }";
 
-			var result = Cat.DeleteDialog(4460019, false, null, 2, 2);
+			var result = Cat.DeleteDialog(4460019, null, null, 2);
 
 			Assert.That(result, Is.True);
 		}
