@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using VkNet.Enums;
+using VkNet.Utils;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
@@ -9,12 +12,6 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Diagnostics;
-    using Enums;
-    using Utils;
-
     /// <summary>
     /// Информация о пользователя.
     /// См. описание https://vk.com/dev/objects/user
@@ -28,7 +25,7 @@ namespace VkNet.Model
         /// <summary>
         /// Идентификатор пользователя.
         /// </summary>
-        [JsonConverter(typeof(MultiPropertyNameJsonConverter), "id|uid|user_id")]
+        [JsonProperty("id")]
         public long Id { get; set; }
 
         /// <summary>
@@ -458,7 +455,7 @@ namespace VkNet.Model
         #endregion
 
         #region Поля, установленные экспериментально
-        
+
         /// <summary>
         /// Информация о ссылках на предпросмотр фотографий пользователя.
         /// </summary>
@@ -483,6 +480,7 @@ namespace VkNet.Model
         /// Является ли пользователь заблокированным
         /// </summary>
         public bool IsDeactivated { get; set; }
+
         /// <summary>
         /// Идентификатор языка, установленный в настройках.
         /// </summary>
@@ -520,6 +518,27 @@ namespace VkNet.Model
 
         #endregion
 
+        #region private
+        
+        [JsonProperty("uid")]
+        private long Uid
+        {
+            set => Id = value;
+        }
+        
+        [JsonProperty("user_id")]
+        private long UserId
+        {
+            set => Id = value;
+        }
+        
+        [JsonProperty("phone")]
+        private string Phone
+        {
+            set => MobilePhone = value;
+        }
+
+        #endregion
         #region Методы
 
         /// <summary>
@@ -611,18 +630,18 @@ namespace VkNet.Model
                 Blacklisted = response["blacklisted"],
                 BlacklistedByMe = response["blacklisted_by_me"],
                 Trending = response["trending"],
-                FirstNameNom = response["first_name_nom"], 
-                FirstNameGen = response["first_name_gen"], 
-                FirstNameDat = response["first_name_dat"], 
-                FirstNameAcc = response["first_name_acc"], 
-                FirstNameIns = response["first_name_ins"], 
+                FirstNameNom = response["first_name_nom"],
+                FirstNameGen = response["first_name_gen"],
+                FirstNameDat = response["first_name_dat"],
+                FirstNameAcc = response["first_name_acc"],
+                FirstNameIns = response["first_name_ins"],
                 FirstNameAbl = response["first_name_abl"],
-                LastNameNom = response["last_name_nom"], 
-                LastNameGen = response["last_name_gen"], 
-                LastNameDat = response["last_name_dat"], 
-                LastNameAcc = response["last_name_acc"], 
-                LastNameIns = response["last_name_ins"], 
-                LastNameAbl = response["last_name_abl"] 
+                LastNameNom = response["last_name_nom"],
+                LastNameGen = response["last_name_gen"],
+                LastNameDat = response["last_name_dat"],
+                LastNameAcc = response["last_name_acc"],
+                LastNameIns = response["last_name_ins"],
+                LastNameAbl = response["last_name_abl"]
             };
             user.IsDeactivated = user.Deactivated != null;
             if (response["name"] != null)

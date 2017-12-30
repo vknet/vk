@@ -45,6 +45,11 @@ namespace VkNet.Utils.JsonConverter
             {
                 return null;
             }
+
+            if (reader.ValueType.IsValueType && _propertyNames.Contains(reader.Path))
+            {
+                return reader.Value;
+            }
             
             var obj = JObject.Load(reader);
             var response = obj.Properties().FirstOrDefault(x => _propertyNames.Contains(x.Name));

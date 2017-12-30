@@ -51,10 +51,30 @@ namespace VkNet.Tests.Models
             Assert.That(user.LastName, Is.Null);
         }
 
-        [Test, Ignore("в работе")]
+        [Test]
         public void MultiPropertyId()
         {
             Json = @"{'id': 165614770}";
+            
+            Url = "https://api.vk.com/method/friends.getRequests";
+            var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
+            Assert.That(result.Id, Is.EqualTo(165614770));
+        }
+
+        [Test]
+        public void MultiPropertyUid()
+        {
+            Json = @"{'uid': 165614770}";
+            
+            Url = "https://api.vk.com/method/friends.getRequests";
+            var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
+            Assert.That(result.Id, Is.EqualTo(165614770));
+        }
+
+        [Test]
+        public void MultiPropertyUserId()
+        {
+            Json = @"{'user_id': 165614770}";
             
             Url = "https://api.vk.com/method/friends.getRequests";
             var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
