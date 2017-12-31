@@ -6,30 +6,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода account.saveProfileInfo
 	/// </summary>
-	public struct AccountSaveProfileInfoParams
+	public class AccountSaveProfileInfoParams
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="gag"></param>
-		public AccountSaveProfileInfoParams(bool gag = false)
-		{
-			FirstName = null;
-			LastName = null;
-			MaidenName = null;
-			ScreenName = null;
-			Sex = null;
-			Relation = null;
-			RelationPartner = null;
-			BirthDate = null;
-			BirthdayVisibility = null;
-			HomeTown = null;
-			Country = null;
-			City = null;
-			Status = null;
-			Phone = null;
-		}
-
 		/// <summary>
 		/// Имя пользователя. строка.
 		/// </summary>

@@ -5,22 +5,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры запроса подписывания устройства на базе iOS, Android или Windows Phone на получение Push-уведомлений.
 	/// </summary>
-	public struct AccountRegisterDeviceParams
+	public class AccountRegisterDeviceParams
 	{
-		/// <summary>
-		/// Параметры метода account.registerDevice
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public AccountRegisterDeviceParams(bool gag = true)
-		{
-			Token = null;
-			DeviceModel = null;
-			DeviceYear = null;
-			DeviceId = null;
-			SystemVersion = null;
-			Settings = null;
-			Sandbox = null;
-		}
 		/// <summary>
 		/// Идентификатор устройства, используемый для отправки уведомлений. (для mpns идентификатор должен представлять из себя URL для отправки уведомлений) строка, обязательный параметр.
 		/// </summary>
