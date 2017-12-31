@@ -69,21 +69,6 @@ namespace VkNet.Model
     [CanBeNull]
     public ChatPushSettings PushSettings { get; set; }
 
-    #region Поля найденые експерементально
-
-    /// <summary>
-    /// Неизвестно что за поле, но оно есть в некоторых диалогах (Вроде не влияет на звоковое уведомление о новых сообщениях)
-    /// </summary>
-    [Obsolete("Используйте поле PushSettings")]
-    public bool? Sound { get; set; }
-    /// <summary>
-    /// Неизвестно что за поле, но оно есть в некоторых диалогах (При отключенных звуковых уведомлениях равняеться -1)
-    /// </summary>
-    [Obsolete("Используйте поле PushSettings")]
-    public int? DisabledUntil { get; set; }
-
-    #endregion
-
     #region Методы
     /// <summary>
     /// Разобрать из json.
@@ -106,19 +91,6 @@ namespace VkNet.Model
         Photo200 = response["photo_200"],
         PushSettings = response["push_settings"]
       };
-
-      #region Поля найденые експерементально
-      if (response.ContainsKey("push_settings"))
-      {
-        chat.Sound = response["push_settings"]["sound"];
-        chat.DisabledUntil = response["push_settings"]["disabled_until"];
-      }
-      else
-      {
-        chat.Sound = null;
-        chat.DisabledUntil = null;
-      }
-      #endregion
 
       return chat;
     }

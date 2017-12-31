@@ -7,22 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода messages.getHistoryAttachments
 	/// </summary>
-	public struct MessagesGetHistoryAttachmentsParams
+	public class MessagesGetHistoryAttachmentsParams
 	{
-		/// <summary>
-		/// Параметры метода messages.getHistoryAttachments
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public MessagesGetHistoryAttachmentsParams(bool gag = true)
-		{
-			PeerId = 0;
-			MediaType = null;
-			StartFrom = null;
-			Count = null;
-			PhotoSizes = null;
-			Fields = null;
-		}
-
 		/// <summary>
 		/// Идентификатор назначения. Для групповой беседы:
 		/// 2000000000   id беседы.

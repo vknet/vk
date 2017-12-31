@@ -149,17 +149,6 @@ namespace VkNet.Abstractions
         MessagesGetObject Get(MessagesGetParams @params);
 
         /// <summary>
-        /// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
-        /// </summary>
-        /// <param name="params">Входные параметры выборки.</param>
-        /// <returns>Возвращает историю сообщений с указанным пользователем или из указанной беседы</returns>
-        /// <remarks>
-        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-        /// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
-        /// </remarks>
-        MessagesGetObject GetHistory(MessagesGetHistoryParams @params);
-
-        /// <summary>
         /// Возвращает сообщения по их идентификаторам.
         /// </summary>
         /// <param name="messageIds">Идентификаторы сообщений, которые необходимо вернуть (не более 100).</param>
@@ -174,13 +163,6 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getById
         /// </remarks>
         VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null);
-
-        /// <summary>
-        /// Возвращает список диалогов аккаунта
-        /// </summary>
-        /// <param name="params">Входные параметры выборки.</param>
-        /// <returns>В случае успеха возвращает список диалогов пользователя</returns>
-        MessagesGetObject GetDialogs(MessagesDialogsGetParams @params);
 
         /// <summary>
         /// Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
@@ -201,10 +183,7 @@ namespace VkNet.Abstractions
         /// <summary>
         /// Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
         /// </summary>
-        /// <param name="query">Подстрока, по которой будет производиться поиск.строка, обязательный параметр (Строка, обязательный параметр).</param>
-        /// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. Укажите ''0'', если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).положительное число (Положительное число).</param>
-        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений из списка найденных.положительное число (Положительное число).</param>
-        /// <param name="count">Количество сообщений, которое необходимо получить.положительное число, по умолчанию 20, максимальное значение 100 (Положительное число, по умолчанию 20, максимальное значение 100).</param>
+        /// <param name="params">Параметры запроса messages.search</param>
         /// <returns>
         /// После успешного выполнения возвращает  объектов , найденных в соответствии с поисковым запросом '''q'''.
         /// </returns>
@@ -212,7 +191,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.search
         /// </remarks>
-        VkCollection<Message> Search([NotNull] string query, long? previewLength, long? offset, long? count);
+        VkCollection<Message> Search(MessagesSearchParams @params);
 
         /// <summary>
         /// Посылает личное сообщение.
@@ -271,6 +250,7 @@ namespace VkNet.Abstractions
         /// </summary>
         /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="peerId">Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id сообщества.</param>
+        /// <param name="type">typing — пользователь начал набирать текст.</param>
         /// <returns>
         /// После успешного выполнения возвращает true, false в противном случае.
         /// Текст «N набирает сообщение...» отображается в течение 10 секунд после вызова метода, либо до момента отправки сообщения.
@@ -279,7 +259,7 @@ namespace VkNet.Abstractions
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.setActivity
         /// </remarks>
-        bool SetActivity(long userId, long? peerId = null);
+        bool SetActivity(long userId, long? peerId = null, string type = "typing");
 
         /// <summary>
         /// Возвращает текущий статус и дату последней активности указанного пользователя.
@@ -311,17 +291,6 @@ namespace VkNet.Abstractions
         Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null);
 
         /// <summary>
-        /// Получает данные для превью чата с приглашением по ссылке.
-        /// </summary>
-        /// <param name="link">Ссылка-приглашение.</param>
-        /// <param name="fields">Список полей профилей, данные о которых нужно получить.</param>
-        /// <returns>Возвращает объект представляющий описание чата</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте https://vk.com/dev/messages.getChatPreview
-        /// </remarks>
-        ChatPreview GetChatPreview(string link, ProfileFields fields);
-
-        /// <summary>
         /// Возвращает информацию о беседе.
         /// </summary>
         /// <param name="chatIds">Список идентификаторов бесед. список целых чисел, разделенных запятыми (Список целых чисел, разделенных запятыми).</param>
@@ -340,6 +309,17 @@ namespace VkNet.Abstractions
             NameCase nameCase = null);
 
         /// <summary>
+        /// Получает данные для превью чата с приглашением по ссылке.
+        /// </summary>
+        /// <param name="link">Ссылка-приглашение.</param>
+        /// <param name="fields">Список полей профилей, данные о которых нужно получить.</param>
+        /// <returns>Возвращает объект представляющий описание чата</returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/messages.getChatPreview
+        /// </remarks>
+        ChatPreview GetChatPreview(string link, ProfileFields fields);
+
+        /// <summary>
         /// Позволяет получить список пользователей мультидиалога по его id.
         /// </summary>
         /// <param name="chatIds">Идентификаторы бесед. список целых чисел, разделенных запятыми (Список целых чисел, разделенных запятыми).</param>
@@ -354,6 +334,24 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
         /// </remarks>
         ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+
+        /// <summary>
+        /// Возвращает список диалогов аккаунта
+        /// </summary>
+        /// <param name="params">Входные параметры выборки.</param>
+        /// <returns>В случае успеха возвращает список диалогов пользователя</returns>
+        MessagesGetObject GetDialogs(MessagesDialogsGetParams @params);
+
+        /// <summary>
+        /// Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
+        /// </summary>
+        /// <param name="params">Входные параметры выборки.</param>
+        /// <returns>Возвращает историю сообщений с указанным пользователем или из указанной беседы</returns>
+        /// <remarks>
+        /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
+        /// </remarks>
+        MessagesGetObject GetHistory(MessagesGetHistoryParams @params);
 
         /// <summary>
         /// Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
@@ -456,5 +454,75 @@ namespace VkNet.Abstractions
         /// </remarks>
         ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params,
             out string nextFrom);
+
+        /// <summary>
+        /// Получает ссылку для приглашения пользователя в беседу.
+        /// </summary>
+        /// <param name="peerId">Идентификатор назначения.</param>
+        /// <param name="reset">
+        /// 1 — сгенерировать новую ссылку, сбросив предыдущую.
+        /// 0 — получить предыдущую ссылку.
+        /// </param>
+        /// <returns>
+        /// Возвращает объект с единственным полем link (string), которое содержит ссылку для приглашения в беседу.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getInviteLink
+        /// </remarks>
+        string GetInviteLink(ulong peerId, bool reset);
+
+        /// <summary>
+        /// Возвращает информацию о том, разрешена ли отправка сообщений от сообщества пользователю.
+        /// </summary>
+        /// <param name="groupId">Идентификатор сообщества.</param>
+        /// <param name="userId">Идентификатор пользователя.</param>
+        /// <returns>
+        /// Возвращает объект с единственным полем is_allowed (integer, [0,1]). Если отправка сообщений разрешена, поле содержит 1, иначе — 0.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.isMessagesFromGroupAllowed
+        /// </remarks>
+        bool IsMessagesFromGroupAllowed(ulong groupId, ulong userId);
+
+        /// <summary>
+        /// Позволяет присоединиться к чату по ссылке-приглашению.
+        /// </summary>
+        /// <param name="link">Ссылка-приглашение.</param>
+        /// <returns>
+        /// Возвращает идентификатор чата в поле chat_id.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.joinChatByInviteLink
+        /// </remarks>
+        long JoinChatByInviteLink(string link);
+
+        /// <summary>
+        /// Помечает диалог как отвеченный либо снимает отметку.
+        /// </summary>
+        /// <param name="peerId">Идентификатор диалога</param>
+        /// <param name="answered">флаг, может принимать значения 1 или 0, по умолчанию 1</param>
+        /// <returns>
+        /// После успешного выполнения возвращает 1.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
+        /// </remarks>
+        bool MarkAsAnsweredDialog(long peerId, bool answered = true);
+
+        /// <summary>
+        /// Помечает диалог как важный либо снимает отметку.
+        /// </summary>
+        /// <param name="peerId">Идентификатор диалога </param>
+        /// <param name="important">
+        /// <c>true</c>, если сообщения необходимо пометить, как важные;
+        /// <c>0</c>, если необходимо снять пометку.положительное число (Положительное число).
+        /// </param>
+        /// <returns>
+        /// После успешного выполнения возвращает 1.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportantDialog
+        /// </remarks>
+        bool MarkAsImportantDialog(long peerId, bool important = true);
     }
 }

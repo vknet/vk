@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -26,5 +27,24 @@ namespace VkNet.Model
         /// </summary>
         [JsonProperty("photo_200")]
         public string Photo200 { get; set; }
+        
+        #region Методы
+
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static ChatPhoto FromJson(VkResponse response)
+        {
+            return new ChatPhoto
+            {
+                Photo50 = response["photo_50"],
+                Photo100 = response["photo_100"],
+                Photo200 = response["photo_200"]
+            };
+        }
+
+        #endregion
     }
 }

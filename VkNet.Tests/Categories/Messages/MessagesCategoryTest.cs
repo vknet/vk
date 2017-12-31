@@ -553,7 +553,10 @@ namespace VkNet.Tests.Categories
 		{
 			int totalCount;
 			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.Search("привет", null, null, null), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.Search(new MessagesSearchParams
+			{
+				Query = "привет"
+			}), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -593,7 +596,11 @@ namespace VkNet.Tests.Categories
 			}";
 
 			int totalCount;
-			var msgs = Cat.Search("привет", null, 3, null);
+			var msgs = Cat.Search(new MessagesSearchParams
+			{
+				Query = "привет",
+				Count = 3
+			});
 
 			Assert.That(msgs.TotalCount, Is.EqualTo(680));
 			Assert.That(msgs.Count, Is.EqualTo(3));
@@ -636,7 +643,11 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			int totalCount;
-			var msgs = Cat.Search("fsjkadoivhjioashdpfisd", null,3,null);
+			var msgs = Cat.Search(new MessagesSearchParams
+			{
+				Query = "fsjkadoivhjioashdpfisd",
+				Count = 3
+			});
 
 			Assert.That(msgs.TotalCount, Is.EqualTo(0));
 			Assert.That(msgs.Count, Is.EqualTo(0));

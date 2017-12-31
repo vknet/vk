@@ -30,6 +30,63 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
+        public static implicit operator ChatPreviewField(VkResponse response)
+        {
+            return response?._token == null || !response._token.HasValues
+                ? null
+                : ChatPreviewField.FromJson(response);
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator ChatPreview(VkResponse response)
+        {
+            return response?._token == null || !response._token.HasValues
+                ? null
+                : ChatPreview.FromJson(response);
+        }
+
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator ChatPhoto(VkResponse response)
+        {
+            return response?._token == null || !response._token.HasValues
+                ? null
+                : ChatPhoto.FromJson(response);
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator Email(VkResponse response)
+        {
+            return response?._token == null || !response._token.HasValues
+                ? null
+                : Email.FromJson(response);
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
         public static implicit operator AccountInfo(VkResponse response)
         {
             return response?._token == null || !response._token.HasValues ? null : AccountInfo.FromJson(response);
@@ -1094,11 +1151,12 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
+#pragma warning disable 618
         public static implicit operator PhotosList(VkResponse response)
         {
             return response?._token == null || !response._token.HasValues ? null : PhotosList.FromJson(response);
         }
-
+#pragma warning restore 618
         /// <summary>
         /// Преобразовать из VkResponse
         /// </summary>

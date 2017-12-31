@@ -213,13 +213,11 @@ namespace VkNet.Categories
             return _vk.Call("messages.searchDialogs", parameters);
         }
 
+
         /// <summary>
         /// Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
         /// </summary>
-        /// <param name="query">Подстрока, по которой будет производиться поиск.строка, обязательный параметр (Строка, обязательный параметр).</param>
-        /// <param name="previewLength">Количество символов, по которому нужно обрезать сообщение. Укажите ''0'', если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).положительное число (Положительное число).</param>
-        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества сообщений из списка найденных.положительное число (Положительное число).</param>
-        /// <param name="count">Количество сообщений, которое необходимо получить.положительное число, по умолчанию 20, максимальное значение 100 (Положительное число, по умолчанию 20, максимальное значение 100).</param>
+        /// <param name="params">Параметры запроса messages.search</param>
         /// <returns>
         /// После успешного выполнения возвращает  объектов , найденных в соответствии с поисковым запросом '''q'''.
         /// </returns>
@@ -227,22 +225,14 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.search
         /// </remarks>
-        public VkCollection<Message> Search([NotNull] string query, long? previewLength, long? offset, long? count)
+        public VkCollection<Message> Search(MessagesSearchParams @params)
         {
-            if (string.IsNullOrWhiteSpace(query))
+            if (string.IsNullOrWhiteSpace(@params.Query))
             {
                 throw new ArgumentException("Query can not be null or empty.", "query");
             }
 
-            var parameters = new VkParameters
-            {
-                {"q", query},
-                {"preview_length", previewLength},
-                {"offset", offset},
-                {"count", count}
-            };
-
-            return _vk.Call("messages.search", parameters).ToVkCollectionOf<Message>(r => r);
+            return _vk.Call("messages.search", @params).ToVkCollectionOf<Message>(r => r);
         }
 
         /// <summary>
@@ -442,6 +432,7 @@ namespace VkNet.Categories
         /// </summary>
         /// <param name="userId">Идентификатор пользователя</param>
         /// <param name="peerId">Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id сообщества.</param>
+        /// <param name="type">typing — пользователь начал набирать текст.</param>
         /// <returns>
         /// После успешного выполнения возвращает true, false в противном случае.
         /// Текст «N набирает сообщение...» отображается в течение 10 секунд после вызова метода, либо до момента отправки сообщения.
@@ -450,12 +441,12 @@ namespace VkNet.Categories
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
         /// Страница документации ВКонтакте http://vk.com/dev/messages.setActivity
         /// </remarks>
-        public bool SetActivity(long userId, long? peerId = null)
+        public bool SetActivity(long userId, long? peerId = null, string type = "typing")
         {
             var parameters = new VkParameters
             {
                 {"used_id", userId},
-                {"type", "typing"},
+                {"type", type},
                 {"peer_id", peerId}
             };
 
@@ -513,7 +504,7 @@ namespace VkNet.Categories
         /// </remarks>
         public ChatPreview GetChatPreview(string link, ProfileFields fields)
         {
-            return _vk.Call<ChatPreview>("messages.getChatPreview", new VkParameters
+            return _vk.Call("messages.getChatPreview", new VkParameters
             {
                 {"link", link},
                 {"fields", fields}
@@ -556,12 +547,9 @@ namespace VkNet.Categories
 
             var response = _vk.Call("messages.getChat", parameters);
 
-            if (chatIds.Count() > 1)
-            {
-                return response.ToReadOnlyCollectionOf<Chat>(c => c);
-            }
-
-            return new ReadOnlyCollection<Chat>(new List<Chat> {response});
+            return chatIds.Count() > 1 ? 
+                response.ToReadOnlyCollectionOf<Chat>(c => c) 
+                : new ReadOnlyCollection<Chat>(new List<Chat> {response});
         }
 
         /// <summary>
@@ -652,9 +640,11 @@ namespace VkNet.Categories
 
                 foreach (var user in users)
                 {
-                    bool exist = list.Exists(first => first.Id == user.Id);
+                    var exist = list.Exists(first => first.Id == user.Id);
                     if (!exist)
+                    {
                         list.Add(user);
+                    }
                 }
             }
 
@@ -842,6 +832,99 @@ namespace VkNet.Categories
             nextFrom = result["next_from"];
 
             return result.ToReadOnlyCollectionOf<HistoryAttachment>(o => o);
+        }
+
+        /// <summary>
+        /// Получает ссылку для приглашения пользователя в беседу.
+        /// </summary>
+        /// <param name="peerId">Идентификатор назначения.</param>
+        /// <param name="reset">
+        /// 1 — сгенерировать новую ссылку, сбросив предыдущую.
+        /// 0 — получить предыдущую ссылку.
+        /// </param>
+        /// <returns>
+        /// Возвращает объект с единственным полем link (string), которое содержит ссылку для приглашения в беседу.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.getInviteLink
+        /// </remarks>
+        public string GetInviteLink(ulong peerId, bool reset)
+        {
+            return _vk.Call("messages.getInviteLink", new VkParameters
+            {
+                {"peer_id", peerId},
+                {"reset", reset}
+            })["link"];
+        }
+
+        /// <summary>
+        /// Возвращает информацию о том, разрешена ли отправка сообщений от сообщества пользователю.
+        /// </summary>
+        /// <param name="groupId">Идентификатор сообщества.</param>
+        /// <param name="userId">Идентификатор пользователя.</param>
+        /// <returns>
+        /// Возвращает объект с единственным полем is_allowed (integer, [0,1]). Если отправка сообщений разрешена, поле содержит 1, иначе — 0.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.isMessagesFromGroupAllowed
+        /// </remarks>
+        public bool IsMessagesFromGroupAllowed(ulong groupId, ulong userId)
+        {
+            return _vk.Call("messages.isMessagesFromGroupAllowed", new VkParameters
+            {
+                {"group_id", groupId},
+                {"user_id", userId}
+            })["is_allowed"];
+        }
+
+        /// <summary>
+        /// Позволяет присоединиться к чату по ссылке-приглашению.
+        /// </summary>
+        /// <param name="link">Ссылка-приглашение.</param>
+        /// <returns>
+        /// Возвращает идентификатор чата в поле chat_id.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.joinChatByInviteLink
+        /// </remarks>
+        public long JoinChatByInviteLink(string link)
+        {
+            return _vk.Call("messages.joinChatByInviteLink", new VkParameters{ {"link", link} })["chat_id"];
+        }
+
+        /// <summary>
+        /// Помечает диалог как отвеченный либо снимает отметку.
+        /// </summary>
+        /// <param name="peerId">Идентификатор диалога</param>
+        /// <param name="answered">флаг, может принимать значения 1 или 0, по умолчанию 1</param>
+        /// <returns>
+        /// После успешного выполнения возвращает 1.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
+        /// </remarks>
+        public bool MarkAsAnsweredDialog(long peerId, bool answered = true)
+        {
+            return _vk.Call("messages.markAsAnsweredDialog", new VkParameters{ {"peer_id", peerId}, {"answered", answered} });
+        }
+
+        /// <summary>
+        /// Помечает диалог как важный либо снимает отметку.
+        /// </summary>
+        /// <param name="peerId">Идентификатор диалога </param>
+        /// <param name="important">
+        /// <c>true</c>, если сообщения необходимо пометить, как важные;
+        /// <c>0</c>, если необходимо снять пометку.положительное число (Положительное число).
+        /// </param>
+        /// <returns>
+        /// После успешного выполнения возвращает 1.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportantDialog
+        /// </remarks>
+        public bool MarkAsImportantDialog(long peerId, bool important = true)
+        {
+            return _vk.Call("messages.markAsImportantDialog", new VkParameters{ {"peer_id", peerId}, {"important", important} });
         }
     }
 }

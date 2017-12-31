@@ -1,13 +1,23 @@
-﻿namespace VkNet.Model.RequestParams
+﻿using VkNet.Utils;
+namespace VkNet.Model.RequestParams
 {
-    using Utils;
-
     /// <summary>
     /// Список параметров для метода Message.GetHistory
     /// http://vk.com/dev/messages.getHistory
     /// </summary>
-    public struct MessagesGetHistoryParams
+    public class MessagesGetHistoryParams
     {
+        /// <summary>
+        /// Смещение, необходимое для выборки определенного подмножества сообщений,
+        /// должен быть 0 или положительным, если не передан параметр start_message_id, и должен быть 0 или отрицательным, если передан.
+        /// </summary>
+        public long? Offset { get; set; }
+
+        /// <summary>
+        /// Количество сообщений, которое необходимо получить (но не более 200)
+        /// </summary>
+        public long? Count { get; set; }
+
         /// <summary>
         /// Идентификатор пользователя, историю переписки с которым необходимо вернуть.
         /// </summary>
@@ -17,17 +27,6 @@
         /// Идентификатор назначения.
         /// </summary>
         public long? PeerId { get; set; }
-
-        /// <summary>
-        /// Количество сообщений, которое необходимо получить (но не более 200)
-        /// </summary>
-        public long? Count { get; set; }
-
-        /// <summary>
-        /// Смещение, необходимое для выборки определенного подмножества сообщений,
-        /// должен быть 0 или положительным, если не передан параметр start_message_id, и должен быть 0 или отрицательным, если передан.
-        /// </summary>
-        public long? Offset { get; set; }
 
         /// <summary>
         /// Если значение > 0, то это идентификатор сообщения, начиная с которого нужно вернуть историю переписки,
