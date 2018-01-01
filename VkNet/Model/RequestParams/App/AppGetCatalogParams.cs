@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.Filters;
+﻿using Newtonsoft.Json;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -7,44 +8,31 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры запроса для приложений
 	/// </summary>
-	public struct AppGetCatalogParams
+	public class AppGetCatalogParams
 	{
-		/// <summary>
-		/// Параметры запроса для приложений.
-		/// </summary>
-		public AppGetCatalogParams(bool gog = true)
-		{
-			Sort = AppSort.PopularToday;
-			Offset = 0;
-			Count = 100;
-			Platform = AppPlatforms.Web;
-			Extended = false;
-			ReturnFriends = false;
-			Fields = null;
-			NameCase = null;
-			Query = null;
-			GenreId = null;
-			Filter = null;
-		}
 		/// <summary>
 		/// Способ сортировки приложений
 		/// </summary>
+		[JsonProperty("sort")]
 		public AppSort Sort { get; set; }
 
 		/// <summary>
 		/// Смещение, необходимое для выборки определенного подмножества приложений.
 		/// </summary>
+		[JsonProperty("offset")]
 		public uint Offset
 		{ get; set; }
 
 		/// <summary>
 		/// Количество приложений, информацию о которых необходимо вернуть.
 		/// </summary>
+		[JsonProperty("count")]
 		public uint Count { get; set; }
 
 		/// <summary>
 		/// Платформа для которой необходимо вернуть приложения, принимает значения: ios, android, winphone, web. По умолчанию используется web.
 		/// </summary>
+		[JsonProperty("platform")]
 		public AppPlatforms Platform
 		{ get; set; }
 
@@ -53,6 +41,7 @@ namespace VkNet.Model.RequestParams
 		/// catalog_position, international (отображается ли приложение в каталоге у иностранных пользователей).
 		/// По умолчанию возвращает только основные поля приложений. Если указан extended – count не должен быть больше 100.
 		/// </summary>
+		[JsonProperty("extended")]
 		public bool Extended
 		{ get; set; }
 
@@ -61,33 +50,39 @@ namespace VkNet.Model.RequestParams
 		/// (Данный параметр работает только, если пользователь передал валидный access_token)
 		/// <c>false</c> – не возвращать список друзей, по умолчанию.
 		/// </summary>
+		[JsonProperty("return_friends")]
 		public bool ReturnFriends
 		{ get; set; }
 
 		/// <summary>
 		/// Список дополнительных полей, которые необходимо вернуть для профилей пользователей.
 		/// </summary>
+		[JsonProperty("fields")]
 		public UsersFields Fields
 		{ get; set; }
 
 		/// <summary>
 		/// Падеж для склонения имени и фамилии пользователей.
 		/// </summary>
+		[JsonProperty("name_case")]
 		public NameCase NameCase
 		{ get; set; }
 		/// <summary>
 		/// Поисковая строка для поиска по каталогу приложений.
 		/// </summary>
+		[JsonProperty("q")]
 		public string Query
 		{ get; set; }
 		/// <summary>
 		/// Идентификатор жанра.
 		/// </summary>
+		[JsonProperty("genre_id")]
 		public uint? GenreId
 		{ get; set; }
 		/// <summary>
 		/// Фильтр.
 		/// </summary>
+		[JsonProperty("filter")]
 		public AppFilter Filter
 		{ get; set; }
 
