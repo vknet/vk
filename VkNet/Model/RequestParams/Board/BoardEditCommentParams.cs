@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -7,42 +8,31 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.addComment
 	/// </summary>
-	public struct BoardEditCommentParams
+	public class BoardEditCommentParams
 	{
 		/// <summary>
-		/// Параметры метода wall.addComment
+		/// Идентификатор сообщества, в котором находится обсуждение.положительное число, обязательный параметр
 		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public BoardEditCommentParams(bool gag = true)
-		{
-            GroupId = null;
-            TopicId = 0;
-            CommentId = 0;
-            Message = null;
-            Attachments = null;
-		    CaptchaKey = null;
-		    CaptchaSid = null;
-		}
+		[JsonProperty("group_id")]
+		public long? GroupId { get; set; }
+
+		/// <summary>
+		/// Идентификатор темы, в которой необходимо оставить комментарий.положительное число, обязательный параметр
+		/// </summary>
+		[JsonProperty("topic_id")]
+		public long TopicId { get; set; }
 
         /// <summary>
-        /// идентификатор сообщества, в котором находится обсуждение.положительное число, обязательный параметр
+        /// Идентификатор комментария в обсуждении.положительное число, обязательный параметр.
         /// </summary>
-        public long? GroupId { get; set; }
-
-        /// <summary>
-        /// Идентификатор темы, в которой необходимо оставить комментарий.положительное число, обязательный параметр
-        /// </summary>
-        public long TopicId { get; set; }
-
-        /// <summary>
-        /// идентификатор комментария в обсуждении.положительное число, обязательный параметр.
-        /// </summary>
+        [JsonProperty("comment_id")]
         public long CommentId { get; set; }
 
-        /// <summary>
-        /// новый текст комментария (является обязательным, если не задан параметр attachments). 
-        /// </summary>
-        public string Message { get; set; }
+		/// <summary>
+		/// Текст комментария. Обязательный параметр, если не передано значение attachments. 
+		/// </summary>
+		[JsonProperty("message")]
+		public string Message { get; set; }
 
 		/// <summary>
 		/// Список объектов, приложенных к комментарию и разделённых символом ",". Поле attachments представляется в формате:
@@ -59,17 +49,20 @@ namespace VkNet.Model.RequestParams
 		/// photo100172_166443618,photo66748_265827614
 		/// Параметр является обязательным, если не задан параметр text. список строк, разделенных через запятую.
 		/// </summary>
+		[JsonProperty("attachments")]
 		public IEnumerable<MediaAttachment> Attachments { get; set; }
-   
-        /// <summary>
-        /// Идентификатор капчи
-        /// </summary>
-        public long? CaptchaSid { get; set; }
 
-        /// <summary>
-        /// текст, который ввел пользователь
-        /// </summary>
-        public string CaptchaKey { get; set; }
+		/// <summary>
+		/// Идентификатор капчи
+		/// </summary>
+		[JsonProperty("captcha_sid")]
+		public long? CaptchaSid { get; set; }
+
+		/// <summary>
+		/// Текст, который ввел пользователь
+		/// </summary>
+		[JsonProperty("captcha_key")]
+		public string CaptchaKey { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.

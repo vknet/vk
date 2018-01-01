@@ -1,49 +1,42 @@
-﻿using VkNet.Utils;
+﻿using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры метода wall.addComment
 	/// </summary>
-	public struct BoardEditTopicParams
+	public class BoardEditTopicParams
 	{
-		/// <summary>
-		/// Параметры метода wall.addComment
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public BoardEditTopicParams(bool gag = true)
-		{
-            GroupId = 0;
-            TopicId = 0;
-            Title = null;
-            CaptchaKey = null;
-            CaptchaSid = null;
-        }
-
         /// <summary>
-        /// идентификатор сообщества, в котором находится обсуждение.положительное число, обязательный параметр
+        /// Идентификатор сообщества, в котором находится обсуждение.положительное число, обязательный параметр
         /// </summary>
+        [JsonProperty("group_id")]
         public long GroupId { get; set; }
 
         /// <summary>
-        /// идентификатор сообщества, в котором находится обсуждение.положительное число, обязательный параметр
+        /// Идентификатор сообщества, в котором находится обсуждение.положительное число, обязательный параметр
         /// </summary>
+        [JsonProperty("topic_id")]
         public long TopicId { get; set; }
 
         /// <summary>
-        /// новое название обсуждения. Обязательный параметр. 
+        /// Новое название обсуждения. Обязательный параметр. 
         /// </summary>
+        [JsonProperty("title")]
         public string Title { get; set; }
 
-        /// <summary>
-        /// Идентификатор капчи
-        /// </summary>
-        public long? CaptchaSid { get; set; }
+		/// <summary>
+		/// Идентификатор капчи
+		/// </summary>
+		[JsonProperty("captcha_sid")]
+		public long? CaptchaSid { get; set; }
 
-        /// <summary>
-        /// текст, который ввел пользователь
-        /// </summary>
-        public string CaptchaKey { get; set; }
+		/// <summary>
+		/// Текст, который ввел пользователь
+		/// </summary>
+		[JsonProperty("captcha_key")]
+		public string CaptchaKey { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.

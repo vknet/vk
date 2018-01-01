@@ -7,7 +7,7 @@ namespace VkNet.Abstractions
     /// <summary>
     /// Методы для работы со темами группы.
     /// </summary>
-    public interface IBoardCategory
+    public interface IBoardCategory : IBoardCategoryAsync
     {
         /// <summary>
         /// Возвращает список тем в обсуждениях указанной группы.
@@ -53,7 +53,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
         /// </remarks>
-        long DeleteTopic(BoardTopicParams @params);
+        bool DeleteTopic(BoardTopicParams @params);
 
         /// <summary>
         /// Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять новые сообщения).
@@ -64,7 +64,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
         /// </remarks>
-        long CloseTopic(BoardTopicParams @params);
+        bool CloseTopic(BoardTopicParams @params);
 
         /// <summary>
         /// Открывает ранее закрытую тему (в ней станет возможно оставлять новые сообщения).
@@ -75,7 +75,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
         /// </remarks>
-        long OpenTopic(BoardTopicParams @params);
+        bool OpenTopic(BoardTopicParams @params);
 
         /// <summary>
         /// Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке выводится выше остальных).
@@ -86,7 +86,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
         /// </remarks>
-        long FixTopic(BoardTopicParams @params);
+        bool FixTopic(BoardTopicParams @params);
 
         /// <summary>
         /// Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться согласно выбранной сортировке).
@@ -97,7 +97,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
         /// </remarks>
-        long UnFixTopic(BoardTopicParams @params);
+        bool UnFixTopic(BoardTopicParams @params);
 
         /// <summary>
         /// Изменяет заголовок темы в списке обсуждений группы.
@@ -108,7 +108,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
         /// </remarks>
-        long EditTopic(BoardEditTopicParams @params);
+        bool EditTopic(BoardEditTopicParams @params);
 
         /// <summary>
         /// Добавляет новый комментарий в обсуждении.
@@ -119,7 +119,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.createComment" />.
         /// </remarks>
-        long СreateComment(BoardCreateCommentParams @params);
+        long CreateComment(BoardCreateCommentParams @params);
 
         /// <summary>
         /// Удаляет сообщение в обсуждениях сообщества.
@@ -130,7 +130,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.deleteComment" />.
         /// </remarks>
-        long DeleteComment(BoardCommentParams @params);
+        bool DeleteComment(BoardCommentParams @params);
 
         /// <summary>
         /// Редактирует одно из сообщений в обсуждении сообщества..
@@ -141,7 +141,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.editComment
         /// </remarks>
-        long EditComment(BoardEditCommentParams @params);
+        bool EditComment(BoardEditCommentParams @params);
 
         /// <summary>
         /// Восстанавливает удаленное сообщение темы в обсуждениях группы.
@@ -152,6 +152,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
         /// </remarks>
-        long RestoreComment(BoardCommentParams @params);
+        bool RestoreComment(BoardCommentParams @params);
     }
 }

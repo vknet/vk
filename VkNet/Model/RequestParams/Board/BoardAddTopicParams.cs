@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -7,41 +8,30 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.addComment
 	/// </summary>
-	public struct BoardAddTopicParams
+	public class BoardAddTopicParams
 	{
-		/// <summary>
-		/// Параметры метода wall.addComment
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public BoardAddTopicParams(bool gag = true)
-		{
-            GroupId = 0;
-            Title = null;
-            Text = null;
-            FromGroup = null;
-            Attachments = null;
-            CaptchaKey = null;
-            CaptchaSid = null;
-        }
-
         /// <summary>
         /// идентификатор сообщества, в котором находится обсуждение.положительное число, обязательный параметр
         /// </summary>
+        [JsonProperty("group_id")]
         public long GroupId { get; set; }
 
         /// <summary>
         /// название обсуждения. Обязательный параметр. 
         /// </summary>
+        [JsonProperty("title")]
         public string Title { get; set; }
 
         /// <summary>
         /// текст первого сообщения в обсуждении. 
         /// </summary>
+        [JsonProperty("text")]
         public string Text { get; set; }
 
         /// <summary>
         /// 1 — сообщение будет опубликовано от имени группы, 0 — сообщение будет опубликовано от имени пользователя (по умолчанию).
         /// </summary>
+        [JsonProperty("from_group")]
         public bool? FromGroup { get; set; }
 
         /// <summary>
@@ -59,16 +49,19 @@ namespace VkNet.Model.RequestParams
         /// photo100172_166443618,photo66748_265827614
         /// Параметр является обязательным, если не задан параметр text. список строк, разделенных через запятую.
         /// </summary>
+        [JsonProperty("attachments")]
         public IEnumerable<MediaAttachment> Attachments { get; set; }
 
         /// <summary>
         /// Идентификатор капчи
         /// </summary>
+        [JsonProperty("captcha_sid")]
         public long? CaptchaSid { get; set; }
 
         /// <summary>
         /// текст, который ввел пользователь
         /// </summary>
+        [JsonProperty("captcha_key")]
         public string CaptchaKey { get; set; }
 
 		/// <summary>

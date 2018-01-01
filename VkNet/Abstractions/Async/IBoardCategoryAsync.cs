@@ -1,25 +1,15 @@
-﻿using VkNet.Abstractions;
+﻿using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
-namespace VkNet.Categories
+
+namespace VkNet.Abstractions
 {
     /// <summary>
-	/// Методы для работы со темами группы.
-	/// </summary>
-	public partial class BoardCategory : IBoardCategory
+    /// Асинхронные методы для работы со темами группы.
+    /// </summary>
+    public interface IBoardCategoryAsync
     {
-        private readonly VkApi _vk;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="vk"></param>
-        public BoardCategory(VkApi vk)
-        {
-            _vk = vk;
-        }
-
         /// <summary>
         /// Возвращает список тем в обсуждениях указанной группы.
         /// </summary>
@@ -30,10 +20,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getTopics" />.
         /// </remarks>
-        public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false)
-        {
-            return _vk.Call("board.getTopics", @params, skipAuthorization).ToVkCollectionOf<Topic>(x => x);
-        }
+        Task<VkCollection<Topic>> GetTopicsAsync(BoardGetTopicsParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает список сообщений в указанной теме.
@@ -45,18 +32,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getComments" />.
         /// </remarks>
-        public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false)
-        {
-            var response = _vk.Call("board.getComments", @params, skipAuthorization);
-            var result = new TopicsFeed
-            {
-                Count = response["count"],
-                Items = response["items"].ToReadOnlyCollectionOf<Comment>(x => x),
-                Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(x => x),
-                Groups = response["groups"].ToReadOnlyCollectionOf<Group>(x => x)
-            };
-            return result;
-        }
+        Task<TopicsFeed> GetCommentsAsync(BoardGetCommentsParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Создает новую тему в списке обсуждений группы.
@@ -67,10 +43,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.addTopic
         /// </remarks>
-        public long AddTopic(BoardAddTopicParams @params)
-        {
-            return _vk.Call("board.addTopic", @params);
-        }
+        Task<long> AddTopicAsync(BoardAddTopicParams @params);
 
         /// <summary>
         /// Удаляет тему в обсуждениях группы.
@@ -81,10 +54,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
         /// </remarks>
-        public bool DeleteTopic(BoardTopicParams @params)
-        {
-            return _vk.Call("board.deleteTopic", @params);
-        }
+        Task<bool> DeleteTopicAsync(BoardTopicParams @params);
 
         /// <summary>
         /// Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять новые сообщения).
@@ -95,10 +65,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
         /// </remarks>
-        public bool CloseTopic(BoardTopicParams @params)
-        {
-            return _vk.Call("board.closeTopic", @params);
-        }
+        Task<bool> CloseTopicAsync(BoardTopicParams @params);
 
         /// <summary>
         /// Открывает ранее закрытую тему (в ней станет возможно оставлять новые сообщения).
@@ -109,10 +76,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
         /// </remarks>
-        public bool OpenTopic(BoardTopicParams @params)
-        {
-            return _vk.Call("board.openTopic", @params);
-        }
+        Task<bool> OpenTopicAsync(BoardTopicParams @params);
 
         /// <summary>
         /// Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке выводится выше остальных).
@@ -123,10 +87,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
         /// </remarks>
-        public bool FixTopic(BoardTopicParams @params)
-        {
-            return _vk.Call("board.fixTopic", @params);
-        }
+        Task<bool> FixTopicAsync(BoardTopicParams @params);
 
         /// <summary>
         /// Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться согласно выбранной сортировке).
@@ -137,11 +98,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
         /// </remarks>
-        public bool UnFixTopic(BoardTopicParams @params)
-        {
-            return _vk.Call("board.unfixTopic", @params);
-        }
-
+        Task<bool> UnFixTopicAsync(BoardTopicParams @params);
 
         /// <summary>
         /// Изменяет заголовок темы в списке обсуждений группы.
@@ -152,10 +109,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
         /// </remarks>
-        public bool EditTopic(BoardEditTopicParams @params)
-        {
-            return _vk.Call("board.editTopic", @params);
-        }
+        Task<bool> EditTopicAsync(BoardEditTopicParams @params);
 
         /// <summary>
         /// Добавляет новый комментарий в обсуждении.
@@ -166,10 +120,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.createComment" />.
         /// </remarks>
-        public long CreateComment(BoardCreateCommentParams @params)
-        {
-            return _vk.Call("board.createComment", @params);
-        }
+        Task<long> CreateCommentAsync(BoardCreateCommentParams @params);
 
         /// <summary>
         /// Удаляет сообщение в обсуждениях сообщества.
@@ -180,10 +131,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.deleteComment" />.
         /// </remarks>
-        public bool DeleteComment(BoardCommentParams @params)
-        {
-            return _vk.Call("board.deleteComment", @params);
-        }
+        Task<bool> DeleteCommentAsync(BoardCommentParams @params);
 
         /// <summary>
         /// Редактирует одно из сообщений в обсуждении сообщества..
@@ -194,10 +142,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.editComment
         /// </remarks>
-        public bool EditComment(BoardEditCommentParams @params)
-        {
-            return _vk.Call("board.editComment", @params);
-        }
+        Task<bool> EditCommentAsync(BoardEditCommentParams @params);
 
         /// <summary>
         /// Восстанавливает удаленное сообщение темы в обсуждениях группы.
@@ -208,9 +153,6 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
         /// </remarks>
-        public bool RestoreComment(BoardCommentParams @params)
-        {
-            return _vk.Call("board.restoreComment", @params);
-        }
+        Task<bool> RestoreCommentAsync(BoardCommentParams @params);
     }
 }

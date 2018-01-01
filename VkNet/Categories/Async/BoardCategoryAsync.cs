@@ -1,25 +1,15 @@
-﻿using VkNet.Abstractions;
+﻿using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
+
 namespace VkNet.Categories
 {
     /// <summary>
-	/// Методы для работы со темами группы.
-	/// </summary>
-	public partial class BoardCategory : IBoardCategory
+    /// Асинхронные методы для работы со темами группы.
+    /// </summary>
+    public partial class BoardCategory
     {
-        private readonly VkApi _vk;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="vk"></param>
-        public BoardCategory(VkApi vk)
-        {
-            _vk = vk;
-        }
-
         /// <summary>
         /// Возвращает список тем в обсуждениях указанной группы.
         /// </summary>
@@ -30,9 +20,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getTopics" />.
         /// </remarks>
-        public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false)
+        public async Task<VkCollection<Topic>> GetTopicsAsync(BoardGetTopicsParams @params, bool skipAuthorization = false)
         {
-            return _vk.Call("board.getTopics", @params, skipAuthorization).ToVkCollectionOf<Topic>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.GetTopics(@params, skipAuthorization));
         }
 
         /// <summary>
@@ -45,17 +35,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getComments" />.
         /// </remarks>
-        public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false)
+        public async Task<TopicsFeed> GetCommentsAsync(BoardGetCommentsParams @params, bool skipAuthorization = false)
         {
-            var response = _vk.Call("board.getComments", @params, skipAuthorization);
-            var result = new TopicsFeed
-            {
-                Count = response["count"],
-                Items = response["items"].ToReadOnlyCollectionOf<Comment>(x => x),
-                Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(x => x),
-                Groups = response["groups"].ToReadOnlyCollectionOf<Group>(x => x)
-            };
-            return result;
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.GetComments(@params, skipAuthorization));
         }
 
         /// <summary>
@@ -67,9 +49,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.addTopic
         /// </remarks>
-        public long AddTopic(BoardAddTopicParams @params)
+        public async Task<long> AddTopicAsync(BoardAddTopicParams @params)
         {
-            return _vk.Call("board.addTopic", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.AddTopic(@params));
         }
 
         /// <summary>
@@ -81,9 +63,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
         /// </remarks>
-        public bool DeleteTopic(BoardTopicParams @params)
+        public async Task<bool> DeleteTopicAsync(BoardTopicParams @params)
         {
-            return _vk.Call("board.deleteTopic", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.DeleteTopic(@params));
         }
 
         /// <summary>
@@ -95,9 +77,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
         /// </remarks>
-        public bool CloseTopic(BoardTopicParams @params)
+        public async Task<bool> CloseTopicAsync(BoardTopicParams @params)
         {
-            return _vk.Call("board.closeTopic", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.CloseTopic(@params));
         }
 
         /// <summary>
@@ -109,9 +91,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
         /// </remarks>
-        public bool OpenTopic(BoardTopicParams @params)
+        public async Task<bool> OpenTopicAsync(BoardTopicParams @params)
         {
-            return _vk.Call("board.openTopic", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.OpenTopic(@params));
         }
 
         /// <summary>
@@ -123,9 +105,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
         /// </remarks>
-        public bool FixTopic(BoardTopicParams @params)
+        public async Task<bool> FixTopicAsync(BoardTopicParams @params)
         {
-            return _vk.Call("board.fixTopic", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.FixTopic(@params));
         }
 
         /// <summary>
@@ -137,11 +119,10 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
         /// </remarks>
-        public bool UnFixTopic(BoardTopicParams @params)
+        public async Task<bool> UnFixTopicAsync(BoardTopicParams @params)
         {
-            return _vk.Call("board.unfixTopic", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.UnFixTopic(@params));
         }
-
 
         /// <summary>
         /// Изменяет заголовок темы в списке обсуждений группы.
@@ -152,9 +133,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
         /// </remarks>
-        public bool EditTopic(BoardEditTopicParams @params)
+        public async Task<bool> EditTopicAsync(BoardEditTopicParams @params)
         {
-            return _vk.Call("board.editTopic", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.EditTopic(@params));
         }
 
         /// <summary>
@@ -166,9 +147,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.createComment" />.
         /// </remarks>
-        public long CreateComment(BoardCreateCommentParams @params)
+        public async Task<long> CreateCommentAsync(BoardCreateCommentParams @params)
         {
-            return _vk.Call("board.createComment", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.CreateComment(@params));
         }
 
         /// <summary>
@@ -180,9 +161,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.deleteComment" />.
         /// </remarks>
-        public bool DeleteComment(BoardCommentParams @params)
+        public async Task<bool> DeleteCommentAsync(BoardCommentParams @params)
         {
-            return _vk.Call("board.deleteComment", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.DeleteComment(@params));
         }
 
         /// <summary>
@@ -194,9 +175,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.editComment
         /// </remarks>
-        public bool EditComment(BoardEditCommentParams @params)
+        public async Task<bool> EditCommentAsync(BoardEditCommentParams @params)
         {
-            return _vk.Call("board.editComment", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.EditComment(@params));
         }
 
         /// <summary>
@@ -208,9 +189,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
         /// </remarks>
-        public bool RestoreComment(BoardCommentParams @params)
+        public async Task<bool> RestoreCommentAsync(BoardCommentParams @params)
         {
-            return _vk.Call("board.restoreComment", @params);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Board.RestoreComment(@params));
         }
     }
 }

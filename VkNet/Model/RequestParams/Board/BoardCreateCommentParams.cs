@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -7,38 +8,24 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.addComment
 	/// </summary>
-	public struct BoardCreateCommentParams
+	public class BoardCreateCommentParams
 	{
-		/// <summary>
-		/// Параметры метода wall.addComment
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public BoardCreateCommentParams(bool gag = true)
-		{
-            GroupId = null;
-            TopicId = 0;
-            Message = null;
-            FromGroup = null;
-            Attachments = null;
-			StickerId = null;
-		    CaptchaKey = null;
-		    CaptchaSid = null;
-            Guid = null;
-		}
-
         /// <summary>
-        /// идентификатор сообщества, в котором находится обсуждение.положительное число, обязательный параметр
+        /// Идентификатор сообщества, в котором находится обсуждение.положительное число, обязательный параметр
         /// </summary>
+        [JsonProperty("group_id")]
         public long? GroupId { get; set; }
 
         /// <summary>
         /// Идентификатор темы, в которой необходимо оставить комментарий.положительное число, обязательный параметр
         /// </summary>
+        [JsonProperty("topic_id")]
         public long TopicId { get; set; }
 
         /// <summary>
-        /// текст комментария. Обязательный параметр, если не передано значение attachments. 
+        /// Текст комментария. Обязательный параметр, если не передано значение attachments. 
         /// </summary>
+        [JsonProperty("message")]
         public string Message { get; set; }
 
 		/// <summary>
@@ -56,31 +43,37 @@ namespace VkNet.Model.RequestParams
 		/// photo100172_166443618,photo66748_265827614
 		/// Параметр является обязательным, если не задан параметр text. список строк, разделенных через запятую.
 		/// </summary>
+		[JsonProperty("attachments")]
 		public IEnumerable<MediaAttachment> Attachments { get; set; }
 
         /// <summary>
         /// 1 — сообщение будет опубликовано от имени группы, 0 — сообщение будет опубликовано от имени пользователя (по умолчанию).
         /// </summary>
+        [JsonProperty("from_group")]
         public bool? FromGroup { get; set; }
 
         /// <summary>
         /// Идентификатор стикера. положительное число.
         /// </summary>
+        [JsonProperty("sticker_id")]
         public long? StickerId { get; set; }
 
-        /// <summary>
-        /// Идентификатор капчи
-        /// </summary>
-        public long? CaptchaSid { get; set; }
+		/// <summary>
+		/// Идентификатор капчи
+		/// </summary>
+		[JsonProperty("captcha_sid")]
+		public long? CaptchaSid { get; set; }
 
-        /// <summary>
-        /// текст, который ввел пользователь
-        /// </summary>
-        public string CaptchaKey { get; set; }
+		/// <summary>
+		/// Текст, который ввел пользователь
+		/// </summary>
+		[JsonProperty("captcha_key")]
+		public string CaptchaKey { get; set; }
 
         /// <summary>
         /// уникальный идентификатор, предназначенный для предотвращения повторной отправки одинакового комментария. 
         /// </summary>
+        [JsonProperty("guid")]
         public string Guid { get; set; }
 
 		/// <summary>
