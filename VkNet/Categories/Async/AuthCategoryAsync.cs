@@ -1,12 +1,12 @@
-﻿using VkNet.Model;
+﻿using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
-namespace VkNet.Abstractions
+namespace VkNet.Categories
 {
-    /// <summary>
-    /// Методы для работы с авторизацией.
-    /// </summary>
-    public interface IAuthCategory : IAuthCategoryAsync
+    /// <inheritdoc />
+    public partial class AuthCategory
     {
         /// <summary>
         /// Проверяет правильность введённого номера.
@@ -21,7 +21,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/auth.checkPhone
         /// </remarks>
-        bool CheckPhone(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null);
+        public async Task<bool> CheckPhoneAsync(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Auth.CheckPhone(phone, clientSecret, clientId, authByPhone));
+        }
 
         /// <summary>
         /// Регистрирует нового пользователя по номеру телефона.
@@ -33,7 +36,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/auth.signup
         /// </remarks>
-        string Signup(AuthSignupParams @params);
+        public async Task<string> SignupAsync(AuthSignupParams @params)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Auth.Signup(@params));
+        }
 
         /// <summary>
         /// Завершает регистрацию нового пользователя, начатую методом auth.signup, по коду, полученному через SMS.
@@ -45,7 +51,10 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/auth.confirm
         /// </remarks>
-        AuthConfirmResult Confirm(AuthConfirmParams @params);
+        public async Task<AuthConfirmResult> ConfirmAsync(AuthConfirmParams @params)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Auth.Confirm(@params));
+        }
 
         /// <summary>
         /// Позволяет восстановить доступ к аккаунту, используя код, полученный через SMS.
@@ -58,6 +67,9 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/auth.restore
         /// </remarks>
-        string Restore(string phone, string lastName);
+        public async Task<string> RestoreAsync(string phone, string lastName)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Auth.Restore(phone, lastName));
+        }
     }
 }

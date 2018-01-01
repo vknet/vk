@@ -1,12 +1,13 @@
-﻿using VkNet.Model;
+﻿using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы с авторизацией.
+    /// Асинхронные методы для работы с авторизацией.
     /// </summary>
-    public interface IAuthCategory : IAuthCategoryAsync
+    public interface IAuthCategoryAsync
     {
         /// <summary>
         /// Проверяет правильность введённого номера.
@@ -21,7 +22,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/auth.checkPhone
         /// </remarks>
-        bool CheckPhone(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null);
+        Task<bool> CheckPhoneAsync(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null);
 
         /// <summary>
         /// Регистрирует нового пользователя по номеру телефона.
@@ -33,7 +34,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/auth.signup
         /// </remarks>
-        string Signup(AuthSignupParams @params);
+        Task<string> SignupAsync(AuthSignupParams @params);
 
         /// <summary>
         /// Завершает регистрацию нового пользователя, начатую методом auth.signup, по коду, полученному через SMS.
@@ -45,7 +46,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/auth.confirm
         /// </remarks>
-        AuthConfirmResult Confirm(AuthConfirmParams @params);
+        Task<AuthConfirmResult> ConfirmAsync(AuthConfirmParams @params);
 
         /// <summary>
         /// Позволяет восстановить доступ к аккаунту, используя код, полученный через SMS.
@@ -58,6 +59,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/auth.restore
         /// </remarks>
-        string Restore(string phone, string lastName);
+        Task<string> RestoreAsync(string phone, string lastName);
     }
 }
