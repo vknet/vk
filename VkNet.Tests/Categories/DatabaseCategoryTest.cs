@@ -4,6 +4,7 @@ using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
+using VkNet.Model.RequestParams.Database;
 
 namespace VkNet.Tests.Categories
 {
@@ -134,14 +135,21 @@ namespace VkNet.Tests.Categories
         public void GetCities_CountryIdIsNegative_ThrowException()
         {
             var db = GetMockedDatabaseCategory("", "");
-			Assert.That(() => db.GetCities(-1), Throws.InstanceOf<ArgumentException>());
+			Assert.That(() => db.GetCities(new GetCitiesParams
+			{
+			    CountryId = -1
+			}), Throws.InstanceOf<ArgumentException>());
 		}
 
         [Test]
         public void GetCities_RegionIdIsNegative_ThrowException()
         {
             var db = GetMockedDatabaseCategory("", "");
-			Assert.That(() => db.GetCities(1, -2), Throws.InstanceOf<ArgumentException>());
+			Assert.That(() => db.GetCities(new GetCitiesParams
+			{
+			    CountryId = 1,
+			    RegionId = -2
+			}), Throws.InstanceOf<ArgumentException>());
 		}
 
         [Test]
@@ -224,7 +232,11 @@ namespace VkNet.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            var cities = db.GetCities(1, count: 3);
+            var cities = db.GetCities(new GetCitiesParams
+            {
+                CountryId = 1, 
+                Count = 3
+            });
 
 			Assert.That(cities.Count, Is.EqualTo(3));
 
@@ -278,7 +290,13 @@ namespace VkNet.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-            var cities = db.GetCities(1, 1004118, count:2, offset:1);
+            var cities = db.GetCities(new GetCitiesParams
+            {
+                CountryId = 1, 
+                RegionId = 1004118,
+                Count = 2,
+                Offset = 1
+            });
 
             Assert.That(cities.Count, Is.EqualTo(2));
 

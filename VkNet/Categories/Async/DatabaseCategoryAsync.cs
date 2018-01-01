@@ -1,30 +1,15 @@
 ﻿using System.Collections.Generic;
-using VkNet.Abstractions;
-using VkNet.Enums;
-using VkNet.Model.RequestParams.Database;
 using System.Collections.ObjectModel;
-using JetBrains.Annotations;
+using System.Threading.Tasks;
+using VkNet.Enums;
 using VkNet.Model;
+using VkNet.Model.RequestParams.Database;
 using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-    /// <summary>
-    /// Методы для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
-    /// </summary>
-    public partial class DatabaseCategory : IDatabaseCategory
+    public partial class DatabaseCategory
     {
-        private readonly VkApi _vk;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="vk"></param>
-        public DatabaseCategory(VkApi vk)
-        {
-            _vk = vk;
-        }
-
         /// <summary>
         /// Возвращает список стран.
         /// </summary>
@@ -40,21 +25,11 @@ namespace VkNet.Categories
         /// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
         /// Страница документации ВКонтакте http://vk.com/dev/database.getCountries
         /// </remarks>
-        [Pure]
-        public VkCollection<Country> GetCountries(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null, int? offset = null)
+        public async Task<VkCollection<Country>> GetCountriesAsync(bool? needAll = null,
+            IEnumerable<Iso3166> codes = null, int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-
-            var parameters = new VkParameters
-            {
-                { "code", codes },
-                { "offset", offset },
-                { "count", count },
-                { "need_all", needAll }
-            };
-
-            return _vk.Call("database.getCountries", parameters, true).ToVkCollectionOf<Country>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Database.GetCountries(needAll, codes, count, offset));
         }
 
         /// <summary>
@@ -68,22 +43,11 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/database.getRegions
         /// </remarks>
-        [Pure]
-        public VkCollection<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null)
+        public async Task<VkCollection<Region>> GetRegionsAsync(int countryId, string query = "", int? count = null,
+            int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(() => countryId);
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-
-            var parameters = new VkParameters
-            {
-                { "country_id", countryId },
-                { "q", query },
-                { "offset", offset },
-                { "count", count }
-            };
-
-            return _vk.Call("database.getRegions", parameters, true).ToVkCollectionOf<Region>(r => r);
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Database.GetRegions(countryId, query, count, offset));
         }
 
         /// <summary>
@@ -94,15 +58,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/database.getStreetsById
         /// </remarks>
-        [Pure]
-        public ReadOnlyCollection<Street> GetStreetsById(params int[] streetIds)
+        public async Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(params int[] streetIds)
         {
-            var parameters = new VkParameters
-            {
-	            { "street_ids", streetIds.JoinNonEmpty() }
-            };
-
-            return _vk.Call("database.getStreetsById", parameters, true).ToReadOnlyCollectionOf<Street>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Database.GetStreetsById(streetIds));
         }
 
         /// <summary>
@@ -113,15 +71,9 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/database.getCountriesById
         /// </remarks>
-        [Pure]
-        public ReadOnlyCollection<Country> GetCountriesById(params int[] countryIds)
+        public async Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(params int[] countryIds)
         {
-            var parameters = new VkParameters
-            {
-	            { "country_ids", countryIds.JoinNonEmpty() }
-            };
-
-            return _vk.Call("database.getCountriesById", parameters, true).ToReadOnlyCollectionOf<Country>(c => c);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Database.GetCountriesById(countryIds));
         }
 
         /// <summary>
@@ -137,13 +89,9 @@ namespace VkNet.Categories
         /// Если задан параметр <paramref name="params.query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
         /// Страница документации ВКонтакте http://vk.com/dev/database.getCities
         /// </remarks>
-        [Pure]
-        public VkCollection<City> GetCities(GetCitiesParams @params)
+        public async Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams @params)
         {
-            VkErrors.ThrowIfNumberIsNegative(() => @params.CountryId);
-            VkErrors.ThrowIfNumberIsNegative(() => @params.RegionId);
-
-            return _vk.Call("database.getCities", @params, true).ToVkCollectionOf<City>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Database.GetCities(@params));
         }
 
         /// <summary>
@@ -156,15 +104,9 @@ namespace VkNet.Categories
         /// places.getById, places.search, places.getCheckins.
         /// Страница документации ВКонтакте http://vk.com/dev/database.getCitiesById
         /// </remarks>
-        [Pure]
-        public ReadOnlyCollection<City> GetCitiesById(params int[] cityIds)
+        public async Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(params int[] cityIds)
         {
-	        var parameters = new VkParameters
-	        {
-		        { "city_ids", cityIds.JoinNonEmpty() }
-	        };
-
-            return _vk.Call("database.getCitiesById", parameters, true).ToReadOnlyCollectionOf<City>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Database.GetCitiesById(cityIds));
         }
 
         /// <summary>
@@ -179,24 +121,11 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/database.getUniversities
         /// </remarks>
-        [Pure]
-        public VkCollection<University> GetUniversities(int countryId, int cityId, string query = "", int? count = null, int? offset = null)
+        public async Task<VkCollection<University>> GetUniversitiesAsync(int countryId, int cityId, string query = "",
+            int? count = null, int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(() => countryId);
-            VkErrors.ThrowIfNumberIsNegative(() => cityId);
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
-
-            var parameters = new VkParameters
-            {
-                {"q", query},
-                {"country_id", countryId},
-                {"city_id", cityId},
-                {"offset", offset},
-                {"count", count}
-            };
-
-            return _vk.Call("database.getUniversities", parameters, true).ToVkCollectionOf<University>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Database.GetUniversities(countryId, cityId, query, count, offset));
         }
 
         /// <summary>
@@ -210,22 +139,10 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/database.getSchools
         /// </remarks>
-        [Pure]
-        public VkCollection<School> GetSchools(int cityId, string query = "", int? offset = null, int? count = null)
+        public async Task<VkCollection<School>> GetSchoolsAsync(int cityId, string query = "", int? offset = null,
+            int? count = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(() => cityId);
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
-
-            var parameters = new VkParameters
-            {
-                { "q", query },
-                { "city_id", cityId },
-                { "offset", offset },
-                { "count", count }
-            };
-
-            return _vk.Call("database.getSchools", parameters, true).ToVkCollectionOf<School>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Database.GetSchools(cityId, query, count, offset));
         }
 
         /// <summary>
@@ -238,21 +155,11 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/database.getFaculties
         /// </remarks>
-        [Pure]
-        public VkCollection<Faculty> GetFaculties(long universityId, int? count = null, int? offset = null)
+        public async Task<VkCollection<Faculty>> GetFacultiesAsync(long universityId, int? count = null,
+            int? offset = null)
         {
-            VkErrors.ThrowIfNumberIsNegative(() => universityId);
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
-
-            var parameters = new VkParameters
-            {
-                { "university_id", universityId },
-                { "offset", offset },
-                { "count", count }
-            };
-
-            return _vk.Call("database.getFaculties", parameters, true).ToVkCollectionOf<Faculty>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Database.GetFaculties(universityId,  count, offset));
         }
 
         /// <summary>
@@ -263,15 +170,10 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/database.getSchoolClasses
         /// </remarks>
-        [Pure]
-        public ReadOnlyCollection<SchoolClass> GetSchoolClasses(long countryId)
+        public async Task<ReadOnlyCollection<SchoolClass>> GetSchoolClassesAsync(long countryId)
         {
-            var parameters = new VkParameters
-            {
-                { "country_id", countryId }
-            };
-
-            return _vk.Call("database.getSchoolClasses", parameters, true).ToReadOnlyCollectionOf<SchoolClass>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Database.GetSchoolClasses(countryId));
         }
 
         /// <summary>
@@ -286,17 +188,10 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/database.getChairs
         /// </remarks>
-        [Pure]
-        public VkCollection<Chair> GetChairs(long facultyId, int? count = null, int? offset = null)
+        public async Task<VkCollection<Chair>> GetChairsAsync(long facultyId, int? count = null, int? offset = null)
         {
-            var parameters = new VkParameters
-            {
-                { "faculty_id", facultyId },
-                { "offset", offset },
-                { "count", count }
-            };
-
-            return _vk.Call("database.getChairs", parameters, true).ToVkCollectionOf<Chair>(x => x);
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Database.GetChairs(facultyId, count, offset));
         }
     }
 }

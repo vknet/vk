@@ -2,11 +2,15 @@
 using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Model;
+using VkNet.Model.RequestParams.Database;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-    public interface IDatabaseCategory
+    /// <summary>
+    /// Методы для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+    /// </summary>
+    public interface IDatabaseCategory : IDatabaseCategoryAsync
     {
         /// <summary>
         /// Возвращает список стран.
@@ -61,22 +65,17 @@ namespace VkNet.Abstractions
         /// <summary>
         /// Возвращает список городов.
         /// </summary>
-        /// <param name="countryId">Идентификатор страны.</param>
-        /// <param name="regionId">Идентификатор региона.</param>
-        /// <param name="query">Строка поискового запроса. Например, Санкт.</param>
-        /// <param name="needAll"><c>true</c> – возвращать все города. <c>false</c> – возвращать только основные города.</param>
-        /// <param name="count">Количество городов, которые необходимо вернуть.</param>
-        /// <param name="offset">Отступ, необходимый для получения определенного подмножества городов.</param>
+        /// <param name="params">Параметры запроса database.getCities</param>
         /// <returns>Cписок городов</returns>
         /// <remarks>
         /// Возвращает коллекцию городов, каждый из которых содержит поля City.Id
         /// При наличии информации о регионе и/или области, в которых находится данный город, в объекте могут дополнительно
         /// включаться поля City.Area
-        /// Если не задан параметр <paramref name="query"/>, то будет возвращен список самых крупных городов в заданной стране.
-        /// Если задан параметр <paramref name="query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
+        /// Если не задан параметр <paramref name="@params.query"/>, то будет возвращен список самых крупных городов в заданной стране.
+        /// Если задан параметр <paramref name="@params.query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
         /// Страница документации ВКонтакте http://vk.com/dev/database.getCities
         /// </remarks>
-        VkCollection<City> GetCities(int countryId, int? regionId = null, string query = "", bool? needAll = false, int? count = null, int? offset = null);
+        VkCollection<City> GetCities(GetCitiesParams @params);
 
         /// <summary>
         /// Возвращает информацию о городах по их идентификаторам.
