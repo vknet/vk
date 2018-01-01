@@ -416,7 +416,6 @@ namespace VkNet.Tests.Categories
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			int res;
 			Assert.That(() => account.GetBanned(), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -426,7 +425,6 @@ namespace VkNet.Tests.Categories
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
-			int buf;
 			Assert.That(() => account.GetBanned(offset: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("offset"));
 			Assert.That(() => account.GetBanned(count: -1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("count"));
 
@@ -453,7 +451,6 @@ namespace VkNet.Tests.Categories
 				}
 			}";
 
-			int total;
 			var items = Api.Account.GetBanned();
 			Assert.That(items.TotalCount, Is.EqualTo(10));
 			Assert.That(items, Has.Count.EqualTo(2));
@@ -485,7 +482,6 @@ namespace VkNet.Tests.Categories
 					}]
 				}
 			}";
-			int total;
 			var items = Api.Account.GetBanned(count: 2);
 
 			Assert.That(items.Count, Is.EqualTo(2));
@@ -512,7 +508,6 @@ namespace VkNet.Tests.Categories
 				}
 			}";
 
-			int total;
 			var items = Api.Account.GetBanned(null, 10);
 			Assert.That(items.Count, Is.EqualTo(2));
 		}

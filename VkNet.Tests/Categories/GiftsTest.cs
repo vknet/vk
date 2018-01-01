@@ -47,7 +47,6 @@ namespace VkNet.Tests.Categories
 						}]
 					}
 				  }";
-			int total;
 			var gifts = Api.Gifts.Get(32190123);
 			Assert.That(gifts.TotalCount, Is.AtLeast(0));
 

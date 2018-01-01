@@ -81,7 +81,6 @@ namespace VkNet.Tests.Categories
 						}
 				  }";
 
-			long total;
 			var app = Api.Apps.GetCatalog( new AppGetCatalogParams());
 			Assert.That(app.TotalCount, Is.AtLeast(0));
 			Assert.That(app.First().Title, Is.EqualTo("Подземелья!"));
