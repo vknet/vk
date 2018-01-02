@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -12,22 +13,26 @@ namespace VkNet.Model
 		/// <summary>
 		/// Общее количество записей на стене.
 		/// </summary>
+		[JsonProperty("count")]
 		public ulong Count { get; set; }
 		/// <summary>
 		/// Видеозаписи.
 		/// </summary>
-		public ReadOnlyCollection<Video> Video
+		[JsonProperty("items")]
+		public ReadOnlyCollection<Video> Videos
 		{ get; set; }
 
 		/// <summary>
 		/// Профили.
 		/// </summary>
+		[JsonProperty("profiles")]
 		public ReadOnlyCollection<User> Profiles
 		{ get; set; }
 
 		/// <summary>
 		/// Группы.
 		/// </summary>
+		[JsonProperty("groups")]
 		public ReadOnlyCollection<Group> Groups
 		{ get; set; }
 
@@ -41,7 +46,7 @@ namespace VkNet.Model
 			var wallGetObject = new FaveVideoEx
 			{
 				Count = response["count"],
-				Video = response["items"].ToReadOnlyCollectionOf<Video>(r => r),
+				Videos = response["items"].ToReadOnlyCollectionOf<Video>(r => r),
 				Profiles = response["profiles"].ToReadOnlyCollectionOf<User>(r => r),
 				Groups = response["groups"].ToReadOnlyCollectionOf<Group>(r => r)
 			};

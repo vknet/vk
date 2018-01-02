@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -6,9 +7,9 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы работы с закладками.
+    /// Асинхронные методы работы с закладками.
     /// </summary>
-    public interface IFaveCategory : IFaveCategoryAsync
+    public interface IFaveCategoryAsync
     {
         /// <summary>
         /// Возвращает список пользователей, добавленных текущим пользователем в закладки.
@@ -21,7 +22,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.getUsers
         /// </remarks>
-        VkCollection<User> GetUsers(int? count = null, int? offset = null);
+        Task<VkCollection<User>> GetUsersAsync(int? count = null, int? offset = null);
 
         /// <summary>
         /// Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне нравится".
@@ -36,7 +37,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.getPhotos
         /// </remarks>
-        VkCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null);
+        Task<VkCollection<Photo>> GetPhotosAsync(int? count = null, int? offset = null, bool? photoSizes = null);
 
         /// <summary>
         /// Возвращает записи, на которых текущий пользователь поставил отметку "Мне нравится".
@@ -60,7 +61,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.getPosts
         /// </remarks>
-        WallGetObject GetPosts(int? count = null, int? offset = null, bool extended = false);
+        Task<WallGetObject> GetPostsAsync(int? count = null, int? offset = null, bool extended = false);
 
         /// <summary>
         /// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку "Мне нравится".
@@ -83,7 +84,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.getVideos
         /// </remarks>
-        FaveVideoEx GetVideos(int? count = null, int? offset = null, bool extended = false);
+        Task<FaveVideoEx> GetVideosAsync(int? count = null, int? offset = null, bool extended = false);
 
         /// <summary>
         /// Возвращает ссылки, добавленные в закладки текущим пользователем.
@@ -96,7 +97,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.getLinks
         /// </remarks>
-        VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null);
+        Task<VkCollection<ExternalLink>> GetLinksAsync(int? count = null, int? offset = null);
 
         /// <summary>
         /// Добавляет пользователя в закладки.
@@ -108,7 +109,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.addUser
         /// </remarks>
-        bool AddUser(long userId);
+        Task<bool> AddUserAsync(long userId);
 
         /// <summary>
         /// Удаляет пользователя из закладок.
@@ -120,7 +121,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.removeUser
         /// </remarks>
-        bool RemoveUser(long userId);
+        Task<bool> RemoveUserAsync(long userId);
 
         /// <summary>
         /// Добавляет сообщество в закладки.
@@ -132,7 +133,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.addGroup
         /// </remarks>
-        bool AddGroup(long groupId);
+        Task<bool> AddGroupAsync(long groupId);
 
         /// <summary>
         /// Удаляет сообщество из закладок.
@@ -144,7 +145,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.removeGroup
         /// </remarks>
-        bool RemoveGroup(long groupId);
+        Task<bool> RemoveGroupAsync(long groupId);
 
         /// <summary>
         /// Добавляет ссылку в закладки.
@@ -157,7 +158,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.addLink
         /// </remarks>
-        bool AddLink(Uri link, string text);
+        Task<bool> AddLinkAsync(Uri link, string text);
 
         /// <summary>
         /// Удаляет ссылку из закладок.
@@ -169,7 +170,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.removeLink
         /// </remarks>
-        bool RemoveLink(string linkId);
+        Task<bool> RemoveLinkAsync(string linkId);
 
         /// <summary>
         /// Возвращает товары, добавленные в закладки текущим пользователем.
@@ -183,6 +184,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/fave.getMarketItems
         /// </remarks>
-        VkCollection<Market> GetMarketItems(ulong? count = null, ulong? offset = null, bool? extended = null);
+        Task<VkCollection<Market>> GetMarketItemsAsync(ulong? count = null, ulong? offset = null, bool? extended = null);
     }
 }

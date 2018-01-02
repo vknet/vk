@@ -10,7 +10,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Категория работы с закладками.
 	/// </summary>
-	public class FaveCategory : IFaveCategory
+	public partial class FaveCategory : IFaveCategory
 	{
 		/// <summary>
 		/// API
@@ -79,78 +79,67 @@ namespace VkNet.Categories
 			return _vk.Call("fave.getPhotos", parameters).ToVkCollectionOf<Photo>(x => x);
 		}
 
-		/// <summary>
-		/// Возвращает записи, на которых текущий пользователь поставил отметку "Мне нравится".
-		/// </summary>
-		/// <param name="offset">Смещение, необходимо для выборки определенного подмножества записей. По умолчанию — 0. положительное число (Положительное число).</param>
-		/// <param name="count">Количество записей, информацию о которых нужно вернуть (но не более 100). положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов записей на стене.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPosts
-		/// </remarks>
-		public VkCollection<Post> GetPosts(int? count = null, int? offset = null)
-		{
-			var response = GetPostsEx(count, offset);
-			return new VkCollection<Post>(response.TotalCount, response.WallPosts);
-		}
 
 		/// <summary>
 		/// Возвращает записи, на которых текущий пользователь поставил отметку "Мне нравится".
 		/// </summary>
-		/// <param name="offset">Смещение, необходимо для выборки определенного подмножества записей. По умолчанию — 0. положительное число (Положительное число).</param>
-		/// <param name="count">Количество записей, информацию о которых нужно вернуть (но не более 100). положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <param name="offset">
+		/// Смещение, необходимо для выборки определенного подмножества записей.
+		/// По умолчанию — 0.
+		/// (Положительное число).
+		/// </param>
+		/// <param name="count">
+		/// Количество записей, информацию о которых нужно вернуть (но не более 100).
+		/// (Положительное число, по умолчанию 50).
+		/// </param>
+		/// <param name="extended">
+		/// 1 — в ответе будут возвращены дополнительные поля profiles и groups, содержащие информацию о пользователях и сообществах.
+		/// По умолчанию: 0.
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов записей на стене.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPosts
 		/// </remarks>
-		public WallGetObject GetPostsEx(int? count = null, int? offset = null)
+		public WallGetObject GetPosts(int? count = null, int? offset = null, bool extended = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);
 
 			var parameters = new VkParameters
-				{
-					{ "count", count },
-					{ "offset", offset },
-					{ "extended", true }
-				};
+			{
+				{ "count", count },
+				{ "offset", offset },
+				{ "extended", true }
+			};
 
 			return _vk.Call("fave.getPosts", parameters);
 		}
 
-		/// <summary>
-		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку "Мне нравится".
-		/// </summary>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества видеозаписей. положительное число (Положительное число).</param>
-		/// <param name="count">Количество видеозаписей, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов видеозаписей.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.getVideos
-		/// </remarks>
-		public VkCollection<Video> GetVideos(int? count = null, int? offset = null)
-		{
-			var response = GetVideosEx(count, offset);
-			return new VkCollection<Video>((ulong) response.Count, response.Video);
-		}
 
 		/// <summary>
 		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку "Мне нравится".
 		/// </summary>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества видеозаписей. положительное число (Положительное число).</param>
-		/// <param name="count">Количество видеозаписей, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <param name="offset">
+		/// Смещение, необходимое для выборки определенного подмножества видеозаписей.
+		/// (Положительное число).
+		/// </param>
+		/// <param name="count">
+		/// Количество видеозаписей, информацию о которых необходимо вернуть.
+		/// (Положительное число, по умолчанию 50).
+		/// </param>
+		/// <param name="extended">
+		/// 1 — в ответе будут возвращены дополнительные поля profiles и groups, содержащие информацию о пользователях и сообществах.
+		/// По умолчанию: 0. 
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов видеозаписей.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getVideos
 		/// </remarks>
-		public FaveVideoEx GetVideosEx(int? count = null, int? offset = null)
+		public FaveVideoEx GetVideos(int? count = null, int? offset = null, bool extended = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 			VkErrors.ThrowIfNumberIsNegative(() => offset);

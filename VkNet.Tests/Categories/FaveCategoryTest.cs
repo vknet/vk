@@ -233,7 +233,7 @@ namespace VkNet.Tests.Categories
 
 			var videos = cat.GetVideos(3, 1);
 			Assert.That(videos.Count, Is.EqualTo(1));
-			var video = videos.FirstOrDefault();
+			var video = videos.Videos.FirstOrDefault();
 			Assert.That(video.Id, Is.EqualTo(164841344));
 			Assert.That(video.OwnerId, Is.EqualTo(1));
 			Assert.That(video.Title, Is.EqualTo("This is SPARTA"));
@@ -331,7 +331,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedFaveCategory(url, json);
 
-			var posts = cat.GetPostsEx(3, 1);
+			var posts = cat.GetPosts(3, 1);
 
 			Assert.That(posts.TotalCount, Is.EqualTo(2623u));
 
@@ -455,7 +455,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedFaveCategory(url, json);
 
-			var posts = cat.GetPostsEx(3, 1);
+			var posts = cat.GetPosts(3, 1);
 
 			Assert.That(posts.TotalCount, Is.EqualTo(2623u));
 
