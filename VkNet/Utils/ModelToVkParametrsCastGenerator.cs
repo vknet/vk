@@ -51,6 +51,18 @@ namespace VkNet.Utils
     /// <returns>
     /// Результат преобразования.
     /// </returns> 
+    public static implicit operator VkParameters(MessageEditParams p)
+    {
+      return MessageEditParams.ToVkParameters(p);
+    }
+
+    /// <summary>
+    /// Преобразование класса <see cref="GetCitiesParams"/> в VkParameters
+    /// </summary>
+    /// <param name="p">Параметр.</param>
+    /// <returns>
+    /// Результат преобразования.
+    /// </returns> 
     public static implicit operator VkParameters(GetCitiesParams p)
     {
       return GetCitiesParams.ToVkParameters(p);

@@ -1,9 +1,7 @@
-﻿namespace VkNet.Model
+﻿using System;
+using VkNet.Utils;
+namespace VkNet.Model
 {
-	using System;
-
-	using Utils;
-
 	/// <summary>
 	/// Информация о последней активности пользователя.
 	/// См. описание http://vk.com/dev/messages.getLastActivity

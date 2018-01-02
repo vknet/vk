@@ -21,13 +21,6 @@
 		public ulong? Offset { get; set; }
 
 		/// <summary>
-		/// Тип сообщений которые необходимо получить.
-		/// Необходимо передать MessageType.Received
-		/// для отправленных пользователем сообщений.
-		/// </summary>
-		public MessageType? Out { get; set; }
-
-		/// <summary>
 		/// Максимальное время, прошедшее с момента отправки сообщения до текущего момента в секундах.
 		/// 0, если Вы хотите получить сообщения любой давности.
 		/// </summary>
@@ -59,7 +52,6 @@
 		{
 			return new VkParameters
 			{
-				{ "out", p.Out },
 				{ "offset", p.Offset },
 				{ "count", p.Count },
 				{ "time_offset", p.TimeOffset },
