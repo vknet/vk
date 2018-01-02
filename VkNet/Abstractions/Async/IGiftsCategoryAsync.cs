@@ -1,12 +1,13 @@
-﻿using VkNet.Model;
+﻿using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы с подарками.
+    /// Асинхронные методы для работы с подарками.
     /// </summary>
-    public interface IGiftsCategory : IGiftsCategoryAsync
+    public interface IGiftsCategoryAsync
     {
         /// <summary>
         /// Возвращает список полученных подарков пользователя.
@@ -31,6 +32,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/gifts.get
         /// </remarks>
-        VkCollection<GiftItem> Get(long userId, int? count = null, int? offset = null);
+        Task<VkCollection<GiftItem>> GetAsync(long userId, int? count = null, int? offset = null);
     }
 }
