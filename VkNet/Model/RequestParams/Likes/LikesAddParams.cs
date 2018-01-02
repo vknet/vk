@@ -6,23 +6,8 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Параметры метода likes.add
     /// </summary>
-    public struct LikesAddParams
+    public class LikesAddParams
     {
-        /// <summary>
-		/// Параметры метода Параметры метода likes.add
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public LikesAddParams(bool gag = true)
-        {
-            Type = null;
-            ItemId = 0;
-            OwnerId = null;
-            AccessKey = null;
-            Reference = null;
-            CaptchaSid = null;
-            CaptchaKey = null;
-        }
-
         /// <summary>
         /// Тип объекта. 
         /// </summary>

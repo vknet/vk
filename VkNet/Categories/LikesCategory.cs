@@ -10,7 +10,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// API для работы с лайками.
 	/// </summary>
-	public class LikesCategory : ILikesCategory
+	public partial class LikesCategory : ILikesCategory
 	{
 		/// <summary>
 		/// API

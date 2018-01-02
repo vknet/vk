@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.SafetyEnums;
+﻿using System.Threading.Tasks;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -6,9 +7,9 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// API для работы с лайками.
+    /// Асинхронное API для работы с лайками.
     /// </summary>
-    public interface ILikesCategory : ILikesCategoryAsync
+    public interface ILikesCategoryAsync
     {
         /// <summary>
         /// Получает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится.
@@ -21,7 +22,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/likes.getList
         /// </remarks>
-        VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false);
+        Task<VkCollection<long>> GetListAsync(LikesGetListParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Получает список идентификаторов пользователей или сообществ, которые добавили заданный объект в свой список Мне нравится.
@@ -33,7 +34,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/likes.getList
         /// </remarks>
-        UserOrGroup GetListEx(LikesGetListParams @params);
+        Task<UserOrGroup> GetListExAsync(LikesGetListParams @params);
 
         /// <summary>
         /// Добавляет указанный объект в список Мне нравится текущего пользователя.
@@ -45,7 +46,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/likes.add
         /// </remarks>
-        long Add(LikesAddParams @params);
+        Task<long> AddAsync(LikesAddParams @params);
 
         /// <summary>
         /// Удаляет указанный объект из списка Мне нравится текущего пользователя
@@ -59,12 +60,11 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/likes.delete
         /// </remarks>
-        long Delete(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null);
+        Task<long> DeleteAsync(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null);
 
         /// <summary>
         /// Проверяет, находится ли объект в списке Мне нравится заданного пользователя.
         /// </summary>
-        /// <param name="copied">Сделан ли репост текущим пользователем.</param>
         /// <param name="type">Тип объекта LikeObjectType</param>
         /// <param name="itemId">Идентификатор объекта. положительное число, обязательный параметр</param>
         /// <param name="userId">Идентификатор пользователя, у которого необходимо проверить наличие объекта в списке «Мне нравится». Если параметр не задан, то считается, что он равен идентификатору текущего пользователя. положительное число, по умолчанию идентификатор текущего пользователя</param>
@@ -77,6 +77,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/likes.isLiked
         /// </remarks>
-        bool IsLiked(out bool copied, LikeObjectType type, long itemId,  long? userId = null, long? ownerId = null);
+        Task<bool> IsLikedAsync(LikeObjectType type, long itemId,  long? userId = null, long? ownerId = null);
     }
 }
