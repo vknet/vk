@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -10,9 +11,9 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы с новостной лентой пользователя.
+    /// Асинхронные методы для работы с новостной лентой пользователя.
     /// </summary>
-    public interface INewsFeedCategory : INewsFeedCategoryAsync
+    public interface INewsFeedCategoryAsync
     {
         /// <summary>
         /// Возвращает данные, необходимые для показа списка новостей для текущего пользователя.
@@ -24,7 +25,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.get
         /// </remarks>
-        NewsFeed Get(NewsFeedGetParams @params);
+        Task<NewsFeed> GetAsync(NewsFeedGetParams @params);
 
         /// <summary>
         /// Получает список новостей, рекомендованных пользователю.
@@ -36,7 +37,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getRecommended
         /// </remarks>
-        NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params);
+        Task<NewsFeed> GetRecommendedAsync(NewsFeedGetRecommendedParams @params);
 
         /// <summary>
         /// Возвращает данные, необходимые для показа раздела комментариев в новостях пользователя.
@@ -48,7 +49,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getComments
         /// </remarks>
-        NewsFeed GetComments(NewsFeedGetCommentsParams @params);
+        Task<NewsFeed> GetCommentsAsync(NewsFeedGetCommentsParams @params);
 
         /// <summary>
         /// Возвращает список записей пользователей на своих стенах, в которых упоминается указанный пользователь.
@@ -64,7 +65,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getMentions
         /// </remarks>
-        VkCollection<Mention> GetMentions(long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null);
+        Task<VkCollection<Mention>> GetMentionsAsync(long? ownerId = null, DateTime? startTime = null, DateTime? endTime = null, long? offset = null, long? count = null);
 
         /// <summary>
         /// Возвращает список пользователей и групп, которые текущий пользователь скрыл из ленты новостей.
@@ -73,7 +74,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getBanned
         /// </remarks>
-        NewsBannedList GetBanned();
+        Task<NewsBannedList> GetBannedAsync();
 
         /// <summary>
         /// Возвращает список пользователей и групп, которые текущий пользователь скрыл из ленты новостей.
@@ -86,7 +87,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getBanned
         /// </remarks>
-        NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null);
+        Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null, NameCase nameCase = null);
 
         /// <summary>
         /// Запрещает показывать новости от заданных пользователей и групп в ленте новостей текущего пользователя.
@@ -99,7 +100,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.addBan
         /// </remarks>
-        bool AddBan(IEnumerable<long> userIds, IEnumerable<long> groupIds);
+        Task<bool> AddBanAsync(IEnumerable<long> userIds, IEnumerable<long> groupIds);
 
         /// <summary>
         /// Разрешает показывать новости от заданных пользователей и групп в ленте новостей текущего пользователя.
@@ -112,7 +113,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.deleteBan
         /// </remarks>
-        bool DeleteBan(IEnumerable<long> userIds, IEnumerable<long> groupIds);
+        Task<bool> DeleteBanAsync(IEnumerable<long> userIds, IEnumerable<long> groupIds);
 
         /// <summary>
         /// Позволяет скрыть объект из ленты новостей.
@@ -126,7 +127,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.ignoreItem
         /// </remarks>
-        bool IgnoreItem(NewsObjectTypes type, long ownerId, long itemId);
+        Task<bool> IgnoreItemAsync(NewsObjectTypes type, long ownerId, long itemId);
 
         /// <summary>
         /// Позволяет вернуть ранее скрытый объект в ленту новостей.
@@ -138,7 +139,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.unignoreItem
         /// </remarks>
-        bool UnignoreItem(NewsObjectTypes type, long ownerId, long itemId);
+        Task<bool> UnignoreItemAsync(NewsObjectTypes type, long ownerId, long itemId);
 
         /// <summary>
         /// Возвращает результаты поиска по статусам. Новости возвращаются в порядке от более новых к более старым.
@@ -150,7 +151,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.search
         /// </remarks>
-        ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params);
+        Task<ReadOnlyCollection<NewsSearchResult>> SearchAsync(NewsFeedSearchParams @params);
 
         /// <summary>
         /// Возвращает пользовательские списки новостей.
@@ -163,7 +164,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getLists
         /// </remarks>
-        VkCollection<NewsUserListItem> GetLists(IEnumerable<long> listIds, bool? extended = null);
+        Task<VkCollection<NewsUserListItem>> GetListsAsync(IEnumerable<long> listIds, bool? extended = null);
 
         /// <summary>
         /// Метод позволяет создавать или редактировать пользовательские списки для просмотра новостей.
@@ -178,7 +179,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.saveList
         /// </remarks>
-        long SaveList(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null);
+        Task<long> SaveListAsync(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null);
 
         /// <summary>
         /// Метод позволяет удалить пользовательский список новостей
@@ -190,7 +191,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.deleteList
         /// </remarks>
-        bool DeleteList(long listId);
+        Task<bool> DeleteListAsync(long listId);
 
         /// <summary>
         /// Отписывает текущего пользователя от комментариев к заданному объекту.
@@ -204,7 +205,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.unsubscribe
         /// </remarks>
-        bool Unsubscribe(CommentObjectType type, long itemId, long? ownerId = null);
+        Task<bool> UnsubscribeAsync(CommentObjectType type, long itemId, long? ownerId = null);
 
         /// <summary>
         /// Возвращает сообщества и пользователей, на которые текущему пользователю рекомендуется подписаться.
@@ -219,6 +220,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getSuggestedSources
         /// </remarks>
-        NewsSuggestions GetSuggestedSources(long? offset = null, long? count = null, bool? shuffle = null, UsersFields fields = null);
+        Task<NewsSuggestions> GetSuggestedSourcesAsync(long? offset = null, long? count = null, bool? shuffle = null, UsersFields fields = null);
     }
 }

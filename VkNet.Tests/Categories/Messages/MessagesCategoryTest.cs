@@ -679,7 +679,7 @@ namespace VkNet.Tests.Categories
 
 			var result = Cat.Delete(new ulong[]{4446}, false, false);
 
-			Assert.That(result, Is.True);
+			Assert.That(result[4446], Is.True);
 		}
 
 		[Test]

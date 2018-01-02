@@ -7,23 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров запроса newsfeed.search
 	/// </summary>
-	public struct NewsFeedSearchParams
+	public class NewsFeedSearchParams
 	{
-		/// <summary>
-		/// Список параметров запроса newsfeed.search
-		/// </summary>
-		public NewsFeedSearchParams(bool gog = true)
-		{
-			Extended = false;
-			Count = 30;
-			Query = null;
-			Latitude = 0;
-			Longitude = 0;
-			StartTime = null;
-			EndTime = null;
-			StartFrom = 0;
-			Fields = null;
-		}
 		/// <summary>
 		/// Поисковой запрос.
 		/// </summary>
