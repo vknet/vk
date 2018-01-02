@@ -36,7 +36,6 @@ namespace VkNet.Tests.Categories
 			int totalCount;
 			Assert.That(() => cat.Get(new MessagesGetParams
 			{
-				Out = MessageType.Received
 			}), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -657,14 +656,14 @@ namespace VkNet.Tests.Categories
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.Delete(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.Delete(new ulong[]{1}, false, false), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void Delete_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.Delete(new ulong[] { 1 }), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.Delete(new ulong[] { 1 }, false, false), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -678,7 +677,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var result = Cat.Delete(4446);
+			var result = Cat.Delete(new ulong[]{4446}, false, false);
 
 			Assert.That(result, Is.True);
 		}
@@ -695,7 +694,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var dict = Cat.Delete((new ulong[] {4457, 4464}));
+			var dict = Cat.Delete(new ulong[] {4457, 4464}, false, false);
 
 			Assert.That(dict.Count, Is.EqualTo(2));
 			Assert.That(dict[4457], Is.True);
@@ -732,7 +731,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			Assert.That(() => Cat.Delete(999999), Throws.InstanceOf<VkApiException>());
+			Assert.That(() => Cat.Delete(new ulong[]{999999},false,false), Throws.InstanceOf<VkApiException>());
 		}
 
 		[Test]
@@ -1142,7 +1141,6 @@ namespace VkNet.Tests.Categories
 			int total;
 			var messages = Cat.Get(new MessagesGetParams
 			{
-				Out = MessageType.Received,
 				LastMessageId = 30
 			});
 
@@ -1195,7 +1193,6 @@ namespace VkNet.Tests.Categories
 			int total;
 			var messages = Cat.Get(new MessagesGetParams
 			{
-				Out = MessageType.Received
 			});
 
 			Assert.That(messages.TotalCount, Is.EqualTo(5));

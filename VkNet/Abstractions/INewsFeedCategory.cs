@@ -9,6 +9,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
+    /// <summary>
+    /// Методы для работы с новостной лентой пользователя.
+    /// </summary>
     public interface INewsFeedCategory
     {
         /// <summary>
