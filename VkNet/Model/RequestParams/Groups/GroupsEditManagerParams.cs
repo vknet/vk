@@ -6,23 +6,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.editManager
 	/// </summary>
-	public struct GroupsEditManagerParams
+	public class GroupsEditManagerParams
 	{
-		/// <summary>
-		/// Параметры метода groups.editManager
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public GroupsEditManagerParams(bool gag = true)
-		{
-			GroupId = 0;
-			UserId = 0;
-			Role = null;
-			IsContact = null;
-			ContactPosition = null;
-			ContactPhone = null;
-			ContactEmail = null;
-		}
-
 		/// <summary>
 		/// Идентификатор сообщества (указывается без знака «минус»). положительное число, обязательный параметр.
 		/// </summary>

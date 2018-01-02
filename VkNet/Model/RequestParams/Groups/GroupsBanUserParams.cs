@@ -7,22 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.banUser
 	/// </summary>
-	public struct GroupsBanUserParams
+	public class GroupsBanUserParams
 	{
-		/// <summary>
-		/// Параметры метода groups.banUser
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public GroupsBanUserParams(bool gag = true)
-		{
-			GroupId = 0;
-			UserId = 0;
-			EndDate = null;
-			Reason = null;
-			Comment = null;
-			CommentVisible = null;
-		}
-
 		/// <summary>
 		/// Идентификатор группы. положительное число, обязательный параметр.
 		/// </summary>

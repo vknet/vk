@@ -58,6 +58,34 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
+        public static implicit operator CallbackSettings(VkResponse response)
+        {
+            return response?._token == null || !response._token.HasValues
+                ? null
+                : CallbackSettings.FromJson(response);
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator CallbackServerItem(VkResponse response)
+        {
+            return response?._token == null || !response._token.HasValues
+                ? null
+                : CallbackServerItem.FromJson(response);
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
         public static implicit operator ChatPreviewField(VkResponse response)
         {
             return response?._token == null || !response._token.HasValues

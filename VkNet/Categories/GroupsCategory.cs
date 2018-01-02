@@ -256,43 +256,15 @@ namespace VkNet.Categories
 			return _vk.Call("groups.banUser", @params);
 		}
 
-		/// <summary>
-		/// Возвращает список забаненных пользователей в сообществе.
-		/// </summary>
-		/// <param name="groupId">Идентификатор сообщества. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества черного списка. положительное число (Положительное число).</param>
-		/// <param name="count">Количество пользователей, которое необходимо вернуть. положительное число, по умолчанию 20, максимальное значение 200 (Положительное число, по умолчанию 20, максимальное значение 200).</param>
-		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть.
-		/// Доступные значения: sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters список строк, разделенных через запятую (Список строк, разделенных через запятую).</param>
-		/// <param name="userId">Идентификатор пользователя, который можно передать для получения статуса бана отдельного пользователя. положительное число (Положительное число).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов user с дополнительным полем ban_info.
-		/// Объект ban_info — информация о внесении в черный список сообщества.
-		/// admin_id идентификатор администратора, который добавил пользователя в черный список.
-		///  положительное число date дата добавления пользователя в черный список в формате Unixtime.
-		///  положительное число reason причина добавления пользователя в черный список. Возможные значения:
-		///
-		/// 0 — другое (по умолчанию);
-		/// 1 — спам;
-		/// 2 — оскорбление участников;
-		/// 3 — нецензурные выражения;
-		/// 4 — сообщения не по теме.
-		///
-		///  int (числовое значение) comment текст комментария.
-		///  строка end_date дата окончания блокировки (0 — блокировка вечная).
-		///  int (числовое значение).
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/groups.getBanned
-		/// </remarks>
-		public VkCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? userId = null)
+		/// <inheritdoc />
+		public VkCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? ownerId = null)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
 				{ "offset", offset },
 				{ "count", count },
 				{ "fields", fields },
-				{ "user_id", userId }
+				{ "owner_id", ownerId }
 			};
 
 			return _vk.Call("groups.getBanned", parameters).ToVkCollectionOf<User>(x => x);
@@ -479,7 +451,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.addLink
 		/// </remarks>
-		public Link AddLink(long groupId, Uri link, string text)
+		public ExternalLink AddLink(long groupId, Uri link, string text)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			var parameters = new VkParameters
@@ -609,31 +581,9 @@ namespace VkNet.Categories
 			return _vk.Call("groups.approveRequest", parameters);
 		}
 
-		/// <summary>
-		/// Создает новое сообщество.
-		/// </summary>
-		/// <param name="title">Название сообщества. строка, обязательный параметр (Строка, обязательный параметр).</param>
-		/// <param name="description">Описание сообщества, (не учитывается при type=public). строка (Строка).</param>
-		/// <param name="type">Тип создаваемого сообщества:
-		///
-		/// group — группа;
-		/// event — мероприятие;
-		/// public — публичная страница.
-		/// строка, по умолчанию group (Строка, по умолчанию group).</param>
-		/// <param name="subtype">Вид публичной страницы (только при type=public):
-		///
-		/// 1 — место или небольшая компания;
-		/// 2 — компания, организация или веб-сайт;
-		/// 3 — известная личность или коллектив;
-		/// 4 — произведение или продукция.
-		/// положительное число (Положительное число).</param>
-		/// <returns>
-		/// Возвращает идентификатор созданного сообщества.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/groups.create
-		/// </remarks>
-		public Group Create(string title, string description, GroupType type, GroupSubType? subtype)
+
+		/// <inheritdoc />
+		public Group Create(string title, string description, GroupType type, GroupSubType? subtype, uint? publicCategory = null)
 		{
 			var parameters = new VkParameters {
 				{ "title", title },
@@ -721,6 +671,75 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("groups.getCatalogInfo", parameters, true);
+		}
+
+		/// <inheritdoc />
+		public long AddCallbackServer(ulong groupId, string url, string title, string secretKey)
+		{
+			var parameters = new VkParameters {
+				{ "group_id", groupId },
+				{ "url", url },
+				{ "title", title },
+				{ "secret_key", secretKey }
+			};
+
+			return _vk.Call("groups.addCallbackServer", parameters)["server_id"];
+		}
+
+		/// <inheritdoc />
+		public bool DeleteCallbackServer(ulong groupId, ulong serverId)
+		{
+			var parameters = new VkParameters {
+				{ "group_id", groupId },
+				{ "server_id", serverId }
+			};
+
+			return _vk.Call("groups.deleteCallbackServer", parameters);
+		}
+
+		/// <inheritdoc />
+		public bool EditCallbackServer(ulong groupId, ulong serverId, string url, string title, string secretKey)
+		{
+			var parameters = new VkParameters {
+				{ "group_id", groupId },
+				{ "server_id", serverId },
+				{ "url", url },
+				{ "title", title },
+				{ "secret_key", secretKey }
+			};
+
+			return _vk.Call("groups.editCallbackServer", parameters);
+		}
+
+		/// <inheritdoc />
+		public string GetCallbackConfirmationCode(ulong groupId)
+		{
+			return _vk.Call("groups.getCallbackConfirmationCode", new VkParameters { { "group_id", groupId } });
+		}
+
+		/// <inheritdoc />
+		public VkCollection<CallbackServerItem> GetCallbackServers(ulong groupId, IEnumerable<ulong> serverIds)
+		{
+			var parameters = new VkParameters {{"group_id", groupId}, {"server_ids", serverIds}};
+			return _vk.Call("groups.getCallbackConfirmationCode", parameters)
+				.ToVkCollectionOf<CallbackServerItem>(x => x);
+		}
+
+		/// <inheritdoc />
+		public CallbackSettings GetCallbackSettings(ulong groupId, ulong serverId)
+		{
+			var parameters = new VkParameters {
+				{ "group_id", groupId },
+				{ "server_id", serverId }
+			};
+
+			return _vk.Call("groups.getCallbackSettings", parameters);
+		}
+
+		/// <inheritdoc />
+		public bool SetCallbackSettings(CallbackServerParams @params)
+		{
+			return _vk.Call("groups.getCallbackSettings", @params);
 		}
 	}
 }

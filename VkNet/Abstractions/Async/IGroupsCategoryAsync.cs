@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -11,9 +12,9 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы с сообществами (группами).
+    /// Асинхронные методы для работы с сообществами (группами).
     /// </summary>
-    public interface IGroupsCategory : IGroupsCategoryAsync
+    public interface IGroupsCategoryAsync
     {
         /// <summary>
         /// Данный метод позволяет вступить в группу, публичную страницу, а также подтвердить участие во встрече.
@@ -26,7 +27,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.join
         /// </remarks>
-        bool Join(long? groupId, bool? notSure = null);
+        Task<bool> JoinAsync(long? groupId, bool? notSure = null);
 
         /// <summary>
         /// Позволяет покинуть сообщество.
@@ -38,7 +39,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.leave
         /// </remarks>
-        bool Leave(long groupId);
+        Task<bool> LeaveAsync(long groupId);
 
         /// <summary>
         /// Возвращает список сообществ указанного пользователя.
@@ -52,7 +53,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.get
         /// </remarks>
-        VkCollection<Group> Get(GroupsGetParams @params, bool skipAuthorization = false);
+        Task<VkCollection<Group>> GetAsync(GroupsGetParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает информацию о заданном сообществе или о нескольких сообществах.
@@ -68,7 +69,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getById
         /// </remarks>
-        ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = false);
+        Task<ReadOnlyCollection<Group>> GetByIdAsync(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает список участников сообщества.
@@ -86,7 +87,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getMembers
         /// </remarks>
-        VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false);
+        Task<VkCollection<User>> GetMembersAsync(GroupsGetMembersParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает информацию о том, является ли пользователь участником сообщества.
@@ -113,7 +114,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
         /// </remarks>
-        ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = false);
+        Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = false);
 
         /// <summary>
         /// Осуществляет поиск сообществ по заданной подстроке.
@@ -126,7 +127,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.search
         /// </remarks>
-        VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false);
+        Task<VkCollection<Group>> SearchAsync(GroupsSearchParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Данный метод возвращает список приглашений в сообщества и встречи текущего пользователя.
@@ -141,7 +142,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getInvites
         /// </remarks>
-        VkCollection<Group> GetInvites(long? count, long? offset, bool? extended = null);
+        Task<VkCollection<Group>> GetInvitesAsync(long? count, long? offset, bool? extended = null);
 
         /// <summary>
         /// Добавляет пользователя в черный список сообщества.
@@ -153,7 +154,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.banUser
         /// </remarks>
-        bool BanUser(GroupsBanUserParams @params);
+        Task<bool> BanUserAsync(GroupsBanUserParams @params);
 
         ///  <summary>
         ///  Возвращает список забаненных пользователей в сообществе.
@@ -182,7 +183,7 @@ namespace VkNet.Abstractions
         ///  <remarks>
         ///  Страница документации ВКонтакте http://vk.com/dev/groups.getBanned
         ///  </remarks>
-        VkCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? ownerId = null);
+        Task<VkCollection<User>> GetBannedAsync(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? ownerId = null);
 
         /// <summary>
         /// Убирает пользователя из черного списка сообщества.
@@ -193,7 +194,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.unbanUser
         /// </remarks>
-        bool UnbanUser(long groupId, long userId);
+        Task<bool> UnbanUserAsync(long groupId, long userId);
 
         /// <summary>
         /// Позволяет назначить/разжаловать руководителя в сообществе или изменить уровень его полномочий.
@@ -205,7 +206,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.editManager
         /// </remarks>
-        bool EditManager(GroupsEditManagerParams @params);
+        Task<bool> EditManagerAsync(GroupsEditManagerParams @params);
 
         /// <summary>
         /// Позволяет получать данные, необходимые для отображения страницы редактирования данных сообщества.
@@ -217,7 +218,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getSettings
         /// </remarks>
-        GroupsEditParams GetSettings(ulong groupId);
+        Task<GroupsEditParams> GetSettingsAsync(ulong groupId);
 
         /// <summary>
         /// Редактирует сообщество.
@@ -229,7 +230,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.edit
         /// </remarks>
-        bool Edit(GroupsEditParams @params);
+        Task<bool> EditAsync(GroupsEditParams @params);
 
         /// <summary>
         /// Позволяет редактировать информацию о месте группы.
@@ -242,7 +243,7 @@ namespace VkNet.Abstractions
         /// Для того, чтобы воспользоваться этим методом Вы должны быть администратором группы.
         /// Страница документации ВКонтакте https://vk.com/dev/groups.editPlace
         /// </remarks>
-        bool EditPlace(long groupId, Place place = null);
+        Task<bool> EditPlaceAsync(long groupId, Place place = null);
 
         /// <summary>
         /// Возвращает список пользователей, которые были приглашены в группу.
@@ -257,7 +258,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getInvitedUsers
         /// </remarks>
-        VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null);
+        Task<VkCollection<User>> GetInvitedUsersAsync(long groupId, long? offset = null, long? count = null, UsersFields fields = null, NameCase nameCase = null);
 
         /// <summary>
         /// Позволяет приглашать друзей в группу.
@@ -270,7 +271,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.invite
         /// </remarks>
-        bool Invite(long groupId, long userId);
+        Task<bool> InviteAsync(long groupId, long userId);
 
         /// <summary>
         /// Позволяет добавлять ссылки в сообщество.
@@ -292,7 +293,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.addLink
         /// </remarks>
-        ExternalLink AddLink(long groupId, Uri link, string text);
+        Task<ExternalLink> AddLinkAsync(long groupId, Uri link, string text);
 
         /// <summary>
         /// Позволяет удалить ссылки из сообщества.
@@ -305,7 +306,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.deleteLink
         /// </remarks>
-        bool DeleteLink(long groupId, ulong linkId);
+        Task<bool> DeleteLinkAsync(long groupId, ulong linkId);
 
         /// <summary>
         /// Позволяет редактировать ссылки в сообществе.
@@ -319,7 +320,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.editLink
         /// </remarks>
-        bool EditLink(long groupId, ulong linkId, string text);
+        Task<bool> EditLinkAsync(long groupId, ulong linkId, string text);
 
         /// <summary>
         /// Позволяет менять местоположение ссылки в списке.
@@ -333,7 +334,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.reorderLink
         /// </remarks>
-        bool ReorderLink(long groupId, long linkId, long? after);
+        Task<bool> ReorderLinkAsync(long groupId, long linkId, long? after);
 
         /// <summary>
         /// Позволяет исключить пользователя из группы или отклонить заявку на вступление.
@@ -346,7 +347,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/groups.removeUser
         /// </remarks>
-        bool RemoveUser(long groupId, long userId);
+        Task<bool> RemoveUserAsync(long groupId, long userId);
 
         /// <summary>
         /// Позволяет одобрить заявку в группу от пользователя.
@@ -359,7 +360,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/groups.approveRequest
         /// </remarks>
-        bool ApproveRequest(long groupId, long userId);
+        Task<bool> ApproveRequestAsync(long groupId, long userId);
 
         ///  <summary>
         ///  Создает новое сообщество.
@@ -384,7 +385,7 @@ namespace VkNet.Abstractions
         ///  <remarks>
         ///  Страница документации ВКонтакте http://vk.com/dev/groups.create
         ///  </remarks>
-        Group Create(string title, string description, GroupType type, GroupSubType? subtype, uint? publicCategory = null);
+        Task<Group> CreateAsync(string title, string description, GroupType type, GroupSubType? subtype, uint? publicCategory = null);
 
         /// <summary>
         /// Возвращает список заявок на вступление в сообщество.
@@ -401,7 +402,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getRequests
         /// </remarks>
-        VkCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields);
+        Task<VkCollection<User>> GetRequestsAsync(long groupId, long? offset, long? count, UsersFields fields);
 
         /// <summary>
         /// Возвращает список сообществ выбранной категории каталога.
@@ -414,7 +415,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getCatalog
         /// </remarks>
-        VkCollection<Group> GetCatalog(ulong? categoryId = null, ulong? subcategoryId = null);
+        Task<VkCollection<Group>> GetCatalogAsync(ulong? categoryId = null, ulong? subcategoryId = null);
 
         /// <summary>
         /// Возвращает список категорий для каталога сообществ.
@@ -436,7 +437,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getCatalogInfo
         /// </remarks>
-        GroupsCatalogInfo GetCatalogInfo(bool? extended = null, bool? subcategories = null);
+        Task<GroupsCatalogInfo> GetCatalogInfoAsync(bool? extended = null, bool? subcategories = null);
 
         /// <summary>
         /// Добавляет сервер для Callback API в сообщество.
@@ -451,7 +452,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.addCallbackServer
         /// </remarks>
-        long AddCallbackServer(ulong groupId, string url, string title, string secretKey);
+        Task<long> AddCallbackServerAsync(ulong groupId, string url, string title, string secretKey);
 
         /// <summary>
         /// Удаляет сервер для Callback API из сообщества.
@@ -464,7 +465,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.deleteCallbackServer
         /// </remarks>
-        bool DeleteCallbackServer(ulong groupId, ulong serverId);
+        Task<bool> DeleteCallbackServerAsync(ulong groupId, ulong serverId);
 
         /// <summary>
         /// Редактирует данные сервера для Callback API в сообществе.
@@ -480,7 +481,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.editCallbackServer
         /// </remarks>
-        bool EditCallbackServer(ulong groupId, ulong serverId, string url, string title, string secretKey);
+        Task<bool> EditCallbackServerAsync(ulong groupId, ulong serverId, string url, string title, string secretKey);
 
         /// <summary>
         /// Позволяет получить строку, необходимую для подтверждения адреса сервера в Callback API.
@@ -496,7 +497,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.editCallbackServer
         /// </remarks>
-        string GetCallbackConfirmationCode(ulong groupId);
+        Task<string> GetCallbackConfirmationCodeAsync(ulong groupId);
 
         /// <summary>
         /// Получает информацию о серверах для Callback API в сообществе.
@@ -512,7 +513,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getCallbackServers
         /// </remarks>
-        VkCollection<CallbackServerItem> GetCallbackServers(ulong groupId, IEnumerable<ulong> serverIds);
+        Task<VkCollection<CallbackServerItem>> GetCallbackServersAsync(ulong groupId, IEnumerable<ulong> serverIds);
 
         /// <summary>
         /// Позволяет получить настройки уведомлений Callback API для сообщества.
@@ -523,7 +524,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getCallbackSettings
         /// </remarks>
-        CallbackSettings GetCallbackSettings(ulong groupId, ulong serverId);
+        Task<CallbackSettings> GetCallbackSettingsAsync(ulong groupId, ulong serverId);
 
         /// <summary>
         /// Позволяет задать настройки уведомлений о событиях в Callback API.
@@ -535,6 +536,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.setCallbackSettings
         /// </remarks>
-        bool SetCallbackSettings(CallbackServerParams @params);
+        Task<bool> SetCallbackSettingsAsync(CallbackServerParams @params);
     }
 }

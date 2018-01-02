@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -9,54 +10,6 @@ namespace VkNet.Model.RequestParams
 	/// </summary>
 	public class GroupsEditParams
 	{
-		/// <summary>
-		/// Параметры метода groups.edit
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public GroupsEditParams(bool gag = true)
-		{
-			GroupId = 0;
-			Title = null;
-			Description = null;
-			ScreenName = null;
-			Access = null;
-			Website = null;
-			Subject = null;
-			Email = null;
-			Phone = null;
-			Rss = null;
-			EventStartDate = null;
-			EventFinishDate = null;
-			EventGroupId = null;
-			PublicCategory = null;
-			PublicSubcategory = null;
-			PublicDate = null;
-			Wall = null;
-			Topics = null;
-			Photos = null;
-			Video = null;
-			Audio = null;
-			Links = null;
-			Events = null;
-			Places = null;
-			Contacts = null;
-			Docs = null;
-			Wiki = null;
-			Messages = null;
-			AgeLimits = null;
-			Market = null;
-			MarketComments = null;
-			MarketCountry = null;
-			MarketCity = null;
-			MarketCurrency = null;
-			MarketContact = null;
-			MarketWiki = null;
-			ObsceneFilter = null;
-			ObsceneStopwords = null;
-			ObsceneWords = null;
-		}
-
-
 		/// <summary>
 		/// Идентификатор сообщества. положительное число, обязательный параметр.
 		/// </summary>
@@ -200,7 +153,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Возрастное ограничение для сообщества. положительное число, по умолчанию 1.
 		/// </summary>
-		public ulong? AgeLimits { get; set; }
+		public AgeLimit? AgeLimits { get; set; }
 
 		/// <summary>
 		/// Товары.
@@ -252,6 +205,18 @@ namespace VkNet.Model.RequestParams
 		/// Ключевые слова для фильтра комментариев. список слов, разделенных через запятую.
 		/// </summary>
 		public IEnumerable<string> ObsceneWords { get; set; }
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[JsonProperty("main_section")]
+		public uint? MainSection { get; set; }
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[JsonProperty("secondary_section")]
+		public uint? SecondarySection { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -355,7 +320,9 @@ namespace VkNet.Model.RequestParams
                 MarketWiki = response["market_wiki"],
                 ObsceneFilter = response["obscene_filter"],
                 ObsceneStopwords = response["obscene_stopwords"],
-                ObsceneWords = response["obscene_words"].ToReadOnlyCollectionOf<string>(o => o)
+                ObsceneWords = response["obscene_words"].ToReadOnlyCollectionOf<string>(o => o),
+	            MainSection = response["main_section"],
+	            SecondarySection = response["secondary_section"]
             };
 
             return result;

@@ -6,22 +6,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.get
 	/// </summary>
-	public struct GroupsGetParams
+	public class GroupsGetParams
 	{
-		/// <summary>
-		/// Параметры метода groups.get
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public GroupsGetParams(bool gag = true)
-		{
-			UserId = null;
-			Extended = null;
-			Filter = null;
-			Fields = null;
-			Offset = null;
-			Count = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя, информацию о сообществах которого требуется получить. положительное число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>

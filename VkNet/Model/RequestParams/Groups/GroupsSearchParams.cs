@@ -1,4 +1,5 @@
-﻿using VkNet.Enums;
+﻿using Newtonsoft.Json;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -7,24 +8,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.search
 	/// </summary>
-	public struct GroupsSearchParams
+	public class GroupsSearchParams
 	{
-		/// <summary>
-		/// Параметры метода groups.search
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public GroupsSearchParams(bool gag = true)
-		{
-			Query = null;
-			Type = null;
-			CountryId = null;
-			CityId = null;
-			Future = null;
-			Sort = GroupSort.Normal;
-			Offset = null;
-			Count = null;
-		}
-
 		/// <summary>
 		/// Текст поискового запроса. строка, обязательный параметр.
 		/// </summary>
@@ -50,6 +35,11 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		public bool? Future { get; set; }
 
+		/// <summary>
+		/// при передаче значения 1 будут выведены сообщества с включенными товарами.
+		/// </summary>
+		[JsonProperty("market")]
+		public bool? Market { get; set; }
 		/// <summary>
 		/// 0 — сортировать по умолчанию (аналогично результатам поиска в полной версии сайта);
 		/// 1 — сортировать по скорости роста;
@@ -86,6 +76,7 @@ namespace VkNet.Model.RequestParams
 				{ "country_id", p.CountryId },
 				{ "city_id", p.CityId },
 				{ "future", p.Future },
+				{ "market", p.Market},
 				{ "sort", p.Sort },
 				{ "offset", p.Offset },
 				{ "count", p.Count }

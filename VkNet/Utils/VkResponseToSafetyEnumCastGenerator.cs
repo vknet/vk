@@ -24,6 +24,18 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
+		public static implicit operator CallbackServerStatus(VkResponse response)
+		{
+			return response == null ? null : CallbackServerStatus.FromJson(response);
+		}
+
+		/// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
 		public static implicit operator AppPlatforms(VkResponse response)
 		{
 			return response == null ? null : AppPlatforms.FromJson(response);

@@ -22,6 +22,24 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AgeLimit(VkResponse response)
+		{
+			if (response == null)
+			{
+				return AgeLimit.Withoutlimit;
+			}
+
+			return Utilities.EnumFrom<AgeLimit>(response);
+		}
+
+
+		/// <summary>
         /// Преобразовать из VkResponse
         /// </summary>
         /// <param name="response">Ответ.</param>

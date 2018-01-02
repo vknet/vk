@@ -7,22 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.getMembers
 	/// </summary>
-	public struct GroupsGetMembersParams
+	public class GroupsGetMembersParams
 	{
-		/// <summary>
-		/// Параметры метода groups.getMembers
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public GroupsGetMembersParams(bool gag = true)
-		{
-			GroupId = null;
-			Sort = null;
-			Offset = null;
-			Count = null;
-			Fields = null;
-			Filter = null;
-		}
-
 		/// <summary>
 		/// Идентификатор или короткое имя сообщества. строка.
 		/// </summary>
