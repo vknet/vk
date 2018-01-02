@@ -4,36 +4,42 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Пользователи онлайн по типу (мобильные / пк)
+	/// Р РµР·СѓР»СЊС‚Р°С‚ Р·Р°РїСЂРѕСЃР° Friends.FriendOnline
 	/// </summary>
 	public class FriendOnline
 	{
 		/// <summary>
-		/// Online с ПК
+		/// Online
 		/// </summary>
 		public ReadOnlyCollection<long> Online { get; set; }
 
 		/// <summary>
-		/// Online с мобильного устройства.
+		/// Online СЃ РјРѕР±РёР»СЊРЅРѕРіРѕ С‚РµР»РµС„РѕРЅР°.
 		/// </summary>
 		public ReadOnlyCollection<long> MobileOnline { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		/// Р Р°Р·РѕР±СЂР°С‚СЊ РёР· json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
+		/// <param name="response">РћС‚РІРµС‚ СЃРµСЂРІРµСЂР°.</param>
 		/// <returns></returns>
 		public static FriendOnline FromJson(VkResponse response)
 		{
-			VkResponseArray mobile = response["online_mobile"];
-			VkResponseArray pc = response["online"];
-			var item = new FriendOnline
+			if (response.ContainsKey("online"))
 			{
-				MobileOnline = mobile.ToReadOnlyCollectionOf<long>(x => x),
-				Online = pc.ToReadOnlyCollectionOf<long>(x => x)
-			};
-
-			return item;
+				return new FriendOnline
+				{
+					MobileOnline = response["online_mobile"].ToReadOnlyCollectionOf<long>(x => x),
+					Online = response["online"].ToReadOnlyCollectionOf<long>(x => x)
+				};
+			}
+			else
+			{
+				return new FriendOnline
+				{
+					Online = response.ToReadOnlyCollectionOf<long>(x => x)
+				};
+			}
 		}
 	}
 }

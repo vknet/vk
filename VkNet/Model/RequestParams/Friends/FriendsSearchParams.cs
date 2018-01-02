@@ -7,22 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода friends.search
 	/// </summary>
-	public struct FriendsSearchParams
+	public class FriendsSearchParams
 	{
-		/// <summary>
-		/// Параметры метода friends.search
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public FriendsSearchParams(bool gag = true)
-		{
-			UserId = 0;
-			Query = null;
-			Fields = null;
-			NameCase = null;
-			Offset = null;
-			Count = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя, по списку друзей которого необходимо произвести поиск. положительное число, по умолчанию идентификатор текущего пользователя, обязательный параметр.
 		/// </summary>

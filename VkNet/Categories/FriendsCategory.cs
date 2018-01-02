@@ -1,19 +1,17 @@
 ﻿using VkNet.Abstractions;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using JetBrains.Annotations;
+using VkNet.Enums;
+using VkNet.Model;
+using VkNet.Utils;
+using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
-	using System.Linq;
-	using JetBrains.Annotations;
-	using Enums;
-	using Model;
-	using Utils;
-	using Enums.Filters;
-	using Enums.SafetyEnums;
-	using Model.RequestParams;
-
 	/// <summary>
 	/// Методы для работы с друзьями.
 	/// </summary>
@@ -74,28 +72,10 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.getOnline
 		/// </remarks>
-		public ReadOnlyCollection<long> GetOnline(FriendsGetOnlineParams @params)
+		public FriendOnline GetOnline(FriendsGetOnlineParams @params)
 		{
-			@params.OnlineMobile = false;
-			VkResponseArray response = _vk.Call("friends.getOnline", @params);
-			return response.ToReadOnlyCollectionOf<long>(x => x);
-		}
-
-		/// <summary>
-		/// Возвращает список идентификаторов друзей пользователя, находящихся на сайте.
-		/// </summary>
-		/// <param name="params">Входные параметры выборки.</param>
-		/// <returns>
-		/// После успешного выполнения возвращает список идентификаторов (id) друзей, находящихся сейчас на сайте, у пользователя с идентификатором uid и входящих в список с идентификатором lid.
-		/// При использовании параметра online_mobile=1 также возвращается поле online_mobile, содержащее список идентификатор друзей, находящихся на сайте с мобильного устройства.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/friends.getOnline
-		/// </remarks>
-		public FriendOnline GetOnlineEx(FriendsGetOnlineParams @params)
-		{
-			@params.OnlineMobile = true;
-			return _vk.Call("friends.getOnline", @params);
+			var result =_vk.Call("friends.getOnline", @params);
+			return FriendOnline.FromJson(result);
 		}
 
 		/// <summary>
@@ -140,7 +120,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.areFriends
 		/// </remarks>
 		[Pure]
-		public IDictionary<long, FriendStatus> AreFriends([NotNull]IEnumerable<long> userIds, bool? needSign = null)
+		public ReadOnlyCollection<AreFriendsResult> AreFriends([NotNull]IEnumerable<long> userIds, bool? needSign = null)
 		{
 			if (userIds == null)
 			{
@@ -152,9 +132,7 @@ namespace VkNet.Categories
 				{ "need_sign", needSign }
 			};
 
-			VkResponseArray ids = _vk.Call("friends.areFriends", parameters);
-
-			return ids.ToDictionary(r => (long)r["user_id"], r => (FriendStatus)r["friend_status"]);
+			return _vk.Call("friends.areFriends", parameters).ToReadOnlyCollectionOf<AreFriendsResult>(x => x);
 		}
 
 		/// <summary>
@@ -336,7 +314,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.delete
 		/// </remarks>
-		public DeleteFriendStatus Delete(long userId)
+		public FriendsDeleteResult Delete(long userId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
 

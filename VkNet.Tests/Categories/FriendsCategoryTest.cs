@@ -187,9 +187,9 @@ namespace VkNet.Tests.Categories
 			var users = friends.GetOnline(new FriendsGetOnlineParams
 			{
 				UserId = 1
-			}).ToList();
+			});
 
-			Assert.That(users.Count, Is.EqualTo(0));
+			Assert.That(users.Online.Count, Is.EqualTo(0));
 		}
 
 		[Test]
@@ -202,17 +202,39 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var friends = GetMockedFriendsCategory(url, json);
-			var ids = friends.GetOnline(new FriendsGetOnlineParams
+			var users = friends.GetOnline(new FriendsGetOnlineParams
 			{
 				UserId = 1
-			}).ToList();
+			});
 
-			Assert.That(ids.Count, Is.EqualTo(5));
-			Assert.That(ids[0], Is.EqualTo(5));
-			Assert.That(ids[1], Is.EqualTo(467));
-			Assert.That(ids[2], Is.EqualTo(2943));
-			Assert.That(ids[3], Is.EqualTo(4424));
-			Assert.That(ids[4], Is.EqualTo(13033));
+			Assert.That(users.Online.Count, Is.EqualTo(5));
+			Assert.That(users.Online[0], Is.EqualTo(5));
+			Assert.That(users.Online[1], Is.EqualTo(467));
+			Assert.That(users.Online[2], Is.EqualTo(2943));
+			Assert.That(users.Online[3], Is.EqualTo(4424));
+			Assert.That(users.Online[4], Is.EqualTo(13033));
+		}
+
+		[Test]
+		public void GetOnline_Ex()
+		{
+			const string url = "https://api.vk.com/method/friends.getOnline";
+			const string json =
+				@"{
+					'response': {
+						'online': [105013464],
+						'online_mobile': [975892, 16010007, 61270720, 102554254, 325170546]
+					}
+				}";
+
+			var friends = GetMockedFriendsCategory(url, json);
+			var users = friends.GetOnline(new FriendsGetOnlineParams
+			{
+				OnlineMobile = true
+			});
+
+			Assert.That(users.Online.Count, Is.EqualTo(1));
+			Assert.That(users.MobileOnline.Count, Is.EqualTo(5));
 		}
 
 		[Test]
@@ -315,10 +337,10 @@ namespace VkNet.Tests.Categories
 			var dict = friends.AreFriends(new long[] { 24181068, 22911407, 155810539, 3505305 });
 
 			Assert.That(dict.Count, Is.EqualTo(4));
-			Assert.That(dict[24181068], Is.EqualTo(FriendStatus.NotFriend));
-			Assert.That(dict[22911407], Is.EqualTo(FriendStatus.Friend));
-			Assert.That(dict[155810539], Is.EqualTo(FriendStatus.InputRequest));
-			Assert.That(dict[3505305], Is.EqualTo(FriendStatus.OutputRequest));
+			Assert.That(dict.FirstOrDefault().FriendStatus, Is.EqualTo(FriendStatus.NotFriend));
+			Assert.That(dict.Skip(1).FirstOrDefault().FriendStatus, Is.EqualTo(FriendStatus.Friend));
+			Assert.That(dict.Skip(2).FirstOrDefault().FriendStatus, Is.EqualTo(FriendStatus.InputRequest));
+			Assert.That(dict.Skip(3).FirstOrDefault().FriendStatus, Is.EqualTo(FriendStatus.OutputRequest));
 		}
 
 		[Test]
@@ -505,7 +527,7 @@ namespace VkNet.Tests.Categories
 
 			var status = cat.Delete(24250);
 
-			Assert.That(status, Is.EqualTo(DeleteFriendStatus.RequestRejected));
+			Assert.That(status.OutRequestDeleted, Is.True);
 		}
 
 		[Test]

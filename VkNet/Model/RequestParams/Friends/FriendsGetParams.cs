@@ -7,25 +7,13 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода friends.get
 	/// </summary>
-	public struct FriendsGetParams
+	public class FriendsGetParams
 	{
 		/// <summary>
-		/// Параметры метода friends.get
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public FriendsGetParams(bool gag = true)
-		{
-			UserId = null;
-			Order = null;
-			ListId = null;
-			Count = null;
-			Offset = null;
-			Fields = null;
-			NameCase = null;
-		}
-
-		/// <summary>
-		/// Идентификатор пользователя, для которого необходимо получить список друзей. Если параметр не задан, то считается, что он равен идентификатору текущего пользователя (справедливо для вызова с передачей access_token). целое число.
+		/// Идентификатор пользователя, для которого необходимо получить список друзей.
+		/// Если параметр не задан, то считается, что он равен идентификатору текущего пользователя
+		/// (справедливо для вызова с передачей access_token).
+		/// целое число.
 		/// </summary>
 		public long? UserId { get; set; }
 

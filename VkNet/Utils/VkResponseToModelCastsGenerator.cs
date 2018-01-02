@@ -30,6 +30,34 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
+        public static implicit operator FriendsDeleteResult(VkResponse response)
+        {
+            return response?._token == null || !response._token.HasValues
+                ? null
+                : FriendsDeleteResult.FromJson(response);
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator AreFriendsResult(VkResponse response)
+        {
+            return response?._token == null || !response._token.HasValues
+                ? null
+                : AreFriendsResult.FromJson(response);
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
         public static implicit operator ChatPreviewField(VkResponse response)
         {
             return response?._token == null || !response._token.HasValues

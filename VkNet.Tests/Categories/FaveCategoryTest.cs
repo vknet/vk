@@ -232,7 +232,7 @@ namespace VkNet.Tests.Categories
 			var cat = GetMockedFaveCategory(url, json);
 
 			var videos = cat.GetVideos(3, 1);
-			Assert.That(videos.Count, Is.EqualTo(1));
+			Assert.That(videos.Count, Is.EqualTo(2));
 			var video = videos.Videos.FirstOrDefault();
 			Assert.That(video.Id, Is.EqualTo(164841344));
 			Assert.That(video.OwnerId, Is.EqualTo(1));

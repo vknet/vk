@@ -7,22 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода friends.getMutual
 	/// </summary>
-	public struct FriendsGetMutualParams
+	public class FriendsGetMutualParams
 	{
-		/// <summary>
-		/// Параметры метода friends.getMutual
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public FriendsGetMutualParams(bool gag = true)
-		{
-			SourceUid = null;
-			TargetUid = null;
-			TargetUids = null;
-			Order = null;
-			Count = null;
-			Offset = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя, чьи друзья пересекаются с друзьями пользователя с идентификатором target_uid. Если параметр не задан, то считается, что source_uid равен идентификатору текущего пользователя. положительное число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>
@@ -36,7 +22,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Список идентификаторов пользователей, с которыми необходимо искать общих друзей. список положительных чисел, разделенных запятыми.
 		/// </summary>
-		public IEnumerable<string> TargetUids { get; set; }
+		public IEnumerable<long> TargetUids { get; set; }
 
 		/// <summary>
 		/// Порядок, в котором нужно вернуть список общих друзей. Допустимые значения: random - возвращает друзей в случайном порядке. строка.

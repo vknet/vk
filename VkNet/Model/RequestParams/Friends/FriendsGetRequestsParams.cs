@@ -5,24 +5,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода friends.getRequests
 	/// </summary>
-	public struct FriendsGetRequestsParams
+	public class FriendsGetRequestsParams
 	{
-		/// <summary>
-		/// Параметры метода friends.getRequests
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public FriendsGetRequestsParams(bool gag = true)
-		{
-			Offset = null;
-			Count = null;
-			Extended = null;
-			NeedMutual = null;
-			Out = null;
-			Sort = null;
-			Suggested = null;
-			NeedViewed = null;
-		}
-
 		/// <summary>
 		/// Смещение, необходимое для выборки определенного подмножества заявок на добавление в друзья. положительное число.
 		/// </summary>
