@@ -30,6 +30,20 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
+        public static implicit operator PageVersion(VkResponse response)
+        {
+            return response?._token == null || !response._token.HasValues
+                ? null
+                : PageVersion.FromJson(response);
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
         public static implicit operator FriendsDeleteResult(VkResponse response)
         {
             return response?._token == null || !response._token.HasValues

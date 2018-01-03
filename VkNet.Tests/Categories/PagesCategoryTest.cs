@@ -121,7 +121,7 @@ namespace VkNet.Tests.Categories
 
 			var db = GetMockedPagesCategory(url, json);
 
-			var page = db.Save("123", 103292418, "Свежие новости", 32190123);
+			var page = db.Save("123", 103292418, 123, 32190123,"Свежие новости");
 
 			Assert.That(page, Is.EqualTo(50050492));
 		}

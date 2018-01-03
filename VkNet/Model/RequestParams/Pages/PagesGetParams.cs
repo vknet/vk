@@ -5,23 +5,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода pages.get
 	/// </summary>
-	public struct PagesGetParams
+	public class PagesGetParams
 	{
-		/// <summary>
-		/// Параметры метода pages.get
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public PagesGetParams(bool gag = true)
-		{
-			OwnerId = null;
-			PageId = null;
-			Global = null;
-			SitePreview = null;
-			Title = null;
-			NeedSource = null;
-			NeedHtml = null;
-		}
-
 		/// <summary>
 		/// Идентификатор владельца вики-страницы. целое число.
 		/// </summary>

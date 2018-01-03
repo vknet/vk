@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -8,9 +9,9 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы с wiki.
+    /// Асинхронные методы для работы с wiki.
     /// </summary>
-    public interface IPagesCategory : IPagesCategoryAsync
+    public interface IPagesCategoryAsync
     {
         /// <summary>
         /// Возвращает информацию о вики-странице..
@@ -24,7 +25,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/pages.get
         /// </remarks>
-        Page Get(PagesGetParams @params);
+        Task<Page> GetAsync(PagesGetParams @params);
 
         /// <summary>
         /// Сохраняет текст вики-страницы.
@@ -40,7 +41,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/pages.save
         /// </remarks>
-        long Save(string text, long? pageId, long groupId,  long userId, string title);
+        Task<long> SaveAsync(string text, long? pageId, long groupId,  long userId, string title);
 
         /// <summary>
         /// Сохраняет новые настройки доступа на чтение и редактирование вики-страницы.
@@ -56,7 +57,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/pages.saveAccess
         /// </remarks>
-        long SaveAccess(long pageId, long groupId, long? userId = null, AccessPages view = AccessPages.All, AccessPages edit = AccessPages.Leaders);
+        Task<long> SaveAccessAsync(long pageId, long groupId, long? userId = null, AccessPages view = AccessPages.All, AccessPages edit = AccessPages.Leaders);
 
         /// <summary>
         /// Возвращает список всех старых версий вики-страницы.
@@ -75,7 +76,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/pages.getHistory
         /// </remarks>
-        ReadOnlyCollection<PageVersion> GetHistory(long pageId, long groupId, long? userId = null);
+        Task<ReadOnlyCollection<PageVersion>> GetHistoryAsync(long pageId, long groupId, long? userId = null);
 
         /// <summary>
         /// Возвращает список вики-страниц в группе.
@@ -87,7 +88,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/pages.getTitles
         /// </remarks>
-        ReadOnlyCollection<Page> GetTitles(long groupId);
+        Task<ReadOnlyCollection<Page>> GetTitlesAsync(long groupId);
 
         /// <summary>
         /// Возвращает текст одной из старых версий страницы.
@@ -102,7 +103,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/pages.getVersion
         /// </remarks>
-        Page GetVersion(long versionId, long groupId, bool needHtml = false, long? userId = null);
+        Task<Page> GetVersionAsync(long versionId, long groupId, bool needHtml = false, long? userId = null);
 
         /// <summary>
         /// Возвращает html-представление вики-разметки.
@@ -115,7 +116,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/pages.parseWiki
         /// </remarks>
-        string ParseWiki(string text, ulong groupId);
+        Task<string> ParseWikiAsync(string text, ulong groupId);
 
         /// <summary>
         /// Позволяет очистить кеш отдельных внешних страниц, которые могут быть прикреплены к записям ВКонтакте.
@@ -129,6 +130,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/pages.clearCache
         /// </remarks>
-        bool ClearCache(Uri url);
+        Task<bool> ClearCacheAsync(Uri url);
     }
 }

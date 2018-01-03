@@ -1,5 +1,8 @@
 ﻿namespace VkNet.Enums
 {
+    /// <summary>
+    /// Возрастные ограничения
+    /// </summary>
     public enum AgeLimit
     {
         /// <summary>

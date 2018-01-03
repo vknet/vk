@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Net;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	using Utils;
-
 	/// <summary>
 	/// Методы для работы с wiki.
 	/// </summary>
@@ -48,42 +46,6 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Сохраняет текст вики-страницы.
-		/// </summary>
-		/// <param name="text">Новый текст страницы в вики-формате.</param>
-		/// <param name="pageId">Идентификатор вики-страницы.</param>
-		/// <param name="groupId">Идентификатор сообщества, которому принадлежит вики-страница.</param>
-		/// <param name="userId">Идентификатор пользователя, создавшего вики-страницу.</param>
-		/// <returns>
-		/// В случае успеха возвращает id созданной страницы.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/pages.save
-		/// </remarks>
-		public long Save(string text, long groupId, long pageId, long userId)
-		{
-			return Save(text, groupId, userId, pageId, null);
-		}
-
-		/// <summary>
-		/// Сохраняет текст вики-страницы.
-		/// </summary>
-		/// <param name="text">Новый текст страницы в вики-формате.</param>
-		/// <param name="groupId">Идентификатор сообщества, которому принадлежит вики-страница.</param>
-		/// <param name="userId">Идентификатор пользователя, создавшего вики-страницу.</param>
-		/// <param name="title">Название вики-страницы.</param>
-		/// <returns>
-		/// В случае успеха возвращает id созданной страницы.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/pages.save
-		/// </remarks>
-		public long Save(string text, long groupId, string title, long userId)
-		{
-			return Save(text, groupId, userId, title: title);
-		}
-
-		/// <summary>
 		/// Сохраняет текст вики-страницы..
 		/// </summary>
 		/// <param name="text">Новый текст страницы в вики-формате. строка (Строка).</param>
@@ -97,7 +59,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/pages.save
 		/// </remarks>
-		public long Save(string text, long groupId, long userId, long? pageId = null, string title = "")
+		public long Save(string text, long? pageId, long groupId,  long userId, string title = "")
 		{
 			var parameters = new VkParameters
 			{
@@ -156,7 +118,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/pages.getHistory
 		/// </remarks>
-		public ReadOnlyCollection<History> GetHistory(long pageId, long groupId, long? userId = null)
+		public ReadOnlyCollection<PageVersion> GetHistory(long pageId, long groupId, long? userId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -166,7 +128,7 @@ namespace VkNet.Categories
 			};
 			VkResponseArray result = _vk.Call("pages.getHistory", parameters);
 
-			return result.ToReadOnlyCollectionOf<History>(x => x);
+			return result.ToReadOnlyCollectionOf<PageVersion>(x => x);
 		}
 
 		/// <summary>
