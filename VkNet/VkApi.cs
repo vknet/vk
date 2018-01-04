@@ -495,7 +495,17 @@ namespace VkNet
         {
             var answer = CallBase(methodName, parameters, skipAuthorization);
 
-            return JsonConvert.DeserializeObject<T>(answer, new VkDefaultJsonConverter(), new VkCollectionJsonConverter());
+            var settings = new JsonSerializerSettings
+            {
+                Converters = new List<JsonConverter>
+                {
+                    new VkCollectionJsonConverter(),
+                    new VkDefaultJsonConverter(),
+                    new DateTimeJsonConverter()
+                }
+            };
+            
+            return JsonConvert.DeserializeObject<T>(answer, settings);
         }
 
         

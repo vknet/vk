@@ -33,7 +33,16 @@ namespace VkNet.Utils.JsonConverter
             
             var obj = JObject.Load(reader);
             var response = obj["response"] ?? obj;
-            return response.ToObject(objectType);
+            
+            return IsDataTime(objectType, response.Type) ?
+                VkResponse.TimestampToDateTime(response.ToObject<long>()) 
+                : response.ToObject(objectType);
+        }
+
+        private static bool IsDataTime(Type objectType, JTokenType token)
+        {
+            return objectType == typeof(DateTime) &&
+                token == JTokenType.Integer;
         }
 
         /// <summary>

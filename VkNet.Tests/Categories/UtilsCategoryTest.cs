@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
@@ -76,23 +78,6 @@ namespace VkNet.Tests.Categories
 			type = utils.CheckLink(new Uri("https://www.google.ru/"));
 
 			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
-		}
-
-
-		[Test]
-		public void GetServerTime_NormalCase()
-		{
-			const string url = "https://api.vk.com/method/utils.getServerTime";
-			const string json =
-				@"{
-                    'response': 1391153956
-                  }";
-
-			var utils = GetMockedUtilsCategory(url, json);
-
-			var time = utils.GetServerTime();
-
-			Assert.That(time, Is.EqualTo(DateHelper.TimeStampToDateTime(1391153956)));
 		}
 
 		[Test]
@@ -182,6 +167,146 @@ namespace VkNet.Tests.Categories
 		{
 			var utils = GetMockedUtilsCategory("", "");
 			Assert.That(() => utils.ResolveScreenName(string.Empty), Throws.InstanceOf<ArgumentNullException>());
+		}
+
+		[Test]
+		public void GetLinksStats()
+		{
+			Json = @"
+            {
+				'response': {
+					'key': '6drK78',
+					'stats': [{
+						'timestamp': 1489309200,
+						'views': 1,
+						'sex_age': [{
+							'age_range': '18-21',
+							'female': 2,
+							'male': 1
+						}],
+						'countries': [{
+							'country_id': 1,
+							'views': 1
+						}],
+						'cities': [{
+							'city_id': 1,
+							'views': 1
+						}]
+					}]
+				}
+			}";
+			Url = "https://api.vk.com/method/utils.getLinkStats";
+			var result = Api.Utils.GetLinkStats(new LinkStatsParams());
+			Assert.NotNull(result);
+			Assert.That(result.Key, Is.EqualTo("6drK78"));
+			Assert.That(result.Stats, Is.Not.Empty);
+			var stat = result.Stats.FirstOrDefault();
+			Assert.NotNull(stat);
+			Assert.That(stat.Views, Is.EqualTo(1));
+			Assert.That(stat.Timestamp, Is.EqualTo(new DateTime(2017,3,12,12,0,0)));
+			var sexAge = stat.SexAge.FirstOrDefault();
+			Assert.NotNull(sexAge);
+			Assert.That(sexAge.AgeRange, Is.EqualTo("18-21"));
+			Assert.That(sexAge.Female, Is.EqualTo(2));
+			Assert.That(sexAge.Male, Is.EqualTo(1));
+			var country = stat.Countries.FirstOrDefault();
+			Assert.NotNull(country);
+			Assert.That(country.CountryId, Is.EqualTo(1));
+			Assert.That(country.Views, Is.EqualTo(1));
+			var city = stat.Cities.FirstOrDefault();
+			Assert.NotNull(city);
+			Assert.That(city.CityId, Is.EqualTo(1));
+			Assert.That(city.Views, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void GetLastShortenedLinks()
+		{
+			Json = @"
+            {
+				'response': {
+					'count': 2,
+					'items': [
+					{
+						'timestamp': 1490085185,
+						'url': 'http://google.ru',
+						'short_url': 'https://vk.cc/6oOGVh',
+						'key': '6oOGVh',
+						'views': 0,
+						'access_key': 'a2760354e62e87ab13'
+					}, 
+					{
+						'timestamp': 1490038465,
+						'url': 'http://google.ru',
+						'short_url': 'https://vk.cc/29npqH',
+						'key': '29npqH',
+						'views': 721
+					}]
+				}
+			}";
+			Url = "https://api.vk.com/method/utils.getLastShortenedLinks";
+			var result = Api.Utils.GetLastShortenedLinks();
+			Assert.NotNull(result);
+		}
+
+		[Test]
+		public void DeleteFromLastShortened()
+		{
+			Json = @"
+            {
+				'response': 1
+			}";
+			Url = "https://api.vk.com/method/utils.deleteFromLastShortened";
+			var result = Api.Utils.DeleteFromLastShortened("qwe");
+			Assert.True(result);
+		}
+
+		[Test]
+		public void GetServerTime()
+		{
+			Json = @"
+            {
+				'response': 1489309200
+			}";
+			Url = "https://api.vk.com/method/utils.getServerTime";
+			var result = Api.Utils.GetServerTime();
+			Assert.That(result, Is.EqualTo(new DateTime(2017,3,12,12,0,0)));
+		}
+
+		[Test]
+		public void GetShortLink()
+		{
+			Json = @"
+            {
+				'response': {
+					'short_url': 'https://vk.cc/7dMDvY',
+					'url': 'http://google.ru',
+					'key': '7dMDvY'
+				}
+			}";
+			Url = "https://api.vk.com/method/utils.getShortLink";
+			var result = Api.Utils.GetShortLink(new Uri("http://google.ru"), false);
+			Assert.NotNull(result);
+			Assert.That(result.ShortUrl, Is.EqualTo(new Uri("https://vk.cc/7dMDvY")));
+			Assert.That(result.Url, Is.EqualTo(new Uri("http://google.ru")));
+			Assert.That(result.Key, Is.EqualTo("7dMDvY"));
+		}
+
+		[Test]
+		public void ResolveScreenName()
+		{
+			Json = @"
+            {
+				'response': {
+					'type': 'user',
+					'object_id': 1
+				}
+			}";
+			Url = "https://api.vk.com/method/utils.resolveScreenName";
+			var result = Api.Utils.ResolveScreenName("durov");
+			Assert.NotNull(result);
+			Assert.AreEqual(result.Type, VkObjectType.User);
+			Assert.That(result.Id, Is.EqualTo(1));
 		}
 	}
 }

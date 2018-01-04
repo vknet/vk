@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
+
+namespace VkNet.Model
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    [Serializable]
+    public class LinkStat
+    {
+        /// <summary>
+        /// Время начала отсчета
+        /// </summary>
+        [JsonProperty("timestamp")]
+        [JsonConverter(typeof(DateTimeJsonConverter))]
+        public DateTime Timestamp { get; set; }
+
+        /// <summary>
+        /// Общее число переходов
+        /// </summary>
+        [JsonProperty("views")]
+        public uint Views { get; set; }
+
+        /// <summary>
+        /// Половозрастная статистика
+        /// </summary>
+        [JsonProperty("sex_age")]
+        public ReadOnlyCollection<SexAge> SexAge { get; set; }
+
+        /// <summary>
+        /// Статистика по странам
+        /// </summary>
+        [JsonProperty("countries")]
+        public ReadOnlyCollection<CountriesStats> Countries { get; set; }
+
+        /// <summary>
+        /// Статистика по городам
+        /// </summary>
+        [JsonProperty("cities")]
+        public ReadOnlyCollection<CitiesStats> Cities { get; set; }
+    }
+}

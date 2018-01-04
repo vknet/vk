@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Utils
 {
@@ -8,11 +11,14 @@ namespace VkNet.Utils
 	/// Коллекция данных возвращенных от vk.com
 	/// </summary>
 	/// <typeparam name="T">Тип данных.</typeparam>
+	[Serializable]
+	[JsonConverter(typeof(VkCollectionJsonConverter))]
 	public class VkCollection<T> : ReadOnlyCollection<T>, IEnumerable<T>
 	{
 		/// <summary>
 		/// Общее количество элементов.
 		/// </summary>
+		[JsonProperty("count")]
 		public ulong TotalCount { get; private set; }
 
 		/// <summary>

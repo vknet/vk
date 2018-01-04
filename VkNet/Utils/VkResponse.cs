@@ -333,7 +333,7 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="unixTimeStamp">The unix time stamp.</param>
 		/// <returns></returns>
-		private static DateTime TimestampToDateTime(long unixTimeStamp)
+		public static DateTime TimestampToDateTime(long unixTimeStamp)
 		{
 			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 			return dt.AddSeconds(unixTimeStamp).ToLocalTime();

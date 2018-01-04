@@ -29,7 +29,7 @@ namespace VkNet.Tests.Categories
         public void Get_NotAccessToInternet_ThrowVkApiException()
         {
 			Mock.Get(Api.Browser).Setup(f => f.GetJson(It.IsAny<string>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>())).Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
-			var ex = Assert.Throws<VkApiException>(() => Api.Users.Get(1));
+			var ex = Assert.Throws<VkApiException>(() => Api.Users.Get(new long[]{1}));
 			Assert.That(ex.Message, Is.EqualTo("The remote name could not be resolved: 'api.vk.com'"));
 		}
 

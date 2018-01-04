@@ -1,17 +1,17 @@
 ﻿using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
+using System;
+using JetBrains.Annotations;
+using VkNet.Model;
+using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-    using System;
-    using JetBrains.Annotations;
-    using Model;
-    using Utils;
-
     /// <summary>
     /// Служебные методы.
     /// </summary>
-    public class UtilsCategory : IUtilsCategory
+    public partial class UtilsCategory : IUtilsCategory
     {
         private readonly VkApi _vk;
 
@@ -24,48 +24,25 @@ namespace VkNet.Categories
             _vk = vk;
         }
 
-	    /// <summary>
-	    /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
-	    /// </summary>
-	    /// <param name="url">Внешняя ссылка, которую необходимо проверить.</param>
-	    /// <param name="skipAuthorization">Без авторизации</param>
-	    /// <returns>Статус ссылки</returns>
-	    /// <remarks>
-	    /// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
-	    /// </remarks>
+	    /// <inheritdoc />
 	    [Pure]
-        public LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true)
+        public LinkAccessType CheckLink(string url, bool skipAuthorization = true)
         {
             return CheckLink(new Uri(url), skipAuthorization);
         }
 
-	    /// <summary>
-	    /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
-	    /// </summary>
-	    /// <param name="url">Внешняя ссылка, которую необходимо проверить.</param>
-	    /// <param name="skipAuthorization">Без авторизации</param>
-	    /// <returns>Статус ссылки</returns>
-	    /// <remarks>
-	    /// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
-	    /// </remarks>
+	    /// <inheritdoc />
 	    [Pure]
-        public LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true)
+        public LinkAccessType CheckLink(Uri url, bool skipAuthorization = true)
         {
             var parameters = new VkParameters { { "url", url } };
 
             return _vk.Call("utils.checkLink", parameters, skipAuthorization);
         }
 
-        /// <summary>
-        /// Определяет тип объекта (пользователь, сообщество, приложение) и его идентификатор по короткому имени ScreenName.
-        /// </summary>
-        /// <param name="screenName">Короткое имя</param>
-        /// <returns>Тип объекта</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/utils.resolveScreenName
-        /// </remarks>
+	    /// <inheritdoc />
         [Pure]
-        public VkObject ResolveScreenName([NotNull] string screenName)
+        public VkObject ResolveScreenName(string screenName)
         {
             VkErrors.ThrowIfNullOrEmpty(() => screenName);
 
@@ -74,24 +51,16 @@ namespace VkNet.Categories
             return _vk.Call("utils.resolveScreenName", parameters, true);
         }
 
-        /// <summary>
-        /// Возвращает текущее время на сервере ВКонтакте в unixtime.
-        /// </summary>
-        /// <returns>Время на сервере ВКонтакте в unixtime</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/utils.getServerTime
-        /// </remarks>
-        [Pure]
+
+	    /// <inheritdoc />
+	    [Pure]
         public DateTime GetServerTime()
         {
-            return _vk.Call("utils.getServerTime", VkParameters.Empty, true);
+            return _vk.Call<DateTime>("utils.getServerTime", VkParameters.Empty, true);
         }
 
-        /// <summary>
-        /// Позволяет получить URL, сокращенный с помощью vk.cc.
-        /// </summary>
-        /// <returns>URL, сокращенный с помощью vk.cc</returns>
-        public ShortLink GetShortLink(Uri url, bool isPrivate)
+	    /// <inheritdoc />
+	    public ShortLink GetShortLink(Uri url, bool isPrivate)
         {
             var parameters = new VkParameters
             {
@@ -99,7 +68,29 @@ namespace VkNet.Categories
                 { "private", isPrivate }
             };
 
-            return _vk.Call("utils.getShortLink", parameters);
+            return _vk.Call<ShortLink>("utils.getShortLink", parameters);
         }
+
+	    /// <inheritdoc />
+	    public bool DeleteFromLastShortened(string key)
+	    {
+		    return _vk.Call<bool>("utils.deleteFromLastShortened", new VkParameters { {"key", key} });
+	    }
+
+	    /// <inheritdoc />
+	    public VkCollection<ShortLink> GetLastShortenedLinks(ulong count = 10, ulong offset = 0)
+	    {
+		    return _vk.Call<VkCollection<ShortLink>>("utils.getLastShortenedLinks", new VkParameters
+		    {
+			    {"count", count},
+			    {"offset", offset}
+		    });
+	    }
+
+	    /// <inheritdoc />
+	    public LinkStatsResult GetLinkStats(LinkStatsParams @params)
+	    {
+		    return _vk.Call<LinkStatsResult>("utils.getLinkStats", @params);
+	    }
     }
 }

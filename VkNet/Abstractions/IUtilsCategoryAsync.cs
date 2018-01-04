@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -8,9 +9,9 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Служебные методы.
+    /// Асинхронные служебные методы.
     /// </summary>
-    public interface IUtilsCategory : IUtilsCategoryAsync
+    public interface IUtilsCategoryAsync
     {
         /// <summary>
         /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
@@ -21,7 +22,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
         /// </remarks>
-        LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true);
+        Task<LinkAccessType> CheckLinkAsync([NotNull] string url, bool skipAuthorization = true);
 
         /// <summary>
         /// Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
@@ -32,7 +33,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
         /// </remarks>
-        LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true);
+        Task<LinkAccessType> CheckLinkAsync([NotNull] Uri url, bool skipAuthorization = true);
 
         /// <summary>
         /// Определяет тип объекта (пользователь, сообщество, приложение) и его идентификатор по короткому имени ScreenName.
@@ -42,7 +43,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/utils.resolveScreenName
         /// </remarks>
-        VkObject ResolveScreenName([NotNull] string screenName);
+        Task<VkObject> ResolveScreenNameAsync([NotNull] string screenName);
 
         /// <summary>
         /// Возвращает текущее время на сервере ВКонтакте в unixtime.
@@ -51,13 +52,13 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/utils.getServerTime
         /// </remarks>
-        DateTime GetServerTime();
+        Task<DateTime> GetServerTimeAsync();
 
         /// <summary>
         /// Позволяет получить URL, сокращенный с помощью vk.cc.
         /// </summary>
         /// <returns>URL, сокращенный с помощью vk.cc</returns>
-        ShortLink GetShortLink(Uri url, bool isPrivate);
+        Task<ShortLink> GetShortLinkAsync(Uri url, bool isPrivate);
 
         /// <summary>
         /// Удаляет сокращенную ссылку из списка пользователя.
@@ -69,7 +70,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/utils.deleteFromLastShortened
         /// </remarks>
-        bool DeleteFromLastShortened(string key);
+        Task<bool> DeleteFromLastShortenedAsync(string key);
 
         /// <summary>
         /// Получает список сокращенных ссылок для текущего пользователя.
@@ -82,13 +83,13 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/utils.getLastShortenedLinks
         /// </remarks>
-        VkCollection<ShortLink> GetLastShortenedLinks(ulong count = 10, ulong offset = 0);
+        Task<VkCollection<ShortLink>> GetLastShortenedLinksAsync(ulong count = 10, ulong offset = 0);
 
         /// <summary>
         /// Возвращает статистику переходов по сокращенной ссылке.
         /// </summary>
         /// <param name="params">Параметры запроса</param>
         /// <returns></returns>
-        LinkStatsResult GetLinkStats(LinkStatsParams @params);
+        Task<LinkStatsResult> GetLinkStatsAsync(LinkStatsParams @params);
     }
 }

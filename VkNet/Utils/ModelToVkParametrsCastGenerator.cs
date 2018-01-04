@@ -27,6 +27,18 @@ namespace VkNet.Utils
     /// <returns>
     /// Результат преобразования.
     /// </returns> 
+    public static implicit operator VkParameters(LinkStatsParams p)
+    {
+      return LinkStatsParams.ToVkParameters(p);
+    }
+
+    /// <summary>
+    /// Преобразование класса <see cref="AccountSaveProfileInfoParams"/> в VkParameters
+    /// </summary>
+    /// <param name="p">Параметр.</param>
+    /// <returns>
+    /// Результат преобразования.
+    /// </returns> 
     public static implicit operator VkParameters(MessagesSearchParams p)
     {
       return MessagesSearchParams.ToVkParameters(p);
