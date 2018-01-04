@@ -7,25 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.getComments
 	/// </summary>
-	public struct VideoGetCommentsParams
+	public class VideoGetCommentsParams
 	{
-		/// <summary>
-		/// Параметры метода video.getComments
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public VideoGetCommentsParams(bool gag = true)
-		{
-			OwnerId = null;
-			VideoId = 0;
-			NeedLikes = null;
-			StartCommentId = null;
-			Offset = null;
-			Count = null;
-			Sort = null;
-			Extended = null;
-			Fields = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежит видеозапись. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -10,9 +11,9 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы с видеофайлами.
+    /// Асинхронные методы для работы с видеофайлами.
     /// </summary>
-    public interface IVideoCategory : IVideoCategoryAsync
+    public interface IVideoCategoryAsync
     {
         /// <summary>
         /// Возвращает информацию о видеозаписях.
@@ -38,7 +39,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.get
         /// </remarks>
-        VkCollection<Video> Get(VideoGetParams @params);
+        Task<VkCollection<Video>> GetAsync(VideoGetParams @params);
 
         /// <summary>
         /// Редактирует данные видеозаписи.
@@ -50,7 +51,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.edit
         /// </remarks>
-        bool Edit(VideoEditParams @params);
+        Task<bool> EditAsync(VideoEditParams @params);
 
         /// <summary>
         /// Добавляет видеозапись в список пользователя.
@@ -65,7 +66,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.add
         /// </remarks>
-        long Add(long videoId, long ownerId, long? targetId = null);
+        Task<long> AddAsync(long videoId, long ownerId, long? targetId = null);
 
         /// <summary>
         /// Возвращает адрес сервера (необходимый для загрузки) и данные видеозаписи.
@@ -78,7 +79,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.save
         /// </remarks>
-        Video Save(VideoSaveParams @params);
+        Task<Video> SaveAsync(VideoSaveParams @params);
 
         /// <summary>
         /// Удаляет видеозапись со страницы пользователя.
@@ -93,7 +94,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.delete
         /// </remarks>
-        bool Delete(long videoId, long? ownerId = null, long? targetId = null);
+        Task<bool> DeleteAsync(long videoId, long? ownerId = null, long? targetId = null);
 
         /// <summary>
         /// Восстанавливает удаленную видеозапись.
@@ -106,7 +107,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.restore
         /// </remarks>
-        bool Restore(long videoId, long? ownerId = null);
+        Task<bool> RestoreAsync(long videoId, long? ownerId = null);
 
         /// <summary>
         /// Возвращает список видеозаписей в соответствии с заданным критерием поиска.
@@ -119,7 +120,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.search
         /// </remarks>
-        VkCollection<Video> Search(VideoSearchParams @params);
+        Task<VkCollection<Video>> SearchAsync(VideoSearchParams @params);
 
         /// <summary>
         /// Возвращает список альбомов видеозаписей пользователя или сообщества.
@@ -139,7 +140,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.getAlbums
         /// </remarks>
-        VkCollection<VideoAlbum> GetAlbums(long? ownerId = null, long? offset = null, long? count = null, bool? extended = null, bool? needSystem = null);
+        Task<VkCollection<VideoAlbum>> GetAlbumsAsync(long? ownerId = null, long? offset = null, long? count = null, bool? extended = null, bool? needSystem = null);
 
         /// <summary>
         /// Создает пустой альбом видеозаписей.
@@ -154,7 +155,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.addAlbum
         /// </remarks>
-        long AddAlbum(string title, long? groupId = null, IEnumerable<Privacy> privacy = null);
+        Task<long> AddAlbumAsync(string title, long? groupId = null, IEnumerable<Privacy> privacy = null);
 
         /// <summary>
         /// Редактирует название альбома видеозаписей.
@@ -170,7 +171,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.editAlbum
         /// </remarks>
-        bool EditAlbum(long albumId, string title, long? groupId = null, Privacy privacy = null);
+        Task<bool> EditAlbumAsync(long albumId, string title, long? groupId = null, Privacy privacy = null);
 
         /// <summary>
         /// Удаляет альбом видеозаписей.
@@ -183,7 +184,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.deleteAlbum
         /// </remarks>
-        bool DeleteAlbum(long albumId, long? groupId = null);
+        Task<bool> DeleteAlbumAsync(long albumId, long? groupId = null);
 
         /// <summary>
         /// Возвращает список комментариев к видеозаписи.
@@ -206,7 +207,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.getComments
         /// </remarks>
-        VkCollection<Comment> GetComments(VideoGetCommentsParams @params);
+        Task<VkCollection<Comment>> GetCommentsAsync(VideoGetCommentsParams @params);
 
         /// <summary>
         /// Cоздает новый комментарий к видеозаписи.
@@ -218,7 +219,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.createComment
         /// </remarks>
-        long CreateComment(VideoCreateCommentParams @params);
+        Task<long> CreateCommentAsync(VideoCreateCommentParams @params);
 
         /// <summary>
         /// Удаляет комментарий к видеозаписи.
@@ -231,7 +232,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.deleteComment
         /// </remarks>
-        bool DeleteComment(long commentId, long? ownerId);
+        Task<bool> DeleteCommentAsync(long commentId, long? ownerId);
 
         /// <summary>
         /// Восстанавливает удаленный комментарий к видеозаписи.
@@ -244,7 +245,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.restoreComment
         /// </remarks>
-        bool RestoreComment(long commentId, long? ownerId);
+        Task<bool> RestoreCommentAsync(long commentId, long? ownerId);
 
         /// <summary>
         /// Изменяет текст комментария к видеозаписи.
@@ -271,7 +272,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.editComment
         /// </remarks>
-        bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null);
+        Task<bool> EditCommentAsync(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null);
 
         /// <summary>
         /// Позволяет пожаловаться на видеозапись.
@@ -294,7 +295,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.report
         /// </remarks>
-        bool Report(long videoId, ReportReason reason, long? ownerId, string comment = null, string searchQuery = null);
+        Task<bool> ReportAsync(long videoId, ReportReason reason, long? ownerId, string comment = null, string searchQuery = null);
 
         /// <summary>
         /// Позволяет пожаловаться на комментарий к видеозаписи.
@@ -315,7 +316,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.reportComment
         /// </remarks>
-        bool ReportComment(long commentId, long ownerId, ReportReason reason);
+        Task<bool> ReportCommentAsync(long commentId, long ownerId, ReportReason reason);
 
         /// <summary>
         /// Позволяет получить информацию об альбоме с видео.
@@ -336,7 +337,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.getAlbumById
         /// </remarks>
-        VideoAlbum GetAlbumById(long albumId, long? ownerId = null);
+        Task<VideoAlbum> GetAlbumByIdAsync(long albumId, long? ownerId = null);
 
         /// <summary>
         /// Позволяет изменить порядок альбомов с видео.
@@ -351,7 +352,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.reorderAlbums
         /// </remarks>
-        bool ReorderAlbums(long albumId, long? ownerId, long? before, long? after);
+        Task<bool> ReorderAlbumsAsync(long albumId, long? ownerId, long? before, long? after);
 
         /// <summary>
         /// Позволяет переместить видеозапись в альбоме.
@@ -363,7 +364,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.reorderVideos
         /// </remarks>
-        bool ReorderVideos(VideoReorderVideosParams @params);
+        Task<bool> ReorderVideosAsync(VideoReorderVideosParams @params);
 
         /// <summary>
         /// Позволяет добавить видеозапись в альбом.
@@ -381,7 +382,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.addToAlbum
         /// </remarks>
-        bool AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null);
+        Task<bool> AddToAlbumAsync(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null);
 
         /// <summary>
         /// Позволяет убрать видеозапись из альбома.
@@ -397,7 +398,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.removeFromAlbum
         /// </remarks>
-        bool RemoveFromAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null);
+        Task<bool> RemoveFromAlbumAsync(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null);
 
         /// <summary>
         /// Возвращает список альбомов, в которых находится видеозапись.
@@ -414,7 +415,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.getAlbumsByVideo
         /// </remarks>
-        VkCollection<VideoAlbum> GetAlbumsByVideo(long? targetId, long ownerId, long videoId, bool? extended);
+        Task<VkCollection<VideoAlbum>> GetAlbumsByVideoAsync(long? targetId, long ownerId, long videoId, bool? extended);
 
         ///  <summary>
         ///  Позволяет получить представление каталога видео.
@@ -466,7 +467,7 @@ namespace VkNet.Abstractions
         ///  <remarks>
         ///  Страница документации ВКонтакте http://vk.com/dev/video.getCatalog
         ///  </remarks>
-        ReadOnlyCollection<VideoCatalog> GetCatalog(VideoGetCatalogParams @params);
+        Task<ReadOnlyCollection<VideoCatalog>> GetCatalogAsync(VideoGetCatalogParams @params);
 
         /// <summary>
         /// Позволяет получить отдельный блок видеокаталога.
@@ -512,7 +513,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.getCatalogSection
         /// </remarks>
-        ReadOnlyCollection<VideoCatalogItem> GetCatalogSection(string sectionId, string from, long? count = null, bool? extended = null);
+        Task<ReadOnlyCollection<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId, string from, long? count = null, bool? extended = null);
 
         /// <summary>
         /// Скрывает для пользователя раздел видеокаталога.
@@ -524,6 +525,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/video.hideCatalogSection
         /// </remarks>
-        bool HideCatalogSection(long sectionId);
+        Task<bool> HideCatalogSectionAsync(long sectionId);
     }
 }

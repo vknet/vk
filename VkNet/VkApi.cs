@@ -508,8 +508,6 @@ namespace VkNet
             return JsonConvert.DeserializeObject<T>(answer, settings);
         }
 
-        
-
         /// <summary>
         /// Прямой вызов API-метода
         /// </summary>

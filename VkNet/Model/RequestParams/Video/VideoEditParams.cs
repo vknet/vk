@@ -7,24 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.edit
 	/// </summary>
-	public struct VideoEditParams
+	public class VideoEditParams
 	{
-		/// <summary>
-		/// Параметры метода video.edit
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public VideoEditParams(bool gag = true)
-		{
-			OwnerId = null;
-			VideoId = 0;
-			Name = null;
-			Desc = null;
-			PrivacyView = null;
-			PrivacyComment = null;
-			NoComments = null;
-			Repeat = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежит видеозапись. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>

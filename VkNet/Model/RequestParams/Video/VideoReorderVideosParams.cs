@@ -5,24 +5,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.reorderVideos
 	/// </summary>
-	public struct VideoReorderVideosParams
+	public class VideoReorderVideosParams
 	{
-		/// <summary>
-		/// Параметры метода video.reorderVideos
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public VideoReorderVideosParams(bool gag = true)
-		{
-			TargetId = null;
-			AlbumId = 0;
-			OwnerId = 0;
-			VideoId = 0;
-			BeforeOwnerId = null;
-			BeforeVideoId = null;
-			AfterOwnerId = null;
-			AfterVideoId = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, в чьем альбоме нужно переместить видео. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>

@@ -1,16 +1,15 @@
 ﻿using VkNet.Abstractions;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Model;
+using VkNet.Model.Attachments;
+using VkNet.Utils;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
 {
-	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
-	using Enums;
-	using Enums.SafetyEnums;
-	using Model;
-	using Model.Attachments;
-	using Utils;
-	using Model.RequestParams;
-
 	/// <summary>
 	/// Методы для работы с видеофайлами.
 	/// </summary>
@@ -184,35 +183,6 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Offset);
 
 			return _vk.Call("video.search", @params).ToVkCollectionOf<Video>(x => x);
-		}
-
-		/// <summary>
-		/// Возвращает список видеозаписей, на которых отмечен пользователь.
-		/// </summary>
-		/// <param name="userId">Идентификатор пользователя. положительное число, по умолчанию идентификатор текущего пользователя (Положительное число, по умолчанию идентификатор текущего пользователя).</param>
-		/// <param name="offset">Смещение относительно первой найденной видеозаписи для выборки определенного подмножества. положительное число (Положительное число).</param>
-		/// <param name="count">Количество возвращаемых видеозаписей. положительное число, по умолчанию 20, максимальное значение 100 (Положительное число, по умолчанию 20, максимальное значение 100).</param>
-		/// <param name="extended">1 — возвращать дополнительные объекты profiles и groups, которые содержат id и имя/название владельцев видео. флаг, может принимать значения 1 или 0, по умолчанию 0 (Флаг, может принимать значения 1 или 0, по умолчанию 0).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов видеозаписей.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/video.getUserVideos
-		/// </remarks>
-		public VkCollection<Video> GetUserVideos(long? userId, long? offset, long? count, bool? extended)
-		{
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-
-			var parameters = new VkParameters {
-				{ "user_id", userId },
-				{ "offset", offset },
-				{ "count", count },
-				{ "extended", extended }
-			};
-
-			return _vk.Call("video.getUserVideos", parameters).ToVkCollectionOf<Video>(x => x);
 		}
 
 		/// <summary>
@@ -468,124 +438,6 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает список отметок на видеозаписи.
-		/// </summary>
-		/// <param name="ownerId">Идентификатор владельца видеозаписи (пользователь или сообщество). По умолчанию — идентификатор текущего пользователя. целое число, по умолчанию идентификатор текущего пользователя (Целое число, по умолчанию идентификатор текущего пользователя).</param>
-		/// <param name="videoId">Идентификатор видеозаписи. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает массив объектов tag, каждый из которых содержит следующие поля:
-		///
-		/// user_id — идентификатор пользователя, которому соответствует отметка;
-		/// tag_id — идентификатор отметки;
-		/// placer_id — идентификатор пользователя, сделавшего отметку;
-		/// tagged_name — название отметки;
-		/// date — дата добавления отметки в формате unixtime;
-		/// viewed — статус отметки (1 — подтвержденная, 0 — неподтвержденная).
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/video.getTags
-		/// </remarks>
-		public ReadOnlyCollection<Tag> GetTags(long videoId, long? ownerId)
-		{
-			VkErrors.ThrowIfNumberIsNegative(() => videoId);
-
-			var parameters = new VkParameters
-			{
-				{ "video_id", videoId },
-				{ "owner_id", ownerId }
-			};
-
-			VkResponseArray response = _vk.Call("video.getTags", parameters);
-
-			return response.ToReadOnlyCollectionOf<Tag>(t => t);
-		}
-
-		/// <summary>
-		/// Добавляет отметку на видеозапись.
-		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, которого нужно отметить. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-		/// <param name="ownerId">Идентификатор владельца видеозаписи (пользователь или сообщество). По умолчанию — идентификатор текущего пользователя. целое число, положительное число, по умолчанию идентификатор текущего пользователя (Целое число, положительное число, по умолчанию идентификатор текущего пользователя).</param>
-		/// <param name="videoId">Идентификатор видеозаписи. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-		/// <param name="taggedName">Текст отметки. строка (Строка).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает идентификатор созданной отметки (tag id).
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/video.putTag
-		/// </remarks>
-		public long PutTag(long videoId, long userId, long? ownerId, string taggedName)
-		{
-			VkErrors.ThrowIfNumberIsNegative(() => videoId);
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
-
-			var parameters = new VkParameters
-				{
-					{"user_id", userId},
-					{"video_id", videoId},
-					{"owner_id", ownerId},
-					{"tagged_name", taggedName}
-				};
-
-			return _vk.Call("video.putTag", parameters);
-		}
-
-		/// <summary>
-		/// Удаляет отметку с видеозаписи.
-		/// </summary>
-		/// <param name="tagId">Идентификатор отметки. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
-		/// <param name="ownerId">Идентификатор владельца видеозаписи (пользователь или сообщество). По умолчанию — идентификатор текущего пользователя. положительное число, по умолчанию идентификатор текущего пользователя (Положительное число, по умолчанию идентификатор текущего пользователя).</param>
-		/// <param name="videoId">Идентификатор видеозаписи. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c>true</c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/video.removeTag
-		/// </remarks>
-		public bool RemoveTag(long tagId, long videoId, long? ownerId)
-		{
-			VkErrors.ThrowIfNumberIsNegative(() => tagId);
-			VkErrors.ThrowIfNumberIsNegative(() => videoId);
-
-			var parameters = new VkParameters
-			{
-				{ "tag_id", tagId },
-				{ "video_id", videoId },
-				{ "owner_id", ownerId }
-			};
-
-			return _vk.Call("video.removeTag", parameters);
-		}
-
-		/// <summary>
-		/// Возвращает список видеозаписей, на которых есть непросмотренные отметки.
-		/// </summary>
-		/// <param name="offset">Смещение, необходимое для получения определённого подмножества видеозаписей. целое число (Целое число).</param>
-		/// <param name="count">Количество видеозаписей, которые необходимо вернуть. положительное число, максимальное значение 100, по умолчанию 20 (Положительное число, максимальное значение 100, по умолчанию 20).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов video с дополнительными полями:
-		///
-		/// placer_id — идентификатор пользователя, сделавшего отметку;
-		/// tag_created — дата создания отметки в формате unixtime;
-		/// tag_id — идентификатор отметки.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/video.getNewTags
-		/// </remarks>
-		public VkCollection<Video> GetNewTags(int? count = null, int? offset = null)
-		{
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
-
-			var parameters = new VkParameters
-			{
-				{"count", count},
-				{"offset", offset}
-			};
-
-			return _vk.Call("video.getNewTags", parameters).ToVkCollectionOf<Video>(x => x);
-		}
-
-		/// <summary>
 		/// Позволяет пожаловаться на видеозапись.
 		/// </summary>
 		/// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит видеозапись. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
@@ -795,7 +647,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbumsByVideo
 		/// </remarks>
-		public bool GetAlbumsByVideo(long? targetId, long ownerId, long videoId, bool? extended)
+		public VkCollection<VideoAlbum> GetAlbumsByVideo(long? targetId, long ownerId, long videoId, bool? extended)
 		{
 			var parameters = new VkParameters {
 				{ "target_id", targetId },
@@ -804,7 +656,7 @@ namespace VkNet.Categories
 				{ "extended", extended }
 			};
 
-			return _vk.Call("video.getAlbumsByVideo", parameters);
+			return _vk.Call("video.getAlbumsByVideo", parameters).ToVkCollectionOf<VideoAlbum>(x => x);
 		}
 
 		/// <summary>
@@ -862,13 +714,13 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.getCatalog
 		/// </remarks>
-		public ReadOnlyCollection<VideoCatalog> GetCatalog(long? count, long? itemsCount, string from, bool? extended)
+		public ReadOnlyCollection<VideoCatalog> GetCatalog(VideoGetCatalogParams @params)
 		{
 			var parameters = new VkParameters {
-				{ "count", count },
-				{ "items_count", itemsCount },
-				{ "from", from },
-				{ "extended", extended }
+				{ "count", @params.Count },
+				{ "items_count", @params.ItemsCount },
+				{ "from", @params.From },
+				{ "extended", @params.Extended }
 			};
 
 			return _vk.Call("video.getCatalog", parameters).ToReadOnlyCollectionOf<VideoCatalog>(x => x);

@@ -7,22 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.get
 	/// </summary>
-	public struct VideoGetParams
+	public class VideoGetParams
 	{
-		/// <summary>
-		/// Параметры метода video.get
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public VideoGetParams(bool gag = true)
-		{
-			OwnerId = null;
-			Videos = null;
-			AlbumId = null;
-			Count = null;
-			Offset = null;
-			Extended = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежат видеозаписи. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>

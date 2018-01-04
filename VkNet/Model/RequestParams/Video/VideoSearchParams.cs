@@ -7,27 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.search
 	/// </summary>
-	public struct VideoSearchParams
+	public class VideoSearchParams
 	{
-		/// <summary>
-		/// Параметры метода video.search
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public VideoSearchParams(bool gag = true)
-		{
-			Query = null;
-			Sort = null;
-			Hd = null;
-			Adult = null;
-			Filters = null;
-			SearchOwn = null;
-			Offset = null;
-			Longer = null;
-			Shorter = null;
-			Count = null;
-			Extended = null;
-		}
-
 		/// <summary>
 		/// Строка поискового запроса. Например, The Beatles. строка, обязательный параметр.
 		/// </summary>

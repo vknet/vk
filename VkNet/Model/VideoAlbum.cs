@@ -1,4 +1,7 @@
-﻿namespace VkNet.Model
+﻿using System;
+using Newtonsoft.Json;
+
+namespace VkNet.Model
 {
     using Utils;
 
@@ -39,6 +42,12 @@
         /// URL изображения предпросмотра альбома шириной в 320 пикселов.
         /// </summary>
         public string Photo320 { get; set; }
+	    
+	    /// <summary>
+	    /// время последнего обновления в формате unixtime
+	    /// </summary>
+	    [JsonProperty("updated_time")]
+	    public DateTime? UpdatedTime { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -54,7 +63,8 @@
 				Title = response["title"],
 				Count = Utilities.GetNullableLongId(response["count"]),
 				Photo160 = response["photo_160"],
-				Photo320 = response["photo_320"]
+				Photo320 = response["photo_320"],
+				UpdatedTime = response["updated_time"]
 			};
 
 			return album;

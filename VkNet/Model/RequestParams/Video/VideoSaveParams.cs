@@ -6,27 +6,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.save
 	/// </summary>
-	public struct VideoSaveParams
+	public class VideoSaveParams
 	{
-		/// <summary>
-		/// Параметры метода video.save
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public VideoSaveParams(bool gag = true)
-		{
-			Name = null;
-			Description = null;
-			IsPrivate = null;
-			Wallpost = null;
-			Link = null;
-			GroupId = null;
-			AlbumId = null;
-			PrivacyView = null;
-			PrivacyComment = null;
-			NoComments = null;
-			Repeat = null;
-		}
-
 		/// <summary>
 		/// Название видеофайла. строка, по умолчанию No name.
 		/// </summary>

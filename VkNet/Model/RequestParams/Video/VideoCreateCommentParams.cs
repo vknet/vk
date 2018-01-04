@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -7,23 +8,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.createComment
 	/// </summary>
-	public struct VideoCreateCommentParams
+	public class VideoCreateCommentParams
 	{
-		/// <summary>
-		/// Параметры метода video.createComment
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public VideoCreateCommentParams(bool gag = true)
-		{
-			OwnerId = null;
-			VideoId = 0;
-			Message = null;
-			Attachments = null;
-			FromGroup = null;
-			ReplyToComment = null;
-			StickerId = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежит видеозапись. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>
@@ -70,6 +56,12 @@ namespace VkNet.Model.RequestParams
 		/// Положительное число.
 		/// </summary>
 		public long? StickerId { get; set; }
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[JsonProperty("guid")]
+		public string Guid { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -86,7 +78,8 @@ namespace VkNet.Model.RequestParams
 				{ "attachments", p.Attachments },
 				{ "from_group", p.FromGroup },
 				{ "reply_to_comment", p.ReplyToComment },
-				{ "sticker_id", p.StickerId }
+				{ "sticker_id", p.StickerId },
+				{ "guid", p.Guid}
 			};
 
 			return parameters;

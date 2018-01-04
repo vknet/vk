@@ -143,12 +143,6 @@ namespace VkNet.Model.Attachments
         public Tag Tag { get; set; }
 
         /// <summary>
-        /// Строка, состоящая из ключа video+vid.
-        /// </summary>
-        [Obsolete]
-        public string Link { get; set; }
-
-        /// <summary>
         /// Ссылки на файлы
         /// </summary>
         public VideoFiles Files { get; set; }
