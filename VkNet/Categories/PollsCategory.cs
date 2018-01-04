@@ -14,7 +14,7 @@ namespace VkNet.Categories
     /// <summary>
     /// Методы этого класса позволяют производить действия с опросами.
     /// </summary>
-    public class PollsCategory : IPollsCategory
+    public partial class PollsCategory : IPollsCategory
     {
         /// <summary>
         /// API.
