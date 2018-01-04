@@ -9,7 +9,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы со статистикой.
 	/// </summary>
-	public class StatsCategory : IStatsCategory
+	public partial class StatsCategory : IStatsCategory
 	{
 		/// <summary>
 		/// API.

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using VkNet.Model;
 
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы со статистикой.
+    /// Асинхронные методы для работы со статистикой.
     /// </summary>
-    public interface IStatsCategory : IStatsCategoryAsync
+    public interface IStatsCategoryAsync
     {
         /// <summary>
         /// Возвращает статистику сообщества или приложения.
@@ -21,7 +22,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/stats.get
         /// </remarks>
-        ReadOnlyCollection<StatsPeriod> GetByGroup(long groupId, DateTime dateFrom, DateTime? dateTo = null);
+        Task<ReadOnlyCollection<StatsPeriod>> GetByGroupAsync(long groupId, DateTime dateFrom, DateTime? dateTo = null);
 
         /// <summary>
         /// Возвращает статистику сообщества или приложения.
@@ -35,7 +36,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/stats.get
         /// </remarks>
-        ReadOnlyCollection<StatsPeriod> GetByApp(long appId, DateTime dateFrom, DateTime? dateTo = null);
+        Task<ReadOnlyCollection<StatsPeriod>> GetByAppAsync(long appId, DateTime dateFrom, DateTime? dateTo = null);
 
         /// <summary>
         /// Добавляет данные о текущем сеансе в статистику посещаемости приложения..
@@ -46,7 +47,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/stats.trackVisitor
         /// </remarks>
-        bool TrackVisitor();
+        Task<bool> TrackVisitorAsync();
 
         /// <summary>
         /// Возвращает статистику для записи на стене.
@@ -60,6 +61,6 @@ namespace VkNet.Abstractions
         /// Необходимо входить в число руководителей этого сообщества.
         /// Страница документации ВКонтакте https://vk.com/dev/stats.getPostReach
         /// </remarks>
-        PostReach GetPostReach(long ownerId, long postId);
+        Task<PostReach> GetPostReachAsync(long ownerId, long postId);
     }
 }
