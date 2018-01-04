@@ -53,7 +53,7 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-            var info = GetMockedPhotosCategory(url, json).GetMessagesUploadServer();
+            var info = GetMockedPhotosCategory(url, json).GetMessagesUploadServer(123);
 			Assert.That(info, Is.Not.Null);
 
 			Assert.That(info.UploadUrl, Is.EqualTo("http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1"));

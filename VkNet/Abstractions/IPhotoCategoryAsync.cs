@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -9,9 +10,9 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы с фотографиями.
+    /// Асинхронные методы для работы с фотографиями.
     /// </summary>
-    public interface IPhotoCategory : IPhotoCategoryAsync
+    public interface IPhotoCategoryAsync
     {
         /// <summary>
         /// Создает пустой альбом для фотографий.
@@ -23,7 +24,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.createAlbum
         /// </remarks>
-        PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params);
+        Task<PhotoAlbum> CreateAlbumAsync(PhotoCreateAlbumParams @params);
 
         /// <summary>
         /// Редактирует данные альбома для фотографий пользователя.
@@ -35,7 +36,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.editAlbum
         /// </remarks>
-        bool EditAlbum(PhotoEditAlbumParams @params);
+        Task<bool> EditAlbumAsync(PhotoEditAlbumParams @params);
 
         /// <summary>
         /// Возвращает список альбомов пользователя или сообщества.
@@ -48,7 +49,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getAlbums
         /// </remarks>
-        VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false);
+        Task<VkCollection<PhotoAlbum>> GetAlbumsAsync(PhotoGetAlbumsParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает список фотографий в альбоме.
@@ -61,7 +62,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.get
         /// </remarks>
-        VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false);
+        Task<VkCollection<Photo>> GetAsync(PhotoGetParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает количество доступных альбомов пользователя или сообщества.
@@ -74,7 +75,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getAlbumsCount
         /// </remarks>
-        int GetAlbumsCount(long? userId = null, long? groupId = null);
+        Task<int> GetAlbumsCountAsync(long? userId = null, long? groupId = null);
 
         /// <summary>
         /// Возвращает информацию о фотографиях по их идентификаторам.
@@ -103,7 +104,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getById
         /// </remarks>
-        ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null, bool skipAuthorization = false);
+        Task<ReadOnlyCollection<Photo>> GetByIdAsync(IEnumerable<string> photos, bool? extended = null, bool? photoSizes = null, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки фотографий.
@@ -114,7 +115,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getUploadServer
         /// </remarks>
-        UploadServerInfo GetUploadServer(long albumId, long? groupId = null);
+        Task<UploadServerInfo> GetUploadServerAsync(long albumId, long? groupId = null);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки главной фотографии на страницу пользователя или сообщества.
@@ -126,7 +127,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getOwnerPhotoUploadServer
         /// </remarks>
-        UploadServerInfo GetOwnerPhotoUploadServer(long? ownerId = null);
+        Task<UploadServerInfo> GetOwnerPhotoUploadServerAsync(long? ownerId = null);
 
         /// <summary>
         /// Позволяет получить адрес для загрузки фотографий мультидиалогов.
@@ -141,7 +142,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getChatUploadServer
         /// </remarks>
-        UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null);
+        Task<UploadServerInfo> GetChatUploadServerAsync(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null);
 
         /// <summary>
         /// Позволяет сохранить главную фотографию пользователя или сообщества.
@@ -155,7 +156,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
         /// </remarks>
-        Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey);
+        Task<Photo> SaveOwnerPhotoAsync(string response, long? captchaSid, string captchaKey);
 
         /// <summary>
         /// Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getWallUploadServer.
@@ -170,7 +171,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.saveWallPhoto
         /// </remarks>
-        ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong userId, ulong? groupId = null, string caption = null);
+        Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response, ulong userId, ulong? groupId = null, string caption = null);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.
@@ -182,7 +183,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getWallUploadServer
         /// </remarks>
-        UploadServerInfo GetWallUploadServer(long? groupId = null);
+        Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
@@ -192,7 +193,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getMessagesUploadServer
         /// </remarks>
-        UploadServerInfo GetMessagesUploadServer(long peerId);
+        Task<UploadServerInfo> GetMessagesUploadServerAsync(long peerId);
 
         /// <summary>
         /// Сохраняет фотографию после успешной загрузки на URI, полученный методом GetMessagesUploadServer
@@ -202,7 +203,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.saveMessagesPhoto
         /// </remarks>
-        ReadOnlyCollection<Photo> SaveMessagesPhoto(string response);
+        Task<ReadOnlyCollection<Photo>> SaveMessagesPhotoAsync(string response);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки обложки сообщества.
@@ -216,7 +217,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getOwnerCoverPhotoUploadServer
         /// </remarks>
-        UploadServerInfo GetOwnerCoverPhotoUploadServer(long groupId, long? cropX = null, long? cropY = null, long? cropX2 = 795L, long? cropY2 = 200L);
+        Task<UploadServerInfo> GetOwnerCoverPhotoUploadServerAsync(long groupId, long? cropX = null, long? cropY = null, long? cropX2 = 795L, long? cropY2 = 200L);
 
         /// <summary>
         /// Сохраняет фотографию после успешной загрузки на URI, полученный методом GetOwnerCoverPhotoUploadServer
@@ -226,7 +227,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerCoverPhoto
         /// </remarks>
-        GroupCover SaveOwnerCoverPhoto(string response);
+        Task<GroupCover> SaveOwnerCoverPhotoAsync(string response);
 
         /// <summary>
         /// Позволяет пожаловаться на фотографию.
@@ -249,7 +250,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.report
         /// </remarks>
-        bool Report(long ownerId, ulong photoId, ReportReason reason);
+        Task<bool> ReportAsync(long ownerId, ulong photoId, ReportReason reason);
 
         /// <summary>
         /// Позволяет пожаловаться на комментарий к фотографии.
@@ -272,7 +273,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.reportComment
         /// </remarks>
-        bool ReportComment(long ownerId, ulong commentId, ReportReason reason);
+        Task<bool> ReportCommentAsync(long ownerId, ulong commentId, ReportReason reason);
 
         /// <summary>
         /// Осуществляет поиск изображений по местоположению или описанию.
@@ -285,7 +286,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.search
         /// </remarks>
-        VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false);
+        Task<VkCollection<Photo>> SearchAsync(PhotoSearchParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Сохраняет фотографии после успешной загрузки.
@@ -297,7 +298,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.save
         /// </remarks>
-        ReadOnlyCollection<Photo> Save(PhotoSaveParams @params);
+        Task<ReadOnlyCollection<Photo>> SaveAsync(PhotoSaveParams @params);
 
         /// <summary>
         /// Позволяет скопировать фотографию в альбом "Сохраненные фотографии".
@@ -311,7 +312,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.copy
         /// </remarks>
-        long Copy(long ownerId, ulong photoId, string accessKey = null);
+        Task<long> CopyAsync(long ownerId, ulong photoId, string accessKey = null);
 
         /// <summary>
         /// Изменяет описание у выбранной фотографии.
@@ -323,7 +324,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.edit
         /// </remarks>
-        bool Edit(PhotoEditParams @params);
+        Task<bool> EditAsync(PhotoEditParams @params);
 
         /// <summary>
         /// Переносит фотографию из одного альбома в другой.
@@ -337,7 +338,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.move
         /// </remarks>
-        bool Move(long targetAlbumId, ulong photoId, long? ownerId = null);
+        Task<bool> MoveAsync(long targetAlbumId, ulong photoId, long? ownerId = null);
 
         /// <summary>
         /// Делает фотографию обложкой альбома.
@@ -351,7 +352,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.makeCover
         /// </remarks>
-        bool MakeCover(ulong photoId, long? ownerId = null, long? albumId = null);
+        Task<bool> MakeCoverAsync(ulong photoId, long? ownerId = null, long? albumId = null);
 
         /// <summary>
         /// Меняет порядок альбома в списке альбомов пользователя.
@@ -366,7 +367,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.reorderAlbums
         /// </remarks>
-        bool ReorderAlbums(long albumId, long? ownerId = null, long? before = null, long? after = null);
+        Task<bool> ReorderAlbumsAsync(long albumId, long? ownerId = null, long? before = null, long? after = null);
 
         /// <summary>
         /// Меняет порядок фотографии в списке фотографий альбома пользователя.
@@ -381,7 +382,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.reorderPhotos
         /// </remarks>
-        bool ReorderPhotos(ulong photoId, long? ownerId = null, long? before = null, long? after = null);
+        Task<bool> ReorderPhotosAsync(ulong photoId, long? ownerId = null, long? before = null, long? after = null);
 
         /// <summary>
         /// Возвращает все фотографии пользователя или сообщества в антихронологическом порядке.
@@ -399,7 +400,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getAll
         /// </remarks>
-        VkCollection<Photo> GetAll(PhotoGetAllParams @params);
+        Task<VkCollection<Photo>> GetAllAsync(PhotoGetAllParams @params);
 
         /// <summary>
         /// Возвращает список фотографий, на которых отмечен пользователь.
@@ -411,7 +412,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getUserPhotos
         /// </remarks>
-        VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params);
+        Task<VkCollection<Photo>> GetUserPhotosAsync(PhotoGetUserPhotosParams @params);
 
         /// <summary>
         /// Удаляет указанный альбом для фотографий у текущего пользователя.
@@ -424,7 +425,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.deleteAlbum
         /// </remarks>
-        bool DeleteAlbum(long albumId, long? groupId = null);
+        Task<bool> DeleteAlbumAsync(long albumId, long? groupId = null);
 
         /// <summary>
         /// Удаление фотографии на сайте.
@@ -437,7 +438,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.delete
         /// </remarks>
-        bool Delete(ulong photoId, long? ownerId = null);
+        Task<bool> DeleteAsync(ulong photoId, long? ownerId = null);
 
         /// <summary>
         /// Восстанавливает удаленную фотографию.
@@ -450,7 +451,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.restore
         /// </remarks>
-        bool Restore(ulong photoId, long? ownerId = null);
+        Task<bool> RestoreAsync(ulong photoId, long? ownerId = null);
 
         /// <summary>
         /// Подтверждает отметку на фотографии.
@@ -464,7 +465,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.confirmTag
         /// </remarks>
-        bool ConfirmTag(ulong photoId, ulong tagId, long? ownerId = null);
+        Task<bool> ConfirmTagAsync(ulong photoId, ulong tagId, long? ownerId = null);
 
         /// <summary>
         /// Возвращает список комментариев к фотографии.
@@ -476,7 +477,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getComments
         /// </remarks>
-        VkCollection<Comment> GetComments(PhotoGetCommentsParams @params);
+        Task<VkCollection<Comment>> GetCommentsAsync(PhotoGetCommentsParams @params);
 
         /// <summary>
         /// Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
@@ -488,7 +489,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getAllComments
         /// </remarks>
-        VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params);
+        Task<VkCollection<Comment>> GetAllCommentsAsync(PhotoGetAllCommentsParams @params);
 
         /// <summary>
         /// Создает новый комментарий к фотографии.
@@ -500,7 +501,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.createComment
         /// </remarks>
-        long CreateComment(PhotoCreateCommentParams @params);
+        Task<long> CreateCommentAsync(PhotoCreateCommentParams @params);
 
         /// <summary>
         /// Удаляет комментарий к фотографии.
@@ -513,7 +514,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.deleteComment
         /// </remarks>
-        bool DeleteComment(ulong commentId, long? ownerId = null);
+        Task<bool> DeleteCommentAsync(ulong commentId, long? ownerId = null);
 
         /// <summary>
         /// Восстанавливает удаленный комментарий к фотографии.
@@ -526,7 +527,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.restoreComment
         /// </remarks>
-        long RestoreComment(ulong commentId, long? ownerId = null);
+        Task<long> RestoreCommentAsync(ulong commentId, long? ownerId = null);
 
         /// <summary>
         /// Изменяет текст комментария к фотографии.
@@ -550,7 +551,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.editComment
         /// </remarks>
-        bool EditComment(ulong commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null);
+        Task<bool> EditCommentAsync(ulong commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null);
 
         /// <summary>
         /// Возвращает список отметок на фотографии.
@@ -572,7 +573,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getTags
         /// </remarks>
-        ReadOnlyCollection<Tag> GetTags(ulong photoId, long? ownerId = null, string accessKey = null);
+        Task<ReadOnlyCollection<Tag>> GetTagsAsync(ulong photoId, long? ownerId = null, string accessKey = null);
 
         /// <summary>
         /// Добавляет отметку на фотографию.
@@ -584,7 +585,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.putTag
         /// </remarks>
-        ulong PutTag(PhotoPutTagParams @params);
+        Task<ulong> PutTagAsync(PhotoPutTagParams @params);
 
         /// <summary>
         /// Удаляет отметку с фотографии.
@@ -598,7 +599,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.removeTag
         /// </remarks>
-        bool RemoveTag(ulong tagId, ulong photoId, long? ownerId = null);
+        Task<bool> RemoveTagAsync(ulong tagId, ulong photoId, long? ownerId = null);
 
         /// <summary>
         /// Возвращает список фотографий, на которых есть непросмотренные отметки.
@@ -611,7 +612,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getNewTags
         /// </remarks>
-        VkCollection<Photo> GetNewTags(uint? offset = null, uint? count = null);
+        Task<VkCollection<Photo>> GetNewTagsAsync(uint? offset = null, uint? count = null);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки фотографии товаров сообщества.
@@ -627,7 +628,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getMarketUploadServer
         /// </remarks>
-        UploadServerInfo GetMarketUploadServer(long groupId, bool? mainPhoto = null, long? cropX = null, long? cropY = null, long? cropWidth = null);
+        Task<UploadServerInfo> GetMarketUploadServerAsync(long groupId, bool? mainPhoto = null, long? cropX = null, long? cropY = null, long? cropWidth = null);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
@@ -639,7 +640,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.getMarketAlbumUploadServer
         /// </remarks>
-        UploadServerInfo GetMarketAlbumUploadServer(long groupId);
+        Task<UploadServerInfo> GetMarketAlbumUploadServerAsync(long groupId);
 
         /// <summary>
         /// Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketUploadServer.
@@ -652,7 +653,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.saveMarketPhoto
         /// </remarks>
-        ReadOnlyCollection<Photo> SaveMarketPhoto(long groupId, string response);
+        Task<ReadOnlyCollection<Photo>> SaveMarketPhotoAsync(long groupId, string response);
 
         /// <summary>
         /// Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketAlbumUploadServer.
@@ -665,6 +666,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.saveMarketAlbumPhoto
         /// </remarks>
-        ReadOnlyCollection<Photo> SaveMarketAlbumPhoto(long groupId, string response);
+        Task<ReadOnlyCollection<Photo>> SaveMarketAlbumPhotoAsync(long groupId, string response);
     }
 }

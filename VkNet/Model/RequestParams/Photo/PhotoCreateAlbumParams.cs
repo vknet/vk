@@ -7,23 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.createAlbum
 	/// </summary>
-	public struct PhotoCreateAlbumParams
+	public class PhotoCreateAlbumParams
 	{
-		/// <summary>
-		/// Список параметров для метода photos.createAlbum .
-		/// </summary>
-		/// <param name="gag">Заглушка инициализатора конструктора.</param>
-		public PhotoCreateAlbumParams(bool gag = true)
-		{
-			View = new List<Privacy>();
-			Privacy = new List<Privacy>();
-			Title = null;
-			GroupId = null;
-			Description = null;
-			UploadByAdminsOnly = null;
-			CommentsDisabled = null;
-		}
-
 		/// <summary>
 		/// Название альбома.
 		/// </summary>
@@ -45,13 +30,13 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Настройки приватности просмотра альбома в специальном формате.
 		/// </summary>
-		public List<Privacy> View
+		public List<Privacy> PrivacyView
 		{ get; set; }
 
 		/// <summary>
 		/// Настройки приватности комментирования альбома в специальном формате.
 		/// </summary>
-		public List<Privacy> Privacy
+		public List<Privacy> PrivacyComment
 		{ get; set; }
 
 		/// <summary>
@@ -73,13 +58,13 @@ namespace VkNet.Model.RequestParams
 		/// <returns></returns>
 		public static VkParameters ToVkParameters(PhotoCreateAlbumParams p)
 		{
-			if (p.View == null)
+			if (p.PrivacyView == null)
 			{
-				p.View = new List<Privacy>();
+				p.PrivacyView = new List<Privacy>();
 			}
-			if (p.Privacy == null)
+			if (p.PrivacyComment == null)
 			{
-				p.Privacy = new List<Privacy>();
+				p.PrivacyComment = new List<Privacy>();
 			}
 			if (p.Title.Length < 2)
 			{
@@ -90,8 +75,8 @@ namespace VkNet.Model.RequestParams
 				{ "title", p.Title },
 				{ "group_id", p.GroupId },
 				{ "description", p.Description },
-				{ "privacy_view", string.Join(",", p.View) },
-				{ "privacy_comment", string.Join(",", p.Privacy) },
+				{ "privacy_view", string.Join(",", p.PrivacyView) },
+				{ "privacy_comment", string.Join(",", p.PrivacyComment) },
 				{ "upload_by_admins_only", p.UploadByAdminsOnly },
 				{ "comments_disabled", p.CommentsDisabled }
 			};

@@ -1,16 +1,15 @@
 ﻿using VkNet.Abstractions;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using VkNet.Utils;
+using VkNet.Enums;
+using VkNet.Model;
+using VkNet.Model.Attachments;
+using Newtonsoft.Json.Linq;
+using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
 {
-	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
-	using Utils;
-	using Enums;
-	using Model;
-	using Model.Attachments;
-	using Newtonsoft.Json.Linq;
-	using Model.RequestParams;
-
 	/// <summary>
 	/// Методы для работы с фотографиями.
 	/// </summary>
@@ -307,7 +306,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.getMessagesUploadServer
 		/// </remarks>
-		public UploadServerInfo GetMessagesUploadServer()
+		public UploadServerInfo GetMessagesUploadServer(long peerId)
 		{
 			return _vk.Call("photos.getMessagesUploadServer", VkParameters.Empty);
 		}
