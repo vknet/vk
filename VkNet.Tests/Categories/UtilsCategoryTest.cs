@@ -5,6 +5,7 @@ using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
@@ -203,7 +204,7 @@ namespace VkNet.Tests.Categories
 			var stat = result.Stats.FirstOrDefault();
 			Assert.NotNull(stat);
 			Assert.That(stat.Views, Is.EqualTo(1));
-			Assert.That(stat.Timestamp, Is.EqualTo(new DateTime(2017,3,12,12,0,0)));
+			Assert.That(stat.Timestamp, Is.EqualTo(VkResponse.TimestampToDateTime(1489309200)));
 			var sexAge = stat.SexAge.FirstOrDefault();
 			Assert.NotNull(sexAge);
 			Assert.That(sexAge.AgeRange, Is.EqualTo("18-21"));
@@ -270,7 +271,7 @@ namespace VkNet.Tests.Categories
 			}";
 			Url = "https://api.vk.com/method/utils.getServerTime";
 			var result = Api.Utils.GetServerTime();
-			Assert.That(result, Is.EqualTo(new DateTime(2017,3,12,12,0,0)));
+			Assert.That(result, Is.EqualTo(VkResponse.TimestampToDateTime(1489309200)));
 		}
 
 		[Test]
