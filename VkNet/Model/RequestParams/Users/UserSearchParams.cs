@@ -11,49 +11,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода users.search
 	/// </summary>
-	public struct UserSearchParams
+	public class UserSearchParams
 	{
-		/// <summary>
-		/// Параметры метода users.search.
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public UserSearchParams(bool gag = true)
-		{
-			Sort = UserSort.ByPopularity;
-			Offset = 0;
-			Count = 20;
-			Sex = Sex.Unknown;
-			Query = null;
-			Fields = null;
-			City = null;
-			Country = null;
-			Hometown = null;
-			UniversityCountry = null;
-			University = null;
-			UniversityYear = null;
-			UniversityFaculty = null;
-			UniversityChair = null;
-			Status = null;
-			AgeFrom = null;
-			AgeTo = null;
-			BirthDay = null;
-			BirthMonth = null;
-			BirthYear = null;
-			Online = false;
-			HasPhoto = false;
-			SchoolCountry = null;
-			SchoolCity = null;
-			SchoolClass = null;
-			School = null;
-			SchoolYear = null;
-			Religion = null;
-			Interests = null;
-			Company = null;
-			Position = null;
-			GroupId = null;
-			FromList = null;
-		}
-
 		/// <summary>
 		/// Строка поискового запроса. Например, Вася Бабич.
 		/// </summary>

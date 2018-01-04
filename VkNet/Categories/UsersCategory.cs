@@ -1,18 +1,17 @@
 ﻿using VkNet.Abstractions;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using JetBrains.Annotations;
+using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Model;
+using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Collections.ObjectModel;
-	using System.Linq;
-	using JetBrains.Annotations;
-	using Enums.Filters;
-	using Enums.SafetyEnums;
-	using Model;
-	using Model.RequestParams;
-	using Utils;
-
 	/// <summary>
 	/// Методы для работы с информацией о пользователях.
 	/// </summary>

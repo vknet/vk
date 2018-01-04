@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -11,9 +12,9 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы с информацией о пользователях.
+    /// Асинхронные методы для работы с информацией о пользователях.
     /// </summary>
-    public interface IUsersCategory : IUsersCategoryAsync
+    public interface IUsersCategoryAsync
     {
         /// <summary>
         /// Возвращает список пользователей в соответствии с заданным критерием поиска.
@@ -26,7 +27,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/users.search
         /// </remarks>
-        VkCollection<User> Search(UserSearchParams @params);
+        Task<VkCollection<User>> SearchAsync(UserSearchParams @params);
 
         /// <summary>
         /// Возвращает информацию о том, установил ли пользователь приложение.
@@ -38,7 +39,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/users.isAppUser
         /// </remarks>
-        bool IsAppUser(long? userId);
+        Task<bool> IsAppUserAsync(long? userId);
 
         /// <summary>
         /// Возвращает расширенную информацию о пользователях. Метод не требует авторизацию
@@ -51,7 +52,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/users.get
         /// </remarks>
-        ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false);
+        Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает расширенную информацию о пользователях.
@@ -64,7 +65,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/users.get
         /// </remarks>
-        ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false);
+        Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает список идентификаторов пользователей и групп, которые входят в список подписок пользователя.
@@ -80,7 +81,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/users.getSubscriptions
         /// </remarks>
-        VkCollection<Group> GetSubscriptions(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null, bool skipAuthorization = false);
+        Task<VkCollection<Group>> GetSubscriptionsAsync(long? userId = null, int? count = null, int? offset = null, GroupsFields fields = null, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает список идентификаторов пользователей, которые являются подписчиками пользователя.
@@ -95,7 +96,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
         /// </remarks>
-        VkCollection<User> GetFollowers(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false);
+        Task<VkCollection<User>> GetFollowersAsync(long? userId = null, int? count = null, int? offset = null, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false);
 
         /// <summary>
         /// Позволяет пожаловаться на пользователя.
@@ -107,7 +108,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/users.report
         /// </remarks>
-        bool Report(long userId, ReportType type, string comment = "");
+        Task<bool> ReportAsync(long userId, ReportType type, string comment = "");
 
         /// <summary>
         /// Индексирует текущее местоположение пользователя и возвращает список пользователей, которые находятся вблизи.
@@ -119,6 +120,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/users.getNearby
         /// </remarks>
-        VkCollection<User> GetNearby(UsersGetNearbyParams @params);
+        Task<VkCollection<User>> GetNearbyAsync(UsersGetNearbyParams @params);
     }
 }
