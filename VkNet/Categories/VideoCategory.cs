@@ -526,7 +526,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbumById
 		/// </remarks>
-		public Video GetAlbumById(long albumId, long? ownerId = null)
+		public VideoAlbum GetAlbumById(long albumId, long? ownerId = null)
 		{
 			var parameters = new VkParameters {
 				{ "owner_id", ownerId },
