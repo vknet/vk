@@ -6,24 +6,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.search
 	/// </summary>
-	public struct WallSearchParams
+	public class WallSearchParams
 	{
-		/// <summary>
-		/// Параметры метода wall.search
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public WallSearchParams(bool gag = true)
-		{
-			OwnerId = null;
-			Domain = null;
-			Query = null;
-			OwnersOnly = null;
-			Count = null;
-			Offset = null;
-			Extended = null;
-			Fields = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя или сообщества. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число.
 		/// </summary>

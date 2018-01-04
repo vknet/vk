@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -9,29 +10,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.edit
 	/// </summary>
-	public struct WallEditParams
+	public class WallEditParams
 	{
-		/// <summary>
-		/// Параметры метода wall.edit
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public WallEditParams(bool gag = true)
-		{
-			OwnerId = null;
-			PostId = 0;
-			FriendsOnly = null;
-			Message = null;
-			Attachments = null;
-			Services = null;
-			Signed = null;
-			PublishDate = null;
-			Lat = null;
-			Long = null;
-			PlaceId = null;
-			CaptchaKey = null;
-			CaptchaSid = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, на стене которого находится запись. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>
@@ -129,6 +109,14 @@ namespace VkNet.Model.RequestParams
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
+		/// 1 — у записи, размещенной от имени сообщества, будет добавлена метка "это реклама",
+		/// 0 — метки добавлено не будет/снять установленную метку.
+		/// Метка может быть снята в течение пяти минут после её установки.
+		/// В сутки может быть опубликовано не более пяти рекламных записей, из которых не более трёх — вне Биржи ВКонтакте. 
+		/// </summary>
+		[JsonProperty("mark_as_ads")]
+		public bool? MarkAsAds { get; set; }
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
@@ -149,7 +137,8 @@ namespace VkNet.Model.RequestParams
 				{ "long", p.Long },
 				{ "place_id", p.PlaceId },
 				{ "captcha_sid", p.CaptchaSid },
-				{ "captcha_key", p.CaptchaKey }
+				{ "captcha_key", p.CaptchaKey },
+				{"mark_as_ads", p.MarkAsAds}
 			};
 
 			return parameters;

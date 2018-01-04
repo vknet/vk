@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -9,30 +10,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.post
 	/// </summary>
-	public struct WallPostParams
+	public class WallPostParams
 	{
-		/// <summary>
-		/// Параметры метода wall.post
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public WallPostParams(bool gag = true)
-		{
-			OwnerId = null;
-			FriendsOnly = null;
-			FromGroup = null;
-			Message = null;
-			Attachments = null;
-			Services = null;
-			Signed = null;
-			PublishDate = null;
-			Lat = null;
-			Long = null;
-			PlaceId = null;
-			PostId = null;
-			CaptchaSid = null;
-			CaptchaKey = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>
@@ -129,6 +108,20 @@ namespace VkNet.Model.RequestParams
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
+		/// уникальный идентификатор, предназначенный для предотвращения повторной отправки одинаковой записи.
+		/// </summary>
+		[JsonProperty("guid")]
+		public string Guid { get; set; }
+		
+		/// <summary>
+		/// 1 — у записи, размещенной от имени сообщества, будет добавлена метка "это реклама",
+		/// 0 — метки добавлено не будет.
+		/// В сутки может быть опубликовано не более пяти рекламных записей, из которых не более трёх — вне Биржи ВКонтакте. 
+		/// </summary>
+		[JsonProperty("mark_as_ads")]
+		public bool? MarkAsAds { get; set; }
+		
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
@@ -150,7 +143,9 @@ namespace VkNet.Model.RequestParams
 				{ "place_id", p.PlaceId },
 				{ "post_id", p.PostId },
 				{ "captcha_sid", p.CaptchaSid },
-				{ "captcha_key", p.CaptchaKey }
+				{ "captcha_key", p.CaptchaKey },
+				{ "guid", p.Guid},
+				{ "mark_as_ads", p.MarkAsAds}
 			};
 
 			return result;

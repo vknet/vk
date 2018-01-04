@@ -1,18 +1,17 @@
 ﻿using VkNet.Abstractions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using VkNet.Enums;
+using VkNet.Model;
+using VkNet.Model.RequestParams;
+using VkNet.Utils;
+using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
 {
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
-  using Enums;
-  using Model;
-  using Model.RequestParams;
-  using Utils;
-  using Enums.Filters;
-  using Enums.SafetyEnums;
-  using Model.Attachments;
-
   /// <summary>
   /// Методы для работы со стеной пользователя.
   /// </summary>
@@ -137,25 +136,9 @@ namespace VkNet.Categories
       return _vk.Call("wall.post", @params)["post_id"];
     }
 
-    /// <summary>
-    /// Копирует объект на стену пользователя или сообщества.
-    /// </summary>
-    /// <param name="object">Строковый идентификатор объекта, который необходимо разместить на стене, например, wall66748_3675 или wall-1_340364. строка, обязательный параметр (Строка, обязательный параметр).</param>
-    /// <param name="message">Сопроводительный текст, который будет добавлен к записи с объектом. строка (Строка).</param>
-    /// <param name="groupId">Идентификатор сообщества, на стене которого будет размещена запись с объектом. Если не указан, запись будет размещена на стене текущего пользователя. положительное число (Положительное число).</param>
-    /// <param name="ref">Строка (Строка).</param>
-    /// <returns>
-    /// После успешного выполнения возвращает объект со следующими полями:
-    ///
-    /// success
-    /// post_id — идентификатор созданной записи;
-    /// reposts_count — количество репостов объекта с учетом осуществленного;
-    /// likes_count — число отметок «Мне нравится» у объекта.
-    /// </returns>
-    /// <remarks>
-    /// Страница документации ВКонтакте http://vk.com/dev/wall.repost
-    /// </remarks>
-    public RepostResult Repost(string @object, string message, long? groupId, string @ref)
+
+    /// <inheritdoc />
+    public RepostResult Repost(string @object, string message, long? groupId, bool markAsAds)
     {
       VkErrors.ThrowIfNullOrEmpty(() => @object);
       VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -163,7 +146,7 @@ namespace VkNet.Categories
                 { "object", @object },
                 { "message", message },
                 { "group_id", groupId },
-                { "ref", @ref }
+                { "mark_as_ads", markAsAds }
             };
 
       return _vk.Call("wall.repost", parameters);
@@ -295,9 +278,9 @@ namespace VkNet.Categories
     /// <remarks>
     /// Страница документации ВКонтакте http://vk.com/dev/wall.search
     /// </remarks>
-    public VkCollection<Post> Search(WallSearchParams @params, bool skipAuthorization = false)
+    public WallGetObject Search(WallSearchParams @params, bool skipAuthorization = false)
     {
-      return _vk.Call("wall.search", @params, skipAuthorization).ToVkCollectionOf<Post>(x => x);
+      return _vk.Call("wall.search", @params, skipAuthorization);
     }
 
     /// <summary>
@@ -459,6 +442,18 @@ namespace VkNet.Categories
             };
 
       return _vk.Call("wall.reportComment", parameters);
+    }
+
+    /// <inheritdoc />
+    public bool EditAdsStealth(EditAdsStealthParams @params)
+    {
+      return _vk.Call("wall.editAdsStealth", @params);
+    }
+
+    /// <inheritdoc />
+    public long PostAdsStealth(PostAdsStealthParams @params)
+    {
+      return _vk.Call("wall.postAdsStealth", @params);
     }
   }
 }

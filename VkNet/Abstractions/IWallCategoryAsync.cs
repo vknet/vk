@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -9,9 +10,9 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы со стеной пользователя.
+    /// Асинхронные методы для работы со стеной пользователя.
     /// </summary>
-    public interface IWallCategory : IWallCategoryAsync
+    public interface IWallCategoryAsync
     {
         /// <summary>
         /// Возвращает список записей со стены пользователя или сообщества.
@@ -25,7 +26,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.get
         /// </remarks>
-        WallGetObject Get(WallGetParams @params, bool skipAuthorization = false);
+        Task<WallGetObject> GetAsync(WallGetParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает список комментариев к записи на стене.
@@ -45,7 +46,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.getComments
         /// </remarks>
-        VkCollection<Comment> GetComments(WallGetCommentsParams @params, bool skipAuthorization = false);
+        Task<VkCollection<Comment>> GetCommentsAsync(WallGetCommentsParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
@@ -73,7 +74,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.getById
         /// </remarks>
-        WallGetObject GetById(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null, bool skipAuthorization = false);
+        Task<WallGetObject> GetByIdAsync(IEnumerable<string> posts, bool? extended = null, long? copyHistoryDepth = null, ProfileFields fields = null, bool skipAuthorization = false);
 
         /// <summary>
         /// Публикует новую запись на своей или чужой стене.
@@ -85,7 +86,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.post
         /// </remarks>
-        long Post(WallPostParams @params);
+        Task<long> PostAsync(WallPostParams @params);
 
         /// <summary>
         /// Копирует объект на стену пользователя или сообщества.
@@ -105,7 +106,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.repost
         /// </remarks>
-        RepostResult Repost(string @object, string message, long? groupId, bool markAsAds);
+        Task<RepostResult> RepostAsync(string @object, string message, long? groupId, bool markAsAds);
 
         /// <summary>
         /// Редактирует запись на стене.
@@ -117,7 +118,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.edit
         /// </remarks>
-        bool Edit(WallEditParams @params);
+        Task<bool> EditAsync(WallEditParams @params);
 
         /// <summary>
         /// Удаляет запись со стены.
@@ -130,7 +131,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.delete
         /// </remarks>
-        bool Delete(long? ownerId = null, long? postId = null);
+        Task<bool> DeleteAsync(long? ownerId = null, long? postId = null);
 
         /// <summary>
         /// Восстанавливает удаленную запись на стене пользователя или сообщества.
@@ -143,7 +144,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.restore
         /// </remarks>
-        bool Restore(long? ownerId = null, long? postId = null);
+        Task<bool> RestoreAsync(long? ownerId = null, long? postId = null);
 
         /// <summary>
         /// Добавляет комментарий к записи на стене.
@@ -155,7 +156,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.createComment
         /// </remarks>
-        long CreateComment(WallCreateCommentParams @params);
+        Task<long> CreateCommentAsync(WallCreateCommentParams @params);
 
         /// <summary>
         /// Удаляет комментарий текущего пользователя к записи на своей или чужой стене.
@@ -168,7 +169,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.deleteComment
         /// </remarks>
-        bool DeleteComment(long? ownerId, long commentId);
+        Task<bool> DeleteCommentAsync(long? ownerId, long commentId);
 
         /// <summary>
         /// Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене.
@@ -181,7 +182,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.restoreComment
         /// </remarks>
-        bool RestoreComment(long commentId, long? ownerId);
+        Task<bool> RestoreCommentAsync(long commentId, long? ownerId);
 
         /// <summary>
         /// Метод, позволяющий осуществлять поиск по стенам пользователей.
@@ -194,7 +195,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.search
         /// </remarks>
-        WallGetObject Search(WallSearchParams @params, bool skipAuthorization = false);
+        Task<WallGetObject> SearchAsync(WallSearchParams @params, bool skipAuthorization = false);
 
         /// <summary>
         /// Позволяет получать список репостов заданной записи.
@@ -214,7 +215,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.getReposts
         /// </remarks>
-        WallGetObject GetReposts(long? ownerId, long? postId, long? offset, long? count, bool skipAuthorization = false);
+        Task<WallGetObject> GetRepostsAsync(long? ownerId, long? postId, long? offset, long? count, bool skipAuthorization = false);
 
         /// <summary>
         /// Закрепляет запись на стене (запись будет отображаться выше остальных).
@@ -227,7 +228,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.pin
         /// </remarks>
-        bool Pin(long postId, long? ownerId = null);
+        Task<bool> PinAsync(long postId, long? ownerId = null);
 
         /// <summary>
         /// Отменяет закрепление записи на стене.
@@ -240,7 +241,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.unpin
         /// </remarks>
-        bool Unpin(long postId, long? ownerId = null);
+        Task<bool> UnpinAsync(long postId, long? ownerId = null);
 
         /// <summary>
         /// Редактирует комментарий на стене пользователя или сообщества.
@@ -255,7 +256,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.editComment
         /// </remarks>
-        bool EditComment(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null);
+        Task<bool> EditCommentAsync(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null);
 
         /// <summary>
         /// Позволяет пожаловаться на запись.
@@ -278,7 +279,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.reportPost
         /// </remarks>
-        bool ReportPost(long ownerId, long postId, ReportReason? reason = null);
+        Task<bool> ReportPostAsync(long ownerId, long postId, ReportReason? reason = null);
 
         /// <summary>
         /// Позволяет пожаловаться на комментарий к записи.
@@ -301,7 +302,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.reportComment
         /// </remarks>
-        bool ReportComment(long ownerId, long commentId, ReportReason? reason);
+        Task<bool> ReportCommentAsync(long ownerId, long commentId, ReportReason? reason);
 
         /// <summary>
         /// Позволяет отредактировать скрытую запись.
@@ -313,7 +314,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.editAdsStealth
         /// </remarks>
-        bool EditAdsStealth(EditAdsStealthParams @params);
+        Task<bool> EditAdsStealthAsync(EditAdsStealthParams @params);
 
         /// <summary>
         /// Позволяет создать скрытую запись,
@@ -327,6 +328,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/wall.postAdsStealth
         /// </remarks>
-        long PostAdsStealth(PostAdsStealthParams @params);
+        Task<long> PostAdsStealthAsync(PostAdsStealthParams @params);
     }
 }

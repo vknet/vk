@@ -379,7 +379,7 @@ namespace VkNet.Tests.Categories
 						likes_count: 105
 					} }";
 
-			var result = GetMockedWallCategory(url, json).Repost("id", "example", 50, "");
+			var result = GetMockedWallCategory(url, json).Repost("id", "example", 50, false);
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Success, Is.True);
 			Assert.That(result.PostId, Is.EqualTo(2587));
@@ -401,7 +401,7 @@ namespace VkNet.Tests.Categories
 						likes_count: 105
 					} }";
 
-			var result = GetMockedWallCategory(url, json).Repost("id", null, null, null);
+			var result = GetMockedWallCategory(url, json).Repost("id", null, null, false);
 
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Success, Is.True);

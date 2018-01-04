@@ -7,26 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.getComments
 	/// </summary>
-	public struct WallGetCommentsParams
+	public class WallGetCommentsParams
 	{
-		/// <summary>
-		/// Параметры метода wall.getComments
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public WallGetCommentsParams(bool gag = true)
-		{
-			OwnerId = null;
-			PostId = 0;
-			NeedLikes = null;
-			StartCommentId = null;
-			Offset = null;
-			Count = null;
-			Sort = null;
-			PreviewLength = null;
-			Extended = null;
-			Fields = null;
-		}
-
 		/// <summary>
 		/// Идентификатор владельца страницы (пользователь или сообщество). Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>

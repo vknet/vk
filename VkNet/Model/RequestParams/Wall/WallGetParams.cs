@@ -1,13 +1,12 @@
 ﻿using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
-	using Utils;
-
     /// <summary>
     /// Список параметров для метода Wall.Get
     /// </summary>
-    public struct WallGetParams
+    public class WallGetParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, со стены которого необходимо получить записи (по умолчанию — текущий пользователь).
