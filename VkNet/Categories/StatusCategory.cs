@@ -1,12 +1,10 @@
 ﻿using VkNet.Abstractions;
-using VkNet.Enums.Filters;
+using JetBrains.Annotations;
+using VkNet.Model;
+using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-    using JetBrains.Annotations;
-	using Model;
-	using Utils;
-
 	/// <summary>
 	/// Методы для работы со статусом пользователя или сообщества.
 	/// </summary>

@@ -1,11 +1,12 @@
-﻿using VkNet.Model;
+﻿using System.Threading.Tasks;
+using VkNet.Model;
 
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы со статусом пользователя или сообщества.
+    /// Асинхронные методы для работы со статусом пользователя или сообщества.
     /// </summary>
-    public interface IStatusCategory : IStatusCategoryAsync
+    public interface IStatusCategoryAsync
     {
         /// <summary>
         /// Получает статус пользователя или сообщества.
@@ -19,7 +20,7 @@ namespace VkNet.Abstractions
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Status
         /// Страница документации ВКонтакте http://vk.com/dev/status.get
         /// </remarks>
-        Status Get(long userId, long? groupId = null);
+        Task<Status> GetAsync(long userId, long? groupId = null);
 
         /// <summary>
         /// Устанавливает новый статус текущему пользователю. 
@@ -34,6 +35,6 @@ namespace VkNet.Abstractions
         /// Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Status
         /// Страница документации ВКонтакте http://vk.com/dev/status.set
         /// </remarks>
-        bool Set(string text, long? groupId = null);
+        Task<bool> SetAsync(string text, long? groupId = null);
     }
 }
