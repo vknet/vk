@@ -14,8 +14,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(AppFilter.Installed.ToString(), Is.EqualTo("installed"));
 			Assert.That(AppFilter.Featured.ToString(), Is.EqualTo("featured"));
 			// parse test
-			Assert.That(AppFilter.FromJson("installed"), Is.EqualTo(AppFilter.Installed));
-			Assert.That(AppFilter.FromJson("featured"), Is.EqualTo(AppFilter.Featured));
+			Assert.That(AppFilter.FromJsonString("installed"), Is.EqualTo(AppFilter.Installed));
+			Assert.That(AppFilter.FromJsonString("featured"), Is.EqualTo(AppFilter.Featured));
 		}
 
 		[Test]
@@ -27,10 +27,10 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(AppPlatforms.WinPhone.ToString(), Is.EqualTo("winphone"));
 			Assert.That(AppPlatforms.Web.ToString(), Is.EqualTo("web"));
 			// parse test
-			Assert.That(AppPlatforms.FromJson("ios"), Is.EqualTo(AppPlatforms.Ios));
-			Assert.That(AppPlatforms.FromJson("android"), Is.EqualTo(AppPlatforms.Android));
-			Assert.That(AppPlatforms.FromJson("winphone"), Is.EqualTo(AppPlatforms.WinPhone));
-			Assert.That(AppPlatforms.FromJson("web"), Is.EqualTo(AppPlatforms.Web));
+			Assert.That(AppPlatforms.FromJsonString("ios"), Is.EqualTo(AppPlatforms.Ios));
+			Assert.That(AppPlatforms.FromJsonString("android"), Is.EqualTo(AppPlatforms.Android));
+			Assert.That(AppPlatforms.FromJsonString("winphone"), Is.EqualTo(AppPlatforms.WinPhone));
+			Assert.That(AppPlatforms.FromJsonString("web"), Is.EqualTo(AppPlatforms.Web));
 		}
 
 		[Test]
@@ -40,8 +40,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(AppRatingType.Level.ToString(), Is.EqualTo("level"));
 			Assert.That(AppRatingType.Points.ToString(), Is.EqualTo("points"));
 			// parse test
-			Assert.That(AppRatingType.FromJson("level"), Is.EqualTo(AppRatingType.Level));
-			Assert.That(AppRatingType.FromJson("points"), Is.EqualTo(AppRatingType.Points));
+			Assert.That(AppRatingType.FromJsonString("level"), Is.EqualTo(AppRatingType.Level));
+			Assert.That(AppRatingType.FromJsonString("points"), Is.EqualTo(AppRatingType.Points));
 		}
 
 		[Test]
@@ -51,8 +51,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(AppRequestType.Invite.ToString(), Is.EqualTo("invite"));
 			Assert.That(AppRequestType.Request.ToString(), Is.EqualTo("request"));
 			// parse test
-			Assert.That(AppRequestType.FromJson("invite"), Is.EqualTo(AppRequestType.Invite));
-			Assert.That(AppRequestType.FromJson("request"), Is.EqualTo(AppRequestType.Request));
+			Assert.That(AppRequestType.FromJsonString("invite"), Is.EqualTo(AppRequestType.Invite));
+			Assert.That(AppRequestType.FromJsonString("request"), Is.EqualTo(AppRequestType.Request));
 		}
 
 		[Test]
@@ -65,11 +65,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(AppSort.GrowthRate.ToString(), Is.EqualTo("growth_rate"));
 			Assert.That(AppSort.PopularWeek.ToString(), Is.EqualTo("popular_week"));
 			// parse test
-			Assert.That(AppSort.FromJson("popular_today"), Is.EqualTo(AppSort.PopularToday));
-			Assert.That(AppSort.FromJson("visitors"), Is.EqualTo(AppSort.Visitors));
-			Assert.That(AppSort.FromJson("create_date"), Is.EqualTo(AppSort.CreateDate));
-			Assert.That(AppSort.FromJson("growth_rate"), Is.EqualTo(AppSort.GrowthRate));
-			Assert.That(AppSort.FromJson("popular_week"), Is.EqualTo(AppSort.PopularWeek));
+			Assert.That(AppSort.FromJsonString("popular_today"), Is.EqualTo(AppSort.PopularToday));
+			Assert.That(AppSort.FromJsonString("visitors"), Is.EqualTo(AppSort.Visitors));
+			Assert.That(AppSort.FromJsonString("create_date"), Is.EqualTo(AppSort.CreateDate));
+			Assert.That(AppSort.FromJsonString("growth_rate"), Is.EqualTo(AppSort.GrowthRate));
+			Assert.That(AppSort.FromJsonString("popular_week"), Is.EqualTo(AppSort.PopularWeek));
 		}
 
 		[Test]
@@ -82,11 +82,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(ChangeNameStatus.WasAccepted.ToString(), Is.EqualTo("was_accepted"));
 			Assert.That(ChangeNameStatus.WasDeclined.ToString(), Is.EqualTo("was_declined"));
 			// parse test
-			Assert.That(ChangeNameStatus.FromJson("processing"), Is.EqualTo(ChangeNameStatus.Processing));
-			Assert.That(ChangeNameStatus.FromJson("declined"), Is.EqualTo(ChangeNameStatus.Declined));
-			Assert.That(ChangeNameStatus.FromJson("success"), Is.EqualTo(ChangeNameStatus.Success));
-			Assert.That(ChangeNameStatus.FromJson("was_accepted"), Is.EqualTo(ChangeNameStatus.WasAccepted));
-			Assert.That(ChangeNameStatus.FromJson("was_declined"), Is.EqualTo(ChangeNameStatus.WasDeclined));
+			Assert.That(ChangeNameStatus.FromJsonString("processing"), Is.EqualTo(ChangeNameStatus.Processing));
+			Assert.That(ChangeNameStatus.FromJsonString("declined"), Is.EqualTo(ChangeNameStatus.Declined));
+			Assert.That(ChangeNameStatus.FromJsonString("success"), Is.EqualTo(ChangeNameStatus.Success));
+			Assert.That(ChangeNameStatus.FromJsonString("was_accepted"), Is.EqualTo(ChangeNameStatus.WasAccepted));
+			Assert.That(ChangeNameStatus.FromJsonString("was_declined"), Is.EqualTo(ChangeNameStatus.WasDeclined));
 		}
 
 		[Test]
@@ -99,11 +99,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(CommentObjectType.Topic.ToString(), Is.EqualTo("topic"));
 			Assert.That(CommentObjectType.Note.ToString(), Is.EqualTo("note"));
 			// parse test
-			Assert.That(CommentObjectType.FromJson("post"), Is.EqualTo(CommentObjectType.Post));
-			Assert.That(CommentObjectType.FromJson("photo"), Is.EqualTo(CommentObjectType.Photo));
-			Assert.That(CommentObjectType.FromJson("video"), Is.EqualTo(CommentObjectType.Video));
-			Assert.That(CommentObjectType.FromJson("topic"), Is.EqualTo(CommentObjectType.Topic));
-			Assert.That(CommentObjectType.FromJson("note"), Is.EqualTo(CommentObjectType.Note));
+			Assert.That(CommentObjectType.FromJsonString("post"), Is.EqualTo(CommentObjectType.Post));
+			Assert.That(CommentObjectType.FromJsonString("photo"), Is.EqualTo(CommentObjectType.Photo));
+			Assert.That(CommentObjectType.FromJsonString("video"), Is.EqualTo(CommentObjectType.Video));
+			Assert.That(CommentObjectType.FromJsonString("topic"), Is.EqualTo(CommentObjectType.Topic));
+			Assert.That(CommentObjectType.FromJsonString("note"), Is.EqualTo(CommentObjectType.Note));
 		}
 
 		[Test]
@@ -113,8 +113,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(CommentsSort.Asc.ToString(), Is.EqualTo("asc"));
 			Assert.That(CommentsSort.Desc.ToString(), Is.EqualTo("desc"));
 			// parse test
-			Assert.That(CommentsSort.FromJson("asc"), Is.EqualTo(CommentsSort.Asc));
-			Assert.That(CommentsSort.FromJson("desc"), Is.EqualTo(CommentsSort.Desc));
+			Assert.That(CommentsSort.FromJsonString("asc"), Is.EqualTo(CommentsSort.Asc));
+			Assert.That(CommentsSort.FromJsonString("desc"), Is.EqualTo(CommentsSort.Desc));
 		}
 
 		[Test]
@@ -125,9 +125,9 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Deactivated.Banned.ToString(), Is.EqualTo("banned"));
 			Assert.That(Deactivated.Activated.ToString(), Is.EqualTo("activated"));
 			// parse test
-			Assert.That(Deactivated.FromJson("deleted"), Is.EqualTo(Deactivated.Deleted));
-			Assert.That(Deactivated.FromJson("banned"), Is.EqualTo(Deactivated.Banned));
-			Assert.That(Deactivated.FromJson("activated"), Is.EqualTo(Deactivated.Activated));
+			Assert.That(Deactivated.FromJsonString("deleted"), Is.EqualTo(Deactivated.Deleted));
+			Assert.That(Deactivated.FromJsonString("banned"), Is.EqualTo(Deactivated.Banned));
+			Assert.That(Deactivated.FromJsonString("activated"), Is.EqualTo(Deactivated.Activated));
 		}
 
 		[Test]
@@ -138,9 +138,9 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Display.Popup.ToString(), Is.EqualTo("popup"));
 			Assert.That(Display.Wap.ToString(), Is.EqualTo("wap"));
 			// parse test
-			Assert.That(Display.FromJson("page"), Is.EqualTo(Display.Page));
-			Assert.That(Display.FromJson("popup"), Is.EqualTo(Display.Popup));
-			Assert.That(Display.FromJson("wap"), Is.EqualTo(Display.Wap));
+			Assert.That(Display.FromJsonString("page"), Is.EqualTo(Display.Page));
+			Assert.That(Display.FromJsonString("popup"), Is.EqualTo(Display.Popup));
+			Assert.That(Display.FromJsonString("wap"), Is.EqualTo(Display.Wap));
 		}
 
 		[Test]
@@ -150,8 +150,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(FeedType.Photo.ToString(), Is.EqualTo("photo"));
 			Assert.That(FeedType.PhotoTag.ToString(), Is.EqualTo("photo_tag"));
 			// parse test
-			Assert.That(FeedType.FromJson("photo"), Is.EqualTo(FeedType.Photo));
-			Assert.That(FeedType.FromJson("photo_tag"), Is.EqualTo(FeedType.PhotoTag));
+			Assert.That(FeedType.FromJsonString("photo"), Is.EqualTo(FeedType.Photo));
+			Assert.That(FeedType.FromJsonString("photo_tag"), Is.EqualTo(FeedType.PhotoTag));
 		}
 
 		[Test]
@@ -162,9 +162,9 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(FriendsFilter.Contacts.ToString(), Is.EqualTo("contacts"));
 			Assert.That(FriendsFilter.MutualContacts.ToString(), Is.EqualTo("mutual_contacts"));
 			// parse test
-			Assert.That(FriendsFilter.FromJson("mutual"), Is.EqualTo(FriendsFilter.Mutual));
-			Assert.That(FriendsFilter.FromJson("contacts"), Is.EqualTo(FriendsFilter.Contacts));
-			Assert.That(FriendsFilter.FromJson("mutual_contacts"), Is.EqualTo(FriendsFilter.MutualContacts));
+			Assert.That(FriendsFilter.FromJsonString("mutual"), Is.EqualTo(FriendsFilter.Mutual));
+			Assert.That(FriendsFilter.FromJsonString("contacts"), Is.EqualTo(FriendsFilter.Contacts));
+			Assert.That(FriendsFilter.FromJsonString("mutual_contacts"), Is.EqualTo(FriendsFilter.MutualContacts));
 		}
 
 		[Test]
@@ -175,9 +175,9 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(FriendsOrder.Hints.ToString(), Is.EqualTo("hints"));
 			Assert.That(FriendsOrder.Random.ToString(), Is.EqualTo("random"));
 			// parse test
-			Assert.That(FriendsOrder.FromJson("name"), Is.EqualTo(FriendsOrder.Name));
-			Assert.That(FriendsOrder.FromJson("hints"), Is.EqualTo(FriendsOrder.Hints));
-			Assert.That(FriendsOrder.FromJson("random"), Is.EqualTo(FriendsOrder.Random));
+			Assert.That(FriendsOrder.FromJsonString("name"), Is.EqualTo(FriendsOrder.Name));
+			Assert.That(FriendsOrder.FromJsonString("hints"), Is.EqualTo(FriendsOrder.Hints));
+			Assert.That(FriendsOrder.FromJsonString("random"), Is.EqualTo(FriendsOrder.Random));
 		}
 
 		[Test]
@@ -189,10 +189,10 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(GroupsSort.TimeAsc.ToString(), Is.EqualTo("time_asc"));
 			Assert.That(GroupsSort.TimeDesc.ToString(), Is.EqualTo("time_desc"));
 			// parse test
-			Assert.That(GroupsSort.FromJson("id_asc"), Is.EqualTo(GroupsSort.IdAsc));
-			Assert.That(GroupsSort.FromJson("id_desc"), Is.EqualTo(GroupsSort.IdDesc));
-			Assert.That(GroupsSort.FromJson("time_asc"), Is.EqualTo(GroupsSort.TimeAsc));
-			Assert.That(GroupsSort.FromJson("time_desc"), Is.EqualTo(GroupsSort.TimeDesc));
+			Assert.That(GroupsSort.FromJsonString("id_asc"), Is.EqualTo(GroupsSort.IdAsc));
+			Assert.That(GroupsSort.FromJsonString("id_desc"), Is.EqualTo(GroupsSort.IdDesc));
+			Assert.That(GroupsSort.FromJsonString("time_asc"), Is.EqualTo(GroupsSort.TimeAsc));
+			Assert.That(GroupsSort.FromJsonString("time_desc"), Is.EqualTo(GroupsSort.TimeDesc));
 		}
 
 		[Test]
@@ -204,10 +204,10 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(GroupType.Event.ToString(), Is.EqualTo("event"));
 			Assert.That(GroupType.Undefined.ToString(), Is.EqualTo("undefined"));
 			// parse test
-			Assert.That(GroupType.FromJson("page"), Is.EqualTo(GroupType.Page));
-			Assert.That(GroupType.FromJson("group"), Is.EqualTo(GroupType.Group));
-			Assert.That(GroupType.FromJson("event"), Is.EqualTo(GroupType.Event));
-			Assert.That(GroupType.FromJson("undefined"), Is.EqualTo(GroupType.Undefined));
+			Assert.That(GroupType.FromJsonString("page"), Is.EqualTo(GroupType.Page));
+			Assert.That(GroupType.FromJsonString("group"), Is.EqualTo(GroupType.Group));
+			Assert.That(GroupType.FromJsonString("event"), Is.EqualTo(GroupType.Event));
+			Assert.That(GroupType.FromJsonString("undefined"), Is.EqualTo(GroupType.Undefined));
 		}
 
 		[Test]
@@ -227,18 +227,18 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(LikeObjectType.Market.ToString(), Is.EqualTo("market"));
 			Assert.That(LikeObjectType.MarketComment.ToString(), Is.EqualTo("market_comment"));
 			// parse test
-			Assert.That(LikeObjectType.FromJson("post"), Is.EqualTo(LikeObjectType.Post));
-			Assert.That(LikeObjectType.FromJson("comment"), Is.EqualTo(LikeObjectType.Comment));
-			Assert.That(LikeObjectType.FromJson("photo"), Is.EqualTo(LikeObjectType.Photo));
-			Assert.That(LikeObjectType.FromJson("audio"), Is.EqualTo(LikeObjectType.Audio));
-			Assert.That(LikeObjectType.FromJson("video"), Is.EqualTo(LikeObjectType.Video));
-			Assert.That(LikeObjectType.FromJson("note"), Is.EqualTo(LikeObjectType.Note));
-			Assert.That(LikeObjectType.FromJson("photo_comment"), Is.EqualTo(LikeObjectType.PhotoComment));
-			Assert.That(LikeObjectType.FromJson("video_comment"), Is.EqualTo(LikeObjectType.VideoComment));
-			Assert.That(LikeObjectType.FromJson("topic_comment"), Is.EqualTo(LikeObjectType.TopicComment));
-			Assert.That(LikeObjectType.FromJson("sitepage"), Is.EqualTo(LikeObjectType.SitePage));
-			Assert.That(LikeObjectType.FromJson("market"), Is.EqualTo(LikeObjectType.Market));
-			Assert.That(LikeObjectType.FromJson("market_comment"), Is.EqualTo(LikeObjectType.MarketComment));
+			Assert.That(LikeObjectType.FromJsonString("post"), Is.EqualTo(LikeObjectType.Post));
+			Assert.That(LikeObjectType.FromJsonString("comment"), Is.EqualTo(LikeObjectType.Comment));
+			Assert.That(LikeObjectType.FromJsonString("photo"), Is.EqualTo(LikeObjectType.Photo));
+			Assert.That(LikeObjectType.FromJsonString("audio"), Is.EqualTo(LikeObjectType.Audio));
+			Assert.That(LikeObjectType.FromJsonString("video"), Is.EqualTo(LikeObjectType.Video));
+			Assert.That(LikeObjectType.FromJsonString("note"), Is.EqualTo(LikeObjectType.Note));
+			Assert.That(LikeObjectType.FromJsonString("photo_comment"), Is.EqualTo(LikeObjectType.PhotoComment));
+			Assert.That(LikeObjectType.FromJsonString("video_comment"), Is.EqualTo(LikeObjectType.VideoComment));
+			Assert.That(LikeObjectType.FromJsonString("topic_comment"), Is.EqualTo(LikeObjectType.TopicComment));
+			Assert.That(LikeObjectType.FromJsonString("sitepage"), Is.EqualTo(LikeObjectType.SitePage));
+			Assert.That(LikeObjectType.FromJsonString("market"), Is.EqualTo(LikeObjectType.Market));
+			Assert.That(LikeObjectType.FromJsonString("market_comment"), Is.EqualTo(LikeObjectType.MarketComment));
 		}
 
 		[Test]
@@ -248,8 +248,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(LikesFilter.Likes.ToString(), Is.EqualTo("likes"));
 			Assert.That(LikesFilter.Copies.ToString(), Is.EqualTo("copies"));
 			// parse test
-			Assert.That(LikesFilter.FromJson("likes"), Is.EqualTo(LikesFilter.Likes));
-			Assert.That(LikesFilter.FromJson("copies"), Is.EqualTo(LikesFilter.Copies));
+			Assert.That(LikesFilter.FromJsonString("likes"), Is.EqualTo(LikesFilter.Likes));
+			Assert.That(LikesFilter.FromJsonString("copies"), Is.EqualTo(LikesFilter.Copies));
 		}
 
 		[Test]
@@ -260,9 +260,9 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(LinkAccessType.Banned.ToString(), Is.EqualTo("banned"));
 			Assert.That(LinkAccessType.Processing.ToString(), Is.EqualTo("processing"));
 			// parse test
-			Assert.That(LinkAccessType.FromJson("not_banned"), Is.EqualTo(LinkAccessType.NotBanned));
-			Assert.That(LinkAccessType.FromJson("banned"), Is.EqualTo(LinkAccessType.Banned));
-			Assert.That(LinkAccessType.FromJson("processing"), Is.EqualTo(LinkAccessType.Processing));
+			Assert.That(LinkAccessType.FromJsonString("not_banned"), Is.EqualTo(LinkAccessType.NotBanned));
+			Assert.That(LinkAccessType.FromJsonString("banned"), Is.EqualTo(LinkAccessType.Banned));
+			Assert.That(LinkAccessType.FromJsonString("processing"), Is.EqualTo(LinkAccessType.Processing));
 		}
 
 		[Test]
@@ -278,14 +278,14 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(MediaType.Wall.ToString(), Is.EqualTo("wall"));
 			Assert.That(MediaType.Share.ToString(), Is.EqualTo("share"));
 			// parse test
-			Assert.That(MediaType.FromJson("photo"), Is.EqualTo(MediaType.Photo));
-			Assert.That(MediaType.FromJson("video"), Is.EqualTo(MediaType.Video));
-			Assert.That(MediaType.FromJson("audio"), Is.EqualTo(MediaType.Audio));
-			Assert.That(MediaType.FromJson("doc"), Is.EqualTo(MediaType.Doc));
-			Assert.That(MediaType.FromJson("link"), Is.EqualTo(MediaType.Link));
-			Assert.That(MediaType.FromJson("market"), Is.EqualTo(MediaType.Market));
-			Assert.That(MediaType.FromJson("wall"), Is.EqualTo(MediaType.Wall));
-			Assert.That(MediaType.FromJson("share"), Is.EqualTo(MediaType.Share));
+			Assert.That(MediaType.FromJsonString("photo"), Is.EqualTo(MediaType.Photo));
+			Assert.That(MediaType.FromJsonString("video"), Is.EqualTo(MediaType.Video));
+			Assert.That(MediaType.FromJsonString("audio"), Is.EqualTo(MediaType.Audio));
+			Assert.That(MediaType.FromJsonString("doc"), Is.EqualTo(MediaType.Doc));
+			Assert.That(MediaType.FromJsonString("link"), Is.EqualTo(MediaType.Link));
+			Assert.That(MediaType.FromJsonString("market"), Is.EqualTo(MediaType.Market));
+			Assert.That(MediaType.FromJsonString("wall"), Is.EqualTo(MediaType.Wall));
+			Assert.That(MediaType.FromJsonString("share"), Is.EqualTo(MediaType.Share));
 		}
 
 		[Test]
@@ -299,12 +299,12 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(NameCase.Ins.ToString(), Is.EqualTo("ins"));
 			Assert.That(NameCase.Abl.ToString(), Is.EqualTo("abl"));
 			// parse test
-			Assert.That(NameCase.FromJson("nom"), Is.EqualTo(NameCase.Nom));
-			Assert.That(NameCase.FromJson("gen"), Is.EqualTo(NameCase.Gen));
-			Assert.That(NameCase.FromJson("dat"), Is.EqualTo(NameCase.Dat));
-			Assert.That(NameCase.FromJson("acc"), Is.EqualTo(NameCase.Acc));
-			Assert.That(NameCase.FromJson("ins"), Is.EqualTo(NameCase.Ins));
-			Assert.That(NameCase.FromJson("abl"), Is.EqualTo(NameCase.Abl));
+			Assert.That(NameCase.FromJsonString("nom"), Is.EqualTo(NameCase.Nom));
+			Assert.That(NameCase.FromJsonString("gen"), Is.EqualTo(NameCase.Gen));
+			Assert.That(NameCase.FromJsonString("dat"), Is.EqualTo(NameCase.Dat));
+			Assert.That(NameCase.FromJsonString("acc"), Is.EqualTo(NameCase.Acc));
+			Assert.That(NameCase.FromJsonString("ins"), Is.EqualTo(NameCase.Ins));
+			Assert.That(NameCase.FromJsonString("abl"), Is.EqualTo(NameCase.Abl));
 		}
 
 		[Test]
@@ -318,12 +318,12 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(NewsObjectTypes.Photo.ToString(), Is.EqualTo("photo"));
 			Assert.That(NewsObjectTypes.Audio.ToString(), Is.EqualTo("audio"));
 			// parse test
-			Assert.That(NewsObjectTypes.FromJson("wall"), Is.EqualTo(NewsObjectTypes.Wall));
-			Assert.That(NewsObjectTypes.FromJson("tag"), Is.EqualTo(NewsObjectTypes.Tag));
-			Assert.That(NewsObjectTypes.FromJson("profilephoto"), Is.EqualTo(NewsObjectTypes.ProfilePhoto));
-			Assert.That(NewsObjectTypes.FromJson("video"), Is.EqualTo(NewsObjectTypes.Video));
-			Assert.That(NewsObjectTypes.FromJson("photo"), Is.EqualTo(NewsObjectTypes.Photo));
-			Assert.That(NewsObjectTypes.FromJson("audio"), Is.EqualTo(NewsObjectTypes.Audio));
+			Assert.That(NewsObjectTypes.FromJsonString("wall"), Is.EqualTo(NewsObjectTypes.Wall));
+			Assert.That(NewsObjectTypes.FromJsonString("tag"), Is.EqualTo(NewsObjectTypes.Tag));
+			Assert.That(NewsObjectTypes.FromJsonString("profilephoto"), Is.EqualTo(NewsObjectTypes.ProfilePhoto));
+			Assert.That(NewsObjectTypes.FromJsonString("video"), Is.EqualTo(NewsObjectTypes.Video));
+			Assert.That(NewsObjectTypes.FromJsonString("photo"), Is.EqualTo(NewsObjectTypes.Photo));
+			Assert.That(NewsObjectTypes.FromJsonString("audio"), Is.EqualTo(NewsObjectTypes.Audio));
 		}
 
 		[Test]
@@ -337,12 +337,12 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(NewsTypes.Friend.ToString(), Is.EqualTo("friend"));
 			Assert.That(NewsTypes.Note.ToString(), Is.EqualTo("note"));
 			// parse test
-			Assert.That(NewsTypes.FromJson("post"), Is.EqualTo(NewsTypes.Post));
-			Assert.That(NewsTypes.FromJson("photo"), Is.EqualTo(NewsTypes.Photo));
-			Assert.That(NewsTypes.FromJson("photo_tag"), Is.EqualTo(NewsTypes.PhotoTag));
-			Assert.That(NewsTypes.FromJson("wall_photo"), Is.EqualTo(NewsTypes.WallPhoto));
-			Assert.That(NewsTypes.FromJson("friend"), Is.EqualTo(NewsTypes.Friend));
-			Assert.That(NewsTypes.FromJson("note"), Is.EqualTo(NewsTypes.Note));
+			Assert.That(NewsTypes.FromJsonString("post"), Is.EqualTo(NewsTypes.Post));
+			Assert.That(NewsTypes.FromJsonString("photo"), Is.EqualTo(NewsTypes.Photo));
+			Assert.That(NewsTypes.FromJsonString("photo_tag"), Is.EqualTo(NewsTypes.PhotoTag));
+			Assert.That(NewsTypes.FromJsonString("wall_photo"), Is.EqualTo(NewsTypes.WallPhoto));
+			Assert.That(NewsTypes.FromJsonString("friend"), Is.EqualTo(NewsTypes.Friend));
+			Assert.That(NewsTypes.FromJsonString("note"), Is.EqualTo(NewsTypes.Note));
 		}
 
 		[Test]
@@ -353,9 +353,9 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(OccupationType.School.ToString(), Is.EqualTo("school"));
 			Assert.That(OccupationType.University.ToString(), Is.EqualTo("university"));
 			// parse test
-			Assert.That(OccupationType.FromJson("work"), Is.EqualTo(OccupationType.Work));
-			Assert.That(OccupationType.FromJson("school"), Is.EqualTo(OccupationType.School));
-			Assert.That(OccupationType.FromJson("university"), Is.EqualTo(OccupationType.University));
+			Assert.That(OccupationType.FromJsonString("work"), Is.EqualTo(OccupationType.Work));
+			Assert.That(OccupationType.FromJsonString("school"), Is.EqualTo(OccupationType.School));
+			Assert.That(OccupationType.FromJsonString("university"), Is.EqualTo(OccupationType.University));
 		}
 
 		[Test]
@@ -366,9 +366,9 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(PhotoAlbumType.Profile.ToString(), Is.EqualTo("profile"));
 			Assert.That(PhotoAlbumType.Saved.ToString(), Is.EqualTo("saved"));
 			// parse test
-			Assert.That(PhotoAlbumType.FromJson("wall"), Is.EqualTo(PhotoAlbumType.Wall));
-			Assert.That(PhotoAlbumType.FromJson("profile"), Is.EqualTo(PhotoAlbumType.Profile));
-			Assert.That(PhotoAlbumType.FromJson("saved"), Is.EqualTo(PhotoAlbumType.Saved));
+			Assert.That(PhotoAlbumType.FromJsonString("wall"), Is.EqualTo(PhotoAlbumType.Wall));
+			Assert.That(PhotoAlbumType.FromJsonString("profile"), Is.EqualTo(PhotoAlbumType.Profile));
+			Assert.That(PhotoAlbumType.FromJsonString("saved"), Is.EqualTo(PhotoAlbumType.Saved));
 		}
 
 		[Test]
@@ -378,8 +378,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(PhotoFeedType.Photo.ToString(), Is.EqualTo("photo"));
 			Assert.That(PhotoFeedType.PhotoTag.ToString(), Is.EqualTo("photo_tag"));
 			// parse test
-			Assert.That(PhotoFeedType.FromJson("photo"), Is.EqualTo(PhotoFeedType.Photo));
-			Assert.That(PhotoFeedType.FromJson("photo_tag"), Is.EqualTo(PhotoFeedType.PhotoTag));
+			Assert.That(PhotoFeedType.FromJsonString("photo"), Is.EqualTo(PhotoFeedType.Photo));
+			Assert.That(PhotoFeedType.FromJsonString("photo_tag"), Is.EqualTo(PhotoFeedType.PhotoTag));
 		}
 
 		[Test]
@@ -392,11 +392,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(PhotoSearchRadius.SixThousand.ToString(), Is.EqualTo("6000"));
 			Assert.That(PhotoSearchRadius.FiftyThousand.ToString(), Is.EqualTo("50000"));
 			// parse test
-			Assert.That(PhotoSearchRadius.FromJson("10"), Is.EqualTo(PhotoSearchRadius.Ten));
-			Assert.That(PhotoSearchRadius.FromJson("100"), Is.EqualTo(PhotoSearchRadius.OneHundred));
-			Assert.That(PhotoSearchRadius.FromJson("800"), Is.EqualTo(PhotoSearchRadius.Eighty));
-			Assert.That(PhotoSearchRadius.FromJson("6000"), Is.EqualTo(PhotoSearchRadius.SixThousand));
-			Assert.That(PhotoSearchRadius.FromJson("50000"), Is.EqualTo(PhotoSearchRadius.FiftyThousand));
+			Assert.That(PhotoSearchRadius.FromJsonString("10"), Is.EqualTo(PhotoSearchRadius.Ten));
+			Assert.That(PhotoSearchRadius.FromJsonString("100"), Is.EqualTo(PhotoSearchRadius.OneHundred));
+			Assert.That(PhotoSearchRadius.FromJsonString("800"), Is.EqualTo(PhotoSearchRadius.Eighty));
+			Assert.That(PhotoSearchRadius.FromJsonString("6000"), Is.EqualTo(PhotoSearchRadius.SixThousand));
+			Assert.That(PhotoSearchRadius.FromJsonString("50000"), Is.EqualTo(PhotoSearchRadius.FiftyThousand));
 		}
 
 		[Test]
@@ -414,16 +414,16 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(PhotoSizeType.Z.ToString(), Is.EqualTo("z"));
 			Assert.That(PhotoSizeType.W.ToString(), Is.EqualTo("w"));
 			// parse test
-			Assert.That(PhotoSizeType.FromJson("s"), Is.EqualTo(PhotoSizeType.S));
-			Assert.That(PhotoSizeType.FromJson("m"), Is.EqualTo(PhotoSizeType.M));
-			Assert.That(PhotoSizeType.FromJson("x"), Is.EqualTo(PhotoSizeType.X));
-			Assert.That(PhotoSizeType.FromJson("o"), Is.EqualTo(PhotoSizeType.O));
-			Assert.That(PhotoSizeType.FromJson("p"), Is.EqualTo(PhotoSizeType.P));
-			Assert.That(PhotoSizeType.FromJson("q"), Is.EqualTo(PhotoSizeType.Q));
-			Assert.That(PhotoSizeType.FromJson("r"), Is.EqualTo(PhotoSizeType.R));
-			Assert.That(PhotoSizeType.FromJson("y"), Is.EqualTo(PhotoSizeType.Y));
-			Assert.That(PhotoSizeType.FromJson("z"), Is.EqualTo(PhotoSizeType.Z));
-			Assert.That(PhotoSizeType.FromJson("w"), Is.EqualTo(PhotoSizeType.W));
+			Assert.That(PhotoSizeType.FromJsonString("s"), Is.EqualTo(PhotoSizeType.S));
+			Assert.That(PhotoSizeType.FromJsonString("m"), Is.EqualTo(PhotoSizeType.M));
+			Assert.That(PhotoSizeType.FromJsonString("x"), Is.EqualTo(PhotoSizeType.X));
+			Assert.That(PhotoSizeType.FromJsonString("o"), Is.EqualTo(PhotoSizeType.O));
+			Assert.That(PhotoSizeType.FromJsonString("p"), Is.EqualTo(PhotoSizeType.P));
+			Assert.That(PhotoSizeType.FromJsonString("q"), Is.EqualTo(PhotoSizeType.Q));
+			Assert.That(PhotoSizeType.FromJsonString("r"), Is.EqualTo(PhotoSizeType.R));
+			Assert.That(PhotoSizeType.FromJsonString("y"), Is.EqualTo(PhotoSizeType.Y));
+			Assert.That(PhotoSizeType.FromJsonString("z"), Is.EqualTo(PhotoSizeType.Z));
+			Assert.That(PhotoSizeType.FromJsonString("w"), Is.EqualTo(PhotoSizeType.W));
 		}
 
 		[Test]
@@ -434,9 +434,9 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Platform.IPhone.ToString(), Is.EqualTo("iphone"));
 			Assert.That(Platform.WindowsPhone.ToString(), Is.EqualTo("wphone"));
 			// parse test
-			Assert.That(Platform.FromJson("android"), Is.EqualTo(Platform.Android));
-			Assert.That(Platform.FromJson("iphone"), Is.EqualTo(Platform.IPhone));
-			Assert.That(Platform.FromJson("wphone"), Is.EqualTo(Platform.WindowsPhone));
+			Assert.That(Platform.FromJsonString("android"), Is.EqualTo(Platform.Android));
+			Assert.That(Platform.FromJsonString("iphone"), Is.EqualTo(Platform.IPhone));
+			Assert.That(Platform.FromJsonString("wphone"), Is.EqualTo(Platform.WindowsPhone));
 		}
 
 		[Test]
@@ -449,11 +449,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(PostSourceType.Rss.ToString(), Is.EqualTo("rss"));
 			Assert.That(PostSourceType.Sms.ToString(), Is.EqualTo("sms"));
 			// parse test
-			Assert.That(PostSourceType.FromJson("vk"), Is.EqualTo(PostSourceType.Vk));
-			Assert.That(PostSourceType.FromJson("widget"), Is.EqualTo(PostSourceType.Widget));
-			Assert.That(PostSourceType.FromJson("api"), Is.EqualTo(PostSourceType.Api));
-			Assert.That(PostSourceType.FromJson("rss"), Is.EqualTo(PostSourceType.Rss));
-			Assert.That(PostSourceType.FromJson("sms"), Is.EqualTo(PostSourceType.Sms));
+			Assert.That(PostSourceType.FromJsonString("vk"), Is.EqualTo(PostSourceType.Vk));
+			Assert.That(PostSourceType.FromJsonString("widget"), Is.EqualTo(PostSourceType.Widget));
+			Assert.That(PostSourceType.FromJsonString("api"), Is.EqualTo(PostSourceType.Api));
+			Assert.That(PostSourceType.FromJsonString("rss"), Is.EqualTo(PostSourceType.Rss));
+			Assert.That(PostSourceType.FromJsonString("sms"), Is.EqualTo(PostSourceType.Sms));
 		}
 
 		[Test]
@@ -466,11 +466,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(PostType.Postpone.ToString(), Is.EqualTo("postpone"));
 			Assert.That(PostType.Suggest.ToString(), Is.EqualTo("suggest"));
 			// parse test
-			Assert.That(PostType.FromJson("post"), Is.EqualTo(PostType.Post));
-			Assert.That(PostType.FromJson("copy"), Is.EqualTo(PostType.Copy));
-			Assert.That(PostType.FromJson("reply"), Is.EqualTo(PostType.Reply));
-			Assert.That(PostType.FromJson("postpone"), Is.EqualTo(PostType.Postpone));
-			Assert.That(PostType.FromJson("suggest"), Is.EqualTo(PostType.Suggest));
+			Assert.That(PostType.FromJsonString("post"), Is.EqualTo(PostType.Post));
+			Assert.That(PostType.FromJsonString("copy"), Is.EqualTo(PostType.Copy));
+			Assert.That(PostType.FromJsonString("reply"), Is.EqualTo(PostType.Reply));
+			Assert.That(PostType.FromJsonString("postpone"), Is.EqualTo(PostType.Postpone));
+			Assert.That(PostType.FromJsonString("suggest"), Is.EqualTo(PostType.Suggest));
 		}
 
 		[Test]
@@ -480,8 +480,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(PostTypeOrder.Post.ToString(), Is.EqualTo("post"));
 			Assert.That(PostTypeOrder.Copy.ToString(), Is.EqualTo("copy"));
 			// parse test
-			Assert.That(PostTypeOrder.FromJson("post"), Is.EqualTo(PostTypeOrder.Post));
-			Assert.That(PostTypeOrder.FromJson("copy"), Is.EqualTo(PostTypeOrder.Copy));
+			Assert.That(PostTypeOrder.FromJsonString("post"), Is.EqualTo(PostTypeOrder.Post));
+			Assert.That(PostTypeOrder.FromJsonString("copy"), Is.EqualTo(PostTypeOrder.Copy));
 		}
 
 		[Test]
@@ -495,12 +495,12 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Privacy.Nobody.ToString(), Is.EqualTo("nobody"));
 			Assert.That(Privacy.OnlyMe.ToString(), Is.EqualTo("only_me"));
 			// parse test
-			Assert.That(Privacy.FromJson("all"), Is.EqualTo(Privacy.All));
-			Assert.That(Privacy.FromJson("friends"), Is.EqualTo(Privacy.Friends));
-			Assert.That(Privacy.FromJson("friends_of_friends"), Is.EqualTo(Privacy.FriendsOfFriends));
-			Assert.That(Privacy.FromJson("friends_of_friends_only"), Is.EqualTo(Privacy.FriendsOfFriendsOnly));
-			Assert.That(Privacy.FromJson("nobody"), Is.EqualTo(Privacy.Nobody));
-			Assert.That(Privacy.FromJson("only_me"), Is.EqualTo(Privacy.OnlyMe));
+			Assert.That(Privacy.FromJsonString("all"), Is.EqualTo(Privacy.All));
+			Assert.That(Privacy.FromJsonString("friends"), Is.EqualTo(Privacy.Friends));
+			Assert.That(Privacy.FromJsonString("friends_of_friends"), Is.EqualTo(Privacy.FriendsOfFriends));
+			Assert.That(Privacy.FromJsonString("friends_of_friends_only"), Is.EqualTo(Privacy.FriendsOfFriendsOnly));
+			Assert.That(Privacy.FromJsonString("nobody"), Is.EqualTo(Privacy.Nobody));
+			Assert.That(Privacy.FromJsonString("only_me"), Is.EqualTo(Privacy.OnlyMe));
 		}
 
 		[Test]
@@ -513,11 +513,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(RelativeType.Grandparent.ToString(), Is.EqualTo("grandparent"));
 			Assert.That(RelativeType.Grandchild.ToString(), Is.EqualTo("grandchild"));
 			// parse test
-			Assert.That(RelativeType.FromJson("sibling"), Is.EqualTo(RelativeType.Sibling));
-			Assert.That(RelativeType.FromJson("parent"), Is.EqualTo(RelativeType.Parent));
-			Assert.That(RelativeType.FromJson("child"), Is.EqualTo(RelativeType.Child));
-			Assert.That(RelativeType.FromJson("grandparent"), Is.EqualTo(RelativeType.Grandparent));
-			Assert.That(RelativeType.FromJson("grandchild"), Is.EqualTo(RelativeType.Grandchild));
+			Assert.That(RelativeType.FromJsonString("sibling"), Is.EqualTo(RelativeType.Sibling));
+			Assert.That(RelativeType.FromJsonString("parent"), Is.EqualTo(RelativeType.Parent));
+			Assert.That(RelativeType.FromJsonString("child"), Is.EqualTo(RelativeType.Child));
+			Assert.That(RelativeType.FromJsonString("grandparent"), Is.EqualTo(RelativeType.Grandparent));
+			Assert.That(RelativeType.FromJsonString("grandchild"), Is.EqualTo(RelativeType.Grandchild));
 		}
 
 		[Test]
@@ -529,10 +529,10 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(ReportType.Insult.ToString(), Is.EqualTo("insult"));
 			Assert.That(ReportType.Advertisment.ToString(), Is.EqualTo("advertisment"));
 			// parse test
-			Assert.That(ReportType.FromJson("porn"), Is.EqualTo(ReportType.Porn));
-			Assert.That(ReportType.FromJson("spam"), Is.EqualTo(ReportType.Spam));
-			Assert.That(ReportType.FromJson("insult"), Is.EqualTo(ReportType.Insult));
-			Assert.That(ReportType.FromJson("advertisment"), Is.EqualTo(ReportType.Advertisment));
+			Assert.That(ReportType.FromJsonString("porn"), Is.EqualTo(ReportType.Porn));
+			Assert.That(ReportType.FromJsonString("spam"), Is.EqualTo(ReportType.Spam));
+			Assert.That(ReportType.FromJsonString("insult"), Is.EqualTo(ReportType.Insult));
+			Assert.That(ReportType.FromJsonString("advertisment"), Is.EqualTo(ReportType.Advertisment));
 		}
 
 		[Test]
@@ -547,13 +547,13 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Services.Instagram.ToString(), Is.EqualTo("instagram"));
 			Assert.That(Services.Google.ToString(), Is.EqualTo("google"));
 			// parse test
-			Assert.That(Services.FromJson("email"), Is.EqualTo(Services.Email));
-			Assert.That(Services.FromJson("phone"), Is.EqualTo(Services.Phone));
-			Assert.That(Services.FromJson("twitter"), Is.EqualTo(Services.Twitter));
-			Assert.That(Services.FromJson("facebook"), Is.EqualTo(Services.Facebook));
-			Assert.That(Services.FromJson("odnoklassniki"), Is.EqualTo(Services.Odnoklassniki));
-			Assert.That(Services.FromJson("instagram"), Is.EqualTo(Services.Instagram));
-			Assert.That(Services.FromJson("google"), Is.EqualTo(Services.Google));
+			Assert.That(Services.FromJsonString("email"), Is.EqualTo(Services.Email));
+			Assert.That(Services.FromJsonString("phone"), Is.EqualTo(Services.Phone));
+			Assert.That(Services.FromJsonString("twitter"), Is.EqualTo(Services.Twitter));
+			Assert.That(Services.FromJsonString("facebook"), Is.EqualTo(Services.Facebook));
+			Assert.That(Services.FromJsonString("odnoklassniki"), Is.EqualTo(Services.Odnoklassniki));
+			Assert.That(Services.FromJsonString("instagram"), Is.EqualTo(Services.Instagram));
+			Assert.That(Services.FromJsonString("google"), Is.EqualTo(Services.Google));
 		}
 
 		[Test]
@@ -563,8 +563,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(UserSection.Friends.ToString(), Is.EqualTo("friends"));
 			Assert.That(UserSection.Subscriptions.ToString(), Is.EqualTo("subscriptions"));
 			// parse test
-			Assert.That(UserSection.FromJson("friends"), Is.EqualTo(UserSection.Friends));
-			Assert.That(UserSection.FromJson("subscriptions"), Is.EqualTo(UserSection.Subscriptions));
+			Assert.That(UserSection.FromJsonString("friends"), Is.EqualTo(UserSection.Friends));
+			Assert.That(UserSection.FromJsonString("subscriptions"), Is.EqualTo(UserSection.Subscriptions));
 		}
 
 		[Test]
@@ -574,8 +574,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(VideoCatalogItemType.Video.ToString(), Is.EqualTo("video"));
 			Assert.That(VideoCatalogItemType.Album.ToString(), Is.EqualTo("album"));
 			// parse test
-			Assert.That(VideoCatalogItemType.FromJson("video"), Is.EqualTo(VideoCatalogItemType.Video));
-			Assert.That(VideoCatalogItemType.FromJson("album"), Is.EqualTo(VideoCatalogItemType.Album));
+			Assert.That(VideoCatalogItemType.FromJsonString("video"), Is.EqualTo(VideoCatalogItemType.Video));
+			Assert.That(VideoCatalogItemType.FromJsonString("album"), Is.EqualTo(VideoCatalogItemType.Album));
 		}
 
 		[Test]
@@ -585,8 +585,8 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(VideoCatalogType.Channel.ToString(), Is.EqualTo("channel"));
 			Assert.That(VideoCatalogType.Category.ToString(), Is.EqualTo("category"));
 			// parse test
-			Assert.That(VideoCatalogType.FromJson("channel"), Is.EqualTo(VideoCatalogType.Channel));
-			Assert.That(VideoCatalogType.FromJson("category"), Is.EqualTo(VideoCatalogType.Category));
+			Assert.That(VideoCatalogType.FromJsonString("channel"), Is.EqualTo(VideoCatalogType.Channel));
+			Assert.That(VideoCatalogType.FromJsonString("category"), Is.EqualTo(VideoCatalogType.Category));
 		}
 
 		[Test]
@@ -599,11 +599,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(WallFilter.Suggests.ToString(), Is.EqualTo("suggests"));
 			Assert.That(WallFilter.Postponed.ToString(), Is.EqualTo("postponed"));
 			// parse test
-			Assert.That(WallFilter.FromJson("owner"), Is.EqualTo(WallFilter.Owner));
-			Assert.That(WallFilter.FromJson("others"), Is.EqualTo(WallFilter.Others));
-			Assert.That(WallFilter.FromJson("all"), Is.EqualTo(WallFilter.All));
-			Assert.That(WallFilter.FromJson("suggests"), Is.EqualTo(WallFilter.Suggests));
-			Assert.That(WallFilter.FromJson("postponed"), Is.EqualTo(WallFilter.Postponed));
+			Assert.That(WallFilter.FromJsonString("owner"), Is.EqualTo(WallFilter.Owner));
+			Assert.That(WallFilter.FromJsonString("others"), Is.EqualTo(WallFilter.Others));
+			Assert.That(WallFilter.FromJsonString("all"), Is.EqualTo(WallFilter.All));
+			Assert.That(WallFilter.FromJsonString("suggests"), Is.EqualTo(WallFilter.Suggests));
+			Assert.That(WallFilter.FromJsonString("postponed"), Is.EqualTo(WallFilter.Postponed));
 		}
 
 	}

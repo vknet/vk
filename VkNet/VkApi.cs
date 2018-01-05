@@ -248,6 +248,9 @@ namespace VkNet
         /// </summary>
         public IPollsCategory PollsCategory { get; }
 
+        /// <inheritdoc />
+        public ISearchCategory Search { get; }
+
         #endregion
 
         /// <summary>
@@ -339,6 +342,7 @@ namespace VkNet
             Markets = new MarketsCategory(this);
             Execute = new ExecuteCategory(this);
             PollsCategory = new PollsCategory(this);
+            Search = new SearchCategory(this);
 
             RequestsPerSecond = 3;
 

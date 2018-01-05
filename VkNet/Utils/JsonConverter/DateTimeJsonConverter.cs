@@ -15,12 +15,7 @@ namespace VkNet.Utils.JsonConverter
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (reader.TokenType == JsonToken.Null)
-            {
-                return default(DateTime);
-            }
-
-            return VkResponse.TimestampToDateTime((long)reader.Value);
+            return reader.TokenType == JsonToken.Null ? default(DateTime) : VkResponse.TimestampToDateTime((long)reader.Value);
         }
 
         public override bool CanConvert(Type objectType)

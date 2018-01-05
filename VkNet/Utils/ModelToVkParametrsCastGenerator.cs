@@ -27,6 +27,18 @@ namespace VkNet.Utils
     /// <returns>
     /// Результат преобразования.
     /// </returns> 
+    public static implicit operator VkParameters(SearchGetHintsParams p)
+    {
+      return SearchGetHintsParams.ToVkParameters(p);
+    }
+
+    /// <summary>
+    /// Преобразование класса <see cref="AccountSaveProfileInfoParams"/> в VkParameters
+    /// </summary>
+    /// <param name="p">Параметр.</param>
+    /// <returns>
+    /// Результат преобразования.
+    /// </returns> 
     public static implicit operator VkParameters(PostAdsStealthParams p)
     {
       return PostAdsStealthParams.ToVkParameters(p);

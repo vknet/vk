@@ -11,7 +11,7 @@ namespace VkNet.Tests.Models
         {
             Json = "{'action':'chat_pin_message'}";
             var response = GetResponse();
-            var action = MessageAction.FromJson(response["action"]);
+            var action = MessageAction.FromJsonString(response["action"]);
             Assert.That(action, Is.EqualTo(MessageAction.ChatPinMessage));
         }
         
@@ -20,7 +20,7 @@ namespace VkNet.Tests.Models
         {
             Json = "{'action':'chat_unpin_message'}";
             var response = GetResponse();
-            var action = MessageAction.FromJson(response["action"]);
+            var action = MessageAction.FromJsonString(response["action"]);
             Assert.That(action, Is.EqualTo(MessageAction.ChatUnpinMessage));
         }
         
@@ -29,7 +29,7 @@ namespace VkNet.Tests.Models
         {
             Json = "{'action':'chat_kick_user'}";
             var response = GetResponse();
-            var action = MessageAction.FromJson(response["action"]);
+            var action = MessageAction.FromJsonString(response["action"]);
             Assert.That(action, Is.EqualTo(MessageAction.ChatKickUser));
         }
         
@@ -38,7 +38,7 @@ namespace VkNet.Tests.Models
         {
             Json = "{'action':'chat_invite_user'}";
             var response = GetResponse();
-            var action = MessageAction.FromJson(response["action"]);
+            var action = MessageAction.FromJsonString(response["action"]);
             Assert.That(action, Is.EqualTo(MessageAction.ChatInviteUser));
         }
         
@@ -47,7 +47,7 @@ namespace VkNet.Tests.Models
         {
             Json = "{'action':'chat_title_update'}";
             var response = GetResponse();
-            var action = MessageAction.FromJson(response["action"]);
+            var action = MessageAction.FromJsonString(response["action"]);
             Assert.That(action, Is.EqualTo(MessageAction.ChatTitleUpdate));
         }
         
@@ -56,7 +56,7 @@ namespace VkNet.Tests.Models
         {
             Json = "{'action':'chat_create'}";
             var response = GetResponse();
-            var action = MessageAction.FromJson(response["action"]);
+            var action = MessageAction.FromJsonString(response["action"]);
             Assert.That(action, Is.EqualTo(MessageAction.ChatCreate));
         }
         
@@ -65,7 +65,7 @@ namespace VkNet.Tests.Models
         {
             Json = "{'action':'chat_photo_remove'}";
             var response = GetResponse();
-            var action = MessageAction.FromJson(response["action"]);
+            var action = MessageAction.FromJsonString(response["action"]);
             Assert.That(action, Is.EqualTo(MessageAction.ChatPhotoRemove));
         }
         
@@ -74,7 +74,7 @@ namespace VkNet.Tests.Models
         {
             Json = "{'action':'chat_photo_update'}";
             var response = GetResponse();
-            var action = MessageAction.FromJson(response["action"]);
+            var action = MessageAction.FromJsonString(response["action"]);
             Assert.That(action, Is.EqualTo(MessageAction.ChatPhotoUpdate));
         }
     }

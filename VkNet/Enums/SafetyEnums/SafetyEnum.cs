@@ -7,7 +7,6 @@ using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
-
     /// <summary>
     /// Аналог enum, типобезопасен.
     /// </summary>
@@ -78,7 +77,7 @@ namespace VkNet.Enums.SafetyEnums
 		public static TFilter FromJson(VkResponse response)
 	    {
 		    var value = response.ToString();
-	        return FromJson(value);
+	        return FromJsonString(value);
 
         }
 
@@ -87,7 +86,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns>Объект перечисления типа TFilter - Непосредственно наследник</returns>
-		public static TFilter FromJson(string response)
+		public static TFilter FromJsonString(string response)
 		{
 		    if (string.IsNullOrWhiteSpace(response))
 		    {

@@ -1,13 +1,14 @@
-﻿using VkNet.Model;
+﻿using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
     /// <summary>
-    /// Методы для работы с поиском.
+    /// Асинхронные методы для работы с поиском.
     /// </summary>
-    public interface ISearchCategory : ISearchCategoryAsync
+    public interface ISearchCategoryAsync
     {
         /// <summary>
         /// Метод позволяет получить результаты быстрого поиска по произвольной подстроке
@@ -18,6 +19,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/search.getHints
         /// </remarks>
-        VkCollection<SearchHintsItem> GetHints(SearchGetHintsParams @params);
+        Task<VkCollection<SearchHintsItem>> GetHintsAsync(SearchGetHintsParams @params);
     }
 }

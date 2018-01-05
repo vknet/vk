@@ -68,7 +68,7 @@ namespace VkNet.Enums.Filters
         /// <exception cref="System.ArgumentException">Mask must be left power of 2 (i.e. only one bit must be equal to 1);mask</exception>
         protected static TFilter RegisterPossibleValue(ulong mask, string value)
         {
-            return FromJson(value);
+            return FromJsonString(value);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace VkNet.Enums.Filters
         /// <exception cref="System.ArgumentException">Mask must be left power of 2 (i.e. only one bit must be equal to 1);mask</exception>
         protected static TFilter RegisterPossibleValue(string value)
         {
-            return FromJson(value);
+            return FromJsonString(value);
         }
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace VkNet.Enums.Filters
 		public static TFilter FromJson(VkResponse response)
         {
             var value = response.ToString();
-            return FromJson(value);
+            return FromJsonString(value);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace VkNet.Enums.Filters
         /// </summary>
         /// <param name="val">Ответ сервера.</param>
         /// <returns></returns>
-        public static TFilter FromJson(string val)
+        public static TFilter FromJsonString(string val)
         {
             var vals = val.Split(',').Select(x => x.Trim());
 

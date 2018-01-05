@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums
 {
 	/// <summary>
 	/// Уровень доступа к сообществу.
 	/// </summary>
+	[Serializable]
 	public enum GroupAccess
 	{
 		/// <summary>

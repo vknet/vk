@@ -131,5 +131,10 @@ namespace VkNet.Abstractions
         /// API для работы с опросами. 
         /// </summary>
         IPollsCategory PollsCategory { get; }
+        
+        /// <summary>
+        /// API для работы с поиском. 
+        /// </summary>
+        ISearchCategory Search { get; }
     }
 }
