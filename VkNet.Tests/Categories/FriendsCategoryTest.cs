@@ -536,8 +536,9 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/friends.getRequests";
 			const string json = @"{
 				'response': {
-					items: [{
-						user_id: 242508111
+					'count': 1,
+					'items': [{
+						'user_id': 242508111
 					}]
 				}
 			}";
@@ -554,7 +555,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(ids, Is.Not.Null);
 			Assert.That(ids.Count, Is.EqualTo(1));
-			Assert.That(ids[0], Is.EqualTo(242508111));
+			Assert.That(ids[0].UserId, Is.EqualTo(242508111));
 		}
 
 		[Test]
@@ -578,7 +579,6 @@ namespace VkNet.Tests.Categories
 			});
 
 			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.Count, Is.EqualTo(1));
 			Assert.That(ids.Items[0], Is.EqualTo(242508111));
 		}
 
@@ -596,7 +596,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedFriendsCategory(url, json);
 
-			var ids = cat.GetRequests(new FriendsGetRequestsParams
+			var ids = cat.GetRequestsExtended(new FriendsGetRequestsParams
 			{
 				Offset = 0,
 				Count = 3,

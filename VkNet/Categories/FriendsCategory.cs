@@ -415,10 +415,8 @@ namespace VkNet.Categories
 		public VkCollection<FriendsGetRequestsResult> GetRequestsExtended(FriendsGetRequestsParams @params)
 		{
 			@params.Extended = true;
-			
-			var response = _vk.Call("friends.getRequests", @params);
-			
-			return response.ToVkCollectionOf<FriendsGetRequestsResult>(x => x);
+
+			return _vk.Call<VkCollection<FriendsGetRequestsResult>>("friends.getRequests", @params);
 		}
 
 		/// <summary>

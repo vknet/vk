@@ -33,7 +33,7 @@ namespace VkNet.Tests.Categories.Friends
                     }]
                 }
             }";
-            var result = Api.Friends.GetRequests(new FriendsGetRequestsParams
+            var result = Api.Friends.GetRequestsExtended(new FriendsGetRequestsParams
             {
                 Extended = true
             });
