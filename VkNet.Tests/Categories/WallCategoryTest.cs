@@ -199,7 +199,7 @@ namespace VkNet.Tests.Categories
                 PostId = 12345,
                 Sort = SortOrderBy.Asc,
                 NeedLikes = true
-            }, false);
+            });
 
             Assert.That(comments.TotalCount, Is.EqualTo(2));
 			Assert.That(comments.Count, Is.EqualTo(2));
@@ -246,7 +246,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			Assert.That(() => _defaultWall.GetById(new[] { "93388_21539", "93388_20904", "2943_4276" }, skipAuthorization:false), Throws.TypeOf<AccessTokenInvalidException>());
+			Assert.That(() => _defaultWall.GetById(new[] { "93388_21539", "93388_20904", "2943_4276" }), Throws.TypeOf<AccessTokenInvalidException>());
 		}
 
 		[Test]

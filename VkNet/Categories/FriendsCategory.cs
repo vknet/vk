@@ -8,6 +8,7 @@ using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Categories
@@ -381,16 +382,21 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.getRequests
 		/// </remarks>
-		public VkCollection<long> GetRequests(FriendsGetRequestsParams @params)
+		public GetRequestsResult GetRequests(FriendsGetRequestsParams @params)
 		{
-			var response = _vk.Call("friends.getRequests", @params);
-			
+			const string errorMessage =
+				"Для получения расширенной информации используйте метод GetRequestsExtended(FriendsGetRequestsParams @params)";
 			if (@params.Extended.HasValue && @params.Extended.Value)
 			{
-				return response.ToVkCollectionOf<long>(x => x["user_id"]);
+				throw new ParameterMissingOrInvalidException(errorMessage);
 			}
 			
-			return response.ToVkCollectionOf<long>(x => x);
+			if (@params.NeedMutual.HasValue && @params.NeedMutual.Value)
+			{
+				throw new ParameterMissingOrInvalidException(errorMessage);
+			}
+			
+			return _vk.Call<GetRequestsResult>("friends.getRequests", @params);
 		}
 
 		/// <summary>

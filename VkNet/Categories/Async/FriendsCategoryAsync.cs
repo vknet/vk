@@ -103,7 +103,7 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc />
-        public async Task<VkCollection<long>> GetRequestsAsync(FriendsGetRequestsParams @params)
+        public async Task<GetRequestsResult> GetRequestsAsync(FriendsGetRequestsParams @params)
         {
             return await TypeHelper.TryInvokeMethodAsync(() => _vk.Friends.GetRequests(@params));
         }

@@ -99,8 +99,7 @@ namespace VkNet.Tests.Categories
                 Count = 3,
                 Fields = ProfileFields.FirstName | ProfileFields.LastName,
                 UserId = 1
-            },
-            false);
+            });
 
             Assert.That(lst.Count, Is.EqualTo(3));
 			Assert.That(lst[0].Id, Is.EqualTo(2));
@@ -335,12 +334,13 @@ namespace VkNet.Tests.Categories
                   }";
 			var friends = GetMockedFriendsCategory(url, json);
 			var dict = friends.AreFriends(new long[] { 24181068, 22911407, 155810539, 3505305 });
-
+			
+			Assert.NotNull(dict);
 			Assert.That(dict.Count, Is.EqualTo(4));
-			Assert.That(dict.FirstOrDefault().FriendStatus, Is.EqualTo(FriendStatus.NotFriend));
-			Assert.That(dict.Skip(1).FirstOrDefault().FriendStatus, Is.EqualTo(FriendStatus.Friend));
-			Assert.That(dict.Skip(2).FirstOrDefault().FriendStatus, Is.EqualTo(FriendStatus.InputRequest));
-			Assert.That(dict.Skip(3).FirstOrDefault().FriendStatus, Is.EqualTo(FriendStatus.OutputRequest));
+			Assert.That(dict.FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.NotFriend));
+			Assert.That(dict.Skip(1).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.Friend));
+			Assert.That(dict.Skip(2).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.InputRequest));
+			Assert.That(dict.Skip(3).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.OutputRequest));
 		}
 
 		[Test]
@@ -490,7 +490,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedFriendsCategory(url, json);
 
-			var status = cat.Add(242508, "hello, user!", null, null, null);
+			var status = cat.Add(242508, "hello, user!");
 
 			Assert.That(status, Is.EqualTo(AddFriendStatus.Sended));
 		}
@@ -544,7 +544,7 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedFriendsCategory(url, json);
 			// GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
-			var ids = cat.GetRequests(new FriendsGetRequestsParams
+			var ids = cat.GetRequestsExtended(new FriendsGetRequestsParams
 			{
 				Offset = 0,
 				Count = 3,
@@ -579,7 +579,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(ids, Is.Not.Null);
 			Assert.That(ids.Count, Is.EqualTo(1));
-			Assert.That(ids[0], Is.EqualTo(242508111));
+			Assert.That(ids.Items[0], Is.EqualTo(242508111));
 		}
 
 		[Test]
@@ -588,8 +588,11 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/friends.getRequests";
 			const string json =
 				@"{
-                    'response': []
-                  }";
+					'response': {
+						'count': 171,
+						'items': []
+					}
+				}";
 
 			var cat = GetMockedFriendsCategory(url, json);
 
@@ -639,6 +642,35 @@ namespace VkNet.Tests.Categories
 			var result = cat.Edit(242508111, new long[] { 2 });
 
 			Assert.That(result, Is.True);
+		}
+
+		[Test]
+		public void GetRequest_count_unread()
+		{
+			const string url = "https://api.vk.com/method/friends.getRequests";
+			const string json =
+				@"{
+					'response': {
+						'count': 171,
+						'items': [242508111],
+						'count_unread': 1
+					}
+				}";
+
+			var cat = GetMockedFriendsCategory(url, json);
+
+			var ids = cat.GetRequests(new FriendsGetRequestsParams
+			{
+				Offset = 0,
+				Count = 3,
+				Extended = false,
+				NeedMutual = false
+			});
+
+			Assert.That(ids, Is.Not.Null);
+			Assert.That(ids.CountUnread, Is.EqualTo(1));
+			Assert.That(ids.Count, Is.EqualTo(171));
+			Assert.That(ids.Items, Is.Not.Empty);
 		}
 	}
 }

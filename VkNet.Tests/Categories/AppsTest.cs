@@ -118,7 +118,7 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var app = Api.Apps.Get(new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web }, false);
+			var app = Api.Apps.Get(new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
 			Assert.That(app.TotalCount, Is.AtLeast(0));
 			Assert.That(app.Apps.First().Title, Is.EqualTo("raventestapp"));
 		}

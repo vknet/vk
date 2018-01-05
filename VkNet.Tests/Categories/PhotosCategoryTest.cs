@@ -173,8 +173,7 @@ namespace VkNet.Tests.Categories
             var albums = GetMockedPhotosCategory(url, json).GetAlbums(new PhotoGetAlbumsParams
             {
 				OwnerId = 1
-			},
-            false);
+			});
 			Assert.That(albums, Is.Not.Null);
 			Assert.That(albums.Count, Is.EqualTo(1));
 
@@ -219,7 +218,7 @@ namespace VkNet.Tests.Categories
 				{
 					110637109
 				}
-			}, false);
+			});
 
 			Assert.That(albums, Is.Not.Null);
 			Assert.That(albums.Count, Is.EqualTo(1));

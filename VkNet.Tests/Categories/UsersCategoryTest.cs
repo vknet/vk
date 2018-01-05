@@ -93,7 +93,7 @@ namespace VkNet.Tests.Categories
 
 			// act
 			var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education;
-            var user = users.Get(1, fields, skipAuthorization: false);
+            var user = users.Get(1, fields);
 
 			// assert
 			Assert.That(user, Is.Not.Null);
@@ -139,7 +139,7 @@ namespace VkNet.Tests.Categories
 
             var users = GetMockedUsersCategory(url, json);
             // act
-            var user = users.Get(1, ProfileFields.Counters, skipAuthorization: false);
+            var user = users.Get(1, ProfileFields.Counters);
 
 			// assert
 			Assert.That(user, Is.Not.Null);
@@ -178,7 +178,7 @@ namespace VkNet.Tests.Categories
             var users = GetMockedUsersCategory(url, json);
 
 			// act
-			var user = users.Get(1, skipAuthorization: false);
+			var user = users.Get(1);
 
             // assert
             Assert.That(user.Id, Is.EqualTo(1));
@@ -214,7 +214,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-            var lst = users.Get(new long[] {1, 672}, skipAuthorization: false);
+            var lst = users.Get(new long[] {1, 672});
 
 			Assert.That(lst.Count, Is.EqualTo(2));
             Assert.That(lst[0], Is.Not.Null);
@@ -261,7 +261,7 @@ namespace VkNet.Tests.Categories
                   }";
 
             var users = GetMockedUsersCategory(url, json);
-			var lst = users.Get(new long[] {1, 5041431}, ProfileFields.Education, skipAuthorization:false);
+			var lst = users.Get(new long[] {1, 5041431}, ProfileFields.Education);
 
             Assert.That(lst.Count == 2);
             Assert.That(lst[0], Is.Not.Null);
@@ -609,7 +609,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var result = cat.Get(new long[] {1}, ProfileFields.All, NameCase.Gen, false);
+			var result = cat.Get(new long[] {1}, ProfileFields.All, NameCase.Gen);
 
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Count, Is.EqualTo(1));
@@ -792,7 +792,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-            var user = cat.Get(1, ProfileFields.All, NameCase.Gen, false);
+            var user = cat.Get(1, ProfileFields.All, NameCase.Gen);
 
 			Assert.That(user, Is.Not.Null);
 
@@ -888,7 +888,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var user = cat.Get(4793858, ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education, skipAuthorization: false);
+			var user = cat.Get(4793858, ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Education);
 			Assert.That(user, Is.Not.Null);
 
 			Assert.That(user.Id, Is.EqualTo(4793858));
@@ -937,7 +937,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var result = cat.GetSubscriptions(1, 2, 3, skipAuthorization: false);
+			var result = cat.GetSubscriptions(1, 2, 3);
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Count, Is.EqualTo(2));
 
@@ -987,7 +987,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var result = cat.GetFollowers(1, 2, 3, skipAuthorization: false);
+			var result = cat.GetFollowers(1, 2, 3);
 			Assert.That(result, Is.Not.Null);
 			Assert.That(result.Count, Is.EqualTo(2));
 
@@ -1118,7 +1118,7 @@ namespace VkNet.Tests.Categories
 
             var cat = GetMockedUsersCategory(url, json);
 
-			var users = cat.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen, false);
+			var users = cat.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen);
 			Assert.That(users, Is.Not.Null);
 			Assert.That(users.Count, Is.EqualTo(2));
 
@@ -1252,7 +1252,7 @@ namespace VkNet.Tests.Categories
 
 			var screenNames = new [] {"dm", "durov"};
             var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
-			var users = cat.Get(screenNames, fields, NameCase.Gen, false);
+			var users = cat.Get(screenNames, fields, NameCase.Gen);
 
 			Assert.That(users, Is.Not.Null);
 			Assert.That(users.Count, Is.EqualTo(2));
@@ -1300,7 +1300,7 @@ namespace VkNet.Tests.Categories
             var cat = GetMockedUsersCategory(url, json);
 
 			var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
-            var user = cat.Get("dm", fields, NameCase.Gen, false);
+            var user = cat.Get("dm", fields, NameCase.Gen);
 
 			Assert.That(user, Is.Not.Null);
 

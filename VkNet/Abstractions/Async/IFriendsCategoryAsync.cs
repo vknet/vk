@@ -243,7 +243,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/friends.getRequests
         /// </remarks>
-        Task<VkCollection<long>> GetRequestsAsync(FriendsGetRequestsParams @params);
+        Task<GetRequestsResult> GetRequestsAsync(FriendsGetRequestsParams @params);
 
         /// <summary>
         /// Возвращает информацию о полученных или отправленных заявках на добавление в друзья для текущего пользователя.
