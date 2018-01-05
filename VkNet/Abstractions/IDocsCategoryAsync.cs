@@ -1,35 +1,19 @@
-﻿using VkNet.Enums.SafetyEnums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using JetBrains.Annotations;
-using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 using VkNet.Enums;
-using VkNet.Utils;
-using VkNet.Model.Attachments;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
+using VkNet.Model.Attachments;
+using VkNet.Utils;
 
 namespace VkNet.Categories
 {
     /// <summary>
-    /// Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
+    /// Асинхронные методы для работы с документами (получение списка, загрузка, удаление и т.д.)
     /// </summary>
-    public partial class DocsCategory : IDocsCategory
+    public interface IDocsCategoryAsync
     {
-        /// <summary>
-        /// API
-        /// </summary>
-        private readonly VkApi _vk;
-
-        /// <summary>
-        /// Методы для работы с документами (получение списка, загрузка, удаление и т.д.).
-        /// </summary>
-        /// <param name="vk">API.</param>
-        public DocsCategory(VkApi vk)
-        {
-            _vk = vk;
-        }
-
         /// <summary>
         /// Возвращает расширенную информацию о документах пользователя или сообщества.
         /// </summary>
@@ -43,23 +27,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/docs.get
         /// </remarks>
-        [Pure]
-        public VkCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null,
-            DocFilter? type = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
-
-            var parameters = new VkParameters
-            {
-                {"count", count},
-                {"offset", offset},
-                {"owner_id", ownerId},
-                {"type", type}
-            };
-
-            return _vk.Call("docs.get", parameters).ToVkCollectionOf<Document>(r => r);
-        }
+        Task<VkCollection<Document>> GetAsync(int? count = null, int? offset = null, long? ownerId = null,
+            DocFilter? type = null);
 
         /// <summary>
         /// Возвращает информацию о документах по их идентификаторам.
@@ -69,23 +38,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/docs.getById
         /// </remarks>
-        [Pure]
-        public ReadOnlyCollection<Document> GetById(IEnumerable<Document> docs)
-        {
-            foreach (var doc in docs)
-            {
-                VkErrors.ThrowIfNumberIsNegative(() => doc.Id);
-                VkErrors.ThrowIfNumberIsNegative(() => doc.OwnerId);
-            }
-
-            var parameters = new VkParameters
-            {
-                {"docs", string.Concat(docs.Select(it => it.OwnerId + "_" + it.Id + ","))}
-            };
-
-            var response = _vk.Call("docs.getById", parameters);
-            return response.ToReadOnlyCollectionOf<Document>(r => r);
-        }
+        Task<ReadOnlyCollection<Document>> GetByIdAsync(IEnumerable<Document> docs);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки документов.
@@ -95,18 +48,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/docs.getUploadServer
         /// </remarks>
-        [Pure]
-        public UploadServerInfo GetUploadServer(long? groupId = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => groupId);
-
-            var parameters = new VkParameters
-            {
-                {"group_id", groupId}
-            };
-
-            return _vk.Call("docs.getUploadServer", parameters);
-        }
+        Task<UploadServerInfo> GetUploadServerAsync(long? groupId = null);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки документов в папку Отправленные, для последующей отправки документа на стену или личным сообщением.
@@ -116,15 +58,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/docs.getWallUploadServer
         /// </remarks>
-        [Pure]
-        public UploadServerInfo GetWallUploadServer(long? groupId = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => groupId);
-
-            var parameters = new VkParameters {{"group_id", groupId}};
-
-            return _vk.Call("docs.getWallUploadServer", parameters);
-        }
+        Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null);
 
         /// <summary>
         /// Сохраняет документ после его успешной загрузки на сервер.
@@ -138,26 +72,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/docs.save
         /// </remarks>
-        [Pure]
-        public ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null,
-            string captchaKey = null)
-        {
-            VkErrors.ThrowIfNullOrEmpty(() => file);
-            VkErrors.ThrowIfNullOrEmpty(() => title);
-            var responseJson = JObject.Parse(file);
-            file = responseJson["file"].ToString();
-            var parameters = new VkParameters
-            {
-                {"file", file},
-                {"title", title},
-                {"tags", tags},
-                {"captcha_sid", captchaSid},
-                {"captcha_key", captchaKey}
-            };
-
-            var response = _vk.Call("docs.save", parameters);
-            return response.ToReadOnlyCollectionOf<Document>(r => r);
-        }
+        Task<ReadOnlyCollection<Document>> SaveAsync(string file, string title, string tags = null, long? captchaSid = null,
+            string captchaKey = null);
 
         /// <summary>
         /// Удаляет документ пользователя или группы.
@@ -168,19 +84,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/docs.delete
         /// </remarks>
-        [Pure]
-        public bool Delete(long ownerId, long docId)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-            VkErrors.ThrowIfNumberIsNegative(() => docId);
-
-            var parameters = new VkParameters
-            {
-                {"owner_id", ownerId},
-                {"doc_id", docId}
-            };
-            return _vk.Call("docs.delete", parameters);
-        }
+        Task<bool> DeleteAsync(long ownerId, long docId);
 
         /// <summary>
         /// Копирует документ в документы текущего пользователя.
@@ -194,24 +98,8 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/docs.add
         /// </remarks>
-        [Pure]
-        public long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null,
-            string captchaKey = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-            VkErrors.ThrowIfNumberIsNegative(() => docId);
-
-            var parameters = new VkParameters
-            {
-                {"owner_id", ownerId},
-                {"doc_id", docId},
-                {"access_key", accessKey},
-                {"captcha_sid", captchaSid},
-                {"captcha_key", captchaKey}
-            };
-
-            return _vk.Call("docs.add", parameters);
-        }
+        Task<long> AddAsync(long ownerId, long docId, string accessKey = null, long? captchaSid = null,
+            string captchaKey = null);
 
         /// <summary>
         /// Возвращает доступные типы документы для пользователя.
@@ -228,29 +116,22 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/docs.getTypes
         /// </remarks>
-        public VkCollection<DocumentType> GetTypes(long ownerId)
-        {
-            var parameters = new VkParameters
-            {
-                {"owner_id", ownerId}
-            };
+        Task<VkCollection<DocumentType>> GetTypesAsync(long ownerId);
 
-            return _vk.Call("docs.getTypes", parameters).ToVkCollectionOf<DocumentType>(x => x);
-        }
-
-        /// <inheritdoc />
-        public VkCollection<Document> Search(string query, bool searchOwn, long? count = null, long? offset = null)
-        {
-            var parameters = new VkParameters
-            {
-                {"q", query},
-                {"count", count},
-                {"offset", offset},
-                {"search_own", searchOwn}
-            };
-
-            return _vk.Call("docs.search", parameters).ToVkCollectionOf<Document>(x => x);
-        }
+        /// <summary>
+        /// Возвращает результаты поиска по документам.
+        /// </summary>
+        /// <param name="query">Строка поискового запроса. Например, зеленые тапочки. строка, обязательный параметр, максимальная длина 512 (Строка, обязательный параметр, максимальная длина 512).</param>
+        /// <param name="searchOwn">1 — искать среди собственных документов пользователя.</param>
+        /// <param name="count">Количество документов, информацию о которых нужно вернуть. положительное число (Положительное число).</param>
+        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества документов. положительное число (Положительное число).</param>
+        /// <returns>
+        /// После успешного выполнения возвращает список объектов документов.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/docs.search
+        /// </remarks>
+        Task<VkCollection<Document>> SearchAsync(string query, bool searchOwn, long? count = null, long? offset = null);
 
         /// <summary>
         /// Редактирует документ пользователя или группы.
@@ -266,29 +147,18 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/docs.edit
         /// </remarks>
-        public bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags)
-        {
-            var parameters = new VkParameters
-            {
-                {"owner_id", ownerId},
-                {"doc_id", docId},
-                {"title", title},
-                {"tags", tags}
-            };
+        Task<bool> EditAsync(long ownerId, long docId, string title, IEnumerable<string> tags);
 
-            return _vk.Call("docs.edit", parameters);
-        }
-
-        /// <inheritdoc />
-        public UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null)
-        {
-            var parameters = new VkParameters
-            {
-                {"peer_id", peerId},
-                {"type", type}
-            };
-
-            return _vk.Call("docs.getMessagesUploadServer", parameters);
-        }
+        /// <summary>
+        /// Получает адрес сервера для загрузки документа в личное сообщение.
+        /// </summary>
+        /// <param name="peerId">идентификатор назначения</param>
+        /// <param name="type">
+        /// тип документа. Возможные значения:
+        /// doc — обычный документ;
+        /// audio_message — голосовое сообщение.
+        /// </param>
+        /// <returns></returns>
+        Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null, DocMessageType type = null);
     }
 }

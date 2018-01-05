@@ -24,6 +24,18 @@ namespace VkNet.Utils
         /// <returns>
         /// Результат преобразования.
         /// </returns>
+		public static implicit operator DocMessageType(VkResponse response)
+		{
+			return response == null ? null : DocMessageType.FromJson(response);
+		}
+
+		/// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
 		public static implicit operator VideoCatalogFilters(VkResponse response)
 		{
 			return response == null ? null : VideoCatalogFilters.FromJson(response);
