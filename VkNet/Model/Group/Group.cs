@@ -1,18 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
+﻿using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
+
+using VkNet.Enums.SafetyEnums;
+using VkNet.Enums;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-	using System;
-    using System.Diagnostics;
-
-    using Enums.SafetyEnums;
-    using Categories;
-	using Enums;
-	using Utils;
-
     /// <summary>
     /// Информация о сообществе (группе).
     /// См. описание http://vk.com/dev/fields_groups

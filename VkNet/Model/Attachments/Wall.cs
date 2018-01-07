@@ -1,16 +1,13 @@
 ﻿using System.Runtime.Serialization;
 using VkNet.Enums.SafetyEnums;
+using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using VkNet.Model.Attachments;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-	using System;
-	using System.Linq;
-	using System.Collections.ObjectModel;
-	using System.Diagnostics;
-
-	using Attachments;
-	using Utils;
-
 	/// <summary>
 	/// Запись со стены пользователя или сообщества. Используется для отправки сообщений
 	/// </summary>
@@ -33,6 +30,11 @@ namespace VkNet.Model
 		/// Идентификатор автора записи.
 		/// </summary>
 		public long? FromId { get; set; }
+
+		/// <summary>
+		/// Идентификатор создателя записи в группе или паблике (тот, кто фактически ее написал)
+		/// </summary>
+		public long? CreatedBy { get; set; }
 
 		/// <summary>
 		/// Время публикации записи.
@@ -58,14 +60,17 @@ namespace VkNet.Model
 		/// <c>true</c>, если запись была создана с опцией «Только для друзей», <c>false</c> в противном случае.
 		/// </summary>
 		public bool? FriendsOnly { get; set; }
+
 		/// <summary>
 		/// Информация о комментариях к записи.
 		/// </summary>
 		public Comments Comments { get; set; }
+
 		/// <summary>
 		/// Информация о лайках к записи.
 		/// </summary>
 		public Likes Likes { get; set; }
+
 		/// <summary>
 		/// Информация о репостах записи («Рассказать друзьям»).
 		/// </summary>
@@ -92,19 +97,9 @@ namespace VkNet.Model
 		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>
-		/// Первое вложение.
-		/// </summary>
-		public Attachment Attachment => Attachments.FirstOrDefault();
-
-		/// <summary>
 		/// Информация о местоположении.
 		/// </summary>
 		public Geo Geo { get; set; }
-
-		/// <summary>
-		/// Если запись закрепленная - вернет true
-		/// </summary>
-		public bool? IsPinned { get; set; }
 
 		/// <summary>
 		/// Идентификатор автора, если запись была опубликована от имени сообщества и подписана пользователем.
@@ -112,51 +107,14 @@ namespace VkNet.Model
 		public long? SignerId { get; set; }
 
 		/// <summary>
-		/// Время публикации записи-оригинала (если запись является копией записи с чужой стены).
-		/// </summary>
-		public DateTime? CopyPostDate { get; set; }
-
-		/// <summary>
-		/// Тип записи-оригинала (если запись является копией записи с чужой стены).
-		/// </summary>
-		public string CopyPostType { get; set; }
-
-		/// <summary>
-		/// Идентификатор владельца стены, у которого была скопирована запись (если запись является копией записи с чужой стены).
-		/// </summary>
-		public long? CopyOwnerId { get; set; }
-
-		/// <summary>
-		/// Идентификатор скопированной записи на стене ее владельца (если запись является копией записи с чужой стены).
-		/// </summary>
-		public long? CopyPostId { get; set; }
-
-		/// <summary>
-		/// Текст комментария, добавленного при копировании (если запись является копией записи с чужой стены).
-		/// </summary>
-		public string CopyText { get; set; }
-
-		/// <summary>
 		/// Массив, содержащий историю репостов для записи. Возвращается только в том случае, если запись является репостом.
 		/// </summary>
 		public ReadOnlyCollection<Post> CopyHistory { get; set; }
 
-		#region Поля, установленные экспериментально
-
 		/// <summary>
-		/// Идентификатор создателя записи в группе или паблике (тот, кто фактически ее написал)
+		/// Информация о том, может ли текущий пользователь закрепить запись (1 — может, 0 — не может)
 		/// </summary>
-		public long? CreatedBy { get; set; }
-
-		/// <summary>
-		/// Если запись является копией записи с чужой стены, то в этом поле содержится идентификатор коментатора записи.
-		/// </summary>
-		public long? CopyCommenterId { get; set; }
-
-		/// <summary>
-		/// Если запись является копией записи с чужой стены, то в этом поле содержится идентификатор коментария.
-		/// </summary>
-		public long? CopyCommentId { get; set; }
+		public bool CanPin { get; set; }
 
 		/// <summary>
 		/// Признак может ли текущий пользователь удалить эту запись.
@@ -169,14 +127,52 @@ namespace VkNet.Model
 		public bool CanEdit { get; set; }
 
 		/// <summary>
-		/// Информация о том, может ли текущий пользователь закрепить запись (1 — может, 0 — не может)
+		/// Если запись закрепленная - вернет true
 		/// </summary>
-		public bool CanPin { get; set; }
+		public bool? IsPinned { get; set; }
 
 		/// <summary>
 		/// Информация о том, содержит ли запись отметку "реклама"
 		/// </summary>
 		public bool MarkedAsAds { get; set; }
+
+		#region Поля, установленные экспериментально
+
+		/// <summary>
+		/// Текст комментария, добавленного при копировании (если запись является копией записи с чужой стены).
+		/// </summary>
+		public string CopyText { get; set; }
+
+		/// <summary>
+		/// Тип записи-оригинала (если запись является копией записи с чужой стены).
+		/// </summary>
+		public string CopyPostType { get; set; }
+
+		/// <summary>
+		/// Идентификатор скопированной записи на стене ее владельца (если запись является копией записи с чужой стены).
+		/// </summary>
+		public long? CopyPostId { get; set; }
+
+		/// <summary>
+		/// Идентификатор владельца стены, у которого была скопирована запись (если запись является копией записи с чужой стены).
+		/// </summary>
+		public long? CopyOwnerId { get; set; }
+
+		/// <summary>
+		/// Время публикации записи-оригинала (если запись является копией записи с чужой стены).
+		/// </summary>
+		public DateTime? CopyPostDate { get; set; }
+
+		/// <summary>
+		/// Если запись является копией записи с чужой стены, то в этом поле содержится идентификатор коментатора записи.
+		/// </summary>
+		public long? CopyCommenterId { get; set; }
+
+		/// <summary>
+		/// Если запись является копией записи с чужой стены, то в этом поле содержится идентификатор коментария.
+		/// </summary>
+		public long? CopyCommentId { get; set; }
+
 		#endregion
 
 		#region Методы
