@@ -51,7 +51,7 @@ namespace VkNet.Model
         /// <summary>
         /// Число сообщений в теме.
         /// </summary>
-        public long CommentsСount { get; set; }
+        public long Comments { get; set; }
 
         /// <summary>
         /// (только если в поле preview указан флаг 1) — текст первого сообщения.
@@ -80,7 +80,7 @@ namespace VkNet.Model
                 UpdatedBy = response["updated_by"],
                 IsClosed = response["is_closed"],
                 IsFixed = response["is_fixed"],
-                CommentsСount = response["comments"],
+                Comments = response["comments"],
                 FirstComment = response["first_comment"],
                 LastComment = response["last_comment"],
 			};
