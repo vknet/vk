@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -31,37 +32,43 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public string Ext { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Адрес документа, по которому его можно загрузить.
         /// </summary>
         public string Uri { get; set; }
 
-        /// <summary>
+	    /// <summary>
+	    /// Дата добавления в формате unixtime.
+	    /// </summary>
+	    public DateTime? Date { get; set; }
+
+	    /// <summary>
+	    /// тип документа
+	    /// </summary>
+	    [JsonProperty("type")]
+	    public DocumentType Type { get; set; }
+
+	    /// <summary>
+	    /// Gets or sets the preview.
+	    /// </summary>
+	    public Previews Preview { get; set; }
+
+	    /// <summary>
         /// Адрес изображения с размером 100x75px (если файл графический).
         /// </summary>
         public string Photo100 { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Адрес изображения с размером 130x100px (если файл графический).
         /// </summary>
         public string Photo130 { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Ключ доступа к закрытым ресурсам
         /// </summary>
         public string AccessKey { get; set; }
 
-		/// <summary>
-		/// Дата добавления в формате unixtime.
-		/// </summary>
-		public DateTime? Date { get; set; }
-
-        /// <summary>
-        /// Gets or sets the preview.
-        /// </summary>
-        public Previews Preview { get; set; }
-
-        #region Методы
+	    #region Методы
         /// <summary>
         /// Разобрать из json.
         /// </summary>
@@ -81,7 +88,8 @@ namespace VkNet.Model.Attachments
 		        Photo130 = response["photo_130"],
 		        AccessKey = response["access_key"],
 				Date = response["date"],
-                Preview = response["preview"]
+                Preview = response["preview"],
+		        Type = response["type"],
             };
 
 	        return document;
