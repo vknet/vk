@@ -41,7 +41,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Категория товара
 		/// </summary>
-		public MarketCategory MarketCategory { get; set; }
+		public MarketCategory Category { get; set; }
 
 		/// <summary>
 		/// URL изображения-обложки товара
@@ -92,7 +92,7 @@ namespace VkNet.Model
 				Title = response["title"],
 				Description = response["description"],
 				Price = response["price"],
-				MarketCategory = response["category"],
+				Category = response["category"],
 				ThumbPhoto = response["thumb_photo"],
 				Date = response["date"],
 				Availability = response["availability"],
