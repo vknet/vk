@@ -5,27 +5,25 @@ using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
-	/// <summary>
-	/// Информация о вики-странице сообщества.
-	/// См. описание http://vk.com/dev/pages.get
-	/// </summary>
-	[Serializable]
-	public class Page : MediaAttachment
+    /// <summary>
+    /// Информация о вики-странице сообщества.
+    /// См. описание http://vk.com/dev/pages.get
+    /// </summary>
+    [Serializable]
+    public class Page : MediaAttachment
     {
-		/// <summary>
-		/// Опрос.
-		/// </summary>
-		static Page()
-		{
-			RegisterType(typeof(Page), "page");
-		}
-		/// <summary>
-		/// Идентификатор сообщества.
-		/// </summary>
-		public long? GroupId {
-	        get { return OwnerId; }
-	        set { OwnerId = value; }
+        /// <summary>
+        /// Опрос.
+        /// </summary>
+        static Page()
+        {
+            RegisterType(typeof(Page), "page");
         }
+
+        /// <summary>
+        /// Идентификатор сообщества.
+        /// </summary>
+        public long? GroupId { get; set; }
 
         /// <summary>
         /// Идентификатор создателя страницы.
@@ -36,11 +34,6 @@ namespace VkNet.Model.Attachments
         /// Название страницы.
         /// </summary>
         public string Title { get; set; }
-
-        /// <summary>
-        /// Текст страницы в вики-формате.
-        /// </summary>
-        public string Source { get; set; }
 
         /// <summary>
         /// Указывает, может ли текущий пользователь редактировать текст страницы.
@@ -63,11 +56,6 @@ namespace VkNet.Model.Attachments
         public PageAccessKind? WhoCanEdit { get; set; }
 
         /// <summary>
-        /// Идентификатор пользователя, который редактировал страницу последним.
-        /// </summary>
-        public long? EditorId { get; set; }
-
-        /// <summary>
         /// Дата последнего изменения (в виде строки).
         /// </summary>
         public string Edited { get; set; }
@@ -75,7 +63,17 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Дата создания страницы (в виде строки).
         /// </summary>
-        public string CreateTime { get; set; }
+        public string Created { get; set; }
+
+        /// <summary>
+        /// Идентификатор пользователя, который редактировал страницу последним.
+        /// </summary>
+        public long? EditorId { get; set; }
+
+        /// <summary>
+        /// Количество просмотров вики-страницы.
+        /// </summary>
+        public long? Views { get; set; }
 
         /// <summary>
         /// Заголовок родительской страницы для навигации, если есть.
@@ -87,69 +85,70 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public string Parent2 { get; set; }
 
-        #region Поля, установленные экспериментально
+        /// <summary>
+        /// Текст страницы в вики-формате.
+        /// </summary>
+        public string Source { get; set; }
 
         /// <summary>
         /// Html-текст страницы.
         /// </summary>
         public string Html { get; set; }
 
-		/// <summary>
-		/// Адрес страницы для отображения вики-страницы.
-		/// </summary>
-		public string ViewUrl { get; set; }
+        /// <summary>
+        /// Адрес страницы для отображения вики-страницы.
+        /// </summary>
+        public string ViewUrl { get; set; }
 
-		/// <summary>
-		/// Gets or sets the version created.
-		/// </summary>
-		public string VersionCreated { get; set; }
+        #region Поля, установленные экспериментально
 
-		/// <summary>
-		/// Количество просмотров вики-страницы.
-		/// </summary>
-		public long? Views { get; set; }
-		#endregion
+        /// <summary>
+        /// Gets or sets the version created.
+        /// </summary>
+        public string VersionCreated { get; set; }
 
-		#region Методы
+        #endregion
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="response"></param>
-		/// <returns></returns>
-		public static Page FromJson(VkResponse response)
-		{
-			var page = new Page
-			{
-				Id = response["page_id"] ?? response["pid"] ?? response["id"],
-				GroupId = response["group_id"] ?? response["gid"],
-				CreatorId = response["creator_id"],
-				Title = response["title"],
-				Source = response["source"],
-				CurrentUserCanEdit = response["current_user_can_edit"],
-				CurrentUserCanEditAccess = response["current_user_can_edit_access"],
-				WhoCanView = response["who_can_view"],
-				WhoCanEdit = response["who_can_edit"],
-				EditorId = response["editor_id"],
-				Edited = response["edited"],
-				CreateTime = response["created"],
-				Parent = response["parent"],
-				Parent2 = response["parent2"],
-				Html = response["html"],
-				ViewUrl = response["view_url"],
-				VersionCreated = response["version_created"],
-				Views = response["views"]
-			};
-			return page;
-		}
+        #region Методы
 
-		/// <summary>
-		/// Преобразовать в строку.
-		/// </summary>
-		public override string ToString()
-		{
-			return string.Format("page-{0}_{1}", GroupId, Id);
-		}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        public static Page FromJson(VkResponse response)
+        {
+            var page = new Page
+            {
+                Id = response["page_id"] ?? response["pid"] ?? response["id"],
+                GroupId = response["group_id"] ?? response["gid"],
+                CreatorId = response["creator_id"],
+                Title = response["title"],
+                Source = response["source"],
+                CurrentUserCanEdit = response["current_user_can_edit"],
+                CurrentUserCanEditAccess = response["current_user_can_edit_access"],
+                WhoCanView = response["who_can_view"],
+                WhoCanEdit = response["who_can_edit"],
+                EditorId = response["editor_id"],
+                Edited = response["edited"],
+                Created = response["created"],
+                Parent = response["parent"],
+                Parent2 = response["parent2"],
+                Html = response["html"],
+                ViewUrl = response["view_url"],
+                VersionCreated = response["version_created"],
+                Views = response["views"]
+            };
+            return page;
+        }
+
+        /// <summary>
+        /// Преобразовать в строку.
+        /// </summary>
+        public override string ToString()
+        {
+            return string.Format("page-{0}_{1}", GroupId, Id);
+        }
 
         #endregion
     }

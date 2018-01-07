@@ -58,7 +58,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(page.WhoCanEdit, Is.EqualTo(PageAccessKind.OnlyAdministrators));
 			Assert.That(page.WhoCanView, Is.EqualTo(PageAccessKind.OnlyMembers));
 			Assert.That(page.Edited, Is.EqualTo("1444643546"));
-			Assert.That(page.CreateTime, Is.EqualTo("1444643546"));
+			Assert.That(page.Created, Is.EqualTo("1444643546"));
 			Assert.That(page.EditorId, Is.EqualTo(32190123));
 			Assert.That(page.CreatorId, Is.EqualTo(32190123));
 			Assert.That(page.ViewUrl, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
@@ -104,7 +104,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(page.WhoCanEdit, Is.EqualTo(PageAccessKind.OnlyAdministrators));
 			Assert.That(page.WhoCanView, Is.EqualTo(PageAccessKind.OnlyMembers));
 			Assert.That(page.Edited, Is.EqualTo("1444643546"));
-			Assert.That(page.CreateTime, Is.EqualTo("1444643546"));
+			Assert.That(page.Created, Is.EqualTo("1444643546"));
 			Assert.That(page.EditorId, Is.EqualTo(32190123));
 			Assert.That(page.CreatorId, Is.EqualTo(32190123));
 			Assert.That(page.ViewUrl, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
