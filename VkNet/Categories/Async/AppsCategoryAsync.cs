@@ -110,7 +110,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/apps.getLeaderboard
         /// </remarks>
-        public async Task<bool> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null)
+        public async Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null)
         {
             return await TypeHelper.TryInvokeMethodAsync(() => _vk.Apps.GetLeaderboard(type, global, extended));
         }

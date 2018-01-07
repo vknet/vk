@@ -139,16 +139,15 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/apps.getLeaderboard
 		/// </remarks>
-		public bool GetLeaderboard(AppRatingType type, bool? global = null, bool? extended = null)
+		public LeaderboardResult GetLeaderboard(AppRatingType type, bool? global = null, bool? extended = null)
 		{
-			//var parameters = new VkParameters
-			//{
-			//	{ "type", type },
-			//	{ "global", global },
-			//	{ "extended", extended }
-			//};
-			//return _vk.Call("apps.getLeaderboard", parameters, true);
-			throw new NotImplementedException(); // TODO: Методы доступны только приложениям, размещенным в игровом каталоге.
+			var parameters = new VkParameters
+			{
+				{ "type", type },
+				{ "global", global },
+				{ "extended", extended }
+			};
+			return _vk.Call<LeaderboardResult>("apps.getLeaderboard", parameters, true);
 		}
 
 		/// <summary>

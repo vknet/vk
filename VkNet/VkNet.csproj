@@ -36,7 +36,7 @@
     <OutputPath>..\Build\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="HtmlAgilityPack" Version="1.6.11"/>
+      <PackageReference Include="HtmlAgilityPack" Version="1.6.11"/>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
     <PackageReference Include="NLog" Version="5.0.0-beta11" />
@@ -46,7 +46,7 @@
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
     <PackageReference Include="NETStandard.Library" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0"/>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0"/>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
     <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
@@ -54,7 +54,7 @@
     <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="NetFx.Extensions.DependencyInjection" Version="2.0.1" />
-    <PackageReference Include="NetFx.Extensions.DependencyInjection.Abstractions" Version="2.0.1"/>
+      <PackageReference Include="NetFx.Extensions.DependencyInjection.Abstractions" Version="2.0.1"/>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />

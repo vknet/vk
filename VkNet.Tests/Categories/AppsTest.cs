@@ -189,5 +189,86 @@ namespace VkNet.Tests.Categories
 			Assert.That(app.TotalCount, Is.GreaterThan(0));
 			Assert.That(app, Is.Not.Null);
 		}
+
+		[Test]
+		public void GetLeaderboard_Level()
+		{
+			Url = "https://api.vk.com/method/apps.getLeaderboard";
+			Json =
+				@"{
+					'response': {
+						'count': 130,
+						'items': [{
+							'score': 221634238,
+							'level': 13,
+							'user_id': 123
+						}]
+					}
+				  }";
+
+			var app = Api.Apps.GetLeaderboard(AppRatingType.Level);
+			Assert.IsNotNull(app);
+			Assert.That(app.Count, Is.EqualTo(130));
+			Assert.That(app.Items, Is.Not.Empty);
+			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
+			Assert.That(app.Items[0].Level, Is.EqualTo(13));
+			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
+		}
+
+		[Test]
+		public void GetLeaderboard_Points()
+		{
+			Url = "https://api.vk.com/method/apps.getLeaderboard";
+			Json =
+				@"{
+					'response': {
+						'count': 130,
+						'items': [{
+							'score': 221634238,
+							'points': 256,
+							'user_id': 123
+						}]
+					}
+				  }";
+
+			var app = Api.Apps.GetLeaderboard(AppRatingType.Points);
+			Assert.IsNotNull(app);
+			Assert.That(app.Count, Is.EqualTo(130));
+			Assert.That(app.Items, Is.Not.Empty);
+			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
+			Assert.That(app.Items[0].Points, Is.EqualTo(256));
+			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
+		}
+
+		[Test]
+		public void GetLeaderboard_Extended()
+		{
+			Url = "https://api.vk.com/method/apps.getLeaderboard";
+			Json =
+				@"{
+					'response': {
+						'count': 130,
+						'items': [{
+							'score': 221634238,
+							'points': 256,
+							'user_id': 123
+						}],
+						'profiles': [{
+							'id': 72815776,
+							'first_name': 'Антон',
+							'last_name': 'Минаев'
+						}]
+					}
+				  }";
+
+			var app = Api.Apps.GetLeaderboard(AppRatingType.Points, null, true);
+			Assert.IsNotNull(app);
+			Assert.That(app.Count, Is.EqualTo(130));
+			Assert.That(app.Items, Is.Not.Empty);
+			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
+			Assert.That(app.Items[0].Points, Is.EqualTo(256));
+			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
+			Assert.That(app.Profiles, Is.Not.Empty);
+		}
 	}
 }

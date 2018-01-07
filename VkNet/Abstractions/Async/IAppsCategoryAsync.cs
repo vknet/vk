@@ -96,7 +96,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/apps.getLeaderboard
         /// </remarks>
-        Task<bool> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null);
+        Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null);
 
         /// <summary>
         /// Метод возвращает количество очков пользователя в этой игре.
