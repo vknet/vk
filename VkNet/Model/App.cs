@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -36,18 +38,18 @@ namespace VkNet.Model
         { get; set; }
 
 		/// <summary>
+		/// Uri-адрес обложки приложения шириной 150px.
+		/// </summary>
+		public string Icon150
+		{ get; set; }
+
+		/// <summary>
 		/// Uri-адрес обложки приложения шириной 75px.
 		/// </summary>
 		public string Icon75
 		{ get; set; }
 
 		/// <summary>
-		/// Uri-адрес обложки приложения шириной 150px.
-		/// </summary>
-		public string Icon150
-		{ get; set; }
-
-        /// <summary>
         /// Uri-адрес баннера шириной 560px.
         /// </summary>
         public string Banner560
@@ -141,21 +143,40 @@ namespace VkNet.Model
         /// Доступно ли приложение в мобильном каталоге.
         /// </summary>
         public bool? IsInCatalog { get; set; }
-
+		
+		/// <summary>
+		/// список идентификаторов друзей текущего пользователя, которые установили приложение
+		/// (если был передан параметр return_friends = 1.
+		/// </summary>
+		[JsonProperty("friends")]
+		public ReadOnlyCollection<long> Friends { get; set; }
+		
+		/// <summary>
+		/// 1, если приложение установлено у текущего пользователя.
+		/// </summary>
+		[JsonProperty("installed")]
+		public bool? Installed { get; set; }
+		
+		/// <summary>
+		/// 1, если приложение — html5 игра.
+		/// </summary>
+		[JsonProperty("is_html_5_app")]
+		public bool IsHtml5App { get; set; }
         #region Опциональные поля
-        /// <summary>
+
+		/// <summary>
+		/// Описание.
+		/// </summary>
+		public string Description
+		{ get; set; }
+
+		/// <summary>
         /// Поддомен приложения (или строка idXXXXXXX, если поддомен не задан).
         /// </summary>
         public string ScreenName
         { get; set; }
 
-        /// <summary>
-        /// Описание.
-        /// </summary>
-        public string Description
-        { get; set; }
-
-        /// <summary>
+		/// <summary>
         /// Uri-адрес обложки приложения шириной 16px.
         /// </summary>
         public string Icon16
@@ -164,8 +185,14 @@ namespace VkNet.Model
         /// <summary>
         /// Uri-адреса изображений-скриншотов из приложения.
         /// </summary>
-        public IEnumerable<Photo> ScreenShots
+        public IEnumerable<Photo> Screenshots
         { get; set; }
+		
+		/// <summary>
+		/// 1, если у пользователя включены уведомления из этого приложения.
+		/// </summary>
+		[JsonProperty("push_enabled")]
+		public bool? PushEnabled { get; set; }
         #endregion
 
 
@@ -197,13 +224,17 @@ namespace VkNet.Model
                 MembersCount = response["members_count"],
                 PublishedDate = response["published_date"],
                 CatalogPosition = response["catalog_position"],
-                ScreenShots = response["screenshots"].ToReadOnlyCollectionOf<Photo>(o => o),
+                Screenshots = response["screenshots"].ToReadOnlyCollectionOf<Photo>(o => o),
                 International = response["international"],
                 LeaderBoardType = response["leaderboard_type"],
                 GenreId = response["genre_id"],
                 Genre = response["genre"],
                 PlatformId = response["platform_id"],
-                IsInCatalog = response["is_in_catalog"]
+                IsInCatalog = response["is_in_catalog"],
+	            Friends = response["friends"].ToReadOnlyCollectionOf<long>(x => x),
+	            Installed = response["installed"],
+	            IsHtml5App = response["is_html_5_app"],
+	            PushEnabled = response["push_enabled"]
             };
         }
 	}
