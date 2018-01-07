@@ -93,8 +93,8 @@ namespace VkNet.Tests.Categories
             Assert.That(video.Title, Is.EqualTo("Лидия Аркадьевна"));
             Assert.That(video.Duration, Is.EqualTo(131));
             Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384867255)));
-            Assert.That(video.ViewsCount, Is.EqualTo(81676));
-            Assert.That(video.CommentsCount, Is.EqualTo(2098));
+            Assert.That(video.Views, Is.EqualTo(81676));
+            Assert.That(video.Comments, Is.EqualTo(2098));
             Assert.That(video.Photo130, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/s_af2727af.jpg")));
             Assert.That(video.Photo320, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/l_aba9c1ab.jpg")));
             Assert.That(video.Player, Is.EqualTo(new Uri("http://www.youtube.com/embed/VQaHFisdf-s")));
@@ -107,8 +107,8 @@ namespace VkNet.Tests.Categories
             Assert.That(video1.Duration, Is.EqualTo(62));
             Assert.That(video1.Description, Is.EqualTo(string.Empty));
             Assert.That(video1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384721483)));
-            Assert.That(video1.ViewsCount, Is.EqualTo(42107));
-            Assert.That(video1.CommentsCount, Is.EqualTo(1243));
+            Assert.That(video1.Views, Is.EqualTo(42107));
+            Assert.That(video1.Comments, Is.EqualTo(1243));
             Assert.That(video1.Photo130, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/s_4e281f24.jpg")));
             Assert.That(video1.Photo320, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/l_aa616ea2.jpg")));
             Assert.That(video1.Player, Is.EqualTo(new Uri("http://www.youtube.com/embed/YfLytrkbAfM")));
@@ -121,8 +121,8 @@ namespace VkNet.Tests.Categories
             Assert.That(video2.Duration, Is.EqualTo(16));
             Assert.That(video2.Description, Is.EqualTo(string.Empty));
             Assert.That(video2.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1366495075)));
-            Assert.That(video2.ViewsCount, Is.EqualTo(218658));
-            Assert.That(video2.CommentsCount, Is.EqualTo(2578));
+            Assert.That(video2.Views, Is.EqualTo(218658));
+            Assert.That(video2.Comments, Is.EqualTo(2578));
             Assert.That(video2.Photo130, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
             Assert.That(video2.Photo320, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
             Assert.That(video2.Player,
@@ -222,8 +222,8 @@ namespace VkNet.Tests.Categories
             Assert.That(video.Title, Is.EqualTo("Лидия Аркадьевна"));
             Assert.That(video.Duration, Is.EqualTo(131));
             Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384867255)));
-            Assert.That(video.ViewsCount, Is.EqualTo(81677));
-            Assert.That(video.CommentsCount, Is.EqualTo(2098));
+            Assert.That(video.Views, Is.EqualTo(81677));
+            Assert.That(video.Comments, Is.EqualTo(2098));
             Assert.That(video.Photo130, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/s_af2727af.jpg")));
             Assert.That(video.Photo320, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/l_aba9c1ab.jpg")));
             Assert.That(video.Player, Is.EqualTo(new Uri("http://www.youtube.com/embed/VQaHFisdf-s")));
@@ -242,8 +242,8 @@ namespace VkNet.Tests.Categories
             Assert.That(video1.Duration, Is.EqualTo(62));
             Assert.That(video1.Description, Is.EqualTo(string.Empty));
             Assert.That(video1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384721483)));
-            Assert.That(video1.ViewsCount, Is.EqualTo(42107));
-            Assert.That(video1.CommentsCount, Is.EqualTo(1243));
+            Assert.That(video1.Views, Is.EqualTo(42107));
+            Assert.That(video1.Comments, Is.EqualTo(1243));
             Assert.That(video1.Photo130, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/s_4e281f24.jpg")));
             Assert.That(video1.Photo320, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/l_aa616ea2.jpg")));
             Assert.That(video1.Player, Is.EqualTo(new Uri("http://www.youtube.com/embed/YfLytrkbAfM")));
@@ -263,8 +263,8 @@ namespace VkNet.Tests.Categories
             Assert.That(video2.Duration, Is.EqualTo(16));
             Assert.That(video2.Description, Is.EqualTo(string.Empty));
             Assert.That(video2.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1366495075)));
-            Assert.That(video2.ViewsCount, Is.EqualTo(218659));
-            Assert.That(video2.CommentsCount, Is.EqualTo(2578));
+            Assert.That(video2.Views, Is.EqualTo(218659));
+            Assert.That(video2.Comments, Is.EqualTo(2578));
             Assert.That(video2.Photo130, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
             Assert.That(video2.Photo320, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
             Assert.That(video2.Player,
@@ -629,8 +629,8 @@ namespace VkNet.Tests.Categories
                 Is.EqualTo(
                     "beauty 18+\n\n\'Качественное и эксклюзивное порно  у нас\'\n\n>>>>>>> http://vk.com/mastofmastur<<<<<<"));
             Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384706962)));
-            Assert.That(video.ViewsCount, Is.EqualTo(11579));
-            Assert.That(video.CommentsCount, Is.EqualTo(12));
+            Assert.That(video.Views, Is.EqualTo(11579));
+            Assert.That(video.Comments, Is.EqualTo(12));
             Assert.That(video.Photo130, Is.EqualTo(new Uri("http://cs505118.vk.me/u7160710/video/s_08382000.jpg")));
             Assert.That(video.Photo320, Is.EqualTo(new Uri("http://cs505118.vk.me/u7160710/video/l_a02ed037.jpg")));
             Assert.That(video.AlbumId, Is.EqualTo(50100051));
@@ -650,8 +650,8 @@ namespace VkNet.Tests.Categories
                 Is.EqualTo(
                     "секс знакомства подписывайся,знакомься,общайся,тут русские шлюхи,проститутки подпишись у нас http://vk.com/tyt_sex"));
             Assert.That(video1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1371702618)));
-            Assert.That(video1.ViewsCount, Is.EqualTo(12817));
-            Assert.That(video1.CommentsCount, Is.EqualTo(5));
+            Assert.That(video1.Views, Is.EqualTo(12817));
+            Assert.That(video1.Comments, Is.EqualTo(5));
             Assert.That(video1.Photo130, Is.EqualTo(new Uri("http://cs527502.vk.me/u65226705/video/s_1d867e81.jpg")));
             Assert.That(video1.Photo320, Is.EqualTo(new Uri("http://cs527502.vk.me/u65226705/video/l_ba2e1aff.jpg")));
             Assert.That(video1.Player,
@@ -668,8 +668,8 @@ namespace VkNet.Tests.Categories
                 Is.EqualTo(
                     "Взято со страницы Саша Грей | Sasha Grey | 18+: http://vk.com/sashagreyphotos\nЭротика: http://vk.com/gentleerotica"));
             Assert.That(video2.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1386961568)));
-            Assert.That(video2.ViewsCount, Is.EqualTo(8730));
-            Assert.That(video2.CommentsCount, Is.EqualTo(12));
+            Assert.That(video2.Views, Is.EqualTo(8730));
+            Assert.That(video2.Comments, Is.EqualTo(12));
             Assert.That(video2.Photo130, Is.EqualTo(new Uri("http://cs535107.vk.me/u146564541/video/s_2d874147.jpg")));
             Assert.That(video2.Photo320, Is.EqualTo(new Uri("http://cs535107.vk.me/u146564541/video/l_cb794198.jpg")));
             Assert.That(video2.Player,

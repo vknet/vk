@@ -239,8 +239,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(video.Title, Is.EqualTo("This is SPARTA"));
 			Assert.That(video.Duration, Is.EqualTo(16));
 			Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1366495075)));
-			Assert.That(video.ViewsCount, Is.EqualTo(215502));
-			Assert.That(video.CommentsCount, Is.EqualTo(2559));
+			Assert.That(video.Views, Is.EqualTo(215502));
+			Assert.That(video.Comments, Is.EqualTo(2559));
 			Assert.That(video.Photo130, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
 			Assert.That(video.Photo320, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
 		}
@@ -360,8 +360,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(video.OwnerId, Is.EqualTo(235845316));
 			Assert.That(video.Title, Is.EqualTo("Clean Code: Learn to write clean, maintainable and robust code"));
 			Assert.That(video.Duration, Is.EqualTo(2058));
-			Assert.That(video.ViewsCount, Is.EqualTo(1613));
-			Assert.That(video.CommentsCount, Is.EqualTo(0));
+			Assert.That(video.Views, Is.EqualTo(1613));
+			Assert.That(video.Comments, Is.EqualTo(0));
 			Assert.That(video.Photo130, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg")));
 			Assert.That(video.Photo320, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg")));
 			Assert.That(video.Photo640, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg")));
@@ -484,8 +484,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(video.OwnerId, Is.EqualTo(235845316));
 			Assert.That(video.Title, Is.EqualTo("Clean Code: Learn to write clean, maintainable and robust code"));
 			Assert.That(video.Duration, Is.EqualTo(2058));
-			Assert.That(video.ViewsCount, Is.EqualTo(1613));
-			Assert.That(video.CommentsCount, Is.EqualTo(0));
+			Assert.That(video.Views, Is.EqualTo(1613));
+			Assert.That(video.Comments, Is.EqualTo(0));
 			Assert.That(video.Photo130, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg")));
 			Assert.That(video.Photo320, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg")));
 			Assert.That(video.Photo640, Is.EqualTo(new Uri("https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg")));

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using VkNet.Categories;
 using VkNet.Utils;
 
@@ -73,12 +74,12 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Количество просмотров.
         /// </summary>
-        public int? ViewsCount { get; set; }
+        public int? Views { get; set; }
 
         /// <summary>
         /// Количество комментариев.
         /// </summary>
-        public int? CommentsCount { get; set; }
+        public int? Comments { get; set; }
 
         /// <summary>
         /// Адрес страницы с плеером, который можно использовать для воспроизведения ролика в браузере.
@@ -86,78 +87,96 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public Uri Player { get; set; }
 
-        /// <summary>
-        /// Ключ доступа.
-        /// </summary>
-        public string AccessKey { get; set; }
+	    /// <summary>
+	    /// Платформа
+	    /// </summary>
+	    public string Platform { set; get; }
 
-        /// <summary>
-        /// Поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
-        /// </summary>
-        public bool? Processing { get; set; }
+	    /// <summary>
+	    /// поле возвращается, если пользователь может редактировать видеозапись, всегда содержит 1.
+	    /// </summary>
+	    [JsonProperty("can_edit")]
+	    public bool? CanEdit { get; set; }
 
-        /// <summary>
+	    /// <summary>
+	    /// Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
+	    /// </summary>
+	    public bool? CanAdd { get; set; }
+
+	    /// <summary>
+	    /// поле возвращается, если видеозапись приватная (например, была загружена в личное сообщение), всегда содержит 1.
+	    /// </summary>
+	    [JsonProperty("is_private")]
+	    public bool? IsPrivate { get; set; }
+
+	    /// <summary>
+	    /// Ключ доступа.
+	    /// </summary>
+	    public string AccessKey { set; get; }
+
+	    /// <summary>
+	    /// Поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
+	    /// </summary>
+	    public bool? Processing { set; get; }
+
+	    /// <summary>
         /// Поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1. Обратите внимание, в этом случае в поле duration содержится значение 0.
         /// </summary>
         public bool? Live { get; set; }
 
-        #region Недокументированные
-        /// <summary>
-        /// Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
-        /// </summary>
-        public bool? CanAdd { get; set; }
+	    /// <summary>
+	    /// (для live = 1). Поле свидетельствует о том, что трансляция скоро начнётся.
+	    /// </summary>
+	    [JsonProperty("upcoming")]
+	    public bool? Upcoming { get; set; }
+	    #region Недокументированные
 
-        /// <summary>
+	    /// <summary>
         /// Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
         /// </summary>
         public bool? CanComment { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Признак может ли текущий пользователь сделать репост данной видеозаписи.
         /// </summary>
         public bool? CanRepost { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Информация о лайках к видеозаписи.
         /// </summary>
         public Likes Likes { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Признак является ли видеозапись зацикленной.
         /// </summary>
         public bool? Repeat { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Идентификатор видеоальбома VideoAlbum
         /// </summary>
         public long? AlbumId { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Uri, по которому необходимо выполнить загрузку видеов (см. метод VideoCategory.Save
         /// </summary>
         public Uri UploadUrl { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Отметка к видеозаписи.
         /// </summary>
         public Tag Tag { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Ссылки на файлы
         /// </summary>
         public VideoFiles Files { get; set; }
 
-        /// <summary>
+	    /// <summary>
         /// Информация о репостах записи
         /// </summary>
         public Reposts Reposts { get; set; }
 
-        /// <summary>
-        /// Платформа
-        /// </summary>
-        public string Platform { get; set; }
-
-        /// <summary>
+	    /// <summary>
         /// Ширина
         /// </summary>
         public int? Width { get; set; }
@@ -173,43 +192,46 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Разобрать из json.
         /// </summary>
-        /// <param name="video">Ответ сервера.</param>
+        /// <param name="response">Ответ сервера.</param>
         /// <returns></returns>
-        public static Video FromJson(VkResponse video)
+        public static Video FromJson(VkResponse response)
         {
 	        return new Video
             {
-                Id = video["video_id"] ?? video["vid"] ?? video["id"],
-                OwnerId = video["owner_id"],
-                Title = video["title"],
-                Description = video["description"],
-                Duration = video["duration"],
-                Photo130 = video["photo_130"],
-                Photo320 = video["photo_320"],
-                Photo640 = video["photo_640"],
-                Photo800 = video["photo_800"],
-                Date = video["date"],
-                ViewsCount = video["views"],
-                CommentsCount = video["comments"],
-                Player = video["player"],
-                AccessKey = video["access_key"],
-                Processing = video["processing"],
-                Live = video["live"],
+                Id = response["video_id"] ?? response["vid"] ?? response["id"],
+                OwnerId = response["owner_id"],
+                Title = response["title"],
+                Description = response["description"],
+                Duration = response["duration"],
+                Photo130 = response["photo_130"],
+                Photo320 = response["photo_320"],
+                Photo640 = response["photo_640"],
+                Photo800 = response["photo_800"],
+                Date = response["date"],
+                Views = response["views"],
+                Comments = response["comments"],
+                Player = response["player"],
+                AccessKey = response["access_key"],
+                Processing = response["processing"],
+                Live = response["live"],
                 // Устаревшие или не документированные
-                CanAdd = video["can_add"],
-                CanComment = video["can_comment"],
-                CanRepost = video["can_repost"],
-                Repeat = video["repeat"],
-                Likes = video["likes"],
-                AlbumId = Utilities.GetNullableLongId(video["album_id"]),
-                UploadUrl = video["upload_url"],
-                Tag = video,
-                AddingDate = video["adding_date"],
-                Files = video["files"],
-                Reposts = video["reposts"],
-                Platform = video["platform"],
-                Width = video["width"],
-                Height = video["height"]
+                CanAdd = response["can_add"],
+                CanComment = response["can_comment"],
+                CanRepost = response["can_repost"],
+                Repeat = response["repeat"],
+                Likes = response["likes"],
+                AlbumId = Utilities.GetNullableLongId(response["album_id"]),
+                UploadUrl = response["upload_url"],
+                Tag = response,
+                AddingDate = response["adding_date"],
+                Files = response["files"],
+                Reposts = response["reposts"],
+                Platform = response["platform"],
+                Width = response["width"],
+                Height = response["height"],
+	            CanEdit = response["can_edit"],
+	            IsPrivate = response["is_private"],
+	            Upcoming = response["upcoming"],
             };
         }
 
