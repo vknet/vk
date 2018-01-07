@@ -1,12 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
+using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
-	using System;
-
-	using Utils;
-
 	/// <summary>
 	/// Фотография.
 	/// </summary>
@@ -25,6 +22,27 @@ namespace VkNet.Model.Attachments
 		/// Идентификатор альбома, в котором находится фотография.
 		/// </summary>
 		public long? AlbumId { get; set; }
+
+		/// <summary>
+		/// Идентификатор пользователя, загрузившего фото (если фотография размещена в сообществе). Для фотографий, размещенных от имени сообщества.
+		/// </summary>
+		public long? UserId { get; set; }
+
+		/// <summary>
+		/// Текст описания фотографии.
+		/// </summary>
+		public string Text { get; set; }
+
+		/// <summary>
+		/// Дата добавления фотографии.
+		/// </summary>
+		public DateTime? CreateTime { get; set; }
+
+		/// <summary>
+		/// Размеры фотографий.
+		/// </summary>
+		public ReadOnlyCollection<PhotoSize> Sizes
+		{ get; set; }
 
 		/// <summary>
 		/// Uri фотографии с максимальным размером 75x75px.
@@ -66,25 +84,12 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public int? Height { get; set; }
 
-		/// <summary>
-		/// Текст описания фотографии.
-		/// </summary>
-		public string Text { get; set; }
-
-		/// <summary>
-		/// Дата добавления фотографии.
-		/// </summary>
-		public DateTime? CreateTime { get; set; }
-
+		#region опциональные поля
+		
 		/// <summary>
 		/// Ключ доступа.
 		/// </summary>
 		public string AccessKey { get; set; }
-
-		/// <summary>
-		/// Идентификатор пользователя, загрузившего фото (если фотография размещена в сообществе). Для фотографий, размещенных от имени сообщества.
-		/// </summary>
-		public long? UserId { get; set; }
 
 		/// <summary>
 		/// Идентификатор записи, у которой данная фотография является прикреплением???
@@ -130,16 +135,12 @@ namespace VkNet.Model.Attachments
 		/// Источник изображения.
 		/// </summary>
 		public Uri PhotoSrc { get; set; }
+
 		/// <summary>
 		/// Хеш изображения.
 		/// </summary>
 		public string PhotoHash { get; set; }
 
-		/// <summary>
-		/// Размеры фотографий.
-		/// </summary>
-		public ReadOnlyCollection<PhotoSize> Sizes
-		{ get; set; }
 		/// <summary>
 		/// Географическая широта отметки, заданная в градусах
 		/// </summary>
@@ -161,6 +162,8 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public Uri SmallPhotoSrc
 		{ get; set; }
+
+		#endregion
 		#region Методы
 		/// <summary>
 		/// Разобрать из json.
