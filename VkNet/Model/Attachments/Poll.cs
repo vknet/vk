@@ -20,17 +20,17 @@ namespace VkNet.Model.Attachments
       		RegisterType(typeof (Poll), "poll");
       	}
 
-        /// <summary>
+	    /// <summary>
+	    /// Дата создания опроса
+	    /// </summary>
+	    public DateTime? Created { get; set; }
+
+	    /// <summary>
         /// Вопрос, заданный в голосовании.
         /// </summary>
         public string Question { get; set; }
 
-        /// <summary>
-        /// Дата создания опроса
-        /// </summary>
-        public DateTime? Created { get; set; }
-
-        /// <summary>
+	    /// <summary>
         /// Кол-во ответов
         /// </summary>
         public int? Votes { get; set; }
@@ -40,17 +40,17 @@ namespace VkNet.Model.Attachments
         /// </summary>
         public long? AnswerId { get; set; }
 
-        /// <summary>
+	    /// <summary>
+	    /// Варианты ответов
+	    /// </summary>
+	    public ReadOnlyCollection<PollAnswer> Answers { get; set; }
+
+	    /// <summary>
         /// Возможность анонимых ответов
         /// </summary>
-        public bool? IsAnonymous { get; set; }
+        public bool? Anonymous { get; set; }
 
-        /// <summary>
-        /// Варианты ответов
-        /// </summary>
-        public ReadOnlyCollection<PollAnswer> Answers { get; set; }
-
-		#region Методы
+	    #region Методы
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -66,7 +66,7 @@ namespace VkNet.Model.Attachments
 				Created = response["created"],
 				Votes = response["votes"],
 				AnswerId = response["answer_id"],
-				IsAnonymous = response["anonymous"],
+				Anonymous = response["anonymous"],
 				Answers = response["answers"].ToReadOnlyCollectionOf<PollAnswer>(x => x)
 			};
 
