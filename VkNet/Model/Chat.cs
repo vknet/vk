@@ -1,12 +1,9 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+using System.Collections.ObjectModel;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-  using System.Collections.ObjectModel;
-
-  using Utils;
-
   /// <summary>
   /// Информация о беседе (мультидиалоге, чате).
   /// См. описание http://vk.com/dev/chat_object
@@ -39,14 +36,10 @@ namespace VkNet.Model
     public ReadOnlyCollection<long> Users { get; set; }
 
     /// <summary>
-    /// флаг, указывающий, что пользователь покинул беседу. Всегда содержит 1.
+    /// Настройки оповещений для диалога..
     /// </summary>
-    public bool Left { get; set; }
-
-    /// <summary>
-    /// флаг, указывающий, что пользователь был исключен из беседы. Всегда содержит 1.
-    /// </summary>
-    public bool Kicked { get; set; }
+    [CanBeNull]
+    public ChatPushSettings PushSettings { get; set; }
 
     /// <summary>
     /// URL изображения-обложки чата шириной 50 px (если доступно).
@@ -64,10 +57,14 @@ namespace VkNet.Model
     public string Photo200 { get; set; }
 
     /// <summary>
-    /// Настройки оповещений для диалога..
+    /// флаг, указывающий, что пользователь покинул беседу. Всегда содержит 1.
     /// </summary>
-    [CanBeNull]
-    public ChatPushSettings PushSettings { get; set; }
+    public bool Left { get; set; }
+
+    /// <summary>
+    /// флаг, указывающий, что пользователь был исключен из беседы. Всегда содержит 1.
+    /// </summary>
+    public bool Kicked { get; set; }
 
     #region Методы
     /// <summary>
