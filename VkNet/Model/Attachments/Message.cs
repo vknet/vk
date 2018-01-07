@@ -1,16 +1,14 @@
-﻿using System.Runtime.Serialization;
-using VkNet.Enums.SafetyEnums;
+﻿using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
+using System;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
+using Newtonsoft.Json;
+using VkNet.Enums;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-	using System;
-	using System.Diagnostics;
-	using System.Collections.ObjectModel;
-
-	using Enums;
-	using Utils;
-
 	/// <summary>
 	/// Личное сообщение пользователя.
 	/// См. описание http://vk.com/dev/message
@@ -35,6 +33,12 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
+		/// Идентификатор автора сообщения.
+		/// </summary>
+		public long? FromId
+		{ get; set; }
+
+		/// <summary>
 		/// Дата отправки сообщения.
 		/// </summary>
 		public DateTime? Date
@@ -47,16 +51,10 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
-		/// Тип сообщения (не возвращается для пересланных сообщений).
+		/// тип сообщения (0 — полученное, 1 — отправленное, не возвращается для пересланных сообщений).
 		/// </summary>
-		public MessageType? Type
-		{ get; set; }
-
-		/// <summary>
-		/// Содержит количество непрочитанных сообщений в текущем диалоге (если это значение было возвращено, иначе 0)
-		/// </summary>
-		public int Unread
-		{ get; set; }
+		[JsonProperty("out")]
+		public bool? Out { get; set; }
 
 		/// <summary>
 		/// Заголовок сообщения или беседы.
@@ -71,15 +69,15 @@ namespace VkNet.Model
 		{ get; set; }
 
 		/// <summary>
-		/// Массив медиа-вложений (прикреплений).
-		/// </summary>
-		public ReadOnlyCollection<Attachment> Attachments
-		{ get; set; }
-
-		/// <summary>
 		/// Гео данные.
 		/// </summary>
 		public Geo Geo
+		{ get; set; }
+
+		/// <summary>
+		/// Массив медиа-вложений (прикреплений).
+		/// </summary>
+		public ReadOnlyCollection<Attachment> Attachments
 		{ get; set; }
 
 		/// <summary>
@@ -91,27 +89,26 @@ namespace VkNet.Model
 		/// <summary>
 		/// Содержатся ли в сообщении emoji-смайлы.
 		/// </summary>
-		public bool ContainsEmojiSmiles
+		public bool Emoji
 		{ get; set; }
 
 		/// <summary>
 		/// Является ли сообщение важным.
 		/// </summary>
-		public bool IsImportant
+		public bool Important
 		{ get; set; }
 
 		/// <summary>
 		/// Удалено ли сообщение.
 		/// </summary>
-		public bool? IsDeleted
+		public bool? Deleted
 		{ get; set; }
 
 		/// <summary>
-		/// Идентификатор автора сообщения.
+		/// идентификатор, используемый при отправке сообщения. Возвращается только для исходящих сообщений.
 		/// </summary>
-		public long? FromId
-		{ get; set; }
-
+		[JsonProperty("random_id")]
+		public long RandomId { get; set; }
 		#endregion
 
 		#region Дополнительные поля в сообщениях бесед (мультидиалогов)
@@ -125,7 +122,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификаторы участников беседы.
 		/// </summary>
-		public ReadOnlyCollection<long> ChatActiveIds
+		public ReadOnlyCollection<long> ChatActive
+		{ get; set; }
+
+		/// <summary>
+		/// Настройки уведомлений для беседы, если они есть. sound и disabled_until
+		/// </summary>
+		public ChatPushSettings PushSettings
 		{ get; set; }
 
 		/// <summary>
@@ -138,18 +141,6 @@ namespace VkNet.Model
 		/// Идентификатор создателя беседы.
 		/// </summary>
 		public long? AdminId
-		{ get; set; }
-
-		/// <summary>
-		/// Информация о ссылках на предпросмотр фотографий беседы.
-		/// </summary>
-		public Previews PhotoPreviews
-		{ get; set; }
-
-		/// <summary>
-		/// Настройки уведомлений для беседы, если они есть. sound и disabled_until
-		/// </summary>
-		public ChatPushSettings ChatPushSettings
 		{ get; set; }
 
 		/// <summary>
@@ -197,6 +188,28 @@ namespace VkNet.Model
 		public string Photo200
 		{ get; set; }
 
+		#endregion
+
+		#region недокументированные
+
+		/// <summary>
+		/// Тип сообщения (не возвращается для пересланных сообщений).
+		/// </summary>
+		public MessageType? Type
+		{ get; set; }
+
+		/// <summary>
+		/// Содержит количество непрочитанных сообщений в текущем диалоге (если это значение было возвращено, иначе 0)
+		/// </summary>
+		public int Unread
+		{ get; set; }
+
+		/// <summary>
+		/// Информация о ссылках на предпросмотр фотографий беседы.
+		/// </summary>
+		public Previews PhotoPreviews
+		{ get; set; }
+
 		/// <summary>
 		/// Идентификатор последнего прочитанного сообщения текущим пользователем
 		/// </summary>
@@ -237,17 +250,17 @@ namespace VkNet.Model
 				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
 				Geo = response["geo"],
 				ForwardedMessages = response["fwd_messages"].ToReadOnlyCollectionOf<Message>(x => x),
-				ContainsEmojiSmiles = response["emoji"],
-				IsImportant = response["important"],
-				IsDeleted = response["deleted"],
+				Emoji = response["emoji"],
+				Important = response["important"],
+				Deleted = response["deleted"],
 				FromId = response["from_id"],
 				// дополнительные поля бесед
 				ChatId = response["chat_id"],
-				ChatActiveIds = response["chat_active"].ToReadOnlyCollectionOf<long>(x => x),
+				ChatActive = response["chat_active"].ToReadOnlyCollectionOf<long>(x => x),
 				UsersCount = response["users_count"],
 				AdminId = response["admin_id"],
 				PhotoPreviews = response,
-				ChatPushSettings = response["push_settings"],
+				PushSettings = response["push_settings"],
 				Action = response["action"],
 				ActionMid = response["action_mid"],
 				ActionEmail = response["action_email"],
@@ -257,7 +270,8 @@ namespace VkNet.Model
 				Photo200 = response["photo_200"],
 
 				InRead = response["in_read"],
-				OutRead = response["out_read"]
+				OutRead = response["out_read"],
+				Out = response["out"],
 			};
 
 			return message;
