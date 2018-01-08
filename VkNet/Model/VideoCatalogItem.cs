@@ -1,103 +1,122 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Элемент блока видеокаталога
+	/// РћР±СЉРµРєС‚, РѕРїРёСЃС‹РІР°СЋС‰РёР№ СЌР»РµРјРµРЅС‚ РІРёРґРµРѕРєР°С‚Р°Р»РѕРіР°
 	/// </summary>
 	public class VideoCatalogItem
 	{
 		/// <summary>
-		/// идентификатор элемента. положительное число.
+		/// РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЌР»РµРјРµРЅС‚Р°.
 		/// </summary>
 		public long Id { get; set; }
 
 		/// <summary>
-		/// идентификатор владельца элемента. int (числовое значение).
+		/// РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІР»Р°РґРµР»СЊС†Р° СЌР»РµРјРµРЅС‚Р°.
 		/// </summary>
 		public long OwnerId { get; set; }
 
 		/// <summary>
-		/// заголовок. строка.
+		/// РЅР°Р·РІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		/// тип элемента. Может принимать значения: video — видеоролик; album — альбом. строка.
+		/// С‚РёРї СЌР»РµРјРµРЅС‚Р°.
 		/// </summary>
 		public VideoCatalogItemType Type { get; set; }
 
 		/// <summary>
-		/// длительность в секундах. положительное число.
-		/// </summary>
-		public long? Duration { get; set; }
-
-		/// <summary>
-		/// описание. строка.
+		/// С‚РµРєСЃС‚ РѕРїРёСЃР°РЅРёСЏ.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		/// дата добавления. положительное число.
+		/// РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ СЂРѕР»РёРєР° РІ СЃРµРєСѓРЅРґР°С….
 		/// </summary>
-		public long? Date { get; set; }
+		public long? Duration { get; set; }
 
 		/// <summary>
-		/// число просмотров. положительное число.
-		/// </summary>
-		public long? Views { get; set; }
-
-		/// <summary>
-		/// число комментариев. положительное число.
-		/// </summary>
-		public long? Comments { get; set; }
-
-		/// <summary>
-		/// URL изображения-обложки видео с размером 130x98px.строка.
+		/// URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ-РѕР±Р»РѕР¶РєРё СЂРѕР»РёРєР° С€РёСЂРёРЅРѕР№ 130px.
 		/// </summary>
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
-		/// URL изображения-обложки видео с размером 320x240px. строка.
+		/// URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ-РѕР±Р»РѕР¶РєРё СЂРѕР»РёРєР° С€РёСЂРёРЅРѕР№ 320px.
 		/// </summary>
 		public Uri Photo320 { get; set; }
 
 		/// <summary>
-		/// URL изображения-обложки видео с размером 640x480px (если размер есть). строка.
+		/// URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ-РѕР±Р»РѕР¶РєРё СЂРѕР»РёРєР° С€РёСЂРёРЅРѕР№ 640px (РµСЃР»Рё СЂР°Р·РјРµСЂ РµСЃС‚СЊ).
 		/// </summary>
 		public Uri Photo640 { get; set; }
+		
+		/// <summary>
+		/// URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ-РѕР±Р»РѕР¶РєРё СЂРѕР»РёРєР° С€РёСЂРёРЅРѕР№ 800px (РµСЃР»Рё СЂР°Р·РјРµСЂ РµСЃС‚СЊ).
+		/// </summary>
+		[JsonProperty("photo_800")]
+		public Uri Photo800 { get; set; }
 
 		/// <summary>
-		/// наличие возможности добавить видео в свой список. флаг, может принимать значения 1 или 0.
+		/// РґР°С‚Р° СЃРѕР·РґР°РЅРёСЏ РІРёРґРµРѕР·Р°РїРёСЃРё РІ С„РѕСЂРјР°С‚Рµ Unixtime.
+		/// </summary>
+		public DateTime? Date { get; set; }
+		
+		/// <summary>
+		/// РґР°С‚Р° РґРѕР±Р°РІР»РµРЅРёСЏ РІРёРґРµРѕР·Р°РїРёСЃРё РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј РёР»Рё РіСЂСѓРїРїРѕР№ РІ С„РѕСЂРјР°С‚Рµ Unixtime.
+		/// </summary>
+		[JsonProperty("adding_date")]
+		public DateTime? AddingDate { get; set; }
+
+		/// <summary>
+		/// РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕСЃРјРѕС‚СЂРѕРІ РІРёРґРµРѕР·Р°РїРёСЃРё.
+		/// </summary>
+		public long? Views { get; set; }
+
+		/// <summary>
+		/// РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ Рє РІРёРґРµРѕР·Р°РїРёСЃРё.
+		/// </summary>
+		public long? Comments { get; set; }
+
+		/// <summary>
+		/// РЅР°Р»РёС‡РёРµ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РґРѕР±Р°РІРёС‚СЊ СЂРѕР»РёРє РІ СЃРІРѕР№ СЃРїРёСЃРѕРє.
 		/// </summary>
 		public bool? CanAdd { get; set; }
 
 		/// <summary>
-		/// наличие возможности редактировать видео. флаг, может принимать значения 1 или 0.
+		/// РЅР°Р»РёС‡РёРµ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РІРёРґРµРѕ.
 		/// </summary>
 		public bool? CanEdit { get; set; }
+		
+		/// <summary>
+		/// РїСЂРёРІР°С‚РЅРѕСЃС‚СЊ СЂРѕР»РёРєР° (0 вЂ” РЅРµС‚, 1 вЂ” РµСЃС‚СЊ).
+		/// </summary>
+		[JsonProperty("is_private")]
+		public bool? IsPrivate { get; set; }
 
 		/// <summary>
-		/// число видеозаписей в альбоме. положительное число.
+		/// С‡РёСЃР»Рѕ РІРёРґРµРѕР·Р°РїРёСЃРµР№ РІ Р°Р»СЊР±РѕРјРµ.
 		/// </summary>
 		public long? Count { get; set; }
 
 		/// <summary>
-		/// URL изображения-обложки альбома с размером 272x150px. строка.
+		/// URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ-РѕР±Р»РѕР¶РєРё Р°Р»СЊР±РѕРјР° СЃ СЂР°Р·РјРµСЂРѕРј 272x150px.
 		/// </summary>
 		public Uri Photo160 { get; set; }
 
 		/// <summary>
-		/// время последнего обновления альбома. положительное число.
+		/// РІСЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ РѕР±РЅРѕРІР»РµРЅРёСЏ Р°Р»СЊР±РѕРјР° РІ С„РѕСЂРјР°С‚Рµ unixtime.
 		/// </summary>
-		public long? UpdatedTime { get; set; }
+		public DateTime? UpdatedTime { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
+		/// <param name="response">пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</param>
 		/// <returns></returns>
 		public static VideoCatalogItem FromJson(VkResponse response)
 		{
@@ -122,6 +141,9 @@ namespace VkNet.Model
 				Count = response["count"],
 				Photo160 = response["photo_160"],
 				UpdatedTime = response["updated_time"],
+				IsPrivate = response["is_private"],
+				AddingDate = response["adding_date"],
+				Photo800 = response["photo_800"]
 			};
 
 			return item;
