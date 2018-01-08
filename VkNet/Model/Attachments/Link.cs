@@ -4,7 +4,6 @@ using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
-
 	/// <summary>
 	/// Ссылка на Web-страницу.
 	/// См. описание http://vk.com/dev/attachments_w
@@ -31,24 +30,14 @@ namespace VkNet.Model.Attachments
 		public string Title { get; set; }
 
 		/// <summary>
-		/// Описание ссылки.
-		/// </summary>
-		public string Description { get; set; }
-
-		/// <summary>
-		/// Адрес превью изображения к ссылке (если имеется).
-		/// </summary>
-		public string Image { get; set; }
-
-		/// <summary>
-		/// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы. Идентификатор возвращается в формате "owner_id_page_id".
-		/// </summary>
-		public string PreviewPage { get; set; }
-
-		/// <summary>
 		/// Подпись ссылки (если имеется).
 		/// </summary>
 		public string Caption { get; set; }
+
+		/// <summary>
+		/// Описание ссылки.
+		/// </summary>
+		public string Description { get; set; }
 
 		/// <summary>
 		/// Фото (если имеется).
@@ -56,14 +45,34 @@ namespace VkNet.Model.Attachments
 		public Photo Photo { get; set; }
 
 		/// <summary>
-		/// Является ли ссылкой на внешний ресурс (если имеется).
-		/// </summary>
-		public bool? IsExternal { get; set; }
-
-		/// <summary>
 		/// Продукт.
 		/// </summary>
 		public Market Product { get; set; }
+
+		/// <summary>
+		/// Кнопка.
+		/// </summary>
+		public LinkButton Button { get; set; }
+
+		/// <summary>
+		/// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы. Идентификатор возвращается в формате "owner_id_page_id".
+		/// </summary>
+		public string PreviewPage { get; set; }
+
+		/// <summary>
+		/// Адрес страницы для предпросмотра содержимого страницы.
+		/// </summary>
+		public Uri PreviewUrl { get; set; }
+
+		/// <summary>
+		/// Адрес превью изображения к ссылке (если имеется).
+		/// </summary>
+		public string Image { get; set; }
+
+		/// <summary>
+		/// Является ли ссылкой на внешний ресурс (если имеется).
+		/// </summary>
+		public bool? IsExternal { get; set; }
 
 		/// <summary>
 		/// Рейтинг.
@@ -74,16 +83,6 @@ namespace VkNet.Model.Attachments
 		/// Приложение.
 		/// </summary>
 		public Application Application { get; set; }
-
-		/// <summary>
-		/// Кнопка.
-		/// </summary>
-		public LinkButton Button { get; set; }
-
-		/// <summary>
-		/// Адрес страницы для предпросмотра содержимого страницы.
-		/// </summary>
-		public Uri PreviewUrl { get; set; }
 
 		/// <summary>
 		/// Преобразовать к строке.
