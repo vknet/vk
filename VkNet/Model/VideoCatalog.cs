@@ -61,7 +61,8 @@ namespace VkNet.Model
                 CanHide = response["can_hide"],
                 Type = response["type"],
                 Next = response["next"],
-                Items = response["items"].ToReadOnlyCollectionOf<VideoCatalogItem>(x => x)
+                Items = response["items"].ToReadOnlyCollectionOf<VideoCatalogItem>(x => x),
+                View = response["view"]
             };
 
             return item;
