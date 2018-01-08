@@ -21,14 +21,14 @@ namespace VkNet.Model
 		public PostSourceType Type { get; set; }
 
 		/// <summary>
-		/// Поле data является опциональным и содержит следующие данные в зависимости от значения поля type:
-		/// </summary>
-		public PostSourceData Data { get; set; }
-
-		/// <summary>
 		/// Название платформы, если оно доступно: android, iphone, wphone.
 		/// </summary>
 		public Platform Platform { get; set; }
+
+		/// <summary>
+		/// Поле data является опциональным и содержит следующие данные в зависимости от значения поля type:
+		/// </summary>
+		public PostSourceData Data { get; set; }
 
 		/// <summary>
 		/// Cодержит внешнюю ссылку на ресурс, с которого была опубликована запись.
