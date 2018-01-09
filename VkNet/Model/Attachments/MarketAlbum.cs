@@ -1,9 +1,8 @@
 using System;
 using System.Runtime.Serialization;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Подборка товаров
