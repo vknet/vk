@@ -26,8 +26,6 @@ PM> Install-Package VkNet
 3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
 4. [Список часто задаваемых вопросов](https://github.com/vknet/vk/wiki/FAQ)
 
-# В nuget доступна версия 1.30.2 в двух версиях NETStandard2.0 и .NET 4.0
-
 # План развития проекта
 
 - [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.69.
