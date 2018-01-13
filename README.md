@@ -11,7 +11,7 @@ Contacts: [![Telegram Chat](https://patrolavia.github.io/telegram-badge/chat.png
 [![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/)
 
 # Как использовать
-## Добавьте пакет в ваш проект:
+### Добавьте пакет в ваш проект:
 **Package Manager**
 ``` powershell
 PM> Install-Package VkNet
@@ -20,7 +20,7 @@ PM> Install-Package VkNet
 ``` powershell
 > dotnet add package VkNet
 ```
-## Выполните следующие действия:
+### Выполните следующие действия:
 1. [Создайте приложение](https://vk.com/editapp?act=create)
 2. Авторизуйтесь как указано в [документации](https://vknet.github.io/vk/authorize/)
 3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
