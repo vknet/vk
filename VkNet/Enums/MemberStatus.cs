@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums.SafetyEnums
+﻿namespace VkNet.Enums
 {
     /// <summary>
     /// 

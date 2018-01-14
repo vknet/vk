@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
-
 using VkNet.Enums.SafetyEnums;
 using VkNet.Enums;
 using VkNet.Utils;
@@ -348,7 +347,9 @@ namespace VkNet.Model
 				CanMessage = response["can_message"],
 				Cover = response["cover"],
 				Market = response["market"],
-				AgeLimits = response["age_limits"], 
+				AgeLimits = response["age_limits"],
+				MemberStatus = response["member_status"],
+				PublicDateLabel = response["public_date_label"]
             };
 
 			return group;
