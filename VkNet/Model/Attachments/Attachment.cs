@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 using VkNet.Exception;
 using VkNet.Utils;
 using VkNet.UWP.Model.Attachments;
@@ -105,6 +104,11 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		private Market Market { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		private PrettyCards PrettyCards { get; set; }
+
 		#endregion
 
 		/// <summary>
@@ -202,6 +206,11 @@ namespace VkNet.Model.Attachments
 				if (Type == typeof(Market))
 				{
 					return Market;
+				}
+
+				if (Type == typeof(PrettyCards))
+				{
+					return PrettyCards;
 				}
 
 				return null;
@@ -334,6 +343,12 @@ namespace VkNet.Model.Attachments
 				{
 					attachment.Type = typeof(Market);
 					attachment.Market = response["market"];
+					break;
+				}
+				case "pretty_cards":
+				{
+					attachment.Type = typeof(PrettyCards);
+					attachment.PrettyCards = response["pretty_cards"];
 					break;
 				}
 				default:

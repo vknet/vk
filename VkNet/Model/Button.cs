@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -21,6 +22,12 @@ namespace VkNet.Model
 		public Uri Uri { get; set; }
 
 		/// <summary>
+		/// 
+		/// </summary>
+		[JsonProperty("action")]
+		public LinkButtonAction Action { get; set; }
+		
+		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
@@ -30,7 +37,8 @@ namespace VkNet.Model
 			var button = new Button
 			{
 				Title = response["title"],
-				Uri = response["url"]
+				Uri = response["url"],
+				Action = response["action"]
 			};
 
 			return button;
