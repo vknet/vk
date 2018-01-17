@@ -347,7 +347,7 @@ namespace VkNet
             RequestsPerSecond = 3;
 
             MaxCaptchaRecognitionCount = 5;
-            _logger.Debug("VkApi Initialization successfully");
+            _logger?.Debug("VkApi Initialization successfully");
         }
 
         /// <summary>
@@ -376,7 +376,7 @@ namespace VkNet
             //подключение браузера через прокси 
             if (@params.Host != null)
             {
-                _logger.Debug("Настройка прокси");
+                _logger?.Debug("Настройка прокси");
                 Browser.Proxy = WebProxy.GetProxy(
                     @params.Host,
                     @params.Port,
@@ -400,7 +400,7 @@ namespace VkNet
             }
 
             _ap = @params;
-            _logger.Debug("Авторизация прошла успешно");
+            _logger?.Debug("Авторизация прошла успешно");
         }
 
         /// <summary>
@@ -430,7 +430,7 @@ namespace VkNet
             {
                 const string message =
                     "Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
-                _logger.Error(message);
+                _logger?.Error(message);
                 throw new AggregateException(message);
             }
         }
@@ -526,7 +526,7 @@ namespace VkNet
             if (!skipAuthorization && !IsAuthorized)
             {
                 var message = $"Метод '{methodName}' нельзя вызывать без авторизации";
-                _logger.Error(message);
+                _logger?.Error(message);
                 throw new AccessTokenInvalidException(message);
             }
 
@@ -570,8 +570,8 @@ namespace VkNet
             }
 
 #if DEBUG && !UNIT_TEST
-            _logger.Trace(Utilities.PreetyPrintApiUrl(url));
-            _logger.Trace(Utilities.PreetyPrintApiUrl(url));
+            _logger?.Trace(Utilities.PreetyPrintApiUrl(url));
+            _logger?.Trace(Utilities.PreetyPrintApiUrl(url));
 #if UWP
             Debug.WriteLine(Utilities.PreetyPrintApiUrl(url));
             Debug.WriteLine(Utilities.PreetyPrintJson(answer));
@@ -621,7 +621,7 @@ namespace VkNet
             if (!authorization.IsAuthorized)
             {
                 const string message = "Не удалось автоматически пройти валидацию!";
-                _logger.Error(message);
+                _logger?.Error(message);
                 throw new NeedValidationException(message, validateUrl);
             }
 
@@ -655,7 +655,7 @@ namespace VkNet
                 parameters.Add("lang", Language);
             }
 
-            _logger.Debug(
+            _logger?.Debug(
                 $"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}"))}");
             string answer;
 
@@ -683,7 +683,7 @@ namespace VkNet
         /// <exception cref="VkApiAuthorizationException"></exception>
         private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
         {
-            _logger.Debug("Старт авторизации");
+            _logger?.Debug("Старт авторизации");
             if (CaptchaSolver == null)
             {
                 BaseAuthorize(authParams);
@@ -692,7 +692,7 @@ namespace VkNet
             {
                 CaptchaHandler((sid, key) =>
                 {
-                    _logger.Debug("Авторизация с использование капчи.");
+                    _logger?.Debug("Авторизация с использование капчи.");
                     authParams.CaptchaSid = sid;
                     authParams.CaptchaKey = key;
                     BaseAuthorize(authParams);
@@ -737,7 +737,7 @@ namespace VkNet
                 return result;
             }
 
-            _logger.Error("Капча ни разу не была распознана верно");
+            _logger?.Error("Капча ни разу не была распознана верно");
             throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
         }
 
@@ -752,11 +752,11 @@ namespace VkNet
         {
             if (string.IsNullOrWhiteSpace(accessToken))
             {
-                _logger.Error("Авторизация через токен. Токен не задан.");
+                _logger?.Error("Авторизация через токен. Токен не задан.");
                 throw new ArgumentNullException(accessToken);
             }
 
-            _logger.Debug("Авторизация через токен");
+            _logger?.Debug("Авторизация через токен");
             StopTimer();
 
             LastInvokeTime = DateTimeOffset.Now;
@@ -770,7 +770,7 @@ namespace VkNet
         /// <param name="authorization">The authorization.</param>
         private void SetTokenProperties(VkAuthorization authorization)
         {
-            _logger.Debug("Установка свойств токена");
+            _logger?.Debug("Установка свойств токена");
             var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
             SetApiPropertiesAfterAuth(expireTime, authorization.AccessToken, authorization.UserId);
         }
@@ -798,7 +798,7 @@ namespace VkNet
         private void RepeatSolveCaptcha(ref int numberOfRemainingAttemptsToSolveCaptcha,
             CaptchaNeededException captchaNeededException, ref long? captchaSidTemp, ref string captchaKeyTemp)
         {
-            _logger.Warn("Повторная обработка капчи");
+            _logger?.Warn("Повторная обработка капчи");
             if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
             {
                 CaptchaSolver?.CaptchaIsFalse();
@@ -859,7 +859,7 @@ namespace VkNet
             if (!authorization.IsAuthorized)
             {
                 var message = $"Invalid authorization with {authParams.Login} - {authParams.Password}";
-                _logger.Error(message);
+                _logger?.Error(message);
                 throw new VkApiAuthorizationException(message, authParams.Login, authParams.Password);
             }
             SetTokenProperties(authorization);

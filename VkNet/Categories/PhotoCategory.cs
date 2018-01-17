@@ -259,7 +259,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveWallPhoto
 		/// </remarks>
-		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong userId, ulong? groupId = null, string caption = null)
+		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null)
 		{
 			var responseJson = JObject.Parse(response);
 			var server = responseJson["server"].ToString();

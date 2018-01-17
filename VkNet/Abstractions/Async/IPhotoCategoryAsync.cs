@@ -171,7 +171,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/photos.saveWallPhoto
         /// </remarks>
-        Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response, ulong userId, ulong? groupId = null, string caption = null);
+        Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response, ulong? userId, ulong? groupId = null, string caption = null);
 
         /// <summary>
         /// Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.

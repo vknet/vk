@@ -79,7 +79,7 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc />
-        public async Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response, ulong userId,
+        public async Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response, ulong? userId,
             ulong? groupId = null, string caption = null)
         {
             return await TypeHelper.TryInvokeMethodAsync(() =>
