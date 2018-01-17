@@ -14,7 +14,7 @@ namespace VkNet.Utils
     /// Браузер, через который производится сетевое взаимодействие с ВКонтакте.
     /// Сетевое взаимодействие выполняется с помощью HttpWebRequest
     /// </summary>
-    public class Browser : IBrowser
+    public partial class Browser : IBrowser
     {
         /// <summary>
         /// Логгер
