@@ -3,6 +3,7 @@ sudo: required
 dist: trusty  
 mono: none
 dotnet: 2.0.0
+group: deprecated-2017Q4
 
 before_script:
   - dotnet restore ./VkNet.sln
