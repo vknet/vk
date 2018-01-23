@@ -902,7 +902,7 @@ namespace VkNet.Categories
         /// <inheritdoc />
         public bool Edit(MessageEditParams @params)
         {
-            return _vk.Call("messages.markAsImportantDialog", @params);
+            return _vk.Call("messages.edit", @params);
         }
     }
 }
