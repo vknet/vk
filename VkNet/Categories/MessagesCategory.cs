@@ -85,7 +85,7 @@ namespace VkNet.Categories
         /// </remarks>
         public bool DenyMessagesFromGroup(long groupId)
         {
-            return _vk.Call("messages.allowMessagesFromGroup", new VkParameters {{"group_id", groupId}});
+            return _vk.Call("messages.denyMessagesFromGroup", new VkParameters {{"group_id", groupId}});
         }
 
         /// <summary>
