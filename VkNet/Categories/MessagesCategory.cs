@@ -566,7 +566,7 @@ namespace VkNet.Categories
         {
             if (string.IsNullOrEmpty(title))
             {
-                throw new ArgumentException("Title can not be empty or null.", "title");
+                throw new ArgumentException("Title can not be empty or null.", nameof(title));
             }
 
             var parameters = new VkParameters
