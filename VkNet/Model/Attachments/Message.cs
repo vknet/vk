@@ -221,6 +221,12 @@ namespace VkNet.Model
 		/// </summary>
 		public ulong? OutRead
 		{ get; set; }
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[JsonProperty("update_time")]
+		public string UpdateTime { get; set; }
 
 		#endregion
 
@@ -272,6 +278,7 @@ namespace VkNet.Model
 				InRead = response["in_read"],
 				OutRead = response["out_read"],
 				Out = response["out"],
+				UpdateTime = response["update_time"],
 			};
 
 			return message;
