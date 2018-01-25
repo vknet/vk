@@ -77,5 +77,14 @@ namespace VkNet.Tests.Models
             var action = MessageAction.FromJsonString(response["action"]);
             Assert.That(action, Is.EqualTo(MessageAction.ChatPhotoUpdate));
         }
+        
+        [Test]
+        public void ShouldHaveField_ChatInviteUserByLink()
+        {
+            Json = "{'action':'chat_invite_user_by_link'}";
+            var response = GetResponse();
+            var action = MessageAction.FromJsonString(response["action"]);
+            Assert.That(action, Is.EqualTo(MessageAction.ChatInviteUserByLink));
+        }
     }
 }

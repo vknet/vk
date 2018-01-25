@@ -13,7 +13,7 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.30.2</Version>
+    <Version>1.31.0</Version>
     <PackageId>VkNet</PackageId>
     <Description>Реализация ВКонтакте API для .NET. Список методов см. https://vknet.github.io/vk/</Description>
     <Authors>inyutin_maxim;azhidkov</Authors>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/vknet/vk</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
-    <PackageReleaseNotes>Список изменений: https://github.com/vknet/vk/milestone/3?closed=1</PackageReleaseNotes>
+    <PackageReleaseNotes>Список изменений: https://github.com/vknet/vk/milestone/4?closed=1</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;UWP</DefineConstants>

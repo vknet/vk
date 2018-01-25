@@ -37,7 +37,7 @@ namespace VkNet.Utils
 		/// <returns></returns>
 		public bool HasToken()
 		{
-			return _token == null || !_token.HasValues;
+			return _token.HasValues;
 		}
 
 		/// <summary>
