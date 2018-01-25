@@ -4,6 +4,8 @@
 
 **NuGet (`master`):** [![](http://img.shields.io/nuget/v/VkNet.svg?style=flat-square)](http://www.nuget.org/packages/VkNet)
 
+**MyGet VkNet-Alpha:** [![vknet-alpha MyGet Build Status](https://www.myget.org/BuildSource/Badge/vknet-alpha?identifier=d0748393-4c02-4f17-8626-5cc2c999543c)](https://www.myget.org/)
+
 **Coverity:** [![Coverity Scan Build Status](https://scan.coverity.com/projects/6249/badge.svg)](https://scan.coverity.com/projects/vknet)
 
 **Contacts:** [![Telegram Chat](https://patrolavia.github.io/telegram-badge/chat.png)](https://t.me/joinchat/CHFCHxHqca0waHIe3-Fuqg)
@@ -31,6 +33,10 @@ PM> Install-Package VkNet
 - [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.69.
 - [ ] Недостающие классы и методы
 - [ ] Обновить документацию проекта
+
+# Альфа сборки
+
+Альфа сборки доступны из следующего nuget канала: [https://www.myget.org/F/vknet-alpha/api/v3/index.json](https://www.myget.org/F/vknet-alpha/api/v3/index.json)
 
 # Credits
 
