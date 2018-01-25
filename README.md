@@ -42,12 +42,12 @@ PM> Install-Package VkNet
 
 Большое спасибо следующим организациям и проектам, работа которых имеет важное значение для развития проекта:
 - [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
-- [Json.Net](http://www.newtonsoft.com/json)
+- [Json.Net](http://www.newtonsoft.com/json) - Popular high-performance JSON framework for .NET
 - [HtmlAgilityPack](http://html-agility-pack.net/?z=codeplex)
-- [NUnit](http://www.nunit.org/)
-- [Moq](https://github.com/moq/moq4)
+- [NUnit](http://www.nunit.org/) - NUnit is a unit-testing framework for all .Net languages.
+- [Moq](https://github.com/moq/moq4) - The most popular and friendly mocking framework for .NET
 
 # Помощь проекту
 - [На счет в банке](https://money.alfabank.ru/p2p/web/transfer/minyutin)
 - [PayPal](https://www.paypal.me/InyutinMaxim)
-- Так же вы можете помочь проекту `pull request'ом`
+- Так же вы можете помочь проекту `pull request'`ом
