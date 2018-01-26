@@ -257,7 +257,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public VkCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? ownerId = null)
+		public VkCollection<GetBannedResult> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? ownerId = null)
 		{
 			var parameters = new VkParameters {
 				{ "group_id", groupId },
@@ -267,7 +267,7 @@ namespace VkNet.Categories
 				{ "owner_id", ownerId }
 			};
 
-			return _vk.Call("groups.getBanned", parameters).ToVkCollectionOf<User>(x => x);
+			return _vk.Call<VkCollection<GetBannedResult>>("groups.getBanned", parameters);
 		}
 
 		/// <summary>

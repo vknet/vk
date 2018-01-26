@@ -3,18 +3,18 @@
 namespace VkNet.Enums.SafetyEnums
 {
     /// <summary>
-    /// тип объекта поиска
+    /// Тип объекта поиска
     /// </summary>
     [Serializable]
     public class SearchResultType: SafetyEnum<SearchResultType>
     {
         /// <summary>
-        /// сообщество
+        /// Сообщество
         /// </summary>
         public static readonly SearchResultType Group = RegisterPossibleValue("group");
 
         /// <summary>
-        /// профиль
+        /// Профиль
         /// </summary>
         public static readonly SearchResultType Profile = RegisterPossibleValue("profile");        
     }

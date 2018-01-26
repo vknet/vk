@@ -182,7 +182,7 @@ namespace VkNet.Abstractions
         ///  <remarks>
         ///  Страница документации ВКонтакте http://vk.com/dev/groups.getBanned
         ///  </remarks>
-        VkCollection<User> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? ownerId = null);
+        VkCollection<GetBannedResult> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null, long? ownerId = null);
 
         /// <summary>
         /// Убирает пользователя из черного списка сообщества.

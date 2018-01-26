@@ -1309,48 +1309,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void GetBanned_NormalCase()
-		{
-			const string url = "https://api.vk.com/method/groups.getBanned";
-			const string json =
-			@"{
-				'response': {
-					count: 1,
-					items: [{
-					'uid': 242508345,
-					'first_name': 'Маша',
-					'last_name': 'Иванова',
-					'ban_info': {
-						'admin_id': 234695672,
-						'date': 1392543301,
-						'reason': 1,
-						'comment': 'просто комментарий',
-						'end_date': 1392802497
-					}
-					}]
-				}
-			}";
-
-			var cat = GetMockedGroupCategory(url, json);
-
-			var users = cat.GetBanned(65968111,null, 3);
-
-			Assert.That(users, Is.Not.Null);
-			Assert.That(users.Count, Is.EqualTo(1));
-
-			var user = users.FirstOrDefault();
-			Assert.That(user, Is.Not.Null);
-			Assert.That(user.Id, Is.EqualTo(242508345));
-			Assert.That(user.FirstName, Is.EqualTo("Маша"));
-			Assert.That(user.LastName, Is.EqualTo("Иванова"));
-			Assert.That(user.BanInfo.AdminId, Is.EqualTo(234695672));
-			Assert.That(user.BanInfo.Date, Is.EqualTo(new DateTime(2014, 2, 16, 9, 35, 1, DateTimeKind.Utc).ToLocalTime()));
-			Assert.That(user.BanInfo.Reason, Is.EqualTo(BanReason.Spam));
-			Assert.That(user.BanInfo.Comment, Is.EqualTo("просто комментарий"));
-			Assert.That(user.BanInfo.EndDate, Is.EqualTo(new DateTime(2014, 2, 19, 9, 34, 57, DateTimeKind.Utc).ToLocalTime()));
-		}
-
-		[Test]
 		public void UnbanUser_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/groups.unbanUser";

@@ -1,14 +1,12 @@
-﻿
-using System.Runtime.Serialization;
+﻿using System;
+using System.Diagnostics;
+using Newtonsoft.Json;
+using VkNet.Utils;
+using VkNet.Enums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
-    using System;
-    using System.Diagnostics;
-
-    using Utils;
-    using Enums;
-
     /// <summary>
     /// Информация о забанненом (добавленном в черный список) пользователе сообщества.
     /// </summary>
@@ -22,26 +20,33 @@ namespace VkNet.Model
         /// <summary>
         /// Идентификатор администратора, который добавил пользователя в черный список.
         /// </summary>
+        [JsonProperty("admin_id")]
         public long? AdminId { get; set; }
 
         /// <summary>
         /// Дата добавления пользователя в черный список.
         /// </summary>
+        [JsonProperty("date")]
+        [JsonConverter(typeof(DateTimeJsonConverter))]
         public DateTime? Date { get; set; }
 
         /// <summary>
         /// Текст комментария к бану.
         /// </summary>
+        [JsonProperty("comment")]
         public string Comment { get; set; }
 
         /// <summary>
         /// Дата, когда пользователь будет разбанен.
         /// </summary>
+        [JsonProperty("end_date")]
+        [JsonConverter(typeof(DateTimeJsonConverter))]
         public DateTime? EndDate { get; set; }
 
         /// <summary>
         /// Причина добавления пользователя в черный список.
         /// </summary>
+        [JsonProperty("reason")]
         public BanReason Reason { get; set; }
 
 		#region Методы
@@ -54,7 +59,6 @@ namespace VkNet.Model
 		{
 			var info = new BanInfo
 			{
-
 				AdminId = response["admin_id"],
 				Date = response["date"],
 				Comment = response["comment"],

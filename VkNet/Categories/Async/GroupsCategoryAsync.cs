@@ -74,7 +74,7 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc />
-        public async Task<VkCollection<User>> GetBannedAsync(long groupId, long? offset = null, long? count = null,
+        public async Task<VkCollection<GetBannedResult>> GetBannedAsync(long groupId, long? offset = null, long? count = null,
             GroupsFields fields = null,
             long? ownerId = null)
         {
