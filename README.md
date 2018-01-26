@@ -4,8 +4,6 @@
 
 **NuGet (`master`):** [![](http://img.shields.io/nuget/v/VkNet.svg?style=flat-square)](http://www.nuget.org/packages/VkNet)
 
-**MyGet VkNet-Alpha:** [![vknet-alpha MyGet Build Status](https://www.myget.org/BuildSource/Badge/vknet-alpha?identifier=d0748393-4c02-4f17-8626-5cc2c999543c)](https://www.myget.org/)
-
 **Coverity:** [![Coverity Scan Build Status](https://scan.coverity.com/projects/6249/badge.svg)](https://scan.coverity.com/projects/vknet)
 
 **Contacts:** [![Telegram Chat](https://patrolavia.github.io/telegram-badge/chat.png)](https://t.me/joinchat/CHFCHxHqca0waHIe3-Fuqg)
