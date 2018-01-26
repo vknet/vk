@@ -264,13 +264,15 @@ namespace VkNet.Abstractions
         /// </summary>
         /// <param name="groupId">Идентификатор группы, в которую необходимо выслать приглашение положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
         /// <param name="userId">Идентификатор пользователя, которому необходимо выслать приглашение положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+        /// <param name="captchaSid">Идентификатор капчи</param>
+        /// <param name="captchaKey">Код введенный пользователем</param>
         /// <returns>
         /// В случае успешного выполнения возвращает <c>true</c>.
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.invite
         /// </remarks>
-        bool Invite(long groupId, long userId);
+        bool Invite(long groupId, long userId, long? captchaSid = null, string captchaKey = null);
 
         /// <summary>
         /// Позволяет добавлять ссылки в сообщество.

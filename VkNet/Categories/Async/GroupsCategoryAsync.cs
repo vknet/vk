@@ -74,7 +74,8 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc />
-        public async Task<VkCollection<GetBannedResult>> GetBannedAsync(long groupId, long? offset = null, long? count = null,
+        public async Task<VkCollection<GetBannedResult>> GetBannedAsync(long groupId, long? offset = null,
+            long? count = null,
             GroupsFields fields = null,
             long? ownerId = null)
         {
@@ -122,9 +123,10 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc />
-        public async Task<bool> InviteAsync(long groupId, long userId)
+        public async Task<bool> InviteAsync(long groupId, long userId, long? captchaSid = null, string captchaKey = null)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Groups.Invite(groupId, userId));
+            return await TypeHelper.TryInvokeMethodAsync(() =>
+                _vk.Groups.Invite(groupId, userId, captchaSid, captchaKey));
         }
 
         /// <inheritdoc />
