@@ -53,7 +53,7 @@ namespace VkNet.Utils
             {
                 SpecifyHeadersForFormRequest(form, call);
 
-                var request = await call._request.PostAsync(form.ActionUrl, new FormUrlEncodedContent(GetParameterList(form)));
+                var request = await call._request.PostAsync(form.ActionUrl, new FormUrlEncodedContent(form.GetFormFields()));
                 return await call.MakeRequestAsync(request, new Uri(form.ActionUrl), webProxy);
             }
         }

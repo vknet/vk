@@ -95,7 +95,7 @@ namespace VkNet.Utils
             {
                 SpecifyHeadersForFormRequest(form, call);
 
-                var request = call._request.PostAsync(form.ActionUrl, new FormUrlEncodedContent(GetParameterList(form))).Result;
+                var request = call._request.PostAsync(form.ActionUrl, new FormUrlEncodedContent(form.GetFormFields())).Result;
                 return call.MakeRequest(request, new Uri(form.ActionUrl), webProxy);
             }
         }
@@ -148,26 +148,7 @@ namespace VkNet.Utils
                         : _result;
             }
         }
-
-        private static IDictionary<string, string> GetParameterList(WebForm form)
-        {
-            var paramList = new Dictionary<string, string>();
-            foreach (var param in form.GetRequestAsStringArray())
-            {
-                if (paramList.ContainsKey(param))
-                {
-                    continue;
-                }
-
-                var paramPair = param.Split('=');
-                var key = paramPair[0] + "";
-                var value = paramPair[1] + "";
-                paramList.Add(key, value);
-            }
-
-            return paramList;
-        }
-
+        
         private static void SpecifyHeadersForFormRequest(WebForm form, WebCall call)
         {
             var formRequest = form.GetRequest();
