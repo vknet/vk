@@ -168,6 +168,13 @@
     /// <returns>Массив байт</returns>
     public IEnumerable<string> GetRequestAsStringArray() => _inputs.Select(x => $"{x.Key}={x.Value}");
 
+
+    /// <summary>
+    /// Получить значения полей.
+    /// </summary>
+    /// <returns>Словарь значений по именам полей.</returns>
+    public IDictionary<string, string> GetFormFields() => new Dictionary<string, string>(_inputs, _inputs.Comparer);
+
     /// <summary>
     /// Разобрать поля ввода.
     /// </summary>
