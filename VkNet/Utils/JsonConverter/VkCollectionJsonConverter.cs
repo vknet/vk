@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -47,7 +48,23 @@ namespace VkNet.Utils.JsonConverter
         /// <exception cref="NotImplementedException"></exception>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            var vkCollectionType = value.GetType();
+
+            var vkCollectionGenericArgument = vkCollectionType.GetGenericArguments()[0];
+            var toListMethod = typeof(Enumerable).GetMethod("ToList");
+            if (toListMethod != null)
+            {
+                var constructedToListGenericMethod = toListMethod.MakeGenericMethod(vkCollectionGenericArgument);
+                var castToListObject = constructedToListGenericMethod.Invoke(null, new[] { value });
+
+                var vkCollectionSurrogate = new
+                {
+                    TotalCount = vkCollectionType.GetProperty("TotalCount")?.GetValue(value, null),
+                    Items = castToListObject
+                };
+
+                serializer.Serialize(writer, vkCollectionSurrogate);
+            }
         }
 
         /// <summary>
@@ -101,10 +118,5 @@ namespace VkNet.Utils.JsonConverter
         {
             return typeof(VkCollection<>).IsAssignableFrom(objectType);
         }
-
-        /// <summary>
-        /// Может записать
-        /// </summary>
-        public override bool CanWrite => false;
     }
 }
