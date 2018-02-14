@@ -302,7 +302,48 @@ namespace VkNet
         /// Язык получаемых данных
         /// </summary>
         private Language? Language { get; set; }
+        
+        /// <summary>
+        /// Инициализирует новый экземпляр класса VkApi
+        /// </summary>
+        public VkApi(ILogger logger, IBrowser browser, ICaptchaSolver captchaSolver)
+        {
+            _logger = logger;
+            Browser = browser;
+            CaptchaSolver = captchaSolver;
 
+            Users = new UsersCategory(this);
+            Friends = new FriendsCategory(this);
+            Status = new StatusCategory(this);
+            Messages = new MessagesCategory(this);
+            Groups = new GroupsCategory(this);
+            Audio = new AudioCategory(this);
+            Wall = new WallCategory(this);
+            Board = new BoardCategory(this);
+            Database = new DatabaseCategory(this);
+            Utils = new UtilsCategory(this);
+            Fave = new FaveCategory(this);
+            Video = new VideoCategory(this);
+            Account = new AccountCategory(this);
+            Photo = new PhotoCategory(this);
+            Docs = new DocsCategory(this);
+            Likes = new LikesCategory(this);
+            Pages = new PagesCategory(this);
+            Gifts = new GiftsCategory(this);
+            Apps = new AppsCategory(this);
+            NewsFeed = new NewsFeedCategory(this);
+            Stats = new StatsCategory(this);
+            Auth = new AuthCategory(this);
+            Markets = new MarketsCategory(this);
+            Execute = new ExecuteCategory(this);
+            PollsCategory = new PollsCategory(this);
+            Search = new SearchCategory(this);
+
+            RequestsPerSecond = 3;
+
+            MaxCaptchaRecognitionCount = 5;
+            _logger?.Debug("VkApi Initialization successfully");
+        }
         /// <summary>
         /// Инициализирует новый экземпляр класса VkApi
         /// </summary>
