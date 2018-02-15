@@ -253,7 +253,7 @@ namespace VkNet.Utils
             var builder = new StringBuilder("https://oauth.vk.com/authorize?");
 
             builder.AppendFormat("client_id={0}&", appId);
-            builder.AppendFormat("scope={0}&", settings);
+            builder.AppendFormat("scope={0}&", settings.ToUInt64());
             builder.Append("redirect_uri=https://oauth.vk.com/blank.html&");
             builder.AppendFormat("display={0}&", display);
             builder.Append("response_type=token");

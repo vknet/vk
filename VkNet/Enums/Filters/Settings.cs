@@ -7,7 +7,7 @@ namespace VkNet.Enums.Filters
 {
     /// <summary>
     /// Права доступа приложений.
-    /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Права_доступа_приложений"/>.
+    /// См. описание <see href="https://vk.com/dev/permissions"/>.
     /// </summary>
     public sealed class Settings
     {
@@ -18,6 +18,7 @@ namespace VkNet.Enums.Filters
             {"photos", 4},
             {"audio", 8},
             {"video", 16},
+            {"app_widget", 64},
             {"pages", 128},
             {"addlinktoleftmenu", 256},
             {"status", 1024},
@@ -245,9 +246,21 @@ namespace VkNet.Enums.Filters
         public static Settings Market => GetByName("market");
 
         /// <summary>
+        /// Доступ к статистике групп и приложений пользователя, администратором которых он является.
+        /// </summary>
+        public static Settings Stats => GetByName("stats");
+
+        /// <summary>
+        /// Доступ к статистике групп и приложений пользователя, администратором которых он является.
+        /// </summary>
+        public static Settings AppWidget => GetByName("app_widget");
+
+        /// <summary>
         /// Доступ ко всем возможным операциям (без Off line и NoHttps).
         /// </summary>
-        public static Settings All => GetByName("all");
+        public static Settings All => AddLinkToLeftMenu | Ads | Audio | AppWidget | Documents | Email | Friends | Groups | Market
+                                      | Messages | Notes | Notifications | Notify | Pages | Photos | Stats | Status
+                                      | Video | Wall;
 
         /// <summary>
         /// Объединяет наборы настройки
