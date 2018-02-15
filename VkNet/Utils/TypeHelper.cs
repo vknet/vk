@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,8 +36,14 @@ namespace VkNet.Utils
         /// <param name="container">DI контейнер</param>
         public static void RegisterDefaultDependencies(this IServiceCollection container)
         {
-            container.TryAddSingleton<IBrowser, Browser>();
-            container.TryAddSingleton(InitLogger());
+            if (container.All(x => x.ServiceType != typeof(IBrowser)))
+            {
+                container.TryAddSingleton<IBrowser, Browser>();
+            }
+            if (container.All(x => x.ServiceType != typeof(ILogger)))
+            {
+                container.TryAddSingleton(InitLogger());
+            }
         }
         
         /// <summary>
