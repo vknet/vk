@@ -134,7 +134,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Settings.Audio.ToString(), Is.EqualTo("audio"));
 			Assert.That(Settings.Video.ToString(), Is.EqualTo("video"));
 			Assert.That(Settings.Pages.ToString(), Is.EqualTo("pages"));
-			Assert.That(Settings.AddLinkToLeftMenu.ToString(), Is.EqualTo("addLinkToLeftMenu"));
+			Assert.That(Settings.AddLinkToLeftMenu.ToString(), Is.EqualTo("addlinktoleftmenu"));
 			Assert.That(Settings.Status.ToString(), Is.EqualTo("status"));
 			Assert.That(Settings.Notes.ToString(), Is.EqualTo("notes"));
 			Assert.That(Settings.Messages.ToString(), Is.EqualTo("messages"));
@@ -147,7 +147,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Settings.Statistic.ToString(), Is.EqualTo("stats"));
 			Assert.That(Settings.Email.ToString(), Is.EqualTo("email"));
 			Assert.That(Settings.Market.ToString(), Is.EqualTo("market"));
-			Assert.That(Settings.All.ToString(), Is.EqualTo("ads,audio,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall"));
+			Assert.That(Settings.All.ToString(), Is.EqualTo("addlinktoleftmenu,ads,audio,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall"));
 			// parse test
 			Assert.That(Settings.FromJsonString("notify"), Is.EqualTo(Settings.Notify));
 			Assert.That(Settings.FromJsonString("friends"), Is.EqualTo(Settings.Friends));
@@ -155,7 +155,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Settings.FromJsonString("audio"), Is.EqualTo(Settings.Audio));
 			Assert.That(Settings.FromJsonString("video"), Is.EqualTo(Settings.Video));
 			Assert.That(Settings.FromJsonString("pages"), Is.EqualTo(Settings.Pages));
-			Assert.That(Settings.FromJsonString("addLinkToLeftMenu"), Is.EqualTo(Settings.AddLinkToLeftMenu));
+			Assert.That(Settings.FromJsonString("addlinktoleftmenu"), Is.EqualTo(Settings.AddLinkToLeftMenu));
 			Assert.That(Settings.FromJsonString("status"), Is.EqualTo(Settings.Status));
 			Assert.That(Settings.FromJsonString("notes"), Is.EqualTo(Settings.Notes));
 			Assert.That(Settings.FromJsonString("messages"), Is.EqualTo(Settings.Messages));
@@ -168,7 +168,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(Settings.FromJsonString("stats"), Is.EqualTo(Settings.Statistic));
 			Assert.That(Settings.FromJsonString("email"), Is.EqualTo(Settings.Email));
 			Assert.That(Settings.FromJsonString("market"), Is.EqualTo(Settings.Market));
-			Assert.That(Settings.FromJsonString("notify,friends,photos,audio,video,pages,status,notes,messages,wall,ads,docs,groups,notifications,stats,email,market"), Is.EqualTo(Settings.All));
+			Assert.That(Settings.FromJsonString("addlinktoleftmenu,ads,audio,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall"), Is.EqualTo(Settings.All));
 		}
 
 		[Test]

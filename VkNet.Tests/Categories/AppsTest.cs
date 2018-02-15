@@ -83,7 +83,7 @@ namespace VkNet.Tests.Categories
 
 			var app = Api.Apps.GetCatalog( new AppGetCatalogParams());
 			Assert.That(app.TotalCount, Is.AtLeast(0));
-			Assert.That(app.First().Title, Is.EqualTo("Подземелья!"));
+			Assert.That(app.FirstOrDefault()?.Title, Is.EqualTo("Подземелья!"));
 		}
 
 		[Test]

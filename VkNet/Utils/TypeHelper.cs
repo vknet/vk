@@ -49,14 +49,7 @@ namespace VkNet.Utils
             var consoleTarget = new ConsoleTarget();
             config.AddTarget("console", consoleTarget);
             consoleTarget.Layout = @"${date:format=HH\:mm\:ss} ${logger} ${message}";
-#if DEBUG
             var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
-#elif UNIT_TEST
-            var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
-#else
-            var rule1 = new LoggingRule("*", LogLevel.Warn, consoleTarget);
-#endif
-            
             config.LoggingRules.Add(rule1);
             LogManager.Configuration = config;
             return LogManager.GetLogger("VkApi");

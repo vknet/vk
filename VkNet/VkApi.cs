@@ -126,130 +126,130 @@ namespace VkNet
         /// <summary>
         /// API для работы с пользователями.
         /// </summary>
-        public IUsersCategory Users { get; }
+        public IUsersCategory Users { get; set; }
 
         /// <summary>
         /// API для работы с друзьями.
         /// </summary>
-        public IFriendsCategory Friends { get; }
+        public IFriendsCategory Friends { get; set; }
 
         /// <summary>
         /// API для работы со статусом пользователя или сообщества.
         /// </summary>
-        public IStatusCategory Status { get; }
+        public IStatusCategory Status { get; set; }
 
         /// <summary>
         /// API для работы с сообщениями.
         /// </summary>
-        public IMessagesCategory Messages { get; }
+        public IMessagesCategory Messages { get; set; }
 
         /// <summary>
         /// API для работы с .
         /// </summary>
-        public IGroupsCategory Groups { get; }
+        public IGroupsCategory Groups { get; set; }
 
         /// <summary>
         /// API для работы с аудио записями.
         /// </summary>
-        public AudioCategory Audio { get; }
+        public AudioCategory Audio { get; set; }
 
         /// <summary>
         /// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
         /// </summary>
-        public IDatabaseCategory Database { get; }
+        public IDatabaseCategory Database { get; set; }
 
         /// <summary>
         /// API для работы со служебными методами.
         /// </summary>
-        public IUtilsCategory Utils { get; }
+        public IUtilsCategory Utils { get; set; }
 
         /// <summary>
         /// API для работы со стеной пользователя.
         /// </summary>
-        public IWallCategory Wall { get; }
+        public IWallCategory Wall { get; set; }
 
         /// <summary>
         /// API для работы со темами групп.
         /// </summary>
-        public IBoardCategory Board { get; }
+        public IBoardCategory Board { get; set; }
 
         /// <summary>
         /// API для работы с закладками.
         /// </summary>
-        public IFaveCategory Fave { get; }
+        public IFaveCategory Fave { get; set; }
 
         /// <summary>
         /// API для работы с видео файлами.
         /// </summary>
-        public IVideoCategory Video { get; }
+        public IVideoCategory Video { get; set; }
 
         /// <summary>
         /// API для работы с аккаунтом пользователя.
         /// </summary>
-        public IAccountCategory Account { get; }
+        public IAccountCategory Account { get; set; }
 
         /// <summary>
         /// API для работы с фотографиями
         /// </summary>
-        public IPhotoCategory Photo { get; }
+        public IPhotoCategory Photo { get; set; }
 
         /// <summary>
         /// API для работы с документами
         /// </summary>
-        public IDocsCategory Docs { get; }
+        public IDocsCategory Docs { get; set; }
 
         /// <summary>
         /// API для работы с лайками
         /// </summary>
-        public ILikesCategory Likes { get; }
+        public ILikesCategory Likes { get; set; }
 
         /// <summary>
         /// API для работы с wiki.
         /// </summary>
-        public IPagesCategory Pages { get; }
+        public IPagesCategory Pages { get; set; }
 
         /// <summary>
         /// API для работы с приложениями.
         /// </summary>
-        public IAppsCategory Apps { get; }
+        public IAppsCategory Apps { get; set; }
 
         /// <summary>
         /// API для работы с новостной лентой.
         /// </summary>
-        public INewsFeedCategory NewsFeed { get; }
+        public INewsFeedCategory NewsFeed { get; set; }
 
         /// <summary>
         /// API для работы со статистикой.
         /// </summary>
-        public IStatsCategory Stats { get; }
+        public IStatsCategory Stats { get; set; }
 
         /// <summary>
         /// API для работы с подарками.
         /// </summary>
-        public IGiftsCategory Gifts { get; }
+        public IGiftsCategory Gifts { get; set; }
 
         /// <summary>
         /// API для работы с товарами.
         /// </summary>
-        public IMarketsCategory Markets { get; }
+        public IMarketsCategory Markets { get; set; }
 
         /// <summary>
         /// API для работы с Авторизацией.
         /// </summary>
-        public IAuthCategory Auth { get; }
+        public IAuthCategory Auth { get; set; }
 
         /// <summary>
         /// API для работы с универсальным методом.
         /// </summary>
-        public IExecuteCategory Execute { get; }
+        public IExecuteCategory Execute { get; set; }
 
         /// <summary>
         /// API для работы с опросами. 
         /// </summary>
-        public IPollsCategory PollsCategory { get; }
+        public IPollsCategory PollsCategory { get; set; }
 
         /// <inheritdoc />
-        public ISearchCategory Search { get; }
+        public ISearchCategory Search { get; set; }
 
         #endregion
 
@@ -312,38 +312,9 @@ namespace VkNet
             Browser = browser;
             CaptchaSolver = captchaSolver;
 
-            Users = new UsersCategory(this);
-            Friends = new FriendsCategory(this);
-            Status = new StatusCategory(this);
-            Messages = new MessagesCategory(this);
-            Groups = new GroupsCategory(this);
-            Audio = new AudioCategory(this);
-            Wall = new WallCategory(this);
-            Board = new BoardCategory(this);
-            Database = new DatabaseCategory(this);
-            Utils = new UtilsCategory(this);
-            Fave = new FaveCategory(this);
-            Video = new VideoCategory(this);
-            Account = new AccountCategory(this);
-            Photo = new PhotoCategory(this);
-            Docs = new DocsCategory(this);
-            Likes = new LikesCategory(this);
-            Pages = new PagesCategory(this);
-            Gifts = new GiftsCategory(this);
-            Apps = new AppsCategory(this);
-            NewsFeed = new NewsFeedCategory(this);
-            Stats = new StatsCategory(this);
-            Auth = new AuthCategory(this);
-            Markets = new MarketsCategory(this);
-            Execute = new ExecuteCategory(this);
-            PollsCategory = new PollsCategory(this);
-            Search = new SearchCategory(this);
-
-            RequestsPerSecond = 3;
-
-            MaxCaptchaRecognitionCount = 5;
-            _logger?.Debug("VkApi Initialization successfully");
+            Initialization();
         }
+        
         /// <summary>
         /// Инициализирует новый экземпляр класса VkApi
         /// </summary>
@@ -357,7 +328,11 @@ namespace VkNet
             Browser = serviceProvider.GetRequiredService<IBrowser>();
             CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
             _logger = serviceProvider.GetService<ILogger>();
+            Initialization();
+        }
 
+        private void Initialization()
+        {
             Users = new UsersCategory(this);
             Friends = new FriendsCategory(this);
             Status = new StatusCategory(this);
