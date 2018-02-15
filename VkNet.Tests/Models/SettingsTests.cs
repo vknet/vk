@@ -4,7 +4,7 @@ using VkNet.Enums.Filters;
 namespace VkNet.Tests.Models
 {
     [TestFixture]
-    public class SettingsTests
+    public class SettingsTests: BaseTest
     {
         [Test]
         public void SettingsTest()
@@ -211,6 +211,21 @@ namespace VkNet.Tests.Models
 	    {
 		    var settings = Settings.All;
 		    Assert.AreEqual(140426719, settings.ToUInt64());
+	    }
+
+	    [Test]
+	    public void OperatorOrDuplicateSettings()
+	    {
+		    var settings = Settings.Notify | Settings.Notify;
+		    Assert.AreEqual(1, settings.ToUInt64());
+	    }
+
+	    [Test]
+	    public void FromJson()
+	    {
+		    Json = "'notify'";
+		    var response = GetResponse();
+		    Assert.AreEqual(Settings.FromJson(response), Settings.Notify);
 	    }
     }
 }

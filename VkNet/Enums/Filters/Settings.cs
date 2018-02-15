@@ -11,7 +11,7 @@ namespace VkNet.Enums.Filters
     /// </summary>
     public sealed class Settings
     {
-        private static readonly Dictionary<string, ulong> MaskMap = new Dictionary<string, ulong>()
+        private static readonly Dictionary<string, ulong> MaskMap = new Dictionary<string, ulong>
         {
             {"notify", 1},
             {"friends", 2},
@@ -35,7 +35,7 @@ namespace VkNet.Enums.Filters
             {"market", 134217728}
         };
 
-        private static readonly Dictionary<string, string> Alias = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> Alias = new Dictionary<string, string>
         {
             {"all", string.Join(",", MaskMap.Keys.Where(x => x != "offline").OrderBy(x => x))}
         };
@@ -46,10 +46,10 @@ namespace VkNet.Enums.Filters
 
             if (MaskMap.ContainsKey(n))
             {
-                return new Settings()
+                return new Settings
                 {
                     Mask = MaskMap[n],
-                    _settings = new List<string>() {n}
+                    _settings = new List<string> {n}
                 };
             }
 
