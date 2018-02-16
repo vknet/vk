@@ -292,7 +292,7 @@ namespace VkNet
 		/// <summary>
 		/// Обработчик распознавания капчи
 		/// </summary>
-		public ICaptchaSolver CaptchaSolver { get; private set; }
+		public ICaptchaSolver CaptchaSolver { get; set; }
 
 		/// <summary>
 		/// Логгер
@@ -307,7 +307,7 @@ namespace VkNet
 		/// <summary>
 		/// Инициализирует новый экземпляр класса VkApi
 		/// </summary>
-		public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null)
+		public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null, IBrowser browser = null)
 		{
 			var container = new ServiceCollection();
 
@@ -320,6 +320,11 @@ namespace VkNet
 			{
 				container.TryAddSingleton(captchaSolver);
 			}
+
+            if (browser != null)
+            {
+                container.TryAddSingleton(browser);
+            }
 
 			container.RegisterDefaultDependencies();
 
