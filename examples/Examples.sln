@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet.Examples", "VkNet.Examples\VkNet.Examples.csproj", "{7B26B2C0-7CE9-474B-9E16-F272AFC24127}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet.Shared", "VkNet.Shared\VkNet.Shared.csproj", "{646DE977-0B6F-4883-A93C-996B8F0F4AB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B26B2C0-7CE9-474B-9E16-F272AFC24127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B26B2C0-7CE9-474B-9E16-F272AFC24127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B26B2C0-7CE9-474B-9E16-F272AFC24127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B26B2C0-7CE9-474B-9E16-F272AFC24127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{646DE977-0B6F-4883-A93C-996B8F0F4AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{646DE977-0B6F-4883-A93C-996B8F0F4AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{646DE977-0B6F-4883-A93C-996B8F0F4AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{646DE977-0B6F-4883-A93C-996B8F0F4AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
