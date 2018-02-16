@@ -13,7 +13,7 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.31.0</Version>
+    <Version>1.32.0</Version>
     <PackageId>VkNet</PackageId>
     <Description>Реализация ВКонтакте API для .NET. Список методов см. https://vknet.github.io/vk/</Description>
     <Authors>inyutin_maxim;azhidkov</Authors>
