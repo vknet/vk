@@ -30,7 +30,7 @@ PM> Install-Package VkNet
 
 # Альфа сборки
 
-Альфа сборки доступны из следующего nuget канала: [https://www.myget.org/F/vknet-alpha/api/v3/index.json](https://www.myget.org/F/vknet-alpha/api/v3/index.json)
+Альфа сборки доступны из следующего nuget канала: [https://www.myget.org/F/vknet-alpha/api/v3/index.json](https://www.myget.org/F/vknet-alpha/api/v3/index.json) [![](https://img.shields.io/myget/vknet-alpha/vpre/VkNet.svg)](https://www.myget.org/F/vknet-alpha/api/v3/index.json) 
 
 # Credits
 
