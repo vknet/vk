@@ -7,7 +7,7 @@
 |**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
 |**Issues**|[![](https://img.shields.io/github/issues/VkNet/Vk.svg)](https://github.com/vknet/vk/issues)
 |**Coverity**|[![Coverity Scan Build Status](https://img.shields.io/coverity/scan/6249.svg)](https://scan.coverity.com/projects/vknet)
-|**Contacts**|[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)|
+|**Contacts**|[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://t.me/joinchat/CHFCHxHqca0waHIe3-Fuqg)|
 
 # При поддержке
 [![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/)
