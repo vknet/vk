@@ -11,7 +11,7 @@ comments: true
 + **appID** - ID приложения
 + **email** - Email или телефон
 + **password** - Пароль для авторизации
-+ **settings** - Права доступа приложения. Тип параметра - Settings
++ **settings** - [Права доступа приложения](https://vk.com/dev/permissions). Тип параметра - Settings
 
 ## Результат
 Метод Authorize получает и устанавливает значение свойства AccessToken. Метод ничего не возвращает.
