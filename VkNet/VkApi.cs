@@ -29,13 +29,15 @@ namespace VkNet
 	/// <summary>
 	/// Служит для оповещения об истечении токена
 	/// </summary>
-	/// <param name="sender">Экземпляр API у которого истекло время токена</param>
+	/// <param name="sender">
+	/// Экземпляр API у которого истекло время токена
+	/// </param>
 	public delegate void VkApiDelegate(VkApi sender);
 
 	/// <inheritdoc />
 	/// <summary>
-	/// API для работы с ВКонтакте. Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями,
-	/// группами и т.п.).
+	/// API для работы с ВКонтакте.
+	/// Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями, группами и т.п.)
 	/// </summary>
 	public class VkApi : IVkApi
 	{
@@ -605,7 +607,7 @@ namespace VkNet
 			}
 
 			_logger?.Debug(Utilities.PreetyPrintApiUrl(url));
-			_logger?.Trace(Utilities.PreetyPrintJson(answer));
+			_logger?.Debug(Utilities.PreetyPrintJson(answer));
 
 			VkErrors.IfErrorThrowException(answer);
 

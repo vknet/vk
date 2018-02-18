@@ -36,10 +36,10 @@
     <OutputPath>..\Build\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="HtmlAgilityPack" Version="1.6.16" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.6.17" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
-    <PackageReference Include="NLog" Version="4.5.0-rc03" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="NLog" Version="4.5.0-rc05" />
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

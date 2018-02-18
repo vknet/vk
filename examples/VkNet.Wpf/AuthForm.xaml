@@ -1,0 +1,17 @@
+﻿<Window x:Class="VkNet.Wpf.AuthForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VkNet.Wpf"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="155" Width="200">
+    <Grid>
+        <TextBox x:Name="loginTb" HorizontalAlignment="Left" Height="23" Margin="64,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text=""/>
+        <TextBox x:Name="passwordTb" HorizontalAlignment="Left" Height="23" Margin="64,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Войти" HorizontalAlignment="Left" Margin="64,96,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
+        <Label Content="Логин:" HorizontalAlignment="Left" Margin="5,17,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="5,52,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

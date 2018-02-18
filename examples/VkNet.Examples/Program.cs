@@ -8,7 +8,7 @@ namespace VkNet.Examples
     {
         public static void Main(string[] args)
         {
-            var api = new VkApi();
+            var api = Api.GetInstance();
             
             api.Auth();
             Console.WriteLine(api.Token);
