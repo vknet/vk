@@ -5,7 +5,7 @@ permalink: authorize/
 comments: true
 ---
 # Авторизация
-Для возможности использования методов из [VK.NET](http://vknet.github.io/vk), необходимо получить AccessToken. Без него (или с неверным AccessToken) все методы будут выбрасывать исключение *AccessTokenInvalidException*. Если возникает такое исключение это говорит о том, что вы либо забыли авторизоваться, либо закончился срок действия ключа авторизации.
+Для возможности использования методов из [VK.NET](http://vknet.github.io/vk), необходимо получить [AccessToken](https://goo.gl/N2gpoV). Без него (или с неверным [AccessToken](https://goo.gl/N2gpoV)) все методы будут выбрасывать исключение *AccessTokenInvalidException*. Если возникает такое исключение это говорит о том, что вы либо забыли авторизоваться, либо закончился срок действия ключа авторизации.
 
 ## Параметры
 + **appID** - ID приложения
@@ -14,7 +14,7 @@ comments: true
 + **settings** - [Права доступа приложения](https://vk.com/dev/permissions). Тип параметра - Settings
 
 ## Результат
-Метод Authorize получает и устанавливает значение свойства AccessToken. Метод ничего не возвращает.
+Метод Authorize получает и устанавливает значение свойства [AccessToken](https://goo.gl/N2gpoV). Метод ничего не возвращает.
 
 ## Исключения
 + **VkApiAuthorizationException** - неправильный логин или пароль.
@@ -74,7 +74,7 @@ static void Main(string[] args)
 }
 ```
 
-### Пример авторизации через AccessToken
+### Пример авторизации через [AccessToken](https://goo.gl/N2gpoV)
 ```csharp
 static void Main(string[] args)
 {
