@@ -3,8 +3,17 @@ layout: default
 title: VKNET ВКонтакте API для .NET (C#)
 comments: false
 ---
+# Обсуждение в [Telegram](https://t.me/joinchat/CHFCHxHqca0waHIe3-Fuqg)
+
 # Установка через Nuget
-![VkNet Nuget](https://raw.githubusercontent.com/vknet/vk/gh-pages/images/vk_nuget.jpg)
+**Package Manager**
+``` powershell
+PM> Install-Package VkNet
+```
+**.NET CLI**
+``` powershell
+> dotnet add package VkNet
+```
 
 # Описание методов API
 Ниже приводятся все реализованные методы для работы с данными ВКонтакте.
