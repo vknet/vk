@@ -48,7 +48,7 @@ public ReadOnlyCollection<PhotoAlbum> GetAlbums(out int count, PhotoGetAlbumsPar
 
 ## Пример
 ``` csharp
-var getAlbums = _api.Photos.GetAlbums(new PhotosGetAlbumsParams{
+var getAlbums = _api.Photo.GetAlbums(new PhotosGetAlbumsParams{
 	
 });
 ```
