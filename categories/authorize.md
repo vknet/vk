@@ -20,61 +20,133 @@ comments: true
 + **VkApiAuthorizationException** - неправильный логин или пароль.
 + **VkApiException** - неизвестная ошибка.
 
-## Пример
-```csharp
-int appID = 12345;                     	// ID приложения
-string email = "test@test.com";        	// email или телефон
-string pass = "password";              	// пароль для авторизации
-Settings scope = Settings.Friends;  	// Приложение имеет доступ к друзьям
+## Примеры
 
-var vk = new VkApi();
-vk.Authorize(new ApiAuthParams
+### Пример простой авторизации
+```csharp
+static void Main(string[] args)
 {
-	ApplicationId = appID,
-	Login = email,
-	Password = pass,
-	Settings = scope
-};
+	var api = new VkApi();
+	
+	api.Authorize(new ApiAuthParams
+	{
+		ApplicationId = 123456,
+		Login = "Login",
+		Password = "Password",
+		Settings = Settings.All
+	});
+	Console.WriteLine(api.Token);
+	var res = api.Groups.Get(new GroupsGetParams());
+
+	Console.WriteLine(res.TotalCount);
+
+	Console.ReadLine();
+}
+
 ```
 
 ### Пример двухфакторной авторизации
 Для двухфакторной авторизации необходимо передать пятым параметром обработчик, возвращающий код авторизации.
 
 ```csharp
+static void Main(string[] args)
+{
+    var api = new VkApi();
+    
+    api.Authorize(new ApiAuthParams
+    {
+        ApplicationId = 123456,
+        Login = "Login",
+        Password = "Password",
+        Settings = Settings.All,
+        TwoFactorAuthorization = () =>
+        {
+            Console.WriteLine("Enter Code:");
+            return Console.ReadLine();
+        }
+    });
+    Console.WriteLine(api.Token);
+    var res = api.Groups.Get(new GroupsGetParams());
+
+    Console.WriteLine(res.TotalCount);
+
+    Console.ReadLine();
+}
+```
+
+### Пример авторизации через AccessToken
+```csharp
+static void Main(string[] args)
+{
+    var api = new VkApi();
+    
+    api.Authorize(new ApiAuthParams
+    {
+        AccessToken = "access_token"
+    });
+    Console.WriteLine(api.Token);
+    var res = api.Groups.Get(new GroupsGetParams());
+
+    Console.WriteLine(res.TotalCount);
+
+    Console.ReadLine();
+}
+```
+
+### Пример с [Dependency Injection](https://docs.microsoft.com/ru-ru/aspnet/core/fundamentals/dependency-injection)
+```csharp
 using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 using VkNet;
 using VkNet.Enums.Filters;
+using VkNet.Model.RequestParams;
 
-namespace Sandbox
+namespace Example
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // обработчик получения кода
-            Func<string> code = () =>
+	    // Контейнер для инверсии зависимостей
+            var serviceCollection = new ServiceCollection();
+	    // Регистрация логгера
+            serviceCollection.TryAddSingleton(InitLogger());
+	    // Создание экземпляра API с использование контейнера для инверсии зависимостей
+            var api = new VkApi(serviceCollection);
+            
+            api.Authorize(new ApiAuthParams
             {
-                Console.Write("Please enter code: ");
-                string value = Console.ReadLine();
+                AccessToken = "access_token"
+            });
+            Console.WriteLine(api.Token);
+            var res = api.Groups.Get(new GroupsGetParams());
 
-                return value;
+            Console.WriteLine(res.TotalCount);
+
+            Console.ReadLine();
+        }
+        
+        /// <summary>
+        /// Инициализация логгера.
+        /// </summary>
+        /// <returns>Логгер</returns>
+        private static ILogger InitLogger()
+        {
+            var consoleTarget = new ConsoleTarget
+            {
+                Layout = @"${date:format=HH\:mm\:ss} ${logger} ${message}"
             };
 
-            var api = new VkApi();
-            api.Authorize(new ApiAuthParams
-			{
-				ApplicationId = 12345678,
-				Login = "my@email.com",
-				Password = "pwd",
-				Settings = Settings.All,				
-				TwoFactorAuthorization = code
-			};
-
-            var records = api.Audio.Get(api.UserId.Value); // получаем список треков текущего пользователя
-
-            Console.WriteLine("Records count: " + records.Count);
+            var config = new LoggingConfiguration();
+            config.AddTarget("console", consoleTarget);
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
+            LogManager.Configuration = config;
+            return LogManager.GetLogger("VkApi");
         }
     }
 }
 ```
-
