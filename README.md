@@ -1,7 +1,13 @@
 # Vk Api for .NET
-|Build Status|Target Frameworks|Nuget|Downloads|Issues|Coverity|Contacts|
-|------|:------:|:------:|:------:|:------:|:------:|:------:|
-|[![Build Status](https://travis-ci.org/vknet/vk.svg?branch=master)](https://travis-ci.org/vknet/vk)|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-4.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/framework/)|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet)|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)|[![](https://img.shields.io/github/issues/VkNet/Vk.svg)](https://github.com/vknet/vk/issues)|[![Coverity Scan Build Status](https://scan.coverity.com/projects/6249/badge.svg)](https://scan.coverity.com/projects/vknet)|[![Telegram Chat](https://patrolavia.github.io/telegram-badge/chat.png)](https://t.me/joinchat/CHFCHxHqca0waHIe3-Fuqg)|
+||Badge|
+|------|:------:|
+|**Build Status**|[![Build Status](https://travis-ci.org/vknet/vk.svg?branch=master)](https://travis-ci.org/vknet/vk)
+|**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-4.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/framework/)|
+|**Nuget**|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet)
+|**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
+|**Issues**|[![](https://img.shields.io/github/issues/VkNet/Vk.svg)](https://github.com/vknet/vk/issues)
+|**Coverity**|[![Coverity Scan Build Status](https://img.shields.io/coverity/scan/6249.svg)](https://scan.coverity.com/projects/vknet)
+|**Contacts**|[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)|
 
 # При поддержке
 [![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/)
@@ -24,7 +30,7 @@ PM> Install-Package VkNet
 
 # План развития проекта
 
-- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.71.
+- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.73.
 - [ ] Недостающие классы и методы
 - [ ] Обновить документацию проекта
 
@@ -42,6 +48,6 @@ PM> Install-Package VkNet
 - [Moq](https://github.com/moq/moq4) - The most popular and friendly mocking framework for .NET
 
 # Помощь проекту
-- [На счет в банке](https://money.alfabank.ru/p2p/web/transfer/minyutin)
-- [PayPal](https://www.paypal.me/InyutinMaxim)
-- Так же вы можете помочь проекту `pull request'`ом
+- [![На счет в банке](https://img.shields.io/badge/Альфа_Банк-donate-CHFCHx.svg)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
+- [![PayPal](https://img.shields.io/badge/PayPal-donate-CHFCHx.svg)](https://www.paypal.me/InyutinMaxim)
+- Так же вы можете помочь проекту `Pull Request`'ом
