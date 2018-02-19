@@ -47,6 +47,25 @@ var users = vk.Friends.Get(1);
 // Получение идентификаторов, имен и фамилий первых трех друзей Павла Дурова.
 var users = friends.Get(1, ProfileFields.FirstName | ProfileFields.LastName, 3);
 
+// Получение списка друзей авторизованного пользователя.
+
+ void GetFriendList()
+        {
+
+            var friends = vk.Friends.Get(new FriendsGetParams
+            {
+                UserId = vk.UserId, // Здесь хранится id авторизованного пользователя.
+                Fields = ProfileFields.FirstName | ProfileFields.LastName
+
+            });
+
+            foreach (var friend in friends)
+            {
+                Console.WriteLine($"{friend.FirstName} {friend.LastName}");
+            }
+
+        }
+
 ```
 
 ## Версия Вконтакте API v.5.44
