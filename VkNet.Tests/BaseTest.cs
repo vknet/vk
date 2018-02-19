@@ -4,6 +4,7 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using VkNet.Enums.Filters;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Tests
