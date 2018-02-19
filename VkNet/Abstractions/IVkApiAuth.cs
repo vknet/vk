@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Model;
 
 namespace VkNet.Abstractions
 {

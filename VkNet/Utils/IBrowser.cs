@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net;
+using VkNet.Model;
 
 namespace VkNet.Utils
 {

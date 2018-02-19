@@ -6,9 +6,13 @@ using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Model;
 
 namespace VkNet.Utils
 {
+    /// <summary>
+    /// Браузер
+    /// </summary>
     public partial class Browser
     {
         /// <summary>

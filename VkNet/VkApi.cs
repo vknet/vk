@@ -15,6 +15,7 @@ using VkNet.Abstractions;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
+using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
 using VkNet.Utils.JsonConverter;

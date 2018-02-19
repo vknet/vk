@@ -1,8 +1,11 @@
 using System;
 using VkNet.Enums.Filters;
 
-namespace VkNet
+namespace VkNet.Model
 {
+    /// <summary>
+    /// Параметры авторизации
+    /// </summary>
     public interface IApiAuthParams
     {
         /// <summary>
@@ -22,7 +25,7 @@ namespace VkNet
 
         /// <summary>
         /// Права доступа приложений
-        /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Права_доступа_приложений"/>
+        /// См. описание <see href="https://vk.com/dev/permissions"/>
         /// </summary>
         Settings Settings { get; set; }
 

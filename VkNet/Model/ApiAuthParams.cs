@@ -1,5 +1,6 @@
 using System;
 using VkNet.Enums.Filters;
+using VkNet.Model;
 
 namespace VkNet
 {

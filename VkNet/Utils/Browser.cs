@@ -7,6 +7,7 @@ using NLog;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Model;
 
 namespace VkNet.Utils
 {
