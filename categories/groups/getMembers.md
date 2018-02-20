@@ -48,13 +48,14 @@ creator — создатель сообщества.
 
 ## Пример
 ```csharp
-// Получаем идентификаторы всех пользователей, состоящих в группе с id равным 2.
-int totalCount;
-var ids = vk.Groups.GetMembers(2, out totalCount);
+// Получаем идентификаторы и описание всех пользователей, состоящих в группе с id равным 1.
+var ids = vk.Groups.GetMembers(new GroupsGetMembersParams() { GroupId = "1", Fields = UsersFields.All});
 
 // Получаем идентификаторы 7 пользователей, начиная с 15 позиции, сортированных в порядке возрастания идентификаторов.
-int totalCount;
-var ids = vk.Groups.GetMembers(2, out totalCount, 7, 15, GroupsSort.IdAsc);
+var ids = vk.Groups.GetMembers(new GroupsGetMembersParams() { GroupId = "1", Count=7, Offset=15, Sort = GroupsSort.IdAsc});
+
+// Количество всех участников группы
+ulong totalCount = ids.TotalCount;
 ```
 
 ## Версия Вконтакте API v.5.44
