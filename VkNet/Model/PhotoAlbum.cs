@@ -9,6 +9,7 @@ namespace VkNet.Model
     /// <summary>
     /// Альбом для фотографий
     /// </summary>
+    [Serializable]
     public class PhotoAlbum
     {
         /// <summary>

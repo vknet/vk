@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Структура статистики
 	/// </summary>
+	[Serializable]
 	public class StatsStruct
 	{
 		/// <summary>

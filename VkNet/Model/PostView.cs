@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Информация о просмотрах записи.
 	/// </summary>
+	[Serializable]
 	public class PostView
 	{
 		/// <summary>

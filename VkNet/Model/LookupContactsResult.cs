@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -6,6 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Результат поиск пользователей по другим сервисам.
 	/// </summary>
+	[Serializable]
 	public class LookupContactsResult
 	{
 		/// <summary>

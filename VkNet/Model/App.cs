@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums;
@@ -11,6 +12,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Приложение.
 	/// </summary>
+	[Serializable]
 	public class App
 	{
 		/// <summary>

@@ -1,9 +1,11 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
     /// <summary>
     /// Список параметров для метода Messages.GetDialogs
     /// </summary>
+    [Serializable]
     public class MessagesDialogsGetParams
     {
 	    /// <summary>

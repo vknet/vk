@@ -7,6 +7,7 @@ namespace VkNet
     /// <summary>
     /// Параметры авторизации
     /// </summary>
+    [Serializable]
     public class ApiAuthParams : IApiAuthParams
     {
         /// <summary>

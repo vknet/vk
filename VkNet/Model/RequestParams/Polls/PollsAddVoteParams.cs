@@ -10,7 +10,8 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Список параметров для метода polls.addVote
     /// </summary>
-    public struct PollsAddVoteParams
+    [Serializable]
+    public class PollsAddVoteParams
     {
         /// <summary>
         /// Идентификатор владельца опроса.

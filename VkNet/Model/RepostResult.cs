@@ -1,3 +1,4 @@
+using System;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -5,6 +6,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Результат запроса wall.Repost
 	/// </summary>
+	[Serializable]
 	public class RepostResult
 	{
 		/// <summary>

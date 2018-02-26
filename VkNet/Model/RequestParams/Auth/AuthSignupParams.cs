@@ -7,7 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры запроса регистрации нового пользователя по номеру телефона.
 	/// </summary>
-	public struct AuthSignupParams
+	[Serializable]
+	public class AuthSignupParams
 	{
 		/// <summary>
 		/// Имя пользователя. строка, обязательный параметр.

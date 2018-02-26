@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Utils;
@@ -8,6 +9,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.edit
 	/// </summary>
+	[Serializable]
 	public class GroupsEditParams
 	{
 		/// <summary>

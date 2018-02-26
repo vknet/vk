@@ -1,10 +1,8 @@
-﻿using System.Runtime.Serialization;
-using VkNet.Utils;
+﻿using VkNet.Utils;
+using System;
 
 namespace VkNet.Model
 {
-    using System;
-
     /// <summary>
     /// Город.
     /// </summary>
@@ -39,24 +37,25 @@ namespace VkNet.Model
         /// </summary>
         public bool Important { get; set; }
 
-		#region Inernal Methods
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static City FromJson(VkResponse response)
+        #region Inernal Methods
+
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static City FromJson(VkResponse response)
         {
-			string id = response["comment_id"] ?? response["cid"] ?? response["id"];
-	        return new City
-			{
-				Id = Convert.ToInt64(id),
-				Title = response["title"] ?? response["name"],
-				Area = response["area"],
-				Region = response["region"],
-				Important = response["important"] ?? false
-			};
-		}
+            string id = response["comment_id"] ?? response["cid"] ?? response["id"];
+            return new City
+            {
+                Id = Convert.ToInt64(id),
+                Title = response["title"] ?? response["name"],
+                Area = response["area"],
+                Region = response["region"],
+                Important = response["important"] ?? false
+            };
+        }
 
         #endregion
     }

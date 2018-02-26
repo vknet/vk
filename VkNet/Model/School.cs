@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using Utils;
-
     /// <summary>
     /// Школа, в которой учился пользователь.
     /// См. описание http://vk.com/dev/fields
@@ -67,32 +65,33 @@ namespace VkNet.Model
         /// </summary>
         public string TypeStr { get; set; }
 
-		#region Методы
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static School FromJson(VkResponse response)
-		{
-			var school = new School
-			{
-				Id = Utilities.GetNullableLongId(response["id"]),
-				Country = Utilities.GetNullableLongId(response["country"]),
-				City = Utilities.GetNullableLongId(response["city"]),
-				Name = response["name"] ?? response["title"],
-				YearFrom = response["year_from"],
-				YearTo = response["year_to"],
-				YearGraduated = response["year_graduated"],
-				Class = response["class"],
-				Speciality = response["speciality"],
-				Type = response["type"],
-				TypeStr = response["type_str"]
-			};
+        #region Методы
 
-			return school;
-		}
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static School FromJson(VkResponse response)
+        {
+            var school = new School
+            {
+                Id = Utilities.GetNullableLongId(response["id"]),
+                Country = Utilities.GetNullableLongId(response["country"]),
+                City = Utilities.GetNullableLongId(response["city"]),
+                Name = response["name"] ?? response["title"],
+                YearFrom = response["year_from"],
+                YearTo = response["year_to"],
+                YearGraduated = response["year_graduated"],
+                Class = response["class"],
+                Speciality = response["speciality"],
+                Type = response["type"],
+                TypeStr = response["type_str"]
+            };
 
-		#endregion
-	}
+            return school;
+        }
+
+        #endregion
+    }
 }

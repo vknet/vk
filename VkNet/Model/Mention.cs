@@ -7,6 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Упоминание.
 	/// </summary>
+	[Serializable]
 	public class Mention
 	{
 		/// <summary>

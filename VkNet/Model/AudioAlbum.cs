@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -8,6 +9,7 @@ namespace VkNet.Model
     /// <remarks>
     /// Страница документации ВКонтакте http://vk.com/dev/audio.getAlbums
     /// </remarks>
+    [Serializable]
     public class AudioAlbum
     {
         /// <summary>

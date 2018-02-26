@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Информация о телефонных номерах пользователя.
 	/// </summary>
+	[Serializable]
 	public class Contacts
 	{
 		/// <summary>

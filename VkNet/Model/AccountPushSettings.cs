@@ -7,6 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	///
 	/// </summary>
+	[Serializable]
 	public class AccountPushSettings
 	{
 		/// <summary>

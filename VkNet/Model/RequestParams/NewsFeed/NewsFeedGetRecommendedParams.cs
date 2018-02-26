@@ -7,7 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров запроса newsfeed.get
 	/// </summary>
-	public struct NewsFeedGetRecommendedParams
+	[Serializable]
+	public class NewsFeedGetRecommendedParams
 	{
 		/// <summary>
 		/// Время в формате unixtime, начиная с которого следует получить новости для текущего пользователя.

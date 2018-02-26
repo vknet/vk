@@ -1,13 +1,14 @@
-﻿namespace VkNet.Model.RequestParams
+﻿using System;
+using VkNet.Enums;
+using VkNet.Utils;
+
+namespace VkNet.Model.RequestParams
 {
-    using Enums;
-
-    using Utils;
-
     /// <summary>
     /// Критерии поиска аудиозаписей.
     /// </summary>
-    public struct AudioSearchParams
+    [Serializable]
+    public class AudioSearchParams
     {
         /// <summary>
         /// Текст поискового запроса (прим., The Beatles).
@@ -49,23 +50,23 @@
         /// </summary>
         public bool? SearchOwn { get; set; }
 
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
-		public static VkParameters ToVkParameters(AudioSearchParams p)
+        /// <summary>
+        /// Привести к типу VkParameters.
+        /// </summary>
+        /// <param name="p">Параметры.</param>
+        /// <returns></returns>
+        public static VkParameters ToVkParameters(AudioSearchParams p)
         {
             return new VkParameters
             {
-                { "q", p.Query },
-                { "auto_complete", p.Autocomplete },
-                { "sort", p.Sort },
-                { "lyrics", p.Lyrics },
-                { "performer_only", p.PerformerOnly },
-                { "search_own", p.SearchOwn },
-                { "count", p.Count },
-                { "offset", p.Offset }
+                {"q", p.Query},
+                {"auto_complete", p.Autocomplete},
+                {"sort", p.Sort},
+                {"lyrics", p.Lyrics},
+                {"performer_only", p.PerformerOnly},
+                {"search_own", p.SearchOwn},
+                {"count", p.Count},
+                {"offset", p.Offset}
             };
         }
     }

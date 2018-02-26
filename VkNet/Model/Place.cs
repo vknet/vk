@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using Categories;
-    using Utils;
-
     /// <summary>
     /// Информация о месте, в котором была сделана запись.
     /// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo"/> и http://vk.com/dev/fields_groups
@@ -70,35 +67,36 @@ namespace VkNet.Model
         /// </summary>
         public string City { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Методы
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static Place FromJson(VkResponse response)
-		{
-			var place = new Place
-			{
-				Id = response["place_id"] ?? response["id"],
-				Title = response["title"],
-				Latitude = response["latitude"],
-				Longitude = response["longitude"],
-				TypeId = response["type"],
-				CountryId = response["country_id"],
-				CityId = response["city_id"],
-				Address = response["address"],
-				ShowMap = response["showmap"],
+        #region Методы
 
-				Country = response["country"], // установлено экcпериментальным путем
-				City = response["city"] // установлено экcпериментальным путем
-			};
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static Place FromJson(VkResponse response)
+        {
+            var place = new Place
+            {
+                Id = response["place_id"] ?? response["id"],
+                Title = response["title"],
+                Latitude = response["latitude"],
+                Longitude = response["longitude"],
+                TypeId = response["type"],
+                CountryId = response["country_id"],
+                CityId = response["city_id"],
+                Address = response["address"],
+                ShowMap = response["showmap"],
 
-			return place;
-		}
+                Country = response["country"], // установлено экcпериментальным путем
+                City = response["city"] // установлено экcпериментальным путем
+            };
 
-		#endregion
-	}
+            return place;
+        }
+
+        #endregion
+    }
 }

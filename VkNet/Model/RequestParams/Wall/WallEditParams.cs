@@ -10,6 +10,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.edit
 	/// </summary>
+	[Serializable]
 	public class WallEditParams
 	{
 		/// <summary>

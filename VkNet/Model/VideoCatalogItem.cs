@@ -8,6 +8,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Объект, описывающий элемент видеокаталога
 	/// </summary>
+	[Serializable]
 	public class VideoCatalogItem
 	{
 		/// <summary>

@@ -7,7 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.search
 	/// </summary>
-	public struct PhotoSearchParams
+	[Serializable]
+	public class PhotoSearchParams
 	{
 		/// <summary>
 		/// Строка поискового запроса, например, "Nature".

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using Utils;
-
     /// <summary>
     /// Контакты группы
     /// </summary>
@@ -31,25 +29,26 @@ namespace VkNet.Model
         /// </summary>
         public string Phone { get; set; }
 
-		#region Методы
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static Contact FromJson(VkResponse response)
-		{
-			var contact = new Contact
-			{
-				UserId = response["user_id"],
-				Description = response["desc"],
-				Email = response["email"],
-				Phone = response["phone"]
-			};
+        #region Методы
 
-			return contact;
-		}
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static Contact FromJson(VkResponse response)
+        {
+            var contact = new Contact
+            {
+                UserId = response["user_id"],
+                Description = response["desc"],
+                Email = response["email"],
+                Phone = response["phone"]
+            };
 
-		#endregion
-	}
+            return contact;
+        }
+
+        #endregion
+    }
 }

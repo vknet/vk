@@ -8,7 +8,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.get
 	/// </summary>
-	public struct PhotoGetParams
+	[Serializable]
+	public class PhotoGetParams
 	{
 		/// <summary>
 		/// Идентификатор владельца альбома.

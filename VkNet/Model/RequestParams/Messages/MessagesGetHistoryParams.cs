@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
     /// <summary>
     /// Список параметров для метода Message.GetHistory
     /// http://vk.com/dev/messages.getHistory
     /// </summary>
+    [Serializable]
     public class MessagesGetHistoryParams
     {
         /// <summary>

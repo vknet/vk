@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры запроса SendRequest для приложений.
 	/// </summary>
+	[Serializable]
 	public class AppSendRequestParams
 	{
 		/// <summary>

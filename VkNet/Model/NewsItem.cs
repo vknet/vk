@@ -9,6 +9,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Элемент коллекции новостей.
 	/// </summary>
+	[Serializable]
 	public class NewsItem
 	{
 		/// <summary>

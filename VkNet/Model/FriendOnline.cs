@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using VkNet.Utils;
 
@@ -6,6 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Результат запроса Friends.FriendOnline
 	/// </summary>
+	[Serializable]
 	public class FriendOnline
 	{
 		/// <summary>

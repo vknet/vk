@@ -9,6 +9,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Результат поиска метода newsfeed.search
 	/// </summary>
+	[Serializable]
 	public class NewsSearchResult
 	{
 		/// <summary>

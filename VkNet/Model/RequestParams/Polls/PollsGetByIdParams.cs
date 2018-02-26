@@ -10,7 +10,8 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Список параметров для метода polls.getById
     /// </summary>
-    public struct PollsGetByIdParams
+    [Serializable]
+    public class PollsGetByIdParams
     {
         /// <summary>
         /// Идентификатор владельца опроса.

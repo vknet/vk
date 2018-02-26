@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,7 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.getAlbums
 	/// </summary>
-	public struct PhotoGetAlbumsParams
+	[Serializable]
+	public class PhotoGetAlbumsParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежат альбомы. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1).

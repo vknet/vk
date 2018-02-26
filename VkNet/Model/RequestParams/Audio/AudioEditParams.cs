@@ -1,4 +1,5 @@
-﻿using VkNet.Enums;
+﻿using System;
+using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,23 +7,9 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода audio.edit
 	/// </summary>
-	public struct AudioEditParams
+	[Serializable]
+	public class AudioEditParams
 	{
-		/// <summary>
-		/// Параметры метода audio.edit
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public AudioEditParams(bool gag = true)
-		{
-			OwnerId = 0;
-			AudioId = 0;
-			Artist = null;
-			Title = null;
-			Text = null;
-			GenreId = null;
-			NoSearch = null;
-		}
-
 		/// <summary>
 		/// Идентификатор владельца аудиозаписи (пользователь или сообщество). ID сообщества должен быть отрицательным. 
 		/// 

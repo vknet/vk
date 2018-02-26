@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using Utils;
-
     /// <summary>
     /// Информация о репостах записи.
     /// См. описание http://vk.com/dev/post
@@ -22,23 +20,24 @@ namespace VkNet.Model
         /// </summary>
         public bool UserReposted { get; set; }
 
-		#region Методы
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static Reposts FromJson(VkResponse response)
-		{
-			var reposts = new Reposts
-			{
-				Count = response["count"],
-				UserReposted = response["user_reposted"]
-			};
+        #region Методы
 
-			return reposts;
-		}
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static Reposts FromJson(VkResponse response)
+        {
+            var reposts = new Reposts
+            {
+                Count = response["count"],
+                UserReposted = response["user_reposted"]
+            };
 
-		#endregion
-	}
+            return reposts;
+        }
+
+        #endregion
+    }
 }

@@ -1,16 +1,16 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using Utils;
-
     /// <summary>
     /// Видеоальбом.
     /// </summary>
     /// <remarks>
     /// Страница документации ВКонтакте http://vk.com/dev/video.getAlbums
     /// </remarks>
+    [Serializable]
     public class VideoAlbum
     {
         /// <summary>

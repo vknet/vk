@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -7,26 +8,9 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.addComment
 	/// </summary>
-	public struct WallAddCommentParams
+	[Serializable]
+	public class WallAddCommentParams
 	{
-		/// <summary>
-		/// Параметры метода wall.addComment
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public WallAddCommentParams(bool gag = true)
-		{
-			OwnerId = null;
-			PostId = 0;
-			FromGroup = null;
-			Text = null;
-			ReplyToComment = null;
-			Attachments = null;
-			StickerId = null;
-			Ref = null;
-			CaptchaKey = null;
-			CaptchaSid = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, на чьей стене находится запись, к которой необходимо добавить комментарий. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>

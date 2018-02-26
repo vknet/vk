@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -7,27 +8,9 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры запроса market.search
 	/// </summary>
-	public struct MarketSearchParams
+	[Serializable]
+	public class MarketSearchParams
 	{
-
-		/// <summary>
-		/// Параметры запроса market.search
-		/// </summary>
-		public MarketSearchParams(bool gog = false)
-		{
-			AlbumId = null;
-			Query = null;
-			PriceFrom = null;
-			PriceTo = null;
-			Tags = null;
-			Sort = null;
-			Rev = null;
-			Offset = null;
-			Count = null;
-			Extended = null;
-			OwnerId = 0;
-		}
-
 		/// <summary>
 		/// Идентификатор сообщества, которому принадлежат товары. 
 		/// </summary>

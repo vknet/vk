@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,6 +7,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.save
 	/// </summary>
+	[Serializable]
 	public class VideoSaveParams
 	{
 		/// <summary>

@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Результат метода account.changePassword
 	/// </summary>
+	[Serializable]
 	public class AccountChangePasswordResult
 	{
 		/// <summary>

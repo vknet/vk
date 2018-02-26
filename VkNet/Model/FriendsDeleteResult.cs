@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -6,6 +7,7 @@ namespace VkNet.Model
     /// <summary>
     /// Результат запроса Friends.Delete
     /// </summary>
+    [Serializable]
     public class FriendsDeleteResult
     {
         /// <summary>

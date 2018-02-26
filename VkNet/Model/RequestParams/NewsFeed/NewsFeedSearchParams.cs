@@ -7,6 +7,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров запроса newsfeed.search
 	/// </summary>
+	[Serializable]
 	public class NewsFeedSearchParams
 	{
 		/// <summary>

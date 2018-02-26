@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,22 +7,9 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода audio.get
 	/// </summary>
-	public struct AudioGetParams
+	[Serializable]
+	public class AudioGetParams
 	{
-		/// <summary>
-		/// Параметры метода audio.get
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public AudioGetParams(bool gag = true)
-		{
-			OwnerId = null;
-			AlbumId = null;
-			AudioIds = null;
-			NeedUser = null;
-			Offset = null;
-			Count = null;
-		}
-
 		/// <summary>
 		/// Идентификатор владельца аудиозаписей (пользователь или сообщество). Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>

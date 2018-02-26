@@ -1,10 +1,12 @@
-﻿namespace VkNet.Model
-{
-    using Utils;
+﻿using System;
+using VkNet.Utils;
 
+namespace VkNet.Model
+{
     /// <summary>
     /// Адрес сервера для загрузки фотографий
     /// </summary>
+    [Serializable]
     public class UploadServerInfo
     {
         /// <summary>

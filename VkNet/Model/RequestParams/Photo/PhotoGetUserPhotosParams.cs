@@ -1,4 +1,5 @@
-﻿using VkNet.Enums;
+﻿using System;
+using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,7 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.getUserPhotos
 	/// </summary>
-	public struct PhotoGetUserPhotosParams
+	[Serializable]
+	public class PhotoGetUserPhotosParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя, список фотографий для которого нужно получить.

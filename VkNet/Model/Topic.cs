@@ -6,6 +6,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Элемент коллекции тем.
 	/// </summary>
+	[Serializable]
 	public class Topic
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.SafetyEnums;
+﻿using System;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,6 +7,7 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Параметры метода likes.add
     /// </summary>
+    [Serializable]
     public class LikesAddParams
     {
         /// <summary>

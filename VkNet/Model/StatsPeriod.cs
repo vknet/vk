@@ -8,6 +8,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Статистика сообщества или приложения.
 	/// </summary>
+	[Serializable]
 	public class StatsPeriod
 	{
 		/// <summary>

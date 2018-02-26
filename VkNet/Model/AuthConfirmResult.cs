@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Результат метода auth.confirm
 	/// </summary>
+	[Serializable]
 	public class AuthConfirmResult
 	{
 		/// <summary>

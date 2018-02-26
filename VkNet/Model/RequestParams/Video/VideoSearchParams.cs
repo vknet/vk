@@ -1,4 +1,5 @@
-﻿using VkNet.Enums;
+﻿using System;
+using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.search
 	/// </summary>
+	[Serializable]
 	public class VideoSearchParams
 	{
 		/// <summary>

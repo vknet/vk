@@ -10,6 +10,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.post
 	/// </summary>
+	[Serializable]
 	public class WallPostParams
 	{
 		/// <summary>

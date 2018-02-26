@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,6 +7,7 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Параметры настройки уведомлений о событиях в Callback API. 
     /// </summary>
+    [Serializable]
     public class CallbackServerParams
     {
         /// <summary>

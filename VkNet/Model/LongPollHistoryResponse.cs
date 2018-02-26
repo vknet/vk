@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Utils;
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -10,6 +11,7 @@ namespace VkNet.Model
     /// <summary>
     /// Обновления в личных сообщениях пользователя.
     /// </summary>
+    [Serializable]
     public class LongPollHistoryResponse
     {
         /// <summary>

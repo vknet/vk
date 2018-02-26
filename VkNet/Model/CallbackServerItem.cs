@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model
     /// <summary>
     /// Данные о сервере
     /// </summary>
+    [Serializable]
     public class CallbackServerItem
     {
         /// <summary>

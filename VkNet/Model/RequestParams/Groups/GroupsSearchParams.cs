@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -8,6 +9,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.search
 	/// </summary>
+	[Serializable]
 	public class GroupsSearchParams
 	{
 		/// <summary>

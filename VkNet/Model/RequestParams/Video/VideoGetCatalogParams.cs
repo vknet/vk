@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -8,6 +9,7 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Параметры запроса Video.GetCatalog
     /// </summary>
+    [Serializable]
     public class VideoGetCatalogParams
     {
         /// <summary>

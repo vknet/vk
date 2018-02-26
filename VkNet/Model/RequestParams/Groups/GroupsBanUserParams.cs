@@ -7,6 +7,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.banUser
 	/// </summary>
+	[Serializable]
 	public class GroupsBanUserParams
 	{
 		/// <summary>

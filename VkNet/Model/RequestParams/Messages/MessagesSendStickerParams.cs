@@ -1,26 +1,14 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры метода messages.sendSticker
 	/// </summary>
-	public struct MessagesSendStickerParams
+	[Serializable]
+	public class MessagesSendStickerParams
 	{
-		/// <summary>
-		/// Параметры метода messages.sendSticker
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public MessagesSendStickerParams(bool gag = true)
-		{
-			UserId = null;
-			Domain = null;
-			PeerId = null;
-			ChatId = null;
-			RandomId = null;
-			StickerId = 0;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя. целое число.
 		/// </summary>
