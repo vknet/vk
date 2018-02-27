@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -76,6 +77,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Дата публикации записи в формате unixtime. Если параметр указан, публикация записи будет отложена до указанного времени. положительное число.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? PublishDate { get; set; }
 
 		/// <summary>

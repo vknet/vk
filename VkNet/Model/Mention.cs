@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -25,6 +27,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время публикаии записи в формате unixtime.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date
 		{ get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -47,6 +48,7 @@ namespace VkNet.Model
 	    /// время последнего обновления в формате unixtime
 	    /// </summary>
 	    [JsonProperty("updated_time")]
+	    [JsonConverter(typeof(UnixDateTimeConverter))]
 	    public DateTime? UpdatedTime { get; set; }
 
 		/// <summary>

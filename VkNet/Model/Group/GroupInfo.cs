@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -108,6 +110,7 @@ namespace VkNet.Model
         /// Дата основания компании, организации, 
         /// которой посвящена публичная страница в виде строки формата "dd.mm.YYYY". 
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? PublicDate { get; set; }
 
         /// <summary>
@@ -128,11 +131,13 @@ namespace VkNet.Model
         /// <summary>
         /// Дата окончания события.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? EventFinishDate { get; set; }
 
         /// <summary>
         /// Дата начала события.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? EventStartDate { get; set; }
 
         /// <summary>

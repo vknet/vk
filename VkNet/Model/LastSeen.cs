@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -13,6 +15,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время последнего посещения в формате unixtime. .
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Time { get; set; }
 
 		/// <summary>

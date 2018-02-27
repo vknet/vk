@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
 
@@ -13,12 +15,14 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Время в формате unixtime, начиная с которого следует получить новости для текущего пользователя.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? StartTime
 		{ get; set; }
 
 		/// <summary>
 		/// Время в формате unixtime, до которого следует получить новости для текущего пользователя. Если параметр не задан, то он считается равным текущему времени.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? EndTime
 		{ get; set; }
 

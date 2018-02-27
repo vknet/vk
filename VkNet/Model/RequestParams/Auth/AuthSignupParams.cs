@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -25,6 +27,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Дата рождения пользователя. 
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime Birthday 
 		{ get; set; }
 

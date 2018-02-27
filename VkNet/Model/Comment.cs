@@ -3,6 +3,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -28,6 +30,7 @@ namespace VkNet.Model
         /// <summary>
         /// Дата и время создания комментария.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Date { get; set; }
 
         /// <summary>

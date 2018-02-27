@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -23,6 +25,7 @@ namespace VkNet.Model
         /// <summary>
         /// Дата последней активности пользователя.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Time { get; set; }
 
         #region Методы

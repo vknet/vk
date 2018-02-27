@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -34,11 +36,13 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Дата и время создания альбома.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
         /// Дата и время последнего обновления альбома.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? UpdateTime { get; set; }
 
         /// <summary>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -14,6 +16,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// День в формате YYYY-MM-DD.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime Day
 		{ get; set; }
 

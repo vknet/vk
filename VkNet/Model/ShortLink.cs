@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
@@ -15,7 +16,7 @@ namespace VkNet.Model
         /// Время создания ссылки в Unixtime
         /// </summary>
         [JsonProperty("timestamp")]
-        [JsonConverter(typeof(DateTimeJsonConverter))]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime Timestamp { get; set; }
         /// <summary>
         /// Сокращенный URL.

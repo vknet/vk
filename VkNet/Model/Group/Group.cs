@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Enums;
 using VkNet.Utils;
@@ -254,11 +255,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время начала встречи (возвращаются только для встреч).
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? StartDate { get; set; }
 
 		/// <summary>
 		/// Время окончания встречи (возвращаются только для встреч).
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? EndDate { get; set; }
 
 		/// <summary>

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using NLog;
 using VkNet.Abstractions;
@@ -543,7 +544,7 @@ namespace VkNet
 				{
 					new VkCollectionJsonConverter(),
 					new VkDefaultJsonConverter(),
-					new DateTimeJsonConverter()
+					new UnixDateTimeConverter()
 				}
 			};
 
