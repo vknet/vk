@@ -730,7 +730,8 @@ namespace VkNet.Categories
         /// <inheritdoc />
         public string GetCallbackConfirmationCode(ulong groupId)
         {
-            return _vk.Call("groups.getCallbackConfirmationCode", new VkParameters {{"group_id", groupId}});
+            var response = _vk.Call("groups.getCallbackConfirmationCode", new VkParameters { { "group_id", groupId } });
+            return response["code"];
         }
 
         /// <inheritdoc />
