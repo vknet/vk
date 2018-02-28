@@ -737,7 +737,7 @@ namespace VkNet.Categories
         public VkCollection<CallbackServerItem> GetCallbackServers(ulong groupId, IEnumerable<ulong> serverIds)
         {
             var parameters = new VkParameters {{"group_id", groupId}, {"server_ids", serverIds}};
-            return _vk.Call("groups.getCallbackConfirmationCode", parameters)
+            return _vk.Call("groups.getCallbackServers", parameters)
                 .ToVkCollectionOf<CallbackServerItem>(x => x);
         }
 
