@@ -1,9 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using VkNet.Model.Attachments;
+﻿using System;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    [Serializable]
     public class MessagesSendResult
     {
         /// <summary>

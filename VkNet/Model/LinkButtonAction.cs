@@ -7,6 +7,7 @@ namespace VkNet.Model
     /// <summary>
     /// Действие кнопки
     /// </summary>
+    [Serializable]
     public class LinkButtonAction
     {
         /// <summary>

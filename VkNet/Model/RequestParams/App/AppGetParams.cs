@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -9,6 +10,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода Get для приложений
 	/// </summary>
+	[Serializable]
 	public class AppGetParams
 	{
 		/// <summary>

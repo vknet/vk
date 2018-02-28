@@ -1,15 +1,14 @@
-﻿using System.Runtime.Serialization;
-using VkNet.Model.Attachments;
+﻿﻿using VkNet.Model.Attachments;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Diagnostics;
-
-    using Utils;
-
     /// <summary>
     /// Комментарий к записи.
     /// См. описание <see href="http://vk.com/devcomment_object"/>.
@@ -31,6 +30,7 @@ namespace VkNet.Model
         /// <summary>
         /// Дата и время создания комментария.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Date { get; set; }
 
         /// <summary>
@@ -68,32 +68,33 @@ namespace VkNet.Model
         /// </summary>
         public Likes Likes { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Методы
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static Comment FromJson(VkResponse response)
-		{
-			var comment = new Comment
-			{
-				Id = response["id"],
-				FromId = response["from_id"],
-				Date = response["date"],
-				Text = response["text"],
-				ReplyToUserId = response["reply_to_user"],
-				ReplyToCommentId = response["reply_to_comment"],
-				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
+        #region Методы
 
-				Likes = response["likes"] // установлено экcпериментальным путем
-			};
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static Comment FromJson(VkResponse response)
+        {
+            var comment = new Comment
+            {
+                Id = response["id"],
+                FromId = response["from_id"],
+                Date = response["date"],
+                Text = response["text"],
+                ReplyToUserId = response["reply_to_user"],
+                ReplyToCommentId = response["reply_to_comment"],
+                Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
 
-			return comment;
-		}
+                Likes = response["likes"] // установлено экcпериментальным путем
+            };
 
-		#endregion
-	}
+            return comment;
+        }
+
+        #endregion
+    }
 }

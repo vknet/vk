@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -7,7 +8,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.createComment
 	/// </summary>
-	public struct PhotoCreateCommentParams
+	[Serializable]
+	public class PhotoCreateCommentParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежит фотография.

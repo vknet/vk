@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model
     /// <summary>
     /// Результат запроса groups.getBanned
     /// </summary>
+    [Serializable]
     public class GetBannedResult
     {
         /// <summary>

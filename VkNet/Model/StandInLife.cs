@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+using VkNet.Enums;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using System.Collections.ObjectModel;
-
-    using Enums;
-    using Utils;
-
     /// <summary>
     /// Жизненная позиция (Personal).
     /// Данная информация не документирована в официальном API ВКонтакте и восстановлена по ответам.
@@ -55,29 +52,30 @@ namespace VkNet.Model
         /// </summary>
         public Attitude Alcohol { get; set; }
 
-		#region Методы
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static StandInLife FromJson(VkResponse response)
-		{
-			var standInLife = new StandInLife
-			{
-				Political = response["political"],
-				Languages = response["langs"].ToReadOnlyCollectionOf<string>(x => x),
-				Religion = response["religion"],
-				InspiredBy = response["inspired_by"],
-				PeopleMain = response["people_main"],
-				LifeMain = response["life_main"],
-				Smoking = response["smoking"],
-				Alcohol = response["alcohol"]
-			};
+        #region Методы
 
-			return standInLife;
-		}
+        /// <summary>
+        /// Разобрать из json.
+        /// </summary>
+        /// <param name="response">Ответ сервера.</param>
+        /// <returns></returns>
+        public static StandInLife FromJson(VkResponse response)
+        {
+            var standInLife = new StandInLife
+            {
+                Political = response["political"],
+                Languages = response["langs"].ToReadOnlyCollectionOf<string>(x => x),
+                Religion = response["religion"],
+                InspiredBy = response["inspired_by"],
+                PeopleMain = response["people_main"],
+                LifeMain = response["life_main"],
+                Smoking = response["smoking"],
+                Alcohol = response["alcohol"]
+            };
 
-		#endregion
-	}
+            return standInLife;
+        }
+
+        #endregion
+    }
 }

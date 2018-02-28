@@ -1,13 +1,14 @@
-﻿using VkNet.Model.Attachments;
+﻿using System;
+using VkNet.Model.Attachments;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using VkNet.Utils;
-
     /// <summary>
     /// Информация о статусе пользователя.
     /// См. описание http://vk.com/dev/status.get
     /// </summary>
+    [Serializable]
     public class Status
     {
         /// <summary>

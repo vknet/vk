@@ -1,11 +1,13 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
     /// <summary>
     /// Список параметров для метода polls.deleteVote
     /// </summary>
-    public struct PollsDeleteVoteParams
+    [Serializable]
+    public class PollsDeleteVoteParams
     {
         /// <summary>
         /// Идентификатор владельца опроса.

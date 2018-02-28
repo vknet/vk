@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Categories;
 using VkNet.Utils;
 
@@ -64,11 +65,13 @@ namespace VkNet.Model.Attachments
         /// <summary>
         /// Дата добавления видеозаписи.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Date { get; set; }
 
         /// <summary>
         /// Дата добавления видеозаписи пользователем или группой в формате unixtime.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? AddingDate { get; set; }
 
         /// <summary>

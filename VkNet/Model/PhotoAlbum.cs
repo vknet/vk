@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -9,6 +11,7 @@ namespace VkNet.Model
     /// <summary>
     /// Альбом для фотографий
     /// </summary>
+    [Serializable]
     public class PhotoAlbum
     {
         /// <summary>
@@ -39,11 +42,13 @@ namespace VkNet.Model
         /// <summary>
         /// Дата создания альбома
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Created { get; set; }
 
         /// <summary>
         /// Дата обновления альбома
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Updated { get; set; }
 
         /// <summary>

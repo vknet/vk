@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -6,6 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Ответ на запрос метода groups.getCatalogInfo
 	/// </summary>
+	[Serializable]
 	public class GroupsCatalogInfo
 	{
 		/// <summary>

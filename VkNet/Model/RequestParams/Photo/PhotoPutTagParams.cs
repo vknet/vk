@@ -1,11 +1,13 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.putTag
 	/// </summary>
-	public struct PhotoPutTagParams
+	[Serializable]
+	public class PhotoPutTagParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя, которому принадлежит фотография.

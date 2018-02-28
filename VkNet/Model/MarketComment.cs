@@ -1,38 +1,40 @@
+using System;
 using System.Collections.ObjectModel;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Комментарий к товару
+	/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	/// </summary>
+	[Serializable]
 	public class MarketComment
 	{
 		/// <summary>
-		/// Список комментариев.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		/// </summary>
 		public ReadOnlyCollection<Comment> Comments { get; set; }
 
 		/// <summary>
-		/// Количество комментариев.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		/// </summary>
 		public long Count { get; set; }
 
 		/// <summary>
-		/// Список пользователей.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		/// </summary>
 		public ReadOnlyCollection<User> Profiles { get; set; }
 
 		/// <summary>
-		/// Список сообществ.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		/// </summary>
 		public ReadOnlyCollection<Group> Groups { get; set; }
 		
 
 		/// <summary>
-		/// Разобрать из json.
+		/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
+		/// <param name="response">пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</param>
 		/// <returns></returns>
 		public static MarketComment FromJson(VkResponse response)
 		{

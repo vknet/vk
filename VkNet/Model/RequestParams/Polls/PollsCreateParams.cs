@@ -11,7 +11,8 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Список параметров для метода polls.create
     /// </summary>
-    public struct PollsCreateParams
+    [Serializable]
+    public class PollsCreateParams
     {
         /// <summary>
         /// Идентификатор владельца опроса.

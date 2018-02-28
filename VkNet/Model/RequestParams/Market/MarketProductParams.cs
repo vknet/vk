@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,24 +7,9 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметр для добавления / редактирования товара
 	/// </summary>
-	public struct MarketProductParams
+	[Serializable]
+	public class MarketProductParams
 	{
-		/// <summary>
-		/// Параметр для добавления / редактирования товара
-		/// </summary>
-		public MarketProductParams(bool gog = false)
-		{
-			OwnerId = 0;
-			Name = null;
-			Description = null;
-			CategoryId = 0;
-			Price = 0;
-			Deleted = false;
-			MainPhotoId = 0;
-			PhotoIds = null;
-			ItemId = null;
-		}
-
 		/// <summary>
 		/// Идентификатор владельца товара. Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, обязательный параметр (целое число, обязательный параметр).
 		/// </summary>

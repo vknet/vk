@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -7,6 +9,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода groups.banUser
 	/// </summary>
+	[Serializable]
 	public class GroupsBanUserParams
 	{
 		/// <summary>
@@ -22,6 +25,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Дата завершения срока действия бана в формате unixtime. Максимальный возможный срок окончания бана, который можно указать, — один год с его начала. Если параметр не указан, пользователь будет заблокирован навсегда. положительное число.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? EndDate { get; set; }
 
 		/// <summary>

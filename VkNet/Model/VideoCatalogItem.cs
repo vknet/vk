@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -8,6 +9,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Объект, описывающий элемент видеокаталога
 	/// </summary>
+	[Serializable]
 	public class VideoCatalogItem
 	{
 		/// <summary>
@@ -64,12 +66,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// дата создания видеозаписи в формате Unixtime.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 		
 		/// <summary>
 		/// дата добавления видеозаписи пользователем или группой в формате Unixtime.
 		/// </summary>
 		[JsonProperty("adding_date")]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? AddingDate { get; set; }
 
 		/// <summary>
@@ -111,6 +115,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// время последнего обновления альбома в формате unixtime.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? UpdatedTime { get; set; }
 
 		/// <summary>

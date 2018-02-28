@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -6,6 +8,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Элемент коллекции тем.
 	/// </summary>
+	[Serializable]
 	public class Topic
     {
         /// <summary>
@@ -21,6 +24,7 @@ namespace VkNet.Model
         /// <summary>
         /// Дата создания (в формате unixtime).
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Сreated { get; set; }
 
         /// <summary>
@@ -31,6 +35,7 @@ namespace VkNet.Model
         /// <summary>
         /// Дата последнего сообщения (в формате unixtime).
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Updated { get; set; }
 
 	    /// <summary>

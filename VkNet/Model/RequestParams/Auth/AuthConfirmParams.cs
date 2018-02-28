@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,7 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры запроса метода auth.confirm
 	/// </summary>
-	public struct AuthConfirmParams
+	[Serializable]
+	public class AuthConfirmParams
 	{
 		/// <summary>
 		/// Идентификатор Вашего приложения. целое число, обязательный параметр.

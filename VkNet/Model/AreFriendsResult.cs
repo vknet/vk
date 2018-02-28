@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model
     /// <summary>
     /// Результат запроса Friends.AreFriends 
     /// </summary>
+    [Serializable]
     public class AreFriendsResult
     {
         /// <summary>

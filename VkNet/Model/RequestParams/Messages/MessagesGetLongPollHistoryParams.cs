@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода messages.getLongPollHistoryParams
 	/// </summary>
+	[Serializable]
 	public class MessagesGetLongPollHistoryParams
 	{
 		/// <summary>

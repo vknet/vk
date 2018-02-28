@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Database
@@ -6,6 +7,7 @@ namespace VkNet.Model.RequestParams.Database
     /// <summary>
     /// Параметры запроса database.getCities
     /// </summary>
+    [Serializable]
     public class GetCitiesParams
     {
         /// <summary>

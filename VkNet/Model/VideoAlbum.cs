@@ -1,16 +1,17 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using Utils;
-
     /// <summary>
     /// Видеоальбом.
     /// </summary>
     /// <remarks>
     /// Страница документации ВКонтакте http://vk.com/dev/video.getAlbums
     /// </remarks>
+    [Serializable]
     public class VideoAlbum
     {
         /// <summary>
@@ -47,6 +48,7 @@ namespace VkNet.Model
 	    /// время последнего обновления в формате unixtime
 	    /// </summary>
 	    [JsonProperty("updated_time")]
+	    [JsonConverter(typeof(UnixDateTimeConverter))]
 	    public DateTime? UpdatedTime { get; set; }
 
 		/// <summary>

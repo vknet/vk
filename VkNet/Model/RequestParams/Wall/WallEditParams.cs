@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -10,6 +11,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.edit
 	/// </summary>
+	[Serializable]
 	public class WallEditParams
 	{
 		/// <summary>
@@ -81,6 +83,7 @@ namespace VkNet.Model.RequestParams
 		/// Дата публикации записи в формате unixtime. Если параметр не указан, отложенная запись будет опубликована. 
 		/// Параметр учитывается только при редактировании отложенной записи. положительное число.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? PublishDate { get; set; }
 
 		/// <summary>

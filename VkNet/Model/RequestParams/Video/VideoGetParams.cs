@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VkNet.Utils;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода video.get
 	/// </summary>
+	[Serializable]
 	public class VideoGetParams
 	{
 		/// <summary>

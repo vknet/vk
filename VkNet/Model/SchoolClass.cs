@@ -1,27 +1,29 @@
+using System;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
     /// <summary>
-    /// Класс в школе
+    /// пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
     /// </summary>
+    [Serializable]
     public class SchoolClass
     {
         /// <summary>
-        /// Число пользователей, которым понравилась запись.
+        /// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
         /// </summary>
         public long Class { get; set; }
 
         /// <summary>
-        /// Признак понравилась ли запись текущему пользователю.
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         /// </summary>
         public string Text { get; set; }
 
-        #region Методы
+        #region пїЅпїЅпїЅпїЅпїЅпїЅ
         /// <summary>
-        /// Разобрать из json.
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ json.
         /// </summary>
-        /// <param name="response">Ответ сервера.</param>
+        /// <param name="response">пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</param>
         /// <returns></returns>
         public static SchoolClass FromJson(VkResponse response)
         {

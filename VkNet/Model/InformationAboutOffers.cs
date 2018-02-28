@@ -6,6 +6,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Информация о предложениях.
 	/// </summary>
+	[Serializable]
 	public class InformationAboutOffers
 	{
 		/// <summary>

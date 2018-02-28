@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Новости
 	/// </summary>
+	[Serializable]
 	public class TopicsFeed
 	{
         /// <summary>

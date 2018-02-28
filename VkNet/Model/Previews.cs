@@ -1,11 +1,9 @@
-using System.Runtime.Serialization;
 using VkNet.Model.Attachments;
+using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using System;
-    using Utils;
-
     /// <summary>
     /// ����� Uri � ��������� � ��������� �����������.
     /// ������������ � User
@@ -49,6 +47,7 @@ namespace VkNet.Model
         public Photo Photo { get; set; }
 
         #region ������
+
         /// <summary>
         /// ��������� �� json.
         /// </summary>
@@ -56,7 +55,6 @@ namespace VkNet.Model
         /// <returns></returns>
         public static Previews FromJson(VkResponse response)
         {
-
             var previews = new Previews
             {
                 Photo50 = response["photo_50"],
@@ -76,8 +74,9 @@ namespace VkNet.Model
                     previews.Photo = response["photo"];
                 }
             }
-            
-            previews.PhotoMax = response["photo_max"] ?? response["photo_max_orig"] ?? response["photo_big"] ?? previews.Photo400 ?? previews.Photo200 ?? previews.Photo100 ?? previews.Photo50;
+
+            previews.PhotoMax = response["photo_max"] ?? response["photo_max_orig"] ?? response["photo_big"] ??
+                                previews.Photo400 ?? previews.Photo200 ?? previews.Photo100 ?? previews.Photo50;
 
             return previews;
         }

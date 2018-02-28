@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
     /// <summary>
 	/// Результат выполнения запроса получения приложений
 	/// </summary>
+    [Serializable]
     public class AppGetObject
     {
         /// <summary>

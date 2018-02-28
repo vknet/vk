@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -9,7 +11,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров запроса newsfeed.get
 	/// </summary>
-	public struct NewsFeedGetParams
+	[Serializable]
+	public class NewsFeedGetParams
 	{
 		/// <summary>
 		/// Перечисленные через запятую названия списков новостей, которые необходимо получить. В данный момент поддерживаются следующие списки новостей: post — новые записи со стен photo — новые фотографии photo_tag — новые отметки на фотографиях wall_photo — новые фотографии на стенах friend — новые друзья note — новые заметки Если параметр не задан, то будут получены все возможные списки новостей.
@@ -26,12 +29,14 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Время в формате unixtime, начиная с которого следует получить новости для текущего пользователя.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? StartTime
 		{ get; set; }
 
 		/// <summary>
 		/// Время в формате unixtime, до которого следует получить новости для текущего пользователя. Если параметр не задан, то он считается равным текущему времени.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? EndTime
 		{ get; set; }
 

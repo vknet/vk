@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Контактов, который не был найден.
 	/// </summary>
+	[Serializable]
 	public class LookupContactsOther
 	{
 		/// <summary>

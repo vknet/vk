@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Параметры метода board.getTopics
     /// </summary>
+    [Serializable]
     public class BoardGetTopicsParams
     {
 		/// <summary>

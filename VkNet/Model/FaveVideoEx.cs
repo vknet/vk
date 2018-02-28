@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -8,6 +9,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Расширенный объект видео для закладок
 	/// </summary>
+	[Serializable]
 	public class FaveVideoEx
 	{
 		/// <summary>

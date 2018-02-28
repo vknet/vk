@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model
+﻿using System;
+
+namespace VkNet.Model
 {
     using Utils;
 
@@ -7,6 +9,7 @@
     /// получения приходящих сообщений и других событий.
     /// См. описание http://vk.com/dev/messages.getLongPollServer
     /// </summary>
+    [Serializable]
     public class LongPollServerResponse
     {
         /// <summary>

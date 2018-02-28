@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -7,6 +9,7 @@ namespace VkNet.Model
 	/// <summary>
 	///
 	/// </summary>
+	[Serializable]
 	public class AccountPushSettings
 	{
 		/// <summary>
@@ -18,6 +21,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Unixtime-значение времени, до которого временно отключены уведомления.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? DisabledUntil
 		{ get; set; }
 

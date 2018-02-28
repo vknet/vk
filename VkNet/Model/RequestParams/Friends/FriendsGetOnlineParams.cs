@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.SafetyEnums;
+﻿using System;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,22 +7,9 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода friends.getOnline
 	/// </summary>
-	public struct FriendsGetOnlineParams
+	[Serializable]
+	public class FriendsGetOnlineParams
 	{
-		/// <summary>
-		/// Параметры метода friends.getOnline
-		/// </summary>
-		/// <param name="gag">Заглушка для конструктора.</param>
-		public FriendsGetOnlineParams(bool gag = true)
-		{
-			UserId = null;
-			ListId = null;
-			OnlineMobile = null;
-			Order = null;
-			Count = null;
-			Offset = null;
-		}
-
 		/// <summary>
 		/// Идентификатор пользователя, для которого необходимо получить список друзей онлайн. Если параметр не задан, то считается, что он равен идентификатору текущего пользователя. положительное число, по умолчанию идентификатор текущего пользователя.
 		/// </summary>

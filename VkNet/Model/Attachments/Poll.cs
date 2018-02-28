@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -23,6 +25,7 @@ namespace VkNet.Model.Attachments
 	    /// <summary>
 	    /// Дата создания опроса
 	    /// </summary>
+	    [JsonConverter(typeof(UnixDateTimeConverter))]
 	    public DateTime? Created { get; set; }
 
 	    /// <summary>

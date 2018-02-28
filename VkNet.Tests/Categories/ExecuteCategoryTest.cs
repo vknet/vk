@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using VkNet.Exception;
+using VkNet.Model;
 
 namespace VkNet.Tests.Categories
 {
@@ -14,6 +15,26 @@ namespace VkNet.Tests.Categories
 			const string code = @"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;";
 			var result = Api.Execute.Execute(code);
 			Assert.That(result.RawJson, Is.EqualTo(Json));
+		}
+		[Test]
+		public void ExecuteTopicsFeedTest()
+		{
+			Url =
+                @"https://api.vk.com/method/execute";
+            Json = @"{
+	""response"": {
+		""count"": 1,
+		""items"": [{
+			""id"": 74,
+			""from_id"": -60774666,
+			""date"": 1506698266,
+			""text"": ""«Твоятерритория.онлайн»""
+		}]
+	}
+}";
+			const string code = @"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;";
+			var result = Api.Execute.Execute<TopicsFeed>(code);
+			Assert.That(result, Is.Not.Null);
 		}
 
 		[Test]

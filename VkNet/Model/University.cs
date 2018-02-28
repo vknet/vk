@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using Utils;
-
     /// <summary>
     /// Высшее учебное заведение, в котором учился пользователь.
     /// См. описание http://vk.com/dev/fields

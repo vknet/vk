@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VkNet.Model.Attachments;
 using Newtonsoft.Json;
 using VkNet.Utils;
@@ -8,7 +9,8 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Параметры метода messages.send
     /// </summary>
-    public struct MessagesSendParams
+    [Serializable]
+    public class MessagesSendParams
     {
         /// <summary>
         /// Идентификатор пользователя, которому отправляется сообщение.

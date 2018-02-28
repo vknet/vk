@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -7,7 +9,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры запроса регистрации нового пользователя по номеру телефона.
 	/// </summary>
-	public struct AuthSignupParams
+	[Serializable]
+	public class AuthSignupParams
 	{
 		/// <summary>
 		/// Имя пользователя. строка, обязательный параметр.
@@ -24,6 +27,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Дата рождения пользователя. 
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime Birthday 
 		{ get; set; }
 

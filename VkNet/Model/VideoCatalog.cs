@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -8,6 +9,7 @@ namespace VkNet.Model
     /// <summary>
     /// Данные для отображения блока видеокаталога
     /// </summary>
+    [Serializable]
     public class VideoCatalog
     {
         /// <summary>

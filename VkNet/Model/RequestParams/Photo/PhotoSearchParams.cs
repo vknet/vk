@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 namespace VkNet.Model.RequestParams
@@ -7,7 +9,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.search
 	/// </summary>
-	public struct PhotoSearchParams
+	[Serializable]
+	public class PhotoSearchParams
 	{
 		/// <summary>
 		/// Строка поискового запроса, например, "Nature".
@@ -30,12 +33,14 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Время в формате unixtime, не раньше которого должны были быть загружены найденные фотографии.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? StartTime
 		{ get; set; }
 
 		/// <summary>
 		/// Время в формате unixtime, не позже которого должны были быть загружены найденные фотографии.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? EndTime
 		{ get; set; }
 

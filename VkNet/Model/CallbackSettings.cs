@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -7,6 +8,7 @@ namespace VkNet.Model
     /// Настройки уведомлений в формате «название события» : «статус»
     /// ( 0 — уведомления о событии выключены, 1 — уведомления о событии включены). 
     /// </summary>
+    [Serializable]
     public class CallbackSettings
     {
         /// <summary>

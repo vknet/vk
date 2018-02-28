@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    using Utils;
-
     /// <summary>
     /// Объект для перечисления пользователей, которые выбрали определенные варианты ответа в опросе.
     /// </summary>
@@ -37,12 +35,13 @@ namespace VkNet.Model
             if (response.ContainsKey("users")
                 && response["users"].ContainsKey("items"))
             {
-                var array = (VkResponseArray)response["users"]["items"];
+                var array = (VkResponseArray) response["users"]["items"];
                 if (array.Count > 0 && !array[0].ContainsKey("id"))
                 {
                     isLongMode = true;
                 }
             }
+
             var answer = new PollAnswerVoters
             {
                 AnswerId = response["answer_id"],

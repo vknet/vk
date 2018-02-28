@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System;
+using Newtonsoft.Json.Linq;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,7 +7,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.save
 	/// </summary>
-	public struct PhotoSaveParams
+	[Serializable]
+	public class PhotoSaveParams
 	{
 		/// <summary>
 		/// Идентификатор альбома, в который необходимо сохранить фотографии.

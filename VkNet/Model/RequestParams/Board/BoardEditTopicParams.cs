@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,6 +7,7 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Параметры метода wall.addComment
 	/// </summary>
+	[Serializable]
 	public class BoardEditTopicParams
 	{
         /// <summary>

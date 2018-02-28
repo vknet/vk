@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -41,6 +42,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Дата отправки сообщения.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date
 		{ get; set; }
 

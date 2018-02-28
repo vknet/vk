@@ -6,6 +6,7 @@ namespace VkNet.Model
     /// <summary>
     /// Видео файлы
     /// </summary>
+    [Serializable]
     public class VideoFiles
     {
         /// <summary>

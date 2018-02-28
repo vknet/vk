@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Метка в списке друзей
 	/// </summary>
+	[Serializable]
 	public class FriendList
 	{
 		/// <summary>

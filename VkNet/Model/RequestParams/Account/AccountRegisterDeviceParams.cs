@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры запроса подписывания устройства на базе iOS, Android или Windows Phone на получение Push-уведомлений.
 	/// </summary>
+	[Serializable]
 	public class AccountRegisterDeviceParams
 	{
 		/// <summary>

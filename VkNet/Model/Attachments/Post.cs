@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -35,6 +36,7 @@ namespace VkNet.Model
         /// <summary>
         /// Время публикации записи.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Date { get; set; }
 
         /// <summary>
@@ -115,6 +117,7 @@ namespace VkNet.Model
         /// <summary>
         /// Время публикации записи-оригинала (если запись является копией записи с чужой стены).
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? CopyPostDate { get; set; }
 
         /// <summary>

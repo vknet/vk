@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -36,6 +38,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Дата добавления фотографии.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
@@ -104,6 +107,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Дата создания отметки
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? TagCreated { get; set; }
 
 		/// <summary>

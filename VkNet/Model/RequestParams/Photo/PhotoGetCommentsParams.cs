@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.Filters;
+﻿using System;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -7,7 +8,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.getComments
 	/// </summary>
-	public struct PhotoGetCommentsParams
+	[Serializable]
+	public class PhotoGetCommentsParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежит фотография.

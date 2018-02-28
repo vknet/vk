@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model
+﻿using System;
+
+namespace VkNet.Model
 {
     using Utils;
 
@@ -6,6 +8,7 @@
     /// Текст аудиозаписи.
     /// См. описание http://vk.com/dev/audio.getLyrics
     /// </summary>
+    [Serializable]
     public class Lyrics
     {
         /// <summary>

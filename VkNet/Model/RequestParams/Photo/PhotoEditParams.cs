@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿using System;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -6,7 +6,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.edit
 	/// </summary>
-	public struct PhotoEditParams
+	[Serializable]
+	public class PhotoEditParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежит фотография.

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 using VkNet.Enums;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -27,7 +27,7 @@ namespace VkNet.Model
         /// Дата добавления пользователя в черный список.
         /// </summary>
         [JsonProperty("date")]
-        [JsonConverter(typeof(DateTimeJsonConverter))]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Date { get; set; }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace VkNet.Model
         /// Дата, когда пользователь будет разбанен.
         /// </summary>
         [JsonProperty("end_date")]
-        [JsonConverter(typeof(DateTimeJsonConverter))]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? EndDate { get; set; }
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿namespace VkNet.Model
+﻿using System;
+
+namespace VkNet.Model
 {
     using System.Diagnostics;
 
@@ -9,6 +11,7 @@
     /// Определяет тип объекта
     /// </summary>
     [DebuggerDisplay("Id = {Id}, Type = {Type}")]
+    [Serializable]
     public class VkObject
     {
         /// <summary>

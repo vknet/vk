@@ -1,4 +1,5 @@
 ﻿
+using System;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -6,6 +7,7 @@ namespace VkNet.Model
     /// <summary>
     /// ССылочная кнопка
     /// </summary>
+    [Serializable]
     public class LinkButton
     {
         /// <summary>

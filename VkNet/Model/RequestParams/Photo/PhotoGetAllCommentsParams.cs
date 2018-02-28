@@ -1,11 +1,13 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.getAllComments
 	/// </summary>
-	public struct PhotoGetAllCommentsParams
+	[Serializable]
+	public class PhotoGetAllCommentsParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, которому принадлежат фотографии.

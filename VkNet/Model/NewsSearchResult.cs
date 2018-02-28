@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -9,6 +11,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Результат поиска метода newsfeed.search
 	/// </summary>
+	[Serializable]
 	public class NewsSearchResult
 	{
 		/// <summary>
@@ -32,6 +35,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время публикации записи в формате unixtime.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date
 		{ get; set; }
 

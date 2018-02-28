@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры метода pages.get
 	/// </summary>
+	[Serializable]
 	public class PagesGetParams
 	{
 		/// <summary>

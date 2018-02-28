@@ -11,6 +11,7 @@ namespace VkNet.Model.RequestParams
     /// <summary>
     /// Список параметров для метода polls.edit
     /// </summary>
+    [Serializable]
     public struct PollsEditParams
     {
         /// <summary>

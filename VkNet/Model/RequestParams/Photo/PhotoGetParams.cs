@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
@@ -8,7 +10,8 @@ namespace VkNet.Model.RequestParams
 	/// <summary>
 	/// Список параметров для метода photos.get
 	/// </summary>
-	public struct PhotoGetParams
+	[Serializable]
+	public class PhotoGetParams
 	{
 		/// <summary>
 		/// Идентификатор владельца альбома.
@@ -49,6 +52,7 @@ namespace VkNet.Model.RequestParams
         /// <summary>
         /// Unixtime, который может быть получен методом newsfeed.get в поле date, для получения всех фотографий загруженных пользователем в определённый день либо на которых пользователь был отмечен. Также нужно указать параметр uid пользователя, с которым произошло событие. (не более месяца с текущей даты). 
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? Feed
 		{ get; set; }
 

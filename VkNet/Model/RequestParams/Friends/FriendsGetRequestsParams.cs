@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры метода friends.getRequests
 	/// </summary>
+	[Serializable]
 	public class FriendsGetRequestsParams
 	{
 		/// <summary>

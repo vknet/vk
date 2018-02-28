@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using System.Collections.ObjectModel;
 using VkNet.Utils;
 
@@ -8,6 +9,7 @@ namespace VkNet.Model
   /// Информация о беседе (мультидиалоге, чате).
   /// См. описание http://vk.com/dev/chat_object
   /// </summary>
+  [Serializable]
   public class Chat
   {
     /// <summary>

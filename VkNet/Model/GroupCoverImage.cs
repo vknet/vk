@@ -6,6 +6,7 @@ namespace VkNet.Model
     /// <summary>
     /// Копия изображения обложки.
     /// </summary>
+    [Serializable]
     public class GroupCoverImage
     {
         /// <summary>

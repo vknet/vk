@@ -1,11 +1,13 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Список параметров для метода photos.getAll
 	/// </summary>
-	public struct PhotoGetAllParams
+	[Serializable]
+	public class PhotoGetAllParams
 	{
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, фотографии которого нужно получить.
