@@ -459,12 +459,12 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(posts.TotalCount, Is.EqualTo(2623u));
 
-			var wallPost = posts.WallPosts.FirstOrDefault();
+            var wallPost = posts.WallPosts.FirstOrDefault();
 			Assert.That(wallPost, Is.Not.Null);
 			Assert.That(wallPost.Id, Is.EqualTo(1258365));
 			Assert.That(wallPost.FromId, Is.EqualTo(-30666517));
 			Assert.That(wallPost.OwnerId, Is.EqualTo(-30666517));
-			Assert.That(wallPost.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1447668333)));
+            Assert.That(wallPost.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1447668333)));
 			Assert.That(wallPost.PostType, Is.EqualTo(PostType.Post));
 			Assert.That(wallPost.Text, Is.EqualTo(@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально."));
 			Assert.That(wallPost.PostSource.Type, Is.EqualTo(PostSourceType.Vk));

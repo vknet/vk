@@ -6,8 +6,8 @@ namespace VkNet.Tests
 	{
 		public static DateTime TimeStampToDateTime(long timestamp)
 		{
-			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			return dt.AddSeconds(timestamp).ToLocalTime();
+			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+			return dt.AddSeconds(timestamp);
 		}
 	}
 }

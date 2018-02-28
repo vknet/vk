@@ -335,8 +335,8 @@ namespace VkNet.Utils
 		/// <returns></returns>
 		public static DateTime TimestampToDateTime(long unixTimeStamp)
 		{
-			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			return dt.AddSeconds(unixTimeStamp).ToLocalTime();
+			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+			return dt.AddSeconds(unixTimeStamp);
 		}
 
 		/// <summary>

@@ -207,7 +207,7 @@ namespace VkNet.Tests.Categories
 			var comment0 = comments[0];
 			Assert.That(comment0.Id, Is.EqualTo(3809));
 			Assert.That(comment0.FromId, Is.EqualTo(6733856));
-			Assert.That(comment0.Date, Is.EqualTo(new DateTime(2013, 11, 22, 05, 45, 44, DateTimeKind.Utc).ToLocalTime()));
+			Assert.That(comment0.Date, Is.EqualTo(new DateTime(2013, 11, 22, 05, 45, 44, DateTimeKind.Utc)));
 			Assert.That(comment0.Text, Is.EqualTo("Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!"));
 			Assert.That(comment0.Likes, Is.Not.Null);
 			Assert.That(comment0.Likes.Count, Is.EqualTo(1));
@@ -215,7 +215,7 @@ namespace VkNet.Tests.Categories
 			var comment1 = comments[1];
 			Assert.That(comment1.Id, Is.EqualTo(3810));
 			Assert.That(comment1.FromId, Is.EqualTo(3073863));
-			Assert.That(comment1.Date, Is.EqualTo(new DateTime(2013, 11, 22, 6, 21, 06, DateTimeKind.Utc).ToLocalTime()));
+			Assert.That(comment1.Date, Is.EqualTo(new DateTime(2013, 11, 22, 6, 21, 06, DateTimeKind.Utc)));
 			Assert.That(comment1.Text, Is.EqualTo("C днем рождения малышку и родителей!!!"));
 			Assert.That(comment1.Likes, Is.Not.Null);
 			Assert.That(comment1.Likes.Count, Is.EqualTo(1));
@@ -236,7 +236,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(photo.Width, Is.EqualTo(510));
 			Assert.That(photo.Height, Is.EqualTo(383));
 			Assert.That(photo.Text, Is.EqualTo(string.Empty));
-			Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2013, 11, 22, 6, 20, 31, DateTimeKind.Utc).ToLocalTime()));
+			Assert.That(photo.CreateTime, Is.EqualTo(new DateTime(2013, 11, 22, 6, 20, 31, DateTimeKind.Utc)));
 		}
 
 		#endregion
@@ -303,7 +303,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(records.WallPosts[0].Id, Is.EqualTo(617));
 			Assert.That(records.WallPosts[0].FromId, Is.EqualTo(1));
 			Assert.That(records.WallPosts[0].OwnerId, Is.EqualTo(1));
-			Assert.That(records.WallPosts[0].Date, Is.EqualTo(new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(1171758699).ToLocalTime()));
+			Assert.That(records.WallPosts[0].Date, Is.EqualTo(new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(1171758699)));
 			Assert.That(records.WallPosts[0].Text, Is.Null.Or.Empty);
 			Assert.That(records.WallPosts[0].Comments.Count == 0);
 			Assert.That(records.WallPosts[0].Comments.CanPost, Is.True);

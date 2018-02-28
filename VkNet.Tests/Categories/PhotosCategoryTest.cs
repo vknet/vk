@@ -231,8 +231,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(album.OwnerId, Is.EqualTo(32190123));
 			Assert.That(album.Title, Is.EqualTo("Я"));
 			Assert.That(album.Description, Is.EqualTo(string.Empty));
-			Assert.That(album.Created, Is.EqualTo(new DateTime(2011, 6, 9, 14, 12, 58, DateTimeKind.Utc).ToLocalTime()));
-			Assert.That(album.Updated, Is.EqualTo(new DateTime(2014, 4, 27, 19, 4, 33).ToLocalTime()));
+			Assert.That(album.Created, Is.EqualTo(new DateTime(2011, 6, 9, 14, 12, 58, DateTimeKind.Utc)));
+			Assert.That(album.Updated, Is.EqualTo(new DateTime(2014, 4, 27, 19, 4, 33, DateTimeKind.Utc)));
 			Assert.That(album.Size, Is.EqualTo(6));
 			Assert.That(album.ThumbIsLast, Is.True);
 			Assert.That(album.PrivacyView[0].ToString(), Is.EqualTo("list28"));

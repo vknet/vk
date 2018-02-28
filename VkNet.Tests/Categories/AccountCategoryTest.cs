@@ -797,7 +797,7 @@ namespace VkNet.Tests.Categories
 				Sex = Sex.Female,
 				Relation = RelationType.Married,
 				RelationPartner = new User { Id = 10 },
-				BirthDate = new DateTime(1984, 11, 15).ToShortDateString(),
+				BirthDate = new DateTime(1984, 11, 15, 0, 0, 0, DateTimeKind.Utc).ToShortDateString(),
 				BirthdayVisibility = BirthdayVisibility.Full,
 				HomeTown = "ht",
 				Country = new Country { Id = 1 },
@@ -813,15 +813,15 @@ namespace VkNet.Tests.Categories
 			Json = @"{ 'response': { changed: 1 } }";
 
 			ChangeNameRequest request;
-			Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
-			{
-				BirthDate = new DateTime(1984, 11, 15).ToShortDateString()
-			}),
+            Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
+            {
+                BirthDate = new DateTime(1984, 11, 150, 0, 0, 0, DateTimeKind.Utc).ToShortDateString()
+            }),
 			Is.True);
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
 			{
-				BirthDate = new DateTime(2014, 9, 8).ToShortDateString()
+				BirthDate = new DateTime(2014, 9, 8, 0, 0, 0, DateTimeKind.Utc).ToShortDateString()
 			}),
 			Is.True);
 

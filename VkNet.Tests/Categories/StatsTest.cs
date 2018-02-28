@@ -217,9 +217,9 @@ namespace VkNet.Tests.Categories
 					}]
 				  }";
 			var mockedStatsCategory = GetMockedStatsCategory(url, json);
-			var statsPeriods = mockedStatsCategory.GetByApp(1, new DateTime(2015, 11, 11));
+			var statsPeriods = mockedStatsCategory.GetByApp(1, new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc));
 
-			Assert.That(statsPeriods[0].Day, Is.EqualTo(new DateTime(2015,11,11)));
+			Assert.That(statsPeriods[0].Day, Is.EqualTo(new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)));
 			Assert.That(statsPeriods[0].Views, Is.EqualTo(57));
 			Assert.That(statsPeriods[0].Visitors, Is.EqualTo(42));
 			Assert.That(statsPeriods[0].Subscribed, Is.EqualTo(2));
@@ -537,9 +537,9 @@ namespace VkNet.Tests.Categories
 					}]
 				  }";
 			var mockedStatsCategory = GetMockedStatsCategory(url, json);
-			var statsPeriods = mockedStatsCategory.GetByGroup(1, new DateTime(2015, 11, 11));
+			var statsPeriods = mockedStatsCategory.GetByGroup(1, new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc));
 
-			Assert.That(statsPeriods[0].Day, Is.EqualTo(new DateTime(2015, 11, 11)));
+			Assert.That(statsPeriods[0].Day, Is.EqualTo(new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)));
 			Assert.That(statsPeriods[0].Views, Is.EqualTo(810));
 			Assert.That(statsPeriods[0].Visitors, Is.EqualTo(647));
 			Assert.That(statsPeriods[0].Reach, Is.EqualTo(428));

@@ -379,7 +379,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[1].City.Id, Is.EqualTo(1));
 			Assert.That(groups[1].Country.Id, Is.EqualTo(1));
 			Assert.That(groups[1].Description, Is.EqualTo("В связи с небольшим количеством..."));
-			Assert.That(groups[1].StartDate, Is.EqualTo(new DateTime(2008, 1, 15, 7, 0, 0, DateTimeKind.Utc).ToLocalTime()));
+			Assert.That(groups[1].StartDate, Is.EqualTo(new DateTime(2008, 1, 15, 7, 0, 0, DateTimeKind.Utc)));
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
 			Assert.That(groups[1].IsAdmin, Is.False);
 			Assert.That(groups[1].IsMember, Is.True);
@@ -395,7 +395,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[0].City.Id, Is.EqualTo(10));
 			Assert.That(groups[0].Country.Id, Is.EqualTo(1));
 			Assert.That(groups[0].Description, Is.EqualTo("Попади в не реальную сказку пришествия..."));
-			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2008, 04, 20, 14, 0, 30, DateTimeKind.Utc).ToLocalTime()));
+			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2008, 04, 20, 14, 0, 30, DateTimeKind.Utc)));
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
 			Assert.That(groups[0].IsAdmin, Is.False);
 			Assert.That(groups[0].IsMember, Is.True);
@@ -1149,7 +1149,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(groups[0].City.Id, Is.EqualTo(95));
 			Assert.That(groups[0].Country.Id, Is.EqualTo(1));
 			Assert.That(groups[0].Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21..."));
-			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
+			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0, DateTimeKind.Utc)));
 
 			Assert.That(groups[1].Id, Is.EqualTo(637247));
 			Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
@@ -1217,7 +1217,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(@group.City.Id, Is.EqualTo(95));
 			Assert.That(@group.Country.Id, Is.EqualTo(1));
 			Assert.That(@group.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
-			Assert.That(@group.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0)));
+			Assert.That(@group.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0, DateTimeKind.Utc)));
 		}
 
 		[Test]

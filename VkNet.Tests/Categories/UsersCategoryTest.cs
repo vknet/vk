@@ -1189,7 +1189,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(user1.Connections.Skype, Is.EqualTo("немає"));
 			Assert.That(user1.Site, Is.EqualTo(string.Empty));
 			Assert.That(user1.Status, Is.EqualTo("Не варто ображатися на людей за те, що вони не виправдали наших очікувань... ми самі винні, що чекали від них більше, ніж варто було!"));
-			Assert.That(user1.LastSeen.Time, Is.EqualTo(new DateTime(2014, 2, 18, 8, 1, 14, DateTimeKind.Utc).ToLocalTime()));
+			Assert.That(user1.LastSeen.Time, Is.EqualTo(new DateTime(2014, 2, 18, 8, 1, 14, DateTimeKind.Utc)));
 			Assert.That(user1.CommonCount, Is.EqualTo(0));
 			Assert.That(user1.Universities.Count, Is.EqualTo(0));
 			Assert.That(user1.Relation, Is.EqualTo(RelationType.Unknown));
