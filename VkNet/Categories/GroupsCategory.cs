@@ -757,7 +757,7 @@ namespace VkNet.Categories
         /// <inheritdoc />
         public bool SetCallbackSettings(CallbackServerParams @params)
         {
-            return _vk.Call("groups.getCallbackSettings", @params);
+            return _vk.Call("groups.setCallbackSettings", @params);
         }
     }
 }
