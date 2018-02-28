@@ -454,7 +454,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.addCallbackServer
         /// </remarks>
-        Task<long> AddCallbackServerAsync(ulong groupId, string url, string title, string secretKey);
+        Task<long> AddCallbackServerAsync(ulong groupId, string url, string title, string secretKey = null);
 
         /// <summary>
         /// Удаляет сервер для Callback API из сообщества.
@@ -515,7 +515,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getCallbackServers
         /// </remarks>
-        Task<VkCollection<CallbackServerItem>> GetCallbackServersAsync(ulong groupId, IEnumerable<ulong> serverIds);
+        Task<VkCollection<CallbackServerItem>> GetCallbackServersAsync(ulong groupId, IEnumerable<ulong> serverIds = null);
 
         /// <summary>
         /// Позволяет получить настройки уведомлений Callback API для сообщества.
