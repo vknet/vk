@@ -514,7 +514,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/groups.getCallbackServers
         /// </remarks>
-        VkCollection<CallbackServerItem> GetCallbackServers(ulong groupId, IEnumerable<ulong> serverIds);
+        VkCollection<CallbackServerItem> GetCallbackServers(ulong groupId, IEnumerable<ulong> serverIds = null);
 
         /// <summary>
         /// Позволяет получить настройки уведомлений Callback API для сообщества.
