@@ -24,6 +24,12 @@ namespace VkNet.Model
         public bool? MessageReply { get; set; }
 
         /// <summary>
+        /// редактирование сообщения
+        /// </summary> 
+        [JsonProperty("message_edit")]
+        public bool? MessageEdit { get; set; }
+
+        /// <summary>
         /// новая подписка на сообщения  
         /// </summary> 
         [JsonProperty("message_allow")]
@@ -64,6 +70,12 @@ namespace VkNet.Model
         /// </summary> 
         [JsonProperty("wall_reply_edit")]
         public bool? WallReplyEdit { get; set; }
+
+        /// <summary>
+        /// восстановление комментария на стене 
+        /// </summary> 
+        [JsonProperty("wall_reply_restore")]
+        public bool? WallReplyRestore { get; set; }
 
         /// <summary>
         /// удаление комментария на стене  

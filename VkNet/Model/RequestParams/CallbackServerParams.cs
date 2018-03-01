@@ -14,27 +14,20 @@ namespace VkNet.Model.RequestParams
         /// идентификатор сообщества.  
         /// </summary> 
         [JsonProperty("group_id")]
-        public bool? GroupId { get; set; }
+        public ulong? GroupId { get; set; }
 
         /// <summary>
         /// идентификатор сервера.   
         /// </summary> 
         [JsonProperty("server_id")]
-        public bool? ServerId { get; set; }
-
-        /// <summary>
-        /// уведомления о восстановлении комментария на стене (0 — выключить, 1 — включить).   
-        /// </summary> 
-        [JsonProperty("wall_reply_restore")]
-        public bool? WallReplyRestore { set; get; }
+        public long? ServerId { get; set; }
 
         /// <summary>
         /// уведомления о новых сообщениях (0 — выключить, 1 — включить).   
         /// </summary> 
         [JsonProperty("callback_settings")]
         public CallbackSettings CallbackSettings { get; set; }
-
-
+        
         /// <summary>
         /// Привести к типу VkParameters.
         /// </summary>
@@ -48,6 +41,7 @@ namespace VkNet.Model.RequestParams
                 {"server_id", p.ServerId},
                 {"message_new", p.CallbackSettings.MessageNew},
                 {"message_reply", p.CallbackSettings.MessageReply},
+                {"message_edit", p.CallbackSettings.MessageEdit},
                 {"message_allow", p.CallbackSettings.MessageAllow},
                 {"message_deny", p.CallbackSettings.MessageDeny},
                 {"photo_new", p.CallbackSettings.PhotoNew},
@@ -56,7 +50,7 @@ namespace VkNet.Model.RequestParams
                 {"wall_reply_new", p.CallbackSettings.WallReplyNew},
                 {"wall_reply_edit", p.CallbackSettings.WallReplyEdit},
                 {"wall_reply_delete", p.CallbackSettings.WallReplyDelete},
-                {"wall_reply_restore", p.WallReplyRestore},
+                {"wall_reply_restore", p.CallbackSettings.WallReplyRestore},
                 {"wall_post_new", p.CallbackSettings.WallPostNew},
                 {"wall_repost", p.CallbackSettings.WallRepost},
                 {"board_post_new", p.CallbackSettings.BoardPostNew},
