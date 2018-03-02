@@ -19,7 +19,7 @@
 PM> Install-Package VkNet
 ```
 **.NET CLI**
-``` powershell
+``` bash
 > dotnet add package VkNet
 ```
 ### Выполните следующие действия:
@@ -30,7 +30,7 @@ PM> Install-Package VkNet
 
 # План развития проекта
 
-- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.73.
+- [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.73.
 - [ ] Недостающие классы и методы
 - [ ] Обновить документацию проекта
 
