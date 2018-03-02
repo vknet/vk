@@ -151,5 +151,11 @@ namespace VkNet.Tests
 			var lang = Api.GetLanguage();
 			Assert.AreEqual(lang, Language.En);
 		}
+
+		[Test]
+		public void Dispose()
+		{
+			Api.Dispose();
+		}
     }
 }

@@ -635,7 +635,7 @@ namespace VkNet
 		/// </summary>
 		public void Dispose()
 		{
-			_expireTimer.Dispose();
+			StopTimer();
 		}
 
 		/// <summary>
