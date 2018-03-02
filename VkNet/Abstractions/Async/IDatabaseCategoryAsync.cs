@@ -66,17 +66,17 @@ namespace VkNet.Abstractions
         /// <summary>
         /// Возвращает список городов.
         /// </summary>
-        /// <param name="params">Параметры запроса database.getCities</param>
+        /// <param name="parameters">Параметры запроса database.getCities</param>
         /// <returns>Cписок городов</returns>
         /// <remarks>
         /// Возвращает коллекцию городов, каждый из которых содержит поля City.Id
         /// При наличии информации о регионе и/или области, в которых находится данный город, в объекте могут дополнительно
         /// включаться поля City.Area
-        /// Если не задан параметр <paramref name="@params.query"/>, то будет возвращен список самых крупных городов в заданной стране.
-        /// Если задан параметр <paramref name="@params.query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
+        /// Если не задан параметр <paramref name="parameters.query"/>, то будет возвращен список самых крупных городов в заданной стране.
+        /// Если задан параметр <paramref name="parameters.query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
         /// Страница документации ВКонтакте http://vk.com/dev/database.getCities
         /// </remarks>
-        Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams @params);
+        Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams parameters);
 
         /// <summary>
         /// Возвращает информацию о городах по их идентификаторам.

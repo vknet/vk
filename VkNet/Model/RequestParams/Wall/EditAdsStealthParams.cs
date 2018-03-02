@@ -6,6 +6,9 @@ using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
+    /// <summary>
+    /// TODO: Description
+    /// </summary>
     [Serializable]
     public class EditAdsStealthParams
     {

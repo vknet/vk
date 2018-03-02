@@ -6,6 +6,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
+    /// <summary>
+    /// TODO: Description
+    /// </summary>
     public interface IVkApiInvoke
     {
         /// <summary>

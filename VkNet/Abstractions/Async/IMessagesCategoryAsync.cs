@@ -427,20 +427,19 @@ namespace VkNet.Abstractions
         /// <summary>
         /// Отправляет стикер.
         /// </summary>
-        /// <param name="params">Параметры запроса.</param>
+        /// <param name="parameters">Параметры запроса.</param>
         /// <returns>
         /// После успешного выполнения возвращает идентификатор отправленного сообщения (mid).
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.sendSticker
         /// </remarks>
-        Task<long> SendStickerAsync(MessagesSendStickerParams @params);
+        Task<long> SendStickerAsync(MessagesSendStickerParams parameters);
 
         /// <summary>
         /// Возвращает материалы диалога или беседы..
         /// </summary>
         /// <param name="params">Параметры запроса.</param>
-        /// <param name="nextFrom">Новое значение start_from. </param>
         /// <returns>
         /// После успешного выполнения возвращает массив объектов photo, video, audio или doc, в зависимости от значения media_type, а также дополнительное поле next_from, содержащее новое значение start_from.
         /// Если в media_type передано значение link, возвращает список объектов-ссылок:

@@ -6,13 +6,21 @@ using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Utils.JsonConverter
 {
+    /// <summary>
+    /// TODO: Description
+    /// </summary>
     public class SafetyEnumJsonConverter : Newtonsoft.Json.JsonConverter
     {
+        /// <summary>
+        /// TODO: Description
+        /// </summary>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// TODO: Description
+        /// </summary>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
@@ -37,7 +45,9 @@ namespace VkNet.Utils.JsonConverter
 
             return result;
         }
-
+        /// <summary>
+        /// TODO: Description
+        /// </summary>
         public override bool CanConvert(Type objectType)
         {
             throw new NotImplementedException();
