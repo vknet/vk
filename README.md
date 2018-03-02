@@ -7,7 +7,7 @@
 |**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
 |**Issues**|[![](https://img.shields.io/github/issues/VkNet/Vk.svg)](https://github.com/vknet/vk/issues)
 |**Coverity**|[![Coverity Scan Build Status](https://img.shields.io/coverity/scan/6249.svg)](https://scan.coverity.com/projects/vknet)
-|**Contacts**|[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://t.me/joinchat/CHFCHxHqca0waHIe3-Fuqg)|
+|**Contacts**|[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://goo.gl/fNNDpK)|
 
 # При поддержке
 [![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/)
@@ -27,7 +27,10 @@ PM> Install-Package VkNet
 2. Авторизуйтесь как указано в [документации](https://vknet.github.io/vk/authorize/)
 3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
 4. [Список часто задаваемых вопросов](https://github.com/vknet/vk/wiki/FAQ)
-#### Для обновления на версию **1.30.2 или выше** необходимо сначала установить предварительную версию **NLog 4.5.0-rc05 или выше**
+5. [Обсуждение в Telegram](https://goo.gl/fNNDpK)
+
+### Для обновления на версию **1.30.2 или выше** необходимо сначала установить предварительную версию **NLog 4.5.0-rc05 или выше**
+
 # План развития проекта
 
 - [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.73.
