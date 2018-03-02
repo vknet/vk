@@ -19,11 +19,14 @@
     <Authors>inyutin_maxim;azhidkov</Authors>
     <PackageLicenseUrl>https://github.com/vknet/vk/blob/master/LICENCE</PackageLicenseUrl>
     <PackageProjectUrl>https://vknet.github.io/vk/</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/vknet/vk/master/tools/vknet-icon.PNG</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/vknet/vk/master/tools/vknet-icon.PNG</PackageIconUrl>    
     <RepositoryUrl>https://github.com/vknet/vk</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
-    <PackageReleaseNotes>Список изменений: https://github.com/vknet/vk/milestone/4?closed=1</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      Список изменений: https://goo.gl/C8Bmj6
+      Обсуждение в Telegram: https://goo.gl/fNNDpK
+    </PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;UWP</DefineConstants>
