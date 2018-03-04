@@ -279,7 +279,6 @@ namespace VkNet.Tests.Categories
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			//This.Action(() => account.SetSilenceMode("tokenVal")).Throws<AccessTokenInvalidException>();
 			Assert.That(() => account.SetSilenceMode("tokenVal"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -777,8 +776,7 @@ namespace VkNet.Tests.Categories
 
 			Json = @"{ 'response': { changed: 1 } }";
 
-			ChangeNameRequest request;
-			Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
+			Assert.That(() => Api.Account.SaveProfileInfo(out ChangeNameRequest request, new AccountSaveProfileInfoParams
 			{
 				FirstName = "fn",
 				LastName = "ln",

@@ -103,11 +103,11 @@ namespace VkNet
 			{
 				if (value < 0)
 				{
-					throw new ArgumentException(@"Value must be positive", nameof(RequestsPerSecond));
+					throw new ArgumentException(@"Value must be positive", nameof(_requestsPerSecond));
 				}
 
 				_requestsPerSecond = value;
-				if (!(_requestsPerSecond > 0))
+				if (_requestsPerSecond <= 0)
 				{
 					return;
 				}
@@ -509,7 +509,7 @@ namespace VkNet
 		/// <param name="parameters">Параметры.</param>
 		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
 		/// <returns></returns>
-		public async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization)
+		public async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => Call(methodName, parameters, skipAuthorization));
 		}
@@ -521,7 +521,7 @@ namespace VkNet
 		/// <param name="parameters">Параметры.</param>
 		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
 		/// <returns></returns>
-		public async Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization)
+		public async Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => Call<T>(methodName, parameters, skipAuthorization));
 		}
