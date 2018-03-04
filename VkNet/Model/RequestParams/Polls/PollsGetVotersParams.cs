@@ -92,7 +92,7 @@ namespace VkNet.Model.RequestParams
             };
         }
 
-        private static object FormatList(List<long> answersIds)
+        private static object FormatList(IList<long> answersIds)
         {
             if (answersIds == null)
                 return null;

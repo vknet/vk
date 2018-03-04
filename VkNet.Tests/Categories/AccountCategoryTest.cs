@@ -773,9 +773,7 @@ namespace VkNet.Tests.Categories
         [Test] // TODO Падает на Linux
 		public void SaveProfileInfo_AllPArameters_UrlIsCreatedCorrectly()
 		{
-			Url =
-				"https://api.vk.com/method/account.saveProfileInfo?first_name=fn&last_name=ln&maiden_name=mn&sex=1&relation=4&relation_partner_id=10" +
-				"&bdate=15.11.1984&bdate_visibility=1&home_town=ht&country_id=1&city_id=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
 			Json = @"{ 'response': { changed: 1 } }";
 
