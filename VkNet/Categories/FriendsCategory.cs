@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Model;
@@ -125,7 +126,7 @@ namespace VkNet.Categories
 		{
 			if (userIds == null)
 			{
-				throw new ArgumentNullException("userIds");
+				throw new ArgumentNullException(nameof(userIds));
 			}
 
 			var parameters = new VkParameters {
@@ -147,7 +148,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long AddList(string name)
 		{
-			return AddList(name, null);
+			return AddList(name, Enumerable.Empty<long>());
 		}
 
 		/// <summary>

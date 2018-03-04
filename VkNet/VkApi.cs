@@ -572,12 +572,12 @@ namespace VkNet
 			var url = "";
 			var answer = "";
 
-			Action sendRequest = delegate
+			void SendRequest()
 			{
 				url = $"https://api.vk.com/method/{methodName}";
 				LastInvokeTime = DateTimeOffset.Now;
 				answer = Browser.GetJson(url, parameters);
-			};
+			}
 
 			// Защита от превышения количества запросов в секунду
 			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
@@ -600,12 +600,12 @@ namespace VkNet
 #endif
 					}
 
-					sendRequest();
+					SendRequest();
 				}
 			}
 			else if (skipAuthorization)
 			{
-				sendRequest();
+				SendRequest();
 			}
 
 			_logger?.Debug(Utilities.PreetyPrintApiUrl(url));

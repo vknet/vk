@@ -14,7 +14,7 @@ namespace VkNet.Categories
             Vk = vk;
         }
 
-        private VkApi Vk { get; set; }
+        private VkApi Vk { get; }
 
         /// <inheritdoc />
         public VkCollection<SearchHintsItem> GetHints(SearchGetHintsParams @params)

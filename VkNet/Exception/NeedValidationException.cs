@@ -23,7 +23,7 @@ namespace VkNet.Exception
         /// <summary>
         /// Адрес который необходимо открыть в браузере.
         /// </summary>
-        public Uri RedirectUri { get; private set; }
+        public Uri RedirectUri { get; }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса VkApiAuthorizationException

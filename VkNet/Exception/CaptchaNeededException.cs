@@ -15,12 +15,12 @@ namespace VkNet.Exception
         /// <summary>
         /// Идентификатор капчи
         /// </summary>
-        public long Sid { get; private set; }
+        public long Sid { get; }
 
         /// <summary>
         /// Uri-адрес изображения с капчей
         /// </summary>
-        public Uri Img { get; private set; }
+        public Uri Img { get; }
 
         /// <summary>
         /// Создания экземпляра CaptchaNeededException

@@ -13,7 +13,7 @@ namespace VkNet.Utils
         /// <summary>
         /// URL запроса.
         /// </summary>
-        public Uri RequestUrl { get; private set; }
+        public Uri RequestUrl { get; }
 
         /// <summary>
         /// Куки.

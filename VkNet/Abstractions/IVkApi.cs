@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -37,6 +38,7 @@ namespace VkNet.Abstractions
         /// <summary>
         /// Оповещает об истечении срока токена доступа
         /// </summary>
+        [UsedImplicitly]
         event VkApiDelegate OnTokenExpires;
 
         #endregion

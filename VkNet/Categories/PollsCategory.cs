@@ -19,7 +19,7 @@ namespace VkNet.Categories
         /// <summary>
         /// API.
         /// </summary>
-        readonly VkApi _vk;
+        private readonly VkApi _vk;
 
         /// <summary>
         /// Методы для работы с опросами. 

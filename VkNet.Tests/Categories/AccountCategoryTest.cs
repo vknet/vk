@@ -747,15 +747,6 @@ namespace VkNet.Tests.Categories
 
 		#region SaveProfileInfo
 
-		[Test, Ignore("Устаревший метод")]
-		public void SaveProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.SaveProfileInfo(out var request,new AccountSaveProfileInfoParams()), Throws.InstanceOf<AccessTokenInvalidException>());
-			Assert.That(() => account.SaveProfileInfo(10), Throws.InstanceOf<AccessTokenInvalidException>());
-
-		}
-
 		[Test]
 		public void SaveProfileInfo_ResultWasParsedCorrectly_AndEmptyParametersIsProcessedCorrectly()
 		{
@@ -779,7 +770,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(request.Status, Is.EqualTo(ChangeNameStatus.Success));
 		}
 
-        [Test, Ignore("Падает на Linux")] // TODO Падает на Linux
+        [Test] // TODO Падает на Linux
 		public void SaveProfileInfo_AllPArameters_UrlIsCreatedCorrectly()
 		{
 			Url =

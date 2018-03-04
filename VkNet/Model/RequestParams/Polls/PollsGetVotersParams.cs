@@ -99,7 +99,7 @@ namespace VkNet.Model.RequestParams
 
             var stringBuilder = new StringBuilder();
 
-            for (int i = 0; i < answersIds.Count; i++)
+            for (var i = 0; i < answersIds.Count; i++)
             {
                 stringBuilder.Append(answersIds[i]);
                 if (i + 1 < answersIds.Count)
