@@ -279,7 +279,6 @@ namespace VkNet.Tests.Categories
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			//This.Action(() => account.SetSilenceMode("tokenVal")).Throws<AccessTokenInvalidException>();
 			Assert.That(() => account.SetSilenceMode("tokenVal"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -747,15 +746,6 @@ namespace VkNet.Tests.Categories
 
 		#region SaveProfileInfo
 
-		[Test, Ignore("Устаревший метод")]
-		public void SaveProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.SaveProfileInfo(out var request,new AccountSaveProfileInfoParams()), Throws.InstanceOf<AccessTokenInvalidException>());
-			Assert.That(() => account.SaveProfileInfo(10), Throws.InstanceOf<AccessTokenInvalidException>());
-
-		}
-
 		[Test]
 		public void SaveProfileInfo_ResultWasParsedCorrectly_AndEmptyParametersIsProcessedCorrectly()
 		{
@@ -779,17 +769,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(request.Status, Is.EqualTo(ChangeNameStatus.Success));
 		}
 
-        [Test, Ignore("Падает на Linux")] // TODO Падает на Linux
+        [Test] // TODO Падает на Linux
 		public void SaveProfileInfo_AllPArameters_UrlIsCreatedCorrectly()
 		{
-			Url =
-				"https://api.vk.com/method/account.saveProfileInfo?first_name=fn&last_name=ln&maiden_name=mn&sex=1&relation=4&relation_partner_id=10" +
-				"&bdate=15.11.1984&bdate_visibility=1&home_town=ht&country_id=1&city_id=2&v=" + VkApi.VkApiVersion + "&access_token=token";
+			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
 			Json = @"{ 'response': { changed: 1 } }";
 
-			ChangeNameRequest request;
-			Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
+			Assert.That(() => Api.Account.SaveProfileInfo(out ChangeNameRequest request, new AccountSaveProfileInfoParams
 			{
 				FirstName = "fn",
 				LastName = "ln",

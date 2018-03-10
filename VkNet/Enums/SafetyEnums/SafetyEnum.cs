@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
-    /// <summary>
-    /// Аналог enum, типобезопасен.
-    /// </summary>
-    /// <typeparam name="TFilter">Непосредственно наследник</typeparam>
-    [Serializable]
-    [SuppressMessage("ReSharper", "StaticMemberInGenericType")]
-    public abstract class SafetyEnum <TFilter> where TFilter : SafetyEnum<TFilter>, new()
+	/// <summary>
+	/// Аналог enum, типобезопасен.
+	/// </summary>
+	/// <typeparam name="TFilter">Непосредственно наследник</typeparam>
+	[Serializable]
+	[SuppressMessage("ReSharper", "StaticMemberInGenericType")]
+	public abstract class SafetyEnum<TFilter>
+		: IEqualityComparer<SafetyEnum<TFilter>>, IEquatable<SafetyEnum<TFilter>>
+		where TFilter : SafetyEnum<TFilter>, new()
 	{
 		/// <summary>
 		/// Значение
@@ -28,7 +28,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// <exception cref="System.ArgumentException">Mask must be a power of 2 (i.e. only one bit must be equal to 1);mask</exception>
 		protected static TFilter RegisterPossibleValue(string value)
 		{
-			return new TFilter { _value = value };
+			return new TFilter {_value = value};
 		}
 
 		/// <summary>
@@ -49,9 +49,20 @@ namespace VkNet.Enums.SafetyEnums
 		/// </returns>
 		public static bool operator ==(SafetyEnum<TFilter> left, SafetyEnum<TFilter> right)
 		{
-			if (ReferenceEquals(right, left)) { return true;}
-			if (ReferenceEquals(null, left)) { return false;}
-			if (ReferenceEquals(null, right)) { return false;}
+			if (left is null)
+			{
+				return false;
+			}
+
+			if (right is null)
+			{
+				return false;
+			}
+
+			if (ReferenceEquals(right, left))
+			{
+				return true;
+			}
 
 			return left._value == right._value;
 		}
@@ -75,11 +86,10 @@ namespace VkNet.Enums.SafetyEnums
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns>Объект перечисления типа TFilter - Непосредственно наследник</returns>
 		public static TFilter FromJson(VkResponse response)
-	    {
-		    var value = response.ToString();
-	        return FromJsonString(value);
-
-        }
+		{
+			var value = response.ToString();
+			return FromJsonString(value);
+		}
 
 		/// <summary>
 		/// Разобрать из json.
@@ -88,47 +98,44 @@ namespace VkNet.Enums.SafetyEnums
 		/// <returns>Объект перечисления типа TFilter - Непосредственно наследник</returns>
 		public static TFilter FromJsonString(string response)
 		{
-		    if (string.IsNullOrWhiteSpace(response))
-		    {
-		        return null;
-		    }
-			var result = new TFilter { _value = response };
-            Activator.CreateInstance(result.GetType());
-            return result;
-        }
+			if (string.IsNullOrWhiteSpace(response))
+			{
+				return null;
+			}
 
-		/// <summary>
-		/// Сравнение с другим перечислением.
-		/// </summary>
-		/// <param name="other">Другое перечисление.</param>
-		/// <returns></returns>
-		protected bool Equals(SafetyEnum<TFilter> other)
-		{
-			return _value == other._value;
+			var result = new TFilter {_value = response};
+			Activator.CreateInstance(result.GetType());
+			return result;
 		}
 
-		/// <summary>
-		/// Сравнение с другим перечислением.
-		/// </summary>
-		/// <param name="obj">Другое перечисление.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
+		public bool Equals(SafetyEnum<TFilter> other)
+		{
+			return Equals(this, other);
+		}
+
+		/// <inheritdoc />
+		public bool Equals(SafetyEnum<TFilter> x, SafetyEnum<TFilter> y)
+		{
+			return x == y;
+		}
+
+		/// <inheritdoc />
+		public int GetHashCode(SafetyEnum<TFilter> obj)
+		{
+			return obj._value.GetHashCode();
+		}
+
+		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
-			if (ReferenceEquals(null, obj)) { return false;}
-			if (ReferenceEquals(this, obj)) { return true;}
-			if (obj.GetType() != GetType()) { return false;}
-			return Equals((SafetyEnum<TFilter>) obj);
+			return this == (SafetyEnum<TFilter>) obj;
 		}
 
-		/// <summary>
-		/// Возвращает хэш-код для этого экземпляра.
-		/// </summary>
-		/// <returns>
-		/// Хэш-код для этого экземпляра, подходит для использования в алгоритмах хэширования и структуры данных, как хэш-таблицы.
-		/// </returns>
+		/// <inheritdoc />
 		public override int GetHashCode()
 		{
-			return _value.GetHashCode();
+			return (_value != null ? _value.GetHashCode() : 0);
 		}
 	}
 }

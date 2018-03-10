@@ -92,14 +92,14 @@ namespace VkNet.Model.RequestParams
             };
         }
 
-        private static object FormatList(List<long> answersIds)
+        private static object FormatList(IList<long> answersIds)
         {
             if (answersIds == null)
                 return null;
 
             var stringBuilder = new StringBuilder();
 
-            for (int i = 0; i < answersIds.Count; i++)
+            for (var i = 0; i < answersIds.Count; i++)
             {
                 stringBuilder.Append(answersIds[i]);
                 if (i + 1 < answersIds.Count)

@@ -16,12 +16,12 @@ namespace VkNet.Exception
         /// <summary>
         /// Логин, который был указан при попытке авторизации.
         /// </summary>
-        public string Email { get; private set; }
+        public string Email { get; }
 
         /// <summary>
         /// Пароль, который был указан при попытке авторизации.
         /// </summary>
-        public string Password { get; private set; }
+        public string Password { get; }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса VkApiAuthorizationException

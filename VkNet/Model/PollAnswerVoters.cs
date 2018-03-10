@@ -31,7 +31,7 @@ namespace VkNet.Model
         /// <returns></returns>
         public static PollAnswerVoters FromJson(VkResponse response)
         {
-            bool isLongMode = false;
+            var isLongMode = false;
             if (response.ContainsKey("users")
                 && response["users"].ContainsKey("items"))
             {

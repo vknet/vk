@@ -100,7 +100,7 @@ namespace VkNet.Categories
 		{
 			if (userIds == null)
 			{
-				throw new ArgumentNullException("userIds");
+				throw new ArgumentNullException(nameof(userIds));
 			}
 
 			var parameters = new VkParameters
@@ -131,7 +131,7 @@ namespace VkNet.Categories
 		{
 			if (screenNames == null)
 			{
-				throw new ArgumentNullException("screenNames");
+				throw new ArgumentNullException(nameof(screenNames));
 			}
 
 			var parameters = new VkParameters

@@ -504,7 +504,7 @@ namespace VkNet.Categories
             var isNoEmpty = chatIds == null || !chatIds.Any();
             if (isNoEmpty)
             {
-                throw new ArgumentException("At least one chat ID must be defined", "chatIds");
+                throw new ArgumentException("At least one chat ID must be defined", nameof(chatIds));
             }
 
             var parameters = new VkParameters {{"fields", fields}, {"name_case", nameCase}};
@@ -539,7 +539,7 @@ namespace VkNet.Categories
         {
             if (string.IsNullOrEmpty(title))
             {
-                throw new ArgumentException("Title can not be empty or null.", "userIds");
+                throw new ArgumentException("Title can not be empty or null.", nameof(userIds));
             }
 
             var parameters = new VkParameters

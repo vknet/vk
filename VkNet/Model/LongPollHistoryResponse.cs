@@ -25,6 +25,7 @@ namespace VkNet.Model
         /// <summary>
         /// История.
         /// </summary>
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public List<ReadOnlyCollection<long>> History { get; set; }
 
         /// <summary>

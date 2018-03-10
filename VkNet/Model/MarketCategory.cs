@@ -23,7 +23,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Секция
 		/// </summary>
-		public MarketCategorySection Section;
+		public MarketCategorySection Section { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
