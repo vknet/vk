@@ -48,7 +48,7 @@ namespace VkNet.Utils
             {
                 return;
             }
-
+  
             if (typeof(T).GetTypeInfo().IsEnum)
             {
                 Add(name, (int)(object)value);

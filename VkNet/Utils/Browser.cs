@@ -63,7 +63,8 @@ namespace VkNet.Utils
             }
 
             _logger?.Debug("Шаг 2. Заполнение формы логина");
-            var loginFormPostResult = FilledLoginForm(authParams.Login, authParams.Password, authParams.CaptchaSid, authParams.CaptchaKey, authorizeUrlResult);
+            var loginFormPostResult = FilledLoginForm(authParams.Login, authParams.Password, authParams.CaptchaSid,
+                authParams.CaptchaKey, authorizeUrlResult);
 
             if (IsAuthSuccessfull(loginFormPostResult))
             {
@@ -196,12 +197,12 @@ namespace VkNet.Utils
                 _logger?.Debug("Требуется подтверждение прав");
                 var authorizationForm = WebForm.From(result);
                 var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
-                
+
                 if (!IsAuthSuccessfull(authorizationFormPostResult))
                 {
                     throw new VkApiException("URI должен содержать токен!");
                 }
-            
+
                 var tokenUri = GetTokenUri(authorizationFormPostResult);
                 return VkAuthorization.From(tokenUri.ToString());
             }
@@ -209,11 +210,14 @@ namespace VkNet.Utils
             var captchaSid = HasCaptchaInput(result);
             if (!captchaSid.HasValue)
             {
-                throw new VkApiException("Непредвиденная ошибка авторизации. Обратитесь к разработчику.");    
+                throw new VkApiException("Непредвиденная ошибка авторизации. Обратитесь к разработчику.");
             }
 
             _logger?.Debug("Требуется ввод капчи");
-            throw new VkApiException("Требуется ввод капчи");
+            throw new CaptchaNeededException(
+                captchaSid.Value,
+                "https://vk.com/captcha.php?s=1&sid=" + captchaSid.Value
+            );
         }
 
         private bool HasСonfirmationRights(WebCallResult result)
@@ -223,7 +227,7 @@ namespace VkNet.Utils
 
             return request.IsAuthorizationRequired || response.IsAuthorizationRequired;
         }
-        
+
         private long? HasCaptchaInput(WebCallResult result)
         {
             var request = VkAuthorization.From(result.RequestUrl.ToString());
@@ -237,7 +241,7 @@ namespace VkNet.Utils
             {
                 return response.CaptchaSid;
             }
-            
+
             return null;
         }
 
