@@ -19,7 +19,7 @@
     <Authors>inyutin_maxim;azhidkov</Authors>
     <PackageLicenseUrl>https://github.com/vknet/vk/blob/master/LICENCE</PackageLicenseUrl>
     <PackageProjectUrl>https://vknet.github.io/vk/</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/vknet/vk/master/tools/vknet-icon.PNG</PackageIconUrl>    
+      <PackageIconUrl>https://raw.githubusercontent.com/vknet/vk/master/tools/vknet-icon.PNG</PackageIconUrl>
     <RepositoryUrl>https://github.com/vknet/vk</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
@@ -38,9 +38,6 @@
     <DocumentationFile>..\Build\Release\VkNet.xml</DocumentationFile>
     <OutputPath>..\Build\Release\</OutputPath>
   </PropertyGroup>
-  <ItemGroup>
-    <AnalyzerNupkgDependency Include="SonarAnalyzer.CSharp" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.7.1" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
