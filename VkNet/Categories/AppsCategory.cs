@@ -1,5 +1,4 @@
-﻿using System;
-using VkNet.Abstractions;
+﻿using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;

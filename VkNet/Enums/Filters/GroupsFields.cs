@@ -1,7 +1,4 @@
-﻿using VkNet.Categories;
-using VkNet.Model;
-
-namespace VkNet.Enums.Filters
+﻿namespace VkNet.Enums.Filters
 {
 	/// <summary>
     /// Описание дополнительных полей сообщества, используемых в параметре fields (например, в методе GroupsCategory.Get

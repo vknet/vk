@@ -1,5 +1,5 @@
 using System;
-using System.Runtime.Serialization;
+
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments

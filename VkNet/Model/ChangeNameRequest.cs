@@ -1,6 +1,6 @@
 ﻿using System;
 using VkNet.Utils;
-using System.Runtime.Serialization;
+
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model

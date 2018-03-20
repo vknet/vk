@@ -55,7 +55,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/account.setNameInMenu
         /// </remarks>
-        public bool SetNameInMenu([NotNull] string name, long? userId = null)
+        public bool SetNameInMenu(string name, long? userId = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => name);
             var parameters = new VkParameters
@@ -152,7 +152,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/account.setSilenceMode
         /// </remarks>
-        public bool SetSilenceMode([NotNull] string deviceId, int? time = null, int? peerId = null, bool? sound = null)
+        public bool SetSilenceMode(string deviceId, int? time = null, int? peerId = null, bool? sound = null)
         {
             VkErrors.ThrowIfNullOrEmpty(() => deviceId);
 
@@ -358,7 +358,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/account.setInfo
         /// </remarks>
-        public bool SetInfo([NotNull]string name, [NotNull]string value)
+        public bool SetInfo(string name, string value)
         {
             var parameters = new VkParameters
             {

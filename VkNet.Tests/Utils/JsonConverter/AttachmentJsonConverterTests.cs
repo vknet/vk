@@ -7,7 +7,7 @@ namespace VkNet.Tests.Utils.JsonConverter
     [TestFixture]
     public class AttachmentJsonConverterTests: BaseTest
     {
-        [Test]
+        [Test, Ignore("TODO: в разработке")]
         public void CallAndConvertToType()
         {
             Json = @"

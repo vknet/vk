@@ -129,7 +129,7 @@ namespace VkNet.Enums.Filters
 		/// <inheritdoc />
 		public override int GetHashCode()
 		{
-			return (Selected != null ? Selected.GetHashCode() : 0);
+			return Selected != null ? Selected.GetHashCode() : 0;
 		}
 
 		/// <inheritdoc />

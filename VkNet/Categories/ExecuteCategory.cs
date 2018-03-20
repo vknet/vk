@@ -1,5 +1,4 @@
-﻿using System.Net;
-using VkNet.Abstractions;
+﻿using VkNet.Abstractions;
 using VkNet.Utils;
 
 namespace VkNet.Categories

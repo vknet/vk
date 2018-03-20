@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-
-namespace VkNet.Utils
+﻿namespace VkNet.Utils
 {
     /// <summary>
     /// Работа с файлами

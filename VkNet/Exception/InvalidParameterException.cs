@@ -3,7 +3,7 @@
 namespace VkNet.Exception
 {
     using System;
-    using System.Runtime.Serialization;
+    
 
     /// <summary>
     /// Исключение, которое выбрасывается в случае, если параметр принимал недействительное значение.

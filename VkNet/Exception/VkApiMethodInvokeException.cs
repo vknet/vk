@@ -1,7 +1,7 @@
 ﻿namespace VkNet.Exception
 {
     using System;
-    using System.Runtime.Serialization;
+    
 
     /// <summary>
     /// Базовый класс, для всех исключений, которые могут произойти при вызове методов API ВКонтакте.

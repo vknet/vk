@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
+
 
 namespace VkNet.Enums.SafetyEnums
 {

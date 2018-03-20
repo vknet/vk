@@ -3,7 +3,7 @@
 namespace VkNet.Exception
 {
     using System;
-    using System.Runtime.Serialization;
+    
 
     /// <summary>
     /// Исключение, которые выбрасывается при попытке выполнить запрос с частотой, превышающей максимально допустимую ВКонтакте.

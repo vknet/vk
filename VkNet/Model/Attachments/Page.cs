@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
+
 using VkNet.Enums;
 using VkNet.Utils;
 

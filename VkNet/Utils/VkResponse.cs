@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System;
-using System.Collections.ObjectModel;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums;
 using VkNet.Model;

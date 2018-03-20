@@ -2,8 +2,6 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils.JsonConverter;
-using UnixDateTimeConverter = Newtonsoft.Json.Converters.UnixDateTimeConverter;
 
 namespace VkNet.Model
 {

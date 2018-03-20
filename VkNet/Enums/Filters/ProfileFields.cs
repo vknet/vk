@@ -1,6 +1,4 @@
-﻿using VkNet.Model;
-
-namespace VkNet.Enums.Filters
+﻿namespace VkNet.Enums.Filters
 {
     /// <summary>
     /// Требуемые для получения поля профиля.

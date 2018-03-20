@@ -9,7 +9,6 @@ using VkNet.Utils;
 using VkNet.Model.RequestParams;
 using System.Linq;
 using VkNet.Abstractions;
-using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
 {

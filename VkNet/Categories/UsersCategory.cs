@@ -96,7 +96,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
+		public ReadOnlyCollection<User> Get(IEnumerable<long> userIds, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			if (userIds == null)
 			{
@@ -127,7 +127,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
 		[Pure, NotNull, ContractAnnotation("screenNames:null => halt")]
-		public ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
+		public ReadOnlyCollection<User> Get(IEnumerable<string> screenNames, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
 		{
 			if (screenNames == null)
 			{

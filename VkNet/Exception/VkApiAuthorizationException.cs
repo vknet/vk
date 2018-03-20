@@ -2,7 +2,7 @@
 
 namespace VkNet.Exception
 {
-    using System.Runtime.Serialization;
+    
 
     using Enums.Filters;
 

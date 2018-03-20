@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {

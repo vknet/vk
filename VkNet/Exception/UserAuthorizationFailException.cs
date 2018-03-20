@@ -3,7 +3,7 @@ using VkNet.Utils;
 
 namespace VkNet.Exception
 {
-    using System.Runtime.Serialization;
+    
 
     /// <summary>
     /// Исключение, которое выбрасывается при отсутствии авторизации на выполнение запрошенной операции.

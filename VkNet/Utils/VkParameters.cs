@@ -1,10 +1,10 @@
 ﻿using System.Globalization;
 using System.Reflection;
+using System;
+using System.Collections.Generic;
 
 namespace VkNet.Utils
 {
-    using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Параметры запроса к ВКонтакте.

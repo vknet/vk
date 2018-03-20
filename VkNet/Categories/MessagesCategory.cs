@@ -133,7 +133,7 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте http://vk.com/dev/messages.getById
         /// </remarks>
         [Pure]
-        public VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, uint? previewLength = null)
+        public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, uint? previewLength = null)
         {
             if (!messageIds.Any())
             {
@@ -227,7 +227,7 @@ namespace VkNet.Categories
         {
             if (string.IsNullOrWhiteSpace(@params.Query))
             {
-                throw new ArgumentException("Query can not be null or empty.", "query");
+                throw new ArgumentException("Query can not be null or empty.", nameof(@params.Query));
             }
 
             return _vk.Call("messages.search", @params).ToVkCollectionOf<Message>(r => r);
@@ -249,14 +249,14 @@ namespace VkNet.Categories
         {
             if ((string.IsNullOrEmpty(@params.Message)) && (@params.Attachments == null))
             {
-                throw new ArgumentException("Message can not be null.", "Message");
+                throw new ArgumentException("Message can not be null.", nameof(@params.Message));
             }
 
             if (@params.UserIds != null)
             {
                 throw new ArgumentException(
                     "Для отправки сообщения нескольким пользователям используйте метод SendToUserIds(MessagesSendParams).",
-                    "Message");
+                    nameof(@params.Message));
             }
 
             return _vk.Call("messages.send", @params);
@@ -280,7 +280,7 @@ namespace VkNet.Categories
             {
                 throw new ArgumentException(
                     "Для отправки сообщения одному пользователю или в беседу используйте метод Send(MessagesSendParams).",
-                    "Message");
+                    nameof(@params.Message));
             }
 
             return _vk.Call("messages.send", @params).ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
@@ -535,7 +535,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.createChat
         /// </remarks>
-        public long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title)
+        public long CreateChat(IEnumerable<ulong> userIds, string title)
         {
             if (string.IsNullOrEmpty(title))
             {
@@ -562,7 +562,7 @@ namespace VkNet.Categories
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
         /// </remarks>
-        public bool EditChat(long chatId, [NotNull] string title)
+        public bool EditChat(long chatId, string title)
         {
             if (string.IsNullOrEmpty(title))
             {

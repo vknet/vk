@@ -122,7 +122,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.areFriends
 		/// </remarks>
 		[Pure]
-		public ReadOnlyCollection<AreFriendsResult> AreFriends([NotNull]IEnumerable<long> userIds, bool? needSign = null)
+		public ReadOnlyCollection<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null)
 		{
 			if (userIds == null)
 			{
