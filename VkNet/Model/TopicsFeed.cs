@@ -17,7 +17,7 @@ namespace VkNet.Model
         /// <summary>
         /// Массив комментариев.
         /// </summary>
-        public ReadOnlyCollection<Comment> Items
+        public ReadOnlyCollection<CommentBoard> Items
 		{ get; set; }
 
 		/// <summary>

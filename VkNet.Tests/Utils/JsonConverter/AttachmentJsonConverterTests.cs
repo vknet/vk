@@ -7,7 +7,7 @@ namespace VkNet.Tests.Utils.JsonConverter
     [TestFixture]
     public class AttachmentJsonConverterTests: BaseTest
     {
-        [Test, Ignore("TODO: в разработке")]
+        [Test]
         public void CallAndConvertToType()
         {
             Json = @"
@@ -35,7 +35,7 @@ namespace VkNet.Tests.Utils.JsonConverter
                 }
             }";
             Url = "https://api.vk.com/method/friends.getRequests";
-            var result = Api.Call<CommentBoard>("friends.getRequests", VkParameters.Empty);
+            CommentBoard result = Api.Call("friends.getRequests", VkParameters.Empty);
             Assert.NotNull(result);
             Assert.That(result.Id, Is.EqualTo(3));
             Assert.That(result.FromId, Is.EqualTo(32190123));
