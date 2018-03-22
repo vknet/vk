@@ -22,36 +22,22 @@ namespace VkNet.Utils
         /// </summary>
         [CanBeNull] private readonly ILogger _logger;
 
-        /// <summary>
-        /// Инициализация браузера
-        /// </summary>
-        /// <param name="logger">Логгер</param>
+        /// <inheritdoc />
         public Browser([CanBeNull] ILogger logger)
         {
             _logger = logger;
         }
 
-        /// <summary>
-        /// Прокси сервер
-        /// </summary>
+        /// <inheritdoc />
         public IWebProxy Proxy { get; set; }
 
-        /// <summary>
-        /// Получение json по url-адресу
-        /// </summary>
-        /// <param name="methodUrl">Адрес получения json</param>
-        /// <param name="parameters">Параметры метода api</param>
-        /// <returns>Строка в формате json</returns>
-        public string GetJson(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
+        /// <inheritdoc />
+        public string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters)
         {
-            return WebCall.PostCall(methodUrl, parameters, Proxy).Response;
+            return WebCall.PostCall(url, parameters, Proxy).Response;
         }
 
-        /// <summary>
-        /// Авторизация на сервере ВК
-        /// </summary>
-        /// <param name="authParams">Параметры авторизации</param>
-        /// <returns>Информация об авторизации приложения</returns>
+        /// <inheritdoc />
         public VkAuthorization Authorize(IApiAuthParams authParams)
         {
             _logger?.Debug("Шаг 1. Открытие диалога авторизации");

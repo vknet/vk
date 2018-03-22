@@ -53,10 +53,6 @@ namespace VkNet.Utils.JsonConverter
             {
                 return null;
             }
-            
-            //var obj = JObject.Load(reader);
-            //var response = obj["response"] ?? obj;
-            //return Attachment.FromJson(new VkResponse(response) {RawJson = response.ToString()});
 
             var keyType = objectType.GetGenericArguments()[0];
 

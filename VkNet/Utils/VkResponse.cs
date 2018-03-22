@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums;
 using VkNet.Model;
@@ -9,6 +10,7 @@ namespace VkNet.Utils
 	/// <summary>
 	/// Ответ vk.com
 	/// </summary>
+	[CanBeNull]
 	public sealed partial class VkResponse
 	{
 		/// <summary>

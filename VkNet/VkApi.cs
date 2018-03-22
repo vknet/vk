@@ -70,14 +70,10 @@ namespace VkNet
 		/// </summary>
 		private float _minInterval;
 
-		/// <summary>
-		/// Время вызова последнего метода этим объектом
-		/// </summary>
+		/// <inheritdoc />
 		public DateTimeOffset? LastInvokeTime { get; private set; }
 
-		/// <summary>
-		/// Время, прошедшее с момента последнего обращения к API этим объектом
-		/// </summary>
+		/// <inheritdoc />
 		public TimeSpan? LastInvokeTimeSpan
 		{
 			get
@@ -93,9 +89,7 @@ namespace VkNet
 
 		private readonly object _minIntervalLock = new object();
 
-		/// <summary>
-		/// Ограничение на кол-во запросов в секунду
-		/// </summary>
+		/// <inheritdoc />
 		public float RequestsPerSecond
 		{
 			get => _requestsPerSecond;
@@ -103,7 +97,7 @@ namespace VkNet
 			{
 				if (value < 0)
 				{
-					throw new ArgumentException(@"Value must be positive", nameof(_requestsPerSecond));
+					throw new ArgumentException(@"Value must be positive", nameof(value));
 				}
 
 				_requestsPerSecond = value;
@@ -121,136 +115,84 @@ namespace VkNet
 
 		#endregion
 
-		/// <summary>
-		/// Оповещает об истечении срока токена доступа
-		/// </summary>
+		/// <inheritdoc />
 		public event VkApiDelegate OnTokenExpires;
 
 		#region Categories Definition
 
-		/// <summary>
-		/// API для работы с пользователями.
-		/// </summary>
+		/// <inheritdoc />
 		public IUsersCategory Users { get; private set; }
 
-		/// <summary>
-		/// API для работы с друзьями.
-		/// </summary>
+		/// <inheritdoc />
 		public IFriendsCategory Friends { get; private set; }
 
-		/// <summary>
-		/// API для работы со статусом пользователя или сообщества.
-		/// </summary>
+		/// <inheritdoc />
 		public IStatusCategory Status { get; private set; }
 
-		/// <summary>
-		/// API для работы с сообщениями.
-		/// </summary>
+		/// <inheritdoc />
 		public IMessagesCategory Messages { get; private set; }
 
-		/// <summary>
-		/// API для работы с .
-		/// </summary>
+		/// <inheritdoc />
 		public IGroupsCategory Groups { get; private set; }
 
-		/// <summary>
-		/// API для работы с аудио записями.
-		/// </summary>
+		/// <inheritdoc />
 		public AudioCategory Audio { get; private set; }
 
-		/// <summary>
-		/// API для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
-		/// </summary>
+		/// <inheritdoc />
 		public IDatabaseCategory Database { get; private set; }
 
-		/// <summary>
-		/// API для работы со служебными методами.
-		/// </summary>
+		/// <inheritdoc />
 		public IUtilsCategory Utils { get; private set; }
 
-		/// <summary>
-		/// API для работы со стеной пользователя.
-		/// </summary>
+		/// <inheritdoc />
 		public IWallCategory Wall { get; private set; }
 
-		/// <summary>
-		/// API для работы со темами групп.
-		/// </summary>
+		/// <inheritdoc />
 		public IBoardCategory Board { get; private set; }
 
-		/// <summary>
-		/// API для работы с закладками.
-		/// </summary>
+		/// <inheritdoc />
 		public IFaveCategory Fave { get; private set; }
 
-		/// <summary>
-		/// API для работы с видео файлами.
-		/// </summary>
+		/// <inheritdoc />
 		public IVideoCategory Video { get; private set; }
 
-		/// <summary>
-		/// API для работы с аккаунтом пользователя.
-		/// </summary>
+		/// <inheritdoc />
 		public IAccountCategory Account { get; private set; }
 
-		/// <summary>
-		/// API для работы с фотографиями
-		/// </summary>
+		/// <inheritdoc />
 		public IPhotoCategory Photo { get; private set; }
 
-		/// <summary>
-		/// API для работы с документами
-		/// </summary>
+		/// <inheritdoc />
 		public IDocsCategory Docs { get; private set; }
 
-		/// <summary>
-		/// API для работы с лайками
-		/// </summary>
+		/// <inheritdoc />
 		public ILikesCategory Likes { get; private set; }
 
-		/// <summary>
-		/// API для работы с wiki.
-		/// </summary>
+		/// <inheritdoc />
 		public IPagesCategory Pages { get; private set; }
 
-		/// <summary>
-		/// API для работы с приложениями.
-		/// </summary>
+		/// <inheritdoc />
 		public IAppsCategory Apps { get; private set; }
 
-		/// <summary>
-		/// API для работы с новостной лентой.
-		/// </summary>
+		/// <inheritdoc />
 		public INewsFeedCategory NewsFeed { get; private set; }
 
-		/// <summary>
-		/// API для работы со статистикой.
-		/// </summary>
+		/// <inheritdoc />
 		public IStatsCategory Stats { get; private set; }
 
-		/// <summary>
-		/// API для работы с подарками.
-		/// </summary>
+		/// <inheritdoc />
 		public IGiftsCategory Gifts { get; private set; }
 
-		/// <summary>
-		/// API для работы с товарами.
-		/// </summary>
+		/// <inheritdoc />
 		public IMarketsCategory Markets { get; private set; }
 
-		/// <summary>
-		/// API для работы с Авторизацией.
-		/// </summary>
+		/// <inheritdoc />
 		public IAuthCategory Auth { get; private set; }
 
-		/// <summary>
-		/// API для работы с универсальным методом.
-		/// </summary>
+		/// <inheritdoc />
 		public IExecuteCategory Execute { get; private set; }
 
-		/// <summary>
-		/// API для работы с опросами. 
-		/// </summary>
+		/// <inheritdoc />
 		public IPollsCategory PollsCategory { get; private set; }
 
 		/// <inheritdoc />
@@ -258,14 +200,10 @@ namespace VkNet
 
 		#endregion
 
-		/// <summary>
-		/// Браузер.
-		/// </summary>
+		/// <inheritdoc />
 		public IBrowser Browser { get; set; }
 
-		/// <summary>
-		/// Была ли произведена авторизация каким либо образом
-		/// </summary>
+		/// <inheritdoc />
 		public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
 
 		/// <summary>
@@ -273,29 +211,16 @@ namespace VkNet
 		/// </summary>
 		private string AccessToken { get; set; }
 
-		/// <summary>
-		/// Токен для доступа к методам API
-		/// </summary>
+		/// <inheritdoc />
 		public string Token => AccessToken;
 
-		/// <summary>
-		/// Идентификатор пользователя, от имени которого была проведена авторизация.
-		/// Если авторизация не была произведена с использованием метода Authorize(int
-		/// то возвращается null.
-		/// </summary>
-		// ReSharper disable once MemberCanBePrivate.Global
+		/// <inheritdoc />
 		public long? UserId { get; set; }
 
-		/// <summary>
-		/// Максимальное количество попыток распознавания капчи c помощью зарегистрированного обработчика
-		/// </summary>
-		// ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
-		// ReSharper disable once MemberCanBePrivate.Global
+		/// <inheritdoc />
 		public int MaxCaptchaRecognitionCount { get; set; }
 
-		/// <summary>
-		/// Обработчик распознавания капчи
-		/// </summary>
+		/// <inheritdoc />
 		public ICaptchaSolver CaptchaSolver { get; set; }
 
 		/// <summary>
@@ -308,9 +233,7 @@ namespace VkNet
 		/// </summary>
 		private Language? Language { get; set; }
 
-		/// <summary>
-		/// Инициализирует новый экземпляр класса VkApi
-		/// </summary>
+		/// <inheritdoc />
 		public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null, IBrowser browser = null)
 		{
 			var container = new ServiceCollection();
@@ -337,9 +260,7 @@ namespace VkNet
 			Initialization(serviceProvider);
 		}
 
-		/// <summary>
-		/// Инициализирует новый экземпляр класса VkApi
-		/// </summary>
+		/// <inheritdoc />
 		public VkApi(IServiceCollection serviceCollection = null)
 		{
 			var container = serviceCollection ?? new ServiceCollection();
@@ -351,65 +272,19 @@ namespace VkNet
 			Initialization(serviceProvider);
 		}
 
-		private void Initialization(IServiceProvider serviceProvider)
-		{
-			Browser = serviceProvider.GetRequiredService<IBrowser>();
-			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
-			_logger = serviceProvider.GetService<ILogger>();
-			Users = new UsersCategory(this);
-			Friends = new FriendsCategory(this);
-			Status = new StatusCategory(this);
-			Messages = new MessagesCategory(this);
-			Groups = new GroupsCategory(this);
-			Audio = new AudioCategory(this);
-			Wall = new WallCategory(this);
-			Board = new BoardCategory(this);
-			Database = new DatabaseCategory(this);
-			Utils = new UtilsCategory(this);
-			Fave = new FaveCategory(this);
-			Video = new VideoCategory(this);
-			Account = new AccountCategory(this);
-			Photo = new PhotoCategory(this);
-			Docs = new DocsCategory(this);
-			Likes = new LikesCategory(this);
-			Pages = new PagesCategory(this);
-			Gifts = new GiftsCategory(this);
-			Apps = new AppsCategory(this);
-			NewsFeed = new NewsFeedCategory(this);
-			Stats = new StatsCategory(this);
-			Auth = new AuthCategory(this);
-			Markets = new MarketsCategory(this);
-			Execute = new ExecuteCategory(this);
-			PollsCategory = new PollsCategory(this);
-			Search = new SearchCategory(this);
-
-			RequestsPerSecond = 3;
-
-			MaxCaptchaRecognitionCount = 5;
-			_logger?.Debug("VkApi Initialization successfully");
-		}
-
-		/// <summary>
-		/// Установить язык
-		/// </summary>
-		/// <param name="language"></param>
+		/// <inheritdoc />
 		public void SetLanguage(Language language)
 		{
 			Language = language;
 		}
 
-		/// <summary>
-		/// Установить язык
-		/// </summary>
+		/// <inheritdoc />
 		public Language? GetLanguage()
 		{
 			return Language;
 		}
 
-		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="params">Данные авторизации</param>
+		/// <inheritdoc />
 		public void Authorize(IApiAuthParams @params)
 		{
 			//подключение браузера через прокси 
@@ -442,22 +317,13 @@ namespace VkNet
 			_logger?.Debug("Авторизация прошла успешно");
 		}
 
-		/// <summary>
-		/// Авторизация и получение токена в асинхронном режиме
-		/// </summary>
-		/// <param name="params">Данные авторизации</param>
+		/// <inheritdoc />
 		public async Task AuthorizeAsync(IApiAuthParams @params)
 		{
 			await TypeHelper.TryInvokeMethodAsync(() => Authorize(@params));
 		}
 
-		/// <summary>
-		/// Получает новый AccessToken используя логин, пароль, приложение и настройки указанные при последней авторизации.
-		/// </summary>
-		/// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
-		/// <exception cref="AggregateException">
-		/// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля
-		/// </exception>
+		/// <inheritdoc />
 		public void RefreshToken(Func<string> code = null)
 		{
 			if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
@@ -474,22 +340,13 @@ namespace VkNet
 			}
 		}
 
-		/// <summary>
-		/// Получает новый AccessToken использую логин, пароль, приложение и настройки указанные при последней авторизации.
-		/// </summary>
-		/// <param name="code">Делегат двух факторной авторизации. Если не указан - будет взят из параметров (если есть)</param>
+		/// <inheritdoc />
 		public async Task RefreshTokenAsync(Func<string> code = null)
 		{
 			await TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code));
 		}
 
-		/// <summary>
-		/// Вызвать метод.
-		/// </summary>
-		/// <param name="methodName">Название метода.</param>
-		/// <param name="parameters">Параметры.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
@@ -502,37 +359,19 @@ namespace VkNet
 			return new VkResponse(rawResponse) {RawJson = answer};
 		}
 
-		/// <summary>
-		/// Вызвать метод.
-		/// </summary>
-		/// <param name="methodName">Название метода.</param>
-		/// <param name="parameters">Параметры.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => Call(methodName, parameters, skipAuthorization));
 		}
 
-		/// <summary>
-		/// Вызвать метод.
-		/// </summary>
-		/// <param name="methodName">Название метода.</param>
-		/// <param name="parameters">Параметры.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => Call<T>(methodName, parameters, skipAuthorization));
 		}
 
-		/// <summary>
-		/// Вызвать метод.
-		/// </summary>
-		/// <param name="methodName">Название метода.</param>
-		/// <param name="parameters">Параметры.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
@@ -552,14 +391,7 @@ namespace VkNet
 			return JsonConvert.DeserializeObject<T>(answer, settings);
 		}
 
-		/// <summary>
-		/// Прямой вызов API-метода
-		/// </summary>
-		/// <param name="methodName">Название метода. Например, "wall.get".</param>
-		/// <param name="parameters">Вход. параметры метода.</param>
-		/// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
-		/// <exception cref="AccessTokenInvalidException"></exception>
-		/// <returns>Ответ сервера в формате JSON.</returns>
+		/// <inheritdoc />
 		[CanBeNull]
 		public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
@@ -617,13 +449,7 @@ namespace VkNet
 			return answer;
 		}
 
-		/// <summary>
-		/// Прямой вызов API-метода в асинхронном режиме
-		/// </summary>
-		/// <param name="methodName">Название метода. Например, "wall.get".</param>
-		/// <param name="parameters">Вход. параметры метода.</param>
-		/// <param name="skipAuthorization">Флаг, что метод можно вызывать без авторизации.</param>
-		/// <returns>Ответ сервера в формате JSON.</returns>
+		/// <inheritdoc />
 		[CanBeNull]
 		public async Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters,
 			bool skipAuthorization = false)
@@ -631,19 +457,13 @@ namespace VkNet
 			return await TypeHelper.TryInvokeMethodAsync(() => Invoke(methodName, parameters, skipAuthorization));
 		}
 
-		/// <summary>
-		/// Освобождения неуправляемых ресурсов.
-		/// </summary>
+		/// <inheritdoc cref="IDisposable" />
 		public void Dispose()
 		{
 			StopTimer();
 		}
 
-		/// <summary>
-		/// Обход ошибки валидации: https://vk.com/dev/need_validation
-		/// </summary>
-		/// <param name="validateUrl">Адрес, на который нужно перейти для валидации</param>
-		/// <param name="phoneNumber">Номер телефона, который нужно ввести на странице валидации</param>
+		/// <inheritdoc />
 		public void Validate(string validateUrl, string phoneNumber)
 		{
 			StopTimer();
@@ -896,6 +716,44 @@ namespace VkNet
 			}
 
 			SetTokenProperties(authorization);
+		}
+
+		private void Initialization(IServiceProvider serviceProvider)
+		{
+			Browser = serviceProvider.GetRequiredService<IBrowser>();
+			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
+			_logger = serviceProvider.GetService<ILogger>();
+			Users = new UsersCategory(this);
+			Friends = new FriendsCategory(this);
+			Status = new StatusCategory(this);
+			Messages = new MessagesCategory(this);
+			Groups = new GroupsCategory(this);
+			Audio = new AudioCategory(this);
+			Wall = new WallCategory(this);
+			Board = new BoardCategory(this);
+			Database = new DatabaseCategory(this);
+			Utils = new UtilsCategory(this);
+			Fave = new FaveCategory(this);
+			Video = new VideoCategory(this);
+			Account = new AccountCategory(this);
+			Photo = new PhotoCategory(this);
+			Docs = new DocsCategory(this);
+			Likes = new LikesCategory(this);
+			Pages = new PagesCategory(this);
+			Gifts = new GiftsCategory(this);
+			Apps = new AppsCategory(this);
+			NewsFeed = new NewsFeedCategory(this);
+			Stats = new StatsCategory(this);
+			Auth = new AuthCategory(this);
+			Markets = new MarketsCategory(this);
+			Execute = new ExecuteCategory(this);
+			PollsCategory = new PollsCategory(this);
+			Search = new SearchCategory(this);
+
+			RequestsPerSecond = 3;
+
+			MaxCaptchaRecognitionCount = 5;
+			_logger?.Debug("VkApi Initialization successfully");
 		}
 
 		#endregion
