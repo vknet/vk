@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -41,6 +42,7 @@ namespace VkNet.Model
         /// Медиавложения комментария (фотографии, ссылки и т.п.).
         /// </summary>
         [JsonProperty("attachments")]
+        [JsonConverter(typeof(AttachmentJsonConverter))]
         public ReadOnlyCollection<MediaAttachment> Attachments { get; set; }
         
         /// <summary>

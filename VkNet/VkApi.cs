@@ -543,9 +543,9 @@ namespace VkNet
 				Converters = new List<JsonConverter>
 				{
 					new VkCollectionJsonConverter(),
+					new VkDefaultJsonConverter(),
 					new UnixDateTimeConverter(),
-					new AttachmentJsonConverter(),
-					new VkDefaultJsonConverter()
+					new AttachmentJsonConverter()
 				}
 			};
 

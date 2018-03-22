@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
@@ -12,18 +11,11 @@ namespace VkNet.Tests.Categories
 	[TestFixture]
 	public class UtilsCategoryTest : BaseTest
 	{
-		private UtilsCategory GetMockedUtilsCategory(string url, string json)
-		{
-			Json = json;
-			Url = url;
-			return new UtilsCategory(Api);
-		}
-
 		[Test]
 		public void CheckLink_BannedLink()
 		{
-			const string url = "https://api.vk.com/method/utils.checkLink";
-            const string json =
+			Url = "https://api.vk.com/method/utils.checkLink";
+            Json =
 				@"{
                     'response': {
                       'status': 'banned',
@@ -31,12 +23,11 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var utils = GetMockedUtilsCategory(url, json);
 
-			var type = utils.CheckLink("http://www.kreml.ru/‎");
+			var type = Api.Utils.CheckLink("http://www.kreml.ru/‎");
 			Assert.That(type, Is.EqualTo(LinkAccessType.Banned));
 
-			type = utils.CheckLink(new Uri("http://www.kreml.ru/‎"));
+			type = Api.Utils.CheckLink(new Uri("http://www.kreml.ru/‎"));
 
 			Assert.That(type, Is.EqualTo(LinkAccessType.Banned));
 		}
@@ -44,8 +35,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void CheckLink_NotLink()
 		{
-			const string url = "https://api.vk.com/method/utils.checkLink";
-			const string json =
+			Url = "https://api.vk.com/method/utils.checkLink";
+			Json =
 				@"{
                     'response': {
                       'status': 'not_banned',
@@ -53,30 +44,26 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var utils = GetMockedUtilsCategory(url, json);
-
-            Assert.That(() => utils.CheckLink("hsfasfsf"), Throws.InstanceOf<UriFormatException>());
+            Assert.That(() => Api.Utils.CheckLink("hsfasfsf"), Throws.InstanceOf<UriFormatException>());
         }
 
 		[Test]
 		public void CheckLink_GoogleLink()
 		{
-			const string url = "https://api.vk.com/method/utils.checkLink";
-			const string json =
+			Url = "https://api.vk.com/method/utils.checkLink";
+			Json =
 				@"{
                     'response': {
                       'status': 'not_banned',
                       'link': 'https://www.google.ru/'
                     }
                   }";
-
-			var utils = GetMockedUtilsCategory(url, json);
-
-			var type = utils.CheckLink("https://www.google.ru/");
+			
+			var type = Api.Utils.CheckLink("https://www.google.ru/");
 
 			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
 
-			type = utils.CheckLink(new Uri("https://www.google.ru/"));
+			type = Api.Utils.CheckLink(new Uri("https://www.google.ru/"));
 
 			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
 		}
@@ -84,15 +71,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ResolveScreenName_BadScreenName()
 		{
-			const string url = "https://api.vk.com/method/utils.resolveScreenName";
-			const string json =
+			Url = "https://api.vk.com/method/utils.resolveScreenName";
+			Json =
 				@"{
                     'response': []
                   }";
-
-			var utils = GetMockedUtilsCategory(url, json);
-
-			var obj = utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
+			
+			var obj = Api.Utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
 
 			Assert.That(obj, Is.Null);
 		}
@@ -100,18 +85,16 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ResolveScreenName_User()
 		{
-			const string url = "https://api.vk.com/method/utils.resolveScreenName";
-			const string json =
+			Url = "https://api.vk.com/method/utils.resolveScreenName";
+			Json =
 				@"{
                     'response': {
                       'type': 'user',
                       'object_id': 186085938.0
                     }
                   }";
-
-			var utils = GetMockedUtilsCategory(url, json);
-
-			var obj = utils.ResolveScreenName("azhidkov");
+			
+			var obj = Api.Utils.ResolveScreenName("azhidkov");
 
 			// assert
 			Assert.That(obj, Is.Not.Null);
@@ -122,18 +105,16 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ResolveScreenName_ObjectIdIsVeryBig_User()
 		{
-			const string url = "https://api.vk.com/method/utils.resolveScreenName";
-			const string json =
+			Url = "https://api.vk.com/method/utils.resolveScreenName";
+			Json =
 				@"{
                     'response': {
                       'type': 'user',
                       'object_id': 922337203685471.0
                     }
                   }";
-
-			var utils = GetMockedUtilsCategory(url, json);
-
-			var obj = utils.ResolveScreenName("azhidkov");
+			
+			var obj = Api.Utils.ResolveScreenName("azhidkov");
 
 			// assert
 			Assert.That(obj, Is.Not.Null);
@@ -144,8 +125,8 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ResolveScreenName_Group()
 		{
-			const string url = "https://api.vk.com/method/utils.resolveScreenName";
-			const string json =
+			Url = "https://api.vk.com/method/utils.resolveScreenName";
+			Json =
 				@"{
                     'response': {
                       'type': 'group',
@@ -153,9 +134,7 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var utils = GetMockedUtilsCategory(url, json);
-
-			var obj = utils.ResolveScreenName("mdk");
+			var obj = Api.Utils.ResolveScreenName("mdk");
 
 			// assert
 			Assert.That(obj, Is.Not.Null);
@@ -166,8 +145,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void ResolveScreenName_EmptyStringName_ThrowException()
 		{
-			var utils = GetMockedUtilsCategory("", "");
-			Assert.That(() => utils.ResolveScreenName(string.Empty), Throws.InstanceOf<ArgumentNullException>());
+			Assert.That(() => Api.Utils.ResolveScreenName(string.Empty), Throws.InstanceOf<ArgumentNullException>());
 		}
 
 		[Test]
