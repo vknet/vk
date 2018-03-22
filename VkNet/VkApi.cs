@@ -325,10 +325,10 @@ namespace VkNet
 				container.TryAddSingleton(captchaSolver);
 			}
 
-            if (browser != null)
-            {
-                container.TryAddSingleton(browser);
-            }
+			if (browser != null)
+			{
+				container.TryAddSingleton(browser);
+			}
 
 			container.RegisterDefaultDependencies();
 
@@ -543,8 +543,9 @@ namespace VkNet
 				Converters = new List<JsonConverter>
 				{
 					new VkCollectionJsonConverter(),
-					new VkDefaultJsonConverter(),
-					new UnixDateTimeConverter()
+					new UnixDateTimeConverter(),
+					new AttachmentJsonConverter(),
+					new VkDefaultJsonConverter()
 				}
 			};
 

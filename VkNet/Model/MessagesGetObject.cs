@@ -54,7 +54,7 @@ namespace VkNet.Model
 			var dialogsGetObject = new MessagesGetObject
 			{
 				TotalCount = response["count"],
-				Unread = response["unread_dialogs"],
+				Unread = response["unread"] ?? response["unread_dialogs"],
 				RealOffset = response["real_offset"],
 				Messages = response["items"].ToReadOnlyCollectionOf<Message>(m => m),
 				InRead = response["in_read"],

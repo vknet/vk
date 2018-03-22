@@ -42,7 +42,7 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.7.1" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-      <PackageReference Include="NLog" Version="4.5.0-rc07"/>
+    <PackageReference Include="NLog" Version="4.5.0-rc07" />
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.8.2.4717" />
   </ItemGroup>

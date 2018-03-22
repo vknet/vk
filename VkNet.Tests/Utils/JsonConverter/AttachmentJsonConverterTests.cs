@@ -27,7 +27,7 @@ namespace VkNet.Tests.Utils.JsonConverter
                         'title': 'Ost',
                         'duration': 172,
                         'date': 1516564607,
-                        'url': 'https://cs1-63v4...._Pe_2RecbHMX0M2F0vg',
+                        'url': 'https://cs1-63v4_Pe_2RecbHMX0M2F0vg',
                         'genre_id': 18,
                         'is_hq': true
                         }
