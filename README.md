@@ -2,7 +2,7 @@
 ||Badge|
 |------|:------:|
 |**Build Status**|[![Build Status](https://travis-ci.org/vknet/vk.svg?branch=master)](https://travis-ci.org/vknet/vk)
-|**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-4.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/framework/)|
+|**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-4.5-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/framework/) [![Targets](https://img.shields.io/badge/.NET%20-4.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/framework/)|
 |**Nuget**|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet)
 |**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
 |**Issues**|[![](https://img.shields.io/github/issues/VkNet/Vk.svg)](https://github.com/vknet/vk/issues)
@@ -29,8 +29,6 @@ PM> Install-Package VkNet
 4. [Список часто задаваемых вопросов](https://github.com/vknet/vk/wiki/FAQ)
 5. [Обсуждение в Telegram](https://goo.gl/fNNDpK)
 
-### Для обновления на версию **1.30.2 или выше** необходимо сначала установить предварительную версию **NLog 4.5.0-rc05 или выше**
-
 # План развития проекта
 
 - [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.73.
@@ -49,6 +47,9 @@ PM> Install-Package VkNet
 - [HtmlAgilityPack](http://html-agility-pack.net/?z=codeplex)
 - [NUnit](http://www.nunit.org/) - NUnit is a unit-testing framework for all .Net languages.
 - [Moq](https://github.com/moq/moq4) - The most popular and friendly mocking framework for .NET
+- [NLog](http://nlog-project.org/) - Flexible & free open-source logging for .NET
+- [Simple Injector](https://simpleinjector.org/index.html) - Simple Injector is an easy, flexible and fast dependency injection library that uses best practice to guide your solutions toward the pit of success.
+- [SonarAnalyzer.CSharp](https://www.sonarlint.org/visualstudio/) - Analyzers which spot bugs and code smells in your code. 
 
 # Помощь проекту
 - [![На счет в банке](https://img.shields.io/badge/Альфа_Банк-donate-CHFCHx.svg)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
