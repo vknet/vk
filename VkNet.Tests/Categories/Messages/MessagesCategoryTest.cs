@@ -33,7 +33,6 @@ namespace VkNet.Tests.Categories
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			int totalCount;
 			Assert.That(() => cat.Get(new MessagesGetParams
 			{
 			}), Throws.InstanceOf<AccessTokenInvalidException>());
@@ -43,8 +42,6 @@ namespace VkNet.Tests.Categories
 		public void GetDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			int totalCount;
-			int unreadCount;
 			Assert.That(() => cat.GetDialogs(new MessagesDialogsGetParams
 			{
 				Count = 0, 
@@ -72,9 +69,6 @@ namespace VkNet.Tests.Categories
 					  }
 					]
 				  }";
-
-			int totalCount;
-			int unreadCount;
 			var msgs = Cat.GetDialogs(new MessagesDialogsGetParams
 			{
 				Count = 77128, 
@@ -97,7 +91,6 @@ namespace VkNet.Tests.Categories
 		public void GetHistory_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			int totalCount;
 			Assert.That(() => cat.GetHistory(new MessagesGetHistoryParams
 			{
 				Reversed = false,
@@ -136,7 +129,6 @@ namespace VkNet.Tests.Categories
 		]
 	}
 }";
-			int totalCount;
 			var msgs = Cat.GetHistory(new MessagesGetHistoryParams
 			{
 				UserId = 7712,  
@@ -230,8 +222,6 @@ namespace VkNet.Tests.Categories
 				  ]
 			   }
 			}";
-
-			int totalCount;
 			var msgs = Cat.GetHistory(new MessagesGetHistoryParams
 			{
 				UserId = 7712
@@ -304,8 +294,6 @@ namespace VkNet.Tests.Categories
 					  }
 					]
 				  }";
-
-			int totalCount;
 			var msgs = Cat.GetHistory(new MessagesGetHistoryParams());
 
 			Assert.That(msgs.Messages[2].Body, Is.EqualTo("думаю пива предложит попить"));
@@ -543,7 +531,6 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			int totalCount;
 			var cat = new MessagesCategory(new VkApi());
 			Assert.That(() => cat.Search(new MessagesSearchParams
 			{
@@ -586,8 +573,6 @@ namespace VkNet.Tests.Categories
 					emoji: 1
 					}]
 			}";
-
-			int totalCount;
 			var msgs = Cat.Search(new MessagesSearchParams
 			{
 				Query = "привет",
@@ -633,8 +618,6 @@ namespace VkNet.Tests.Categories
 					  0
 					]
 				  }";
-
-			int totalCount;
 			var msgs = Cat.Search(new MessagesSearchParams
 			{
 				Query = "fsjkadoivhjioashdpfisd",
@@ -1130,8 +1113,6 @@ namespace VkNet.Tests.Categories
 					  ]
 					}
 				  }";
-
-			int total;
 			var messages = Cat.Get(new MessagesGetParams
 			{
 				LastMessageId = 30
@@ -1182,8 +1163,6 @@ namespace VkNet.Tests.Categories
 					  ]
 					}
 				  }";
-
-			int total;
 			var messages = Cat.Get(new MessagesGetParams
 			{
 			});
