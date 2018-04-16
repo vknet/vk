@@ -127,11 +127,8 @@ namespace VkNet.Tests.Categories
 						'sticker': {
 							'id': 12345,
 							'product_id': 54321,
-							'photo_64': 'https: //vk.com/im...ckers/134/64b.png',
-							'photo_128': 'https: //vk.com/im...kers/134/128b.png',
-							'photo_256': 'https: //vk.com/im...kers/134/256b.png',
-							'width': 256,
-							'height': 256
+							'images': [],
+							'images_with_background': []
 						}
 					}
 				]
@@ -160,11 +157,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(sticker.Id, Is.EqualTo(12345));
 			Assert.That(sticker.ProductId, Is.EqualTo(54321));
-			Assert.That(sticker.Photo64, Is.EqualTo("https: //vk.com/im...ckers/134/64b.png"));
-			Assert.That(sticker.Photo128, Is.EqualTo("https: //vk.com/im...kers/134/128b.png"));
-			Assert.That(sticker.Photo256, Is.EqualTo("https: //vk.com/im...kers/134/256b.png"));
-			Assert.That(sticker.Width, Is.EqualTo(256));
-			Assert.That(sticker.Height, Is.EqualTo(256));
+			
 		}
 
 		[Test]
