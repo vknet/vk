@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -23,35 +23,10 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public long? ProductId { get; set; }
 
-		/// <summary>
-		/// url изображения с высотой 64px.
-		/// </summary>
-		public string Photo64 { get; set; }
+	    public IEnumerable<Image> Images { get; set; }
 
-		/// <summary>
-		/// url изображения с высотой 128px.
-		/// </summary>
-		public string Photo128 { get; set; }
-
-		/// <summary>
-		/// url изображения с высотой 256px.
-		/// </summary>
-		public string Photo256 { get; set; }
-
-		/// <summary>
-		/// url изображения с высотой 352px.
-		/// </summary>
-		public string Photo352 { get; set; }
-		
-		/// <summary>
-		/// Ширина в px
-		/// </summary>
-		public long? Width { get; set; }
-
-		/// <summary>
-		/// Высота в px.
-		/// </summary>
-		public long? Height { get; set; }
+	    public IEnumerable<Image> ImagesWithBackground { get; set; }
+	    
 
 		/// <summary>
 		/// Разобрать из json.
@@ -62,14 +37,10 @@ namespace VkNet.Model.Attachments
 		{
 			var sticker = new Sticker
 			{
-				Id = response["id"],
+				Id = response["id"] ?? response["sticker_id"],
 				ProductId = response["product_id"],
-				Photo64 = response["photo_64"],
-				Photo128 = response["photo_128"],
-				Photo256 = response["photo_256"],
-				Photo352 = response["photo_352"],
-				Width = response["width"],
-				Height = response["height"]
+				Images = response["images"].ToReadOnlyCollectionOf<Image>(x => x),
+				ImagesWithBackground  = response["images_with_background"].ToReadOnlyCollectionOf<Image>(x => x)
 			};
 
 			return sticker;
