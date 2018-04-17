@@ -202,7 +202,7 @@ namespace VkNet.Utils
             _logger?.Debug("Требуется ввод капчи");
             throw new CaptchaNeededException(
                 captchaSid.Value,
-                "https://vk.com/captcha.php?s=1&sid=" + captchaSid.Value
+                "https://m.vk.com/captcha.php?sid=" + captchaSid.Value
             );
         }
 
