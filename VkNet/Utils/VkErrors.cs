@@ -239,6 +239,10 @@ namespace VkNet.Utils
                 {
                     throw new ConfirmationUserException(error);
                 }
+                case ErrorCode.RateLimitReached: // Error 29
+                {
+                    throw new RateLimitReachedException(error);
+                }
                 case ErrorCode.ParameterMissingOrInvalid: // Error 100 
                 {
                     throw new ParameterMissingOrInvalidException(error);
