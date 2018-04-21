@@ -12,7 +12,7 @@ before_build:
 - appveyor-retry dotnet restore -v Minimal
 - nuget restore
 build_script:
-- dotnet msbuild "VkNet.sln" -c %CONFIGURATION% --no-dependencies
+- dotnet msbuild VkNet.sln /p:Configuration=%CONFIGURATION%
 after_build:
 - dotnet pack "VkNet\VkNet.csproj" -c %CONFIGURATION% --no-build -o artifacts
 test_script:
