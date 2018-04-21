@@ -1,33 +1,6 @@
-image: Visual Studio 2017
-
-init:
-  - git config --global core.autocrlf true
-  
-environment:
-  CLI_VERSION: 2.1.105
-  
-install:
-  - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetsdk"
-  - ps: mkdir $env:DOTNET_INSTALL_DIR -Force | Out-Null
-  - ps: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/dotnet/cli/rel/2.1.105/scripts/obtain/dotnet-install.ps1" -OutFile "$($env:DOTNET_INSTALL_DIR)/dotnet-install.ps1"
-  - ps: '& "$($env:DOTNET_INSTALL_DIR)/dotnet-install.ps1" -Version $env:CLI_VERSION -InstallDir $env:DOTNET_INSTALL_DIR'
-  - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
-  - dotnet --version
-  - dotnet restore ./VkNet.sln
-
-before_build:
-- appveyor-retry dotnet restore ./VkNet.sln -v Minimal
-
-build_script:
-  - dotnet build
-
-test_script:
-- dotnet test ./VkNet.Tests/VkNet.Tests.csproj -f netcoreapp2.0
-
-version: 1.34.0-alpha{build}
-max_jobs: 1
-image: Visual Studio 2017
-configuration: Release
-platform:
-- x64
-- x86
+build:
+  project: VkNet.sln
+  verbosity: minimal
+  configuration: Release
+  project: MySolution.sln
+  publish_nuget: true
