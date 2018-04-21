@@ -21,6 +21,8 @@ pull_requests:
 max_jobs: 1
 image: Visual Studio 2017
 configuration: Release
-platform: Any CPU
+platform:
+- x64
+- x86
 nuget:
   project_feed: true
