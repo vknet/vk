@@ -1,3 +1,4 @@
+image: Visual Studio 2017
 build:
   project: VkNet.sln
   verbosity: minimal
