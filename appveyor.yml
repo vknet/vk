@@ -1,12 +1,20 @@
-# build Configuration, i.e. Debug, Release, etc.
-configuration: Release
+os: Visual Studio 2017
 
-# scripts to run before build
-before_build:
-  - dotnet restore
+environment:
+  CLI_VERSION: 2.1.105
+  
+install:
+  - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetsdk"
+  - ps: mkdir $env:DOTNET_INSTALL_DIR -Force | Out-Null
+  - ps: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/dotnet/cli/rel/2.1.105/scripts/obtain/dotnet-install.ps1" -OutFile "$($env:DOTNET_INSTALL_DIR)/dotnet-install.ps1"
+  - ps: '& "$($env:DOTNET_INSTALL_DIR)/dotnet-install.ps1" -Version $env:CLI_VERSION -InstallDir $env:DOTNET_INSTALL_DIR'
+  - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
 
 build_script:
-  - dotnet build .\VkNet.sln
-
-test_script:
-  - dotnet test .\VkNet.Tests\
+  # dotnet info
+  - ps: dotnet --info
+  # Run dotnet new 
+  - ps: mkdir "test\test-dotnet-new" -Force | Push-Location
+  - ps: dotnet new console -lang f#
+  - ps: dotnet restore
+  - ps: dotnet build
