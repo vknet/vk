@@ -11,7 +11,7 @@ install:
 build_script:
   # dotnet info
   - ps: dotnet --info
-  - ps: dotnet restore C:\projects\vk\VkNet.sln
+  - ps: nuget restore
   - ps: dotnet build C:\projects\vk\VkNet.sln
 
 
