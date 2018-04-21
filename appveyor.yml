@@ -1,6 +1,5 @@
 build:
   project: VkNet.sln
   verbosity: minimal
-  configuration: Release
-  project: MySolution.sln
   publish_nuget: true
+configuration: Release
