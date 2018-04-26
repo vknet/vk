@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -7,6 +7,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkNet", "VkNet\VkNet.csproj", "{776EC153-F6B0-4065-B902-970BCDA6E636}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet.Tests", "VkNet.Tests\VkNet.Tests.csproj", "{CDEF6518-F137-400B-96F4-895818896EA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet.Core.Abstractions", "VkNet.Core.Abstractions\VkNet.Core.Abstractions.csproj", "{48475C73-3F26-4FB8-A345-2E00028EB8CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +24,10 @@ Global
 		{CDEF6518-F137-400B-96F4-895818896EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDEF6518-F137-400B-96F4-895818896EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDEF6518-F137-400B-96F4-895818896EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48475C73-3F26-4FB8-A345-2E00028EB8CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48475C73-3F26-4FB8-A345-2E00028EB8CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48475C73-3F26-4FB8-A345-2E00028EB8CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48475C73-3F26-4FB8-A345-2E00028EB8CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
