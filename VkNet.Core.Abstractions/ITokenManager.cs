@@ -1,7 +1,7 @@
 ﻿namespace VkNet.Core.Abstractions
 {
     /// <summary>
-    /// Менеджер управления токеном
+    /// Менеджер управления токеном приложения
     /// </summary>
     public interface ITokenManager
     {
@@ -10,18 +10,18 @@
         /// </summary>
         string Token { get; }
         /// <summary>
-        /// <c>true</c> - если истек
+        /// <c>true</c> - если токен приложения истек
         /// </summary>
         bool IsExpired { get; }
         /// <summary>
         /// Обновить токен
         /// </summary>
-        /// <returns><c>true</c> - если обновление прошло успешно</returns>
+        /// <returns><c>true</c> - если обновление токена приложения прошло успешно</returns>
         bool RefreshToken();
         /// <summary>
-        /// Установить значение токена
+        /// Установить значение токена приложения
         /// </summary>
-        /// <param name="token">Токен</param>
+        /// <param name="token">Токен приложения</param>
         void SetToken(string token);
     }
 }
