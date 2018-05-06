@@ -42,13 +42,13 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.8.1"/>
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0"/>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2"/>
-    <PackageReference Include="NLog" Version="4.5.3"/>
+    <PackageReference Include="NLog" Version="4.5.4"/>
     <PackageReference Include="SimpleInjector" Version="4.2.2"/>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.1.0.5212"/>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1"/>
-    <PackageReference Include="NETStandard.Library" Version="2.0.1"/>
+    <PackageReference Include="NETStandard.Library" Version="2.0.0"/>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0"/>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0"/>
   </ItemGroup>
