@@ -39,5 +39,19 @@ namespace VkNet.Abstractions.Async
         /// Страница документации ВКонтакте http://vk.com/dev/execute
         /// </remarks>
         Task<T> ExecuteAsync<T>(string code);
+        
+        /// <summary>
+        /// Универсальный метод, который позволяет запускать хранимые процедуры.
+        /// </summary>
+        /// <param name="procedureName">Имя хранимой процедуры</param>
+        /// <param name="vkParameters">Параметры хранимой процедуры</param>
+        /// <returns>
+        /// Возвращает данные, запрошенные алгоритмом.
+        /// При работе с методом execute структура ответа в XML ближе к JSON и может незначительно отличаться от стандартного представления других методов.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/execute
+        /// </remarks>
+        Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters);
     }
 }

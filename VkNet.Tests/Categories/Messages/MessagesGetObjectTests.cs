@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using VkNet.Model.RequestParams;
-using Xunit;
-using Assert = NUnit.Framework.Assert;
 
 namespace VkNet.Tests.Categories.Messages
 {
