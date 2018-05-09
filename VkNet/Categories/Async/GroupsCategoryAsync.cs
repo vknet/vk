@@ -237,5 +237,11 @@ namespace VkNet.Categories
         {
             return await TypeHelper.TryInvokeMethodAsync(() => _vk.Groups.SetCallbackSettings(@params));
         }
+        
+        /// <inheritdoc/>
+        public async Task<LongPollServerResponse> GetLongPollServerAsync(ulong groupId)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Groups.GetLongPollServer(groupId));
+        }
     }
 }
