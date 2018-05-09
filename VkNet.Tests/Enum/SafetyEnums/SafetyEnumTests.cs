@@ -136,11 +136,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			// get test
 			Assert.That(Display.Page.ToString(), Is.EqualTo("page"));
 			Assert.That(Display.Popup.ToString(), Is.EqualTo("popup"));
-			Assert.That(Display.Wap.ToString(), Is.EqualTo("wap"));
+			Assert.That(Display.Mobile.ToString(), Is.EqualTo("wap"));
 			// parse test
 			Assert.That(Display.FromJsonString("page"), Is.EqualTo(Display.Page));
 			Assert.That(Display.FromJsonString("popup"), Is.EqualTo(Display.Popup));
-			Assert.That(Display.FromJsonString("wap"), Is.EqualTo(Display.Wap));
+			Assert.That(Display.FromJsonString("wap"), Is.EqualTo(Display.Mobile));
 		}
 
 		[Test]

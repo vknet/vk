@@ -11,6 +11,7 @@ using VkNet.Model;
 
 namespace VkNet.Utils
 {
+    /// <inheritdoc />
     /// <summary>
     /// Браузер, через который производится сетевое взаимодействие с ВКонтакте.
     /// Сетевое взаимодействие выполняется с помощью HttpWebRequest
