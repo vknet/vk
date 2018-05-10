@@ -26,8 +26,6 @@ namespace VkNet.Tests.Categories.Users
                     ]
                   }";
 
-
-			var fields = ProfileFields.FirstName | ProfileFields.LastName | ProfileFields.Sex | ProfileFields.City;
 			var users = Api.Users.Get(new List<long>{118312730}, ProfileFields.Sex, NameCase.Nom);
 
 			Assert.That(users, Is.Not.Null);
