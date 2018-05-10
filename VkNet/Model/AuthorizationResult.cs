@@ -1,8 +1,11 @@
-﻿namespace VkNet.Model
+﻿using System;
+
+namespace VkNet.Model
 {
     /// <summary>
     /// Результат авторизаци
     /// </summary>
+    [Serializable]
     public class AuthorizationResult
     {
         /// <summary>

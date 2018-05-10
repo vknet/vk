@@ -416,14 +416,13 @@ namespace VkNet
                 throw new AccessTokenInvalidException(message);
             }
 
-            var url = "";
+            var url = $"https://api.vk.com/method/{methodName}";
             var answer = "";
 
-            void SendRequest()
+            void SendRequest(string method, IDictionary<string, string> @params)
             {
-                url = $"https://api.vk.com/method/{methodName}";
                 LastInvokeTime = DateTimeOffset.Now;
-                answer = RestClient.PostAsync(new Uri(url), parameters).Result.Value;
+                answer = RestClient.PostAsync(new Uri($"https://api.vk.com/method/{method}"), @params).Result.Value;
             }
 
             // Защита от превышения количества запросов в секунду
@@ -447,12 +446,12 @@ namespace VkNet
 #endif
                     }
 
-                    SendRequest();
+                    SendRequest(methodName, parameters);
                 }
             }
             else if (skipAuthorization)
             {
-                SendRequest();
+                SendRequest(methodName, parameters);
             }
 
             _logger?.Trace($"Uri = \"{url}\"");

@@ -30,20 +30,12 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public IWebProxy Proxy { get; set; }
 
-		private double _timeoutSeconds;
+		private TimeSpan _timeoutSeconds;
 
 		/// <inheritdoc />
-		public double TimeoutSeconds
+		public TimeSpan TimeoutSeconds
 		{
-			get
-			{
-				if (_timeoutSeconds <= 0)
-				{
-					return 300;
-				}
-
-				return _timeoutSeconds;
-			}
+			get => _timeoutSeconds == TimeSpan.MinValue ? TimeSpan.FromSeconds(300) : _timeoutSeconds;
 			set => _timeoutSeconds = value;
 		}
 
@@ -92,7 +84,7 @@ namespace VkNet.Utils
 
 			using (var client = new HttpClient(handler)
 			{
-				Timeout = TimeSpan.FromSeconds(TimeoutSeconds)
+				Timeout = TimeoutSeconds
 			})
 			{
 				var response = await method(client);
