@@ -30,6 +30,23 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public IWebProxy Proxy { get; set; }
 
+		private double _timeoutSeconds;
+
+		/// <inheritdoc />
+		public double TimeoutSeconds
+		{
+			get
+			{
+				if (_timeoutSeconds <= 0)
+				{
+					return 300;
+				}
+
+				return _timeoutSeconds;
+			}
+			set => _timeoutSeconds = value;
+		}
+
 		/// <inheritdoc />
 		public async Task<HttpResponse<string>> GetAsync(Uri uri, VkParameters parameters)
 		{
@@ -59,8 +76,7 @@ namespace VkNet.Utils
 		{
 			var handler = new HttpClientHandler
 			{
-				UseProxy = false,
-				
+				UseProxy = false
 			};
 
 			if (Proxy != null)
@@ -74,7 +90,10 @@ namespace VkNet.Utils
 				_logger?.Debug($"Use Proxy: {Proxy}");
 			}
 
-			using (var client = new HttpClient(handler))
+			using (var client = new HttpClient(handler)
+			{
+				Timeout = TimeSpan.FromSeconds(TimeoutSeconds)
+			})
 			{
 				var response = await method(client);
 				var requestUri = response.RequestMessage.RequestUri.ToString();

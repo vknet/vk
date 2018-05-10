@@ -59,7 +59,10 @@ namespace VkNet
         /// </summary>
         private Timer _expireTimer;
 
-        private IRestClient _client;
+        /// <summary>
+        /// Rest Client
+        /// </summary>
+        public IRestClient RestClient;
 
         /// <summary>
         /// The expire timer lock
@@ -305,6 +308,8 @@ namespace VkNet
                     @params.ProxyLogin,
                     @params.ProxyPassword
                 );
+
+                RestClient.Proxy = Browser.Proxy;
             }
 
             //если токен не задан - обычная авторизация
@@ -418,7 +423,7 @@ namespace VkNet
             {
                 url = $"https://api.vk.com/method/{methodName}";
                 LastInvokeTime = DateTimeOffset.Now;
-                answer = _client.PostAsync(new Uri(url), parameters).Result.Value;
+                answer = RestClient.PostAsync(new Uri(url), parameters).Result.Value;
             }
 
             // Защита от превышения количества запросов в секунду
@@ -742,7 +747,7 @@ namespace VkNet
             Browser = serviceProvider.GetRequiredService<IBrowser>();
             CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
             _logger = serviceProvider.GetService<ILogger>();
-            _client = serviceProvider.GetRequiredService<IRestClient>();
+            RestClient = serviceProvider.GetRequiredService<IRestClient>();
             Users = new UsersCategory(this);
             Friends = new FriendsCategory(this);
             Status = new StatusCategory(this);

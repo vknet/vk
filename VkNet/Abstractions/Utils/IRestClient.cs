@@ -15,6 +15,11 @@ namespace VkNet.Abstractions.Utils
         /// Proxy
         /// </summary>
         IWebProxy Proxy { get; set; }
+        
+        /// <summary>
+        /// Таймаут на время выполнения запроса в секундах. Значение по умолчанию 300 секунд.
+        /// </summary>
+        double TimeoutSeconds { get; set; }
 
         /// <summary>
         /// Get request
