@@ -19,7 +19,7 @@ namespace VkNet.Abstractions.Utils
         /// <summary>
         /// Таймаут на время выполнения запроса в секундах. Значение по умолчанию 300 секунд.
         /// </summary>
-        TimeSpan TimeoutSeconds { get; set; }
+        TimeSpan Timeout { get; set; }
 
         /// <summary>
         /// Get request

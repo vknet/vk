@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -33,7 +34,7 @@ namespace VkNet.Utils
 		private TimeSpan _timeoutSeconds;
 
 		/// <inheritdoc />
-		public TimeSpan TimeoutSeconds
+		public TimeSpan Timeout
 		{
 			get => _timeoutSeconds == TimeSpan.MinValue ? TimeSpan.FromSeconds(300) : _timeoutSeconds;
 			set => _timeoutSeconds = value;
@@ -82,11 +83,13 @@ namespace VkNet.Utils
 				_logger?.Debug($"Use Proxy: {Proxy}");
 			}
 
-			using (var client = new HttpClient(handler)
+			using (var client = new HttpClient(handler))
 			{
-				Timeout = TimeoutSeconds
-			})
-			{
+				if (Timeout != TimeSpan.MinValue)
+				{
+					client.Timeout = Timeout;
+				}
+
 				var response = await method(client);
 				var requestUri = response.RequestMessage.RequestUri.ToString();
 
