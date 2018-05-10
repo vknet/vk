@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using VkNet.Utils;
@@ -21,15 +22,14 @@ namespace VkNet.Abstractions.Utils
         /// <param name="uri">Uri</param>
         /// <param name="parameters"></param>
         /// <returns>String result</returns>
-        Task<string> GetAsync(Uri uri, VkParameters parameters);
+        Task<HttpResponse<string>> GetAsync(Uri uri, VkParameters parameters);
 
         /// <summary>
         /// POST запрос
         /// </summary>
         /// <param name="uri">Uri</param>
         /// <param name="parameters">Параметры</param>
-        /// <typeparam name="T">Тип параметра</typeparam>
         /// <returns>Строковый результат</returns>
-        Task<string> PostAsync<T>(Uri uri, T parameters);
+        Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters);
     }
 }

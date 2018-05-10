@@ -13,6 +13,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using NLog;
 using VkNet.Abstractions;
+using VkNet.Abstractions.Utils;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
@@ -57,6 +58,8 @@ namespace VkNet
         /// Таймер.
         /// </summary>
         private Timer _expireTimer;
+
+        private IRestClient _client;
 
         /// <summary>
         /// The expire timer lock
@@ -415,7 +418,7 @@ namespace VkNet
             {
                 url = $"https://api.vk.com/method/{methodName}";
                 LastInvokeTime = DateTimeOffset.Now;
-                answer = Browser.GetJson(url, parameters);
+                answer = _client.PostAsync(new Uri(url), parameters).Result.Value;
             }
 
             // Защита от превышения количества запросов в секунду
@@ -447,8 +450,8 @@ namespace VkNet
                 SendRequest();
             }
 
-            _logger?.Debug(Utilities.PreetyPrintApiUrl(url));
-            _logger?.Debug(Utilities.PreetyPrintJson(answer));
+            _logger?.Trace($"Uri = \"{url}\"");
+            _logger?.Trace($"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(answer)}");
 
             VkErrors.IfErrorThrowException(answer);
 
@@ -474,7 +477,7 @@ namespace VkNet
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             StopTimer();
         }
@@ -739,6 +742,7 @@ namespace VkNet
             Browser = serviceProvider.GetRequiredService<IBrowser>();
             CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
             _logger = serviceProvider.GetService<ILogger>();
+            _client = serviceProvider.GetRequiredService<IRestClient>();
             Users = new UsersCategory(this);
             Friends = new FriendsCategory(this);
             Status = new StatusCategory(this);

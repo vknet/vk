@@ -3,78 +3,72 @@ using System.Net;
 
 namespace VkNet.Utils
 {
-    /// <summary>
-    /// Реализация WebProxy
-    /// </summary>
-    public class WebProxy : IWebProxy
-    {
-        /// <summary>
-        /// Данные авторизации
-        /// </summary>
-        public ICredentials Credentials { get; set; }
+	/// <inheritdoc />
+	/// <summary>
+	/// Реализация WebProxy
+	/// </summary>
+	public class WebProxy : IWebProxy
+	{
+		/// <inheritdoc />
+		public ICredentials Credentials { get; set; }
 
-        /// <summary>
-        /// Uri прокси
-        /// </summary>
-        private readonly Uri _proxyUri;
+		/// <summary>
+		/// Uri прокси
+		/// </summary>
+		private readonly Uri _proxyUri;
 
-        /// <summary>
-        /// Инициализация класса прокси
-        /// </summary>
-        /// <param name="proxyUri">Uri прокси</param>
-        private WebProxy(Uri proxyUri)
-        {
-            _proxyUri = proxyUri;
-        }
-        /// <summary>
-        /// Получить прокси
-        /// </summary>
-        /// <param name="destination">Uri назначения</param>
-        /// <returns>Uri прокси</returns>
-        public Uri GetProxy(Uri destination) => _proxyUri;
+		/// <summary>
+		/// Инициализация класса прокси
+		/// </summary>
+		/// <param name="proxyUri">Uri прокси</param>
+		private WebProxy(Uri proxyUri)
+		{
+			_proxyUri = proxyUri;
+		}
 
-        /// <summary>
-        /// Пренебрегать
-        /// </summary>
-        /// <param name="host">Хост</param>
-        /// <returns>Пренебрегать?</returns>
-        public bool IsBypassed(Uri host) => false;
+		/// <inheritdoc />
+		public Uri GetProxy(Uri destination) => _proxyUri;
 
-        /// <summary>
-        /// Получить данные авторизации
-        /// </summary>
-        /// <param name="proxyLogin">Логин</param>
-        /// <param name="proxyPassword">Пароль</param>
-        /// <returns>Данные авторизации</returns>
-        private static ICredentials GetCredentials(string proxyLogin = null, string proxyPassword = null)
-        {
-            if (proxyLogin != null && proxyPassword != null)
-            {
-                return new NetworkCredential(proxyLogin, proxyPassword);
-            }
-            // Авторизация с реквизитами по умолчанию (для NTLM прокси)
-            return CredentialCache.DefaultCredentials;
-        }
+		/// <inheritdoc />
+		public bool IsBypassed(Uri host) => false;
 
-        /// <summary>
-        /// Получить прокси
-        /// </summary>
-        /// <param name="host">Имя узла прокси-сервера</param>
-        /// <param name="port">Порт</param>
-        /// <param name="proxyLogin">Логин</param>
-        /// <param name="proxyPassword">Пароль</param>
-        /// <returns>Прокси</returns>
-        public static IWebProxy GetProxy(string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
-        {
-            if (host == null || port == null)
-            {
-                return null;
-            }
+		/// <summary>
+		/// Получить данные авторизации
+		/// </summary>
+		/// <param name="proxyLogin">Логин</param>
+		/// <param name="proxyPassword">Пароль</param>
+		/// <returns>Данные авторизации</returns>
+		private static ICredentials GetCredentials(string proxyLogin = null, string proxyPassword = null)
+		{
+			if (proxyLogin != null && proxyPassword != null)
+			{
+				return new NetworkCredential(proxyLogin, proxyPassword);
+			}
 
-            return new WebProxy(new Uri($"http://{host}:{port.Value}"))
-            {
-                Credentials = GetCredentials(proxyLogin, proxyPassword)
-            };
-        }
-    }
+			// Авторизация с реквизитами по умолчанию (для NTLM прокси)
+			return CredentialCache.DefaultCredentials;
+		}
+
+		/// <summary>
+		/// Получить прокси
+		/// </summary>
+		/// <param name="host">Имя узла прокси-сервера</param>
+		/// <param name="port">Порт</param>
+		/// <param name="proxyLogin">Логин</param>
+		/// <param name="proxyPassword">Пароль</param>
+		/// <returns>Прокси</returns>
+		public static IWebProxy GetProxy(string host = null, int? port = null, string proxyLogin = null,
+			string proxyPassword = null)
+		{
+			if (host == null || port == null)
+			{
+				return null;
+			}
+
+			return new WebProxy(new Uri($"http://{host}:{port.Value}"))
+			{
+				Credentials = GetCredentials(proxyLogin, proxyPassword)
+			};
+		}
+	}
 }

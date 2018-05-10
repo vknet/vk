@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using NLog;
+using NLog.Conditions;
 using NLog.Config;
 using NLog.Targets;
+using VkNet.Abstractions.Utils;
 using VkNet.Exception;
 
 namespace VkNet.Utils
@@ -16,11 +19,12 @@ namespace VkNet.Utils
 	public static class TypeHelper
 	{
 #if NET40
-		/// <summary>
-		/// Получить информацию о типе
-		/// </summary>
-		/// <param name="type">Тип</param>
-		/// <returns>Тип</returns>
+
+/// <summary>
+/// Получить информацию о типе
+/// </summary>
+/// <param name="type">Тип</param>
+/// <returns>Тип</returns>
 		public static Type GetTypeInfo(this Type type)
 		{
 			return type;
@@ -42,6 +46,16 @@ namespace VkNet.Utils
 			{
 				container.TryAddSingleton(InitLogger());
 			}
+
+			if (container.All(x => x.ServiceType != typeof(IRestClient)))
+			{
+				container.TryAddScoped<IRestClient, RestClient>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(IWebProxy)))
+			{
+				container.TryAddScoped<IWebProxy>(t => null);
+			}
 		}
 
 		/// <summary>
@@ -50,12 +64,17 @@ namespace VkNet.Utils
 		/// <returns>Логгер</returns>
 		private static ILogger InitLogger()
 		{
+			var consoleTarget = new ColoredConsoleTarget
+			{
+				UseDefaultRowHighlightingRules = true,
+				Layout = @"${level} ${longdate} ${logger} ${message}"
+			};
+
 			var config = new LoggingConfiguration();
-			var consoleTarget = new ConsoleTarget();
 			config.AddTarget("console", consoleTarget);
-			consoleTarget.Layout = @"${date:format=HH\:mm\:ss} ${logger} ${message}";
-			var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
+			var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
 			config.LoggingRules.Add(rule1);
+			
 			LogManager.Configuration = config;
 			return LogManager.GetLogger("VkApi");
 		}
