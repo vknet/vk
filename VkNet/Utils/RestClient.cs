@@ -85,7 +85,7 @@ namespace VkNet.Utils
 
 			using (var client = new HttpClient(handler))
 			{
-				if (Timeout != TimeSpan.MinValue)
+				if (Timeout != TimeSpan.Zero)
 				{
 					client.Timeout = Timeout;
 				}

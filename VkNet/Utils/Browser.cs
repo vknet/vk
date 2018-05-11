@@ -125,24 +125,21 @@ namespace VkNet.Utils
                 .WithField("pass")
                 .FilledWith(password);
 
-            if (captchaSid.HasValue)
+            if (!captchaSid.HasValue)
             {
-                _logger?.Debug("Шаг 2. Заполнение формы логина. Капча");
-                loginForm.WithField("captcha_sid")
-                    .FilledWith(captchaSid.Value.ToString())
-                    .WithField("captcha_key")
-                    .FilledWith(captchaKey);
+                return WebCall.Post(loginForm, Proxy);
             }
+
+            _logger?.Debug("Шаг 2. Заполнение формы логина. Капча");
+            loginForm.WithField("captcha_sid")
+                .FilledWith(captchaSid.Value.ToString())
+                .WithField("captcha_key")
+                .FilledWith(captchaKey);
 
             return WebCall.Post(loginForm, Proxy);
         }
 
-        /// <summary>
-        /// Выполняет обход ошибки валидации: https://vk.com/dev/need_validation
-        /// </summary>
-        /// <param name="validateUrl">Адрес страницы валидации</param>
-        /// <param name="phoneNumber">Номер телефона, который необходимо ввести на странице валидации</param>
-        /// <returns>Информация об авторизации приложения.</returns>
+        /// <inheritdoc />
         public VkAuthorization Validate(string validateUrl, string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(validateUrl))

@@ -13,7 +13,7 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.34.0</Version>
+    <Version>1.35.0-alpha1</Version>
     <PackageId>VkNet</PackageId>
     <Description>Реализация ВКонтакте API для .NET. Список методов см. https://vknet.github.io/vk/</Description>
     <Authors>inyutin_maxim;azhidkov</Authors>
@@ -46,7 +46,6 @@
     <PackageReference Include="NLog" Version="4.5.4"/>
     <PackageReference Include="SimpleInjector" Version="4.2.2"/>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.1.0.5212"/>
-    <PackageReference Include="System.Net.Http.Formatting.Extension" Version="5.2.3"/>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1"/>
