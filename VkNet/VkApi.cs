@@ -500,7 +500,8 @@ namespace VkNet
                 throw new NeedValidationException(message, validateUrl);
             }
 
-            SetTokenProperties(authorization);
+            AccessToken = authorization.AccessToken;
+            UserId = authorization.UserId;
         }
 
         #region private
