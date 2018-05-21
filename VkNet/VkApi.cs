@@ -209,6 +209,9 @@ namespace VkNet
         /// <inheritdoc />
         public ISearchCategory Search { get; private set; }
 
+        /// <inheritdoc />
+        public IAdsCategory Ads { get; private set; }
+
         #endregion
 
         /// <inheritdoc />
@@ -774,6 +777,7 @@ namespace VkNet
             Execute = new ExecuteCategory(this);
             PollsCategory = new PollsCategory(this);
             Search = new SearchCategory(this);
+            Ads = new AdsCategory(this);
 
             RequestsPerSecond = 3;
 
