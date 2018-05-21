@@ -259,5 +259,43 @@ namespace VkNet.Tests.Utils
 
 			Assert.Throws<PostLimitException>(() => Api.Call("messages.send", VkParameters.Empty, true));
 		}
+
+		[Test]
+		public void Call_ThrowsPostLimitException_103()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json =
+				@"{
+					'error': {
+						'error_code': 103,
+						'error_msg': 'Access to adding post denied: you can only add 50 posts a day',
+						'request_params': [
+							{
+								'key': 'oauth',
+								'value': '1'
+							},
+							{
+								'key': 'method',
+								'value': 'wall.post'
+							},
+							{
+								'key': 'owner_id',
+								'value': '-166621386'
+							},
+							{
+								'key': 'message',
+								'value': 'РРіСЂР° #24\nРЎС‚Р°С‚СѓСЃ: Р°РєС‚РёРІРЅР°'
+							},
+							{
+								'key': 'v',
+								'value': '5.74'
+							}
+						]
+					}
+				}";
+
+			Assert.Throws<OutOfLimitsException>(() => Api.Call("messages.send", VkParameters.Empty, true));
+		}
 	}
 }
