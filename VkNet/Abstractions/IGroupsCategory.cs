@@ -538,5 +538,22 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/groups.setCallbackSettings
         /// </remarks>
         bool SetCallbackSettings(CallbackServerParams @params);
+        
+        /// <summary>
+        /// Возвращает данные для подключения к Bots Longpoll API.
+        /// </summary>
+        /// <param name = "groupId">
+        /// Идентификатор сообщества. положительное число, обязательный параметр
+        /// </param>
+        /// <returns>
+        /// Возвращает объект, который содержит следующие поля:
+        /// key (string) — ключ;
+        /// server (string) — url сервера;
+        /// ts (integer) — timestamp.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/groups.getLongPollServer
+        /// </remarks>
+        LongPollServerResponse GetLongPollServer(ulong groupId);
     }
 }

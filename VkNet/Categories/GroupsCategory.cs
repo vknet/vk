@@ -758,5 +758,11 @@ namespace VkNet.Categories
         {
             return _vk.Call("groups.setCallbackSettings", @params);
         }
+        
+        /// <inheritdoc/>
+        public LongPollServerResponse GetLongPollServer(ulong groupId)
+        {
+            return _vk.Call<LongPollServerResponse>("groups.getLongPollServer", new VkParameters{{"group_id", groupId}});
+        }
     }
 }

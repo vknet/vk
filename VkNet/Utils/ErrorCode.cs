@@ -133,6 +133,16 @@
         public const int ConfirmationUser = 24;
 
         /// <summary>
+        /// Ключ доступа сообщества недействителен.
+        /// </summary>
+        public const int GroupKeyInvalid = 27;
+
+        /// <summary>
+        /// Ключ доступа приложения недействителен.
+        /// </summary>
+        public const int AppKeyInvalid = 28;
+
+        /// <summary>
         /// Достигнут количественный лимит на вызов метода 
         /// </summary>
         public const int RateLimitReached = 29;

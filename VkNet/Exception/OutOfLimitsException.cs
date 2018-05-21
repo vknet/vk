@@ -10,7 +10,7 @@ namespace VkNet.Exception
 	/// </summary>
 	/// <seealso cref="VkNet.Exception.VkApiException" />
 	[Serializable]
-    public class OutOfLimitsException : VkApiException
+    public class OutOfLimitsException : VkApiMethodInvokeException
     {
         /// <summary>
         /// Конструктор.

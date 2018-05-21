@@ -239,6 +239,14 @@ namespace VkNet.Utils
                 {
                     throw new ConfirmationUserException(error);
                 }
+                case ErrorCode.GroupKeyInvalid: // Error 27   
+                {
+                    throw new GroupKeyInvalidException(error);
+                }
+                case ErrorCode.AppKeyInvalid: // Error 28   
+                {
+                    throw new AppKeyInvalidException(error);
+                }
                 case ErrorCode.RateLimitReached: // Error 29
                 {
                     throw new RateLimitReachedException(error);
