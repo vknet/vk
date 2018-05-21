@@ -24,9 +24,9 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
     <PackageReleaseNotes>
-            Список изменений: http://bit.ly/2I20sbX
-            Обсуждение в Telegram: http://bit.ly/2rvEOWD
-            Группа в Контакте: https://vk.com/vknetdotnet
+      Список изменений: http://bit.ly/2wAUcGC
+      Обсуждение в Telegram: http://bit.ly/2rvEOWD
+      Группа в Контакте: https://vk.com/vknetdotnet
         </PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -40,11 +40,11 @@
     <OutputPath>..\Build\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="HtmlAgilityPack" Version="1.8.1"/>
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.2"/>
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0"/>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2"/>
     <PackageReference Include="NLog" Version="4.5.4"/>
-    <PackageReference Include="SimpleInjector" Version="4.2.2"/>
+    <PackageReference Include="SimpleInjector" Version="4.3.0"/>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.1.0.5212"/>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
