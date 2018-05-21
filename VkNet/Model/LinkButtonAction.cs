@@ -32,7 +32,7 @@ namespace VkNet.Model
         /// 
         /// </summary>
         [JsonProperty("group_id")]
-        public long GroupId { get; set; }
+        public long? GroupId { get; set; }
         
         /// <summary>
         /// Разобрать из json.

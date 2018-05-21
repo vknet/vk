@@ -1065,7 +1065,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetLongPollServer_ThrowArgumentNullException()
 		{
-			Assert.That(() => Api.Messages.GetLongPollServer(), Throws.InstanceOf<ArgumentNullException>());
+			Assert.That(() => Api.Messages.GetLongPollServer(), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]

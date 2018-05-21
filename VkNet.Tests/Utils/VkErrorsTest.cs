@@ -5,60 +5,59 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Utils
 {
-    [TestFixture]
-    public class VkErrorsTest : BaseTest
-    {
-        private class TestClass
-        {
-            public void Execute(int count)
-            {
-                VkErrors.ThrowIfNumberIsNegative(() => count);
-            }
-        }
+	[TestFixture]
+	public class VkErrorsTest : BaseTest
+	{
+		private class TestClass
+		{
+			public void Execute(int count)
+			{
+				VkErrors.ThrowIfNumberIsNegative(() => count);
+			}
+		}
 
-        [Test]
-        public void ThrowIfNumberNotInRange_LessThenMin_ThrowsException()
-        {
-	        Assert.Throws<ArgumentOutOfRangeException>(() => VkErrors.ThrowIfNumberNotInRange(2, 5, 10));
-        }
+		[Test]
+		public void ThrowIfNumberNotInRange_LessThenMin_ThrowsException()
+		{
+			Assert.Throws<ArgumentOutOfRangeException>(() => VkErrors.ThrowIfNumberNotInRange(2, 5, 10));
+		}
 
-        [Test]
-        public void ThrowIfNumberNotInRange_MoreThanMax_ThrowsException()
-        {
+		[Test]
+		public void ThrowIfNumberNotInRange_MoreThanMax_ThrowsException()
+		{
 			Assert.Throws<ArgumentOutOfRangeException>(() => VkErrors.ThrowIfNumberNotInRange(12, 5, 10));
 		}
 
-        [Test]
-        public void ThrowIfNumberNotInRange_ValueInRange_ExceptionNotThrowed()
-        {
-            VkErrors.ThrowIfNumberNotInRange(5, 2, 7);
-            VkErrors.ThrowIfNumberNotInRange(5, 5, 7);
-            VkErrors.ThrowIfNumberNotInRange(5, 2, 5);
-        }
+		[Test]
+		public void ThrowIfNumberNotInRange_ValueInRange_ExceptionNotThrowed()
+		{
+			VkErrors.ThrowIfNumberNotInRange(5, 2, 7);
+			VkErrors.ThrowIfNumberNotInRange(5, 5, 7);
+			VkErrors.ThrowIfNumberNotInRange(5, 2, 5);
+		}
 
-        [Test]
-        public void ThrowIfNumberIsNegative_InnerTestClass_ThrowException()
-        {
-            var cls = new TestClass();
+		[Test]
+		public void ThrowIfNumberIsNegative_InnerTestClass_ThrowException()
+		{
+			var cls = new TestClass();
 			Assert.Throws<ArgumentException>(() => cls.Execute(-2));
 		}
 
-        [Test]
-        public void ThrowIfNullOrEmpty_EmptyString_ThrowException()
-        {
+		[Test]
+		public void ThrowIfNullOrEmpty_EmptyString_ThrowException()
+		{
 			// TODO На MONO код падает
 			var param = "";
 			var ex = Assert.Throws<ArgumentNullException>(() => VkErrors.ThrowIfNullOrEmpty(() => param));
 
 			StringAssert.StartsWith("Параметр не должен быть равен null", ex.Message);
 			StringAssert.Contains("param", ex.Message);
+		}
 
-        }
-
-        [Test]
-        public void ThrowIfNumberIsNegative_ExpressionVersion_NullabeLong()
-        {
-            long? param = -1;
+		[Test]
+		public void ThrowIfNumberIsNegative_ExpressionVersion_NullabeLong()
+		{
+			long? param = -1;
 			var ex = Assert.Throws<ArgumentException>(() => VkErrors.ThrowIfNumberIsNegative(() => param));
 
 			StringAssert.StartsWith("Отрицательное значение.", ex.Message);
@@ -68,19 +67,19 @@ namespace VkNet.Tests.Utils
 		[Test]
 		[Ignore("")] // TODO important: strange error, with nullable long everytihng ok, check later on windows OS
 		public void ThrowIfNumberIsNegative_ExpressionVersion_Long()
-        {
-            const long paramName = -1;
+		{
+			const long paramName = -1;
 
 			var ex = Assert.Throws<ArgumentException>(() => VkErrors.ThrowIfNumberIsNegative(() => paramName));
 			StringAssert.StartsWith("Отрицательное значение.", ex.Message);
 			StringAssert.Contains("paramName", ex.Message);
 		}
 
-        [Test]
-        public void IfErrorThrowException_NormalCase_NothingExceptions()
-        {
-            const string json =
-                @"{
+		[Test]
+		public void IfErrorThrowException_NormalCase_NothingExceptions()
+		{
+			const string json =
+				@"{
                     'response': [
                       {
                         'uid': 1,
@@ -95,14 +94,14 @@ namespace VkNet.Tests.Utils
                     ]
                   }";
 
-            VkErrors.IfErrorThrowException(json);
-        }
+			VkErrors.IfErrorThrowException(json);
+		}
 
-        [Test]
-        public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailExcption()
-        {
-            const string json =
-                @"{
+		[Test]
+		public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailExcption()
+		{
+			const string json =
+				@"{
                     'error': {
                       'error_code': 5,
                       'error_msg': 'User authorization failed: invalid access_token.',
@@ -133,11 +132,11 @@ namespace VkNet.Tests.Utils
 			Assert.That(ex.ErrorCode, Is.EqualTo(5));
 		}
 
-        [Test]
-        public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
-        {
-            const string json =
-                @"{
+		[Test]
+		public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
+		{
+			const string json =
+				@"{
                     'error': {
                       'error_code': 260,
                       'error_msg': 'Access to the groups list is denied due to the user privacy settings.',
@@ -161,14 +160,17 @@ namespace VkNet.Tests.Utils
                       ]
                     }
                   }";
-	        var ex = Assert.Throws<GroupsListAccessDeniedException>(() => VkErrors.IfErrorThrowException(json));
-			StringAssert.AreEqualIgnoringCase("Access to the groups list is denied due to the user privacy settings.", ex.Message);
-        }
 
-        [Test]
-        public void IfErrorThrowException_WrongJson_ThrowVkApiException()
-        {
-            const string json = "ThisIsNotJson";
+			var ex = Assert.Throws<GroupsListAccessDeniedException>(() => VkErrors.IfErrorThrowException(json));
+
+			StringAssert.AreEqualIgnoringCase("Access to the groups list is denied due to the user privacy settings.",
+				ex.Message);
+		}
+
+		[Test]
+		public void IfErrorThrowException_WrongJson_ThrowVkApiException()
+		{
+			const string json = "ThisIsNotJson";
 			var ex = Assert.Throws<VkApiException>(() => VkErrors.IfErrorThrowException(json));
 
 			Assert.That(ex.Message, Is.EqualTo("Wrong json data."));
@@ -178,6 +180,7 @@ namespace VkNet.Tests.Utils
 		public void Call_ThrowsCaptchaNeededException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
+
 			Json =
 				@"{
 					'error': {
@@ -213,9 +216,86 @@ namespace VkNet.Tests.Utils
 					  'captcha_img': 'http://api.vk.com/captcha.php?sid=548747100284&s=1'
 					}
 				  }";
+
 			var ex = Assert.Throws<CaptchaNeededException>(() => Api.Call("messages.send", VkParameters.Empty, true));
 			Assert.That(ex.Sid, Is.EqualTo(548747100691));
 			Assert.That(ex.Img, Is.EqualTo(new Uri("http://api.vk.com/captcha.php?sid=548747100284&s=1")));
+		}
+
+		[Test]
+		public void Call_ThrowsPostLimitException()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json =
+				@"{
+					'error': {
+						'error_code': 214,
+						'error_msg': 'Access to adding post denied: you can only add 50 posts a day',
+						'request_params': [
+							{
+								'key': 'oauth',
+								'value': '1'
+							},
+							{
+								'key': 'method',
+								'value': 'wall.post'
+							},
+							{
+								'key': 'owner_id',
+								'value': '-166621386'
+							},
+							{
+								'key': 'message',
+								'value': 'РРіСЂР° #24\nРЎС‚Р°С‚СѓСЃ: Р°РєС‚РёРІРЅР°'
+							},
+							{
+								'key': 'v',
+								'value': '5.74'
+							}
+						]
+					}
+				}";
+
+			Assert.Throws<PostLimitException>(() => Api.Call("messages.send", VkParameters.Empty, true));
+		}
+
+		[Test]
+		public void Call_ThrowsPostLimitException_103()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json =
+				@"{
+					'error': {
+						'error_code': 103,
+						'error_msg': 'Access to adding post denied: you can only add 50 posts a day',
+						'request_params': [
+							{
+								'key': 'oauth',
+								'value': '1'
+							},
+							{
+								'key': 'method',
+								'value': 'wall.post'
+							},
+							{
+								'key': 'owner_id',
+								'value': '-166621386'
+							},
+							{
+								'key': 'message',
+								'value': 'РРіСЂР° #24\nРЎС‚Р°С‚СѓСЃ: Р°РєС‚РёРІРЅР°'
+							},
+							{
+								'key': 'v',
+								'value': '5.74'
+							}
+						]
+					}
+				}";
+
+			Assert.Throws<OutOfLimitsException>(() => Api.Call("messages.send", VkParameters.Empty, true));
 		}
 	}
 }

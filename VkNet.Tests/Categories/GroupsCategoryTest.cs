@@ -672,7 +672,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(() => groups.Search(new GroupsSearchParams
 			{
 				Query = ""
-			}), Throws.InstanceOf<ArgumentNullException>());
+			}), Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]

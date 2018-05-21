@@ -6,7 +6,7 @@
     public sealed class Display : SafetyEnum<Display>
     {
 		/// <summary>
-        /// Обычная страница.
+        /// Форма авторизации в отдельном окне;
         /// </summary>
         public static readonly Display Page = RegisterPossibleValue("page");
 
@@ -18,7 +18,7 @@
         /// <summary>
         /// Для мобильных устройств.
         /// </summary>
-        public static readonly Display Wap = RegisterPossibleValue("wap");
+        public static readonly Display Mobile = RegisterPossibleValue("mobile");
 
     }
 }
