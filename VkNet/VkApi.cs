@@ -210,6 +210,9 @@ namespace VkNet
         public ISearchCategory Search { get; private set; }
 
         /// <inheritdoc />
+        public IStorageCategory Storage { get; set; }
+
+        /// <inheritdoc />
         public IAdsCategory Ads { get; private set; }
 
         #endregion
@@ -779,6 +782,7 @@ namespace VkNet
             PollsCategory = new PollsCategory(this);
             Search = new SearchCategory(this);
             Ads = new AdsCategory(this);
+            Storage = new StorageCategory(this);
 
             RequestsPerSecond = 3;
 

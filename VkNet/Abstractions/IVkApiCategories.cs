@@ -136,5 +136,15 @@ namespace VkNet.Abstractions
         /// API для работы с поиском. 
         /// </summary>
         ISearchCategory Search { get; }
+        
+        /// <summary>
+        /// Storage Методы для работы с переменными в приложении.
+        /// </summary>
+        IStorageCategory Storage { get; }
+        
+        /// <summary>
+        /// Методы этого класса позволяют производить действия с рекламными кабинетам пользователя.
+        /// </summary>
+        IAdsCategory Ads { get; }
     }
 }
