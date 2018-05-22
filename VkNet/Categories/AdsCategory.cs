@@ -37,12 +37,14 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
         /// </remarks>
         /// 
-        public ReadOnlyCollection<AdsAccount> GetAccounts(bool skipAuthorization = false)
+        public ReadOnlyCollection<AdsAccount> GetAccounts()
         {
             // TODO Выяснить, почему не работает с дженериком
-            //return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", new VkParameters(), skipAuthorization);
-            return _vk.Call("ads.getAccounts", new VkParameters(), skipAuthorization).ToReadOnlyCollectionOf<AdsAccount>(x => x);
+            return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", new VkParameters());
+            //return _vk.Call("ads.getAccounts", new VkParameters(), skipAuthorization).ToReadOnlyCollectionOf<AdsAccount>(x => x);
         }
+
+
 
     }
 }

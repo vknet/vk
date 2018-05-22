@@ -24,7 +24,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
         /// </remarks>
-        Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync(bool skipAuthorization = false);
+        Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync();
 
     }
 }

@@ -38,7 +38,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
         /// </remarks>
-        ReadOnlyCollection<AdsAccount> GetAccounts(bool skipAuthorization = false);
+        ReadOnlyCollection<AdsAccount> GetAccounts();
 
         // getAds
         // getAdsLayout

@@ -9,9 +9,9 @@ namespace VkNet.Categories
     public partial class AdsCategory
     {
         /// <inheritdoc />
-        public async Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync(bool skipAuthorization = false)
+        public async Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync()
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Ads.GetAccounts(skipAuthorization));
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Ads.GetAccounts());
         }
 
     }
