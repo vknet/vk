@@ -1,13 +1,15 @@
 ﻿using VkNet.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 using VkNet.Enums.Filters;
-using System.Collections.ObjectModel;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Categories
 {
@@ -39,12 +41,8 @@ namespace VkNet.Categories
         /// 
         public ReadOnlyCollection<AdsAccount> GetAccounts()
         {
-            // TODO Выяснить, почему не работает с дженериком
-            return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", new VkParameters());
-            //return _vk.Call("ads.getAccounts", new VkParameters(), skipAuthorization).ToReadOnlyCollectionOf<AdsAccount>(x => x);
-        }
-
-
+			return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", new VkParameters());
+		}
 
     }
 }
