@@ -7,8 +7,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
+using System.Collections.ObjectModel;
 
 namespace VkNet.Categories
 {
@@ -38,9 +37,11 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
         /// </remarks>
         /// 
-        public AdsGetAccountsObject GetAccounts(bool skipAuthorization = false)
+        public ReadOnlyCollection<AdsAccount> GetAccounts(bool skipAuthorization = false)
         {
-            return _vk.Call<AdsGetAccountsObject>("ads.getAccounts", new VkParameters(), skipAuthorization);
+            // TODO Выяснить, почему не работает с дженериком
+            //return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", new VkParameters(), skipAuthorization);
+            return _vk.Call("ads.getAccounts", new VkParameters(), skipAuthorization).ToReadOnlyCollectionOf<AdsAccount>(x => x);
         }
 
     }

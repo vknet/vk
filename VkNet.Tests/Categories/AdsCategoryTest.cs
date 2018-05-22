@@ -66,13 +66,13 @@ namespace VkNet.Tests.Categories
 
             var accounts = GetMockedAdsCategory(url, json).GetAccounts();
 
-            Assert.That(accounts.Accounts.Count, Is.EqualTo(3));
+            Assert.That(accounts.Count, Is.EqualTo(3));
 
-            Assert.That(accounts.Accounts[1].AccountId, Is.EqualTo(1900013324));
-            Assert.That(accounts.Accounts[1].AccountType, Is.EqualTo(AccountType.Agency));
-            Assert.That(accounts.Accounts[1].AccountStatus, Is.EqualTo(AccountStatus.Active));
-            Assert.That(accounts.Accounts[1].AccountName, Is.EqualTo("Кабинет агентства"));
-            Assert.That(accounts.Accounts[1].AccessRole, Is.EqualTo(AccessRole.Manager));
+            Assert.That(accounts[1].AccountId, Is.EqualTo(1900013324));
+            Assert.That(accounts[1].AccountType, Is.EqualTo(AccountType.Agency));
+            Assert.That(accounts[1].AccountStatus, Is.EqualTo(AccountStatus.Active));
+            Assert.That(accounts[1].AccountName, Is.EqualTo("Кабинет агентства"));
+            Assert.That(accounts[1].AccessRole, Is.EqualTo(AccessRole.Manager));
         }
 
         #endregion  

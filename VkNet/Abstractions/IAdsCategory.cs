@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using VkNet.Abstractions.Async;
 using VkNet.Enums.Filters;
@@ -37,13 +38,27 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
         /// </remarks>
-        AdsGetAccountsObject GetAccounts(bool skipAuthorization = false);
+        ReadOnlyCollection<AdsAccount> GetAccounts(bool skipAuthorization = false);
 
         // getAds
         // getAdsLayout
         // getAdsTargeting
         // getBudget
+
+        /// <summary>
+        /// Возвращает список рекламных кабинетов.
+        /// </summary>
+        /// <returns>
+        /// В случае успеха возвращается список рекламных кабинетов.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
+        /// </remarks>
+
         // getCampaigns
+        // 
+
+
         // getCategories
         // getClients
         // getDemographics
