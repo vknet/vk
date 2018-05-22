@@ -40,7 +40,7 @@ namespace VkNet.Categories
         /// 
         public AdsGetAccountsObject GetAccounts(bool skipAuthorization = false)
         {
-            return _vk.Call("ads.getAccounts", new VkParameters(), skipAuthorization);
+            return _vk.Call<AdsGetAccountsObject>("ads.getAccounts", new VkParameters(), skipAuthorization);
         }
 
     }

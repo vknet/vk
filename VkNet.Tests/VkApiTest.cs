@@ -39,6 +39,7 @@ namespace VkNet.Tests
             Assert.That(Api.Stats, Is.Not.Null);
             Assert.That(Api.Auth, Is.Not.Null);
             Assert.That(Api.Markets, Is.Not.Null);
+            Assert.That(Api.Ads, Is.Not.Null);
         }
 
         [Test]
