@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories
 	public class NotificationsCategoryTests: BaseTest
 	{
 		[Test]
-		public void Get()
+		public void MarkAsViewed()
 		{
 			Json = @"
             {
