@@ -13,6 +13,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using NLog;
 using VkNet.Abstractions;
+using VkNet.Abstractions.Utils;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
@@ -57,6 +58,11 @@ namespace VkNet
         /// Таймер.
         /// </summary>
         private Timer _expireTimer;
+
+        /// <summary>
+        /// Rest Client
+        /// </summary>
+        public IRestClient RestClient;
 
         /// <summary>
         /// The expire timer lock
@@ -203,6 +209,9 @@ namespace VkNet
         /// <inheritdoc />
         public ISearchCategory Search { get; private set; }
 
+        /// <inheritdoc />
+        public IAdsCategory Ads { get; private set; }
+
         #endregion
 
         /// <inheritdoc />
@@ -302,6 +311,8 @@ namespace VkNet
                     @params.ProxyLogin,
                     @params.ProxyPassword
                 );
+
+                RestClient.Proxy = Browser.Proxy;
             }
 
             //если токен не задан - обычная авторизация
@@ -408,14 +419,13 @@ namespace VkNet
                 throw new AccessTokenInvalidException(message);
             }
 
-            var url = "";
+            var url = $"https://api.vk.com/method/{methodName}";
             var answer = "";
 
-            void SendRequest()
+            void SendRequest(string method, IDictionary<string, string> @params)
             {
-                url = $"https://api.vk.com/method/{methodName}";
                 LastInvokeTime = DateTimeOffset.Now;
-                answer = Browser.GetJson(url, parameters);
+                answer = RestClient.PostAsync(new Uri($"https://api.vk.com/method/{method}"), @params).Result.Value;
             }
 
             // Защита от превышения количества запросов в секунду
@@ -439,16 +449,16 @@ namespace VkNet
 #endif
                     }
 
-                    SendRequest();
+                    SendRequest(methodName, parameters);
                 }
             }
             else if (skipAuthorization)
             {
-                SendRequest();
+                SendRequest(methodName, parameters);
             }
 
-            _logger?.Debug(Utilities.PreetyPrintApiUrl(url));
-            _logger?.Debug(Utilities.PreetyPrintJson(answer));
+            _logger?.Trace($"Uri = \"{url}\"");
+            _logger?.Trace($"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(answer)}");
 
             VkErrors.IfErrorThrowException(answer);
 
@@ -474,7 +484,7 @@ namespace VkNet
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             StopTimer();
         }
@@ -493,7 +503,8 @@ namespace VkNet
                 throw new NeedValidationException(message, validateUrl);
             }
 
-            SetTokenProperties(authorization);
+            AccessToken = authorization.AccessToken;
+            UserId = authorization.UserId;
         }
 
         #region private
@@ -739,6 +750,7 @@ namespace VkNet
             Browser = serviceProvider.GetRequiredService<IBrowser>();
             CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
             _logger = serviceProvider.GetService<ILogger>();
+            RestClient = serviceProvider.GetRequiredService<IRestClient>();
             Users = new UsersCategory(this);
             Friends = new FriendsCategory(this);
             Status = new StatusCategory(this);
@@ -765,6 +777,7 @@ namespace VkNet
             Execute = new ExecuteCategory(this);
             PollsCategory = new PollsCategory(this);
             Search = new SearchCategory(this);
+            Ads = new AdsCategory(this);
 
             RequestsPerSecond = 3;
 

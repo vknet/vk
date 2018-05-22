@@ -177,16 +177,7 @@ namespace VkNet.Categories
 			return response["list_id"];
 		}
 
-		/// <summary>
-		/// Удаляет существующий список друзей текущего пользователя.
-		/// </summary>
-		/// <param name="listId">Идентификатор списка друзей, который необходимо удалить. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-		/// <returns>
-		/// После успешного выполнения возвращает 1.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/friends.deleteList
-		/// </remarks>
+		/// <inheritdoc />
 		public bool DeleteList(long listId)
 		{
 			var parameters = new VkParameters {

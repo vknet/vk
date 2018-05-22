@@ -57,9 +57,9 @@ namespace VkNet.Tests.Categories.Messages
         }
 
         [Test]
-        public void GetLongPollHistory_ThrowArgumentNullException()
+        public void GetLongPollHistory_ThrowArgumentException()
         {
-            Assert.That(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()), Throws.InstanceOf<ArgumentNullException>());
+            Assert.That(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()), Throws.InstanceOf<ArgumentException>());
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using VkNet.Enums;
@@ -37,6 +39,7 @@ namespace VkNet.Tests
             Assert.That(Api.Stats, Is.Not.Null);
             Assert.That(Api.Auth, Is.Not.Null);
             Assert.That(Api.Markets, Is.Not.Null);
+            Assert.That(Api.Ads, Is.Not.Null);
         }
 
         [Test]
@@ -45,9 +48,9 @@ namespace VkNet.Tests
             Json = @"{ ""response"": 2 }";
             Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
             var invocationCount = 0;
-            Mock.Get(Api.Browser)
-                .Setup(m => m.GetJson(It.IsAny<string>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-                .Returns(Json)
+            Mock.Get(Api.RestClient)
+                .Setup(m => m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+                .Returns(Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url)))
                 .Callback(delegate { invocationCount++; });
 
             var start = DateTimeOffset.Now;
@@ -162,6 +165,13 @@ namespace VkNet.Tests
         public void Dispose()
         {
             Api.Dispose();
+        }
+
+        [Test]
+        public void Validate()
+        {
+            var uri = new Uri("https://m.vk.com/activation?act=validate&api_hash=f2fed5f22ebadc301e&hash=c8acf371111c938417");
+            Api.Validate(uri.ToString(), "+7894561230");
         }
     }
 }
