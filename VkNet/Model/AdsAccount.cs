@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -16,27 +19,35 @@ namespace VkNet.Model
         /// <summary>
         /// Идентификатор рекламного кабинета.
         /// </summary>
+        [JsonProperty("account_id")]
         public ulong AccountId { get; set; }
 
         /// <summary>
         /// Тип рекламного кабинета.
         /// </summary>
+        [JsonProperty("account_type")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public AccountType AccountType { get; set; }
 
         /// <summary>
         /// Cтатус рекламного кабинета.
         /// </summary>
+        [JsonProperty("account_status")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public AccountStatus AccountStatus { get; set; }
 
 
         /// <summary>
         /// Название аккаунта
         /// </summary>
+        [JsonProperty("account_name")]
         public string AccountName { get; set; }
 
         /// <summary>
         /// Права пользователя в рекламном кабинете.
         /// </summary>
+        [JsonProperty("access_role")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public AccessRole AccessRole { get; set; }
 
         #region Методы

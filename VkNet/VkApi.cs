@@ -401,7 +401,8 @@ namespace VkNet
                     new VkCollectionJsonConverter(),
                     new VkDefaultJsonConverter(),
                     new UnixDateTimeConverter(),
-                    new AttachmentJsonConverter()
+                    new AttachmentJsonConverter(),
+                    new StringEnumConverter()
                 }
             };
 

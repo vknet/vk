@@ -1,6 +1,7 @@
 ﻿using VkNet.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using VkNet.Enums;
 using VkNet.Model;
@@ -38,10 +39,10 @@ namespace VkNet.Categories
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
         /// </remarks>
         /// 
-        public AdsGetAccountsObject GetAccounts(bool skipAuthorization = false)
+        public ReadOnlyCollection<AdsAccount> GetAccounts()
         {
-            return _vk.Call<AdsGetAccountsObject>("ads.getAccounts", new VkParameters(), skipAuthorization);
-        }
+			return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", new VkParameters());
+		}
 
     }
 }

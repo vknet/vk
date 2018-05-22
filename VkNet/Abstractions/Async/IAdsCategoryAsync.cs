@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -23,7 +24,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
         /// </remarks>
-        Task<AdsGetAccountsObject> GetAccountsAsync(bool skipAuthorization = false);
+        Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync();
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -8,9 +9,9 @@ namespace VkNet.Categories
     public partial class AdsCategory
     {
         /// <inheritdoc />
-        public async Task<AdsGetAccountsObject> GetAccountsAsync(bool skipAuthorization = false)
+        public async Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync()
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Ads.GetAccounts(skipAuthorization));
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Ads.GetAccounts());
         }
 
     }
