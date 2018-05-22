@@ -215,6 +215,9 @@ namespace VkNet
         /// <inheritdoc />
         public IAdsCategory Ads { get; private set; }
 
+        /// <inheritdoc />
+        public INotificationsCategory Notifications { get; set; }
+
         #endregion
 
         /// <inheritdoc />
@@ -783,6 +786,7 @@ namespace VkNet
             Search = new SearchCategory(this);
             Ads = new AdsCategory(this);
             Storage = new StorageCategory(this);
+            Notifications = new NotificationsCategory(this);
 
             RequestsPerSecond = 3;
 

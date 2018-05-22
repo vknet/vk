@@ -146,5 +146,10 @@ namespace VkNet.Abstractions
         /// Методы этого класса позволяют производить действия с рекламными кабинетам пользователя.
         /// </summary>
         IAdsCategory Ads { get; }
+        
+        /// <summary>
+        /// Notifications
+        /// </summary>
+        INotificationsCategory Notifications { get; }
     }
 }
