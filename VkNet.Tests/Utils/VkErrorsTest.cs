@@ -44,17 +44,6 @@ namespace VkNet.Tests.Utils
 		}
 
 		[Test]
-		public void ThrowIfNullOrEmpty_EmptyString_ThrowException()
-		{
-			// TODO На MONO код падает
-			var param = "";
-			var ex = Assert.Throws<ArgumentNullException>(() => VkErrors.ThrowIfNullOrEmpty(() => param));
-
-			StringAssert.StartsWith("Параметр не должен быть равен null", ex.Message);
-			StringAssert.Contains("param", ex.Message);
-		}
-
-		[Test]
 		public void ThrowIfNumberIsNegative_ExpressionVersion_NullabeLong()
 		{
 			long? param = -1;

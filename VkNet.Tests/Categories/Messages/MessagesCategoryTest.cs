@@ -238,7 +238,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(wall, Is.Not.Null);
 			Assert.That(wall.Id, Is.EqualTo(6194));
 			Assert.That(wall.FromId, Is.EqualTo(-1267));
-			//Assert.That(wall.ToId, Is.EqualTo(-7654));
+
 			Assert.That(wall.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1414992610)));
 			Assert.That(wall.PostType, Is.EqualTo(PostType.Post));
 			Assert.That(wall.Text, Is.EqualTo(string.Empty));
@@ -522,7 +522,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(response.Chats[0].Id, Is.EqualTo(109));
 			Assert.That(response.Chats[0].Title, Is.EqualTo("Андрей, Григорий"));
-			Assert.That(response.Chats[0].Users.Count(), Is.EqualTo(3));
+			Assert.That(response.Chats[0].Users.Count, Is.EqualTo(3));
 			Assert.That(response.Chats[0].Users.ElementAt(0), Is.EqualTo(66748));
 			Assert.That(response.Chats[0].Users.ElementAt(1), Is.EqualTo(6492));
 			Assert.That(response.Chats[0].Users.ElementAt(2), Is.EqualTo(1708231));
@@ -633,13 +633,6 @@ namespace VkNet.Tests.Categories
 		{
 			var cat = new MessagesCategory(new VkApi());
 			Assert.That(() => cat.Delete(new ulong[]{1}, false, false), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void Delete_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.Delete(new ulong[] { 1 }, false, false), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -879,7 +872,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(chat.Id, Is.EqualTo(2));
 			Assert.That(chat.Title, Is.EqualTo("test chat title"));
 			Assert.That(chat.AdminId, Is.EqualTo(4793858));
-			Assert.That(chat.Users.Count(), Is.EqualTo(3));
+			Assert.That(chat.Users.Count, Is.EqualTo(3));
 			Assert.That(chat.Users.ElementAt(0), Is.EqualTo(4793858));
 			Assert.That(chat.Users.ElementAt(1), Is.EqualTo(5041431));
 			Assert.That(chat.Users.ElementAt(2), Is.EqualTo(10657891));
@@ -924,6 +917,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var result = Cat.EditChat(2, "new title");
+			Assert.True(result);
 		}
 
 		[Test]

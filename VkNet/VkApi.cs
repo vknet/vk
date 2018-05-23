@@ -218,6 +218,9 @@ namespace VkNet
         /// <inheritdoc />
         public INotificationsCategory Notifications { get; set; }
 
+        /// <inheritdoc />
+        public IWidgetsCategory Widgets { get; set; }
+
         #endregion
 
         /// <inheritdoc />
@@ -396,23 +399,26 @@ namespace VkNet
 
         /// <inheritdoc />
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
+        public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
         {
             var answer = CallBase(methodName, parameters, skipAuthorization);
 
-            var settings = new JsonSerializerSettings
+            if (!jsonConverters.Any())
             {
-                Converters = new List<JsonConverter>
-                {
+                return JsonConvert.DeserializeObject<T>(
+                    answer, 
                     new VkCollectionJsonConverter(),
                     new VkDefaultJsonConverter(),
                     new UnixDateTimeConverter(),
                     new AttachmentJsonConverter(),
                     new StringEnumConverter()
-                }
-            };
+                );
+            }
 
-            return JsonConvert.DeserializeObject<T>(answer, settings);
+            return JsonConvert.DeserializeObject<T>(
+                answer, 
+                jsonConverters
+            );
         }
 
         /// <inheritdoc />
@@ -432,7 +438,8 @@ namespace VkNet
             void SendRequest(string method, IDictionary<string, string> @params)
             {
                 LastInvokeTime = DateTimeOffset.Now;
-                answer = RestClient.PostAsync(new Uri($"https://api.vk.com/method/{method}"), @params).Result.Value;
+                var response = RestClient.PostAsync(new Uri($"https://api.vk.com/method/{method}"), @params).Result;
+                answer = response.Value ?? response.Message;
             }
 
             // Защита от превышения количества запросов в секунду
@@ -787,6 +794,7 @@ namespace VkNet
             Ads = new AdsCategory(this);
             Storage = new StorageCategory(this);
             Notifications = new NotificationsCategory(this);
+            Widgets = new WidgetsCategory(this);
 
             RequestsPerSecond = 3;
 

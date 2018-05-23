@@ -532,18 +532,6 @@ namespace VkNet.Tests.Categories
         }
 
         [Test]
-        [Ignore("undone")]
-        public void GetFaculties_SuchUniversityDoesNotExist()
-        {
-            //            const string url = "https://api.vk.com/method/database.getFaculties";
-            //            var db = _db;
-            //
-            //            List<Faculty> faculties = db.GetFaculties(999999);
-
-            Assert.Fail("undone");
-        }
-
-        [Test]
         public void GetFaculties_ListVstuFaculties()
         {
             const string url = "https://api.vk.com/method/database.getFaculties";

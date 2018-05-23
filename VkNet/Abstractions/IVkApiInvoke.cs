@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using VkNet.Exception;
 using VkNet.Utils;
 
@@ -36,8 +37,9 @@ namespace VkNet.Abstractions
         /// <param name="methodName">Название метода.</param>
         /// <param name="parameters">Параметры.</param>
         /// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+        /// <param name="jsonConverters">JsonConverters</param>
         /// <returns></returns>
-        T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false);
+        T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters);
 
         /// <summary>
         /// Вызвать метод.

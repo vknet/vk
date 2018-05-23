@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using VkNet.Abstractions;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -11,6 +12,7 @@ namespace VkNet.Categories
 		/// API.
 		/// </summary>
 		private readonly VkApi _vk;
+
 		/// <inheritdoc/>
 		/// <param name = "api">
 		/// Api vk.com
@@ -21,9 +23,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> Get(ulong? count = null, string startFrom = null, IEnumerable<string> filters = null, long? startTime = null, long? endTime = null)
+		public IEnumerable<NotificationGetResult> Get(ulong? count = null, string startFrom = null,
+			IEnumerable<string> filters = null, long? startTime = null, long? endTime = null)
 		{
-			return _vk.Call<IEnumerable<object>>("notifications.get", new VkParameters
+			return _vk.Call<IEnumerable<NotificationGetResult>>("notifications.get", new VkParameters
 			{
 				{"count", count},
 				{"start_from", startFrom},

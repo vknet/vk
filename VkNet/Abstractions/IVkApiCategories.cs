@@ -151,5 +151,10 @@ namespace VkNet.Abstractions
         /// Notifications
         /// </summary>
         INotificationsCategory Notifications { get; }
+        
+        /// <summary>
+        /// Widgets
+        /// </summary>
+        IWidgetsCategory Widgets { get; }
     }
 }
