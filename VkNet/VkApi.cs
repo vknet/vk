@@ -438,7 +438,8 @@ namespace VkNet
             void SendRequest(string method, IDictionary<string, string> @params)
             {
                 LastInvokeTime = DateTimeOffset.Now;
-                answer = RestClient.PostAsync(new Uri($"https://api.vk.com/method/{method}"), @params).Result.Value;
+                var response = RestClient.PostAsync(new Uri($"https://api.vk.com/method/{method}"), @params).Result;
+                answer = response.Value ?? response.Message;
             }
 
             // Защита от превышения количества запросов в секунду
