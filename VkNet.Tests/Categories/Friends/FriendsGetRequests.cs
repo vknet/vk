@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories.Friends
             }";
             var result = Api.Friends.GetRequests(new FriendsGetRequestsParams());
             Assert.NotNull(result);
-            Assert.AreEqual(result.Count, 1);     
+            Assert.AreEqual(1, result.Count);     
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace VkNet.Tests.Categories.Friends
                 Extended = true
             });
             Assert.NotNull(result);
-            Assert.AreEqual(result.Count, 1);  
+            Assert.AreEqual(1, result.Count);  
         }
     }
 }

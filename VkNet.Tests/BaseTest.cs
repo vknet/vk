@@ -52,7 +52,7 @@ namespace VkNet.Tests
 				{
 					if (string.IsNullOrWhiteSpace(Json))
 					{
-						throw new ArgumentNullException(nameof(Json), @"Json не может быть равен null. Обновите значение поля Json");
+						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
 					}
 
 					return Json;
@@ -74,7 +74,7 @@ namespace VkNet.Tests
 				{
 					if (string.IsNullOrWhiteSpace(Json))
 					{
-						throw new ArgumentNullException(nameof(Json), @"Json не может быть равен null. Обновите значение поля Json");
+						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
 					}
 
 					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
@@ -123,7 +123,7 @@ namespace VkNet.Tests
 		{
 			if (string.IsNullOrWhiteSpace(Url))
 			{
-				throw new ArgumentNullException(nameof(Json), @"Url не может быть равен null. Обновите значение поля Url");
+				throw new NullReferenceException(@"Url не может быть равен null. Обновите значение поля Url");
 			}
 
 			Url = Url.Replace("\'", "%27");

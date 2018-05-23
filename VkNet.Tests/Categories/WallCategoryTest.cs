@@ -318,9 +318,8 @@ namespace VkNet.Tests.Categories
 		#endregion
 
 		#region Wall.Post
-		//TODO: Проверить покрытие кода тестами
 
-	    [Test]
+		[Test]
 	    public void Post_ReturnValidateNeeded()
 	    {
 	        const string json =
@@ -416,7 +415,6 @@ namespace VkNet.Tests.Categories
 		//[Ignore("")]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			//This.Action(() => ).Throws<AccessTokenInvalidException>();
 			Assert.That(() => _defaultWall.Delete(1, 1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -758,7 +756,6 @@ namespace VkNet.Tests.Categories
 
 			var attach = posts.WallPosts[0].CopyHistory[0].Attachment;
 			Assert.That(attach, Is.Not.Null);
-			//Assert.That(attach.Type, Is.EqualTo(typeof (PhotosList)));
 			Assert.That(attach.Instance, Is.Null);
 		}
 	}
