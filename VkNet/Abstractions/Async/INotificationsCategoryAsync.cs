@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model;
 
 namespace VkNet.Abstractions.Async
 {
@@ -142,7 +143,7 @@ namespace VkNet.Abstractions.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
 		/// </remarks>
-		Task<IEnumerable<object>> GetAsync(ulong? count = null, string startFrom = null, IEnumerable<string> filters = null,
+		Task<IEnumerable<NotificationGetResult>> GetAsync(ulong? count = null, string startFrom = null, IEnumerable<string> filters = null,
 			long? startTime = null, long? endTime = null);
 
 		/// <summary>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using VkNet.Abstractions.Async;
+using VkNet.Model;
 
 namespace VkNet.Abstractions
 {
@@ -145,7 +146,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
 		/// </remarks>
-		IEnumerable<object> Get(ulong? count = null, string startFrom = null, IEnumerable<string> filters = null,
+		IEnumerable<NotificationGetResult> Get(ulong? count = null, string startFrom = null, IEnumerable<string> filters = null,
 			long? startTime = null, long? endTime = null);
 
 		/// <summary>
