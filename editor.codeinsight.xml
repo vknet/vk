@@ -1,0 +1,6 @@
+<application>
+  <component name="CodeInsightSettings">
+    <option name="AUTOCOMPLETE_ON_CODE_COMPLETION" value="false" />
+    <option name="INSERT_BRACE_ON_ENTER" value="false" />
+  </component>
+</application>

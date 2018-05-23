@@ -1,0 +1,17 @@
+<application>
+  <component name="XDebuggerSettings">
+    <data-views>
+      <option name="valueLookupDelay" value="150" />
+    </data-views>
+    <general />
+    <debuggers>
+      <debugger id="dotnet_debugger">
+        <configuration>
+          <option name="remappedSourceLocationsMap">
+            <map />
+          </option>
+        </configuration>
+      </debugger>
+    </debuggers>
+  </component>
+</application>
