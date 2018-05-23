@@ -12,4 +12,4 @@ env:
 before_script:
   - dotnet restore ./VkNet.sln
 script:  
-  - dotnet test ./VkNet.Tests/VkNet.Tests.csproj -f netcoreapp2.0
+  - dotnet test ./VkNet.Tests/VkNet.Tests.csproj -f netcoreapp2.0 --no-restore 
