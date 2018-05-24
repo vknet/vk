@@ -1,5 +1,6 @@
 ﻿using System;
-
+using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums
 {
@@ -7,6 +8,7 @@ namespace VkNet.Enums.SafetyEnums
 	/// Порядок сортировки членов группы.
 	/// </summary>
 	[Serializable]
+	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	{
 		/// <summary>

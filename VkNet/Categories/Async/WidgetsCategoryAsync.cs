@@ -17,7 +17,8 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> GetPagesAsync(long? widgetApiId = null, string order = null, string period = null, ulong? offset = null, ulong? count = null)
+		public async Task<VkCollection<WidgetPage>> GetPagesAsync(long? widgetApiId = null, string order = null,
+			string period = null, ulong? offset = null, ulong? count = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Widgets.GetPages(widgetApiId, order, period, offset, count));
 		}

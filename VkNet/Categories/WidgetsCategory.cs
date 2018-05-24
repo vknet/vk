@@ -1,5 +1,4 @@
-﻿using System;
-using VkNet.Abstractions;
+﻿using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -31,10 +30,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetPages(long? widgetApiId = null, string order = null, string period = null, ulong? offset = null,
+		public VkCollection<WidgetPage> GetPages(long? widgetApiId = null, string order = null, string period = null, ulong? offset = null,
 			ulong? count = null)
 		{
-			return _vk.Call<Uri>("widgets.getPages",
+			return _vk.Call<VkCollection<WidgetPage>>("widgets.getPages",
 				new VkParameters
 				{
 					{"widget_api_id", widgetApiId},
@@ -42,7 +41,7 @@ namespace VkNet.Categories
 					{"period", period},
 					{"offset", offset},
 					{"count", count}
-				});
+				}, false, new VkCollectionJsonConverter("pages"));
 		}
 	}
 }

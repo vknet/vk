@@ -65,6 +65,6 @@ namespace VkNet.Abstractions.Async
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/widgets.getPages
         /// </remarks>
-        Task<Uri> GetPagesAsync(long? widgetApiId = null, string order = null, string period = null, ulong? offset = null, ulong? count = null);
+        Task<VkCollection<WidgetPage>> GetPagesAsync(long? widgetApiId = null, string order = null, string period = null, ulong? offset = null, ulong? count = null);
     }
 }

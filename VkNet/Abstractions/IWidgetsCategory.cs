@@ -64,6 +64,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/widgets.getPages
         /// </remarks>
-        Uri GetPages(long? widgetApiId = null, string order = null, string period = null, ulong? offset = null, ulong? count = null);
+		VkCollection<WidgetPage> GetPages(long? widgetApiId = null, string order = null, string period = null, ulong? offset = null, ulong? count = null);
     }
 }
