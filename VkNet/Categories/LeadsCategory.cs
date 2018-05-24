@@ -52,9 +52,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetStats(ulong leadId, string secret, string dateStart, string dateEnd)
+		public Lead GetStats(ulong leadId, string secret, string dateStart, string dateEnd)
 		{
-			return _vk.Call<object>("leads.getStats",
+			return _vk.Call<Lead>("leads.getStats",
 				new VkParameters
 				{
 					{"lead_id", leadId},

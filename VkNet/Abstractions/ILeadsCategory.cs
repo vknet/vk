@@ -85,7 +85,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/leads.getStats
         /// </remarks>
-        object GetStats(ulong leadId, string secret, string dateStart, string dateEnd);
+		Lead GetStats(ulong leadId, string secret, string dateStart, string dateEnd);
         /// <summary>
         /// Возвращает список последних действий пользователей по рекламной акции.
         /// </summary>

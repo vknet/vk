@@ -23,7 +23,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<object> GetStatsAsync(ulong leadId, string secret, string dateStart, string dateEnd)
+		public async Task<Lead> GetStatsAsync(ulong leadId, string secret, string dateStart, string dateEnd)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Leads.GetStats(leadId, secret, dateStart, dateEnd));
 		}

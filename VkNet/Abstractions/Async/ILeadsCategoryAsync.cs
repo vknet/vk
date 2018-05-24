@@ -85,7 +85,7 @@ namespace VkNet.Abstractions.Async
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/leads.getStats
         /// </remarks>
-        Task<object> GetStatsAsync(ulong leadId, string secret, string dateStart, string dateEnd);
+        Task<Lead> GetStatsAsync(ulong leadId, string secret, string dateStart, string dateEnd);
         /// <summary>
         /// Возвращает список последних действий пользователей по рекламной акции.
         /// </summary>
