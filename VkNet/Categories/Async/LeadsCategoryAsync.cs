@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Leads;
@@ -28,7 +29,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<IEnumerable<object>> GetUsersAsync(GetUsersParams getUsers)
+		public async Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsers)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Leads.GetUsers(getUsers));
 		}

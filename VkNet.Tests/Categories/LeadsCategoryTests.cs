@@ -53,5 +53,32 @@ namespace VkNet.Tests.Categories
 			Assert.AreEqual("vk_sid", result.VkSid);
 			
 		}
+
+		[Test]
+		public void GetUsers()
+		{
+			Url = "https://api.vk.com/method/leads.getUsers";
+
+			Json =
+				@"{
+					response: [
+						{
+							uid: 214402965,
+							aid: 3812231,
+							sid: ""testcb94fcab4fb7107250"",
+							date: 1376468670,
+							status: 1,
+							test_mode: 1,
+							comment: ""group autocomplete"",
+							start_date: 1376468668
+						}
+					]
+				}
+            ";
+
+			var result = Api.Leads.GetUsers(new GetUsersParams());
+			Assert.IsNotNull(result);
+			Assert.IsNotEmpty(result);
+		}
 	}
 }

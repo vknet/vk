@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Leads;
@@ -65,7 +65,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetUsers(GetUsersParams getUsersParams)
+		public ReadOnlyCollection<Entry> GetUsers(GetUsersParams getUsersParams)
 		{
 			var result = new VkParameters
 			{
@@ -77,7 +77,7 @@ namespace VkNet.Categories
 				{"reverse", getUsersParams.Reverse}
 			};
 
-			return _vk.Call<IEnumerable<object>>("leads.getUsers", result);
+			return _vk.Call<ReadOnlyCollection<Entry>>("leads.getUsers", result);
 		}
 
 		/// <inheritdoc/>

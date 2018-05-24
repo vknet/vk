@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions.Async;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Leads;
@@ -105,7 +106,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/leads.getUsers
         /// </remarks>
-        IEnumerable<object> GetUsers(GetUsersParams getUsersParams);
+		ReadOnlyCollection<Entry> GetUsers(GetUsersParams getUsersParams);
         /// <summary>
         /// Засчитывает событие метрики.
         /// </summary>
