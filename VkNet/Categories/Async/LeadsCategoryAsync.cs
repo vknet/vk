@@ -40,7 +40,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<object> StartAsync(StartParams start)
+		public async Task<Start> StartAsync(StartParams start)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Leads.Start(start));
 		}

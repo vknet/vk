@@ -135,6 +135,6 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/leads.start
         /// </remarks>
-        object Start(StartParams startParams);
+		Start Start(StartParams startParams);
     }
 }

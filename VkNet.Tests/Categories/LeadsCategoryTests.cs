@@ -1,11 +1,12 @@
 ﻿using NUnit.Framework;
+using VkNet.Model.RequestParams.Leads;
 
 namespace VkNet.Tests.Categories
 {
-	public class LeadsCategoryTests: BaseTest
+	public class LeadsCategoryTests : BaseTest
 	{
 		[Test]
-		public void GetPages()
+		public void Complete()
 		{
 			Url = "https://api.vk.com/method/leads.complete";
 
@@ -31,6 +32,26 @@ namespace VkNet.Tests.Categories
 			Assert.AreEqual(1, result.TestMode);
 			Assert.AreEqual(1, result.Success);
 		}
-		
+
+		[Test]
+		public void Start()
+		{
+			Url = "https://api.vk.com/method/leads.start";
+
+			Json =
+				@"{
+					""response"": {
+						""test_mode"": 1,
+						""vk_sid"": ""vk_sid""
+					}
+				}
+            ";
+
+			var result = Api.Leads.Start(new StartParams());
+			Assert.IsNotNull(result);
+			Assert.AreEqual(1, result.TestMode);
+			Assert.AreEqual("vk_sid", result.VkSid);
+			
+		}
 	}
 }

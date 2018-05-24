@@ -90,7 +90,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object Start(StartParams startParams)
+		public Start Start(StartParams startParams)
 		{
 			var result = new VkParameters
 			{
@@ -102,7 +102,7 @@ namespace VkNet.Categories
 				{"force", startParams.Force}
 			};
 
-			return _vk.Call<object>("leads.start", result);
+			return _vk.Call<Start>("leads.start", result);
 		}
 	}
 }

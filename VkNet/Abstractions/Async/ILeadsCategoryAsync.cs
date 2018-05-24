@@ -135,6 +135,6 @@ namespace VkNet.Abstractions.Async
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/leads.start
         /// </remarks>
-        Task<object> StartAsync(StartParams startParams);
+        Task<Start> StartAsync(StartParams startParams);
     }
 }
