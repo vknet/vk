@@ -156,5 +156,10 @@ namespace VkNet.Abstractions
         /// Widgets
         /// </summary>
         IWidgetsCategory Widgets { get; }
+        
+        /// <summary>
+        /// Leads
+        /// </summary>
+        ILeadsCategory Leads { get; }
     }
 }

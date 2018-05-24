@@ -221,6 +221,9 @@ namespace VkNet
         /// <inheritdoc />
         public IWidgetsCategory Widgets { get; set; }
 
+        /// <inheritdoc />
+        public ILeadsCategory Leads { get; set; }
+
         #endregion
 
         /// <inheritdoc />
@@ -795,7 +798,8 @@ namespace VkNet
             Storage = new StorageCategory(this);
             Notifications = new NotificationsCategory(this);
             Widgets = new WidgetsCategory(this);
-
+            Leads = new LeadsCategory(this);
+                
             RequestsPerSecond = 3;
 
             MaxCaptchaRecognitionCount = 5;
