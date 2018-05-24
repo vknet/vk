@@ -24,7 +24,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object CheckUser(CheckUserParams checkUserParams)
+		public Checked CheckUser(CheckUserParams checkUserParams)
 		{
 			var result = new VkParameters
 			{
@@ -36,7 +36,7 @@ namespace VkNet.Categories
 				{"age", checkUserParams.Age}
 			};
 
-			return _vk.Call<object>("leads.checkUser", result);
+			return _vk.Call<Checked>("leads.checkUser", result);
 		}
 
 		/// <inheritdoc/>

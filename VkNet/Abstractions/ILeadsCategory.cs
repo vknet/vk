@@ -27,7 +27,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/leads.checkUser
         /// </remarks>
-        object CheckUser(CheckUserParams checkUserParams);
+		Checked CheckUser(CheckUserParams checkUserParams);
         /// <summary>
         /// Завершает начатую пользователем рекламную акцию, используя сессию и секретный ключ.
         /// </summary>

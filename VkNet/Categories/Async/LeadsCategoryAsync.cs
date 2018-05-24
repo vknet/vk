@@ -11,7 +11,7 @@ namespace VkNet.Categories
 	public partial class LeadsCategory
 	{
 		/// <inheritdoc/>
-		public async Task<object> CheckUserAsync(CheckUserParams checkUser)
+		public async Task<Checked> CheckUserAsync(CheckUserParams checkUser)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Leads.CheckUser(checkUser));
 		}

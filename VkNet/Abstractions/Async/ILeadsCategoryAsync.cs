@@ -27,7 +27,7 @@ namespace VkNet.Abstractions.Async
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/leads.checkUser
         /// </remarks>
-        Task<object> CheckUserAsync(CheckUserParams checkUserParams);
+        Task<Checked> CheckUserAsync(CheckUserParams checkUserParams);
         /// <summary>
         /// Завершает начатую пользователем рекламную акцию, используя сессию и секретный ключ.
         /// </summary>
