@@ -35,7 +35,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<object> MetricHitAsync(string data)
+		public async Task<MetricHitResponse> MetricHitAsync(string data)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Leads.MetricHit(data));
 		}

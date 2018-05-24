@@ -81,9 +81,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object MetricHit(string data)
+		public MetricHitResponse MetricHit(string data)
 		{
-			return _vk.Call<object>("leads.metricHit", new VkParameters
+			return _vk.Call<MetricHitResponse>("leads.metricHit", new VkParameters
 			{
 				{"data", data}
 			});

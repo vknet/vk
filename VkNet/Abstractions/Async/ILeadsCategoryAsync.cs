@@ -121,7 +121,7 @@ namespace VkNet.Abstractions.Async
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/leads.metricHit
         /// </remarks>
-        Task<object> MetricHitAsync(string data);
+        Task<MetricHitResponse> MetricHitAsync(string data);
         /// <summary>
         /// Создаёт новую сессию для прохождения рекламной акции для пользователя.
         /// </summary>

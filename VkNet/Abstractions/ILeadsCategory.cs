@@ -121,7 +121,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/leads.metricHit
         /// </remarks>
-        object MetricHit(string data);
+		MetricHitResponse MetricHit(string data);
         /// <summary>
         /// Создаёт новую сессию для прохождения рекламной акции для пользователя.
         /// </summary>
