@@ -1,10 +1,12 @@
-﻿using VkNet.Utils;
+﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// тип радиуса зоны поиска
 	/// </summary>
+	[Serializable]
 	public enum Radius
 	{
 		/// <summary>

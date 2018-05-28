@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Places Add Params
 	/// </summary>
+	[Serializable]
 	public class PlacesAddParams
 	{
 		/// <summary>

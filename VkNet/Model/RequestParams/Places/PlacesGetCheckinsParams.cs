@@ -1,11 +1,13 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры запроса places.checkins
 	/// </summary>
+	[Serializable]
 	public class PlacesGetCheckinsParams
 	{
 		/// <summary>
@@ -48,6 +50,7 @@ namespace VkNet.Model.RequestParams
 		/// указывает, что нужно вернуть только те отметки, которые были созданы после заданного timestamp. 
 		/// </summary>
 		[JsonProperty("timestamp")]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime Timestamp { get; set; }
 
 		/// <summary>

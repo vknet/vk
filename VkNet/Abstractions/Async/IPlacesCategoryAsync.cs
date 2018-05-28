@@ -27,7 +27,7 @@ namespace VkNet.Abstractions.Async
 		/// <summary>
 		/// Отмечает пользователя в указанном месте.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "placesCheckinParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -61,7 +61,7 @@ namespace VkNet.Abstractions.Async
 		/// <summary>
 		/// Возвращает список отметок пользователей в местах согласно заданным параметрам.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "placesGetCheckinsParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -105,7 +105,7 @@ namespace VkNet.Abstractions.Async
 		/// <summary>
 		/// Возвращает список мест, найденных по заданным условиям поиска.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "placesSearchParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>

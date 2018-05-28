@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
 	/// Параметры запроса places.search
 	/// </summary>
+	[Serializable]
 	public class PlacesSearchParams
 	{
 		/// <summary>
