@@ -161,5 +161,10 @@ namespace VkNet.Abstractions
         /// Leads
         /// </summary>
         ILeadsCategory Leads { get; }
+        
+        /// <summary>
+        /// Streaming
+        /// </summary>
+        IStreamingCategory Streaming { get; }
     }
 }
