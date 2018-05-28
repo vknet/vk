@@ -1,0 +1,9 @@
+<application>
+  <component name="CodeInsightSettings">
+    <option name="AUTO_POPUP_JAVADOC_INFO" value="true" />
+    <option name="COMPLETION_CASE_SENSITIVE" value="2" />
+    <option name="SELECT_AUTOPOPUP_SUGGESTIONS_BY_CHARS" value="true" />
+    <option name="AUTOCOMPLETE_ON_CODE_COMPLETION" value="false" />
+    <option name="INSERT_BRACE_ON_ENTER" value="false" />
+  </component>
+</application>
