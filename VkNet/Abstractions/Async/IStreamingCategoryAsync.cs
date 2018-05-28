@@ -31,7 +31,7 @@ namespace VkNet.Abstractions.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.getSettings
 		/// </remarks>
-		Task<object> GetSettingsAsync();
+		Task<StreamingSettings> GetSettingsAsync();
 
 		/// <summary>
 		/// Позволяет получить статистику для подготовленных и доставленных событий Streaming API.

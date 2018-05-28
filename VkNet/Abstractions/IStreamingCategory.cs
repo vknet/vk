@@ -31,7 +31,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.getSettings
 		/// </remarks>
-		object GetSettings();
+		StreamingSettings GetSettings();
 
 		/// <summary>
 		/// Позволяет получить статистику для подготовленных и доставленных событий Streaming API.

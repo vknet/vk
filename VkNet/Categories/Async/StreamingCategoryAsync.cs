@@ -15,7 +15,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<object> GetSettingsAsync()
+		public async Task<StreamingSettings> GetSettingsAsync()
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Streaming.GetSettings());
 		}

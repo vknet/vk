@@ -29,9 +29,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetSettings()
+		public StreamingSettings GetSettings()
 		{
-			return _vk.Call<object>("streaming.getSettings", VkParameters.Empty);
+			return _vk.Call<StreamingSettings>("streaming.getSettings", VkParameters.Empty);
 		}
 
 		/// <inheritdoc/>
