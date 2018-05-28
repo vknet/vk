@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -29,7 +30,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> SetSettingsAsync(string monthlyTier)
+		public async Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Streaming.SetSettings(monthlyTier));
 		}

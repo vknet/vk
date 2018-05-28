@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 
 namespace VkNet.Abstractions.Async
@@ -84,6 +85,6 @@ namespace VkNet.Abstractions.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.setSettings
 		/// </remarks>
-		Task<bool> SetSettingsAsync(string monthlyTier);
+		Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier);
 	}
 }

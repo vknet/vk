@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -53,7 +54,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool SetSettings(string monthlyTier)
+		public bool SetSettings(MonthlyLimit monthlyTier)
 		{
 			return _vk.Call<bool>("streaming.setSettings", new VkParameters {{"monthly_tier", monthlyTier}});
 		}

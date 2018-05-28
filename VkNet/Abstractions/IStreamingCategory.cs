@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions.Async;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 
 namespace VkNet.Abstractions
@@ -84,6 +85,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.setSettings
 		/// </remarks>
-		bool SetSettings(string monthlyTier);
+		bool SetSettings(MonthlyLimit monthlyTier);
 	}
 }

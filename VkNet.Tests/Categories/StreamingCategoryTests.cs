@@ -81,5 +81,21 @@ namespace VkNet.Tests.Categories
 			Assert.AreEqual(StreamingEventType.Post, stats.EventType);
 			Assert.IsNotEmpty(stats.Stats);
 		}
+
+		[Test]
+		public void SetSettings()
+		{
+			Url = "https://api.vk.com/method/streaming.setSettings";
+
+			Json =
+				@"{
+					response: 1
+				}
+            ";
+
+			var result = Api.Streaming.SetSettings(MonthlyLimit.Tier6);
+
+			Assert.IsTrue(result);
+		}
 	}
 }
