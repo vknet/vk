@@ -227,6 +227,9 @@ namespace VkNet
         /// <inheritdoc />
         public IStreamingCategory Streaming { get; set; }
 
+        /// <inheritdoc />
+        public IPlacesCategory Places { get; set; }
+
         #endregion
 
         /// <inheritdoc />
@@ -803,6 +806,7 @@ namespace VkNet
             Widgets = new WidgetsCategory(this);
             Leads = new LeadsCategory(this);
             Streaming = new StreamingCategory(this);
+            Places = new PlacesCategory(this);
                 
             RequestsPerSecond = 3;
 

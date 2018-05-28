@@ -166,5 +166,10 @@ namespace VkNet.Abstractions
         /// Streaming
         /// </summary>
         IStreamingCategory Streaming { get; }
+        
+        /// <summary>
+        /// Places
+        /// </summary>
+        IPlacesCategory Places { get; }
     }
 }

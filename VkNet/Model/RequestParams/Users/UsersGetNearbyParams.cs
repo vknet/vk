@@ -46,7 +46,7 @@ namespace VkNet.Model.RequestParams
 		/// положительное число, по умолчанию 1.
 		/// </summary>
 		[JsonProperty("radius")]
-		public long? Radius { get; set; }
+		public Radius? Radius { get; set; }
 
 		/// <summary>
 		/// Список дополнительных полей профилей, которые необходимо вернуть. См. подробное описание. 
