@@ -1100,5 +1100,17 @@ namespace VkNet.Utils
       return WallSearchParams.ToVkParameters(p);
     }
 
+    /// <summary>
+    /// Преобразование класса <see cref="AdsGetCampaignsParams"/> в VkParameters
+    /// </summary>
+    /// <param name="p">Параметр.</param>
+    /// <returns>
+    /// Результат преобразования.
+    /// </returns> 
+    public static implicit operator VkParameters(AdsGetCampaignsParams p)
+    {
+      return AdsGetCampaignsParams.ToVkParameters(p);
+    }
+
   }
 }

@@ -26,5 +26,15 @@ namespace VkNet.Abstractions
         /// </remarks>
         Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync();
 
+        /// <summary>
+        /// Возвращает список рекламных кабинетов.
+        /// </summary>
+        /// <returns>
+        /// В случае успеха возвращается список рекламных кабинетов.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
+        /// </remarks>
+        Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams @params);
     }
 }

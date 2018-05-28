@@ -1,21 +1,21 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums.SafetyEnums
 {
     /// <summary>
     /// Права пользователя в рекламном кабинете.
     /// </summary>
-    public enum AccessRole
+    public sealed class AccessRole : SafetyEnum<AccessRole>
     {
         /// <summary>
         /// Главный администратор
         /// </summary>
-        Admin = 0,
+        public static readonly AccessRole Admin = RegisterPossibleValue("admin");
         /// <summary>
         /// Администратор
         /// </summary>
-        Manager = 1,
+        public static readonly AccessRole Manager = RegisterPossibleValue("manager");
         /// <summary>
         /// Наблюдатель
         /// </summary>
-        Reports = 2
+        public static readonly AccessRole Reports = RegisterPossibleValue("reports");
     }
 }

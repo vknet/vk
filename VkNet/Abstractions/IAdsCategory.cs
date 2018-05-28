@@ -54,10 +54,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
         /// </remarks>
-
-        // getCampaigns
-        // 
-
+        ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams @params);
 
         // getCategories
         // getClients
