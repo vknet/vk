@@ -44,7 +44,18 @@ namespace VkNet.Abstractions
         // getAdsLayout
         // getAdsTargeting
         // getBudget
-        // getCampaigns
+
+        /// <summary>
+        /// Возвращает список рекламных кабинетов.
+        /// </summary>
+        /// <returns>
+        /// В случае успеха возвращается список рекламных кабинетов.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
+        /// </remarks>
+        ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams @params);
+
         // getCategories
         // getClients
         // getDemographics

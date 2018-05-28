@@ -34,5 +34,19 @@ namespace VkNet.Categories
 		{
 			return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", new VkParameters());
 		}
-	}
+
+        /// <summary>
+        /// Возвращает список рекламных кабинетов.
+        /// </summary>
+        /// <returns>
+        /// В случае успеха возвращается список рекламных кабинетов.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
+        /// </remarks>
+        public ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams @params)
+        {
+            return _vk.Call<ReadOnlyCollection<AdsCampaign>>("ads.getCampaigns", @params);
+        }
+    }
 }

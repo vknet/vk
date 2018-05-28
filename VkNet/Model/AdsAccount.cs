@@ -1,9 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -26,16 +27,14 @@ namespace VkNet.Model
         /// Тип рекламного кабинета.
         /// </summary>
         [JsonProperty("account_type")]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(SafetyEnumJsonConverter))]
         public AccountType AccountType { get; set; }
 
         /// <summary>
         /// Cтатус рекламного кабинета.
         /// </summary>
         [JsonProperty("account_status")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public AccountStatus AccountStatus { get; set; }
-
 
         /// <summary>
         /// Название аккаунта
@@ -47,7 +46,7 @@ namespace VkNet.Model
         /// Права пользователя в рекламном кабинете.
         /// </summary>
         [JsonProperty("access_role")]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(SafetyEnumJsonConverter))]
         public AccessRole AccessRole { get; set; }
 
         #region Методы
@@ -66,26 +65,12 @@ namespace VkNet.Model
             var adsaccount = new AdsAccount
             {
                 AccountId = response["account_id"],
-                AccountType = response["account_type"] == "general" ? AccountType.General : AccountType.Agency,
-                AccountStatus = response["account_status"] == 1 ? AccountStatus.Active : AccountStatus.Inactive,
-                AccountName = response["account_name"]
-            };
+                AccountType = response["account_type"],
+                AccountStatus = response["account_status"],
+                AccountName = response["account_name"],
+                AccessRole = response["access_role"]
 
-            // Начитываем роль аккаунта
-            switch ((string)response["access_role"])
-            {
-                case "admin":
-                    adsaccount.AccessRole = AccessRole.Admin;
-                    break;
-                case "manager":
-                    adsaccount.AccessRole = AccessRole.Manager;
-                    break;
-                case "reports":
-                    adsaccount.AccessRole = AccessRole.Reports;
-                    break;
-                default:
-                    break;
-            }
+            };
 
             return adsaccount;
         }

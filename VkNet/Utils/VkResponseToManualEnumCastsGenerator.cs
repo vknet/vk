@@ -384,5 +384,38 @@ namespace VkNet.Utils
 			return Utilities.EnumFrom<WallContentAccess>(response);
 		}
 
-	}
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator AccountStatus(VkResponse response)
+        {
+            if (response == null)
+            {
+                return AccountStatus.Inactive;
+            }
+
+            return Utilities.EnumFrom<AccountStatus>(response);
+        }
+
+        /// <summary>
+        /// Преобразовать из VkResponse
+        /// </summary>
+        /// <param name="response">Ответ.</param>
+        /// <returns>
+        /// Результат преобразования.
+        /// </returns>
+        public static implicit operator CampaignStatus(VkResponse response)
+        {
+            if (response == null)
+            {
+                return CampaignStatus.Stopped;
+            }
+
+            return Utilities.EnumFrom<CampaignStatus>(response);
+        }
+    }
 }
