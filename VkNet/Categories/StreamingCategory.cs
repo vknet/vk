@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
@@ -35,10 +37,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetStats(string type, string interval, ulong? startTime = null,
-			ulong? endTime = null)
+		public ReadOnlyCollection<StreamingStats> GetStats(string type, string interval, DateTime? startTime = null,
+			DateTime? endTime = null)
 		{
-			return _vk.Call<IEnumerable<object>>("streaming.getStats",
+			var result = _vk.Call<ReadOnlyCollection<StreamingStats>>("streaming.getStats",
 				new VkParameters
 				{
 					{"type", type},
@@ -46,6 +48,8 @@ namespace VkNet.Categories
 					{"start_time", startTime},
 					{"end_time", endTime}
 				});
+
+			return result;
 		}
 
 		/// <inheritdoc/>

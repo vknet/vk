@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions.Async;
 using VkNet.Model;
 
@@ -68,7 +70,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.getStats
 		/// </remarks>
-		IEnumerable<object> GetStats(string type, string interval, ulong? startTime = null, ulong? endTime = null);
+		ReadOnlyCollection<StreamingStats> GetStats(string type, string interval, DateTime? startTime = null, DateTime? endTime = null);
 
 		/// <summary>
 		/// Позволяет задать значение порога для Streaming API.

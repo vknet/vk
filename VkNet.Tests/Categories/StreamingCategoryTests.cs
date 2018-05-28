@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Linq;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Categories
 {
-	public class StreamingCategoryTests: BaseTest
+	public class StreamingCategoryTests : BaseTest
 	{
 		[Test]
 		public void GetServerUrl()
@@ -25,7 +27,7 @@ namespace VkNet.Tests.Categories
 			Assert.AreEqual("streaming.vk.com", result.Endpoint);
 			Assert.AreEqual("be8d29c05546e58cb52420aaf2b9f51f0a440f89", result.Key);
 		}
-		
+
 		[Test]
 		public void GetSettings()
 		{
@@ -43,6 +45,41 @@ namespace VkNet.Tests.Categories
 
 			Assert.IsNotNull(result);
 			Assert.AreEqual(MonthlyLimit.Tier6, result.MonthlyLimit);
+		}
+
+		[Test]
+		public void GetStats()
+		{
+			Url = "https://api.vk.com/method/streaming.getStats";
+
+			Json =
+				@"{
+					response: [
+						{
+							event_type: ""post"",
+							stats: [
+								{
+									timestamp: 1525208400,
+									value: 160
+								},
+								{
+									timestamp: 1525294800,
+									value: 155
+								}
+							]
+						}
+					]
+				}
+            ";
+
+			var result = Api.Streaming.GetStats("prepared", "24h", new DateTime(2018, 5, 1), new DateTime(2018, 5, 20));
+
+			Assert.IsNotEmpty(result);
+
+			var stats = result.FirstOrDefault();
+			Assert.NotNull(stats);
+			Assert.AreEqual(StreamingEventType.Post, stats.EventType);
+			Assert.IsNotEmpty(stats.Stats);
 		}
 	}
 }
