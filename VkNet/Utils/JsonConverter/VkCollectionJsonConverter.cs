@@ -36,7 +36,10 @@ namespace VkNet.Utils.JsonConverter
         /// </summary>
         public VkCollectionJsonConverter()
         {
-            CollectionField = "items";
+            if (string.IsNullOrWhiteSpace(CollectionField))
+            {
+                CollectionField = "items";
+            }
         }
 
         /// <summary>
@@ -100,8 +103,13 @@ namespace VkNet.Utils.JsonConverter
             var obj = JObject.Load(reader);
             var response = obj["response"] ?? obj;
             var totalCount = response[CountField].Value<ulong>();
-            
-            foreach (var item in response[CollectionField])
+            var converter = serializer.Converters.FirstOrDefault(x => x.GetType() == typeof(VkCollectionJsonConverter)) as VkCollectionJsonConverter;
+            var collectionField = CollectionField;
+            if (converter != null)
+            {
+                collectionField = converter.CollectionField;
+            }
+            foreach (var item in response[collectionField])
             {
                 list.Add(item.ToObject(keyType));
             }

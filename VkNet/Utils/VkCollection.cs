@@ -21,6 +21,7 @@ namespace VkNet.Utils
 		[JsonProperty("count")]
 		public ulong TotalCount { get; private set; }
 
+		/// <inheritdoc />
 		/// <summary>
 		/// Конструктор.
 		/// </summary>
@@ -37,6 +38,7 @@ namespace VkNet.Utils
 		/// <param name="index">Индекс.</param>
 		public new T this[int index] => Items[index];
 
+		/// <inheritdoc />
 		/// <summary>
 		/// Возвращает перечислитель, выполняющий итерацию в коллекции.
 		/// </summary>

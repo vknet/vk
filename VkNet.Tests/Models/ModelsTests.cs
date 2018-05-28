@@ -24,7 +24,14 @@ namespace VkNet.Tests.Models
                     )
                 );
             
-            Assert.IsEmpty(models);
+            var enumerable = models.ToList();
+
+            if (enumerable.Any())
+            {
+                Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.Name)));
+            }
+            
+            Assert.IsEmpty(enumerable);
         }
     }
 }

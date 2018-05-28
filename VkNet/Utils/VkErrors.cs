@@ -195,6 +195,14 @@ namespace VkNet.Utils
                 {
                     throw new OffAppOrLoginException(error);
                 }
+                case ErrorCode.ImpossibleToCompileCode: // Error 12
+                {
+                    throw new ImpossibleToCompileCodeException(error);
+                }
+                case ErrorCode.ErrorExecutingCode: // Error 13
+                {
+                    throw new ErrorExecutingCodeException(error);
+                }
                 case ErrorCode.CaptchaNeeded: // Error 14
                 {
                     throw new CaptchaNeededException(error);
