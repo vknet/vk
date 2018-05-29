@@ -6,38 +6,38 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	///     VkApi
+	/// VkApi
 	/// </summary>
 	public interface IVkApi : IDisposable, IVkApiAuthAsync, IVkApiCategories, IVkApiCaptcha, IVkApiInvoke
 	{
 	#region Properties
 
 		/// <summary>
-		///     Ограничение на кол-во запросов в секунду
+		/// Ограничение на кол-во запросов в секунду
 		/// </summary>
 		float RequestsPerSecond { get; set; }
 
 		/// <summary>
-		///     Браузер.
+		/// Браузер.
 		/// </summary>
 		IBrowser Browser { get; set; }
 
 		/// <summary>
-		///     Токен для доступа к методам API
+		/// Токен для доступа к методам API
 		/// </summary>
 		string Token { get; }
 
 		/// <summary>
-		///     Идентификатор пользователя, от имени которого была проведена авторизация.
-		///     Если авторизация не была произведена с использованием метода Authorize(int
-		///     то возвращается null.
+		/// Идентификатор пользователя, от имени которого была проведена авторизация.
+		/// Если авторизация не была произведена с использованием метода Authorize(int
+		/// то возвращается null.
 		/// </summary>
 
 		// ReSharper disable once MemberCanBePrivate.Global
 		long? UserId { get; set; }
 
 		/// <summary>
-		///     Оповещает об истечении срока токена доступа
+		/// Оповещает об истечении срока токена доступа
 		/// </summary>
 		[UsedImplicitly]
 		event VkApiDelegate OnTokenExpires;
@@ -47,21 +47,24 @@ namespace VkNet.Abstractions
 	#region Methods
 
 		/// <summary>
-		///     Установить язык
+		/// Установить язык
 		/// </summary>
-		/// <param name="language"></param>
+		/// <param name="language"> </param>
 		void SetLanguage(Language language);
 
 		/// <summary>
-		///     Установить язык
+		/// Установить язык
 		/// </summary>
 		Language? GetLanguage();
 
 		/// <summary>
-		///     Обход ошибки валидации: https://vk.com/dev/need_validation
+		/// Обход ошибки валидации: https://vk.com/dev/need_validation
 		/// </summary>
-		/// <param name="validateUrl">Адрес, на который нужно перейти для валидации</param>
-		/// <param name="phoneNumber">Номер телефона, который нужно ввести на странице валидации</param>
+		/// <param name="validateUrl"> Адрес, на который нужно перейти для валидации </param>
+		/// <param name="phoneNumber">
+		/// Номер телефона, который нужно ввести на странице
+		/// валидации
+		/// </param>
 		void Validate(string validateUrl, string phoneNumber);
 
 	#endregion

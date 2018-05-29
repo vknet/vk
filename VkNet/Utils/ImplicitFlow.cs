@@ -15,18 +15,18 @@ namespace VkNet.Utils
 	public class ImplicitFlow : IImplicitFlow
 	{
 		/// <summary>
-		///     HttpClient
+		/// HttpClient
 		/// </summary>
 		private readonly HttpClient _httpClient;
 
 		/// <summary>
-		///     Логгер
+		/// Логгер
 		/// </summary>
 		[CanBeNull]
 		private readonly ILogger _logger;
 
 		/// <summary>
-		///     WebProxy
+		/// WebProxy
 		/// </summary>
 		private readonly IWebProxy _proxy;
 
@@ -76,18 +76,18 @@ namespace VkNet.Utils
 
 		private Uri OpenAuthDialog()
 		{
-			var authUri = CreateAuthorizeUrl(clientId: AuthorizationParameters.ApplicationId,
-					scope: AuthorizationParameters.Settings.ToUInt64(),
-					display: Display.Mobile,
-					state: "123435");
+			var authUri = CreateAuthorizeUrl(clientId: AuthorizationParameters.ApplicationId
+					, scope: AuthorizationParameters.Settings.ToUInt64()
+					, display: Display.Mobile
+					, state: "123435");
 
 			return null;
 		}
 
 		/// <summary>
-		///     Валидация параметров авторизации
+		/// Валидация параметров авторизации
 		/// </summary>
-		/// <exception cref="VkApiException">Список неверно заданных параметров</exception>
+		/// <exception cref="VkApiException"> Список неверно заданных параметров </exception>
 		private void ValidateAuthorizationParameters()
 		{
 			var errorsBuilder = new StringBuilder();

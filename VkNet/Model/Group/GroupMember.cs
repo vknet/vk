@@ -4,8 +4,8 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о сообществе (группе).
-	///     См. описание http://vk.com/dev/fields_groups
+	/// Информация о сообществе (группе).
+	/// См. описание http://vk.com/dev/fields_groups
 	/// </summary>
 	[Serializable]
 	public class GroupMember
@@ -13,10 +13,10 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Десериализовать из Json.
+		/// Десериализовать из Json.
 		/// </summary>
-		/// <param name="response">Jndtn.</param>
-		/// <returns></returns>
+		/// <param name="response"> Jndtn. </param>
+		/// <returns> </returns>
 		public static GroupMember FromJson(VkResponse response)
 		{
 			var group = new GroupMember
@@ -35,23 +35,24 @@ namespace VkNet.Model
 	#region Стандартные поля
 
 		/// <summary>
-		///     Идентификатор сообщества.
+		/// Идентификатор сообщества.
 		/// </summary>
 		public ulong? UserId { get; set; }
 
 		/// <summary>
-		///     Является ли пользователь участником сообщества;
+		/// Является ли пользователь участником сообщества;
 		/// </summary>
 		public bool Member { get; set; }
 
 		/// <summary>
-		///     Есть ли непринятая заявка от пользователя на вступление в группу (такую заявку можно отозвать методом
-		///     groups.leave).
+		/// Есть ли непринятая заявка от пользователя на вступление в группу (такую заявку
+		/// можно отозвать методом
+		/// groups.leave).
 		/// </summary>
 		public bool? Request { get; set; }
 
 		/// <summary>
-		///     Приглашён ли пользователь в группу или встречу.
+		/// Приглашён ли пользователь в группу или встречу.
 		/// </summary>
 		public bool? Invitation { get; set; }
 

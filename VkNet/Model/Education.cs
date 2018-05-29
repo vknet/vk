@@ -4,44 +4,44 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о высшем учебном заведении пользователя.
-	///     См. описание http://vk.com/dev/fields
+	/// Информация о высшем учебном заведении пользователя.
+	/// См. описание http://vk.com/dev/fields
 	/// </summary>
 	[Serializable]
 	public class Education
 	{
 		/// <summary>
-		///     Идентификатор университета.
+		/// Идентификатор университета.
 		/// </summary>
 		public long? UniversityId { get; set; }
 
 		/// <summary>
-		///     Название ВУЗа.
+		/// Название ВУЗа.
 		/// </summary>
 		public string UniversityName { get; set; }
 
 		/// <summary>
-		///     Идентификатор факультета.
+		/// Идентификатор факультета.
 		/// </summary>
 		public long? FacultyId { get; set; }
 
 		/// <summary>
-		///     Название факультета.
+		/// Название факультета.
 		/// </summary>
 		public string FacultyName { get; set; }
 
 		/// <summary>
-		///     Год окончания.
+		/// Год окончания.
 		/// </summary>
 		public int? Graduation { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Education FromJson(VkResponse response)
 		{
 			if (response[key: "university"] == null || response[key: "university"].ToString() == "0")
@@ -84,12 +84,12 @@ namespace VkNet.Model
 	#region Поля, установленные экспериментально
 
 		/// <summary>
-		///     Форма обучения.
+		/// Форма обучения.
 		/// </summary>
 		public string EducationForm { get; set; }
 
 		/// <summary>
-		///     Текущий статус пользователя в высшем учебном заведении.
+		/// Текущий статус пользователя в высшем учебном заведении.
 		/// </summary>
 		public string EducationStatus { get; set; }
 

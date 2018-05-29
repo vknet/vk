@@ -6,12 +6,12 @@ using Newtonsoft.Json;
 namespace VkNet.Utils.JsonConverter
 {
 	/// <summary>
-	///     TODO: Description
+	/// TODO: Description
 	/// </summary>
 	public class SafetyEnumJsonConverter : Newtonsoft.Json.JsonConverter
 	{
 		/// <summary>
-		///     TODO: Description
+		/// TODO: Description
 		/// </summary>
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
@@ -19,7 +19,7 @@ namespace VkNet.Utils.JsonConverter
 		}
 
 		/// <summary>
-		///     TODO: Description
+		/// TODO: Description
 		/// </summary>
 		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 		{
@@ -53,7 +53,7 @@ namespace VkNet.Utils.JsonConverter
 		}
 
 		/// <summary>
-		///     TODO: Description
+		/// TODO: Description
 		/// </summary>
 		public override bool CanConvert(Type objectType)
 		{

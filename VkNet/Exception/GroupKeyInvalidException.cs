@@ -5,8 +5,8 @@ namespace VkNet.Exception
 {
 	/// <inheritdoc />
 	/// <summary>
-	///     Ключ доступа сообщества недействителен.
-	///     Код ошибки - 27
+	/// Ключ доступа сообщества недействителен.
+	/// Код ошибки - 27
 	/// </summary>
 	[Serializable]
 	public class GroupKeyInvalidException : VkApiMethodInvokeException

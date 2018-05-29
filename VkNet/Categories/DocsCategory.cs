@@ -13,19 +13,19 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	///     Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
+	/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
 	/// </summary>
 	public partial class DocsCategory : IDocsCategory
 	{
 		/// <summary>
-		///     API
+		/// API
 		/// </summary>
 		private readonly VkApi _vk;
 
 		/// <summary>
-		///     Методы для работы с документами (получение списка, загрузка, удаление и т.д.).
+		/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.).
 		/// </summary>
-		/// <param name="vk">API.</param>
+		/// <param name="vk"> API. </param>
 		public DocsCategory(VkApi vk)
 		{
 			_vk = vk;

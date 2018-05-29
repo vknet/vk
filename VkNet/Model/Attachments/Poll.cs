@@ -7,14 +7,14 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Опрос.
-	///     См. описание http://vk.com/dev/attachments_w
+	/// Опрос.
+	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[Serializable]
 	public class Poll : MediaAttachment
 	{
 		/// <summary>
-		///     Опрос.
+		/// Опрос.
 		/// </summary>
 		static Poll()
 		{
@@ -22,43 +22,43 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Дата создания опроса
+		/// Дата создания опроса
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Created { get; set; }
 
 		/// <summary>
-		///     Вопрос, заданный в голосовании.
+		/// Вопрос, заданный в голосовании.
 		/// </summary>
 		public string Question { get; set; }
 
 		/// <summary>
-		///     Кол-во ответов
+		/// Кол-во ответов
 		/// </summary>
 		public int? Votes { get; set; }
 
 		/// <summary>
-		///     Идентификатор выбранного ответа
+		/// Идентификатор выбранного ответа
 		/// </summary>
 		public long? AnswerId { get; set; }
 
 		/// <summary>
-		///     Варианты ответов
+		/// Варианты ответов
 		/// </summary>
 		public ReadOnlyCollection<PollAnswer> Answers { get; set; }
 
 		/// <summary>
-		///     Возможность анонимых ответов
+		/// Возможность анонимых ответов
 		/// </summary>
 		public bool? Anonymous { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Poll FromJson(VkResponse response)
 		{
 			var poll = new Poll

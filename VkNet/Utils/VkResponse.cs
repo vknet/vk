@@ -8,35 +8,35 @@ using VkNet.Model;
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     Ответ vk.com
+	/// Ответ vk.com
 	/// </summary>
 	[CanBeNull]
 	public sealed partial class VkResponse
 	{
 		/// <summary>
-		///     JSON токен
+		/// JSON токен
 		/// </summary>
 		private readonly JToken _token;
 
 		/// <summary>
-		///     Ответ vk.com
+		/// Ответ vk.com
 		/// </summary>
-		/// <param name="token">JSON токен.</param>
+		/// <param name="token"> JSON токен. </param>
 		public VkResponse(JToken token)
 		{
 			_token = token;
 		}
 
 		/// <summary>
-		///     Сырой JSON.
+		/// Сырой JSON.
 		/// </summary>
 		public string RawJson { get; set; }
 
 		/// <summary>
-		///     Получить объект по указанному ключу.
+		/// Получить объект по указанному ключу.
 		/// </summary>
-		/// <param name="key">Ключ.</param>
-		/// <returns>Объект</returns>
+		/// <param name="key"> Ключ. </param>
+		/// <returns> Объект </returns>
 		public VkResponse this[object key]
 		{
 			get
@@ -53,19 +53,19 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     HasToken
+		/// HasToken
 		/// </summary>
-		/// <returns></returns>
+		/// <returns> </returns>
 		public bool HasToken()
 		{
 			return _token.HasValues;
 		}
 
 		/// <summary>
-		///     Определяет, содержит ли JSON указанный ключ.
+		/// Определяет, содержит ли JSON указанный ключ.
 		/// </summary>
-		/// <param name="key">Ключ.</param>
-		/// <returns>Признак наличия ключа в JSON</returns>
+		/// <param name="key"> Ключ. </param>
+		/// <returns> Признак наличия ключа в JSON </returns>
 		public bool ContainsKey(string key)
 		{
 			if (!(_token is JObject))
@@ -79,11 +79,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkResponseArray(VkResponse response)
 		{
@@ -98,10 +98,10 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать объект в строку.
+		/// Преобразовать объект в строку.
 		/// </summary>
 		/// <returns>
-		///     Строковое представление объекта.
+		/// Строковое представление объекта.
 		/// </returns>
 		public override string ToString()
 		{
@@ -111,11 +111,11 @@ namespace VkNet.Utils
 	#region Model exceptions
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator Coordinates(VkResponse response)
 		{
@@ -127,11 +127,11 @@ namespace VkNet.Utils
 	#region System types
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator bool(VkResponse response)
 		{
@@ -139,11 +139,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator bool?(VkResponse response)
 		{
@@ -151,11 +151,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator long(VkResponse response)
 		{
@@ -163,11 +163,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator long?(VkResponse response)
 		{
@@ -175,11 +175,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator ulong(VkResponse response)
 		{
@@ -187,11 +187,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator ulong?(VkResponse response)
 		{
@@ -199,11 +199,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator float(VkResponse response)
 		{
@@ -211,11 +211,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator float?(VkResponse response)
 		{
@@ -223,11 +223,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator decimal(VkResponse response)
 		{
@@ -235,11 +235,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator decimal?(VkResponse response)
 		{
@@ -247,11 +247,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator uint(VkResponse response)
 		{
@@ -259,11 +259,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator uint?(VkResponse response)
 		{
@@ -271,11 +271,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator int(VkResponse response)
 		{
@@ -283,11 +283,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator int?(VkResponse response)
 		{
@@ -295,11 +295,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator string(VkResponse response)
 		{
@@ -307,11 +307,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator DateTime?(VkResponse response)
 		{
@@ -328,11 +328,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator DateTime(VkResponse response)
 		{
@@ -357,10 +357,10 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Timestamps to date time.
+		/// Timestamps to date time.
 		/// </summary>
-		/// <param name="unixTimeStamp">The unix time stamp.</param>
-		/// <returns></returns>
+		/// <param name="unixTimeStamp"> The unix time stamp. </param>
+		/// <returns> </returns>
 		public static DateTime TimestampToDateTime(long unixTimeStamp)
 		{
 			var dt = new DateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, millisecond: 0, kind: DateTimeKind.Utc);
@@ -369,11 +369,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator Uri(VkResponse response)
 		{
@@ -385,11 +385,11 @@ namespace VkNet.Utils
 	#region Enums
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator PageAccessKind?(VkResponse response)
 		{
@@ -397,11 +397,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator GroupPublicity?(VkResponse response)
 		{
@@ -409,11 +409,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator ContentAccess?(VkResponse response)
 		{
@@ -421,11 +421,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator GroupSubjects?(VkResponse response)
 		{
@@ -433,11 +433,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator AdminLevel?(VkResponse response)
 		{
@@ -445,11 +445,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator AudioGenre?(VkResponse response)
 		{
@@ -457,11 +457,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator MessageType?(VkResponse response)
 		{
@@ -469,11 +469,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет неявное преобразование из VkResponse
+		/// Выполняет неявное преобразование из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ vk.com</param>
+		/// <param name="response"> Ответ vk.com </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator MessageReadState?(VkResponse response)
 		{

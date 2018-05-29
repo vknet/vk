@@ -3,38 +3,38 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Информация о главной секции в сообществе
+	/// Информация о главной секции в сообществе
 	/// </summary>
 	public enum MainSection
 	{
 		/// <summary>
-		///     Главная секция отсутствует
+		/// Главная секция отсутствует
 		/// </summary>
 		[DefaultValue]
 		NoSection = 0
 
 		, /// <summary>
-		///     Фотографии
+		/// Фотографии
 		/// </summary>
 		Photo
 
 		, /// <summary>
-		///     Обсуждения
+		/// Обсуждения
 		/// </summary>
 		Post
 
 		, /// <summary>
-		///     Аудиозаписи
+		/// Аудиозаписи
 		/// </summary>
 		Audio
 
 		, /// <summary>
-		///     Видеозаписи
+		/// Видеозаписи
 		/// </summary>
 		Video
 
 		, /// <summary>
-		///     Товары
+		/// Товары
 		/// </summary>
 		Goods
 	}

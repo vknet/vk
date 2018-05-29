@@ -3,58 +3,58 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Политические предпочтения.
+	/// Политические предпочтения.
 	/// </summary>
 	public enum PoliticalPreferences
 	{
 		/// <summary>
-		///     Не указаны.
+		/// Не указаны.
 		/// </summary>
 		[DefaultValue]
 		Unknown = 0
 
 		, /// <summary>
-		///     Коммунистические.
+		/// Коммунистические.
 		/// </summary>
 		Communist = 1
 
 		, /// <summary>
-		///     Социалистические.
+		/// Социалистические.
 		/// </summary>
 		Socialist = 2
 
 		, /// <summary>
-		///     Умеренные.
+		/// Умеренные.
 		/// </summary>
 		Moderate = 3
 
 		, /// <summary>
-		///     Либеральные.
+		/// Либеральные.
 		/// </summary>
 		Liberal = 4
 
 		, /// <summary>
-		///     Консервативные.
+		/// Консервативные.
 		/// </summary>
 		Conservative = 5
 
 		, /// <summary>
-		///     Монархические.
+		/// Монархические.
 		/// </summary>
 		Monarchist = 6
 
 		, /// <summary>
-		///     Ультраконсервативные.
+		/// Ультраконсервативные.
 		/// </summary>
 		Ultraconservative = 7
 
 		, /// <summary>
-		///     Индифферентные.
+		/// Индифферентные.
 		/// </summary>
 		Apathetic = 8
 
 		, /// <summary>
-		///     Либертантские.
+		/// Либертантские.
 		/// </summary>
 		Libertarian = 9
 	}

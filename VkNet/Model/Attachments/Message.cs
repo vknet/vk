@@ -11,15 +11,15 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Личное сообщение пользователя.
-	///     См. описание http://vk.com/dev/message
+	/// Личное сообщение пользователя.
+	/// См. описание http://vk.com/dev/message
 	/// </summary>
 	[DebuggerDisplay(value: "[{UserId}-{Id}] {Body}")]
 	[Serializable]
 	public class Message : MediaAttachment
 	{
 		/// <summary>
-		///     Подарок.
+		/// Подарок.
 		/// </summary>
 		static Message()
 		{
@@ -30,8 +30,8 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// </summary>
-		/// <param name="response"></param>
-		/// <returns></returns>
+		/// <param name="response"> </param>
+		/// <returns> </returns>
 		public static Message FromJson(VkResponse response)
 		{
 			if (response.ContainsKey(key: "message"))
@@ -86,74 +86,77 @@ namespace VkNet.Model
 	#region Стандартные поля
 
 		/// <summary>
-		///     Идентификатор автора сообщения (для исходящего сообщения — идентификатор получателя).
+		/// Идентификатор автора сообщения (для исходящего сообщения — идентификатор
+		/// получателя).
 		/// </summary>
 		public long? UserId { get; set; }
 
 		/// <summary>
-		///     Идентификатор автора сообщения.
+		/// Идентификатор автора сообщения.
 		/// </summary>
 		public long? FromId { get; set; }
 
 		/// <summary>
-		///     Дата отправки сообщения.
+		/// Дата отправки сообщения.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
-		///     Статус сообщения (не возвращается для пересланных сообщений).
+		/// Статус сообщения (не возвращается для пересланных сообщений).
 		/// </summary>
 		public MessageReadState? ReadState { get; set; }
 
 		/// <summary>
-		///     тип сообщения (0 — полученное, 1 — отправленное, не возвращается для пересланных сообщений).
+		/// тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
+		/// пересланных сообщений).
 		/// </summary>
 		[JsonProperty(propertyName: "out")]
 		public bool? Out { get; set; }
 
 		/// <summary>
-		///     Заголовок сообщения или беседы.
+		/// Заголовок сообщения или беседы.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Текст сообщения.
+		/// Текст сообщения.
 		/// </summary>
 		public string Body { get; set; }
 
 		/// <summary>
-		///     Гео данные.
+		/// Гео данные.
 		/// </summary>
 		public Geo Geo { get; set; }
 
 		/// <summary>
-		///     Массив медиа-вложений (прикреплений).
+		/// Массив медиа-вложений (прикреплений).
 		/// </summary>
 		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>
-		///     Массив пересланных сообщений (если есть).
+		/// Массив пересланных сообщений (если есть).
 		/// </summary>
 		public ReadOnlyCollection<Message> ForwardedMessages { get; set; }
 
 		/// <summary>
-		///     Содержатся ли в сообщении emoji-смайлы.
+		/// Содержатся ли в сообщении emoji-смайлы.
 		/// </summary>
 		public bool Emoji { get; set; }
 
 		/// <summary>
-		///     Является ли сообщение важным.
+		/// Является ли сообщение важным.
 		/// </summary>
 		public bool Important { get; set; }
 
 		/// <summary>
-		///     Удалено ли сообщение.
+		/// Удалено ли сообщение.
 		/// </summary>
 		public bool? Deleted { get; set; }
 
 		/// <summary>
-		///     идентификатор, используемый при отправке сообщения. Возвращается только для исходящих сообщений.
+		/// идентификатор, используемый при отправке сообщения. Возвращается только для
+		/// исходящих сообщений.
 		/// </summary>
 		[JsonProperty(propertyName: "random_id")]
 		public long RandomId { get; set; }
@@ -163,66 +166,68 @@ namespace VkNet.Model
 	#region Дополнительные поля в сообщениях бесед (мультидиалогов)
 
 		/// <summary>
-		///     Идентификатор беседы.
+		/// Идентификатор беседы.
 		/// </summary>
 		public long? ChatId { get; set; }
 
 		/// <summary>
-		///     Идентификаторы участников беседы.
+		/// Идентификаторы участников беседы.
 		/// </summary>
 		public ReadOnlyCollection<long> ChatActive { get; set; }
 
 		/// <summary>
-		///     Настройки уведомлений для беседы, если они есть. sound и disabled_until
+		/// Настройки уведомлений для беседы, если они есть. sound и disabled_until
 		/// </summary>
 		public ChatPushSettings PushSettings { get; set; }
 
 		/// <summary>
-		///     Количество участников беседы.
+		/// Количество участников беседы.
 		/// </summary>
 		public int? UsersCount { get; set; }
 
 		/// <summary>
-		///     Идентификатор создателя беседы.
+		/// Идентификатор создателя беседы.
 		/// </summary>
 		public long? AdminId { get; set; }
 
 		/// <summary>
-		///     поле передано, если это служебное сообщение
+		/// поле передано, если это служебное сообщение
 		/// </summary>
 		/// <remarks>
-		///     строка, может быть chat_photo_update или chat_photo_remove, а с версии 5.14 еще и chat_create, chat_title_update,
-		///     chat_invite_user, chat_kick_user
+		/// строка, может быть chat_photo_update или chat_photo_remove, а с версии 5.14 еще
+		/// и chat_create, chat_title_update,
+		/// chat_invite_user, chat_kick_user
 		/// </remarks>
 		public MessageAction Action { get; set; }
 
 		/// <summary>
-		///     Идентификатор пользователя (если больше 0) или email (если меньше 0), которого пригласили или исключили.
+		/// Идентификатор пользователя (если больше 0) или email (если меньше 0), которого
+		/// пригласили или исключили.
 		/// </summary>
 		public long? ActionMid { get; set; }
 
 		/// <summary>
-		///     email, который пригласили или исключили.
+		/// email, который пригласили или исключили.
 		/// </summary>
 		public string ActionEmail { get; set; }
 
 		/// <summary>
-		///     Название беседы.
+		/// Название беседы.
 		/// </summary>
 		public string ActionText { get; set; }
 
 		/// <summary>
-		///     <c>Uri</c> копии фотографии беседы шириной 50px.
+		/// <c> Uri </c> копии фотографии беседы шириной 50px.
 		/// </summary>
 		public string Photo50 { get; set; }
 
 		/// <summary>
-		///     <c>Uri</c> копии фотографии беседы шириной 100px.
+		/// <c> Uri </c> копии фотографии беседы шириной 100px.
 		/// </summary>
 		public string Photo100 { get; set; }
 
 		/// <summary>
-		///     <c>Uri</c> копии фотографии беседы шириной 200px.
+		/// <c> Uri </c> копии фотографии беседы шириной 200px.
 		/// </summary>
 		public string Photo200 { get; set; }
 
@@ -231,27 +236,28 @@ namespace VkNet.Model
 	#region недокументированные
 
 		/// <summary>
-		///     Тип сообщения (не возвращается для пересланных сообщений).
+		/// Тип сообщения (не возвращается для пересланных сообщений).
 		/// </summary>
 		public MessageType? Type { get; set; }
 
 		/// <summary>
-		///     Содержит количество непрочитанных сообщений в текущем диалоге (если это значение было возвращено, иначе 0)
+		/// Содержит количество непрочитанных сообщений в текущем диалоге (если это
+		/// значение было возвращено, иначе 0)
 		/// </summary>
 		public int Unread { get; set; }
 
 		/// <summary>
-		///     Информация о ссылках на предпросмотр фотографий беседы.
+		/// Информация о ссылках на предпросмотр фотографий беседы.
 		/// </summary>
 		public Previews PhotoPreviews { get; set; }
 
 		/// <summary>
-		///     Идентификатор последнего прочитанного сообщения текущим пользователем
+		/// Идентификатор последнего прочитанного сообщения текущим пользователем
 		/// </summary>
 		public ulong? InRead { get; set; }
 
 		/// <summary>
-		///     Идентификатор последнего прочитанного сообщения собеседником
+		/// Идентификатор последнего прочитанного сообщения собеседником
 		/// </summary>
 		public ulong? OutRead { get; set; }
 

@@ -394,11 +394,12 @@ namespace VkNet.Tests.Categories
 			Json = @"{ 'response': 0 }";
 
 			Assert.That(actual: Api.Account.RegisterDevice(@params: new AccountRegisterDeviceParams
-			{
-					Token = "tokenVal"
-					, DeviceModel = "deviceModelVal"
-					, SystemVersion = "systemVersionVal"
-			}), expression: Is.False);
+					{
+							Token = "tokenVal"
+							, DeviceModel = "deviceModelVal"
+							, SystemVersion = "systemVersionVal"
+					})
+					, expression: Is.False);
 		}
 
 		[Test]
@@ -408,11 +409,12 @@ namespace VkNet.Tests.Categories
 			Json = @"{ 'response': 1 }";
 
 			Assert.That(actual: Api.Account.RegisterDevice(@params: new AccountRegisterDeviceParams
-			{
-					Token = "tokenVal"
-					, DeviceModel = "deviceModelVal"
-					, SystemVersion = "systemVersionVal"
-			}), expression: Is.True);
+					{
+							Token = "tokenVal"
+							, DeviceModel = "deviceModelVal"
+							, SystemVersion = "systemVersionVal"
+					})
+					, expression: Is.True);
 		}
 
 		[Test]
@@ -422,18 +424,20 @@ namespace VkNet.Tests.Categories
 			var account = new AccountCategory(vk: Api);
 
 			Assert.That(del: () => account.RegisterDevice(@params: new AccountRegisterDeviceParams
-			{
-					Token = null
-					, DeviceModel = "example"
-					, SystemVersion = "example"
-			}), expr: Throws.InstanceOf<ArgumentNullException>());
+					{
+							Token = null
+							, DeviceModel = "example"
+							, SystemVersion = "example"
+					})
+					, expr: Throws.InstanceOf<ArgumentNullException>());
 
 			Assert.That(del: () => account.RegisterDevice(@params: new AccountRegisterDeviceParams
-			{
-					Token = string.Empty
-					, DeviceModel = "example"
-					, SystemVersion = "example"
-			}), expr: Throws.InstanceOf<ArgumentNullException>());
+					{
+							Token = string.Empty
+							, DeviceModel = "example"
+							, SystemVersion = "example"
+					})
+					, expr: Throws.InstanceOf<ArgumentNullException>());
 		}
 
 		[Test]
@@ -443,18 +447,20 @@ namespace VkNet.Tests.Categories
 			Json = @"{ 'response': 1 }";
 
 			Assert.That(del: () => Api.Account.RegisterDevice(@params: new AccountRegisterDeviceParams
-			{
-					Token = "tokenVal"
-					, DeviceModel = null
-					, SystemVersion = null
-			}), expr: Throws.Nothing);
+					{
+							Token = "tokenVal"
+							, DeviceModel = null
+							, SystemVersion = null
+					})
+					, expr: Throws.Nothing);
 
 			Assert.That(del: () => Api.Account.RegisterDevice(@params: new AccountRegisterDeviceParams
-			{
-					Token = "tokenVal"
-					, DeviceModel = string.Empty
-					, SystemVersion = string.Empty
-			}), expr: Throws.Nothing);
+					{
+							Token = "tokenVal"
+							, DeviceModel = string.Empty
+							, SystemVersion = string.Empty
+					})
+					, expr: Throws.Nothing);
 		}
 
 		[Test] // TODO Падает на Linux
@@ -464,22 +470,28 @@ namespace VkNet.Tests.Categories
 
 			Json = @"{ 'response': { changed: 1 } }";
 
-			Assert.That(del: () => Api.Account.SaveProfileInfo(changeNameRequest: out var _, @params: new AccountSaveProfileInfoParams
-					{
-							FirstName = "fn"
-							, LastName = "ln"
-							, MaidenName = "mn"
-							, Sex = Sex.Female
-							, Relation = RelationType.Married
-							, RelationPartner = new User { Id = 10 }
-							, BirthDate = new DateTime(year: 1984, month: 11, day: 15, hour: 0, minute: 0, second: 0
-									, kind: DateTimeKind.Utc).ToShortDateString()
-							, BirthdayVisibility = BirthdayVisibility.Full
-							, HomeTown = "ht"
-							, Country = new Country { Id = 1 }
-							, City = new City { Id = 2 }
-					}),
-					expr: Is.True);
+			Assert.That(del: () => Api.Account.SaveProfileInfo(changeNameRequest: out var _
+							, @params: new AccountSaveProfileInfoParams
+							{
+									FirstName = "fn"
+									, LastName = "ln"
+									, MaidenName = "mn"
+									, Sex = Sex.Female
+									, Relation = RelationType.Married
+									, RelationPartner = new User { Id = 10 }
+									, BirthDate = new DateTime(year: 1984
+											, month: 11
+											, day: 15
+											, hour: 0
+											, minute: 0
+											, second: 0
+											, kind: DateTimeKind.Utc).ToShortDateString()
+									, BirthdayVisibility = BirthdayVisibility.Full
+									, HomeTown = "ht"
+									, Country = new Country { Id = 1 }
+									, City = new City { Id = 2 }
+							})
+					, expr: Is.True);
 		}
 
 		[Test]
@@ -507,21 +519,35 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			Json = @"{ 'response': { changed: 1 } }";
 
-			Assert.That(del: () => Api.Account.SaveProfileInfo(changeNameRequest: out var _, @params: new AccountSaveProfileInfoParams
-					{
-							BirthDate = new DateTime(year: 1984, month: 11, day: 150, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc)
-									.ToShortDateString()
-					}),
-					expr: Is.True);
+			Assert.That(del: () => Api.Account.SaveProfileInfo(changeNameRequest: out var _
+							, @params: new AccountSaveProfileInfoParams
+							{
+									BirthDate = new DateTime(year: 1984
+													, month: 11
+													, day: 150
+													, hour: 0
+													, minute: 0
+													, second: 0
+													, kind: DateTimeKind.Utc)
+											.ToShortDateString()
+							})
+					, expr: Is.True);
 
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
-			Assert.That(del: () => Api.Account.SaveProfileInfo(changeNameRequest: out var _, @params: new AccountSaveProfileInfoParams
-					{
-							BirthDate = new DateTime(year: 2014, month: 9, day: 8, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc)
-									.ToShortDateString()
-					}),
-					expr: Is.True);
+			Assert.That(del: () => Api.Account.SaveProfileInfo(changeNameRequest: out var _
+							, @params: new AccountSaveProfileInfoParams
+							{
+									BirthDate = new DateTime(year: 2014
+													, month: 9
+													, day: 8
+													, hour: 0
+													, minute: 0
+													, second: 0
+													, kind: DateTimeKind.Utc)
+											.ToShortDateString()
+							})
+					, expr: Is.True);
 		}
 
 		[Test]

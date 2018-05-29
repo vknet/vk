@@ -4,36 +4,36 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация об аудиоальбоме.
+	/// Информация об аудиоальбоме.
 	/// </summary>
 	/// <remarks>
-	///     Страница документации ВКонтакте http://vk.com/dev/audio.getAlbums
+	/// Страница документации ВКонтакте http://vk.com/dev/audio.getAlbums
 	/// </remarks>
 	[Serializable]
 	public class AudioAlbum
 	{
 		/// <summary>
-		///     Идентификатор владельца альбома.
+		/// Идентификатор владельца альбома.
 		/// </summary>
 		public long? OwnerId { get; set; }
 
 		/// <summary>
-		///     Идентификатор альбома.
+		/// Идентификатор альбома.
 		/// </summary>
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		///     Название альбома.
+		/// Название альбома.
 		/// </summary>
 		public string Title { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static AudioAlbum FromJson(VkResponse response)
 		{
 			var album = new AudioAlbum

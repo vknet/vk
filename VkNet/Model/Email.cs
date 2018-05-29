@@ -5,19 +5,19 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     E-Mail.
+	/// E-Mail.
 	/// </summary>
 	[Serializable]
 	public class Email
 	{
 		/// <summary>
-		///     Идентификатор e-mail
+		/// Идентификатор e-mail
 		/// </summary>
 		[JsonProperty(propertyName: "id")]
 		public int Id { get; set; }
 
 		/// <summary>
-		///     Адрес e-mail
+		/// Адрес e-mail
 		/// </summary>
 		[JsonProperty(propertyName: "address")]
 		public string Address { get; set; }
@@ -25,10 +25,10 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Email FromJson(VkResponse response)
 		{
 			return new Email

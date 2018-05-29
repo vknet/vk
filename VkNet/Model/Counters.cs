@@ -4,93 +4,93 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Количество различных объектов у пользователя.
-	///     См. описание http://vk.com/dev/fields
-	///     http://vk.com/dev/fields_groups
-	///     Раздел counters.
+	/// Количество различных объектов у пользователя.
+	/// См. описание http://vk.com/dev/fields
+	/// http://vk.com/dev/fields_groups
+	/// Раздел counters.
 	/// </summary>
 	[Serializable]
 	public class Counters
 	{
 		/// <summary>
-		///     Количество фотоальбомов.
+		/// Количество фотоальбомов.
 		/// </summary>
 		public int? Albums { get; set; }
 
 		/// <summary>
-		///     Количество видеозаписей.
+		/// Количество видеозаписей.
 		/// </summary>
 		public int? Videos { get; set; }
 
 		/// <summary>
-		///     Количество аудиозаписей.
+		/// Количество аудиозаписей.
 		/// </summary>
 		public int? Audios { get; set; }
 
 		/// <summary>
-		///     Количество фотографий.
+		/// Количество фотографий.
 		/// </summary>
 		public int? Photos { get; set; }
 
 		/// <summary>
-		///     Количество заметок.
+		/// Количество заметок.
 		/// </summary>
 		public int? Notes { get; set; }
 
 		/// <summary>
-		///     Количество друзей.
+		/// Количество друзей.
 		/// </summary>
 		public int? Friends { get; set; }
 
 		/// <summary>
-		///     Количество сообществ.
+		/// Количество сообществ.
 		/// </summary>
 		public int? Groups { get; set; }
 
 		/// <summary>
-		///     Количество друзей онлайн.
+		/// Количество друзей онлайн.
 		/// </summary>
 		public int? OnlineFriends { get; set; }
 
 		/// <summary>
-		///     Количество общих друзей.
+		/// Количество общих друзей.
 		/// </summary>
 		public int? MutualFriends { get; set; }
 
 		/// <summary>
-		///     Количество видеозаписей с пользователем.
+		/// Количество видеозаписей с пользователем.
 		/// </summary>
 		public int? UserVideos { get; set; }
 
 		/// <summary>
-		///     Количество подписчиков.
+		/// Количество подписчиков.
 		/// </summary>
 		public int? Followers { get; set; }
 
 		/// <summary>
-		///     Количество фотографий с пользователем.
+		/// Количество фотографий с пользователем.
 		/// </summary>
 		public int? UserPhotos { get; set; }
 
 		/// <summary>
-		///     Количество подписок (только пользователи).
+		/// Количество подписок (только пользователи).
 		/// </summary>
 		public int? Subscriptions { get; set; }
 
 		/// <summary>
-		///     Количество тем обсуждений сообщества.
+		/// Количество тем обсуждений сообщества.
 		/// </summary>
 		public int? TopicsCount { get; set; }
 
 		/// <summary>
-		///     Количество документов.
+		/// Количество документов.
 		/// </summary>
 		public int? DocumentsCount { get; set; }
 
 	#region Поля, установленные экспериментально
 
 		/// <summary>
-		///     Количество публичных страниц, на которые подписан пользователь.
+		/// Количество публичных страниц, на которые подписан пользователь.
 		/// </summary>
 		public int? Pages { get; set; }
 
@@ -99,10 +99,10 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Counters FromJson(VkResponse response)
 		{
 			var counters = new Counters
@@ -139,32 +139,32 @@ namespace VkNet.Model
 	#region	  Счетчики из метода https://vk.com/dev/account.getCounters
 
 		/// <summary>
-		///     Количество сообщений
+		/// Количество сообщений
 		/// </summary>
 		public int? Messages { get; set; }
 
 		/// <summary>
-		///     Количество подарков
+		/// Количество подарков
 		/// </summary>
 		public int? Gifts { get; set; }
 
 		/// <summary>
-		///     Количество событий
+		/// Количество событий
 		/// </summary>
 		public int? Events { get; set; }
 
 		/// <summary>
-		///     Количество уведомлений
+		/// Количество уведомлений
 		/// </summary>
 		public int? Notifications { get; set; }
 
 		/// <summary>
-		///     SDK.
+		/// SDK.
 		/// </summary>
 		public int? Sdk { get; set; }
 
 		/// <summary>
-		///     Запросов к приложению.
+		/// Запросов к приложению.
 		/// </summary>
 		public int? AppRequests { get; set; }
 

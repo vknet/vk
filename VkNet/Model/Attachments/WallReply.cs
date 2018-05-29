@@ -6,13 +6,13 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Комментарий к записи на стене.
+	/// Комментарий к записи на стене.
 	/// </summary>
 	[Serializable]
 	public class WallReply : MediaAttachment
 	{
 		/// <summary>
-		///     Комментарий к записи на стене.
+		/// Комментарий к записи на стене.
 		/// </summary>
 		static WallReply()
 		{
@@ -20,41 +20,41 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Идентификатор автора комментария.
+		/// Идентификатор автора комментария.
 		/// </summary>
 		public long? FromId { get; set; }
 
 		/// <summary>
-		///     Дата создания комментария в формате unixtime.
+		/// Дата создания комментария в формате unixtime.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
-		///     Текст комментария.
+		/// Текст комментария.
 		/// </summary>
 		public string Text { get; set; }
 
 		/// <summary>
-		///     Информация о лайках к комментарию.
+		/// Информация о лайках к комментарию.
 		/// </summary>
 		public Likes Likes { get; set; }
 
 		/// <summary>
-		///     Идентификатор пользователя, в ответ которому был оставлен комментарий;
+		/// Идентификатор пользователя, в ответ которому был оставлен комментарий;
 		/// </summary>
 		public long? ReplyToUId { get; set; }
 
 		/// <summary>
-		///     Идентификатор комментария, в ответ на который был оставлен текущий.
+		/// Идентификатор комментария, в ответ на который был оставлен текущий.
 		/// </summary>
 		public long? ReplyToCId { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static WallReply FromJson(VkResponse response)
 		{
 			var wallReply = new WallReply

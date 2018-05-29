@@ -31,48 +31,49 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet
 {
 	/// <summary>
-	///     Служит для оповещения об истечении токена
+	/// Служит для оповещения об истечении токена
 	/// </summary>
 	/// <param name="sender">
-	///     Экземпляр API у которого истекло время токена
+	/// Экземпляр API у которого истекло время токена
 	/// </param>
 	public delegate void VkApiDelegate(VkApi sender);
 
 	/// <inheritdoc />
 	/// <summary>
-	///     API для работы с ВКонтакте.
-	///     Выступает в качестве фабрики для различных категорий API (например, для работы с пользователями, группами и т.п.)
+	/// API для работы с ВКонтакте.
+	/// Выступает в качестве фабрики для различных категорий API (например, для работы
+	/// с пользователями, группами и т.п.)
 	/// </summary>
 	public class VkApi : IVkApi
 	{
 		/// <summary>
-		///     Версия API vk.com.
+		/// Версия API vk.com.
 		/// </summary>
 		public const string VkApiVersion = "5.78";
 
 		/// <summary>
-		///     The expire timer lock
+		/// The expire timer lock
 		/// </summary>
 		private readonly object _expireTimerLock = new object();
 
 		/// <summary>
-		///     Параметры авторизации.
+		/// Параметры авторизации.
 		/// </summary>
 		private IApiAuthParams _ap;
 
 		/// <summary>
-		///     Таймер.
+		/// Таймер.
 		/// </summary>
 		private Timer _expireTimer;
 
 		/// <summary>
-		///     Логгер
+		/// Логгер
 		/// </summary>
 		private ILogger _logger;
 
 	#pragma warning disable S1104 // Fields should not have public accessibility
 		/// <summary>
-		///     Rest Client
+		/// Rest Client
 		/// </summary>
 		public IRestClient RestClient;
 	#pragma warning restore S1104 // Fields should not have public accessibility
@@ -117,12 +118,12 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Токен для доступа к методам API
+		/// Токен для доступа к методам API
 		/// </summary>
 		private string AccessToken { get; set; }
 
 		/// <summary>
-		///     Язык получаемых данных
+		/// Язык получаемых данных
 		/// </summary>
 		private Language? Language { get; set; }
 
@@ -167,10 +168,10 @@ namespace VkNet
 			{
 				_logger?.Debug(message: "Настройка прокси");
 
-				Browser.Proxy = WebProxy.GetProxy(host: @params.Host,
-						port: @params.Port,
-						proxyLogin: @params.ProxyLogin,
-						proxyPassword: @params.ProxyPassword);
+				Browser.Proxy = WebProxy.GetProxy(host: @params.Host
+						, port: @params.Port
+						, proxyLogin: @params.ProxyLogin
+						, proxyPassword: @params.ProxyPassword);
 
 				RestClient.Proxy = Browser.Proxy;
 			}
@@ -260,16 +261,15 @@ namespace VkNet
 
 			if (!jsonConverters.Any())
 			{
-				return JsonConvert.DeserializeObject<T>(answer,
-						new VkCollectionJsonConverter(),
-						new VkDefaultJsonConverter(),
-						new UnixDateTimeConverter(),
-						new AttachmentJsonConverter(),
-						new StringEnumConverter());
+				return JsonConvert.DeserializeObject<T>(answer
+						, new VkCollectionJsonConverter()
+						, new VkDefaultJsonConverter()
+						, new UnixDateTimeConverter()
+						, new AttachmentJsonConverter()
+						, new StringEnumConverter());
 			}
 
-			return JsonConvert.DeserializeObject<T>(value: answer,
-					converters: jsonConverters);
+			return JsonConvert.DeserializeObject<T>(value: answer, converters: jsonConverters);
 		}
 
 		/// <inheritdoc />
@@ -313,8 +313,8 @@ namespace VkNet
 					{
 						var timeout = (int) _minInterval - (int) span;
 					#if NET40
-						Thread.Sleep(timeout);
-#else
+						Thread.Sleep(millisecondsTimeout: timeout);
+					#else
 						Task.Delay(millisecondsDelay: timeout).Wait();
 					#endif
 					}
@@ -370,11 +370,12 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Releases unmanaged and - optionally - managed resources.
+		/// Releases unmanaged and - optionally - managed resources.
 		/// </summary>
 		/// <param name="disposing">
-		///     <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only
-		///     unmanaged resources.
+		/// <c> true </c> to release both managed and unmanaged resources; <c> false </c>
+		/// to release only
+		/// unmanaged resources.
 		/// </param>
 		protected virtual void Dispose(bool disposing)
 		{
@@ -384,12 +385,13 @@ namespace VkNet
 	#region Requests limit stuff
 
 		/// <summary>
-		///     Запросов в секунду.
+		/// Запросов в секунду.
 		/// </summary>
 		private float _requestsPerSecond;
 
 		/// <summary>
-		///     Минимальное время, которое должно пройти между запросами чтобы не превысить кол-во запросов в секунду.
+		/// Минимальное время, которое должно пройти между запросами чтобы не превысить
+		/// кол-во запросов в секунду.
 		/// </summary>
 		private float _minInterval;
 
@@ -545,13 +547,13 @@ namespace VkNet
 	#region private
 
 		/// <summary>
-		///     Базовое обращение к vk.com
+		/// Базовое обращение к vk.com
 		/// </summary>
-		/// <param name="methodName">Наименование метода</param>
-		/// <param name="parameters">Параметры запроса</param>
-		/// <param name="skipAuthorization">Пропустить авторизацию</param>
-		/// <returns>Ответ от vk.com в формате json</returns>
-		/// <exception cref="CaptchaNeededException">Требуется ввести капчу</exception>
+		/// <param name="methodName"> Наименование метода </param>
+		/// <param name="parameters"> Параметры запроса </param>
+		/// <param name="skipAuthorization"> Пропустить авторизацию </param>
+		/// <returns> Ответ от vk.com в формате json </returns>
+		/// <exception cref="CaptchaNeededException"> Требуется ввести капчу </exception>
 		private string CallBase(string methodName, VkParameters parameters, bool skipAuthorization)
 		{
 			if (!parameters.ContainsKey(key: "v"))
@@ -569,8 +571,7 @@ namespace VkNet
 				parameters.Add(name: "lang", nullableValue: Language);
 			}
 
-			_logger?.Debug(
-					message:
+			_logger?.Debug(message:
 					$"Вызов метода {methodName}, с параметрами {string.Join(separator: ",", values: parameters.Select(selector: x => $"{x.Key}={x.Value}"))}");
 
 			string answer;
@@ -593,10 +594,10 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Авторизация и получение токена
+		/// Авторизация и получение токена
 		/// </summary>
-		/// <param name="authParams">Параметры авторизации</param>
-		/// <exception cref="VkApiAuthorizationException"></exception>
+		/// <param name="authParams"> Параметры авторизации </param>
+		/// <exception cref="VkApiAuthorizationException"> </exception>
 		private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
 		{
 			_logger?.Debug(message: "Старт авторизации");
@@ -619,12 +620,12 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Обработка капчи
+		/// Обработка капчи
 		/// </summary>
-		/// <param name="action">Действие</param>
-		/// <typeparam name="T">Тип результата</typeparam>
-		/// <returns>Результат действия</returns>
-		/// <exception cref="CaptchaNeededException">Требуется обработка капчи.</exception>
+		/// <param name="action"> Действие </param>
+		/// <typeparam name="T"> Тип результата </typeparam>
+		/// <returns> Результат действия </returns>
+		/// <exception cref="CaptchaNeededException"> Требуется обработка капчи. </exception>
 		private T CaptchaHandler<T>(Func<long?, string, T> action)
 		{
 			var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
@@ -645,8 +646,9 @@ namespace VkNet
 				catch (CaptchaNeededException captchaNeededException)
 				{
 					RepeatSolveCaptcha(numberOfRemainingAttemptsToSolveCaptcha: ref numberOfRemainingAttemptsToSolveCaptcha
-							, captchaNeededException: captchaNeededException,
-							captchaSidTemp: ref captchaSidTemp, captchaKeyTemp: ref captchaKeyTemp);
+							, captchaNeededException: captchaNeededException
+							, captchaSidTemp: ref captchaSidTemp
+							, captchaKeyTemp: ref captchaKeyTemp);
 				}
 			} while (numberOfRemainingAttemptsToAuthorize > 0 && !callCompleted);
 
@@ -662,12 +664,12 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Авторизация через установку токена
+		/// Авторизация через установку токена
 		/// </summary>
-		/// <param name="accessToken">Токен</param>
-		/// <param name="userId">Идентификатор пользователя</param>
-		/// <param name="expireTime">Время истечения токена</param>
-		/// <exception cref="ArgumentNullException"></exception>
+		/// <param name="accessToken"> Токен </param>
+		/// <param name="userId"> Идентификатор пользователя </param>
+		/// <param name="expireTime"> Время истечения токена </param>
+		/// <exception cref="ArgumentNullException"> </exception>
 		private void TokenAuth(string accessToken, long? userId, int expireTime)
 		{
 			if (string.IsNullOrWhiteSpace(value: accessToken))
@@ -686,9 +688,9 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Sets the token properties.
+		/// Sets the token properties.
 		/// </summary>
-		/// <param name="authorization">The authorization.</param>
+		/// <param name="authorization"> The authorization. </param>
 		private void SetTokenProperties(VkAuthorization authorization)
 		{
 			_logger?.Debug(message: "Установка свойств токена");
@@ -697,11 +699,11 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Установить свойства api после авторизации
+		/// Установить свойства api после авторизации
 		/// </summary>
-		/// <param name="expireTime"></param>
-		/// <param name="accessToken"></param>
-		/// <param name="userId"></param>
+		/// <param name="expireTime"> </param>
+		/// <param name="accessToken"> </param>
+		/// <param name="userId"> </param>
 		private void SetApiPropertiesAfterAuth(int expireTime, string accessToken, long? userId)
 		{
 			SetTimer(expireTime: expireTime);
@@ -710,12 +712,12 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Повторная обработка капчи
+		/// Повторная обработка капчи
 		/// </summary>
-		/// <param name="numberOfRemainingAttemptsToSolveCaptcha"></param>
-		/// <param name="captchaNeededException"></param>
-		/// <param name="captchaSidTemp"></param>
-		/// <param name="captchaKeyTemp"></param>
+		/// <param name="numberOfRemainingAttemptsToSolveCaptcha"> </param>
+		/// <param name="captchaNeededException"> </param>
+		/// <param name="captchaSidTemp"> </param>
+		/// <param name="captchaKeyTemp"> </param>
 		private void RepeatSolveCaptcha(ref int numberOfRemainingAttemptsToSolveCaptcha
 										, CaptchaNeededException captchaNeededException
 										, ref long? captchaSidTemp
@@ -739,19 +741,19 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Установить значение таймера
+		/// Установить значение таймера
 		/// </summary>
-		/// <param name="expireTime">Значение таймера</param>
+		/// <param name="expireTime"> Значение таймера </param>
 		private void SetTimer(int expireTime)
 		{
-			_expireTimer = new Timer(callback: AlertExpires,
-					state: null,
-					dueTime: expireTime > 0 ? expireTime : Timeout.Infinite,
-					period: Timeout.Infinite);
+			_expireTimer = new Timer(callback: AlertExpires
+					, state: null
+					, dueTime: expireTime > 0 ? expireTime : Timeout.Infinite
+					, period: Timeout.Infinite);
 		}
 
 		/// <summary>
-		///     Прекращает работу таймера оповещения
+		/// Прекращает работу таймера оповещения
 		/// </summary>
 		private void StopTimer()
 		{
@@ -759,19 +761,19 @@ namespace VkNet
 		}
 
 		/// <summary>
-		///     Создает событие оповещения об окончании времени токена
+		/// Создает событие оповещения об окончании времени токена
 		/// </summary>
-		/// <param name="state"></param>
+		/// <param name="state"> </param>
 		private void AlertExpires(object state)
 		{
 			OnTokenExpires?.Invoke(sender: this);
 		}
 
 		/// <summary>
-		///     Авторизация и получение токена
+		/// Авторизация и получение токена
 		/// </summary>
-		/// <param name="authParams">Параметры авторизации</param>
-		/// <exception cref="VkApiAuthorizationException"></exception>
+		/// <param name="authParams"> Параметры авторизации </param>
+		/// <exception cref="VkApiAuthorizationException"> </exception>
 		private void BaseAuthorize(IApiAuthParams authParams)
 		{
 			StopTimer();

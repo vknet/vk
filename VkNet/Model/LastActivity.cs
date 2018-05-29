@@ -6,24 +6,24 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о последней активности пользователя.
-	///     См. описание http://vk.com/dev/messages.getLastActivity
+	/// Информация о последней активности пользователя.
+	/// См. описание http://vk.com/dev/messages.getLastActivity
 	/// </summary>
 	[Serializable]
 	public class LastActivity
 	{
 		/// <summary>
-		///     Идентификатор пользователя.
+		/// Идентификатор пользователя.
 		/// </summary>
 		public long UserId { get; set; }
 
 		/// <summary>
-		///     Текущий статус пользователя (true - в сети, false - не в сети).
+		/// Текущий статус пользователя (true - в сети, false - не в сети).
 		/// </summary>
 		public bool? IsOnline { get; set; }
 
 		/// <summary>
-		///     Дата последней активности пользователя.
+		/// Дата последней активности пользователя.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Time { get; set; }
@@ -31,10 +31,10 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static LastActivity FromJson(VkResponse response)
 		{
 			var lastActivity = new LastActivity

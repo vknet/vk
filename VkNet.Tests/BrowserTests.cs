@@ -9,7 +9,7 @@ namespace VkNet.Tests
 	public class BrowserTests : BaseTest
 	{
 		/// <summary>
-		///     todo: поправить тест
+		/// todo: поправить тест
 		/// </summary>
 		[Test]
 		[Ignore(reason: "TODO: временно")]

@@ -27,8 +27,8 @@ namespace VkNet.Tests.Categories.Messages
 					{
 							UserId = 1
 							, Message = "Привет, Паша!"
-					}),
-					expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					})
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -74,10 +74,11 @@ namespace VkNet.Tests.Categories.Messages
 		public void EmptyMessage_ThrowsInvalidParameterException()
 		{
 			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
-			{
-					UserId = 7550525
-					, Message = ""
-			}), expr: Throws.InstanceOf<ArgumentException>());
+					{
+							UserId = 7550525
+							, Message = ""
+					})
+					, expr: Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -100,12 +101,13 @@ namespace VkNet.Tests.Categories.Messages
 				  }";
 
 			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
-			{
-					UserId = 7550525
-					, Message = "г. Таганрог, ул. Фрунзе 66А"
-					, Lat = 47.217451
-					, Longitude = 38.922743
-			}), expr: Throws.InstanceOf<MessageIsTooLongException>());
+					{
+							UserId = 7550525
+							, Message = "г. Таганрог, ул. Фрунзе 66А"
+							, Lat = 47.217451
+							, Longitude = 38.922743
+					})
+					, expr: Throws.InstanceOf<MessageIsTooLongException>());
 		}
 
 		[Test]
@@ -128,12 +130,13 @@ namespace VkNet.Tests.Categories.Messages
 				  }";
 
 			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
-			{
-					UserId = 7550525
-					, Message = "г. Таганрог, ул. Фрунзе 66А"
-					, Lat = 47.217451
-					, Longitude = 38.922743
-			}), expr: Throws.InstanceOf<TooMuchSentMessagesException>());
+					{
+							UserId = 7550525
+							, Message = "г. Таганрог, ул. Фрунзе 66А"
+							, Lat = 47.217451
+							, Longitude = 38.922743
+					})
+					, expr: Throws.InstanceOf<TooMuchSentMessagesException>());
 		}
 
 		[Test]
@@ -150,12 +153,13 @@ namespace VkNet.Tests.Categories.Messages
             }";
 
 			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
-			{
-					UserIds = new List<long> { 7550525 }
-					, Message = "г. Таганрог, ул. Фрунзе 66А"
-					, Lat = 47.217451
-					, Longitude = 38.922743
-			}), expr: Throws.InstanceOf<ArgumentException>());
+					{
+							UserIds = new List<long> { 7550525 }
+							, Message = "г. Таганрог, ул. Фрунзе 66А"
+							, Lat = 47.217451
+							, Longitude = 38.922743
+					})
+					, expr: Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -172,12 +176,13 @@ namespace VkNet.Tests.Categories.Messages
             }";
 
 			Assert.That(del: () => Messages.SendToUserIds(@params: new MessagesSendParams
-			{
-					UserId = 7550525
-					, Message = "г. Таганрог, ул. Фрунзе 66А"
-					, Lat = 47.217451
-					, Longitude = 38.922743
-			}), expr: Throws.InstanceOf<ArgumentException>());
+					{
+							UserId = 7550525
+							, Message = "г. Таганрог, ул. Фрунзе 66А"
+							, Lat = 47.217451
+							, Longitude = 38.922743
+					})
+					, expr: Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]

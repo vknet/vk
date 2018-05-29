@@ -6,56 +6,56 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	///     Список параметров для метода photos.editAlbum
+	/// Список параметров для метода photos.editAlbum
 	/// </summary>
 	[Serializable]
 	public class PhotoEditAlbumParams
 	{
 		/// <summary>
-		///     Идентификатор альбома.
+		/// Идентификатор альбома.
 		/// </summary>
 		public ulong AlbumId { get; set; }
 
 		/// <summary>
-		///     Новое название альбома.
+		/// Новое название альбома.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Новый текст описания альбома.
+		/// Новый текст описания альбома.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Идентификатор владельца альбома (пользователь или сообщество).
+		/// Идентификатор владельца альбома (пользователь или сообщество).
 		/// </summary>
 		public long? OwnerId { get; set; }
 
 		/// <summary>
-		///     Настройки приватности просмотра альбома в специальном формате.
+		/// Настройки приватности просмотра альбома в специальном формате.
 		/// </summary>
 		public List<Privacy> PrivacyView { get; set; }
 
 		/// <summary>
-		///     Настройки приватности комментирования альбома в специальном формате.
+		/// Настройки приватности комментирования альбома в специальном формате.
 		/// </summary>
 		public List<Privacy> PrivacyComment { get; set; }
 
 		/// <summary>
-		///     Кто может загружать фотографии в альбом (только для альбома сообщества).
+		/// Кто может загружать фотографии в альбом (только для альбома сообщества).
 		/// </summary>
 		public bool? UploadByAdminsOnly { get; set; }
 
 		/// <summary>
-		///     Отключено ли комментирование альбома (только для альбома сообщества).
+		/// Отключено ли комментирование альбома (только для альбома сообщества).
 		/// </summary>
 		public bool? CommentsDisabled { get; set; }
 
 		/// <summary>
-		///     Привести к типу VkParameters.
+		/// Привести к типу VkParameters.
 		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
+		/// <param name="p"> Параметры. </param>
+		/// <returns> </returns>
 		public static VkParameters ToVkParameters(PhotoEditAlbumParams p)
 		{
 			if (p.PrivacyView == null)

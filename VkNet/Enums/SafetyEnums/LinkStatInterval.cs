@@ -3,33 +3,33 @@
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	///     Единица времени для подсчета статистики.
+	/// Единица времени для подсчета статистики.
 	/// </summary>
 	public class LinkStatInterval : SafetyEnum<LinkStatInterval>
 	{
 		/// <summary>
-		///     Час
+		/// Час
 		/// </summary>
 		public static readonly LinkStatInterval Hour = RegisterPossibleValue(value: "hour");
 
 		/// <summary>
-		///     День
+		/// День
 		/// </summary>
 		[DefaultValue]
 		public static readonly LinkStatInterval Day = RegisterPossibleValue(value: "day");
 
 		/// <summary>
-		///     Неделя
+		/// Неделя
 		/// </summary>
 		public static readonly LinkStatInterval Week = RegisterPossibleValue(value: "week");
 
 		/// <summary>
-		///     Месяц
+		/// Месяц
 		/// </summary>
 		public static readonly LinkStatInterval Month = RegisterPossibleValue(value: "month");
 
 		/// <summary>
-		///     Все время с момента создания ссылки
+		/// Все время с момента создания ссылки
 		/// </summary>
 		public static readonly LinkStatInterval Forever = RegisterPossibleValue(value: "forever");
 	}

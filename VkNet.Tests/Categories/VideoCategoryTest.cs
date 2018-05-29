@@ -339,8 +339,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video2.Photo320
 					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
 
-			Assert.That(actual: video2.Player,
-					expression: Is.EqualTo(
+			Assert.That(actual: video2.Player
+					, expression: Is.EqualTo(
 							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353")));
 
 			Assert.That(actual: video2.CanComment, expression: Is.EqualTo(expected: true));
@@ -473,8 +473,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video2.Photo320
 					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
 
-			Assert.That(actual: video2.Player,
-					expression: Is.EqualTo(
+			Assert.That(actual: video2.Player
+					, expression: Is.EqualTo(
 							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353")));
 		}
 
@@ -595,9 +595,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: comment1.FromId, expression: Is.EqualTo(expected: 94278436));
 			Assert.That(actual: comment1.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384867372)));
 
-			Assert.That(actual: comment1.Text,
-					expression: Is.EqualTo(
-							expected:
+			Assert.That(actual: comment1.Text
+					, expression: Is.EqualTo(expected:
 							"Я опять на странице Дурова, опять передаю привет Маме, Бабушке и своим друзьям! Дела у меня очень отлично!"));
 
 			Assert.That(actual: comment1.Likes.Count, expression: Is.EqualTo(expected: 77));
@@ -660,9 +659,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: comment1.FromId, expression: Is.EqualTo(expected: 94278436));
 			Assert.That(actual: comment1.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384867372)));
 
-			Assert.That(actual: comment1.Text,
-					expression: Is.EqualTo(
-							expected:
+			Assert.That(actual: comment1.Text
+					, expression: Is.EqualTo(expected:
 							"Я опять на странице Дурова, опять передаю привет Маме, Бабушке и своим друзьям! Дела у меня очень отлично!"));
 		}
 
@@ -764,9 +762,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video.Description, expression: Is.EqualTo(expected: "Описание из ютуба"));
 			Assert.That(actual: video.AccessKey, expression: Is.EqualTo(expected: "f2ec9f3982f05bc"));
 
-			Assert.That(actual: video.UploadUrl,
-					expression: Is.EqualTo(expected: new Uri(
-							uriString:
+			Assert.That(actual: video.UploadUrl
+					, expression: Is.EqualTo(expected: new Uri(uriString:
 							"http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043")));
 		}
 
@@ -885,16 +882,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video.Id, expression: Is.EqualTo(expected: 166671614));
 			Assert.That(actual: video.OwnerId, expression: Is.EqualTo(expected: -59205334));
 
-			Assert.That(actual: video.Title,
-					expression: Is.EqualTo(
-							expected:
+			Assert.That(actual: video.Title
+					, expression: Is.EqualTo(expected:
 							"Fucking Machines Sasha Grey | Саша Грей | Саша Грэй  | Порно | Секс | Эротика | Секс машина |  Садо-мазо  | БДСМ"));
 
 			Assert.That(actual: video.Duration, expression: Is.EqualTo(expected: 1934));
 
-			Assert.That(actual: video.Description,
-					expression: Is.EqualTo(
-							expected:
+			Assert.That(actual: video.Description
+					, expression: Is.EqualTo(expected:
 							"beauty 18+\n\n\'Качественное и эксклюзивное порно  у нас\'\n\n>>>>>>> http://vk.com/mastofmastur<<<<<<"));
 
 			Assert.That(actual: video.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384706962)));
@@ -909,8 +904,8 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(actual: video.AlbumId, expression: Is.EqualTo(expected: 50100051));
 
-			Assert.That(actual: video.Player,
-					expression: Is.EqualTo(
+			Assert.That(actual: video.Player
+					, expression: Is.EqualTo(
 							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=-59205334&id=166671614&hash=d609a7775bbb2e7d")));
 
 			var video1 = result.Skip(count: 1).FirstOrDefault();
@@ -919,16 +914,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video1.Id, expression: Is.EqualTo(expected: 165458571));
 			Assert.That(actual: video1.OwnerId, expression: Is.EqualTo(expected: -49956637));
 
-			Assert.That(actual: video1.Title,
-					expression: Is.EqualTo(
-							expected:
+			Assert.That(actual: video1.Title
+					, expression: Is.EqualTo(expected:
 							"домашнее частное порно порно модель саша грей on-line любовь порно с сюжетом лесби порка стендап stand up клип группа"));
 
 			Assert.That(actual: video1.Duration, expression: Is.EqualTo(expected: 1139));
 
-			Assert.That(actual: video1.Description,
-					expression: Is.EqualTo(
-							expected:
+			Assert.That(actual: video1.Description
+					, expression: Is.EqualTo(expected:
 							"секс знакомства подписывайся,знакомься,общайся,тут русские шлюхи,проститутки подпишись у нас http://vk.com/tyt_sex"));
 
 			Assert.That(actual: video1.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1371702618)));
@@ -941,8 +934,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video1.Photo320
 					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs527502.vk.me/u65226705/video/l_ba2e1aff.jpg")));
 
-			Assert.That(actual: video1.Player,
-					expression: Is.EqualTo(
+			Assert.That(actual: video1.Player
+					, expression: Is.EqualTo(
 							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=-49956637&id=165458571&hash=dc6995a7cc9aed92")));
 
 			var video2 = result.Skip(count: 2).FirstOrDefault();
@@ -953,9 +946,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video2.Title, expression: Is.EqualTo(expected: "Саша Грей | Sasha Grey #13"));
 			Assert.That(actual: video2.Duration, expression: Is.EqualTo(expected: 1289));
 
-			Assert.That(actual: video2.Description,
-					expression: Is.EqualTo(
-							expected:
+			Assert.That(actual: video2.Description
+					, expression: Is.EqualTo(expected:
 							"Взято со страницы Саша Грей | Sasha Grey | 18+: http://vk.com/sashagreyphotos\nЭротика: http://vk.com/gentleerotica"));
 
 			Assert.That(actual: video2.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1386961568)));
@@ -968,8 +960,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video2.Photo320
 					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs535107.vk.me/u146564541/video/l_cb794198.jpg")));
 
-			Assert.That(actual: video2.Player,
-					expression: Is.EqualTo(
+			Assert.That(actual: video2.Player
+					, expression: Is.EqualTo(
 							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac")));
 		}
 	}

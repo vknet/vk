@@ -7,10 +7,10 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Фотография.
+	/// Фотография.
 	/// </summary>
 	/// <remarks>
-	///     См. описание http://vk.com/dev/photo
+	/// См. описание http://vk.com/dev/photo
 	/// </remarks>
 	[Serializable]
 	public class Photo : MediaAttachment
@@ -21,79 +21,80 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Идентификатор альбома, в котором находится фотография.
+		/// Идентификатор альбома, в котором находится фотография.
 		/// </summary>
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		///     Идентификатор пользователя, загрузившего фото (если фотография размещена в сообществе). Для фотографий, размещенных
-		///     от имени сообщества.
+		/// Идентификатор пользователя, загрузившего фото (если фотография размещена в
+		/// сообществе). Для фотографий, размещенных
+		/// от имени сообщества.
 		/// </summary>
 		public long? UserId { get; set; }
 
 		/// <summary>
-		///     Текст описания фотографии.
+		/// Текст описания фотографии.
 		/// </summary>
 		public string Text { get; set; }
 
 		/// <summary>
-		///     Дата добавления фотографии.
+		/// Дата добавления фотографии.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
-		///     Размеры фотографий.
+		/// Размеры фотографий.
 		/// </summary>
 		public ReadOnlyCollection<PhotoSize> Sizes { get; set; }
 
 		/// <summary>
-		///     Uri фотографии с максимальным размером 75x75px.
+		/// Uri фотографии с максимальным размером 75x75px.
 		/// </summary>
 		public Uri Photo75 { get; set; }
 
 		/// <summary>
-		///     Uri фотографии с максимальным размером 130x130px.
+		/// Uri фотографии с максимальным размером 130x130px.
 		/// </summary>
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
-		///     Uri фотографии с максимальным размером 604x604px.
+		/// Uri фотографии с максимальным размером 604x604px.
 		/// </summary>
 		public Uri Photo604 { get; set; }
 
 		/// <summary>
-		///     Uri фотографии с максимальным размером 807x807px.
+		/// Uri фотографии с максимальным размером 807x807px.
 		/// </summary>
 		public Uri Photo807 { get; set; }
 
 		/// <summary>
-		///     Uri фотографии с максимальным размером 1280x1024px.
+		/// Uri фотографии с максимальным размером 1280x1024px.
 		/// </summary>
 		public Uri Photo1280 { get; set; }
 
 		/// <summary>
-		///     Uri фотографии с максимальным размером  2560x2048px.
+		/// Uri фотографии с максимальным размером  2560x2048px.
 		/// </summary>
 		public Uri Photo2560 { get; set; }
 
 		/// <summary>
-		///     Ширина оригинала фотографии в пикселах
+		/// Ширина оригинала фотографии в пикселах
 		/// </summary>
 		public int? Width { get; set; }
 
 		/// <summary>
-		///     Высота оригинала фотографии в пикселах.
+		/// Высота оригинала фотографии в пикселах.
 		/// </summary>
 		public int? Height { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Photo FromJson(VkResponse response)
 		{
 			var photo = new Photo
@@ -137,78 +138,78 @@ namespace VkNet.Model.Attachments
 	#region опциональные поля
 
 		/// <summary>
-		///     Ключ доступа.
+		/// Ключ доступа.
 		/// </summary>
 		public string AccessKey { get; set; }
 
 		/// <summary>
-		///     Идентификатор записи, у которой данная фотография является прикреплением???
+		/// Идентификатор записи, у которой данная фотография является прикреплением???
 		/// </summary>
 		public long? PostId { get; set; }
 
 		/// <summary>
-		///     Идентификатор пользователя, сделавшего отметку
+		/// Идентификатор пользователя, сделавшего отметку
 		/// </summary>
 		public long? PlacerId { get; set; }
 
 		/// <summary>
-		///     Дата создания отметки
+		/// Дата создания отметки
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? TagCreated { get; set; }
 
 		/// <summary>
-		///     Идентификатор отметки
+		/// Идентификатор отметки
 		/// </summary>
 		public long? TagId { get; set; }
 
 		/// <summary>
-		///     Лайки
+		/// Лайки
 		/// </summary>
 		public Likes Likes { get; set; }
 
 		/// <summary>
-		///     Возможность комментирования фотографии
+		/// Возможность комментирования фотографии
 		/// </summary>
 		public bool? CanComment { get; set; }
 
 		/// <summary>
-		///     Комментарии
+		/// Комментарии
 		/// </summary>
 		public Comments Comments { get; set; }
 
 		/// <summary>
-		///     Теги
+		/// Теги
 		/// </summary>
 		public Tags Tags { get; set; }
 
 		/// <summary>
-		///     Источник изображения.
+		/// Источник изображения.
 		/// </summary>
 		public Uri PhotoSrc { get; set; }
 
 		/// <summary>
-		///     Хеш изображения.
+		/// Хеш изображения.
 		/// </summary>
 		public string PhotoHash { get; set; }
 
 		/// <summary>
-		///     Географическая широта отметки, заданная в градусах
+		/// Географическая широта отметки, заданная в градусах
 		/// </summary>
 		public double? Latitude { get; set; }
 
 		/// <summary>
-		///     Географическая долгота отметки, заданная в градусах
+		/// Географическая долгота отметки, заданная в градусах
 		/// </summary>
 		public double? Longitude { get; set; }
 
 		/// <summary>
-		///     Uri фотографии с максимальным размером.
+		/// Uri фотографии с максимальным размером.
 		/// </summary>
 		public Uri BigPhotoSrc { get; set; }
 
 		/// <summary>
-		///     Uri фотографии с минимальным размером.
+		/// Uri фотографии с минимальным размером.
 		/// </summary>
 		public Uri SmallPhotoSrc { get; set; }
 

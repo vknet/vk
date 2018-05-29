@@ -13,7 +13,7 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	///     Методы для работы со стеной пользователя.
+	/// Методы для работы со стеной пользователя.
 	/// </summary>
 	public partial class WallCategory : IWallCategory
 	{
@@ -21,7 +21,7 @@ namespace VkNet.Categories
 
 		/// <summary>
 		/// </summary>
-		/// <param name="vk"></param>
+		/// <param name="vk"> </param>
 		public WallCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -32,13 +32,15 @@ namespace VkNet.Categories
 		{
 			if (@params.Filter != null && @params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
 			{
-				throw new ArgumentException(message: "OwnerID must be negative in case filter equal to Suggests",
-						paramName: nameof(@params));
+				throw new ArgumentException(message: "OwnerID must be negative in case filter equal to Suggests"
+						, paramName: nameof(@params));
 			}
 
 			return
-					_vk.Call(methodName: "wall.get", parameters: @params,
-							skipAuthorization: skipAuthorization); //, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
+					_vk.Call(methodName: "wall.get"
+							, parameters: @params
+							, skipAuthorization:
+							skipAuthorization); //, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
 		}
 
 		/// <inheritdoc />

@@ -4,74 +4,74 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Школа, в которой учился пользователь.
-	///     См. описание http://vk.com/dev/fields
+	/// Школа, в которой учился пользователь.
+	/// См. описание http://vk.com/dev/fields
 	/// </summary>
 	[Serializable]
 	public class School
 	{
 		/// <summary>
-		///     Идентификатор школы.
+		/// Идентификатор школы.
 		/// </summary>
 		public long? Id { get; set; }
 
 		/// <summary>
-		///     Идентификатор страны, в которой расположена школа.
+		/// Идентификатор страны, в которой расположена школа.
 		/// </summary>
 		public long? Country { get; set; }
 
 		/// <summary>
-		///     Идентификатор города, в котором расположена школа.
+		/// Идентификатор города, в котором расположена школа.
 		/// </summary>
 		public long? City { get; set; }
 
 		/// <summary>
-		///     Наименование школы.
+		/// Наименование школы.
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		///     Год начала обучения.
+		/// Год начала обучения.
 		/// </summary>
 		public int? YearFrom { get; set; }
 
 		/// <summary>
-		///     Год окончания обучения.
+		/// Год окончания обучения.
 		/// </summary>
 		public int? YearTo { get; set; }
 
 		/// <summary>
-		///     Год выпуска.
+		/// Год выпуска.
 		/// </summary>
 		public int? YearGraduated { get; set; }
 
 		/// <summary>
-		///     Буква класса.
+		/// Буква класса.
 		/// </summary>
 		public string Class { get; set; }
 
 		/// <summary>
-		///     Специализация класса.
+		/// Специализация класса.
 		/// </summary>
 		public string Speciality { get; set; }
 
 		/// <summary>
-		///     Идентификатор типа школы.
+		/// Идентификатор типа школы.
 		/// </summary>
 		public long? Type { get; set; }
 
 		/// <summary>
-		///     Название типа школы.
+		/// Название типа школы.
 		/// </summary>
 		public string TypeStr { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static School FromJson(VkResponse response)
 		{
 			var school = new School

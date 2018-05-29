@@ -6,8 +6,8 @@ using VkNet.Utils;
 namespace VkNet.Enums.Filters
 {
 	/// <summary>
-	///     Права доступа приложений.
-	///     См. описание <see href="https://vk.com/dev/permissions" />.
+	/// Права доступа приложений.
+	/// См. описание <see href="https://vk.com/dev/permissions" />.
 	/// </summary>
 	public sealed class Settings
 	{
@@ -47,122 +47,125 @@ namespace VkNet.Enums.Filters
 		private List<string> _settings;
 
 		/// <summary>
-		///     Числовая маска выбранных прав доступа
+		/// Числовая маска выбранных прав доступа
 		/// </summary>
 		private ulong Mask { get; set; }
 
 		/// <summary>
-		///     Список выбранных прав
+		/// Список выбранных прав
 		/// </summary>
 		private IEnumerable<string> Selected => _settings ?? (_settings = new List<string>());
 
 		/// <summary>
-		///     Пользователь разрешил отправлять ему уведомления.
+		/// Пользователь разрешил отправлять ему уведомления.
 		/// </summary>
 		public static Settings Notify => GetByName(name: "notify");
 
 		/// <summary>
-		///     Доступ к друзьям.
+		/// Доступ к друзьям.
 		/// </summary>
 		public static Settings Friends => GetByName(name: "friends");
 
 		/// <summary>
-		///     Доступ к фотографиям.
+		/// Доступ к фотографиям.
 		/// </summary>
 		public static Settings Photos => GetByName(name: "photos");
 
 		/// <summary>
-		///     Доступ к аудио записям.
+		/// Доступ к аудио записям.
 		/// </summary>
 		public static Settings Audio => GetByName(name: "audio");
 
 		/// <summary>
-		///     Доступ к видеозаписям.
+		/// Доступ к видеозаписям.
 		/// </summary>
 		public static Settings Video => GetByName(name: "video");
 
 		/// <summary>
-		///     Доступ к wiki-страницам.
+		/// Доступ к wiki-страницам.
 		/// </summary>
 		public static Settings Pages => GetByName(name: "pages");
 
 		/// <summary>
-		///     Добавление ссылки на приложение в меню слева.
+		/// Добавление ссылки на приложение в меню слева.
 		/// </summary>
 		public static Settings AddLinkToLeftMenu => GetByName(name: "addLinkToLeftMenu");
 
 		/// <summary>
-		///     Доступ к статусу пользователя.
+		/// Доступ к статусу пользователя.
 		/// </summary>
 		public static Settings Status => GetByName(name: "status");
 
 		/// <summary>
-		///     Доступ заметкам пользователя.
+		/// Доступ заметкам пользователя.
 		/// </summary>
 		public static Settings Notes => GetByName(name: "notes");
 
 		/// <summary>
-		///     Доступ к расширенным методам работы с сообщениями.
+		/// Доступ к расширенным методам работы с сообщениями.
 		/// </summary>
 		public static Settings Messages => GetByName(name: "messages");
 
 		/// <summary>
-		///     Доступ к обычным и расширенным методам работы со стеной.
+		/// Доступ к обычным и расширенным методам работы со стеной.
 		/// </summary>
 		public static Settings Wall => GetByName(name: "wall");
 
 		/// <summary>
-		///     Доступ к расширенным методам работы с рекламным API.
+		/// Доступ к расширенным методам работы с рекламным API.
 		/// </summary>
 		public static Settings Ads => GetByName(name: "ads");
 
 		/// <summary>
-		///     Доступ к API в любое время со стороннего сервера.
+		/// Доступ к API в любое время со стороннего сервера.
 		/// </summary>
 		public static Settings Offline => GetByName(name: "offline");
 
 		/// <summary>
-		///     Доступ к документам.
+		/// Доступ к документам.
 		/// </summary>
 		public static Settings Documents => GetByName(name: "docs");
 
 		/// <summary>
-		///     Доступ к группам пользователя.
+		/// Доступ к группам пользователя.
 		/// </summary>
 		public static Settings Groups => GetByName(name: "groups");
 
 		/// <summary>
-		///     Доступ к оповещениям об ответах пользователю.
+		/// Доступ к оповещениям об ответах пользователю.
 		/// </summary>
 		public static Settings Notifications => GetByName(name: "notifications");
 
 		/// <summary>
-		///     Доступ к статистике групп и приложений пользователя, администратором которых он является.
+		/// Доступ к статистике групп и приложений пользователя, администратором которых он
+		/// является.
 		/// </summary>
 		public static Settings Statistic => GetByName(name: "stats");
 
 		/// <summary>
-		///     Доступ к email пользователя. Доступно только для сайтов.
+		/// Доступ к email пользователя. Доступно только для сайтов.
 		/// </summary>
 		public static Settings Email => GetByName(name: "email");
 
 		/// <summary>
-		///     Доступ к товарам. Доступно только для сайтов.
+		/// Доступ к товарам. Доступно только для сайтов.
 		/// </summary>
 		public static Settings Market => GetByName(name: "market");
 
 		/// <summary>
-		///     Доступ к статистике групп и приложений пользователя, администратором которых он является.
+		/// Доступ к статистике групп и приложений пользователя, администратором которых он
+		/// является.
 		/// </summary>
 		public static Settings Stats => GetByName(name: "stats");
 
 		/// <summary>
-		///     Доступ к статистике групп и приложений пользователя, администратором которых он является.
+		/// Доступ к статистике групп и приложений пользователя, администратором которых он
+		/// является.
 		/// </summary>
 		public static Settings AppWidget => GetByName(name: "app_widget");
 
 		/// <summary>
-		///     Доступ ко всем возможным операциям (без Off line и NoHttps).
+		/// Доступ ко всем возможным операциям (без Off line и NoHttps).
 		/// </summary>
 		public static Settings All => AddLinkToLeftMenu
 									|Ads
@@ -208,10 +211,10 @@ namespace VkNet.Enums.Filters
 		}
 
 		/// <summary>
-		///     Получить из json
+		/// Получить из json
 		/// </summary>
-		/// <param name="response">Ответ Vk</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ Vk </param>
+		/// <returns> </returns>
 		public static Settings FromJson(VkResponse response)
 		{
 			var value = response.ToString();
@@ -220,10 +223,10 @@ namespace VkNet.Enums.Filters
 		}
 
 		/// <summary>
-		///     Получить из json
+		/// Получить из json
 		/// </summary>
-		/// <param name="val">Json строка</param>
-		/// <returns></returns>
+		/// <param name="val"> Json строка </param>
+		/// <returns> </returns>
 		public static Settings FromJsonString(string val)
 		{
 			var vals = val.Split(',').Select(selector: x => x.Trim());
@@ -247,28 +250,28 @@ namespace VkNet.Enums.Filters
 		}
 
 		/// <summary>
-		///     Преобразовать в строку
+		/// Преобразовать в строку
 		/// </summary>
-		/// <returns></returns>
+		/// <returns> </returns>
 		public override string ToString()
 		{
 			return string.Join(separator: ",", value: Selected.ToArray());
 		}
 
 		/// <summary>
-		///     Преобразовать в числовую маску выбранные права доступа
+		/// Преобразовать в числовую маску выбранные права доступа
 		/// </summary>
-		/// <returns></returns>
+		/// <returns> </returns>
 		public ulong ToUInt64()
 		{
 			return Mask;
 		}
 
 		/// <summary>
-		///     Сравнение с другим набором прав
+		/// Сравнение с другим набором прав
 		/// </summary>
-		/// <param name="obj"></param>
-		/// <returns></returns>
+		/// <param name="obj"> </param>
+		/// <returns> </returns>
 		public override bool Equals(object obj)
 		{
 			var other = obj as Settings;
@@ -277,20 +280,20 @@ namespace VkNet.Enums.Filters
 		}
 
 		/// <summary>
-		///     Get Hash
+		/// Get Hash
 		/// </summary>
-		/// <returns></returns>
+		/// <returns> </returns>
 		public override int GetHashCode()
 		{
 			return Selected?.GetHashCode() ?? 0;
 		}
 
 		/// <summary>
-		///     Объединяет наборы настройки
+		/// Объединяет наборы настройки
 		/// </summary>
-		/// <param name="a">Первый набор</param>
-		/// <param name="b">Второй набор</param>
-		/// <returns></returns>
+		/// <param name="a"> Первый набор </param>
+		/// <param name="b"> Второй набор </param>
+		/// <returns> </returns>
 		public static Settings operator |(Settings a, Settings b)
 		{
 			foreach (var s in b.Selected)

@@ -5,29 +5,29 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о статусе пользователя.
-	///     См. описание http://vk.com/dev/status.get
+	/// Информация о статусе пользователя.
+	/// См. описание http://vk.com/dev/status.get
 	/// </summary>
 	[Serializable]
 	public class Status
 	{
 		/// <summary>
-		///     Текст статуса.
+		/// Текст статуса.
 		/// </summary>
 		public string Text { get; set; }
 
 		/// <summary>
-		///     Информация об играющей в текущей момент у пользователя аудиокомпозиции.
+		/// Информация об играющей в текущей момент у пользователя аудиокомпозиции.
 		/// </summary>
 		public Audio Audio { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Status FromJson(VkResponse response)
 		{
 			var status = new Status

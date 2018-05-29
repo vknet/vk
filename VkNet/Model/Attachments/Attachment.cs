@@ -6,14 +6,14 @@ using VkNet.UWP.Model.Attachments;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Информация о медиавложении в записи.
-	///     См. описание http://vk.com/dev/attachments_w
+	/// Информация о медиавложении в записи.
+	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[Serializable]
 	public class Attachment
 	{
 		/// <summary>
-		///     Экземпляр самого прикрепления.
+		/// Экземпляр самого прикрепления.
 		/// </summary>
 		public object Instance
 		{
@@ -119,17 +119,17 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Информация о типе вложения.
+		/// Информация о типе вложения.
 		/// </summary>
 		public Type Type { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Attachment FromJson(VkResponse response)
 		{
 			var attachment = new Attachment();
@@ -295,8 +295,8 @@ namespace VkNet.Model.Attachments
 
 				{
 					throw new InvalidParameterException(message: string.Format(format: "The type '{0}' of attachment is not defined. {1}"
-							, arg0: type,
-							arg1: response[key: "date"]));
+							, arg0: type
+							, arg1: response[key: "date"]));
 				}
 			}
 
@@ -308,92 +308,93 @@ namespace VkNet.Model.Attachments
 	#region Поля
 
 		/// <summary>
-		///     Фотография из альбома или фотография, загруженная напрямую с компьютера пользователя.
+		/// Фотография из альбома или фотография, загруженная напрямую с компьютера
+		/// пользователя.
 		/// </summary>
 		private Photo Photo { get; set; }
 
 		/// <summary>
-		///     Видеозапись.
+		/// Видеозапись.
 		/// </summary>
 		private Video Video { get; set; }
 
 		/// <summary>
-		///     Аудиозапись.
+		/// Аудиозапись.
 		/// </summary>
 		private Audio Audio { get; set; }
 
 		/// <summary>
-		///     Документ.
+		/// Документ.
 		/// </summary>
 		private Document Document { get; set; }
 
 		/// <summary>
-		///     Документ.
+		/// Документ.
 		/// </summary>
 		private Graffiti Graffiti { get; set; }
 
 		/// <summary>
-		///     Ссылка на Web-страницу.
+		/// Ссылка на Web-страницу.
 		/// </summary>
 		private Link Link { get; set; }
 
 		/// <summary>
-		///     Заметка.
+		/// Заметка.
 		/// </summary>
 		private Note Note { get; set; }
 
 		/// <summary>
-		///     Контент приложения.
+		/// Контент приложения.
 		/// </summary>
 		private ApplicationContent ApplicationContent { get; set; }
 
 		/// <summary>
-		///     Опрос.
+		/// Опрос.
 		/// </summary>
 		private Poll Poll { get; set; }
 
 		/// <summary>
-		///     Wiki страница.
+		/// Wiki страница.
 		/// </summary>
 		private Page Page { get; set; }
 
 		/// <summary>
-		///     Альбом с фотографиями.
+		/// Альбом с фотографиями.
 		/// </summary>
 		private Album Album { get; set; }
 
 		/// <summary>
-		///     Список фотографий
+		/// Список фотографий
 		/// </summary>
 		private PhotosList PhotosList;
 
 		/// <summary>
-		///     Запись на стене.
+		/// Запись на стене.
 		/// </summary>
 		private Post Wall { get; set; }
 
 		/// <summary>
-		///     Стикер.
+		/// Стикер.
 		/// </summary>
 		private Sticker Sticker { get; set; }
 
 		/// <summary>
-		///     Подарок.
+		/// Подарок.
 		/// </summary>
 		private Gift Gift { get; set; }
 
 		/// <summary>
-		///     Комментарии к записи на стене.
+		/// Комментарии к записи на стене.
 		/// </summary>
 		private WallReply WallReply { get; set; }
 
 		/// <summary>
-		///     Каталог товаров.
+		/// Каталог товаров.
 		/// </summary>
 		private MarketAlbum MarketAlbum { get; set; }
 
 		/// <summary>
-		///     Товар.
+		/// Товар.
 		/// </summary>
 		private Market Market { get; set; }
 

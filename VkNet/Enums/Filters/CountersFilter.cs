@@ -1,67 +1,67 @@
 namespace VkNet.Enums.Filters
 {
 	/// <summary>
-	///     Фильтры счетчиков
+	/// Фильтры счетчиков
 	/// </summary>
 	public sealed class CountersFilter : MultivaluedFilter<CountersFilter>
 	{
 		/// <summary>
-		///     Количество заявок в друзья
+		/// Количество заявок в друзья
 		/// </summary>
 		public static readonly CountersFilter Friends = RegisterPossibleValue(value: "friends");
 
 		/// <summary>
-		///     Предлагаемые друзья
+		/// Предлагаемые друзья
 		/// </summary>
 		public static readonly CountersFilter FriendsSuggestions = RegisterPossibleValue(value: "friends_suggestions");
 
 		/// <summary>
-		///     Количество непрочитанных сообщений
+		/// Количество непрочитанных сообщений
 		/// </summary>
 		public static readonly CountersFilter Messages = RegisterPossibleValue(value: "messages");
 
 		/// <summary>
-		///     Количество фото
+		/// Количество фото
 		/// </summary>
 		public static readonly CountersFilter Photos = RegisterPossibleValue(value: "photos");
 
 		/// <summary>
-		///     Количество видео
+		/// Количество видео
 		/// </summary>
 		public static readonly CountersFilter Videos = RegisterPossibleValue(value: "videos");
 
 		/// <summary>
-		///     Количество подарков
+		/// Количество подарков
 		/// </summary>
 		public static readonly CountersFilter Gifts = RegisterPossibleValue(value: "gifts");
 
 		/// <summary>
-		///     Количество событий
+		/// Количество событий
 		/// </summary>
 		public static readonly CountersFilter Events = RegisterPossibleValue(value: "events");
 
 		/// <summary>
-		///     Количество групп
+		/// Количество групп
 		/// </summary>
 		public static readonly CountersFilter Groups = RegisterPossibleValue(value: "groups");
 
 		/// <summary>
-		///     Количество уведомлений
+		/// Количество уведомлений
 		/// </summary>
 		public static readonly CountersFilter Notifications = RegisterPossibleValue(value: "notifications");
 
 		/// <summary>
-		///     Количество уведомлений
+		/// Количество уведомлений
 		/// </summary>
 		public static readonly CountersFilter Sdk = RegisterPossibleValue(value: "sdk");
 
 		/// <summary>
-		///     Количество уведомлений
+		/// Количество уведомлений
 		/// </summary>
 		public static readonly CountersFilter AppRequests = RegisterPossibleValue(value: "app_requests");
 
 		/// <summary>
-		///     Все фильтры
+		/// Все фильтры
 		/// </summary>
 		public static readonly CountersFilter All =
 				Friends|FriendsSuggestions|Messages|Photos|Videos|Gifts|Events|Groups|Notifications|Sdk|AppRequests;

@@ -6,82 +6,86 @@ using VkNet.Exception;
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     Информация об авторизации приложения на действия.
+	/// Информация об авторизации приложения на действия.
 	/// </summary>
 	public class VkAuthorization
 	{
 		/// <summary>
-		///     Список наименования полей.
+		/// Список наименования полей.
 		/// </summary>
 		private readonly Dictionary<string, string> _nameValues;
 
 		/// <summary>
-		///     Конструктор.
+		/// Конструктор.
 		/// </summary>
-		/// <param name="uriFragment">URL ответа.</param>
+		/// <param name="uriFragment"> URL ответа. </param>
 		private VkAuthorization(string uriFragment)
 		{
 			_nameValues = Decode(urlFragment: uriFragment);
 		}
 
 		/// <summary>
-		///     Возвращает признак была ли авторизация успешной.
+		/// Возвращает признак была ли авторизация успешной.
 		/// </summary>
 		public bool IsAuthorized => _nameValues.ContainsKey(key: "access_token");
 
 		/// <summary>
-		///     Проверяет требуется ли получения у авторизации на запрошенные приложением действия (при установке приложения
-		///     пользователю).
+		/// Проверяет требуется ли получения у авторизации на запрошенные приложением
+		/// действия (при установке приложения
+		/// пользователю).
 		/// </summary>
 		public bool IsAuthorizationRequired => _nameValues.ContainsKey(key: "__q_hash");
 
 		/// <summary>
-		///     Маркер доступа, который необходимо использовать для доступа к API ВКонтакте.
+		/// Маркер доступа, который необходимо использовать для доступа к API ВКонтакте.
 		/// </summary>
 		public string AccessToken => GetFieldValue(fieldName: "access_token");
 
 		/// <summary>
-		///     Время истечения срока действия маркера доступа.
+		/// Время истечения срока действия маркера доступа.
 		/// </summary>
 		public int ExpiresIn => GetExpiresIn();
 
 		/// <summary>
-		///     Идентификатор пользователя, у которого работает приложение (от имени которого был произведен вход).
+		/// Идентификатор пользователя, у которого работает приложение (от имени которого
+		/// был произведен вход).
 		/// </summary>
 		public long UserId => GetUserId();
 
 		/// <summary>
-		///     E-mail пользователя, у которого работает приложение (от имени которого был произведен вход).
+		/// E-mail пользователя, у которого работает приложение (от имени которого был
+		/// произведен вход).
 		/// </summary>
 		public string Email => GetFieldValue(fieldName: "email");
 
 		/// <summary>
-		///     ID капчи, если она появилась
+		/// ID капчи, если она появилась
 		/// </summary>
 		public bool IsCaptchaNeeded => _nameValues.ContainsKey(key: "sid");
 
 		/// <summary>
-		///     ID капчи, если она появилась
+		/// ID капчи, если она появилась
 		/// </summary>
 		public long CaptchaSid => GetCaptchaSid();
 
 		/// <summary>
-		///     Извлекает из URL, на которую произошло перенаправление при авторизации, информацию об авторизации.
+		/// Извлекает из URL, на которую произошло перенаправление при авторизации,
+		/// информацию об авторизации.
 		/// </summary>
 		/// <param name="uriFragment">
-		///     URL, на которую произошло перенаправление при авторизации.
+		/// URL, на которую произошло перенаправление при авторизации.
 		/// </param>
-		/// <returns>Информация об авторизации.</returns>
+		/// <returns> Информация об авторизации. </returns>
 		public static VkAuthorization From(string uriFragment)
 		{
 			return new VkAuthorization(uriFragment: uriFragment);
 		}
 
 		/// <summary>
-		///     Получить значение поля.
+		/// Получить значение поля.
 		/// </summary>
-		/// <param name="fieldName">Наименование поля.</param>
-		/// <returns>Значение поля.</returns>
+		/// <param name="fieldName"> Наименование поля. </param>
+		/// <returns> Значение поля. </returns>
 		private string GetFieldValue(string fieldName)
 		{
 			return _nameValues.ContainsKey(key: fieldName)
@@ -90,10 +94,10 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Расшифровывает указанный URL.
+		/// Расшифровывает указанный URL.
 		/// </summary>
-		/// <param name="urlFragment">URL.</param>
-		/// <returns>Список наименования полей.</returns>
+		/// <param name="urlFragment"> URL. </param>
+		/// <returns> Список наименования полей. </returns>
 		private static Dictionary<string, string> Decode(string urlFragment)
 		{
 			var uri = new Uri(uriString: urlFragment);

@@ -4,64 +4,64 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о предложениях.
+	/// Информация о предложениях.
 	/// </summary>
 	[Serializable]
 	public class InformationAboutOffers
 	{
 		/// <summary>
-		///     Идентификатор.
+		/// Идентификатор.
 		/// </summary>
 		public string Id { get; set; }
 
 		/// <summary>
-		///     Заголовок.
+		/// Заголовок.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Инструкция.
+		/// Инструкция.
 		/// </summary>
 		public string Instruction { get; set; }
 
 		/// <summary>
-		///     Инструкция с html разметкой.
+		/// Инструкция с html разметкой.
 		/// </summary>
 		/// <value>
-		///     The instruction_html.
+		/// The instruction_html.
 		/// </value>
 		public string InstructionHtml { get; set; }
 
 		/// <summary>
-		///     Краткое описание.
+		/// Краткое описание.
 		/// </summary>
 		public string ShortDescription { get; set; }
 
 		/// <summary>
-		///     Описание.
+		/// Описание.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Ссылка на изображение.
+		/// Ссылка на изображение.
 		/// </summary>
 		public Uri Img { get; set; }
 
 		/// <summary>
-		///     Тег.
+		/// Тег.
 		/// </summary>
 		public string Tag { get; set; }
 
 		/// <summary>
-		///     Цена.
+		/// Цена.
 		/// </summary>
 		public long Price { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static InformationAboutOffers FromJson(VkResponse response)
 		{
 			return new InformationAboutOffers

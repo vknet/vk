@@ -5,26 +5,26 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Ответ на запрос метода groups.getCatalogInfo
+	/// Ответ на запрос метода groups.getCatalogInfo
 	/// </summary>
 	[Serializable]
 	public class GroupsCatalogInfo
 	{
 		/// <summary>
-		///     Список категорий.
+		/// Список категорий.
 		/// </summary>
 		public IEnumerable<CategoryGroup> Categories;
 
 		/// <summary>
-		///     Признак доступности каталога для пользователя.
+		/// Признак доступности каталога для пользователя.
 		/// </summary>
 		public bool Enabled { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static GroupsCatalogInfo FromJson(VkResponse response)
 		{
 			var result = new GroupsCatalogInfo

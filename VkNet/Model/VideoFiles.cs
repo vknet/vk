@@ -4,48 +4,48 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Видео файлы
+	/// Видео файлы
 	/// </summary>
 	[Serializable]
 	public class VideoFiles
 	{
 		/// <summary>
-		///     Uri ролика с размером 320x240px.
+		/// Uri ролика с размером 320x240px.
 		/// </summary>
 		public Uri Mp4_240 { get; set; }
 
 		/// <summary>
-		///     Uri ролика с размером 640x360px.
+		/// Uri ролика с размером 640x360px.
 		/// </summary>
 		public Uri Mp4_360 { get; set; }
 
 		/// <summary>
-		///     Uri ролика с размером 640x480px.
+		/// Uri ролика с размером 640x480px.
 		/// </summary>
 		public Uri Mp4_480 { get; set; }
 
 		/// <summary>
-		///     Uri ролика с размером 1280x720px.
+		/// Uri ролика с размером 1280x720px.
 		/// </summary>
 		public Uri Mp4_720 { get; set; }
 
 		/// <summary>
-		///     Uri ролика с размером 1920х1080px.
+		/// Uri ролика с размером 1920х1080px.
 		/// </summary>
 		public Uri Mp4_1080 { get; set; }
 
 		/// <summary>
-		///     Внешняя ссылка
+		/// Внешняя ссылка
 		/// </summary>
 		public Uri External { get; set; }
 
 	#region public Methods
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static VideoFiles FromJson(VkResponse response)
 		{
 			return new VideoFiles

@@ -5,46 +5,46 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	///     Список параметров для метода polls.edit
+	/// Список параметров для метода polls.edit
 	/// </summary>
 	[Serializable]
 	public struct PollsEditParams
 	{
 		/// <summary>
-		///     Идентификатор владельца опроса.
+		/// Идентификатор владельца опроса.
 		/// </summary>
 		public long OwnerId { get; set; }
 
 		/// <summary>
-		///     Идентификатор опроса.
+		/// Идентификатор опроса.
 		/// </summary>
 		public long PollId { get; set; }
 
 		/// <summary>
-		///     Текст опроса.
+		/// Текст опроса.
 		/// </summary>
 		public string Question { get; set; }
 
 		/// <summary>
-		///     Список новых вариантов ответов.
+		/// Список новых вариантов ответов.
 		/// </summary>
 		public List<string> AddAnswers { get; set; }
 
 		/// <summary>
-		///     Список для изменения существующих вариантов ответа.
+		/// Список для изменения существующих вариантов ответа.
 		/// </summary>
 		public Dictionary<long, string> EditAnswers { get; set; }
 
 		/// <summary>
-		///     Список для удаления вариантов ответа.
+		/// Список для удаления вариантов ответа.
 		/// </summary>
 		public List<long> DeleteAnswers { get; set; }
 
 		/// <summary>
-		///     Привести к типу VkParameters.
+		/// Привести к типу VkParameters.
 		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
+		/// <param name="p"> Параметры. </param>
+		/// <returns> </returns>
 		public static VkParameters ToVkParameters(PollsEditParams p)
 		{
 			return new VkParameters

@@ -7,40 +7,40 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Расширенный объект видео для закладок
+	/// Расширенный объект видео для закладок
 	/// </summary>
 	[Serializable]
 	public class FaveVideoEx
 	{
 		/// <summary>
-		///     Общее количество записей на стене.
+		/// Общее количество записей на стене.
 		/// </summary>
 		[JsonProperty(propertyName: "count")]
 		public ulong Count { get; set; }
 
 		/// <summary>
-		///     Видеозаписи.
+		/// Видеозаписи.
 		/// </summary>
 		[JsonProperty(propertyName: "items")]
 		public ReadOnlyCollection<Video> Videos { get; set; }
 
 		/// <summary>
-		///     Профили.
+		/// Профили.
 		/// </summary>
 		[JsonProperty(propertyName: "profiles")]
 		public ReadOnlyCollection<User> Profiles { get; set; }
 
 		/// <summary>
-		///     Группы.
+		/// Группы.
 		/// </summary>
 		[JsonProperty(propertyName: "groups")]
 		public ReadOnlyCollection<Group> Groups { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static FaveVideoEx FromJson(VkResponse response)
 		{
 			var wallGetObject = new FaveVideoEx

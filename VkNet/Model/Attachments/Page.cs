@@ -5,14 +5,14 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Информация о вики-странице сообщества.
-	///     См. описание http://vk.com/dev/pages.get
+	/// Информация о вики-странице сообщества.
+	/// См. описание http://vk.com/dev/pages.get
 	/// </summary>
 	[Serializable]
 	public class Page : MediaAttachment
 	{
 		/// <summary>
-		///     Опрос.
+		/// Опрос.
 		/// </summary>
 		static Page()
 		{
@@ -20,89 +20,89 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Идентификатор сообщества.
+		/// Идентификатор сообщества.
 		/// </summary>
 		public long? GroupId { get; set; }
 
 		/// <summary>
-		///     Идентификатор создателя страницы.
+		/// Идентификатор создателя страницы.
 		/// </summary>
 		public long? CreatorId { get; set; }
 
 		/// <summary>
-		///     Название страницы.
+		/// Название страницы.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Указывает, может ли текущий пользователь редактировать текст страницы.
+		/// Указывает, может ли текущий пользователь редактировать текст страницы.
 		/// </summary>
 		public bool CurrentUserCanEdit { get; set; }
 
 		/// <summary>
-		///     Указывает, может ли текущий пользователь изменять права доступа на страницу.
+		/// Указывает, может ли текущий пользователь изменять права доступа на страницу.
 		/// </summary>
 		public bool CurrentUserCanEditAccess { get; set; }
 
 		/// <summary>
-		///     Указывает, кто может просматривать вики-страницу.
+		/// Указывает, кто может просматривать вики-страницу.
 		/// </summary>
 		public PageAccessKind? WhoCanView { get; set; }
 
 		/// <summary>
-		///     Указывает, кто может редактировать вики-страницу.
+		/// Указывает, кто может редактировать вики-страницу.
 		/// </summary>
 		public PageAccessKind? WhoCanEdit { get; set; }
 
 		/// <summary>
-		///     Дата последнего изменения (в виде строки).
+		/// Дата последнего изменения (в виде строки).
 		/// </summary>
 		public string Edited { get; set; }
 
 		/// <summary>
-		///     Дата создания страницы (в виде строки).
+		/// Дата создания страницы (в виде строки).
 		/// </summary>
 		public string Created { get; set; }
 
 		/// <summary>
-		///     Идентификатор пользователя, который редактировал страницу последним.
+		/// Идентификатор пользователя, который редактировал страницу последним.
 		/// </summary>
 		public long? EditorId { get; set; }
 
 		/// <summary>
-		///     Количество просмотров вики-страницы.
+		/// Количество просмотров вики-страницы.
 		/// </summary>
 		public long? Views { get; set; }
 
 		/// <summary>
-		///     Заголовок родительской страницы для навигации, если есть.
+		/// Заголовок родительской страницы для навигации, если есть.
 		/// </summary>
 		public string Parent { get; set; }
 
 		/// <summary>
-		///     Заголовок второй родительской страницы для навигации, если есть.
+		/// Заголовок второй родительской страницы для навигации, если есть.
 		/// </summary>
 		public string Parent2 { get; set; }
 
 		/// <summary>
-		///     Текст страницы в вики-формате.
+		/// Текст страницы в вики-формате.
 		/// </summary>
 		public string Source { get; set; }
 
 		/// <summary>
-		///     Html-текст страницы.
+		/// Html-текст страницы.
 		/// </summary>
 		public string Html { get; set; }
 
 		/// <summary>
-		///     Адрес страницы для отображения вики-страницы.
+		/// Адрес страницы для отображения вики-страницы.
 		/// </summary>
 		public string ViewUrl { get; set; }
 
 	#region Поля, установленные экспериментально
 
 		/// <summary>
-		///     Gets or sets the version created.
+		/// Gets or sets the version created.
 		/// </summary>
 		public string VersionCreated { get; set; }
 
@@ -112,8 +112,8 @@ namespace VkNet.Model.Attachments
 
 		/// <summary>
 		/// </summary>
-		/// <param name="response"></param>
-		/// <returns></returns>
+		/// <param name="response"> </param>
+		/// <returns> </returns>
 		public static Page FromJson(VkResponse response)
 		{
 			var page = new Page
@@ -142,7 +142,7 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Преобразовать в строку.
+		/// Преобразовать в строку.
 		/// </summary>
 		public override string ToString()
 		{

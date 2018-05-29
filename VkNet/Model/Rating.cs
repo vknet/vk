@@ -4,26 +4,26 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Рейтинг.
+	/// Рейтинг.
 	/// </summary>
 	[Serializable]
 	public class Rating
 	{
 		/// <summary>
-		///     Количество звезд у продукта;.
+		/// Количество звезд у продукта;.
 		/// </summary>
 		public long? Stars { get; set; }
 
 		/// <summary>
-		///     Количество отзывов о продукте;.
+		/// Количество отзывов о продукте;.
 		/// </summary>
 		public long? ReviewsCount { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Rating FromJson(VkResponse response)
 		{
 			var rating = new Rating

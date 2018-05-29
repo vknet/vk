@@ -92,8 +92,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: actual.Audio.Title, expression: Is.EqualTo(expected: "Собачье Сердце"));
 			Assert.That(actual: actual.Audio.Duration, expression: Is.EqualTo(expected: 230));
 
-			Assert.That(actual: actual.Audio.Uri.OriginalString,
-					expression: Is.EqualTo(expected: "http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
+			Assert.That(actual: actual.Audio.Uri.OriginalString
+					, expression: Is.EqualTo(expected: "http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
 
 			Assert.That(actual: actual.Audio.LyricsId, expression: Is.EqualTo(expected: 7985406));
 			Assert.That(actual: actual.Audio.AlbumId, expression: Is.Null);

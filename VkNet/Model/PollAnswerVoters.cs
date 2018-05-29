@@ -4,31 +4,32 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Объект для перечисления пользователей, которые выбрали определенные варианты ответа в опросе.
+	/// Объект для перечисления пользователей, которые выбрали определенные варианты
+	/// ответа в опросе.
 	/// </summary>
 	[Serializable]
 	public class PollAnswerVoters
 	{
 		/// <summary>
-		///     Идентификатор варианта ответа
+		/// Идентификатор варианта ответа
 		/// </summary>
 		public long? AnswerId { get; set; }
 
 		/// <summary>
-		///     Коллекция пользователей, только если Fields != null
+		/// Коллекция пользователей, только если Fields != null
 		/// </summary>
 		public VkCollection<User> Users { get; set; }
 
 		/// <summary>
-		///     Коллекция идентификаторов пользователей, только если Fields = null
+		/// Коллекция идентификаторов пользователей, только если Fields = null
 		/// </summary>
 		public VkCollection<long> UsersIds { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static PollAnswerVoters FromJson(VkResponse response)
 		{
 			var isLongMode = false;

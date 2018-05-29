@@ -3,58 +3,59 @@
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     The HTTP response.
+	/// The HTTP response.
 	/// </summary>
-	/// <typeparam name="TResponse">The type of the response.</typeparam>
+	/// <typeparam name="TResponse"> The type of the response. </typeparam>
 	public class HttpResponse<TResponse>
 	{
 		/// <summary>
-		///     Gets the value (object deserialized from response).
+		/// Gets the value (object deserialized from response).
 		/// </summary>
 		/// <value>
-		///     The value.
+		/// The value.
 		/// </value>
 		public TResponse Value { get; private set; }
 
 		/// <summary>
-		///     Gets the HTTP status code.
+		/// Gets the HTTP status code.
 		/// </summary>
 		/// <value>
-		///     The HTTP status code.
+		/// The HTTP status code.
 		/// </value>
 		public HttpStatusCode StatusCode { get; private set; }
 
 		/// <summary>
-		///     Gets a value indicating whether the call resulted in success.
+		/// Gets a value indicating whether the call resulted in success.
 		/// </summary>
 		/// <value>
-		///     <c>true</c> if this instance is the call resulted in success; otherwise, <c>false</c>.
+		/// <c> true </c> if this instance is the call resulted in success; otherwise,
+		/// <c> false </c>.
 		/// </value>
 		public bool IsSuccess { get; private set; }
 
 		/// <summary>
-		///     Gets the error message.
+		/// Gets the error message.
 		/// </summary>
 		/// <value>
-		///     The error message.
+		/// The error message.
 		/// </value>
 		public string Message { get; private set; }
 
 		/// <summary>
-		///     Gets the request URI.
+		/// Gets the request URI.
 		/// </summary>
 		/// <value>
-		///     The request URI.
+		/// The request URI.
 		/// </value>
 		public string RequestUri { get; private set; }
 
 		/// <summary>
-		///     Creates the success response.
+		/// Creates the success response.
 		/// </summary>
-		/// <param name="httpStatusCode">The HTTP status code.</param>
-		/// <param name="value">The value.</param>
-		/// <param name="requestUri">The request URI.</param>
-		/// <returns>The HTTP response.</returns>
+		/// <param name="httpStatusCode"> The HTTP status code. </param>
+		/// <param name="value"> The value. </param>
+		/// <param name="requestUri"> The request URI. </param>
+		/// <returns> The HTTP response. </returns>
 		public static HttpResponse<TResponse> Success(HttpStatusCode httpStatusCode, TResponse value, string requestUri = "")
 		{
 			return new HttpResponse<TResponse>
@@ -67,13 +68,13 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Creates the failed response.
+		/// Creates the failed response.
 		/// </summary>
-		/// <param name="httpStatusCode">The HTTP status code.</param>
-		/// <param name="message">The message.</param>
-		/// <param name="requestUri">The request URI.</param>
+		/// <param name="httpStatusCode"> The HTTP status code. </param>
+		/// <param name="message"> The message. </param>
+		/// <param name="requestUri"> The request URI. </param>
 		/// <returns>
-		///     The HTTP response.
+		/// The HTTP response.
 		/// </returns>
 		public static HttpResponse<TResponse> Fail(HttpStatusCode httpStatusCode, string message, string requestUri = "")
 		{

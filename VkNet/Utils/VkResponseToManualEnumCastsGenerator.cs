@@ -6,11 +6,11 @@ namespace VkNet.Utils
 	public partial class VkResponse
 	{
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator AddFriendStatus(VkResponse response)
 		{
@@ -23,11 +23,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator AgeLimit(VkResponse response)
 		{
@@ -40,11 +40,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator MemberStatus(VkResponse response)
 		{
@@ -57,11 +57,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator Attitude(VkResponse response)
 		{
@@ -74,11 +74,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator BanReason(VkResponse response)
 		{
@@ -91,11 +91,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator BirthdayVisibility(VkResponse response)
 		{
@@ -108,11 +108,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator DeleteFriendStatus(VkResponse response)
 		{
@@ -141,11 +141,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator FriendStatus(VkResponse response)
 		{
@@ -158,11 +158,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator GiftPrivacy(VkResponse response)
 		{
@@ -175,11 +175,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator GroupAccess(VkResponse response)
 		{
@@ -192,11 +192,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator LeaderboardTypes(VkResponse response)
 		{
@@ -209,11 +209,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator LifeMain(VkResponse response)
 		{
@@ -226,11 +226,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator MainSection(VkResponse response)
 		{
@@ -243,11 +243,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator MarketCurrencyId(VkResponse response)
 		{
@@ -260,11 +260,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator PeopleMain(VkResponse response)
 		{
@@ -277,11 +277,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator PoliticalPreferences(VkResponse response)
 		{
@@ -294,11 +294,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator ProductAvailability(VkResponse response)
 		{
@@ -311,11 +311,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator ProductSort(VkResponse response)
 		{
@@ -328,11 +328,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator RelationType(VkResponse response)
 		{
@@ -345,11 +345,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator ReportReason(VkResponse response)
 		{
@@ -362,11 +362,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator Sex(VkResponse response)
 		{
@@ -379,11 +379,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator WallContentAccess(VkResponse response)
 		{
@@ -396,11 +396,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator AccountStatus(VkResponse response)
 		{
@@ -413,11 +413,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator CampaignStatus(VkResponse response)
 		{

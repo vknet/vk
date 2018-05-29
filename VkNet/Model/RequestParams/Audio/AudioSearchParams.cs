@@ -5,57 +5,58 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	///     Критерии поиска аудиозаписей.
+	/// Критерии поиска аудиозаписей.
 	/// </summary>
 	[Serializable]
 	public class AudioSearchParams
 	{
 		/// <summary>
-		///     Текст поискового запроса (прим., The Beatles).
+		/// Текст поискового запроса (прим., The Beatles).
 		/// </summary>
 		public string Query { get; set; }
 
 		/// <summary>
-		///     Количество аудиозаписей, информацию о которых необходимо вернуть.
+		/// Количество аудиозаписей, информацию о которых необходимо вернуть.
 		/// </summary>
 		public long? Count { get; set; }
 
 		/// <summary>
-		///     Смещение, необходимое для выборки определенного подмножетсва аудиозаписей.
+		/// Смещение, необходимое для выборки определенного подмножетсва аудиозаписей.
 		/// </summary>
 		public long? Offset { get; set; }
 
 		/// <summary>
-		///     Автоматически исправлять ошибки в поисковом запросе (прим. при строке Query "Иуфедуы" поиск будет осуществляться по
-		///     строке "Beatles").
+		/// Автоматически исправлять ошибки в поисковом запросе (прим. при строке Query
+		/// "Иуфедуы" поиск будет осуществляться по
+		/// строке "Beatles").
 		/// </summary>
 		public bool? Autocomplete { get; set; }
 
 		/// <summary>
-		///     Поиск только по тем аудиозаписям, которые содержат тексты.
+		/// Поиск только по тем аудиозаписям, которые содержат тексты.
 		/// </summary>
 		public bool? Lyrics { get; set; }
 
 		/// <summary>
-		///     Поиск только по названию исполнителя.
+		/// Поиск только по названию исполнителя.
 		/// </summary>
 		public bool? PerformerOnly { get; set; }
 
 		/// <summary>
-		///     Сортировка аудиозаписей при поиске.
+		/// Сортировка аудиозаписей при поиске.
 		/// </summary>
 		public AudioSort? Sort { get; set; }
 
 		/// <summary>
-		///     Производить ли поиск по аудиозаписям пользователя.
+		/// Производить ли поиск по аудиозаписям пользователя.
 		/// </summary>
 		public bool? SearchOwn { get; set; }
 
 		/// <summary>
-		///     Привести к типу VkParameters.
+		/// Привести к типу VkParameters.
 		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
+		/// <param name="p"> Параметры. </param>
+		/// <returns> </returns>
 		public static VkParameters ToVkParameters(AudioSearchParams p)
 		{
 			return new VkParameters

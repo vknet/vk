@@ -5,54 +5,54 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     ����� Uri � ��������� � ��������� �����������.
-	///     ������������ � User
+	/// ����� Uri � ��������� � ��������� �����������.
+	/// ������������ � User
 	/// </summary>
 	[Serializable]
 	public class Previews
 	{
 		/// <summary>
-		///     Uri ���������� ����������, ������� ������ 50 ��������.
+		/// Uri ���������� ����������, ������� ������ 50 ��������.
 		/// </summary>
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
-		///     Uri ���������� ����������, ������� ������ 100 ��������.
+		/// Uri ���������� ����������, ������� ������ 100 ��������.
 		/// </summary>
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
-		///     Uri ���������� ����������, ������� ������ 130 ��������.
+		/// Uri ���������� ����������, ������� ������ 130 ��������.
 		/// </summary>
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
-		///     Uri ���������� ����������, ������� ������ 200 ��������.
+		/// Uri ���������� ����������, ������� ������ 200 ��������.
 		/// </summary>
 		public Uri Photo200 { get; set; }
 
 		/// <summary>
-		///     Uri ���������� ����������, ������� ������ 400 ��������.
+		/// Uri ���������� ����������, ������� ������ 400 ��������.
 		/// </summary>
 		public Uri Photo400 { get; set; }
 
 		/// <summary>
-		///     Uri ���������� ����������, ������� ������������ ������.
+		/// Uri ���������� ����������, ������� ������������ ������.
 		/// </summary>
 		public Uri PhotoMax { get; set; }
 
 		/// <summary>
-		///     Gets or sets the photo.
+		/// Gets or sets the photo.
 		/// </summary>
 		public Photo Photo { get; set; }
 
 	#region ������
 
 		/// <summary>
-		///     ��������� �� json.
+		/// ��������� �� json.
 		/// </summary>
-		/// <param name="response">����� �������.</param>
-		/// <returns></returns>
+		/// <param name="response"> ����� �������. </param>
+		/// <returns> </returns>
 		public static Previews FromJson(VkResponse response)
 		{
 			var previews = new Previews

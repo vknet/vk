@@ -8,13 +8,13 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Friends Get Requests Result
+	/// Friends Get Requests Result
 	/// </summary>
 	[Serializable]
 	public class FriendsGetRequestsResult
 	{
 		/// <summary>
-		///     Идентификатор пользователя
+		/// Идентификатор пользователя
 		/// </summary>
 		[JsonProperty(propertyName: "user_id")]
 		public long? UserId { get; set; }
@@ -26,17 +26,17 @@ namespace VkNet.Model
 		public VkCollection<long> Mutual { get; set; }
 
 		/// <summary>
-		///     Текст сообщения
+		/// Текст сообщения
 		/// </summary>
 
 		//[JsonProperty("message")]
 		public string Message { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static FriendsGetRequestsResult FromJson(VkResponse response)
 		{
 			return new FriendsGetRequestsResult
@@ -48,11 +48,11 @@ namespace VkNet.Model
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator FriendsGetRequestsResult(VkResponse response)
 		{

@@ -94,11 +94,12 @@ namespace VkNet.Tests.Categories
 
 			var cat = GetMockedFriendsCategory(url: url, json: json);
 
-			var id = cat.AddList(name: "тестовая метка", userIds: new long[]
-			{
-					1
-					, 2
-			});
+			var id = cat.AddList(name: "тестовая метка"
+					, userIds: new long[]
+					{
+							1
+							, 2
+					});
 
 			Assert.That(actual: id, expression: Is.EqualTo(expected: 2));
 		}
@@ -109,10 +110,11 @@ namespace VkNet.Tests.Categories
 			var cat = new FriendsCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.AreFriends(userIds: new long[]
-			{
-					2
-					, 3
-			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					{
+							2
+							, 3
+					})
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -280,9 +282,10 @@ namespace VkNet.Tests.Categories
 			var cat = new FriendsCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.Get(@params: new FriendsGetParams
-			{
-					UserId = 1
-			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					{
+							UserId = 1
+					})
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -460,10 +463,11 @@ namespace VkNet.Tests.Categories
 			var cat = new FriendsCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.GetMutual(@params: new FriendsGetMutualParams
-			{
-					TargetUid = 2
-					, SourceUid = 3
-			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					{
+							TargetUid = 2
+							, SourceUid = 3
+					})
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -523,9 +527,10 @@ namespace VkNet.Tests.Categories
 			var cat = new FriendsCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.GetOnline(@params: new FriendsGetOnlineParams
-			{
-					UserId = 1
-			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					{
+							UserId = 1
+					})
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]

@@ -4,54 +4,54 @@ using VkNet.Utils;
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Семейное положение.
+	/// Семейное положение.
 	/// </summary>
 	[Serializable]
 	public enum RelationType
 	{
 		/// <summary>
-		///     Не указано.
+		/// Не указано.
 		/// </summary>
 		[DefaultValue]
 		Unknown = 0
 
 		, /// <summary>
-		///     Не женат/не замужем.
+		/// Не женат/не замужем.
 		/// </summary>
 		NotMarried = 1
 
 		, /// <summary>
-		///     Встречаюсь.
+		/// Встречаюсь.
 		/// </summary>
 		HasFriend = 2
 
 		, /// <summary>
-		///     Помолвлен/помолвлена.
+		/// Помолвлен/помолвлена.
 		/// </summary>
 		Engaged = 3
 
 		, /// <summary>
-		///     Женат/замужем.
+		/// Женат/замужем.
 		/// </summary>
 		Married = 4
 
 		, /// <summary>
-		///     Всё сложно.
+		/// Всё сложно.
 		/// </summary>
 		ItsComplex = 5
 
 		, /// <summary>
-		///     В активном поиске.
+		/// В активном поиске.
 		/// </summary>
 		InActiveSearch = 6
 
 		, /// <summary>
-		///     Влюблен/влюблена.
+		/// Влюблен/влюблена.
 		/// </summary>
 		Amorous = 7
 
 		, /// <summary>
-		///     В гражданском браке
+		/// В гражданском браке
 		/// </summary>
 		CivilMarriage = 8
 	}

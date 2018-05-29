@@ -4,86 +4,86 @@ using VkNet.Utils;
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	///     Уровень доступа к комментированию альбома
+	/// Уровень доступа к комментированию альбома
 	/// </summary>
 	public sealed class Privacy : SafetyEnum<Privacy>
 	{
 		/// <summary>
-		///     Доступно всем пользователям.
+		/// Доступно всем пользователям.
 		/// </summary>
 		[DefaultValue]
 		public static readonly Privacy All = RegisterPossibleValue(value: "all");
 
 		/// <summary>
-		///     Доступно друзьям текущего пользователя.
+		/// Доступно друзьям текущего пользователя.
 		/// </summary>
 		public static readonly Privacy Friends = RegisterPossibleValue(value: "friends");
 
 		/// <summary>
-		///     Доступно друзьям и друзьям друзей.
+		/// Доступно друзьям и друзьям друзей.
 		/// </summary>
 		public static readonly Privacy FriendsOfFriends = RegisterPossibleValue(value: "friends_of_friends");
 
 		/// <summary>
-		///     Доступно друзьям друзей текущего пользователя.
+		/// Доступно друзьям друзей текущего пользователя.
 		/// </summary>
 		public static readonly Privacy FriendsOfFriendsOnly = RegisterPossibleValue(value: "friends_of_friends_only");
 
 		/// <summary>
-		///     Недоступно никому.
+		/// Недоступно никому.
 		/// </summary>
 		public static readonly Privacy Nobody = RegisterPossibleValue(value: "nobody");
 
 		/// <summary>
-		///     Доступно только мне.
+		/// Доступно только мне.
 		/// </summary>
 		public static readonly Privacy OnlyMe = RegisterPossibleValue(value: "only_me");
 
 		/// <summary>
-		///     Доступно для списка
+		/// Доступно для списка
 		/// </summary>
-		/// <param name="number">Номер списка.</param>
-		/// <returns>Номер списка.</returns>
+		/// <param name="number"> Номер списка. </param>
+		/// <returns> Номер списка. </returns>
 		public static Privacy AvailableForList(long number)
 		{
 			return RegisterPossibleValue(value: "list" + number);
 		}
 
 		/// <summary>
-		///     Недоступно для списка
+		/// Недоступно для списка
 		/// </summary>
-		/// <param name="number">Номер списка.</param>
-		/// <returns>Номер списка.</returns>
+		/// <param name="number"> Номер списка. </param>
+		/// <returns> Номер списка. </returns>
 		public static Privacy UnAvailableForList(long number)
 		{
 			return RegisterPossibleValue(value: "-list" + number);
 		}
 
 		/// <summary>
-		///     Доступно для пользователя
+		/// Доступно для пользователя
 		/// </summary>
-		/// <param name="number">Номер списка.</param>
-		/// <returns>Номер списка.</returns>
+		/// <param name="number"> Номер списка. </param>
+		/// <returns> Номер списка. </returns>
 		public static Privacy AvailableForUser(long number)
 		{
 			return RegisterPossibleValue(value: number.ToString());
 		}
 
 		/// <summary>
-		///     Недоступно для пользователя
+		/// Недоступно для пользователя
 		/// </summary>
-		/// <param name="number">Номер списка.</param>
-		/// <returns>Номер списка.</returns>
+		/// <param name="number"> Номер списка. </param>
+		/// <returns> Номер списка. </returns>
 		public static Privacy UnAvailableForUser(long number)
 		{
 			return RegisterPossibleValue(value: "-" + number);
 		}
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public new static Privacy FromJson(VkResponse response)
 		{
 			switch (response.ToString())

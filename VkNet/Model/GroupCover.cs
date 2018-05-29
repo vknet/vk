@@ -5,26 +5,26 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Обложка сообщества.
+	/// Обложка сообщества.
 	/// </summary>
 	[Serializable]
 	public class GroupCover
 	{
 		/// <summary>
-		///     Информация о том, включена ли обложка (1 — да, 0 — нет);
+		/// Информация о том, включена ли обложка (1 — да, 0 — нет);
 		/// </summary>
 		public bool? Enabled { get; set; }
 
 		/// <summary>
-		///     Копии изображений обложки.
+		/// Копии изображений обложки.
 		/// </summary>
 		public IEnumerable<GroupCoverImage> Images { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static GroupCover FromJson(VkResponse response)
 		{
 			return new GroupCover

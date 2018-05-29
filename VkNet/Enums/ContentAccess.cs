@@ -1,22 +1,22 @@
 ﻿namespace VkNet.Enums
 {
 	/// <summary>
-	///     Уровень доступа к содержимому.
+	/// Уровень доступа к содержимому.
 	/// </summary>
 	public enum ContentAccess
 	{
 		/// <summary>
-		///     Выключены
+		/// Выключены
 		/// </summary>
 		Off = 0
 
 		, /// <summary>
-		///     Открытые
+		/// Открытые
 		/// </summary>
 		Opened
 
 		, /// <summary>
-		///     Ограниченные
+		/// Ограниченные
 		/// </summary>
 		Restricted
 	}

@@ -11,32 +11,32 @@ namespace VkNet.Model
 	public class LinkStat
 	{
 		/// <summary>
-		///     Время начала отсчета
+		/// Время начала отсчета
 		/// </summary>
 		[JsonProperty(propertyName: "timestamp")]
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime Timestamp { get; set; }
 
 		/// <summary>
-		///     Общее число переходов
+		/// Общее число переходов
 		/// </summary>
 		[JsonProperty(propertyName: "views")]
 		public uint Views { get; set; }
 
 		/// <summary>
-		///     Половозрастная статистика
+		/// Половозрастная статистика
 		/// </summary>
 		[JsonProperty(propertyName: "sex_age")]
 		public ReadOnlyCollection<SexAge> SexAge { get; set; }
 
 		/// <summary>
-		///     Статистика по странам
+		/// Статистика по странам
 		/// </summary>
 		[JsonProperty(propertyName: "countries")]
 		public ReadOnlyCollection<CountriesStats> Countries { get; set; }
 
 		/// <summary>
-		///     Статистика по городам
+		/// Статистика по городам
 		/// </summary>
 		[JsonProperty(propertyName: "cities")]
 		public ReadOnlyCollection<CitiesStats> Cities { get; set; }

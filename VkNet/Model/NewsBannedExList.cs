@@ -5,26 +5,28 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Расширеный список забаненых новостей.
+	/// Расширеный список забаненых новостей.
 	/// </summary>
 	[Serializable]
 	public class NewsBannedExList
 	{
 		/// <summary>
-		///     В поле groups содержится массив идентификаторов сообществ, которые пользователь скрыл из ленты новостей.
+		/// В поле groups содержится массив идентификаторов сообществ, которые пользователь
+		/// скрыл из ленты новостей.
 		/// </summary>
 		public ReadOnlyCollection<Group> Groups { get; set; }
 
 		/// <summary>
-		///     В поле members содержится массив идентификаторов друзей, которые пользователь скрыл из ленты новостей.
+		/// В поле members содержится массив идентификаторов друзей, которые пользователь
+		/// скрыл из ленты новостей.
 		/// </summary>
 		public ReadOnlyCollection<User> Profiles { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static NewsBannedExList FromJson(VkResponse response)
 		{
 			VkResponseArray names = response[key: "groups"];

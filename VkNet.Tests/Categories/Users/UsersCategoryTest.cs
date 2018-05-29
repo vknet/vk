@@ -279,10 +279,11 @@ namespace VkNet.Tests.Categories
 			var users = GetMockedUsersCategory(url: url, json: json);
 
 			var lst = users.Get(userIds: new long[]
-			{
-					1
-					, 5041431
-			}, fields: ProfileFields.Education);
+					{
+							1
+							, 5041431
+					}
+					, fields: ProfileFields.Education);
 
 			Assert.That(condition: lst.Count == 2);
 			Assert.That(actual: lst[index: 0], expression: Is.Not.Null);
@@ -1246,8 +1247,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: user.Site, expression: Is.EqualTo(expected: string.Empty));
 
 			Assert.That(actual: user.Status
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"Пусть ветер гудит в проводах пусть будет осенняя влага пусть люди забудут о нас,но ни забудем друг друга."));
 
 			Assert.That(actual: user.LastSeen.Time
@@ -1299,12 +1299,16 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: user1.Site, expression: Is.EqualTo(expected: string.Empty));
 
 			Assert.That(actual: user1.Status
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"Не варто ображатися на людей за те, що вони не виправдали наших очікувань... ми самі винні, що чекали від них більше, ніж варто було!"));
 
 			Assert.That(actual: user1.LastSeen.Time
-					, expression: Is.EqualTo(expected: new DateTime(year: 2014, month: 2, day: 18, hour: 8, minute: 1, second: 14
+					, expression: Is.EqualTo(expected: new DateTime(year: 2014
+							, month: 2
+							, day: 18
+							, hour: 8
+							, minute: 1
+							, second: 14
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: user1.CommonCount, expression: Is.EqualTo(expected: 0));

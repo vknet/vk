@@ -5,8 +5,8 @@ namespace VkNet.Exception
 {
 	/// <inheritdoc />
 	/// <summary>
-	///     Ключ доступа приложения недействителен.
-	///     Код ошибки - 28
+	/// Ключ доступа приложения недействителен.
+	/// Код ошибки - 28
 	/// </summary>
 	[Serializable]
 	public class AppKeyInvalidException : VkApiMethodInvokeException

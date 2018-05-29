@@ -13,27 +13,27 @@ using VkNet.Exception;
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     Методы расширения для типов
+	/// Методы расширения для типов
 	/// </summary>
 	public static class TypeHelper
 	{
 	#if NET40
 
-	/// <summary>
-	/// Получить информацию о типе
-	/// </summary>
-	/// <param name="type">Тип</param>
-	/// <returns>Тип</returns>
+		/// <summary>
+		/// Получить информацию о типе
+		/// </summary>
+		/// <param name="type"> Тип </param>
+		/// <returns> Тип </returns>
 		public static Type GetTypeInfo(this Type type)
 		{
 			return type;
 		}
 
-#endif
+	#endif
 		/// <summary>
-		///     DI регистрация зависимостей по умолчанию
+		/// DI регистрация зависимостей по умолчанию
 		/// </summary>
-		/// <param name="container">DI контейнер</param>
+		/// <param name="container"> DI контейнер </param>
 		public static void RegisterDefaultDependencies(this IServiceCollection container)
 		{
 			if (container.All(predicate: x => x.ServiceType != typeof(IBrowser)))
@@ -58,9 +58,9 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Инициализация логгера.
+		/// Инициализация логгера.
 		/// </summary>
-		/// <returns>Логгер</returns>
+		/// <returns> Логгер </returns>
 		private static ILogger InitLogger()
 		{
 			var consoleTarget = new ColoredConsoleTarget
@@ -80,11 +80,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Попытаться асинхронно выполнить метод.
+		/// Попытаться асинхронно выполнить метод.
 		/// </summary>
-		/// <param name="func">Синхронный метод.</param>
-		/// <typeparam name="T">Тип ответа</typeparam>
-		/// <returns>Результат выполнения функции.</returns>
+		/// <param name="func"> Синхронный метод. </param>
+		/// <typeparam name="T"> Тип ответа </typeparam>
+		/// <returns> Результат выполнения функции. </returns>
 		public static Task<T> TryInvokeMethodAsync<T>(Func<T> func)
 		{
 			var tcs = new TaskCompletionSource<T>();
@@ -106,10 +106,10 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Попытаться асинхронно выполнить метод.
+		/// Попытаться асинхронно выполнить метод.
 		/// </summary>
-		/// <param name="func">Синхронный метод.</param>
-		/// <returns>Результат выполнения функции.</returns>
+		/// <param name="func"> Синхронный метод. </param>
+		/// <returns> Результат выполнения функции. </returns>
 		public static Task TryInvokeMethodAsync(Action func)
 		{
 			var tcs = new TaskCompletionSource<Task>();

@@ -8,21 +8,21 @@ using Newtonsoft.Json.Linq;
 namespace VkNet.Utils.JsonConverter
 {
 	/// <summary>
-	///     Vk Collection Json Converter
+	/// Vk Collection Json Converter
 	/// </summary>
 	public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 	{
 		/// <summary>
-		///     Инициализация
+		/// Инициализация
 		/// </summary>
-		/// <param name="collectionField">Collection Field</param>
+		/// <param name="collectionField"> Collection Field </param>
 		public VkCollectionJsonConverter(string collectionField = "items")
 		{
 			CollectionField = collectionField;
 		}
 
 		/// <summary>
-		///     Инициализация
+		/// Инициализация
 		/// </summary>
 		public VkCollectionJsonConverter()
 		{
@@ -33,22 +33,22 @@ namespace VkNet.Utils.JsonConverter
 		}
 
 		/// <summary>
-		///     Количество
+		/// Количество
 		/// </summary>
 		private static string CountField => "count";
 
 		/// <summary>
-		///     Поле с коллекцией данных
+		/// Поле с коллекцией данных
 		/// </summary>
 		private string CollectionField { get; }
 
 		/// <summary>
-		///     Сериализация объекта в Json
+		/// Сериализация объекта в Json
 		/// </summary>
-		/// <param name="writer">Json writer</param>
-		/// <param name="value">Значение</param>
-		/// <param name="serializer">Сериализатор</param>
-		/// <exception cref="NotImplementedException"></exception>
+		/// <param name="writer"> Json writer </param>
+		/// <param name="value"> Значение </param>
+		/// <param name="serializer"> Сериализатор </param>
+		/// <exception cref="NotImplementedException"> </exception>
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
 			var vkCollectionType = value.GetType();
@@ -72,14 +72,14 @@ namespace VkNet.Utils.JsonConverter
 		}
 
 		/// <summary>
-		///     Преобразование JSON в VkCollection
+		/// Преобразование JSON в VkCollection
 		/// </summary>
-		/// <param name="reader">Json reader</param>
-		/// <param name="objectType">Тип объекта</param>
-		/// <param name="existingValue">Существующее значение</param>
-		/// <param name="serializer">Seerilizer</param>
-		/// <returns></returns>
-		/// <exception cref="TypeAccessException"></exception>
+		/// <param name="reader"> Json reader </param>
+		/// <param name="objectType"> Тип объекта </param>
+		/// <param name="existingValue"> Существующее значение </param>
+		/// <param name="serializer"> Seerilizer </param>
+		/// <returns> </returns>
+		/// <exception cref="TypeAccessException"> </exception>
 		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 		{
 			if (!objectType.IsGenericType)
@@ -124,10 +124,10 @@ namespace VkNet.Utils.JsonConverter
 		}
 
 		/// <summary>
-		///     Может преобразовать
+		/// Может преобразовать
 		/// </summary>
-		/// <param name="objectType">Тип объекта</param>
-		/// <returns><c>true</c> если можно преобразовать</returns>
+		/// <param name="objectType"> Тип объекта </param>
+		/// <returns> <c> true </c> если можно преобразовать </returns>
 		public override bool CanConvert(Type objectType)
 		{
 			return typeof(VkCollection<>).IsAssignableFrom(c: objectType);

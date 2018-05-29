@@ -514,11 +514,12 @@ namespace VkNet.Tests.Categories
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			Assert.That(del: () => _defaultWall.GetById(posts: new[]
-			{
-					"93388_21539"
-					, "93388_20904"
-					, "2943_4276"
-			}), expr: Throws.TypeOf<AccessTokenInvalidException>());
+					{
+							"93388_21539"
+							, "93388_20904"
+							, "2943_4276"
+					})
+					, expr: Throws.TypeOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -577,8 +578,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: records.WallPosts[index: 0].OwnerId, expression: Is.EqualTo(expected: 1));
 
 			Assert.That(actual: records.WallPosts[index: 0].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0
-							, millisecond: 0, kind: DateTimeKind.Utc).AddSeconds(value: 1171758699)));
+					, expression: Is.EqualTo(expected: new DateTime(year: 1970
+							, month: 1
+							, day: 1
+							, hour: 0
+							, minute: 0
+							, second: 0
+							, millisecond: 0
+							, kind: DateTimeKind.Utc).AddSeconds(value: 1171758699)));
 
 			Assert.That(actual: records.WallPosts[index: 0].Text, expression: Is.Null.Or.Empty);
 			Assert.That(condition: records.WallPosts[index: 0].Comments.Count == 0);
@@ -656,7 +663,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: comment0.FromId, expression: Is.EqualTo(expected: 6733856));
 
 			Assert.That(actual: comment0.Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2013, month: 11, day: 22, hour: 05, minute: 45, second: 44
+					, expression: Is.EqualTo(expected: new DateTime(year: 2013
+							, month: 11
+							, day: 22
+							, hour: 05
+							, minute: 45
+							, second: 44
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: comment0.Text
@@ -670,7 +682,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: comment1.FromId, expression: Is.EqualTo(expected: 3073863));
 
 			Assert.That(actual: comment1.Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2013, month: 11, day: 22, hour: 6, minute: 21, second: 06
+					, expression: Is.EqualTo(expected: new DateTime(year: 2013
+							, month: 11
+							, day: 22
+							, hour: 6
+							, minute: 21
+							, second: 06
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: comment1.Text, expression: Is.EqualTo(expected: "C днем рождения малышку и родителей!!!"));
@@ -702,7 +719,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: photo.Text, expression: Is.EqualTo(expected: string.Empty));
 
 			Assert.That(actual: photo.CreateTime
-					, expression: Is.EqualTo(expected: new DateTime(year: 2013, month: 11, day: 22, hour: 6, minute: 20, second: 31
+					, expression: Is.EqualTo(expected: new DateTime(year: 2013
+							, month: 11
+							, day: 22
+							, hour: 6
+							, minute: 20
+							, second: 31
 							, kind: DateTimeKind.Utc)));
 		}
 

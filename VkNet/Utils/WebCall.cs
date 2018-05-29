@@ -9,27 +9,27 @@ using VkNet.Exception;
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     WebCall
+	/// WebCall
 	/// </summary>
 	internal sealed partial class WebCall : IDisposable
 	{
 		/// <summary>
-		///     Получить HTTP запрос.
+		/// Получить HTTP запрос.
 		/// </summary>
 		private readonly HttpClient _request;
 
 		/// <summary>
-		///     Результат.
+		/// Результат.
 		/// </summary>
 		private readonly WebCallResult _result;
 
 		/// <summary>
-		///     WebCall.
+		/// WebCall.
 		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="cookies">Cookies.</param>
-		/// <param name="webProxy">Хост.</param>
-		/// <param name="allowAutoRedirect">Разрешить авто редиррект</param>
+		/// <param name="url"> URL. </param>
+		/// <param name="cookies"> Cookies. </param>
+		/// <param name="webProxy"> Хост. </param>
+		/// <param name="allowAutoRedirect"> Разрешить авто редиррект </param>
 		private WebCall(string url, Cookies cookies, IWebProxy webProxy = null, bool allowAutoRedirect = true)
 		{
 			var baseAddress = new Uri(uriString: url);
@@ -66,11 +66,11 @@ namespace VkNet.Utils
 	#endregion
 
 		/// <summary>
-		///     Выполнить запрос.
+		/// Выполнить запрос.
 		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="webProxy">Данные прокси сервера.</param>
-		/// <returns>Результат</returns>
+		/// <param name="url"> URL. </param>
+		/// <param name="webProxy"> Данные прокси сервера. </param>
+		/// <returns> Результат </returns>
 		public static WebCallResult MakeCall(string url, IWebProxy webProxy = null)
 		{
 			using (var call = new WebCall(url: url, cookies: new Cookies(), webProxy: webProxy))
@@ -82,12 +82,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполнить POST запрос.
+		/// Выполнить POST запрос.
 		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="parameters">Параметры запроса.</param>
-		/// <param name="webProxy">Хост.</param>
-		/// <returns>Результат</returns>
+		/// <param name="url"> URL. </param>
+		/// <param name="parameters"> Параметры запроса. </param>
+		/// <param name="webProxy"> Хост. </param>
+		/// <returns> Результат </returns>
 		public static WebCallResult PostCall(string url, IEnumerable<KeyValuePair<string, string>> parameters, IWebProxy webProxy)
 		{
 			using (var call = new WebCall(url: url, cookies: new Cookies(), webProxy: webProxy))
@@ -100,11 +100,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Post запрос из формы.
+		/// Post запрос из формы.
 		/// </summary>
-		/// <param name="form">Форма.</param>
-		/// <param name="webProxy">Хост.</param>
-		/// <returns>Результат</returns>
+		/// <param name="form"> Форма. </param>
+		/// <param name="webProxy"> Хост. </param>
+		/// <returns> Результат </returns>
 		public static WebCallResult Post(WebForm form, IWebProxy webProxy)
 		{
 			using (var call = new WebCall(url: form.ActionUrl, cookies: form.Cookies, webProxy: webProxy, allowAutoRedirect: false))
@@ -120,11 +120,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Пере адресация.
+		/// Пере адресация.
 		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="webProxy">Хост.</param>
-		/// <returns>Результат</returns>
+		/// <param name="url"> URL. </param>
+		/// <param name="webProxy"> Хост. </param>
+		/// <returns> Результат </returns>
 		private WebCallResult RedirectTo(string url, IWebProxy webProxy = null)
 		{
 			using (var call = new WebCall(url: url, cookies: _result.Cookies, webProxy: webProxy))
@@ -140,13 +140,13 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполнить запрос.
+		/// Выполнить запрос.
 		/// </summary>
-		/// <param name="uri">Uri из которого получаем куки</param>
-		/// <param name="webProxy">Хост.</param>
-		/// <param name="response">Ответ сервера</param>
-		/// <returns>Результат</returns>
-		/// <exception cref="VkApiException">Response is null.</exception>
+		/// <param name="uri"> Uri из которого получаем куки </param>
+		/// <param name="webProxy"> Хост. </param>
+		/// <param name="response"> Ответ сервера </param>
+		/// <returns> Результат </returns>
+		/// <exception cref="VkApiException"> Response is null. </exception>
 		private WebCallResult MakeRequest(HttpResponseMessage response, Uri uri, IWebProxy webProxy)
 		{
 			using (var stream = response.Content.ReadAsStreamAsync().Result)

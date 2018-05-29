@@ -5,13 +5,13 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Стикер.
+	/// Стикер.
 	/// </summary>
 	[Serializable]
 	public class Sticker : MediaAttachment
 	{
 		/// <summary>
-		///     Стикер.
+		/// Стикер.
 		/// </summary>
 		static Sticker()
 		{
@@ -19,25 +19,25 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Идентификатор набора.
+		/// Идентификатор набора.
 		/// </summary>
 		public long? ProductId { get; set; }
 
 		/// <summary>
-		///     Изображения для стикера (с прозрачным фоном).
+		/// Изображения для стикера (с прозрачным фоном).
 		/// </summary>
 		public IEnumerable<Image> Images { get; set; }
 
 		/// <summary>
-		///     Изображения для стикера (с непрозрачным фоном).
+		/// Изображения для стикера (с непрозрачным фоном).
 		/// </summary>
 		public IEnumerable<Image> ImagesWithBackground { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Sticker FromJson(VkResponse response)
 		{
 			var sticker = new Sticker

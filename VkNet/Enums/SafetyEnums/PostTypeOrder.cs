@@ -3,18 +3,18 @@
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	///     Способ сортировки приложений
+	/// Способ сортировки приложений
 	/// </summary>
 	[Serializable]
 	public sealed class PostTypeOrder : SafetyEnum<PostTypeOrder>
 	{
 		/// <summary>
-		///     Популярные за день (по умолчанию);
+		/// Популярные за день (по умолчанию);
 		/// </summary>
 		public static readonly PostTypeOrder Post = RegisterPossibleValue(value: "post");
 
 		/// <summary>
-		///     По посещаемости
+		/// По посещаемости
 		/// </summary>
 		public static readonly PostTypeOrder Copy = RegisterPossibleValue(value: "copy");
 	}

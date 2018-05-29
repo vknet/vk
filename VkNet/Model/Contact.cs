@@ -4,38 +4,38 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Контакты группы
+	/// Контакты группы
 	/// </summary>
 	[Serializable]
 	public class Contact
 	{
 		/// <summary>
-		///     Идентификатор пользователя.
+		/// Идентификатор пользователя.
 		/// </summary>
 		public long? UserId { get; set; }
 
 		/// <summary>
-		///     Должность.
+		/// Должность.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Электронная почта.
+		/// Электронная почта.
 		/// </summary>
 		public string Email { get; set; }
 
 		/// <summary>
-		///     Телефон.
+		/// Телефон.
 		/// </summary>
 		public string Phone { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Contact FromJson(VkResponse response)
 		{
 			var contact = new Contact

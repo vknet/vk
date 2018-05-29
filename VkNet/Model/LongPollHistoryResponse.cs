@@ -10,13 +10,13 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Обновления в личных сообщениях пользователя.
+	/// Обновления в личных сообщениях пользователя.
 	/// </summary>
 	[Serializable]
 	public class LongPollHistoryResponse
 	{
 		/// <summary>
-		///     Обновления в личных сообщениях пользователя.
+		/// Обновления в личных сообщениях пользователя.
 		/// </summary>
 		public LongPollHistoryResponse()
 		{
@@ -24,48 +24,50 @@ namespace VkNet.Model
 		}
 
 		/// <summary>
-		///     История.
+		/// История.
 		/// </summary>
 
 		// ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
 		public List<ReadOnlyCollection<long>> History { get; set; }
 
 		/// <summary>
-		///     Количество непрочитанных сообщений
+		/// Количество непрочитанных сообщений
 		/// </summary>
 		public ulong UnreadMessages { get; set; }
 
 		/// <summary>
-		///     Колекция сообщений.
+		/// Колекция сообщений.
 		/// </summary>
 		public ReadOnlyCollection<Message> Messages { get; set; }
 
 		/// <summary>
-		///     Колекция профилей.
+		/// Колекция профилей.
 		/// </summary>
 		public ReadOnlyCollection<User> Profiles { get; set; }
 
 		/// <summary>
-		///     Колекция профилей.
+		/// Колекция профилей.
 		/// </summary>
 		public ReadOnlyCollection<Group> Groups { get; set; }
 
 		/// <summary>
-		///     Последнее значение параметра new_pts, полученное от Long Poll сервера, используется для получения действий, которые
-		///     хранятся всегда.
+		/// Последнее значение параметра new_pts, полученное от Long Poll сервера,
+		/// используется для получения действий, которые
+		/// хранятся всегда.
 		/// </summary>
 		public ulong NewPts { get; set; }
 
 		/// <summary>
-		///     Если true — это означает, что нужно запросить оставшиеся данные с помощью запроса с параметром max_msg_id
+		/// Если true — это означает, что нужно запросить оставшиеся данные с помощью
+		/// запроса с параметром max_msg_id
 		/// </summary>
 		public bool More { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static LongPollHistoryResponse FromJson(VkResponse response)
 		{
 			var fromJson = new LongPollHistoryResponse

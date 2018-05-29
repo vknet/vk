@@ -6,13 +6,13 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Streaming Settings.
+	/// Streaming Settings.
 	/// </summary>
 	[Serializable]
 	public class StreamingSettings
 	{
 		/// <summary>
-		///     Месячные ограничения
+		/// Месячные ограничения
 		/// </summary>
 		[JsonProperty(propertyName: "monthly_limit")]
 		[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]

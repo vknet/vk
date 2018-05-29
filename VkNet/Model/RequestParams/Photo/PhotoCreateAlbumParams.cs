@@ -6,51 +6,51 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	///     Список параметров для метода photos.createAlbum
+	/// Список параметров для метода photos.createAlbum
 	/// </summary>
 	[Serializable]
 	public class PhotoCreateAlbumParams
 	{
 		/// <summary>
-		///     Название альбома.
+		/// Название альбома.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Идентификатор сообщества, в котором создаётся альбом.
+		/// Идентификатор сообщества, в котором создаётся альбом.
 		/// </summary>
 		public long? GroupId { get; set; }
 
 		/// <summary>
-		///     Текст описания альбома.
+		/// Текст описания альбома.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Настройки приватности просмотра альбома в специальном формате.
+		/// Настройки приватности просмотра альбома в специальном формате.
 		/// </summary>
 		public List<Privacy> PrivacyView { get; set; }
 
 		/// <summary>
-		///     Настройки приватности комментирования альбома в специальном формате.
+		/// Настройки приватности комментирования альбома в специальном формате.
 		/// </summary>
 		public List<Privacy> PrivacyComment { get; set; }
 
 		/// <summary>
-		///     Кто может загружать фотографии в альбом (только для альбома сообщества).
+		/// Кто может загружать фотографии в альбом (только для альбома сообщества).
 		/// </summary>
 		public bool? UploadByAdminsOnly { get; set; }
 
 		/// <summary>
-		///     Отключено ли комментирование альбома (только для альбома сообщества).
+		/// Отключено ли комментирование альбома (только для альбома сообщества).
 		/// </summary>
 		public bool? CommentsDisabled { get; set; }
 
 		/// <summary>
-		///     Привести к типу VkParameters.
+		/// Привести к типу VkParameters.
 		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
+		/// <param name="p"> Параметры. </param>
+		/// <returns> </returns>
 		public static VkParameters ToVkParameters(PhotoCreateAlbumParams p)
 		{
 			if (p.PrivacyView == null)

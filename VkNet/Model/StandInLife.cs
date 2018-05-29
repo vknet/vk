@@ -6,59 +6,60 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Жизненная позиция (Personal).
-	///     Данная информация не документирована в официальном API ВКонтакте и восстановлена по ответам.
+	/// Жизненная позиция (Personal).
+	/// Данная информация не документирована в официальном API ВКонтакте и
+	/// восстановлена по ответам.
 	/// </summary>
 	[Serializable]
 	public class StandInLife
 	{
 		/// <summary>
-		///     Политические предпочтения пользователя.
+		/// Политические предпочтения пользователя.
 		/// </summary>
 		public PoliticalPreferences Political { get; set; }
 
 		/// <summary>
-		///     Языки, на которых говорит пользователь.
+		/// Языки, на которых говорит пользователь.
 		/// </summary>
 		public ReadOnlyCollection<string> Languages { get; set; }
 
 		/// <summary>
-		///     Мировоззрение пользователя.
+		/// Мировоззрение пользователя.
 		/// </summary>
 		public string Religion { get; set; }
 
 		/// <summary>
-		///     Источники вдохновения пользователя.
+		/// Источники вдохновения пользователя.
 		/// </summary>
 		public string InspiredBy { get; set; }
 
 		/// <summary>
-		///     Главное в людях для пользователя.
+		/// Главное в людях для пользователя.
 		/// </summary>
 		public PeopleMain PeopleMain { get; set; }
 
 		/// <summary>
-		///     Главное в жизни для пользователя.
+		/// Главное в жизни для пользователя.
 		/// </summary>
 		public LifeMain LifeMain { get; set; }
 
 		/// <summary>
-		///     Отношение к курению.
+		/// Отношение к курению.
 		/// </summary>
 		public Attitude Smoking { get; set; }
 
 		/// <summary>
-		///     Отношение к алкоголю.
+		/// Отношение к алкоголю.
 		/// </summary>
 		public Attitude Alcohol { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static StandInLife FromJson(VkResponse response)
 		{
 			var standInLife = new StandInLife

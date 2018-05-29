@@ -3,28 +3,28 @@
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	///     Тип сообщества
+	/// Тип сообщества
 	/// </summary>
 	[Serializable]
 	public sealed class GroupType : SafetyEnum<GroupType>
 	{
 		/// <summary>
-		///     Публичная страница.
+		/// Публичная страница.
 		/// </summary>
 		public static readonly GroupType Page = RegisterPossibleValue(value: "page");
 
 		/// <summary>
-		///     Группа.
+		/// Группа.
 		/// </summary>
 		public static readonly GroupType Group = RegisterPossibleValue(value: "group");
 
 		/// <summary>
-		///     Мероприятие.
+		/// Мероприятие.
 		/// </summary>
 		public static readonly GroupType Event = RegisterPossibleValue(value: "event");
 
 		/// <summary>
-		///     Не определено.
+		/// Не определено.
 		/// </summary>
 		public static readonly GroupType Undefined = RegisterPossibleValue(value: "undefined");
 	}

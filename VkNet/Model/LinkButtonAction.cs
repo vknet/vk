@@ -5,19 +5,19 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Действие кнопки
+	/// Действие кнопки
 	/// </summary>
 	[Serializable]
 	public class LinkButtonAction
 	{
 		/// <summary>
-		///     Тип действия. Возможные значения.
+		/// Тип действия. Возможные значения.
 		/// </summary>
 		[JsonProperty(propertyName: "type")]
 		public string Type { get; set; }
 
 		/// <summary>
-		///     Ссылка на которую ведет кнопка.
+		/// Ссылка на которую ведет кнопка.
 		/// </summary>
 		[JsonProperty(propertyName: "url")]
 		public Uri Uri { get; set; }
@@ -33,10 +33,10 @@ namespace VkNet.Model
 		public long? GroupId { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static LinkButtonAction FromJson(VkResponse response)
 		{
 			return new LinkButtonAction

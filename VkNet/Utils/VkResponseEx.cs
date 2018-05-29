@@ -6,28 +6,28 @@ using System.Linq;
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     Методы расширения для ответов vk.com
+	/// Методы расширения для ответов vk.com
 	/// </summary>
 	public static class VkResponseEx
 	{
 		/// <summary>
-		///     В коллекцию.
+		/// В коллекцию.
 		/// </summary>
-		/// <typeparam name="T">Тип данных коллекции.</typeparam>
-		/// <param name="source">Коллекция данных.</param>
-		/// <returns>Коллекция данных.</returns>
+		/// <typeparam name="T"> Тип данных коллекции. </typeparam>
+		/// <param name="source"> Коллекция данных. </param>
+		/// <returns> Коллекция данных. </returns>
 		public static Collection<T> ToCollection<T>(this IEnumerable<T> source)
 		{
 			return new Collection<T>(list: new List<T>(collection: source));
 		}
 
 		/// <summary>
-		///     В коллекцию.
+		/// В коллекцию.
 		/// </summary>
-		/// <typeparam name="T">Тип данных коллекции.</typeparam>
-		/// <param name="response">Ответ vk.com.</param>
-		/// <param name="selector">Функция выборки.</param>
-		/// <returns>Коллекция данных.</returns>
+		/// <typeparam name="T"> Тип данных коллекции. </typeparam>
+		/// <param name="response"> Ответ vk.com. </param>
+		/// <param name="selector"> Функция выборки. </param>
+		/// <returns> Коллекция данных. </returns>
 		public static Collection<T> ToCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector) //where T : class
 		{
 			if (response == null)
@@ -50,23 +50,23 @@ namespace VkNet.Utils
 
 		// --------------------------------------------------------------------------------------------
 		/// <summary>
-		///     В коллекцию только для чтения.
+		/// В коллекцию только для чтения.
 		/// </summary>
-		/// <typeparam name="T">Тип данных коллекции.</typeparam>
-		/// <param name="source">Коллекция данных.</param>
-		/// <returns>Коллекция данных только для чтения.</returns>
+		/// <typeparam name="T"> Тип данных коллекции. </typeparam>
+		/// <param name="source"> Коллекция данных. </param>
+		/// <returns> Коллекция данных только для чтения. </returns>
 		public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this IEnumerable<T> source)
 		{
 			return new ReadOnlyCollection<T>(list: new List<T>(collection: source));
 		}
 
 		/// <summary>
-		///     В коллекцию только для чтения.
+		/// В коллекцию только для чтения.
 		/// </summary>
-		/// <typeparam name="T">Тип данных коллекции.</typeparam>
-		/// <param name="response">Ответ vk.com.</param>
-		/// <param name="selector">Функция выборки.</param>
-		/// <returns>Коллекция данных только для чтения.</returns>
+		/// <typeparam name="T"> Тип данных коллекции. </typeparam>
+		/// <param name="response"> Ответ vk.com. </param>
+		/// <param name="selector"> Функция выборки. </param>
+		/// <returns> Коллекция данных только для чтения. </returns>
 		public static ReadOnlyCollection<T>
 				ToReadOnlyCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector) // where T : class
 		{
@@ -86,12 +86,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     В коллекцию только для чтения.
+		/// В коллекцию только для чтения.
 		/// </summary>
-		/// <typeparam name="T">Тип данных коллекции.</typeparam>
-		/// <param name="responses">Коллекция ответов от vk.com.</param>
-		/// <param name="selector">Функция выборки.</param>
-		/// <returns>Коллекция данных только для чтения.</returns>
+		/// <typeparam name="T"> Тип данных коллекции. </typeparam>
+		/// <param name="responses"> Коллекция ответов от vk.com. </param>
+		/// <param name="selector"> Функция выборки. </param>
+		/// <returns> Коллекция данных только для чтения. </returns>
 		public static ReadOnlyCollection<T> ToReadOnlyCollectionOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector)
 		{
 			if (responses == null)
@@ -104,13 +104,13 @@ namespace VkNet.Utils
 
 		// --------------------------------------------------------------------------------------------
 		/// <summary>
-		///     В список.
+		/// В список.
 		/// </summary>
-		/// <typeparam name="T">Тип данных списка.</typeparam>
-		/// <param name="response">Ответ vk.com.</param>
-		/// <param name="selector">Функция выборки.</param>
+		/// <typeparam name="T"> Тип данных списка. </typeparam>
+		/// <param name="response"> Ответ vk.com. </param>
+		/// <param name="selector"> Функция выборки. </param>
 		/// <returns>
-		///     Список данных.
+		/// Список данных.
 		/// </returns>
 		public static List<T> ToListOf<T>(this VkResponse response, Func<VkResponse, T> selector)
 		{
@@ -133,13 +133,13 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     В список.
+		/// В список.
 		/// </summary>
-		/// <typeparam name="T">Тип данных списка.</typeparam>
-		/// <param name="responses">Ответ vk.com.</param>
-		/// <param name="selector">Функция выборки.</param>
+		/// <typeparam name="T"> Тип данных списка. </typeparam>
+		/// <param name="responses"> Ответ vk.com. </param>
+		/// <param name="selector"> Функция выборки. </param>
 		/// <returns>
-		///     Список данных.
+		/// Список данных.
 		/// </returns>
 		public static List<T> ToListOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector)
 		{
@@ -154,13 +154,13 @@ namespace VkNet.Utils
 		// --------------------------------------------------------------------------------------------
 
 		/// <summary>
-		///     В специальную коллекцию данных vk с общим количеством.
+		/// В специальную коллекцию данных vk с общим количеством.
 		/// </summary>
-		/// <typeparam name="T">Тип данных</typeparam>
-		/// <param name="response">Ответ vk.com.</param>
-		/// <param name="selector">Функция выборки.</param>
-		/// <param name="arrayName">Наименование поля массива</param>
-		/// <returns>Специальная коллекция данных vk с общим количеством.</returns>
+		/// <typeparam name="T"> Тип данных </typeparam>
+		/// <param name="response"> Ответ vk.com. </param>
+		/// <param name="selector"> Функция выборки. </param>
+		/// <param name="arrayName"> Наименование поля массива </param>
+		/// <returns> Специальная коллекция данных vk с общим количеством. </returns>
 		public static VkCollection<T> ToVkCollectionOf<T>(this VkResponse response
 														, Func<VkResponse, T> selector
 														, string arrayName = "items")

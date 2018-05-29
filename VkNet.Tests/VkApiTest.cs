@@ -35,7 +35,8 @@ namespace VkNet.Tests
 			Mock.Get(mocked: Api.RestClient)
 					.Setup(expression: m =>
 							m.PostAsync(uri: It.IsAny<Uri>(), parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-					.Returns(value: Task.FromResult(result: HttpResponse<string>.Success(httpStatusCode: HttpStatusCode.OK, value: Json
+					.Returns(value: Task.FromResult(result: HttpResponse<string>.Success(httpStatusCode: HttpStatusCode.OK
+							, value: Json
 							, requestUri: Url)));
 
 			var start = DateTimeOffset.Now;
@@ -55,9 +56,9 @@ namespace VkNet.Tests
 			// Не больше 4 раз, т.к. 4-ый раз вызывается через 1002 мс после первого вызова, а total выходит через 1040 мс
 			// переписать тест, когда придумаю более подходящий метод проверки
 			Mock.Get(mocked: Api.RestClient)
-					.Verify(expression: m => m.PostAsync(uri: It.IsAny<Uri>(),
-									parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()),
-							times: Times.AtMost(callCount: 4));
+					.Verify(expression: m =>
+									m.PostAsync(uri: It.IsAny<Uri>(), parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>())
+							, times: Times.AtMost(callCount: 4));
 		}
 
 		[Test]

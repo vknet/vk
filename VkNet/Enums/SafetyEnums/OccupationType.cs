@@ -3,23 +3,23 @@
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	///     Информация о текущем роде занятия пользователя.
+	/// Информация о текущем роде занятия пользователя.
 	/// </summary>
 	[Serializable]
 	public sealed class OccupationType : SafetyEnum<OccupationType>
 	{
 		/// <summary>
-		///     Работа.
+		/// Работа.
 		/// </summary>
 		public static readonly OccupationType Work = RegisterPossibleValue(value: "work");
 
 		/// <summary>
-		///     Школа.
+		/// Школа.
 		/// </summary>
 		public static readonly OccupationType School = RegisterPossibleValue(value: "school");
 
 		/// <summary>
-		///     ВУЗ.
+		/// ВУЗ.
 		/// </summary>
 		public static readonly OccupationType University = RegisterPossibleValue(value: "university");
 	}

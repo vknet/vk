@@ -6,34 +6,34 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Расширенная информация о пользователях или сообществах.
+	/// Расширенная информация о пользователях или сообществах.
 	/// </summary>
 	[Serializable]
 	public class UserOrGroup
 	{
 		/// <summary>
-		///     Общее количество элементов.
+		/// Общее количество элементов.
 		/// </summary>
 		public ulong TotalCount { get; private set; }
 
 		/// <summary>
-		///     Список пользователей.
+		/// Список пользователей.
 		/// </summary>
 		public List<User> Users { get; set; }
 
 		/// <summary>
-		///     Список групп.
+		/// Список групп.
 		/// </summary>
 		public List<Group> Groups { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		/// <exception cref="System.Exception">
-		///     "Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта:
-		///     https://github.com/vknet/vk/issues"
+		/// "Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта:
+		/// https://github.com/vknet/vk/issues"
 		/// </exception>
 		public static UserOrGroup FromJson(VkResponse response)
 		{
@@ -73,8 +73,7 @@ namespace VkNet.Model
 					default:
 
 					{
-						throw new VkApiException(
-								message:
+						throw new VkApiException(message:
 								$"Типа '{item[key: "type"]}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues");
 					}
 				}

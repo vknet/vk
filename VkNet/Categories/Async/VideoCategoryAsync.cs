@@ -176,7 +176,10 @@ namespace VkNet.Categories
 													, long? albumId = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Video.RemoveFromAlbum(ownerId: ownerId, videoId: videoId, albumIds: albumIds, targetId: targetId
+					_vk.Video.RemoveFromAlbum(ownerId: ownerId
+							, videoId: videoId
+							, albumIds: albumIds
+							, targetId: targetId
 							, albumId: albumId));
 		}
 
@@ -194,11 +197,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public async Task<ReadOnlyCollection<VideoCatalogItem>> GetCatalogSectionAsync(
-				string sectionId
-				, string from
-				, long? count = null
-				, bool? extended = null)
+		public async Task<ReadOnlyCollection<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId
+																						, string from
+																						, long? count = null
+																						, bool? extended = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Video.GetCatalogSection(sectionId: sectionId, from: from, count: count, extended: extended));

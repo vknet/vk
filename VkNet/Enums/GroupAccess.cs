@@ -4,24 +4,24 @@ using VkNet.Utils;
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Уровень доступа к сообществу.
+	/// Уровень доступа к сообществу.
 	/// </summary>
 	[Serializable]
 	public enum GroupAccess
 	{
 		/// <summary>
-		///     0 — открытая;
+		/// 0 — открытая;
 		/// </summary>
 		[DefaultValue]
 		Open = 0
 
 		, /// <summary>
-		///     Закрытая
+		/// Закрытая
 		/// </summary>
 		Closed
 
 		, /// <summary>
-		///     Частная
+		/// Частная
 		/// </summary>
 		Private
 	}

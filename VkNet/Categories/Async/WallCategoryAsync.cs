@@ -33,7 +33,10 @@ namespace VkNet.Categories
 													, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Wall.GetById(posts: posts, extended: extended, copyHistoryDepth: copyHistoryDepth, fields: fields
+					_vk.Wall.GetById(posts: posts
+							, extended: extended
+							, copyHistoryDepth: copyHistoryDepth
+							, fields: fields
 							, skipAuthorization: skipAuthorization));
 		}
 
@@ -101,7 +104,10 @@ namespace VkNet.Categories
 														, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Wall.GetReposts(ownerId: ownerId, postId: postId, offset: offset, count: count
+					_vk.Wall.GetReposts(ownerId: ownerId
+							, postId: postId
+							, offset: offset
+							, count: count
 							, skipAuthorization: skipAuthorization));
 		}
 

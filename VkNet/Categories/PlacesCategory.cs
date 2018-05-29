@@ -10,13 +10,13 @@ namespace VkNet.Categories
 	public partial class PlacesCategory : IPlacesCategory
 	{
 		/// <summary>
-		///     API.
+		/// API.
 		/// </summary>
 		private readonly VkApi _vk;
 
 		/// <inheritdoc />
 		/// <param name="api">
-		///     Api vk.com
+		/// Api vk.com
 		/// </param>
 		public PlacesCategory(VkApi api)
 		{
@@ -26,8 +26,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public object Add(PlacesAddParams placesAddParams)
 		{
-			return _vk.Call<object>(methodName: "places.add",
-					parameters: new VkParameters
+			return _vk.Call<object>(methodName: "places.add"
+					, parameters: new VkParameters
 					{
 							{ "title", placesAddParams.Title }
 							, { "latitude", placesAddParams.Latitude }
@@ -42,8 +42,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public object Checkin(PlacesCheckinParams placesCheckinParams)
 		{
-			return _vk.Call<object>(methodName: "places.checkin",
-					parameters: new VkParameters
+			return _vk.Call<object>(methodName: "places.checkin"
+					, parameters: new VkParameters
 					{
 							{ "text", placesCheckinParams.Text }
 							, { "services", placesCheckinParams.Services }
@@ -63,8 +63,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public IEnumerable<object> GetCheckins(PlacesGetCheckinsParams placesGetCheckinsParams)
 		{
-			return _vk.Call<IEnumerable<object>>(methodName: "places.getCheckins",
-					parameters: new VkParameters
+			return _vk.Call<IEnumerable<object>>(methodName: "places.getCheckins"
+					, parameters: new VkParameters
 					{
 							{ "latitude", placesGetCheckinsParams.Latitude }
 							, { "longitude", placesGetCheckinsParams.Longitude }
@@ -87,8 +87,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Uri Search(PlacesSearchParams placesSearchParams)
 		{
-			return _vk.Call<Uri>(methodName: "places.search",
-					parameters: new VkParameters
+			return _vk.Call<Uri>(methodName: "places.search"
+					, parameters: new VkParameters
 					{
 							{ "q", placesSearchParams.Query }
 							, { "latitude", placesSearchParams.Latitude }

@@ -6,14 +6,14 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Заметка пользователя.
-	///     См. описание http://vk.com/dev/note
+	/// Заметка пользователя.
+	/// См. описание http://vk.com/dev/note
 	/// </summary>
 	[Serializable]
 	public class Note : MediaAttachment
 	{
 		/// <summary>
-		///     Заметка пользователя.
+		/// Заметка пользователя.
 		/// </summary>
 		static Note()
 		{
@@ -21,33 +21,34 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Заголовок заметки.
+		/// Заголовок заметки.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Текст заметки.
+		/// Текст заметки.
 		/// </summary>
 		public string Text { get; set; }
 
 		/// <summary>
-		///     Дата создания заметки.
+		/// Дата создания заметки.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
-		///     Количество комментариев к заметке.
+		/// Количество комментариев к заметке.
 		/// </summary>
 		public int? CommentsCount { get; set; }
 
 		/// <summary>
-		///     Количество прочитанных комментариев (только при запросе информации о заметке текущего пользователя).
+		/// Количество прочитанных комментариев (только при запросе информации о заметке
+		/// текущего пользователя).
 		/// </summary>
 		public int? ReadCommentsCount { get; set; }
 
 		/// <summary>
-		///     Адрес страницы для отображения заметки.
+		/// Адрес страницы для отображения заметки.
 		/// </summary>
 		public Uri ViewUrl { get; set; }
 
@@ -55,8 +56,8 @@ namespace VkNet.Model.Attachments
 
 		/// <summary>
 		/// </summary>
-		/// <param name="response"></param>
-		/// <returns></returns>
+		/// <param name="response"> </param>
+		/// <returns> </returns>
 		public static Note FromJson(VkResponse response)
 		{
 			var note = new Note

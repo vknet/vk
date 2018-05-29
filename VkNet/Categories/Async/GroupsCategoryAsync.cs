@@ -57,7 +57,10 @@ namespace VkNet.Categories
 																		, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Groups.IsMember(groupId: groupId, userId: userId, userIds: userIds, extended: extended
+					_vk.Groups.IsMember(groupId: groupId
+							, userId: userId
+							, userIds: userIds
+							, extended: extended
 							, skipAuthorization: skipAuthorization));
 		}
 
@@ -185,7 +188,10 @@ namespace VkNet.Categories
 											, uint? publicCategory = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Groups.Create(title: title, description: description, type: type, subtype: subtype
+					_vk.Groups.Create(title: title
+							, description: description
+							, type: type
+							, subtype: subtype
 							, publicCategory: publicCategory));
 		}
 

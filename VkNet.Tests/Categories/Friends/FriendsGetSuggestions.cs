@@ -28,7 +28,10 @@ namespace VkNet.Tests.Categories.Friends
                 }
             }";
 
-			var result = Api.Friends.GetSuggestions(filter: FriendsFilter.Mutual, count: 1, offset: 0, fields: UsersFields.Sex
+			var result = Api.Friends.GetSuggestions(filter: FriendsFilter.Mutual
+					, count: 1
+					, offset: 0
+					, fields: UsersFields.Sex
 					, nameCase: NameCase.Gen);
 
 			Assert.NotNull(anObject: result);

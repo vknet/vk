@@ -1,22 +1,22 @@
 ﻿namespace VkNet.Enums
 {
 	/// <summary>
-	///     Статус кампании.
+	/// Статус кампании.
 	/// </summary>
 	public enum CampaignStatus
 	{
 		/// <summary>
-		///     Кампания остановлена
+		/// Кампания остановлена
 		/// </summary>
 		Stopped = 0
 
 		, /// <summary>
-		///     Кампания запущена
+		/// Кампания запущена
 		/// </summary>
 		Started = 1
 
 		, /// <summary>
-		///     Кампания удалена
+		/// Кампания удалена
 		/// </summary>
 		Deleted = 2
 	}

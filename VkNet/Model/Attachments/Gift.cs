@@ -4,13 +4,13 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Подарок.
+	/// Подарок.
 	/// </summary>
 	[Serializable]
 	public class Gift : MediaAttachment
 	{
 		/// <summary>
-		///     Подарок.
+		/// Подарок.
 		/// </summary>
 		static Gift()
 		{
@@ -18,25 +18,25 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Изображение 48х48.
+		/// Изображение 48х48.
 		/// </summary>
 		public Uri Thumb48 { get; set; }
 
 		/// <summary>
-		///     Изображение 96х96.
+		/// Изображение 96х96.
 		/// </summary>
 		public Uri Thumb96 { get; set; }
 
 		/// <summary>
-		///     Изображение 256х256.
+		/// Изображение 256х256.
 		/// </summary>
 		public Uri Thumb256 { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Gift FromJson(VkResponse response)
 		{
 			var gift = new Gift

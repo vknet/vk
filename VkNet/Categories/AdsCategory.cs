@@ -7,7 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	///     Методы для работы со стеной пользователя.
+	/// Методы для работы со стеной пользователя.
 	/// </summary>
 	public partial class AdsCategory : IAdsCategory
 	{
@@ -15,7 +15,7 @@ namespace VkNet.Categories
 
 		/// <summary>
 		/// </summary>
-		/// <param name="vk"></param>
+		/// <param name="vk"> </param>
 		public AdsCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -28,13 +28,13 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает список рекламных кабинетов.
+		/// Возвращает список рекламных кабинетов.
 		/// </summary>
 		/// <returns>
-		///     В случае успеха возвращается список рекламных кабинетов.
+		/// В случае успеха возвращается список рекламных кабинетов.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
+		/// Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
 		/// </remarks>
 		public ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams @params)
 		{

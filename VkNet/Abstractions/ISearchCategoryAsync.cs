@@ -6,18 +6,18 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	///     Асинхронные методы для работы с поиском.
+	/// Асинхронные методы для работы с поиском.
 	/// </summary>
 	public interface ISearchCategoryAsync
 	{
 		/// <summary>
-		///     Метод позволяет получить результаты быстрого поиска по произвольной подстроке
+		/// Метод позволяет получить результаты быстрого поиска по произвольной подстроке
 		/// </summary>
-		/// <param name="params">Параметры запроса</param>
+		/// <param name="params"> Параметры запроса </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/search.getHints
+		/// Страница документации ВКонтакте https://vk.com/dev/search.getHints
 		/// </remarks>
 		Task<VkCollection<SearchHintsItem>> GetHintsAsync(SearchGetHintsParams @params);
 	}

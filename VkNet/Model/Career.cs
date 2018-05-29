@@ -4,56 +4,56 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о карьере пользователя.
+	/// Информация о карьере пользователя.
 	/// </summary>
 	[Serializable]
 	public class Career
 	{
 		/// <summary>
-		///     Идентификатор сообщества (если доступно, иначе company).
+		/// Идентификатор сообщества (если доступно, иначе company).
 		/// </summary>
 		public long? GroupId { get; set; }
 
 		/// <summary>
-		///     Название организации (если доступно, иначе group_id).
+		/// Название организации (если доступно, иначе group_id).
 		/// </summary>
 		public string Company { get; set; }
 
 		/// <summary>
-		///     Идентификатор страны.
+		/// Идентификатор страны.
 		/// </summary>
 		public long? CountryId { get; set; }
 
 		/// <summary>
-		///     Идентификатор города (если доступно, иначе city_name).
+		/// Идентификатор города (если доступно, иначе city_name).
 		/// </summary>
 		public long? CityId { get; set; }
 
 		/// <summary>
-		///     Название города (если доступно, иначе city_id).
+		/// Название города (если доступно, иначе city_id).
 		/// </summary>
 		public string CityName { get; set; }
 
 		/// <summary>
-		///     Год начала работы.
+		/// Год начала работы.
 		/// </summary>
 		public int? From { get; set; }
 
 		/// <summary>
-		///     Год окончания работы.
+		/// Год окончания работы.
 		/// </summary>
 		public ulong? Until { get; set; }
 
 		/// <summary>
-		///     Должность.
+		/// Должность.
 		/// </summary>
 		public string Position { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Career FromJson(VkResponse response)
 		{
 			var career = new Career

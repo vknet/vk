@@ -5,43 +5,44 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о заявке на смену имени.
+	/// Информация о заявке на смену имени.
 	/// </summary>
 	[Serializable]
 	public class ChangeNameRequest
 	{
 		/// <summary>
-		///     Идентификатор заявки, необходимый для её отмены (только если ChangeNameRequest.Status
+		/// Идентификатор заявки, необходимый для её отмены (только если
+		/// ChangeNameRequest.Status
 		/// </summary>
 		public int? Id { get; set; }
 
 		/// <summary>
-		///     Статус заявки
+		/// Статус заявки
 		/// </summary>
 		public ChangeNameStatus Status { get; set; }
 
 		/// <summary>
-		///     Дата, после которой возможна повторная подача заявки.
+		/// Дата, после которой возможна повторная подача заявки.
 		/// </summary>
 		public string RepeatDate { get; set; }
 
 		/// <summary>
-		///     Имя пользователя, указанное в заявке
+		/// Имя пользователя, указанное в заявке
 		/// </summary>
 		public string FirstName { get; set; }
 
 		/// <summary>
-		///     Фамилия пользователя, указанная в заявке.
+		/// Фамилия пользователя, указанная в заявке.
 		/// </summary>
 		public string LastName { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static ChangeNameRequest FromJson(VkResponse response)
 		{
 			var request = new ChangeNameRequest

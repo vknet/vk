@@ -6,19 +6,20 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	///     Асинхронные методы для работы со темами группы.
+	/// Асинхронные методы для работы со темами группы.
 	/// </summary>
 	public partial class BoardCategory
 	{
 		/// <summary>
-		///     Возвращает список тем в обсуждениях указанной группы.
+		/// Возвращает список тем в обсуждениях указанной группы.
 		/// </summary>
-		/// <param name="params">Входные параметры выборки.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+		/// <param name="params"> Входные параметры выборки. </param>
+		/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getTopics" />.
+		/// Страница документации ВКонтакте
+		/// <see href="https://new.vk.com/dev/board.getTopics" />.
 		/// </remarks>
 		public async Task<VkCollection<Topic>> GetTopicsAsync(BoardGetTopicsParams @params, bool skipAuthorization = false)
 		{
@@ -27,14 +28,15 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает список сообщений в указанной теме.
+		/// Возвращает список сообщений в указанной теме.
 		/// </summary>
-		/// <param name="params">Входные параметры выборки.</param>
-		/// <param name="skipAuthorization">Если <c>true</c> то пропустить авторизацию.</param>
+		/// <param name="params"> Входные параметры выборки. </param>
+		/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.getComments" />.
+		/// Страница документации ВКонтакте
+		/// <see href="https://new.vk.com/dev/board.getComments" />.
 		/// </remarks>
 		public async Task<TopicsFeed> GetCommentsAsync(BoardGetCommentsParams @params, bool skipAuthorization = false)
 		{
@@ -43,13 +45,13 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Создает новую тему в списке обсуждений группы.
+		/// Создает новую тему в списке обсуждений группы.
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/board.addTopic
+		/// Страница документации ВКонтакте https://vk.com/dev/board.addTopic
 		/// </remarks>
 		public async Task<long> AddTopicAsync(BoardAddTopicParams @params)
 		{
@@ -57,13 +59,13 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Удаляет тему в обсуждениях группы.
+		/// Удаляет тему в обсуждениях группы.
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
+		/// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
 		/// </remarks>
 		public async Task<bool> DeleteTopicAsync(BoardTopicParams @params)
 		{
@@ -71,13 +73,14 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять новые сообщения).
+		/// Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять
+		/// новые сообщения).
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
+		/// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
 		/// </remarks>
 		public async Task<bool> CloseTopicAsync(BoardTopicParams @params)
 		{
@@ -85,13 +88,14 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Открывает ранее закрытую тему (в ней станет возможно оставлять новые сообщения).
+		/// Открывает ранее закрытую тему (в ней станет возможно оставлять новые
+		/// сообщения).
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/board.openTopic
+		/// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
 		/// </remarks>
 		public async Task<bool> OpenTopicAsync(BoardTopicParams @params)
 		{
@@ -99,13 +103,14 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке выводится выше остальных).
+		/// Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке
+		/// выводится выше остальных).
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
+		/// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
 		/// </remarks>
 		public async Task<bool> FixTopicAsync(BoardTopicParams @params)
 		{
@@ -113,13 +118,14 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться согласно выбранной сортировке).
+		/// Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться
+		/// согласно выбранной сортировке).
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
+		/// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
 		/// </remarks>
 		public async Task<bool> UnFixTopicAsync(BoardTopicParams @params)
 		{
@@ -127,13 +133,13 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Изменяет заголовок темы в списке обсуждений группы.
+		/// Изменяет заголовок темы в списке обсуждений группы.
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/board.editTopic
+		/// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
 		/// </remarks>
 		public async Task<bool> EditTopicAsync(BoardEditTopicParams @params)
 		{
@@ -141,13 +147,14 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Добавляет новый комментарий в обсуждении.
+		/// Добавляет новый комментарий в обсуждении.
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.createComment" />.
+		/// Страница документации ВКонтакте
+		/// <see href="https://new.vk.com/dev/board.createComment" />.
 		/// </remarks>
 		public async Task<long> CreateCommentAsync(BoardCreateCommentParams @params)
 		{
@@ -155,13 +162,14 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Удаляет сообщение в обсуждениях сообщества.
+		/// Удаляет сообщение в обсуждениях сообщества.
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте <see href="https://new.vk.com/dev/board.deleteComment" />.
+		/// Страница документации ВКонтакте
+		/// <see href="https://new.vk.com/dev/board.deleteComment" />.
 		/// </remarks>
 		public async Task<bool> DeleteCommentAsync(BoardCommentParams @params)
 		{
@@ -169,13 +177,13 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Редактирует одно из сообщений в обсуждении сообщества..
+		/// Редактирует одно из сообщений в обсуждении сообщества..
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/board.editComment
+		/// Страница документации ВКонтакте https://vk.com/dev/board.editComment
 		/// </remarks>
 		public async Task<bool> EditCommentAsync(BoardEditCommentParams @params)
 		{
@@ -183,13 +191,13 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Восстанавливает удаленное сообщение темы в обсуждениях группы.
+		/// Восстанавливает удаленное сообщение темы в обсуждениях группы.
 		/// </summary>
-		/// <param name="params">Входные параметры.</param>
+		/// <param name="params"> Входные параметры. </param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
+		/// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
 		/// </remarks>
 		public async Task<bool> RestoreCommentAsync(BoardCommentParams @params)
 		{

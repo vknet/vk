@@ -4,29 +4,29 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о репостах записи.
-	///     См. описание http://vk.com/dev/post
+	/// Информация о репостах записи.
+	/// См. описание http://vk.com/dev/post
 	/// </summary>
 	[Serializable]
 	public class Reposts
 	{
 		/// <summary>
-		///     Число пользователей, скопировавших запись.
+		/// Число пользователей, скопировавших запись.
 		/// </summary>
 		public int Count { get; set; }
 
 		/// <summary>
-		///     Наличие репоста от текущего пользователя .
+		/// Наличие репоста от текущего пользователя .
 		/// </summary>
 		public bool UserReposted { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Reposts FromJson(VkResponse response)
 		{
 			var reposts = new Reposts

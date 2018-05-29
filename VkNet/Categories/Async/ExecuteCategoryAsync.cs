@@ -5,19 +5,19 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	///     Методы для работы с универсальным методом.
+	/// Методы для работы с универсальным методом.
 	/// </summary>
 	public partial class ExecuteCategory
 	{
 		/// <summary>
-		///     API.
+		/// API.
 		/// </summary>
 		private readonly IVkApi _vk;
 
 		/// <summary>
-		///     Методы для работы с универсальным методом.
+		/// Методы для работы с универсальным методом.
 		/// </summary>
-		/// <param name="vk">API.</param>
+		/// <param name="vk"> API. </param>
 		public ExecuteCategory(IVkApi vk)
 		{
 			_vk = vk;

@@ -1,27 +1,27 @@
 ﻿namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	///     Тип приложения.
+	/// Тип приложения.
 	/// </summary>
 	public class AppType : SafetyEnum<AppType>
 	{
 		/// <summary>
-		///     Социальное приложение;
+		/// Социальное приложение;
 		/// </summary>
 		public static readonly AppType App = RegisterPossibleValue(value: "app");
 
 		/// <summary>
-		///     Игра;
+		/// Игра;
 		/// </summary>
 		public static readonly AppType Game = RegisterPossibleValue(value: "game");
 
 		/// <summary>
-		///     Подключаемый сайт;
+		/// Подключаемый сайт;
 		/// </summary>
 		public static readonly AppType Site = RegisterPossibleValue(value: "site");
 
 		/// <summary>
-		///     Отдельное приложение (для мобильного устройства).
+		/// Отдельное приложение (для мобильного устройства).
 		/// </summary>
 		public static readonly AppType Standalone = RegisterPossibleValue(value: "standalone");
 	}

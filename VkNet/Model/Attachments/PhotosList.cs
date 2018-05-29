@@ -19,8 +19,8 @@ namespace VkNet.UWP.Model.Attachments
 
 		/// <summary>
 		/// </summary>
-		/// <param name="response"></param>
-		/// <returns></returns>
+		/// <param name="response"> </param>
+		/// <returns> </returns>
 		public static PhotosList FromJson(VkResponse response)
 		{
 			var list = new PhotosList();

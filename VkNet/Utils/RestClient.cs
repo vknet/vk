@@ -16,7 +16,7 @@ namespace VkNet.Utils
 	public class RestClient : IRestClient
 	{
 		/// <summary>
-		///     The log
+		/// The log
 		/// </summary>
 		private readonly ILogger _logger;
 

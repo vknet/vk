@@ -13,7 +13,7 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	///     Методы для работы с информацией о пользователях.
+	/// Методы для работы с информацией о пользователях.
 	/// </summary>
 	public partial class UsersCategory : IUsersCategory
 	{
@@ -21,23 +21,24 @@ namespace VkNet.Categories
 
 		/// <summary>
 		/// </summary>
-		/// <param name="vk"></param>
+		/// <param name="vk"> </param>
 		public UsersCategory(VkApi vk)
 		{
 			_vk = vk;
 		}
 
 		/// <summary>
-		///     Возвращает список пользователей в соответствии с заданным критерием поиска.
+		/// Возвращает список пользователей в соответствии с заданным критерием поиска.
 		/// </summary>
-		/// <param name="params">Параметры запроса.</param>
+		/// <param name="params"> Параметры запроса. </param>
 		/// <returns>
-		///     После успешного выполнения возвращает список объектов пользователей, найденных в соответствии с заданными
-		///     критериями.
+		/// После успешного выполнения возвращает список объектов пользователей, найденных
+		/// в соответствии с заданными
+		/// критериями.
 		/// </returns>
-		/// <exception cref="ArgumentException">Query can not be <c>null</c> or empty.</exception>
+		/// <exception cref="ArgumentException"> Query can not be <c> null </c> or empty. </exception>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/users.search
+		/// Страница документации ВКонтакте http://vk.com/dev/users.search
 		/// </remarks>
 		[Pure]
 		public VkCollection<User> Search(UserSearchParams @params)
@@ -46,17 +47,19 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает информацию о том, установил ли пользователь приложение.
+		/// Возвращает информацию о том, установил ли пользователь приложение.
 		/// </summary>
 		/// <param name="userId">
-		///     Идентификатор пользователя. целое число, по умолчанию идентификатор текущего пользователя (Целое
-		///     число, по умолчанию идентификатор текущего пользователя).
+		/// Идентификатор пользователя. целое число, по умолчанию идентификатор текущего
+		/// пользователя (Целое
+		/// число, по умолчанию идентификатор текущего пользователя).
 		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает 1 в случае, если пользователь установил у себя данное приложение, иначе 0.
+		/// После успешного выполнения возвращает 1 в случае, если пользователь установил у
+		/// себя данное приложение, иначе 0.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/users.isAppUser
+		/// Страница документации ВКонтакте http://vk.com/dev/users.isAppUser
 		/// </remarks>
 		[Pure]
 		public bool IsAppUser(long? userId)
@@ -70,15 +73,18 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает расширенную информацию о пользователях. Метод не требует авторизацию
+		/// Возвращает расширенную информацию о пользователях. Метод не требует авторизацию
 		/// </summary>
-		/// <param name="userIds">Идентификаторы пользователей, о которых необходимо получить информацию.</param>
-		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
-		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
-		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
-		/// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
+		/// <param name="userIds">
+		/// Идентификаторы пользователей, о которых необходимо
+		/// получить информацию.
+		/// </param>
+		/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
+		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
+		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/users.get
+		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
 		[Pure]
 		public ReadOnlyCollection<User> Get(IEnumerable<long> userIds
@@ -104,15 +110,18 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает расширенную информацию о пользователях.
+		/// Возвращает расширенную информацию о пользователях.
 		/// </summary>
-		/// <param name="screenNames">Короткие имена пользователей, о которых необходимо получить информацию.</param>
-		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
-		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
-		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
-		/// <returns>Список объектов с запрошенной информацией о пользователях.</returns>
+		/// <param name="screenNames">
+		/// Короткие имена пользователей, о которых необходимо
+		/// получить информацию.
+		/// </param>
+		/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
+		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
+		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/users.get
+		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
 		[Pure]
 		[NotNull]
@@ -140,18 +149,28 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает список идентификаторов пользователей и групп, которые входят в список подписок пользователя.
+		/// Возвращает список идентификаторов пользователей и групп, которые входят в
+		/// список подписок пользователя.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, подписки которого необходимо получить</param>
-		/// <param name="count">Количество подписок, которые необходимо вернуть</param>
-		/// <param name="offset">Смещение необходимое для выборки определенного подмножества подписок</param>
-		/// <param name="fields">Список дополнительных полей для объектов user и group, которые необходимо вернуть.</param>
-		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
+		/// <param name="userId">
+		/// Идентификатор пользователя, подписки которого необходимо
+		/// получить
+		/// </param>
+		/// <param name="count"> Количество подписок, которые необходимо вернуть </param>
+		/// <param name="offset">
+		/// Смещение необходимое для выборки определенного
+		/// подмножества подписок
+		/// </param>
+		/// <param name="fields">
+		/// Список дополнительных полей для объектов user и group, которые необходимо
+		/// вернуть.
+		/// </param>
+		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns>
-		///     Пока возвращается только список групп.
+		/// Пока возвращается только список групп.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/users.getSubscriptions
+		/// Страница документации ВКонтакте http://vk.com/dev/users.getSubscriptions
 		/// </remarks>
 		[Pure]
 		public VkCollection<Group> GetSubscriptions(long? userId = null
@@ -178,17 +197,24 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает список идентификаторов пользователей, которые являются подписчиками пользователя.
+		/// Возвращает список идентификаторов пользователей, которые являются подписчиками
+		/// пользователя.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя</param>
-		/// <param name="count">Количество подписчиков, информацию о которых нужно получить</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества подписчиков</param>
-		/// <param name="fields">Список дополнительных полей, которые необходимо вернуть</param>
-		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
-		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
-		/// <returns>Список подписчиков</returns>
+		/// <param name="userId"> Идентификатор пользователя </param>
+		/// <param name="count">
+		/// Количество подписчиков, информацию о которых нужно
+		/// получить
+		/// </param>
+		/// <param name="offset">
+		/// Смещение, необходимое для выборки определенного
+		/// подмножества подписчиков
+		/// </param>
+		/// <param name="fields"> Список дополнительных полей, которые необходимо вернуть </param>
+		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
+		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <returns> Список подписчиков </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
+		/// Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
 		/// </remarks>
 		[Pure]
 		public VkCollection<User> GetFollowers(long? userId = null
@@ -216,14 +242,17 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Позволяет пожаловаться на пользователя.
+		/// Позволяет пожаловаться на пользователя.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, на которого осуществляется жалоба</param>
-		/// <param name="type">Тип жалобы</param>
-		/// <param name="comment">Комментарий к жалобе на пользователя</param>
-		/// <returns>В случае успешной жалобы метод вернет true.</returns>
+		/// <param name="userId">
+		/// Идентификатор пользователя, на которого осуществляется
+		/// жалоба
+		/// </param>
+		/// <param name="type"> Тип жалобы </param>
+		/// <param name="comment"> Комментарий к жалобе на пользователя </param>
+		/// <returns> В случае успешной жалобы метод вернет true. </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/users.report
+		/// Страница документации ВКонтакте http://vk.com/dev/users.report
 		/// </remarks>
 		public bool Report(long userId, ReportType type, string comment = "")
 		{
@@ -240,14 +269,15 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Индексирует текущее местоположение пользователя и возвращает список пользователей, которые находятся вблизи.
+		/// Индексирует текущее местоположение пользователя и возвращает список
+		/// пользователей, которые находятся вблизи.
 		/// </summary>
-		/// <param name="params">Входные параметры выборки.</param>
+		/// <param name="params"> Входные параметры выборки. </param>
 		/// <returns>
-		///     После успешного выполнения возвращает список объектов user.
+		/// После успешного выполнения возвращает список объектов user.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/users.getNearby
+		/// Страница документации ВКонтакте http://vk.com/dev/users.getNearby
 		/// </remarks>
 		public VkCollection<User> GetNearby(UsersGetNearbyParams @params)
 		{
@@ -255,15 +285,15 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает расширенную информацию о пользователе.
+		/// Возвращает расширенную информацию о пользователе.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя.</param>
-		/// <param name="fields">Поля профиля, которые необходимо возвратить.</param>
-		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
-		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
-		/// <returns>Объект, содержащий запрошенную информацию о пользователе.</returns>
+		/// <param name="userId"> Идентификатор пользователя. </param>
+		/// <param name="fields"> Поля профиля, которые необходимо возвратить. </param>
+		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
+		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <returns> Объект, содержащий запрошенную информацию о пользователе. </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/getProfiles
+		/// Страница документации ВКонтакте http://vk.com/dev/getProfiles
 		/// </remarks>
 		[Pure]
 		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
@@ -275,15 +305,15 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает расширенную информацию о пользователе.
+		/// Возвращает расширенную информацию о пользователе.
 		/// </summary>
-		/// <param name="screenName">Короткое имя пользователя</param>
-		/// <param name="fields">Поля профилей, которые необходимо возвратить.</param>
-		/// <param name="nameCase">Падеж для склонения имени и фамилии пользователя</param>
-		/// <param name="skipAuthorization">Если <c>true</c>, то пропустить авторизацию</param>
-		/// <returns>Объект User</returns>
+		/// <param name="screenName"> Короткое имя пользователя </param>
+		/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
+		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
+		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <returns> Объект User </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/users.get
+		/// Страница документации ВКонтакте http://vk.com/dev/users.get
 		/// </remarks>
 		public User Get([NotNull]
 						string screenName

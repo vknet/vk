@@ -4,33 +4,33 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Адрес сервера для загрузки фотографий
+	/// Адрес сервера для загрузки фотографий
 	/// </summary>
 	[Serializable]
 	public class UploadServerInfo
 	{
 		/// <summary>
-		///     Адрес для загрузки фотографий
+		/// Адрес для загрузки фотографий
 		/// </summary>
 		public string UploadUrl { get; set; }
 
 		/// <summary>
-		///     Идентификатор альбома, в который будет загружена фотография
+		/// Идентификатор альбома, в который будет загружена фотография
 		/// </summary>
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		///     Идентификатор пользователя, от чьего имени будет загружено фото
+		/// Идентификатор пользователя, от чьего имени будет загружено фото
 		/// </summary>
 		public long? UserId { get; set; }
 
 	#region Methods
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static UploadServerInfo FromJson(VkResponse response)
 		{
 			var info = new UploadServerInfo

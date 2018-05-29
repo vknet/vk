@@ -1,47 +1,47 @@
 ﻿namespace VkNet.Enums
 {
 	/// <summary>
-	///     Язык
+	/// Язык
 	/// </summary>
 	public enum Language
 	{
 		/// <summary>
-		///     Русский
+		/// Русский
 		/// </summary>
 		Ru = 0
 
 		, /// <summary>
-		///     Украинский
+		/// Украинский
 		/// </summary>
 		Ua = 1
 
 		, /// <summary>
-		///     Белорусский
+		/// Белорусский
 		/// </summary>
 		Be = 2
 
 		, /// <summary>
-		///     Английский
+		/// Английский
 		/// </summary>
 		En = 3
 
 		, /// <summary>
-		///     Испанский
+		/// Испанский
 		/// </summary>
 		Es = 4
 
 		, /// <summary>
-		///     Финский
+		/// Финский
 		/// </summary>
 		Fi = 5
 
 		, /// <summary>
-		///     Немецкий
+		/// Немецкий
 		/// </summary>
 		De = 6
 
 		, /// <summary>
-		///     Итальянский
+		/// Итальянский
 		/// </summary>
 		It = 7
 	}

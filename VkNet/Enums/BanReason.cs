@@ -3,33 +3,33 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Причина бана
+	/// Причина бана
 	/// </summary>
 	public enum BanReason
 	{
 		/// <summary>
-		///     Другое.
+		/// Другое.
 		/// </summary>
 		[DefaultValue]
 		Other = 0
 
 		, /// <summary>
-		///     Спам.
+		/// Спам.
 		/// </summary>
 		Spam = 1
 
 		, /// <summary>
-		///     Оскорбление участников.
+		/// Оскорбление участников.
 		/// </summary>
 		VerbalAbuse = 2
 
 		, /// <summary>
-		///     Нецензурные выражения.
+		/// Нецензурные выражения.
 		/// </summary>
 		StrongLanguage = 3
 
 		, /// <summary>
-		///     Сообщения не по теме.
+		/// Сообщения не по теме.
 		/// </summary>
 		IrrelevantMessages = 4
 	}

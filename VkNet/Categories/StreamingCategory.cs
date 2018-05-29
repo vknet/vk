@@ -11,13 +11,13 @@ namespace VkNet.Categories
 	public partial class StreamingCategory : IStreamingCategory
 	{
 		/// <summary>
-		///     API.
+		/// API.
 		/// </summary>
 		private readonly VkApi _vk;
 
 		/// <inheritdoc />
 		/// <param name="api">
-		///     Api vk.com
+		/// Api vk.com
 		/// </param>
 		public StreamingCategory(VkApi api)
 		{
@@ -42,8 +42,8 @@ namespace VkNet.Categories
 															, DateTime? startTime = null
 															, DateTime? endTime = null)
 		{
-			var result = _vk.Call<ReadOnlyCollection<StreamingStats>>(methodName: "streaming.getStats",
-					parameters: new VkParameters
+			var result = _vk.Call<ReadOnlyCollection<StreamingStats>>(methodName: "streaming.getStats"
+					, parameters: new VkParameters
 					{
 							{ "type", type }
 							, { "interval", interval }

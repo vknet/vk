@@ -5,55 +5,55 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Ссылки в группе
+	/// Ссылки в группе
 	/// </summary>
 	[Serializable]
 	public class ExternalLink
 	{
 		/// <summary>
-		///     Идентификатор ссылки.
+		/// Идентификатор ссылки.
 		/// </summary>
 		[JsonProperty(propertyName: "id")]
 		public string Id { get; set; }
 
 		/// <summary>
-		///     Адрес ссылки.
+		/// Адрес ссылки.
 		/// </summary>
 		[JsonProperty(propertyName: "url")]
 		public string Uri { get; set; }
 
 		/// <summary>
-		///     Название страницы, на которую ведет ссылка.
+		/// Название страницы, на которую ведет ссылка.
 		/// </summary>
 		[JsonProperty(propertyName: "name")]
 		public string Name { get; set; }
 
 		/// <summary>
-		///     Описание.
+		/// Описание.
 		/// </summary>
 		[JsonProperty(propertyName: "desc")]
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Фото 50px.
+		/// Фото 50px.
 		/// </summary>
 		[JsonProperty(propertyName: "photo_50")]
 		public string Photo50 { get; set; }
 
 		/// <summary>
-		///     Фото 100px.
+		/// Фото 100px.
 		/// </summary>
 		[JsonProperty(propertyName: "photo_100")]
 		public string Photo100 { get; set; }
 
 		/// <summary>
-		///     Возвращается 1, если можно редактировать название ссылки (для внешних ссылок)
+		/// Возвращается 1, если можно редактировать название ссылки (для внешних ссылок)
 		/// </summary>
 		[JsonProperty(propertyName: "edit_title")]
 		public bool? EditTitle { get; set; }
 
 		/// <summary>
-		///     Возвращается 1, если превью находится в процессе обработки.
+		/// Возвращается 1, если превью находится в процессе обработки.
 		/// </summary>
 		[JsonProperty(propertyName: "image_processing")]
 		public bool? ImageProcessing { get; set; }
@@ -61,10 +61,10 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static ExternalLink FromJson(VkResponse response)
 		{
 			var contact = new ExternalLink

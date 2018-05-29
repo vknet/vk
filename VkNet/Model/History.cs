@@ -4,46 +4,46 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     История изменения объекта
+	/// История изменения объекта
 	/// </summary>
 	[Serializable]
 	public class History
 	{
 		/// <summary>
-		///     Идентификатор.
+		/// Идентификатор.
 		/// </summary>
 		public long Id { get; set; }
 
 		/// <summary>
-		///     Длина символов.
+		/// Длина символов.
 		/// </summary>
 		/// <remarks>
-		///     При необходимости сделать nullable
+		/// При необходимости сделать nullable
 		/// </remarks>
 		public int Length { get; set; }
 
 		/// <summary>
-		///     Дата изменения.
+		/// Дата изменения.
 		/// </summary>
 		public string Date { get; set; }
 
 		/// <summary>
-		///     Идентификатор пользователя применившего изменения.
+		/// Идентификатор пользователя применившего изменения.
 		/// </summary>
 		public long EditorId { get; set; }
 
 		/// <summary>
-		///     Имя пользователя применившего изменения.
+		/// Имя пользователя применившего изменения.
 		/// </summary>
 		public string EditorName { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static History FromJson(VkResponse response)
 		{
 			var reposts = new History

@@ -4,28 +4,28 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Улица
+	/// Улица
 	/// </summary>
 	[Serializable]
 	public class Street
 	{
 		/// <summary>
-		///     Идентификатор улицы
+		/// Идентификатор улицы
 		/// </summary>
 		public long Id { get; set; }
 
 		/// <summary>
-		///     Название улицы
+		/// Название улицы
 		/// </summary>
 		public string Title { get; set; }
 
 	#region public Methods
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Street FromJson(VkResponse response)
 		{
 			var street = new Street

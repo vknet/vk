@@ -6,8 +6,8 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Альбом с фотографиями пользователя.
-	///     См. описание http://vk.com/dev/attachments_w
+	/// Альбом с фотографиями пользователя.
+	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[Serializable]
 	public class Album : MediaAttachment
@@ -18,34 +18,34 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Обложка альбома.
+		/// Обложка альбома.
 		/// </summary>
 		public Photo Thumb { get; set; }
 
 		/// <summary>
-		///     Название альбома.
+		/// Название альбома.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Описание альбома.
+		/// Описание альбома.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Дата и время создания альбома.
+		/// Дата и время создания альбома.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
-		///     Дата и время последнего обновления альбома.
+		/// Дата и время последнего обновления альбома.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? UpdateTime { get; set; }
 
 		/// <summary>
-		///     Количество фотографий в альбоме.
+		/// Количество фотографий в альбоме.
 		/// </summary>
 		public int Size { get; set; }
 
@@ -53,8 +53,8 @@ namespace VkNet.Model.Attachments
 
 		/// <summary>
 		/// </summary>
-		/// <param name="response"></param>
-		/// <returns></returns>
+		/// <param name="response"> </param>
+		/// <returns> </returns>
 		public static Album FromJson(VkResponse response)
 		{
 			return new Album

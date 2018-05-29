@@ -7,206 +7,212 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	///     Параметры метода groups.edit
+	/// Параметры метода groups.edit
 	/// </summary>
 	[Serializable]
 	public class GroupsEditParams
 	{
 		/// <summary>
-		///     Идентификатор сообщества. положительное число, обязательный параметр.
+		/// Идентификатор сообщества. положительное число, обязательный параметр.
 		/// </summary>
 		public ulong GroupId { get; set; }
 
 		/// <summary>
-		///     Название сообщества. строка.
+		/// Название сообщества. строка.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Описание сообщества. строка.
+		/// Описание сообщества. строка.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Короткое имя сообщества. строка.
+		/// Короткое имя сообщества. строка.
 		/// </summary>
 		public string ScreenName { get; set; }
 
 		/// <summary>
-		///     Тип группы.
+		/// Тип группы.
 		/// </summary>
 		public GroupAccess? Access { get; set; }
 
 		/// <summary>
-		///     Адрес сайта, который будет указан в информации о группе. строка.
+		/// Адрес сайта, который будет указан в информации о группе. строка.
 		/// </summary>
 		public string Website { get; set; }
 
 		/// <summary>
-		///     Тематика сообщества. строка.
+		/// Тематика сообщества. строка.
 		/// </summary>
 		public GroupSubjects? Subject { get; set; }
 
 		/// <summary>
-		///     Электронный адрес организатора (для мероприятий). строка.
+		/// Электронный адрес организатора (для мероприятий). строка.
 		/// </summary>
 		public string Email { get; set; }
 
 		/// <summary>
-		///     Номер телефона организатора (для мероприятий). строка.
+		/// Номер телефона организатора (для мероприятий). строка.
 		/// </summary>
 		public string Phone { get; set; }
 
 		/// <summary>
-		///     Адрес rss для импорта новостей (доступен только группам, получившим соответствующее разрешение, обратитесь в
-		///     http://vk.com/support для получения разрешения). строка.
+		/// Адрес rss для импорта новостей (доступен только группам, получившим
+		/// соответствующее разрешение, обратитесь в
+		/// http://vk.com/support для получения разрешения). строка.
 		/// </summary>
 		public string Rss { get; set; }
 
 		/// <summary>
-		///     Дата начала события. положительное число.
+		/// Дата начала события. положительное число.
 		/// </summary>
 		public ulong? EventStartDate { get; set; }
 
 		/// <summary>
-		///     Дата окончания события. положительное число.
+		/// Дата окончания события. положительное число.
 		/// </summary>
 		public ulong? EventFinishDate { get; set; }
 
 		/// <summary>
-		///     Идентификатор группы, которая является организатором события (только для событий). положительное число.
+		/// Идентификатор группы, которая является организатором события (только для
+		/// событий). положительное число.
 		/// </summary>
 		public ulong? EventGroupId { get; set; }
 
 		/// <summary>
-		///     Категория публичной страницы. положительное число.
+		/// Категория публичной страницы. положительное число.
 		/// </summary>
 		public ulong? PublicCategory { get; set; }
 
 		/// <summary>
-		///     Подкатегория публичной станицы. положительное число.
+		/// Подкатегория публичной станицы. положительное число.
 		/// </summary>
 		public ulong? PublicSubcategory { get; set; }
 
 		/// <summary>
-		///     Дата основания компании, организации, которой посвящена публичная страница в виде строки формата "dd.mm.YYYY".
-		///     строка.
+		/// Дата основания компании, организации, которой посвящена публичная страница в
+		/// виде строки формата "dd.mm.YYYY".
+		/// строка.
 		/// </summary>
 		public string PublicDate { get; set; }
 
 		/// <summary>
-		///     Стена.
+		/// Стена.
 		/// </summary>
 		public WallContentAccess? Wall { get; set; }
 
 		/// <summary>
-		///     Обсуждения.
+		/// Обсуждения.
 		/// </summary>
 		public ContentAccess? Topics { get; set; }
 
 		/// <summary>
-		///     Фотографии.
+		/// Фотографии.
 		/// </summary>
 		public ContentAccess? Photos { get; set; }
 
 		/// <summary>
-		///     Видеозаписи.
+		/// Видеозаписи.
 		/// </summary>
 		public ContentAccess? Video { get; set; }
 
 		/// <summary>
-		///     Аудиозаписи.
+		/// Аудиозаписи.
 		/// </summary>
 		public ContentAccess? Audio { get; set; }
 
 		/// <summary>
-		///     Ссылки (доступно только для публичных страниц).
+		/// Ссылки (доступно только для публичных страниц).
 		/// </summary>
 		public bool? Links { get; set; }
 
 		/// <summary>
-		///     События (доступно только для публичных страниц).
+		/// События (доступно только для публичных страниц).
 		/// </summary>
 		public bool? Events { get; set; }
 
 		/// <summary>
-		///     Места (доступно только для публичных страниц).
+		/// Места (доступно только для публичных страниц).
 		/// </summary>
 		public bool? Places { get; set; }
 
 		/// <summary>
-		///     Контакты (доступно только для публичных страниц).
+		/// Контакты (доступно только для публичных страниц).
 		/// </summary>
 		public bool? Contacts { get; set; }
 
 		/// <summary>
-		///     Документы сообщества.
+		/// Документы сообщества.
 		/// </summary>
 		public ContentAccess? Docs { get; set; }
 
 		/// <summary>
-		///     Wiki-материалы сообщества.
+		/// Wiki-материалы сообщества.
 		/// </summary>
 		public ContentAccess? Wiki { get; set; }
 
 		/// <summary>
-		///     Сообщения сообщества.
+		/// Сообщения сообщества.
 		/// </summary>
 		public bool? Messages { get; set; }
 
 		/// <summary>
-		///     Возрастное ограничение для сообщества. положительное число, по умолчанию 1.
+		/// Возрастное ограничение для сообщества. положительное число, по умолчанию 1.
 		/// </summary>
 		public AgeLimit? AgeLimits { get; set; }
 
 		/// <summary>
-		///     Товары.
+		/// Товары.
 		/// </summary>
 		public bool? Market { get; set; }
 
 		/// <summary>
-		///     Комментарии к товарам.
+		/// Комментарии к товарам.
 		/// </summary>
 		public bool? MarketComments { get; set; }
 
 		/// <summary>
-		///     Регионы доставки товаров. список положительных чисел, разделенных запятыми.
+		/// Регионы доставки товаров. список положительных чисел, разделенных запятыми.
 		/// </summary>
 		public IEnumerable<ulong> MarketCountry { get; set; }
 
 		/// <summary>
-		///     Города доставки товаров (в случае если указана одна страна). список положительных чисел, разделенных запятыми.
+		/// Города доставки товаров (в случае если указана одна страна). список
+		/// положительных чисел, разделенных запятыми.
 		/// </summary>
 		public IEnumerable<ulong> MarketCity { get; set; }
 
 		/// <summary>
-		///     Идентификатор валюты магазина.
+		/// Идентификатор валюты магазина.
 		/// </summary>
 		public MarketCurrencyId? MarketCurrency { get; set; }
 
 		/// <summary>
-		///     Контакт для связи для продавцом.
-		///     Для использования сообщений сообщества следует включить их и передать значение 0. положительное число.
+		/// Контакт для связи для продавцом.
+		/// Для использования сообщений сообщества следует включить их и передать значение
+		/// 0. положительное число.
 		/// </summary>
 		public ulong? MarketContact { get; set; }
 
 		/// <summary>
-		///     Идентификатор wiki-страницы с описанием магазина. положительное число.
+		/// Идентификатор wiki-страницы с описанием магазина. положительное число.
 		/// </summary>
 		public ulong? MarketWiki { get; set; }
 
 		/// <summary>
-		///     Фильтр нецензурных выражений в комментариях.
+		/// Фильтр нецензурных выражений в комментариях.
 		/// </summary>
 		public bool? ObsceneFilter { get; set; }
 
 		/// <summary>
-		///     Фильтр по ключевым словам в комментариях.
+		/// Фильтр по ключевым словам в комментариях.
 		/// </summary>
 		public bool? ObsceneStopwords { get; set; }
 
 		/// <summary>
-		///     Ключевые слова для фильтра комментариев. список слов, разделенных через запятую.
+		/// Ключевые слова для фильтра комментариев. список слов, разделенных через
+		/// запятую.
 		/// </summary>
 		public IEnumerable<string> ObsceneWords { get; set; }
 
@@ -221,10 +227,10 @@ namespace VkNet.Model.RequestParams
 		public uint? SecondarySection { get; set; }
 
 		/// <summary>
-		///     Привести к типу VkParameters.
+		/// Привести к типу VkParameters.
 		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns>Объект типа GroupsEditParams</returns>
+		/// <param name="p"> Параметры. </param>
+		/// <returns> Объект типа GroupsEditParams </returns>
 		public static VkParameters ToVkParameters(GroupsEditParams p)
 		{
 			var result = new VkParameters
@@ -274,10 +280,10 @@ namespace VkNet.Model.RequestParams
 		}
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static GroupsEditParams FromJson(VkResponse response)
 		{
 			var marketCountry = (VkResponseArray) response[key: "market_country"];

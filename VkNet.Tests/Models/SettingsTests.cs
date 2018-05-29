@@ -361,8 +361,7 @@ namespace VkNet.Tests.Models
 			Assert.That(actual: Settings.Market.ToString(), expression: Is.EqualTo(expected: "market"));
 
 			Assert.That(actual: Settings.All.ToString()
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"addlinktoleftmenu,ads,audio,app_widget,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall"));
 
 			// parse test
@@ -389,9 +388,7 @@ namespace VkNet.Tests.Models
 			Assert.That(actual: Settings.FromJsonString(val: "email"), expression: Is.EqualTo(expected: Settings.Email));
 			Assert.That(actual: Settings.FromJsonString(val: "market"), expression: Is.EqualTo(expected: Settings.Market));
 
-			Assert.That(
-					actual: Settings.FromJsonString(
-							val:
+			Assert.That(actual: Settings.FromJsonString(val:
 							"addlinktoleftmenu,ads,audio,app_widget,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall")
 					, expression: Is.EqualTo(expected: Settings.All));
 		}

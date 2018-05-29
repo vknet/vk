@@ -4,28 +4,28 @@ using System.Collections.ObjectModel;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Новости
+	/// Новости
 	/// </summary>
 	[Serializable]
 	public class TopicsFeed
 	{
 		/// <summary>
-		///     Количество.
+		/// Количество.
 		/// </summary>
 		public int Count { get; set; }
 
 		/// <summary>
-		///     Массив комментариев.
+		/// Массив комментариев.
 		/// </summary>
 		public ReadOnlyCollection<CommentBoard> Items { get; set; }
 
 		/// <summary>
-		///     Информация о пользователях, которые находятся в списке комментариев.
+		/// Информация о пользователях, которые находятся в списке комментариев.
 		/// </summary>
 		public ReadOnlyCollection<User> Profiles { get; set; }
 
 		/// <summary>
-		///     Информация о группах, которые находятся в списке комментариев.
+		/// Информация о группах, которые находятся в списке комментариев.
 		/// </summary>
 		public ReadOnlyCollection<Group> Groups { get; set; }
 	}

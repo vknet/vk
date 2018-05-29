@@ -4,31 +4,31 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Копия изображения обложки.
+	/// Копия изображения обложки.
 	/// </summary>
 	[Serializable]
 	public class GroupCoverImage
 	{
 		/// <summary>
-		///     URL копии;
+		/// URL копии;
 		/// </summary>
 		public Uri Url { get; set; }
 
 		/// <summary>
-		///     Ширина копии;
+		/// Ширина копии;
 		/// </summary>
 		public int Width { get; set; }
 
 		/// <summary>
-		///     Высота копии.
+		/// Высота копии.
 		/// </summary>
 		public int Height { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static GroupCoverImage FromJson(VkResponse response)
 		{
 			return new GroupCoverImage

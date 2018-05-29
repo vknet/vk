@@ -1,37 +1,37 @@
 ﻿namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	///     Падеж.
+	/// Падеж.
 	/// </summary>
 	public sealed class NameCase : SafetyEnum<NameCase>
 	{
 		/// <summary>
-		///     Именительный.
+		/// Именительный.
 		/// </summary>
 		public static readonly NameCase Nom = RegisterPossibleValue(value: "nom");
 
 		/// <summary>
-		///     Родительный.
+		/// Родительный.
 		/// </summary>
 		public static readonly NameCase Gen = RegisterPossibleValue(value: "gen");
 
 		/// <summary>
-		///     Дательный.
+		/// Дательный.
 		/// </summary>
 		public static readonly NameCase Dat = RegisterPossibleValue(value: "dat");
 
 		/// <summary>
-		///     Винительный.
+		/// Винительный.
 		/// </summary>
 		public static readonly NameCase Acc = RegisterPossibleValue(value: "acc");
 
 		/// <summary>
-		///     Творительный.
+		/// Творительный.
 		/// </summary>
 		public static readonly NameCase Ins = RegisterPossibleValue(value: "ins");
 
 		/// <summary>
-		///     Предложный.
+		/// Предложный.
 		/// </summary>
 		public static readonly NameCase Abl = RegisterPossibleValue(value: "abl");
 	}

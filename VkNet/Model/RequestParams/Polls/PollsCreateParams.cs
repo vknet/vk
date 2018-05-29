@@ -5,39 +5,39 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	///     Список параметров для метода polls.create
+	/// Список параметров для метода polls.create
 	/// </summary>
 	[Serializable]
 	public class PollsCreateParams
 	{
 		/// <summary>
-		///     Идентификатор владельца опроса.
+		/// Идентификатор владельца опроса.
 		/// </summary>
 		public long OwnerId { get; set; }
 
 		/// <summary>
-		///     Идентификатор владельца опроса.
-		///     True – анонимный опрос, список проголосовавших недоступен;
-		///     False – опрос публичный, список проголосовавших доступен;
-		///     По умолчанию – False.
+		/// Идентификатор владельца опроса.
+		/// True – анонимный опрос, список проголосовавших недоступен;
+		/// False – опрос публичный, список проголосовавших доступен;
+		/// По умолчанию – False.
 		/// </summary>
 		public bool? IsAnonymous { get; set; }
 
 		/// <summary>
-		///     Текст опроса.
+		/// Текст опроса.
 		/// </summary>
 		public string Question { get; set; }
 
 		/// <summary>
-		///     Список вариантов ответов.
+		/// Список вариантов ответов.
 		/// </summary>
 		public List<string> AddAnswers { get; set; }
 
 		/// <summary>
-		///     Привести к типу VkParameters.
+		/// Привести к типу VkParameters.
 		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
+		/// <param name="p"> Параметры. </param>
+		/// <returns> </returns>
 		public static VkParameters ToVkParameters(PollsCreateParams p)
 		{
 			return new VkParameters

@@ -5,26 +5,26 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Результат запроса Friends.FriendOnline
+	/// Результат запроса Friends.FriendOnline
 	/// </summary>
 	[Serializable]
 	public class FriendOnline
 	{
 		/// <summary>
-		///     Online
+		/// Online
 		/// </summary>
 		public ReadOnlyCollection<long> Online { get; set; }
 
 		/// <summary>
-		///     Online с мобильного телефона.
+		/// Online с мобильного телефона.
 		/// </summary>
 		public ReadOnlyCollection<long> MobileOnline { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static FriendOnline FromJson(VkResponse response)
 		{
 			if (response.ContainsKey(key: "online"))

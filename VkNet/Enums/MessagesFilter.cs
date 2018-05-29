@@ -3,18 +3,18 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Фильтр для отбора сообщений.
+	/// Фильтр для отбора сообщений.
 	/// </summary>
 	[Flags]
 	public enum MessagesFilter
 	{
 		/// <summary>
-		///     Все сообщения
+		/// Все сообщения
 		/// </summary>
 		All = 0
 
 		, /// <summary>
-		///     Важные сообщения
+		/// Важные сообщения
 		/// </summary>
 		Important = 8
 	}

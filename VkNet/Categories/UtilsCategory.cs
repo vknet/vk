@@ -9,7 +9,7 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	///     Служебные методы.
+	/// Служебные методы.
 	/// </summary>
 	public partial class UtilsCategory : IUtilsCategory
 	{
@@ -17,7 +17,7 @@ namespace VkNet.Categories
 
 		/// <summary>
 		/// </summary>
-		/// <param name="vk"></param>
+		/// <param name="vk"> </param>
 		public UtilsCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -78,11 +78,12 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<ShortLink> GetLastShortenedLinks(ulong count = 10, ulong offset = 0)
 		{
-			return _vk.Call<VkCollection<ShortLink>>(methodName: "utils.getLastShortenedLinks", parameters: new VkParameters
-			{
-					{ "count", count }
-					, { "offset", offset }
-			});
+			return _vk.Call<VkCollection<ShortLink>>(methodName: "utils.getLastShortenedLinks"
+					, parameters: new VkParameters
+					{
+							{ "count", count }
+							, { "offset", offset }
+					});
 		}
 
 		/// <inheritdoc />

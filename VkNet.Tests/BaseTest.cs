@@ -13,33 +13,33 @@ using VkNet.Utils;
 namespace VkNet.Tests
 {
 	/// <summary>
-	///     Базовый класс для тестирования категорий методов.
+	/// Базовый класс для тестирования категорий методов.
 	/// </summary>
 	public abstract class
 			BaseTest //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'BaseTest' class containing IDisposable members does not itself implement IDisposable. Inspect: Api.
 	{
 		/// <summary>
-		///     Экземпляр класса API.
+		/// Экземпляр класса API.
 		/// </summary>
 		protected VkApi Api;
 
 		/// <summary>
-		///     Ответ от сервера.
+		/// Ответ от сервера.
 		/// </summary>
 		protected string Json;
 
 		/// <summary>
-		///     Параметры запроса.
+		/// Параметры запроса.
 		/// </summary>
 		protected VkParameters Parameters = new VkParameters();
 
 		/// <summary>
-		///     Url запроса.
+		/// Url запроса.
 		/// </summary>
 		protected string Url;
 
 		/// <summary>
-		///     Пред установки выполнения каждого теста.
+		/// Пред установки выполнения каждого теста.
 		/// </summary>
 		[SetUp]
 		public void Init()
@@ -80,12 +80,13 @@ namespace VkNet.Tests
 							throw new NullReferenceException(message: @"Json не может быть равен null. Обновите значение поля Json");
 						}
 
-						return Task.FromResult(result: HttpResponse<string>.Success(httpStatusCode: HttpStatusCode.OK, value: Json
+						return Task.FromResult(result: HttpResponse<string>.Success(httpStatusCode: HttpStatusCode.OK
+								, value: Json
 								, requestUri: Url));
 					});
 
-			restClient.Setup(expression: x => x.PostAsync(uri: It.Is<Uri>(match: s => string.IsNullOrWhiteSpace(value: Url)),
-							parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+			restClient.Setup(expression: x => x.PostAsync(uri: It.Is<Uri>(match: s => string.IsNullOrWhiteSpace(value: Url))
+							, parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 					.Throws<ArgumentException>();
 
 			Api = new VkApi
@@ -106,7 +107,7 @@ namespace VkNet.Tests
 		}
 
 		/// <summary>
-		///     После исполнения каждого теста.
+		/// После исполнения каждого теста.
 		/// </summary>
 		[TearDown]
 		public void Cleanup()

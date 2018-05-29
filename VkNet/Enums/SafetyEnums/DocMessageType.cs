@@ -1,17 +1,17 @@
 ﻿namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	///     тип документа
+	/// тип документа
 	/// </summary>
 	public class DocMessageType : SafetyEnum<DocMessageType>
 	{
 		/// <summary>
-		///     DocMessageType
+		/// DocMessageType
 		/// </summary>
 		public static readonly DocMessageType Doc = RegisterPossibleValue(value: "doc");
 
 		/// <summary>
-		///     голосовое сообщение
+		/// голосовое сообщение
 		/// </summary>
 		public static readonly DocMessageType AudioMessage = RegisterPossibleValue(value: "audio_message");
 	}

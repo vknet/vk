@@ -8,77 +8,77 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Статистика сообщества или приложения.
+	/// Статистика сообщества или приложения.
 	/// </summary>
 	[Serializable]
 	public class StatsPeriod
 	{
 		/// <summary>
-		///     День в формате YYYY-MM-DD.
+		/// День в формате YYYY-MM-DD.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime Day { get; set; }
 
 		/// <summary>
-		///     Количество просмотров.
+		/// Количество просмотров.
 		/// </summary>
 		public long Views { get; set; }
 
 		/// <summary>
-		///     Количество уникальных посетителей.
+		/// Количество уникальных посетителей.
 		/// </summary>
 		public long Visitors { get; set; }
 
 		/// <summary>
-		///     Полный охват.
+		/// Полный охват.
 		/// </summary>
 		public long? Reach { get; set; }
 
 		/// <summary>
-		///     Охват подписчиков.
+		/// Охват подписчиков.
 		/// </summary>
 		public long? ReachSubscribers { get; set; }
 
 		/// <summary>
-		///     Число новых подписчиков.
+		/// Число новых подписчиков.
 		/// </summary>
 		public long? Subscribed { get; set; }
 
 		/// <summary>
-		///     Число отписавшихся.
+		/// Число отписавшихся.
 		/// </summary>
 		public long? Unsubscribed { get; set; }
 
 		/// <summary>
-		///     Список структур, описывающих статистику по полу.
+		/// Список структур, описывающих статистику по полу.
 		/// </summary>
 		public ReadOnlyCollection<StatsStruct> Sex { get; set; }
 
 		/// <summary>
-		///     Список структур, описывающих статистику по возрасту.
+		/// Список структур, описывающих статистику по возрасту.
 		/// </summary>
 		public ReadOnlyCollection<StatsStruct> Age { get; set; }
 
 		/// <summary>
-		///     Список структур, описывающих статистику по полу и возрасту.
+		/// Список структур, описывающих статистику по полу и возрасту.
 		/// </summary>
 		public ReadOnlyCollection<StatsStruct> SexAge { get; set; }
 
 		/// <summary>
-		///     Список структур, описывающих статистику по городам.
+		/// Список структур, описывающих статистику по городам.
 		/// </summary>
 		public ReadOnlyCollection<StatsStruct> Cities { get; set; }
 
 		/// <summary>
-		///     Список структур, описывающих статистику по странам.
+		/// Список структур, описывающих статистику по странам.
 		/// </summary>
 		public ReadOnlyCollection<StatsStruct> Countries { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static StatsPeriod FromJson(VkResponse response)
 		{
 			var statsPeriod = new StatsPeriod

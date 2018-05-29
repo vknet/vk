@@ -5,19 +5,19 @@ namespace VkNet.Utils
 {
 	/// <inheritdoc />
 	/// <summary>
-	///     Реализация WebProxy
+	/// Реализация WebProxy
 	/// </summary>
 	public class WebProxy : IWebProxy
 	{
 		/// <summary>
-		///     Uri прокси
+		/// Uri прокси
 		/// </summary>
 		private readonly Uri _proxyUri;
 
 		/// <summary>
-		///     Инициализация класса прокси
+		/// Инициализация класса прокси
 		/// </summary>
-		/// <param name="proxyUri">Uri прокси</param>
+		/// <param name="proxyUri"> Uri прокси </param>
 		private WebProxy(Uri proxyUri)
 		{
 			_proxyUri = proxyUri;
@@ -39,11 +39,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Получить данные авторизации
+		/// Получить данные авторизации
 		/// </summary>
-		/// <param name="proxyLogin">Логин</param>
-		/// <param name="proxyPassword">Пароль</param>
-		/// <returns>Данные авторизации</returns>
+		/// <param name="proxyLogin"> Логин </param>
+		/// <param name="proxyPassword"> Пароль </param>
+		/// <returns> Данные авторизации </returns>
 		private static ICredentials GetCredentials(string proxyLogin = null, string proxyPassword = null)
 		{
 			if (proxyLogin != null && proxyPassword != null)
@@ -56,13 +56,13 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Получить прокси
+		/// Получить прокси
 		/// </summary>
-		/// <param name="host">Имя узла прокси-сервера</param>
-		/// <param name="port">Порт</param>
-		/// <param name="proxyLogin">Логин</param>
-		/// <param name="proxyPassword">Пароль</param>
-		/// <returns>Прокси</returns>
+		/// <param name="host"> Имя узла прокси-сервера </param>
+		/// <param name="port"> Порт </param>
+		/// <param name="proxyLogin"> Логин </param>
+		/// <param name="proxyPassword"> Пароль </param>
+		/// <returns> Прокси </returns>
 		public static IWebProxy GetProxy(string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
 		{
 			if (host == null || port == null)

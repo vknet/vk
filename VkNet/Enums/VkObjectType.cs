@@ -1,22 +1,22 @@
 ﻿namespace VkNet.Enums
 {
 	/// <summary>
-	///     Определяет тип объекта
+	/// Определяет тип объекта
 	/// </summary>
 	public enum VkObjectType
 	{
 		/// <summary>
-		///     Пользователь
+		/// Пользователь
 		/// </summary>
 		User
 
 		, /// <summary>
-		///     Группа
+		/// Группа
 		/// </summary>
 		Group
 
 		, /// <summary>
-		///     Приложение
+		/// Приложение
 		/// </summary>
 		Application
 	}

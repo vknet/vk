@@ -4,28 +4,28 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Метка в списке друзей
+	/// Метка в списке друзей
 	/// </summary>
 	[Serializable]
 	public class FriendList
 	{
 		/// <summary>
-		///     Идентификатор метки
+		/// Идентификатор метки
 		/// </summary>
 		public long Id { get; set; }
 
 		/// <summary>
-		///     Название метки
+		/// Название метки
 		/// </summary>
 		public string Name { get; set; }
 
 	#region public Methods
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static FriendList FromJson(VkResponse response)
 		{
 			var list = new FriendList

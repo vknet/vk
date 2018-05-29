@@ -47,8 +47,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(actual: CountersFilter.Notifications.ToString(), expression: Is.EqualTo(expected: "notifications"));
 
 			Assert.That(actual: CountersFilter.All.ToString()
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"app_requests,events,friends,friends_suggestions,gifts,groups,messages,notifications,photos,sdk,videos"));
 
 			// parse test
@@ -63,8 +62,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(actual: CountersFilter.FromJsonString(val: "notifications")
 					, expression: Is.EqualTo(expected: CountersFilter.Notifications));
 
-			Assert.That(
-					actual: CountersFilter.FromJsonString(
+			Assert.That(actual: CountersFilter.FromJsonString(
 							val: "app_requests,events,friends,friends_suggestions,gifts,groups,messages,notifications,photos,sdk,videos")
 					, expression: Is.EqualTo(expected: CountersFilter.All));
 		}
@@ -96,13 +94,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(actual: GroupsFields.BanInfo.ToString(), expression: Is.EqualTo(expected: "ban_info"));
 
 			Assert.That(actual: GroupsFields.All.ToString()
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
 
 			Assert.That(actual: GroupsFields.AllUndocumented.ToString()
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
 
 			// parse test
@@ -141,15 +137,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(actual: GroupsFields.FromJsonString(val: "site"), expression: Is.EqualTo(expected: GroupsFields.Site));
 			Assert.That(actual: GroupsFields.FromJsonString(val: "ban_info"), expression: Is.EqualTo(expected: GroupsFields.BanInfo));
 
-			Assert.That(
-					actual: GroupsFields.FromJsonString(
-							val:
+			Assert.That(actual: GroupsFields.FromJsonString(val:
 							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
 					, expression: Is.EqualTo(expected: GroupsFields.All));
 
-			Assert.That(
-					actual: GroupsFields.FromJsonString(
-							val:
+			Assert.That(actual: GroupsFields.FromJsonString(val:
 							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
 					, expression: Is.EqualTo(expected: GroupsFields.AllUndocumented));
 		}
@@ -249,8 +241,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(actual: UsersFields.Counters.ToString(), expression: Is.EqualTo(expected: "counters"));
 
 			Assert.That(actual: UsersFields.All.ToString()
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"bdate,can_post,can_see_all_posts,can_see_audio,can_write_private_message,city,common_count,connections,contacts,counters,country,domain,education,has_mobile,last_seen,lists,nickname,online,online_mobile,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,sex,site,status,timezone,universities"));
 
 			// parse test
@@ -312,9 +303,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(actual: UsersFields.FromJsonString(val: "relatives"), expression: Is.EqualTo(expected: UsersFields.Relatives));
 			Assert.That(actual: UsersFields.FromJsonString(val: "counters"), expression: Is.EqualTo(expected: UsersFields.Counters));
 
-			Assert.That(
-					actual: UsersFields.FromJsonString(
-							val:
+			Assert.That(actual: UsersFields.FromJsonString(val:
 							"nickname,domain,sex,bdate,city,country,timezone,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,has_mobile,contacts,education,online,online_mobile,lists,relation,last_seen,status,can_write_private_message,can_see_all_posts,can_post,universities,connections,site,schools,can_see_audio,common_count,relatives,counters")
 					, expression: Is.EqualTo(expected: UsersFields.All));
 		}

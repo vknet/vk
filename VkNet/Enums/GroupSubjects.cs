@@ -1,217 +1,217 @@
 ﻿namespace VkNet.Enums
 {
 	/// <summary>
-	///     Тематика сообщества.
+	/// Тематика сообщества.
 	/// </summary>
 	public enum GroupSubjects
 	{
 		/// <summary>
-		///     Авто/мото.
+		/// Авто/мото.
 		/// </summary>
 		AutoMoto = 1
 
 		, /// <summary>
-		///     Активный отдых.
+		/// Активный отдых.
 		/// </summary>
 		Leisure
 
 		, /// <summary>
-		///     Бизнес.
+		/// Бизнес.
 		/// </summary>
 		Business
 
 		, /// <summary>
-		///     Домашние животные.
+		/// Домашние животные.
 		/// </summary>
 		DomesticAnimals
 
 		, /// <summary>
-		///     Здоровье.
+		/// Здоровье.
 		/// </summary>
 		Health
 
 		, /// <summary>
-		///     Знакомство и общение.
+		/// Знакомство и общение.
 		/// </summary>
 		MeetAndChat
 
 		, /// <summary>
-		///     Игры.
+		/// Игры.
 		/// </summary>
 		Games
 
 		, /// <summary>
-		///     ИТ.
+		/// ИТ.
 		/// </summary>
 		It
 
 		, /// <summary>
-		///     Кино.
+		/// Кино.
 		/// </summary>
 		Cinema
 
 		, /// <summary>
-		///     Красота и мода.
+		/// Красота и мода.
 		/// </summary>
 		BeautyAndFashion
 
 		, /// <summary>
-		///     Кулинария.
+		/// Кулинария.
 		/// </summary>
 		Cookery
 
 		, /// <summary>
-		///     Культура и искусство.
+		/// Культура и искусство.
 		/// </summary>
 		CultureAndArt
 
 		, /// <summary>
-		///     Литература.
+		/// Литература.
 		/// </summary>
 		References
 
 		, /// <summary>
-		///     Мобильная связь и интернет.
+		/// Мобильная связь и интернет.
 		/// </summary>
 		MobileTelephonyAndInternet
 
 		, /// <summary>
-		///     Музыка.
+		/// Музыка.
 		/// </summary>
 		Music
 
 		, /// <summary>
-		///     Наука и техника.
+		/// Наука и техника.
 		/// </summary>
 		ScienceAndTechnology
 
 		, /// <summary>
-		///     Недвижимость.
+		/// Недвижимость.
 		/// </summary>
 		RealEstate
 
 		, /// <summary>
-		///     Новости и СМИ.
+		/// Новости и СМИ.
 		/// </summary>
 		NewsAndMedia
 
 		, /// <summary>
-		///     Безопасность.
+		/// Безопасность.
 		/// </summary>
 		Security
 
 		, /// <summary>
-		///     Образование.
+		/// Образование.
 		/// </summary>
 		Forming
 
 		, /// <summary>
-		///     Обустройство и ремонт.
+		/// Обустройство и ремонт.
 		/// </summary>
 		ConstructionAndRepair
 
 		, /// <summary>
-		///     Политика.
+		/// Политика.
 		/// </summary>
 		Policy
 
 		, /// <summary>
-		///     Продукты питания.
+		/// Продукты питания.
 		/// </summary>
 		FoodItems
 
 		, /// <summary>
-		///     Промышленность.
+		/// Промышленность.
 		/// </summary>
 		Industry
 
 		, /// <summary>
-		///     Путешествия.
+		/// Путешествия.
 		/// </summary>
 		Travels
 
 		, /// <summary>
-		///     Работа.
+		/// Работа.
 		/// </summary>
 		Job
 
 		, /// <summary>
-		///     Развлечения.
+		/// Развлечения.
 		/// </summary>
 		Entertainment
 
 		, /// <summary>
-		///     Религия.
+		/// Религия.
 		/// </summary>
 		Religion
 
 		, /// <summary>
-		///     Дом и семья.
+		/// Дом и семья.
 		/// </summary>
 		HomeAndFamily
 
 		, /// <summary>
-		///     Спорт.
+		/// Спорт.
 		/// </summary>
 		Sports
 
 		, /// <summary>
-		///     Страхование.
+		/// Страхование.
 		/// </summary>
 		Coverage
 
 		, /// <summary>
-		///     Телевидение.
+		/// Телевидение.
 		/// </summary>
 		Tv
 
 		, /// <summary>
-		///     Товары и услуги.
+		/// Товары и услуги.
 		/// </summary>
 		GoodsAndServices
 
 		, /// <summary>
-		///     Увлечения и хобби.
+		/// Увлечения и хобби.
 		/// </summary>
 		InterestsAndHobbies
 
 		, /// <summary>
-		///     Финансы.
+		/// Финансы.
 		/// </summary>
 		Finances
 
 		, /// <summary>
-		///     Фото.
+		/// Фото.
 		/// </summary>
 		Photography
 
 		, /// <summary>
-		///     Эзотерика.
+		/// Эзотерика.
 		/// </summary>
 		Esoterics
 
 		, /// <summary>
-		///     Электроника и бытовая техника.
+		/// Электроника и бытовая техника.
 		/// </summary>
 		ElectronicsAndAppliances
 
 		, /// <summary>
-		///     Эротика.
+		/// Эротика.
 		/// </summary>
 		Erotica
 
 		, /// <summary>
-		///     Юмор.
+		/// Юмор.
 		/// </summary>
 		Humor
 
 		, /// <summary>
-		///     Общество, гуманитарные науки.
+		/// Общество, гуманитарные науки.
 		/// </summary>
 		SocietyHumanities
 
 		, /// <summary>
-		///     Дизайн и графика.
+		/// Дизайн и графика.
 		/// </summary>
 		DesignAndGraphics
 	}

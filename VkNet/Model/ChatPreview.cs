@@ -6,31 +6,31 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Превью чата
+	/// Превью чата
 	/// </summary>
 	[Serializable]
 	public class ChatPreview
 	{
 		/// <summary>
-		///     Информация о чате.
+		/// Информация о чате.
 		/// </summary>
 		[JsonProperty(propertyName: "preview")]
 		public ChatPreviewField Preview { get; set; }
 
 		/// <summary>
-		///     Массив объектов пользователей
+		/// Массив объектов пользователей
 		/// </summary>
 		[JsonProperty(propertyName: "profiles")]
 		public IEnumerable<User> Profiles { get; set; }
 
 		/// <summary>
-		///     Массив объектов сообществ
+		/// Массив объектов сообществ
 		/// </summary>
 		[JsonProperty(propertyName: "groups")]
 		public IEnumerable<Group> Groups { get; set; }
 
 		/// <summary>
-		///     Массив объектов, описывающих e-mail.
+		/// Массив объектов, описывающих e-mail.
 		/// </summary>
 		[JsonProperty(propertyName: "emails")]
 		public IEnumerable<Email> Emails { get; set; }
@@ -38,10 +38,10 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static ChatPreview FromJson(VkResponse response)
 		{
 			return new ChatPreview

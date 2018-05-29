@@ -8,37 +8,37 @@ using VkNet.Exception;
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     WEB форма
+	/// WEB форма
 	/// </summary>
 	internal sealed class WebForm
 	{
 		/// <summary>
-		///     HTML документ
+		/// HTML документ
 		/// </summary>
 		private readonly HtmlDocument _html;
 
 		/// <summary>
-		///     Коллекция input на форме
+		/// Коллекция input на форме
 		/// </summary>
 		private readonly Dictionary<string, string> _inputs;
 
 		/// <summary>
-		///     Базовый URL-ответ
+		/// Базовый URL-ответ
 		/// </summary>
 		/// <remarks>
-		///     Если форма имеет относительный URL
+		/// Если форма имеет относительный URL
 		/// </remarks>
 		private readonly string _responseBaseUrl;
 
 		/// <summary>
-		///     Наименование поля
+		/// Наименование поля
 		/// </summary>
 		private string _lastName;
 
 		/// <summary>
-		///     WEB форма.
+		/// WEB форма.
 		/// </summary>
-		/// <param name="result">Результат.</param>
+		/// <param name="result"> Результат. </param>
 		private WebForm(WebCallResult result)
 		{
 			Cookies = result.Cookies;
@@ -55,12 +55,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Cookies.
+		/// Cookies.
 		/// </summary>
 		public Cookies Cookies { get; }
 
 		/// <summary>
-		///     URL действия.
+		/// URL действия.
 		/// </summary>
 		public string ActionUrl
 		{
@@ -86,28 +86,28 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Gets the original URL.
+		/// Gets the original URL.
 		/// </summary>
 		/// <value>
-		///     The original URL.
+		/// The original URL.
 		/// </value>
 		public string OriginalUrl { get; }
 
 		/// <summary>
-		///     Из результата.
+		/// Из результата.
 		/// </summary>
-		/// <param name="result">Результат.</param>
-		/// <returns>WEB форма.</returns>
+		/// <param name="result"> Результат. </param>
+		/// <returns> WEB форма. </returns>
 		public static WebForm From(WebCallResult result)
 		{
 			return new WebForm(result: result);
 		}
 
 		/// <summary>
-		///     Проверка на отсутствие двухфакторной авторизации.
+		/// Проверка на отсутствие двухфакторной авторизации.
 		/// </summary>
-		/// <param name="result">Результат.</param>
-		/// <returns>WEB форма.</returns>
+		/// <param name="result"> Результат. </param>
+		/// <returns> WEB форма. </returns>
 		public static bool IsOAuthBlank(WebCallResult result)
 		{
 			var html = new HtmlDocument();
@@ -118,19 +118,19 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     И.
+		/// И.
 		/// </summary>
-		/// <returns>WEB форма.</returns>
+		/// <returns> WEB форма. </returns>
 		public WebForm And()
 		{
 			return this;
 		}
 
 		/// <summary>
-		///     С полем.
+		/// С полем.
 		/// </summary>
-		/// <param name="name">Наименование поля.</param>
-		/// <returns>WEB форма.</returns>
+		/// <param name="name"> Наименование поля. </param>
+		/// <returns> WEB форма. </returns>
 		public WebForm WithField(string name)
 		{
 			_lastName = name;
@@ -139,11 +139,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Заполнить поле с.
+		/// Заполнить поле с.
 		/// </summary>
-		/// <param name="value">Значение.</param>
-		/// <returns>WEB форма.</returns>
-		/// <exception cref="System.InvalidOperationException">Field name not set!</exception>
+		/// <param name="value"> Значение. </param>
+		/// <returns> WEB форма. </returns>
+		/// <exception cref="System.InvalidOperationException"> Field name not set! </exception>
 		public WebForm FilledWith(string value)
 		{
 			if (string.IsNullOrEmpty(value: _lastName))
@@ -165,36 +165,36 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Получить запрос.
+		/// Получить запрос.
 		/// </summary>
-		/// <returns>Массив байт</returns>
+		/// <returns> Массив байт </returns>
 		public byte[] GetRequest()
 		{
 			return Encoding.UTF8.GetBytes(s: GetRequestAsStringArray().JoinNonEmpty(separator: "&"));
 		}
 
 		/// <summary>
-		///     Получить запрос.
+		/// Получить запрос.
 		/// </summary>
-		/// <returns>Массив байт</returns>
+		/// <returns> Массив байт </returns>
 		public IEnumerable<string> GetRequestAsStringArray()
 		{
 			return _inputs.Select(selector: x => $"{x.Key}={x.Value}");
 		}
 
 		/// <summary>
-		///     Получить значения полей.
+		/// Получить значения полей.
 		/// </summary>
-		/// <returns>Словарь значений по именам полей.</returns>
+		/// <returns> Словарь значений по именам полей. </returns>
 		public IDictionary<string, string> GetFormFields()
 		{
 			return new Dictionary<string, string>(dictionary: _inputs, comparer: _inputs.Comparer);
 		}
 
 		/// <summary>
-		///     Разобрать поля ввода.
+		/// Разобрать поля ввода.
 		/// </summary>
-		/// <returns>Коллекция полей ввода</returns>
+		/// <returns> Коллекция полей ввода </returns>
 		private Dictionary<string, string> ParseInputs()
 		{
 			var inputs = new Dictionary<string, string>();
@@ -221,10 +221,10 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Получить из HTML элемента.
+		/// Получить из HTML элемента.
 		/// </summary>
-		/// <returns>HTML элемент</returns>
-		/// <exception cref="VkApiException">Элемент не найден на форме.</exception>
+		/// <returns> HTML элемент </returns>
+		/// <exception cref="VkApiException"> Элемент не найден на форме. </exception>
 		private HtmlNode GetFormNode()
 		{
 			HtmlNode.ElementsFlags.Remove(key: "form");

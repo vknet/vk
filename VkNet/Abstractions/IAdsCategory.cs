@@ -5,7 +5,8 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	///     Методы этого класса позволяют производить действия с рекламными кабинетам пользователя.
+	/// Методы этого класса позволяют производить действия с рекламными кабинетам
+	/// пользователя.
 	/// </summary>
 	public interface IAdsCategory : IAdsCategoryAsync
 	{
@@ -24,13 +25,13 @@ namespace VkNet.Abstractions
 		// deleteTargetPixel
 
 		/// <summary>
-		///     Возвращает список рекламных кабинетов.
+		/// Возвращает список рекламных кабинетов.
 		/// </summary>
 		/// <returns>
-		///     В случае успеха возвращается список рекламных кабинетов.
+		/// В случае успеха возвращается список рекламных кабинетов.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
+		/// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
 		/// </remarks>
 		ReadOnlyCollection<AdsAccount> GetAccounts();
 
@@ -40,13 +41,13 @@ namespace VkNet.Abstractions
 		// getBudget
 
 		/// <summary>
-		///     Возвращает список рекламных кабинетов.
+		/// Возвращает список рекламных кабинетов.
 		/// </summary>
 		/// <returns>
-		///     В случае успеха возвращается список рекламных кабинетов.
+		/// В случае успеха возвращается список рекламных кабинетов.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
+		/// Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
 		/// </remarks>
 		ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams @params);
 

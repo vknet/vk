@@ -4,14 +4,14 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     ������� ����������.
-	///     ��. �������� http://vk.com/dev/attachments_w
+	/// ������� ����������.
+	/// ��. �������� http://vk.com/dev/attachments_w
 	/// </summary>
 	[Serializable]
 	public class ApplicationContent : MediaAttachment
 	{
 		/// <summary>
-		///     ����������.
+		/// ����������.
 		/// </summary>
 		static ApplicationContent()
 		{
@@ -19,27 +19,27 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     �������� ����������.
+		/// �������� ����������.
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		///     ����� ����������� ��� �������������.
+		/// ����� ����������� ��� �������������.
 		/// </summary>
 		public string Photo130 { get; set; }
 
 		/// <summary>
-		///     ����� ��������������� �����������.
+		/// ����� ��������������� �����������.
 		/// </summary>
 		public string Photo604 { get; set; }
 
 	#region ������
 
 		/// <summary>
-		///     ��������� �� json.
+		/// ��������� �� json.
 		/// </summary>
-		/// <param name="response">����� �������.</param>
-		/// <returns></returns>
+		/// <param name="response"> ����� �������. </param>
+		/// <returns> </returns>
 		public static ApplicationContent FromJson(VkResponse response)
 		{
 			var application = new ApplicationContent

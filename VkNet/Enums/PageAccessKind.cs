@@ -3,23 +3,23 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Режим доступа к странице
+	/// Режим доступа к странице
 	/// </summary>
 	[Serializable]
 	public enum PageAccessKind
 	{
 		/// <summary>
-		///     Доступ только руководителям сообщества.
+		/// Доступ только руководителям сообщества.
 		/// </summary>
 		OnlyAdministrators = 0
 
 		, /// <summary>
-		///     Доступ только членам сообщества.
+		/// Доступ только членам сообщества.
 		/// </summary>
 		OnlyMembers = 1
 
 		, /// <summary>
-		///     Неограниченный доступ.
+		/// Неограниченный доступ.
 		/// </summary>
 		Unrestricted = 2
 	}

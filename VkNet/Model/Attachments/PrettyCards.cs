@@ -16,16 +16,16 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Cards
+		/// Cards
 		/// </summary>
 		[JsonProperty(propertyName: "cards")]
 		public ReadOnlyCollection<PrettyCard> Cards { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static PrettyCards FromJson(VkResponse response)
 		{
 			return new PrettyCards
@@ -35,11 +35,11 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator PrettyCards(VkResponse response)
 		{

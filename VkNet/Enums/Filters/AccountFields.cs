@@ -1,37 +1,37 @@
 ﻿namespace VkNet.Enums.Filters
 {
 	/// <summary>
-	///     Поля информации о аккаунте.
+	/// Поля информации о аккаунте.
 	/// </summary>
 	public sealed class AccountFields : MultivaluedFilter<AccountFields>
 	{
 		/// <summary>
-		///     Страна.
+		/// Страна.
 		/// </summary>
 		public static readonly AccountFields Country = RegisterPossibleValue(value: "country");
 
 		/// <summary>
-		///     Обязательно HTTPS.
+		/// Обязательно HTTPS.
 		/// </summary>
 		public static readonly AccountFields HttpsRequired = RegisterPossibleValue(value: "https_required");
 
 		/// <summary>
-		///     По умолчанию посты только владелец.
+		/// По умолчанию посты только владелец.
 		/// </summary>
 		public static readonly AccountFields OwnPostsDefault = RegisterPossibleValue(value: "own_posts_default");
 
 		/// <summary>
-		///     Не комментировать стену.
+		/// Не комментировать стену.
 		/// </summary>
 		public static readonly AccountFields NoWallReplies = RegisterPossibleValue(value: "no_wall_replies");
 
 		/// <summary>
-		///     Вступление.
+		/// Вступление.
 		/// </summary>
 		public static readonly AccountFields Intro = RegisterPossibleValue(value: "intro");
 
 		/// <summary>
-		///     Язык.
+		/// Язык.
 		/// </summary>
 		public static readonly AccountFields Language = RegisterPossibleValue(value: "lang");
 	}

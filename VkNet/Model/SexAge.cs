@@ -9,19 +9,19 @@ namespace VkNet.Model
 	public class SexAge
 	{
 		/// <summary>
-		///     обозначение возраста
+		/// обозначение возраста
 		/// </summary>
 		[JsonProperty(propertyName: "age_range")]
 		public string AgeRange { get; set; }
 
 		/// <summary>
-		///     число переходов пользователей женского пола
+		/// число переходов пользователей женского пола
 		/// </summary>
 		[JsonProperty(propertyName: "female")]
 		public ulong Female { get; set; }
 
 		/// <summary>
-		///     число переходов пользователей мужского пола
+		/// число переходов пользователей мужского пола
 		/// </summary>
 		[JsonProperty(propertyName: "male")]
 		public ulong Male { get; set; }

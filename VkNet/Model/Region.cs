@@ -4,26 +4,26 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Регион
+	/// Регион
 	/// </summary>
 	[Serializable]
 	public class Region
 	{
 		/// <summary>
-		///     Идентификатор региона
+		/// Идентификатор региона
 		/// </summary>
 		public int Id { get; set; }
 
 		/// <summary>
-		///     Название региона
+		/// Название региона
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Region FromJson(VkResponse response)
 		{
 			var region = new Region

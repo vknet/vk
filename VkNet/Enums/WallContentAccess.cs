@@ -3,28 +3,28 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Уровень доступа к содержимому.
+	/// Уровень доступа к содержимому.
 	/// </summary>
 	public enum WallContentAccess
 	{
 		/// <summary>
-		///     Выключены
+		/// Выключены
 		/// </summary>
 		[DefaultValue]
 		Off = 0
 
 		, /// <summary>
-		///     Открытые
+		/// Открытые
 		/// </summary>
 		Opened
 
 		, /// <summary>
-		///     Ограниченные
+		/// Ограниченные
 		/// </summary>
 		Restricted
 
 		, /// <summary>
-		///     Закрытая
+		/// Закрытая
 		/// </summary>
 		Closed
 	}

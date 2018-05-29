@@ -6,9 +6,9 @@ using VkNet.Utils;
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	///     Аналог enum, типобезопасен.
+	/// Аналог enum, типобезопасен.
 	/// </summary>
-	/// <typeparam name="TFilter">Непосредственно наследник</typeparam>
+	/// <typeparam name="TFilter"> Непосредственно наследник </typeparam>
 	[Serializable]
 	[SuppressMessage(category: "ReSharper", checkId: "StaticMemberInGenericType")]
 	public abstract class SafetyEnum<TFilter>
@@ -16,7 +16,7 @@ namespace VkNet.Enums.SafetyEnums
 			where TFilter : SafetyEnum<TFilter>, new()
 	{
 		/// <summary>
-		///     Значение
+		/// Значение
 		/// </summary>
 		private string _value;
 
@@ -39,18 +39,21 @@ namespace VkNet.Enums.SafetyEnums
 		}
 
 		/// <summary>
-		///     Регистрирует возможное значение.
+		/// Регистрирует возможное значение.
 		/// </summary>
-		/// <param name="value">Значение.</param>
-		/// <returns></returns>
-		/// <exception cref="System.ArgumentException">Mask must be a power of 2 (i.e. only one bit must be equal to 1);mask</exception>
+		/// <param name="value"> Значение. </param>
+		/// <returns> </returns>
+		/// <exception cref="System.ArgumentException">
+		/// Mask must be a power of 2 (i.e.
+		/// only one bit must be equal to 1);mask
+		/// </exception>
 		protected static TFilter RegisterPossibleValue(string value)
 		{
 			return new TFilter { _value = value };
 		}
 
 		/// <summary>
-		///     Преобразовать в строку.
+		/// Преобразовать в строку.
 		/// </summary>
 		public override string ToString()
 		{
@@ -58,12 +61,12 @@ namespace VkNet.Enums.SafetyEnums
 		}
 
 		/// <summary>
-		///     Реализация оператора ==.
+		/// Реализация оператора ==.
 		/// </summary>
-		/// <param name="left">Левая часть.</param>
-		/// <param name="right">Правая часть.</param>
+		/// <param name="left"> Левая часть. </param>
+		/// <param name="right"> Правая часть. </param>
 		/// <returns>
-		///     Результат.
+		/// Результат.
 		/// </returns>
 		public static bool operator ==(SafetyEnum<TFilter> left, SafetyEnum<TFilter> right)
 		{
@@ -86,12 +89,12 @@ namespace VkNet.Enums.SafetyEnums
 		}
 
 		/// <summary>
-		///     Реализация оператора !=.
+		/// Реализация оператора !=.
 		/// </summary>
-		/// <param name="left">Левая часть.</param>
-		/// <param name="right">Правая часть.</param>
+		/// <param name="left"> Левая часть. </param>
+		/// <param name="right"> Правая часть. </param>
 		/// <returns>
-		///     Результат.
+		/// Результат.
 		/// </returns>
 		public static bool operator !=(SafetyEnum<TFilter> left, SafetyEnum<TFilter> right)
 		{
@@ -99,10 +102,10 @@ namespace VkNet.Enums.SafetyEnums
 		}
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект перечисления типа TFilter - Непосредственно наследник</returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Объект перечисления типа TFilter - Непосредственно наследник </returns>
 		public static TFilter FromJson(VkResponse response)
 		{
 			var value = response.ToString();
@@ -111,10 +114,10 @@ namespace VkNet.Enums.SafetyEnums
 		}
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект перечисления типа TFilter - Непосредственно наследник</returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Объект перечисления типа TFilter - Непосредственно наследник </returns>
 		public static TFilter FromJsonString(string response)
 		{
 			if (string.IsNullOrWhiteSpace(value: response))

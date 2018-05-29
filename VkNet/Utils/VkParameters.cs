@@ -6,13 +6,13 @@ namespace VkNet.Utils
 {
 	/// <inheritdoc />
 	/// <summary>
-	///     Параметры запроса к ВКонтакте.
+	/// Параметры запроса к ВКонтакте.
 	/// </summary>
 	public partial class VkParameters : Dictionary<string, string>
 	{
 		/// <inheritdoc />
 		/// <summary>
-		///     Инициализирует новый экземпляр класса VkParameters
+		/// Инициализирует новый экземпляр класса VkParameters
 		/// </summary>
 		public VkParameters()
 		{
@@ -20,26 +20,26 @@ namespace VkNet.Utils
 
 		/// <inheritdoc />
 		/// <summary>
-		///     Инициализирует новый экземпляр класса VkParameters
+		/// Инициализирует новый экземпляр класса VkParameters
 		/// </summary>
 		/// <param name="parameters">
-		///     Параметры запроса.
+		/// Параметры запроса.
 		/// </param>
 		public VkParameters(IDictionary<string, string> parameters) : base(dictionary: parameters)
 		{
 		}
 
 		/// <summary>
-		///     Параметры для запроса без параметров.
+		/// Параметры для запроса без параметров.
 		/// </summary>
 		public static VkParameters Empty => new VkParameters();
 
 		/// <summary>
-		///     Добавляет параметр запроса.
+		/// Добавляет параметр запроса.
 		/// </summary>
-		/// <typeparam name="T">Тип значения параметра запроса.</typeparam>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="value">Значение параметра запроса.</param>
+		/// <typeparam name="T"> Тип значения параметра запроса. </typeparam>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="value"> Значение параметра запроса. </param>
 		public void Add<T>(string name, T value)
 		{
 			Remove(key: name);
@@ -66,12 +66,17 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет параметр запроса, представляющий собой последовательность элементов заданного типа.
-		///     Последовательность добавляется в виде строкового значения, содержащего ее элементы, разделенные запятой.
+		/// Добавляет параметр запроса, представляющий собой последовательность элементов
+		/// заданного типа.
+		/// Последовательность добавляется в виде строкового значения, содержащего ее
+		/// элементы, разделенные запятой.
 		/// </summary>
-		/// <typeparam name="T">Имя типа элементов последовательности.</typeparam>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="collection">Последовательность, представляющая значение параметра запроса.</param>
+		/// <typeparam name="T"> Имя типа элементов последовательности. </typeparam>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="collection">
+		/// Последовательность, представляющая значение параметра
+		/// запроса.
+		/// </param>
 		public void Add<T>(string name, IEnumerable<T> collection)
 		{
 			var value = collection.JoinNonEmpty();
@@ -79,24 +84,26 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет именованный параметр запроса, представляющий собой коллекцию элементов заданного типа.
-		///     Коллекция добавляетсяв виде строкового значения, содержащего ее элементы, разделенные запятой.
+		/// Добавляет именованный параметр запроса, представляющий собой коллекцию
+		/// элементов заданного типа.
+		/// Коллекция добавляетсяв виде строкового значения, содержащего ее элементы,
+		/// разделенные запятой.
 		/// </summary>
-		/// <typeparam name="T">Имя типа элементов коллекции.</typeparam>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="collection">Коллекция, представляющая значение параметра запроса.</param>
+		/// <typeparam name="T"> Имя типа элементов коллекции. </typeparam>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="collection"> Коллекция, представляющая значение параметра запроса. </param>
 		public void Add<T>(string name, List<T> collection)
 		{
 			Add(name: name, collection: (IEnumerable<T>) collection);
 		}
 
 		/// <summary>
-		///     Добавляет параметр запроса.
-		///     Если передан null, то добавление параметра не производится.
+		/// Добавляет параметр запроса.
+		/// Если передан null, то добавление параметра не производится.
 		/// </summary>
-		/// <typeparam name="T">Тип значения параметра запроса.</typeparam>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="nullableValue">Значение параметра запроса.</param>
+		/// <typeparam name="T"> Тип значения параметра запроса. </typeparam>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="nullableValue"> Значение параметра запроса. </param>
 		public void Add<T>(string name, T? nullableValue)
 				where T : struct
 		{
@@ -111,11 +118,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет параметр-дату.
-		///     Если передан null, то добавление не производится.
+		/// Добавляет параметр-дату.
+		/// Если передан null, то добавление не производится.
 		/// </summary>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="nullableDateTime">Значение параметра.</param>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="nullableDateTime"> Значение параметра. </param>
 		public void Add(string name, DateTime? nullableDateTime)
 		{
 			Remove(key: name);
@@ -135,11 +142,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет логический параметр.
-		///     Если передан null или значение параметра false, то добавление не производится.
+		/// Добавляет логический параметр.
+		/// Если передан null или значение параметра false, то добавление не производится.
 		/// </summary>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="nullableValue">Значение параметра.</param>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="nullableValue"> Значение параметра. </param>
 		public void Add(string name, bool? nullableValue)
 		{
 			Remove(key: name);
@@ -153,11 +160,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет логический параметр.
-		///     Если передан null, то добавление не производится.
+		/// Добавляет логический параметр.
+		/// Если передан null, то добавление не производится.
 		/// </summary>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="value">Значение параметра.</param>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="value"> Значение параметра. </param>
 		public void Add(string name, bool value)
 		{
 			Remove(key: name);
@@ -166,11 +173,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет параметр десятичное число.
-		///     Если передан null, то добавление не производится.
+		/// Добавляет параметр десятичное число.
+		/// Если передан null, то добавление не производится.
 		/// </summary>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="value">Значение параметра.</param>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="value"> Значение параметра. </param>
 		public void Add(string name, decimal value)
 		{
 			Remove(key: name);
@@ -179,11 +186,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет параметр десятичное число.
-		///     Если передан null, то добавление не производится.
+		/// Добавляет параметр десятичное число.
+		/// Если передан null, то добавление не производится.
 		/// </summary>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="value">Значение параметра.</param>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="value"> Значение параметра. </param>
 		public void Add(string name, decimal? value)
 		{
 			Remove(key: name);
@@ -197,11 +204,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет параметр десятичное число.
-		///     Если передан null, то добавление не производится.
+		/// Добавляет параметр десятичное число.
+		/// Если передан null, то добавление не производится.
 		/// </summary>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="value">Значение параметра.</param>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="value"> Значение параметра. </param>
 		public void Add(string name, double value)
 		{
 			Remove(key: name);
@@ -210,11 +217,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет параметр десятичное число.
-		///     Если передан null, то добавление не производится.
+		/// Добавляет параметр десятичное число.
+		/// Если передан null, то добавление не производится.
 		/// </summary>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="value">Значение параметра.</param>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="value"> Значение параметра. </param>
 		public void Add(string name, double? value)
 		{
 			Remove(key: name);
@@ -228,11 +235,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет параметр десятичное число.
-		///     Если передан null, то добавление не производится.
+		/// Добавляет параметр десятичное число.
+		/// Если передан null, то добавление не производится.
 		/// </summary>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="value">Значение параметра.</param>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="value"> Значение параметра. </param>
 		public void Add(string name, float value)
 		{
 			Remove(key: name);
@@ -241,11 +248,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Добавляет параметр десятичное число.
-		///     Если передан null, то добавление не производится.
+		/// Добавляет параметр десятичное число.
+		/// Если передан null, то добавление не производится.
 		/// </summary>
-		/// <param name="name">Имя параметра запроса.</param>
-		/// <param name="value">Значение параметра.</param>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="value"> Значение параметра. </param>
 		public void Add(string name, float? value)
 		{
 			Remove(key: name);

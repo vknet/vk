@@ -7,12 +7,12 @@ using System.Reflection;
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     Cookies
+	/// Cookies
 	/// </summary>
 	public sealed class Cookies
 	{
 		/// <summary>
-		///     Cookies.
+		/// Cookies.
 		/// </summary>
 		public Cookies()
 		{
@@ -20,15 +20,15 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Получить контейнер Cookies.
+		/// Получить контейнер Cookies.
 		/// </summary>
 		public CookieContainer Container { get; }
 
 		/// <summary>
-		///     Добавить из.
+		/// Добавить из.
 		/// </summary>
-		/// <param name="responseUrl">URL ответа.</param>
-		/// <param name="cookies">Cookies.</param>
+		/// <param name="responseUrl"> URL ответа. </param>
+		/// <param name="cookies"> Cookies. </param>
 		public void AddFrom(Uri responseUrl, CookieCollection cookies)
 		{
 			foreach (Cookie cookie in cookies)
@@ -40,14 +40,18 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Исправление ошибки в домене указанной куки.
+		/// Исправление ошибки в домене указанной куки.
 		/// </summary>
 		private void BugFixCookieDomain()
 		{
 			var table = (IDictionary) Container.GetType()
 				#if NET40
-                .InvokeMember("m_domainTable", BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance, null, Container, new object[] { });
-#else
+					.InvokeMember(name: "m_domainTable"
+							, invokeAttr: BindingFlags.NonPublic|BindingFlags.GetField|BindingFlags.Instance
+							, binder: null
+							, target: Container
+							, args: new object[] {});
+		#else
 					.GetRuntimeFields()
 					.FirstOrDefault(predicate: x => x.Name == "m_domainTable" || x.Name == "_domainTable")
 					?.GetValue(obj: Container);

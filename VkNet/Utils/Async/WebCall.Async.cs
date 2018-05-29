@@ -11,11 +11,11 @@ namespace VkNet.Utils
 	internal sealed partial class WebCall
 	{
 		/// <summary>
-		///     Выполнить запрос асинхронно.
+		/// Выполнить запрос асинхронно.
 		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="webProxy">Данные прокси сервера.</param>
-		/// <returns>Результат</returns>
+		/// <param name="url"> URL. </param>
+		/// <param name="webProxy"> Данные прокси сервера. </param>
+		/// <returns> Результат </returns>
 		public static async Task<WebCallResult> MakeCallAsync(string url, IWebProxy webProxy = null)
 		{
 			using (var call = new WebCall(url: url, cookies: new Cookies(), webProxy: webProxy))
@@ -27,12 +27,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполнить POST запрос асинхронно.
+		/// Выполнить POST запрос асинхронно.
 		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="parameters">Параметры запроса.</param>
-		/// <param name="webProxy">Хост.</param>
-		/// <returns>Результат</returns>
+		/// <param name="url"> URL. </param>
+		/// <param name="parameters"> Параметры запроса. </param>
+		/// <param name="webProxy"> Хост. </param>
+		/// <returns> Результат </returns>
 		public static async Task<WebCallResult> PostCallAsync(string url
 															, IEnumerable<KeyValuePair<string, string>> parameters
 															, IWebProxy webProxy)
@@ -47,11 +47,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Post запрос из формы асинхронно.
+		/// Post запрос из формы асинхронно.
 		/// </summary>
-		/// <param name="form">Форма.</param>
-		/// <param name="webProxy">Хост.</param>
-		/// <returns>Результат</returns>
+		/// <param name="form"> Форма. </param>
+		/// <param name="webProxy"> Хост. </param>
+		/// <returns> Результат </returns>
 		public static async Task<WebCallResult> PostAsync(WebForm form, IWebProxy webProxy)
 		{
 			using (var call = new WebCall(url: form.ActionUrl, cookies: form.Cookies, webProxy: webProxy, allowAutoRedirect: false))
@@ -66,11 +66,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Асинхронная переадресация.
+		/// Асинхронная переадресация.
 		/// </summary>
-		/// <param name="url">URL.</param>
-		/// <param name="webProxy">Хост.</param>
-		/// <returns>Результат</returns>
+		/// <param name="url"> URL. </param>
+		/// <param name="webProxy"> Хост. </param>
+		/// <returns> Результат </returns>
 		private async Task<WebCallResult> RedirectToAsync(string url, IWebProxy webProxy = null)
 		{
 			using (var call = new WebCall(url: url, cookies: _result.Cookies, webProxy: webProxy))
@@ -86,13 +86,13 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполнить запрос асинхронно.
+		/// Выполнить запрос асинхронно.
 		/// </summary>
-		/// <param name="uri">Uri из которого получаем куки</param>
-		/// <param name="webProxy">Хост.</param>
-		/// <param name="response">Ответ сервера</param>
-		/// <returns>Результат</returns>
-		/// <exception cref="VkApiException">Response is null.</exception>
+		/// <param name="uri"> Uri из которого получаем куки </param>
+		/// <param name="webProxy"> Хост. </param>
+		/// <param name="response"> Ответ сервера </param>
+		/// <returns> Результат </returns>
+		/// <exception cref="VkApiException"> Response is null. </exception>
 		private async Task<WebCallResult> MakeRequestAsync(HttpResponseMessage response, Uri uri, IWebProxy webProxy)
 		{
 			using (var stream = await response.Content.ReadAsStreamAsync())

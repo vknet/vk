@@ -4,28 +4,28 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     ����� � �����
+	/// ����� � �����
 	/// </summary>
 	[Serializable]
 	public class SchoolClass
 	{
 		/// <summary>
-		///     ����� �������������, ������� ����������� ������.
+		/// ����� �������������, ������� ����������� ������.
 		/// </summary>
 		public long Class { get; set; }
 
 		/// <summary>
-		///     ������� ����������� �� ������ �������� ������������.
+		/// ������� ����������� �� ������ �������� ������������.
 		/// </summary>
 		public string Text { get; set; }
 
 	#region ������
 
 		/// <summary>
-		///     ��������� �� json.
+		/// ��������� �� json.
 		/// </summary>
-		/// <param name="response">����� �������.</param>
-		/// <returns></returns>
+		/// <param name="response"> ����� �������. </param>
+		/// <returns> </returns>
 		public static SchoolClass FromJson(VkResponse response)
 		{
 			var schoolClass = new SchoolClass

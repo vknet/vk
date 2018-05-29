@@ -3,18 +3,18 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Тип сообщения.
+	/// Тип сообщения.
 	/// </summary>
 	[Serializable]
 	public enum MessageType
 	{
 		/// <summary>
-		///     Полученное сообщение.
+		/// Полученное сообщение.
 		/// </summary>
 		Received = 0
 
 		, /// <summary>
-		///     Отправленное сообщение.
+		/// Отправленное сообщение.
 		/// </summary>
 		Sended = 1
 	}

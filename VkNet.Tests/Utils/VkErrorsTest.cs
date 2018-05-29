@@ -210,8 +210,8 @@ namespace VkNet.Tests.Utils
 
 			var ex = Assert.Throws<GroupsListAccessDeniedException>(code: () => VkErrors.IfErrorThrowException(json: json));
 
-			StringAssert.AreEqualIgnoringCase(expected: "Access to the groups list is denied due to the user privacy settings.",
-					actual: ex.Message);
+			StringAssert.AreEqualIgnoringCase(expected: "Access to the groups list is denied due to the user privacy settings."
+					, actual: ex.Message);
 		}
 
 		[Test]

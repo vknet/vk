@@ -6,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Подборка товаров
+	/// Подборка товаров
 	/// </summary>
 	[Serializable]
 	public class MarketAlbum : MediaAttachment
@@ -17,31 +17,31 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     название подборки
+		/// название подборки
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     обложка подборки, объект, описывающий фотографию.
+		/// обложка подборки, объект, описывающий фотографию.
 		/// </summary>
 		public Photo Photo { get; set; }
 
 		/// <summary>
-		///     число товаров в подборке.
+		/// число товаров в подборке.
 		/// </summary>
 		public int Count { get; set; }
 
 		/// <summary>
-		///     дата обновления подборки в формате Unixtime.
+		/// дата обновления подборки в формате Unixtime.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? UpdatedTime { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static MarketAlbum FromJson(VkResponse response)
 		{
 			var application = new MarketAlbum

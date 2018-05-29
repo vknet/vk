@@ -27,21 +27,22 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void JsonConvertWrite()
 		{
-			var vkCollection = new VkCollection<User>(totalCount: 10, list: new List<User>
-			{
-					new User
+			var vkCollection = new VkCollection<User>(totalCount: 10
+					, list: new List<User>
 					{
-							Id = 12
-							, FirstName = "Andrew"
-							, LastName = "Teleshev"
-					}
-					, new User
-					{
-							Id = 13
-							, FirstName = "Даниил"
-							, LastName = "Рыльцов"
-					}
-			});
+							new User
+							{
+									Id = 12
+									, FirstName = "Andrew"
+									, LastName = "Teleshev"
+							}
+							, new User
+							{
+									Id = 13
+									, FirstName = "Даниил"
+									, LastName = "Рыльцов"
+							}
+					});
 
 			var result = Utilities.SerializeToJson(@object: vkCollection);
 			Assert.AreNotEqual(expected: result, actual: "{}");

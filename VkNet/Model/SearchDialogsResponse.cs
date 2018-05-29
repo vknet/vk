@@ -5,34 +5,34 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Ответ при поиске диалогов по строке поиска.
-	///     См. описание http://vk.com/dev/messages.searchDialogs
+	/// Ответ при поиске диалогов по строке поиска.
+	/// См. описание http://vk.com/dev/messages.searchDialogs
 	/// </summary>
 	[Serializable]
 	public class SearchDialogsResponse
 	{
 		/// <summary>
-		///     Список найденных пользователей.
+		/// Список найденных пользователей.
 		/// </summary>
 		public IList<User> Users { get; set; }
 
 		/// <summary>
-		///     Список найденных бесед.
+		/// Список найденных бесед.
 		/// </summary>
 		public IList<Chat> Chats { get; set; }
 
 		/// <summary>
-		///     Список найденных сообществ.
+		/// Список найденных сообществ.
 		/// </summary>
 		public IList<Group> Groups { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static SearchDialogsResponse FromJson(VkResponse response)
 		{
 			var result = new SearchDialogsResponse

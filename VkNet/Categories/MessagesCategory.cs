@@ -17,37 +17,39 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	///     Методы для работы с сообщениями.
+	/// Методы для работы с сообщениями.
 	/// </summary>
 	public partial class MessagesCategory : IMessagesCategory
 	{
 		private readonly VkApi _vk;
 
 		/// <summary>
-		///     Методы для работы с сообщениями.
+		/// Методы для работы с сообщениями.
 		/// </summary>
-		/// <param name="vk">API</param>
+		/// <param name="vk"> API </param>
 		public MessagesCategory(VkApi vk)
 		{
 			_vk = vk;
 		}
 
 		/// <summary>
-		///     Добавляет в мультидиалог нового пользователя.
+		/// Добавляет в мультидиалог нового пользователя.
 		/// </summary>
 		/// <param name="chatId">
-		///     Идентификатор беседы. положительное число, обязательный параметр (Положительное число,
-		///     обязательный параметр).
+		/// Идентификатор беседы. положительное число, обязательный параметр (Положительное
+		/// число,
+		/// обязательный параметр).
 		/// </param>
 		/// <param name="userId">
-		///     Идентификатор пользователя, которого необходимо включить в беседу. положительное число,
-		///     обязательный параметр (Положительное число, обязательный параметр).
+		/// Идентификатор пользователя, которого необходимо включить в беседу.
+		/// положительное число,
+		/// обязательный параметр (Положительное число, обязательный параметр).
 		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает <c>true</c>.
+		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
 		/// </remarks>
 		public bool AddChatUser(long chatId, long userId)
 		{
@@ -61,38 +63,41 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
+		/// Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
 		/// </summary>
-		/// <param name="groupId">Идентификатор сообщества.</param>
+		/// <param name="groupId"> Идентификатор сообщества. </param>
 		/// <param name="key">
-		///     Произвольная строка.
-		///     Этот параметр можно использовать для идентификации пользователя.
-		///     Его значение будет возвращено в событии message_allow Callback API.
+		/// Произвольная строка.
+		/// Этот параметр можно использовать для идентификации пользователя.
+		/// Его значение будет возвращено в событии message_allow Callback API.
 		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает <c>true</c>.
+		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.allowMessagesFromGroup
+		/// Страница документации ВКонтакте
+		/// http://vk.com/dev/messages.allowMessagesFromGroup
 		/// </remarks>
 		public bool AllowMessagesFromGroup(long groupId, string key)
 		{
-			return _vk.Call(methodName: "messages.allowMessagesFromGroup", parameters: new VkParameters
-			{
-					{ "group_id", groupId }
-					, { "key", key }
-			});
+			return _vk.Call(methodName: "messages.allowMessagesFromGroup"
+					, parameters: new VkParameters
+					{
+							{ "group_id", groupId }
+							, { "key", key }
+					});
 		}
 
 		/// <summary>
-		///     Позволяет запретить отправку сообщений от сообщества текущему пользователю.
+		/// Позволяет запретить отправку сообщений от сообщества текущему пользователю.
 		/// </summary>
-		/// <param name="groupId">Идентификатор сообщества. </param>
+		/// <param name="groupId"> Идентификатор сообщества. </param>
 		/// <returns>
-		///     После успешного выполнения возвращает <c>true</c>.
+		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/messages.denyMessagesFromGroup
+		/// Страница документации ВКонтакте
+		/// https://vk.com/dev/messages.denyMessagesFromGroup
 		/// </remarks>
 		public bool DenyMessagesFromGroup(long groupId)
 		{
@@ -100,13 +105,15 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
+		/// Возвращает список входящих либо исходящих личных сообщений текущего
+		/// пользователя.
 		/// </summary>
-		/// <param name="params">Входные параметры выборки.</param>
-		/// <returns>Список сообщений, удовлетворяющий условиям фильтрации.</returns>
+		/// <param name="params"> Входные параметры выборки. </param>
+		/// <returns> Список сообщений, удовлетворяющий условиям фильтрации. </returns>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.get
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.get
 		/// </remarks>
 		[Pure]
 		public MessagesGetObject Get(MessagesGetParams @params)
@@ -115,13 +122,18 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает историю сообщений текущего пользователя с указанным пользователя или групповой беседы.
+		/// Возвращает историю сообщений текущего пользователя с указанным пользователя или
+		/// групповой беседы.
 		/// </summary>
-		/// <param name="params">Входные параметры выборки.</param>
-		/// <returns>Возвращает историю сообщений с указанным пользователем или из указанной беседы</returns>
+		/// <param name="params"> Входные параметры выборки. </param>
+		/// <returns>
+		/// Возвращает историю сообщений с указанным пользователем или из
+		/// указанной беседы
+		/// </returns>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
 		/// </remarks>
 		[Pure]
 		public MessagesGetObject GetHistory(MessagesGetHistoryParams @params)
@@ -130,20 +142,25 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает сообщения по их идентификаторам.
+		/// Возвращает сообщения по их идентификаторам.
 		/// </summary>
-		/// <param name="messageIds">Идентификаторы сообщений, которые необходимо вернуть (не более 100).</param>
+		/// <param name="messageIds">
+		/// Идентификаторы сообщений, которые необходимо вернуть
+		/// (не более 100).
+		/// </param>
 		/// <param name="previewLength">
-		///     Количество символов, по которому нужно обрезать сообщение.
-		///     Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).
+		/// Количество символов, по которому нужно обрезать сообщение.
+		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
+		/// обрезаются).
 		/// </param>
 		/// <returns>
-		///     Запрошенные сообщения.
+		/// Запрошенные сообщения.
 		/// </returns>
-		/// <exception cref="System.Exception">messageIds не может быть пустой</exception>
+		/// <exception cref="System.Exception"> messageIds не может быть пустой </exception>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getById
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 		/// </remarks>
 		[Pure]
 		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, uint? previewLength = null)
@@ -163,10 +180,10 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает список диалогов аккаунта
+		/// Возвращает список диалогов аккаунта
 		/// </summary>
-		/// <param name="params">Входные параметры выборки.</param>
-		/// <returns>В случае успеха возвращает список диалогов пользователя</returns>
+		/// <param name="params"> Входные параметры выборки. </param>
+		/// <returns> В случае успеха возвращает список диалогов пользователя </returns>
 		[Pure]
 		public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)
 		{
@@ -176,18 +193,24 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
+		/// Возвращает список найденных диалогов текущего пользователя по введенной строке
+		/// поиска.
 		/// </summary>
-		/// <param name="query">Подстрока, по которой будет производиться поиск.</param>
-		/// <param name="limit">Количество пользователей которое нужно вернуть.</param>
-		/// <param name="fields">Поля профилей собеседников, которые необходимо вернуть.</param>
+		/// <param name="query"> Подстрока, по которой будет производиться поиск. </param>
+		/// <param name="limit"> Количество пользователей которое нужно вернуть. </param>
+		/// <param name="fields"> Поля профилей собеседников, которые необходимо вернуть. </param>
 		/// <returns>
-		///     В результате выполнения данного метода будет возвращён массив объектов профилей, бесед и email.
+		/// В результате выполнения данного метода будет возвращён массив объектов
+		/// профилей, бесед и email.
 		/// </returns>
-		/// <exception cref="System.ArgumentException">Query can not be null or empty.;query</exception>
+		/// <exception cref="System.ArgumentException">
+		/// Query can not be null or
+		/// empty.;query
+		/// </exception>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.searchDialogs
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.searchDialogs
 		/// </remarks>
 		[Pure]
 		public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null)
@@ -203,15 +226,20 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
+		/// Возвращает список найденных личных сообщений текущего пользователя по введенной
+		/// строке поиска.
 		/// </summary>
-		/// <param name="params">Параметры запроса messages.search</param>
+		/// <param name="params"> Параметры запроса messages.search </param>
 		/// <returns>
-		///     После успешного выполнения возвращает  объектов , найденных в соответствии с поисковым запросом '''q'''.
+		/// После успешного выполнения возвращает  объектов , найденных в соответствии с
+		/// поисковым запросом '''q'''.
 		/// </returns>
-		/// <exception cref="System.ArgumentException">Query can not be null or empty.;query</exception>
+		/// <exception cref="System.ArgumentException">
+		/// Query can not be null or
+		/// empty.;query
+		/// </exception>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.search
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.search
 		/// </remarks>
 		public VkCollection<Message> Search(MessagesSearchParams @params)
 		{
@@ -224,16 +252,17 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Посылает личное сообщение.
+		/// Посылает личное сообщение.
 		/// </summary>
-		/// <param name="params">Параметры запроса.</param>
+		/// <param name="params"> Параметры запроса. </param>
 		/// <returns>
-		///     Возвращается идентификатор отправленного сообщения.
+		/// Возвращается идентификатор отправленного сообщения.
 		/// </returns>
-		/// <exception cref="System.ArgumentException">Message can not be <c>null</c>.</exception>
+		/// <exception cref="System.ArgumentException"> Message can not be <c> null </c>. </exception>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.send
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.send
 		/// </remarks>
 		public long Send(MessagesSendParams @params)
 		{
@@ -245,62 +274,67 @@ namespace VkNet.Categories
 			if (@params.UserIds != null)
 			{
 				throw new ArgumentException(
-						message: "Для отправки сообщения нескольким пользователям используйте метод SendToUserIds(MessagesSendParams).",
-						paramName: nameof(@params.Message));
+						message: "Для отправки сообщения нескольким пользователям используйте метод SendToUserIds(MessagesSendParams)."
+						, paramName: nameof(@params.Message));
 			}
 
 			return _vk.Call(methodName: "messages.send", parameters: @params);
 		}
 
 		/// <summary>
-		///     Посылает личное сообщение.
+		/// Посылает личное сообщение.
 		/// </summary>
-		/// <param name="params">Параметры запроса.</param>
+		/// <param name="params"> Параметры запроса. </param>
 		/// <returns>
-		///     Возвращается идентификатор отправленного сообщения.
+		/// Возвращается идентификатор отправленного сообщения.
 		/// </returns>
-		/// <exception cref="System.ArgumentException">Message can not be <c>null</c>.</exception>
+		/// <exception cref="System.ArgumentException"> Message can not be <c> null </c>. </exception>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.send
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.send
 		/// </remarks>
 		public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
 		{
 			if (@params.UserIds == null)
 			{
 				throw new ArgumentException(
-						message: "Для отправки сообщения одному пользователю или в беседу используйте метод Send(MessagesSendParams).",
-						paramName: nameof(@params.Message));
+						message: "Для отправки сообщения одному пользователю или в беседу используйте метод Send(MessagesSendParams)."
+						, paramName: nameof(@params.Message));
 			}
 
 			return _vk.Call(methodName: "messages.send", parameters: @params).ToReadOnlyCollectionOf<MessagesSendResult>(selector: x => x);
 		}
 
 		/// <summary>
-		///     Удаляет все личные сообщения в диалоге.
+		/// Удаляет все личные сообщения в диалоге.
 		/// </summary>
 		/// <param name="userId">
-		///     Идентификатор пользователя.
-		///     Если требуется очистить историю беседы, используйте peer_id.
+		/// Идентификатор пользователя.
+		/// Если требуется очистить историю беседы, используйте peer_id.
 		/// </param>
 		/// <param name="peerId">
-		///     Идентификатор назначения.
-		///     Для групповой беседы: 2000000000 + id беседы.
-		///     Для сообщества: -id сообщества.
+		/// Идентификатор назначения.
+		/// Для групповой беседы: 2000000000 + id беседы.
+		/// Для сообщества: -id сообщества.
 		/// </param>
 		/// <param name="offset">
-		///     Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются все сообщения,
-		///     начиная с первого).
+		/// Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются
+		/// все сообщения,
+		/// начиная с первого).
 		/// </param>
 		/// <param name="count">
-		///     Как много сообщений нужно удалить. Обратите внимание что на метод наложено ограничение, за один вызов
-		///     нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке больше - метод нужно вызывать несколько
-		///     раз.
+		/// Как много сообщений нужно удалить. Обратите внимание что на метод наложено
+		/// ограничение, за один вызов
+		/// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке
+		/// больше - метод нужно вызывать несколько
+		/// раз.
 		/// </param>
-		/// <returns>Признак удалось ли удалить сообщения.</returns>
+		/// <returns> Признак удалось ли удалить сообщения. </returns>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
 		/// </remarks>
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
@@ -355,12 +389,13 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Восстанавливает удаленное сообщение.
+		/// Восстанавливает удаленное сообщение.
 		/// </summary>
-		/// <param name="messageId">Идентификатор сообщения, которое нужно восстановить.</param>
+		/// <param name="messageId"> Идентификатор сообщения, которое нужно восстановить. </param>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.restore
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.restore
 		/// </remarks>
 		public bool Restore(ulong messageId)
 		{
@@ -373,22 +408,27 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Помечает сообщения как прочитанные.
+		/// Помечает сообщения как прочитанные.
 		/// </summary>
 		/// <param name="messageIds">
-		///     Идентификаторы сообщений. список положительных чисел, разделенных запятыми (Список
-		///     положительных чисел, разделенных запятыми).
+		/// Идентификаторы сообщений. список положительных чисел, разделенных запятыми
+		/// (Список
+		/// положительных чисел, разделенных запятыми).
 		/// </param>
-		/// <param name="peerId">Идентификатор чата или пользователя, если это диалог. строка (Строка).</param>
+		/// <param name="peerId">
+		/// Идентификатор чата или пользователя, если это диалог.
+		/// строка (Строка).
+		/// </param>
 		/// <param name="startMessageId">
-		///     При передаче этого параметра будут помечены как прочитанные все сообщения, начиная с
-		///     данного. положительное число (Положительное число).
+		/// При передаче этого параметра будут помечены как прочитанные все сообщения,
+		/// начиная с
+		/// данного. положительное число (Положительное число).
 		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает <c>true</c>.
+		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
 		/// </remarks>
 		public bool MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId = null)
 		{
@@ -403,22 +443,25 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Изменяет статус набора текста пользователем в диалоге.
+		/// Изменяет статус набора текста пользователем в диалоге.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя</param>
+		/// <param name="userId"> Идентификатор пользователя </param>
 		/// <param name="peerId">
-		///     Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для сообщества: -id
-		///     сообщества.
+		/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
+		/// сообщества: -id
+		/// сообщества.
 		/// </param>
-		/// <param name="type">typing — пользователь начал набирать текст.</param>
+		/// <param name="type"> typing — пользователь начал набирать текст. </param>
 		/// <returns>
-		///     После успешного выполнения возвращает true, false в противном случае.
-		///     Текст «N набирает сообщение...» отображается в течение 10 секунд после вызова метода, либо до момента отправки
-		///     сообщения.
+		/// После успешного выполнения возвращает true, false в противном случае.
+		/// Текст «N набирает сообщение...» отображается в течение 10 секунд после вызова
+		/// метода, либо до момента отправки
+		/// сообщения.
 		/// </returns>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.setActivity
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.setActivity
 		/// </remarks>
 		public bool SetActivity(long userId, long? peerId = null, string type = "typing")
 		{
@@ -433,19 +476,20 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает текущий статус и дату последней активности указанного пользователя.
+		/// Возвращает текущий статус и дату последней активности указанного пользователя.
 		/// </summary>
 		/// <param name="userId">
-		///     Идентификатор пользователя, информацию о последней активности которого требуется получить. целое
-		///     число, обязательный параметр (Целое число, обязательный параметр).
+		/// Идентификатор пользователя, информацию о последней активности которого
+		/// требуется получить. целое
+		/// число, обязательный параметр (Целое число, обязательный параметр).
 		/// </param>
 		/// <returns>
-		///     Возвращает объект, содержащий следующие поля:
-		///     online — текущий статус пользователя (1 — в сети, 0 — не в сети);
-		///     time — дата последней активности пользователя в формате unixtime.
+		/// Возвращает объект, содержащий следующие поля:
+		/// online — текущий статус пользователя (1 — в сети, 0 — не в сети);
+		/// time — дата последней активности пользователя в формате unixtime.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getLastActivity
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getLastActivity
 		/// </remarks>
 		public LastActivity GetLastActivity(long userId)
 		{
@@ -463,62 +507,74 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Gets the chat.
+		/// Gets the chat.
 		/// </summary>
-		/// <param name="chatId">The chat identifier.</param>
-		/// <param name="fields">The fields.</param>
-		/// <param name="nameCase">The name case.</param>
-		/// <returns></returns>
+		/// <param name="chatId"> The chat identifier. </param>
+		/// <param name="fields"> The fields. </param>
+		/// <param name="nameCase"> The name case. </param>
+		/// <returns> </returns>
 		public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			return GetChat(chatIds: new[] { chatId }, fields: fields, nameCase: nameCase).FirstOrDefault();
 		}
 
 		/// <summary>
-		///     Получает данные для превью чата с приглашением по ссылке.
+		/// Получает данные для превью чата с приглашением по ссылке.
 		/// </summary>
-		/// <param name="link">Ссылка-приглашение.</param>
-		/// <param name="fields">Список полей профилей, данные о которых нужно получить.</param>
-		/// <returns>Возвращает объект представляющий описание чата</returns>
+		/// <param name="link"> Ссылка-приглашение. </param>
+		/// <param name="fields"> Список полей профилей, данные о которых нужно получить. </param>
+		/// <returns> Возвращает объект представляющий описание чата </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте https://vk.com/dev/messages.getChatPreview
+		/// Страница документации ВКонтакте https://vk.com/dev/messages.getChatPreview
 		/// </remarks>
 		public ChatPreview GetChatPreview(string link, ProfileFields fields)
 		{
-			return _vk.Call(methodName: "messages.getChatPreview", parameters: new VkParameters
-			{
-					{ "link", link }
-					, { "fields", fields }
-			});
+			return _vk.Call(methodName: "messages.getChatPreview"
+					, parameters: new VkParameters
+					{
+							{ "link", link }
+							, { "fields", fields }
+					});
 		}
 
 		/// <summary>
-		///     Возвращает информацию о беседе.
+		/// Возвращает информацию о беседе.
 		/// </summary>
 		/// <param name="chatIds">
-		///     Список идентификаторов бесед. список целых чисел, разделенных запятыми (Список целых чисел,
-		///     разделенных запятыми).
+		/// Список идентификаторов бесед. список целых чисел, разделенных запятыми (Список
+		/// целых чисел,
+		/// разделенных запятыми).
 		/// </param>
 		/// <param name="fields">
-		///     Список дополнительных полей профилей, которые необходимо вернуть.
-		///     Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone, photo_50, photo_100,
-		///     photo_200_orig, has_mobile, contacts, education, online, counters, relation, last_seen, status,
-		///     can_write_private_message, can_see_all_posts, can_post, universities список строк, разделенных через запятую
-		///     (Список строк, разделенных через запятую).
+		/// Список дополнительных полей профилей, которые необходимо вернуть.
+		/// Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone,
+		/// photo_50, photo_100,
+		/// photo_200_orig, has_mobile, contacts, education, online, counters, relation,
+		/// last_seen, status,
+		/// can_write_private_message, can_see_all_posts, can_post, universities список
+		/// строк, разделенных через запятую
+		/// (Список строк, разделенных через запятую).
 		/// </param>
 		/// <param name="nameCase">
-		///     Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom,
-		///     родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom.
-		///     строка (Строка).
+		/// Падеж для склонения имени и фамилии пользователя. Возможные значения:
+		/// именительный – nom,
+		/// родительный – gen, дательный – dat, винительный – acc, творительный – ins,
+		/// предложный – abl. По умолчанию nom.
+		/// строка (Строка).
 		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает объект (или список объектов) мультидиалога.
-		///     Если был задан параметр fields, поле users содержит список объектов пользователей с дополнительным полем
-		///     invited_by, содержащим идентификатор пользователя, пригласившего в беседу.
+		/// После успешного выполнения возвращает объект (или список объектов)
+		/// мультидиалога.
+		/// Если был задан параметр fields, поле users содержит список объектов
+		/// пользователей с дополнительным полем
+		/// invited_by, содержащим идентификатор пользователя, пригласившего в беседу.
 		/// </returns>
-		/// <exception cref="System.ArgumentException">At least one chat ID must be defined;chatIds</exception>
+		/// <exception cref="System.ArgumentException">
+		/// At least one chat ID must be
+		/// defined;chatIds
+		/// </exception>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getChat
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getChat
 		/// </remarks>
 		public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null)
 		{
@@ -551,19 +607,21 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Создаёт беседу с несколькими участниками.
+		/// Создаёт беседу с несколькими участниками.
 		/// </summary>
 		/// <param name="userIds">
-		///     Идентификаторы пользователей, которых нужно включить в мультидиалог. список положительных чисел,
-		///     разделенных запятыми, обязательный параметр (Список положительных чисел, разделенных запятыми, обязательный
-		///     параметр).
+		/// Идентификаторы пользователей, которых нужно включить в мультидиалог. список
+		/// положительных чисел,
+		/// разделенных запятыми, обязательный параметр (Список положительных чисел,
+		/// разделенных запятыми, обязательный
+		/// параметр).
 		/// </param>
-		/// <param name="title">Название беседы. строка (Строка).</param>
+		/// <param name="title"> Название беседы. строка (Строка). </param>
 		/// <returns>
-		///     После успешного выполнения возвращает  идентификатор созданного чата (chat_id).
+		/// После успешного выполнения возвращает  идентификатор созданного чата (chat_id).
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.createChat
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.createChat
 		/// </remarks>
 		public long CreateChat(IEnumerable<ulong> userIds, string title)
 		{
@@ -582,15 +640,21 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Изменяет название беседы.
+		/// Изменяет название беседы.
 		/// </summary>
-		/// <param name="chatId">Идентификатор беседы. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
-		/// <param name="title">Новое название для беседы. строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <param name="chatId">
+		/// Идентификатор беседы. целое число, обязательный параметр (Целое число,
+		/// обязательный параметр).
+		/// </param>
+		/// <param name="title">
+		/// Новое название для беседы. строка, обязательный параметр (Строка, обязательный
+		/// параметр).
+		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает <c>true</c>.
+		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.editChat
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
 		/// </remarks>
 		public bool EditChat(long chatId, string title)
 		{
@@ -609,31 +673,38 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Позволяет получить список пользователей мультидиалога по его id.
+		/// Позволяет получить список пользователей мультидиалога по его id.
 		/// </summary>
 		/// <param name="chatIds">
-		///     Идентификаторы бесед. список целых чисел, разделенных запятыми (Список целых чисел, разделенных
-		///     запятыми).
+		/// Идентификаторы бесед. список целых чисел, разделенных запятыми (Список целых
+		/// чисел, разделенных
+		/// запятыми).
 		/// </param>
 		/// <param name="fields">
-		///     Список дополнительных полей профилей, которые необходимо вернуть.
-		///     Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone, photo_50, photo_100,
-		///     photo_200_orig, has_mobile, contacts, education, online, counters, relation, last_seen, status,
-		///     can_write_private_message, can_see_all_posts, can_post, universities список строк, разделенных через запятую
-		///     (Список строк, разделенных через запятую).
+		/// Список дополнительных полей профилей, которые необходимо вернуть.
+		/// Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone,
+		/// photo_50, photo_100,
+		/// photo_200_orig, has_mobile, contacts, education, online, counters, relation,
+		/// last_seen, status,
+		/// can_write_private_message, can_see_all_posts, can_post, universities список
+		/// строк, разделенных через запятую
+		/// (Список строк, разделенных через запятую).
 		/// </param>
 		/// <param name="nameCase">
-		///     Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom,
-		///     родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom.
-		///     строка (Строка).
+		/// Падеж для склонения имени и фамилии пользователя. Возможные значения:
+		/// именительный – nom,
+		/// родительный – gen, дательный – dat, винительный – acc, творительный – ins,
+		/// предложный – abl. По умолчанию nom.
+		/// строка (Строка).
 		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает список идентификаторов участников беседы.
-		///     Если был задан параметр fields, возвращает список объектов пользователей с дополнительным полем invited_by,
-		///     содержащим идентификатор пользователя, пригласившего в беседу.
+		/// После успешного выполнения возвращает список идентификаторов участников беседы.
+		/// Если был задан параметр fields, возвращает список объектов пользователей с
+		/// дополнительным полем invited_by,
+		/// содержащим идентификатор пользователя, пригласившего в беседу.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
 		/// </remarks>
 		public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
 		{
@@ -670,19 +741,25 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил
-		///     исключаемого пользователя.
+		/// Исключает из мультидиалога пользователя, если текущий пользователь был
+		/// создателем беседы либо пригласил
+		/// исключаемого пользователя.
 		/// </summary>
-		/// <param name="chatId">Идентификатор беседы. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
+		/// <param name="chatId">
+		/// Идентификатор беседы. целое число, обязательный параметр (Целое число,
+		/// обязательный параметр).
+		/// </param>
 		/// <param name="userId">
-		///     Идентификатор пользователя, которого необходимо исключить из беседы. Может быть меньше нуля в
-		///     случае, если пользователь приглашён по email. обязательный параметр (Обязательный параметр).
+		/// Идентификатор пользователя, которого необходимо исключить из беседы. Может быть
+		/// меньше нуля в
+		/// случае, если пользователь приглашён по email. обязательный параметр
+		/// (Обязательный параметр).
 		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает <c>true</c>.
+		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.removeChatUser
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.removeChatUser
 		/// </remarks>
 		public bool RemoveChatUser(long chatId, long userId)
 		{
@@ -696,18 +773,27 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает данные, необходимые для подключения к Long Poll серверу.
-		///     Long Poll подключение позволит Вам моментально узнавать о приходе новых сообщений и других событий.
+		/// Возвращает данные, необходимые для подключения к Long Poll серверу.
+		/// Long Poll подключение позволит Вам моментально узнавать о приходе новых
+		/// сообщений и других событий.
 		/// </summary>
-		/// <param name="lpVersion">версия для подключения к Long Poll. Актуальная версия: 2. </param>
-		/// <param name="needPts"><c>true</c> — возвращать поле pts, необходимое для работы метода messages.getLongPollHistory </param>
+		/// <param name="lpVersion">
+		/// версия для подключения к Long Poll. Актуальная версия:
+		/// 2.
+		/// </param>
+		/// <param name="needPts">
+		/// <c> true </c> — возвращать поле pts, необходимое для работы метода
+		/// messages.getLongPollHistory
+		/// </param>
 		/// <returns>
-		///     Возвращает объект, с помощью которого можно подключиться к серверу быстрых сообщений для мгновенного
-		///     получения приходящих сообщений и других событий.
+		/// Возвращает объект, с помощью которого можно подключиться к серверу быстрых
+		/// сообщений для мгновенного
+		/// получения приходящих сообщений и других событий.
 		/// </returns>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollServer
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollServer
 		/// </remarks>
 		[Pure]
 		public LongPollServerResponse GetLongPollServer(bool needPts = false, uint lpVersion = 2)
@@ -722,15 +808,22 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает обновления в личных сообщениях пользователя.
-		///     Для ускорения работы с личными сообщениями может быть полезно кешировать уже загруженные ранее сообщения на
-		///     мобильном устройстве / ПК пользователя, чтобы не получать их повторно при каждом обращении.
-		///     Этот метод помогает осуществить синхронизацию локальной копии списка сообщений с актуальной версией.
+		/// Возвращает обновления в личных сообщениях пользователя.
+		/// Для ускорения работы с личными сообщениями может быть полезно кешировать уже
+		/// загруженные ранее сообщения на
+		/// мобильном устройстве / ПК пользователя, чтобы не получать их повторно при
+		/// каждом обращении.
+		/// Этот метод помогает осуществить синхронизацию локальной копии списка сообщений
+		/// с актуальной версией.
 		/// </summary>
-		/// <param name="params">Параметры запроса к LongPool серверу MessagesGetLongPollHistoryParams</param>
+		/// <param name="params">
+		/// Параметры запроса к LongPool серверу
+		/// MessagesGetLongPollHistoryParams
+		/// </param>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory
 		/// </remarks>
 		public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params)
 		{
@@ -743,20 +836,21 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Позволяет удалить фотографию мультидиалога.
+		/// Позволяет удалить фотографию мультидиалога.
 		/// </summary>
-		/// <param name="messageId">Идентификатор отправленного системного сообщения;</param>
+		/// <param name="messageId"> Идентификатор отправленного системного сообщения; </param>
 		/// <param name="chatId">
-		///     Идентификатор беседы. положительное число, обязательный параметр (Положительное число,
-		///     обязательный параметр).
+		/// Идентификатор беседы. положительное число, обязательный параметр (Положительное
+		/// число,
+		/// обязательный параметр).
 		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает объект, содержащий следующие поля:
-		///     message_id — идентификатор отправленного системного сообщения;
-		///     chat — объект мультидиалога.
+		/// После успешного выполнения возвращает объект, содержащий следующие поля:
+		/// message_id — идентификатор отправленного системного сообщения;
+		/// chat — объект мультидиалога.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
 		/// </remarks>
 		public Chat DeleteChatPhoto(out ulong messageId, ulong chatId)
 		{
@@ -772,21 +866,24 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Позволяет установить фотографию мультидиалога, загруженную с помощью метода photos.getChatUploadServer.
+		/// Позволяет установить фотографию мультидиалога, загруженную с помощью метода
+		/// photos.getChatUploadServer.
 		/// </summary>
 		/// <param name="file">
-		///     Содержимое поля response из ответа специального upload сервера, полученного в результате загрузки
-		///     изображения на адрес, полученный методом photos.getChatUploadServer. строка, обязательный параметр (Строка,
-		///     обязательный параметр).
+		/// Содержимое поля response из ответа специального upload сервера, полученного в
+		/// результате загрузки
+		/// изображения на адрес, полученный методом photos.getChatUploadServer. строка,
+		/// обязательный параметр (Строка,
+		/// обязательный параметр).
 		/// </param>
-		/// <param name="messageId">Идентификатор отправленного системного сообщения;</param>
+		/// <param name="messageId"> Идентификатор отправленного системного сообщения; </param>
 		/// <returns>
-		///     После успешного выполнения возвращает объект, содержащий следующие поля:
-		///     message_id — идентификатор отправленного системного сообщения;
-		///     chat — объект мультидиалога.
+		/// После успешного выполнения возвращает объект, содержащий следующие поля:
+		/// message_id — идентификатор отправленного системного сообщения;
+		/// chat — объект мультидиалога.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.setChatPhoto
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.setChatPhoto
 		/// </remarks>
 		public long SetChatPhoto(out long messageId, string file)
 		{
@@ -802,21 +899,23 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Помечает сообщения как важные либо снимает отметку.
+		/// Помечает сообщения как важные либо снимает отметку.
 		/// </summary>
 		/// <param name="messageIds">
-		///     Список идентификаторов сообщений, которые необходимо пометить.список положительных чисел,
-		///     разделенных запятыми (Список положительных чисел, разделенных запятыми).
+		/// Список идентификаторов сообщений, которые необходимо пометить.список
+		/// положительных чисел,
+		/// разделенных запятыми (Список положительных чисел, разделенных запятыми).
 		/// </param>
 		/// <param name="important">
-		///     &#39;&#39;1&#39;&#39;, если сообщения необходимо пометить, как важные;&#39;&#39;0&#39;&#39;,
-		///     если необходимо снять пометку.положительное число (Положительное число).
+		/// &#39;&#39;1&#39;&#39;, если сообщения необходимо пометить, как важные;&#39;
+		/// &#39;0&#39;&#39;,
+		/// если необходимо снять пометку.положительное число (Положительное число).
 		/// </param>
 		/// <returns>
-		///     Возвращает список идентификаторов успешно помеченных сообщений.
+		/// Возвращает список идентификаторов успешно помеченных сообщений.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportant
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportant
 		/// </remarks>
 		public ReadOnlyCollection<long> MarkAsImportant(IEnumerable<long> messageIds, bool important = true)
 		{
@@ -832,14 +931,15 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Отправляет стикер.
+		/// Отправляет стикер.
 		/// </summary>
-		/// <param name="params">Параметры запроса.</param>
+		/// <param name="params"> Параметры запроса. </param>
 		/// <returns>
-		///     После успешного выполнения возвращает идентификатор отправленного сообщения (mid).
+		/// После успешного выполнения возвращает идентификатор отправленного сообщения
+		/// (mid).
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.sendSticker
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.sendSticker
 		/// </remarks>
 		public long SendSticker(MessagesSendStickerParams @params)
 		{
@@ -849,22 +949,25 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Возвращает материалы диалога или беседы..
+		/// Возвращает материалы диалога или беседы..
 		/// </summary>
-		/// <param name="params">Параметры запроса.</param>
-		/// <param name="nextFrom">Новое значение start_from. </param>
+		/// <param name="params"> Параметры запроса. </param>
+		/// <param name="nextFrom"> Новое значение start_from. </param>
 		/// <returns>
-		///     После успешного выполнения возвращает массив объектов photo, video, audio или doc, в зависимости от значения
-		///     media_type, а также дополнительное поле next_from, содержащее новое значение start_from.
-		///     Если в media_type передано значение link, возвращает список объектов-ссылок:
-		///     url URL ссылки.
-		///     строка title заголовок сниппета.
-		///     строка description описание сниппета.
-		///     строка image_src URL изображения сниппета.
-		///     строка.
+		/// После успешного выполнения возвращает массив объектов photo, video, audio или
+		/// doc, в зависимости от значения
+		/// media_type, а также дополнительное поле next_from, содержащее новое значение
+		/// start_from.
+		/// Если в media_type передано значение link, возвращает список объектов-ссылок:
+		/// url URL ссылки.
+		/// строка title заголовок сниппета.
+		/// строка description описание сниппета.
+		/// строка image_src URL изображения сниппета.
+		/// строка.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getHistoryAttachments
+		/// Страница документации ВКонтакте
+		/// http://vk.com/dev/messages.getHistoryAttachments
 		/// </remarks>
 		public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
 		{
@@ -876,58 +979,64 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Получает ссылку для приглашения пользователя в беседу.
+		/// Получает ссылку для приглашения пользователя в беседу.
 		/// </summary>
-		/// <param name="peerId">Идентификатор назначения.</param>
+		/// <param name="peerId"> Идентификатор назначения. </param>
 		/// <param name="reset">
-		///     1 — сгенерировать новую ссылку, сбросив предыдущую.
-		///     0 — получить предыдущую ссылку.
+		/// 1 — сгенерировать новую ссылку, сбросив предыдущую.
+		/// 0 — получить предыдущую ссылку.
 		/// </param>
 		/// <returns>
-		///     Возвращает объект с единственным полем link (string), которое содержит ссылку для приглашения в беседу.
+		/// Возвращает объект с единственным полем link (string), которое содержит ссылку
+		/// для приглашения в беседу.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getInviteLink
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getInviteLink
 		/// </remarks>
 		public string GetInviteLink(ulong peerId, bool reset)
 		{
-			return _vk.Call(methodName: "messages.getInviteLink", parameters: new VkParameters
-			{
-					{ "peer_id", peerId }
-					, { "reset", reset }
-			})[key: "link"];
+			return _vk.Call(methodName: "messages.getInviteLink"
+					, parameters: new VkParameters
+					{
+							{ "peer_id", peerId }
+							, { "reset", reset }
+					})[key: "link"];
 		}
 
 		/// <summary>
-		///     Возвращает информацию о том, разрешена ли отправка сообщений от сообщества пользователю.
+		/// Возвращает информацию о том, разрешена ли отправка сообщений от сообщества
+		/// пользователю.
 		/// </summary>
-		/// <param name="groupId">Идентификатор сообщества.</param>
-		/// <param name="userId">Идентификатор пользователя.</param>
+		/// <param name="groupId"> Идентификатор сообщества. </param>
+		/// <param name="userId"> Идентификатор пользователя. </param>
 		/// <returns>
-		///     Возвращает объект с единственным полем is_allowed (integer, [0,1]). Если отправка сообщений разрешена, поле
-		///     содержит 1, иначе — 0.
+		/// Возвращает объект с единственным полем is_allowed (integer, [0,1]). Если
+		/// отправка сообщений разрешена, поле
+		/// содержит 1, иначе — 0.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.isMessagesFromGroupAllowed
+		/// Страница документации ВКонтакте
+		/// http://vk.com/dev/messages.isMessagesFromGroupAllowed
 		/// </remarks>
 		public bool IsMessagesFromGroupAllowed(ulong groupId, ulong userId)
 		{
-			return _vk.Call(methodName: "messages.isMessagesFromGroupAllowed", parameters: new VkParameters
-			{
-					{ "group_id", groupId }
-					, { "user_id", userId }
-			})[key: "is_allowed"];
+			return _vk.Call(methodName: "messages.isMessagesFromGroupAllowed"
+					, parameters: new VkParameters
+					{
+							{ "group_id", groupId }
+							, { "user_id", userId }
+					})[key: "is_allowed"];
 		}
 
 		/// <summary>
-		///     Позволяет присоединиться к чату по ссылке-приглашению.
+		/// Позволяет присоединиться к чату по ссылке-приглашению.
 		/// </summary>
-		/// <param name="link">Ссылка-приглашение.</param>
+		/// <param name="link"> Ссылка-приглашение. </param>
 		/// <returns>
-		///     Возвращает идентификатор чата в поле chat_id.
+		/// Возвращает идентификатор чата в поле chat_id.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.joinChatByInviteLink
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.joinChatByInviteLink
 		/// </remarks>
 		public long JoinChatByInviteLink(string link)
 		{
@@ -935,46 +1044,50 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Помечает диалог как отвеченный либо снимает отметку.
+		/// Помечает диалог как отвеченный либо снимает отметку.
 		/// </summary>
-		/// <param name="peerId">Идентификатор диалога</param>
-		/// <param name="answered">флаг, может принимать значения 1 или 0, по умолчанию 1</param>
+		/// <param name="peerId"> Идентификатор диалога </param>
+		/// <param name="answered"> флаг, может принимать значения 1 или 0, по умолчанию 1 </param>
 		/// <returns>
-		///     После успешного выполнения возвращает 1.
+		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
 		/// </remarks>
 		public bool MarkAsAnsweredDialog(long peerId, bool answered = true)
 		{
-			return _vk.Call(methodName: "messages.markAsAnsweredDialog", parameters: new VkParameters
-			{
-					{ "peer_id", peerId }
-					, { "answered", answered }
-			});
+			return _vk.Call(methodName: "messages.markAsAnsweredDialog"
+					, parameters: new VkParameters
+					{
+							{ "peer_id", peerId }
+							, { "answered", answered }
+					});
 		}
 
 		/// <summary>
-		///     Помечает диалог как важный либо снимает отметку.
+		/// Помечает диалог как важный либо снимает отметку.
 		/// </summary>
-		/// <param name="peerId">Идентификатор диалога </param>
+		/// <param name="peerId"> Идентификатор диалога </param>
 		/// <param name="important">
-		///     <c>true</c>, если сообщения необходимо пометить, как важные;
-		///     <c>0</c>, если необходимо снять пометку.положительное число (Положительное число).
+		/// <c> true </c>, если сообщения необходимо пометить, как важные;
+		/// <c> 0 </c>, если необходимо снять пометку.положительное число (Положительное
+		/// число).
 		/// </param>
 		/// <returns>
-		///     После успешного выполнения возвращает 1.
+		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportantDialog
+		/// Страница документации ВКонтакте
+		/// http://vk.com/dev/messages.markAsImportantDialog
 		/// </remarks>
 		public bool MarkAsImportantDialog(long peerId, bool important = true)
 		{
-			return _vk.Call(methodName: "messages.markAsImportantDialog", parameters: new VkParameters
-			{
-					{ "peer_id", peerId }
-					, { "important", important }
-			});
+			return _vk.Call(methodName: "messages.markAsImportantDialog"
+					, parameters: new VkParameters
+					{
+							{ "peer_id", peerId }
+							, { "important", important }
+					});
 		}
 
 		/// <inheritdoc />
@@ -984,17 +1097,22 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		///     Ворзвращает указанное сообщение по его идентификатору.
+		/// Ворзвращает указанное сообщение по его идентификатору.
 		/// </summary>
-		/// <param name="messageId">Идентификатор запрошенного сообщения.</param>
+		/// <param name="messageId"> Идентификатор запрошенного сообщения. </param>
 		/// <param name="previewLength">
-		///     Количество символов, по которому нужно обрезать сообщение.
-		///     Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).
+		/// Количество символов, по которому нужно обрезать сообщение.
+		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
+		/// обрезаются).
 		/// </param>
-		/// <returns>Запрошенное сообщение, null если сообщение с заданным идентификатором не найдено.</returns>
+		/// <returns>
+		/// Запрошенное сообщение, null если сообщение с заданным идентификатором не
+		/// найдено.
+		/// </returns>
 		/// <remarks>
-		///     Для вызова этого метода Ваше приложение должно иметь права с битовой маской, содержащей Settings.Messages
-		///     Страница документации ВКонтакте http://vk.com/dev/messages.getById
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 		/// </remarks>
 		[Pure]
 		public Message GetById(ulong messageId, uint? previewLength = null)

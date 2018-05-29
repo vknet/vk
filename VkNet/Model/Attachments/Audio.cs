@@ -7,8 +7,8 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Аудиозапись пользователя или группы.
-	///     См. описание http://vk.com/dev/audio_object
+	/// Аудиозапись пользователя или группы.
+	/// См. описание http://vk.com/dev/audio_object
 	/// </summary>
 	[Serializable]
 	public class Audio : MediaAttachment
@@ -19,42 +19,42 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Исполнитель аудиозаписи.
+		/// Исполнитель аудиозаписи.
 		/// </summary>
 		public string Artist { get; set; }
 
 		/// <summary>
-		///     Название композиции.
+		/// Название композиции.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Длительность аудиозаписи в секундах.
+		/// Длительность аудиозаписи в секундах.
 		/// </summary>
 		public int Duration { get; set; }
 
 		/// <summary>
-		///     Ссылка на аудиозапись (привязана к ip-адресу клиентского приложения).
+		/// Ссылка на аудиозапись (привязана к ip-адресу клиентского приложения).
 		/// </summary>
 		public Uri Uri { get; set; }
 
 		/// <summary>
-		///     Идентификатор текста аудиозаписи (если доступно).
+		/// Идентификатор текста аудиозаписи (если доступно).
 		/// </summary>
 		public long? LyricsId { get; set; }
 
 		/// <summary>
-		///     Идентификатор альбома аудиозаписи (если присвоен).
+		/// Идентификатор альбома аудиозаписи (если присвоен).
 		/// </summary>
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		///     Жанр аудиозаписи.
+		/// Жанр аудиозаписи.
 		/// </summary>
 		public AudioGenre? Genre { get; set; }
 
 		/// <summary>
-		///     Дата добавления.
+		/// Дата добавления.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
@@ -62,10 +62,10 @@ namespace VkNet.Model.Attachments
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Audio FromJson(VkResponse response)
 		{
 			var audio = new Audio

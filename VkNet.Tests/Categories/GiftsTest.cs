@@ -78,8 +78,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: gift.Privacy, expression: Is.EqualTo(expected: GiftPrivacy.All));
 
 			Assert.That(actual: gift.GiftHash
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"XZuJeI8mbdkphj7QQ8I7n*Bh1bnuJQqwraxWyjYdp45ZWPhzrn6pTPlUirsRlvyPq7iwAd5/I6iWNYl8pch6jZVRjT5BnpGtN8flF00CFI58XXEJboNLTyfvO4pFL48psGgKdgRJJgi8cL7zfcGZhVMYXG/lrCHVP9GoLXdOSso-"));
 		}
 	}

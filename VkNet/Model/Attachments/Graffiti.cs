@@ -4,14 +4,14 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Граффити.
-	///     См. описание http://vk.com/dev/attachments_w
+	/// Граффити.
+	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[Serializable]
 	public class Graffiti : MediaAttachment
 	{
 		/// <summary>
-		///     Граффити.
+		/// Граффити.
 		/// </summary>
 		static Graffiti()
 		{
@@ -19,22 +19,22 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Адрес изображения для предпросмотра.
+		/// Адрес изображения для предпросмотра.
 		/// </summary>
 		public string Photo200 { get; set; }
 
 		/// <summary>
-		///     Адрес полноразмерного изображения.
+		/// Адрес полноразмерного изображения.
 		/// </summary>
 		public string Photo586 { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Graffiti FromJson(VkResponse response)
 		{
 			var graffiti = new Graffiti

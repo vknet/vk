@@ -1,17 +1,17 @@
 ﻿namespace VkNet.Enums
 {
 	/// <summary>
-	///     Статус рекламного кабинета.
+	/// Статус рекламного кабинета.
 	/// </summary>
 	public enum AccountStatus
 	{
 		/// <summary>
-		///     Активен
+		/// Активен
 		/// </summary>
 		Active = 1
 
 		, /// <summary>
-		///     Неактивен
+		/// Неактивен
 		/// </summary>
 		Inactive = 0
 	}

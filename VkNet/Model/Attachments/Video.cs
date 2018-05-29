@@ -7,17 +7,17 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Видеозапись пользователя или группы.
+	/// Видеозапись пользователя или группы.
 	/// </summary>
 	/// <remarks>
-	///     См. описание http://vk.com/dev/video_object
+	/// См. описание http://vk.com/dev/video_object
 	/// </remarks>
 	[DebuggerDisplay(value: "Id = {Id}, Title = {Title}")]
 	[Serializable]
 	public class Video : MediaAttachment
 	{
 		/// <summary>
-		///     Видеозапись пользователя или группы.
+		/// Видеозапись пользователя или группы.
 		/// </summary>
 		static Video()
 		{
@@ -25,108 +25,113 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Название видеозаписи.
+		/// Название видеозаписи.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Текст описания видеозаписи.
+		/// Текст описания видеозаписи.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Длительность ролика в секундах.
+		/// Длительность ролика в секундах.
 		/// </summary>
 		public int? Duration { get; set; }
 
 		/// <summary>
-		///     Uri изображения-обложки ролика с размером 130x98px.
+		/// Uri изображения-обложки ролика с размером 130x98px.
 		/// </summary>
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
-		///     Uri изображения-обложки ролика с размером 320x240px.
+		/// Uri изображения-обложки ролика с размером 320x240px.
 		/// </summary>
 		public Uri Photo320 { get; set; }
 
 		/// <summary>
-		///     Uri изображения-обложки ролика с размером 640x480px (если размер есть).
+		/// Uri изображения-обложки ролика с размером 640x480px (если размер есть).
 		/// </summary>
 		public Uri Photo640 { get; set; }
 
 		/// <summary>
-		///     Uri изображения-обложки ролика с размером 800x450px (если размер есть).
+		/// Uri изображения-обложки ролика с размером 800x450px (если размер есть).
 		/// </summary>
 		public Uri Photo800 { get; set; }
 
 		/// <summary>
-		///     Дата добавления видеозаписи.
+		/// Дата добавления видеозаписи.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
-		///     Дата добавления видеозаписи пользователем или группой в формате unixtime.
+		/// Дата добавления видеозаписи пользователем или группой в формате unixtime.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? AddingDate { get; set; }
 
 		/// <summary>
-		///     Количество просмотров.
+		/// Количество просмотров.
 		/// </summary>
 		public int? Views { get; set; }
 
 		/// <summary>
-		///     Количество комментариев.
+		/// Количество комментариев.
 		/// </summary>
 		public int? Comments { get; set; }
 
 		/// <summary>
-		///     Адрес страницы с плеером, который можно использовать для воспроизведения ролика в браузере.
-		///     Поддерживается flash и html5, плеер всегда масштабируется по размеру окна.
+		/// Адрес страницы с плеером, который можно использовать для воспроизведения ролика
+		/// в браузере.
+		/// Поддерживается flash и html5, плеер всегда масштабируется по размеру окна.
 		/// </summary>
 		public Uri Player { get; set; }
 
 		/// <summary>
-		///     Платформа
+		/// Платформа
 		/// </summary>
 		public string Platform { set; get; }
 
 		/// <summary>
-		///     поле возвращается, если пользователь может редактировать видеозапись, всегда содержит 1.
+		/// поле возвращается, если пользователь может редактировать видеозапись, всегда
+		/// содержит 1.
 		/// </summary>
 		[JsonProperty(propertyName: "can_edit")]
 		public bool? CanEdit { get; set; }
 
 		/// <summary>
-		///     Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
+		/// Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
 		/// </summary>
 		public bool? CanAdd { get; set; }
 
 		/// <summary>
-		///     поле возвращается, если видеозапись приватная (например, была загружена в личное сообщение), всегда содержит 1.
+		/// поле возвращается, если видеозапись приватная (например, была загружена в
+		/// личное сообщение), всегда содержит 1.
 		/// </summary>
 		[JsonProperty(propertyName: "is_private")]
 		public bool? IsPrivate { get; set; }
 
 		/// <summary>
-		///     Ключ доступа.
+		/// Ключ доступа.
 		/// </summary>
 		public string AccessKey { set; get; }
 
 		/// <summary>
-		///     Поле возвращается в том случае, если видеоролик находится в процессе обработки, всегда содержит 1.
+		/// Поле возвращается в том случае, если видеоролик находится в процессе обработки,
+		/// всегда содержит 1.
 		/// </summary>
 		public bool? Processing { set; get; }
 
 		/// <summary>
-		///     Поле возвращается в том случае, если видеозапись является прямой трансляцией, всегда содержит 1. Обратите внимание,
-		///     в этом случае в поле duration содержится значение 0.
+		/// Поле возвращается в том случае, если видеозапись является прямой трансляцией,
+		/// всегда содержит 1. Обратите внимание,
+		/// в этом случае в поле duration содержится значение 0.
 		/// </summary>
 		public bool? Live { get; set; }
 
 		/// <summary>
-		///     (для live = 1). Поле свидетельствует о том, что трансляция скоро начнётся.
+		/// (для live = 1). Поле свидетельствует о том, что трансляция скоро начнётся.
 		/// </summary>
 		[JsonProperty(propertyName: "upcoming")]
 		public bool? Upcoming { get; set; }
@@ -134,57 +139,58 @@ namespace VkNet.Model.Attachments
 	#region Недокументированные
 
 		/// <summary>
-		///     Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
+		/// Признак может ли текущий пользователь добавлять комментарии к видеозаписи.
 		/// </summary>
 		public bool? CanComment { get; set; }
 
 		/// <summary>
-		///     Признак может ли текущий пользователь сделать репост данной видеозаписи.
+		/// Признак может ли текущий пользователь сделать репост данной видеозаписи.
 		/// </summary>
 		public bool? CanRepost { get; set; }
 
 		/// <summary>
-		///     Информация о лайках к видеозаписи.
+		/// Информация о лайках к видеозаписи.
 		/// </summary>
 		public Likes Likes { get; set; }
 
 		/// <summary>
-		///     Признак является ли видеозапись зацикленной.
+		/// Признак является ли видеозапись зацикленной.
 		/// </summary>
 		public bool? Repeat { get; set; }
 
 		/// <summary>
-		///     Идентификатор видеоальбома VideoAlbum
+		/// Идентификатор видеоальбома VideoAlbum
 		/// </summary>
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		///     Uri, по которому необходимо выполнить загрузку видеов (см. метод VideoCategory.Save
+		/// Uri, по которому необходимо выполнить загрузку видеов (см. метод
+		/// VideoCategory.Save
 		/// </summary>
 		public Uri UploadUrl { get; set; }
 
 		/// <summary>
-		///     Отметка к видеозаписи.
+		/// Отметка к видеозаписи.
 		/// </summary>
 		public Tag Tag { get; set; }
 
 		/// <summary>
-		///     Ссылки на файлы
+		/// Ссылки на файлы
 		/// </summary>
 		public VideoFiles Files { get; set; }
 
 		/// <summary>
-		///     Информация о репостах записи
+		/// Информация о репостах записи
 		/// </summary>
 		public Reposts Reposts { get; set; }
 
 		/// <summary>
-		///     Ширина
+		/// Ширина
 		/// </summary>
 		public int? Width { get; set; }
 
 		/// <summary>
-		///     Высота
+		/// Высота
 		/// </summary>
 		public int? Height { get; set; }
 
@@ -193,10 +199,10 @@ namespace VkNet.Model.Attachments
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Video FromJson(VkResponse response)
 		{
 			return new Video
@@ -241,7 +247,7 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Привести объект к строке.
+		/// Привести объект к строке.
 		/// </summary>
 		public override string ToString()
 		{

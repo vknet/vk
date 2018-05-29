@@ -10,15 +10,15 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о сообществе (группе).
-	///     См. описание http://vk.com/dev/fields_groups
+	/// Информация о сообществе (группе).
+	/// См. описание http://vk.com/dev/fields_groups
 	/// </summary>
 	[DebuggerDisplay(value: "[{Id}] {Name}")]
 	[Serializable]
 	public class Group : IVkModel
 	{
 		/// <summary>
-		///     Конструктор
+		/// Конструктор
 		/// </summary>
 		public Group()
 		{
@@ -26,10 +26,10 @@ namespace VkNet.Model
 		}
 
 		/// <summary>
-		///     Преобразовать из JSON
+		/// Преобразовать из JSON
 		/// </summary>
-		/// <param name="response">Ответ от сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ от сервера. </param>
+		/// <returns> </returns>
 		IVkModel IVkModel.FromJson(VkResponse response)
 		{
 			return FromJson(response: response);
@@ -38,10 +38,10 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Group FromJson(VkResponse response)
 		{
 			var group = new Group
@@ -108,67 +108,69 @@ namespace VkNet.Model
 	#region Стандартные поля
 
 		/// <summary>
-		///     Идентификатор сообщества.
+		/// Идентификатор сообщества.
 		/// </summary>
 		public long Id { get; set; }
 
 		/// <summary>
-		///     Название сообщества.
+		/// Название сообщества.
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		///     Короткий адрес страницы сообщества, например, apiclub. Если он не назначен, то 'club'+gid, например, club35828305.
+		/// Короткий адрес страницы сообщества, например, apiclub. Если он не назначен, то
+		/// 'club'+gid, например, club35828305.
 		/// </summary>
 		public string ScreenName { get; set; }
 
 		/// <summary>
-		///     Публичность группы.
+		/// Публичность группы.
 		/// </summary>
 		public GroupPublicity? IsClosed { get; set; }
 
 		/// <summary>
-		///     Возвращается в случае, если сообщество удалено или заблокировано
+		/// Возвращается в случае, если сообщество удалено или заблокировано
 		/// </summary>
 		public Deactivated Deactivated { get; set; }
 
 		/// <summary>
-		///     Признак яляется ли текущий пользователь руководителем сообщества.
+		/// Признак яляется ли текущий пользователь руководителем сообщества.
 		/// </summary>
 		public bool IsAdmin { get; set; }
 
 		/// <summary>
-		///     Уровень административных полномочий текущего пользователя в сообществе (действительно, если IsAdmin = true).
+		/// Уровень административных полномочий текущего пользователя в сообществе
+		/// (действительно, если IsAdmin = true).
 		/// </summary>
 		public AdminLevel? AdminLevel { get; set; }
 
 		/// <summary>
-		///     Признак является ли текущий пользователь участником сообщества.
+		/// Признак является ли текущий пользователь участником сообщества.
 		/// </summary>
 		public bool? IsMember { get; set; }
 
 		/// <summary>
-		///     Идентификатор пользователя пригласившего в группу
+		/// Идентификатор пользователя пригласившего в группу
 		/// </summary>
 		public long? InvitedBy { get; set; }
 
 		/// <summary>
-		///     Тип сообщества.
+		/// Тип сообщества.
 		/// </summary>
 		public GroupType Type { get; set; }
 
 		/// <summary>
-		///     url фотографии сообщества с размером 50x50px
+		/// url фотографии сообщества с размером 50x50px
 		/// </summary>
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
-		///     url фотографии сообщества с размером 100x100px
+		/// url фотографии сообщества с размером 100x100px
 		/// </summary>
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
-		///     url фотографии сообщества с размером 200x200px
+		/// url фотографии сообщества с размером 200x200px
 		/// </summary>
 		public Uri Photo200 { get; set; }
 
@@ -177,8 +179,9 @@ namespace VkNet.Model
 	#region Опциональные поля
 
 		/// <summary>
-		///     Строка состояния публичной страницы. У групп возвращается строковое значение, открыта ли группа или нет,
-		///     а у событий дата начала.
+		/// Строка состояния публичной страницы. У групп возвращается строковое значение,
+		/// открыта ли группа или нет,
+		/// а у событий дата начала.
 		/// </summary>
 		public string Activity { get; set; }
 
@@ -188,116 +191,124 @@ namespace VkNet.Model
 		public AgeLimit AgeLimits { get; set; }
 
 		/// <summary>
-		///     Информация о забанненом (добавленном в черный список) пользователе сообщества.
+		/// Информация о забанненом (добавленном в черный список) пользователе сообщества.
 		/// </summary>
 		public BanInfo BanInfo { get; set; }
 
 		/// <summary>
-		///     Информация о том, может ли текущий пользователь создать тему обсуждения в группе.
-		///     (<c>true</c>, если пользователь может создать обсуждение, <c>false</c> – если не может).
+		/// Информация о том, может ли текущий пользователь создать тему обсуждения в
+		/// группе.
+		/// (<c> true </c>, если пользователь может создать обсуждение, <c> false </c> –
+		/// если не может).
 		/// </summary>
 		public bool CanCreateTopic { get; set; }
 
 		/// <summary>
-		///     информация о том, может ли текущий пользователь написать сообщение сообществу.
+		/// информация о том, может ли текущий пользователь написать сообщение сообществу.
 		/// </summary>
 		[JsonProperty(propertyName: "can_message")]
 		public bool CanMessage { get; set; }
 
 		/// <summary>
-		///     Информация о том, может ли текущий пользователь оставлять записи на стене сообщества (<c>true</c> - может,
-		///     <c>false</c> - не может).
+		/// Информация о том, может ли текущий пользователь оставлять записи на стене
+		/// сообщества (<c> true </c> - может,
+		/// <c> false </c> - не может).
 		/// </summary>
 		public bool CanPost { get; set; }
 
 		/// <summary>
-		///     Информация о том, разрешено видеть чужие записи на стене группы (<c>true</c> - разрешено, <c>false</c> - не
-		///     разрешено).
+		/// Информация о том, разрешено видеть чужие записи на стене группы (<c> true </c>
+		/// - разрешено, <c> false </c> - не
+		/// разрешено).
 		/// </summary>
 		public bool CanSeeAllPosts { get; set; }
 
 		/// <summary>
-		///     Информация о том, может ли текущий пользователь загружать документы в группу (<c>true</c>, если пользователь может
-		///     загружать документы, <c>false</c> – если не может).
+		/// Информация о том, может ли текущий пользователь загружать документы в группу (
+		/// <c> true </c>, если пользователь может
+		/// загружать документы, <c> false </c> – если не может).
 		/// </summary>
 		public bool CanUploadDocuments { get; set; }
 
 		/// <summary>
-		///     Информация о том, может ли текущий пользователь загружать видеозаписи в группу.
+		/// Информация о том, может ли текущий пользователь загружать видеозаписи в группу.
 		/// </summary>
 		public bool CanUploadVideo { get; set; }
 
 		/// <summary>
-		///     Город.
+		/// Город.
 		/// </summary>
 		public City City { get; set; }
 
 		/// <summary>
-		///     Информация из блока контактов публичной страницы.
+		/// Информация из блока контактов публичной страницы.
 		/// </summary>
 		public ReadOnlyCollection<Contact> Contacts { get; set; }
 
 		/// <summary>
-		///     Счетчики сообщества.
+		/// Счетчики сообщества.
 		/// </summary>
 		public Counters Counters { get; set; }
 
 		/// <summary>
-		///     Идентификатор страны, указанной в информации о сообществе. Возвращается идентификатор страны, который можно
-		///     использовать для
-		///     получения ее названия с помощью метода DatabaseCategory.GetCountriesById
+		/// Идентификатор страны, указанной в информации о сообществе. Возвращается
+		/// идентификатор страны, который можно
+		/// использовать для
+		/// получения ее названия с помощью метода DatabaseCategory.GetCountriesById
 		/// </summary>
 		public Country Country { get; set; }
 
 		/// <summary>
-		///     обложка сообщества
+		/// обложка сообщества
 		/// </summary>
 		[JsonProperty(propertyName: "cover")]
 		public GroupCover Cover { get; set; }
 
 		/// <summary>
-		///     Текст описания сообщества.
+		/// Текст описания сообщества.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Идентификатор закрепленного поста сообщества. Сам пост можно получить, используя WallCategory.GetById
-		///     передав идентификатор в виде – {group_id}_{post_id}.
+		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить,
+		/// используя WallCategory.GetById
+		/// передав идентификатор в виде – {group_id}_{post_id}.
 		/// </summary>
 		public long? FixedPost { get; set; }
 
 		/// <summary>
-		///     Содержит фото.
+		/// Содержит фото.
 		/// </summary>
 		public bool HasPhoto { get; set; }
 
 		/// <summary>
-		///     Возвращается 1, если сообщество находится в закладках у текущего пользователя.
+		/// Возвращается 1, если сообщество находится в закладках у текущего пользователя.
 		/// </summary>
 		public bool IsFavorite { get; set; }
 
 		/// <summary>
-		///     Возвращается 1, если сообщество скрыто в новостях у текущего пользователя.
+		/// Возвращается 1, если сообщество скрыто в новостях у текущего пользователя.
 		/// </summary>
 		public bool IsHiddenFromFeed { get; set; }
 
 		/// <summary>
-		///     Информация о том, разрешено ли сообществу отправлять сообщения текущему пользователю.
+		/// Информация о том, разрешено ли сообществу отправлять сообщения текущему
+		/// пользователю.
 		/// </summary>
 		public bool? IsMessagesAllowed { get; set; }
 
 		/// <summary>
-		///     Информация из блока ссылок сообщества.
+		/// Информация из блока ссылок сообщества.
 		/// </summary>
 		public ReadOnlyCollection<ExternalLink> Links { get; set; }
 
 		/// <summary>
-		///     Идентификатор основного альбома сообщества.
+		/// Идентификатор основного альбома сообщества.
 		/// </summary>
 		public uint? MainAlbumId { get; set; }
 
 		/// <summary>
-		///     Информация о главной секции в сообществе
+		/// Информация о главной секции в сообществе
 		/// </summary>
 		public MainSection? MainSection { get; set; }
 
@@ -307,67 +318,68 @@ namespace VkNet.Model
 		public Market Market { get; set; }
 
 		/// <summary>
-		///     статус участника текущего пользователя.
+		/// статус участника текущего пользователя.
 		/// </summary>
 		[JsonProperty(propertyName: "member_status")]
 		public MemberStatus MemberStatus { get; set; }
 
 		/// <summary>
-		///     Количество участников сообщества.
+		/// Количество участников сообщества.
 		/// </summary>
 		public int? MembersCount { get; set; }
 
 		/// <summary>
-		///     Место, указанное в информации о сообществе.
+		/// Место, указанное в информации о сообществе.
 		/// </summary>
 		public Place Place { get; set; }
 
 		/// <summary>
-		///     возвращается для публичных страниц. Текст описания для поля start_date.
+		/// возвращается для публичных страниц. Текст описания для поля start_date.
 		/// </summary>
 		[JsonProperty(propertyName: "public_date_label")]
 		public string PublicDateLabel { get; set; }
 
 		/// <summary>
-		///     Адрес сайта из поля «веб-сайт» в описании сообщества.
+		/// Адрес сайта из поля «веб-сайт» в описании сообщества.
 		/// </summary>
 		public string Site { get; set; }
 
 		/// <summary>
-		///     Время начала встречи (возвращаются только для встреч).
+		/// Время начала встречи (возвращаются только для встреч).
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? StartDate { get; set; }
 
 		/// <summary>
-		///     Время окончания встречи (возвращаются только для встреч).
+		/// Время окончания встречи (возвращаются только для встреч).
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? EndDate { get; set; }
 
 		/// <summary>
-		///     Статус сообщества. Возвращается строка, содержащая текст статуса, расположенного на странице сообщества под его
-		///     названием.
+		/// Статус сообщества. Возвращается строка, содержащая текст статуса,
+		/// расположенного на странице сообщества под его
+		/// названием.
 		/// </summary>
 		public string Status { get; set; }
 
 		/// <summary>
-		///     Информация о том, есть ли у сообщества «огонёк».
+		/// Информация о том, есть ли у сообщества «огонёк».
 		/// </summary>
 		public bool Trending { get; set; }
 
 		/// <summary>
-		///     Возвращает информацию о том, является ли сообщество верифицированным.
+		/// Возвращает информацию о том, является ли сообщество верифицированным.
 		/// </summary>
 		public bool Verified { get; set; }
 
 		/// <summary>
-		///     Название главной вики-страницы сообщества.
+		/// Название главной вики-страницы сообщества.
 		/// </summary>
 		public string WikiPage { get; set; }
 
 		/// <summary>
-		///     Информация о ссылках на предпросмотр фотографий сообщества.
+		/// Информация о ссылках на предпросмотр фотографий сообщества.
 		/// </summary>
 		public Previews PhotoPreviews { get; set; }
 

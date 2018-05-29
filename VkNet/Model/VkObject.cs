@@ -6,27 +6,27 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Определяет тип объекта
+	/// Определяет тип объекта
 	/// </summary>
 	[DebuggerDisplay(value: "Id = {Id}, Type = {Type}")]
 	[Serializable]
 	public class VkObject
 	{
 		/// <summary>
-		///     Идентификатор объекта
+		/// Идентификатор объекта
 		/// </summary>
 		public long? Id { get; set; }
 
 		/// <summary>
-		///     Тип объекта
+		/// Тип объекта
 		/// </summary>
 		public VkObjectType Type { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static VkObject FromJson(VkResponse response)
 		{
 			var obj = new VkObject

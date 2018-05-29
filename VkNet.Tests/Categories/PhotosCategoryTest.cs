@@ -193,11 +193,21 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: album.Description, expression: Is.EqualTo(expected: string.Empty));
 
 			Assert.That(actual: album.Created
-					, expression: Is.EqualTo(expected: new DateTime(year: 2011, month: 6, day: 9, hour: 14, minute: 12, second: 58
+					, expression: Is.EqualTo(expected: new DateTime(year: 2011
+							, month: 6
+							, day: 9
+							, hour: 14
+							, minute: 12
+							, second: 58
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: album.Updated
-					, expression: Is.EqualTo(expected: new DateTime(year: 2014, month: 4, day: 27, hour: 19, minute: 4, second: 33
+					, expression: Is.EqualTo(expected: new DateTime(year: 2014
+							, month: 4
+							, day: 27
+							, hour: 19
+							, minute: 4
+							, second: 33
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: album.Size, expression: Is.EqualTo(expected: 6));
@@ -297,8 +307,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: photo.Height, expression: Is.EqualTo(expected: 574));
 
 			Assert.That(actual: photo.Text
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"Сегодня должности раздаются чиновниками, которые боятся конкуренции и подбирают себе все менее талантливых и все более беспомощных подчиненных. Государственные посты должны распределяться на основе прозрачных механизмов, в том числе, прямых выборов."));
 
 			Assert.That(actual: photo.CreateTime, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1398658327)));
@@ -322,8 +331,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: info, expression: Is.Not.Null);
 
 			Assert.That(actual: info.UploadUrl
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1"));
 
 			Assert.That(actual: info.AlbumId, expression: Is.EqualTo(expected: -3));
@@ -347,8 +355,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: info, expression: Is.Not.Null);
 
 			Assert.That(actual: info.UploadUrl
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"http://pu.vk.com/c837421/upload.php?_query=eyJhY3QiOiJvd25lcl9jb3ZlciIsIm9pZCI6LTkzNjY5OTI0LCJhcGkiOnRydWUsImFwaV93cmFwIjp7Imhhc2giOiIxMDA4MmRjZWJlZGIzMjZkNDQiLCJwaG90byI6IntyZXN1bHR9In0sIm1pZCI6NzY2NDA4ODIsInNlcnZlciI6ODM3NDIxLCJfb3JpZ2luIjoiaHR0cHM6XC9cL2FwaS52ay5jb20iLCJfc2lnIjoiYzZjNWM4ZGVmYmE5YWQ3YWM1ZTYzYTUxMWJjMjgzZDcifQ&_crop=0,0,1590,400"));
 		}
 
@@ -687,8 +694,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: photo.Height, expression: Is.EqualTo(expected: 515));
 
 			Assert.That(actual: photo.Text
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							"🍓 [club49512556|ЗАХОДИ К НАМ]\nчастное фото секси обнаженные девочки малолетки порно голые сиськи попки эротика няша шлюха грудь секс instagirls instagram лето\n#секс #девушки #девочки #instagram #instagirls #няша #InstaSize #лето #ПОПКИ"));
 
 			Assert.That(actual: photo.CreateTime

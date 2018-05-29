@@ -1,47 +1,47 @@
 ﻿namespace VkNet.Enums
 {
 	/// <summary>
-	///     тип документа
+	/// тип документа
 	/// </summary>
 	public enum DocumentTypes
 	{
 		/// <summary>
-		///     текстовые документы
+		/// текстовые документы
 		/// </summary>
 		Text = 1
 
 		, /// <summary>
-		///     архивы
+		/// архивы
 		/// </summary>
 		Archive
 
 		, /// <summary>
-		///     gif
+		/// gif
 		/// </summary>
 		Gif
 
 		, /// <summary>
-		///     изображения
+		/// изображения
 		/// </summary>
 		Image
 
 		, /// <summary>
-		///     аудио
+		/// аудио
 		/// </summary>
 		Audio
 
 		, /// <summary>
-		///     видео
+		/// видео
 		/// </summary>
 		Video
 
 		, /// <summary>
-		///     электронные книги
+		/// электронные книги
 		/// </summary>
 		EBook
 
 		, /// <summary>
-		///     неизвестно
+		/// неизвестно
 		/// </summary>
 		Undefined
 	}

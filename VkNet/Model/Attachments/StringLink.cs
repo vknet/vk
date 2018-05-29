@@ -3,7 +3,7 @@
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	///     Строковая ссылка
+	/// Строковая ссылка
 	/// </summary>
 	[Serializable]
 	public class StringLink : MediaAttachment
@@ -15,7 +15,7 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Ссылка
+		/// Ссылка
 		/// </summary>
 		public string Link { get; set; }
 

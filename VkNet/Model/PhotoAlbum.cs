@@ -9,103 +9,104 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Альбом для фотографий
+	/// Альбом для фотографий
 	/// </summary>
 	[Serializable]
 	public class PhotoAlbum
 	{
 		/// <summary>
-		///     Идентификатор созданного альбома
+		/// Идентификатор созданного альбома
 		/// </summary>
 		public long Id { get; set; }
 
 		/// <summary>
-		///     Идентификатор фотографии, которая является обложкой альбома
+		/// Идентификатор фотографии, которая является обложкой альбома
 		/// </summary>
 		public long? ThumbId { get; set; }
 
 		/// <summary>
-		///     Идентификатор пользователя или сообщества, которому принадлежит альбом
+		/// Идентификатор пользователя или сообщества, которому принадлежит альбом
 		/// </summary>
 		public long? OwnerId { get; set; }
 
 		/// <summary>
-		///     Название альбома
+		/// Название альбома
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Описание альбома
+		/// Описание альбома
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Дата создания альбома
+		/// Дата создания альбома
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Created { get; set; }
 
 		/// <summary>
-		///     Дата обновления альбома
+		/// Дата обновления альбома
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Updated { get; set; }
 
 		/// <summary>
-		///     Количество фотографий в альбоме
+		/// Количество фотографий в альбоме
 		/// </summary>
 		public int? Size { get; set; }
 
 		/// <summary>
-		///     Настройки приватности для альбома в формате настроек приватности; (не приходит для системных альбомов)
+		/// Настройки приватности для альбома в формате настроек приватности; (не приходит
+		/// для системных альбомов)
 		/// </summary>
 		public ReadOnlyCollection<Privacy> PrivacyView { get; set; }
 
 		/// <summary>
-		///     Настройки приватности для комментирования альбома
+		/// Настройки приватности для комментирования альбома
 		/// </summary>
 		public ReadOnlyCollection<Privacy> PrivacyComment { get; set; }
 
 		/// <summary>
-		///     Может ли текущий пользователь добавлять фотографии в альбом
+		/// Может ли текущий пользователь добавлять фотографии в альбом
 		/// </summary>
 		public bool? CanUpload { get; set; }
 
 		/// <summary>
-		///     Адрес на изображение с предпросмотром
+		/// Адрес на изображение с предпросмотром
 		/// </summary>
 		public string ThumbSrc { get; set; }
 
 		/// <summary>
-		///     Размеры фотографий.
+		/// Размеры фотографий.
 		/// </summary>
 		public IEnumerable<PhotoSize> Sizes { get; set; }
 
 		/// <summary>
-		///     Комментирование запрещено.
+		/// Комментирование запрещено.
 		/// </summary>
 		public bool? CommentsDisabled { get; set; }
 
 		/// <summary>
-		///     Загружать могут только администраторы.
+		/// Загружать могут только администраторы.
 		/// </summary>
 		public bool UploadByAdminsOnly { get; set; }
 
 		/// <summary>
-		///     Gets or sets a value indicating whether this PhotoAlbum
+		/// Gets or sets a value indicating whether this PhotoAlbum
 		/// </summary>
 		/// <remarks>
-		///     Получено экспериментально.
+		/// Получено экспериментально.
 		/// </remarks>
 		public bool ThumbIsLast { get; set; }
 
 	#region Methods
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static PhotoAlbum FromJson(VkResponse response)
 		{
 			VkResponseArray privacy = response[key: "privacy_view"];

@@ -3,7 +3,7 @@
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Search Result
+	/// Search Result
 	/// </summary>
 	[Serializable]
 	public class SearchResult

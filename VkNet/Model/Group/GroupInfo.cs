@@ -8,8 +8,8 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о сообществе (группе).
-	///     См. описание http://vk.com/dev/fields_groups
+	/// Информация о сообществе (группе).
+	/// См. описание http://vk.com/dev/fields_groups
 	/// </summary>
 	[Serializable]
 	public class GroupInfo
@@ -17,148 +17,149 @@ namespace VkNet.Model
 	#region Стандартные поля
 
 		/// <summary>
-		///     Название сообщества.
+		/// Название сообщества.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Описание сообщества.
+		/// Описание сообщества.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Gets or sets the address.
+		/// Gets or sets the address.
 		/// </summary>
 		public string Address { get; set; }
 
 		/// <summary>
-		///     Место, указанное в информации о сообществе.
+		/// Место, указанное в информации о сообществе.
 		/// </summary>
 		public Place Place { get; set; }
 
 		/// <summary>
-		///     Стена.
+		/// Стена.
 		/// </summary>
 		public ContentAccess? Wall { get; set; }
 
 		/// <summary>
-		///     Фотографии.
+		/// Фотографии.
 		/// </summary>
 		public ContentAccess? Photos { get; set; }
 
 		/// <summary>
-		///     Видеозаписи.
+		/// Видеозаписи.
 		/// </summary>
 		public ContentAccess? Video { get; set; }
 
 		/// <summary>
-		///     Аудиозаписи.
+		/// Аудиозаписи.
 		/// </summary>
 		public ContentAccess? Audio { get; set; }
 
 		/// <summary>
-		///     Документы.
+		/// Документы.
 		/// </summary>
 		public ContentAccess? Docs { get; set; }
 
 		/// <summary>
-		///     Обсуждения.
+		/// Обсуждения.
 		/// </summary>
 		public ContentAccess? Topics { get; set; }
 
 		/// <summary>
-		///     Материалы.
+		/// Материалы.
 		/// </summary>
 		public ContentAccess? Wiki { get; set; }
 
 		/// <summary>
-		///     Тип группы.
+		/// Тип группы.
 		/// </summary>
 		public GroupPublicity? Access { get; set; }
 
 		/// <summary>
-		///     Тематика сообщества.
+		/// Тематика сообщества.
 		/// </summary>
 		public GroupSubjects? Subject { get; set; }
 
 		/// <summary>
-		///     Адрес сайта, который будет указан в информации о группе
+		/// Адрес сайта, который будет указан в информации о группе
 		/// </summary>
 		public string Website { get; set; }
 
 		/// <summary>
-		///     Контакты: (доступно только для публичных страниц).
+		/// Контакты: (доступно только для публичных страниц).
 		/// </summary>
 		public bool? Contacts { get; set; }
 
 		/// <summary>
-		///     Места: (доступно только для публичных страниц)
+		/// Места: (доступно только для публичных страниц)
 		/// </summary>
 		public bool? Places { get; set; }
 
 		/// <summary>
-		///     События: (доступно только для публичных страниц).
+		/// События: (доступно только для публичных страниц).
 		/// </summary>
 		public bool? Events { get; set; }
 
 		/// <summary>
-		///     Ссылки: (доступно только для публичных страниц).
+		/// Ссылки: (доступно только для публичных страниц).
 		/// </summary>
 		public bool? Links { get; set; }
 
 		/// <summary>
-		///     Дата основания компании, организации,
-		///     которой посвящена публичная страница в виде строки формата "dd.mm.YYYY".
+		/// Дата основания компании, организации,
+		/// которой посвящена публичная страница в виде строки формата "dd.mm.YYYY".
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? PublicDate { get; set; }
 
 		/// <summary>
-		///     Подкатегория публичной станицы.
+		/// Подкатегория публичной станицы.
 		/// </summary>
 		public ulong? PublicSubcategory { get; set; }
 
 		/// <summary>
-		///     Категория публичной страницы.
+		/// Категория публичной страницы.
 		/// </summary>
 		public ulong? PublicCategory { get; set; }
 
 		/// <summary>
-		///     Идентификатор группы, которая является организатором события (только для событий).
+		/// Идентификатор группы, которая является организатором события (только для
+		/// событий).
 		/// </summary>
 		public ulong? EventGroupId { get; set; }
 
 		/// <summary>
-		///     Дата окончания события.
+		/// Дата окончания события.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? EventFinishDate { get; set; }
 
 		/// <summary>
-		///     Дата начала события.
+		/// Дата начала события.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? EventStartDate { get; set; }
 
 		/// <summary>
-		///     Адрес rss для импорта новостей
-		///     (доступен только группам, получившим соответствуюшее разрешение,
-		///     обратитесь в http://vk.com/support для получения разрешения).
+		/// Адрес rss для импорта новостей
+		/// (доступен только группам, получившим соответствуюшее разрешение,
+		/// обратитесь в http://vk.com/support для получения разрешения).
 		/// </summary>
 		public string Rss { get; set; }
 
 		/// <summary>
-		///     Номер телефона сообщества.
+		/// Номер телефона сообщества.
 		/// </summary>
 		public string Phone { get; set; }
 
 		/// <summary>
-		///     Электронный адрес сообщества.
+		/// Электронный адрес сообщества.
 		/// </summary>
 		public string Email { get; set; }
 
 		/// <summary>
-		///     Короткое имя сообщества.
+		/// Короткое имя сообщества.
 		/// </summary>
 		public string ScreenName { get; set; }
 
@@ -167,7 +168,7 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Список тематик
+		/// Список тематик
 		/// </summary>
 		public readonly Dictionary<int, string> Subjects = new Dictionary<int, string>
 		{
@@ -216,10 +217,10 @@ namespace VkNet.Model
 		};
 
 		/// <summary>
-		///     Разобрать из JSON.
+		/// Разобрать из JSON.
 		/// </summary>
-		/// <param name="response">Ответ от vk.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ от vk. </param>
+		/// <returns> </returns>
 		public static GroupInfo FromJson(VkResponse response)
 		{
 			var group = new GroupInfo

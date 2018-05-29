@@ -25,9 +25,10 @@ namespace VkNet.Tests.Categories
 			var db = GetMockedDatabaseCategory(url: "", json: "");
 
 			Assert.That(del: () => db.GetCities(@params: new GetCitiesParams
-			{
-					CountryId = -1
-			}), expr: Throws.InstanceOf<ArgumentException>());
+					{
+							CountryId = -1
+					})
+					, expr: Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -143,10 +144,11 @@ namespace VkNet.Tests.Categories
 			var db = GetMockedDatabaseCategory(url: "", json: "");
 
 			Assert.That(del: () => db.GetCities(@params: new GetCitiesParams
-			{
-					CountryId = 1
-					, RegionId = -2
-			}), expr: Throws.InstanceOf<ArgumentException>());
+					{
+							CountryId = 1
+							, RegionId = -2
+					})
+					, expr: Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]

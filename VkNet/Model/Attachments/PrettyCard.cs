@@ -41,10 +41,10 @@ namespace VkNet.Model.Attachments
 		public ReadOnlyCollection<Photo> Images { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static PrettyCard FromJson(VkResponse response)
 		{
 			return new PrettyCard
@@ -59,11 +59,11 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		///     Преобразовать из VkResponse
+		/// Преобразовать из VkResponse
 		/// </summary>
-		/// <param name="response">Ответ.</param>
+		/// <param name="response"> Ответ. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator PrettyCard(VkResponse response)
 		{

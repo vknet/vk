@@ -13,7 +13,7 @@ namespace VkNet.Categories
 {
 	/// <inheritdoc />
 	/// <summary>
-	///     Методы для работы с сообществами (группами).
+	/// Методы для работы с сообществами (группами).
 	/// </summary>
 	public partial class GroupsCategory : IGroupsCategory
 	{
@@ -21,7 +21,7 @@ namespace VkNet.Categories
 
 		/// <summary>
 		/// </summary>
-		/// <param name="vk"></param>
+		/// <param name="vk"> </param>
 		public GroupsCategory(VkApi vk)
 		{
 			_vk = vk;
@@ -510,8 +510,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public LongPollServerResponse GetLongPollServer(ulong groupId)
 		{
-			return _vk.Call<LongPollServerResponse>(methodName: "groups.getLongPollServer",
-					parameters: new VkParameters { { "group_id", groupId } });
+			return _vk.Call<LongPollServerResponse>(methodName: "groups.getLongPollServer"
+					, parameters: new VkParameters { { "group_id", groupId } });
 		}
 	}
 }

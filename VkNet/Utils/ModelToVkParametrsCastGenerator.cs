@@ -9,11 +9,11 @@ namespace VkNet.Utils
 	partial class VkParameters
 	{
 		/// <summary>
-		///     Преобразование класса <see cref="AccountRegisterDeviceParams" /> в VkParameters
+		/// Преобразование класса <see cref="AccountRegisterDeviceParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AccountRegisterDeviceParams p)
 		{
@@ -21,11 +21,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в VkParameters
+		/// Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(SearchGetHintsParams p)
 		{
@@ -33,11 +34,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в VkParameters
+		/// Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PostAdsStealthParams p)
 		{
@@ -45,11 +47,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в VkParameters
+		/// Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(EditAdsStealthParams p)
 		{
@@ -57,11 +60,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в VkParameters
+		/// Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(VideoGetCatalogParams p)
 		{
@@ -69,11 +73,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в VkParameters
+		/// Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(LinkStatsParams p)
 		{
@@ -81,11 +86,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в VkParameters
+		/// Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MessagesSearchParams p)
 		{
@@ -93,11 +99,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="GetCitiesParams" /> в VkParameters
+		/// Преобразование класса <see cref="GetCitiesParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(CallbackServerParams p)
 		{
@@ -105,11 +111,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="GetCitiesParams" /> в VkParameters
+		/// Преобразование класса <see cref="GetCitiesParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MessageEditParams p)
 		{
@@ -117,11 +123,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="GetCitiesParams" /> в VkParameters
+		/// Преобразование класса <see cref="GetCitiesParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(GetCitiesParams p)
 		{
@@ -129,11 +135,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в VkParameters
+		/// Преобразование класса <see cref="AccountSaveProfileInfoParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AccountSaveProfileInfoParams p)
 		{
@@ -141,11 +148,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AppGetCatalogParams" /> в VkParameters
+		/// Преобразование класса <see cref="AppGetCatalogParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AppGetCatalogParams p)
 		{
@@ -153,11 +160,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AppGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="AppGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AppGetParams p)
 		{
@@ -165,11 +172,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AppSendRequestParams" /> в VkParameters
+		/// Преобразование класса <see cref="AppSendRequestParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AppSendRequestParams p)
 		{
@@ -177,11 +184,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AudioEditParams" /> в VkParameters
+		/// Преобразование класса <see cref="AudioEditParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AudioEditParams p)
 		{
@@ -189,11 +196,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AudioGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="AudioGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AudioGetParams p)
 		{
@@ -201,11 +208,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AudioSearchParams" /> в VkParameters
+		/// Преобразование класса <see cref="AudioSearchParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AudioSearchParams p)
 		{
@@ -213,11 +220,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AuthConfirmParams" /> в VkParameters
+		/// Преобразование класса <see cref="AuthConfirmParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AuthConfirmParams p)
 		{
@@ -225,11 +232,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AuthSignupParams" /> в VkParameters
+		/// Преобразование класса <see cref="AuthSignupParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AuthSignupParams p)
 		{
@@ -237,11 +244,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="BoardAddTopicParams" /> в VkParameters
+		/// Преобразование класса <see cref="BoardAddTopicParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(BoardAddTopicParams p)
 		{
@@ -249,11 +256,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="BoardCommentParams" /> в VkParameters
+		/// Преобразование класса <see cref="BoardCommentParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(BoardCommentParams p)
 		{
@@ -261,11 +268,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="BoardCreateCommentParams" /> в VkParameters
+		/// Преобразование класса <see cref="BoardCreateCommentParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(BoardCreateCommentParams p)
 		{
@@ -273,11 +280,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="BoardEditCommentParams" /> в VkParameters
+		/// Преобразование класса <see cref="BoardEditCommentParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(BoardEditCommentParams p)
 		{
@@ -285,11 +292,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="BoardEditTopicParams" /> в VkParameters
+		/// Преобразование класса <see cref="BoardEditTopicParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(BoardEditTopicParams p)
 		{
@@ -297,11 +304,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="BoardGetCommentsParams" /> в VkParameters
+		/// Преобразование класса <see cref="BoardGetCommentsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(BoardGetCommentsParams p)
 		{
@@ -309,11 +316,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="BoardGetTopicsParams" /> в VkParameters
+		/// Преобразование класса <see cref="BoardGetTopicsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(BoardGetTopicsParams p)
 		{
@@ -321,11 +328,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="BoardTopicParams" /> в VkParameters
+		/// Преобразование класса <see cref="BoardTopicParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(BoardTopicParams p)
 		{
@@ -333,11 +340,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="FriendsGetMutualParams" /> в VkParameters
+		/// Преобразование класса <see cref="FriendsGetMutualParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(FriendsGetMutualParams p)
 		{
@@ -345,11 +352,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="FriendsGetOnlineParams" /> в VkParameters
+		/// Преобразование класса <see cref="FriendsGetOnlineParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(FriendsGetOnlineParams p)
 		{
@@ -357,11 +364,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="FriendsGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="FriendsGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(FriendsGetParams p)
 		{
@@ -369,11 +376,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="FriendsGetRequestsParams" /> в VkParameters
+		/// Преобразование класса <see cref="FriendsGetRequestsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(FriendsGetRequestsParams p)
 		{
@@ -381,11 +388,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="FriendsSearchParams" /> в VkParameters
+		/// Преобразование класса <see cref="FriendsSearchParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(FriendsSearchParams p)
 		{
@@ -393,11 +400,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="GroupsBanUserParams" /> в VkParameters
+		/// Преобразование класса <see cref="GroupsBanUserParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(GroupsBanUserParams p)
 		{
@@ -405,11 +412,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="GroupsEditManagerParams" /> в VkParameters
+		/// Преобразование класса <see cref="GroupsEditManagerParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(GroupsEditManagerParams p)
 		{
@@ -417,11 +424,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="GroupsEditParams" /> в VkParameters
+		/// Преобразование класса <see cref="GroupsEditParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(GroupsEditParams p)
 		{
@@ -429,11 +436,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="GroupsGetMembersParams" /> в VkParameters
+		/// Преобразование класса <see cref="GroupsGetMembersParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(GroupsGetMembersParams p)
 		{
@@ -441,11 +448,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="GroupsGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="GroupsGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(GroupsGetParams p)
 		{
@@ -453,11 +460,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="GroupsSearchParams" /> в VkParameters
+		/// Преобразование класса <see cref="GroupsSearchParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(GroupsSearchParams p)
 		{
@@ -465,11 +472,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="LikesAddParams" /> в VkParameters
+		/// Преобразование класса <see cref="LikesAddParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(LikesAddParams p)
 		{
@@ -477,11 +484,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="LikesGetListParams" /> в VkParameters
+		/// Преобразование класса <see cref="LikesGetListParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(LikesGetListParams p)
 		{
@@ -489,11 +496,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MarketCreateCommentParams" /> в VkParameters
+		/// Преобразование класса <see cref="MarketCreateCommentParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MarketCreateCommentParams p)
 		{
@@ -501,11 +508,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MarketGetCommentsParams" /> в VkParameters
+		/// Преобразование класса <see cref="MarketGetCommentsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MarketGetCommentsParams p)
 		{
@@ -513,11 +520,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MarketProductParams" /> в VkParameters
+		/// Преобразование класса <see cref="MarketProductParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MarketProductParams p)
 		{
@@ -525,11 +532,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MarketSearchParams" /> в VkParameters
+		/// Преобразование класса <see cref="MarketSearchParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MarketSearchParams p)
 		{
@@ -537,11 +544,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MessagesDialogsGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="MessagesDialogsGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MessagesDialogsGetParams p)
 		{
@@ -549,11 +556,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MessagesGetHistoryAttachmentsParams" /> в VkParameters
+		/// Преобразование класса <see cref="MessagesGetHistoryAttachmentsParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MessagesGetHistoryAttachmentsParams p)
 		{
@@ -561,11 +569,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MessagesGetHistoryParams" /> в VkParameters
+		/// Преобразование класса <see cref="MessagesGetHistoryParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MessagesGetHistoryParams p)
 		{
@@ -573,11 +581,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MessagesGetLongPollHistoryParams" /> в VkParameters
+		/// Преобразование класса <see cref="MessagesGetLongPollHistoryParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MessagesGetLongPollHistoryParams p)
 		{
@@ -585,11 +594,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MessagesGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="MessagesGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MessagesGetParams p)
 		{
@@ -597,11 +606,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MessagesSendParams" /> в VkParameters
+		/// Преобразование класса <see cref="MessagesSendParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MessagesSendParams p)
 		{
@@ -609,11 +618,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="MessagesSendStickerParams" /> в VkParameters
+		/// Преобразование класса <see cref="MessagesSendStickerParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(MessagesSendStickerParams p)
 		{
@@ -621,11 +630,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="NewsFeedGetCommentsParams" /> в VkParameters
+		/// Преобразование класса <see cref="NewsFeedGetCommentsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(NewsFeedGetCommentsParams p)
 		{
@@ -633,11 +642,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="NewsFeedGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="NewsFeedGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(NewsFeedGetParams p)
 		{
@@ -645,11 +654,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="NewsFeedGetRecommendedParams" /> в VkParameters
+		/// Преобразование класса <see cref="NewsFeedGetRecommendedParams" /> в
+		/// VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(NewsFeedGetRecommendedParams p)
 		{
@@ -657,11 +667,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="NewsFeedSearchParams" /> в VkParameters
+		/// Преобразование класса <see cref="NewsFeedSearchParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(NewsFeedSearchParams p)
 		{
@@ -669,11 +679,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PagesGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="PagesGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PagesGetParams p)
 		{
@@ -681,11 +691,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoCreateAlbumParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoCreateAlbumParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoCreateAlbumParams p)
 		{
@@ -693,11 +703,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoCreateCommentParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoCreateCommentParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoCreateCommentParams p)
 		{
@@ -705,11 +715,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoEditAlbumParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoEditAlbumParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoEditAlbumParams p)
 		{
@@ -717,11 +727,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoEditParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoEditParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoEditParams p)
 		{
@@ -729,11 +739,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoGetAlbumsParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoGetAlbumsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoGetAlbumsParams p)
 		{
@@ -741,11 +751,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoGetAllCommentsParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoGetAllCommentsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoGetAllCommentsParams p)
 		{
@@ -753,11 +763,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoGetAllParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoGetAllParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoGetAllParams p)
 		{
@@ -765,11 +775,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoGetCommentsParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoGetCommentsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoGetCommentsParams p)
 		{
@@ -777,11 +787,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoGetParams p)
 		{
@@ -789,11 +799,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoGetUserPhotosParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoGetUserPhotosParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoGetUserPhotosParams p)
 		{
@@ -801,11 +811,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoPutTagParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoPutTagParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoPutTagParams p)
 		{
@@ -813,11 +823,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoSaveParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoSaveParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoSaveParams p)
 		{
@@ -825,11 +835,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PhotoSearchParams" /> в VkParameters
+		/// Преобразование класса <see cref="PhotoSearchParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PhotoSearchParams p)
 		{
@@ -837,11 +847,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PollsAddVoteParams" /> в VkParameters
+		/// Преобразование класса <see cref="PollsAddVoteParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PollsAddVoteParams p)
 		{
@@ -849,11 +859,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PollsCreateParams" /> в VkParameters
+		/// Преобразование класса <see cref="PollsCreateParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PollsCreateParams p)
 		{
@@ -861,11 +871,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PollsDeleteVoteParams" /> в VkParameters
+		/// Преобразование класса <see cref="PollsDeleteVoteParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PollsDeleteVoteParams p)
 		{
@@ -873,11 +883,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PollsEditParams" /> в VkParameters
+		/// Преобразование класса <see cref="PollsEditParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PollsEditParams p)
 		{
@@ -885,11 +895,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PollsGetByIdParams" /> в VkParameters
+		/// Преобразование класса <see cref="PollsGetByIdParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PollsGetByIdParams p)
 		{
@@ -897,11 +907,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="PollsGetVotersParams" /> в VkParameters
+		/// Преобразование класса <see cref="PollsGetVotersParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(PollsGetVotersParams p)
 		{
@@ -909,11 +919,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="UserSearchParams" /> в VkParameters
+		/// Преобразование класса <see cref="UserSearchParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(UserSearchParams p)
 		{
@@ -921,11 +931,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="UsersGetNearbyParams" /> в VkParameters
+		/// Преобразование класса <see cref="UsersGetNearbyParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(UsersGetNearbyParams p)
 		{
@@ -933,11 +943,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="VideoCreateCommentParams" /> в VkParameters
+		/// Преобразование класса <see cref="VideoCreateCommentParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(VideoCreateCommentParams p)
 		{
@@ -945,11 +955,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="VideoEditParams" /> в VkParameters
+		/// Преобразование класса <see cref="VideoEditParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(VideoEditParams p)
 		{
@@ -957,11 +967,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="VideoGetCommentsParams" /> в VkParameters
+		/// Преобразование класса <see cref="VideoGetCommentsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(VideoGetCommentsParams p)
 		{
@@ -969,11 +979,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="VideoGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="VideoGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(VideoGetParams p)
 		{
@@ -981,11 +991,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="VideoReorderVideosParams" /> в VkParameters
+		/// Преобразование класса <see cref="VideoReorderVideosParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(VideoReorderVideosParams p)
 		{
@@ -993,11 +1003,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="VideoSaveParams" /> в VkParameters
+		/// Преобразование класса <see cref="VideoSaveParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(VideoSaveParams p)
 		{
@@ -1005,11 +1015,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="VideoSearchParams" /> в VkParameters
+		/// Преобразование класса <see cref="VideoSearchParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(VideoSearchParams p)
 		{
@@ -1017,11 +1027,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="WallAddCommentParams" /> в VkParameters
+		/// Преобразование класса <see cref="WallAddCommentParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(WallAddCommentParams p)
 		{
@@ -1029,11 +1039,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="WallCreateCommentParams" /> в VkParameters
+		/// Преобразование класса <see cref="WallCreateCommentParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(WallCreateCommentParams p)
 		{
@@ -1041,11 +1051,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="WallEditParams" /> в VkParameters
+		/// Преобразование класса <see cref="WallEditParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(WallEditParams p)
 		{
@@ -1053,11 +1063,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="WallGetCommentsParams" /> в VkParameters
+		/// Преобразование класса <see cref="WallGetCommentsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(WallGetCommentsParams p)
 		{
@@ -1065,11 +1075,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="WallGetParams" /> в VkParameters
+		/// Преобразование класса <see cref="WallGetParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(WallGetParams p)
 		{
@@ -1077,11 +1087,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="WallPostParams" /> в VkParameters
+		/// Преобразование класса <see cref="WallPostParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(WallPostParams p)
 		{
@@ -1089,11 +1099,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="WallSearchParams" /> в VkParameters
+		/// Преобразование класса <see cref="WallSearchParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(WallSearchParams p)
 		{
@@ -1101,11 +1111,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Преобразование класса <see cref="AdsGetCampaignsParams" /> в VkParameters
+		/// Преобразование класса <see cref="AdsGetCampaignsParams" /> в VkParameters
 		/// </summary>
-		/// <param name="p">Параметр.</param>
+		/// <param name="p"> Параметр. </param>
 		/// <returns>
-		///     Результат преобразования.
+		/// Результат преобразования.
 		/// </returns>
 		public static implicit operator VkParameters(AdsGetCampaignsParams p)
 		{

@@ -8,19 +8,19 @@ namespace VkNet.Enums.SafetyEnums
 	public class Platform : SafetyEnum<Platform>
 	{
 		/// <summary>
-		///     Android.
+		/// Android.
 		/// </summary>
 		public static readonly Platform Android = RegisterPossibleValue(value: "android");
 
 		/// <summary>
-		///     iPhone.
+		/// iPhone.
 		/// </summary>
 
 		// ReSharper disable once InconsistentNaming
 		public static readonly Platform IPhone = RegisterPossibleValue(value: "iphone");
 
 		/// <summary>
-		///     wphone.
+		/// wphone.
 		/// </summary>
 		public static readonly Platform WindowsPhone = RegisterPossibleValue(value: "wphone");
 	}

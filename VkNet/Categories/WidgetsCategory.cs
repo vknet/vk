@@ -10,13 +10,13 @@ namespace VkNet.Categories
 	public partial class WidgetsCategory : IWidgetsCategory
 	{
 		/// <summary>
-		///     API.
+		/// API.
 		/// </summary>
 		private readonly VkApi _vk;
 
 		/// <inheritdoc />
 		/// <param name="api">
-		///     Api vk.com
+		/// Api vk.com
 		/// </param>
 		internal WidgetsCategory(VkApi api = null)
 		{
@@ -26,7 +26,9 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<Comment> GetComments(GetCommentsParams getCommentsParams)
 		{
-			return _vk.Call<VkCollection<Comment>>("widgets.getComments", getCommentsParams, false
+			return _vk.Call<VkCollection<Comment>>("widgets.getComments"
+					, getCommentsParams
+					, false
 					, new VkCollectionJsonConverter(collectionField: "posts"));
 		}
 
@@ -37,15 +39,17 @@ namespace VkNet.Categories
 												, ulong? offset = null
 												, ulong? count = null)
 		{
-			return _vk.Call<VkCollection<WidgetPage>>("widgets.getPages",
-					new VkParameters
+			return _vk.Call<VkCollection<WidgetPage>>("widgets.getPages"
+					, new VkParameters
 					{
 							{ "widget_api_id", widgetApiId }
 							, { "order", order }
 							, { "period", period }
 							, { "offset", offset }
 							, { "count", count }
-					}, false, new VkCollectionJsonConverter(collectionField: "pages"));
+					}
+					, false
+					, new VkCollectionJsonConverter(collectionField: "pages"));
 		}
 	}
 }

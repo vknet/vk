@@ -5,31 +5,31 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Координаты места, в котором была сделана запись.
-	///     См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo" />.
-	///     Официальная страница http://vk.com/dev/post
-	///     молчит о том, что возвращаются географические координаты.
+	/// Координаты места, в котором была сделана запись.
+	/// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo" />.
+	/// Официальная страница http://vk.com/dev/post
+	/// молчит о том, что возвращаются географические координаты.
 	/// </summary>
 	[Serializable]
 	public class Coordinates
 	{
 		/// <summary>
-		///     Географическая широта.
+		/// Географическая широта.
 		/// </summary>
 		public double Latitude { get; set; }
 
 		/// <summary>
-		///     Географическая долгота.
+		/// Географическая долгота.
 		/// </summary>
 		public double Longitude { get; set; }
 
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Coordinates FromJson(VkResponse response)
 		{
 			// TODO: TEST IT!!!!!

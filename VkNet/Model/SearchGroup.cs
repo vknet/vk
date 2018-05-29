@@ -7,62 +7,65 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     данные о сообществе.
+	/// данные о сообществе.
 	/// </summary>
 	[Serializable]
 	public class SearchGroup
 	{
 		/// <summary>
-		///     идентификатор сообщества
+		/// идентификатор сообщества
 		/// </summary>
 		[JsonProperty(propertyName: "id")]
 		public long Id { get; set; }
 
 		/// <summary>
-		///     название сообщества
+		/// название сообщества
 		/// </summary>
 		[JsonProperty(propertyName: "name")]
 		public string Name { get; set; }
 
 		/// <summary>
-		///     короткий адрес
+		/// короткий адрес
 		/// </summary>
 		[JsonProperty(propertyName: "screen_name")]
 		public string ScreenName { get; set; }
 
 		/// <summary>
-		///     информация о том, является ли группа/встреча закрытой (0 — открытая, 1 — закрытая, 2 — частная)
+		/// информация о том, является ли группа/встреча закрытой (0 — открытая, 1 —
+		/// закрытая, 2 — частная)
 		/// </summary>
 		[JsonProperty(propertyName: "is_closed")]
 		public GroupAccess IsClosed { get; set; }
 
 		/// <summary>
-		///     информация о том, является ли текущий пользователь администратором сообщества (1 — является, 0 — не является);
+		/// информация о том, является ли текущий пользователь администратором сообщества
+		/// (1 — является, 0 — не является);
 		/// </summary>
 		[JsonProperty(propertyName: "is_admin")]
 		public bool? IsAdmin { get; set; }
 
 		/// <summary>
-		///     информация о том, является ли текущий пользователь участником сообщества (1 — является, 0 — не является)
+		/// информация о том, является ли текущий пользователь участником сообщества (1 —
+		/// является, 0 — не является)
 		/// </summary>
 		[JsonProperty(propertyName: "is_member")]
 		public bool? IsMember { get; set; }
 
 		/// <summary>
-		///     тип сообщества
+		/// тип сообщества
 		/// </summary>
 		[JsonProperty(propertyName: "type")]
 		[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 		public GroupType Type { get; set; }
 
 		/// <summary>
-		///     URL квадратной фотографии сообщества с размером 50х50px
+		/// URL квадратной фотографии сообщества с размером 50х50px
 		/// </summary>
 		[JsonProperty(propertyName: "photo")]
 		public string Photo { get; set; }
 
 		/// <summary>
-		///     URL квадратной фотографии сообщества с размером 50х50px
+		/// URL квадратной фотографии сообщества с размером 50х50px
 		/// </summary>
 		[JsonProperty(propertyName: "photo_50")]
 		private string Photo50
@@ -72,13 +75,13 @@ namespace VkNet.Model
 		}
 
 		/// <summary>
-		///     URL квадратной фотографии сообщества с размером 100х100px
+		/// URL квадратной фотографии сообщества с размером 100х100px
 		/// </summary>
 		[JsonProperty(propertyName: "photo_medium")]
 		public string PhotoMedium { get; set; }
 
 		/// <summary>
-		///     URL квадратной фотографии сообщества с размером 100х100px
+		/// URL квадратной фотографии сообщества с размером 100х100px
 		/// </summary>
 		[JsonProperty(propertyName: "photo_100")]
 		private string Photo100
@@ -88,13 +91,13 @@ namespace VkNet.Model
 		}
 
 		/// <summary>
-		///     URL фотографии сообщества в максимальном доступном размере.
+		/// URL фотографии сообщества в максимальном доступном размере.
 		/// </summary>
 		[JsonProperty(propertyName: "photo_big")]
 		public string PhotoBig { get; set; }
 
 		/// <summary>
-		///     URL фотографии сообщества в максимальном доступном размере.
+		/// URL фотографии сообщества в максимальном доступном размере.
 		/// </summary>
 		[JsonProperty(propertyName: "photo_200")]
 		public string Photo200

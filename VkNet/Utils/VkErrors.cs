@@ -7,15 +7,18 @@ using VkNet.Exception;
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     Ошибки VK
+	/// Ошибки VK
 	/// </summary>
 	public static class VkErrors
 	{
 		/// <summary>
-		///     Ошибка если строка null или пустая.
+		/// Ошибка если строка null или пустая.
 		/// </summary>
-		/// <param name="expr">Выражение.</param>
-		/// <exception cref="System.ArgumentNullException">Параметр не должен быть равен null</exception>
+		/// <param name="expr"> Выражение. </param>
+		/// <exception cref="System.ArgumentNullException">
+		/// Параметр не должен быть равен
+		/// null
+		/// </exception>
 		public static void ThrowIfNullOrEmpty(Expression<Func<string>> expr)
 		{
 			if (!(expr.Body is MemberExpression body))
@@ -33,15 +36,15 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Ошибка если число не в диапозоне.
+		/// Ошибка если число не в диапозоне.
 		/// </summary>
-		/// <typeparam name="T">Тип данных</typeparam>
-		/// <param name="value">Значение.</param>
-		/// <param name="min">Минимальное значение.</param>
-		/// <param name="max">Максимальное значение.</param>
+		/// <typeparam name="T"> Тип данных </typeparam>
+		/// <param name="value"> Значение. </param>
+		/// <param name="min"> Минимальное значение. </param>
+		/// <param name="max"> Максимальное значение. </param>
 		/// <exception cref="System.ArgumentOutOfRangeException">
-		///     Значение {value} не должно выходить за пределы диапозона [{min},
-		///     {max}]
+		/// Значение {value} не должно выходить за пределы диапозона [{min},
+		/// {max}]
 		/// </exception>
 		public static void ThrowIfNumberNotInRange<T>(T value, T min, T max)
 				where T : struct, IComparable<T>
@@ -54,10 +57,10 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Ошибка если число отрицательное.
+		/// Ошибка если число отрицательное.
 		/// </summary>
-		/// <param name="expr">Выражение.</param>
-		/// <exception cref="System.ArgumentException">Отрицательное значение.</exception>
+		/// <param name="expr"> Выражение. </param>
+		/// <exception cref="System.ArgumentException"> Отрицательное значение. </exception>
 		public static void ThrowIfNumberIsNegative(Expression<Func<long?>> expr)
 		{
 			var result = ThrowIfNumberIsNegative<Func<long?>>(expr: expr);
@@ -72,10 +75,10 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Ошибка если число отрицательное.
+		/// Ошибка если число отрицательное.
 		/// </summary>
-		/// <param name="expr">Выражение.</param>
-		/// <exception cref="System.ArgumentException">Отрицательное значение.</exception>
+		/// <param name="expr"> Выражение. </param>
+		/// <exception cref="System.ArgumentException"> Отрицательное значение. </exception>
 		public static void ThrowIfNumberIsNegative(Expression<Func<long>> expr)
 		{
 			var result = ThrowIfNumberIsNegative<Func<long>>(expr: expr);
@@ -90,12 +93,15 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Ошибка если число отрицательное.
+		/// Ошибка если число отрицательное.
 		/// </summary>
-		/// <typeparam name="T">Тип данных</typeparam>
-		/// <param name="expr">Выражение.</param>
-		/// <returns>Результат проверки</returns>
-		/// <exception cref="System.ArgumentNullException">Выражение не может быть равно null</exception>
+		/// <typeparam name="T"> Тип данных </typeparam>
+		/// <param name="expr"> Выражение. </param>
+		/// <returns> Результат проверки </returns>
+		/// <exception cref="System.ArgumentNullException">
+		/// Выражение не может быть равно
+		/// null
+		/// </exception>
 		private static Tuple<string, T> ThrowIfNumberIsNegative<T>(Expression<T> expr)
 		{
 			if (expr == null)
@@ -125,11 +131,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Ошибки VK.
+		/// Ошибки VK.
 		/// </summary>
-		/// <param name="json">JSON.</param>
+		/// <param name="json"> JSON. </param>
 		/// <exception cref="VkApiException">
-		///     Неправильный данные JSON.
+		/// Неправильный данные JSON.
 		/// </exception>
 		public static void IfErrorThrowException(string json)
 		{

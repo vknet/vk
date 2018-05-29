@@ -523,8 +523,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: wallPost.PostType, expression: Is.EqualTo(expected: PostType.Post));
 
 			Assert.That(actual: wallPost.Text
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально."));
 
 			Assert.That(actual: wallPost.PostSource.Type, expression: Is.EqualTo(expected: PostSourceType.Vk));
@@ -698,8 +697,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: wallPost.PostType, expression: Is.EqualTo(expected: PostType.Post));
 
 			Assert.That(actual: wallPost.Text
-					, expression: Is.EqualTo(
-							expected:
+					, expression: Is.EqualTo(expected:
 							@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально."));
 
 			Assert.That(actual: wallPost.PostSource.Type, expression: Is.EqualTo(expected: PostSourceType.Vk));

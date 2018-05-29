@@ -9,13 +9,13 @@ namespace VkNet.Categories
 	public partial class NotificationsCategory : INotificationsCategory
 	{
 		/// <summary>
-		///     API.
+		/// API.
 		/// </summary>
 		private readonly VkApi _vk;
 
 		/// <inheritdoc />
 		/// <param name="api">
-		///     Api vk.com
+		/// Api vk.com
 		/// </param>
 		public NotificationsCategory(VkApi api = null)
 		{
@@ -29,14 +29,15 @@ namespace VkNet.Categories
 													, long? startTime = null
 													, long? endTime = null)
 		{
-			return _vk.Call<IEnumerable<NotificationGetResult>>(methodName: "notifications.get", parameters: new VkParameters
-			{
-					{ "count", count }
-					, { "start_from", startFrom }
-					, { "filters", filters }
-					, { "start_time", startTime }
-					, { "end_time", endTime }
-			});
+			return _vk.Call<IEnumerable<NotificationGetResult>>(methodName: "notifications.get"
+					, parameters: new VkParameters
+					{
+							{ "count", count }
+							, { "start_from", startFrom }
+							, { "filters", filters }
+							, { "start_time", startTime }
+							, { "end_time", endTime }
+					});
 		}
 
 		/// <inheritdoc />

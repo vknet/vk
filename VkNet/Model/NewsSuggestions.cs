@@ -5,26 +5,26 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Предложения новостей.
+	/// Предложения новостей.
 	/// </summary>
 	[Serializable]
 	public class NewsSuggestions
 	{
 		/// <summary>
-		///     Предложения по пользователям.
+		/// Предложения по пользователям.
 		/// </summary>
 		public List<User> Users { get; set; }
 
 		/// <summary>
-		///     Предложения по группам.
+		/// Предложения по группам.
 		/// </summary>
 		public List<Group> Groups { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static NewsSuggestions FromJson(VkResponse response)
 		{
 			var newsSuggestions = new NewsSuggestions
@@ -59,8 +59,7 @@ namespace VkNet.Model
 					default:
 
 					{
-						throw new System.Exception(message: string.Format(
-								format:
+						throw new System.Exception(message: string.Format(format:
 								"Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"
 								, arg0: item[key: "type"]));
 					}

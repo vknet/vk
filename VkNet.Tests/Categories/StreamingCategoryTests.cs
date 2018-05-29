@@ -72,7 +72,9 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Streaming.GetStats(type: "prepared", interval: "24h", startTime: new DateTime(year: 2018, month: 5, day: 1)
+			var result = Api.Streaming.GetStats(type: "prepared"
+					, interval: "24h"
+					, startTime: new DateTime(year: 2018, month: 5, day: 1)
 					, endTime: new DateTime(year: 2018, month: 5, day: 20));
 
 			Assert.IsNotEmpty(collection: result);

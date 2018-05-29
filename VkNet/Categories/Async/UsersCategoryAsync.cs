@@ -52,7 +52,10 @@ namespace VkNet.Categories
 																	, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Users.GetSubscriptions(userId: userId, count: count, offset: offset, fields: fields
+					_vk.Users.GetSubscriptions(userId: userId
+							, count: count
+							, offset: offset
+							, fields: fields
 							, skipAuthorization: skipAuthorization));
 		}
 
@@ -65,7 +68,11 @@ namespace VkNet.Categories
 																, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Users.GetFollowers(userId: userId, count: count, offset: offset, fields: fields, nameCase: nameCase
+					_vk.Users.GetFollowers(userId: userId
+							, count: count
+							, offset: offset
+							, fields: fields
+							, nameCase: nameCase
 							, skipAuthorization: skipAuthorization));
 		}
 

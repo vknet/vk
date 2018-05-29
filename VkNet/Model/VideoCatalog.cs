@@ -7,53 +7,55 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Данные для отображения блока видеокаталога
+	/// Данные для отображения блока видеокаталога
 	/// </summary>
 	[Serializable]
 	public class VideoCatalog
 	{
 		/// <summary>
-		///     Список элементов блока видеокаталога
+		/// Список элементов блока видеокаталога
 		/// </summary>
 		public ReadOnlyCollection<VideoCatalogItem> Items { get; set; }
 
 		/// <summary>
-		///     Идентификатор блока. Возвращается строка для предопределенных блоков. Для других возвращается число.
+		/// Идентификатор блока. Возвращается строка для предопределенных блоков. Для
+		/// других возвращается число.
 		/// </summary>
 		public string Id { get; set; }
 
 		/// <summary>
-		///     Заголовок блока.
+		/// Заголовок блока.
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		///     Параметр для получения следующей страницы результатов. Необходимо передать его значение в from в следующем вызове,
-		///     чтобы получить содержимое каталога, следующее за полученным в текущем вызове.
+		/// Параметр для получения следующей страницы результатов. Необходимо передать его
+		/// значение в from в следующем вызове,
+		/// чтобы получить содержимое каталога, следующее за полученным в текущем вызове.
 		/// </summary>
 		public string Next { get; set; }
 
 		/// <summary>
-		///     предпочтительный способ отображения контента
+		/// предпочтительный способ отображения контента
 		/// </summary>
 		[JsonProperty(propertyName: "view")]
 		public VideoView View { get; set; }
 
 		/// <summary>
-		///     Наличие возможности скрыть блок.
+		/// Наличие возможности скрыть блок.
 		/// </summary>
 		public bool? CanHide { get; set; }
 
 		/// <summary>
-		///     Тип блока.
+		/// Тип блока.
 		/// </summary>
 		public VideoCatalogType Type { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static VideoCatalog FromJson(VkResponse response)
 		{
 			var item = new VideoCatalog

@@ -225,7 +225,12 @@ namespace VkNet.Tests.Categories
 					, dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
 
 			Assert.That(actual: statsPeriods[index: 0].Day
-					, expression: Is.EqualTo(expected: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0
+					, expression: Is.EqualTo(expected: new DateTime(year: 2015
+							, month: 11
+							, day: 11
+							, hour: 0
+							, minute: 0
+							, second: 0
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: statsPeriods[index: 0].Views, expression: Is.EqualTo(expected: 57));
@@ -552,7 +557,12 @@ namespace VkNet.Tests.Categories
 					, dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
 
 			Assert.That(actual: statsPeriods[index: 0].Day
-					, expression: Is.EqualTo(expected: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0
+					, expression: Is.EqualTo(expected: new DateTime(year: 2015
+							, month: 11
+							, day: 11
+							, hour: 0
+							, minute: 0
+							, second: 0
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: statsPeriods[index: 0].Views, expression: Is.EqualTo(expected: 810));

@@ -5,34 +5,34 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	///     Параметры настройки уведомлений о событиях в Callback API.
+	/// Параметры настройки уведомлений о событиях в Callback API.
 	/// </summary>
 	[Serializable]
 	public class CallbackServerParams
 	{
 		/// <summary>
-		///     идентификатор сообщества.
+		/// идентификатор сообщества.
 		/// </summary>
 		[JsonProperty(propertyName: "group_id")]
 		public ulong? GroupId { get; set; }
 
 		/// <summary>
-		///     идентификатор сервера.
+		/// идентификатор сервера.
 		/// </summary>
 		[JsonProperty(propertyName: "server_id")]
 		public long? ServerId { get; set; }
 
 		/// <summary>
-		///     уведомления о новых сообщениях (0 — выключить, 1 — включить).
+		/// уведомления о новых сообщениях (0 — выключить, 1 — включить).
 		/// </summary>
 		[JsonProperty(propertyName: "callback_settings")]
 		public CallbackSettings CallbackSettings { get; set; }
 
 		/// <summary>
-		///     Привести к типу VkParameters.
+		/// Привести к типу VkParameters.
 		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
+		/// <param name="p"> Параметры. </param>
+		/// <returns> </returns>
 		public static VkParameters ToVkParameters(CallbackServerParams p)
 		{
 			return new VkParameters

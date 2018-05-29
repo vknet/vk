@@ -179,21 +179,26 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 1].Description, expression: Is.EqualTo(expected: "В связи с небольшим количеством..."));
 
 			Assert.That(actual: groups[index: 1].StartDate
-					, expression: Is.EqualTo(expected: new DateTime(year: 2008, month: 1, day: 15, hour: 7, minute: 0, second: 0
+					, expression: Is.EqualTo(expected: new DateTime(year: 2008
+							, month: 1
+							, day: 15
+							, hour: 7
+							, minute: 0
+							, second: 0
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: groups[index: 1].Type, expression: Is.EqualTo(expected: GroupType.Event));
 			Assert.That(actual: groups[index: 1].IsAdmin, expression: Is.False);
 			Assert.That(actual: groups[index: 1].IsMember, expression: Is.True);
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1181795/c_efd67aca.jpg"));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1181795/c_efd67aca.jpg"));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1181795/b_369a1c47.jpg"));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1181795/b_369a1c47.jpg"));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"));
 
 			Assert.That(actual: groups.Count, expression: Is.EqualTo(expected: 2));
 			Assert.That(actual: groups[index: 0].Id, expression: Is.EqualTo(expected: 1153959));
@@ -207,21 +212,26 @@ namespace VkNet.Tests.Categories
 					, expression: Is.EqualTo(expected: "Попади в не реальную сказку пришествия..."));
 
 			Assert.That(actual: groups[index: 0].StartDate
-					, expression: Is.EqualTo(expected: new DateTime(year: 2008, month: 04, day: 20, hour: 14, minute: 0, second: 30
+					, expression: Is.EqualTo(expected: new DateTime(year: 2008
+							, month: 04
+							, day: 20
+							, hour: 14
+							, minute: 0
+							, second: 30
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: groups[index: 0].Type, expression: Is.EqualTo(expected: GroupType.Event));
 			Assert.That(actual: groups[index: 0].IsAdmin, expression: Is.False);
 			Assert.That(actual: groups[index: 0].IsMember, expression: Is.True);
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg"));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg"));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1153959/b_5bad925c.jpg"));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1153959/b_5bad925c.jpg"));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: "http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
 		}
 
 		[Test]
@@ -265,8 +275,8 @@ namespace VkNet.Tests.Categories
 		{
 			var groups = new GroupsCategory(vk: new VkApi());
 
-			Assert.That(del: () => groups.GetById(groupIds: new List<string>(), groupId: "1", fields: null),
-					expr: Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(del: () => groups.GetById(groupIds: new List<string>(), groupId: "1", fields: null)
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -353,8 +363,8 @@ namespace VkNet.Tests.Categories
 		{
 			var groups = new GroupsCategory(vk: new VkApi());
 
-			Assert.That(del: () => groups.GetById(groupIds: new List<string>(), groupId: "2", fields: null),
-					expr: Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(del: () => groups.GetById(groupIds: new List<string>(), groupId: "2", fields: null)
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -455,10 +465,12 @@ namespace VkNet.Tests.Categories
 			var category = GetMockedGroupCategory(url: url, json: json);
 
 			var groups = category.GetById(groupIds: new[]
-					{
-							"17683660"
-							, "637247"
-					}, groupId: null, fields: GroupsFields.All)
+							{
+									"17683660"
+									, "637247"
+							}
+							, groupId: null
+							, fields: GroupsFields.All)
 					.ToList();
 
 			Assert.That(actual: groups.Count, expression: Is.EqualTo(expected: 2));
@@ -470,14 +482,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 0].Type, expression: Is.EqualTo(expected: GroupType.Event));
 			Assert.That(actual: groups[index: 0].IsMember, expression: Is.False);
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 
 			Assert.That(actual: groups[index: 0].City.Id, expression: Is.EqualTo(expected: 95));
 			Assert.That(actual: groups[index: 0].Country.Id, expression: Is.EqualTo(expected: 1));
@@ -486,7 +498,12 @@ namespace VkNet.Tests.Categories
 					, expression: Is.EqualTo(expected: "Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21..."));
 
 			Assert.That(actual: groups[index: 0].StartDate
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 7, day: 21, hour: 10, minute: 0, second: 0
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012
+							, month: 7
+							, day: 21
+							, hour: 10
+							, minute: 0
+							, second: 0
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: groups[index: 1].Id, expression: Is.EqualTo(expected: 637247));
@@ -498,20 +515,20 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 1].Type, expression: Is.EqualTo(expected: GroupType.Group));
 			Assert.That(actual: groups[index: 1].IsMember, expression: Is.True);
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: "http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: "http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: "http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: "http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: "http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: "http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
 
 			Assert.That(actual: groups[index: 1].City.Id, expression: Is.EqualTo(expected: 95));
 			Assert.That(actual: groups[index: 1].Country.Id, expression: Is.EqualTo(expected: 1));
 
-			Assert.That(actual: groups[index: 1].Description,
-					expression: Is.EqualTo(expected: "Кто он, этот неординарный и талантливый человек? Его творчество спо..."));
+			Assert.That(actual: groups[index: 1].Description
+					, expression: Is.EqualTo(expected: "Кто он, этот неординарный и талантливый человек? Его творчество спо..."));
 
 			Assert.That(actual: groups[index: 1].StartDate, expression: Is.Null);
 		}
@@ -554,10 +571,12 @@ namespace VkNet.Tests.Categories
 			var cat = GetMockedGroupCategory(url: url, json: json);
 
 			var groups = cat.GetById(groupIds: new[]
-					{
-							"17683660"
-							, "637247"
-					}, groupId: null, fields: null)
+							{
+									"17683660"
+									, "637247"
+							}
+							, groupId: null
+							, fields: null)
 					.ToList();
 
 			Assert.That(condition: groups.Count == 2);
@@ -569,14 +588,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 0].Type, expression: Is.EqualTo(expected: GroupType.Event));
 			Assert.That(actual: groups[index: 0].IsMember, expression: Is.False);
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
 
 			Assert.That(actual: groups[index: 1].Id, expression: Is.EqualTo(expected: 637247));
 			Assert.That(actual: groups[index: 1].Name, expression: Is.EqualTo(expected: "Чак Паланик - Сумасшедший гений литературы"));
@@ -586,14 +605,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 1].IsAdmin, expression: Is.False);
 			Assert.That(actual: groups[index: 1].IsMember, expression: Is.True);
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs11418.userapi.com/g637247/c_f597d0f8.jpg")));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs11418.userapi.com/g637247/c_f597d0f8.jpg")));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs11418.userapi.com/g637247/b_898ae7f1.jpg")));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs11418.userapi.com/g637247/b_898ae7f1.jpg")));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs11418.userapi.com/g637247/a_6be98c68.jpg")));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs11418.userapi.com/g637247/a_6be98c68.jpg")));
 		}
 
 		[Test]
@@ -642,14 +661,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: group.Type, expression: Is.EqualTo(expected: GroupType.Event));
 			Assert.That(actual: group.IsMember, expression: Is.False);
 
-			Assert.That(actual: group.PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+			Assert.That(actual: group.PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
-			Assert.That(actual: group.PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+			Assert.That(actual: group.PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
-			Assert.That(actual: group.PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(actual: group.PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: "http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 
 			Assert.That(actual: group.City.Id, expression: Is.EqualTo(expected: 95));
 			Assert.That(actual: group.Country.Id, expression: Is.EqualTo(expected: 1));
@@ -658,7 +677,12 @@ namespace VkNet.Tests.Categories
 					, expression: Is.EqualTo(expected: "Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
 
 			Assert.That(actual: group.StartDate
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 7, day: 21, hour: 10, minute: 0, second: 0
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012
+							, month: 7
+							, day: 21
+							, hour: 10
+							, minute: 0
+							, second: 0
 							, kind: DateTimeKind.Utc)));
 		}
 
@@ -696,14 +720,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: g.Type, expression: Is.EqualTo(expected: GroupType.Event));
 			Assert.That(actual: g.IsMember, expression: Is.False);
 
-			Assert.That(actual: g.PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
+			Assert.That(actual: g.PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
 
-			Assert.That(actual: g.PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
+			Assert.That(actual: g.PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
 
-			Assert.That(actual: g.PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
+			Assert.That(actual: g.PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
 		}
 
 		[Test]
@@ -756,14 +780,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: group1.IsAdmin, expression: Is.False);
 			Assert.That(actual: group1.IsMember, expression: Is.False);
 
-			Assert.That(actual: group1.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c620330/v620330740/cf2a/4Lal9LxRuII.jpg")));
+			Assert.That(actual: group1.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c620330/v620330740/cf2a/4Lal9LxRuII.jpg")));
 
-			Assert.That(actual: group1.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c620330/v620330740/cf29/6anB7BfUduc.jpg")));
+			Assert.That(actual: group1.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c620330/v620330740/cf29/6anB7BfUduc.jpg")));
 
-			Assert.That(actual: group1.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c620330/v620330740/cf28/wPYJcCw4dJA.jpg")));
+			Assert.That(actual: group1.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c620330/v620330740/cf28/wPYJcCw4dJA.jpg")));
 
 			var group2 = catalog.Skip(count: 1).FirstOrDefault();
 			Assert.That(actual: group2, expression: Is.Not.Null);
@@ -775,14 +799,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: group2.IsAdmin, expression: Is.False);
 			Assert.That(actual: group2.IsMember, expression: Is.False);
 
-			Assert.That(actual: group2.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c631129/v631129289/a7b2/IsslJ3YB_Ho.jpg")));
+			Assert.That(actual: group2.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c631129/v631129289/a7b2/IsslJ3YB_Ho.jpg")));
 
-			Assert.That(actual: group2.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c631129/v631129289/a7b1/Ud8vrcXY4jE.jpg")));
+			Assert.That(actual: group2.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c631129/v631129289/a7b1/Ud8vrcXY4jE.jpg")));
 
-			Assert.That(actual: group2.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c631129/v631129289/a7b0/1Xle1sPdGWU.jpg")));
+			Assert.That(actual: group2.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c631129/v631129289/a7b0/1Xle1sPdGWU.jpg")));
 		}
 
 		[Test]
@@ -835,14 +859,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: group1.IsAdmin, expression: Is.False);
 			Assert.That(actual: group1.IsMember, expression: Is.False);
 
-			Assert.That(actual: group1.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629209/v629209418/39246/tARC41vYcko.jpg")));
+			Assert.That(actual: group1.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629209/v629209418/39246/tARC41vYcko.jpg")));
 
-			Assert.That(actual: group1.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629209/v629209418/39245/oqo-rj5a3JY.jpg")));
+			Assert.That(actual: group1.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629209/v629209418/39245/oqo-rj5a3JY.jpg")));
 
-			Assert.That(actual: group1.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629209/v629209418/39244/LNkpNaZWlkE.jpg")));
+			Assert.That(actual: group1.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629209/v629209418/39244/LNkpNaZWlkE.jpg")));
 
 			var group2 = catalog.Skip(count: 1).FirstOrDefault();
 			Assert.That(actual: group2, expression: Is.Not.Null);
@@ -854,14 +878,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: group2.IsAdmin, expression: Is.False);
 			Assert.That(actual: group2.IsMember, expression: Is.False);
 
-			Assert.That(actual: group2.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629511/v629511851/2dec6/FqIHKdp4u2U.jpg")));
+			Assert.That(actual: group2.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629511/v629511851/2dec6/FqIHKdp4u2U.jpg")));
 
-			Assert.That(actual: group2.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629511/v629511851/2dec5/h10vBfOoRnk.jpg")));
+			Assert.That(actual: group2.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629511/v629511851/2dec5/h10vBfOoRnk.jpg")));
 
-			Assert.That(actual: group2.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg")));
+			Assert.That(actual: group2.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg")));
 		}
 
 		[Test]
@@ -914,14 +938,17 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: group1.IsAdmin, expression: Is.False);
 			Assert.That(actual: group1.IsMember, expression: Is.False);
 
-			Assert.That(actual: group1.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://cs7062.vk.me/c628023/v628023574/45681/YL78hc3tDzE.jpg")));
+			Assert.That(actual: group1.Photo50
+					, expression: Is.EqualTo(
+							expected: new Uri(uriString: "https://cs7062.vk.me/c628023/v628023574/45681/YL78hc3tDzE.jpg")));
 
-			Assert.That(actual: group1.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://cs7062.vk.me/c628023/v628023574/45680/ga_NTah7dDo.jpg")));
+			Assert.That(actual: group1.Photo100
+					, expression: Is.EqualTo(
+							expected: new Uri(uriString: "https://cs7062.vk.me/c628023/v628023574/45680/ga_NTah7dDo.jpg")));
 
-			Assert.That(actual: group1.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://cs7062.vk.me/c628023/v628023574/4567f/QD1aAZsZVHE.jpg")));
+			Assert.That(actual: group1.Photo200
+					, expression: Is.EqualTo(
+							expected: new Uri(uriString: "https://cs7062.vk.me/c628023/v628023574/4567f/QD1aAZsZVHE.jpg")));
 
 			var group2 = catalog.Skip(count: 1).FirstOrDefault();
 			Assert.That(actual: group2, expression: Is.Not.Null);
@@ -933,14 +960,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: group2.IsAdmin, expression: Is.False);
 			Assert.That(actual: group2.IsMember, expression: Is.False);
 
-			Assert.That(actual: group2.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629121/v629121767/1fb3a/nzbm9sfxlnI.jpg")));
+			Assert.That(actual: group2.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629121/v629121767/1fb3a/nzbm9sfxlnI.jpg")));
 
-			Assert.That(actual: group2.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629121/v629121767/1fb39/fz0oilONN9A.jpg")));
+			Assert.That(actual: group2.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629121/v629121767/1fb39/fz0oilONN9A.jpg")));
 
-			Assert.That(actual: group2.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629121/v629121767/1fb38/gz5b7w4k7u4.jpg")));
+			Assert.That(actual: group2.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c629121/v629121767/1fb38/gz5b7w4k7u4.jpg")));
 		}
 
 		[Test]
@@ -1425,9 +1452,10 @@ namespace VkNet.Tests.Categories
 			var groups = GetMockedGroupCategory(url: url, json: json);
 
 			Assert.That(del: () => groups.GetMembers(@params: new GroupsGetMembersParams
-			{
-					GroupId = "0"
-			}), expr: Throws.InstanceOf<InvalidGroupIdException>());
+					{
+							GroupId = "0"
+					})
+					, expr: Throws.InstanceOf<InvalidGroupIdException>());
 		}
 
 		[Test]
@@ -1814,8 +1842,8 @@ namespace VkNet.Tests.Categories
 			var ex = Assert.Throws<UserAuthorizationFailException>(code: () =>
 					groups.IsMember(groupId: "637247", userId: 4793858, userIds: null, extended: null));
 
-			Assert.That(actual: ex.Message,
-					expression: Is.EqualTo(expected: "User authorization failed: access_token was given to another ip address."));
+			Assert.That(actual: ex.Message
+					, expression: Is.EqualTo(expected: "User authorization failed: access_token was given to another ip address."));
 		}
 
 		[Test]
@@ -2165,11 +2193,12 @@ namespace VkNet.Tests.Categories
 			var category = GetMockedGroupCategory(url: url, json: json);
 
 			var groups = category.Search(@params: new GroupsSearchParams
-			{
-					Query = "Music"
-					, Offset = 20
-					, Count = 3
-			}, skipAuthorization: true);
+					{
+							Query = "Music"
+							, Offset = 20
+							, Count = 3
+					}
+					, skipAuthorization: true);
 
 			Assert.That(actual: groups.Count, expression: Is.EqualTo(expected: 3));
 			Assert.That(actual: groups.TotalCount, expression: Is.EqualTo(expected: 78152));
@@ -2182,14 +2211,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 2].IsAdmin, expression: Is.False);
 			Assert.That(actual: groups[index: 2].IsMember, expression: Is.False);
 
-			Assert.That(actual: groups[index: 2].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9913.userapi.com/g23995866/e_319d8573.jpg")));
+			Assert.That(actual: groups[index: 2].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9913.userapi.com/g23995866/e_319d8573.jpg")));
 
-			Assert.That(actual: groups[index: 2].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9913.userapi.com/g23995866/d_166572a9.jpg")));
+			Assert.That(actual: groups[index: 2].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9913.userapi.com/g23995866/d_166572a9.jpg")));
 
-			Assert.That(actual: groups[index: 2].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9913.userapi.com/g23995866/a_fc553960.jpg")));
+			Assert.That(actual: groups[index: 2].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9913.userapi.com/g23995866/a_fc553960.jpg")));
 
 			Assert.That(actual: groups[index: 1].Id, expression: Is.EqualTo(expected: 23727386));
 			Assert.That(actual: groups[index: 1].Name, expression: Is.EqualTo(expected: "Classical Music Humor"));
@@ -2199,14 +2228,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 1].IsAdmin, expression: Is.False);
 			Assert.That(actual: groups[index: 1].IsMember, expression: Is.False);
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs10650.userapi.com/g23727386/e_8006da42.jpg")));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs10650.userapi.com/g23727386/e_8006da42.jpg")));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs10650.userapi.com/g23727386/d_cbea0559.jpg")));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs10650.userapi.com/g23727386/d_cbea0559.jpg")));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs10650.userapi.com/g23727386/a_7743aab2.jpg")));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs10650.userapi.com/g23727386/a_7743aab2.jpg")));
 
 			Assert.That(actual: groups[index: 0].Id, expression: Is.EqualTo(expected: 26442631));
 			Assert.That(actual: groups[index: 0].Name, expression: Is.EqualTo(expected: "Music Quotes. First Public."));
@@ -2216,14 +2245,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 0].IsAdmin, expression: Is.False);
 			Assert.That(actual: groups[index: 0].IsMember, expression: Is.False);
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg")));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg")));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg")));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg")));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs303205.userapi.com/g26442631/a_32dd770f.jpg")));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs303205.userapi.com/g26442631/a_32dd770f.jpg")));
 		}
 
 		[Test]
@@ -2265,9 +2294,10 @@ namespace VkNet.Tests.Categories
 			var category = GetMockedGroupCategory(url: url, json: json);
 
 			var groups = category.Search(@params: new GroupsSearchParams
-			{
-					Query = "Music"
-			}, skipAuthorization: true);
+					{
+							Query = "Music"
+					}
+					, skipAuthorization: true);
 
 			Assert.That(actual: groups.Count, expression: Is.EqualTo(expected: 2));
 			Assert.That(actual: groups.TotalCount, expression: Is.EqualTo(expected: 78152));
@@ -2280,14 +2310,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 1].IsAdmin, expression: Is.False);
 			Assert.That(actual: groups[index: 1].IsMember, expression: Is.False);
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg")));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg")));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs410222.userapi.com/g27895931/d_2869e827.jpg")));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs410222.userapi.com/g27895931/d_2869e827.jpg")));
 
-			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs410222.userapi.com/g27895931/a_32935e91.jpg")));
+			Assert.That(actual: groups[index: 1].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs410222.userapi.com/g27895931/a_32935e91.jpg")));
 
 			Assert.That(actual: groups[index: 0].Id, expression: Is.EqualTo(expected: 339767));
 			Assert.That(actual: groups[index: 0].Name, expression: Is.EqualTo(expected: "A-ONE HIP-HOP MUSIC CHANNEL"));
@@ -2297,14 +2327,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: groups[index: 0].IsAdmin, expression: Is.False);
 			Assert.That(actual: groups[index: 0].IsMember, expression: Is.False);
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9365.userapi.com/g339767/e_a590d16b.jpg")));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo50
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9365.userapi.com/g339767/e_a590d16b.jpg")));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9365.userapi.com/g339767/d_f653c773.jpg")));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo100
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9365.userapi.com/g339767/d_f653c773.jpg")));
 
-			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200,
-					expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9365.userapi.com/g339767/a_4653ba99.jpg")));
+			Assert.That(actual: groups[index: 0].PhotoPreviews.Photo200
+					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9365.userapi.com/g339767/a_4653ba99.jpg")));
 		}
 
 		[Test]
@@ -2313,9 +2343,10 @@ namespace VkNet.Tests.Categories
 			var groups = new GroupsCategory(vk: Api);
 
 			Assert.That(del: () => groups.Search(@params: new GroupsSearchParams
-			{
-					Query = ""
-			}), expr: Throws.InstanceOf<ArgumentException>());
+					{
+							Query = ""
+					})
+					, expr: Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -2334,11 +2365,12 @@ namespace VkNet.Tests.Categories
 			var category = GetMockedGroupCategory(url: url, json: json);
 
 			var groups = category.Search(@params: new GroupsSearchParams
-			{
-					Query = "ThisQueryDoesNotExistAtAll"
-					, Offset = 20
-					, Count = 3
-			}, skipAuthorization: true);
+					{
+							Query = "ThisQueryDoesNotExistAtAll"
+							, Offset = 20
+							, Count = 3
+					}
+					, skipAuthorization: true);
 
 			Assert.That(actual: groups.Count, expression: Is.EqualTo(expected: 0));
 			Assert.That(actual: groups.TotalCount, expression: Is.EqualTo(expected: 0));

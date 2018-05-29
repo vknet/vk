@@ -5,37 +5,37 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Результат запроса Friends.Delete
+	/// Результат запроса Friends.Delete
 	/// </summary>
 	[Serializable]
 	public class FriendsDeleteResult
 	{
 		/// <summary>
-		///     Удалось успешно удалить друга
+		/// Удалось успешно удалить друга
 		/// </summary>
 		[JsonProperty(propertyName: "success")]
 		public bool? Success { get; set; }
 
 		/// <summary>
-		///     Был удален друг
+		/// Был удален друг
 		/// </summary>
 		[JsonProperty(propertyName: "friend_deleted")]
 		public bool? FriendDeleted { get; set; }
 
 		/// <summary>
-		///     Отменена исходящая заявка
+		/// Отменена исходящая заявка
 		/// </summary>
 		[JsonProperty(propertyName: "out_request_deleted")]
 		public bool? OutRequestDeleted { get; set; }
 
 		/// <summary>
-		///     Отклонена входящая заявка
+		/// Отклонена входящая заявка
 		/// </summary>
 		[JsonProperty(propertyName: "in_request_deleted")]
 		public bool? InRequestDeleted { get; set; }
 
 		/// <summary>
-		///     Отклонена рекомендация друга
+		/// Отклонена рекомендация друга
 		/// </summary>
 		[JsonProperty(propertyName: "suggestion_deleted")]
 		public bool? SuggestionDeleted { get; set; }
@@ -43,10 +43,10 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static FriendsDeleteResult FromJson(VkResponse response)
 		{
 			return new FriendsDeleteResult

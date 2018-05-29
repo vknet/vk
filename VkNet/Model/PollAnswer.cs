@@ -4,36 +4,36 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Вариант ответа в опросе
+	/// Вариант ответа в опросе
 	/// </summary>
 	[Serializable]
 	public class PollAnswer
 	{
 		/// <summary>
-		///     Идентификатор варианта ответа
+		/// Идентификатор варианта ответа
 		/// </summary>
 		public long? Id { get; set; }
 
 		/// <summary>
-		///     Текст ответа
+		/// Текст ответа
 		/// </summary>
 		public string Text { get; set; }
 
 		/// <summary>
-		///     Кол-во проголосовавших
+		/// Кол-во проголосовавших
 		/// </summary>
 		public int Votes { get; set; }
 
 		/// <summary>
-		///     Процент текущего ответа ко всем остальным вариантам
+		/// Процент текущего ответа ко всем остальным вариантам
 		/// </summary>
 		public double? Rate { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static PollAnswer FromJson(VkResponse response)
 		{
 			var answer = new PollAnswer

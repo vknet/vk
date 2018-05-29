@@ -5,25 +5,25 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Обложка чата
+	/// Обложка чата
 	/// </summary>
 	[Serializable]
 	public class ChatPhoto
 	{
 		/// <summary>
-		///     URL копии фотографии с шириной 50 px
+		/// URL копии фотографии с шириной 50 px
 		/// </summary>
 		[JsonProperty(propertyName: "photo_50")]
 		public string Photo50 { get; set; }
 
 		/// <summary>
-		///     URL копии фотографии с шириной 100 px
+		/// URL копии фотографии с шириной 100 px
 		/// </summary>
 		[JsonProperty(propertyName: "photo_100")]
 		public string Photo100 { get; set; }
 
 		/// <summary>
-		///     URL копии фотографии с шириной 200 px
+		/// URL копии фотографии с шириной 200 px
 		/// </summary>
 		[JsonProperty(propertyName: "photo_200")]
 		public string Photo200 { get; set; }
@@ -31,10 +31,10 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static ChatPhoto FromJson(VkResponse response)
 		{
 			return new ChatPhoto

@@ -4,36 +4,36 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Вырезанная фотография пользователя
+	/// Вырезанная фотография пользователя
 	/// </summary>
 	[Serializable]
 	public class Rect
 	{
 		/// <summary>
-		///     x
+		/// x
 		/// </summary>
 		public uint X { get; set; }
 
 		/// <summary>
-		///     x2
+		/// x2
 		/// </summary>
 		public uint X2 { get; set; }
 
 		/// <summary>
-		///     y
+		/// y
 		/// </summary>
 		public uint Y { get; set; }
 
 		/// <summary>
-		///     y2
+		/// y2
 		/// </summary>
 		public uint Y2 { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Rect FromJson(VkResponse response)
 		{
 			var crop = new Rect

@@ -3,38 +3,38 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	///     Отношение к чему-либо (алкоголю, курению и т.п.).
+	/// Отношение к чему-либо (алкоголю, курению и т.п.).
 	/// </summary>
 	public enum Attitude
 	{
 		/// <summary>
-		///     Не указано.
+		/// Не указано.
 		/// </summary>
 		[DefaultValue]
 		Unknown = 0
 
 		, /// <summary>
-		///     Резко негативное.
+		/// Резко негативное.
 		/// </summary>
 		VeryNegative = 1
 
 		, /// <summary>
-		///     Негативное.
+		/// Негативное.
 		/// </summary>
 		Negative = 2
 
 		, /// <summary>
-		///     Компромиссное.
+		/// Компромиссное.
 		/// </summary>
 		Compromise = 3
 
 		, /// <summary>
-		///     Нейтральное.
+		/// Нейтральное.
 		/// </summary>
 		Neutral = 4
 
 		, /// <summary>
-		///     Положительное.
+		/// Положительное.
 		/// </summary>
 		Positive = 5
 	}

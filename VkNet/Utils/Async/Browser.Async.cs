@@ -11,26 +11,26 @@ using VkNet.Model;
 namespace VkNet.Utils
 {
 	/// <summary>
-	///     Браузер
+	/// Браузер
 	/// </summary>
 	public partial class Browser
 	{
 		/// <summary>
-		///     Асинхронное получение json по url-адресу
+		/// Асинхронное получение json по url-адресу
 		/// </summary>
-		/// <param name="methodUrl">Адрес получения json</param>
-		/// <param name="parameters">Параметры метода api</param>
-		/// <returns>Строка в формате json</returns>
+		/// <param name="methodUrl"> Адрес получения json </param>
+		/// <param name="parameters"> Параметры метода api </param>
+		/// <returns> Строка в формате json </returns>
 		public async Task<string> GetJsonAsync(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
 			return (await WebCall.PostCallAsync(url: methodUrl, parameters: parameters, webProxy: Proxy)).Response;
 		}
 
 		/// <summary>
-		///     Асинхронная авторизация на сервере ВК
+		/// Асинхронная авторизация на сервере ВК
 		/// </summary>
-		/// <param name="authParams">Параметры авторизации</param>
-		/// <returns>Информация об авторизации приложения</returns>
+		/// <param name="authParams"> Параметры авторизации </param>
+		/// <returns> Информация об авторизации приложения </returns>
 		public async Task<VkAuthorization> AuthorizeAsync(IApiAuthParams authParams)
 		{
 			_logger?.Debug(message: "Шаг 1. Открытие диалога авторизации");
@@ -43,8 +43,11 @@ namespace VkNet.Utils
 
 			_logger?.Debug(message: "Шаг 2. Заполнение формы логина");
 
-			var loginFormPostResult = await FilledLoginFormAsync(email: authParams.Login, password: authParams.Password,
-					captchaSid: authParams.CaptchaSid, captchaKey: authParams.CaptchaKey, authorizeUrlResult: authorizeUrlResult);
+			var loginFormPostResult = await FilledLoginFormAsync(email: authParams.Login
+					, password: authParams.Password
+					, captchaSid: authParams.CaptchaSid
+					, captchaKey: authParams.CaptchaKey
+					, authorizeUrlResult: authorizeUrlResult);
 
 			if (IsAuthSuccessfull(webCallResult: loginFormPostResult))
 			{
@@ -77,11 +80,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Заполнить форму двухфакторной авторизации асинхронно
+		/// Заполнить форму двухфакторной авторизации асинхронно
 		/// </summary>
-		/// <param name="code">Функция возвращающая код двухфакторной авторизации</param>
-		/// <param name="loginFormPostResult">Ответ сервера vk</param>
-		/// <returns>Ответ сервера vk</returns>
+		/// <param name="code"> Функция возвращающая код двухфакторной авторизации </param>
+		/// <param name="loginFormPostResult"> Ответ сервера vk </param>
+		/// <returns> Ответ сервера vk </returns>
 		private async Task<WebCallResult> FilledTwoFactorFormAsync(Func<string> code, WebCallResult loginFormPostResult)
 		{
 			var codeForm = WebForm.From(result: loginFormPostResult)
@@ -92,14 +95,14 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Заполнить форму логин и пароль асинхронно
+		/// Заполнить форму логин и пароль асинхронно
 		/// </summary>
-		/// <param name="email">Логин</param>
-		/// <param name="password">Пароль</param>
-		/// <param name="captchaSid">ИД капчи</param>
-		/// <param name="captchaKey">Значение капчи</param>
-		/// <param name="authorizeUrlResult"></param>
-		/// <returns></returns>
+		/// <param name="email"> Логин </param>
+		/// <param name="password"> Пароль </param>
+		/// <param name="captchaSid"> ИД капчи </param>
+		/// <param name="captchaKey"> Значение капчи </param>
+		/// <param name="authorizeUrlResult"> </param>
+		/// <returns> </returns>
 		private async Task<WebCallResult> FilledLoginFormAsync(string email
 																, string password
 																, long? captchaSid
@@ -127,11 +130,14 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Выполняет обход ошибки валидации асинхронно: https://vk.com/dev/need_validation
+		/// Выполняет обход ошибки валидации асинхронно: https://vk.com/dev/need_validation
 		/// </summary>
-		/// <param name="validateUrl">Адрес страницы валидации</param>
-		/// <param name="phoneNumber">Номер телефона, который необходимо ввести на странице валидации</param>
-		/// <returns>Информация об авторизации приложения.</returns>
+		/// <param name="validateUrl"> Адрес страницы валидации </param>
+		/// <param name="phoneNumber">
+		/// Номер телефона, который необходимо ввести на
+		/// странице валидации
+		/// </param>
+		/// <returns> Информация об авторизации приложения. </returns>
 		public async Task<VkAuthorization> ValidateAsync(string validateUrl, string phoneNumber)
 		{
 			if (string.IsNullOrWhiteSpace(value: validateUrl))
@@ -156,12 +162,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Закончить авторизацию асинхронно
+		/// Закончить авторизацию асинхронно
 		/// </summary>
-		/// <param name="result">Результат</param>
-		/// <param name="webProxy">Настройки прокси</param>
-		/// <returns></returns>
-		/// <exception cref="CaptchaNeededException"></exception>
+		/// <param name="result"> Результат </param>
+		/// <param name="webProxy"> Настройки прокси </param>
+		/// <returns> </returns>
+		/// <exception cref="CaptchaNeededException"> </exception>
 		private async Task<VkAuthorization> EndAuthorizeAsync(WebCallResult result, IWebProxy webProxy = null)
 		{
 			if (IsAuthSuccessfull(webCallResult: result))
@@ -200,11 +206,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Открытие окна авторизацииасинхронно
+		/// Открытие окна авторизацииасинхронно
 		/// </summary>
-		/// <param name="appId">id приложения</param>
-		/// <param name="settings">Настройки приложения</param>
-		/// <returns></returns>
+		/// <param name="appId"> id приложения </param>
+		/// <param name="settings"> Настройки приложения </param>
+		/// <returns> </returns>
 		private async Task<WebCallResult> OpenAuthDialogAsync(ulong appId
 															, [NotNull]
 															Settings settings)

@@ -5,31 +5,31 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о текущем роде занятия пользователя.
+	/// Информация о текущем роде занятия пользователя.
 	/// </summary>
 	[Serializable]
 	public class Occupation
 	{
 		/// <summary>
-		///     Название школы, вуза или места работы
+		/// Название школы, вуза или места работы
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		///     Идентификатор школы, вуза, группы компании (в которой пользователь работает).
+		/// Идентификатор школы, вуза, группы компании (в которой пользователь работает).
 		/// </summary>
 		public long Id { get; set; }
 
 		/// <summary>
-		///     Информация о текущем роде занятия пользователя.
+		/// Информация о текущем роде занятия пользователя.
 		/// </summary>
 		public OccupationType Type { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Occupation FromJson(VkResponse response)
 		{
 			var occupation = new Occupation

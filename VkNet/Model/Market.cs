@@ -9,82 +9,82 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Информация о продукте.
+	/// Информация о продукте.
 	/// </summary>
 	[Serializable]
 	public class Market
 	{
 		/// <summary>
-		///     Идентификатор
+		/// Идентификатор
 		/// </summary>
 		public long Id { get; set; }
 
 		/// <summary>
-		///     Идентификатор владельца товара
+		/// Идентификатор владельца товара
 		/// </summary>
 		public long? OwnerId { get; set; }
 
 		/// <summary>
-		///     Название товара
+		/// Название товара
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Текст описания товара
+		/// Текст описания товара
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Цена
+		/// Цена
 		/// </summary>
 		public Price Price { get; set; }
 
 		/// <summary>
-		///     Категория товара
+		/// Категория товара
 		/// </summary>
 		public MarketCategory Category { get; set; }
 
 		/// <summary>
-		///     URL изображения-обложки товара
+		/// URL изображения-обложки товара
 		/// </summary>
 		public Uri ThumbPhoto { get; set; }
 
 		/// <summary>
-		///     Дата создания товара в формате Unixtime.
+		/// Дата создания товара в формате Unixtime.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
-		///     Статус доступности товара
+		/// Статус доступности товара
 		/// </summary>
 		public ProductAvailability Availability { get; set; }
 
 		/// <summary>
-		///     Изображения товара
+		/// Изображения товара
 		/// </summary>
 		public ReadOnlyCollection<Photo> Photos { get; set; }
 
 		/// <summary>
-		///     Возможность комментировать товар для текущего пользователя
+		/// Возможность комментировать товар для текущего пользователя
 		/// </summary>
 		public bool? CanComment { get; set; }
 
 		/// <summary>
-		///     Возможность сделать репост товара для текущего пользователя
+		/// Возможность сделать репост товара для текущего пользователя
 		/// </summary>
 		public bool? CanRepost { get; set; }
 
 		/// <summary>
-		///     Информация об отметках «Мне нравится»
+		/// Информация об отметках «Мне нравится»
 		/// </summary>
 		public Likes Likes { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Market FromJson(VkResponse response)
 		{
 			var result = new Market

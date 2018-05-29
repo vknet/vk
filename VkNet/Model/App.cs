@@ -10,145 +10,146 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Приложение.
+	/// Приложение.
 	/// </summary>
 	[Serializable]
 	public class App
 	{
 		/// <summary>
-		///     Идентификатор приложения.
+		/// Идентификатор приложения.
 		/// </summary>
 		public ulong Id { get; set; }
 
 		/// <summary>
-		///     Название приложения.
+		/// Название приложения.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Uri-адрес обложки приложения шириной 278px.
+		/// Uri-адрес обложки приложения шириной 278px.
 		/// </summary>
 		public string Icon278 { get; set; }
 
 		/// <summary>
-		///     Uri-адрес обложки приложения шириной 139px.
+		/// Uri-адрес обложки приложения шириной 139px.
 		/// </summary>
 		public string Icon139 { get; set; }
 
 		/// <summary>
-		///     Uri-адрес обложки приложения шириной 150px.
+		/// Uri-адрес обложки приложения шириной 150px.
 		/// </summary>
 		public string Icon150 { get; set; }
 
 		/// <summary>
-		///     Uri-адрес обложки приложения шириной 75px.
+		/// Uri-адрес обложки приложения шириной 75px.
 		/// </summary>
 		public string Icon75 { get; set; }
 
 		/// <summary>
-		///     Uri-адрес баннера шириной 560px.
+		/// Uri-адрес баннера шириной 560px.
 		/// </summary>
 		public string Banner560 { get; set; }
 
 		/// <summary>
-		///     Uri-адрес баннера шириной 1120px.
+		/// Uri-адрес баннера шириной 1120px.
 		/// </summary>
 		public string Banner1120 { get; set; }
 
 		/// <summary>
-		///     Тип приложения:.
+		/// Тип приложения:.
 		/// </summary>
 		public AppType Type { get; set; }
 
 		/// <summary>
-		///     Категория приложения.
+		/// Категория приложения.
 		/// </summary>
 		public string Section { get; set; }
 
 		/// <summary>
-		///     Адрес страницы автора приложения.
+		/// Адрес страницы автора приложения.
 		/// </summary>
 		public string AuthorUrl { get; set; }
 
 		/// <summary>
-		///     Идентификатор автора приложения.
+		/// Идентификатор автора приложения.
 		/// </summary>
 		public ulong? AuthorId { get; set; }
 
 		/// <summary>
-		///     Идентификатор официальной группы приложения.
+		/// Идентификатор официальной группы приложения.
 		/// </summary>
 		public ulong? AuthorGroup { get; set; }
 
 		/// <summary>
-		///     Количество участников приложения.
+		/// Количество участников приложения.
 		/// </summary>
 		public ulong MembersCount { get; set; }
 
 		/// <summary>
-		///     Дата размещения.
+		/// Дата размещения.
 		/// </summary>
 		public string PublishedDate { get; set; }
 
 		/// <summary>
-		///     Позиция в каталоге.
+		/// Позиция в каталоге.
 		/// </summary>
 		public ulong? CatalogPosition { get; set; }
 
 		/// <summary>
-		///     Является ли приложение мультиязычным (<c>true</c>).
+		/// Является ли приложение мультиязычным (<c> true </c>).
 		/// </summary>
 		public bool International { get; set; }
 
 		/// <summary>
-		///     Тип турнирной таблицы (0 - не поддерживается, 1 - по уровню, 2 - по очкам).
+		/// Тип турнирной таблицы (0 - не поддерживается, 1 - по уровню, 2 - по очкам).
 		/// </summary>
 		public LeaderboardTypes LeaderBoardType { get; set; }
 
 		/// <summary>
-		///     Идентификатор жанра.
+		/// Идентификатор жанра.
 		/// </summary>
 		public int? GenreId { get; set; }
 
 		/// <summary>
-		///     Название жанра.
+		/// Название жанра.
 		/// </summary>
 		public string Genre { get; set; }
 
 		/// <summary>
-		///     Идентификатор приложения в магазине приложений.
+		/// Идентификатор приложения в магазине приложений.
 		/// </summary>
 		public int? PlatformId { get; set; }
 
 		/// <summary>
-		///     Доступно ли приложение в мобильном каталоге.
+		/// Доступно ли приложение в мобильном каталоге.
 		/// </summary>
 		public bool? IsInCatalog { get; set; }
 
 		/// <summary>
-		///     список идентификаторов друзей текущего пользователя, которые установили приложение
-		///     (если был передан параметр return_friends = 1.
+		/// список идентификаторов друзей текущего пользователя, которые установили
+		/// приложение
+		/// (если был передан параметр return_friends = 1.
 		/// </summary>
 		[JsonProperty(propertyName: "friends")]
 		public ReadOnlyCollection<long> Friends { get; set; }
 
 		/// <summary>
-		///     1, если приложение установлено у текущего пользователя.
+		/// 1, если приложение установлено у текущего пользователя.
 		/// </summary>
 		[JsonProperty(propertyName: "installed")]
 		public bool? Installed { get; set; }
 
 		/// <summary>
-		///     1, если приложение — html5 игра.
+		/// 1, если приложение — html5 игра.
 		/// </summary>
 		[JsonProperty(propertyName: "is_html_5_app")]
 		public bool IsHtml5App { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static App FromJson(VkResponse response)
 		{
 			return new App
@@ -189,27 +190,27 @@ namespace VkNet.Model
 	#region Опциональные поля
 
 		/// <summary>
-		///     Описание.
+		/// Описание.
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///     Поддомен приложения (или строка idXXXXXXX, если поддомен не задан).
+		/// Поддомен приложения (или строка idXXXXXXX, если поддомен не задан).
 		/// </summary>
 		public string ScreenName { get; set; }
 
 		/// <summary>
-		///     Uri-адрес обложки приложения шириной 16px.
+		/// Uri-адрес обложки приложения шириной 16px.
 		/// </summary>
 		public string Icon16 { get; set; }
 
 		/// <summary>
-		///     Uri-адреса изображений-скриншотов из приложения.
+		/// Uri-адреса изображений-скриншотов из приложения.
 		/// </summary>
 		public IEnumerable<Photo> Screenshots { get; set; }
 
 		/// <summary>
-		///     1, если у пользователя включены уведомления из этого приложения.
+		/// 1, если у пользователя включены уведомления из этого приложения.
 		/// </summary>
 		[JsonProperty(propertyName: "push_enabled")]
 		public bool? PushEnabled { get; set; }

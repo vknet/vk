@@ -10,13 +10,13 @@ namespace VkNet.Categories
 	public partial class LeadsCategory : ILeadsCategory
 	{
 		/// <summary>
-		///     API.
+		/// API.
 		/// </summary>
 		private readonly VkApi _vk;
 
 		/// <inheritdoc />
 		/// <param name="api">
-		///     Api vk.com
+		/// Api vk.com
 		/// </param>
 		public LeadsCategory(VkApi api = null)
 		{
@@ -42,8 +42,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public LeadsComplete Complete(string vkSid, string secret, string comment)
 		{
-			return _vk.Call<LeadsComplete>(methodName: "leads.complete",
-					parameters: new VkParameters
+			return _vk.Call<LeadsComplete>(methodName: "leads.complete"
+					, parameters: new VkParameters
 					{
 							{ "vk_sid", vkSid }
 							, { "secret", secret }
@@ -54,8 +54,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Lead GetStats(ulong leadId, string secret, string dateStart, string dateEnd)
 		{
-			return _vk.Call<Lead>(methodName: "leads.getStats",
-					parameters: new VkParameters
+			return _vk.Call<Lead>(methodName: "leads.getStats"
+					, parameters: new VkParameters
 					{
 							{ "lead_id", leadId }
 							, { "secret", secret }
@@ -83,10 +83,11 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public MetricHitResponse MetricHit(string data)
 		{
-			return _vk.Call<MetricHitResponse>(methodName: "leads.metricHit", parameters: new VkParameters
-			{
-					{ "data", data }
-			});
+			return _vk.Call<MetricHitResponse>(methodName: "leads.metricHit"
+					, parameters: new VkParameters
+					{
+							{ "data", data }
+					});
 		}
 
 		/// <inheritdoc />

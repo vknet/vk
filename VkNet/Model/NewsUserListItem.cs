@@ -5,36 +5,36 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///     Элемент пользовательского списка новостей
+	/// Элемент пользовательского списка новостей
 	/// </summary>
 	[Serializable]
 	public class NewsUserListItem
 	{
 		/// <summary>
-		///     Идентификатор списка.
+		/// Идентификатор списка.
 		/// </summary>
 		public int Id { get; set; }
 
 		/// <summary>
-		///     Название списка, заданное пользователем.
+		/// Название списка, заданное пользователем.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		///     Отключены ли копии постов;
+		/// Отключены ли копии постов;
 		/// </summary>
 		public bool? NoReposts { get; set; }
 
 		/// <summary>
-		///     Идентификаторы пользователей и сообществ, включенных в список.
+		/// Идентификаторы пользователей и сообществ, включенных в список.
 		/// </summary>
 		public IEnumerable<long> SourceIds { get; set; }
 
 		/// <summary>
-		///     Разобрать из json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static NewsUserListItem FromJson(VkResponse response)
 		{
 			var newsUserListItem = new NewsUserListItem

@@ -304,7 +304,10 @@ namespace VkNet.Categories
 																		, long? cropWidth = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.GetMarketUploadServer(groupId: groupId, mainPhoto: mainPhoto, cropX: cropX, cropY: cropY
+					_vk.Photo.GetMarketUploadServer(groupId: groupId
+							, mainPhoto: mainPhoto
+							, cropX: cropX
+							, cropY: cropY
 							, cropWidth: cropWidth));
 		}
 

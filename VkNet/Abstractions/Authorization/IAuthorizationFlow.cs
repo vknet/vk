@@ -3,7 +3,7 @@
 namespace VkNet.Abstractions.Authorization
 {
 	/// <summary>
-	///     Поток авторизации
+	/// Поток авторизации
 	/// </summary>
 	public interface IAuthorizationFlow<T>
 	{
@@ -12,9 +12,9 @@ namespace VkNet.Abstractions.Authorization
 		T AuthorizationParameters { get; set; }
 
 		/// <summary>
-		///     Авторизация
+		/// Авторизация
 		/// </summary>
-		/// <returns>Access token.</returns>
+		/// <returns> Access token. </returns>
 		AuthorizationResult Aurhorize();
 	}
 }

@@ -54,10 +54,12 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.CreateChat(userIds: new ulong[]
-			{
-					1
-					, 2
-			}, title: "hi, friends"), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+							{
+									1
+									, 2
+							}
+							, title: "hi, friends")
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -71,10 +73,11 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var chatId = Cat.CreateChat(userIds: new ulong[]
-			{
-					5041431
-					, 10657891
-			}, title: "test chat's title");
+					{
+							5041431
+							, 10657891
+					}
+					, title: "test chat's title");
 
 			Assert.That(actual: chatId, expression: Is.EqualTo(expected: 3));
 		}
@@ -154,10 +157,12 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var dict = Cat.Delete(messageIds: new ulong[]
-			{
-					4457
-					, 4464
-			}, spam: false, deleteForAll: false);
+					{
+							4457
+							, 4464
+					}
+					, spam: false
+					, deleteForAll: false);
 
 			Assert.That(actual: dict.Count, expression: Is.EqualTo(expected: 2));
 			Assert.That(actual: dict[key: 4457], expression: Is.True);
@@ -344,11 +349,12 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.GetById(messageIds: new ulong[]
-			{
-					1
-					, 3
-					, 5
-			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					{
+							1
+							, 3
+							, 5
+					})
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -450,7 +456,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msg.Id, expression: Is.EqualTo(expected: 1));
 
 			Assert.That(actual: msg.Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2007, month: 12, day: 18, hour: 2, minute: 5, second: 20
+					, expression: Is.EqualTo(expected: new DateTime(year: 2007
+							, month: 12
+							, day: 18
+							, hour: 2
+							, minute: 5
+							, second: 20
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msg.Type, expression: Is.EqualTo(expected: MessageType.Received));
@@ -601,10 +612,11 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.GetDialogs(@params: new MessagesDialogsGetParams
-			{
-					Count = 0
-					, Offset = 201
-			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					{
+							Count = 0
+							, Offset = 201
+					})
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -641,7 +653,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs.Messages[index: 0].Id, expression: Is.EqualTo(expected: 2105));
 
 			Assert.That(actual: msgs.Messages[index: 0].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2010, month: 9, day: 25, hour: 19, minute: 17, second: 32
+					, expression: Is.EqualTo(expected: new DateTime(year: 2010
+							, month: 9
+							, day: 25
+							, hour: 19
+							, minute: 17
+							, second: 32
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs.Messages[index: 0].Type, expression: Is.EqualTo(expected: MessageType.Received));
@@ -657,10 +674,11 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.GetHistory(@params: new MessagesGetHistoryParams
-			{
-					Reversed = false
-					, UserId = 1
-			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					{
+							Reversed = false
+							, UserId = 1
+					})
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -871,7 +889,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs.Messages[index: 2].UserId, expression: Is.EqualTo(expected: 4793858));
 
 			Assert.That(actual: msgs.Messages[index: 2].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2010, month: 9, day: 25, hour: 18, minute: 34, second: 4
+					, expression: Is.EqualTo(expected: new DateTime(year: 2010
+							, month: 9
+							, day: 25
+							, hour: 18
+							, minute: 34
+							, second: 4
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs.Messages[index: 2].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
@@ -885,7 +908,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs.Messages[index: 0].UserId, expression: Is.EqualTo(expected: 4793858));
 
 			Assert.That(actual: msgs.Messages[index: 0].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2010, month: 9, day: 25, hour: 18, minute: 24, second: 48
+					, expression: Is.EqualTo(expected: new DateTime(year: 2010
+							, month: 9
+							, day: 25
+							, hour: 18
+							, minute: 24
+							, second: 48
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs.Messages[index: 0].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
@@ -896,7 +924,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs.Messages[index: 1].UserId, expression: Is.EqualTo(expected: 7712));
 
 			Assert.That(actual: msgs.Messages[index: 1].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2010, month: 9, day: 25, hour: 18, minute: 26, second: 56
+					, expression: Is.EqualTo(expected: new DateTime(year: 2010
+							, month: 9
+							, day: 25
+							, hour: 18
+							, minute: 26
+							, second: 56
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs.Messages[index: 1].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
@@ -929,7 +962,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: activity.IsOnline, expression: Is.False);
 
 			Assert.That(actual: activity.Time
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 8, day: 9, hour: 3, minute: 57, second: 25
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012
+							, month: 8
+							, day: 9
+							, hour: 3
+							, minute: 57
+							, second: 25
 							, kind: DateTimeKind.Utc)));
 		}
 
@@ -980,10 +1018,11 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var result = Cat.MarkAsRead(messageIds: new long[]
-			{
-					2
-					, 3
-			}, peerId: null);
+					{
+							2
+							, 3
+					}
+					, peerId: null);
 
 			Assert.That(actual: result, expression: Is.True);
 		}
@@ -1053,9 +1092,10 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.Search(@params: new MessagesSearchParams
-			{
-					Query = "привет"
-			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					{
+							Query = "привет"
+					})
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -1107,7 +1147,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs[index: 2].Id, expression: Is.EqualTo(expected: 4414));
 
 			Assert.That(actual: msgs[index: 2].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 7, day: 13, hour: 8, minute: 46, second: 32
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012
+							, month: 7
+							, day: 13
+							, hour: 8
+							, minute: 46
+							, second: 32
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs[index: 2].Type, expression: Is.EqualTo(expected: MessageType.Received));
@@ -1119,7 +1164,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs[index: 1].Id, expression: Is.EqualTo(expected: 4415));
 
 			Assert.That(actual: msgs[index: 1].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 7, day: 13, hour: 8, minute: 46, second: 48
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012
+							, month: 7
+							, day: 13
+							, hour: 8
+							, minute: 46
+							, second: 48
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs[index: 1].Type, expression: Is.EqualTo(expected: MessageType.Sended));
@@ -1131,7 +1181,12 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs[index: 0].Id, expression: Is.EqualTo(expected: 4442));
 
 			Assert.That(actual: msgs[index: 0].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 7, day: 31, hour: 20, minute: 2, second: 52
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012
+							, month: 7
+							, day: 31
+							, hour: 20
+							, minute: 2
+							, second: 52
 							, kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs[index: 0].Type, expression: Is.EqualTo(expected: MessageType.Received));
