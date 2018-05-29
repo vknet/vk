@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
+using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Utils;
 using VkNet.Model.Attachments;
@@ -98,7 +99,8 @@ namespace VkNet.Categories
         public ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null,
             string captchaKey = null)
         {
-            VkErrors.ThrowIfNullOrEmpty(() => file);
+			var file1 = file;
+			VkErrors.ThrowIfNullOrEmpty(() => file1);
             VkErrors.ThrowIfNullOrEmpty(() => title);
             var responseJson = JObject.Parse(file);
             file = responseJson["file"].ToString();

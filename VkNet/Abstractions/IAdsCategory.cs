@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using JetBrains.Annotations;
-using VkNet.Abstractions.Async;
-using VkNet.Enums.Filters;
+﻿using System.Collections.ObjectModel;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {

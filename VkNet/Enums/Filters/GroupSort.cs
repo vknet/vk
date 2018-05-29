@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Сортировка результатов поиска.

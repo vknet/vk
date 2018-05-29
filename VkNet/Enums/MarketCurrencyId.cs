@@ -15,18 +15,18 @@ namespace VkNet.Enums
 		/// <summary>
 		/// 980 — украинская гривна;
 		/// </summary>
-		UAH = 980,
+		Uah = 980,
 		/// <summary>
 		/// 398 — казахстанский тенге;
 		/// </summary>
-		KZT = 398,
+		Kzt = 398,
 		/// <summary>
 		/// 978 — евро;
 		/// </summary>
-		EUR = 978,
+		Eur = 978,
 		/// <summary>
 		/// 840 — доллар США.
 		/// </summary>
-		USD = 840
+		Usd = 840
 	}
 }

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Tests.Helper;
 
 namespace VkNet.Tests.Categories.Group
 {

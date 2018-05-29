@@ -46,7 +46,11 @@ namespace VkNet.Tests.Categories
 
             var db = GetMockedDatabaseCategory(url, json);
 
-			var ex = Assert.Throws<ParameterMissingOrInvalidException>(() => db.GetStreetsById());
+			var ex = Assert.Throws<ParameterMissingOrInvalidException>(() =>
+			{
+				var readOnlyCollection = db.GetStreetsById();
+				Assert.IsNotEmpty(readOnlyCollection);
+			});
 			Assert.That(ex.Message, Is.EqualTo("One of the parameters specified was missing or invalid: street_ids is undefined"));
 		}
 
@@ -234,7 +238,7 @@ namespace VkNet.Tests.Categories
 
             var cities = db.GetCities(new GetCitiesParams
             {
-                CountryId = 1, 
+                CountryId = 1,
                 Count = 3
             });
 
@@ -292,7 +296,7 @@ namespace VkNet.Tests.Categories
 
             var cities = db.GetCities(new GetCitiesParams
             {
-                CountryId = 1, 
+                CountryId = 1,
                 RegionId = 1004118,
                 Count = 2,
                 Offset = 1

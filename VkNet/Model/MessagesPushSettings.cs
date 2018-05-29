@@ -13,12 +13,12 @@ namespace VkNet.Model
 		/// <summary>
 		/// Отключить звук.
 		/// </summary>
-		public object no_sound { get; set; }
+		public bool NoSound { get; set; }
 
 		/// <summary>
 		/// Не передавать текст сообщения.
 		/// </summary>
-		public object no_text { get; set; }
+		public bool NoText { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -29,8 +29,8 @@ namespace VkNet.Model
 		{
 			var result = new MessagesPushSettings
 			{
-				no_sound = response["no_sound"],
-				no_text = response["no_text"]
+				NoSound = response["no_sound"],
+				NoText = response["no_text"]
 			};
 
 			return result;

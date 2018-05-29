@@ -1,6 +1,4 @@
-﻿using VkNet.Model;
-
-namespace VkNet.Enums.SafetyEnums
+﻿namespace VkNet.Enums.SafetyEnums
 {
     /// <summary>
     /// Статус заявки на изменение имени

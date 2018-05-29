@@ -6,7 +6,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
-namespace VkNet.Abstractions.Async
+namespace VkNet.Abstractions
 {
     /// <summary>
     /// Методы этого класса позволяют асинхронно производить действия с аккаунтом пользователя.

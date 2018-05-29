@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using VkNet.Abstractions.Async;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;

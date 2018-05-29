@@ -1,7 +1,7 @@
 ﻿using System;
 using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams
+namespace VkNet.Enums
 {
 	/// <summary>
 	/// тип радиуса зоны поиска

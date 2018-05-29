@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Enum.SafetyEnums

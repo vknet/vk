@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using VkNet.Categories;
 using VkNet.Model;
 
-namespace VkNet.Abstractions.Async
+namespace VkNet.Abstractions
 {
 	/// <summary>
 	/// Storage Методы для работы с переменными в приложении.

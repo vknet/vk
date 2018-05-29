@@ -1,6 +1,4 @@
-﻿using System;
-using VkNet.Abstractions.Async;
-using VkNet.Model;
+﻿using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 

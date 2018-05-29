@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums.SafetyEnums
+﻿using VkNet.Enums.SafetyEnums;
+
+namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Тип фильтрации для приложений.

@@ -4,7 +4,7 @@
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	[Serializable]
 	public class Platform : SafetyEnum<Platform>
@@ -17,6 +17,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// iPhone.
 		/// </summary>
+		// ReSharper disable once InconsistentNaming
 		public static readonly Platform IPhone = RegisterPossibleValue("iphone");
 
 		/// <summary>

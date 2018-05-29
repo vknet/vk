@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using VkNet.Utils;
 
-namespace VkNet.Abstractions.Async
+namespace VkNet.Abstractions
 {
     /// <summary>
     /// Методы этого класса позволяют производить асинхронные действия с универсальным методом.

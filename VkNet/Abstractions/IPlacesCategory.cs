@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using VkNet.Abstractions.Async;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Abstractions

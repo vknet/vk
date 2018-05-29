@@ -4,6 +4,7 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
+using VkNet.Tests.Helper;
 
 namespace VkNet.Tests.Categories
 {

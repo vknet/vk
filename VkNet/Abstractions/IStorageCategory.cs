@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
-using VkNet.Abstractions.Async;
-using VkNet.Categories;
 using VkNet.Model;
 
 namespace VkNet.Abstractions

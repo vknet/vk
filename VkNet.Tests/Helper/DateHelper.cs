@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkNet.Tests
+namespace VkNet.Tests.Helper
 {
 	public static class DateHelper
 	{

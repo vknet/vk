@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using VkNet.Abstractions;
-using VkNet.Abstractions.Async;
 using VkNet.Utils;
 
 namespace VkNet.Categories

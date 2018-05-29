@@ -1,5 +1,4 @@
-﻿using VkNet.Abstractions.Async;
-using VkNet.Utils;
+﻿using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {

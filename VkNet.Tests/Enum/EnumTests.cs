@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using VkNet.Enums;
+using VkNet.Enums.Filters;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Enum
@@ -180,7 +181,7 @@ namespace VkNet.Tests.Enum
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(5), Is.EqualTo(GroupSubjects.Health));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(6), Is.EqualTo(GroupSubjects.MeetAndChat));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(7), Is.EqualTo(GroupSubjects.Games));
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(8), Is.EqualTo(GroupSubjects.IT));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(8), Is.EqualTo(GroupSubjects.It));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(9), Is.EqualTo(GroupSubjects.Cinema));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(10), Is.EqualTo(GroupSubjects.BeautyAndFashion));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(11), Is.EqualTo(GroupSubjects.Cookery));
@@ -204,7 +205,7 @@ namespace VkNet.Tests.Enum
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(29), Is.EqualTo(GroupSubjects.HomeAndFamily));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(30), Is.EqualTo(GroupSubjects.Sports));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(31), Is.EqualTo(GroupSubjects.Coverage));
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(32), Is.EqualTo(GroupSubjects.TV));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(32), Is.EqualTo(GroupSubjects.Tv));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(33), Is.EqualTo(GroupSubjects.GoodsAndServices));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(34), Is.EqualTo(GroupSubjects.InterestsAndHobbies));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(35), Is.EqualTo(GroupSubjects.Finances));
@@ -524,10 +525,10 @@ namespace VkNet.Tests.Enum
         public void MarketCurrencyIdTest()
         {
 			Assert.That(Utilities.EnumFrom<MarketCurrencyId>(643), Is.EqualTo(MarketCurrencyId.Rub));
-			Assert.That(Utilities.EnumFrom<MarketCurrencyId>(980), Is.EqualTo(MarketCurrencyId.UAH));
-			Assert.That(Utilities.EnumFrom<MarketCurrencyId>(398), Is.EqualTo(MarketCurrencyId.KZT));
-			Assert.That(Utilities.EnumFrom<MarketCurrencyId>(978), Is.EqualTo(MarketCurrencyId.EUR));
-			Assert.That(Utilities.EnumFrom<MarketCurrencyId>(840), Is.EqualTo(MarketCurrencyId.USD));
+			Assert.That(Utilities.EnumFrom<MarketCurrencyId>(980), Is.EqualTo(MarketCurrencyId.Uah));
+			Assert.That(Utilities.EnumFrom<MarketCurrencyId>(398), Is.EqualTo(MarketCurrencyId.Kzt));
+			Assert.That(Utilities.EnumFrom<MarketCurrencyId>(978), Is.EqualTo(MarketCurrencyId.Eur));
+			Assert.That(Utilities.EnumFrom<MarketCurrencyId>(840), Is.EqualTo(MarketCurrencyId.Usd));
 		}
 
 		[Test]

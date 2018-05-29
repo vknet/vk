@@ -5,7 +5,6 @@ namespace VkNet.Categories
 	using System.Collections.ObjectModel;
 	using System.Linq;
 	using Enums;
-	using Enums.Filters;
 	using Model;
 	using Model.RequestParams;
 	using Model.Attachments;
@@ -15,7 +14,7 @@ namespace VkNet.Categories
 	/// <summary>
 	/// Методы для работы с аудиозаписями.
 	/// </summary>
-	public partial class AudioCategory
+	public class AudioCategory
 	{
 		private readonly VkApi _vk;
 

@@ -2,11 +2,7 @@
 
 namespace VkNet.Exception
 {
-    
-
-    using Enums.Filters;
-
-    /// <summary>
+	/// <summary>
     /// Исключение, которое выбрасывается при попытке неудачной авторизации, когда указан неправильный логин или пароль
     /// при вызове метода VkApi.Authorize
     /// </summary>

@@ -11,6 +11,7 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
+using VkNet.Tests.Helper;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories

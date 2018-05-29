@@ -6,6 +6,7 @@ using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
+using VkNet.Tests.Helper;
 
 namespace VkNet.Tests.Categories
 {

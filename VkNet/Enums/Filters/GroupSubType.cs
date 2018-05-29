@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Вид публичной страницы: (учитывается только при создании публичных страниц)

@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -74,7 +73,7 @@ namespace VkNet.Model
 
             return adsaccount;
         }
-        #endregion  
+        #endregion
 
     }
 }

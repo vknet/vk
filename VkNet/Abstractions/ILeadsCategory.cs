@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using VkNet.Abstractions.Async;
+﻿using System.Collections.ObjectModel;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Leads;
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using VkNet.Abstractions.Async;
 using VkNet.Model;
 
 namespace VkNet.Abstractions

@@ -1,5 +1,6 @@
 ﻿using System;
 using VkNet.Enums;
+using VkNet.Tests.Helper;
 
 namespace VkNet.Tests.Categories
 {

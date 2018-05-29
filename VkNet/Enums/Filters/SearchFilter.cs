@@ -1,7 +1,6 @@
 ﻿using System;
-using VkNet.Enums.Filters;
 
-namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.Filters
 {
     /// <summary>
     /// 

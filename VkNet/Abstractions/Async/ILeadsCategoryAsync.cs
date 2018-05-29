@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Leads;
 
-namespace VkNet.Abstractions.Async
+namespace VkNet.Abstractions
 {
 	/// <summary>
     /// Leads При подключении к сервису рекламных акций партнёр получает доступ в специальный раздел для создания и управления рекламными акциями (офферами).

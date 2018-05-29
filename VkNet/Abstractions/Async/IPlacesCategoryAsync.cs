@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model.RequestParams;
 
-namespace VkNet.Abstractions.Async
+namespace VkNet.Abstractions
 {
 	/// <summary>
 	/// Places Методы для работы с местами.

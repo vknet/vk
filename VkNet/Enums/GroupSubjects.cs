@@ -36,7 +36,7 @@
 		/// <summary>
 		/// ИТ.
 		/// </summary>
-		IT,
+		It,
 		/// <summary>
 		/// Кино.
 		/// </summary>
@@ -132,7 +132,7 @@
 		/// <summary>
 		/// Телевидение.
 		/// </summary>
-		TV,
+		Tv,
 		/// <summary>
 		/// Товары и услуги.
 		/// </summary>

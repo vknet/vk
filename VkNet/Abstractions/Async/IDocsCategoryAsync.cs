@@ -7,7 +7,7 @@ using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
-namespace VkNet.Categories
+namespace VkNet.Abstractions
 {
     /// <summary>
     /// Асинхронные методы для работы с документами (получение списка, загрузка, удаление и т.д.)
