@@ -10,7 +10,8 @@ namespace VkNet.Enums.Filters
 	/// Аналог enum с атрибутом [Flags].
 	/// </summary>
 	/// <typeparam name="TFilter">Непосредственно наследник</typeparam>
-	public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TFilter>>, IEquatable<MultivaluedFilter<TFilter>> where TFilter : MultivaluedFilter<TFilter>, new()
+	public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TFilter>>, IEquatable<MultivaluedFilter<TFilter>>
+			where TFilter : MultivaluedFilter<TFilter>, new()
 	{
 		/// <summary>
 		/// Аналог enum, типобезопасен.
@@ -22,7 +23,7 @@ namespace VkNet.Enums.Filters
 		/// <summary>
 		/// Выбранные элементы
 		/// </summary>
-		protected internal List<string> Selected { get; private set; } = new List<string>();
+		private List<string> Selected { get; set; } = new List<string>();
 
 		/// <summary>
 		/// Регистрирует возможное значение.
@@ -55,6 +56,7 @@ namespace VkNet.Enums.Filters
 		public static TFilter FromJson(VkResponse response)
 		{
 			var value = response.ToString();
+
 			return FromJsonString(value);
 		}
 
@@ -90,7 +92,7 @@ namespace VkNet.Enums.Filters
 		/// <returns>Объединенный набор фильтров</returns>
 		public static TFilter operator |(MultivaluedFilter<TFilter> a, MultivaluedFilter<TFilter> b)
 		{
-			return new TFilter {Selected = a.Selected.Union(b.Selected).OrderBy(x => x).ToList()};
+			return new TFilter { Selected = a.Selected.Union(b.Selected).OrderBy(x => x).ToList() };
 		}
 
 		/// <inheritdoc />
@@ -117,19 +119,19 @@ namespace VkNet.Enums.Filters
 		/// <inheritdoc />
 		public int GetHashCode(MultivaluedFilter<TFilter> obj)
 		{
-			return (Selected != null ? Selected.GetHashCode() : 0);
+			return Selected != null ? Selected.GetHashCode() : 0;
 		}
 
 		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
-			return obj?.GetType() == GetType() && Equals(this, (MultivaluedFilter<TFilter>)obj);
+			return obj?.GetType() == GetType() && Equals(this, (MultivaluedFilter<TFilter>) obj);
 		}
 
 		/// <inheritdoc />
 		public override int GetHashCode()
 		{
-			return Selected != null ? Selected.GetHashCode() : 0;
+			return GetHashCode(this);
 		}
 
 		/// <inheritdoc />
