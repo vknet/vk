@@ -46,8 +46,8 @@ namespace VkNet.Tests
 		{
 			var browser = new Mock<IBrowser>();
 
-			browser.Setup(expression: m => m.GetJson(url: It.Is<string>(match: s => s == Url)
-							, parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+			browser.Setup(expression: m => m.GetJson(url: It.Is<string>(match: s => s == Url),
+							parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 					.Callback(action: Callback)
 					.Returns(valueFunction: () =>
 					{
@@ -70,8 +70,8 @@ namespace VkNet.Tests
 			var restClient = new Mock<IRestClient>();
 
 			restClient.Setup(expression: x =>
-							x.PostAsync(uri: It.Is<Uri>(match: s => s == new Uri(uriString: Url))
-									, parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+							x.PostAsync(uri: It.Is<Uri>(match: s => s == new Uri(uriString: Url)),
+									parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 					.Callback(action: Callback)
 					.Returns(valueFunction: () =>
 					{
@@ -80,27 +80,27 @@ namespace VkNet.Tests
 							throw new NullReferenceException(message: @"Json не может быть равен null. Обновите значение поля Json");
 						}
 
-						return Task.FromResult(result: HttpResponse<string>.Success(httpStatusCode: HttpStatusCode.OK
-								, value: Json
-								, requestUri: Url));
+						return Task.FromResult(result: HttpResponse<string>.Success(httpStatusCode: HttpStatusCode.OK,
+								value: Json,
+								requestUri: Url));
 					});
 
-			restClient.Setup(expression: x => x.PostAsync(uri: It.Is<Uri>(match: s => string.IsNullOrWhiteSpace(value: Url))
-							, parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+			restClient.Setup(expression: x => x.PostAsync(uri: It.Is<Uri>(match: s => string.IsNullOrWhiteSpace(value: Url)),
+							parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 					.Throws<ArgumentException>();
 
 			Api = new VkApi
 			{
-					Browser = browser.Object
-					, RestClient = restClient.Object
+					Browser = browser.Object,
+					RestClient = restClient.Object
 			};
 
 			Api.Authorize(@params: new ApiAuthParams
 			{
-					ApplicationId = 1
-					, Login = "login"
-					, Password = "pass"
-					, Settings = Settings.All
+					ApplicationId = 1,
+					Login = "login",
+					Password = "pass",
+					Settings = Settings.All
 			});
 
 			Api.RequestsPerSecond = 100000; // Чтобы тесты быстрее выполнялись
