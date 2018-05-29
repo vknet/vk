@@ -8,27 +8,48 @@ namespace VkNet.Enums.SafetyEnums
 	/// <summary>
 	/// Аналог enum, типобезопасен.
 	/// </summary>
-	/// <typeparam name="TFilter">Непосредственно наследник</typeparam>
+	/// <typeparam name="TFilter"> Непосредственно наследник </typeparam>
 	[Serializable]
-	[SuppressMessage("ReSharper", "StaticMemberInGenericType")]
+	[SuppressMessage(category: "ReSharper", checkId: "StaticMemberInGenericType")]
 	public abstract class SafetyEnum<TFilter>
-		: IEqualityComparer<SafetyEnum<TFilter>>, IEquatable<SafetyEnum<TFilter>>
-		where TFilter : SafetyEnum<TFilter>, new()
+			: IEqualityComparer<SafetyEnum<TFilter>>, IEquatable<SafetyEnum<TFilter>>
+			where TFilter : SafetyEnum<TFilter>, new()
 	{
 		/// <summary>
 		/// Значение
 		/// </summary>
 		private string _value;
 
+		/// <inheritdoc />
+		public bool Equals(SafetyEnum<TFilter> x, SafetyEnum<TFilter> y)
+		{
+			return x == y;
+		}
+
+		/// <inheritdoc />
+		public int GetHashCode(SafetyEnum<TFilter> obj)
+		{
+			return obj._value.GetHashCode();
+		}
+
+		/// <inheritdoc />
+		public bool Equals(SafetyEnum<TFilter> other)
+		{
+			return Equals(x: this, y: other);
+		}
+
 		/// <summary>
 		/// Регистрирует возможное значение.
 		/// </summary>
-		/// <param name="value">Значение.</param>
-		/// <returns></returns>
-		/// <exception cref="System.ArgumentException">Mask must be a power of 2 (i.e. only one bit must be equal to 1);mask</exception>
+		/// <param name="value"> Значение. </param>
+		/// <returns> </returns>
+		/// <exception cref="System.ArgumentException">
+		/// Mask must be a power of 2 (i.e.
+		/// only one bit must be equal to 1);mask
+		/// </exception>
 		protected static TFilter RegisterPossibleValue(string value)
 		{
-			return new TFilter {_value = value};
+			return new TFilter { _value = value };
 		}
 
 		/// <summary>
@@ -42,8 +63,8 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// Реализация оператора ==.
 		/// </summary>
-		/// <param name="left">Левая часть.</param>
-		/// <param name="right">Правая часть.</param>
+		/// <param name="left"> Левая часть. </param>
+		/// <param name="right"> Правая часть. </param>
 		/// <returns>
 		/// Результат.
 		/// </returns>
@@ -59,7 +80,7 @@ namespace VkNet.Enums.SafetyEnums
 				return false;
 			}
 
-			if (ReferenceEquals(right, left))
+			if (ReferenceEquals(objA: right, objB: left))
 			{
 				return true;
 			}
@@ -70,8 +91,8 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// Реализация оператора !=.
 		/// </summary>
-		/// <param name="left">Левая часть.</param>
-		/// <param name="right">Правая часть.</param>
+		/// <param name="left"> Левая часть. </param>
+		/// <param name="right"> Правая часть. </param>
 		/// <returns>
 		/// Результат.
 		/// </returns>
@@ -83,47 +104,31 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект перечисления типа TFilter - Непосредственно наследник</returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Объект перечисления типа TFilter - Непосредственно наследник </returns>
 		public static TFilter FromJson(VkResponse response)
 		{
 			var value = response.ToString();
-			return FromJsonString(value);
+
+			return FromJsonString(response: value);
 		}
 
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект перечисления типа TFilter - Непосредственно наследник</returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Объект перечисления типа TFilter - Непосредственно наследник </returns>
 		public static TFilter FromJsonString(string response)
 		{
-			if (string.IsNullOrWhiteSpace(response))
+			if (string.IsNullOrWhiteSpace(value: response))
 			{
 				return null;
 			}
 
-			var result = new TFilter {_value = response};
-			Activator.CreateInstance(result.GetType());
+			var result = new TFilter { _value = response };
+			Activator.CreateInstance(type: result.GetType());
+
 			return result;
-		}
-
-		/// <inheritdoc />
-		public bool Equals(SafetyEnum<TFilter> other)
-		{
-			return Equals(this, other);
-		}
-
-		/// <inheritdoc />
-		public bool Equals(SafetyEnum<TFilter> x, SafetyEnum<TFilter> y)
-		{
-			return x == y;
-		}
-
-		/// <inheritdoc />
-		public int GetHashCode(SafetyEnum<TFilter> obj)
-		{
-			return obj._value.GetHashCode();
 		}
 
 		/// <inheritdoc />
@@ -135,7 +140,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// <inheritdoc />
 		public override int GetHashCode()
 		{
-			return (_value != null ? _value.GetHashCode() : 0);
+			return GetHashCode(obj: this);
 		}
 	}
 }

@@ -2,16 +2,18 @@
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Tests.Helper;
 
 namespace VkNet.Tests.Categories.Group
 {
-    public class GroupGetBannedTests : BaseTest
-    {
-        [Test]
-        public void GetBanned_Profile()
-        {
-            Url = "https://api.vk.com/method/groups.getBanned";
-            Json = @"{
+	public class GroupGetBannedTests : BaseTest
+	{
+		[Test]
+		public void GetBanned_Profile()
+		{
+			Url = "https://api.vk.com/method/groups.getBanned";
+
+			Json = @"{
 				'response': {
 					'count': 1,
 					'items': [{
@@ -33,29 +35,32 @@ namespace VkNet.Tests.Categories.Group
 				}
 			}";
 
-            var banned = Api.Groups.GetBanned(65968111,null, 3);
+			var banned = Api.Groups.GetBanned(groupId: 65968111, offset: null, count: 3);
 
-            Assert.That(banned, Is.Not.Null);
-            Assert.That(banned.Count, Is.EqualTo(1));
+			Assert.That(actual: banned, expression: Is.Not.Null);
+			Assert.That(actual: banned.Count, expression: Is.EqualTo(expected: 1));
 
-            var user = banned.FirstOrDefault();
-            Assert.That(user, Is.Not.Null);
-            Assert.That(user.Type, Is.EqualTo(SearchResultType.Profile));
-            Assert.That(user.Profile, Is.Not.Null);
-	        Assert.That(user.Group, Is.Null);
-            Assert.That(user.BanInfo, Is.Not.Null);
-            Assert.That(user.BanInfo.AdminId, Is.EqualTo(32190123));
-            Assert.That(user.BanInfo.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1516980336)));
-            Assert.That(user.BanInfo.Reason, Is.EqualTo(BanReason.Other));
-            Assert.That(user.BanInfo.Comment, Is.EqualTo("для теста"));
-            Assert.That(user.BanInfo.EndDate, Is.EqualTo(DateHelper.TimeStampToDateTime(1517585141)));
-        }
-	    
-        [Test]
-        public void GetBanned_Group()
-        {
-            Url = "https://api.vk.com/method/groups.getBanned";
-            Json = @"{
+			var user = banned.FirstOrDefault();
+			Assert.That(actual: user, expression: Is.Not.Null);
+			Assert.That(actual: user.Type, expression: Is.EqualTo(expected: SearchResultType.Profile));
+			Assert.That(actual: user.Profile, expression: Is.Not.Null);
+			Assert.That(actual: user.Group, expression: Is.Null);
+			Assert.That(actual: user.BanInfo, expression: Is.Not.Null);
+			Assert.That(actual: user.BanInfo.AdminId, expression: Is.EqualTo(expected: 32190123));
+			Assert.That(actual: user.BanInfo.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1516980336)));
+			Assert.That(actual: user.BanInfo.Reason, expression: Is.EqualTo(expected: BanReason.Other));
+			Assert.That(actual: user.BanInfo.Comment, expression: Is.EqualTo(expected: "для теста"));
+
+			Assert.That(actual: user.BanInfo.EndDate
+					, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1517585141)));
+		}
+
+		[Test]
+		public void GetBanned_Group()
+		{
+			Url = "https://api.vk.com/method/groups.getBanned";
+
+			Json = @"{
 				'response': {
 					'count': 1,
 					'items': [{
@@ -76,22 +81,24 @@ namespace VkNet.Tests.Categories.Group
 				}
 			}";
 
-            var banned = Api.Groups.GetBanned(65968111,null, 3);
+			var banned = Api.Groups.GetBanned(groupId: 65968111, offset: null, count: 3);
 
-            Assert.That(banned, Is.Not.Null);
-            Assert.That(banned.Count, Is.EqualTo(1));
+			Assert.That(actual: banned, expression: Is.Not.Null);
+			Assert.That(actual: banned.Count, expression: Is.EqualTo(expected: 1));
 
-            var user = banned.FirstOrDefault();
-            Assert.That(user, Is.Not.Null);
-            Assert.That(user.Type, Is.EqualTo(SearchResultType.Group));
-            Assert.That(user.Profile, Is.Null);
-            Assert.That(user.Group, Is.Not.Null);
-            Assert.That(user.BanInfo, Is.Not.Null);
-            Assert.That(user.BanInfo.AdminId, Is.EqualTo(32190123));
-            Assert.That(user.BanInfo.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1516980336)));
-            Assert.That(user.BanInfo.Reason, Is.EqualTo(BanReason.Other));
-            Assert.That(user.BanInfo.Comment, Is.EqualTo("для теста"));
-            Assert.That(user.BanInfo.EndDate, Is.EqualTo(DateHelper.TimeStampToDateTime(1517585141)));
-        }
-    }
+			var user = banned.FirstOrDefault();
+			Assert.That(actual: user, expression: Is.Not.Null);
+			Assert.That(actual: user.Type, expression: Is.EqualTo(expected: SearchResultType.Group));
+			Assert.That(actual: user.Profile, expression: Is.Null);
+			Assert.That(actual: user.Group, expression: Is.Not.Null);
+			Assert.That(actual: user.BanInfo, expression: Is.Not.Null);
+			Assert.That(actual: user.BanInfo.AdminId, expression: Is.EqualTo(expected: 32190123));
+			Assert.That(actual: user.BanInfo.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1516980336)));
+			Assert.That(actual: user.BanInfo.Reason, expression: Is.EqualTo(expected: BanReason.Other));
+			Assert.That(actual: user.BanInfo.Comment, expression: Is.EqualTo(expected: "для теста"));
+
+			Assert.That(actual: user.BanInfo.EndDate
+					, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1517585141)));
+		}
+	}
 }

@@ -12,7 +12,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/widgets.getComments";
 
 			Json =
-				@"{
+					@"{
 					""response"": {
 						""count"": 10,
 						""posts"": [
@@ -53,17 +53,17 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Widgets.GetComments(new GetCommentsParams
+			var result = Api.Widgets.GetComments(getCommentsParams: new GetCommentsParams
 			{
-				WidgetApiId = 5553257,
-				Url = "http://griffiny.ru/season-01/4-1-sezon-1-seriya-i-u-smerti-est-ten.html",
-				Order = "date",
-				Count = 10,
-				Offset = 0
+					WidgetApiId = 5553257
+					, Url = "http://griffiny.ru/season-01/4-1-sezon-1-seriya-i-u-smerti-est-ten.html"
+					, Order = "date"
+					, Count = 10
+					, Offset = 0
 			});
 
-			Assert.IsNotEmpty(result);
-			Assert.AreEqual(10, result.TotalCount);
+			Assert.IsNotEmpty(collection: result);
+			Assert.AreEqual(expected: 10, actual: result.TotalCount);
 		}
 
 		[Test]
@@ -72,7 +72,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/widgets.getPages";
 
 			Json =
-				@"{
+					@"{
 					""response"": {
 						""count"": 50,
 						""pages"": [
@@ -145,9 +145,9 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Widgets.GetPages(5553257, null, "alltime", 0, 10);
-			Assert.IsNotEmpty(result);
-			Assert.AreEqual(50, result.TotalCount);
+			var result = Api.Widgets.GetPages(widgetApiId: 5553257, order: null, period: "alltime", offset: 0, count: 10);
+			Assert.IsNotEmpty(collection: result);
+			Assert.AreEqual(expected: 50, actual: result.TotalCount);
 		}
 	}
 }

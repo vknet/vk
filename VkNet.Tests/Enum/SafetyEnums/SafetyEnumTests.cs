@@ -1,611 +1,730 @@
 using NUnit.Framework;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Enum.SafetyEnums
 {
 	[TestFixture]
-    public class SafetyEnumsTest
-    {
-
+	public class SafetyEnumsTest
+	{
 		[Test]
-        public void AppFilterTest()
-        {
+		public void AppFilterTest()
+		{
 			// get test
-			Assert.That(AppFilter.Installed.ToString(), Is.EqualTo("installed"));
-			Assert.That(AppFilter.Featured.ToString(), Is.EqualTo("featured"));
+			Assert.That(actual: AppFilter.Installed.ToString(), expression: Is.EqualTo(expected: "installed"));
+			Assert.That(actual: AppFilter.Featured.ToString(), expression: Is.EqualTo(expected: "featured"));
+
 			// parse test
-			Assert.That(AppFilter.FromJsonString("installed"), Is.EqualTo(AppFilter.Installed));
-			Assert.That(AppFilter.FromJsonString("featured"), Is.EqualTo(AppFilter.Featured));
+			Assert.That(actual: AppFilter.FromJsonString(response: "installed"), expression: Is.EqualTo(expected: AppFilter.Installed));
+			Assert.That(actual: AppFilter.FromJsonString(response: "featured"), expression: Is.EqualTo(expected: AppFilter.Featured));
 		}
 
 		[Test]
-        public void AppPlatformsTest()
-        {
+		public void AppPlatformsTest()
+		{
 			// get test
-			Assert.That(AppPlatforms.Ios.ToString(), Is.EqualTo("ios"));
-			Assert.That(AppPlatforms.Android.ToString(), Is.EqualTo("android"));
-			Assert.That(AppPlatforms.WinPhone.ToString(), Is.EqualTo("winphone"));
-			Assert.That(AppPlatforms.Web.ToString(), Is.EqualTo("web"));
+			Assert.That(actual: AppPlatforms.Ios.ToString(), expression: Is.EqualTo(expected: "ios"));
+			Assert.That(actual: AppPlatforms.Android.ToString(), expression: Is.EqualTo(expected: "android"));
+			Assert.That(actual: AppPlatforms.WinPhone.ToString(), expression: Is.EqualTo(expected: "winphone"));
+			Assert.That(actual: AppPlatforms.Web.ToString(), expression: Is.EqualTo(expected: "web"));
+
 			// parse test
-			Assert.That(AppPlatforms.FromJsonString("ios"), Is.EqualTo(AppPlatforms.Ios));
-			Assert.That(AppPlatforms.FromJsonString("android"), Is.EqualTo(AppPlatforms.Android));
-			Assert.That(AppPlatforms.FromJsonString("winphone"), Is.EqualTo(AppPlatforms.WinPhone));
-			Assert.That(AppPlatforms.FromJsonString("web"), Is.EqualTo(AppPlatforms.Web));
+			Assert.That(actual: AppPlatforms.FromJsonString(response: "ios"), expression: Is.EqualTo(expected: AppPlatforms.Ios));
+			Assert.That(actual: AppPlatforms.FromJsonString(response: "android"), expression: Is.EqualTo(expected: AppPlatforms.Android));
+			Assert.That(actual: AppPlatforms.FromJsonString(response: "winphone"), expression: Is.EqualTo(expected: AppPlatforms.WinPhone));
+			Assert.That(actual: AppPlatforms.FromJsonString(response: "web"), expression: Is.EqualTo(expected: AppPlatforms.Web));
 		}
 
 		[Test]
-        public void AppRatingTypeTest()
-        {
+		public void AppRatingTypeTest()
+		{
 			// get test
-			Assert.That(AppRatingType.Level.ToString(), Is.EqualTo("level"));
-			Assert.That(AppRatingType.Points.ToString(), Is.EqualTo("points"));
+			Assert.That(actual: AppRatingType.Level.ToString(), expression: Is.EqualTo(expected: "level"));
+			Assert.That(actual: AppRatingType.Points.ToString(), expression: Is.EqualTo(expected: "points"));
+
 			// parse test
-			Assert.That(AppRatingType.FromJsonString("level"), Is.EqualTo(AppRatingType.Level));
-			Assert.That(AppRatingType.FromJsonString("points"), Is.EqualTo(AppRatingType.Points));
+			Assert.That(actual: AppRatingType.FromJsonString(response: "level"), expression: Is.EqualTo(expected: AppRatingType.Level));
+			Assert.That(actual: AppRatingType.FromJsonString(response: "points"), expression: Is.EqualTo(expected: AppRatingType.Points));
 		}
 
 		[Test]
-        public void AppRequestTypeTest()
-        {
+		public void AppRequestTypeTest()
+		{
 			// get test
-			Assert.That(AppRequestType.Invite.ToString(), Is.EqualTo("invite"));
-			Assert.That(AppRequestType.Request.ToString(), Is.EqualTo("request"));
+			Assert.That(actual: AppRequestType.Invite.ToString(), expression: Is.EqualTo(expected: "invite"));
+			Assert.That(actual: AppRequestType.Request.ToString(), expression: Is.EqualTo(expected: "request"));
+
 			// parse test
-			Assert.That(AppRequestType.FromJsonString("invite"), Is.EqualTo(AppRequestType.Invite));
-			Assert.That(AppRequestType.FromJsonString("request"), Is.EqualTo(AppRequestType.Request));
+			Assert.That(actual: AppRequestType.FromJsonString(response: "invite"), expression: Is.EqualTo(expected: AppRequestType.Invite));
+
+			Assert.That(actual: AppRequestType.FromJsonString(response: "request")
+					, expression: Is.EqualTo(expected: AppRequestType.Request));
 		}
 
 		[Test]
-        public void AppSortTest()
-        {
+		public void AppSortTest()
+		{
 			// get test
-			Assert.That(AppSort.PopularToday.ToString(), Is.EqualTo("popular_today"));
-			Assert.That(AppSort.Visitors.ToString(), Is.EqualTo("visitors"));
-			Assert.That(AppSort.CreateDate.ToString(), Is.EqualTo("create_date"));
-			Assert.That(AppSort.GrowthRate.ToString(), Is.EqualTo("growth_rate"));
-			Assert.That(AppSort.PopularWeek.ToString(), Is.EqualTo("popular_week"));
+			Assert.That(actual: AppSort.PopularToday.ToString(), expression: Is.EqualTo(expected: "popular_today"));
+			Assert.That(actual: AppSort.Visitors.ToString(), expression: Is.EqualTo(expected: "visitors"));
+			Assert.That(actual: AppSort.CreateDate.ToString(), expression: Is.EqualTo(expected: "create_date"));
+			Assert.That(actual: AppSort.GrowthRate.ToString(), expression: Is.EqualTo(expected: "growth_rate"));
+			Assert.That(actual: AppSort.PopularWeek.ToString(), expression: Is.EqualTo(expected: "popular_week"));
+
 			// parse test
-			Assert.That(AppSort.FromJsonString("popular_today"), Is.EqualTo(AppSort.PopularToday));
-			Assert.That(AppSort.FromJsonString("visitors"), Is.EqualTo(AppSort.Visitors));
-			Assert.That(AppSort.FromJsonString("create_date"), Is.EqualTo(AppSort.CreateDate));
-			Assert.That(AppSort.FromJsonString("growth_rate"), Is.EqualTo(AppSort.GrowthRate));
-			Assert.That(AppSort.FromJsonString("popular_week"), Is.EqualTo(AppSort.PopularWeek));
+			Assert.That(actual: AppSort.FromJsonString(response: "popular_today"), expression: Is.EqualTo(expected: AppSort.PopularToday));
+			Assert.That(actual: AppSort.FromJsonString(response: "visitors"), expression: Is.EqualTo(expected: AppSort.Visitors));
+			Assert.That(actual: AppSort.FromJsonString(response: "create_date"), expression: Is.EqualTo(expected: AppSort.CreateDate));
+			Assert.That(actual: AppSort.FromJsonString(response: "growth_rate"), expression: Is.EqualTo(expected: AppSort.GrowthRate));
+			Assert.That(actual: AppSort.FromJsonString(response: "popular_week"), expression: Is.EqualTo(expected: AppSort.PopularWeek));
 		}
 
 		[Test]
-        public void ChangeNameStatusTest()
-        {
+		public void ChangeNameStatusTest()
+		{
 			// get test
-			Assert.That(ChangeNameStatus.Processing.ToString(), Is.EqualTo("processing"));
-			Assert.That(ChangeNameStatus.Declined.ToString(), Is.EqualTo("declined"));
-			Assert.That(ChangeNameStatus.Success.ToString(), Is.EqualTo("success"));
-			Assert.That(ChangeNameStatus.WasAccepted.ToString(), Is.EqualTo("was_accepted"));
-			Assert.That(ChangeNameStatus.WasDeclined.ToString(), Is.EqualTo("was_declined"));
+			Assert.That(actual: ChangeNameStatus.Processing.ToString(), expression: Is.EqualTo(expected: "processing"));
+			Assert.That(actual: ChangeNameStatus.Declined.ToString(), expression: Is.EqualTo(expected: "declined"));
+			Assert.That(actual: ChangeNameStatus.Success.ToString(), expression: Is.EqualTo(expected: "success"));
+			Assert.That(actual: ChangeNameStatus.WasAccepted.ToString(), expression: Is.EqualTo(expected: "was_accepted"));
+			Assert.That(actual: ChangeNameStatus.WasDeclined.ToString(), expression: Is.EqualTo(expected: "was_declined"));
+
 			// parse test
-			Assert.That(ChangeNameStatus.FromJsonString("processing"), Is.EqualTo(ChangeNameStatus.Processing));
-			Assert.That(ChangeNameStatus.FromJsonString("declined"), Is.EqualTo(ChangeNameStatus.Declined));
-			Assert.That(ChangeNameStatus.FromJsonString("success"), Is.EqualTo(ChangeNameStatus.Success));
-			Assert.That(ChangeNameStatus.FromJsonString("was_accepted"), Is.EqualTo(ChangeNameStatus.WasAccepted));
-			Assert.That(ChangeNameStatus.FromJsonString("was_declined"), Is.EqualTo(ChangeNameStatus.WasDeclined));
+			Assert.That(actual: ChangeNameStatus.FromJsonString(response: "processing")
+					, expression: Is.EqualTo(expected: ChangeNameStatus.Processing));
+
+			Assert.That(actual: ChangeNameStatus.FromJsonString(response: "declined")
+					, expression: Is.EqualTo(expected: ChangeNameStatus.Declined));
+
+			Assert.That(actual: ChangeNameStatus.FromJsonString(response: "success")
+					, expression: Is.EqualTo(expected: ChangeNameStatus.Success));
+
+			Assert.That(actual: ChangeNameStatus.FromJsonString(response: "was_accepted")
+					, expression: Is.EqualTo(expected: ChangeNameStatus.WasAccepted));
+
+			Assert.That(actual: ChangeNameStatus.FromJsonString(response: "was_declined")
+					, expression: Is.EqualTo(expected: ChangeNameStatus.WasDeclined));
 		}
 
 		[Test]
-        public void CommentObjectTypeTest()
-        {
+		public void CommentObjectTypeTest()
+		{
 			// get test
-			Assert.That(CommentObjectType.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(CommentObjectType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(CommentObjectType.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(CommentObjectType.Topic.ToString(), Is.EqualTo("topic"));
-			Assert.That(CommentObjectType.Note.ToString(), Is.EqualTo("note"));
+			Assert.That(actual: CommentObjectType.Post.ToString(), expression: Is.EqualTo(expected: "post"));
+			Assert.That(actual: CommentObjectType.Photo.ToString(), expression: Is.EqualTo(expected: "photo"));
+			Assert.That(actual: CommentObjectType.Video.ToString(), expression: Is.EqualTo(expected: "video"));
+			Assert.That(actual: CommentObjectType.Topic.ToString(), expression: Is.EqualTo(expected: "topic"));
+			Assert.That(actual: CommentObjectType.Note.ToString(), expression: Is.EqualTo(expected: "note"));
+
 			// parse test
-			Assert.That(CommentObjectType.FromJsonString("post"), Is.EqualTo(CommentObjectType.Post));
-			Assert.That(CommentObjectType.FromJsonString("photo"), Is.EqualTo(CommentObjectType.Photo));
-			Assert.That(CommentObjectType.FromJsonString("video"), Is.EqualTo(CommentObjectType.Video));
-			Assert.That(CommentObjectType.FromJsonString("topic"), Is.EqualTo(CommentObjectType.Topic));
-			Assert.That(CommentObjectType.FromJsonString("note"), Is.EqualTo(CommentObjectType.Note));
+			Assert.That(actual: CommentObjectType.FromJsonString(response: "post")
+					, expression: Is.EqualTo(expected: CommentObjectType.Post));
+
+			Assert.That(actual: CommentObjectType.FromJsonString(response: "photo")
+					, expression: Is.EqualTo(expected: CommentObjectType.Photo));
+
+			Assert.That(actual: CommentObjectType.FromJsonString(response: "video")
+					, expression: Is.EqualTo(expected: CommentObjectType.Video));
+
+			Assert.That(actual: CommentObjectType.FromJsonString(response: "topic")
+					, expression: Is.EqualTo(expected: CommentObjectType.Topic));
+
+			Assert.That(actual: CommentObjectType.FromJsonString(response: "note")
+					, expression: Is.EqualTo(expected: CommentObjectType.Note));
 		}
 
 		[Test]
-        public void CommentsSortTest()
-        {
+		public void CommentsSortTest()
+		{
 			// get test
-			Assert.That(CommentsSort.Asc.ToString(), Is.EqualTo("asc"));
-			Assert.That(CommentsSort.Desc.ToString(), Is.EqualTo("desc"));
+			Assert.That(actual: CommentsSort.Asc.ToString(), expression: Is.EqualTo(expected: "asc"));
+			Assert.That(actual: CommentsSort.Desc.ToString(), expression: Is.EqualTo(expected: "desc"));
+
 			// parse test
-			Assert.That(CommentsSort.FromJsonString("asc"), Is.EqualTo(CommentsSort.Asc));
-			Assert.That(CommentsSort.FromJsonString("desc"), Is.EqualTo(CommentsSort.Desc));
+			Assert.That(actual: CommentsSort.FromJsonString(response: "asc"), expression: Is.EqualTo(expected: CommentsSort.Asc));
+			Assert.That(actual: CommentsSort.FromJsonString(response: "desc"), expression: Is.EqualTo(expected: CommentsSort.Desc));
 		}
 
 		[Test]
-        public void DeactivatedTest()
-        {
+		public void DeactivatedTest()
+		{
 			// get test
-			Assert.That(Deactivated.Deleted.ToString(), Is.EqualTo("deleted"));
-			Assert.That(Deactivated.Banned.ToString(), Is.EqualTo("banned"));
-			Assert.That(Deactivated.Activated.ToString(), Is.EqualTo("activated"));
+			Assert.That(actual: Deactivated.Deleted.ToString(), expression: Is.EqualTo(expected: "deleted"));
+			Assert.That(actual: Deactivated.Banned.ToString(), expression: Is.EqualTo(expected: "banned"));
+			Assert.That(actual: Deactivated.Activated.ToString(), expression: Is.EqualTo(expected: "activated"));
+
 			// parse test
-			Assert.That(Deactivated.FromJsonString("deleted"), Is.EqualTo(Deactivated.Deleted));
-			Assert.That(Deactivated.FromJsonString("banned"), Is.EqualTo(Deactivated.Banned));
-			Assert.That(Deactivated.FromJsonString("activated"), Is.EqualTo(Deactivated.Activated));
+			Assert.That(actual: Deactivated.FromJsonString(response: "deleted"), expression: Is.EqualTo(expected: Deactivated.Deleted));
+			Assert.That(actual: Deactivated.FromJsonString(response: "banned"), expression: Is.EqualTo(expected: Deactivated.Banned));
+			Assert.That(actual: Deactivated.FromJsonString(response: "activated"), expression: Is.EqualTo(expected: Deactivated.Activated));
 		}
 
 		[Test]
-        public void DisplayTest()
-        {
+		public void DisplayTest()
+		{
 			// get test
-			Assert.That(Display.Page.ToString(), Is.EqualTo("page"));
-			Assert.That(Display.Popup.ToString(), Is.EqualTo("popup"));
-			Assert.That(Display.Mobile.ToString(), Is.EqualTo("mobile"));
+			Assert.That(actual: Display.Page.ToString(), expression: Is.EqualTo(expected: "page"));
+			Assert.That(actual: Display.Popup.ToString(), expression: Is.EqualTo(expected: "popup"));
+			Assert.That(actual: Display.Mobile.ToString(), expression: Is.EqualTo(expected: "mobile"));
+
 			// parse test
-			Assert.That(Display.FromJsonString("page"), Is.EqualTo(Display.Page));
-			Assert.That(Display.FromJsonString("popup"), Is.EqualTo(Display.Popup));
-			Assert.That(Display.FromJsonString("mobile"), Is.EqualTo(Display.Mobile));
+			Assert.That(actual: Display.FromJsonString(response: "page"), expression: Is.EqualTo(expected: Display.Page));
+			Assert.That(actual: Display.FromJsonString(response: "popup"), expression: Is.EqualTo(expected: Display.Popup));
+			Assert.That(actual: Display.FromJsonString(response: "mobile"), expression: Is.EqualTo(expected: Display.Mobile));
 		}
 
 		[Test]
-        public void FeedTypeTest()
-        {
+		public void FeedTypeTest()
+		{
 			// get test
-			Assert.That(FeedType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(FeedType.PhotoTag.ToString(), Is.EqualTo("photo_tag"));
+			Assert.That(actual: FeedType.Photo.ToString(), expression: Is.EqualTo(expected: "photo"));
+			Assert.That(actual: FeedType.PhotoTag.ToString(), expression: Is.EqualTo(expected: "photo_tag"));
+
 			// parse test
-			Assert.That(FeedType.FromJsonString("photo"), Is.EqualTo(FeedType.Photo));
-			Assert.That(FeedType.FromJsonString("photo_tag"), Is.EqualTo(FeedType.PhotoTag));
+			Assert.That(actual: FeedType.FromJsonString(response: "photo"), expression: Is.EqualTo(expected: FeedType.Photo));
+			Assert.That(actual: FeedType.FromJsonString(response: "photo_tag"), expression: Is.EqualTo(expected: FeedType.PhotoTag));
 		}
 
 		[Test]
-        public void FriendsFilterTest()
-        {
+		public void FriendsFilterTest()
+		{
 			// get test
-			Assert.That(FriendsFilter.Mutual.ToString(), Is.EqualTo("mutual"));
-			Assert.That(FriendsFilter.Contacts.ToString(), Is.EqualTo("contacts"));
-			Assert.That(FriendsFilter.MutualContacts.ToString(), Is.EqualTo("mutual_contacts"));
+			Assert.That(actual: FriendsFilter.Mutual.ToString(), expression: Is.EqualTo(expected: "mutual"));
+			Assert.That(actual: FriendsFilter.Contacts.ToString(), expression: Is.EqualTo(expected: "contacts"));
+			Assert.That(actual: FriendsFilter.MutualContacts.ToString(), expression: Is.EqualTo(expected: "mutual_contacts"));
+
 			// parse test
-			Assert.That(FriendsFilter.FromJsonString("mutual"), Is.EqualTo(FriendsFilter.Mutual));
-			Assert.That(FriendsFilter.FromJsonString("contacts"), Is.EqualTo(FriendsFilter.Contacts));
-			Assert.That(FriendsFilter.FromJsonString("mutual_contacts"), Is.EqualTo(FriendsFilter.MutualContacts));
+			Assert.That(actual: FriendsFilter.FromJsonString(response: "mutual"), expression: Is.EqualTo(expected: FriendsFilter.Mutual));
+
+			Assert.That(actual: FriendsFilter.FromJsonString(response: "contacts")
+					, expression: Is.EqualTo(expected: FriendsFilter.Contacts));
+
+			Assert.That(actual: FriendsFilter.FromJsonString(response: "mutual_contacts")
+					, expression: Is.EqualTo(expected: FriendsFilter.MutualContacts));
 		}
 
 		[Test]
-        public void FriendsOrderTest()
-        {
+		public void FriendsOrderTest()
+		{
 			// get test
-			Assert.That(FriendsOrder.Name.ToString(), Is.EqualTo("name"));
-			Assert.That(FriendsOrder.Hints.ToString(), Is.EqualTo("hints"));
-			Assert.That(FriendsOrder.Random.ToString(), Is.EqualTo("random"));
+			Assert.That(actual: FriendsOrder.Name.ToString(), expression: Is.EqualTo(expected: "name"));
+			Assert.That(actual: FriendsOrder.Hints.ToString(), expression: Is.EqualTo(expected: "hints"));
+			Assert.That(actual: FriendsOrder.Random.ToString(), expression: Is.EqualTo(expected: "random"));
+
 			// parse test
-			Assert.That(FriendsOrder.FromJsonString("name"), Is.EqualTo(FriendsOrder.Name));
-			Assert.That(FriendsOrder.FromJsonString("hints"), Is.EqualTo(FriendsOrder.Hints));
-			Assert.That(FriendsOrder.FromJsonString("random"), Is.EqualTo(FriendsOrder.Random));
+			Assert.That(actual: FriendsOrder.FromJsonString(response: "name"), expression: Is.EqualTo(expected: FriendsOrder.Name));
+			Assert.That(actual: FriendsOrder.FromJsonString(response: "hints"), expression: Is.EqualTo(expected: FriendsOrder.Hints));
+			Assert.That(actual: FriendsOrder.FromJsonString(response: "random"), expression: Is.EqualTo(expected: FriendsOrder.Random));
 		}
 
 		[Test]
-        public void GroupsSortTest()
-        {
+		public void GroupsSortTest()
+		{
 			// get test
-			Assert.That(GroupsSort.IdAsc.ToString(), Is.EqualTo("id_asc"));
-			Assert.That(GroupsSort.IdDesc.ToString(), Is.EqualTo("id_desc"));
-			Assert.That(GroupsSort.TimeAsc.ToString(), Is.EqualTo("time_asc"));
-			Assert.That(GroupsSort.TimeDesc.ToString(), Is.EqualTo("time_desc"));
+			Assert.That(actual: GroupsSort.IdAsc.ToString(), expression: Is.EqualTo(expected: "id_asc"));
+			Assert.That(actual: GroupsSort.IdDesc.ToString(), expression: Is.EqualTo(expected: "id_desc"));
+			Assert.That(actual: GroupsSort.TimeAsc.ToString(), expression: Is.EqualTo(expected: "time_asc"));
+			Assert.That(actual: GroupsSort.TimeDesc.ToString(), expression: Is.EqualTo(expected: "time_desc"));
+
 			// parse test
-			Assert.That(GroupsSort.FromJsonString("id_asc"), Is.EqualTo(GroupsSort.IdAsc));
-			Assert.That(GroupsSort.FromJsonString("id_desc"), Is.EqualTo(GroupsSort.IdDesc));
-			Assert.That(GroupsSort.FromJsonString("time_asc"), Is.EqualTo(GroupsSort.TimeAsc));
-			Assert.That(GroupsSort.FromJsonString("time_desc"), Is.EqualTo(GroupsSort.TimeDesc));
+			Assert.That(actual: GroupsSort.FromJsonString(response: "id_asc"), expression: Is.EqualTo(expected: GroupsSort.IdAsc));
+			Assert.That(actual: GroupsSort.FromJsonString(response: "id_desc"), expression: Is.EqualTo(expected: GroupsSort.IdDesc));
+			Assert.That(actual: GroupsSort.FromJsonString(response: "time_asc"), expression: Is.EqualTo(expected: GroupsSort.TimeAsc));
+			Assert.That(actual: GroupsSort.FromJsonString(response: "time_desc"), expression: Is.EqualTo(expected: GroupsSort.TimeDesc));
 		}
 
 		[Test]
-        public void GroupTypeTest()
-        {
+		public void GroupTypeTest()
+		{
 			// get test
-			Assert.That(GroupType.Page.ToString(), Is.EqualTo("page"));
-			Assert.That(GroupType.Group.ToString(), Is.EqualTo("group"));
-			Assert.That(GroupType.Event.ToString(), Is.EqualTo("event"));
-			Assert.That(GroupType.Undefined.ToString(), Is.EqualTo("undefined"));
+			Assert.That(actual: GroupType.Page.ToString(), expression: Is.EqualTo(expected: "page"));
+			Assert.That(actual: GroupType.Group.ToString(), expression: Is.EqualTo(expected: "group"));
+			Assert.That(actual: GroupType.Event.ToString(), expression: Is.EqualTo(expected: "event"));
+			Assert.That(actual: GroupType.Undefined.ToString(), expression: Is.EqualTo(expected: "undefined"));
+
 			// parse test
-			Assert.That(GroupType.FromJsonString("page"), Is.EqualTo(GroupType.Page));
-			Assert.That(GroupType.FromJsonString("group"), Is.EqualTo(GroupType.Group));
-			Assert.That(GroupType.FromJsonString("event"), Is.EqualTo(GroupType.Event));
-			Assert.That(GroupType.FromJsonString("undefined"), Is.EqualTo(GroupType.Undefined));
+			Assert.That(actual: GroupType.FromJsonString(response: "page"), expression: Is.EqualTo(expected: GroupType.Page));
+			Assert.That(actual: GroupType.FromJsonString(response: "group"), expression: Is.EqualTo(expected: GroupType.Group));
+			Assert.That(actual: GroupType.FromJsonString(response: "event"), expression: Is.EqualTo(expected: GroupType.Event));
+			Assert.That(actual: GroupType.FromJsonString(response: "undefined"), expression: Is.EqualTo(expected: GroupType.Undefined));
 		}
 
 		[Test]
-        public void LikeObjectTypeTest()
-        {
+		public void LikeObjectTypeTest()
+		{
 			// get test
-			Assert.That(LikeObjectType.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(LikeObjectType.Comment.ToString(), Is.EqualTo("comment"));
-			Assert.That(LikeObjectType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(LikeObjectType.Audio.ToString(), Is.EqualTo("audio"));
-			Assert.That(LikeObjectType.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(LikeObjectType.Note.ToString(), Is.EqualTo("note"));
-			Assert.That(LikeObjectType.PhotoComment.ToString(), Is.EqualTo("photo_comment"));
-			Assert.That(LikeObjectType.VideoComment.ToString(), Is.EqualTo("video_comment"));
-			Assert.That(LikeObjectType.TopicComment.ToString(), Is.EqualTo("topic_comment"));
-			Assert.That(LikeObjectType.SitePage.ToString(), Is.EqualTo("sitepage"));
-			Assert.That(LikeObjectType.Market.ToString(), Is.EqualTo("market"));
-			Assert.That(LikeObjectType.MarketComment.ToString(), Is.EqualTo("market_comment"));
+			Assert.That(actual: LikeObjectType.Post.ToString(), expression: Is.EqualTo(expected: "post"));
+			Assert.That(actual: LikeObjectType.Comment.ToString(), expression: Is.EqualTo(expected: "comment"));
+			Assert.That(actual: LikeObjectType.Photo.ToString(), expression: Is.EqualTo(expected: "photo"));
+			Assert.That(actual: LikeObjectType.Audio.ToString(), expression: Is.EqualTo(expected: "audio"));
+			Assert.That(actual: LikeObjectType.Video.ToString(), expression: Is.EqualTo(expected: "video"));
+			Assert.That(actual: LikeObjectType.Note.ToString(), expression: Is.EqualTo(expected: "note"));
+			Assert.That(actual: LikeObjectType.PhotoComment.ToString(), expression: Is.EqualTo(expected: "photo_comment"));
+			Assert.That(actual: LikeObjectType.VideoComment.ToString(), expression: Is.EqualTo(expected: "video_comment"));
+			Assert.That(actual: LikeObjectType.TopicComment.ToString(), expression: Is.EqualTo(expected: "topic_comment"));
+			Assert.That(actual: LikeObjectType.SitePage.ToString(), expression: Is.EqualTo(expected: "sitepage"));
+			Assert.That(actual: LikeObjectType.Market.ToString(), expression: Is.EqualTo(expected: "market"));
+			Assert.That(actual: LikeObjectType.MarketComment.ToString(), expression: Is.EqualTo(expected: "market_comment"));
+
 			// parse test
-			Assert.That(LikeObjectType.FromJsonString("post"), Is.EqualTo(LikeObjectType.Post));
-			Assert.That(LikeObjectType.FromJsonString("comment"), Is.EqualTo(LikeObjectType.Comment));
-			Assert.That(LikeObjectType.FromJsonString("photo"), Is.EqualTo(LikeObjectType.Photo));
-			Assert.That(LikeObjectType.FromJsonString("audio"), Is.EqualTo(LikeObjectType.Audio));
-			Assert.That(LikeObjectType.FromJsonString("video"), Is.EqualTo(LikeObjectType.Video));
-			Assert.That(LikeObjectType.FromJsonString("note"), Is.EqualTo(LikeObjectType.Note));
-			Assert.That(LikeObjectType.FromJsonString("photo_comment"), Is.EqualTo(LikeObjectType.PhotoComment));
-			Assert.That(LikeObjectType.FromJsonString("video_comment"), Is.EqualTo(LikeObjectType.VideoComment));
-			Assert.That(LikeObjectType.FromJsonString("topic_comment"), Is.EqualTo(LikeObjectType.TopicComment));
-			Assert.That(LikeObjectType.FromJsonString("sitepage"), Is.EqualTo(LikeObjectType.SitePage));
-			Assert.That(LikeObjectType.FromJsonString("market"), Is.EqualTo(LikeObjectType.Market));
-			Assert.That(LikeObjectType.FromJsonString("market_comment"), Is.EqualTo(LikeObjectType.MarketComment));
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "post"), expression: Is.EqualTo(expected: LikeObjectType.Post));
+
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "comment")
+					, expression: Is.EqualTo(expected: LikeObjectType.Comment));
+
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "photo"), expression: Is.EqualTo(expected: LikeObjectType.Photo));
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "audio"), expression: Is.EqualTo(expected: LikeObjectType.Audio));
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "video"), expression: Is.EqualTo(expected: LikeObjectType.Video));
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "note"), expression: Is.EqualTo(expected: LikeObjectType.Note));
+
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "photo_comment")
+					, expression: Is.EqualTo(expected: LikeObjectType.PhotoComment));
+
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "video_comment")
+					, expression: Is.EqualTo(expected: LikeObjectType.VideoComment));
+
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "topic_comment")
+					, expression: Is.EqualTo(expected: LikeObjectType.TopicComment));
+
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "sitepage")
+					, expression: Is.EqualTo(expected: LikeObjectType.SitePage));
+
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "market"), expression: Is.EqualTo(expected: LikeObjectType.Market));
+
+			Assert.That(actual: LikeObjectType.FromJsonString(response: "market_comment")
+					, expression: Is.EqualTo(expected: LikeObjectType.MarketComment));
 		}
 
 		[Test]
-        public void LikesFilterTest()
-        {
+		public void LikesFilterTest()
+		{
 			// get test
-			Assert.That(LikesFilter.Likes.ToString(), Is.EqualTo("likes"));
-			Assert.That(LikesFilter.Copies.ToString(), Is.EqualTo("copies"));
+			Assert.That(actual: LikesFilter.Likes.ToString(), expression: Is.EqualTo(expected: "likes"));
+			Assert.That(actual: LikesFilter.Copies.ToString(), expression: Is.EqualTo(expected: "copies"));
+
 			// parse test
-			Assert.That(LikesFilter.FromJsonString("likes"), Is.EqualTo(LikesFilter.Likes));
-			Assert.That(LikesFilter.FromJsonString("copies"), Is.EqualTo(LikesFilter.Copies));
+			Assert.That(actual: LikesFilter.FromJsonString(response: "likes"), expression: Is.EqualTo(expected: LikesFilter.Likes));
+			Assert.That(actual: LikesFilter.FromJsonString(response: "copies"), expression: Is.EqualTo(expected: LikesFilter.Copies));
 		}
 
 		[Test]
-        public void LinkAccessTypeTest()
-        {
+		public void LinkAccessTypeTest()
+		{
 			// get test
-			Assert.That(LinkAccessType.NotBanned.ToString(), Is.EqualTo("not_banned"));
-			Assert.That(LinkAccessType.Banned.ToString(), Is.EqualTo("banned"));
-			Assert.That(LinkAccessType.Processing.ToString(), Is.EqualTo("processing"));
+			Assert.That(actual: LinkAccessType.NotBanned.ToString(), expression: Is.EqualTo(expected: "not_banned"));
+			Assert.That(actual: LinkAccessType.Banned.ToString(), expression: Is.EqualTo(expected: "banned"));
+			Assert.That(actual: LinkAccessType.Processing.ToString(), expression: Is.EqualTo(expected: "processing"));
+
 			// parse test
-			Assert.That(LinkAccessType.FromJsonString("not_banned"), Is.EqualTo(LinkAccessType.NotBanned));
-			Assert.That(LinkAccessType.FromJsonString("banned"), Is.EqualTo(LinkAccessType.Banned));
-			Assert.That(LinkAccessType.FromJsonString("processing"), Is.EqualTo(LinkAccessType.Processing));
+			Assert.That(actual: LinkAccessType.FromJsonString(response: "not_banned")
+					, expression: Is.EqualTo(expected: LinkAccessType.NotBanned));
+
+			Assert.That(actual: LinkAccessType.FromJsonString(response: "banned"), expression: Is.EqualTo(expected: LinkAccessType.Banned));
+
+			Assert.That(actual: LinkAccessType.FromJsonString(response: "processing")
+					, expression: Is.EqualTo(expected: LinkAccessType.Processing));
 		}
 
 		[Test]
-        public void MediaTypeTest()
-        {
+		public void MediaTypeTest()
+		{
 			// get test
-			Assert.That(MediaType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(MediaType.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(MediaType.Audio.ToString(), Is.EqualTo("audio"));
-			Assert.That(MediaType.Doc.ToString(), Is.EqualTo("doc"));
-			Assert.That(MediaType.Link.ToString(), Is.EqualTo("link"));
-			Assert.That(MediaType.Market.ToString(), Is.EqualTo("market"));
-			Assert.That(MediaType.Wall.ToString(), Is.EqualTo("wall"));
-			Assert.That(MediaType.Share.ToString(), Is.EqualTo("share"));
+			Assert.That(actual: MediaType.Photo.ToString(), expression: Is.EqualTo(expected: "photo"));
+			Assert.That(actual: MediaType.Video.ToString(), expression: Is.EqualTo(expected: "video"));
+			Assert.That(actual: MediaType.Audio.ToString(), expression: Is.EqualTo(expected: "audio"));
+			Assert.That(actual: MediaType.Doc.ToString(), expression: Is.EqualTo(expected: "doc"));
+			Assert.That(actual: MediaType.Link.ToString(), expression: Is.EqualTo(expected: "link"));
+			Assert.That(actual: MediaType.Market.ToString(), expression: Is.EqualTo(expected: "market"));
+			Assert.That(actual: MediaType.Wall.ToString(), expression: Is.EqualTo(expected: "wall"));
+			Assert.That(actual: MediaType.Share.ToString(), expression: Is.EqualTo(expected: "share"));
+
 			// parse test
-			Assert.That(MediaType.FromJsonString("photo"), Is.EqualTo(MediaType.Photo));
-			Assert.That(MediaType.FromJsonString("video"), Is.EqualTo(MediaType.Video));
-			Assert.That(MediaType.FromJsonString("audio"), Is.EqualTo(MediaType.Audio));
-			Assert.That(MediaType.FromJsonString("doc"), Is.EqualTo(MediaType.Doc));
-			Assert.That(MediaType.FromJsonString("link"), Is.EqualTo(MediaType.Link));
-			Assert.That(MediaType.FromJsonString("market"), Is.EqualTo(MediaType.Market));
-			Assert.That(MediaType.FromJsonString("wall"), Is.EqualTo(MediaType.Wall));
-			Assert.That(MediaType.FromJsonString("share"), Is.EqualTo(MediaType.Share));
+			Assert.That(actual: MediaType.FromJsonString(response: "photo"), expression: Is.EqualTo(expected: MediaType.Photo));
+			Assert.That(actual: MediaType.FromJsonString(response: "video"), expression: Is.EqualTo(expected: MediaType.Video));
+			Assert.That(actual: MediaType.FromJsonString(response: "audio"), expression: Is.EqualTo(expected: MediaType.Audio));
+			Assert.That(actual: MediaType.FromJsonString(response: "doc"), expression: Is.EqualTo(expected: MediaType.Doc));
+			Assert.That(actual: MediaType.FromJsonString(response: "link"), expression: Is.EqualTo(expected: MediaType.Link));
+			Assert.That(actual: MediaType.FromJsonString(response: "market"), expression: Is.EqualTo(expected: MediaType.Market));
+			Assert.That(actual: MediaType.FromJsonString(response: "wall"), expression: Is.EqualTo(expected: MediaType.Wall));
+			Assert.That(actual: MediaType.FromJsonString(response: "share"), expression: Is.EqualTo(expected: MediaType.Share));
 		}
 
 		[Test]
-        public void NameCaseTest()
-        {
+		public void NameCaseTest()
+		{
 			// get test
-			Assert.That(NameCase.Nom.ToString(), Is.EqualTo("nom"));
-			Assert.That(NameCase.Gen.ToString(), Is.EqualTo("gen"));
-			Assert.That(NameCase.Dat.ToString(), Is.EqualTo("dat"));
-			Assert.That(NameCase.Acc.ToString(), Is.EqualTo("acc"));
-			Assert.That(NameCase.Ins.ToString(), Is.EqualTo("ins"));
-			Assert.That(NameCase.Abl.ToString(), Is.EqualTo("abl"));
+			Assert.That(actual: NameCase.Nom.ToString(), expression: Is.EqualTo(expected: "nom"));
+			Assert.That(actual: NameCase.Gen.ToString(), expression: Is.EqualTo(expected: "gen"));
+			Assert.That(actual: NameCase.Dat.ToString(), expression: Is.EqualTo(expected: "dat"));
+			Assert.That(actual: NameCase.Acc.ToString(), expression: Is.EqualTo(expected: "acc"));
+			Assert.That(actual: NameCase.Ins.ToString(), expression: Is.EqualTo(expected: "ins"));
+			Assert.That(actual: NameCase.Abl.ToString(), expression: Is.EqualTo(expected: "abl"));
+
 			// parse test
-			Assert.That(NameCase.FromJsonString("nom"), Is.EqualTo(NameCase.Nom));
-			Assert.That(NameCase.FromJsonString("gen"), Is.EqualTo(NameCase.Gen));
-			Assert.That(NameCase.FromJsonString("dat"), Is.EqualTo(NameCase.Dat));
-			Assert.That(NameCase.FromJsonString("acc"), Is.EqualTo(NameCase.Acc));
-			Assert.That(NameCase.FromJsonString("ins"), Is.EqualTo(NameCase.Ins));
-			Assert.That(NameCase.FromJsonString("abl"), Is.EqualTo(NameCase.Abl));
+			Assert.That(actual: NameCase.FromJsonString(response: "nom"), expression: Is.EqualTo(expected: NameCase.Nom));
+			Assert.That(actual: NameCase.FromJsonString(response: "gen"), expression: Is.EqualTo(expected: NameCase.Gen));
+			Assert.That(actual: NameCase.FromJsonString(response: "dat"), expression: Is.EqualTo(expected: NameCase.Dat));
+			Assert.That(actual: NameCase.FromJsonString(response: "acc"), expression: Is.EqualTo(expected: NameCase.Acc));
+			Assert.That(actual: NameCase.FromJsonString(response: "ins"), expression: Is.EqualTo(expected: NameCase.Ins));
+			Assert.That(actual: NameCase.FromJsonString(response: "abl"), expression: Is.EqualTo(expected: NameCase.Abl));
 		}
 
 		[Test]
-        public void NewsObjectTypesTest()
-        {
+		public void NewsObjectTypesTest()
+		{
 			// get test
-			Assert.That(NewsObjectTypes.Wall.ToString(), Is.EqualTo("wall"));
-			Assert.That(NewsObjectTypes.Tag.ToString(), Is.EqualTo("tag"));
-			Assert.That(NewsObjectTypes.ProfilePhoto.ToString(), Is.EqualTo("profilephoto"));
-			Assert.That(NewsObjectTypes.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(NewsObjectTypes.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(NewsObjectTypes.Audio.ToString(), Is.EqualTo("audio"));
+			Assert.That(actual: NewsObjectTypes.Wall.ToString(), expression: Is.EqualTo(expected: "wall"));
+			Assert.That(actual: NewsObjectTypes.Tag.ToString(), expression: Is.EqualTo(expected: "tag"));
+			Assert.That(actual: NewsObjectTypes.ProfilePhoto.ToString(), expression: Is.EqualTo(expected: "profilephoto"));
+			Assert.That(actual: NewsObjectTypes.Video.ToString(), expression: Is.EqualTo(expected: "video"));
+			Assert.That(actual: NewsObjectTypes.Photo.ToString(), expression: Is.EqualTo(expected: "photo"));
+			Assert.That(actual: NewsObjectTypes.Audio.ToString(), expression: Is.EqualTo(expected: "audio"));
+
 			// parse test
-			Assert.That(NewsObjectTypes.FromJsonString("wall"), Is.EqualTo(NewsObjectTypes.Wall));
-			Assert.That(NewsObjectTypes.FromJsonString("tag"), Is.EqualTo(NewsObjectTypes.Tag));
-			Assert.That(NewsObjectTypes.FromJsonString("profilephoto"), Is.EqualTo(NewsObjectTypes.ProfilePhoto));
-			Assert.That(NewsObjectTypes.FromJsonString("video"), Is.EqualTo(NewsObjectTypes.Video));
-			Assert.That(NewsObjectTypes.FromJsonString("photo"), Is.EqualTo(NewsObjectTypes.Photo));
-			Assert.That(NewsObjectTypes.FromJsonString("audio"), Is.EqualTo(NewsObjectTypes.Audio));
+			Assert.That(actual: NewsObjectTypes.FromJsonString(response: "wall"), expression: Is.EqualTo(expected: NewsObjectTypes.Wall));
+			Assert.That(actual: NewsObjectTypes.FromJsonString(response: "tag"), expression: Is.EqualTo(expected: NewsObjectTypes.Tag));
+
+			Assert.That(actual: NewsObjectTypes.FromJsonString(response: "profilephoto")
+					, expression: Is.EqualTo(expected: NewsObjectTypes.ProfilePhoto));
+
+			Assert.That(actual: NewsObjectTypes.FromJsonString(response: "video"), expression: Is.EqualTo(expected: NewsObjectTypes.Video));
+			Assert.That(actual: NewsObjectTypes.FromJsonString(response: "photo"), expression: Is.EqualTo(expected: NewsObjectTypes.Photo));
+			Assert.That(actual: NewsObjectTypes.FromJsonString(response: "audio"), expression: Is.EqualTo(expected: NewsObjectTypes.Audio));
 		}
 
 		[Test]
-        public void NewsTypesTest()
-        {
+		public void NewsTypesTest()
+		{
 			// get test
-			Assert.That(NewsTypes.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(NewsTypes.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(NewsTypes.PhotoTag.ToString(), Is.EqualTo("photo_tag"));
-			Assert.That(NewsTypes.WallPhoto.ToString(), Is.EqualTo("wall_photo"));
-			Assert.That(NewsTypes.Friend.ToString(), Is.EqualTo("friend"));
-			Assert.That(NewsTypes.Note.ToString(), Is.EqualTo("note"));
+			Assert.That(actual: NewsTypes.Post.ToString(), expression: Is.EqualTo(expected: "post"));
+			Assert.That(actual: NewsTypes.Photo.ToString(), expression: Is.EqualTo(expected: "photo"));
+			Assert.That(actual: NewsTypes.PhotoTag.ToString(), expression: Is.EqualTo(expected: "photo_tag"));
+			Assert.That(actual: NewsTypes.WallPhoto.ToString(), expression: Is.EqualTo(expected: "wall_photo"));
+			Assert.That(actual: NewsTypes.Friend.ToString(), expression: Is.EqualTo(expected: "friend"));
+			Assert.That(actual: NewsTypes.Note.ToString(), expression: Is.EqualTo(expected: "note"));
+
 			// parse test
-			Assert.That(NewsTypes.FromJsonString("post"), Is.EqualTo(NewsTypes.Post));
-			Assert.That(NewsTypes.FromJsonString("photo"), Is.EqualTo(NewsTypes.Photo));
-			Assert.That(NewsTypes.FromJsonString("photo_tag"), Is.EqualTo(NewsTypes.PhotoTag));
-			Assert.That(NewsTypes.FromJsonString("wall_photo"), Is.EqualTo(NewsTypes.WallPhoto));
-			Assert.That(NewsTypes.FromJsonString("friend"), Is.EqualTo(NewsTypes.Friend));
-			Assert.That(NewsTypes.FromJsonString("note"), Is.EqualTo(NewsTypes.Note));
+			Assert.That(actual: NewsTypes.FromJsonString(response: "post"), expression: Is.EqualTo(expected: NewsTypes.Post));
+			Assert.That(actual: NewsTypes.FromJsonString(response: "photo"), expression: Is.EqualTo(expected: NewsTypes.Photo));
+			Assert.That(actual: NewsTypes.FromJsonString(response: "photo_tag"), expression: Is.EqualTo(expected: NewsTypes.PhotoTag));
+			Assert.That(actual: NewsTypes.FromJsonString(response: "wall_photo"), expression: Is.EqualTo(expected: NewsTypes.WallPhoto));
+			Assert.That(actual: NewsTypes.FromJsonString(response: "friend"), expression: Is.EqualTo(expected: NewsTypes.Friend));
+			Assert.That(actual: NewsTypes.FromJsonString(response: "note"), expression: Is.EqualTo(expected: NewsTypes.Note));
 		}
 
 		[Test]
-        public void OccupationTypeTest()
-        {
+		public void OccupationTypeTest()
+		{
 			// get test
-			Assert.That(OccupationType.Work.ToString(), Is.EqualTo("work"));
-			Assert.That(OccupationType.School.ToString(), Is.EqualTo("school"));
-			Assert.That(OccupationType.University.ToString(), Is.EqualTo("university"));
+			Assert.That(actual: OccupationType.Work.ToString(), expression: Is.EqualTo(expected: "work"));
+			Assert.That(actual: OccupationType.School.ToString(), expression: Is.EqualTo(expected: "school"));
+			Assert.That(actual: OccupationType.University.ToString(), expression: Is.EqualTo(expected: "university"));
+
 			// parse test
-			Assert.That(OccupationType.FromJsonString("work"), Is.EqualTo(OccupationType.Work));
-			Assert.That(OccupationType.FromJsonString("school"), Is.EqualTo(OccupationType.School));
-			Assert.That(OccupationType.FromJsonString("university"), Is.EqualTo(OccupationType.University));
+			Assert.That(actual: OccupationType.FromJsonString(response: "work"), expression: Is.EqualTo(expected: OccupationType.Work));
+			Assert.That(actual: OccupationType.FromJsonString(response: "school"), expression: Is.EqualTo(expected: OccupationType.School));
+
+			Assert.That(actual: OccupationType.FromJsonString(response: "university")
+					, expression: Is.EqualTo(expected: OccupationType.University));
 		}
 
 		[Test]
-        public void PhotoAlbumTypeTest()
-        {
+		public void PhotoAlbumTypeTest()
+		{
 			// get test
-			Assert.That(PhotoAlbumType.Wall.ToString(), Is.EqualTo("wall"));
-			Assert.That(PhotoAlbumType.Profile.ToString(), Is.EqualTo("profile"));
-			Assert.That(PhotoAlbumType.Saved.ToString(), Is.EqualTo("saved"));
+			Assert.That(actual: PhotoAlbumType.Wall.ToString(), expression: Is.EqualTo(expected: "wall"));
+			Assert.That(actual: PhotoAlbumType.Profile.ToString(), expression: Is.EqualTo(expected: "profile"));
+			Assert.That(actual: PhotoAlbumType.Saved.ToString(), expression: Is.EqualTo(expected: "saved"));
+
 			// parse test
-			Assert.That(PhotoAlbumType.FromJsonString("wall"), Is.EqualTo(PhotoAlbumType.Wall));
-			Assert.That(PhotoAlbumType.FromJsonString("profile"), Is.EqualTo(PhotoAlbumType.Profile));
-			Assert.That(PhotoAlbumType.FromJsonString("saved"), Is.EqualTo(PhotoAlbumType.Saved));
+			Assert.That(actual: PhotoAlbumType.FromJsonString(response: "wall"), expression: Is.EqualTo(expected: PhotoAlbumType.Wall));
+
+			Assert.That(actual: PhotoAlbumType.FromJsonString(response: "profile")
+					, expression: Is.EqualTo(expected: PhotoAlbumType.Profile));
+
+			Assert.That(actual: PhotoAlbumType.FromJsonString(response: "saved"), expression: Is.EqualTo(expected: PhotoAlbumType.Saved));
 		}
 
 		[Test]
-        public void PhotoFeedTypeTest()
-        {
+		public void PhotoFeedTypeTest()
+		{
 			// get test
-			Assert.That(PhotoFeedType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(PhotoFeedType.PhotoTag.ToString(), Is.EqualTo("photo_tag"));
+			Assert.That(actual: PhotoFeedType.Photo.ToString(), expression: Is.EqualTo(expected: "photo"));
+			Assert.That(actual: PhotoFeedType.PhotoTag.ToString(), expression: Is.EqualTo(expected: "photo_tag"));
+
 			// parse test
-			Assert.That(PhotoFeedType.FromJsonString("photo"), Is.EqualTo(PhotoFeedType.Photo));
-			Assert.That(PhotoFeedType.FromJsonString("photo_tag"), Is.EqualTo(PhotoFeedType.PhotoTag));
+			Assert.That(actual: PhotoFeedType.FromJsonString(response: "photo"), expression: Is.EqualTo(expected: PhotoFeedType.Photo));
+
+			Assert.That(actual: PhotoFeedType.FromJsonString(response: "photo_tag")
+					, expression: Is.EqualTo(expected: PhotoFeedType.PhotoTag));
 		}
 
 		[Test]
-        public void PhotoSearchRadiusTest()
-        {
+		public void PhotoSearchRadiusTest()
+		{
 			// get test
-			Assert.That(PhotoSearchRadius.Ten.ToString(), Is.EqualTo("10"));
-			Assert.That(PhotoSearchRadius.OneHundred.ToString(), Is.EqualTo("100"));
-			Assert.That(PhotoSearchRadius.Eighty.ToString(), Is.EqualTo("800"));
-			Assert.That(PhotoSearchRadius.SixThousand.ToString(), Is.EqualTo("6000"));
-			Assert.That(PhotoSearchRadius.FiftyThousand.ToString(), Is.EqualTo("50000"));
+			Assert.That(actual: PhotoSearchRadius.Ten.ToString(), expression: Is.EqualTo(expected: "10"));
+			Assert.That(actual: PhotoSearchRadius.OneHundred.ToString(), expression: Is.EqualTo(expected: "100"));
+			Assert.That(actual: PhotoSearchRadius.Eighty.ToString(), expression: Is.EqualTo(expected: "800"));
+			Assert.That(actual: PhotoSearchRadius.SixThousand.ToString(), expression: Is.EqualTo(expected: "6000"));
+			Assert.That(actual: PhotoSearchRadius.FiftyThousand.ToString(), expression: Is.EqualTo(expected: "50000"));
+
 			// parse test
-			Assert.That(PhotoSearchRadius.FromJsonString("10"), Is.EqualTo(PhotoSearchRadius.Ten));
-			Assert.That(PhotoSearchRadius.FromJsonString("100"), Is.EqualTo(PhotoSearchRadius.OneHundred));
-			Assert.That(PhotoSearchRadius.FromJsonString("800"), Is.EqualTo(PhotoSearchRadius.Eighty));
-			Assert.That(PhotoSearchRadius.FromJsonString("6000"), Is.EqualTo(PhotoSearchRadius.SixThousand));
-			Assert.That(PhotoSearchRadius.FromJsonString("50000"), Is.EqualTo(PhotoSearchRadius.FiftyThousand));
+			Assert.That(actual: PhotoSearchRadius.FromJsonString(response: "10"), expression: Is.EqualTo(expected: PhotoSearchRadius.Ten));
+
+			Assert.That(actual: PhotoSearchRadius.FromJsonString(response: "100")
+					, expression: Is.EqualTo(expected: PhotoSearchRadius.OneHundred));
+
+			Assert.That(actual: PhotoSearchRadius.FromJsonString(response: "800")
+					, expression: Is.EqualTo(expected: PhotoSearchRadius.Eighty));
+
+			Assert.That(actual: PhotoSearchRadius.FromJsonString(response: "6000")
+					, expression: Is.EqualTo(expected: PhotoSearchRadius.SixThousand));
+
+			Assert.That(actual: PhotoSearchRadius.FromJsonString(response: "50000")
+					, expression: Is.EqualTo(expected: PhotoSearchRadius.FiftyThousand));
 		}
 
 		[Test]
-        public void PhotoSizeTypeTest()
-        {
+		public void PhotoSizeTypeTest()
+		{
 			// get test
-			Assert.That(PhotoSizeType.S.ToString(), Is.EqualTo("s"));
-			Assert.That(PhotoSizeType.M.ToString(), Is.EqualTo("m"));
-			Assert.That(PhotoSizeType.X.ToString(), Is.EqualTo("x"));
-			Assert.That(PhotoSizeType.O.ToString(), Is.EqualTo("o"));
-			Assert.That(PhotoSizeType.P.ToString(), Is.EqualTo("p"));
-			Assert.That(PhotoSizeType.Q.ToString(), Is.EqualTo("q"));
-			Assert.That(PhotoSizeType.R.ToString(), Is.EqualTo("r"));
-			Assert.That(PhotoSizeType.Y.ToString(), Is.EqualTo("y"));
-			Assert.That(PhotoSizeType.Z.ToString(), Is.EqualTo("z"));
-			Assert.That(PhotoSizeType.W.ToString(), Is.EqualTo("w"));
+			Assert.That(actual: PhotoSizeType.S.ToString(), expression: Is.EqualTo(expected: "s"));
+			Assert.That(actual: PhotoSizeType.M.ToString(), expression: Is.EqualTo(expected: "m"));
+			Assert.That(actual: PhotoSizeType.X.ToString(), expression: Is.EqualTo(expected: "x"));
+			Assert.That(actual: PhotoSizeType.O.ToString(), expression: Is.EqualTo(expected: "o"));
+			Assert.That(actual: PhotoSizeType.P.ToString(), expression: Is.EqualTo(expected: "p"));
+			Assert.That(actual: PhotoSizeType.Q.ToString(), expression: Is.EqualTo(expected: "q"));
+			Assert.That(actual: PhotoSizeType.R.ToString(), expression: Is.EqualTo(expected: "r"));
+			Assert.That(actual: PhotoSizeType.Y.ToString(), expression: Is.EqualTo(expected: "y"));
+			Assert.That(actual: PhotoSizeType.Z.ToString(), expression: Is.EqualTo(expected: "z"));
+			Assert.That(actual: PhotoSizeType.W.ToString(), expression: Is.EqualTo(expected: "w"));
+
 			// parse test
-			Assert.That(PhotoSizeType.FromJsonString("s"), Is.EqualTo(PhotoSizeType.S));
-			Assert.That(PhotoSizeType.FromJsonString("m"), Is.EqualTo(PhotoSizeType.M));
-			Assert.That(PhotoSizeType.FromJsonString("x"), Is.EqualTo(PhotoSizeType.X));
-			Assert.That(PhotoSizeType.FromJsonString("o"), Is.EqualTo(PhotoSizeType.O));
-			Assert.That(PhotoSizeType.FromJsonString("p"), Is.EqualTo(PhotoSizeType.P));
-			Assert.That(PhotoSizeType.FromJsonString("q"), Is.EqualTo(PhotoSizeType.Q));
-			Assert.That(PhotoSizeType.FromJsonString("r"), Is.EqualTo(PhotoSizeType.R));
-			Assert.That(PhotoSizeType.FromJsonString("y"), Is.EqualTo(PhotoSizeType.Y));
-			Assert.That(PhotoSizeType.FromJsonString("z"), Is.EqualTo(PhotoSizeType.Z));
-			Assert.That(PhotoSizeType.FromJsonString("w"), Is.EqualTo(PhotoSizeType.W));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "s"), expression: Is.EqualTo(expected: PhotoSizeType.S));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "m"), expression: Is.EqualTo(expected: PhotoSizeType.M));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "x"), expression: Is.EqualTo(expected: PhotoSizeType.X));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "o"), expression: Is.EqualTo(expected: PhotoSizeType.O));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "p"), expression: Is.EqualTo(expected: PhotoSizeType.P));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "q"), expression: Is.EqualTo(expected: PhotoSizeType.Q));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "r"), expression: Is.EqualTo(expected: PhotoSizeType.R));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "y"), expression: Is.EqualTo(expected: PhotoSizeType.Y));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "z"), expression: Is.EqualTo(expected: PhotoSizeType.Z));
+			Assert.That(actual: PhotoSizeType.FromJsonString(response: "w"), expression: Is.EqualTo(expected: PhotoSizeType.W));
 		}
 
 		[Test]
-        public void PlatformTest()
-        {
+		public void PlatformTest()
+		{
 			// get test
-			Assert.That(Platform.Android.ToString(), Is.EqualTo("android"));
-			Assert.That(Platform.IPhone.ToString(), Is.EqualTo("iphone"));
-			Assert.That(Platform.WindowsPhone.ToString(), Is.EqualTo("wphone"));
+			Assert.That(actual: Platform.Android.ToString(), expression: Is.EqualTo(expected: "android"));
+			Assert.That(actual: Platform.IPhone.ToString(), expression: Is.EqualTo(expected: "iphone"));
+			Assert.That(actual: Platform.WindowsPhone.ToString(), expression: Is.EqualTo(expected: "wphone"));
+
 			// parse test
-			Assert.That(Platform.FromJsonString("android"), Is.EqualTo(Platform.Android));
-			Assert.That(Platform.FromJsonString("iphone"), Is.EqualTo(Platform.IPhone));
-			Assert.That(Platform.FromJsonString("wphone"), Is.EqualTo(Platform.WindowsPhone));
+			Assert.That(actual: Platform.FromJsonString(response: "android"), expression: Is.EqualTo(expected: Platform.Android));
+			Assert.That(actual: Platform.FromJsonString(response: "iphone"), expression: Is.EqualTo(expected: Platform.IPhone));
+			Assert.That(actual: Platform.FromJsonString(response: "wphone"), expression: Is.EqualTo(expected: Platform.WindowsPhone));
 		}
 
 		[Test]
-        public void PostSourceTypeTest()
-        {
+		public void PostSourceTypeTest()
+		{
 			// get test
-			Assert.That(PostSourceType.Vk.ToString(), Is.EqualTo("vk"));
-			Assert.That(PostSourceType.Widget.ToString(), Is.EqualTo("widget"));
-			Assert.That(PostSourceType.Api.ToString(), Is.EqualTo("api"));
-			Assert.That(PostSourceType.Rss.ToString(), Is.EqualTo("rss"));
-			Assert.That(PostSourceType.Sms.ToString(), Is.EqualTo("sms"));
+			Assert.That(actual: PostSourceType.Vk.ToString(), expression: Is.EqualTo(expected: "vk"));
+			Assert.That(actual: PostSourceType.Widget.ToString(), expression: Is.EqualTo(expected: "widget"));
+			Assert.That(actual: PostSourceType.Api.ToString(), expression: Is.EqualTo(expected: "api"));
+			Assert.That(actual: PostSourceType.Rss.ToString(), expression: Is.EqualTo(expected: "rss"));
+			Assert.That(actual: PostSourceType.Sms.ToString(), expression: Is.EqualTo(expected: "sms"));
+
 			// parse test
-			Assert.That(PostSourceType.FromJsonString("vk"), Is.EqualTo(PostSourceType.Vk));
-			Assert.That(PostSourceType.FromJsonString("widget"), Is.EqualTo(PostSourceType.Widget));
-			Assert.That(PostSourceType.FromJsonString("api"), Is.EqualTo(PostSourceType.Api));
-			Assert.That(PostSourceType.FromJsonString("rss"), Is.EqualTo(PostSourceType.Rss));
-			Assert.That(PostSourceType.FromJsonString("sms"), Is.EqualTo(PostSourceType.Sms));
+			Assert.That(actual: PostSourceType.FromJsonString(response: "vk"), expression: Is.EqualTo(expected: PostSourceType.Vk));
+			Assert.That(actual: PostSourceType.FromJsonString(response: "widget"), expression: Is.EqualTo(expected: PostSourceType.Widget));
+			Assert.That(actual: PostSourceType.FromJsonString(response: "api"), expression: Is.EqualTo(expected: PostSourceType.Api));
+			Assert.That(actual: PostSourceType.FromJsonString(response: "rss"), expression: Is.EqualTo(expected: PostSourceType.Rss));
+			Assert.That(actual: PostSourceType.FromJsonString(response: "sms"), expression: Is.EqualTo(expected: PostSourceType.Sms));
 		}
 
 		[Test]
-        public void PostTypeTest()
-        {
+		public void PostTypeOrderTest()
+		{
 			// get test
-			Assert.That(PostType.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(PostType.Copy.ToString(), Is.EqualTo("copy"));
-			Assert.That(PostType.Reply.ToString(), Is.EqualTo("reply"));
-			Assert.That(PostType.Postpone.ToString(), Is.EqualTo("postpone"));
-			Assert.That(PostType.Suggest.ToString(), Is.EqualTo("suggest"));
+			Assert.That(actual: PostTypeOrder.Post.ToString(), expression: Is.EqualTo(expected: "post"));
+			Assert.That(actual: PostTypeOrder.Copy.ToString(), expression: Is.EqualTo(expected: "copy"));
+
 			// parse test
-			Assert.That(PostType.FromJsonString("post"), Is.EqualTo(PostType.Post));
-			Assert.That(PostType.FromJsonString("copy"), Is.EqualTo(PostType.Copy));
-			Assert.That(PostType.FromJsonString("reply"), Is.EqualTo(PostType.Reply));
-			Assert.That(PostType.FromJsonString("postpone"), Is.EqualTo(PostType.Postpone));
-			Assert.That(PostType.FromJsonString("suggest"), Is.EqualTo(PostType.Suggest));
+			Assert.That(actual: PostTypeOrder.FromJsonString(response: "post"), expression: Is.EqualTo(expected: PostTypeOrder.Post));
+			Assert.That(actual: PostTypeOrder.FromJsonString(response: "copy"), expression: Is.EqualTo(expected: PostTypeOrder.Copy));
 		}
 
 		[Test]
-        public void PostTypeOrderTest()
-        {
+		public void PostTypeTest()
+		{
 			// get test
-			Assert.That(PostTypeOrder.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(PostTypeOrder.Copy.ToString(), Is.EqualTo("copy"));
+			Assert.That(actual: PostType.Post.ToString(), expression: Is.EqualTo(expected: "post"));
+			Assert.That(actual: PostType.Copy.ToString(), expression: Is.EqualTo(expected: "copy"));
+			Assert.That(actual: PostType.Reply.ToString(), expression: Is.EqualTo(expected: "reply"));
+			Assert.That(actual: PostType.Postpone.ToString(), expression: Is.EqualTo(expected: "postpone"));
+			Assert.That(actual: PostType.Suggest.ToString(), expression: Is.EqualTo(expected: "suggest"));
+
 			// parse test
-			Assert.That(PostTypeOrder.FromJsonString("post"), Is.EqualTo(PostTypeOrder.Post));
-			Assert.That(PostTypeOrder.FromJsonString("copy"), Is.EqualTo(PostTypeOrder.Copy));
+			Assert.That(actual: PostType.FromJsonString(response: "post"), expression: Is.EqualTo(expected: PostType.Post));
+			Assert.That(actual: PostType.FromJsonString(response: "copy"), expression: Is.EqualTo(expected: PostType.Copy));
+			Assert.That(actual: PostType.FromJsonString(response: "reply"), expression: Is.EqualTo(expected: PostType.Reply));
+			Assert.That(actual: PostType.FromJsonString(response: "postpone"), expression: Is.EqualTo(expected: PostType.Postpone));
+			Assert.That(actual: PostType.FromJsonString(response: "suggest"), expression: Is.EqualTo(expected: PostType.Suggest));
 		}
 
 		[Test]
-        public void PrivacyTest()
-        {
+		public void PrivacyTest()
+		{
 			// get test
-			Assert.That(Privacy.All.ToString(), Is.EqualTo("all"));
-			Assert.That(Privacy.Friends.ToString(), Is.EqualTo("friends"));
-			Assert.That(Privacy.FriendsOfFriends.ToString(), Is.EqualTo("friends_of_friends"));
-			Assert.That(Privacy.FriendsOfFriendsOnly.ToString(), Is.EqualTo("friends_of_friends_only"));
-			Assert.That(Privacy.Nobody.ToString(), Is.EqualTo("nobody"));
-			Assert.That(Privacy.OnlyMe.ToString(), Is.EqualTo("only_me"));
+			Assert.That(actual: Privacy.All.ToString(), expression: Is.EqualTo(expected: "all"));
+			Assert.That(actual: Privacy.Friends.ToString(), expression: Is.EqualTo(expected: "friends"));
+			Assert.That(actual: Privacy.FriendsOfFriends.ToString(), expression: Is.EqualTo(expected: "friends_of_friends"));
+			Assert.That(actual: Privacy.FriendsOfFriendsOnly.ToString(), expression: Is.EqualTo(expected: "friends_of_friends_only"));
+			Assert.That(actual: Privacy.Nobody.ToString(), expression: Is.EqualTo(expected: "nobody"));
+			Assert.That(actual: Privacy.OnlyMe.ToString(), expression: Is.EqualTo(expected: "only_me"));
+
 			// parse test
-			Assert.That(Privacy.FromJsonString("all"), Is.EqualTo(Privacy.All));
-			Assert.That(Privacy.FromJsonString("friends"), Is.EqualTo(Privacy.Friends));
-			Assert.That(Privacy.FromJsonString("friends_of_friends"), Is.EqualTo(Privacy.FriendsOfFriends));
-			Assert.That(Privacy.FromJsonString("friends_of_friends_only"), Is.EqualTo(Privacy.FriendsOfFriendsOnly));
-			Assert.That(Privacy.FromJsonString("nobody"), Is.EqualTo(Privacy.Nobody));
-			Assert.That(Privacy.FromJsonString("only_me"), Is.EqualTo(Privacy.OnlyMe));
+			Assert.That(actual: Privacy.FromJsonString(response: "all"), expression: Is.EqualTo(expected: Privacy.All));
+			Assert.That(actual: Privacy.FromJsonString(response: "friends"), expression: Is.EqualTo(expected: Privacy.Friends));
+
+			Assert.That(actual: Privacy.FromJsonString(response: "friends_of_friends")
+					, expression: Is.EqualTo(expected: Privacy.FriendsOfFriends));
+
+			Assert.That(actual: Privacy.FromJsonString(response: "friends_of_friends_only")
+					, expression: Is.EqualTo(expected: Privacy.FriendsOfFriendsOnly));
+
+			Assert.That(actual: Privacy.FromJsonString(response: "nobody"), expression: Is.EqualTo(expected: Privacy.Nobody));
+			Assert.That(actual: Privacy.FromJsonString(response: "only_me"), expression: Is.EqualTo(expected: Privacy.OnlyMe));
 		}
 
 		[Test]
-        public void RelativeTypeTest()
-        {
+		public void RelativeTypeTest()
+		{
 			// get test
-			Assert.That(RelativeType.Sibling.ToString(), Is.EqualTo("sibling"));
-			Assert.That(RelativeType.Parent.ToString(), Is.EqualTo("parent"));
-			Assert.That(RelativeType.Child.ToString(), Is.EqualTo("child"));
-			Assert.That(RelativeType.Grandparent.ToString(), Is.EqualTo("grandparent"));
-			Assert.That(RelativeType.Grandchild.ToString(), Is.EqualTo("grandchild"));
+			Assert.That(actual: RelativeType.Sibling.ToString(), expression: Is.EqualTo(expected: "sibling"));
+			Assert.That(actual: RelativeType.Parent.ToString(), expression: Is.EqualTo(expected: "parent"));
+			Assert.That(actual: RelativeType.Child.ToString(), expression: Is.EqualTo(expected: "child"));
+			Assert.That(actual: RelativeType.Grandparent.ToString(), expression: Is.EqualTo(expected: "grandparent"));
+			Assert.That(actual: RelativeType.Grandchild.ToString(), expression: Is.EqualTo(expected: "grandchild"));
+
 			// parse test
-			Assert.That(RelativeType.FromJsonString("sibling"), Is.EqualTo(RelativeType.Sibling));
-			Assert.That(RelativeType.FromJsonString("parent"), Is.EqualTo(RelativeType.Parent));
-			Assert.That(RelativeType.FromJsonString("child"), Is.EqualTo(RelativeType.Child));
-			Assert.That(RelativeType.FromJsonString("grandparent"), Is.EqualTo(RelativeType.Grandparent));
-			Assert.That(RelativeType.FromJsonString("grandchild"), Is.EqualTo(RelativeType.Grandchild));
+			Assert.That(actual: RelativeType.FromJsonString(response: "sibling"), expression: Is.EqualTo(expected: RelativeType.Sibling));
+			Assert.That(actual: RelativeType.FromJsonString(response: "parent"), expression: Is.EqualTo(expected: RelativeType.Parent));
+			Assert.That(actual: RelativeType.FromJsonString(response: "child"), expression: Is.EqualTo(expected: RelativeType.Child));
+
+			Assert.That(actual: RelativeType.FromJsonString(response: "grandparent")
+					, expression: Is.EqualTo(expected: RelativeType.Grandparent));
+
+			Assert.That(actual: RelativeType.FromJsonString(response: "grandchild")
+					, expression: Is.EqualTo(expected: RelativeType.Grandchild));
 		}
 
 		[Test]
-        public void ReportTypeTest()
-        {
+		public void ReportTypeTest()
+		{
 			// get test
-			Assert.That(ReportType.Porn.ToString(), Is.EqualTo("porn"));
-			Assert.That(ReportType.Spam.ToString(), Is.EqualTo("spam"));
-			Assert.That(ReportType.Insult.ToString(), Is.EqualTo("insult"));
-			Assert.That(ReportType.Advertisment.ToString(), Is.EqualTo("advertisment"));
+			Assert.That(actual: ReportType.Porn.ToString(), expression: Is.EqualTo(expected: "porn"));
+			Assert.That(actual: ReportType.Spam.ToString(), expression: Is.EqualTo(expected: "spam"));
+			Assert.That(actual: ReportType.Insult.ToString(), expression: Is.EqualTo(expected: "insult"));
+			Assert.That(actual: ReportType.Advertisment.ToString(), expression: Is.EqualTo(expected: "advertisment"));
+
 			// parse test
-			Assert.That(ReportType.FromJsonString("porn"), Is.EqualTo(ReportType.Porn));
-			Assert.That(ReportType.FromJsonString("spam"), Is.EqualTo(ReportType.Spam));
-			Assert.That(ReportType.FromJsonString("insult"), Is.EqualTo(ReportType.Insult));
-			Assert.That(ReportType.FromJsonString("advertisment"), Is.EqualTo(ReportType.Advertisment));
+			Assert.That(actual: ReportType.FromJsonString(response: "porn"), expression: Is.EqualTo(expected: ReportType.Porn));
+			Assert.That(actual: ReportType.FromJsonString(response: "spam"), expression: Is.EqualTo(expected: ReportType.Spam));
+			Assert.That(actual: ReportType.FromJsonString(response: "insult"), expression: Is.EqualTo(expected: ReportType.Insult));
+
+			Assert.That(actual: ReportType.FromJsonString(response: "advertisment")
+					, expression: Is.EqualTo(expected: ReportType.Advertisment));
 		}
 
 		[Test]
-        public void ServicesTest()
-        {
+		public void ServicesTest()
+		{
 			// get test
-			Assert.That(Services.Email.ToString(), Is.EqualTo("email"));
-			Assert.That(Services.Phone.ToString(), Is.EqualTo("phone"));
-			Assert.That(Services.Twitter.ToString(), Is.EqualTo("twitter"));
-			Assert.That(Services.Facebook.ToString(), Is.EqualTo("facebook"));
-			Assert.That(Services.Odnoklassniki.ToString(), Is.EqualTo("odnoklassniki"));
-			Assert.That(Services.Instagram.ToString(), Is.EqualTo("instagram"));
-			Assert.That(Services.Google.ToString(), Is.EqualTo("google"));
+			Assert.That(actual: Services.Email.ToString(), expression: Is.EqualTo(expected: "email"));
+			Assert.That(actual: Services.Phone.ToString(), expression: Is.EqualTo(expected: "phone"));
+			Assert.That(actual: Services.Twitter.ToString(), expression: Is.EqualTo(expected: "twitter"));
+			Assert.That(actual: Services.Facebook.ToString(), expression: Is.EqualTo(expected: "facebook"));
+			Assert.That(actual: Services.Odnoklassniki.ToString(), expression: Is.EqualTo(expected: "odnoklassniki"));
+			Assert.That(actual: Services.Instagram.ToString(), expression: Is.EqualTo(expected: "instagram"));
+			Assert.That(actual: Services.Google.ToString(), expression: Is.EqualTo(expected: "google"));
+
 			// parse test
-			Assert.That(Services.FromJsonString("email"), Is.EqualTo(Services.Email));
-			Assert.That(Services.FromJsonString("phone"), Is.EqualTo(Services.Phone));
-			Assert.That(Services.FromJsonString("twitter"), Is.EqualTo(Services.Twitter));
-			Assert.That(Services.FromJsonString("facebook"), Is.EqualTo(Services.Facebook));
-			Assert.That(Services.FromJsonString("odnoklassniki"), Is.EqualTo(Services.Odnoklassniki));
-			Assert.That(Services.FromJsonString("instagram"), Is.EqualTo(Services.Instagram));
-			Assert.That(Services.FromJsonString("google"), Is.EqualTo(Services.Google));
+			Assert.That(actual: Services.FromJsonString(response: "email"), expression: Is.EqualTo(expected: Services.Email));
+			Assert.That(actual: Services.FromJsonString(response: "phone"), expression: Is.EqualTo(expected: Services.Phone));
+			Assert.That(actual: Services.FromJsonString(response: "twitter"), expression: Is.EqualTo(expected: Services.Twitter));
+			Assert.That(actual: Services.FromJsonString(response: "facebook"), expression: Is.EqualTo(expected: Services.Facebook));
+
+			Assert.That(actual: Services.FromJsonString(response: "odnoklassniki")
+					, expression: Is.EqualTo(expected: Services.Odnoklassniki));
+
+			Assert.That(actual: Services.FromJsonString(response: "instagram"), expression: Is.EqualTo(expected: Services.Instagram));
+			Assert.That(actual: Services.FromJsonString(response: "google"), expression: Is.EqualTo(expected: Services.Google));
 		}
 
 		[Test]
-        public void UserSectionTest()
-        {
+		public void UserSectionTest()
+		{
 			// get test
-			Assert.That(UserSection.Friends.ToString(), Is.EqualTo("friends"));
-			Assert.That(UserSection.Subscriptions.ToString(), Is.EqualTo("subscriptions"));
+			Assert.That(actual: UserSection.Friends.ToString(), expression: Is.EqualTo(expected: "friends"));
+			Assert.That(actual: UserSection.Subscriptions.ToString(), expression: Is.EqualTo(expected: "subscriptions"));
+
 			// parse test
-			Assert.That(UserSection.FromJsonString("friends"), Is.EqualTo(UserSection.Friends));
-			Assert.That(UserSection.FromJsonString("subscriptions"), Is.EqualTo(UserSection.Subscriptions));
+			Assert.That(actual: UserSection.FromJsonString(response: "friends"), expression: Is.EqualTo(expected: UserSection.Friends));
+
+			Assert.That(actual: UserSection.FromJsonString(response: "subscriptions")
+					, expression: Is.EqualTo(expected: UserSection.Subscriptions));
 		}
 
 		[Test]
-        public void VideoCatalogItemTypeTest()
-        {
+		public void VideoCatalogItemTypeTest()
+		{
 			// get test
-			Assert.That(VideoCatalogItemType.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(VideoCatalogItemType.Album.ToString(), Is.EqualTo("album"));
+			Assert.That(actual: VideoCatalogItemType.Video.ToString(), expression: Is.EqualTo(expected: "video"));
+			Assert.That(actual: VideoCatalogItemType.Album.ToString(), expression: Is.EqualTo(expected: "album"));
+
 			// parse test
-			Assert.That(VideoCatalogItemType.FromJsonString("video"), Is.EqualTo(VideoCatalogItemType.Video));
-			Assert.That(VideoCatalogItemType.FromJsonString("album"), Is.EqualTo(VideoCatalogItemType.Album));
+			Assert.That(actual: VideoCatalogItemType.FromJsonString(response: "video")
+					, expression: Is.EqualTo(expected: VideoCatalogItemType.Video));
+
+			Assert.That(actual: VideoCatalogItemType.FromJsonString(response: "album")
+					, expression: Is.EqualTo(expected: VideoCatalogItemType.Album));
 		}
 
 		[Test]
-        public void VideoCatalogTypeTest()
-        {
+		public void VideoCatalogTypeTest()
+		{
 			// get test
-			Assert.That(VideoCatalogType.Channel.ToString(), Is.EqualTo("channel"));
-			Assert.That(VideoCatalogType.Category.ToString(), Is.EqualTo("category"));
+			Assert.That(actual: VideoCatalogType.Channel.ToString(), expression: Is.EqualTo(expected: "channel"));
+			Assert.That(actual: VideoCatalogType.Category.ToString(), expression: Is.EqualTo(expected: "category"));
+
 			// parse test
-			Assert.That(VideoCatalogType.FromJsonString("channel"), Is.EqualTo(VideoCatalogType.Channel));
-			Assert.That(VideoCatalogType.FromJsonString("category"), Is.EqualTo(VideoCatalogType.Category));
+			Assert.That(actual: VideoCatalogType.FromJsonString(response: "channel")
+					, expression: Is.EqualTo(expected: VideoCatalogType.Channel));
+
+			Assert.That(actual: VideoCatalogType.FromJsonString(response: "category")
+					, expression: Is.EqualTo(expected: VideoCatalogType.Category));
 		}
 
 		[Test]
-        public void WallFilterTest()
-        {
+		public void WallFilterTest()
+		{
 			// get test
-			Assert.That(WallFilter.Owner.ToString(), Is.EqualTo("owner"));
-			Assert.That(WallFilter.Others.ToString(), Is.EqualTo("others"));
-			Assert.That(WallFilter.All.ToString(), Is.EqualTo("all"));
-			Assert.That(WallFilter.Suggests.ToString(), Is.EqualTo("suggests"));
-			Assert.That(WallFilter.Postponed.ToString(), Is.EqualTo("postponed"));
-			// parse test
-			Assert.That(WallFilter.FromJsonString("owner"), Is.EqualTo(WallFilter.Owner));
-			Assert.That(WallFilter.FromJsonString("others"), Is.EqualTo(WallFilter.Others));
-			Assert.That(WallFilter.FromJsonString("all"), Is.EqualTo(WallFilter.All));
-			Assert.That(WallFilter.FromJsonString("suggests"), Is.EqualTo(WallFilter.Suggests));
-			Assert.That(WallFilter.FromJsonString("postponed"), Is.EqualTo(WallFilter.Postponed));
-		}
+			Assert.That(actual: WallFilter.Owner.ToString(), expression: Is.EqualTo(expected: "owner"));
+			Assert.That(actual: WallFilter.Others.ToString(), expression: Is.EqualTo(expected: "others"));
+			Assert.That(actual: WallFilter.All.ToString(), expression: Is.EqualTo(expected: "all"));
+			Assert.That(actual: WallFilter.Suggests.ToString(), expression: Is.EqualTo(expected: "suggests"));
+			Assert.That(actual: WallFilter.Postponed.ToString(), expression: Is.EqualTo(expected: "postponed"));
 
+			// parse test
+			Assert.That(actual: WallFilter.FromJsonString(response: "owner"), expression: Is.EqualTo(expected: WallFilter.Owner));
+			Assert.That(actual: WallFilter.FromJsonString(response: "others"), expression: Is.EqualTo(expected: WallFilter.Others));
+			Assert.That(actual: WallFilter.FromJsonString(response: "all"), expression: Is.EqualTo(expected: WallFilter.All));
+			Assert.That(actual: WallFilter.FromJsonString(response: "suggests"), expression: Is.EqualTo(expected: WallFilter.Suggests));
+			Assert.That(actual: WallFilter.FromJsonString(response: "postponed"), expression: Is.EqualTo(expected: WallFilter.Postponed));
+		}
 	}
 }
-

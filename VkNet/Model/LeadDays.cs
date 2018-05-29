@@ -12,25 +12,25 @@ namespace VkNet.Model
 		/// <summary>
 		/// Amount of spent votes
 		/// </summary>
-		[JsonProperty("spent")]
+		[JsonProperty(propertyName: "spent")]
 		public int? Spent { get; set; }
 
 		/// <summary>
 		/// Impressions number
 		/// </summary>
-		[JsonProperty("impressions")]
+		[JsonProperty(propertyName: "impressions")]
 		public int? Impressions { get; set; }
 
 		/// <summary>
 		/// Completed offers number
 		/// </summary>
-		[JsonProperty("completed")]
+		[JsonProperty(propertyName: "completed")]
 		public int? Completed { get; set; }
 
 		/// <summary>
 		/// Started offers number
 		/// </summary>
-		[JsonProperty("started")]
+		[JsonProperty(propertyName: "started")]
 		public int? Started { get; set; }
 	}
 }

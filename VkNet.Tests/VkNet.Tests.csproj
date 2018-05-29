@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <NetStandardImplicitPackageVersion>2.0.2</NetStandardImplicitPackageVersion>
+	  <NetStandardImplicitPackageVersion>2.0</NetStandardImplicitPackageVersion>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>

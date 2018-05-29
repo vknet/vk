@@ -8,12 +8,14 @@
 		/// <summary>
 		/// Только руководители сообщества.
 		/// </summary>
-		Leaders = 0,
-		/// <summary>
+		Leaders = 0
+
+		, /// <summary>
 		/// Только участники сообщества.
 		/// </summary>
-		Participants,
-		/// <summary>
+		Participants
+
+		, /// <summary>
 		/// Все пользователи.
 		/// </summary>
 		All

@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using NLog;
-using NLog.Conditions;
 using NLog.Config;
 using NLog.Targets;
 using VkNet.Abstractions.Utils;
@@ -18,87 +17,88 @@ namespace VkNet.Utils
 	/// </summary>
 	public static class TypeHelper
 	{
-#if NET40
+	#if NET40
 
-/// <summary>
-/// Получить информацию о типе
-/// </summary>
-/// <param name="type">Тип</param>
-/// <returns>Тип</returns>
+		/// <summary>
+		/// Получить информацию о типе
+		/// </summary>
+		/// <param name="type"> Тип </param>
+		/// <returns> Тип </returns>
 		public static Type GetTypeInfo(this Type type)
 		{
 			return type;
 		}
 
-#endif
+	#endif
 		/// <summary>
 		/// DI регистрация зависимостей по умолчанию
 		/// </summary>
-		/// <param name="container">DI контейнер</param>
+		/// <param name="container"> DI контейнер </param>
 		public static void RegisterDefaultDependencies(this IServiceCollection container)
 		{
-			if (container.All(x => x.ServiceType != typeof(IBrowser)))
+			if (container.All(predicate: x => x.ServiceType != typeof(IBrowser)))
 			{
 				container.TryAddSingleton<IBrowser, Browser>();
 			}
 
-			if (container.All(x => x.ServiceType != typeof(ILogger)))
+			if (container.All(predicate: x => x.ServiceType != typeof(ILogger)))
 			{
-				container.TryAddSingleton(InitLogger());
+				container.TryAddSingleton(instance: InitLogger());
 			}
 
-			if (container.All(x => x.ServiceType != typeof(IRestClient)))
+			if (container.All(predicate: x => x.ServiceType != typeof(IRestClient)))
 			{
 				container.TryAddScoped<IRestClient, RestClient>();
 			}
 
-			if (container.All(x => x.ServiceType != typeof(IWebProxy)))
+			if (container.All(predicate: x => x.ServiceType != typeof(IWebProxy)))
 			{
-				container.TryAddScoped<IWebProxy>(t => null);
+				container.TryAddScoped<IWebProxy>(implementationFactory: t => null);
 			}
 		}
 
 		/// <summary>
 		/// Инициализация логгера.
 		/// </summary>
-		/// <returns>Логгер</returns>
+		/// <returns> Логгер </returns>
 		private static ILogger InitLogger()
 		{
 			var consoleTarget = new ColoredConsoleTarget
 			{
-				UseDefaultRowHighlightingRules = true,
-				Layout = @"${level} ${longdate} ${logger} ${message}"
+					UseDefaultRowHighlightingRules = true
+					, Layout = @"${level} ${longdate} ${logger} ${message}"
 			};
 
 			var config = new LoggingConfiguration();
-			config.AddTarget("console", consoleTarget);
-			var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
-			config.LoggingRules.Add(rule1);
-			
+			config.AddTarget(name: "console", target: consoleTarget);
+			var rule1 = new LoggingRule(loggerNamePattern: "*", minLevel: LogLevel.Trace, target: consoleTarget);
+			config.LoggingRules.Add(item: rule1);
+
 			LogManager.Configuration = config;
-			return LogManager.GetLogger("VkApi");
+
+			return LogManager.GetLogger(name: "VkApi");
 		}
 
 		/// <summary>
 		/// Попытаться асинхронно выполнить метод.
 		/// </summary>
-		/// <param name="func">Синхронный метод.</param>
-		/// <typeparam name="T">Тип ответа</typeparam>
-		/// <returns>Результат выполнения функции.</returns>
+		/// <param name="func"> Синхронный метод. </param>
+		/// <typeparam name="T"> Тип ответа </typeparam>
+		/// <returns> Результат выполнения функции. </returns>
 		public static Task<T> TryInvokeMethodAsync<T>(Func<T> func)
 		{
 			var tcs = new TaskCompletionSource<T>();
 
-			Task.Factory.StartNew(() =>
+			Task.Factory.StartNew(action: () =>
 			{
 				try
 				{
 					var result = func.Invoke();
-					tcs.SetResult(result);
+					tcs.SetResult(result: result);
 				}
 				catch (VkApiException ex)
 				{
-					tcs.SetException(ex);
+					tcs.SetException(exception: ex);
 				}
 			});
 
@@ -108,22 +108,22 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Попытаться асинхронно выполнить метод.
 		/// </summary>
-		/// <param name="func">Синхронный метод.</param>
-		/// <returns>Результат выполнения функции.</returns>
+		/// <param name="func"> Синхронный метод. </param>
+		/// <returns> Результат выполнения функции. </returns>
 		public static Task TryInvokeMethodAsync(Action func)
 		{
 			var tcs = new TaskCompletionSource<Task>();
 
-			Task.Factory.StartNew(() =>
+			Task.Factory.StartNew(action: () =>
 			{
 				try
 				{
 					func.Invoke();
-					tcs.SetResult(null);
+					tcs.SetResult(result: null);
 				}
 				catch (VkApiException ex)
 				{
-					tcs.SetException(ex);
+					tcs.SetException(exception: ex);
 				}
 			});
 

@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using System;
+﻿using System;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -17,7 +17,7 @@ namespace VkNet.Model.Attachments
 	{
 		static Photo()
 		{
-			RegisterType(typeof (Photo), "photo");
+			RegisterType(type: typeof(Photo), match: "photo");
 		}
 
 		/// <summary>
@@ -26,7 +26,9 @@ namespace VkNet.Model.Attachments
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		/// Идентификатор пользователя, загрузившего фото (если фотография размещена в сообществе). Для фотографий, размещенных от имени сообщества.
+		/// Идентификатор пользователя, загрузившего фото (если фотография размещена в
+		/// сообществе). Для фотографий, размещенных
+		/// от имени сообщества.
 		/// </summary>
 		public long? UserId { get; set; }
 
@@ -38,14 +40,13 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Дата добавления фотографии.
 		/// </summary>
-		[JsonConverter(typeof(UnixDateTimeConverter))]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
 		/// Размеры фотографий.
 		/// </summary>
-		public ReadOnlyCollection<PhotoSize> Sizes
-		{ get; set; }
+		public ReadOnlyCollection<PhotoSize> Sizes { get; set; }
 
 		/// <summary>
 		/// Uri фотографии с максимальным размером 75x75px.
@@ -87,8 +88,55 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public int? Height { get; set; }
 
-		#region опциональные поля
-		
+	#region Методы
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static Photo FromJson(VkResponse response)
+		{
+			var photo = new Photo
+			{
+					Id = response[key: "photo_id"] ?? response[key: "pid"] ?? response[key: "id"]
+					, AlbumId = response[key: "album_id"] ?? response[key: "aid"]
+					, OwnerId = response[key: "owner_id"]
+					, Photo75 = response[key: "photo_75"] ?? response[key: "src_small"]
+					, Photo130 = response[key: "photo_130"] ?? response[key: "src"]
+					, Photo604 = response[key: "photo_604"] ?? response[key: "src_big"]
+					, Photo807 = response[key: "photo_807"] ?? response[key: "src_xbig"]
+					, Photo1280 = response[key: "photo_1280"] ?? response[key: "src_xxbig"]
+					, Photo2560 = response[key: "photo_2560"] ?? response[key: "src_xxxbig"]
+					, Width = response[key: "width"]
+					, Height = response[key: "height"]
+					, Text = response[key: "text"]
+					, CreateTime = response[key: "date"] ?? response[key: "created"]
+					, UserId = Utilities.GetNullableLongId(response: response[key: "user_id"])
+					, PostId = Utilities.GetNullableLongId(response: response[key: "post_id"])
+					, AccessKey = response[key: "access_key"]
+					, PlacerId = Utilities.GetNullableLongId(response: response[key: "placer_id"])
+					, TagCreated = response[key: "tag_created"]
+					, TagId = response[key: "tag_id"]
+					, Likes = response[key: "likes"]
+					, Comments = response[key: "comments"]
+					, CanComment = response[key: "can_comment"]
+					, Tags = response[key: "tags"]
+					, PhotoSrc = response[key: "photo_src"]
+					, PhotoHash = response[key: "photo_hash"]
+					, SmallPhotoSrc = response[key: "src_small"]
+					, Latitude = response[key: "lat"]
+					, Longitude = response[key: "long"]
+					, Sizes = response[key: "sizes"].ToReadOnlyCollectionOf<PhotoSize>(selector: x => x)
+			};
+
+			return photo;
+		}
+
+	#endregion
+
+	#region опциональные поля
+
 		/// <summary>
 		/// Ключ доступа.
 		/// </summary>
@@ -107,7 +155,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Дата создания отметки
 		/// </summary>
-		[JsonConverter(typeof(UnixDateTimeConverter))]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? TagCreated { get; set; }
 
 		/// <summary>
@@ -158,59 +206,13 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Uri фотографии с максимальным размером.
 		/// </summary>
-		public Uri BigPhotoSrc
-		{ get; set; }
+		public Uri BigPhotoSrc { get; set; }
 
 		/// <summary>
 		/// Uri фотографии с минимальным размером.
 		/// </summary>
-		public Uri SmallPhotoSrc
-		{ get; set; }
+		public Uri SmallPhotoSrc { get; set; }
 
-		#endregion
-		#region Методы
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static Photo FromJson(VkResponse response)
-		{
-			var photo = new Photo
-			{
-				Id = response["photo_id"] ?? response["pid"] ?? response["id"],
-				AlbumId = response["album_id"] ?? response["aid"],
-				OwnerId = response["owner_id"],
-				Photo75 = response["photo_75"] ?? response["src_small"],
-				Photo130 = response["photo_130"] ?? response["src"],
-				Photo604 = response["photo_604"] ?? response["src_big"],
-				Photo807 = response["photo_807"] ?? response["src_xbig"],
-				Photo1280 = response["photo_1280"] ?? response["src_xxbig"],
-				Photo2560 = response["photo_2560"] ?? response["src_xxxbig"],
-				Width = response["width"],
-				Height = response["height"],
-				Text = response["text"],
-				CreateTime = response["date"] ?? response["created"],
-				UserId = Utilities.GetNullableLongId(response["user_id"]),
-				PostId = Utilities.GetNullableLongId(response["post_id"]),
-				AccessKey = response["access_key"],
-				PlacerId = Utilities.GetNullableLongId(response["placer_id"]),
-				TagCreated = response["tag_created"],
-				TagId = response["tag_id"],
-				Likes = response["likes"],
-				Comments = response["comments"],
-				CanComment = response["can_comment"],
-				Tags = response["tags"],
-				PhotoSrc = response["photo_src"],
-				PhotoHash = response["photo_hash"],
-				SmallPhotoSrc = response["src_small"],
-				Latitude = response["lat"],
-				Longitude = response["long"],
-				Sizes = response["sizes"].ToReadOnlyCollectionOf<PhotoSize>(x => x)
-			};
-			return photo;
-		}
-
-		#endregion
+	#endregion
 	}
 }

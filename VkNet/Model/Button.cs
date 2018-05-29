@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -22,23 +21,22 @@ namespace VkNet.Model
 		public Uri Uri { get; set; }
 
 		/// <summary>
-		/// 
 		/// </summary>
-		[JsonProperty("action")]
+		[JsonProperty(propertyName: "action")]
 		public LinkButtonAction Action { get; set; }
-		
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Button FromJson(VkResponse response)
 		{
 			var button = new Button
 			{
-				Title = response["title"],
-				Uri = response["url"],
-				Action = response["action"]
+					Title = response[key: "title"]
+					, Uri = response[key: "url"]
+					, Action = response[key: "action"]
 			};
 
 			return button;

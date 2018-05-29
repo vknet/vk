@@ -8,15 +8,73 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[SuppressMessage(category: "ReSharper", checkId: "PublicMembersMustHaveComments")]
 	public class AppsTest : BaseTest
 	{
+		[Test]
+		public void DeleteAppRequests_NormalCase()
+		{
+			Url = "https://api.vk.com/method/apps.deleteAppRequests";
+
+			Json =
+					@"{
+					'response': 1
+				  }";
+
+			var app = Api.Apps.DeleteAppRequests();
+			Assert.That(actual: app, expression: Is.True);
+		}
+
+		[Test]
+		public void Get_NormalCase()
+		{
+			Url =
+					"https://api.vk.com/method/apps.get";
+
+			Json =
+					@"{
+					'response': {
+						'count': 1,
+						'items': [{
+							'id': 4268118,
+							'title': 'raventestapp',
+							'icon_256': 'http://vk.com/images/dquestion_l.png',
+							'icon_128': 'http://cs624017.vk.me/v624017123/47c4e/9Wx9pRA33yk.jpg',
+							'icon_200': 'http://cs624017.vk.me/v624017123/47c4e/9Wx9pRA33yk.jpg',
+							'icon_100': 'http://cs624017.vk.me/v624017123/47c4e/9Wx9pRA33yk.jpg',
+							'icon_75': 'http://cs624017.vk.me/v624017123/47c4c/HaqH9hwhWQs.jpg',
+							'icon_50': 'http://cs624017.vk.me/v624017123/47c4c/HaqH9hwhWQs.jpg',
+							'icon_25': 'http://cs624017.vk.me/v624017123/47c4c/HaqH9hwhWQs.jpg',
+							'banner_186': 'http://vk.com/images/dquestion_x.gif',
+							'banner_896': 'http://vk.com/images/dquestion_t.png',
+							'type': 'standalone',
+							'author_url': 'http://vk.com/club103292418',
+							'author_group': 103292418,
+							'members_count': 3,
+							'install_url': 'http://m.vk.com/app4268118?api_view=7658df7dd4b391d7746beb3f1d6791',
+							'leaderboard_type': 1,
+							'installed': true
+						}]
+					}
+				  }";
+
+			var app = Api.Apps.Get(@params: new AppGetParams
+			{
+					AppIds = new ulong[] { 4268118 }
+					, Platform = AppPlatforms.Web
+			});
+
+			Assert.That(actual: app.TotalCount, expression: Is.AtLeast(expected: 0));
+			Assert.That(actual: app.Apps.First().Title, expression: Is.EqualTo(expected: "raventestapp"));
+		}
+
 		[Test]
 		public void GetCatalog_NormalCase()
 		{
 			Url = "https://api.vk.com/method/apps.getCatalog";
-            Json =
-				@"{
+
+			Json =
+					@"{
 					'response': {
 						'count': 8710,
 						'items': [{
@@ -81,84 +139,36 @@ namespace VkNet.Tests.Categories
 						}
 				  }";
 
-			var app = Api.Apps.GetCatalog( new AppGetCatalogParams());
-			Assert.That(app.TotalCount, Is.AtLeast(0));
-			Assert.That(app.FirstOrDefault()?.Title, Is.EqualTo("Подземелья!"));
-		}
-
-		[Test]
-		public void Get_NormalCase()
-		{
-			Url =
-				"https://api.vk.com/method/apps.get";
-			Json =
-				@"{
-					'response': {
-						'count': 1,
-						'items': [{
-							'id': 4268118,
-							'title': 'raventestapp',
-							'icon_256': 'http://vk.com/images/dquestion_l.png',
-							'icon_128': 'http://cs624017.vk.me/v624017123/47c4e/9Wx9pRA33yk.jpg',
-							'icon_200': 'http://cs624017.vk.me/v624017123/47c4e/9Wx9pRA33yk.jpg',
-							'icon_100': 'http://cs624017.vk.me/v624017123/47c4e/9Wx9pRA33yk.jpg',
-							'icon_75': 'http://cs624017.vk.me/v624017123/47c4c/HaqH9hwhWQs.jpg',
-							'icon_50': 'http://cs624017.vk.me/v624017123/47c4c/HaqH9hwhWQs.jpg',
-							'icon_25': 'http://cs624017.vk.me/v624017123/47c4c/HaqH9hwhWQs.jpg',
-							'banner_186': 'http://vk.com/images/dquestion_x.gif',
-							'banner_896': 'http://vk.com/images/dquestion_t.png',
-							'type': 'standalone',
-							'author_url': 'http://vk.com/club103292418',
-							'author_group': 103292418,
-							'members_count': 3,
-							'install_url': 'http://m.vk.com/app4268118?api_view=7658df7dd4b391d7746beb3f1d6791',
-							'leaderboard_type': 1,
-							'installed': true
-						}]
-					}
-				  }";
-
-			var app = Api.Apps.Get(new AppGetParams { AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web });
-			Assert.That(app.TotalCount, Is.AtLeast(0));
-			Assert.That(app.Apps.First().Title, Is.EqualTo("raventestapp"));
-		}
-
-		[Test]
-		public void DeleteAppRequests_NormalCase()
-		{
-			Url = "https://api.vk.com/method/apps.deleteAppRequests";
-			Json =
-				@"{
-					'response': 1
-				  }";
-
-			var app = Api.Apps.DeleteAppRequests();
-			Assert.That(app, Is.True);
+			var app = Api.Apps.GetCatalog(@params: new AppGetCatalogParams());
+			Assert.That(actual: app.TotalCount, expression: Is.AtLeast(expected: 0));
+			Assert.That(actual: app.FirstOrDefault()?.Title, expression: Is.EqualTo(expected: "Подземелья!"));
 		}
 
 		[Test]
 		public void GetFriendsList_NormalCase()
 		{
 			Url = "https://api.vk.com/method/apps.getFriendsList";
+
 			Json =
-				@"{
+					@"{
 					'response': {
 						'count': 130,
 						'items': [310881357, 221634238, 72815776, 138230483, 228907945, 63838918, 229634083, 325170546, 131518798, 239679269, 114253497, 224688907, 319045109, 197866462, 204823258, 283140346, 74653727, 159042291, 241237764, 50894115]
 					}
 				  }";
 
-			var app = Api.Apps.GetFriendsList(AppRequestType.Invite);
-			Assert.That(app.TotalCount, Is.GreaterThan(0));
-			Assert.That(app, Is.Not.Null);
+			var app = Api.Apps.GetFriendsList(type: AppRequestType.Invite);
+			Assert.That(actual: app.TotalCount, expression: Is.GreaterThan(expected: 0));
+			Assert.That(actual: app, expression: Is.Not.Null);
 		}
 
 		[Test]
 		public void GetFriendsListEx_NormalCase()
 		{
 			Url = "https://api.vk.com/method/apps.getFriendsList";
+
 			Json =
-				@"{
+					@"{
 					'response': {
 						'count': 130,
 						'items': [{
@@ -185,67 +195,18 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var app = Api.Apps.GetFriendsList(AppRequestType.Invite, true, 5, 1, UsersFields.Online);
-			Assert.That(app.TotalCount, Is.GreaterThan(0));
-			Assert.That(app, Is.Not.Null);
-		}
-
-		[Test]
-		public void GetLeaderboard_Level()
-		{
-			Url = "https://api.vk.com/method/apps.getLeaderboard";
-			Json =
-				@"{
-					'response': {
-						'count': 130,
-						'items': [{
-							'score': 221634238,
-							'level': 13,
-							'user_id': 123
-						}]
-					}
-				  }";
-
-			var app = Api.Apps.GetLeaderboard(AppRatingType.Level);
-			Assert.IsNotNull(app);
-			Assert.That(app.Count, Is.EqualTo(130));
-			Assert.That(app.Items, Is.Not.Empty);
-			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
-			Assert.That(app.Items[0].Level, Is.EqualTo(13));
-			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
-		}
-
-		[Test]
-		public void GetLeaderboard_Points()
-		{
-			Url = "https://api.vk.com/method/apps.getLeaderboard";
-			Json =
-				@"{
-					'response': {
-						'count': 130,
-						'items': [{
-							'score': 221634238,
-							'points': 256,
-							'user_id': 123
-						}]
-					}
-				  }";
-
-			var app = Api.Apps.GetLeaderboard(AppRatingType.Points);
-			Assert.IsNotNull(app);
-			Assert.That(app.Count, Is.EqualTo(130));
-			Assert.That(app.Items, Is.Not.Empty);
-			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
-			Assert.That(app.Items[0].Points, Is.EqualTo(256));
-			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
+			var app = Api.Apps.GetFriendsList(type: AppRequestType.Invite, extended: true, count: 5, offset: 1, fields: UsersFields.Online);
+			Assert.That(actual: app.TotalCount, expression: Is.GreaterThan(expected: 0));
+			Assert.That(actual: app, expression: Is.Not.Null);
 		}
 
 		[Test]
 		public void GetLeaderboard_Extended()
 		{
 			Url = "https://api.vk.com/method/apps.getLeaderboard";
+
 			Json =
-				@"{
+					@"{
 					'response': {
 						'count': 130,
 						'items': [{
@@ -261,14 +222,66 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var app = Api.Apps.GetLeaderboard(AppRatingType.Points, null, true);
-			Assert.IsNotNull(app);
-			Assert.That(app.Count, Is.EqualTo(130));
-			Assert.That(app.Items, Is.Not.Empty);
-			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
-			Assert.That(app.Items[0].Points, Is.EqualTo(256));
-			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
-			Assert.That(app.Profiles, Is.Not.Empty);
+			var app = Api.Apps.GetLeaderboard(type: AppRatingType.Points, global: null, extended: true);
+			Assert.IsNotNull(anObject: app);
+			Assert.That(actual: app.Count, expression: Is.EqualTo(expected: 130));
+			Assert.That(actual: app.Items, expression: Is.Not.Empty);
+			Assert.That(actual: app.Items[index: 0].Score, expression: Is.EqualTo(expected: 221634238));
+			Assert.That(actual: app.Items[index: 0].Points, expression: Is.EqualTo(expected: 256));
+			Assert.That(actual: app.Items[index: 0].UserId, expression: Is.EqualTo(expected: 123));
+			Assert.That(actual: app.Profiles, expression: Is.Not.Empty);
+		}
+
+		[Test]
+		public void GetLeaderboard_Level()
+		{
+			Url = "https://api.vk.com/method/apps.getLeaderboard";
+
+			Json =
+					@"{
+					'response': {
+						'count': 130,
+						'items': [{
+							'score': 221634238,
+							'level': 13,
+							'user_id': 123
+						}]
+					}
+				  }";
+
+			var app = Api.Apps.GetLeaderboard(type: AppRatingType.Level);
+			Assert.IsNotNull(anObject: app);
+			Assert.That(actual: app.Count, expression: Is.EqualTo(expected: 130));
+			Assert.That(actual: app.Items, expression: Is.Not.Empty);
+			Assert.That(actual: app.Items[index: 0].Score, expression: Is.EqualTo(expected: 221634238));
+			Assert.That(actual: app.Items[index: 0].Level, expression: Is.EqualTo(expected: 13));
+			Assert.That(actual: app.Items[index: 0].UserId, expression: Is.EqualTo(expected: 123));
+		}
+
+		[Test]
+		public void GetLeaderboard_Points()
+		{
+			Url = "https://api.vk.com/method/apps.getLeaderboard";
+
+			Json =
+					@"{
+					'response': {
+						'count': 130,
+						'items': [{
+							'score': 221634238,
+							'points': 256,
+							'user_id': 123
+						}]
+					}
+				  }";
+
+			var app = Api.Apps.GetLeaderboard(type: AppRatingType.Points);
+			Assert.IsNotNull(anObject: app);
+			Assert.That(actual: app.Count, expression: Is.EqualTo(expected: 130));
+			Assert.That(actual: app.Items, expression: Is.Not.Empty);
+			Assert.That(actual: app.Items[index: 0].Score, expression: Is.EqualTo(expected: 221634238));
+			Assert.That(actual: app.Items[index: 0].Points, expression: Is.EqualTo(expected: 256));
+			Assert.That(actual: app.Items[index: 0].UserId, expression: Is.EqualTo(expected: 123));
 		}
 	}
 }

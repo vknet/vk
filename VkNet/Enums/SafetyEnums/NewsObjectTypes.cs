@@ -8,31 +8,31 @@
 		/// <summary>
 		/// Запись на стене.
 		/// </summary>
-		public static readonly NewsObjectTypes Wall = RegisterPossibleValue("wall");
+		public static readonly NewsObjectTypes Wall = RegisterPossibleValue(value: "wall");
 
 		/// <summary>
 		/// Отметка на фотографии.
 		/// </summary>
-		public static readonly NewsObjectTypes Tag = RegisterPossibleValue("tag");
+		public static readonly NewsObjectTypes Tag = RegisterPossibleValue(value: "tag");
 
 		/// <summary>
 		/// Фотография профиля.
 		/// </summary>
-		public static readonly NewsObjectTypes ProfilePhoto = RegisterPossibleValue("profilephoto");
+		public static readonly NewsObjectTypes ProfilePhoto = RegisterPossibleValue(value: "profilephoto");
 
 		/// <summary>
 		/// Видеозапись.
 		/// </summary>
-		public static readonly NewsObjectTypes Video = RegisterPossibleValue("video");
+		public static readonly NewsObjectTypes Video = RegisterPossibleValue(value: "video");
 
 		/// <summary>
 		/// Фотография.
 		/// </summary>
-		public static readonly NewsObjectTypes Photo = RegisterPossibleValue("photo");
+		public static readonly NewsObjectTypes Photo = RegisterPossibleValue(value: "photo");
 
 		/// <summary>
 		/// Аудиозапись.
 		/// </summary>
-		public static readonly NewsObjectTypes Audio = RegisterPossibleValue("audio");
+		public static readonly NewsObjectTypes Audio = RegisterPossibleValue(value: "audio");
 	}
 }

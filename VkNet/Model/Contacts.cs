@@ -22,14 +22,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Contacts FromJson(VkResponse response)
 		{
 			var contacts = new Contacts
 			{
-				MobilePhone = response["mobile_phone"],
-				HomePhone = response["home_phone"]
+					MobilePhone = response[key: "mobile_phone"]
+					, HomePhone = response[key: "home_phone"]
 			};
 
 			return contacts;

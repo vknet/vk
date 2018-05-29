@@ -5,14 +5,15 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
-	public class WallPostTests: BaseTest
+	public class WallPostTests : BaseTest
 	{
 		[Test]
 		public void Post_ReturnValidateNeeded()
 		{
 			Url = "https://api.vk.com/method/wall.post";
+
 			Json =
-				@"
+					@"
                 {
                     'error' : {
                     'error_code' : 17,
@@ -47,15 +48,17 @@ namespace VkNet.Tests.Categories
                     }
                  }
                  ";
-			Assert.That(() => VkErrors.IfErrorThrowException(Json), Throws.TypeOf<NeedValidationException>());
+
+			Assert.That(code: () => VkErrors.IfErrorThrowException(json: Json), constraint: Throws.TypeOf<NeedValidationException>());
 		}
-		
+
 		[Test]
 		public void Post_AccessToAddingPostDenied()
 		{
 			Url = "https://api.vk.com/method/wall.post";
+
 			Json =
-				@"{
+					@"{
                    'error': {
                      'error_code': 214,
                      'error_msg': 'Access to adding post denied: access to the wall is closed',
@@ -83,7 +86,8 @@ namespace VkNet.Tests.Categories
                      ]
                    }
                  }";
-			Assert.Throws<PostLimitException>(() => Api.Wall.Post(new WallPostParams()));
+
+			Assert.Throws<PostLimitException>(code: () => Api.Wall.Post(@params: new WallPostParams()));
 		}
 	}
 }

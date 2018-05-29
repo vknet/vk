@@ -3,7 +3,8 @@
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	/// Возможные значения параметра VideoCatalogType, задающего внешний вид окна авторизации.
+	/// Возможные значения параметра VideoCatalogType, задающего внешний вид окна
+	/// авторизации.
 	/// </summary>
 	public sealed class VideoCatalogType : SafetyEnum<VideoCatalogType>
 	{
@@ -11,11 +12,11 @@ namespace VkNet.Enums.SafetyEnums
 		/// Видеозаписи сообщества.
 		/// </summary>
 		[DefaultValue]
-		public static readonly VideoCatalogType Channel = RegisterPossibleValue("channel");
+		public static readonly VideoCatalogType Channel = RegisterPossibleValue(value: "channel");
 
 		/// <summary>
 		/// Подборки видеозаписей.
 		/// </summary>
-		public static readonly VideoCatalogType Category = RegisterPossibleValue("category");
+		public static readonly VideoCatalogType Category = RegisterPossibleValue(value: "category");
 	}
 }

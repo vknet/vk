@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
@@ -12,11 +11,11 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// Популярные за день (по умолчанию);
 		/// </summary>
-		public static readonly PostTypeOrder Post = RegisterPossibleValue("post");
+		public static readonly PostTypeOrder Post = RegisterPossibleValue(value: "post");
 
 		/// <summary>
 		/// По посещаемости
 		/// </summary>
-		public static readonly PostTypeOrder Copy = RegisterPossibleValue("copy");
+		public static readonly PostTypeOrder Copy = RegisterPossibleValue(value: "copy");
 	}
 }

@@ -7,15 +7,15 @@ namespace VkNet.Enums
 	/// </summary>
 	[Serializable]
 	public enum MessageReadState
-    {
-        /// <summary>
-        /// Сообщение не прочитано.
-        /// </summary>
-        Unreaded = 0,
+	{
+		/// <summary>
+		/// Сообщение не прочитано.
+		/// </summary>
+		Unreaded = 0
 
-        /// <summary>
-        /// Сообщение прочитано.
-        /// </summary>
-        Readed = 1
-    }
+		, /// <summary>
+		/// Сообщение прочитано.
+		/// </summary>
+		Readed = 1
+	}
 }

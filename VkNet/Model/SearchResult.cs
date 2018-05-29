@@ -2,12 +2,11 @@
 
 namespace VkNet.Model
 {
-    /// <summary>
-    /// Search Result
-    /// </summary>
-    [Serializable]
-    public class SearchResult
-    {
-        
-    }
+	/// <summary>
+	/// Search Result
+	/// </summary>
+	[Serializable]
+	public class SearchResult
+	{
+	}
 }

@@ -9,17 +9,16 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[SuppressMessage(category: "ReSharper", checkId: "PublicMembersMustHaveComments")]
 	public class AdsCategoryTest : BaseTest
 	{
-        #region Ads.GetAccounts
+		[Test]
+		public void GetAccounts_GenerateOutParametersCorrectly()
+		{
+			Url = "https://api.vk.com/method/ads.getAccounts";
 
-        [Test]
-        public void GetAccounts_GenerateOutParametersCorrectly()
-        {
-            Url = "https://api.vk.com/method/ads.getAccounts";
-            Json =
-				@"{
+			Json =
+					@"{
                     ""response"": [
                         {
                             ""account_id"": 1603879239,
@@ -45,27 +44,98 @@ namespace VkNet.Tests.Categories
                     ]
                 }";
 
-            var accounts = Api.Ads.GetAccounts();
+			var accounts = Api.Ads.GetAccounts();
 
-            Assert.That(accounts.Count, Is.EqualTo(3));
+			Assert.That(actual: accounts.Count, expression: Is.EqualTo(expected: 3));
 
-            Assert.That(accounts[1].AccountId, Is.EqualTo(1900013324));
-            Assert.That(accounts[1].AccountType, Is.EqualTo(AccountType.Agency));
-            Assert.That(accounts[1].AccountStatus, Is.EqualTo(AccountStatus.Active));
-            Assert.That(accounts[1].AccountName, Is.EqualTo("Кабинет агентства"));
-            Assert.That(accounts[1].AccessRole, Is.EqualTo(AccessRole.Manager));
-        }
+			Assert.That(actual: accounts[index: 1].AccountId, expression: Is.EqualTo(expected: 1900013324));
+			Assert.That(actual: accounts[index: 1].AccountType, expression: Is.EqualTo(expected: AccountType.Agency));
+			Assert.That(actual: accounts[index: 1].AccountStatus, expression: Is.EqualTo(expected: AccountStatus.Active));
+			Assert.That(actual: accounts[index: 1].AccountName, expression: Is.EqualTo(expected: "Кабинет агентства"));
+			Assert.That(actual: accounts[index: 1].AccessRole, expression: Is.EqualTo(expected: AccessRole.Manager));
+		}
 
-        #endregion
+		[Test]
+		public void GetCampaigns_AgencyAccount_Arch_Filtered_OutParametersCorrect()
+		{
+			Url = "https://api.vk.com/method/ads.getCampaigns";
 
-        #region Ads.getCampaigns
+			Json =
+					@"{
+                        ""response"": [{
+                        ""id"": 1009088099,
+                        ""type"": ""promoted_posts"",
+                        ""name"": ""Сюрприз51 - Тест - День рождения"",
+                        ""status"": 1,
+                        ""day_limit"": ""2000"",
+                        ""all_limit"": ""0"",
+                        ""start_time"": ""0"",
+                        ""stop_time"": ""0"",
+                        ""create_time"": ""1521361421"",
+                        ""update_time"": ""1525812787""
+                        }, {
+                        ""id"": 1009150293,
+                        ""type"": ""promoted_posts"",
+                        ""name"": ""Сюрприз51 - Рабочие"",
+                        ""status"": 1,
+                        ""day_limit"": ""2000"",
+                        ""all_limit"": ""0"",
+                        ""start_time"": ""0"",
+                        ""stop_time"": ""0"",
+                        ""create_time"": ""1522074190"",
+                        ""update_time"": ""1526330822""
+                        }, {
+                        ""id"": 1009157560,
+                        ""type"": ""promoted_posts"",
+                        ""name"": ""Сюрприз51 - Тест - По конкурентам"",
+                        ""status"": 0,
+                        ""day_limit"": ""200"",
+                        ""all_limit"": ""0"",
+                        ""start_time"": ""0"",
+                        ""stop_time"": ""0"",
+                        ""create_time"": ""1522155165"",
+                        ""update_time"": ""1523949817""
+                        }, {
+                        ""id"": 1009316667,
+                        ""type"": ""normal"",
+                        ""name"": ""Тизеры ЦА Родители с детьми"",
+                        ""status"": 0,
+                        ""day_limit"": ""1000"",
+                        ""all_limit"": ""7000"",
+                        ""start_time"": ""0"",
+                        ""stop_time"": ""0"",
+                        ""create_time"": ""1524046841"",
+                        ""update_time"": ""1526923163""
+                        }]
+                }";
 
-        [Test]
-        public void GetCampaigns_GeneralAccount_OutParametersCorrect()
-        {
-            Url = "https://api.vk.com/method/ads.getCampaigns";
-            Json =
-                @"{
+			var campaigns = Api.Ads.GetCampaigns(@params: new AdsGetCampaignsParams
+			{
+					AccountId = 1900013324
+					, ClientId = 1604555949
+					, IncludeDeleted = true
+					, CampaignIds = new List<long>
+					{
+							1009157560
+							, 1009088099
+							, 1009150293
+							, 1009316667
+					}
+			});
+
+			Assert.That(actual: campaigns.Count, expression: Is.EqualTo(expected: 4));
+
+			// ID кампании
+			Assert.That(actual: campaigns[index: 3].Id, expression: Is.EqualTo(expected: 1009316667));
+		}
+
+		[Test]
+		public void GetCampaigns_GeneralAccount_OutParametersCorrect()
+		{
+			Url = "https://api.vk.com/method/ads.getCampaigns";
+
+			Json =
+					@"{
                     ""response"": [{
                     ""id"": 1007993739,
                     ""type"": ""normal"",
@@ -135,101 +205,38 @@ namespace VkNet.Tests.Categories
                     }]
                 }";
 
-            var campaigns = Api.Ads.GetCampaigns(new AdsGetCampaignsParams() { AccountId = 1603879239 } );
+			var campaigns = Api.Ads.GetCampaigns(@params: new AdsGetCampaignsParams { AccountId = 1603879239 });
 
-            Assert.That(campaigns.Count, Is.EqualTo(6));
+			Assert.That(actual: campaigns.Count, expression: Is.EqualTo(expected: 6));
 
-            // ID кампании
-            Assert.That(campaigns[3].Id, Is.EqualTo(1008003092));
+			// ID кампании
+			Assert.That(actual: campaigns[index: 3].Id, expression: Is.EqualTo(expected: 1008003092));
 
+			// ID кампании
+			Assert.That(actual: campaigns[index: 4].Name, expression: Is.EqualTo(expected: "Продвижение записей"));
 
-            // ID кампании
-            Assert.That(campaigns[4].Name, Is.EqualTo("Продвижение записей"));
+			// Типы кампаний
+			Assert.That(actual: campaigns[index: 0].Type, expression: Is.EqualTo(expected: CampaignType.Normal));
+			Assert.That(actual: campaigns[index: 1].Type, expression: Is.EqualTo(expected: CampaignType.VkAppsManaged));
+			Assert.That(actual: campaigns[index: 2].Type, expression: Is.EqualTo(expected: CampaignType.MobileApps));
+			Assert.That(actual: campaigns[index: 3].Type, expression: Is.EqualTo(expected: CampaignType.PromotedPosts));
 
-            // Типы кампаний
-            Assert.That(campaigns[0].Type, Is.EqualTo(CampaignType.Normal));
-            Assert.That(campaigns[1].Type, Is.EqualTo(CampaignType.VkAppsManaged));
-            Assert.That(campaigns[2].Type, Is.EqualTo(CampaignType.MobileApps));
-            Assert.That(campaigns[3].Type, Is.EqualTo(CampaignType.PromotedPosts));
+			// Лимиты
+			Assert.That(actual: campaigns[index: 3].DayLimit, expression: Is.EqualTo(expected: 10000));
+			Assert.That(actual: campaigns[index: 3].AllLimit, expression: Is.EqualTo(expected: 200000));
 
-            // Лимиты
-            Assert.That(campaigns[3].DayLimit, Is.EqualTo(10000));
-            Assert.That(campaigns[3].AllLimit, Is.EqualTo(200000));
+			// Даты
+			Assert.That(actual: campaigns[index: 3].StartTime
+					, expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 10, day: 1, hour: 19, minute: 37, second: 24)));
 
-            // Даты
-            Assert.That(campaigns[3].StartTime, Is.EqualTo(new DateTime(2017, 10, 1, 19, 37, 24)));
-            Assert.That(campaigns[3].StopTime, Is.EqualTo(new DateTime(2017, 10, 1, 19, 56, 39)));
-            Assert.That(campaigns[3].CreateTime, Is.EqualTo(new DateTime(2017, 09, 29, 10, 22, 15)));
-            Assert.That(campaigns[3].UpdateTime, Is.EqualTo(new DateTime(2018, 01, 23, 17, 02, 48)));
-        }
+			Assert.That(actual: campaigns[index: 3].StopTime
+					, expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 10, day: 1, hour: 19, minute: 56, second: 39)));
 
-        [Test]
-        public void GetCampaigns_AgencyAccount_Arch_Filtered_OutParametersCorrect()
-        {
-            Url = "https://api.vk.com/method/ads.getCampaigns";
-            Json =
-                @"{
-                        ""response"": [{
-                        ""id"": 1009088099,
-                        ""type"": ""promoted_posts"",
-                        ""name"": ""Сюрприз51 - Тест - День рождения"",
-                        ""status"": 1,
-                        ""day_limit"": ""2000"",
-                        ""all_limit"": ""0"",
-                        ""start_time"": ""0"",
-                        ""stop_time"": ""0"",
-                        ""create_time"": ""1521361421"",
-                        ""update_time"": ""1525812787""
-                        }, {
-                        ""id"": 1009150293,
-                        ""type"": ""promoted_posts"",
-                        ""name"": ""Сюрприз51 - Рабочие"",
-                        ""status"": 1,
-                        ""day_limit"": ""2000"",
-                        ""all_limit"": ""0"",
-                        ""start_time"": ""0"",
-                        ""stop_time"": ""0"",
-                        ""create_time"": ""1522074190"",
-                        ""update_time"": ""1526330822""
-                        }, {
-                        ""id"": 1009157560,
-                        ""type"": ""promoted_posts"",
-                        ""name"": ""Сюрприз51 - Тест - По конкурентам"",
-                        ""status"": 0,
-                        ""day_limit"": ""200"",
-                        ""all_limit"": ""0"",
-                        ""start_time"": ""0"",
-                        ""stop_time"": ""0"",
-                        ""create_time"": ""1522155165"",
-                        ""update_time"": ""1523949817""
-                        }, {
-                        ""id"": 1009316667,
-                        ""type"": ""normal"",
-                        ""name"": ""Тизеры ЦА Родители с детьми"",
-                        ""status"": 0,
-                        ""day_limit"": ""1000"",
-                        ""all_limit"": ""7000"",
-                        ""start_time"": ""0"",
-                        ""stop_time"": ""0"",
-                        ""create_time"": ""1524046841"",
-                        ""update_time"": ""1526923163""
-                        }]
-                }";
+			Assert.That(actual: campaigns[index: 3].CreateTime
+					, expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 09, day: 29, hour: 10, minute: 22, second: 15)));
 
-            var campaigns = Api.Ads.GetCampaigns(new AdsGetCampaignsParams() {
-                AccountId = 1900013324
-                , ClientId = 1604555949
-                , IncludeDeleted = true
-                , CampaignIds = new List<long>() { 1009157560, 1009088099, 1009150293, 1009316667 }
-            });
-
-            Assert.That(campaigns.Count, Is.EqualTo(4));
-
-            // ID кампании
-            Assert.That(campaigns[3].Id, Is.EqualTo(1009316667));
-
-        }
-
-        #endregion 
-    }
+			Assert.That(actual: campaigns[index: 3].UpdateTime
+					, expression: Is.EqualTo(expected: new DateTime(year: 2018, month: 01, day: 23, hour: 17, minute: 02, second: 48)));
+		}
+	}
 }

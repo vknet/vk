@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -28,15 +27,15 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Price FromJson(VkResponse response)
 		{
 			var price = new Price
 			{
-				Amount = response["amount"],
-				Currency = response["currency"],
-				Text = response["text"]
+					Amount = response[key: "amount"]
+					, Currency = response[key: "currency"]
+					, Text = response[key: "text"]
 			};
 
 			return price;

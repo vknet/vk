@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -14,14 +13,17 @@ namespace VkNet.Model
 		/// Twitter
 		/// </summary>
 		public bool Twitter { get; set; }
+
 		/// <summary>
 		/// Facebook
 		/// </summary>
 		public bool Facebook { get; set; }
+
 		/// <summary>
 		/// LiveJournal
 		/// </summary>
 		public bool Livejournal { get; set; }
+
 		/// <summary>
 		/// Instagram
 		/// </summary>
@@ -30,16 +32,16 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Exports FromJson(VkResponse response)
 		{
 			var exports = new Exports
 			{
-				Twitter = response["twitter"],
-				Facebook = response["facebook"],
-				Livejournal = response["livejournal"],
-				Instagram = response["instagram"]
+					Twitter = response[key: "twitter"]
+					, Facebook = response[key: "facebook"]
+					, Livejournal = response[key: "livejournal"]
+					, Instagram = response[key: "instagram"]
 			};
 
 			return exports;

@@ -6,14 +6,47 @@ using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Categories.Friends
 {
-    [TestFixture]
-    public class FriendsGetSuggestions: BaseTest
-    {
-        [Test]
-        public void GetSuggestions_WithoutParameters()
-        {
-            Url = "https://api.vk.com/method/friends.getSuggestions";
-            Json = @"{
+	[TestFixture]
+	public class FriendsGetSuggestions : BaseTest
+	{
+		[Test]
+		public void GetSuggestions_AllParameters()
+		{
+			Url = "https://api.vk.com/method/friends.getSuggestions";
+
+			Json = @"{
+                'response':{
+                    'count':182,
+                    'items':[
+                        {
+                            'id':1591605,
+                            'first_name':'Михаила',
+                            'last_name':'Захаркина',
+                            'sex':2
+                        }
+                    ]
+                }
+            }";
+
+			var result = Api.Friends.GetSuggestions(filter: FriendsFilter.Mutual
+					, count: 1
+					, offset: 0
+					, fields: UsersFields.Sex
+					, nameCase: NameCase.Gen);
+
+			Assert.NotNull(anObject: result);
+			Assert.AreEqual(expected: 182, actual: result.TotalCount);
+			var user = result.FirstOrDefault();
+			Assert.NotNull(anObject: user);
+			Assert.AreEqual(expected: Sex.Male, actual: user?.Sex);
+		}
+
+		[Test]
+		public void GetSuggestions_WithoutParameters()
+		{
+			Url = "https://api.vk.com/method/friends.getSuggestions";
+
+			Json = @"{
                 'response':{
                     'count':3,
                     'items':[
@@ -35,34 +68,10 @@ namespace VkNet.Tests.Categories.Friends
                     ]
                 }
             }";
-            var result = Api.Friends.GetSuggestions();
-            Assert.NotNull(result);
-            Assert.AreEqual(3, result.TotalCount);
-        } 
-        
-        [Test]
-        public void GetSuggestions_AllParameters()
-        {
-            Url = "https://api.vk.com/method/friends.getSuggestions";
-            Json = @"{
-                'response':{
-                    'count':182,
-                    'items':[
-                        {
-                            'id':1591605,
-                            'first_name':'Михаила',
-                            'last_name':'Захаркина',
-                            'sex':2
-                        }
-                    ]
-                }
-            }";
-            var result = Api.Friends.GetSuggestions(FriendsFilter.Mutual, 1, 0, UsersFields.Sex, NameCase.Gen);
-            Assert.NotNull(result);
-            Assert.AreEqual(182, result.TotalCount);
-            var user = result.FirstOrDefault();
-            Assert.NotNull(user);
-            Assert.AreEqual(Sex.Male, user?.Sex);
-        } 
-    }
+
+			var result = Api.Friends.GetSuggestions();
+			Assert.NotNull(anObject: result);
+			Assert.AreEqual(expected: 3, actual: result.TotalCount);
+		}
+	}
 }

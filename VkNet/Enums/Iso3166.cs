@@ -3,985 +3,1230 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	/// ISO 3166-1 alpha-2 — часть международного стандарта ISO 3166-1, определяющая двухсимвольные кодовые обозначения государств и зависимых территорий. 
+	/// ISO 3166-1 alpha-2 — часть международного стандарта ISO 3166-1, определяющая
+	/// двухсимвольные кодовые обозначения
+	/// государств и зависимых территорий.
 	/// </summary>
 	public enum Iso3166
 	{
 		/// <summary>
 		/// Австралия.
 		/// </summary>
-		AU,
-		/// <summary>
+		AU
+
+		, /// <summary>
 		/// Австрия.
 		/// </summary>
-		AT,
-		/// <summary>
+		AT
+
+		, /// <summary>
 		/// Азербайджан.
 		/// </summary>
-		AZ,
-		/// <summary>
+		AZ
+
+		, /// <summary>
 		/// Аландские острова.
 		/// </summary>
-		AX,
-		/// <summary>
+		AX
+
+		, /// <summary>
 		/// Албания.
 		/// </summary>
-		AL,
-		/// <summary>
+		AL
+
+		, /// <summary>
 		/// Алжир.
 		/// </summary>
-		DZ,
-		/// <summary>
+		DZ
+
+		, /// <summary>
 		/// Внешние малые острова (США).
 		/// </summary>
-		UM,
-		/// <summary>
+		UM
+
+		, /// <summary>
 		/// Американские Виргинские острова.
 		/// </summary>
-		VI,
-		/// <summary>
+		VI
+
+		, /// <summary>
 		/// Американское Самоа.
 		/// </summary>
-		AS,
-		/// <summary>
+		AS
+
+		, /// <summary>
 		/// Ангилья.
 		/// </summary>
-		AI,
-		/// <summary>
+		AI
+
+		, /// <summary>
 		/// Ангола.
 		/// </summary>
-		AO,
-		/// <summary>
+		AO
+
+		, /// <summary>
 		/// Андорра.
 		/// </summary>
-		AD,
-		/// <summary>
+		AD
+
+		, /// <summary>
 		/// Антарктида.
 		/// </summary>
-		AQ,
-		/// <summary>
+		AQ
+
+		, /// <summary>
 		/// Антигуа и Барбуда.
 		/// </summary>
-		AG,
-		/// <summary>
+		AG
+
+		, /// <summary>
 		/// Аргентина.
 		/// </summary>
-		AR,
-		/// <summary>
+		AR
+
+		, /// <summary>
 		/// Армения.
 		/// </summary>
-		AM,
-		/// <summary>
+		AM
+
+		, /// <summary>
 		/// Аруба.
 		/// </summary>
-		AW,
-		/// <summary>
+		AW
+
+		, /// <summary>
 		/// Афганистан.
 		/// </summary>
-		AF,
-		/// <summary>
+		AF
+
+		, /// <summary>
 		/// Багамы.
 		/// </summary>
-		BS,
-		/// <summary>
+		BS
+
+		, /// <summary>
 		/// Бангладеш.
 		/// </summary>
-		BD,
-		/// <summary>
+		BD
+
+		, /// <summary>
 		/// Барбадос.
 		/// </summary>
-		BB,
-		/// <summary>
+		BB
+
+		, /// <summary>
 		/// Бахрейн.
 		/// </summary>
-		BH,
-		/// <summary>
+		BH
+
+		, /// <summary>
 		/// Белиз.
 		/// </summary>
-		BZ,
-		/// <summary>
+		BZ
+
+		, /// <summary>
 		/// Белоруссия.
 		/// </summary>
-		BY,
-		/// <summary>
+		BY
+
+		, /// <summary>
 		/// Бельгия.
 		/// </summary>
-		BE,
-		/// <summary>
+		BE
+
+		, /// <summary>
 		/// Бенин.
 		/// </summary>
-		BJ,
-		/// <summary>
+		BJ
+
+		, /// <summary>
 		/// Бермуды.
 		/// </summary>
-		BM,
-		/// <summary>
+		BM
+
+		, /// <summary>
 		/// Болгария.
 		/// </summary>
-		BG,
-		/// <summary>
+		BG
+
+		, /// <summary>
 		/// Боливия.
 		/// </summary>
-		BO,
-		/// <summary>
+		BO
+
+		, /// <summary>
 		/// Босния и Герцеговина.
 		/// </summary>
-		BA,
-		/// <summary>
+		BA
+
+		, /// <summary>
 		/// Ботсвана.
 		/// </summary>
-		BW,
-		/// <summary>
+		BW
+
+		, /// <summary>
 		/// Бразилия.
 		/// </summary>
-		BR,
-		/// <summary>
+		BR
+
+		, /// <summary>
 		/// Британская территория в Индийском океане.
 		/// </summary>
-		IO,
-		/// <summary>
+		IO
+
+		, /// <summary>
 		/// Британские Виргинские острова.
 		/// </summary>
-		VG,
-		/// <summary>
+		VG
+
+		, /// <summary>
 		/// Бруней.
 		/// </summary>
-		BN,
-		/// <summary>
+		BN
+
+		, /// <summary>
 		/// Буркина Фасо.
 		/// </summary>
-		BF,
-		/// <summary>
+		BF
+
+		, /// <summary>
 		/// Бурунди.
 		/// </summary>
-		BI,
-		/// <summary>
+		BI
+
+		, /// <summary>
 		/// Бутан.
 		/// </summary>
-		BT,
-		/// <summary>
+		BT
+
+		, /// <summary>
 		/// Вануату.
 		/// </summary>
-		VU,
-		/// <summary>
+		VU
+
+		, /// <summary>
 		/// Ватикан.
 		/// </summary>
-		VA,
-		/// <summary>
+		VA
+
+		, /// <summary>
 		/// Великобритания.
 		/// </summary>
-		GB,
-		/// <summary>
+		GB
+
+		, /// <summary>
 		/// Венгрия.
 		/// </summary>
-		HU,
-		/// <summary>
+		HU
+
+		, /// <summary>
 		/// Венесуэла.
 		/// </summary>
-		VE,
-		/// <summary>
+		VE
+
+		, /// <summary>
 		/// Восточный Тимор.
 		/// </summary>
-		TL,
-		/// <summary>
+		TL
+
+		, /// <summary>
 		/// Вьетнам.
 		/// </summary>
-		VN,
-		/// <summary>
+		VN
+
+		, /// <summary>
 		/// Габон.
 		/// </summary>
-		GA,
-		/// <summary>
+		GA
+
+		, /// <summary>
 		/// Гаити.
 		/// </summary>
-		HT,
-		/// <summary>
+		HT
+
+		, /// <summary>
 		/// Гайана.
 		/// </summary>
-		GY,
-		/// <summary>
+		GY
+
+		, /// <summary>
 		/// Гамбия.
 		/// </summary>
-		GM,
-		/// <summary>
+		GM
+
+		, /// <summary>
 		/// Гана.
 		/// </summary>
-		GH,
-		/// <summary>
+		GH
+
+		, /// <summary>
 		/// Гваделупа.
 		/// </summary>
-		GP,
-		/// <summary>
+		GP
+
+		, /// <summary>
 		/// Гватемала.
 		/// </summary>
-		GT,
-		/// <summary>
+		GT
+
+		, /// <summary>
 		/// Гвинея.
 		/// </summary>
-		GN,
-		/// <summary>
+		GN
+
+		, /// <summary>
 		/// Гвинея-Бисау.
 		/// </summary>
-		GW,
-		/// <summary>
+		GW
+
+		, /// <summary>
 		/// Германия.
 		/// </summary>
-		DE,
-		/// <summary>
+		DE
+
+		, /// <summary>
 		/// Гибралтар.
 		/// </summary>
-		GI,
-		/// <summary>
+		GI
+
+		, /// <summary>
 		/// Гондурас.
 		/// </summary>
-		HN,
-		/// <summary>
+		HN
+
+		, /// <summary>
 		/// Гонконг.
 		/// </summary>
-		HK,
-		/// <summary>
+		HK
+
+		, /// <summary>
 		/// Гренада.
 		/// </summary>
-		GD,
-		/// <summary>
+		GD
+
+		, /// <summary>
 		/// Гренландия.
 		/// </summary>
-		GL,
-		/// <summary>
+		GL
+
+		, /// <summary>
 		/// Греция.
 		/// </summary>
-		GR,
-		/// <summary>
+		GR
+
+		, /// <summary>
 		/// Грузия.
 		/// </summary>
-		GE,
-		/// <summary>
+		GE
+
+		, /// <summary>
 		/// Гуам.
 		/// </summary>
-		GU,
-		/// <summary>
+		GU
+
+		, /// <summary>
 		/// Дания.
 		/// </summary>
-		DK,
-		/// <summary>
+		DK
+
+		, /// <summary>
 		/// ДР Конго.
 		/// </summary>
-		CD,
-		/// <summary>
+		CD
+
+		, /// <summary>
 		/// Джибути.
 		/// </summary>
-		DJ,
-		/// <summary>
+		DJ
+
+		, /// <summary>
 		/// Доминика.
 		/// </summary>
-		DM,
-		/// <summary>
+		DM
+
+		, /// <summary>
 		/// Доминиканская Республика.
 		/// </summary>
-		DO,
-		/// <summary>
+		DO
+
+		, /// <summary>
 		/// Европейский союз.
 		/// </summary>
-		EU,
-		/// <summary>
+		EU
+
+		, /// <summary>
 		/// Египет.
 		/// </summary>
-		EG,
-		/// <summary>
+		EG
+
+		, /// <summary>
 		/// Замбия.
 		/// </summary>
-		ZM,
-		/// <summary>
+		ZM
+
+		, /// <summary>
 		/// Западная Сахара.
 		/// </summary>
-		EH,
-		/// <summary>
+		EH
+
+		, /// <summary>
 		/// Зимбабве.
 		/// </summary>
-		ZW,
-		/// <summary>
+		ZW
+
+		, /// <summary>
 		/// Израиль.
 		/// </summary>
-		IL,
-		/// <summary>
+		IL
+
+		, /// <summary>
 		/// Индия.
 		/// </summary>
-		IN,
-		/// <summary>
+		IN
+
+		, /// <summary>
 		/// Индонезия.
 		/// </summary>
-		ID,
-		/// <summary>
+		ID
+
+		, /// <summary>
 		/// Иордания.
 		/// </summary>
-		JO,
-		/// <summary>
+		JO
+
+		, /// <summary>
 		/// Ирак.
 		/// </summary>
-		IQ,
-		/// <summary>
+		IQ
+
+		, /// <summary>
 		/// Иран.
 		/// </summary>
-		IR,
-		/// <summary>
+		IR
+
+		, /// <summary>
 		/// Ирландия.
 		/// </summary>
-		IE,
-		/// <summary>
+		IE
+
+		, /// <summary>
 		/// Исландия.
 		/// </summary>
-		IS,
-		/// <summary>
+		IS
+
+		, /// <summary>
 		/// Испания.
 		/// </summary>
-		ES,
-		/// <summary>
+		ES
+
+		, /// <summary>
 		/// Италия.
 		/// </summary>
-		IT,
-		/// <summary>
+		IT
+
+		, /// <summary>
 		/// Йемен.
 		/// </summary>
-		YE,
-		/// <summary>
+		YE
+
+		, /// <summary>
 		/// КНДР.
 		/// </summary>
-		KP,
-		/// <summary>
+		KP
+
+		, /// <summary>
 		/// Кабо-Верде.
 		/// </summary>
-		CV,
-		/// <summary>
+		CV
+
+		, /// <summary>
 		/// Казахстан.
 		/// </summary>
-		KZ,
-		/// <summary>
+		KZ
+
+		, /// <summary>
 		/// Каймановы острова.
 		/// </summary>
-		KY,
-		/// <summary>
+		KY
+
+		, /// <summary>
 		/// Камбоджа.
 		/// </summary>
-		KH,
-		/// <summary>
+		KH
+
+		, /// <summary>
 		/// Камерун.
 		/// </summary>
-		CM,
-		/// <summary>
+		CM
+
+		, /// <summary>
 		/// Канада.
 		/// </summary>
-		CA,
-		/// <summary>
+		CA
+
+		, /// <summary>
 		/// Катар.
 		/// </summary>
-		QA,
-		/// <summary>
+		QA
+
+		, /// <summary>
 		/// Кения.
 		/// </summary>
-		KE,
-		/// <summary>
+		KE
+
+		, /// <summary>
 		/// Кипр.
 		/// </summary>
-		CY,
-		/// <summary>
+		CY
+
+		, /// <summary>
 		/// Киргизия.
 		/// </summary>
-		KG,
-		/// <summary>
+		KG
+
+		, /// <summary>
 		/// Кирибати.
 		/// </summary>
-		KI,
-		/// <summary>
+		KI
+
+		, /// <summary>
 		/// КНР.
 		/// </summary>
-		CN,
-		/// <summary>
+		CN
+
+		, /// <summary>
 		/// Кокосовые острова.
 		/// </summary>
-		CC,
-		/// <summary>
+		CC
+
+		, /// <summary>
 		/// Колумбия.
 		/// </summary>
-		CO,
-		/// <summary>
+		CO
+
+		, /// <summary>
 		/// Коморы.
 		/// </summary>
-		KM,
-		/// <summary>
+		KM
+
+		, /// <summary>
 		/// Коста-Рика.
 		/// </summary>
-		CR,
-		/// <summary>
+		CR
+
+		, /// <summary>
 		/// Кот-д’Ивуар.
 		/// </summary>
-		CI,
-		/// <summary>
+		CI
+
+		, /// <summary>
 		/// Куба.
 		/// </summary>
-		CU,
-		/// <summary>
+		CU
+
+		, /// <summary>
 		/// Кувейт.
 		/// </summary>
-		KW,
-		/// <summary>
+		KW
+
+		, /// <summary>
 		/// Лаос.
 		/// </summary>
-		LA,
-		/// <summary>
+		LA
+
+		, /// <summary>
 		/// Латвия.
 		/// </summary>
-		LV,
-		/// <summary>
+		LV
+
+		, /// <summary>
 		/// Лесото.
 		/// </summary>
-		LS,
-		/// <summary>
+		LS
+
+		, /// <summary>
 		/// Либерия.
 		/// </summary>
-		LR,
-		/// <summary>
+		LR
+
+		, /// <summary>
 		/// Ливан.
 		/// </summary>
-		LB,
-		/// <summary>
+		LB
+
+		, /// <summary>
 		/// Ливия.
 		/// </summary>
-		LY,
-		/// <summary>
+		LY
+
+		, /// <summary>
 		/// Литва.
 		/// </summary>
-		LT,
-		/// <summary>
+		LT
+
+		, /// <summary>
 		/// Лихтенштейн.
 		/// </summary>
-		LI,
-		/// <summary>
+		LI
+
+		, /// <summary>
 		/// Люксембург.
 		/// </summary>
-		LU,
-		/// <summary>
+		LU
+
+		, /// <summary>
 		/// Маврикий.
 		/// </summary>
-		MU,
-		/// <summary>
+		MU
+
+		, /// <summary>
 		/// Мавритания.
 		/// </summary>
-		MR,
-		/// <summary>
+		MR
+
+		, /// <summary>
 		/// Мадагаскар.
 		/// </summary>
-		MG,
-		/// <summary>
+		MG
+
+		, /// <summary>
 		/// Майотта.
 		/// </summary>
-		YT,
-		/// <summary>
+		YT
+
+		, /// <summary>
 		/// Макао.
 		/// </summary>
-		MO,
-		/// <summary>
+		MO
+
+		, /// <summary>
 		/// Республика Македония.
 		/// </summary>
-		MK,
-		/// <summary>
+		MK
+
+		, /// <summary>
 		/// Малави.
 		/// </summary>
-		MW,
-		/// <summary>
+		MW
+
+		, /// <summary>
 		/// Малайзия.
 		/// </summary>
-		MY,
-		/// <summary>
+		MY
+
+		, /// <summary>
 		/// Мали.
 		/// </summary>
-		ML,
-		/// <summary>
+		ML
+
+		, /// <summary>
 		/// Мальдивы.
 		/// </summary>
-		MV,
-		/// <summary>
+		MV
+
+		, /// <summary>
 		/// Мальта.
 		/// </summary>
-		MT,
-		/// <summary>
+		MT
+
+		, /// <summary>
 		/// Марокко.
 		/// </summary>
-		MA,
-		/// <summary>
+		MA
+
+		, /// <summary>
 		/// Мартиника.
 		/// </summary>
-		MQ,
-		/// <summary>
+		MQ
+
+		, /// <summary>
 		/// Маршалловы Острова.
 		/// </summary>
-		MH,
-		/// <summary>
+		MH
+
+		, /// <summary>
 		/// Мексика.
 		/// </summary>
-		MX,
-		/// <summary>
+		MX
+
+		, /// <summary>
 		/// Мозамбик.
 		/// </summary>
-		MZ,
-		/// <summary>
+		MZ
+
+		, /// <summary>
 		/// Молдавия.
 		/// </summary>
-		MD,
-		/// <summary>
+		MD
+
+		, /// <summary>
 		/// Монако.
 		/// </summary>
-		MC,
-		/// <summary>
+		MC
+
+		, /// <summary>
 		/// Монголия.
 		/// </summary>
-		MN,
-		/// <summary>
+		MN
+
+		, /// <summary>
 		/// Монтсеррат.
 		/// </summary>
-		MS,
-		/// <summary>
+		MS
+
+		, /// <summary>
 		/// Мьянма.
 		/// </summary>
-		MM,
-		/// <summary>
+		MM
+
+		, /// <summary>
 		/// Намибия.
 		/// </summary>
-		NA,
-		/// <summary>
+		NA
+
+		, /// <summary>
 		/// Науру.
 		/// </summary>
-		NR,
-		/// <summary>
+		NR
+
+		, /// <summary>
 		/// Непал.
 		/// </summary>
-		NP,
-		/// <summary>
+		NP
+
+		, /// <summary>
 		/// Нигер.
 		/// </summary>
-		NE,
-		/// <summary>
+		NE
+
+		, /// <summary>
 		/// Нигерия.
 		/// </summary>
-		NG,
-		/// <summary>
+		NG
+
+		, /// <summary>
 		/// Нидерландские Антильские острова.
 		/// </summary>
-		AN,
-		/// <summary>
+		AN
+
+		, /// <summary>
 		/// Нидерланды.
 		/// </summary>
-		NL,
-		/// <summary>
+		NL
+
+		, /// <summary>
 		/// Никарагуа.
 		/// </summary>
-		NI,
-		/// <summary>
+		NI
+
+		, /// <summary>
 		/// Ниуэ.
 		/// </summary>
-		NU,
-		/// <summary>
+		NU
+
+		, /// <summary>
 		/// Новая Каледония.
 		/// </summary>
-		NC,
-		/// <summary>
+		NC
+
+		, /// <summary>
 		/// Новая Зеландия.
 		/// </summary>
-		NZ,
-		/// <summary>
+		NZ
+
+		, /// <summary>
 		/// Норвегия.
 		/// </summary>
-		NO,
-		/// <summary>
+		NO
+
+		, /// <summary>
 		/// ОАЭ.
 		/// </summary>
-		AE,
-		/// <summary>
+		AE
+
+		, /// <summary>
 		/// Оман.
 		/// </summary>
-		OM,
-		/// <summary>
+		OM
+
+		, /// <summary>
 		/// Остров Рождества.
 		/// </summary>
-		CX,
-		/// <summary>
+		CX
+
+		, /// <summary>
 		/// Острова Кука.
 		/// </summary>
-		CK,
-		/// <summary>
+		CK
+
+		, /// <summary>
 		/// Херд и Макдональд.
 		/// </summary>
-		HM,
-		/// <summary>
+		HM
+
+		, /// <summary>
 		/// Пакистан.
 		/// </summary>
-		PK,
-		/// <summary>
+		PK
+
+		, /// <summary>
 		/// Палау.
 		/// </summary>
-		PW,
-		/// <summary>
+		PW
+
+		, /// <summary>
 		/// Палестина.
 		/// </summary>
-		PS,
-		/// <summary>
+		PS
+
+		, /// <summary>
 		/// Панама.
 		/// </summary>
-		PA,
-		/// <summary>
+		PA
+
+		, /// <summary>
 		/// Папуа — Новая Гвинея.
 		/// </summary>
-		PG,
-		/// <summary>
+		PG
+
+		, /// <summary>
 		/// Парагвай.
 		/// </summary>
-		PY,
-		/// <summary>
+		PY
+
+		, /// <summary>
 		/// Перу.
 		/// </summary>
-		PE,
-		/// <summary>
+		PE
+
+		, /// <summary>
 		/// Острова Питкэрн.
 		/// </summary>
-		PN,
-		/// <summary>
+		PN
+
+		, /// <summary>
 		/// Польша.
 		/// </summary>
-		PL,
-		/// <summary>
+		PL
+
+		, /// <summary>
 		/// Португалия.
 		/// </summary>
-		PT,
-		/// <summary>
+		PT
+
+		, /// <summary>
 		/// Пуэрто-Рико.
 		/// </summary>
-		PR,
-		/// <summary>
+		PR
+
+		, /// <summary>
 		/// Республика Конго.
 		/// </summary>
-		CG,
-		/// <summary>
+		CG
+
+		, /// <summary>
 		/// Реюньон.
 		/// </summary>
-		RE,
-		/// <summary>
+		RE
+
+		, /// <summary>
 		/// Россия.
 		/// </summary>
-		RU,
-		/// <summary>
+		RU
+
+		, /// <summary>
 		/// Руанда.
 		/// </summary>
-		RW,
-		/// <summary>
+		RW
+
+		, /// <summary>
 		/// Румыния.
 		/// </summary>
-		RO,
-		/// <summary>
+		RO
+
+		, /// <summary>
 		/// США.
 		/// </summary>
-		US,
-		/// <summary>
+		US
+
+		, /// <summary>
 		/// Сальвадор.
 		/// </summary>
-		SV,
-		/// <summary>
+		SV
+
+		, /// <summary>
 		/// Самоа.
 		/// </summary>
-		WS,
-		/// <summary>
+		WS
+
+		, /// <summary>
 		/// Сан-Марино.
 		/// </summary>
-		SM,
-		/// <summary>
+		SM
+
+		, /// <summary>
 		/// Сан-Томе и Принсипи.
 		/// </summary>
-		ST,
-		/// <summary>
+		ST
+
+		, /// <summary>
 		/// Саудовская Аравия.
 		/// </summary>
-		SA,
-		/// <summary>
+		SA
+
+		, /// <summary>
 		/// Свазиленд.
 		/// </summary>
-		SZ,
-		/// <summary>
+		SZ
+
+		, /// <summary>
 		/// Шпицберген и Ян-Майен.
 		/// </summary>
-		SJ,
-		/// <summary>
+		SJ
+
+		, /// <summary>
 		/// Северные Марианские острова.
 		/// </summary>
-		MP,
-		/// <summary>
+		MP
+
+		, /// <summary>
 		/// Сейшельские Острова.
 		/// </summary>
-		SC,
-		/// <summary>
+		SC
+
+		, /// <summary>
 		/// Сенегал.
 		/// </summary>
-		SN,
-		/// <summary>
+		SN
+
+		, /// <summary>
 		/// Сент-Винсент и Гренадины.
 		/// </summary>
-		VC,
-		/// <summary>
+		VC
+
+		, /// <summary>
 		/// Сент-Китс и Невис.
 		/// </summary>
-		KN,
-		/// <summary>
+		KN
+
+		, /// <summary>
 		/// Сент-Люсия.
 		/// </summary>
-		LC,
-		/// <summary>
+		LC
+
+		, /// <summary>
 		/// Сен-Пьер и Микелон.
 		/// </summary>
-		PM,
-		/// <summary>
+		PM
+
+		, /// <summary>
 		/// Сербия.
 		/// </summary>
-		RS,
-		/// <summary>
+		RS
+
+		, /// <summary>
 		/// Сербия и Черногория (действовал до сентября 2006 года).
 		/// </summary>
-		CS,
-		/// <summary>
+		CS
+
+		, /// <summary>
 		/// Сингапур.
 		/// </summary>
-		SG,
-		/// <summary>
+		SG
+
+		, /// <summary>
 		/// Сирия.
 		/// </summary>
-		SY,
-		/// <summary>
+		SY
+
+		, /// <summary>
 		/// Словакия.
 		/// </summary>
-		SK,
-		/// <summary>
+		SK
+
+		, /// <summary>
 		/// Словения.
 		/// </summary>
-		SI,
-		/// <summary>
+		SI
+
+		, /// <summary>
 		/// Соломоновы Острова.
 		/// </summary>
-		SB,
-		/// <summary>
+		SB
+
+		, /// <summary>
 		/// Сомали.
 		/// </summary>
-		SO,
-		/// <summary>
+		SO
+
+		, /// <summary>
 		/// Судан.
 		/// </summary>
-		SD,
-		/// <summary>
+		SD
+
+		, /// <summary>
 		/// Суринам.
 		/// </summary>
-		SR,
-		/// <summary>
+		SR
+
+		, /// <summary>
 		/// Сьерра-Леоне.
 		/// </summary>
-		SL,
-		/// <summary>
+		SL
+
+		, /// <summary>
 		/// СССР (действовал до сентября 1992 года).
 		/// </summary>
-		SU,
-		/// <summary>
+		SU
+
+		, /// <summary>
 		/// Таджикистан.
 		/// </summary>
-		TJ,
-		/// <summary>
+		TJ
+
+		, /// <summary>
 		/// Таиланд.
 		/// </summary>
-		TH,
-		/// <summary>
+		TH
+
+		, /// <summary>
 		/// Китайская Республика.
 		/// </summary>
-		TW,
-		/// <summary>
+		TW
+
+		, /// <summary>
 		/// Танзания.
 		/// </summary>
-		TZ,
-		/// <summary>
+		TZ
+
+		, /// <summary>
 		/// Того.
 		/// </summary>
-		TG,
-		/// <summary>
+		TG
+
+		, /// <summary>
 		/// Токелау.
 		/// </summary>
-		TK,
-		/// <summary>
+		TK
+
+		, /// <summary>
 		/// Тонга.
 		/// </summary>
-		TO,
-		/// <summary>
+		TO
+
+		, /// <summary>
 		/// Тринидад и Тобаго.
 		/// </summary>
-		TT,
-		/// <summary>
+		TT
+
+		, /// <summary>
 		/// Тувалу.
 		/// </summary>
-		TV,
-		/// <summary>
+		TV
+
+		, /// <summary>
 		/// Тунис.
 		/// </summary>
-		TN,
-		/// <summary>
+		TN
+
+		, /// <summary>
 		/// Туркмения.
 		/// </summary>
-		TM,
-		/// <summary>
+		TM
+
+		, /// <summary>
 		/// Турция.
 		/// </summary>
-		TR,
-		/// <summary>
+		TR
+
+		, /// <summary>
 		/// Уганда.
 		/// </summary>
-		UG,
-		/// <summary>
+		UG
+
+		, /// <summary>
 		/// Узбекистан.
 		/// </summary>
-		UZ,
-		/// <summary>
+		UZ
+
+		, /// <summary>
 		/// Украина.
 		/// </summary>
-		UA,
-		/// <summary>
+		UA
+
+		, /// <summary>
 		/// Уругвай.
 		/// </summary>
-		UY,
-		/// <summary>
+		UY
+
+		, /// <summary>
 		/// Фарерские острова.
 		/// </summary>
-		FO,
-		/// <summary>
+		FO
+
+		, /// <summary>
 		/// Микронезия.
 		/// </summary>
-		FM,
-		/// <summary>
+		FM
+
+		, /// <summary>
 		/// Фиджи.
 		/// </summary>
-		FJ,
-		/// <summary>
+		FJ
+
+		, /// <summary>
 		/// Филиппины.
 		/// </summary>
-		PH,
-		/// <summary>
+		PH
+
+		, /// <summary>
 		/// Финляндия.
 		/// </summary>
-		FI,
-		/// <summary>
+		FI
+
+		, /// <summary>
 		/// Фолклендские острова.
 		/// </summary>
-		FK,
-		/// <summary>
+		FK
+
+		, /// <summary>
 		/// Франция.
 		/// </summary>
-		FR,
-		/// <summary>
+		FR
+
+		, /// <summary>
 		/// Французская Гвиана.
 		/// </summary>
-		GF,
-		/// <summary>
+		GF
+
+		, /// <summary>
 		/// Французская Полинезия.
 		/// </summary>
-		PF,
-		/// <summary>
+		PF
+
+		, /// <summary>
 		/// Французские Южные и Антарктические Территории.
 		/// </summary>
-		TF,
-		/// <summary>
+		TF
+
+		, /// <summary>
 		/// Хорватия.
 		/// </summary>
-		HR,
-		/// <summary>
+		HR
+
+		, /// <summary>
 		/// ЦАР.
 		/// </summary>
-		CF,
-		/// <summary>
+		CF
+
+		, /// <summary>
 		/// Чад.
 		/// </summary>
-		TD,
-		/// <summary>
+		TD
+
+		, /// <summary>
 		/// Черногория.
 		/// </summary>
-		ME,
-		/// <summary>
+		ME
+
+		, /// <summary>
 		/// Чехия.
 		/// </summary>
-		CZ,
-		/// <summary>
+		CZ
+
+		, /// <summary>
 		/// Чили.
 		/// </summary>
-		CL,
-		/// <summary>
+		CL
+
+		, /// <summary>
 		/// Швейцария.
 		/// </summary>
-		CH,
-		/// <summary>
+		CH
+
+		, /// <summary>
 		/// Швеция.
 		/// </summary>
-		SE,
-		/// <summary>
+		SE
+
+		, /// <summary>
 		/// Шри-Ланка.
 		/// </summary>
-		LK,
-		/// <summary>
+		LK
+
+		, /// <summary>
 		/// Эквадор.
 		/// </summary>
-		EC,
-		/// <summary>
+		EC
+
+		, /// <summary>
 		/// Экваториальная Гвинея.
 		/// </summary>
-		GQ,
-		/// <summary>
+		GQ
+
+		, /// <summary>
 		/// Эритрея.
 		/// </summary>
-		ER,
-		/// <summary>
+		ER
+
+		, /// <summary>
 		/// Эстония.
 		/// </summary>
-		EE,
-		/// <summary>
+		EE
+
+		, /// <summary>
 		/// Эфиопия.
 		/// </summary>
-		ET,
-		/// <summary>
+		ET
+
+		, /// <summary>
 		/// ЮАР.
 		/// </summary>
-		ZA,
-		/// <summary>
+		ZA
+
+		, /// <summary>
 		/// Республика Корея.
 		/// </summary>
-		KR,
-		/// <summary>
+		KR
+
+		, /// <summary>
 		/// Южная Георгия и Южные Сандвичевы острова.
 		/// </summary>
-		GS,
-		/// <summary>
+		GS
+
+		, /// <summary>
 		/// Ямайка.
 		/// </summary>
-		JM,
-		/// <summary>
+		JM
+
+		, /// <summary>
 		/// Япония.
 		/// </summary>
-		JP,
-		/// <summary>
+		JP
+
+		, /// <summary>
 		/// Остров Буве.
 		/// </summary>
-		BV,
-		/// <summary>
+		BV
+
+		, /// <summary>
 		/// Остров Норфолк.
 		/// </summary>
-		NF,
-		/// <summary>
+		NF
+
+		, /// <summary>
 		/// Остров Святой Елены.
 		/// </summary>
-		SH,
-		/// <summary>
+		SH
+
+		, /// <summary>
 		/// Тёркс и Кайкос.
 		/// </summary>
-		TC,
-		/// <summary>
+		TC
+
+		, /// <summary>
 		/// Уоллис и Футуна.
 		/// </summary>
-		WF,
+		WF
 	}
 }

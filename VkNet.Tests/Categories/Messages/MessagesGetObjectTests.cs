@@ -3,13 +3,13 @@ using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Messages
 {
-    [TestFixture]
-    public class MessagesGetObjectTests : BaseTest
-    {
-        [Test]
-        public void Unread()
-        {
-            Json = @"{
+	[TestFixture]
+	public class MessagesGetObjectTests : BaseTest
+	{
+		[Test]
+		public void Unread()
+		{
+			Json = @"{
                     'response': {
                       'count': 3,
                       'skipped': 1,
@@ -44,10 +44,11 @@ namespace VkNet.Tests.Categories.Messages
                       'out_read': 3001
                     }
                   }";
-            Url = "https://api.vk.com/method/messages.getHistory";
-            var res = Api.Messages.GetHistory(new MessagesGetHistoryParams());
 
-            Assert.AreEqual(1, res.Unread);
-        }
-    }
+			Url = "https://api.vk.com/method/messages.getHistory";
+			var res = Api.Messages.GetHistory(@params: new MessagesGetHistoryParams());
+
+			Assert.AreEqual(expected: 1, actual: res.Unread);
+		}
+	}
 }

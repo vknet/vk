@@ -16,7 +16,7 @@ namespace VkNet.Tests
 	/// Базовый класс для тестирования категорий методов.
 	/// </summary>
 	public abstract class
-		BaseTest //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'BaseTest' class containing IDisposable members does not itself implement IDisposable. Inspect: Api.
+			BaseTest //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'BaseTest' class containing IDisposable members does not itself implement IDisposable. Inspect: Api.
 	{
 		/// <summary>
 		/// Экземпляр класса API.
@@ -29,14 +29,14 @@ namespace VkNet.Tests
 		protected string Json;
 
 		/// <summary>
-		/// Url запроса.
-		/// </summary>
-		protected string Url;
-
-		/// <summary>
 		/// Параметры запроса.
 		/// </summary>
 		protected VkParameters Parameters = new VkParameters();
+
+		/// <summary>
+		/// Url запроса.
+		/// </summary>
+		protected string Url;
 
 		/// <summary>
 		/// Пред установки выполнения каждого теста.
@@ -46,56 +46,61 @@ namespace VkNet.Tests
 		{
 			var browser = new Mock<IBrowser>();
 
-			browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Callback(Callback)
-				.Returns(() =>
-				{
-					if (string.IsNullOrWhiteSpace(Json))
+			browser.Setup(expression: m => m.GetJson(url: It.Is<string>(match: s => s == Url),
+							parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+					.Callback(action: Callback)
+					.Returns(valueFunction: () =>
 					{
-						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
-					}
+						if (string.IsNullOrWhiteSpace(value: Json))
+						{
+							throw new NullReferenceException(message: @"Json не может быть равен null. Обновите значение поля Json");
+						}
 
-					return Json;
-				});
+						return Json;
+					});
 
-			browser.Setup(o => o.Authorize(It.IsAny<IApiAuthParams>()))
-				.Returns(VkAuthorization.From("https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1"));
+			browser.Setup(expression: o => o.Authorize(authParams: It.IsAny<IApiAuthParams>()))
+					.Returns(value: VkAuthorization.From(
+							uriFragment: "https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1"));
 
-			browser.Setup(m => m.Validate(It.IsAny<string>(), It.IsAny<string>()))
-				.Returns(VkAuthorization.From(
-					"https://oauth.vk.com/blank.html#success=1&access_token=token&user_id=1"));
+			browser.Setup(expression: m => m.Validate(validateUrl: It.IsAny<string>(), phoneNumber: It.IsAny<string>()))
+					.Returns(value: VkAuthorization.From(
+							uriFragment: "https://oauth.vk.com/blank.html#success=1&access_token=token&user_id=1"));
 
 			var restClient = new Mock<IRestClient>();
 
-			restClient.Setup(x =>
-					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Callback(Callback)
-				.Returns(() =>
-				{
-					if (string.IsNullOrWhiteSpace(Json))
+			restClient.Setup(expression: x =>
+							x.PostAsync(uri: It.Is<Uri>(match: s => s == new Uri(uriString: Url)),
+									parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+					.Callback(action: Callback)
+					.Returns(valueFunction: () =>
 					{
-						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
-					}
+						if (string.IsNullOrWhiteSpace(value: Json))
+						{
+							throw new NullReferenceException(message: @"Json не может быть равен null. Обновите значение поля Json");
+						}
 
-					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
-				});
+						return Task.FromResult(result: HttpResponse<string>.Success(httpStatusCode: HttpStatusCode.OK,
+								value: Json,
+								requestUri: Url));
+					});
 
-			restClient.Setup(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
-					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Throws<ArgumentException>();
+			restClient.Setup(expression: x => x.PostAsync(uri: It.Is<Uri>(match: s => string.IsNullOrWhiteSpace(value: Url)),
+							parameters: It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+					.Throws<ArgumentException>();
 
 			Api = new VkApi
 			{
-				Browser = browser.Object,
-				RestClient = restClient.Object
+					Browser = browser.Object,
+					RestClient = restClient.Object
 			};
 
-			Api.Authorize(new ApiAuthParams
+			Api.Authorize(@params: new ApiAuthParams
 			{
-				ApplicationId = 1,
-				Login = "login",
-				Password = "pass",
-				Settings = Settings.All
+					ApplicationId = 1,
+					Login = "login",
+					Password = "pass",
+					Settings = Settings.All
 			});
 
 			Api.RequestsPerSecond = 100000; // Чтобы тесты быстрее выполнялись
@@ -114,19 +119,19 @@ namespace VkNet.Tests
 
 		protected VkResponse GetResponse()
 		{
-			var response = JToken.Parse(Json);
+			var response = JToken.Parse(json: Json);
 
-			return new VkResponse(response) {RawJson = Json};
+			return new VkResponse(token: response) { RawJson = Json };
 		}
 
 		private void Callback()
 		{
-			if (string.IsNullOrWhiteSpace(Url))
+			if (string.IsNullOrWhiteSpace(value: Url))
 			{
-				throw new NullReferenceException(@"Url не может быть равен null. Обновите значение поля Url");
+				throw new NullReferenceException(message: @"Url не может быть равен null. Обновите значение поля Url");
 			}
 
-			Url = Url.Replace("\'", "%27");
+			Url = Url.Replace(oldValue: "\'", newValue: "%27");
 		}
 	}
 }

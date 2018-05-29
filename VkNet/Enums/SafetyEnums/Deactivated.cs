@@ -8,21 +8,21 @@ namespace VkNet.Enums.SafetyEnums
 	/// </summary>
 	[Serializable]
 	public sealed class Deactivated : SafetyEnum<Deactivated>
-    {
+	{
 		/// <summary>
 		/// Удалено.
 		/// </summary>
-		public static readonly Deactivated Deleted = RegisterPossibleValue("deleted");
+		public static readonly Deactivated Deleted = RegisterPossibleValue(value: "deleted");
 
 		/// <summary>
 		/// Заблокировано.
 		/// </summary>
-		public static readonly Deactivated Banned = RegisterPossibleValue("banned");
+		public static readonly Deactivated Banned = RegisterPossibleValue(value: "banned");
 
 		/// <summary>
 		/// Активно.
 		/// </summary>
 		[DefaultValue]
-		public static readonly Deactivated Activated = RegisterPossibleValue("activated");
+		public static readonly Deactivated Activated = RegisterPossibleValue(value: "activated");
 	}
 }

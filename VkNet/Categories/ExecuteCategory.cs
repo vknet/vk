@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using VkNet.Abstractions;
-using VkNet.Abstractions.Async;
+﻿using VkNet.Abstractions;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -13,19 +11,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkResponse Execute(string code)
 		{
-			return _vk.Call("execute", new VkParameters { { "code", code } });
+			return _vk.Call(methodName: "execute", parameters: new VkParameters { { "code", code } });
 		}
 
 		/// <inheritdoc />
 		public T Execute<T>(string code)
 		{
-			return _vk.Call<T>("execute", new VkParameters { { "code", code } });
+			return _vk.Call<T>(methodName: "execute", parameters: new VkParameters { { "code", code } });
 		}
 
 		/// <inheritdoc />
 		public T StoredProcedure<T>(string procedureName, VkParameters vkParameters)
 		{
-			return _vk.Call<T>($"execute.{procedureName}", vkParameters);
+			return _vk.Call<T>(methodName: $"execute.{procedureName}", parameters: vkParameters);
 		}
 	}
 }

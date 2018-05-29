@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Вид публичной страницы: (учитывается только при создании публичных страниц)
@@ -8,16 +8,19 @@
 		/// <summary>
 		/// 1 – Место или небольшая компания
 		/// </summary>
-		PlaceOrSmallCompany = 1,
-		/// <summary>
+		PlaceOrSmallCompany = 1
+
+		, /// <summary>
 		/// 2 – Компания, организация или веб-сайт
 		/// </summary>
-		OrganizationOrWebsite,
-		/// <summary>
+		OrganizationOrWebsite
+
+		, /// <summary>
 		/// 3 – Известная личность или коллектив
 		/// </summary>
-		PersonOrTeam,
-		/// <summary>
+		PersonOrTeam
+
+		, /// <summary>
 		/// 4 – Произведение или продукция
 		/// </summary>
 		ProductOrProducts

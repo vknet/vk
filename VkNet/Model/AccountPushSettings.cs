@@ -7,7 +7,6 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	///
 	/// </summary>
 	[Serializable]
 	public class AccountPushSettings
@@ -15,41 +14,38 @@ namespace VkNet.Model
 		/// <summary>
 		/// Отключены ли уведомления.
 		/// </summary>
-		public bool Disabled
-		{ get; set; }
+		public bool Disabled { get; set; }
 
 		/// <summary>
 		/// Unixtime-значение времени, до которого временно отключены уведомления.
 		/// </summary>
-		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime? DisabledUntil
-		{ get; set; }
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		public DateTime? DisabledUntil { get; set; }
 
 		/// <summary>
-		/// Список, содержащий настройки конкретных диалогов, и их количество первым элементом.
+		/// Список, содержащий настройки конкретных диалогов, и их количество первым
+		/// элементом.
 		/// </summary>
-		public IEnumerable<ChatPushSettings> Conversations
-		{ get; set; }
+		public IEnumerable<ChatPushSettings> Conversations { get; set; }
 
 		/// <summary>
 		/// Объект с настройками Push-уведомлений в специальном формате.
 		/// </summary>
-		public PushSettings Settings
-		{ get; set; }
+		public PushSettings Settings { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static AccountPushSettings FromJson(VkResponse response)
 		{
 			return new AccountPushSettings
 			{
-				Disabled = response["disabled"],
-				DisabledUntil = response["disabled_until"],
-				Conversations = response["conversations"].ToReadOnlyCollectionOf<ChatPushSettings>(o => o),
-				Settings = response["settings"]
+					Disabled = response[key: "disabled"]
+					, DisabledUntil = response[key: "disabled_until"]
+					, Conversations = response[key: "conversations"].ToReadOnlyCollectionOf<ChatPushSettings>(selector: o => o)
+					, Settings = response[key: "settings"]
 			};
 		}
 	}

@@ -11,30 +11,31 @@ namespace VkNet.Model
 	public class NewsBannedList
 	{
 		/// <summary>
-		/// В поле groups содержится массив идентификаторов сообществ, которые пользователь скрыл из ленты новостей.
+		/// В поле groups содержится массив идентификаторов сообществ, которые пользователь
+		/// скрыл из ленты новостей.
 		/// </summary>
-		public ReadOnlyCollection<ulong> Groups
-		{ get; set; }
+		public ReadOnlyCollection<ulong> Groups { get; set; }
 
 		/// <summary>
-		/// В поле members содержится массив идентификаторов друзей, которые пользователь скрыл из ленты новостей.
+		/// В поле members содержится массив идентификаторов друзей, которые пользователь
+		/// скрыл из ленты новостей.
 		/// </summary>
-		public ReadOnlyCollection<ulong> Members
-		{ get; set; }
+		public ReadOnlyCollection<ulong> Members { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static NewsBannedList FromJson(VkResponse response)
 		{
-			VkResponseArray names = response["groups"];
-			VkResponseArray members = response["members"];
+			VkResponseArray names = response[key: "groups"];
+			VkResponseArray members = response[key: "members"];
+
 			var bannedList = new NewsBannedList
 			{
-				Groups = names.ToReadOnlyCollectionOf<ulong>(x => x),
-				Members = members.ToReadOnlyCollectionOf<ulong>(x => x)
+					Groups = names.ToReadOnlyCollectionOf<ulong>(selector: x => x)
+					, Members = members.ToReadOnlyCollectionOf<ulong>(selector: x => x)
 			};
 
 			return bannedList;

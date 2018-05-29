@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -38,17 +37,17 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Military FromJson(VkResponse response)
 		{
 			var military = new Military
 			{
-				Unit = response["unit"],
-				UnitId = response["unit_id"],
-				CountryId = response["country_id"],
-				From = response["from"],
-				Until = response["until"]
+					Unit = response[key: "unit"]
+					, UnitId = response[key: "unit_id"]
+					, CountryId = response[key: "country_id"]
+					, From = response[key: "from"]
+					, Until = response[key: "until"]
 			};
 
 			return military;

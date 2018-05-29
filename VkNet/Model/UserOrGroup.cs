@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using VkNet.Exception;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -13,7 +14,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Общее количество элементов.
 		/// </summary>
-		public ulong TotalCount { get;  private set; }
+		public ulong TotalCount { get; private set; }
 
 		/// <summary>
 		/// Список пользователей.
@@ -28,45 +29,56 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		/// <exception cref="System.Exception">"Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"</exception>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		/// <exception cref="System.Exception">
+		/// "Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта:
+		/// https://github.com/vknet/vk/issues"
+		/// </exception>
 		public static UserOrGroup FromJson(VkResponse response)
 		{
 			var userOrGroup = new UserOrGroup
 			{
-				Users = new List<User>(),
-				Groups = new List<Group>()
+					Users = new List<User>()
+					, Groups = new List<Group>()
 			};
 
-			if (response.ContainsKey("count"))
+			if (response.ContainsKey(key: "count"))
 			{
-				userOrGroup.TotalCount = response["count"];
+				userOrGroup.TotalCount = response[key: "count"];
 			}
 
 			VkResponseArray result = response;
+
 			foreach (var item in result)
 			{
-				switch (item["type"].ToString())
+				switch (item[key: "type"].ToString())
 				{
 					case "group":
-						{
-							Group @group = item;
-							userOrGroup.Groups.Add(@group);
-						}
+
+					{
+						Group group = item;
+						userOrGroup.Groups.Add(item: group);
+					}
+
 						break;
 					case "profile":
-						{
-							User user = item;
-							userOrGroup.Users.Add(user);
-						}
+
+					{
+						User user = item;
+						userOrGroup.Users.Add(item: user);
+					}
+
 						break;
 					default:
-						{
-							throw new System.Exception(string.Format("Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues", item["type"]));
-						}
+
+					{
+						throw new VkApiException(message:
+								$"Типа '{item[key: "type"]}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues");
+					}
 				}
 			}
+
 			return userOrGroup;
 		}
 	}

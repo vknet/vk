@@ -6,22 +6,24 @@ using VkNet.Categories;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[SuppressMessage(category: "ReSharper", checkId: "PublicMembersMustHaveComments")]
 	public class StatsTest : BaseTest
 	{
 		private StatsCategory GetMockedStatsCategory(string url, string json)
 		{
-            Json = json;
-            Url = url;
-            return new StatsCategory(Api);
+			Json = json;
+			Url = url;
+
+			return new StatsCategory(vk: Api);
 		}
 
 		[Test]
 		public void GetByApp_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/stats.get";
-            const string json =
-				@"{
+
+			const string json =
+					@"{
 					response: [{
 						day: '2015-11-11',
 						views: 57,
@@ -216,39 +218,51 @@ namespace VkNet.Tests.Categories
 						}]
 					}]
 				  }";
-			var mockedStatsCategory = GetMockedStatsCategory(url, json);
-			var statsPeriods = mockedStatsCategory.GetByApp(1, new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc));
 
-			Assert.That(statsPeriods[0].Day, Is.EqualTo(new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)));
-			Assert.That(statsPeriods[0].Views, Is.EqualTo(57));
-			Assert.That(statsPeriods[0].Visitors, Is.EqualTo(42));
-			Assert.That(statsPeriods[0].Subscribed, Is.EqualTo(2));
-			Assert.That(statsPeriods[0].Unsubscribed, Is.EqualTo(21));
-			Assert.That(statsPeriods[0].Sex[0].Visitors, Is.EqualTo(26));
-			Assert.That(statsPeriods[0].Sex[0].Value, Is.EqualTo(@"f"));
+			var mockedStatsCategory = GetMockedStatsCategory(url: url, json: json);
 
-			Assert.That(statsPeriods[0].Age[0].Visitors, Is.EqualTo(1));
-			Assert.That(statsPeriods[0].Age[0].Value, Is.EqualTo(@"12-18"));
+			var statsPeriods = mockedStatsCategory.GetByApp(appId: 1
+					, dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
 
-			Assert.That(statsPeriods[0].SexAge[0].Visitors, Is.EqualTo(1));
-			Assert.That(statsPeriods[0].SexAge[0].Value, Is.EqualTo(@"f;18-21"));
-			
-			Assert.That(statsPeriods[0].Cities[0].Visitors, Is.EqualTo(5));
-			Assert.That(statsPeriods[0].Cities[0].Value, Is.EqualTo(@"2"));
-			Assert.That(statsPeriods[0].Cities[0].Name, Is.EqualTo(@"Санкт-Петербург"));
+			Assert.That(actual: statsPeriods[index: 0].Day
+					, expression: Is.EqualTo(expected: new DateTime(year: 2015
+							, month: 11
+							, day: 11
+							, hour: 0
+							, minute: 0
+							, second: 0
+							, kind: DateTimeKind.Utc)));
 
-			Assert.That(statsPeriods[0].Countries[0].Visitors, Is.EqualTo(39));
-			Assert.That(statsPeriods[0].Countries[0].Value, Is.EqualTo(@"1"));
-			Assert.That(statsPeriods[0].Countries[0].Code, Is.EqualTo(@"RU"));
-			Assert.That(statsPeriods[0].Countries[0].Name, Is.EqualTo(@"Россия"));
+			Assert.That(actual: statsPeriods[index: 0].Views, expression: Is.EqualTo(expected: 57));
+			Assert.That(actual: statsPeriods[index: 0].Visitors, expression: Is.EqualTo(expected: 42));
+			Assert.That(actual: statsPeriods[index: 0].Subscribed, expression: Is.EqualTo(expected: 2));
+			Assert.That(actual: statsPeriods[index: 0].Unsubscribed, expression: Is.EqualTo(expected: 21));
+			Assert.That(actual: statsPeriods[index: 0].Sex[index: 0].Visitors, expression: Is.EqualTo(expected: 26));
+			Assert.That(actual: statsPeriods[index: 0].Sex[index: 0].Value, expression: Is.EqualTo(expected: @"f"));
+
+			Assert.That(actual: statsPeriods[index: 0].Age[index: 0].Visitors, expression: Is.EqualTo(expected: 1));
+			Assert.That(actual: statsPeriods[index: 0].Age[index: 0].Value, expression: Is.EqualTo(expected: @"12-18"));
+
+			Assert.That(actual: statsPeriods[index: 0].SexAge[index: 0].Visitors, expression: Is.EqualTo(expected: 1));
+			Assert.That(actual: statsPeriods[index: 0].SexAge[index: 0].Value, expression: Is.EqualTo(expected: @"f;18-21"));
+
+			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Visitors, expression: Is.EqualTo(expected: 5));
+			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Value, expression: Is.EqualTo(expected: @"2"));
+			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Name, expression: Is.EqualTo(expected: @"Санкт-Петербург"));
+
+			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Visitors, expression: Is.EqualTo(expected: 39));
+			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Value, expression: Is.EqualTo(expected: @"1"));
+			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Code, expression: Is.EqualTo(expected: @"RU"));
+			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Name, expression: Is.EqualTo(expected: @"Россия"));
 		}
 
 		[Test]
 		public void GetByGroup_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/stats.get";
-            const string json =
-				@"{
+
+			const string json =
+					@"{
 					response: [{
 						day: '2015-11-11',
 						views: 810,
@@ -536,47 +550,60 @@ namespace VkNet.Tests.Categories
 						}]
 					}]
 				  }";
-			var mockedStatsCategory = GetMockedStatsCategory(url, json);
-			var statsPeriods = mockedStatsCategory.GetByGroup(1, new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc));
 
-			Assert.That(statsPeriods[0].Day, Is.EqualTo(new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)));
-			Assert.That(statsPeriods[0].Views, Is.EqualTo(810));
-			Assert.That(statsPeriods[0].Visitors, Is.EqualTo(647));
-			Assert.That(statsPeriods[0].Reach, Is.EqualTo(428));
-			Assert.That(statsPeriods[0].ReachSubscribers, Is.EqualTo(106));
-			Assert.That(statsPeriods[0].Subscribed, Is.EqualTo(23));
-			Assert.That(statsPeriods[0].Unsubscribed, Is.EqualTo(17));
-			Assert.That(statsPeriods[0].Sex[0].Visitors, Is.EqualTo(319));
-			Assert.That(statsPeriods[0].Sex[0].Value, Is.EqualTo(@"f"));
+			var mockedStatsCategory = GetMockedStatsCategory(url: url, json: json);
 
-			Assert.That(statsPeriods[0].Age[0].Visitors, Is.EqualTo(222));
-			Assert.That(statsPeriods[0].Age[0].Value, Is.EqualTo(@"12-18"));
+			var statsPeriods = mockedStatsCategory.GetByGroup(groupId: 1
+					, dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
 
-			Assert.That(statsPeriods[0].SexAge[0].Visitors, Is.EqualTo(137));
-			Assert.That(statsPeriods[0].SexAge[0].Value, Is.EqualTo(@"f;12-18"));
+			Assert.That(actual: statsPeriods[index: 0].Day
+					, expression: Is.EqualTo(expected: new DateTime(year: 2015
+							, month: 11
+							, day: 11
+							, hour: 0
+							, minute: 0
+							, second: 0
+							, kind: DateTimeKind.Utc)));
 
-			Assert.That(statsPeriods[0].Cities[0].Visitors, Is.EqualTo(31));
-			Assert.That(statsPeriods[0].Cities[0].Value, Is.EqualTo(@"1"));
-			Assert.That(statsPeriods[0].Cities[0].Name, Is.EqualTo(@"Москва"));
+			Assert.That(actual: statsPeriods[index: 0].Views, expression: Is.EqualTo(expected: 810));
+			Assert.That(actual: statsPeriods[index: 0].Visitors, expression: Is.EqualTo(expected: 647));
+			Assert.That(actual: statsPeriods[index: 0].Reach, expression: Is.EqualTo(expected: 428));
+			Assert.That(actual: statsPeriods[index: 0].ReachSubscribers, expression: Is.EqualTo(expected: 106));
+			Assert.That(actual: statsPeriods[index: 0].Subscribed, expression: Is.EqualTo(expected: 23));
+			Assert.That(actual: statsPeriods[index: 0].Unsubscribed, expression: Is.EqualTo(expected: 17));
+			Assert.That(actual: statsPeriods[index: 0].Sex[index: 0].Visitors, expression: Is.EqualTo(expected: 319));
+			Assert.That(actual: statsPeriods[index: 0].Sex[index: 0].Value, expression: Is.EqualTo(expected: @"f"));
 
-			Assert.That(statsPeriods[0].Countries[0].Visitors, Is.EqualTo(366));
-			Assert.That(statsPeriods[0].Countries[0].Value, Is.EqualTo(@"1"));
-			Assert.That(statsPeriods[0].Countries[0].Code, Is.EqualTo(@"RU"));
-			Assert.That(statsPeriods[0].Countries[0].Name, Is.EqualTo(@"Россия"));
+			Assert.That(actual: statsPeriods[index: 0].Age[index: 0].Visitors, expression: Is.EqualTo(expected: 222));
+			Assert.That(actual: statsPeriods[index: 0].Age[index: 0].Value, expression: Is.EqualTo(expected: @"12-18"));
+
+			Assert.That(actual: statsPeriods[index: 0].SexAge[index: 0].Visitors, expression: Is.EqualTo(expected: 137));
+			Assert.That(actual: statsPeriods[index: 0].SexAge[index: 0].Value, expression: Is.EqualTo(expected: @"f;12-18"));
+
+			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Visitors, expression: Is.EqualTo(expected: 31));
+			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Value, expression: Is.EqualTo(expected: @"1"));
+			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Name, expression: Is.EqualTo(expected: @"Москва"));
+
+			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Visitors, expression: Is.EqualTo(expected: 366));
+			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Value, expression: Is.EqualTo(expected: @"1"));
+			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Code, expression: Is.EqualTo(expected: @"RU"));
+			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Name, expression: Is.EqualTo(expected: @"Россия"));
 		}
 
 		[Test]
 		public void TrackVisitorTest()
 		{
 			const string url = "https://api.vk.com/method/stats.trackVisitor";
+
 			const string json =
-				@"{
+					@"{
 					response: 1
 				  }";
-			var mockedStatsCategory = GetMockedStatsCategory(url, json);
+
+			var mockedStatsCategory = GetMockedStatsCategory(url: url, json: json);
 			var statsPeriods = mockedStatsCategory.TrackVisitor();
 
-			Assert.That(statsPeriods, Is.True);
+			Assert.That(actual: statsPeriods, expression: Is.True);
 		}
 	}
 }

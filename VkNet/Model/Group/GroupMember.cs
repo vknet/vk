@@ -3,57 +3,59 @@ using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    /// <summary>
-    /// Информация о сообществе (группе).
-    /// См. описание http://vk.com/dev/fields_groups
-    /// </summary>
-    [Serializable]
-    public class GroupMember
-    {
-        #region Стандартные поля
+	/// <summary>
+	/// Информация о сообществе (группе).
+	/// См. описание http://vk.com/dev/fields_groups
+	/// </summary>
+	[Serializable]
+	public class GroupMember
+	{
+	#region Методы
 
-        /// <summary>
-        /// Идентификатор сообщества.
-        /// </summary>
-        public ulong? UserId { get; set; }
+		/// <summary>
+		/// Десериализовать из Json.
+		/// </summary>
+		/// <param name="response"> Jndtn. </param>
+		/// <returns> </returns>
+		public static GroupMember FromJson(VkResponse response)
+		{
+			var group = new GroupMember
+			{
+					UserId = response[key: "user_id"]
+					, Member = response[key: "member"]
+					, Request = response[key: "request"]
+					, Invitation = response[key: "invitation"]
+			};
 
-        /// <summary>
-        /// Является ли пользователь участником сообщества;
-        /// </summary>
-        public bool Member { get; set; }
+			return group;
+		}
 
-        /// <summary>
-        /// Есть ли непринятая заявка от пользователя на вступление в группу (такую заявку можно отозвать методом groups.leave).
-        /// </summary>
-        public bool? Request { get; set; }
+	#endregion
 
-        /// <summary>
-        /// Приглашён ли пользователь в группу или встречу.
-        /// </summary>
-        public bool? Invitation { get; set; }
+	#region Стандартные поля
 
-        #endregion
+		/// <summary>
+		/// Идентификатор сообщества.
+		/// </summary>
+		public ulong? UserId { get; set; }
 
-        #region Методы
+		/// <summary>
+		/// Является ли пользователь участником сообщества;
+		/// </summary>
+		public bool Member { get; set; }
 
-        /// <summary>
-        /// Десериализовать из Json.
-        /// </summary>
-        /// <param name="response">Jndtn.</param>
-        /// <returns></returns>
-        public static GroupMember FromJson(VkResponse response)
-        {
-            var group = new GroupMember
-            {
-                UserId = response["user_id"],
-                Member = response["member"],
-                Request = response["request"],
-                Invitation = response["invitation"]
-            };
+		/// <summary>
+		/// Есть ли непринятая заявка от пользователя на вступление в группу (такую заявку
+		/// можно отозвать методом
+		/// groups.leave).
+		/// </summary>
+		public bool? Request { get; set; }
 
-            return group;
-        }
+		/// <summary>
+		/// Приглашён ли пользователь в группу или встречу.
+		/// </summary>
+		public bool? Invitation { get; set; }
 
-        #endregion
-    }
+	#endregion
+	}
 }

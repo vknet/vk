@@ -4,14 +4,22 @@ using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Messages
 {
-    [TestFixture]
-    public class MesagesGetLongPollHistory: BaseTest
-    {
-        [Test]
-        public void GroupsField()
-        {
-            Url = "https://api.vk.com/method/messages.getLongPollHistory";
-            Json = @"
+	[TestFixture]
+	public class MesagesGetLongPollHistory : BaseTest
+	{
+		[Test]
+		public void GetLongPollHistory_ThrowArgumentException()
+		{
+			Assert.That(del: () => Api.Messages.GetLongPollHistory(@params: new MessagesGetLongPollHistoryParams())
+					, expr: Throws.InstanceOf<ArgumentException>());
+		}
+
+		[Test]
+		public void GroupsField()
+		{
+			Url = "https://api.vk.com/method/messages.getLongPollHistory";
+
+			Json = @"
             {
                 'response': {
                     'history': [[9, -325170546, 1], [8, -325170546, 1], [9, -61270720, 1], [8, -61270720, 7], [8, -9052214, 7], [9, -16010007, 1], [9, -102554254, 1], [9, -61270720, 1], [7, -103292418, 206948], [4, 210723, 17, -103292418], [80, 1, 0]],
@@ -44,22 +52,18 @@ namespace VkNet.Tests.Categories.Messages
                     'new_pts': 12
                 }
             }";
-            var result = Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams
-            {
-                Ts = 1874397841,
-                PreviewLength = 0,
-                EventsLimit = 1000,
-                MsgsLimit = 200,
-                MaxMsgId = 0,
-                Onlines = true
-            });
-            Assert.IsNotEmpty(result.Groups);
-        }
 
-        [Test]
-        public void GetLongPollHistory_ThrowArgumentException()
-        {
-            Assert.That(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()), Throws.InstanceOf<ArgumentException>());
-        }
-    }
+			var result = Api.Messages.GetLongPollHistory(@params: new MessagesGetLongPollHistoryParams
+			{
+					Ts = 1874397841
+					, PreviewLength = 0
+					, EventsLimit = 1000
+					, MsgsLimit = 200
+					, MaxMsgId = 0
+					, Onlines = true
+			});
+
+			Assert.IsNotEmpty(collection: result.Groups);
+		}
+	}
 }

@@ -14,8 +14,8 @@ namespace VkNet.Model
 		/// <summary>
 		/// Месячные ограничения
 		/// </summary>
-		[JsonProperty("monthly_limit")]
-		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		[JsonProperty(propertyName: "monthly_limit")]
+		[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 		public MonthlyLimit MonthlyLimit { get; set; }
 	}
 }

@@ -18,17 +18,18 @@ namespace VkNet.Model
 		/// Количество.
 		/// </summary>
 		public long CommonCount { get; set; }
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static LookupContactsOther FromJson(VkResponse response)
 		{
 			return new LookupContactsOther
 			{
-				Contact = response["contact"],
-				CommonCount = response["common_count"]
+					Contact = response[key: "contact"]
+					, CommonCount = response[key: "common_count"]
 			};
 		}
 	}
