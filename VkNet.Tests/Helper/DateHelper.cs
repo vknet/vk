@@ -1,13 +1,14 @@
 ﻿using System;
 
-namespace VkNet.Tests
+namespace VkNet.Tests.Helper
 {
 	public static class DateHelper
 	{
 		public static DateTime TimeStampToDateTime(long timestamp)
 		{
-			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-			return dt.AddSeconds(timestamp);
+			var dt = new DateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, millisecond: 0, kind: DateTimeKind.Utc);
+
+			return dt.AddSeconds(value: timestamp);
 		}
 	}
 }

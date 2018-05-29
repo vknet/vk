@@ -7,109 +7,100 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Упоминание.
+	///     Упоминание.
 	/// </summary>
 	[Serializable]
 	public class Mention
 	{
 		/// <summary>
-		/// Идентификатор записи на стене пользователя.
+		///     Идентификатор записи на стене пользователя.
 		/// </summary>
-		public ulong Id
-		{ get; set; }
+		public ulong Id { get; set; }
 
 		/// <summary>
-		/// Идентификатор пользователя, написавшего запись.
+		///     Идентификатор пользователя, написавшего запись.
 		/// </summary>
-		public ulong FromId
-		{ get; set; }
+		public ulong FromId { get; set; }
 
 		/// <summary>
-		/// Время публикаии записи в формате unixtime.
+		///     Время публикаии записи в формате unixtime.
 		/// </summary>
-		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime? Date
-		{ get; set; }
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		public DateTime? Date { get; set; }
 
 		/// <summary>
-		/// Текст записи.
+		///     Текст записи.
 		/// </summary>
-		public string Text
-		{ get; set; }
+		public string Text { get; set; }
 
 		/// <summary>
-		/// Содержит информацию о числе людей, которым понравилась данная запись, и понравилась ли она текущему пользователю.
+		///     Содержит информацию о числе людей, которым понравилась данная запись, и понравилась ли она текущему пользователю.
 		/// </summary>
-		public Likes Likes
-		{ get; set; }
+		public Likes Likes { get; set; }
 
 		/// <summary>
-		/// Содержит информацию о количестве комментариев к записи и возможности текущего пользователя оставлять комментарии к ней.
+		///     Содержит информацию о количестве комментариев к записи и возможности текущего пользователя оставлять комментарии к
+		///     ней.
 		/// </summary>
-		public Comments Comments
-		{ get; set; }
+		public Comments Comments { get; set; }
 
 		/// <summary>
-		/// Содержит объект, который присоединен к текущей новости ( фотография, ссылка и т.п.). Более подробная информация представлена на странице Описание поля attachment.
+		///     Содержит объект, который присоединен к текущей новости ( фотография, ссылка и т.п.). Более подробная информация
+		///     представлена на странице Описание поля attachment.
 		/// </summary>
-		public Attachment Attachment
-		{ get; set; }
+		public Attachment Attachment { get; set; }
 
 		/// <summary>
-		/// Находится в записях со стен, в которых имеется информация о местоположении.
+		///     Находится в записях со стен, в которых имеется информация о местоположении.
 		/// </summary>
-		public Geo Geo
-		{ get; set; }
+		public Geo Geo { get; set; }
 
 		/// <summary>
-		/// Если запись является копией записи с чужой стены, то в поле содержится идентификатор владельца стены у которого была скопирована запись.
+		///     Если запись является копией записи с чужой стены, то в поле содержится идентификатор владельца стены у которого
+		///     была скопирована запись.
 		/// </summary>
-		public ulong? CopyOwnerId
-		{ get; set; }
+		public ulong? CopyOwnerId { get; set; }
 
 		/// <summary>
-		/// Если запись является копией записи с чужой стены, то в поле содержится идентфикатор скопированной записи на стене ее владельца.
+		///     Если запись является копией записи с чужой стены, то в поле содержится идентфикатор скопированной записи на стене
+		///     ее владельца.
 		/// </summary>
-		public ulong? CopyPostId
-		{ get; set; }
+		public ulong? CopyPostId { get; set; }
 
 		/// <summary>
-		/// Идентификатор сообщества где было сделано упоминание.
+		///     Идентификатор сообщества где было сделано упоминание.
 		/// </summary>
 		/// <remarks>
-		/// Выведено экспериментально.
+		///     Выведено экспериментально.
 		/// </remarks>
-		public long? ToId
-		{ get; set; }
+		public long? ToId { get; set; }
 
 		/// <summary>
-		/// Идентификатор поста.
+		///     Идентификатор поста.
 		/// </summary>
 		/// <remarks>
-		/// Выведено экспериментально.
+		///     Выведено экспериментально.
 		/// </remarks>
-		public ulong? PostId
-		{ get; set; }
-		/// <summary>
-		/// Тип поста.
-		/// </summary>
-		/// <remarks>
-		/// Выведено экспериментально.
-		/// </remarks>
-		public string PostType
-		{ get; set; }
+		public ulong? PostId { get; set; }
 
 		/// <summary>
-		/// Репосты.
+		///     Тип поста.
 		/// </summary>
 		/// <remarks>
-		/// Выведено экспериментально.
+		///     Выведено экспериментально.
 		/// </remarks>
-		public Reposts Reposts
-		{ get; set; }
+		public string PostType { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Репосты.
+		/// </summary>
+		/// <remarks>
+		///     Выведено экспериментально.
+		/// </remarks>
+		public Reposts Reposts { get; set; }
+
+		/// <summary>
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -117,20 +108,20 @@ namespace VkNet.Model
 		{
 			var mention = new Mention
 			{
-				Id = response["id"],
-				FromId = response["from_id"],
-				Date = response["date"],
-				Text = response["text"],
-				Likes = response["likes"],
-				Comments = response["comments"],
-				Attachment = response["attachment"],
-				Geo = response["geo"],
-				CopyOwnerId = response["copy_owner_id"],
-				CopyPostId = response["copy_post_id"],
-				ToId = response["to_id"],
-				PostId = response["post_id"],
-				PostType = response["post_type"],
-				Reposts = response["reposts"]
+					Id = response[key: "id"]
+					, FromId = response[key: "from_id"]
+					, Date = response[key: "date"]
+					, Text = response[key: "text"]
+					, Likes = response[key: "likes"]
+					, Comments = response[key: "comments"]
+					, Attachment = response[key: "attachment"]
+					, Geo = response[key: "geo"]
+					, CopyOwnerId = response[key: "copy_owner_id"]
+					, CopyPostId = response[key: "copy_post_id"]
+					, ToId = response[key: "to_id"]
+					, PostId = response[key: "post_id"]
+					, PostType = response[key: "post_type"]
+					, Reposts = response[key: "reposts"]
 			};
 
 			return mention;

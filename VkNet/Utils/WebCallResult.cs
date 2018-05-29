@@ -5,66 +5,65 @@ using System.Text;
 
 namespace VkNet.Utils
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public sealed class WebCallResult
-    {
-        /// <summary>
-        /// URL запроса.
-        /// </summary>
-        public Uri RequestUrl { get; }
+	/// <summary>
+	/// </summary>
+	public sealed class WebCallResult
+	{
+		/// <summary>
+		///     Инициализация класса WebCallResult
+		/// </summary>
+		/// <param name="url">URL.</param>
+		/// <param name="cookies">Куки.</param>
+		public WebCallResult(string url, Cookies cookies)
+		{
+			RequestUrl = new Uri(uriString: url);
+			Cookies = cookies;
+			Response = string.Empty;
+		}
 
-        /// <summary>
-        /// Куки.
-        /// </summary>
-        public Cookies Cookies { get; }
+		/// <summary>
+		///     URL запроса.
+		/// </summary>
+		public Uri RequestUrl { get; }
 
-        /// <summary>
-        /// Получить URL ответа.
-        /// </summary>
-        public Uri ResponseUrl { get; private set; }
+		/// <summary>
+		///     Куки.
+		/// </summary>
+		public Cookies Cookies { get; }
 
-        /// <summary>
-        /// Ответ.
-        /// </summary>
-        public string Response { get; private set; }
+		/// <summary>
+		///     Получить URL ответа.
+		/// </summary>
+		public Uri ResponseUrl { get; private set; }
 
-        /// <summary>
-        /// Инициализация класса WebCallResult
-        /// </summary>
-        /// <param name="url">URL.</param>
-        /// <param name="cookies">Куки.</param>
-        public WebCallResult(string url, Cookies cookies)
-        {
-            RequestUrl = new Uri(url);
-            Cookies = cookies;
-            Response = string.Empty;
-        }
+		/// <summary>
+		///     Ответ.
+		/// </summary>
+		public string Response { get; private set; }
 
-        /// <summary>
-        /// Сохранить куки.
-        /// </summary>
-        /// <param name="cookies">Куки.</param>
-        public void SaveCookies(CookieCollection cookies)
-        {
-            Cookies.AddFrom(ResponseUrl, cookies);
-        }
+		/// <summary>
+		///     Сохранить куки.
+		/// </summary>
+		/// <param name="cookies">Куки.</param>
+		public void SaveCookies(CookieCollection cookies)
+		{
+			Cookies.AddFrom(responseUrl: ResponseUrl, cookies: cookies);
+		}
 
-        /// <summary>
-        /// Сохранить ответ.
-        /// </summary>
-        /// <param name="responseUrl">URL ответ.</param>
-        /// <param name="stream">Поток.</param>
-        /// <param name="encoding">Кодировка.</param>
-        public void SaveResponse(Uri responseUrl, Stream stream, Encoding encoding)
-        {
-            ResponseUrl = responseUrl;
+		/// <summary>
+		///     Сохранить ответ.
+		/// </summary>
+		/// <param name="responseUrl">URL ответ.</param>
+		/// <param name="stream">Поток.</param>
+		/// <param name="encoding">Кодировка.</param>
+		public void SaveResponse(Uri responseUrl, Stream stream, Encoding encoding)
+		{
+			ResponseUrl = responseUrl;
 
-            using (var reader = new StreamReader(stream, encoding))
-            {
-                Response = reader.ReadToEnd();
-            }
-        }
-    }
+			using (var reader = new StreamReader(stream: stream, encoding: encoding))
+			{
+				Response = reader.ReadToEnd();
+			}
+		}
+	}
 }

@@ -1,27 +1,27 @@
 ﻿using System;
 
-
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	/// 
 	/// </summary>
 	[Serializable]
 	public class Platform : SafetyEnum<Platform>
 	{
 		/// <summary>
-		/// Android.
+		///     Android.
 		/// </summary>
-		public static readonly Platform Android = RegisterPossibleValue("android");
+		public static readonly Platform Android = RegisterPossibleValue(value: "android");
 
 		/// <summary>
-		/// iPhone.
+		///     iPhone.
 		/// </summary>
-		public static readonly Platform IPhone = RegisterPossibleValue("iphone");
+
+		// ReSharper disable once InconsistentNaming
+		public static readonly Platform IPhone = RegisterPossibleValue(value: "iphone");
 
 		/// <summary>
-		/// wphone.
+		///     wphone.
 		/// </summary>
-		public static readonly Platform WindowsPhone = RegisterPossibleValue("wphone");
+		public static readonly Platform WindowsPhone = RegisterPossibleValue(value: "wphone");
 	}
 }

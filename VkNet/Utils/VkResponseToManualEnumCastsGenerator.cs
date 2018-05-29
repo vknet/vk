@@ -6,12 +6,12 @@ namespace VkNet.Utils
 	public partial class VkResponse
 	{
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator AddFriendStatus(VkResponse response)
 		{
 			if (response == null)
@@ -19,15 +19,15 @@ namespace VkNet.Utils
 				return AddFriendStatus.Unknown;
 			}
 
-			return Utilities.EnumFrom<AddFriendStatus>(response);
+			return Utilities.EnumFrom<AddFriendStatus>(value: response);
 		}
 
 		/// <summary>
-		/// Преобразовать из VkResponse
+		///     Преобразовать из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ.</param>
 		/// <returns>
-		/// Результат преобразования.
+		///     Результат преобразования.
 		/// </returns>
 		public static implicit operator AgeLimit(VkResponse response)
 		{
@@ -36,15 +36,15 @@ namespace VkNet.Utils
 				return AgeLimit.Withoutlimit;
 			}
 
-			return Utilities.EnumFrom<AgeLimit>(response);
+			return Utilities.EnumFrom<AgeLimit>(value: response);
 		}
 
 		/// <summary>
-		/// Преобразовать из VkResponse
+		///     Преобразовать из VkResponse
 		/// </summary>
 		/// <param name="response">Ответ.</param>
 		/// <returns>
-		/// Результат преобразования.
+		///     Результат преобразования.
 		/// </returns>
 		public static implicit operator MemberStatus(VkResponse response)
 		{
@@ -53,17 +53,16 @@ namespace VkNet.Utils
 				return MemberStatus.Invited;
 			}
 
-			return Utilities.EnumFrom<MemberStatus>(response);
+			return Utilities.EnumFrom<MemberStatus>(value: response);
 		}
 
-
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator Attitude(VkResponse response)
 		{
 			if (response == null)
@@ -71,16 +70,16 @@ namespace VkNet.Utils
 				return Attitude.Unknown;
 			}
 
-			return Utilities.EnumFrom<Attitude>(response);
+			return Utilities.EnumFrom<Attitude>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator BanReason(VkResponse response)
 		{
 			if (response == null)
@@ -88,16 +87,16 @@ namespace VkNet.Utils
 				return BanReason.Other;
 			}
 
-			return Utilities.EnumFrom<BanReason>(response);
+			return Utilities.EnumFrom<BanReason>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator BirthdayVisibility(VkResponse response)
 		{
 			if (response == null)
@@ -105,37 +104,49 @@ namespace VkNet.Utils
 				return BirthdayVisibility.Invisible;
 			}
 
-			return Utilities.EnumFrom<BirthdayVisibility>(response);
+			return Utilities.EnumFrom<BirthdayVisibility>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator DeleteFriendStatus(VkResponse response)
 		{
-			if (response == null || response["success"] == 0)
+			if (response == null || response[key: "success"] == 0)
+			{
 				return DeleteFriendStatus.Unknown;
-			if ((response["in_request_deleted"] != null && response["in_request_deleted"] == 1)
-				|| (response["out_request_deleted"] != null && response["out_request_deleted"] == 1))
+			}
+
+			if (response[key: "in_request_deleted"] != null && response[key: "in_request_deleted"] == 1
+				|| response[key: "out_request_deleted"] != null && response[key: "out_request_deleted"] == 1)
+			{
 				return DeleteFriendStatus.RequestRejected;
-			if (response["suggestion_deleted"] != null && response["suggestion_deleted"] == 1)
+			}
+
+			if (response[key: "suggestion_deleted"] != null && response[key: "suggestion_deleted"] == 1)
+			{
 				return DeleteFriendStatus.RecommendationDeleted;
-			if (response["friend_deleted"] != null && response["friend_deleted"] == 1)
+			}
+
+			if (response[key: "friend_deleted"] != null && response[key: "friend_deleted"] == 1)
+			{
 				return DeleteFriendStatus.UserIsDeleted;
+			}
+
 			return DeleteFriendStatus.Unknown;
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator FriendStatus(VkResponse response)
 		{
 			if (response == null)
@@ -143,16 +154,16 @@ namespace VkNet.Utils
 				return FriendStatus.NotFriend;
 			}
 
-			return Utilities.EnumFrom<FriendStatus>(response);
+			return Utilities.EnumFrom<FriendStatus>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator GiftPrivacy(VkResponse response)
 		{
 			if (response == null)
@@ -160,16 +171,16 @@ namespace VkNet.Utils
 				return GiftPrivacy.NameHideMessageUser;
 			}
 
-			return Utilities.EnumFrom<GiftPrivacy>(response);
+			return Utilities.EnumFrom<GiftPrivacy>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator GroupAccess(VkResponse response)
 		{
 			if (response == null)
@@ -177,16 +188,16 @@ namespace VkNet.Utils
 				return GroupAccess.Open;
 			}
 
-			return Utilities.EnumFrom<GroupAccess>(response);
+			return Utilities.EnumFrom<GroupAccess>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator LeaderboardTypes(VkResponse response)
 		{
 			if (response == null)
@@ -194,16 +205,16 @@ namespace VkNet.Utils
 				return LeaderboardTypes.NotSupported;
 			}
 
-			return Utilities.EnumFrom<LeaderboardTypes>(response);
+			return Utilities.EnumFrom<LeaderboardTypes>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator LifeMain(VkResponse response)
 		{
 			if (response == null)
@@ -211,16 +222,16 @@ namespace VkNet.Utils
 				return LifeMain.Unknown;
 			}
 
-			return Utilities.EnumFrom<LifeMain>(response);
+			return Utilities.EnumFrom<LifeMain>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator MainSection(VkResponse response)
 		{
 			if (response == null)
@@ -228,16 +239,16 @@ namespace VkNet.Utils
 				return MainSection.NoSection;
 			}
 
-			return Utilities.EnumFrom<MainSection>(response);
+			return Utilities.EnumFrom<MainSection>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator MarketCurrencyId(VkResponse response)
 		{
 			if (response == null)
@@ -245,16 +256,16 @@ namespace VkNet.Utils
 				return MarketCurrencyId.Rub;
 			}
 
-			return Utilities.EnumFrom<MarketCurrencyId>(response);
+			return Utilities.EnumFrom<MarketCurrencyId>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator PeopleMain(VkResponse response)
 		{
 			if (response == null)
@@ -262,16 +273,16 @@ namespace VkNet.Utils
 				return PeopleMain.Unknown;
 			}
 
-			return Utilities.EnumFrom<PeopleMain>(response);
+			return Utilities.EnumFrom<PeopleMain>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator PoliticalPreferences(VkResponse response)
 		{
 			if (response == null)
@@ -279,16 +290,16 @@ namespace VkNet.Utils
 				return PoliticalPreferences.Unknown;
 			}
 
-			return Utilities.EnumFrom<PoliticalPreferences>(response);
+			return Utilities.EnumFrom<PoliticalPreferences>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator ProductAvailability(VkResponse response)
 		{
 			if (response == null)
@@ -296,16 +307,16 @@ namespace VkNet.Utils
 				return ProductAvailability.Unavailable;
 			}
 
-			return Utilities.EnumFrom<ProductAvailability>(response);
+			return Utilities.EnumFrom<ProductAvailability>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator ProductSort(VkResponse response)
 		{
 			if (response == null)
@@ -313,16 +324,16 @@ namespace VkNet.Utils
 				return ProductSort.UserSort;
 			}
 
-			return Utilities.EnumFrom<ProductSort>(response);
+			return Utilities.EnumFrom<ProductSort>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator RelationType(VkResponse response)
 		{
 			if (response == null)
@@ -330,16 +341,16 @@ namespace VkNet.Utils
 				return RelationType.Unknown;
 			}
 
-			return Utilities.EnumFrom<RelationType>(response);
+			return Utilities.EnumFrom<RelationType>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator ReportReason(VkResponse response)
 		{
 			if (response == null)
@@ -347,16 +358,16 @@ namespace VkNet.Utils
 				return ReportReason.Spam;
 			}
 
-			return Utilities.EnumFrom<ReportReason>(response);
+			return Utilities.EnumFrom<ReportReason>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator Sex(VkResponse response)
 		{
 			if (response == null)
@@ -364,16 +375,16 @@ namespace VkNet.Utils
 				return Sex.Unknown;
 			}
 
-			return Utilities.EnumFrom<Sex>(response);
+			return Utilities.EnumFrom<Sex>(value: response);
 		}
 
 		/// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
 		public static implicit operator WallContentAccess(VkResponse response)
 		{
 			if (response == null)
@@ -381,41 +392,41 @@ namespace VkNet.Utils
 				return WallContentAccess.Off;
 			}
 
-			return Utilities.EnumFrom<WallContentAccess>(response);
+			return Utilities.EnumFrom<WallContentAccess>(value: response);
 		}
 
-        /// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-        public static implicit operator AccountStatus(VkResponse response)
-        {
-            if (response == null)
-            {
-                return AccountStatus.Inactive;
-            }
+		/// <summary>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
+		public static implicit operator AccountStatus(VkResponse response)
+		{
+			if (response == null)
+			{
+				return AccountStatus.Inactive;
+			}
 
-            return Utilities.EnumFrom<AccountStatus>(response);
-        }
+			return Utilities.EnumFrom<AccountStatus>(value: response);
+		}
 
-        /// <summary>
-        /// Преобразовать из VkResponse
-        /// </summary>
-        /// <param name="response">Ответ.</param>
-        /// <returns>
-        /// Результат преобразования.
-        /// </returns>
-        public static implicit operator CampaignStatus(VkResponse response)
-        {
-            if (response == null)
-            {
-                return CampaignStatus.Stopped;
-            }
+		/// <summary>
+		///     Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response">Ответ.</param>
+		/// <returns>
+		///     Результат преобразования.
+		/// </returns>
+		public static implicit operator CampaignStatus(VkResponse response)
+		{
+			if (response == null)
+			{
+				return CampaignStatus.Stopped;
+			}
 
-            return Utilities.EnumFrom<CampaignStatus>(response);
-        }
-    }
+			return Utilities.EnumFrom<CampaignStatus>(value: response);
+		}
+	}
 }

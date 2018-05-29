@@ -4,20 +4,20 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Теги.
+	///     Теги.
 	/// </summary>
 	[Serializable]
 	public class Tags
-    {
+	{
 		/// <summary>
-		/// Количество.
+		///     Количество.
 		/// </summary>
 		public int Count { get; set; }
 
-		#region public methods
+	#region public methods
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -25,12 +25,12 @@ namespace VkNet.Model
 		{
 			var tags = new Tags
 			{
-				Count = response["count"]
+					Count = response[key: "count"]
 			};
 
 			return tags;
 		}
 
-		#endregion
+	#endregion
 	}
 }

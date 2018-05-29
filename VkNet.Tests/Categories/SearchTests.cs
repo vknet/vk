@@ -3,13 +3,13 @@ using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
-    [TestFixture]
-    public class SearchTests: BaseTest
-    {
-        [Test]
-        public void GetHints()
-        {
-            Json = @"
+	[TestFixture]
+	public class SearchTests : BaseTest
+	{
+		[Test]
+		public void GetHints()
+		{
+			Json = @"
             {
                 'response': {
                     'count': 189,
@@ -45,9 +45,10 @@ namespace VkNet.Tests.Categories
                     ]
                 }
             }";
-            Url = "https://api.vk.com/method/search.getHints";
-            var result = Api.Search.GetHints(new SearchGetHintsParams());
-            Assert.NotNull(result);
-        }
-    }
+
+			Url = "https://api.vk.com/method/search.getHints";
+			var result = Api.Search.GetHints(@params: new SearchGetHintsParams());
+			Assert.NotNull(anObject: result);
+		}
+	}
 }

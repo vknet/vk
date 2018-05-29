@@ -3,7 +3,7 @@
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
-	public class NotificationsCategoryTests: BaseTest
+	public class NotificationsCategoryTests : BaseTest
 	{
 		[Test]
 		public void MarkAsViewed()
@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories
 
 			Url = "https://api.vk.com/method/notifications.markAsViewed";
 			var result = Api.Notifications.MarkAsViewed();
-			Assert.True(result);
+			Assert.True(condition: result);
 		}
 	}
 }

@@ -1,38 +1,38 @@
 ﻿namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	/// Названия списков новостей, которые необходимо получить.
+	///     Названия списков новостей, которые необходимо получить.
 	/// </summary>
 	public sealed class NewsObjectTypes : SafetyEnum<NewsObjectTypes>
 	{
 		/// <summary>
-		/// Запись на стене.
+		///     Запись на стене.
 		/// </summary>
-		public static readonly NewsObjectTypes Wall = RegisterPossibleValue("wall");
+		public static readonly NewsObjectTypes Wall = RegisterPossibleValue(value: "wall");
 
 		/// <summary>
-		/// Отметка на фотографии.
+		///     Отметка на фотографии.
 		/// </summary>
-		public static readonly NewsObjectTypes Tag = RegisterPossibleValue("tag");
+		public static readonly NewsObjectTypes Tag = RegisterPossibleValue(value: "tag");
 
 		/// <summary>
-		/// Фотография профиля.
+		///     Фотография профиля.
 		/// </summary>
-		public static readonly NewsObjectTypes ProfilePhoto = RegisterPossibleValue("profilephoto");
+		public static readonly NewsObjectTypes ProfilePhoto = RegisterPossibleValue(value: "profilephoto");
 
 		/// <summary>
-		/// Видеозапись.
+		///     Видеозапись.
 		/// </summary>
-		public static readonly NewsObjectTypes Video = RegisterPossibleValue("video");
+		public static readonly NewsObjectTypes Video = RegisterPossibleValue(value: "video");
 
 		/// <summary>
-		/// Фотография.
+		///     Фотография.
 		/// </summary>
-		public static readonly NewsObjectTypes Photo = RegisterPossibleValue("photo");
+		public static readonly NewsObjectTypes Photo = RegisterPossibleValue(value: "photo");
 
 		/// <summary>
-		/// Аудиозапись.
+		///     Аудиозапись.
 		/// </summary>
-		public static readonly NewsObjectTypes Audio = RegisterPossibleValue("audio");
+		public static readonly NewsObjectTypes Audio = RegisterPossibleValue(value: "audio");
 	}
 }

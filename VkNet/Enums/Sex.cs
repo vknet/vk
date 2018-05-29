@@ -4,28 +4,29 @@ using VkNet.Utils;
 namespace VkNet.Enums
 {
 	/// <summary>
-	/// Пол.
+	///     Пол.
 	/// </summary>
 	[Serializable]
 	public enum Sex
 	{
 		/// <summary>
-		/// Деактивированный аккаунт
+		///     Деактивированный аккаунт
 		/// </summary>
-		Deactivated = -1,
+		Deactivated = -1
 
-		/// <summary>
-		/// Не указан
+		, /// <summary>
+		///     Не указан
 		/// </summary>
-		[DefaultValue] Unknown = 0,
+		[DefaultValue]
+		Unknown = 0
 
-		/// <summary>
-		/// Женский
+		, /// <summary>
+		///     Женский
 		/// </summary>
-		Female = 1,
+		Female = 1
 
-		/// <summary>
-		/// Мужской
+		, /// <summary>
+		///     Мужской
 		/// </summary>
 		Male = 2
 	}

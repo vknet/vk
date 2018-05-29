@@ -5,25 +5,25 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	/// Тип событий
+	///     Тип событий
 	/// </summary>
 	[Serializable]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public class StreamingEventType : SafetyEnum<StreamingEventType>
 	{
 		/// <summary>
-		/// Записи на стене;
+		///     Записи на стене;
 		/// </summary>
-		public static readonly StreamingEventType Post = RegisterPossibleValue("post");
+		public static readonly StreamingEventType Post = RegisterPossibleValue(value: "post");
 
 		/// <summary>
-		/// Комментарии;
+		///     Комментарии;
 		/// </summary>
-		public static readonly StreamingEventType Comment = RegisterPossibleValue("comment");
+		public static readonly StreamingEventType Comment = RegisterPossibleValue(value: "comment");
 
 		/// <summary>
-		/// Репосты;
+		///     Репосты;
 		/// </summary>
-		public static readonly StreamingEventType Share = RegisterPossibleValue("share");
+		public static readonly StreamingEventType Share = RegisterPossibleValue(value: "share");
 	}
 }

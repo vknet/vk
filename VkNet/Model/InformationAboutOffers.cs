@@ -4,70 +4,61 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Информация о предложениях.
+	///     Информация о предложениях.
 	/// </summary>
 	[Serializable]
 	public class InformationAboutOffers
 	{
 		/// <summary>
-		/// Идентификатор.
+		///     Идентификатор.
 		/// </summary>
-		public string Id
-		{ get; set; }
+		public string Id { get; set; }
 
 		/// <summary>
-		/// Заголовок.
+		///     Заголовок.
 		/// </summary>
-		public string Title
-		{ get; set; }
+		public string Title { get; set; }
 
 		/// <summary>
-		/// Инструкция.
+		///     Инструкция.
 		/// </summary>
-		public string Instruction
-		{ get; set; }
+		public string Instruction { get; set; }
 
 		/// <summary>
-		/// Инструкция с html разметкой.
+		///     Инструкция с html разметкой.
 		/// </summary>
 		/// <value>
-		/// The instruction_html.
+		///     The instruction_html.
 		/// </value>
-		public string InstructionHtml
-		{ get; set; }
+		public string InstructionHtml { get; set; }
 
 		/// <summary>
-		/// Краткое описание.
+		///     Краткое описание.
 		/// </summary>
-		public string ShortDescription
-		{ get; set; }
+		public string ShortDescription { get; set; }
 
 		/// <summary>
-		/// Описание.
+		///     Описание.
 		/// </summary>
-		public string Description
-		{ get; set; }
+		public string Description { get; set; }
 
 		/// <summary>
-		/// Ссылка на изображение.
+		///     Ссылка на изображение.
 		/// </summary>
-		public Uri Img
-		{ get; set; }
+		public Uri Img { get; set; }
 
 		/// <summary>
-		/// Тег.
+		///     Тег.
 		/// </summary>
-		public string Tag
-		{ get; set; }
+		public string Tag { get; set; }
 
 		/// <summary>
-		/// Цена.
+		///     Цена.
 		/// </summary>
-		public long Price
-		{ get; set; }
+		public long Price { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -75,15 +66,15 @@ namespace VkNet.Model
 		{
 			return new InformationAboutOffers
 			{
-				Id = response["id"],
-				Title = response["title"],
-				Instruction = response["instruction"],
-				InstructionHtml = response["instruction_html"],
-				ShortDescription = response["short_description"],
-				Description = response["description"],
-				Img = new Uri(response["img"]),
-				Tag = response["tag"],
-				Price = response["price"]
+					Id = response[key: "id"]
+					, Title = response[key: "title"]
+					, Instruction = response[key: "instruction"]
+					, InstructionHtml = response[key: "instruction_html"]
+					, ShortDescription = response[key: "short_description"]
+					, Description = response[key: "description"]
+					, Img = new Uri(uriString: response[key: "img"])
+					, Tag = response[key: "tag"]
+					, Price = response[key: "price"]
 			};
 		}
 	}

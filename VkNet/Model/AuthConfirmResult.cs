@@ -4,23 +4,23 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Результат метода auth.confirm
+	///     Результат метода auth.confirm
 	/// </summary>
 	[Serializable]
 	public class AuthConfirmResult
 	{
 		/// <summary>
-		/// Успешно.
+		///     Успешно.
 		/// </summary>
 		public bool Success { get; set; }
 
 		/// <summary>
-		/// Идентификатор пользователя.
+		///     Идентификатор пользователя.
 		/// </summary>
 		public long UserId { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -28,10 +28,9 @@ namespace VkNet.Model
 		{
 			return new AuthConfirmResult
 			{
-				Success = response["success"],
-				UserId = response["uid"]
+					Success = response[key: "success"]
+					, UserId = response[key: "uid"]
 			};
 		}
-
 	}
 }

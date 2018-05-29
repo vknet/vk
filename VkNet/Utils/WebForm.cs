@@ -1,223 +1,241 @@
-﻿namespace VkNet.Utils
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using HtmlAgilityPack;
+using VkNet.Exception;
+
+namespace VkNet.Utils
 {
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
-  using System.Text;
-  using HtmlAgilityPack;
+	/// <summary>
+	///     WEB форма
+	/// </summary>
+	internal sealed class WebForm
+	{
+		/// <summary>
+		///     HTML документ
+		/// </summary>
+		private readonly HtmlDocument _html;
 
-  using Exception;
+		/// <summary>
+		///     Коллекция input на форме
+		/// </summary>
+		private readonly Dictionary<string, string> _inputs;
 
-  /// <summary>
-  /// WEB форма
-  /// </summary>
-  internal sealed class WebForm
-  {
-    /// <summary>
-    /// HTML документ
-    /// </summary>
-    private readonly HtmlDocument _html;
+		/// <summary>
+		///     Базовый URL-ответ
+		/// </summary>
+		/// <remarks>
+		///     Если форма имеет относительный URL
+		/// </remarks>
+		private readonly string _responseBaseUrl;
 
-    /// <summary>
-    /// Коллекция input на форме
-    /// </summary>
-    private readonly Dictionary<string, string> _inputs;
+		/// <summary>
+		///     Наименование поля
+		/// </summary>
+		private string _lastName;
 
-    /// <summary>
-    /// Наименование поля
-    /// </summary>
-    private string _lastName;
+		/// <summary>
+		///     WEB форма.
+		/// </summary>
+		/// <param name="result">Результат.</param>
+		private WebForm(WebCallResult result)
+		{
+			Cookies = result.Cookies;
+			OriginalUrl = result.RequestUrl.OriginalString;
 
-    /// <summary>
-    /// Базовый URL-ответ
-    /// </summary>
-    /// <remarks>
-    /// Если форма имеет относительный URL
-    /// </remarks>
-    private readonly string _responseBaseUrl;
+			_html = new HtmlDocument();
+			_html.LoadHtml(html: result.Response);
 
-    /// <summary>
-    /// Cookies.
-    /// </summary>
-    public Cookies Cookies { get; }
+			var uri = result.ResponseUrl;
 
-    /// <summary>
-    /// WEB форма.
-    /// </summary>
-    /// <param name="result">Результат.</param>
-    private WebForm(WebCallResult result)
-    {
-      Cookies = result.Cookies;
-      OriginalUrl = result.RequestUrl.OriginalString;
+			_responseBaseUrl = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
 
-      _html = new HtmlDocument();
-      _html.LoadHtml(result.Response);
+			_inputs = ParseInputs();
+		}
 
-      var uri = result.ResponseUrl;
+		/// <summary>
+		///     Cookies.
+		/// </summary>
+		public Cookies Cookies { get; }
 
-      _responseBaseUrl = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
+		/// <summary>
+		///     URL действия.
+		/// </summary>
+		public string ActionUrl
+		{
+			get
+			{
+				var formNode = GetFormNode();
 
-      _inputs = ParseInputs();
-    }
+				if (formNode.Attributes[name: "action"] == null)
+				{
+					return OriginalUrl;
+				}
 
-    /// <summary>
-    /// Из результата.
-    /// </summary>
-    /// <param name="result">Результат.</param>
-    /// <returns>WEB форма.</returns>
-    public static WebForm From(WebCallResult result) => new WebForm(result);
-    
-    /// <summary>
-    /// Проверка на отсутствие двухфакторной авторизации.
-    /// </summary>
-    /// <param name="result">Результат.</param>
-    /// <returns>WEB форма.</returns>
-    public static bool IsOAuthBlank(WebCallResult result)
-    {
-      var html = new HtmlDocument();
-      html.LoadHtml(result.Response);
-      var title = html.DocumentNode.SelectSingleNode("//head/title");
-      return title.InnerText.ToLowerInvariant() == "oauth blank";
-    }
+				var link = formNode.Attributes[name: "action"].Value;
 
-    /// <summary>
-    /// И.
-    /// </summary>
-    /// <returns>WEB форма.</returns>
-    public WebForm And() => this;
+				if (!string.IsNullOrEmpty(value: link) && !link.StartsWith(value: "http", comparisonType: StringComparison.Ordinal)
+				) // относительный URL
+				{
+					link = _responseBaseUrl + link;
+				}
 
-    /// <summary>
-    /// С полем.
-    /// </summary>
-    /// <param name="name">Наименование поля.</param>
-    /// <returns>WEB форма.</returns>
-    public WebForm WithField(string name)
-    {
-      _lastName = name;
+				return link; // абсолютный путь
+			}
+		}
 
-      return this;
-    }
+		/// <summary>
+		///     Gets the original URL.
+		/// </summary>
+		/// <value>
+		///     The original URL.
+		/// </value>
+		public string OriginalUrl { get; }
 
-    /// <summary>
-    /// Заполнить поле с.
-    /// </summary>
-    /// <param name="value">Значение.</param>
-    /// <returns>WEB форма.</returns>
-    /// <exception cref="System.InvalidOperationException">Field name not set!</exception>
-    public WebForm FilledWith(string value)
-    {
-      if (string.IsNullOrEmpty(_lastName))
-      {
-        throw new InvalidOperationException("Field name not set!");
-      }
+		/// <summary>
+		///     Из результата.
+		/// </summary>
+		/// <param name="result">Результат.</param>
+		/// <returns>WEB форма.</returns>
+		public static WebForm From(WebCallResult result)
+		{
+			return new WebForm(result: result);
+		}
 
-      var encodedValue = value;//Uri.EscapeDataString(value);
-      if (_inputs.ContainsKey(_lastName))
-      {
-        _inputs[_lastName] = encodedValue;
-      }
-      else
-      {
-        _inputs.Add(_lastName, encodedValue);
-      }
+		/// <summary>
+		///     Проверка на отсутствие двухфакторной авторизации.
+		/// </summary>
+		/// <param name="result">Результат.</param>
+		/// <returns>WEB форма.</returns>
+		public static bool IsOAuthBlank(WebCallResult result)
+		{
+			var html = new HtmlDocument();
+			html.LoadHtml(html: result.Response);
+			var title = html.DocumentNode.SelectSingleNode(xpath: "//head/title");
 
-      return this;
-    }
+			return title.InnerText.ToLowerInvariant() == "oauth blank";
+		}
 
-    /// <summary>
-    /// URL действия.
-    /// </summary>
-    public string ActionUrl
-    {
-      get
-      {
-        var formNode = GetFormNode();
+		/// <summary>
+		///     И.
+		/// </summary>
+		/// <returns>WEB форма.</returns>
+		public WebForm And()
+		{
+			return this;
+		}
 
-        if (formNode.Attributes["action"] == null)
-        {
-          return OriginalUrl;
-        }
+		/// <summary>
+		///     С полем.
+		/// </summary>
+		/// <param name="name">Наименование поля.</param>
+		/// <returns>WEB форма.</returns>
+		public WebForm WithField(string name)
+		{
+			_lastName = name;
 
-        var link = formNode.Attributes["action"].Value;
-        if (!string.IsNullOrEmpty(link) && !link.StartsWith("http", StringComparison.Ordinal)) // относительный URL
-        {
-          link = _responseBaseUrl + link;
-        }
+			return this;
+		}
 
-        return link; // абсолютный путь
-      }
-    }
+		/// <summary>
+		///     Заполнить поле с.
+		/// </summary>
+		/// <param name="value">Значение.</param>
+		/// <returns>WEB форма.</returns>
+		/// <exception cref="System.InvalidOperationException">Field name not set!</exception>
+		public WebForm FilledWith(string value)
+		{
+			if (string.IsNullOrEmpty(value: _lastName))
+			{
+				throw new InvalidOperationException(message: "Field name not set!");
+			}
 
-    /// <summary>
-    /// Gets the original URL.
-    /// </summary>
-    /// <value>
-    /// The original URL.
-    /// </value>
-    public string OriginalUrl { get; }
+			var encodedValue = value;
 
-    /// <summary>
-    /// Получить запрос.
-    /// </summary>
-    /// <returns>Массив байт</returns>
-    public byte[] GetRequest() => Encoding.UTF8.GetBytes(GetRequestAsStringArray().JoinNonEmpty("&"));
+			if (_inputs.ContainsKey(key: _lastName))
+			{
+				_inputs[key: _lastName] = encodedValue;
+			} else
+			{
+				_inputs.Add(key: _lastName, value: encodedValue);
+			}
 
-    /// <summary>
-    /// Получить запрос.
-    /// </summary>
-    /// <returns>Массив байт</returns>
-    public IEnumerable<string> GetRequestAsStringArray() => _inputs.Select(x => $"{x.Key}={x.Value}");
+			return this;
+		}
 
+		/// <summary>
+		///     Получить запрос.
+		/// </summary>
+		/// <returns>Массив байт</returns>
+		public byte[] GetRequest()
+		{
+			return Encoding.UTF8.GetBytes(s: GetRequestAsStringArray().JoinNonEmpty(separator: "&"));
+		}
 
-    /// <summary>
-    /// Получить значения полей.
-    /// </summary>
-    /// <returns>Словарь значений по именам полей.</returns>
-    public IDictionary<string, string> GetFormFields() => new Dictionary<string, string>(_inputs, _inputs.Comparer);
+		/// <summary>
+		///     Получить запрос.
+		/// </summary>
+		/// <returns>Массив байт</returns>
+		public IEnumerable<string> GetRequestAsStringArray()
+		{
+			return _inputs.Select(selector: x => $"{x.Key}={x.Value}");
+		}
 
-    /// <summary>
-    /// Разобрать поля ввода.
-    /// </summary>
-    /// <returns>Коллекция полей ввода</returns>
-    private Dictionary<string, string> ParseInputs()
-    {
-      var inputs = new Dictionary<string, string>();
+		/// <summary>
+		///     Получить значения полей.
+		/// </summary>
+		/// <returns>Словарь значений по именам полей.</returns>
+		public IDictionary<string, string> GetFormFields()
+		{
+			return new Dictionary<string, string>(dictionary: _inputs, comparer: _inputs.Comparer);
+		}
 
-      var form = GetFormNode();
-      foreach (var node in form.SelectNodes("//input"))
-      {
-        var nameAttribute = node.Attributes["name"];
-        var valueAttribute = node.Attributes["value"];
+		/// <summary>
+		///     Разобрать поля ввода.
+		/// </summary>
+		/// <returns>Коллекция полей ввода</returns>
+		private Dictionary<string, string> ParseInputs()
+		{
+			var inputs = new Dictionary<string, string>();
 
-        var name = nameAttribute != null ? nameAttribute.Value : string.Empty;
-        var value = valueAttribute != null ? valueAttribute.Value : string.Empty;
+			var form = GetFormNode();
 
-        if (string.IsNullOrEmpty(name))
-        {
-          continue;
-        }
+			foreach (var node in form.SelectNodes(xpath: "//input"))
+			{
+				var nameAttribute = node.Attributes[name: "name"];
+				var valueAttribute = node.Attributes[name: "value"];
 
-        inputs.Add(name, Uri.EscapeDataString(value));
-      }
+				var name = nameAttribute != null ? nameAttribute.Value : string.Empty;
+				var value = valueAttribute != null ? valueAttribute.Value : string.Empty;
 
-      return inputs;
-    }
+				if (string.IsNullOrEmpty(value: name))
+				{
+					continue;
+				}
 
-    /// <summary>
-    /// Получить из HTML элемента.
-    /// </summary>
-    /// <returns>HTML элемент</returns>
-    /// <exception cref="VkApiException">Элемент не найден на форме.</exception>
-    private HtmlNode GetFormNode()
-    {
-      HtmlNode.ElementsFlags.Remove("form");
-      var form = _html.DocumentNode.SelectSingleNode("//form");
-      if (form == null)
-      {
-        throw new VkApiException("Form element not found.");
-      }
+				inputs.Add(key: name, value: Uri.EscapeDataString(stringToEscape: value));
+			}
 
-      return form;
-    }
-  }
+			return inputs;
+		}
+
+		/// <summary>
+		///     Получить из HTML элемента.
+		/// </summary>
+		/// <returns>HTML элемент</returns>
+		/// <exception cref="VkApiException">Элемент не найден на форме.</exception>
+		private HtmlNode GetFormNode()
+		{
+			HtmlNode.ElementsFlags.Remove(key: "form");
+			var form = _html.DocumentNode.SelectSingleNode(xpath: "//form");
+
+			if (form == null)
+			{
+				throw new VkApiException(message: "Form element not found.");
+			}
+
+			return form;
+		}
+	}
 }

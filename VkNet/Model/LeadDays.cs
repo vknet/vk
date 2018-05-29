@@ -4,33 +4,33 @@ using Newtonsoft.Json;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Days
+	///     Days
 	/// </summary>
 	[Serializable]
 	public class LeadDays
 	{
 		/// <summary>
-		/// Amount of spent votes
+		///     Amount of spent votes
 		/// </summary>
-		[JsonProperty("spent")]
+		[JsonProperty(propertyName: "spent")]
 		public int? Spent { get; set; }
 
 		/// <summary>
-		/// Impressions number
+		///     Impressions number
 		/// </summary>
-		[JsonProperty("impressions")]
+		[JsonProperty(propertyName: "impressions")]
 		public int? Impressions { get; set; }
 
 		/// <summary>
-		/// Completed offers number
+		///     Completed offers number
 		/// </summary>
-		[JsonProperty("completed")]
+		[JsonProperty(propertyName: "completed")]
 		public int? Completed { get; set; }
 
 		/// <summary>
-		/// Started offers number
+		///     Started offers number
 		/// </summary>
-		[JsonProperty("started")]
+		[JsonProperty(propertyName: "started")]
 		public int? Started { get; set; }
 	}
 }

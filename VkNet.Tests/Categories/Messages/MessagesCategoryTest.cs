@@ -1,61 +1,620 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using NUnit.Framework;
+using VkNet.Categories;
+using VkNet.Enums;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams;
+using VkNet.Tests.Helper;
 
 namespace VkNet.Tests.Categories
 {
-	using System;
-	using System.Linq;
-	using NUnit.Framework;
-	using VkNet.Categories;
-	using Enums;
-	using Enums.Filters;
-	using Model.RequestParams;
-
 	[TestFixture]
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[SuppressMessage(category: "ReSharper", checkId: "PublicMembersMustHaveComments")]
 	public class MessagesCategoryTest : BaseTest
 	{
-		public MessagesCategory Cat
-		{
-			get { return GetMockedMessagesCategory(); }
-		}
+		public MessagesCategory Cat => GetMockedMessagesCategory();
 
 		private MessagesCategory GetMockedMessagesCategory()
 		{
-			return new MessagesCategory(Api);
+			return new MessagesCategory(vk: Api);
+		}
+
+		[Test]
+		public void AddChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.AddChatUser(chatId: 2, userId: 2), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void AddChatUser_NormalCase_True()
+		{
+			Url = "https://api.vk.com/method/messages.addChatUser";
+
+			Json =
+					@"{
+					'response': 1
+				  }";
+
+			var result = Cat.AddChatUser(chatId: 2, userId: 7550525);
+
+			Assert.That(actual: result, expression: Is.True);
+		}
+
+		[Test]
+		public void CreateChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+
+			Assert.That(del: () => cat.CreateChat(userIds: new ulong[]
+			{
+					1
+					, 2
+			}, title: "hi, friends"), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void CreateChat_NormalCase_ChatId()
+		{
+			Url = "https://api.vk.com/method/messages.createChat";
+
+			Json =
+					@"{
+					'response': 3
+				  }";
+
+			var chatId = Cat.CreateChat(userIds: new ulong[]
+			{
+					5041431
+					, 10657891
+			}, title: "test chat's title");
+
+			Assert.That(actual: chatId, expression: Is.EqualTo(expected: 3));
+		}
+
+		[Test]
+		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+
+			Assert.That(del: () => cat.Delete(messageIds: new ulong[] { 1 }, spam: false, deleteForAll: false)
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void Delete_Id4446_True()
+		{
+			Url = "https://api.vk.com/method/messages.delete";
+
+			Json =
+					@"{
+					'response': {
+					  '4446': 1
+					}
+				  }";
+
+			var result = Cat.Delete(messageIds: new ulong[] { 4446 }, spam: false, deleteForAll: false);
+
+			Assert.That(actual: result[key: 4446], expression: Is.True);
+		}
+
+		[Test]
+		public void Delete_Id999999_False()
+		{
+			Url = "https://api.vk.com/method/messages.delete";
+
+			Json =
+					@"{
+					'error': {
+					  'error_code': 1,
+					  'error_msg': 'Unknown error occured',
+					  'request_params': [
+						{
+						  'key': 'oauth',
+						  'value': '1'
+						},
+						{
+						  'key': 'method',
+						  'value': 'messages.delete'
+						},
+						{
+						  'key': 'mids',
+						  'value': '999999'
+						},
+						{
+						  'key': 'access_token',
+						  'value': 'token'
+						}
+					  ]
+					}
+				  }";
+
+			Assert.That(del: () => Cat.Delete(messageIds: new ulong[] { 999999 }, spam: false, deleteForAll: false)
+					, expr: Throws.InstanceOf<VkApiException>());
+		}
+
+		[Test]
+		public void Delete_Multipre_4457And4464_True()
+		{
+			Url = "https://api.vk.com/method/messages.delete";
+
+			Json =
+					@"{
+					'response': {
+					  '4457': 1,
+					  '4464': 1
+					}
+				  }";
+
+			var dict = Cat.Delete(messageIds: new ulong[]
+			{
+					4457
+					, 4464
+			}, spam: false, deleteForAll: false);
+
+			Assert.That(actual: dict.Count, expression: Is.EqualTo(expected: 2));
+			Assert.That(actual: dict[key: 4457], expression: Is.True);
+			Assert.That(actual: dict[key: 4464], expression: Is.True);
+		}
+
+		[Test]
+		public void DeleteDialog_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.DeleteDialog(userId: 111), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void DeleteDialog_UserId_DeleteAllMessages()
+		{
+			Url = "https://api.vk.com/method/messages.deleteDialog";
+
+			Json =
+					@"{
+					'response': 1
+				  }";
+
+			var result = Cat.DeleteDialog(userId: 4460019);
+
+			Assert.That(actual: result, expression: Is.True);
+		}
+
+		[Test]
+		public void DeleteDialog_WithAllInputParams_DeleteTwoMessages()
+		{
+			Url = "https://api.vk.com/method/messages.deleteDialog";
+
+			Json =
+					@"{
+					'response': 1
+				  }";
+
+			var result = Cat.DeleteDialog(userId: 4460019, peerId: null, offset: null, count: 2);
+
+			Assert.That(actual: result, expression: Is.True);
+		}
+
+		[Test]
+		public void EditChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.EditChat(chatId: 2, title: "new title"), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void EditChat_NormalCase_True()
+		{
+			Url = "https://api.vk.com/method/messages.editChat";
+
+			Json =
+					@"{
+					'response': 1
+				  }";
+
+			var result = Cat.EditChat(chatId: 2, title: "new title");
+			Assert.True(condition: result);
 		}
 
 		[Test]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.Get(new MessagesGetParams
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.Get(@params: new MessagesGetParams()), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void Get_NormalCase_V521()
+		{
+			Url = "https://api.vk.com/method/messages.get";
+
+			Json =
+					@"{
+					'response': {
+					  'count': 5,
+					  'items': [
+						{
+						  'id': 34,
+						  'date': 1398242416,
+						  'out': 0,
+						  'user_id': 562508789,
+						  'read_state': 0,
+						  'title': ' ... ',
+						  'body': 'fun'
+						},
+						{
+						  'id': 33,
+						  'date': 1398242415,
+						  'out': 0,
+						  'user_id': 562508789,
+						  'read_state': 0,
+						  'title': ' ... ',
+						  'body': 'very'
+						}
+					  ]
+					}
+				  }";
+
+			var messages = Cat.Get(@params: new MessagesGetParams());
+
+			Assert.That(actual: messages.TotalCount, expression: Is.EqualTo(expected: 5));
+			Assert.That(actual: messages, expression: Is.Not.Null);
+			Assert.That(actual: messages.Messages.Count, expression: Is.EqualTo(expected: 2));
+
+			var message = messages.Messages.FirstOrDefault();
+			Assert.That(actual: message, expression: Is.Not.Null);
+			Assert.That(actual: message.Body, expression: Is.EqualTo(expected: "fun"));
+			Assert.That(actual: message.Id, expression: Is.EqualTo(expected: 34));
+			Assert.That(actual: message.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1398242416)));
+			Assert.That(actual: message.ReadState, expression: Is.EqualTo(expected: MessageReadState.Unreaded));
+			Assert.That(actual: message.Type, expression: Is.EqualTo(expected: MessageType.Received));
+			Assert.That(actual: message.UserId, expression: Is.EqualTo(expected: 562508789));
+			Assert.That(actual: message.Title, expression: Is.EqualTo(expected: " ... "));
+
+			var message1 = messages.Messages.Skip(count: 1).FirstOrDefault();
+			Assert.That(actual: message1, expression: Is.Not.Null);
+			Assert.That(actual: message1.Body, expression: Is.EqualTo(expected: "very"));
+			Assert.That(actual: message1.Id, expression: Is.EqualTo(expected: 33));
+			Assert.That(actual: message1.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1398242415)));
+			Assert.That(actual: message1.ReadState, expression: Is.EqualTo(expected: MessageReadState.Unreaded));
+			Assert.That(actual: message1.Type, expression: Is.EqualTo(expected: MessageType.Received));
+			Assert.That(actual: message1.UserId, expression: Is.EqualTo(expected: 562508789));
+			Assert.That(actual: message1.Title, expression: Is.EqualTo(expected: " ... "));
+		}
+
+		[Test]
+		public void Get_WithLastMessageIdParam_NormalCase_V521()
+		{
+			Url = "https://api.vk.com/method/messages.get";
+
+			Json =
+					@"{
+					'response': {
+					  'count': 5,
+					  'items': [
+						{
+						  'id': 31,
+						  'date': 1398242412,
+						  'out': 0,
+						  'user_id': 123508789,
+						  'read_state': 0,
+						  'title': ' ... ',
+						  'body': 'may'
+						}
+					  ]
+					}
+				  }";
+
+			var messages = Cat.Get(@params: new MessagesGetParams
 			{
-			}), Throws.InstanceOf<AccessTokenInvalidException>());
+					LastMessageId = 30
+			});
+
+			Assert.That(actual: messages.TotalCount, expression: Is.EqualTo(expected: 5));
+			Assert.That(actual: messages, expression: Is.Not.Null);
+			Assert.That(actual: messages.Messages.Count, expression: Is.EqualTo(expected: 1));
+
+			var message = messages.Messages.FirstOrDefault();
+			Assert.That(actual: message, expression: Is.Not.Null);
+			Assert.That(actual: message.Id, expression: Is.EqualTo(expected: 31));
+			Assert.That(actual: message.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1398242412)));
+			Assert.That(actual: message.Type, expression: Is.EqualTo(expected: MessageType.Received));
+			Assert.That(actual: message.UserId, expression: Is.EqualTo(expected: 123508789));
+			Assert.That(actual: message.ReadState, expression: Is.EqualTo(expected: MessageReadState.Unreaded));
+			Assert.That(actual: message.Title, expression: Is.EqualTo(expected: " ... "));
+			Assert.That(actual: message.Body, expression: Is.EqualTo(expected: "may"));
+		}
+
+		[Test]
+		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.GetById(messageId: 1), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+
+			Assert.That(del: () => cat.GetById(messageIds: new ulong[]
+			{
+					1
+					, 3
+					, 5
+			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void GetById_Multiple_NormalCase_Messages()
+		{
+			Url = "https://api.vk.com/method/messages.getById";
+
+			Json =
+					@"{
+					'response': {
+					  'count': 3,
+					  'items': [{
+						'id': 1,
+						'date': 1197929120,
+						'out': 0,
+						'user_id': 684559,
+						'read_state': 1,
+						'title': ' ... ',
+						'body': 'Привеееет!!!!!!!!!!!'
+					  },
+					  {
+						'id': 3,
+						'date': 1198616980,
+						'out': 1,
+						'user_id': 684559,
+						'read_state': 1,
+						'title': 'Re: Как там зачетная неделя продвигаетсо?)',
+						'body': 'Парят и парят во все дыры)... у тебя как?'
+					  },
+					  {
+						'id': 5,
+						'date': 1198617408,
+						'out': 0,
+						'user_id': 684559,
+						'read_state': 1,
+						'title': 'Re(2): Как там зачетная неделя продвигаетсо?)',
+						'body': 'Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)'
+					  }]
+					}
+				  }";
+
+			var msgs = Cat.GetById(messageIds: new ulong[]
+			{
+					1
+					, 3
+					, 5
+			});
+
+			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 3));
+			Assert.That(actual: msgs.Count, expression: Is.EqualTo(expected: 3));
+
+			Assert.That(actual: msgs[index: 2].Id, expression: Is.EqualTo(expected: 5));
+			Assert.That(actual: msgs[index: 2].Type, expression: Is.EqualTo(expected: MessageType.Received));
+			Assert.That(actual: msgs[index: 2].UserId, expression: Is.EqualTo(expected: 684559));
+			Assert.That(actual: msgs[index: 2].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs[index: 2].Title, expression: Is.EqualTo(expected: "Re(2): Как там зачетная неделя продвигаетсо?)"));
+
+			Assert.That(actual: msgs[index: 2].Body
+					, expression: Is.EqualTo(expected: "Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)"));
+
+			Assert.That(actual: msgs[index: 1].Id, expression: Is.EqualTo(expected: 3));
+			Assert.That(actual: msgs[index: 1].Type, expression: Is.EqualTo(expected: MessageType.Sended));
+			Assert.That(actual: msgs[index: 1].UserId, expression: Is.EqualTo(expected: 684559));
+			Assert.That(actual: msgs[index: 1].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs[index: 1].Title, expression: Is.EqualTo(expected: "Re: Как там зачетная неделя продвигаетсо?)"));
+			Assert.That(actual: msgs[index: 1].Body, expression: Is.EqualTo(expected: "Парят и парят во все дыры)... у тебя как?"));
+			Assert.That(actual: msgs[index: 0].Id, expression: Is.EqualTo(expected: 1));
+			Assert.That(actual: msgs[index: 0].Type, expression: Is.EqualTo(expected: MessageType.Received));
+			Assert.That(actual: msgs[index: 0].UserId, expression: Is.EqualTo(expected: 684559));
+			Assert.That(actual: msgs[index: 0].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs[index: 0].Title, expression: Is.EqualTo(expected: " ... "));
+			Assert.That(actual: msgs[index: 0].Body, expression: Is.EqualTo(expected: "Привеееет!!!!!!!!!!!"));
+		}
+
+		[Test]
+		[Ignore(reason: "")]
+		public void GetById_NormalCase_Message()
+		{
+			Url = "https://api.vk.com/method/messages.getById";
+
+			Json =
+					@"{
+					'response': [
+					  1,
+					  {
+						'id': 1,
+						'date': 1197929120,
+						'out': 0,
+						'user_id': 684559,
+						'read_state': 1,
+						'title': ' ... ',
+						'body': 'Привеееет!!!!!!!!!!!'
+					  }
+					]
+				  }";
+
+			var msg = Cat.GetById(messageId: 1);
+
+			Assert.That(actual: msg.Id, expression: Is.EqualTo(expected: 1));
+
+			Assert.That(actual: msg.Date
+					, expression: Is.EqualTo(expected: new DateTime(year: 2007, month: 12, day: 18, hour: 2, minute: 5, second: 20
+							, kind: DateTimeKind.Utc)));
+
+			Assert.That(actual: msg.Type, expression: Is.EqualTo(expected: MessageType.Received));
+			Assert.That(actual: msg.UserId, expression: Is.EqualTo(expected: 684559));
+			Assert.That(actual: msg.ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msg.Title, expression: Is.EqualTo(expected: " ... "));
+			Assert.That(actual: msg.Body, expression: Is.EqualTo(expected: "Привеееет!!!!!!!!!!!"));
+		}
+
+		[Test]
+		public void GetChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.GetChat(chatId: 1), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void GetChat_NormalCase_ChatObject()
+		{
+			Url = "https://api.vk.com/method/messages.getChat";
+
+			Json =
+					@"{
+					'response': {
+					  'type': 'chat',
+					  'id': 2,
+					  'title': 'test chat title',
+					  'admin_id': '4793858',
+					  'users': [
+						4793858,
+						5041431,
+						10657891
+					  ]
+					}
+				  }";
+
+			var chat = Cat.GetChat(chatId: 2);
+
+			Assert.That(actual: chat.Id, expression: Is.EqualTo(expected: 2));
+			Assert.That(actual: chat.Title, expression: Is.EqualTo(expected: "test chat title"));
+			Assert.That(actual: chat.AdminId, expression: Is.EqualTo(expected: 4793858));
+			Assert.That(actual: chat.Users.Count, expression: Is.EqualTo(expected: 3));
+			Assert.That(actual: chat.Users.ElementAt(index: 0), expression: Is.EqualTo(expected: 4793858));
+			Assert.That(actual: chat.Users.ElementAt(index: 1), expression: Is.EqualTo(expected: 5041431));
+			Assert.That(actual: chat.Users.ElementAt(index: 2), expression: Is.EqualTo(expected: 10657891));
+		}
+
+		[Test]
+		public void GetChatUsers_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+
+			Assert.That(del: () => cat.GetChatUsers(chatIds: new List<long> { 2 }, fields: null, nameCase: null)
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void GetChatUsers_ChatId_UserIds()
+		{
+			Url = "https://api.vk.com/method/messages.getChatUsers";
+
+			Json =
+					@"{
+					'response': {
+                        2: [
+					  4793858,
+					  5041431,
+					  10657891
+					]}
+				  }";
+
+			var users = Cat.GetChatUsers(chatIds: new List<long> { 2 }, fields: null, nameCase: null).ToList();
+
+			Assert.That(actual: users.Count, expression: Is.EqualTo(expected: 3));
+		}
+
+		[Test]
+		public void GetChatUsers_ChatIdWithFields_Users()
+		{
+			Url = "https://api.vk.com/method/messages.getChatUsers";
+
+			Json =
+					@"{
+					'response': {
+                        2: [{
+						'uid': 4793858,
+						'first_name': 'Антон',
+						'last_name': 'Жидков',
+						'university': 0,
+						'university_name': '',
+						'faculty': 0,
+						'faculty_name': '',
+						'graduation': 0,
+						'invited_by': 4793858
+					  },
+					  {
+						'uid': 5041431,
+						'first_name': 'Тайфур',
+						'last_name': 'Касеев',
+						'university': 431,
+						'university_name': 'ВолгГТУ',
+						'faculty': 3162,
+						'faculty_name': 'Электроники и вычислительной техники',
+						'graduation': 2012,
+						'invited_by': 4793858
+					  },
+					  {
+						'uid': 10657891,
+						'first_name': 'Максим',
+						'last_name': 'Денисов',
+						'university': 431,
+						'university_name': 'ВолгГТУ',
+						'faculty': 3162,
+						'faculty_name': 'Электроники и вычислительной техники',
+						'graduation': 2011,
+						'invited_by': 4793858
+					  }
+					]}
+				  }";
+
+			var users = Cat.GetChatUsers(chatIds: new List<long> { 2 }, fields: UsersFields.Education, nameCase: null);
+
+			Assert.That(actual: users.Count, expression: Is.EqualTo(expected: 3));
+			Assert.That(actual: users[index: 0].Id, expression: Is.EqualTo(expected: 4793858));
+			Assert.That(actual: users[index: 0].FirstName, expression: Is.EqualTo(expected: "Антон"));
+			Assert.That(actual: users[index: 0].LastName, expression: Is.EqualTo(expected: "Жидков"));
+			Assert.That(actual: users[index: 0].Education, expression: Is.Null);
+			Assert.That(actual: users[index: 0].InvitedBy, expression: Is.EqualTo(expected: 4793858));
+
+			Assert.That(actual: users[index: 1].Id, expression: Is.EqualTo(expected: 5041431));
+			Assert.That(actual: users[index: 1].FirstName, expression: Is.EqualTo(expected: "Тайфур"));
+			Assert.That(actual: users[index: 1].LastName, expression: Is.EqualTo(expected: "Касеев"));
+			Assert.That(actual: users[index: 1].Education.UniversityId, expression: Is.EqualTo(expected: 431));
+			Assert.That(actual: users[index: 1].InvitedBy, expression: Is.EqualTo(expected: 4793858));
+
+			Assert.That(actual: users[index: 2].Id, expression: Is.EqualTo(expected: 10657891));
+			Assert.That(actual: users[index: 2].FirstName, expression: Is.EqualTo(expected: "Максим"));
+			Assert.That(actual: users[index: 2].LastName, expression: Is.EqualTo(expected: "Денисов"));
+			Assert.That(actual: users[index: 2].Education.UniversityId, expression: Is.EqualTo(expected: 431));
+			Assert.That(actual: users[index: 2].Education.FacultyId, expression: Is.EqualTo(expected: 3162));
+			Assert.That(actual: users[index: 2].Education.Graduation, expression: Is.EqualTo(expected: 2011));
+			Assert.That(actual: users[index: 2].InvitedBy, expression: Is.EqualTo(expected: 4793858));
 		}
 
 		[Test]
 		public void GetDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetDialogs(new MessagesDialogsGetParams
+			var cat = new MessagesCategory(vk: new VkApi());
+
+			Assert.That(del: () => cat.GetDialogs(@params: new MessagesDialogsGetParams
 			{
-				Count = 0, 
-				Offset = 201
-			}), Throws.InstanceOf<AccessTokenInvalidException>());
+					Count = 0
+					, Offset = 201
+			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
-		[Ignore("")]
+		[Ignore(reason: "")]
 		public void GetDialogs_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getDialogs";
+
 			Json =
-				@"{
+					@"{
 					'response': [
 					  18,
 					  {
@@ -69,93 +628,46 @@ namespace VkNet.Tests.Categories
 					  }
 					]
 				  }";
-			var msgs = Cat.GetDialogs(new MessagesDialogsGetParams
+
+			var msgs = Cat.GetDialogs(@params: new MessagesDialogsGetParams
 			{
-				Count = 77128, 
-				Offset = 0, 
-				Unread = false
+					Count = 77128
+					, Offset = 0
+					, Unread = false
 			});
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(18));
-			Assert.That(msgs.Messages.Count, Is.EqualTo(1));
-			Assert.That(msgs.Messages[0].Id, Is.EqualTo(2105));
-			Assert.That(msgs.Messages[0].Date, Is.EqualTo(new DateTime(2010, 9, 25, 19, 17, 32, DateTimeKind.Utc)));
-			Assert.That(msgs.Messages[0].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs.Messages[0].UserId, Is.EqualTo(77128));
-			Assert.That(msgs.Messages[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs.Messages[0].Title, Is.EqualTo("Re(15): Привет!"));
-			Assert.That(msgs.Messages[0].Body, Is.EqualTo("не..не зеленая точно..."));
+			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 18));
+			Assert.That(actual: msgs.Messages.Count, expression: Is.EqualTo(expected: 1));
+			Assert.That(actual: msgs.Messages[index: 0].Id, expression: Is.EqualTo(expected: 2105));
+
+			Assert.That(actual: msgs.Messages[index: 0].Date
+					, expression: Is.EqualTo(expected: new DateTime(year: 2010, month: 9, day: 25, hour: 19, minute: 17, second: 32
+							, kind: DateTimeKind.Utc)));
+
+			Assert.That(actual: msgs.Messages[index: 0].Type, expression: Is.EqualTo(expected: MessageType.Received));
+			Assert.That(actual: msgs.Messages[index: 0].UserId, expression: Is.EqualTo(expected: 77128));
+			Assert.That(actual: msgs.Messages[index: 0].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs.Messages[index: 0].Title, expression: Is.EqualTo(expected: "Re(15): Привет!"));
+			Assert.That(actual: msgs.Messages[index: 0].Body, expression: Is.EqualTo(expected: "не..не зеленая точно..."));
 		}
 
 		[Test]
 		public void GetHistory_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetHistory(new MessagesGetHistoryParams
+			var cat = new MessagesCategory(vk: new VkApi());
+
+			Assert.That(del: () => cat.GetHistory(@params: new MessagesGetHistoryParams
 			{
-				Reversed = false,
-				UserId = 1
-			}), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void GetHistory_ContainsSticker_Error47()
-		{
-			Url = "https://api.vk.com/method/messages.getHistory";
-			Json = @"{
-	'response': {
-		'count': 6,
-		'items': [
-			{
-				'id': 890123,
-				'body': '',
-				'user_id': 45678,
-				'from_id': 876543,
-				'date': 1415205537,
-				'read_state': 1,
-				'out': 0,
-				'attachments': [
-					{
-						'type': 'sticker',
-						'sticker': {
-							'id': 12345,
-							'product_id': 54321,
-							'images': [],
-							'images_with_background': []
-						}
-					}
-				]
-			}
-		]
-	}
-}";
-			var msgs = Cat.GetHistory(new MessagesGetHistoryParams
-			{
-				UserId = 7712,  
-				Count = 5, 
-				Offset = 3
-			});
-
-			// asserts
-			Assert.That(msgs.TotalCount, Is.EqualTo(6));
-			Assert.That(msgs.Messages.Count, Is.EqualTo(1));
-			var msg = msgs.Messages.FirstOrDefault();
-
-			Assert.That(msg, Is.Not.Null);
-			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
-
-			var sticker = msg.Attachments[0].Instance as Sticker;
-			Assert.That(sticker, Is.Not.Null);
-
-			Assert.That(sticker.Id, Is.EqualTo(12345));
-			Assert.That(sticker.ProductId, Is.EqualTo(54321));
-			
+					Reversed = false
+					, UserId = 1
+			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void GetHistory_ContainsRepost_Error46()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
+
 			Json = @"{
 			   'response':{
 				  'count':1940,
@@ -222,47 +734,104 @@ namespace VkNet.Tests.Categories
 				  ]
 			   }
 			}";
-			var msgs = Cat.GetHistory(new MessagesGetHistoryParams
+
+			var msgs = Cat.GetHistory(@params: new MessagesGetHistoryParams
 			{
-				UserId = 7712
+					UserId = 7712
 			});
 
 			// assertions
-			Assert.That(msgs.TotalCount, Is.EqualTo(1940));
+			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 1940));
 			var msg = msgs.Messages.FirstOrDefault();
-			Assert.That(msg, Is.Not.Null);
-			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
+			Assert.That(actual: msg, expression: Is.Not.Null);
+			Assert.That(actual: msg.Attachments.Count, expression: Is.EqualTo(expected: 1));
 
-			var wall = msg.Attachments[0].Instance as Post;
+			var wall = msg.Attachments[index: 0].Instance as Post;
 
-			Assert.That(wall, Is.Not.Null);
-			Assert.That(wall.Id, Is.EqualTo(6194));
-			Assert.That(wall.FromId, Is.EqualTo(-1267));
+			Assert.That(actual: wall, expression: Is.Not.Null);
+			Assert.That(actual: wall.Id, expression: Is.EqualTo(expected: 6194));
+			Assert.That(actual: wall.FromId, expression: Is.EqualTo(expected: -1267));
 
-			Assert.That(wall.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1414992610)));
-			Assert.That(wall.PostType, Is.EqualTo(PostType.Post));
-			Assert.That(wall.Text, Is.EqualTo(string.Empty));
-			Assert.That(wall.Comments.Count, Is.EqualTo(3));
-			Assert.That(wall.Comments.CanPost, Is.False);
-			Assert.That(wall.Likes.Count, Is.EqualTo(9191));
-			Assert.That(wall.Likes.UserLikes, Is.True);
-			Assert.That(wall.Likes.CanLike, Is.False);
-			Assert.That(wall.Likes.CanPublish, Is.EqualTo(true));
-			Assert.That(wall.Reposts.Count, Is.EqualTo(953));
-			Assert.That(wall.Reposts.UserReposted, Is.False);
-			Assert.That(wall.Attachments.Count, Is.EqualTo(1));
+			Assert.That(actual: wall.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1414992610)));
+			Assert.That(actual: wall.PostType, expression: Is.EqualTo(expected: PostType.Post));
+			Assert.That(actual: wall.Text, expression: Is.EqualTo(expected: string.Empty));
+			Assert.That(actual: wall.Comments.Count, expression: Is.EqualTo(expected: 3));
+			Assert.That(actual: wall.Comments.CanPost, expression: Is.False);
+			Assert.That(actual: wall.Likes.Count, expression: Is.EqualTo(expected: 9191));
+			Assert.That(actual: wall.Likes.UserLikes, expression: Is.True);
+			Assert.That(actual: wall.Likes.CanLike, expression: Is.False);
+			Assert.That(actual: wall.Likes.CanPublish, expression: Is.EqualTo(expected: true));
+			Assert.That(actual: wall.Reposts.Count, expression: Is.EqualTo(expected: 953));
+			Assert.That(actual: wall.Reposts.UserReposted, expression: Is.False);
+			Assert.That(actual: wall.Attachments.Count, expression: Is.EqualTo(expected: 1));
 
-			var photo = wall.Attachments[0].Instance as Photo;
-			Assert.That(photo, Is.Not.Null);
+			var photo = wall.Attachments[index: 0].Instance as Photo;
+			Assert.That(actual: photo, expression: Is.Not.Null);
 		}
 
 		[Test]
-		[Ignore("")]
+		public void GetHistory_ContainsSticker_Error47()
+		{
+			Url = "https://api.vk.com/method/messages.getHistory";
+
+			Json = @"{
+	'response': {
+		'count': 6,
+		'items': [
+			{
+				'id': 890123,
+				'body': '',
+				'user_id': 45678,
+				'from_id': 876543,
+				'date': 1415205537,
+				'read_state': 1,
+				'out': 0,
+				'attachments': [
+					{
+						'type': 'sticker',
+						'sticker': {
+							'id': 12345,
+							'product_id': 54321,
+							'images': [],
+							'images_with_background': []
+						}
+					}
+				]
+			}
+		]
+	}
+}";
+
+			var msgs = Cat.GetHistory(@params: new MessagesGetHistoryParams
+			{
+					UserId = 7712
+					, Count = 5
+					, Offset = 3
+			});
+
+			// asserts
+			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 6));
+			Assert.That(actual: msgs.Messages.Count, expression: Is.EqualTo(expected: 1));
+			var msg = msgs.Messages.FirstOrDefault();
+
+			Assert.That(actual: msg, expression: Is.Not.Null);
+			Assert.That(actual: msg.Attachments.Count, expression: Is.EqualTo(expected: 1));
+
+			var sticker = msg.Attachments[index: 0].Instance as Sticker;
+			Assert.That(actual: sticker, expression: Is.Not.Null);
+
+			Assert.That(actual: sticker.Id, expression: Is.EqualTo(expected: 12345));
+			Assert.That(actual: sticker.ProductId, expression: Is.EqualTo(expected: 54321));
+		}
+
+		[Test]
+		[Ignore(reason: "")]
 		public void GetHistory_NormalCaseAllFields_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
+
 			Json =
-				@"{
+					@"{
 					'response': [
 					  18,
 					  {
@@ -294,255 +863,207 @@ namespace VkNet.Tests.Categories
 					  }
 					]
 				  }";
-			var msgs = Cat.GetHistory(new MessagesGetHistoryParams());
 
-			Assert.That(msgs.Messages[2].Body, Is.EqualTo("думаю пива предложит попить"));
-			Assert.That(msgs.Messages[2].Id, Is.EqualTo(2095));
-			Assert.That(msgs.Messages[2].UserId, Is.EqualTo(4793858));
-			Assert.That(msgs.Messages[2].Date, Is.EqualTo(new DateTime(2010, 9, 25, 18, 34, 4, DateTimeKind.Utc)));
-			Assert.That(msgs.Messages[2].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs.Messages[2].Type, Is.EqualTo(MessageType.Sended));
+			var msgs = Cat.GetHistory(@params: new MessagesGetHistoryParams());
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(18));
-			Assert.That(msgs.Messages.Count, Is.EqualTo(3));
+			Assert.That(actual: msgs.Messages[index: 2].Body, expression: Is.EqualTo(expected: "думаю пива предложит попить"));
+			Assert.That(actual: msgs.Messages[index: 2].Id, expression: Is.EqualTo(expected: 2095));
+			Assert.That(actual: msgs.Messages[index: 2].UserId, expression: Is.EqualTo(expected: 4793858));
 
-			Assert.That(msgs.Messages[0].Id, Is.EqualTo(2093));
-			Assert.That(msgs.Messages[0].Body, Is.EqualTo("Таких литовкиных и сычевых"));
-			Assert.That(msgs.Messages[0].UserId, Is.EqualTo(4793858));
-			Assert.That(msgs.Messages[0].Date, Is.EqualTo(new DateTime(2010, 9, 25, 18, 24, 48, DateTimeKind.Utc)));
-			Assert.That(msgs.Messages[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs.Messages[0].Type, Is.EqualTo(MessageType.Sended));
+			Assert.That(actual: msgs.Messages[index: 2].Date
+					, expression: Is.EqualTo(expected: new DateTime(year: 2010, month: 9, day: 25, hour: 18, minute: 34, second: 4
+							, kind: DateTimeKind.Utc)));
 
-			Assert.That(msgs.Messages[1].Body, Is.EqualTo("в одноклассниках и в майле есть."));
-			Assert.That(msgs.Messages[1].Id, Is.EqualTo(2094));
-			Assert.That(msgs.Messages[1].UserId, Is.EqualTo(7712));
-			Assert.That(msgs.Messages[1].Date, Is.EqualTo(new DateTime(2010, 9, 25, 18, 26, 56, DateTimeKind.Utc)));
-			Assert.That(msgs.Messages[1].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs.Messages[1].Type, Is.EqualTo(MessageType.Received));
+			Assert.That(actual: msgs.Messages[index: 2].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs.Messages[index: 2].Type, expression: Is.EqualTo(expected: MessageType.Sended));
+
+			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 18));
+			Assert.That(actual: msgs.Messages.Count, expression: Is.EqualTo(expected: 3));
+
+			Assert.That(actual: msgs.Messages[index: 0].Id, expression: Is.EqualTo(expected: 2093));
+			Assert.That(actual: msgs.Messages[index: 0].Body, expression: Is.EqualTo(expected: "Таких литовкиных и сычевых"));
+			Assert.That(actual: msgs.Messages[index: 0].UserId, expression: Is.EqualTo(expected: 4793858));
+
+			Assert.That(actual: msgs.Messages[index: 0].Date
+					, expression: Is.EqualTo(expected: new DateTime(year: 2010, month: 9, day: 25, hour: 18, minute: 24, second: 48
+							, kind: DateTimeKind.Utc)));
+
+			Assert.That(actual: msgs.Messages[index: 0].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs.Messages[index: 0].Type, expression: Is.EqualTo(expected: MessageType.Sended));
+
+			Assert.That(actual: msgs.Messages[index: 1].Body, expression: Is.EqualTo(expected: "в одноклассниках и в майле есть."));
+			Assert.That(actual: msgs.Messages[index: 1].Id, expression: Is.EqualTo(expected: 2094));
+			Assert.That(actual: msgs.Messages[index: 1].UserId, expression: Is.EqualTo(expected: 7712));
+
+			Assert.That(actual: msgs.Messages[index: 1].Date
+					, expression: Is.EqualTo(expected: new DateTime(year: 2010, month: 9, day: 25, hour: 18, minute: 26, second: 56
+							, kind: DateTimeKind.Utc)));
+
+			Assert.That(actual: msgs.Messages[index: 1].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs.Messages[index: 1].Type, expression: Is.EqualTo(expected: MessageType.Received));
 		}
 
 		[Test]
-		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		public void GetLastActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetById(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.GetLastActivity(userId: 1), expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
-		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		public void GetLastActivity_NormalCast_LastActivityObject()
 		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetById(new ulong[] { 1, 3, 5 }), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
+			Url = "https://api.vk.com/method/messages.getLastActivity";
 
-		[Test]
-		[Ignore("")]
-		public void GetById_NormalCase_Message()
-		{
-			Url = "https://api.vk.com/method/messages.getById";
 			Json =
-				@"{
-					'response': [
-					  1,
-					  {
-						'id': 1,
-						'date': 1197929120,
-						'out': 0,
-						'user_id': 684559,
-						'read_state': 1,
-						'title': ' ... ',
-						'body': 'Привеееет!!!!!!!!!!!'
-					  }
-					]
-				  }";
-
-			var msg = Cat.GetById(1);
-
-			Assert.That(msg.Id, Is.EqualTo(1));
-			Assert.That(msg.Date, Is.EqualTo(new DateTime(2007, 12, 18, 2, 5, 20, DateTimeKind.Utc)));
-			Assert.That(msg.Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msg.UserId, Is.EqualTo(684559));
-			Assert.That(msg.ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msg.Title, Is.EqualTo(" ... "));
-			Assert.That(msg.Body, Is.EqualTo("Привеееет!!!!!!!!!!!"));
-		}
-
-		[Test]
-		public void GetById_Multiple_NormalCase_Messages()
-		{
-			Url = "https://api.vk.com/method/messages.getById";
-			Json =
-				@"{
+					@"{
 					'response': {
-					  'count': 3,
-					  'items': [{
-						'id': 1,
-						'date': 1197929120,
-						'out': 0,
-						'user_id': 684559,
-						'read_state': 1,
-						'title': ' ... ',
-						'body': 'Привеееет!!!!!!!!!!!'
-					  },
-					  {
-						'id': 3,
-						'date': 1198616980,
-						'out': 1,
-						'user_id': 684559,
-						'read_state': 1,
-						'title': 'Re: Как там зачетная неделя продвигаетсо?)',
-						'body': 'Парят и парят во все дыры)... у тебя как?'
-					  },
-					  {
-						'id': 5,
-						'date': 1198617408,
-						'out': 0,
-						'user_id': 684559,
-						'read_state': 1,
-						'title': 'Re(2): Как там зачетная неделя продвигаетсо?)',
-						'body': 'Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)'
-					  }]
+					  'online': 0,
+					  'time': 1344484645
 					}
 				  }";
 
-			var msgs = Cat.GetById(new ulong[] { 1, 3, 5 });
+			var activity = Cat.GetLastActivity(userId: 77128);
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(3));
-			Assert.That(msgs.Count, Is.EqualTo(3));
+			Assert.That(actual: activity.UserId, expression: Is.EqualTo(expected: 77128));
+			Assert.That(actual: activity.IsOnline, expression: Is.False);
 
-			Assert.That(msgs[2].Id, Is.EqualTo(5));
-			Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs[2].UserId, Is.EqualTo(684559));
-			Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[2].Title, Is.EqualTo("Re(2): Как там зачетная неделя продвигаетсо?)"));
-			Assert.That(msgs[2].Body, Is.EqualTo("Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)"));
-
-			Assert.That(msgs[1].Id, Is.EqualTo(3));
-			Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Sended));
-			Assert.That(msgs[1].UserId, Is.EqualTo(684559));
-			Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[1].Title, Is.EqualTo("Re: Как там зачетная неделя продвигаетсо?)"));
-			Assert.That(msgs[1].Body, Is.EqualTo("Парят и парят во все дыры)... у тебя как?"));
-			Assert.That(msgs[0].Id, Is.EqualTo(1));
-			Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs[0].UserId, Is.EqualTo(684559));
-			Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[0].Title, Is.EqualTo(" ... "));
-			Assert.That(msgs[0].Body, Is.EqualTo("Привеееет!!!!!!!!!!!"));
+			Assert.That(actual: activity.Time
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 8, day: 9, hour: 3, minute: 57, second: 25
+							, kind: DateTimeKind.Utc)));
 		}
 
 		[Test]
-		public void SearchDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		public void GetLongPollServer_NormalCase_LongPollServerResponse()
 		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.SearchDialogs("hello"), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
+			Url = "https://api.vk.com/method/messages.getLongPollServer";
 
-		[Test]
-		public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
-		{
-			Url = "https://api.vk.com/method/messages.searchDialogs";
-			Json = @"{
-                    'response': []
-                  }";
-
-			var response = Cat.SearchDialogs("привет");
-
-			Assert.That(response, Is.Null);
-		}
-
-		[Test]
-		public void SearchDialogs_NastyaQuery_TwoProfiles()
-		{
-			Url = "https://api.vk.com/method/messages.searchDialogs";
 			Json =
-				@"{
-					'response': [
-					  {
-						'type': 'profile',
-						'uid': 7503978,
-						'first_name': 'Настя',
-						'last_name': 'Иванова'
-					  },
-					  {
-						'type': 'profile',
-						'uid': 68274561,
-						'first_name': 'Настя',
-						'last_name': 'Петрова'
-					  }
-					]
+					@"{
+					'response': {
+					  'key': '6f4120988efaf3a7d398054b5bb5d019c5844bz3',
+					  'server': 'im46.vk.com/im1858',
+					  'ts': 1627957305
+					}
 				  }";
 
-			var response = Cat.SearchDialogs("Настя");
+			var response = Api.Messages.GetLongPollServer();
 
-			Assert.That(response.Users.Count, Is.EqualTo(2));
-			Assert.That(response.Chats.Count, Is.EqualTo(0));
-			Assert.That(response.Users.ElementAt(0).Id, Is.EqualTo(7503978));
-			Assert.That(response.Users.ElementAt(0).FirstName, Is.EqualTo("Настя"));
-			Assert.That(response.Users.ElementAt(0).LastName, Is.EqualTo("Иванова"));
-			Assert.That(response.Users.ElementAt(1).Id, Is.EqualTo(68274561));
-			Assert.That(response.Users.ElementAt(1).FirstName, Is.EqualTo("Настя"));
-			Assert.That(response.Users.ElementAt(1).LastName, Is.EqualTo("Петрова"));
+			Assert.That(actual: response.Key, expression: Is.EqualTo(expected: "6f4120988efaf3a7d398054b5bb5d019c5844bz3"));
+			Assert.That(actual: response.Server, expression: Is.EqualTo(expected: "im46.vk.com/im1858"));
+			Assert.That(actual: response.Ts, expression: Is.EqualTo(expected: 1627957305));
 		}
 
 		[Test]
-		public void SearchDialogs_ProfileAndChat_Response()
+		public void GetLongPollServer_ThrowArgumentNullException()
 		{
-			Url = "https://api.vk.com/method/messages.searchDialogs";
+			Assert.That(del: () => Api.Messages.GetLongPollServer(), expr: Throws.InstanceOf<ArgumentException>());
+		}
+
+		[Test]
+		public void MarkAsRead_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+
+			Assert.That(del: () => cat.MarkAsRead(messageIds: new List<long> { 1 }, peerId: null)
+					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void MarkAsRead_Multiple_NormalCase_True()
+		{
+			Url = "https://api.vk.com/method/messages.markAsRead";
+
 			Json =
-				@"{
-					'response': [
-					  {
-						'type': 'profile',
-						'uid': 1708231,
-						'first_name': 'Григорий',
-						'last_name': 'Клюшников'
-					  },
-					  {
-						'type': 'chat',
-						'id': 109,
-						'title': 'Андрей, Григорий',
-						'users': [
-						  66748,
-						  6492,
-						  1708231
-						]
-					  }
-					]
+					@"{
+					'response': 1
 				  }";
 
-			var response = Cat.SearchDialogs("Маша");
+			var result = Cat.MarkAsRead(messageIds: new long[]
+			{
+					2
+					, 3
+			}, peerId: null);
 
-			Assert.That(response.Users.Count, Is.EqualTo(1));
-			Assert.That(response.Chats.Count, Is.EqualTo(1));
+			Assert.That(actual: result, expression: Is.True);
+		}
 
-			Assert.That(response.Users[0].Id, Is.EqualTo(1708231));
-			Assert.That(response.Users[0].FirstName, Is.EqualTo("Григорий"));
-			Assert.That(response.Users[0].LastName, Is.EqualTo("Клюшников"));
+		[Test]
+		public void MarkAsRead_NormalCase_True()
+		{
+			Url = "https://api.vk.com/method/messages.markAsRead";
 
-			Assert.That(response.Chats[0].Id, Is.EqualTo(109));
-			Assert.That(response.Chats[0].Title, Is.EqualTo("Андрей, Григорий"));
-			Assert.That(response.Chats[0].Users.Count, Is.EqualTo(3));
-			Assert.That(response.Chats[0].Users.ElementAt(0), Is.EqualTo(66748));
-			Assert.That(response.Chats[0].Users.ElementAt(1), Is.EqualTo(6492));
-			Assert.That(response.Chats[0].Users.ElementAt(2), Is.EqualTo(1708231));
+			Json =
+					@"{
+					'response': 1
+				  }";
+
+			var result = Cat.MarkAsRead(messageIds: new List<long> { 1 }, peerId: null);
+
+			Assert.That(actual: result, expression: Is.True);
+		}
+
+		[Test]
+		public void RemoveChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.RemoveChatUser(chatId: 2, userId: 2), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void RemoveChatUser_NormalCase_True()
+		{
+			Url = "https://api.vk.com/method/messages.removeChatUser";
+
+			Json =
+					@"{
+					'response': 1
+				  }";
+
+			var result = Cat.RemoveChatUser(chatId: 2, userId: 7550525);
+
+			Assert.That(actual: result, expression: Is.True);
+		}
+
+		[Test]
+		public void Restore_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.Restore(messageId: 1), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void Restore_NormalCase_True()
+		{
+			Url = "https://api.vk.com/method/messages.restore";
+
+			Json =
+					@"{
+					'response': 1
+				  }";
+
+			var result = Cat.Restore(messageId: 134);
+
+			Assert.That(actual: result, expression: Is.True);
 		}
 
 		[Test]
 		public void Search_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.Search(new MessagesSearchParams
+			var cat = new MessagesCategory(vk: new VkApi());
+
+			Assert.That(del: () => cat.Search(@params: new MessagesSearchParams
 			{
-				Query = "привет"
-			}), Throws.InstanceOf<AccessTokenInvalidException>());
+					Query = "привет"
+			}), expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
-		[Ignore("")]
+		[Ignore(reason: "")]
 		public void Search_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.search";
+
 			Json = @"{
 				response: {
 					count: 18,
@@ -573,618 +1094,196 @@ namespace VkNet.Tests.Categories
 					emoji: 1
 					}]
 			}";
-			var msgs = Cat.Search(new MessagesSearchParams
+
+			var msgs = Cat.Search(@params: new MessagesSearchParams
 			{
-				Query = "привет",
-				Count = 3
+					Query = "привет"
+					, Count = 3
 			});
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(680));
-			Assert.That(msgs.Count, Is.EqualTo(3));
+			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 680));
+			Assert.That(actual: msgs.Count, expression: Is.EqualTo(expected: 3));
 
-			Assert.That(msgs[2].Id, Is.EqualTo(4414));
-			Assert.That(msgs[2].Date, Is.EqualTo(new DateTime(2012, 7, 13, 8, 46, 32, DateTimeKind.Utc)));
-			Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs[2].UserId, Is.EqualTo(245242));
-			Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[2].Title, Is.EqualTo(" ... "));
-			Assert.That(msgs[2].Body, Is.EqualTo("привет, антон))"));
+			Assert.That(actual: msgs[index: 2].Id, expression: Is.EqualTo(expected: 4414));
 
-			Assert.That(msgs[1].Id, Is.EqualTo(4415));
-			Assert.That(msgs[1].Date, Is.EqualTo(new DateTime(2012, 7, 13, 8, 46, 48, DateTimeKind.Utc)));
-			Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Sended));
-			Assert.That(msgs[1].UserId, Is.EqualTo(245242));
-			Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[1].Title, Is.EqualTo(" ... "));
-			Assert.That(msgs[1].Body, Is.EqualTo("привет))"));
+			Assert.That(actual: msgs[index: 2].Date
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 7, day: 13, hour: 8, minute: 46, second: 32
+							, kind: DateTimeKind.Utc)));
 
-			Assert.That(msgs[0].Id, Is.EqualTo(4442));
-			Assert.That(msgs[0].Date, Is.EqualTo(new DateTime(2012, 7, 31, 20, 2, 52, DateTimeKind.Utc)));
-			Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs[0].UserId, Is.EqualTo(1016149));
-			Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[0].Title, Is.EqualTo("..."));
-			Assert.That(msgs[0].Body, Is.EqualTo("Привет, Антон! Как дела?"));
+			Assert.That(actual: msgs[index: 2].Type, expression: Is.EqualTo(expected: MessageType.Received));
+			Assert.That(actual: msgs[index: 2].UserId, expression: Is.EqualTo(expected: 245242));
+			Assert.That(actual: msgs[index: 2].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs[index: 2].Title, expression: Is.EqualTo(expected: " ... "));
+			Assert.That(actual: msgs[index: 2].Body, expression: Is.EqualTo(expected: "привет, антон))"));
+
+			Assert.That(actual: msgs[index: 1].Id, expression: Is.EqualTo(expected: 4415));
+
+			Assert.That(actual: msgs[index: 1].Date
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 7, day: 13, hour: 8, minute: 46, second: 48
+							, kind: DateTimeKind.Utc)));
+
+			Assert.That(actual: msgs[index: 1].Type, expression: Is.EqualTo(expected: MessageType.Sended));
+			Assert.That(actual: msgs[index: 1].UserId, expression: Is.EqualTo(expected: 245242));
+			Assert.That(actual: msgs[index: 1].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs[index: 1].Title, expression: Is.EqualTo(expected: " ... "));
+			Assert.That(actual: msgs[index: 1].Body, expression: Is.EqualTo(expected: "привет))"));
+
+			Assert.That(actual: msgs[index: 0].Id, expression: Is.EqualTo(expected: 4442));
+
+			Assert.That(actual: msgs[index: 0].Date
+					, expression: Is.EqualTo(expected: new DateTime(year: 2012, month: 7, day: 31, hour: 20, minute: 2, second: 52
+							, kind: DateTimeKind.Utc)));
+
+			Assert.That(actual: msgs[index: 0].Type, expression: Is.EqualTo(expected: MessageType.Received));
+			Assert.That(actual: msgs[index: 0].UserId, expression: Is.EqualTo(expected: 1016149));
+			Assert.That(actual: msgs[index: 0].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
+			Assert.That(actual: msgs[index: 0].Title, expression: Is.EqualTo(expected: "..."));
+			Assert.That(actual: msgs[index: 0].Body, expression: Is.EqualTo(expected: "Привет, Антон! Как дела?"));
 		}
 
 		[Test]
-		[Ignore("")]
+		[Ignore(reason: "")]
 		public void Search_NotExistedQuery_EmptyList()
 		{
 			Url = "https://api.vk.com/method/messages.search";
+
 			Json =
-				@"{
+					@"{
 					'response': [
 					  0
 					]
 				  }";
-			var msgs = Cat.Search(new MessagesSearchParams
+
+			var msgs = Cat.Search(@params: new MessagesSearchParams
 			{
-				Query = "fsjkadoivhjioashdpfisd",
-				Count = 3
+					Query = "fsjkadoivhjioashdpfisd"
+					, Count = 3
 			});
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(0));
-			Assert.That(msgs.Count, Is.EqualTo(0));
-		}
-
-        [Test]
-		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.Delete(new ulong[]{1}, false, false), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 0));
+			Assert.That(actual: msgs.Count, expression: Is.EqualTo(expected: 0));
 		}
 
 		[Test]
-		public void Delete_Id4446_True()
+		public void SearchDialogs_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			Url = "https://api.vk.com/method/messages.delete";
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.SearchDialogs(query: "hello"), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
+		public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
+		{
+			Url = "https://api.vk.com/method/messages.searchDialogs";
+
+			Json = @"{
+                    'response': []
+                  }";
+
+			var response = Cat.SearchDialogs(query: "привет");
+
+			Assert.That(actual: response, expression: Is.Null);
+		}
+
+		[Test]
+		public void SearchDialogs_NastyaQuery_TwoProfiles()
+		{
+			Url = "https://api.vk.com/method/messages.searchDialogs";
+
 			Json =
-				@"{
-					'response': {
-					  '4446': 1
-					}
+					@"{
+					'response': [
+					  {
+						'type': 'profile',
+						'uid': 7503978,
+						'first_name': 'Настя',
+						'last_name': 'Иванова'
+					  },
+					  {
+						'type': 'profile',
+						'uid': 68274561,
+						'first_name': 'Настя',
+						'last_name': 'Петрова'
+					  }
+					]
 				  }";
 
-			var result = Cat.Delete(new ulong[]{4446}, false, false);
+			var response = Cat.SearchDialogs(query: "Настя");
 
-			Assert.That(result[4446], Is.True);
+			Assert.That(actual: response.Users.Count, expression: Is.EqualTo(expected: 2));
+			Assert.That(actual: response.Chats.Count, expression: Is.EqualTo(expected: 0));
+			Assert.That(actual: response.Users.ElementAt(index: 0).Id, expression: Is.EqualTo(expected: 7503978));
+			Assert.That(actual: response.Users.ElementAt(index: 0).FirstName, expression: Is.EqualTo(expected: "Настя"));
+			Assert.That(actual: response.Users.ElementAt(index: 0).LastName, expression: Is.EqualTo(expected: "Иванова"));
+			Assert.That(actual: response.Users.ElementAt(index: 1).Id, expression: Is.EqualTo(expected: 68274561));
+			Assert.That(actual: response.Users.ElementAt(index: 1).FirstName, expression: Is.EqualTo(expected: "Настя"));
+			Assert.That(actual: response.Users.ElementAt(index: 1).LastName, expression: Is.EqualTo(expected: "Петрова"));
 		}
 
 		[Test]
-		public void Delete_Multipre_4457And4464_True()
+		public void SearchDialogs_ProfileAndChat_Response()
 		{
-			Url = "https://api.vk.com/method/messages.delete";
+			Url = "https://api.vk.com/method/messages.searchDialogs";
+
 			Json =
-				@"{
-					'response': {
-					  '4457': 1,
-					  '4464': 1
-					}
+					@"{
+					'response': [
+					  {
+						'type': 'profile',
+						'uid': 1708231,
+						'first_name': 'Григорий',
+						'last_name': 'Клюшников'
+					  },
+					  {
+						'type': 'chat',
+						'id': 109,
+						'title': 'Андрей, Григорий',
+						'users': [
+						  66748,
+						  6492,
+						  1708231
+						]
+					  }
+					]
 				  }";
 
-			var dict = Cat.Delete(new ulong[] {4457, 4464}, false, false);
+			var response = Cat.SearchDialogs(query: "Маша");
 
-			Assert.That(dict.Count, Is.EqualTo(2));
-			Assert.That(dict[4457], Is.True);
-			Assert.That(dict[4464], Is.True);
-		}
+			Assert.That(actual: response.Users.Count, expression: Is.EqualTo(expected: 1));
+			Assert.That(actual: response.Chats.Count, expression: Is.EqualTo(expected: 1));
 
-		[Test]
-		public void Delete_Id999999_False()
-		{
-			Url = "https://api.vk.com/method/messages.delete";
-			Json =
-				@"{
-					'error': {
-					  'error_code': 1,
-					  'error_msg': 'Unknown error occured',
-					  'request_params': [
-						{
-						  'key': 'oauth',
-						  'value': '1'
-						},
-						{
-						  'key': 'method',
-						  'value': 'messages.delete'
-						},
-						{
-						  'key': 'mids',
-						  'value': '999999'
-						},
-						{
-						  'key': 'access_token',
-						  'value': 'token'
-						}
-					  ]
-					}
-				  }";
+			Assert.That(actual: response.Users[index: 0].Id, expression: Is.EqualTo(expected: 1708231));
+			Assert.That(actual: response.Users[index: 0].FirstName, expression: Is.EqualTo(expected: "Григорий"));
+			Assert.That(actual: response.Users[index: 0].LastName, expression: Is.EqualTo(expected: "Клюшников"));
 
-			Assert.That(() => Cat.Delete(new ulong[]{999999},false,false), Throws.InstanceOf<VkApiException>());
-		}
-
-		[Test]
-		public void DeleteDialog_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.DeleteDialog(111), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void DeleteDialog_UserId_DeleteAllMessages()
-		{
-			Url = "https://api.vk.com/method/messages.deleteDialog";
-			Json =
-				@"{
-					'response': 1
-				  }";
-
-			var result = Cat.DeleteDialog(4460019);
-
-			Assert.That(result, Is.True);
-		}
-
-		[Test]
-		public void DeleteDialog_WithAllInputParams_DeleteTwoMessages()
-		{
-			Url = "https://api.vk.com/method/messages.deleteDialog";
-			Json =
-				@"{
-					'response': 1
-				  }";
-
-			var result = Cat.DeleteDialog(4460019, null, null, 2);
-
-			Assert.That(result, Is.True);
-		}
-
-		[Test]
-		public void Restore_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.Restore(1), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void Restore_NormalCase_True()
-		{
-			Url = "https://api.vk.com/method/messages.restore";
-			Json =
-				@"{
-					'response': 1
-				  }";
-
-			var result = Cat.Restore(134);
-
-			Assert.That(result, Is.True);
-		}
-
-		[Test]
-		public void MarkAsRead_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.MarkAsRead(new List<long>(){1},null), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void MarkAsRead_NormalCase_True()
-		{
-			Url = "https://api.vk.com/method/messages.markAsRead";
-			Json =
-				@"{
-					'response': 1
-				  }";
-
-			var result = Cat.MarkAsRead(new List<long>(){1},null);
-
-			Assert.That(result, Is.True);
-		}
-
-		[Test]
-		public void MarkAsRead_Multiple_NormalCase_True()
-		{
-			Url = "https://api.vk.com/method/messages.markAsRead";
-			Json =
-				@"{
-					'response': 1
-				  }";
-
-			var result = Cat.MarkAsRead(new long[]{2, 3}, null);
-
-			Assert.That(result, Is.True);
+			Assert.That(actual: response.Chats[index: 0].Id, expression: Is.EqualTo(expected: 109));
+			Assert.That(actual: response.Chats[index: 0].Title, expression: Is.EqualTo(expected: "Андрей, Григорий"));
+			Assert.That(actual: response.Chats[index: 0].Users.Count, expression: Is.EqualTo(expected: 3));
+			Assert.That(actual: response.Chats[index: 0].Users.ElementAt(index: 0), expression: Is.EqualTo(expected: 66748));
+			Assert.That(actual: response.Chats[index: 0].Users.ElementAt(index: 1), expression: Is.EqualTo(expected: 6492));
+			Assert.That(actual: response.Chats[index: 0].Users.ElementAt(index: 2), expression: Is.EqualTo(expected: 1708231));
 		}
 
 		[Test]
 		public void SetActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.SetActivity(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			var cat = new MessagesCategory(vk: new VkApi());
+			Assert.That(del: () => cat.SetActivity(userId: 1), expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
 		public void SetActivity_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.setActivity";
+
 			Json =
-				@"{
+					@"{
 					'response': 1
 				  }";
 
-			var result = Cat.SetActivity(7550525);
+			var result = Cat.SetActivity(userId: 7550525);
 
-			Assert.That(result, Is.True);
+			Assert.That(actual: result, expression: Is.True);
 		}
-
-		[Test]
-		public void GetLastActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetLastActivity(1), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void GetLastActivity_NormalCast_LastActivityObject()
-		{
-			Url = "https://api.vk.com/method/messages.getLastActivity";
-			Json =
-				@"{
-					'response': {
-					  'online': 0,
-					  'time': 1344484645
-					}
-				  }";
-
-			var activity = Cat.GetLastActivity(77128);
-
-			Assert.That(activity.UserId, Is.EqualTo(77128));
-			Assert.That(activity.IsOnline, Is.False);
-			Assert.That(activity.Time, Is.EqualTo(new DateTime(2012, 8, 9, 3, 57, 25, DateTimeKind.Utc)));
-		}
-
-		[Test]
-		public void GetChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetChat(1), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void GetChat_NormalCase_ChatObject()
-		{
-			Url = "https://api.vk.com/method/messages.getChat";
-			Json =
-				@"{
-					'response': {
-					  'type': 'chat',
-					  'id': 2,
-					  'title': 'test chat title',
-					  'admin_id': '4793858',
-					  'users': [
-						4793858,
-						5041431,
-						10657891
-					  ]
-					}
-				  }";
-
-			var chat = Cat.GetChat(2);
-
-			Assert.That(chat.Id, Is.EqualTo(2));
-			Assert.That(chat.Title, Is.EqualTo("test chat title"));
-			Assert.That(chat.AdminId, Is.EqualTo(4793858));
-			Assert.That(chat.Users.Count, Is.EqualTo(3));
-			Assert.That(chat.Users.ElementAt(0), Is.EqualTo(4793858));
-			Assert.That(chat.Users.ElementAt(1), Is.EqualTo(5041431));
-			Assert.That(chat.Users.ElementAt(2), Is.EqualTo(10657891));
-		}
-
-		[Test]
-		public void CreateChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.CreateChat(new ulong[] { 1, 2 }, "hi, friends"), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void CreateChat_NormalCase_ChatId()
-		{
-			Url = "https://api.vk.com/method/messages.createChat";
-
-            Json =
-				@"{
-					'response': 3
-				  }";
-
-			var chatId = Cat.CreateChat(new ulong[] { 5041431, 10657891 }, "test chat's title");
-
-			Assert.That(chatId, Is.EqualTo(3));
-		}
-
-		[Test]
-		public void EditChat_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.EditChat(2, "new title"), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void EditChat_NormalCase_True()
-		{
-			Url = "https://api.vk.com/method/messages.editChat";
-			Json =
-				@"{
-					'response': 1
-				  }";
-
-			var result = Cat.EditChat(2, "new title");
-			Assert.True(result);
-		}
-
-		[Test]
-		public void GetChatUsers_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetChatUsers(new List<long>(){2},null,null ), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void GetChatUsers_ChatId_UserIds()
-		{
-			Url = "https://api.vk.com/method/messages.getChatUsers";
-			Json =
-				@"{
-					'response': {
-                        2: [
-					  4793858,
-					  5041431,
-					  10657891
-					]}
-				  }";
-
-			var users = Cat.GetChatUsers(new List<long>(){2},null,null).ToList();
-
-			Assert.That(users.Count, Is.EqualTo(3));
-		}
-
-		[Test]
-		public void GetChatUsers_ChatIdWithFields_Users()
-		{
-			Url = "https://api.vk.com/method/messages.getChatUsers";
-            Json =
-				@"{
-					'response': {
-                        2: [{
-						'uid': 4793858,
-						'first_name': 'Антон',
-						'last_name': 'Жидков',
-						'university': 0,
-						'university_name': '',
-						'faculty': 0,
-						'faculty_name': '',
-						'graduation': 0,
-						'invited_by': 4793858
-					  },
-					  {
-						'uid': 5041431,
-						'first_name': 'Тайфур',
-						'last_name': 'Касеев',
-						'university': 431,
-						'university_name': 'ВолгГТУ',
-						'faculty': 3162,
-						'faculty_name': 'Электроники и вычислительной техники',
-						'graduation': 2012,
-						'invited_by': 4793858
-					  },
-					  {
-						'uid': 10657891,
-						'first_name': 'Максим',
-						'last_name': 'Денисов',
-						'university': 431,
-						'university_name': 'ВолгГТУ',
-						'faculty': 3162,
-						'faculty_name': 'Электроники и вычислительной техники',
-						'graduation': 2011,
-						'invited_by': 4793858
-					  }
-					]}
-				  }";
-
-            var users = Cat.GetChatUsers(new List<long>(){2}, UsersFields.Education, null);
-
-            Assert.That(users.Count, Is.EqualTo(3));
-			Assert.That(users[0].Id, Is.EqualTo(4793858));
-			Assert.That(users[0].FirstName, Is.EqualTo("Антон"));
-			Assert.That(users[0].LastName, Is.EqualTo("Жидков"));
-			Assert.That(users[0].Education, Is.Null);
-			Assert.That(users[0].InvitedBy, Is.EqualTo(4793858));
-
-			Assert.That(users[1].Id, Is.EqualTo(5041431));
-			Assert.That(users[1].FirstName, Is.EqualTo("Тайфур"));
-			Assert.That(users[1].LastName, Is.EqualTo("Касеев"));
-			Assert.That(users[1].Education.UniversityId, Is.EqualTo(431));
-			Assert.That(users[1].InvitedBy, Is.EqualTo(4793858));
-
-			Assert.That(users[2].Id, Is.EqualTo(10657891));
-			Assert.That(users[2].FirstName, Is.EqualTo("Максим"));
-			Assert.That(users[2].LastName, Is.EqualTo("Денисов"));
-			Assert.That(users[2].Education.UniversityId, Is.EqualTo(431));
-			Assert.That(users[2].Education.FacultyId, Is.EqualTo(3162));
-			Assert.That(users[2].Education.Graduation, Is.EqualTo(2011));
-			Assert.That(users[2].InvitedBy, Is.EqualTo(4793858));
-		}
-
-		[Test]
-		public void AddChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.AddChatUser(2, 2), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void AddChatUser_NormalCase_True()
-		{
-			Url = "https://api.vk.com/method/messages.addChatUser";
-			Json =
-				@"{
-					'response': 1
-				  }";
-
-			var result = Cat.AddChatUser(2, 7550525);
-
-			Assert.That(result, Is.True);
-		}
-
-		[Test]
-		public void RemoveChatUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.RemoveChatUser(2, 2), Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void RemoveChatUser_NormalCase_True()
-		{
-			Url = "https://api.vk.com/method/messages.removeChatUser";
-			Json =
-				@"{
-					'response': 1
-				  }";
-
-			var result = Cat.RemoveChatUser(2, 7550525);
-
-			Assert.That(result, Is.True);
-		}
-		
-
-		[Test]
-		public void GetLongPollServer_ThrowArgumentNullException()
-		{
-			Assert.That(() => Api.Messages.GetLongPollServer(), Throws.InstanceOf<ArgumentException>());
-		}
-
-		[Test]
-		public void GetLongPollServer_NormalCase_LongPollServerResponse()
-		{
-			Url = "https://api.vk.com/method/messages.getLongPollServer";
-			Json =
-				@"{
-					'response': {
-					  'key': '6f4120988efaf3a7d398054b5bb5d019c5844bz3',
-					  'server': 'im46.vk.com/im1858',
-					  'ts': 1627957305
-					}
-				  }";
-
-			var response = Api.Messages.GetLongPollServer();
-
-			Assert.That(response.Key, Is.EqualTo("6f4120988efaf3a7d398054b5bb5d019c5844bz3"));
-			Assert.That(response.Server, Is.EqualTo("im46.vk.com/im1858"));
-			Assert.That(response.Ts, Is.EqualTo(1627957305));
-		}
-
-		#region Get
-		
-
-		[Test]
-		public void Get_WithLastMessageIdParam_NormalCase_V521()
-		{
-			Url = "https://api.vk.com/method/messages.get";
-
-			Json =
-				@"{
-					'response': {
-					  'count': 5,
-					  'items': [
-						{
-						  'id': 31,
-						  'date': 1398242412,
-						  'out': 0,
-						  'user_id': 123508789,
-						  'read_state': 0,
-						  'title': ' ... ',
-						  'body': 'may'
-						}
-					  ]
-					}
-				  }";
-			var messages = Cat.Get(new MessagesGetParams
-			{
-				LastMessageId = 30
-			});
-
-			Assert.That(messages.TotalCount, Is.EqualTo(5));
-			Assert.That(messages, Is.Not.Null);
-			Assert.That(messages.Messages.Count, Is.EqualTo(1));
-
-			var message = messages.Messages.FirstOrDefault();
-			Assert.That(message, Is.Not.Null);
-			Assert.That(message.Id, Is.EqualTo(31));
-			Assert.That(message.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1398242412)));
-			Assert.That(message.Type, Is.EqualTo(MessageType.Received));
-			Assert.That(message.UserId, Is.EqualTo(123508789));
-			Assert.That(message.ReadState, Is.EqualTo(MessageReadState.Unreaded));
-			Assert.That(message.Title, Is.EqualTo(" ... "));
-			Assert.That(message.Body, Is.EqualTo("may"));
-		}
-
-		[Test]
-		public void Get_NormalCase_V521()
-		{
-			Url = "https://api.vk.com/method/messages.get";
-			Json =
-				@"{
-					'response': {
-					  'count': 5,
-					  'items': [
-						{
-						  'id': 34,
-						  'date': 1398242416,
-						  'out': 0,
-						  'user_id': 562508789,
-						  'read_state': 0,
-						  'title': ' ... ',
-						  'body': 'fun'
-						},
-						{
-						  'id': 33,
-						  'date': 1398242415,
-						  'out': 0,
-						  'user_id': 562508789,
-						  'read_state': 0,
-						  'title': ' ... ',
-						  'body': 'very'
-						}
-					  ]
-					}
-				  }";
-			var messages = Cat.Get(new MessagesGetParams
-			{
-			});
-
-			Assert.That(messages.TotalCount, Is.EqualTo(5));
-			Assert.That(messages, Is.Not.Null);
-			Assert.That(messages.Messages.Count, Is.EqualTo(2));
-
-			var message = messages.Messages.FirstOrDefault();
-			Assert.That(message, Is.Not.Null);
-			Assert.That(message.Body, Is.EqualTo("fun"));
-			Assert.That(message.Id, Is.EqualTo(34));
-			Assert.That(message.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1398242416)));
-			Assert.That(message.ReadState, Is.EqualTo(MessageReadState.Unreaded));
-			Assert.That(message.Type, Is.EqualTo(MessageType.Received));
-			Assert.That(message.UserId, Is.EqualTo(562508789));
-			Assert.That(message.Title, Is.EqualTo(" ... "));
-
-			var message1 = messages.Messages.Skip(1).FirstOrDefault();
-			Assert.That(message1, Is.Not.Null);
-			Assert.That(message1.Body, Is.EqualTo("very"));
-			Assert.That(message1.Id, Is.EqualTo(33));
-			Assert.That(message1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1398242415)));
-			Assert.That(message1.ReadState, Is.EqualTo(MessageReadState.Unreaded));
-			Assert.That(message1.Type, Is.EqualTo(MessageType.Received));
-			Assert.That(message1.UserId, Is.EqualTo(562508789));
-			Assert.That(message1.Title, Is.EqualTo(" ... "));
-		}
-		#endregion
 	}
 }

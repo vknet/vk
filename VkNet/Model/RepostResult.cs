@@ -4,34 +4,35 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Результат запроса wall.Repost
+	///     Результат запроса wall.Repost
 	/// </summary>
 	[Serializable]
 	public class RepostResult
 	{
 		/// <summary>
-		/// всегда содержит 1;
+		///     всегда содержит 1;
 		/// </summary>
 		public bool Success { get; set; }
 
 		/// <summary>
-		///  идентификатор созданной записи;
+		///     идентификатор созданной записи;
 		/// </summary>
 		public long? PostId { get; set; }
 
 		/// <summary>
-		/// количество репостов объекта с учетом осуществленного;
+		///     количество репостов объекта с учетом осуществленного;
 		/// </summary>
 		public int? RepostsCount { get; set; }
 
 		/// <summary>
-		/// число отметок «Мне нравится» у объекта.
+		///     число отметок «Мне нравится» у объекта.
 		/// </summary>
 		public int? LikesCount { get; set; }
 
-		#region ������
+	#region ������
+
 		/// <summary>
-		/// ��������� �� json.
+		///     ��������� �� json.
 		/// </summary>
 		/// <param name="response">����� �������.</param>
 		/// <returns></returns>
@@ -39,16 +40,15 @@ namespace VkNet.Model
 		{
 			var result = new RepostResult
 			{
-				Success = response["success"],
-				PostId = response["post_id"],
-				RepostsCount = response["reposts_count"],
-				LikesCount = response["likes_count"]
+					Success = response[key: "success"]
+					, PostId = response[key: "post_id"]
+					, RepostsCount = response[key: "reposts_count"]
+					, LikesCount = response[key: "likes_count"]
 			};
 
 			return result;
 		}
 
-		#endregion
-
+	#endregion
 	}
 }

@@ -1,28 +1,28 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    /// <summary>
-    /// Информация о стране.
-    /// </summary>
-    [Serializable]
-    public class Country
-    {
-        /// <summary>
-        /// Идентификатор страны.
-        /// </summary>
-        public long? Id { get; set; }
-
-        /// <summary>
-        /// Название страны.
-        /// </summary>
-        public string Title { get; set; }
-
-		#region public Methods
+	/// <summary>
+	///     Информация о стране.
+	/// </summary>
+	[Serializable]
+	public class Country
+	{
 		/// <summary>
-		/// Разобрать из json.
+		///     Идентификатор страны.
+		/// </summary>
+		public long? Id { get; set; }
+
+		/// <summary>
+		///     Название страны.
+		/// </summary>
+		public string Title { get; set; }
+
+	#region public Methods
+
+		/// <summary>
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -30,13 +30,13 @@ namespace VkNet.Model
 		{
 			var country = new Country
 			{
-				Id = response["comment_id"] ?? response["cid"] ?? response["id"],
-				Title = response["title"] ?? response["name"]
+					Id = response[key: "comment_id"] ?? response[key: "cid"] ?? response[key: "id"]
+					, Title = response[key: "title"] ?? response[key: "name"]
 			};
 
 			return country;
 		}
 
-		#endregion
+	#endregion
 	}
 }

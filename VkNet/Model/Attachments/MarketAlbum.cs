@@ -6,38 +6,39 @@ using VkNet.Utils;
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	/// Подборка товаров
+	///     Подборка товаров
 	/// </summary>
 	[Serializable]
 	public class MarketAlbum : MediaAttachment
 	{
 		static MarketAlbum()
 		{
-			RegisterType(typeof(MarketAlbum), "market_album");
+			RegisterType(type: typeof(MarketAlbum), match: "market_album");
 		}
+
 		/// <summary>
-		/// название подборки
+		///     название подборки
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		/// обложка подборки, объект, описывающий фотографию.
+		///     обложка подборки, объект, описывающий фотографию.
 		/// </summary>
 		public Photo Photo { get; set; }
 
 		/// <summary>
-		/// число товаров в подборке.
+		///     число товаров в подборке.
 		/// </summary>
 		public int Count { get; set; }
 
 		/// <summary>
-		/// дата обновления подборки в формате Unixtime.
+		///     дата обновления подборки в формате Unixtime.
 		/// </summary>
-		[JsonConverter(typeof(UnixDateTimeConverter))]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? UpdatedTime { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -45,12 +46,12 @@ namespace VkNet.Model.Attachments
 		{
 			var application = new MarketAlbum
 			{
-				Id = response["id"],
-				OwnerId = response["owner_id"],
-				Title = response["title"],
-				Photo = response["photo"],
-				Count = response["count"],
-				UpdatedTime = response["updated_time"]
+					Id = response[key: "id"]
+					, OwnerId = response[key: "owner_id"]
+					, Title = response[key: "title"]
+					, Photo = response[key: "photo"]
+					, Count = response[key: "count"]
+					, UpdatedTime = response[key: "updated_time"]
 			};
 
 			return application;

@@ -1,34 +1,32 @@
 ﻿using System;
-
 using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Кнопка.
+	///     Кнопка.
 	/// </summary>
 	[Serializable]
 	public class Button
 	{
 		/// <summary>
-		/// Название кнопки.
+		///     Название кнопки.
 		/// </summary>
 		public string Title { get; set; }
 
 		/// <summary>
-		/// Ссылка на которую ведет кнопка.
+		///     Ссылка на которую ведет кнопка.
 		/// </summary>
 		public Uri Uri { get; set; }
 
 		/// <summary>
-		/// 
 		/// </summary>
-		[JsonProperty("action")]
+		[JsonProperty(propertyName: "action")]
 		public LinkButtonAction Action { get; set; }
-		
+
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -36,9 +34,9 @@ namespace VkNet.Model
 		{
 			var button = new Button
 			{
-				Title = response["title"],
-				Uri = response["url"],
-				Action = response["action"]
+					Title = response[key: "title"]
+					, Uri = response[key: "url"]
+					, Action = response[key: "action"]
 			};
 
 			return button;

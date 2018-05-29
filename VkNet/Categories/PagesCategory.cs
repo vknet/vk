@@ -10,17 +10,17 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <summary>
-	/// Методы для работы с wiki.
+	///     Методы для работы с wiki.
 	/// </summary>
 	public partial class PagesCategory : IPagesCategory
 	{
 		/// <summary>
-		/// API
+		///     API
 		/// </summary>
 		private readonly VkApi _vk;
 
 		/// <summary>
-		/// Методы для работы с wiki.
+		///     Методы для работы с wiki.
 		/// </summary>
 		/// <param name="vk">API.</param>
 		public PagesCategory(VkApi vk)
@@ -29,52 +29,55 @@ namespace VkNet.Categories
 		}
 
 		/// <summary>
-		/// Возвращает информацию о вики-странице..
+		///     Возвращает информацию о вики-странице..
 		/// </summary>
 		/// <param name="params">Параметры запроса.</param>
 		/// <returns>
-		/// Возвращает информацию о вики-странице в виде объекта page.
-		/// Если был задан параметр need_source равный 1, дополнительно будет возвращено поле source.
-		/// Если был задан параметр need_html равный 1, дополнительно будет возвращено поле html..
+		///     Возвращает информацию о вики-странице в виде объекта page.
+		///     Если был задан параметр need_source равный 1, дополнительно будет возвращено поле source.
+		///     Если был задан параметр need_html равный 1, дополнительно будет возвращено поле html..
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/pages.get
+		///     Страница документации ВКонтакте http://vk.com/dev/pages.get
 		/// </remarks>
 		public Page Get(PagesGetParams @params)
 		{
-			return _vk.Call("pages.get", @params);
+			return _vk.Call(methodName: "pages.get", parameters: @params);
 		}
 
 		/// <summary>
-		/// Сохраняет текст вики-страницы..
+		///     Сохраняет текст вики-страницы..
 		/// </summary>
 		/// <param name="text">Новый текст страницы в вики-формате. строка (Строка).</param>
-		/// <param name="pageId">Идентификатор вики-страницы. Вместо page_id может быть передан параметр title. целое число (Целое число).</param>
+		/// <param name="pageId">
+		///     Идентификатор вики-страницы. Вместо page_id может быть передан параметр title. целое число (Целое
+		///     число).
+		/// </param>
 		/// <param name="groupId">Идентификатор сообщества, которому принадлежит вики-страница. целое число (Целое число).</param>
 		/// <param name="userId">Идентификатор пользователя, создавшего вики-страницу. целое число (Целое число).</param>
 		/// <param name="title">Название вики-страницы. строка (Строка).</param>
 		/// <returns>
-		/// В случае успеха возвращает id созданной страницы..
+		///     В случае успеха возвращает id созданной страницы..
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/pages.save
+		///     Страница документации ВКонтакте http://vk.com/dev/pages.save
 		/// </remarks>
-		public long Save(string text, long? pageId, long groupId,  long userId, string title = "")
+		public long Save(string text, long? pageId, long groupId, long userId, string title = "")
 		{
 			var parameters = new VkParameters
 			{
-				{ "text", text },
-				{ "group_id", groupId },
-				{ "user_id", userId },
-				{ "title", title },
-				{ "page_id", pageId }
+					{ "text", text }
+					, { "group_id", groupId }
+					, { "user_id", userId }
+					, { "title", title }
+					, { "page_id", pageId }
 			};
 
-			return _vk.Call("pages.save", parameters);
+			return _vk.Call(methodName: "pages.save", parameters: parameters);
 		}
 
 		/// <summary>
-		/// Сохраняет новые настройки доступа на чтение и редактирование вики-страницы.
+		///     Сохраняет новые настройки доступа на чтение и редактирование вики-страницы.
 		/// </summary>
 		/// <param name="pageId">Идентификатор вики-страницы. </param>
 		/// <param name="groupId">Идентификатор сообщества, которому принадлежит вики-страница.</param>
@@ -82,144 +85,150 @@ namespace VkNet.Categories
 		/// <param name="view">Значение настройки доступа на чтение.</param>
 		/// <param name="edit">Значение настройки доступа на редактирование.</param>
 		/// <returns>
-		/// В случае успеха возвращает id страницы, доступ к которой был отредактирован.
+		///     В случае успеха возвращает id страницы, доступ к которой был отредактирован.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/pages.saveAccess
+		///     Страница документации ВКонтакте https://vk.com/dev/pages.saveAccess
 		/// </remarks>
-		public long SaveAccess(long pageId, long groupId, long? userId = null, AccessPages view = AccessPages.All, AccessPages edit = AccessPages.Leaders)
+		public long SaveAccess(long pageId
+								, long groupId
+								, long? userId = null
+								, AccessPages view = AccessPages.All
+								, AccessPages edit = AccessPages.Leaders)
 		{
 			var parameters = new VkParameters
 			{
-				{ "page_id", pageId },
-				{ "group_id", groupId },
-				{ "user_id", userId },
-				{ "view", view },
-				{ "edit", edit }
+					{ "page_id", pageId }
+					, { "group_id", groupId }
+					, { "user_id", userId }
+					, { "view", view }
+					, { "edit", edit }
 			};
 
-			return _vk.Call("pages.saveAccess", parameters);
+			return _vk.Call(methodName: "pages.saveAccess", parameters: parameters);
 		}
 
 		/// <summary>
-		/// Возвращает список всех старых версий вики-страницы.
+		///     Возвращает список всех старых версий вики-страницы.
 		/// </summary>
 		/// <param name="pageId">Идентификатор вики-страницы.</param>
 		/// <param name="groupId">Идентификатор сообщества, которому принадлежит вики-страница. </param>
 		/// <param name="userId">Идентификатор пользователя, создавшего вики-страницу.</param>
 		/// <returns>
-		/// Возвращает массив объектов page_version, имеющих следующую структуру.
-		/// id — идентификатор версии страницы;
-		/// length длина версии страницы в байтах;
-		/// edited — дата редактирования страницы;
-		/// editor_id — идентификатор редактора;
-		/// editor_name — имя редактора.
+		///     Возвращает массив объектов page_version, имеющих следующую структуру.
+		///     id — идентификатор версии страницы;
+		///     length длина версии страницы в байтах;
+		///     edited — дата редактирования страницы;
+		///     editor_id — идентификатор редактора;
+		///     editor_name — имя редактора.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/pages.getHistory
+		///     Страница документации ВКонтакте https://vk.com/dev/pages.getHistory
 		/// </remarks>
 		public ReadOnlyCollection<PageVersion> GetHistory(long pageId, long groupId, long? userId = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "page_id", pageId },
-				{ "group_id", groupId },
-				{ "user_id", userId }
+					{ "page_id", pageId }
+					, { "group_id", groupId }
+					, { "user_id", userId }
 			};
-			VkResponseArray result = _vk.Call("pages.getHistory", parameters);
 
-			return result.ToReadOnlyCollectionOf<PageVersion>(x => x);
+			VkResponseArray result = _vk.Call(methodName: "pages.getHistory", parameters: parameters);
+
+			return result.ToReadOnlyCollectionOf<PageVersion>(selector: x => x);
 		}
 
 		/// <summary>
-		/// Возвращает список вики-страниц в группе.
+		///     Возвращает список вики-страниц в группе.
 		/// </summary>
 		/// <param name="groupId">Идентификатор сообщества, которому принадлежит вики-страница.</param>
 		/// <returns>
-		/// Возвращает массив объектов вики-страниц.
+		///     Возвращает массив объектов вики-страниц.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/pages.getTitles
+		///     Страница документации ВКонтакте https://vk.com/dev/pages.getTitles
 		/// </remarks>
 		public ReadOnlyCollection<Page> GetTitles(long groupId)
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }
+					{ "group_id", groupId }
 			};
-			VkResponseArray result = _vk.Call("pages.getTitles", parameters);
 
-			return result.ToReadOnlyCollectionOf<Page>(x => x);
+			VkResponseArray result = _vk.Call(methodName: "pages.getTitles", parameters: parameters);
+
+			return result.ToReadOnlyCollectionOf<Page>(selector: x => x);
 		}
 
 		/// <summary>
-		/// Возвращает текст одной из старых версий страницы.
+		///     Возвращает текст одной из старых версий страницы.
 		/// </summary>
 		/// <param name="versionId">Идентификатор версии. </param>
 		/// <param name="groupId">Идентификатор сообщества, которому принадлежит вики-страница.</param>
 		/// <param name="needHtml">Определяет, требуется ли в ответе html-представление вики-страницы.</param>
 		/// <param name="userId">Идентификатор пользователя, который создал страницу.</param>
 		/// <returns>
-		/// Возвращает объект вики-страницы.
+		///     Возвращает объект вики-страницы.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/pages.getVersion
+		///     Страница документации ВКонтакте https://vk.com/dev/pages.getVersion
 		/// </remarks>
 		public Page GetVersion(long versionId, long groupId, bool needHtml = false, long? userId = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "version_id", versionId },
-				{ "group_id", groupId },
-				{ "user_id", userId },
-				{ "need_html", needHtml }
+					{ "version_id", versionId }
+					, { "group_id", groupId }
+					, { "user_id", userId }
+					, { "need_html", needHtml }
 			};
 
-			return _vk.Call("pages.getVersion", parameters);
+			return _vk.Call(methodName: "pages.getVersion", parameters: parameters);
 		}
 
 		/// <summary>
-		/// Возвращает html-представление вики-разметки.
+		///     Возвращает html-представление вики-разметки.
 		/// </summary>
 		/// <param name="text">Текст в вики-формате.</param>
 		/// <param name="groupId">Идентификатор группы, в контексте которой интерпретируется данная страница.</param>
 		/// <returns>
-		/// В случае успеха возвращает экранированный html, соответствующий вики-разметке.
+		///     В случае успеха возвращает экранированный html, соответствующий вики-разметке.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/pages.parseWiki
+		///     Страница документации ВКонтакте https://vk.com/dev/pages.parseWiki
 		/// </remarks>
 		public string ParseWiki(string text, ulong groupId)
 		{
 			var parameters = new VkParameters
 			{
-				{ "text", text },
-				{ "group_id", groupId }
+					{ "text", text }
+					, { "group_id", groupId }
 			};
 
-			return _vk.Call("pages.parseWiki", parameters);
+			return _vk.Call(methodName: "pages.parseWiki", parameters: parameters);
 		}
 
 		/// <summary>
-		/// Позволяет очистить кеш отдельных внешних страниц, которые могут быть прикреплены к записям ВКонтакте.
-		/// После очистки кеша при последующем прикреплении ссылки к записи, данные о странице будут обновлены.
-		/// Внешние страницы – страницы которые прикрепляются к записям вместе с ссылкой и доступные по кнопке "Предпросмотр".
+		///     Позволяет очистить кеш отдельных внешних страниц, которые могут быть прикреплены к записям ВКонтакте.
+		///     После очистки кеша при последующем прикреплении ссылки к записи, данные о странице будут обновлены.
+		///     Внешние страницы – страницы которые прикрепляются к записям вместе с ссылкой и доступные по кнопке "Предпросмотр".
 		/// </summary>
 		/// <param name="url">URL.</param>
 		/// <returns>
-		/// При удачной очистке кеша – метод возвращает <c>true</c>.
+		///     При удачной очистке кеша – метод возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/pages.clearCache
+		///     Страница документации ВКонтакте https://vk.com/dev/pages.clearCache
 		/// </remarks>
 		public bool ClearCache(Uri url)
 		{
 			var parameters = new VkParameters
 			{
-				{ "url", url }
+					{ "url", url }
 			};
 
-			return _vk.Call("pages.clearCache", parameters);
+			return _vk.Call(methodName: "pages.clearCache", parameters: parameters);
 		}
 	}
 }

@@ -3,29 +3,32 @@ using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Friends
 {
-    [TestFixture]
-    public class FriendsGetRequests: BaseTest
-    {
-        [Test]
-        public void DefaultParams()
-        {
-            Url = "https://api.vk.com/method/friends.getRequests";
-            Json = @"{
+	[TestFixture]
+	public class FriendsGetRequests : BaseTest
+	{
+		[Test]
+		public void DefaultParams()
+		{
+			Url = "https://api.vk.com/method/friends.getRequests";
+
+			Json = @"{
                 'response': {
                     'count': 1,
                     'items': [435460566]
                 }
             }";
-            var result = Api.Friends.GetRequests(new FriendsGetRequestsParams());
-            Assert.NotNull(result);
-            Assert.AreEqual(1, result.Count);     
-        }
 
-        [Test]
-        public void Extended()
-        {
-            Url = "https://api.vk.com/method/friends.getRequests";
-            Json = @"{
+			var result = Api.Friends.GetRequests(@params: new FriendsGetRequestsParams());
+			Assert.NotNull(anObject: result);
+			Assert.AreEqual(expected: 1, actual: result.Count);
+		}
+
+		[Test]
+		public void Extended()
+		{
+			Url = "https://api.vk.com/method/friends.getRequests";
+
+			Json = @"{
                 'response': {
                     'count': 1,
                     'items': [{
@@ -33,12 +36,14 @@ namespace VkNet.Tests.Categories.Friends
                     }]
                 }
             }";
-            var result = Api.Friends.GetRequestsExtended(new FriendsGetRequestsParams
-            {
-                Extended = true
-            });
-            Assert.NotNull(result);
-            Assert.AreEqual(1, result.Count);  
-        }
-    }
+
+			var result = Api.Friends.GetRequestsExtended(@params: new FriendsGetRequestsParams
+			{
+					Extended = true
+			});
+
+			Assert.NotNull(anObject: result);
+			Assert.AreEqual(expected: 1, actual: result.Count);
+		}
+	}
 }

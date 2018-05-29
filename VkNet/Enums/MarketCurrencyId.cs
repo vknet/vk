@@ -3,30 +3,34 @@
 namespace VkNet.Enums
 {
 	/// <summary>
-	/// Идентификатор валюты магазина.
+	///     Идентификатор валюты магазина.
 	/// </summary>
 	public enum MarketCurrencyId
 	{
 		/// <summary>
-		/// 643 — российский рубль;
+		///     643 — российский рубль;
 		/// </summary>
 		[DefaultValue]
-		Rub = 643,
-		/// <summary>
-		/// 980 — украинская гривна;
+		Rub = 643
+
+		, /// <summary>
+		///     980 — украинская гривна;
 		/// </summary>
-		UAH = 980,
-		/// <summary>
-		/// 398 — казахстанский тенге;
+		Uah = 980
+
+		, /// <summary>
+		///     398 — казахстанский тенге;
 		/// </summary>
-		KZT = 398,
-		/// <summary>
-		/// 978 — евро;
+		Kzt = 398
+
+		, /// <summary>
+		///     978 — евро;
 		/// </summary>
-		EUR = 978,
-		/// <summary>
-		/// 840 — доллар США.
+		Eur = 978
+
+		, /// <summary>
+		///     840 — доллар США.
 		/// </summary>
-		USD = 840
+		Usd = 840
 	}
 }

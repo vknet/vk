@@ -4,37 +4,33 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Структура статистики
+	///     Структура статистики
 	/// </summary>
 	[Serializable]
 	public class StatsStruct
 	{
 		/// <summary>
-		/// Аудитория для показателя value;.
+		///     Аудитория для показателя value;.
 		/// </summary>
-		public long Visitors
-		{ get; set; }
+		public long Visitors { get; set; }
 
 		/// <summary>
-		/// Значение демографического показателя, имеет разные возможные значения для разных показателей.
+		///     Значение демографического показателя, имеет разные возможные значения для разных показателей.
 		/// </summary>
-		public string Value
-		{ get; set; }
+		public string Value { get; set; }
 
 		/// <summary>
-		/// Код страны.
+		///     Код страны.
 		/// </summary>
-		public string Code
-		{ get; set; }
+		public string Code { get; set; }
 
 		/// <summary>
-		/// Наглядное название значения указанного в value (только для городов).
+		///     Наглядное название значения указанного в value (только для городов).
 		/// </summary>
-		public string Name
-		{ get; set; }
+		public string Name { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -42,10 +38,10 @@ namespace VkNet.Model
 		{
 			var statsStruct = new StatsStruct
 			{
-				Visitors = response["visitors"],
-				Value = response["value"],
-				Code = response["code"],
-				Name = response["name"]
+					Visitors = response[key: "visitors"]
+					, Value = response[key: "value"]
+					, Code = response[key: "code"]
+					, Name = response[key: "name"]
 			};
 
 			return statsStruct;

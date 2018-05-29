@@ -1,18 +1,18 @@
 ﻿namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
-	/// Тип запроса для приложений
+	///     Тип запроса для приложений
 	/// </summary>
 	public sealed class AppRequestType : SafetyEnum<AppRequestType>
 	{
 		/// <summary>
-		/// В случае если запрос отправляется пользователю, не установившему приложение
+		///     В случае если запрос отправляется пользователю, не установившему приложение
 		/// </summary>
-		public static readonly AppRequestType Invite = RegisterPossibleValue("invite");
+		public static readonly AppRequestType Invite = RegisterPossibleValue(value: "invite");
 
 		/// <summary>
-		/// В случае если пользователь уже установил приложение
+		///     В случае если пользователь уже установил приложение
 		/// </summary>
-		public static readonly AppRequestType Request = RegisterPossibleValue("request");
+		public static readonly AppRequestType Request = RegisterPossibleValue(value: "request");
 	}
 }

@@ -4,22 +4,23 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Контактов, который не был найден.
+	///     Контактов, который не был найден.
 	/// </summary>
 	[Serializable]
 	public class LookupContactsOther
 	{
 		/// <summary>
-		/// Контакт.
+		///     Контакт.
 		/// </summary>
 		public string Contact { get; set; }
 
 		/// <summary>
-		/// Количество.
+		///     Количество.
 		/// </summary>
 		public long CommonCount { get; set; }
+
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -27,8 +28,8 @@ namespace VkNet.Model
 		{
 			return new LookupContactsOther
 			{
-				Contact = response["contact"],
-				CommonCount = response["common_count"]
+					Contact = response[key: "contact"]
+					, CommonCount = response[key: "common_count"]
 			};
 		}
 	}

@@ -8,120 +8,85 @@ using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Messages
 {
-    [TestFixture]
-    public class MessagesSendTests : BaseTest
-    {
-        private MessagesCategory Messages => GetMockedMessagesCategory();
+	[TestFixture]
+	public class MessagesSendTests : BaseTest
+	{
+		private MessagesCategory Messages => GetMockedMessagesCategory();
 
-        private MessagesCategory GetMockedMessagesCategory()
-        {
-            return new MessagesCategory(Api);
-        }
+		private MessagesCategory GetMockedMessagesCategory()
+		{
+			return new MessagesCategory(vk: Api);
+		}
 
+		[Test]
+		public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+			var cat = new MessagesCategory(vk: new VkApi());
 
-        [Test]
-        public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
-        {
-            var cat = new MessagesCategory(new VkApi());
-            Assert.That(() => cat.Send(new MessagesSendParams {UserId = 1, Message = "Привет, Паша!"}),
-                Throws.InstanceOf<AccessTokenInvalidException>());
-        }
+			Assert.That(del: () => cat.Send(@params: new MessagesSendParams
+					{
+							UserId = 1
+							, Message = "Привет, Паша!"
+					}),
+					expr: Throws.InstanceOf<AccessTokenInvalidException>());
+		}
 
-        [Test]
-        public void DefaultFields_MessageId()
-        {
-            Url = "https://api.vk.com/method/messages.send";
-            Json =
-                @"{
+		[Test]
+		public void CoordsMessage()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json = @"{
+			    'response': 4464
+			}";
+
+			var id = Messages.Send(@params: new MessagesSendParams
+			{
+					UserId = 7550525
+					, Message = "г. Таганрог, ул. Фрунзе 66А"
+					, Lat = 47.217451
+					, Longitude = 38.922743
+			});
+
+			Assert.That(actual: id, expression: Is.EqualTo(expected: 4464));
+		}
+
+		[Test]
+		public void DefaultFields_MessageId()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json =
+					@"{
 					'response': 4457
 				  }";
 
-            var id = Messages.Send(new MessagesSendParams
-            {
-                UserId = 7550525,
-                Message = "Test from vk.net ;) # 2"
-            });
-            Assert.That(id, Is.EqualTo(4457));
-        }
+			var id = Messages.Send(@params: new MessagesSendParams
+			{
+					UserId = 7550525
+					, Message = "Test from vk.net ;) # 2"
+			});
 
-        [Test]
-        public void RussianText_MessageId()
-        {
-            Url = "https://api.vk.com/method/messages.send";
-            Json =
-                @"{
-					'response': 4464
-				  }";
-            var id = Messages.Send(new MessagesSendParams
-            {
-                UserId = 7550525,
-                Message = "Работает # 2 --  еще разок"
-            });
-            Assert.That(id, Is.EqualTo(4464));
-        }
+			Assert.That(actual: id, expression: Is.EqualTo(expected: 4457));
+		}
 
-        [Test]
-        public void EmptyMessage_ThrowsInvalidParameterException()
-        {
-            Assert.That(() => Messages.Send(new MessagesSendParams
-            {
-                UserId = 7550525,
-                Message = ""
-            }), Throws.InstanceOf<ArgumentException>());
-        }
+		[Test]
+		public void EmptyMessage_ThrowsInvalidParameterException()
+		{
+			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
+			{
+					UserId = 7550525
+					, Message = ""
+			}), expr: Throws.InstanceOf<ArgumentException>());
+		}
 
-        [Test]
-        public void CoordsMessage()
-        {
-            Url = "https://api.vk.com/method/messages.send";
-            Json = @"{
-			    'response': 4464
-			}";
-            
-            var id = Messages.Send(new MessagesSendParams
-            {
-                UserId = 7550525,
-                Message = "г. Таганрог, ул. Фрунзе 66А",
-                Lat = 47.217451,
-                Longitude = 38.922743
-            });
-            
-            Assert.That(id, Is.EqualTo(4464));
-        }
+		[Test]
+		public void Exception_MessageIsTooLong()
+		{
+			Url = "https://api.vk.com/method/messages.send";
 
-        [Test]
-        public void Exception_TooMuchSentMessages()
-        {
-            Url = "https://api.vk.com/method/messages.send";
-            Json =
-                @"{
-					'error': {
-					  'error_code': 913,
-					  'error_msg': 'Unknown error occured',
-					  'request_params': [
-						{
-						  'key': 'access_token',
-						  'value': 'token'
-						}
-					  ]
-					}
-				  }";
-            
-            Assert.That(() => Messages.Send(new MessagesSendParams
-            {
-                UserId = 7550525,
-                Message = "г. Таганрог, ул. Фрунзе 66А",
-                Lat = 47.217451,
-                Longitude = 38.922743
-            }), Throws.InstanceOf<TooMuchSentMessagesException>());
-        }
-
-        [Test]
-        public void Exception_MessageIsTooLong()
-        {
-            Url = "https://api.vk.com/method/messages.send";
-            Json =
-                @"{
+			Json =
+					@"{
 					'error': {
 					  'error_code': 914,
 					  'error_msg': 'Unknown error occured',
@@ -133,79 +98,133 @@ namespace VkNet.Tests.Categories.Messages
 					  ]
 					}
 				  }";
-            
-            Assert.That(() => Messages.Send(new MessagesSendParams
-            {
-                UserId = 7550525,
-                Message = "г. Таганрог, ул. Фрунзе 66А",
-                Lat = 47.217451,
-                Longitude = 38.922743
-            }), Throws.InstanceOf<MessageIsTooLongException>());
-        }
 
-        [Test]
-        public void MessagesSend_SetUserIdsParam_ArgumentException()
-        {
-            Url = "https://api.vk.com/method/messages.send";
-            Json = @"
+			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
+			{
+					UserId = 7550525
+					, Message = "г. Таганрог, ул. Фрунзе 66А"
+					, Lat = 47.217451
+					, Longitude = 38.922743
+			}), expr: Throws.InstanceOf<MessageIsTooLongException>());
+		}
+
+		[Test]
+		public void Exception_TooMuchSentMessages()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json =
+					@"{
+					'error': {
+					  'error_code': 913,
+					  'error_msg': 'Unknown error occured',
+					  'request_params': [
+						{
+						  'key': 'access_token',
+						  'value': 'token'
+						}
+					  ]
+					}
+				  }";
+
+			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
+			{
+					UserId = 7550525
+					, Message = "г. Таганрог, ул. Фрунзе 66А"
+					, Lat = 47.217451
+					, Longitude = 38.922743
+			}), expr: Throws.InstanceOf<TooMuchSentMessagesException>());
+		}
+
+		[Test]
+		public void MessagesSend_SetUserIdsParam_ArgumentException()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json = @"
             {
                 'response': [{
                     'peer_id': 32190123,
                     'message_id': 210525
                 }]
             }";
-            Assert.That(() => Messages.Send(new MessagesSendParams
-            {
-                UserIds = new List<long>{7550525},
-                Message = "г. Таганрог, ул. Фрунзе 66А",
-                Lat = 47.217451,
-                Longitude = 38.922743
-            }), Throws.InstanceOf<ArgumentException>());
-        }
 
-        [Test]
-        public void MessagesSendToUserIds_NoSetUserIdsParam_ArgumentException()
-        {
-            Url = "https://api.vk.com/method/messages.send";
-            Json = @"
+			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
+			{
+					UserIds = new List<long> { 7550525 }
+					, Message = "г. Таганрог, ул. Фрунзе 66А"
+					, Lat = 47.217451
+					, Longitude = 38.922743
+			}), expr: Throws.InstanceOf<ArgumentException>());
+		}
+
+		[Test]
+		public void MessagesSendToUserIds_NoSetUserIdsParam_ArgumentException()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json = @"
             {
                 'response': [{
                     'peer_id': 32190123,
                     'message_id': 210525
                 }]
             }";
-            Assert.That(() => Messages.SendToUserIds(new MessagesSendParams
-            {
-                UserId = 7550525,
-                Message = "г. Таганрог, ул. Фрунзе 66А",
-                Lat = 47.217451,
-                Longitude = 38.922743
-            }), Throws.InstanceOf<ArgumentException>());
-        }
 
-        [Test]
-        public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
-        {
-            Url = "https://api.vk.com/method/messages.send";
-            Json = @"
+			Assert.That(del: () => Messages.SendToUserIds(@params: new MessagesSendParams
+			{
+					UserId = 7550525
+					, Message = "г. Таганрог, ул. Фрунзе 66А"
+					, Lat = 47.217451
+					, Longitude = 38.922743
+			}), expr: Throws.InstanceOf<ArgumentException>());
+		}
+
+		[Test]
+		public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json = @"
             {
                 'response': [{
                     'peer_id': 32190123,
                     'message_id': 210525
                 }]
             }";
-            var result = Messages.SendToUserIds(new MessagesSendParams
-            {
-                UserIds = new List<long> {7550525},
-                Message = "г. Таганрог, ул. Фрунзе 66А",
-                Lat = 47.217451,
-                Longitude = 38.922743
-            });
-            Assert.IsNotEmpty(result);
-            var message = result.FirstOrDefault();
-            Assert.NotNull(message);
-            Assert.AreEqual(32190123, message.PeerId);
-            Assert.AreEqual(210525, message.MessageId);
-        }
-    }
+
+			var result = Messages.SendToUserIds(@params: new MessagesSendParams
+			{
+					UserIds = new List<long> { 7550525 }
+					, Message = "г. Таганрог, ул. Фрунзе 66А"
+					, Lat = 47.217451
+					, Longitude = 38.922743
+			});
+
+			Assert.IsNotEmpty(collection: result);
+			var message = result.FirstOrDefault();
+			Assert.NotNull(anObject: message);
+			Assert.AreEqual(expected: 32190123, actual: message.PeerId);
+			Assert.AreEqual(expected: 210525, actual: message.MessageId);
+		}
+
+		[Test]
+		public void RussianText_MessageId()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json =
+					@"{
+					'response': 4464
+				  }";
+
+			var id = Messages.Send(@params: new MessagesSendParams
+			{
+					UserId = 7550525
+					, Message = "Работает # 2 --  еще разок"
+			});
+
+			Assert.That(actual: id, expression: Is.EqualTo(expected: 4464));
+		}
+	}
 }

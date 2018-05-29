@@ -7,22 +7,22 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Streaming Stats
+	///     Streaming Stats
 	/// </summary>
 	[Serializable]
 	public class StreamingStats
 	{
 		/// <summary>
-		/// Тип событий
+		///     Тип событий
 		/// </summary>
-		[JsonProperty("event_type")]
-		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public StreamingEventType EventType  { get; set; }
+		[JsonProperty(propertyName: "event_type")]
+		[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
+		public StreamingEventType EventType { get; set; }
 
 		/// <summary>
-		/// Значения статистики
+		///     Значения статистики
 		/// </summary>
-		[JsonProperty("stats")]
+		[JsonProperty(propertyName: "stats")]
 		public ReadOnlyCollection<StreamingStatsItem> Stats { get; set; }
 	}
 }

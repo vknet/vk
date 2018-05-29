@@ -1,32 +1,31 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Валюта.
+	///     Валюта.
 	/// </summary>
 	[Serializable]
 	public class Currency
 	{
 		/// <summary>
-		/// Идентификатор валюты
+		///     Идентификатор валюты
 		/// </summary>
 		public long? Id { get; set; }
 
 		/// <summary>
-		/// Буквенное обозначение валюты
+		///     Буквенное обозначение валюты
 		/// </summary>
 		public string Сurrency { get; set; }
 
 		/// <summary>
-		/// Буквенное обозначение валюты
+		///     Буквенное обозначение валюты
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -34,9 +33,9 @@ namespace VkNet.Model
 		{
 			var currency = new Currency
 			{
-				Id = response["id"],
-				Сurrency = response["currency"],
-				Name = response["name"]
+					Id = response[key: "id"]
+					, Сurrency = response[key: "currency"]
+					, Name = response[key: "name"]
 			};
 
 			return currency;

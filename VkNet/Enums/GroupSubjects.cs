@@ -1,176 +1,217 @@
 ﻿namespace VkNet.Enums
 {
 	/// <summary>
-	/// Тематика сообщества.
+	///     Тематика сообщества.
 	/// </summary>
 	public enum GroupSubjects
 	{
 		/// <summary>
-		/// Авто/мото.
+		///     Авто/мото.
 		/// </summary>
-		AutoMoto = 1,
-		/// <summary>
-		/// Активный отдых.
+		AutoMoto = 1
+
+		, /// <summary>
+		///     Активный отдых.
 		/// </summary>
-		Leisure,
-		/// <summary>
-		/// Бизнес.
+		Leisure
+
+		, /// <summary>
+		///     Бизнес.
 		/// </summary>
-		Business,
-		/// <summary>
-		/// Домашние животные.
+		Business
+
+		, /// <summary>
+		///     Домашние животные.
 		/// </summary>
-		DomesticAnimals,
-		/// <summary>
-		/// Здоровье.
+		DomesticAnimals
+
+		, /// <summary>
+		///     Здоровье.
 		/// </summary>
-		Health,
-		/// <summary>
-		/// Знакомство и общение.
+		Health
+
+		, /// <summary>
+		///     Знакомство и общение.
 		/// </summary>
-		MeetAndChat,
-		/// <summary>
-		/// Игры.
+		MeetAndChat
+
+		, /// <summary>
+		///     Игры.
 		/// </summary>
-		Games,
-		/// <summary>
-		/// ИТ.
+		Games
+
+		, /// <summary>
+		///     ИТ.
 		/// </summary>
-		IT,
-		/// <summary>
-		/// Кино.
+		It
+
+		, /// <summary>
+		///     Кино.
 		/// </summary>
-		Cinema,
-		/// <summary>
-		/// Красота и мода.
+		Cinema
+
+		, /// <summary>
+		///     Красота и мода.
 		/// </summary>
-		BeautyAndFashion,
-		/// <summary>
-		/// Кулинария.
+		BeautyAndFashion
+
+		, /// <summary>
+		///     Кулинария.
 		/// </summary>
-		Cookery,
-		/// <summary>
-		/// Культура и искусство.
+		Cookery
+
+		, /// <summary>
+		///     Культура и искусство.
 		/// </summary>
-		CultureAndArt,
-		/// <summary>
-		/// Литература.
+		CultureAndArt
+
+		, /// <summary>
+		///     Литература.
 		/// </summary>
-		References,
-		/// <summary>
-		/// Мобильная связь и интернет.
+		References
+
+		, /// <summary>
+		///     Мобильная связь и интернет.
 		/// </summary>
-		MobileTelephonyAndInternet,
-		/// <summary>
-		/// Музыка.
+		MobileTelephonyAndInternet
+
+		, /// <summary>
+		///     Музыка.
 		/// </summary>
-		Music,
-		/// <summary>
-		/// Наука и техника.
+		Music
+
+		, /// <summary>
+		///     Наука и техника.
 		/// </summary>
-		ScienceAndTechnology,
-		/// <summary>
-		/// Недвижимость.
+		ScienceAndTechnology
+
+		, /// <summary>
+		///     Недвижимость.
 		/// </summary>
-		RealEstate,
-		/// <summary>
-		/// Новости и СМИ.
+		RealEstate
+
+		, /// <summary>
+		///     Новости и СМИ.
 		/// </summary>
-		NewsAndMedia,
-		/// <summary>
-		/// Безопасность.
+		NewsAndMedia
+
+		, /// <summary>
+		///     Безопасность.
 		/// </summary>
-		Security,
-		/// <summary>
-		/// Образование.
+		Security
+
+		, /// <summary>
+		///     Образование.
 		/// </summary>
-		Forming,
-		/// <summary>
-		/// Обустройство и ремонт.
+		Forming
+
+		, /// <summary>
+		///     Обустройство и ремонт.
 		/// </summary>
-		ConstructionAndRepair,
-		/// <summary>
-		/// Политика.
+		ConstructionAndRepair
+
+		, /// <summary>
+		///     Политика.
 		/// </summary>
-		Policy,
-		/// <summary>
-		/// Продукты питания.
+		Policy
+
+		, /// <summary>
+		///     Продукты питания.
 		/// </summary>
-		FoodItems,
-		/// <summary>
-		/// Промышленность.
+		FoodItems
+
+		, /// <summary>
+		///     Промышленность.
 		/// </summary>
-		Industry,
-		/// <summary>
-		/// Путешествия.
+		Industry
+
+		, /// <summary>
+		///     Путешествия.
 		/// </summary>
-		Travels,
-		/// <summary>
-		/// Работа.
+		Travels
+
+		, /// <summary>
+		///     Работа.
 		/// </summary>
-		Job,
-		/// <summary>
-		/// Развлечения.
+		Job
+
+		, /// <summary>
+		///     Развлечения.
 		/// </summary>
-		Entertainment,
-		/// <summary>
-		/// Религия.
+		Entertainment
+
+		, /// <summary>
+		///     Религия.
 		/// </summary>
-		Religion,
-		/// <summary>
-		/// Дом и семья.
+		Religion
+
+		, /// <summary>
+		///     Дом и семья.
 		/// </summary>
-		HomeAndFamily,
-		/// <summary>
-		/// Спорт.
+		HomeAndFamily
+
+		, /// <summary>
+		///     Спорт.
 		/// </summary>
-		Sports,
-		/// <summary>
-		/// Страхование.
+		Sports
+
+		, /// <summary>
+		///     Страхование.
 		/// </summary>
-		Coverage,
-		/// <summary>
-		/// Телевидение.
+		Coverage
+
+		, /// <summary>
+		///     Телевидение.
 		/// </summary>
-		TV,
-		/// <summary>
-		/// Товары и услуги.
+		Tv
+
+		, /// <summary>
+		///     Товары и услуги.
 		/// </summary>
-		GoodsAndServices,
-		/// <summary>
-		/// Увлечения и хобби.
+		GoodsAndServices
+
+		, /// <summary>
+		///     Увлечения и хобби.
 		/// </summary>
-		InterestsAndHobbies,
-		/// <summary>
-		/// Финансы.
+		InterestsAndHobbies
+
+		, /// <summary>
+		///     Финансы.
 		/// </summary>
-		Finances,
-		/// <summary>
-		/// Фото.
+		Finances
+
+		, /// <summary>
+		///     Фото.
 		/// </summary>
-		Photography,
-		/// <summary>
-		/// Эзотерика.
+		Photography
+
+		, /// <summary>
+		///     Эзотерика.
 		/// </summary>
-		Esoterics,
-		/// <summary>
-		/// Электроника и бытовая техника.
+		Esoterics
+
+		, /// <summary>
+		///     Электроника и бытовая техника.
 		/// </summary>
-		ElectronicsAndAppliances,
-		/// <summary>
-		/// Эротика.
+		ElectronicsAndAppliances
+
+		, /// <summary>
+		///     Эротика.
 		/// </summary>
-		Erotica,
-		/// <summary>
-		/// Юмор.
+		Erotica
+
+		, /// <summary>
+		///     Юмор.
 		/// </summary>
-		Humor,
-		/// <summary>
-		/// Общество, гуманитарные науки.
+		Humor
+
+		, /// <summary>
+		///     Общество, гуманитарные науки.
 		/// </summary>
-		SocietyHumanities,
-		/// <summary>
-		/// Дизайн и графика.
+		SocietyHumanities
+
+		, /// <summary>
+		///     Дизайн и графика.
 		/// </summary>
 		DesignAndGraphics
 	}
