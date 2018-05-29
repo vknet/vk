@@ -1,16 +1,17 @@
 ﻿using System.Globalization;
-using System.Reflection;
 using System;
 using System.Collections.Generic;
 
 namespace VkNet.Utils
 {
 
+    /// <inheritdoc />
     /// <summary>
     /// Параметры запроса к ВКонтакте.
     /// </summary>
     public partial class VkParameters : Dictionary<string, string>
     {
+        /// <inheritdoc />
         /// <summary>
         /// Инициализирует новый экземпляр класса VkParameters
         /// </summary>
@@ -18,6 +19,7 @@ namespace VkNet.Utils
         {
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Инициализирует новый экземпляр класса VkParameters
         /// </summary>
@@ -31,9 +33,12 @@ namespace VkNet.Utils
         /// <summary>
         /// Параметры для запроса без параметров.
         /// </summary>
-        public static VkParameters Empty => new VkParameters();
+        public static VkParameters Empty
+		{
+			get { return new VkParameters(); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Добавляет параметр запроса.
         /// </summary>
         /// <typeparam name="T">Тип значения параметра запроса.</typeparam>
@@ -47,8 +52,8 @@ namespace VkNet.Utils
             {
                 return;
             }
-  
-            if (typeof(T).GetTypeInfo().IsEnum)
+
+            if (typeof(T).IsEnum)
             {
                 Add(name, (int)(object)value);
                 return;

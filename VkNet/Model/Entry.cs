@@ -1,9 +1,12 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Последние действия пользователей по рекламной акции
+	/// </summary>
 	[Serializable]
 	public class Entry
 	{

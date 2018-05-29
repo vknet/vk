@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums;
@@ -79,19 +79,19 @@ namespace VkNet.Categories
         /// <summary>
         /// Возвращает список городов.
         /// </summary>
-        /// <param name="params">Параметры запроса database.getCities</param>
+        /// <param name="getCitiesParams">Параметры запроса database.getCities</param>
         /// <returns>Cписок городов</returns>
         /// <remarks>
         /// Возвращает коллекцию городов, каждый из которых содержит поля City.Id
         /// При наличии информации о регионе и/или области, в которых находится данный город, в объекте могут дополнительно
         /// включаться поля City.Area
-        /// Если не задан параметр <paramref name="params.query"/>, то будет возвращен список самых крупных городов в заданной стране.
-        /// Если задан параметр <paramref name="params.query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
+        /// Если не задан параметр <paramref name="getCitiesParams.query"/>, то будет возвращен список самых крупных городов в заданной стране.
+        /// Если задан параметр <paramref name="getCitiesParams.query"/>, то будет возвращен список городов, которые релевантны поисковому запросу.
         /// Страница документации ВКонтакте http://vk.com/dev/database.getCities
         /// </remarks>
-        public async Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams @params)
+        public async Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Database.GetCities(@params));
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Database.GetCities(getCitiesParams));
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace VkNet.Categories
         public async Task<VkCollection<School>> GetSchoolsAsync(int cityId, string query = "", int? offset = null,
             int? count = null)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Database.GetSchools(cityId, query, count, offset));
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Database.GetSchools(cityId, query, offset, count));
         }
 
         /// <summary>

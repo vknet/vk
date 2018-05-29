@@ -1,4 +1,4 @@
-﻿namespace VkNet.Utils
+namespace VkNet.Utils
 {
   using System;
   using System.Collections.Generic;
@@ -111,7 +111,7 @@
         throw new InvalidOperationException("Field name not set!");
       }
 
-      var encodedValue = value;//Uri.EscapeDataString(value);
+      var encodedValue = value;
       if (_inputs.ContainsKey(_lastName))
       {
         _inputs[_lastName] = encodedValue;

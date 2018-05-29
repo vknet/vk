@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Utils;
@@ -56,12 +56,7 @@ namespace VkNet.Abstractions
         /// </summary>
         Language? GetLanguage();
 
-        /// <summary>
-        /// Освобождения неуправляемых ресурсов.
-        /// </summary>
-        new void Dispose();
-
-        /// <summary>
+	    /// <summary>
         /// Обход ошибки валидации: https://vk.com/dev/need_validation
         /// </summary>
         /// <param name="validateUrl">Адрес, на который нужно перейти для валидации</param>

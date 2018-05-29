@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using VkNet.Exception;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -63,7 +64,7 @@ namespace VkNet.Model
 						break;
 					default:
 						{
-							throw new System.Exception(string.Format("Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues", item["type"]));
+							throw new VkApiException($"Типа '{item["type"]}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues");
 						}
 				}
 			}

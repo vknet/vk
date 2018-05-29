@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 
 namespace VkNet.Abstractions.Async
 {
+	/// <summary>
+	/// Асинхронные методы для работы с Уведомлениями
+	/// </summary>
 	public interface INotificationsCategoryAsync
 	{
 		/// <summary>

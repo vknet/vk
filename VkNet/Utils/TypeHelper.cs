@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using NLog;
-using NLog.Conditions;
 using NLog.Config;
 using NLog.Targets;
 using VkNet.Abstractions.Utils;
@@ -20,11 +19,11 @@ namespace VkNet.Utils
 	{
 #if NET40
 
-/// <summary>
-/// Получить информацию о типе
-/// </summary>
-/// <param name="type">Тип</param>
-/// <returns>Тип</returns>
+		/// <summary>
+		/// Получить информацию о типе
+		/// </summary>
+		/// <param name="type">Тип</param>
+		/// <returns>Тип</returns>
 		public static Type GetTypeInfo(this Type type)
 		{
 			return type;
@@ -74,7 +73,7 @@ namespace VkNet.Utils
 			config.AddTarget("console", consoleTarget);
 			var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
 			config.LoggingRules.Add(rule1);
-			
+
 			LogManager.Configuration = config;
 			return LogManager.GetLogger("VkApi");
 		}

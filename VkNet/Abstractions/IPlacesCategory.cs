@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using VkNet.Abstractions.Async;
 using VkNet.Model.RequestParams;
@@ -26,7 +26,7 @@ namespace VkNet.Abstractions
         /// <summary>
         /// Отмечает пользователя в указанном месте.
         /// </summary>
-        /// <param name = "params">
+        /// <param name = "placesCheckinParams">
         /// Входные параметры запроса.
         /// </param>
         /// <returns>

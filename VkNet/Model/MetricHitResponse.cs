@@ -1,8 +1,11 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Событие метрики.
+	/// </summary>
 	[Serializable]
 	public class MetricHitResponse
 	{

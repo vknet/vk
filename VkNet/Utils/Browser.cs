@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -23,23 +23,17 @@ namespace VkNet.Utils
         /// </summary>
         [CanBeNull] private readonly ILogger _logger;
 
-        /// <inheritdoc />
-        public Browser([CanBeNull] ILogger logger)
-        {
-            _logger = logger;
-        }
+		/// <inheritdoc />
+		public Browser([CanBeNull] ILogger logger) => _logger = logger;
 
-        /// <inheritdoc />
-        public IWebProxy Proxy { get; set; }
+		/// <inheritdoc />
+		public IWebProxy Proxy { get; set; }
 
-        /// <inheritdoc />
-        public string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters)
-        {
-            return WebCall.PostCall(url, parameters, Proxy).Response;
-        }
+		/// <inheritdoc />
+		public string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters) => WebCall.PostCall(url, parameters, Proxy).Response;
 
-        /// <inheritdoc />
-        public VkAuthorization Authorize(IApiAuthParams authParams)
+		/// <inheritdoc />
+		public VkAuthorization Authorize(IApiAuthParams authParams)
         {
             _logger?.Debug("Шаг 1. Открытие диалога авторизации");
             var authorizeUrlResult = OpenAuthDialog(authParams.ApplicationId, authParams.Settings);

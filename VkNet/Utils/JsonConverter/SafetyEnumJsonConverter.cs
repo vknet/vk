@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
@@ -38,12 +38,15 @@ namespace VkNet.Utils.JsonConverter
                 ?.Invoke(result, new object[] {$"{reader.Value}"});
 
             var fields = result?.GetType().GetFields();
-            foreach (var field in fields)
-            {
-                field.GetValue(null);
-            }
+	        if ( fields == null ) {
+		        return null;
+	        }
 
-            return result;
+	        foreach ( var field in fields ) {
+		        field.GetValue(null);
+	        }
+
+	        return result;
         }
         /// <summary>
         /// TODO: Description

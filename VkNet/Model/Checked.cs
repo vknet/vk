@@ -1,8 +1,11 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Доступность рекламной акции пользователю.
+	/// </summary>
 	[Serializable]
 	public class Checked
 	{

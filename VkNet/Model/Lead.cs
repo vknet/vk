@@ -1,8 +1,11 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Статистика по рекламной акции.
+	/// </summary>
 	[Serializable]
 	public class Lead
 	{

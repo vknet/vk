@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using System;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
@@ -59,15 +59,17 @@ namespace VkNet
         /// </summary>
         private Timer _expireTimer;
 
-        /// <summary>
-        /// Rest Client
-        /// </summary>
-        public IRestClient RestClient;
+#pragma warning disable S1104 // Fields should not have public accessibility
+							 /// <summary>
+							 /// Rest Client
+							 /// </summary>
+		public IRestClient RestClient;
+#pragma warning restore S1104 // Fields should not have public accessibility
 
-        /// <summary>
-        /// The expire timer lock
-        /// </summary>
-        private readonly object _expireTimerLock = new object();
+		/// <summary>
+		/// The expire timer lock
+		/// </summary>
+		private readonly object _expireTimerLock = new object();
 
         #region Requests limit stuff
 
@@ -499,17 +501,17 @@ namespace VkNet
         /// <inheritdoc cref="IDisposable" />
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+	        Dispose(true);
+	        GC.SuppressFinalize(this);
         }
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
-            StopTimer();
+	        _expireTimer?.Dispose();
         }
 
         /// <inheritdoc />

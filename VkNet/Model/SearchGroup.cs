@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -65,8 +65,8 @@ namespace VkNet.Model
         /// URL квадратной фотографии сообщества с размером 50х50px
         /// </summary>
         [JsonProperty("photo_50")]
-        private string Photo50
-        {
+        private string Photo50 {
+	        get => Photo;
             set => Photo = value;
         }
 
@@ -80,8 +80,8 @@ namespace VkNet.Model
         /// URL квадратной фотографии сообщества с размером 100х100px
         /// </summary>
         [JsonProperty("photo_100")]
-        private string Photo100
-        {
+        private string Photo100 {
+	        get => PhotoMedium;
             set => PhotoMedium = value;
         }
 
@@ -95,8 +95,8 @@ namespace VkNet.Model
         /// URL фотографии сообщества в максимальном доступном размере.
         /// </summary>
         [JsonProperty("photo_200")]
-        public string Photo200
-        {
+        public string Photo200 {
+	        get => PhotoBig;
             set => PhotoBig = value;
         }
     }
