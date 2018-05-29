@@ -95,11 +95,11 @@ csharp_default_private_modifier=explicit
 csharp_default_internal_modifier=explicit
 
 # Arguments
-csharp_arguments_literal=named
-csharp_arguments_string_literal=named
-csharp_arguments_named=named
-csharp_arguments_anonymous_function=named
-csharp_arguments_other=named
+csharp_arguments_literal=positional
+csharp_arguments_string_literal=positional
+csharp_arguments_named=positional
+csharp_arguments_anonymous_function=positional
+csharp_arguments_other=positional
 
 # Parentheses
 csharp_parentheses_redundancy_style=remove_if_not_clarifies_precedence
