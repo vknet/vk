@@ -56,9 +56,12 @@ namespace VkNet.Model
         /// <summary>
         /// Первое приложение к комментарию.
         /// </summary>
-        public Attachment Attachment => Attachments.FirstOrDefault();
+        public Attachment Attachment
+		{
+			get { return Attachments.FirstOrDefault(); }
+		}
 
-        #region Поля, установленные экспериментально
+		#region Поля, установленные экспериментально
 
         /// <summary>
         /// Информация о числе людей, которым понравился данный комментарий.

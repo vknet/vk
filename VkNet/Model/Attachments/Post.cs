@@ -97,9 +97,12 @@ namespace VkNet.Model
         /// <summary>
         /// Первое вложение.
         /// </summary>
-        public Attachment Attachment => Attachments.FirstOrDefault();
+        public Attachment Attachment
+		{
+			get { return Attachments.FirstOrDefault(); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Информация о местоположении.
         /// </summary>
         public Geo Geo { get; set; }

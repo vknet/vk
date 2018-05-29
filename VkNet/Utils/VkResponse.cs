@@ -101,7 +101,10 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Строковое представление объекта.
 		/// </returns>
-		public override string ToString() => _token.ToString();
+		public override string ToString()
+		{
+			return _token.ToString();
+		}
 
 		#region System types
 
@@ -112,7 +115,10 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator bool(VkResponse response) => response != null && response == 1;
+		public static implicit operator bool(VkResponse response)
+		{
+			return response != null && response == 1;
+		}
 
 		/// <summary>
 		/// Выполняет неявное преобразование из VkResponse

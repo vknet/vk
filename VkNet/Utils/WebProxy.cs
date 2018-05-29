@@ -27,10 +27,16 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public Uri GetProxy(Uri destination) => _proxyUri;
+		public Uri GetProxy(Uri destination)
+		{
+			return _proxyUri;
+		}
 
 		/// <inheritdoc />
-		public bool IsBypassed(Uri host) => false;
+		public bool IsBypassed(Uri host)
+		{
+			return false;
+		}
 
 		/// <summary>
 		/// Получить данные авторизации

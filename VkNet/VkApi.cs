@@ -104,9 +104,9 @@ namespace VkNet
 
         /// <inheritdoc />
         public float RequestsPerSecond
-        {
-            get => _requestsPerSecond;
-            set
+		{
+			get { return _requestsPerSecond; }
+			set
             {
                 if (value < 0)
                 {
@@ -124,9 +124,9 @@ namespace VkNet
                     _minInterval = (int) (1000 / _requestsPerSecond) + 1;
                 }
             }
-        }
+		}
 
-        #endregion
+		#endregion
 
         /// <inheritdoc />
         public event VkApiDelegate OnTokenExpires;
@@ -238,17 +238,23 @@ namespace VkNet
         public IBrowser Browser { get; set; }
 
         /// <inheritdoc />
-        public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
+        public bool IsAuthorized
+		{
+			get { return !string.IsNullOrWhiteSpace(AccessToken); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Токен для доступа к методам API
         /// </summary>
         private string AccessToken { get; set; }
 
         /// <inheritdoc />
-        public string Token => AccessToken;
+        public string Token
+		{
+			get { return AccessToken; }
+		}
 
-        /// <inheritdoc />
+		/// <inheritdoc />
         public long? UserId { get; set; }
 
         /// <inheritdoc />
@@ -321,7 +327,7 @@ namespace VkNet
         /// <inheritdoc />
         public void Authorize(IApiAuthParams @params)
         {
-            //подключение браузера через прокси 
+            // подключение браузера через прокси
             if (@params.Host != null)
             {
                 _logger?.Debug("Настройка прокси");
@@ -335,7 +341,7 @@ namespace VkNet
                 RestClient.Proxy = Browser.Proxy;
             }
 
-            //если токен не задан - обычная авторизация
+            // если токен не задан - обычная авторизация
             if (@params.AccessToken == null)
             {
                 AuthorizeWithAntiCaptcha(@params);
@@ -343,7 +349,7 @@ namespace VkNet
                 @params.CaptchaSid = null;
                 @params.CaptchaKey = "";
             }
-            //если токен задан - авторизация с помощью токена полученного извне
+            // если токен задан - авторизация с помощью токена полученного извне
             else
             {
                 TokenAuth(@params.AccessToken, @params.UserId, @params.TokenExpireTime);
@@ -417,7 +423,7 @@ namespace VkNet
             if (!jsonConverters.Any())
             {
                 return JsonConvert.DeserializeObject<T>(
-                    answer, 
+                    answer,
                     new VkCollectionJsonConverter(),
                     new VkDefaultJsonConverter(),
                     new UnixDateTimeConverter(),
@@ -427,7 +433,7 @@ namespace VkNet
             }
 
             return JsonConvert.DeserializeObject<T>(
-                answer, 
+                answer,
                 jsonConverters
             );
         }
@@ -809,7 +815,7 @@ namespace VkNet
             Leads = new LeadsCategory(this);
             Streaming = new StreamingCategory(this);
             Places = new PlacesCategory(this);
-                
+
             RequestsPerSecond = 3;
 
             MaxCaptchaRecognitionCount = 5;

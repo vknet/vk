@@ -1,8 +1,7 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Utils.JsonConverter
 {

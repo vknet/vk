@@ -84,18 +84,21 @@ namespace VkNet.Model.RequestParams
     /// <param name="p">Параметры.</param>
     /// <returns></returns>
     [NotNull]
-    public static VkParameters ToVkParameters([NotNull] WallCreateCommentParams p) => new VkParameters
-    {
-      { "owner_id", p.OwnerId },
-      { "post_id", p.PostId },
-      { "from_group", p.FromGroup },
-      { "message", p.Message },
-      { "reply_to_comment", p.ReplyToComment },
-      { "attachments", p.Attachments },
-      { "sticker_id", p.StickerId },
-      { "guid", p.Guid },
-      { "captcha_sid", p.CaptchaSid },
-      { "captcha_key", p.CaptchaKey }
-    };
-  }
+    public static VkParameters ToVkParameters([NotNull] WallCreateCommentParams p)
+	{
+		return new VkParameters
+		{
+			{"owner_id", p.OwnerId},
+			{"post_id", p.PostId},
+			{"from_group", p.FromGroup},
+			{"message", p.Message},
+			{"reply_to_comment", p.ReplyToComment},
+			{"attachments", p.Attachments},
+			{"sticker_id", p.StickerId},
+			{"guid", p.Guid},
+			{"captcha_sid", p.CaptchaSid},
+			{"captcha_key", p.CaptchaKey}
+		};
+	}
+}
 }

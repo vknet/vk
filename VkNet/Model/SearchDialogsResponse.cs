@@ -68,11 +68,7 @@ namespace VkNet.Model
                         result.Groups.Add(record);
                         break;
                     }
-                    default:
-                    {
-                        break;
-                    }
-                }
+				}
             }
 
             return result;

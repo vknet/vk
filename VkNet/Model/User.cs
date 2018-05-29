@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using System;
 using System.Collections.ObjectModel;
@@ -522,23 +522,26 @@ namespace VkNet.Model
         
         [JsonProperty("uid")]
         private long Uid
-        {
-            set => Id = value;
-        }
-        
-        [JsonProperty("user_id")]
-        private long UserId
-        {
-            set => Id = value;
-        }
-        
-        [JsonProperty("phone")]
-        private string Phone
-        {
-            set => MobilePhone = value;
-        }
+		{
+			get { return Id; }
+			set { Id = value; }
+		}
 
-        #endregion
+		[JsonProperty("user_id")]
+        private long UserId
+		{
+			get { return Id; }
+			set { Id = value; }
+		}
+
+		[JsonProperty("phone")]
+        private string Phone
+		{
+			get { return MobilePhone; }
+			set { MobilePhone = value; }
+		}
+
+		#endregion
         #region Методы
 
         /// <summary>

@@ -31,47 +31,75 @@ namespace VkNet.Utils
         /// URL, на которую произошло перенаправление при авторизации.
         /// </param>
         /// <returns>Информация об авторизации.</returns>
-        public static VkAuthorization From(string uriFragment) => new VkAuthorization(uriFragment);
+        public static VkAuthorization From(string uriFragment)
+		{
+			return new VkAuthorization(uriFragment);
+		}
 
-        /// <summary>
+		/// <summary>
         /// Возвращает признак была ли авторизация успешной.
         /// </summary>
-        public bool IsAuthorized => _nameValues.ContainsKey("access_token");
+        public bool IsAuthorized
+		{
+			get { return _nameValues.ContainsKey("access_token"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Проверяет требуется ли получения у авторизации на запрошенные приложением действия (при установке приложения пользователю).
         /// </summary>
-        public bool IsAuthorizationRequired => _nameValues.ContainsKey("__q_hash");
+        public bool IsAuthorizationRequired
+		{
+			get { return _nameValues.ContainsKey("__q_hash"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Маркер доступа, который необходимо использовать для доступа к API ВКонтакте.
         /// </summary>
-        public string AccessToken => GetFieldValue("access_token");
+        public string AccessToken
+		{
+			get { return GetFieldValue("access_token"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Время истечения срока действия маркера доступа.
         /// </summary>
-        public int ExpiresIn => GetExpiresIn();
+        public int ExpiresIn
+		{
+			get { return GetExpiresIn(); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Идентификатор пользователя, у которого работает приложение (от имени которого был произведен вход).
         /// </summary>
-        public long UserId => GetUserId();
+        public long UserId
+		{
+			get { return GetUserId(); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// E-mail пользователя, у которого работает приложение (от имени которого был произведен вход).
         /// </summary>
-        public string Email => GetFieldValue("email");
+        public string Email
+		{
+			get { return GetFieldValue("email"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// ID капчи, если она появилась
         /// </summary>
-        public bool IsCaptchaNeeded => _nameValues.ContainsKey("sid");
-	    
-	    /// <summary>
+        public bool IsCaptchaNeeded
+		{
+			get { return _nameValues.ContainsKey("sid"); }
+		}
+
+		/// <summary>
 	    /// ID капчи, если она появилась
 	    /// </summary>
-	    public long CaptchaSid => GetCaptchaSid() ;
+	    public long CaptchaSid
+		{
+			get { return GetCaptchaSid(); }
+		}
+
 		/// <summary>
 		/// Получить значение поля.
 		/// </summary>

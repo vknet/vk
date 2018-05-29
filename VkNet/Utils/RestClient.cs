@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -36,8 +35,8 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public TimeSpan Timeout
 		{
-			get => _timeoutSeconds == TimeSpan.MinValue ? TimeSpan.FromSeconds(300) : _timeoutSeconds;
-			set => _timeoutSeconds = value;
+			get { return _timeoutSeconds == TimeSpan.MinValue ? TimeSpan.FromSeconds(300) : _timeoutSeconds; }
+			set { _timeoutSeconds = value; }
 		}
 
 		/// <inheritdoc />

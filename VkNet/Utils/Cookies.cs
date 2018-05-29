@@ -50,26 +50,31 @@ namespace VkNet.Utils
 #else
                 .GetRuntimeFields()
                 .FirstOrDefault(x => x.Name == "m_domainTable" || x.Name == "_domainTable")
-                .GetValue(Container);
+				?.GetValue(Container);
 #endif
 
-            var keys = table.Keys.OfType<string>().ToList();
-            foreach (var key in table.Keys.OfType<string>().ToList())
-            {
-                if (key[0] != '.')
-                {
-                    continue;
-                }
+			if ( table == null )
+			{
+				return;
+			}
 
-                var newKey = key.Remove(0, 1);
-                if (keys.Contains(newKey))
-                {
-                    continue;
-                }
+			var keys = table.Keys.OfType<string>().ToList();
+			foreach (var key in table.Keys.OfType<string>().ToList())
+			{
+				if (key[0] != '.')
+				{
+					continue;
+				}
 
-                table[newKey] = table[key];
-                keys.Add(newKey);
-            }
-        }
+				var newKey = key.Remove(0, 1);
+				if (keys.Contains(newKey))
+				{
+					continue;
+				}
+
+				table[newKey] = table[key];
+				keys.Add(newKey);
+			}
+		}
     }
 }

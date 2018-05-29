@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
@@ -11,9 +11,9 @@ namespace VkNet.Categories
 	public partial class LeadsCategory
 	{
 		/// <inheritdoc/>
-		public async Task<Checked> CheckUserAsync(CheckUserParams checkUser)
+		public async Task<Checked> CheckUserAsync(CheckUserParams checkUserParams)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Leads.CheckUser(checkUser));
+			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Leads.CheckUser(checkUserParams));
 		}
 
 		/// <inheritdoc/>
@@ -29,9 +29,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsers)
+		public async Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsersParams)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Leads.GetUsers(getUsers));
+			return await TypeHelper.TryInvokeMethodAsync(() => _vk.Leads.GetUsers(getUsersParams));
 		}
 
 		/// <inheritdoc/>

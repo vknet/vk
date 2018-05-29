@@ -65,9 +65,12 @@ namespace VkNet.Utils
     /// </summary>
     /// <param name="result">Результат.</param>
     /// <returns>WEB форма.</returns>
-    public static WebForm From(WebCallResult result) => new WebForm(result);
-    
-    /// <summary>
+    public static WebForm From(WebCallResult result)
+	{
+		return new WebForm(result);
+	}
+
+	/// <summary>
     /// Проверка на отсутствие двухфакторной авторизации.
     /// </summary>
     /// <param name="result">Результат.</param>
@@ -84,9 +87,12 @@ namespace VkNet.Utils
     /// И.
     /// </summary>
     /// <returns>WEB форма.</returns>
-    public WebForm And() => this;
+    public WebForm And()
+	{
+		return this;
+	}
 
-    /// <summary>
+	/// <summary>
     /// С полем.
     /// </summary>
     /// <param name="name">Наименование поля.</param>
@@ -160,22 +166,30 @@ namespace VkNet.Utils
     /// Получить запрос.
     /// </summary>
     /// <returns>Массив байт</returns>
-    public byte[] GetRequest() => Encoding.UTF8.GetBytes(GetRequestAsStringArray().JoinNonEmpty("&"));
+    public byte[] GetRequest()
+	{
+		return Encoding.UTF8.GetBytes(GetRequestAsStringArray().JoinNonEmpty("&"));
+	}
 
-    /// <summary>
+	/// <summary>
     /// Получить запрос.
     /// </summary>
     /// <returns>Массив байт</returns>
-    public IEnumerable<string> GetRequestAsStringArray() => _inputs.Select(x => $"{x.Key}={x.Value}");
+    public IEnumerable<string> GetRequestAsStringArray()
+	{
+		return _inputs.Select(x => $"{x.Key}={x.Value}");
+	}
 
-
-    /// <summary>
+	/// <summary>
     /// Получить значения полей.
     /// </summary>
     /// <returns>Словарь значений по именам полей.</returns>
-    public IDictionary<string, string> GetFormFields() => new Dictionary<string, string>(_inputs, _inputs.Comparer);
+    public IDictionary<string, string> GetFormFields()
+	{
+		return new Dictionary<string, string>(_inputs, _inputs.Comparer);
+	}
 
-    /// <summary>
+	/// <summary>
     /// Разобрать поля ввода.
     /// </summary>
     /// <returns>Коллекция полей ввода</returns>

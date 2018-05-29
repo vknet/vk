@@ -65,12 +65,13 @@ namespace VkNet.Model
         /// URL квадратной фотографии сообщества с размером 50х50px
         /// </summary>
         [JsonProperty("photo_50")]
-        private string Photo50 {
-	        get => Photo;
-            set => Photo = value;
-        }
+        private string Photo50
+		{
+			get { return Photo; }
+			set { Photo = value; }
+		}
 
-        /// <summary>
+		/// <summary>
         /// URL квадратной фотографии сообщества с размером 100х100px
         /// </summary>
         [JsonProperty("photo_medium")]
@@ -80,12 +81,13 @@ namespace VkNet.Model
         /// URL квадратной фотографии сообщества с размером 100х100px
         /// </summary>
         [JsonProperty("photo_100")]
-        private string Photo100 {
-	        get => PhotoMedium;
-            set => PhotoMedium = value;
-        }
+        private string Photo100
+		{
+			get { return PhotoMedium; }
+			set { PhotoMedium = value; }
+		}
 
-        /// <summary>
+		/// <summary>
         /// URL фотографии сообщества в максимальном доступном размере.
         /// </summary>
         [JsonProperty("photo_big")]
@@ -95,9 +97,10 @@ namespace VkNet.Model
         /// URL фотографии сообщества в максимальном доступном размере.
         /// </summary>
         [JsonProperty("photo_200")]
-        public string Photo200 {
-	        get => PhotoBig;
-            set => PhotoBig = value;
-        }
-    }
+        public string Photo200
+		{
+			get { return PhotoBig; }
+			set { PhotoBig = value; }
+		}
+	}
 }

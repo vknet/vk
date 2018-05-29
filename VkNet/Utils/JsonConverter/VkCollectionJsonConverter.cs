@@ -15,9 +15,12 @@ namespace VkNet.Utils.JsonConverter
         /// <summary>
         /// Количество
         /// </summary>
-        private static string CountField => "count";
+        private static string CountField
+		{
+			get { return "count"; }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Поле с коллекцией данных
         /// </summary>
         private string CollectionField { get; }

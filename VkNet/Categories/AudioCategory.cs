@@ -1,4 +1,4 @@
-﻿namespace VkNet.Categories
+namespace VkNet.Categories
 {
 	using System;
 	using System.Collections.Generic;
@@ -170,9 +170,9 @@
 		/// </remarks>
 		public VkCollection<Audio> Search(AudioSearchParams @params)
 		{
-			if (string.IsNullOrEmpty(@params.Query))
+			if (string.IsNullOrWhiteSpace(@params.Query))
 			{
-				throw new ArgumentNullException("Query is null or empty.", "query");
+				throw new ArgumentNullException(nameof(@params.Query), "Query is null or empty.");
 			}
 
 			return _vk.Call("audio.search", @params).ToVkCollectionOf<Audio>(r => r);
@@ -243,17 +243,17 @@
 		{
 			if (@params.Artist == null)
 			{
-				throw new ArgumentNullException("artist", "Artist parameter can not be null.");
+				throw new ArgumentNullException(nameof(@params.Artist), "Artist parameter can not be null.");
 			}
 
 			if (@params.Title == null)
 			{
-				throw new ArgumentNullException("title", "Title parameter can not be null.");
+				throw new ArgumentNullException(nameof(@params.Title), "Title parameter can not be null.");
 			}
 
 			if (@params.Text == null)
 			{
-				throw new ArgumentNullException("text", "Text parameter can not be null.");
+				throw new ArgumentNullException(nameof(@params.Text), "Text parameter can not be null.");
 			}
 
 			return _vk.Call("audio.edit", @params);

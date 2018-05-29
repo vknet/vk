@@ -48,22 +48,31 @@ namespace VkNet.Utils
         /// <value>
         /// Количество.
         /// </value>
-        public int Count => _array.Count;
+        public int Count
+		{
+			get { return _array.Count; }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Возвращает перечислитель, выполняющий итерацию в коллекции.
         /// </summary>
         /// <returns>
         /// Интерфейс T:System
         /// </returns>
-        public IEnumerator<VkResponse> GetEnumerator() => _array.Select(i => new VkResponse(i)).GetEnumerator();
+        public IEnumerator<VkResponse> GetEnumerator()
+		{
+			return _array.Select(i => new VkResponse(i)).GetEnumerator();
+		}
 
-        /// <summary>
+		/// <summary>
         /// Возвращает перечислитель, который осуществляет перебор элементов коллекции.
         /// </summary>
         /// <returns>
         /// Объект T:System
         /// </returns>
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-    }
+        IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
+		}
+	}
 }

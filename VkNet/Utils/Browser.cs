@@ -24,13 +24,19 @@ namespace VkNet.Utils
         [CanBeNull] private readonly ILogger _logger;
 
 		/// <inheritdoc />
-		public Browser([CanBeNull] ILogger logger) => _logger = logger;
+		public Browser([CanBeNull] ILogger logger)
+		{
+			_logger = logger;
+		}
 
 		/// <inheritdoc />
 		public IWebProxy Proxy { get; set; }
 
 		/// <inheritdoc />
-		public string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters) => WebCall.PostCall(url, parameters, Proxy).Response;
+		public string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters)
+		{
+			return WebCall.PostCall(url, parameters, Proxy).Response;
+		}
 
 		/// <inheritdoc />
 		public VkAuthorization Authorize(IApiAuthParams authParams)
@@ -262,18 +268,23 @@ namespace VkNet.Utils
         /// <param name="webCallResult"></param>
         /// <returns>true, если авторизация прошла успешно</returns>
         private static bool IsAuthSuccessfull(WebCallResult webCallResult)
-            => UriHasAccessToken(webCallResult.RequestUrl) ||
-               UriHasAccessToken(webCallResult.ResponseUrl);
+		{
+			return UriHasAccessToken(webCallResult.RequestUrl) ||
+					UriHasAccessToken(webCallResult.ResponseUrl);
+		}
 
-        /// <summary>
+		/// <summary>
         /// Проверка наличия токена в url
         /// </summary>
         /// <param name="uri"></param>
         /// <returns></returns>
-        private static bool UriHasAccessToken(Uri uri) => uri.Fragment
-            .StartsWith("#access_token=", StringComparison.Ordinal);
+        private static bool UriHasAccessToken(Uri uri)
+		{
+			return uri.Fragment
+				.StartsWith("#access_token=", StringComparison.Ordinal);
+		}
 
-        /// <summary>
+		/// <summary>
         /// Получить токен из uri
         /// </summary>
         /// <param name="webCallResult">Результат запроса</param>

@@ -72,9 +72,12 @@ namespace VkNet.Enums.Filters
         /// <summary>
         /// Список выбранных прав
         /// </summary>
-        private IEnumerable<string> Selected => _settings ?? (_settings = new List<string>());
+        private IEnumerable<string> Selected
+		{
+			get { return _settings ?? ( _settings = new List<string>() ); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Получить из json
         /// </summary>
         /// <param name="response">Ответ Vk</param>
@@ -153,116 +156,185 @@ namespace VkNet.Enums.Filters
         /// <summary>
         /// Пользователь разрешил отправлять ему уведомления.
         /// </summary>
-        public static Settings Notify => GetByName("notify");
+        public static Settings Notify
+		{
+			get { return GetByName("notify"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к друзьям.
         /// </summary>
-        public static Settings Friends => GetByName("friends");
+        public static Settings Friends
+		{
+			get { return GetByName("friends"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к фотографиям.
         /// </summary>
-        public static Settings Photos => GetByName("photos");
+        public static Settings Photos
+		{
+			get { return GetByName("photos"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к аудио записям.
         /// </summary>
-        public static Settings Audio => GetByName("audio");
+        public static Settings Audio
+		{
+			get { return GetByName("audio"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к видеозаписям.
         /// </summary>
-        public static Settings Video => GetByName("video");
+        public static Settings Video
+		{
+			get { return GetByName("video"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к wiki-страницам.
         /// </summary>
-        public static Settings Pages => GetByName("pages");
+        public static Settings Pages
+		{
+			get { return GetByName("pages"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Добавление ссылки на приложение в меню слева.
         /// </summary>
-        public static Settings AddLinkToLeftMenu => GetByName("addLinkToLeftMenu");
+        public static Settings AddLinkToLeftMenu
+		{
+			get { return GetByName("addLinkToLeftMenu"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к статусу пользователя.
         /// </summary>
-        public static Settings Status => GetByName("status");
+        public static Settings Status
+		{
+			get { return GetByName("status"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ заметкам пользователя.
         /// </summary>
-        public static Settings Notes => GetByName("notes");
+        public static Settings Notes
+		{
+			get { return GetByName("notes"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к расширенным методам работы с сообщениями.
         /// </summary>
-        public static Settings Messages => GetByName("messages");
+        public static Settings Messages
+		{
+			get { return GetByName("messages"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к обычным и расширенным методам работы со стеной.
         /// </summary>
-        public static Settings Wall => GetByName("wall");
+        public static Settings Wall
+		{
+			get { return GetByName("wall"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к расширенным методам работы с рекламным API.
         /// </summary>
-        public static Settings Ads => GetByName("ads");
+        public static Settings Ads
+		{
+			get { return GetByName("ads"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к API в любое время со стороннего сервера.
         /// </summary>
-        public static Settings Offline => GetByName("offline");
+        public static Settings Offline
+		{
+			get { return GetByName("offline"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к документам.
         /// </summary>
-        public static Settings Documents => GetByName("docs");
+        public static Settings Documents
+		{
+			get { return GetByName("docs"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к группам пользователя.
         /// </summary>
-        public static Settings Groups => GetByName("groups");
+        public static Settings Groups
+		{
+			get { return GetByName("groups"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к оповещениям об ответах пользователю.
         /// </summary>
-        public static Settings Notifications => GetByName("notifications");
+        public static Settings Notifications
+		{
+			get { return GetByName("notifications"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к статистике групп и приложений пользователя, администратором которых он является.
         /// </summary>
-        public static Settings Statistic => GetByName("stats");
+        public static Settings Statistic
+		{
+			get { return GetByName("stats"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к email пользователя. Доступно только для сайтов.
         /// </summary>
-        public static Settings Email => GetByName("email");
+        public static Settings Email
+		{
+			get { return GetByName("email"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к товарам. Доступно только для сайтов.
         /// </summary>
-        public static Settings Market => GetByName("market");
+        public static Settings Market
+		{
+			get { return GetByName("market"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к статистике групп и приложений пользователя, администратором которых он является.
         /// </summary>
-        public static Settings Stats => GetByName("stats");
+        public static Settings Stats
+		{
+			get { return GetByName("stats"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ к статистике групп и приложений пользователя, администратором которых он является.
         /// </summary>
-        public static Settings AppWidget => GetByName("app_widget");
+        public static Settings AppWidget
+		{
+			get { return GetByName("app_widget"); }
+		}
 
-        /// <summary>
+		/// <summary>
         /// Доступ ко всем возможным операциям (без Off line и NoHttps).
         /// </summary>
-        public static Settings All => AddLinkToLeftMenu | Ads | Audio | AppWidget | Documents | Email | Friends | Groups | Market
-                                      | Messages | Notes | Notifications | Notify | Pages | Photos | Stats | Status
-                                      | Video | Wall;
+        public static Settings All
+		{
+			get
+			{
+				return AddLinkToLeftMenu | Ads | Audio | AppWidget | Documents | Email | Friends | Groups | Market
+						| Messages | Notes | Notifications | Notify | Pages | Photos | Stats | Status
+						| Video | Wall;
+			}
+		}
 
-        /// <summary>
+		/// <summary>
         /// Объединяет наборы настройки
         /// </summary>
         /// <param name="a">Первый набор</param>

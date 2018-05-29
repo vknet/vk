@@ -36,7 +36,10 @@ namespace VkNet.Utils
 		/// Текущий элемент.
 		/// </summary>
 		/// <param name="index">Индекс.</param>
-		public new T this[int index] => Items[index];
+		public new T this[int index]
+		{
+			get { return Items[index]; }
+		}
 
 		/// <inheritdoc />
 		/// <summary>
@@ -45,6 +48,9 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Интерфейс T:System
 		/// </returns>
-		public new IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
+		public new IEnumerator<T> GetEnumerator()
+		{
+			return Items.GetEnumerator();
+		}
 	}
 }
