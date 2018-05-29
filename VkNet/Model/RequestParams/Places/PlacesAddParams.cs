@@ -4,51 +4,51 @@ using Newtonsoft.Json;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	/// Places Add Params
+	///     Places Add Params
 	/// </summary>
 	[Serializable]
 	public class PlacesAddParams
 	{
 		/// <summary>
-		/// Название нового места 
+		///     Название нового места
 		/// </summary>
-		[JsonProperty("title")]
+		[JsonProperty(propertyName: "title")]
 		public string Title { get; set; }
 
 		/// <summary>
-		/// Географическая широта нового места, заданная в градусах (от -90 до 90) 
+		///     Географическая широта нового места, заданная в градусах (от -90 до 90)
 		/// </summary>
-		[JsonProperty("latitude")]
+		[JsonProperty(propertyName: "latitude")]
 		public decimal Latitude { get; set; }
 
 		/// <summary>
-		/// Географическая долгота нового места, заданная в градусах (от -180 до 180)
+		///     Географическая долгота нового места, заданная в градусах (от -180 до 180)
 		/// </summary>
-		[JsonProperty("longitude")]
+		[JsonProperty(propertyName: "longitude")]
 		public decimal Longitude { get; set; }
 
 		/// <summary>
-		/// Строка с адресом нового места (например, Невский просп. 1)
+		///     Строка с адресом нового места (например, Невский просп. 1)
 		/// </summary>
-		[JsonProperty("address")]
+		[JsonProperty(propertyName: "address")]
 		public string Address { get; set; }
 
 		/// <summary>
-		/// Идентификатор типа нового места, полученный методом places.getTypes
+		///     Идентификатор типа нового места, полученный методом places.getTypes
 		/// </summary>
-		[JsonProperty("type")]
+		[JsonProperty(propertyName: "type")]
 		public ulong Type { get; set; }
 
 		/// <summary>
-		/// Идентификатор страны нового места, полученный методом places.getCountries
+		///     Идентификатор страны нового места, полученный методом places.getCountries
 		/// </summary>
-		[JsonProperty("country")]
+		[JsonProperty(propertyName: "country")]
 		public ulong Country { get; set; }
 
 		/// <summary>
-		/// Идентификатор города нового места, полученный методом places.getCities
+		///     Идентификатор города нового места, полученный методом places.getCities
 		/// </summary>
-		[JsonProperty("city")]
+		[JsonProperty(propertyName: "city")]
 		public ulong City { get; set; }
 	}
 }

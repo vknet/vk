@@ -4,18 +4,18 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Информация о просмотрах записи.
+	///     Информация о просмотрах записи.
 	/// </summary>
 	[Serializable]
 	public class PostView
 	{
 		/// <summary>
-		/// Число просмотров записи.
+		///     Число просмотров записи.
 		/// </summary>
 		public int Count { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -23,7 +23,7 @@ namespace VkNet.Model
 		{
 			return new PostView
 			{
-				Count = response["count"]
+					Count = response[key: "count"]
 			};
 		}
 	}

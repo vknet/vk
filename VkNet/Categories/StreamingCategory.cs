@@ -7,55 +7,57 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <inheritdoc/>
+	/// <inheritdoc />
 	public partial class StreamingCategory : IStreamingCategory
 	{
 		/// <summary>
-		/// API.
+		///     API.
 		/// </summary>
 		private readonly VkApi _vk;
 
-		/// <inheritdoc/>
-		/// <param name = "api">
-		/// Api vk.com
+		/// <inheritdoc />
+		/// <param name="api">
+		///     Api vk.com
 		/// </param>
 		public StreamingCategory(VkApi api)
 		{
 			_vk = api;
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public StreamingServerUrl GetServerUrl()
 		{
-			return _vk.Call<StreamingServerUrl>("streaming.getServerUrl", VkParameters.Empty);
+			return _vk.Call<StreamingServerUrl>(methodName: "streaming.getServerUrl", parameters: VkParameters.Empty);
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public StreamingSettings GetSettings()
 		{
-			return _vk.Call<StreamingSettings>("streaming.getSettings", VkParameters.Empty);
+			return _vk.Call<StreamingSettings>(methodName: "streaming.getSettings", parameters: VkParameters.Empty);
 		}
 
-		/// <inheritdoc/>
-		public ReadOnlyCollection<StreamingStats> GetStats(string type, string interval, DateTime? startTime = null,
-			DateTime? endTime = null)
+		/// <inheritdoc />
+		public ReadOnlyCollection<StreamingStats> GetStats(string type
+															, string interval
+															, DateTime? startTime = null
+															, DateTime? endTime = null)
 		{
-			var result = _vk.Call<ReadOnlyCollection<StreamingStats>>("streaming.getStats",
-				new VkParameters
-				{
-					{"type", type},
-					{"interval", interval},
-					{"start_time", startTime},
-					{"end_time", endTime}
-				});
+			var result = _vk.Call<ReadOnlyCollection<StreamingStats>>(methodName: "streaming.getStats",
+					parameters: new VkParameters
+					{
+							{ "type", type }
+							, { "interval", interval }
+							, { "start_time", startTime }
+							, { "end_time", endTime }
+					});
 
 			return result;
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public bool SetSettings(MonthlyLimit monthlyTier)
 		{
-			return _vk.Call<bool>("streaming.setSettings", new VkParameters {{"monthly_tier", monthlyTier}});
+			return _vk.Call<bool>(methodName: "streaming.setSettings", parameters: new VkParameters { { "monthly_tier", monthlyTier } });
 		}
 	}
 }

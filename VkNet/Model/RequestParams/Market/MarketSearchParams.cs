@@ -6,118 +6,86 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	/// Параметры запроса market.search
+	///     Параметры запроса market.search
 	/// </summary>
 	[Serializable]
 	public class MarketSearchParams
 	{
 		/// <summary>
-		/// Идентификатор сообщества, которому принадлежат товары. 
+		///     Идентификатор сообщества, которому принадлежат товары.
 		/// </summary>
-		public long OwnerId
-		{
-			get; set;
-		}
+		public long OwnerId { get; set; }
 
 		/// <summary>
-		/// Идентификатор подборки, товары из которой нужно вернуть. 
+		///     Идентификатор подборки, товары из которой нужно вернуть.
 		/// </summary>
-		public long? AlbumId
-		{
-			get; set;
-		}
+		public long? AlbumId { get; set; }
 
 		/// <summary>
-		/// Строка поискового запроса.
+		///     Строка поискового запроса.
 		/// </summary>
-		public string Query
-		{
-			get; set;
-		}
+		public string Query { get; set; }
 
 		/// <summary>
-		/// Минимальное значение цены товаров.
+		///     Минимальное значение цены товаров.
 		/// </summary>
-		public long? PriceFrom
-		{
-			get; set;
-		}
+		public long? PriceFrom { get; set; }
 
 		/// <summary>
-		/// Максимальное значение цены товаров.
+		///     Максимальное значение цены товаров.
 		/// </summary>
-		public long? PriceTo
-		{
-			get; set;
-		}
+		public long? PriceTo { get; set; }
 
 		/// <summary>
-		/// Перечисленные через запятую идентификаторы меток.
+		///     Перечисленные через запятую идентификаторы меток.
 		/// </summary>
-		public IEnumerable<long> Tags
-		{
-			get; set;
-		}
+		public IEnumerable<long> Tags { get; set; }
 
 		/// <summary>
-		/// Вид сортировки.
+		///     Вид сортировки.
 		/// </summary>
-		public ProductSort? Sort
-		{
-			get; set;
-		}
+		public ProductSort? Sort { get; set; }
 
 		/// <summary>
-		/// 0 — не использовать обратный порядок, 1 — использовать обратный порядок. 
+		///     0 — не использовать обратный порядок, 1 — использовать обратный порядок.
 		/// </summary>
-		public bool? Rev
-		{
-			get; set;
-		}
+		public bool? Rev { get; set; }
 
 		/// <summary>
-		/// Смещение относительно первого найденного товара для выборки определенного подмножества.
+		///     Смещение относительно первого найденного товара для выборки определенного подмножества.
 		/// </summary>
-		public long? Offset
-		{
-			get; set;
-		}
+		public long? Offset { get; set; }
 
 		/// <summary>
-		/// Количество возвращаемых товаров. 
+		///     Количество возвращаемых товаров.
 		/// </summary>
-		public long? Count
-		{
-			get; set;
-		}
+		public long? Count { get; set; }
 
 		/// <summary>
-		/// 1 — будут возвращены дополнительные поля likes, can_comment, can_repost, ''photos'''.
+		///     1 — будут возвращены дополнительные поля likes, can_comment, can_repost, ''photos'''.
 		/// </summary>
-		public bool? Extended
-		{
-			get; set;
-		}
+		public bool? Extended { get; set; }
 
 		/// <summary>
-		/// Привести к типу VkParameters.
+		///     Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
 		public static VkParameters ToVkParameters(MarketSearchParams p)
 		{
-			var parameters = new VkParameters {
-				{ "owner_id", p.OwnerId },
-				{ "album_id", p.AlbumId },
-				{ "q", p.Query },
-				{ "price_from", p.PriceFrom },
-				{ "price_to", p.PriceTo },
-				{ "tags", p.Tags },
-				{ "sort", p.Sort },
-				{ "rev", p.Rev },
-				{ "offset", p.Offset },
-				{ "count", p.Count },
-				{ "extended", p.Extended }
+			var parameters = new VkParameters
+			{
+					{ "owner_id", p.OwnerId }
+					, { "album_id", p.AlbumId }
+					, { "q", p.Query }
+					, { "price_from", p.PriceFrom }
+					, { "price_to", p.PriceTo }
+					, { "tags", p.Tags }
+					, { "sort", p.Sort }
+					, { "rev", p.Rev }
+					, { "offset", p.Offset }
+					, { "count", p.Count }
+					, { "extended", p.Extended }
 			};
 
 			return parameters;

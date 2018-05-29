@@ -5,46 +5,46 @@ using VkNet.Enums;
 namespace VkNet.Model.RequestParams.Leads
 {
 	/// <summary>
-	/// Доступна ли рекламная акция пользователю.
+	///     Доступна ли рекламная акция пользователю.
 	/// </summary>
 	[Serializable]
 	public class CheckUserParams
 	{
 		/// <summary>
-		/// Идентификатор рекламной акции 
+		///     Идентификатор рекламной акции
 		/// </summary>
-		[JsonProperty("lead_id")]
+		[JsonProperty(propertyName: "lead_id")]
 		public ulong LeadId { get; set; }
 
 		/// <summary>
-		/// Двухбуквенный код страны пользователя (ISO 3166-1 alpha-2, также известный как ISO2). 
+		///     Двухбуквенный код страны пользователя (ISO 3166-1 alpha-2, также известный как ISO2).
 		/// </summary>
-		[JsonProperty("country")]
+		[JsonProperty(propertyName: "country")]
 		public Iso3166 Country { get; set; }
 
 		/// <summary>
-		/// При использовании тестового режима функция вернёт result, соответствующий значению этого параметра. 
+		///     При использовании тестового режима функция вернёт result, соответствующий значению этого параметра.
 		/// </summary>
-		[JsonProperty("test_result")]
+		[JsonProperty(propertyName: "test_result")]
 		public ulong TestResult { get; set; }
 
 		/// <summary>
-		/// 1 -- включить тестовый режим;
-		/// 0 -- включить боевой режим. 
+		///     1 -- включить тестовый режим;
+		///     0 -- включить боевой режим.
 		/// </summary>
-		[JsonProperty("test_mode")]
+		[JsonProperty(propertyName: "test_mode")]
 		public bool TestMode { get; set; }
 
 		/// <summary>
-		/// Автоматический старт акции при успешной проверке. Доступно по согласованию с администрацией.
+		///     Автоматический старт акции при успешной проверке. Доступно по согласованию с администрацией.
 		/// </summary>
-		[JsonProperty("auto_start")]
+		[JsonProperty(propertyName: "auto_start")]
 		public bool AutoStart { get; set; }
 
 		/// <summary>
-		/// Возраст пользователя.
+		///     Возраст пользователя.
 		/// </summary>
-		[JsonProperty("age")]
+		[JsonProperty(propertyName: "age")]
 		public ulong Age { get; set; }
 	}
 }

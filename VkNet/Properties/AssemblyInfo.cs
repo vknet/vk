@@ -1,18 +1,18 @@
-﻿using System.Resources;
-using System.Reflection;
+﻿using System.Reflection;
+using System.Resources;
 
 // Общие сведения о сборке определяются следующим
 // набором атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("VkNet.UWP")]
-[assembly: AssemblyDescription("Реализация ВКонтакте API для .NET. Список методов см. https://vknet.github.io/vk/")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("VkNet")]
-[assembly: AssemblyProduct("VkNet")]
-[assembly: AssemblyCopyright("©  2017")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-[assembly: NeutralResourcesLanguage("ru")]
+[assembly: AssemblyTitle(title: "VkNet.UWP")]
+[assembly: AssemblyDescription(description: "Реализация ВКонтакте API для .NET. Список методов см. https://vknet.github.io/vk/")]
+[assembly: AssemblyConfiguration(configuration: "")]
+[assembly: AssemblyCompany(company: "VkNet")]
+[assembly: AssemblyProduct(product: "VkNet")]
+[assembly: AssemblyCopyright(copyright: "©  2017")]
+[assembly: AssemblyTrademark(trademark: "")]
+[assembly: AssemblyCulture(culture: "")]
+[assembly: NeutralResourcesLanguage(cultureName: "ru")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
@@ -24,5 +24,5 @@ using System.Reflection;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию
 // указав "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion(version: "1.0.0.0")]
+[assembly: AssemblyFileVersion(version: "1.0.0.0")]

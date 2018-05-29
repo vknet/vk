@@ -9,78 +9,71 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Результат поиска метода newsfeed.search
+	///     Результат поиска метода newsfeed.search
 	/// </summary>
 	[Serializable]
 	public class NewsSearchResult
 	{
 		/// <summary>
-		/// Локальный идентификатор записи (для конкретного владельца).
+		///     Локальный идентификатор записи (для конкретного владельца).
 		/// </summary>
-		public long Id
-		{ get; set; }
+		public long Id { get; set; }
 
 		/// <summary>
-		/// Идентификатор владельца стены, на которой размещена запись. Если стена принадлежит сообществу, то данный параметр равен -gid (идентификатор сообщества со знаком минус).
+		///     Идентификатор владельца стены, на которой размещена запись. Если стена принадлежит сообществу, то данный параметр
+		///     равен -gid (идентификатор сообщества со знаком минус).
 		/// </summary>
-		public long OwnerId
-		{ get; set; }
+		public long OwnerId { get; set; }
 
 		/// <summary>
-		/// Идентификатор автора записи;.
+		///     Идентификатор автора записи;.
 		/// </summary>
-		public long FromId
-		{ get; set; }
+		public long FromId { get; set; }
 
 		/// <summary>
-		/// Время публикации записи в формате unixtime.
+		///     Время публикации записи в формате unixtime.
 		/// </summary>
-		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime? Date
-		{ get; set; }
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		public DateTime? Date { get; set; }
 
 		/// <summary>
-		/// Текст записи.
+		///     Текст записи.
 		/// </summary>
-		public string Text
-		{ get; set; }
+		public string Text { get; set; }
 
 		/// <summary>
-		/// Содержит информацию о количестве комментариев к записи.
+		///     Содержит информацию о количестве комментариев к записи.
 		/// </summary>
-		public Comments Comments
-		{ get; set; }
+		public Comments Comments { get; set; }
 
 		/// <summary>
-		/// Содержит информацию о числе людей, которым понравилась данная запись.
+		///     Содержит информацию о числе людей, которым понравилась данная запись.
 		/// </summary>
-		public Likes Likes
-		{ get; set; }
+		public Likes Likes { get; set; }
 
 		/// <summary>
-		/// Находится в записях со стен и содержит массив объектов, которые прикреплены к текущей новости (фотография, ссылка и т.п.). Более подробная информация представлена на странице Описание поля attachments.
+		///     Находится в записях со стен и содержит массив объектов, которые прикреплены к текущей новости (фотография, ссылка и
+		///     т.п.). Более подробная информация представлена на странице Описание поля attachments.
 		/// </summary>
-		public IEnumerable<Attachment> Attachments
-		{ get; set; }
+		public IEnumerable<Attachment> Attachments { get; set; }
 
 		/// <summary>
-		/// Находится в записях со стен, в которых имеется информация о местоположении.
+		///     Находится в записях со стен, в которых имеется информация о местоположении.
 		/// </summary>
-		public Geo Geo
-		{ get; set; }
+		public Geo Geo { get; set; }
 
-        /// <summary>
-        /// Идентификатор владельца записи.
-        /// </summary>
-	    public long? SignerId { get; set; }
-
-        /// <summary>
-        /// Тип записи
-        /// </summary>
-	    public PostType PostType { get; set; }
-	    
 		/// <summary>
-		/// Разобрать из json.
+		///     Идентификатор владельца записи.
+		/// </summary>
+		public long? SignerId { get; set; }
+
+		/// <summary>
+		///     Тип записи
+		/// </summary>
+		public PostType PostType { get; set; }
+
+		/// <summary>
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -88,18 +81,19 @@ namespace VkNet.Model
 		{
 			var newsSearchResult = new NewsSearchResult
 			{
-				Id = response["id"],
-				OwnerId = response["owner_id"],
-				FromId = response["from_id"],
-				Date = response["date"],
-				Text = response["text"],
-				Comments = response["comments"],
-				Likes = response["likes"],
-				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
-				Geo = response["geo"],
-                SignerId = response["signer_id"],
-                PostType = response["post_type"]
-            };
+					Id = response[key: "id"]
+					, OwnerId = response[key: "owner_id"]
+					, FromId = response[key: "from_id"]
+					, Date = response[key: "date"]
+					, Text = response[key: "text"]
+					, Comments = response[key: "comments"]
+					, Likes = response[key: "likes"]
+					, Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x)
+					, Geo = response[key: "geo"]
+					, SignerId = response[key: "signer_id"]
+					, PostType = response[key: "post_type"]
+			};
+
 			return newsSearchResult;
 		}
 	}

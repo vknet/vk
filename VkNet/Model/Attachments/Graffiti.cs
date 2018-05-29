@@ -1,54 +1,53 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
 	/// <summary>
-	/// Граффити.
-	/// См. описание http://vk.com/dev/attachments_w
+	///     Граффити.
+	///     См. описание http://vk.com/dev/attachments_w
 	/// </summary>
 	[Serializable]
 	public class Graffiti : MediaAttachment
-    {
+	{
 		/// <summary>
-		/// Граффити.
+		///     Граффити.
 		/// </summary>
 		static Graffiti()
 		{
-			RegisterType(typeof (Graffiti), "graffiti");
+			RegisterType(type: typeof(Graffiti), match: "graffiti");
 		}
 
-        /// <summary>
-        /// Адрес изображения для предпросмотра.
-        /// </summary>
-        public string Photo200 { get; set; }
-
-        /// <summary>
-        /// Адрес полноразмерного изображения.
-        /// </summary>
-        public string Photo586 { get; set; }
-
-		#region Методы
+		/// <summary>
+		///     Адрес изображения для предпросмотра.
+		/// </summary>
+		public string Photo200 { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Адрес полноразмерного изображения.
+		/// </summary>
+		public string Photo586 { get; set; }
+
+	#region Методы
+
+		/// <summary>
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
 		public static Graffiti FromJson(VkResponse response)
-        {
-	        var graffiti = new Graffiti
-	        {
-		        Id = response["id"],
-		        OwnerId = response["owner_id"],
-		        Photo200 = response["photo_200"],
-		        Photo586 = response["photo_586"]
-	        };
+		{
+			var graffiti = new Graffiti
+			{
+					Id = response[key: "id"]
+					, OwnerId = response[key: "owner_id"]
+					, Photo200 = response[key: "photo_200"]
+					, Photo586 = response[key: "photo_586"]
+			};
 
-	        return graffiti;
-        }
+			return graffiti;
+		}
 
-        #endregion
-    }
+	#endregion
+	}
 }

@@ -6,61 +6,53 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	/// Список параметров для метода photos.editAlbum
+	///     Список параметров для метода photos.editAlbum
 	/// </summary>
 	[Serializable]
 	public class PhotoEditAlbumParams
 	{
 		/// <summary>
-		/// Идентификатор альбома.
+		///     Идентификатор альбома.
 		/// </summary>
-		public ulong AlbumId
-		{ get; set; }
+		public ulong AlbumId { get; set; }
 
 		/// <summary>
-		/// Новое название альбома.
+		///     Новое название альбома.
 		/// </summary>
-		public string Title
-		{ get; set; }
+		public string Title { get; set; }
 
 		/// <summary>
-		/// Новый текст описания альбома.
+		///     Новый текст описания альбома.
 		/// </summary>
-		public string Description
-		{ get; set; }
+		public string Description { get; set; }
 
 		/// <summary>
-		/// Идентификатор владельца альбома (пользователь или сообщество).
+		///     Идентификатор владельца альбома (пользователь или сообщество).
 		/// </summary>
-		public long? OwnerId
-		{ get; set; }
+		public long? OwnerId { get; set; }
 
 		/// <summary>
-		/// Настройки приватности просмотра альбома в специальном формате.
+		///     Настройки приватности просмотра альбома в специальном формате.
 		/// </summary>
-		public List<Privacy> PrivacyView
-		{ get; set; }
+		public List<Privacy> PrivacyView { get; set; }
 
 		/// <summary>
-		/// Настройки приватности комментирования альбома в специальном формате.
+		///     Настройки приватности комментирования альбома в специальном формате.
 		/// </summary>
-		public List<Privacy> PrivacyComment
-		{ get; set; }
+		public List<Privacy> PrivacyComment { get; set; }
 
 		/// <summary>
-		/// Кто может загружать фотографии в альбом (только для альбома сообщества).
+		///     Кто может загружать фотографии в альбом (только для альбома сообщества).
 		/// </summary>
-		public bool? UploadByAdminsOnly
-		{ get; set; }
+		public bool? UploadByAdminsOnly { get; set; }
 
 		/// <summary>
-		/// Отключено ли комментирование альбома (только для альбома сообщества).
+		///     Отключено ли комментирование альбома (только для альбома сообщества).
 		/// </summary>
-		public bool? CommentsDisabled
-		{ get; set; }
+		public bool? CommentsDisabled { get; set; }
 
 		/// <summary>
-		/// Привести к типу VkParameters.
+		///     Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
@@ -70,20 +62,22 @@ namespace VkNet.Model.RequestParams
 			{
 				p.PrivacyView = new List<Privacy>();
 			}
+
 			if (p.PrivacyComment == null)
 			{
 				p.PrivacyComment = new List<Privacy>();
 			}
+
 			var parameters = new VkParameters
 			{
-				{ "album_id", p.AlbumId },
-				{ "title", p.Title },
-				{ "description", p.Description },
-				{ "owner_id", p.OwnerId },
-				{ "privacy_view", string.Join(",", p.PrivacyView) },
-				{ "privacy_comment", string.Join(",", p.PrivacyComment) },
-				{ "upload_by_admins_only", p.UploadByAdminsOnly },
-				{ "comments_disabled", p.CommentsDisabled }
+					{ "album_id", p.AlbumId }
+					, { "title", p.Title }
+					, { "description", p.Description }
+					, { "owner_id", p.OwnerId }
+					, { "privacy_view", string.Join(separator: ",", values: p.PrivacyView) }
+					, { "privacy_comment", string.Join(separator: ",", values: p.PrivacyComment) }
+					, { "upload_by_admins_only", p.UploadByAdminsOnly }
+					, { "comments_disabled", p.CommentsDisabled }
 			};
 
 			return parameters;

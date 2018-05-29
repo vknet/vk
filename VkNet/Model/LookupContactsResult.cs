@@ -5,23 +5,23 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Результат поиск пользователей по другим сервисам.
+	///     Результат поиск пользователей по другим сервисам.
 	/// </summary>
 	[Serializable]
 	public class LookupContactsResult
 	{
 		/// <summary>
-		/// Список объектов пользователей.
+		///     Список объектов пользователей.
 		/// </summary>
 		public ReadOnlyCollection<User> FoundList { get; set; }
 
 		/// <summary>
-		/// Список контактов, которые не были найдены.
+		///     Список контактов, которые не были найдены.
 		/// </summary>
 		public ReadOnlyCollection<LookupContactsOther> Other { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -29,8 +29,8 @@ namespace VkNet.Model
 		{
 			return new LookupContactsResult
 			{
-				FoundList = response["found"].ToReadOnlyCollectionOf<User>(x => x),
-				Other = response["other"].ToReadOnlyCollectionOf<LookupContactsOther>(x => x)
+					FoundList = response[key: "found"].ToReadOnlyCollectionOf<User>(selector: x => x)
+					, Other = response[key: "other"].ToReadOnlyCollectionOf<LookupContactsOther>(selector: x => x)
 			};
 		}
 	}

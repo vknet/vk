@@ -6,73 +6,64 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	/// Список параметров для метода photos.getComments
+	///     Список параметров для метода photos.getComments
 	/// </summary>
 	[Serializable]
 	public class PhotoGetCommentsParams
 	{
 		/// <summary>
-		/// Идентификатор пользователя или сообщества, которому принадлежит фотография.
+		///     Идентификатор пользователя или сообщества, которому принадлежит фотография.
 		/// </summary>
-		public long? OwnerId
-		{ get; set; }
+		public long? OwnerId { get; set; }
 
 		/// <summary>
-		/// Идентификатор фотографии.
+		///     Идентификатор фотографии.
 		/// </summary>
-		public ulong PhotoId
-		{ get; set; }
+		public ulong PhotoId { get; set; }
 
 		/// <summary>
-		/// <c>true</c> — будет возвращено дополнительное поле likes. По умолчанию поле likes не возвращается.
+		///     <c>true</c> — будет возвращено дополнительное поле likes. По умолчанию поле likes не возвращается.
 		/// </summary>
-		public bool? NeedLikes
-		{ get; set; }
+		public bool? NeedLikes { get; set; }
 
 		/// <summary>
-		/// Идентификатор комментария, начиная с которого нужно вернуть список (подробности см. ниже).
+		///     Идентификатор комментария, начиная с которого нужно вернуть список (подробности см. ниже).
 		/// </summary>
-		public ulong? StartCommentId
-		{ get; set; }
+		public ulong? StartCommentId { get; set; }
 
 		/// <summary>
-		/// Смещение, необходимое для выборки определенного подмножества комментариев. По умолчанию — 0.
+		///     Смещение, необходимое для выборки определенного подмножества комментариев. По умолчанию — 0.
 		/// </summary>
-		public ulong? Offset
-		{ get; set; }
+		public ulong? Offset { get; set; }
 
 		/// <summary>
-		/// Количество комментариев, которое необходимо получить.
+		///     Количество комментариев, которое необходимо получить.
 		/// </summary>
-		public ulong? Count
-		{ get; set; }
+		public ulong? Count { get; set; }
 
 		/// <summary>
-		/// Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым) строка.
+		///     Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к старым) строка.
 		/// </summary>
-		public CommentsSort Sort
-		{ get; set; }
+		public CommentsSort Sort { get; set; }
 
 		/// <summary>
-		/// Ключ доступа к фотографии.
+		///     Ключ доступа к фотографии.
 		/// </summary>
-		public string AccessKey
-		{ get; set; }
+		public string AccessKey { get; set; }
 
 		/// <summary>
-		/// <c>true</c> — комментарии в ответе будут возвращены в виде пронумерованных объектов, дополнительно будут возвращены списки объектов profiles, groups.
+		///     <c>true</c> — комментарии в ответе будут возвращены в виде пронумерованных объектов, дополнительно будут возвращены
+		///     списки объектов profiles, groups.
 		/// </summary>
-		public bool? Extended
-		{ get; set; }
+		public bool? Extended { get; set; }
 
 		/// <summary>
-		///  Список строк, разделенных через запятую.
+		///     Список строк, разделенных через запятую.
 		/// </summary>
-		public UsersFields Fields
-		{ get; set; }
+		public UsersFields Fields { get; set; }
 
 		/// <summary>
-		/// Привести к типу VkParameters.
+		///     Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p">Параметры.</param>
 		/// <returns></returns>
@@ -80,16 +71,16 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-				{ "owner_id", p.OwnerId },
-				{ "photo_id", p.PhotoId },
-				{ "need_likes", p.NeedLikes },
-				{ "start_comment_id", p.StartCommentId },
-				{ "offset", p.Offset },
-				{ "count", p.Count },
-				{ "sort", p.Sort },
-				{ "access_key", p.AccessKey },
-				{ "extended", p.Extended },
-				{ "fields", p.Fields }
+					{ "owner_id", p.OwnerId }
+					, { "photo_id", p.PhotoId }
+					, { "need_likes", p.NeedLikes }
+					, { "start_comment_id", p.StartCommentId }
+					, { "offset", p.Offset }
+					, { "count", p.Count }
+					, { "sort", p.Sort }
+					, { "access_key", p.AccessKey }
+					, { "extended", p.Extended }
+					, { "fields", p.Fields }
 			};
 
 			return parameters;

@@ -4,28 +4,28 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Тип документа.
+	///     Тип документа.
 	/// </summary>
 	[Serializable]
 	public class DocumentType
 	{
 		/// <summary>
-		/// Идентификатор полученного подарка.
+		///     Идентификатор полученного подарка.
 		/// </summary>
 		public long Id { get; set; }
 
 		/// <summary>
-		/// Текст сообщения, приложенного к подарку.
+		///     Текст сообщения, приложенного к подарку.
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		/// Количество документов данного типа.
+		///     Количество документов данного типа.
 		/// </summary>
 		public long Count { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns>Тип документа.</returns>
@@ -33,9 +33,9 @@ namespace VkNet.Model
 		{
 			var result = new DocumentType
 			{
-				Id = response["id"],
-				Name = response["name"],
-				Count = response["count"]
+					Id = response[key: "id"]
+					, Name = response[key: "name"]
+					, Count = response[key: "count"]
 			};
 
 			return result;

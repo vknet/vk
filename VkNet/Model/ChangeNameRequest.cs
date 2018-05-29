@@ -1,44 +1,44 @@
 ﻿using System;
-using VkNet.Utils;
-
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    /// <summary>
-    /// Информация о заявке на смену имени.
-    /// </summary>
-    [Serializable]
-    public class ChangeNameRequest
+	/// <summary>
+	///     Информация о заявке на смену имени.
+	/// </summary>
+	[Serializable]
+	public class ChangeNameRequest
 	{
 		/// <summary>
-		/// Идентификатор заявки, необходимый для её отмены (только если ChangeNameRequest.Status
+		///     Идентификатор заявки, необходимый для её отмены (только если ChangeNameRequest.Status
 		/// </summary>
 		public int? Id { get; set; }
 
 		/// <summary>
-		/// Статус заявки
+		///     Статус заявки
 		/// </summary>
 		public ChangeNameStatus Status { get; set; }
 
 		/// <summary>
-		/// Дата, после которой возможна повторная подача заявки.
+		///     Дата, после которой возможна повторная подача заявки.
 		/// </summary>
 		public string RepeatDate { get; set; }
 
 		/// <summary>
-		/// Имя пользователя, указанное в заявке
+		///     Имя пользователя, указанное в заявке
 		/// </summary>
 		public string FirstName { get; set; }
 
 		/// <summary>
-		/// Фамилия пользователя, указанная в заявке.
+		///     Фамилия пользователя, указанная в заявке.
 		/// </summary>
 		public string LastName { get; set; }
 
-		#region Методы
+	#region Методы
+
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -46,17 +46,16 @@ namespace VkNet.Model
 		{
 			var request = new ChangeNameRequest
 			{
-				Id = response["id"],
-				FirstName = response["first_name"],
-				LastName = response["last_name"],
-				Status = response["status"],
-				RepeatDate = response["repeat_date"]
+					Id = response[key: "id"]
+					, FirstName = response[key: "first_name"]
+					, LastName = response[key: "last_name"]
+					, Status = response[key: "status"]
+					, RepeatDate = response[key: "repeat_date"]
 			};
 
 			return request;
 		}
-        
-		#endregion
 
+	#endregion
 	}
 }

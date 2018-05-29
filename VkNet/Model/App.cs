@@ -3,241 +3,217 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
-using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Приложение.
+	///     Приложение.
 	/// </summary>
 	[Serializable]
 	public class App
 	{
 		/// <summary>
-		/// Идентификатор приложения.
+		///     Идентификатор приложения.
 		/// </summary>
-		public ulong Id
-		{ get; set; }
+		public ulong Id { get; set; }
 
 		/// <summary>
-		/// Название приложения.
+		///     Название приложения.
 		/// </summary>
-		public string Title
-		{ get; set; }
-
-        /// <summary>
-        /// Uri-адрес обложки приложения шириной 278px.
-        /// </summary>
-        public string Icon278
-		{ get; set; }
-
-        /// <summary>
-        /// Uri-адрес обложки приложения шириной 139px.
-        /// </summary>
-        public string Icon139
-        { get; set; }
+		public string Title { get; set; }
 
 		/// <summary>
-		/// Uri-адрес обложки приложения шириной 150px.
+		///     Uri-адрес обложки приложения шириной 278px.
 		/// </summary>
-		public string Icon150
-		{ get; set; }
+		public string Icon278 { get; set; }
 
 		/// <summary>
-		/// Uri-адрес обложки приложения шириной 75px.
+		///     Uri-адрес обложки приложения шириной 139px.
 		/// </summary>
-		public string Icon75
-		{ get; set; }
+		public string Icon139 { get; set; }
 
 		/// <summary>
-        /// Uri-адрес баннера шириной 560px.
-        /// </summary>
-        public string Banner560
-        { get; set; }
-
-        /// <summary>
-        /// Uri-адрес баннера шириной 1120px.
-        /// </summary>
-        public string Banner1120
-		{ get; set; }
+		///     Uri-адрес обложки приложения шириной 150px.
+		/// </summary>
+		public string Icon150 { get; set; }
 
 		/// <summary>
-		/// Тип приложения:.
+		///     Uri-адрес обложки приложения шириной 75px.
 		/// </summary>
-		public AppType Type
-		{ get; set; }
+		public string Icon75 { get; set; }
 
 		/// <summary>
-		/// Категория приложения.
+		///     Uri-адрес баннера шириной 560px.
 		/// </summary>
-		public string Section
-		{ get; set; }
+		public string Banner560 { get; set; }
 
 		/// <summary>
-		/// Адрес страницы автора приложения.
+		///     Uri-адрес баннера шириной 1120px.
 		/// </summary>
-		public string AuthorUrl
-		{ get; set; }
+		public string Banner1120 { get; set; }
 
 		/// <summary>
-		/// Идентификатор автора приложения.
+		///     Тип приложения:.
 		/// </summary>
-		public ulong? AuthorId
-		{ get; set; }
+		public AppType Type { get; set; }
 
 		/// <summary>
-		/// Идентификатор официальной группы приложения.
+		///     Категория приложения.
 		/// </summary>
-		public ulong? AuthorGroup
-		{ get; set; }
+		public string Section { get; set; }
 
 		/// <summary>
-		/// Количество участников приложения.
+		///     Адрес страницы автора приложения.
 		/// </summary>
-		public ulong MembersCount
-		{ get; set; }
+		public string AuthorUrl { get; set; }
 
 		/// <summary>
-		/// Дата размещения.
+		///     Идентификатор автора приложения.
 		/// </summary>
-		public string PublishedDate
-		{ get; set; }
+		public ulong? AuthorId { get; set; }
 
 		/// <summary>
-		/// Позиция в каталоге.
+		///     Идентификатор официальной группы приложения.
 		/// </summary>
-		public ulong? CatalogPosition
-		{ get; set; }
+		public ulong? AuthorGroup { get; set; }
 
 		/// <summary>
-		/// Является ли приложение мультиязычным (<c>true</c>).
+		///     Количество участников приложения.
 		/// </summary>
-		public bool International
-		{ get; set; }
+		public ulong MembersCount { get; set; }
 
 		/// <summary>
-		/// Тип турнирной таблицы (0 - не поддерживается, 1 - по уровню, 2 - по очкам).
+		///     Дата размещения.
 		/// </summary>
-		public LeaderboardTypes LeaderBoardType
-		{ get; set; }
+		public string PublishedDate { get; set; }
 
 		/// <summary>
-		/// Идентификатор жанра.
+		///     Позиция в каталоге.
 		/// </summary>
-		public int? GenreId
-		{ get; set; }
+		public ulong? CatalogPosition { get; set; }
 
 		/// <summary>
-		/// Название жанра.
+		///     Является ли приложение мультиязычным (<c>true</c>).
 		/// </summary>
-		public string Genre
-		{ get; set; }
+		public bool International { get; set; }
 
 		/// <summary>
-		/// Идентификатор приложения в магазине приложений.
+		///     Тип турнирной таблицы (0 - не поддерживается, 1 - по уровню, 2 - по очкам).
 		/// </summary>
-		public int? PlatformId
-		{ get; set; }
+		public LeaderboardTypes LeaderBoardType { get; set; }
 
-        /// <summary>
-        /// Доступно ли приложение в мобильном каталоге.
-        /// </summary>
-        public bool? IsInCatalog { get; set; }
-		
 		/// <summary>
-		/// список идентификаторов друзей текущего пользователя, которые установили приложение
-		/// (если был передан параметр return_friends = 1.
+		///     Идентификатор жанра.
 		/// </summary>
-		[JsonProperty("friends")]
+		public int? GenreId { get; set; }
+
+		/// <summary>
+		///     Название жанра.
+		/// </summary>
+		public string Genre { get; set; }
+
+		/// <summary>
+		///     Идентификатор приложения в магазине приложений.
+		/// </summary>
+		public int? PlatformId { get; set; }
+
+		/// <summary>
+		///     Доступно ли приложение в мобильном каталоге.
+		/// </summary>
+		public bool? IsInCatalog { get; set; }
+
+		/// <summary>
+		///     список идентификаторов друзей текущего пользователя, которые установили приложение
+		///     (если был передан параметр return_friends = 1.
+		/// </summary>
+		[JsonProperty(propertyName: "friends")]
 		public ReadOnlyCollection<long> Friends { get; set; }
-		
+
 		/// <summary>
-		/// 1, если приложение установлено у текущего пользователя.
+		///     1, если приложение установлено у текущего пользователя.
 		/// </summary>
-		[JsonProperty("installed")]
+		[JsonProperty(propertyName: "installed")]
 		public bool? Installed { get; set; }
-		
+
 		/// <summary>
-		/// 1, если приложение — html5 игра.
+		///     1, если приложение — html5 игра.
 		/// </summary>
-		[JsonProperty("is_html_5_app")]
+		[JsonProperty(propertyName: "is_html_5_app")]
 		public bool IsHtml5App { get; set; }
-        #region Опциональные поля
 
 		/// <summary>
-		/// Описание.
+		///     Разобрать из json.
 		/// </summary>
-		public string Description
-		{ get; set; }
-
-		/// <summary>
-        /// Поддомен приложения (или строка idXXXXXXX, если поддомен не задан).
-        /// </summary>
-        public string ScreenName
-        { get; set; }
-
-		/// <summary>
-        /// Uri-адрес обложки приложения шириной 16px.
-        /// </summary>
-        public string Icon16
-        { get; set; }
-
-        /// <summary>
-        /// Uri-адреса изображений-скриншотов из приложения.
-        /// </summary>
-        public IEnumerable<Photo> Screenshots
-        { get; set; }
-		
-		/// <summary>
-		/// 1, если у пользователя включены уведомления из этого приложения.
-		/// </summary>
-		[JsonProperty("push_enabled")]
-		public bool? PushEnabled { get; set; }
-        #endregion
-
-
-        /// <summary>
-        /// Разобрать из json.
-        /// </summary>
-        /// <param name="response">Ответ сервера.</param>
-        /// <returns></returns>
-        public static App FromJson(VkResponse response)
+		/// <param name="response">Ответ сервера.</param>
+		/// <returns></returns>
+		public static App FromJson(VkResponse response)
 		{
 			return new App
-            {
-                Id = response["id"],
-                Title = response["title"],
-                ScreenName = response["screen_name"],
-                Description = response["description"],
-                Icon278 = response["icon_278"],
-                Icon139 = response["icon_139"],
-                Icon75 = response["icon_75"],
-                Icon150 = response["icon_150"],
-                Icon16 = response["icon_16"],
-                Banner560 = response["banner_560"],
-                Banner1120 = response["banner_1120"],
-                Type = response["type"],
-                Section = response["section"],
-                AuthorUrl = response["author_url"],
-                AuthorId = response["author_id"],
-                AuthorGroup = response["author_group"],
-                MembersCount = response["members_count"],
-                PublishedDate = response["published_date"],
-                CatalogPosition = response["catalog_position"],
-                Screenshots = response["screenshots"].ToReadOnlyCollectionOf<Photo>(o => o),
-                International = response["international"],
-                LeaderBoardType = response["leaderboard_type"],
-                GenreId = response["genre_id"],
-                Genre = response["genre"],
-                PlatformId = response["platform_id"],
-                IsInCatalog = response["is_in_catalog"],
-	            Friends = response["friends"].ToReadOnlyCollectionOf<long>(x => x),
-	            Installed = response["installed"],
-	            IsHtml5App = response["is_html_5_app"],
-	            PushEnabled = response["push_enabled"]
-            };
-        }
+			{
+					Id = response[key: "id"]
+					, Title = response[key: "title"]
+					, ScreenName = response[key: "screen_name"]
+					, Description = response[key: "description"]
+					, Icon278 = response[key: "icon_278"]
+					, Icon139 = response[key: "icon_139"]
+					, Icon75 = response[key: "icon_75"]
+					, Icon150 = response[key: "icon_150"]
+					, Icon16 = response[key: "icon_16"]
+					, Banner560 = response[key: "banner_560"]
+					, Banner1120 = response[key: "banner_1120"]
+					, Type = response[key: "type"]
+					, Section = response[key: "section"]
+					, AuthorUrl = response[key: "author_url"]
+					, AuthorId = response[key: "author_id"]
+					, AuthorGroup = response[key: "author_group"]
+					, MembersCount = response[key: "members_count"]
+					, PublishedDate = response[key: "published_date"]
+					, CatalogPosition = response[key: "catalog_position"]
+					, Screenshots = response[key: "screenshots"].ToReadOnlyCollectionOf<Photo>(selector: o => o)
+					, International = response[key: "international"]
+					, LeaderBoardType = response[key: "leaderboard_type"]
+					, GenreId = response[key: "genre_id"]
+					, Genre = response[key: "genre"]
+					, PlatformId = response[key: "platform_id"]
+					, IsInCatalog = response[key: "is_in_catalog"]
+					, Friends = response[key: "friends"].ToReadOnlyCollectionOf<long>(selector: x => x)
+					, Installed = response[key: "installed"]
+					, IsHtml5App = response[key: "is_html_5_app"]
+					, PushEnabled = response[key: "push_enabled"]
+			};
+		}
+
+	#region Опциональные поля
+
+		/// <summary>
+		///     Описание.
+		/// </summary>
+		public string Description { get; set; }
+
+		/// <summary>
+		///     Поддомен приложения (или строка idXXXXXXX, если поддомен не задан).
+		/// </summary>
+		public string ScreenName { get; set; }
+
+		/// <summary>
+		///     Uri-адрес обложки приложения шириной 16px.
+		/// </summary>
+		public string Icon16 { get; set; }
+
+		/// <summary>
+		///     Uri-адреса изображений-скриншотов из приложения.
+		/// </summary>
+		public IEnumerable<Photo> Screenshots { get; set; }
+
+		/// <summary>
+		///     1, если у пользователя включены уведомления из этого приложения.
+		/// </summary>
+		[JsonProperty(propertyName: "push_enabled")]
+		public bool? PushEnabled { get; set; }
+
+	#endregion
 	}
 }

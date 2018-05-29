@@ -4,51 +4,51 @@ using Newtonsoft.Json;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Статистика по рекламной акции.
+	///     Статистика по рекламной акции.
 	/// </summary>
 	[Serializable]
 	public class Lead
 	{
 		/// <summary>
-		/// Amount of spent votes
+		///     Amount of spent votes
 		/// </summary>
-		[JsonProperty("spent")]
+		[JsonProperty(propertyName: "spent")]
 		public int? Spent { get; set; }
 
 		/// <summary>
-		/// Started offers number
+		///     Started offers number
 		/// </summary>
-		[JsonProperty("started")]
+		[JsonProperty(propertyName: "started")]
 		public int? Started { get; set; }
 
 		/// <summary>
-		/// Lead limit
+		///     Lead limit
 		/// </summary>
-		[JsonProperty("limit")]
+		[JsonProperty(propertyName: "limit")]
 		public int? Limit { get; set; }
 
 		/// <summary>
-		/// Property
+		///     Property
 		/// </summary>
-		[JsonProperty("days")]
+		[JsonProperty(propertyName: "days")]
 		public LeadDays Days { get; set; }
 
 		/// <summary>
-		/// Impressions number
+		///     Impressions number
 		/// </summary>
-		[JsonProperty("impressions")]
+		[JsonProperty(propertyName: "impressions")]
 		public int? Impressions { get; set; }
 
 		/// <summary>
-		/// Completed offers number
+		///     Completed offers number
 		/// </summary>
-		[JsonProperty("completed")]
+		[JsonProperty(propertyName: "completed")]
 		public int? Completed { get; set; }
 
 		/// <summary>
-		/// Offer cost
+		///     Offer cost
 		/// </summary>
-		[JsonProperty("cost")]
+		[JsonProperty(propertyName: "cost")]
 		public int? Cost { get; set; }
 	}
 }

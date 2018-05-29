@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -7,24 +6,25 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Время последнего посещения.
+	///     Время последнего посещения.
 	/// </summary>
 	[Serializable]
 	public class LastSeen
 	{
 		/// <summary>
-		/// Время последнего посещения в формате unixtime. .
+		///     Время последнего посещения в формате unixtime. .
 		/// </summary>
-		[JsonConverter(typeof(UnixDateTimeConverter))]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Time { get; set; }
 
 		/// <summary>
-		/// Тип платформы, через которую был осуществлён последний вход. Подробнее cмотрите на странице Подключение к LongPoll серверу. .
+		///     Тип платформы, через которую был осуществлён последний вход. Подробнее cмотрите на странице Подключение к LongPoll
+		///     серверу. .
 		/// </summary>
 		public string Platform { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -32,8 +32,8 @@ namespace VkNet.Model
 		{
 			var giftItem = new LastSeen
 			{
-				Time = response["time"],
-				Platform = response["platform"]
+					Time = response[key: "time"]
+					, Platform = response[key: "platform"]
 			};
 
 			return giftItem;

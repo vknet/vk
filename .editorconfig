@@ -93,7 +93,6 @@ csharp_can_use_global_alias=true
 # Modifiers
 csharp_default_private_modifier=explicit
 csharp_default_internal_modifier=explicit
-csharp_modifiers_order=public,private,protected,internal,new,abstract,virtual,sealed,override,static,readonly,extern,unsafe,volatile,async
 
 # Arguments
 csharp_arguments_literal=named

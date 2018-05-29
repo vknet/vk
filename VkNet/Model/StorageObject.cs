@@ -4,21 +4,21 @@ using Newtonsoft.Json;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Ответ метода Storage.Get
+	///     Ответ метода Storage.Get
 	/// </summary>
 	[Serializable]
 	public class StorageObject
 	{
 		/// <summary>
-		/// Ключ
+		///     Ключ
 		/// </summary>
-		[JsonProperty("key")]
+		[JsonProperty(propertyName: "key")]
 		public string Key { get; set; }
 
 		/// <summary>
-		/// Значение
+		///     Значение
 		/// </summary>
-		[JsonProperty("value")]
+		[JsonProperty(propertyName: "value")]
 		public string Value { get; set; }
 	}
 }

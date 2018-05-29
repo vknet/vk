@@ -8,15 +8,16 @@ using VkNet.Tests.Helper;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[SuppressMessage(category: "ReSharper", checkId: "PublicMembersMustHaveComments")]
 	public class GiftsTest : BaseTest
 	{
 		[Test]
 		public void Get_NormalCase()
 		{
 			Url = "https://api.vk.com/method/gifts.get";
+
 			Json =
-				@"{
+					@"{
 					response: {
 						count: 6,
 						items: [{
@@ -48,22 +49,38 @@ namespace VkNet.Tests.Categories
 						}]
 					}
 				  }";
-			var gifts = Api.Gifts.Get(32190123);
-			Assert.That(gifts.TotalCount, Is.AtLeast(0));
+
+			var gifts = Api.Gifts.Get(userId: 32190123);
+			Assert.That(actual: gifts.TotalCount, expression: Is.AtLeast(expected: 0));
 
 			var gift = gifts.FirstOrDefault();
 
-			Assert.That(gift, Is.Not.Null);
-			Assert.That(gift.Id, Is.EqualTo(577952355));
-			Assert.That(gift.FromId, Is.EqualTo(103942820));
-			Assert.That(gift.Message, Is.EqualTo("С Днём Рождения!!! Пущай в доме твоём всегда будут уют, тепло, весёлость и вкусняшки ^.^"));
-			Assert.That(gift.Date.Value, Is.EqualTo(DateHelper.TimeStampToDateTime(1452854355)));
-			Assert.That(gift.Gift.Id, Is.EqualTo(658));
-			Assert.That(gift.Gift.Thumb256, Is.EqualTo(new Uri("https://vk.com/images/gift/658/256.jpg")));
-			Assert.That(gift.Gift.Thumb96, Is.EqualTo(new Uri("https://vk.com/images/gift/658/96.png")));
-			Assert.That(gift.Gift.Thumb48, Is.EqualTo(new Uri("https://vk.com/images/gift/658/48.png")));
-			Assert.That(gift.Privacy, Is.EqualTo(GiftPrivacy.All));
-			Assert.That(gift.GiftHash, Is.EqualTo("XZuJeI8mbdkphj7QQ8I7n*Bh1bnuJQqwraxWyjYdp45ZWPhzrn6pTPlUirsRlvyPq7iwAd5/I6iWNYl8pch6jZVRjT5BnpGtN8flF00CFI58XXEJboNLTyfvO4pFL48psGgKdgRJJgi8cL7zfcGZhVMYXG/lrCHVP9GoLXdOSso-"));
+			Assert.That(actual: gift, expression: Is.Not.Null);
+			Assert.That(actual: gift.Id, expression: Is.EqualTo(expected: 577952355));
+			Assert.That(actual: gift.FromId, expression: Is.EqualTo(expected: 103942820));
+
+			Assert.That(actual: gift.Message
+					, expression: Is.EqualTo(
+							expected: "С Днём Рождения!!! Пущай в доме твоём всегда будут уют, тепло, весёлость и вкусняшки ^.^"));
+
+			Assert.That(actual: gift.Date.Value, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1452854355)));
+			Assert.That(actual: gift.Gift.Id, expression: Is.EqualTo(expected: 658));
+
+			Assert.That(actual: gift.Gift.Thumb256
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://vk.com/images/gift/658/256.jpg")));
+
+			Assert.That(actual: gift.Gift.Thumb96
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://vk.com/images/gift/658/96.png")));
+
+			Assert.That(actual: gift.Gift.Thumb48
+					, expression: Is.EqualTo(expected: new Uri(uriString: "https://vk.com/images/gift/658/48.png")));
+
+			Assert.That(actual: gift.Privacy, expression: Is.EqualTo(expected: GiftPrivacy.All));
+
+			Assert.That(actual: gift.GiftHash
+					, expression: Is.EqualTo(
+							expected:
+							"XZuJeI8mbdkphj7QQ8I7n*Bh1bnuJQqwraxWyjYdp45ZWPhzrn6pTPlUirsRlvyPq7iwAd5/I6iWNYl8pch6jZVRjT5BnpGtN8flF00CFI58XXEJboNLTyfvO4pFL48psGgKdgRJJgi8cL7zfcGZhVMYXG/lrCHVP9GoLXdOSso-"));
 		}
 	}
 }

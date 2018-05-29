@@ -1,27 +1,26 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Приложение.
+	///     Приложение.
 	/// </summary>
 	[Serializable]
 	public class Application
 	{
 		/// <summary>
-		/// Магазин.
+		///     Магазин.
 		/// </summary>
 		public Store Store { get; set; }
 
 		/// <summary>
-		/// Идентификатор приложения в магазине;.
+		///     Идентификатор приложения в магазине;.
 		/// </summary>
 		public long? AppId { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -29,8 +28,8 @@ namespace VkNet.Model
 		{
 			var application = new Application
 			{
-				Store = response["store"],
-				AppId = response["app_id"]
+					Store = response[key: "store"]
+					, AppId = response[key: "app_id"]
 			};
 
 			return application;

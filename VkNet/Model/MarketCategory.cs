@@ -1,32 +1,31 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Категория товара.
+	///     Категория товара.
 	/// </summary>
 	[Serializable]
 	public class MarketCategory
 	{
 		/// <summary>
-		/// Идентификатор
+		///     Идентификатор
 		/// </summary>
 		public long? Id { get; set; }
 
 		/// <summary>
-		/// Название категории
+		///     Название категории
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		/// Секция
+		///     Секция
 		/// </summary>
 		public MarketCategorySection Section { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -34,9 +33,9 @@ namespace VkNet.Model
 		{
 			var product = new MarketCategory
 			{
-				Id = response["id"],
-				Name = response["name"],
-				Section = response["section"]
+					Id = response[key: "id"]
+					, Name = response[key: "name"]
+					, Section = response[key: "section"]
 			};
 
 			return product;

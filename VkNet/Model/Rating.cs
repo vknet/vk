@@ -1,27 +1,26 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Рейтинг.
+	///     Рейтинг.
 	/// </summary>
 	[Serializable]
 	public class Rating
 	{
 		/// <summary>
-		/// Количество звезд у продукта;.
+		///     Количество звезд у продукта;.
 		/// </summary>
 		public long? Stars { get; set; }
 
 		/// <summary>
-		/// Количество отзывов о продукте;.
+		///     Количество отзывов о продукте;.
 		/// </summary>
 		public long? ReviewsCount { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -29,8 +28,8 @@ namespace VkNet.Model
 		{
 			var rating = new Rating
 			{
-				Stars = response["stars"],
-				ReviewsCount = response["reviews_count"]
+					Stars = response[key: "stars"]
+					, ReviewsCount = response[key: "reviews_count"]
 			};
 
 			return rating;

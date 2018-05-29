@@ -1,27 +1,26 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Настройки уведомлений для сообщений
+	///     Настройки уведомлений для сообщений
 	/// </summary>
 	[Serializable]
 	public class MessagesPushSettings
 	{
 		/// <summary>
-		/// Отключить звук.
+		///     Отключить звук.
 		/// </summary>
 		public bool NoSound { get; set; }
 
 		/// <summary>
-		/// Не передавать текст сообщения.
+		///     Не передавать текст сообщения.
 		/// </summary>
 		public bool NoText { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		///     Разобрать из json.
 		/// </summary>
 		/// <param name="response">Ответ сервера.</param>
 		/// <returns></returns>
@@ -29,8 +28,8 @@ namespace VkNet.Model
 		{
 			var result = new MessagesPushSettings
 			{
-				NoSound = response["no_sound"],
-				NoText = response["no_text"]
+					NoSound = response[key: "no_sound"]
+					, NoText = response[key: "no_text"]
 			};
 
 			return result;
