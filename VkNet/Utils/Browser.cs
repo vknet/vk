@@ -15,7 +15,7 @@ namespace VkNet.Utils
 	public partial class Browser : IBrowser
 	{
 		/// <summary>
-		///     Логгер
+		/// Логгер
 		/// </summary>
 		[CanBeNull]
 		private readonly ILogger _logger;
@@ -49,9 +49,11 @@ namespace VkNet.Utils
 
 			_logger?.Debug(message: "Шаг 2. Заполнение формы логина");
 
-			var loginFormPostResult = FilledLoginForm(email: authParams.Login, password: authParams.Password
-					, captchaSid: authParams.CaptchaSid,
-					captchaKey: authParams.CaptchaKey, authorizeUrlResult: authorizeUrlResult);
+			var loginFormPostResult = FilledLoginForm(email: authParams.Login
+					, password: authParams.Password
+					, captchaSid: authParams.CaptchaSid
+					, captchaKey: authParams.CaptchaKey
+					, authorizeUrlResult: authorizeUrlResult);
 
 			if (IsAuthSuccessfull(webCallResult: loginFormPostResult))
 			{
@@ -108,11 +110,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Заполнить форму двухфакторной авторизации
+		/// Заполнить форму двухфакторной авторизации
 		/// </summary>
-		/// <param name="code">Функция возвращающая код двухфакторной авторизации</param>
-		/// <param name="loginFormPostResult">Ответ сервера vk</param>
-		/// <returns>Ответ сервера vk</returns>
+		/// <param name="code"> Функция возвращающая код двухфакторной авторизации </param>
+		/// <param name="loginFormPostResult"> Ответ сервера vk </param>
+		/// <returns> Ответ сервера vk </returns>
 		private WebCallResult FilledTwoFactorForm(Func<string> code, WebCallResult loginFormPostResult)
 		{
 			var codeForm = WebForm.From(result: loginFormPostResult)
@@ -123,11 +125,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Проверка наличия двухфакторной авторизации
+		/// Проверка наличия двухфакторной авторизации
 		/// </summary>
-		/// <param name="code">Функция возвращающая код двухфакторной авторизации</param>
-		/// <param name="loginFormPostResult">Ответ сервера vk</param>
-		/// <returns></returns>
+		/// <param name="code"> Функция возвращающая код двухфакторной авторизации </param>
+		/// <param name="loginFormPostResult"> Ответ сервера vk </param>
+		/// <returns> </returns>
 		private bool HasNotTwoFactor(Func<string> code, WebCallResult loginFormPostResult)
 		{
 			_logger?.Debug(message: "Проверка наличия двухфакторной авторизации");
@@ -136,14 +138,14 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Заполнить форму логин и пароль
+		/// Заполнить форму логин и пароль
 		/// </summary>
-		/// <param name="email">Логин</param>
-		/// <param name="password">Пароль</param>
-		/// <param name="captchaSid">ИД капчи</param>
-		/// <param name="captchaKey">Значение капчи</param>
-		/// <param name="authorizeUrlResult"></param>
-		/// <returns></returns>
+		/// <param name="email"> Логин </param>
+		/// <param name="password"> Пароль </param>
+		/// <param name="captchaSid"> ИД капчи </param>
+		/// <param name="captchaKey"> Значение капчи </param>
+		/// <param name="authorizeUrlResult"> </param>
+		/// <returns> </returns>
 		private WebCallResult FilledLoginForm(string email
 											, string password
 											, long? captchaSid
@@ -173,12 +175,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Закончить авторизацию
+		/// Закончить авторизацию
 		/// </summary>
-		/// <param name="result">Результат</param>
-		/// <param name="webProxy">Настройки прокси</param>
-		/// <returns></returns>
-		/// <exception cref="CaptchaNeededException"></exception>
+		/// <param name="result"> Результат </param>
+		/// <param name="webProxy"> Настройки прокси </param>
+		/// <returns> </returns>
+		/// <exception cref="CaptchaNeededException"> </exception>
 		private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
 		{
 			if (IsAuthSuccessfull(webCallResult: result))
@@ -213,8 +215,7 @@ namespace VkNet.Utils
 
 			_logger?.Debug(message: "Требуется ввод капчи");
 
-			throw new CaptchaNeededException(sid: captchaSid.Value,
-					img: "https://m.vk.com/captcha.php?sid=" + captchaSid.Value);
+			throw new CaptchaNeededException(sid: captchaSid.Value, img: "https://m.vk.com/captcha.php?sid=" + captchaSid.Value);
 		}
 
 		private bool HasСonfirmationRights(WebCallResult result)
@@ -244,17 +245,15 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Построить URL для авторизации.
+		/// Построить URL для авторизации.
 		/// </summary>
-		/// <param name="appId">Идентификатор приложения.</param>
-		/// <param name="settings">Настройки прав доступа.</param>
-		/// <param name="display">Вид окна авторизации.</param>
-		/// <returns>Возвращает Uri для авторизации</returns>
+		/// <param name="appId"> Идентификатор приложения. </param>
+		/// <param name="settings"> Настройки прав доступа. </param>
+		/// <param name="display"> Вид окна авторизации. </param>
+		/// <returns> Возвращает Uri для авторизации </returns>
 		[NotNull]
-		private static string CreateAuthorizeUrlFor(ulong appId
-													, [NotNull]
-													Settings settings
-													, [NotNull]
+		private static string CreateAuthorizeUrlFor(ulong appId, [NotNull]
+													Settings settings, [NotNull]
 													Display display)
 		{
 			var builder = new StringBuilder(value: "https://oauth.vk.com/authorize?");
@@ -269,13 +268,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Открытие окна авторизации
+		/// Открытие окна авторизации
 		/// </summary>
-		/// <param name="appId">id приложения</param>
-		/// <param name="settings">Настройки приложения</param>
-		/// <returns></returns>
-		private WebCallResult OpenAuthDialog(ulong appId
-											, [NotNull]
+		/// <param name="appId"> id приложения </param>
+		/// <param name="settings"> Настройки приложения </param>
+		/// <returns> </returns>
+		private WebCallResult OpenAuthDialog(ulong appId, [NotNull]
 											Settings settings)
 		{
 			var url = CreateAuthorizeUrlFor(appId: appId, settings: settings, display: Display.Page);
@@ -284,20 +282,20 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Авторизация прошла успешно
+		/// Авторизация прошла успешно
 		/// </summary>
-		/// <param name="webCallResult"></param>
-		/// <returns>true, если авторизация прошла успешно</returns>
+		/// <param name="webCallResult"> </param>
+		/// <returns> true, если авторизация прошла успешно </returns>
 		private static bool IsAuthSuccessfull(WebCallResult webCallResult)
 		{
 			return UriHasAccessToken(uri: webCallResult.RequestUrl) || UriHasAccessToken(uri: webCallResult.ResponseUrl);
 		}
 
 		/// <summary>
-		///     Проверка наличия токена в url
+		/// Проверка наличия токена в url
 		/// </summary>
-		/// <param name="uri"></param>
-		/// <returns></returns>
+		/// <param name="uri"> </param>
+		/// <returns> </returns>
 		private static bool UriHasAccessToken(Uri uri)
 		{
 			return uri.Fragment
@@ -305,11 +303,11 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		///     Получить токен из uri
+		/// Получить токен из uri
 		/// </summary>
-		/// <param name="webCallResult">Результат запроса</param>
-		/// <returns>Возвращает uri содержащий токен</returns>
-		/// <exception cref="VkApiException">URI должен содержать токен!</exception>
+		/// <param name="webCallResult"> Результат запроса </param>
+		/// <returns> Возвращает uri содержащий токен </returns>
+		/// <exception cref="VkApiException"> URI должен содержать токен! </exception>
 		private Uri GetTokenUri(WebCallResult webCallResult)
 		{
 			if (UriHasAccessToken(uri: webCallResult.RequestUrl))

@@ -16,7 +16,7 @@
 		bool IsExpired { get; }
 
 		/// <summary>
-		///     Обновить токен
+		/// Обновить токен
 		/// </summary>
 		/// <returns><c>true</c> - если обновление токена приложения прошло успешно</returns>
 		bool RefreshToken();
