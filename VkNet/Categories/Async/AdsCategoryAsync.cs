@@ -16,6 +16,12 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
+        public async Task<ReadOnlyCollection<Ad>> GetCampaignsAsync(AdsGetAdsParams @params)
+        {
+            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Ads.GetAds(@params));
+        }
+
+        /// <inheritdoc/>
         public async Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams @params)
         {
             return await TypeHelper.TryInvokeMethodAsync(() => _vk.Ads.GetCampaigns(@params));

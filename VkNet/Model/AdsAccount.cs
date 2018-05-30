@@ -21,7 +21,7 @@ namespace VkNet.Model
         /// Идентификатор рекламного кабинета.
         /// </summary>
         [JsonProperty("account_id")]
-        public ulong AccountId { get; set; }
+        public long AccountId { get; set; }
 
         /// <summary>
         /// Тип рекламного кабинета.

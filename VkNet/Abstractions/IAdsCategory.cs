@@ -40,7 +40,17 @@ namespace VkNet.Abstractions
         /// </remarks>
         ReadOnlyCollection<AdsAccount> GetAccounts();
 
-        // getAds
+        /// <summary>
+        /// Возвращает список рекламных объявлений.
+        /// </summary>
+        /// <returns>
+        /// В случае успеха возвращается список рекламных объявлений.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте https://vk.com/dev/ads.getAds
+        /// </remarks>
+        ReadOnlyCollection<Ad> GetAds(AdsGetAdsParams @params);
+
         // getAdsLayout
         // getAdsTargeting
         // getBudget

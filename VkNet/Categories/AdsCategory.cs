@@ -29,33 +29,48 @@ namespace VkNet.Categories
       _vk = vk;
     }
 
-        /// <summary>
-        /// Возвращает список рекламных кабинетов.
-        /// </summary>
-        /// <returns>
-        /// В случае успеха возвращается список рекламных кабинетов.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
-        /// </remarks>
-        /// 
-        public ReadOnlyCollection<AdsAccount> GetAccounts()
-        {
-			return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", new VkParameters());
-		}
+    /// <summary>
+    /// Возвращает список рекламных кабинетов.
+    /// </summary>
+    /// <returns>
+    /// В случае успеха возвращается список рекламных кабинетов.
+    /// </returns>
+    /// <remarks>
+    /// Страница документации ВКонтакте https://vk.com/dev/ads.getAccounts
+    /// </remarks>
+    /// 
+    public ReadOnlyCollection<AdsAccount> GetAccounts()
+    {
+		return _vk.Call<ReadOnlyCollection<AdsAccount>>("ads.getAccounts", new VkParameters());
+	}
 
-        /// <summary>
-        /// Возвращает список рекламных кабинетов.
-        /// </summary>
-        /// <returns>
-        /// В случае успеха возвращается список рекламных кабинетов.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
-        /// </remarks>
-        public ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams @params)
-        {
-            return _vk.Call<ReadOnlyCollection<AdsCampaign>>("ads.getCampaigns", @params);
-        }
+    /// <summary>
+    /// Возвращает список рекламных объявлений.
+    /// </summary>
+    /// <returns>
+    /// В случае успеха возвращается список рекламных объявлений.
+    /// </returns>
+    /// <remarks>
+    /// Страница документации ВКонтакте https://vk.com/dev/ads.getAds
+    /// </remarks>
+    public ReadOnlyCollection<Ad> GetAds(AdsGetAdsParams @params)
+    {
+        return _vk.Call<ReadOnlyCollection<Ad>>("ads.getAds", @params);
     }
+
+    /// <summary>
+    /// Возвращает список рекламных кабинетов.
+    /// </summary>
+    /// <returns>
+    /// В случае успеха возвращается список рекламных кабинетов.
+    /// </returns>
+    /// <remarks>
+    /// Страница документации ВКонтакте https://vk.com/dev/ads.getCampaigns
+    /// </remarks>
+    public ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams @params)
+    {
+        return _vk.Call<ReadOnlyCollection<AdsCampaign>>("ads.getCampaigns", @params);
+    }
+
+  }
 }

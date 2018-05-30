@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,11 +8,11 @@ using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
-    /// <summary>
-    /// Параметры метода wall.search
-    /// </summary>
-    [Serializable]
-    public class AdsGetCampaignsParams
+	/// <summary>
+	/// Параметры метода wall.search
+	/// </summary>
+	[Serializable]
+	public class AdsGetAdsParams
     {
         /// <summary>
         /// Идентификатор рекламного кабинета.
@@ -22,7 +21,7 @@ namespace VkNet.Model.RequestParams
         public long AccountId { get; set; }
 
         /// <summary>
-        /// Идентификатор клиента, у которого запрашиваются рекламные кампании. Обязателен для рекламных агентств, в остальных случаях не используется. 
+        /// Доступно и обязательно для рекламных агентств. Идентификатор клиента, у которого запрашиваются рекламные объявления. 
         /// </summary>
         [JsonProperty("client_id")]
         public long? ClientId { get; set; }
@@ -31,33 +30,34 @@ namespace VkNet.Model.RequestParams
         /// Флаг, задающий необходимость вывода архивных объявлений. 0 — выводить только активные объявления; 1 — выводить все объявления.
         /// </summary>
         [JsonProperty("include_deleted")]
-        public bool IncludeDeleted { get; set; }
+        public bool? IncludeDeleted { get; set; }
 
         /// <summary>
-        /// Фильтр выводимых рекламных кампаний. 
-        /// Сериализованный JSON-массив, содержащий id кампаний.Выводиться будут только кампании, присутствующие в campaign_ids и являющиеся кампаниями указанного рекламного кабинета.Если параметр равен строке null, то выводиться будут все кампании.
-		/// </summary>
+        /// Фильтр по рекламным кампаниям. 
+        /// Сериализованный JSON-массив, содержащий id кампаний.Если параметр равен null, то будут выводиться рекламные объявления всех кампаний.
+        /// </summary>
         [JsonProperty("campaign_ids")]
         public IEnumerable<long> CampaignIds { get; set; }
 
         /// <summary>
-        /// Фильтр по рекламным объявлениям.
-        /// Сериализованный JSON-массив, содержащий id объявлений. Если параметр равен null, то будут выводиться все рекламные объявления.
-		/// </summary>
+        /// Фильтр по рекламным объявлениям. 
+        /// Сериализованный JSON-массив, содержащий id объявлений.Если параметр равен null, то будут выводиться все рекламные объявления.
+        /// </summary>
         [JsonProperty("ad_ids")]
         public IEnumerable<long> AdIds { get; set; }
 
         /// <summary>
-        /// Ограничение на количество возвращаемых объявлений. Используется, только если параметр ad_ids равен null, а параметр campaign_ids содержит id только одной кампании. 
-		/// </summary>
+        /// Ограничение на количество возвращаемых объявлений. 
+        /// Используется, только если параметр ad_ids равен null, а параметр campaign_ids содержит id только одной кампании. 
+        /// </summary>
         [JsonProperty("limit")]
-        public long Limit { get; set; }
+        public long? Limit { get; set; }
 
         /// <summary>
-        /// Смещение. Используется в тех же случаях, что и параметр limit.
-		/// </summary>
+        /// Cмещение. Используется в тех же случаях, что и параметр limit. 
+        /// </summary>
         [JsonProperty("offset")]
-        public long Offset { get; set; }
+        public long? Offset { get; set; }
 
         /// <summary>
         /// Привести к типу VkParameters.
