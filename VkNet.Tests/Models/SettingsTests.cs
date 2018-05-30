@@ -216,8 +216,10 @@ namespace VkNet.Tests.Models
 	    [Test]
 	    public void OperatorOrDuplicateSettings()
 	    {
+#pragma warning disable S1764
 		    var settings = Settings.Notify | Settings.Notify;
 		    Assert.AreEqual(1, settings.ToUInt64());
+#pragma warning restore S1764
 	    }
 
 	    [Test]

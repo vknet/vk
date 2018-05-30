@@ -72,6 +72,18 @@
         public const int OffAppOrLogin = 11;
 
         /// <summary>
+        /// Невозможно скомпилировать код.
+        /// Проверьте код на ошибки.
+        /// </summary>
+        public const int ImpossibleToCompileCode = 12;
+
+        /// <summary>
+        /// Ошибка выполнения кода.
+        /// Дополнительные сведения будут содержаться в сообщении об ошибке. 
+        /// </summary>
+        public const int ErrorExecutingCode = 13;
+
+        /// <summary>
         /// Требуется ввод кода с картинки (Captcha).
         /// Процесс обработки этой ошибки подробно описан на отдельной странице.
         /// </summary>

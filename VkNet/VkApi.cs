@@ -47,7 +47,7 @@ namespace VkNet
         /// <summary>
         /// Версия API vk.com.
         /// </summary>
-        public const string VkApiVersion = "5.74";
+        public const string VkApiVersion = "5.78";
 
         /// <summary>
         /// Параметры авторизации.
@@ -210,7 +210,25 @@ namespace VkNet
         public ISearchCategory Search { get; private set; }
 
         /// <inheritdoc />
+        public IStorageCategory Storage { get; set; }
+
+        /// <inheritdoc />
         public IAdsCategory Ads { get; private set; }
+
+        /// <inheritdoc />
+        public INotificationsCategory Notifications { get; set; }
+
+        /// <inheritdoc />
+        public IWidgetsCategory Widgets { get; set; }
+
+        /// <inheritdoc />
+        public ILeadsCategory Leads { get; set; }
+
+        /// <inheritdoc />
+        public IStreamingCategory Streaming { get; set; }
+
+        /// <inheritdoc />
+        public IPlacesCategory Places { get; set; }
 
         #endregion
 
@@ -390,23 +408,26 @@ namespace VkNet
 
         /// <inheritdoc />
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
+        public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
         {
             var answer = CallBase(methodName, parameters, skipAuthorization);
 
-            var settings = new JsonSerializerSettings
+            if (!jsonConverters.Any())
             {
-                Converters = new List<JsonConverter>
-                {
+                return JsonConvert.DeserializeObject<T>(
+                    answer, 
                     new VkCollectionJsonConverter(),
                     new VkDefaultJsonConverter(),
                     new UnixDateTimeConverter(),
                     new AttachmentJsonConverter(),
                     new StringEnumConverter()
-                }
-            };
+                );
+            }
 
-            return JsonConvert.DeserializeObject<T>(answer, settings);
+            return JsonConvert.DeserializeObject<T>(
+                answer, 
+                jsonConverters
+            );
         }
 
         /// <inheritdoc />
@@ -426,7 +447,8 @@ namespace VkNet
             void SendRequest(string method, IDictionary<string, string> @params)
             {
                 LastInvokeTime = DateTimeOffset.Now;
-                answer = RestClient.PostAsync(new Uri($"https://api.vk.com/method/{method}"), @params).Result.Value;
+                var response = RestClient.PostAsync(new Uri($"https://api.vk.com/method/{method}"), @params).Result;
+                answer = response.Value ?? response.Message;
             }
 
             // Защита от превышения количества запросов в секунду
@@ -779,7 +801,13 @@ namespace VkNet
             PollsCategory = new PollsCategory(this);
             Search = new SearchCategory(this);
             Ads = new AdsCategory(this);
-
+            Storage = new StorageCategory(this);
+            Notifications = new NotificationsCategory(this);
+            Widgets = new WidgetsCategory(this);
+            Leads = new LeadsCategory(this);
+            Streaming = new StreamingCategory(this);
+            Places = new PlacesCategory(this);
+                
             RequestsPerSecond = 3;
 
             MaxCaptchaRecognitionCount = 5;

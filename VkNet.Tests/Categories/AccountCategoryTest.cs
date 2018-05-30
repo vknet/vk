@@ -65,7 +65,6 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SetNameInMenu_EmptyName_ThrowArgumentNullException()
 		{
-			Assert.Throws<ArgumentNullException>(() => Api.Account.SetNameInMenu(null));
 			Assert.Throws<ArgumentNullException>(() => Api.Account.SetNameInMenu(string.Empty));
 		}
 
@@ -776,7 +775,7 @@ namespace VkNet.Tests.Categories
 
 			Json = @"{ 'response': { changed: 1 } }";
 
-			Assert.That(() => Api.Account.SaveProfileInfo(out ChangeNameRequest request, new AccountSaveProfileInfoParams
+			Assert.That(() => Api.Account.SaveProfileInfo(out var _, new AccountSaveProfileInfoParams
 			{
 				FirstName = "fn",
 				LastName = "ln",
@@ -799,14 +798,13 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			Json = @"{ 'response': { changed: 1 } }";
 
-			ChangeNameRequest request;
-            Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
+			Assert.That(() => Api.Account.SaveProfileInfo(out var _, new AccountSaveProfileInfoParams
             {
                 BirthDate = new DateTime(1984, 11, 150, 0, 0, 0, DateTimeKind.Utc).ToShortDateString()
             }),
 			Is.True);
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
-			Assert.That(() => Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams
+			Assert.That(() => Api.Account.SaveProfileInfo(out var _, new AccountSaveProfileInfoParams
 			{
 				BirthDate = new DateTime(2014, 9, 8, 0, 0, 0, DateTimeKind.Utc).ToShortDateString()
 			}),

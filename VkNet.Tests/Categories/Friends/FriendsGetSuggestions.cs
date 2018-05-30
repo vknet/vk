@@ -37,7 +37,7 @@ namespace VkNet.Tests.Categories.Friends
             }";
             var result = Api.Friends.GetSuggestions();
             Assert.NotNull(result);
-            Assert.AreEqual(result.TotalCount, 3);
+            Assert.AreEqual(3, result.TotalCount);
         } 
         
         [Test]
@@ -59,10 +59,10 @@ namespace VkNet.Tests.Categories.Friends
             }";
             var result = Api.Friends.GetSuggestions(FriendsFilter.Mutual, 1, 0, UsersFields.Sex, NameCase.Gen);
             Assert.NotNull(result);
-            Assert.AreEqual(result.TotalCount, 182);
+            Assert.AreEqual(182, result.TotalCount);
             var user = result.FirstOrDefault();
             Assert.NotNull(user);
-            Assert.AreEqual(user?.Sex, Sex.Male);
+            Assert.AreEqual(Sex.Male, user?.Sex);
         } 
     }
 }

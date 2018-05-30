@@ -544,7 +544,7 @@ namespace VkNet.Tests.Categories
 			}";
 
 			var cat = GetMockedFriendsCategory(url, json);
-			// GetRequests(offset: 0, count: 3, extended: true, needMutual: true);
+
 			var ids = cat.GetRequestsExtended(new FriendsGetRequestsParams
 			{
 				Offset = 0,

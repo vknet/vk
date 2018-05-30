@@ -318,49 +318,8 @@ namespace VkNet.Tests.Categories
 		#endregion
 
 		#region Wall.Post
-		//TODO: Проверить покрытие кода тестами
 
-	    [Test]
-	    public void Post_ReturnValidateNeeded()
-	    {
-	        const string json =
-	            @"
-                {
-                    'error' : {
-                    'error_code' : 17,
-                    'error_msg' : 'Validation required: please open redirect_uri in browser',
-                    'redirect_uri' : 'https://m.vk.com/activation?act=validate&api_hash=****&hash=***',
-                    'request_params' : [
-                        {
-                        'key' : 'oauth',
-                        'value' : '1'
-                        },
-                        {
-                        'key' : 'method',
-                        'value' : 'wall.post'
-                        },
-                        {
-                        'key' : 'owner_id',
-                        'value' : '-153877099'
-                        },
-                        {
-                        'key' : 'from_group',
-                        'value' : '1'
-                        },
-                        {
-                        'key' : 'message',
-                        'value' : 'Test'
-                        },
-                        {
-                        'key' : 'v',
-                        'value' : '5.64'
-                        }
-                    ]
-                    }
-                 }
-                 ";
-	        Assert.That(() => VkErrors.IfErrorThrowException(json), Throws.TypeOf<NeedValidationException>());
-	    }
+		
 
         #endregion
 
@@ -416,7 +375,6 @@ namespace VkNet.Tests.Categories
 		//[Ignore("")]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			//This.Action(() => ).Throws<AccessTokenInvalidException>();
 			Assert.That(() => _defaultWall.Delete(1, 1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -758,7 +716,6 @@ namespace VkNet.Tests.Categories
 
 			var attach = posts.WallPosts[0].CopyHistory[0].Attachment;
 			Assert.That(attach, Is.Not.Null);
-			//Assert.That(attach.Type, Is.EqualTo(typeof (PhotosList)));
 			Assert.That(attach.Instance, Is.Null);
 		}
 	}

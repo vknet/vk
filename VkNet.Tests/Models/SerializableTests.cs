@@ -27,6 +27,7 @@ namespace VkNet.Tests.Models
             {
                 Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.Name)));
             }
+            
             Assert.IsEmpty(enumerable);
         }
     }

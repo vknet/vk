@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
