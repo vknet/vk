@@ -1,9 +1,8 @@
 ﻿using System;
 
-
 namespace VkNet.Enums.SafetyEnums
 {
-    /// <summary>
+	/// <summary>
 	/// Тип сообщества
 	/// </summary>
 	[Serializable]
@@ -12,21 +11,21 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// Публичная страница.
 		/// </summary>
-		public static readonly GroupType Page = RegisterPossibleValue("page");
+		public static readonly GroupType Page = RegisterPossibleValue(value: "page");
 
 		/// <summary>
 		/// Группа.
 		/// </summary>
-		public static readonly GroupType Group = RegisterPossibleValue("group");
+		public static readonly GroupType Group = RegisterPossibleValue(value: "group");
 
 		/// <summary>
 		/// Мероприятие.
 		/// </summary>
-		public static readonly GroupType Event = RegisterPossibleValue("event");
+		public static readonly GroupType Event = RegisterPossibleValue(value: "event");
 
 		/// <summary>
 		/// Не определено.
 		/// </summary>
-		public static readonly GroupType Undefined = RegisterPossibleValue("undefined");
+		public static readonly GroupType Undefined = RegisterPossibleValue(value: "undefined");
 	}
 }

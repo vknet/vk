@@ -5,7 +5,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <inheritdoc/>
+	/// <inheritdoc />
 	public partial class NotificationsCategory : INotificationsCategory
 	{
 		/// <summary>
@@ -13,8 +13,8 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly VkApi _vk;
 
-		/// <inheritdoc/>
-		/// <param name = "api">
+		/// <inheritdoc />
+		/// <param name="api">
 		/// Api vk.com
 		/// </param>
 		public NotificationsCategory(VkApi api = null)
@@ -22,24 +22,28 @@ namespace VkNet.Categories
 			_vk = api;
 		}
 
-		/// <inheritdoc/>
-		public IEnumerable<NotificationGetResult> Get(ulong? count = null, string startFrom = null,
-			IEnumerable<string> filters = null, long? startTime = null, long? endTime = null)
+		/// <inheritdoc />
+		public IEnumerable<NotificationGetResult> Get(ulong? count = null
+													, string startFrom = null
+													, IEnumerable<string> filters = null
+													, long? startTime = null
+													, long? endTime = null)
 		{
-			return _vk.Call<IEnumerable<NotificationGetResult>>("notifications.get", new VkParameters
-			{
-				{"count", count},
-				{"start_from", startFrom},
-				{"filters", filters},
-				{"start_time", startTime},
-				{"end_time", endTime}
-			});
+			return _vk.Call<IEnumerable<NotificationGetResult>>(methodName: "notifications.get"
+					, parameters: new VkParameters
+					{
+							{ "count", count }
+							, { "start_from", startFrom }
+							, { "filters", filters }
+							, { "start_time", startTime }
+							, { "end_time", endTime }
+					});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public bool MarkAsViewed()
 		{
-			return _vk.Call<bool>("notifications.markAsViewed", VkParameters.Empty);
+			return _vk.Call<bool>(methodName: "notifications.markAsViewed", parameters: VkParameters.Empty);
 		}
 	}
 }

@@ -8,11 +8,11 @@
 		/// <summary>
 		/// В случае если запрос отправляется пользователю, не установившему приложение
 		/// </summary>
-		public static readonly AppRequestType Invite = RegisterPossibleValue("invite");
+		public static readonly AppRequestType Invite = RegisterPossibleValue(value: "invite");
 
 		/// <summary>
 		/// В случае если пользователь уже установил приложение
 		/// </summary>
-		public static readonly AppRequestType Request = RegisterPossibleValue("request");
+		public static readonly AppRequestType Request = RegisterPossibleValue(value: "request");
 	}
 }

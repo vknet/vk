@@ -12,13 +12,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Ключ
 		/// </summary>
-		[JsonProperty("key")]
+		[JsonProperty(propertyName: "key")]
 		public string Key { get; set; }
 
 		/// <summary>
 		/// Значение
 		/// </summary>
-		[JsonProperty("value")]
+		[JsonProperty(propertyName: "value")]
 		public string Value { get; set; }
 	}
 }

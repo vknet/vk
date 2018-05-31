@@ -1,43 +1,42 @@
 ﻿using System;
-using VkNet.Enums.Filters;
 
-namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.Filters
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    [Serializable]
-    public class SearchFilter: MultivaluedFilter<SearchFilter>
-    {
-        /// <summary>
-        /// друзья пользователя
-        /// </summary>
-        public static readonly SearchFilter Friends = RegisterPossibleValue("friends");
-        
-        /// <summary>
-        /// подписки пользователя
-        /// </summary>
-        public static readonly SearchFilter Idols = RegisterPossibleValue("idols");
-        
-        /// <summary>
-        /// публичные страницы, на которые подписан пользователь
-        /// </summary>
-        public static readonly SearchFilter Publics = RegisterPossibleValue("publics");
+	/// <summary>
+	/// </summary>
+	[Serializable]
+	public class SearchFilter : MultivaluedFilter<SearchFilter>
+	{
+		/// <summary>
+		/// друзья пользователя
+		/// </summary>
+		public static readonly SearchFilter Friends = RegisterPossibleValue(value: "friends");
 
-        /// <summary>
-        /// группы пользователя
-        /// </summary>
-        public static readonly SearchFilter Groups = RegisterPossibleValue("groups");
+		/// <summary>
+		/// подписки пользователя
+		/// </summary>
+		public static readonly SearchFilter Idols = RegisterPossibleValue(value: "idols");
 
-        /// <summary>
-        /// встречи пользователя
-        /// </summary>
-        public static readonly SearchFilter Events = RegisterPossibleValue("events");
+		/// <summary>
+		/// публичные страницы, на которые подписан пользователь
+		/// </summary>
+		public static readonly SearchFilter Publics = RegisterPossibleValue(value: "publics");
 
-        /// <summary>
-        /// люди, у которых есть общие друзья с текущим пользователем (этот фильтр позволяет получить не всех пользователей, имеющих общих друзей).
-        /// </summary>
-        public static readonly SearchFilter MutualFriends = RegisterPossibleValue("mutual_friends");
-        
-    }
+		/// <summary>
+		/// группы пользователя
+		/// </summary>
+		public static readonly SearchFilter Groups = RegisterPossibleValue(value: "groups");
+
+		/// <summary>
+		/// встречи пользователя
+		/// </summary>
+		public static readonly SearchFilter Events = RegisterPossibleValue(value: "events");
+
+		/// <summary>
+		/// люди, у которых есть общие друзья с текущим пользователем (этот фильтр
+		/// позволяет получить не всех пользователей,
+		/// имеющих общих друзей).
+		/// </summary>
+		public static readonly SearchFilter MutualFriends = RegisterPossibleValue(value: "mutual_friends");
+	}
 }

@@ -2,27 +2,27 @@
 
 namespace VkNet.Model.Attachments
 {
-    /// <summary>
-    /// Строковая ссылка
-    /// </summary>
-    [Serializable]
-    public class StringLink: MediaAttachment
-    {
-        /// <inheritdoc />
-        static StringLink()
-        {
-            RegisterType(typeof(string), "string");
-        }
+	/// <summary>
+	/// Строковая ссылка
+	/// </summary>
+	[Serializable]
+	public class StringLink : MediaAttachment
+	{
+		/// <inheritdoc />
+		static StringLink()
+		{
+			RegisterType(type: typeof(string), match: "string");
+		}
 
-        /// <summary>
-        /// Ссылка
-        /// </summary>
-        public string Link { get; set; }
+		/// <summary>
+		/// Ссылка
+		/// </summary>
+		public string Link { get; set; }
 
-        /// <inheritdoc />
-        public override string ToString()
-        {
-            return Link;
-        }
-    }
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return Link;
+		}
+	}
 }

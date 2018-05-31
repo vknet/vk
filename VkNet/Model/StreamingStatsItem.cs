@@ -13,14 +13,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время, соответствующее значению;
 		/// </summary>
-		[JsonProperty("timestamp")]
-		[JsonConverter(typeof(UnixDateTimeConverter))]
+		[JsonProperty(propertyName: "timestamp")]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime Timestamp { get; set; }
 
 		/// <summary>
 		/// Значение
 		/// </summary>
-		[JsonProperty("value")]
+		[JsonProperty(propertyName: "value")]
 		public int Value { get; set; }
 	}
 }

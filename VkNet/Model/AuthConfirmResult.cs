@@ -22,16 +22,15 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static AuthConfirmResult FromJson(VkResponse response)
 		{
 			return new AuthConfirmResult
 			{
-				Success = response["success"],
-				UserId = response["uid"]
+					Success = response[key: "success"]
+					, UserId = response[key: "uid"]
 			};
 		}
-
 	}
 }

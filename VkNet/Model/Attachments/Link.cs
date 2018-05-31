@@ -8,7 +8,7 @@ namespace VkNet.Model.Attachments
 	/// Ссылка на Web-страницу.
 	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
-	[DebuggerDisplay("[{Title}] {Uri}")]
+	[DebuggerDisplay(value: "[{Title}] {Uri}")]
 	[Serializable]
 	public class Link : MediaAttachment
 	{
@@ -17,8 +17,9 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		static Link()
 		{
-			RegisterType(typeof(Link), "link");
+			RegisterType(type: typeof(Link), match: "link");
 		}
+
 		/// <summary>
 		/// Адрес ссылки.
 		/// </summary>
@@ -55,7 +56,9 @@ namespace VkNet.Model.Attachments
 		public LinkButton Button { get; set; }
 
 		/// <summary>
-		/// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы. Идентификатор возвращается в формате "owner_id_page_id".
+		/// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы.
+		/// Идентификатор возвращается в формате
+		/// "owner_id_page_id".
 		/// </summary>
 		public string PreviewPage { get; set; }
 
@@ -95,35 +98,36 @@ namespace VkNet.Model.Attachments
 			return Uri.ToString();
 		}
 
-		#region Методы
+	#region Методы
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Link FromJson(VkResponse response)
 		{
 			var link = new Link
 			{
-				Id = response["id"],
-				Uri = response["url"],
-				Title = response["title"],
-				Description = response["description"] ?? response["desc"],
-				Image = response["image_src"],
-				PreviewPage = response["preview_page"],
-				Caption = response["caption"],
-				Photo = response["photo"],
-				IsExternal = response["is_external"],
-				Product = response["product"],
-				Rating = response["rating"],
-				Application = response["application"],
-				Button = response["button"],
-				PreviewUrl = response["preview_url"]
+					Id = response[key: "id"]
+					, Uri = response[key: "url"]
+					, Title = response[key: "title"]
+					, Description = response[key: "description"] ?? response[key: "desc"]
+					, Image = response[key: "image_src"]
+					, PreviewPage = response[key: "preview_page"]
+					, Caption = response[key: "caption"]
+					, Photo = response[key: "photo"]
+					, IsExternal = response[key: "is_external"]
+					, Product = response[key: "product"]
+					, Rating = response[key: "rating"]
+					, Application = response[key: "application"]
+					, Button = response[key: "button"]
+					, PreviewUrl = response[key: "preview_url"]
 			};
 
 			return link;
 		}
 
-		#endregion
+	#endregion
 	}
 }

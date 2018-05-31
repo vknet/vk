@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Enums
@@ -13,12 +12,14 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Товар доступен
 		/// </summary>
-		Available = 0,
-		/// <summary>
+		Available = 0
+
+		, /// <summary>
 		/// Товар удален
 		/// </summary>
-		Removed,
-		/// <summary>
+		Removed
+
+		, /// <summary>
 		/// Товар недоступен
 		/// </summary>
 		[DefaultValue]

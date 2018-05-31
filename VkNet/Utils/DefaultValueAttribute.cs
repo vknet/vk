@@ -7,6 +7,5 @@ namespace VkNet.Utils
 	/// </summary>
 	public class DefaultValueAttribute : Attribute
 	{
-
 	}
 }

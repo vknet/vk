@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -28,15 +27,15 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static MarketCategory FromJson(VkResponse response)
 		{
 			var product = new MarketCategory
 			{
-				Id = response["id"],
-				Name = response["name"],
-				Section = response["section"]
+					Id = response[key: "id"]
+					, Name = response[key: "name"]
+					, Section = response[key: "section"]
 			};
 
 			return product;

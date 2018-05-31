@@ -8,9 +8,9 @@
 		/// <summary>
 		/// По убыванию
 		/// </summary>
-		Desc = 0,
+		Desc = 0
 
-		/// <summary>
+		, /// <summary>
 		/// По возрастанию
 		/// </summary>
 		Asc

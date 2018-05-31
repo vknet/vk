@@ -12,19 +12,20 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Деактивированный аккаунт
 		/// </summary>
-		Deactivated = -1,
+		Deactivated = -1
 
-		/// <summary>
+		, /// <summary>
 		/// Не указан
 		/// </summary>
-		[DefaultValue] Unknown = 0,
+		[DefaultValue]
+		Unknown = 0
 
-		/// <summary>
+		, /// <summary>
 		/// Женский
 		/// </summary>
-		Female = 1,
+		Female = 1
 
-		/// <summary>
+		, /// <summary>
 		/// Мужской
 		/// </summary>
 		Male = 2

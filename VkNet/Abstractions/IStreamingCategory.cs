@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using VkNet.Abstractions.Async;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 
@@ -18,7 +16,8 @@ namespace VkNet.Abstractions
 		/// <returns>
 		/// Возвращает объект, который содержит следующие поля:
 		/// endpoint (string) — хост для подключения к серверу;
-		/// key (string) — ключ доступа. Ключ бессрочный и прекращает действовать только после получения нового ключа.
+		/// key (string) — ключ доступа. Ключ бессрочный и прекращает действовать только
+		/// после получения нового ключа.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.getServerUrl
@@ -29,7 +28,9 @@ namespace VkNet.Abstractions
 		/// Позволяет получить значение порога для Streaming API.
 		/// </summary>
 		/// <returns>
-		/// Возвращает объект с единственным полем monthly_limit (string), которое содержит значение tier_1-tier_6 или unlimited и соответствует установленному порогу для приложения.
+		/// Возвращает объект с единственным полем monthly_limit (string), которое содержит
+		/// значение tier_1-tier_6 или
+		/// unlimited и соответствует установленному порогу для приложения.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.getSettings
@@ -37,26 +38,29 @@ namespace VkNet.Abstractions
 		StreamingSettings GetSettings();
 
 		/// <summary>
-		/// Позволяет получить статистику для подготовленных и доставленных событий Streaming API.
+		/// Позволяет получить статистику для подготовленных и доставленных событий
+		/// Streaming API.
 		/// </summary>
-		/// <param name = "type">
+		/// <param name="type">
 		/// Тип статистики. Возможные значения:
 		/// received — события, полученные приложением;
 		/// prepared — события, сгенерированные со стороны ВКонтакте.
 		/// строка
 		/// </param>
-		/// <param name = "interval">
+		/// <param name="interval">
 		/// Интервалы статистики. Возможные значения:
 		/// 5m — пять минут. Максимальный период — 3 дня между start_time и end_time;
 		/// 1h — один час. Максимальный период — 7 дней между start_time и end_time;
 		/// 24h — сутки. Максимальный период — 31 день между start_time и end_time.
 		/// строка, по умолчанию 5m
 		/// </param>
-		/// <param name = "startTime">
-		/// Время начала отсчёта в Unixtime. По умолчанию: end_time минус сутки. положительное число
+		/// <param name="startTime">
+		/// Время начала отсчёта в Unixtime. По умолчанию: end_time минус сутки.
+		/// положительное число
 		/// </param>
-		/// <param name = "endTime">
-		/// Время окончания отсчёта в Unixtime. По умолчанию: текущее время. положительное число
+		/// <param name="endTime">
+		/// Время окончания отсчёта в Unixtime. По умолчанию: текущее время. положительное
+		/// число
 		/// </param>
 		/// <returns>
 		/// Возвращает массив объектов, каждый из которых содержит поля:
@@ -64,7 +68,8 @@ namespace VkNet.Abstractions
 		/// post — записи на стене;
 		/// comment — комментарии;
 		/// share — репосты.
-		/// stats (array) — значения статистики. Массив объектов, каждый из которых содержит оля:
+		/// stats (array) — значения статистики. Массив объектов, каждый из которых
+		/// содержит оля:
 		/// timestamp (integer) — время, соответствующее значению;
 		/// value (integer) — значение.
 		/// </returns>
@@ -76,8 +81,8 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Позволяет задать значение порога для Streaming API.
 		/// </summary>
-		/// <param name = "monthlyTier">
-		/// Значение порога в месяц. Возможные значения: 
+		/// <param name="monthlyTier">
+		/// Значение порога в месяц. Возможные значения:
 		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает 1.

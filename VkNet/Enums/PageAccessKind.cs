@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace VkNet.Enums
 {
 	/// <summary>
@@ -8,20 +7,20 @@ namespace VkNet.Enums
 	/// </summary>
 	[Serializable]
 	public enum PageAccessKind
-    {
-        /// <summary>
-        /// Доступ только руководителям сообщества.
-        /// </summary>
-        OnlyAdministrators = 0,
+	{
+		/// <summary>
+		/// Доступ только руководителям сообщества.
+		/// </summary>
+		OnlyAdministrators = 0
 
-        /// <summary>
-        /// Доступ только членам сообщества.
-        /// </summary>
-        OnlyMembers = 1,
+		, /// <summary>
+		/// Доступ только членам сообщества.
+		/// </summary>
+		OnlyMembers = 1
 
-        /// <summary>
-        /// Неограниченный доступ.
-        /// </summary>
-        Unrestricted = 2
-    }
+		, /// <summary>
+		/// Неограниченный доступ.
+		/// </summary>
+		Unrestricted = 2
+	}
 }

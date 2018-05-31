@@ -8,12 +8,14 @@
 		/// <summary>
 		/// Выключены
 		/// </summary>
-		Off = 0,
-		/// <summary>
+		Off = 0
+
+		, /// <summary>
 		/// Открытые
 		/// </summary>
-		Opened,
-		/// <summary>
+		Opened
+
+		, /// <summary>
 		/// Ограниченные
 		/// </summary>
 		Restricted

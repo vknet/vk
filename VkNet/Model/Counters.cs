@@ -3,171 +3,171 @@ using VkNet.Utils;
 
 namespace VkNet.Model
 {
-    /// <summary>
-    /// Количество различных объектов у пользователя.
-    /// См. описание http://vk.com/dev/fields
-    /// http://vk.com/dev/fields_groups
-    /// Раздел counters.
-    /// </summary>
-    [Serializable]
-    public class Counters
-    {
-        /// <summary>
-        /// Количество фотоальбомов.
-        /// </summary>
-        public int? Albums { get; set; }
+	/// <summary>
+	/// Количество различных объектов у пользователя.
+	/// См. описание http://vk.com/dev/fields
+	/// http://vk.com/dev/fields_groups
+	/// Раздел counters.
+	/// </summary>
+	[Serializable]
+	public class Counters
+	{
+		/// <summary>
+		/// Количество фотоальбомов.
+		/// </summary>
+		public int? Albums { get; set; }
 
-        /// <summary>
-        /// Количество видеозаписей.
-        /// </summary>
-        public int? Videos { get; set; }
+		/// <summary>
+		/// Количество видеозаписей.
+		/// </summary>
+		public int? Videos { get; set; }
 
-        /// <summary>
-        /// Количество аудиозаписей.
-        /// </summary>
-        public int? Audios { get; set; }
+		/// <summary>
+		/// Количество аудиозаписей.
+		/// </summary>
+		public int? Audios { get; set; }
 
-        /// <summary>
-        /// Количество фотографий.
-        /// </summary>
-        public int? Photos { get; set; }
+		/// <summary>
+		/// Количество фотографий.
+		/// </summary>
+		public int? Photos { get; set; }
 
-        /// <summary>
-        /// Количество заметок.
-        /// </summary>
-        public int? Notes { get; set; }
+		/// <summary>
+		/// Количество заметок.
+		/// </summary>
+		public int? Notes { get; set; }
 
-        /// <summary>
-        /// Количество друзей.
-        /// </summary>
-        public int? Friends { get; set; }
+		/// <summary>
+		/// Количество друзей.
+		/// </summary>
+		public int? Friends { get; set; }
 
-        /// <summary>
-        /// Количество сообществ.
-        /// </summary>
-        public int? Groups { get; set; }
+		/// <summary>
+		/// Количество сообществ.
+		/// </summary>
+		public int? Groups { get; set; }
 
-        /// <summary>
-        /// Количество друзей онлайн.
-        /// </summary>
-        public int? OnlineFriends { get; set; }
+		/// <summary>
+		/// Количество друзей онлайн.
+		/// </summary>
+		public int? OnlineFriends { get; set; }
 
-        /// <summary>
-        /// Количество общих друзей.
-        /// </summary>
-        public int? MutualFriends { get; set; }
+		/// <summary>
+		/// Количество общих друзей.
+		/// </summary>
+		public int? MutualFriends { get; set; }
 
-        /// <summary>
-        /// Количество видеозаписей с пользователем.
-        /// </summary>
-        public int? UserVideos { get; set; }
+		/// <summary>
+		/// Количество видеозаписей с пользователем.
+		/// </summary>
+		public int? UserVideos { get; set; }
 
-        /// <summary>
-        /// Количество подписчиков.
-        /// </summary>
-        public int? Followers { get; set; }
+		/// <summary>
+		/// Количество подписчиков.
+		/// </summary>
+		public int? Followers { get; set; }
 
-        /// <summary>
-        /// Количество фотографий с пользователем.
-        /// </summary>
-        public int? UserPhotos { get; set; }
+		/// <summary>
+		/// Количество фотографий с пользователем.
+		/// </summary>
+		public int? UserPhotos { get; set; }
 
-        /// <summary>
-        /// Количество подписок (только пользователи).
-        /// </summary>
-        public int? Subscriptions { get; set; }
+		/// <summary>
+		/// Количество подписок (только пользователи).
+		/// </summary>
+		public int? Subscriptions { get; set; }
 
-        /// <summary>
-        /// Количество тем обсуждений сообщества.
-        /// </summary>
-        public int? TopicsCount { get; set; }
+		/// <summary>
+		/// Количество тем обсуждений сообщества.
+		/// </summary>
+		public int? TopicsCount { get; set; }
 
-        /// <summary>
-        /// Количество документов.
-        /// </summary>
-        public int? DocumentsCount { get; set; }
+		/// <summary>
+		/// Количество документов.
+		/// </summary>
+		public int? DocumentsCount { get; set; }
 
-        #region Поля, установленные экспериментально
+	#region Поля, установленные экспериментально
 
-        /// <summary>
-        /// Количество публичных страниц, на которые подписан пользователь.
-        /// </summary>
-        public int? Pages { get; set; }
+		/// <summary>
+		/// Количество публичных страниц, на которые подписан пользователь.
+		/// </summary>
+		public int? Pages { get; set; }
 
-        #endregion
+	#endregion
 
-        #region	  Счетчики из метода https://vk.com/dev/account.getCounters
+	#region Методы
 
-        /// <summary>
-        /// Количество сообщений
-        /// </summary>
-        public int? Messages { get; set; }
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static Counters FromJson(VkResponse response)
+		{
+			var counters = new Counters
+			{
+					Albums = response[key: "albums"]
+					, Videos = response[key: "videos"]
+					, Audios = response[key: "audios"]
+					, Photos = response[key: "photos"]
+					, Notes = response[key: "notes"]
+					, Friends = response[key: "friends"]
+					, Groups = response[key: "groups"]
+					, OnlineFriends = response[key: "online_friends"]
+					, MutualFriends = response[key: "mutual_friends"]
+					, UserVideos = response[key: "user_videos"]
+					, Followers = response[key: "followers"]
+					, UserPhotos = response[key: "user_photos"]
+					, Subscriptions = response[key: "subscriptions"]
+					, TopicsCount = response[key: "topics"]
+					, DocumentsCount = response[key: "docs"]
+					, Pages = response[key: "pages"]
+					, Messages = response[key: "messages"]
+					, Gifts = response[key: "gifts"]
+					, Events = response[key: "events"]
+					, Notifications = response[key: "notifications"]
+					, Sdk = response[key: "sdk"]
+					, AppRequests = response[key: "app_requests"]
+			};
 
-        /// <summary>
-        /// Количество подарков
-        /// </summary>
-        public int? Gifts { get; set; }
+			return counters;
+		}
 
-        /// <summary>
-        /// Количество событий
-        /// </summary>
-        public int? Events { get; set; }
+	#endregion
 
-        /// <summary>
-        /// Количество уведомлений
-        /// </summary>
-        public int? Notifications { get; set; }
+	#region	  Счетчики из метода https://vk.com/dev/account.getCounters
 
-        /// <summary>
-        /// SDK.
-        /// </summary>
-        public int? Sdk { get; set; }
+		/// <summary>
+		/// Количество сообщений
+		/// </summary>
+		public int? Messages { get; set; }
 
-        /// <summary>
-        /// Запросов к приложению.
-        /// </summary>
-        public int? AppRequests { get; set; }
+		/// <summary>
+		/// Количество подарков
+		/// </summary>
+		public int? Gifts { get; set; }
 
-        #endregion
+		/// <summary>
+		/// Количество событий
+		/// </summary>
+		public int? Events { get; set; }
 
-        #region Методы
+		/// <summary>
+		/// Количество уведомлений
+		/// </summary>
+		public int? Notifications { get; set; }
 
-        /// <summary>
-        /// Разобрать из json.
-        /// </summary>
-        /// <param name="response">Ответ сервера.</param>
-        /// <returns></returns>
-        public static Counters FromJson(VkResponse response)
-        {
-            var counters = new Counters
-            {
-                Albums = response["albums"],
-                Videos = response["videos"],
-                Audios = response["audios"],
-                Photos = response["photos"],
-                Notes = response["notes"],
-                Friends = response["friends"],
-                Groups = response["groups"],
-                OnlineFriends = response["online_friends"],
-                MutualFriends = response["mutual_friends"],
-                UserVideos = response["user_videos"],
-                Followers = response["followers"],
-                UserPhotos = response["user_photos"],
-                Subscriptions = response["subscriptions"],
-                TopicsCount = response["topics"],
-                DocumentsCount = response["docs"],
-                Pages = response["pages"],
-                Messages = response["messages"],
-                Gifts = response["gifts"],
-                Events = response["events"],
-                Notifications = response["notifications"],
-                Sdk = response["sdk"],
-                AppRequests = response["app_requests"]
-            };
+		/// <summary>
+		/// SDK.
+		/// </summary>
+		public int? Sdk { get; set; }
 
-            return counters;
-        }
+		/// <summary>
+		/// Запросов к приложению.
+		/// </summary>
+		public int? AppRequests { get; set; }
 
-        #endregion
-    }
+	#endregion
+	}
 }

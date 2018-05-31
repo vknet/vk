@@ -12,31 +12,30 @@ namespace VkNet.Model
 		/// <summary>
 		/// Массив новостей для текущего пользователя.
 		/// </summary>
-		public ReadOnlyCollection<NewsItem> Items
-		{ get; set; }
+		public ReadOnlyCollection<NewsItem> Items { get; set; }
 
 		/// <summary>
 		/// Информация о пользователях, которые находятся в списке новостей.
 		/// </summary>
-		public ReadOnlyCollection<User> Profiles
-		{ get; set; }
+		public ReadOnlyCollection<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Информация о группах, которые находятся в списке новостей.
 		/// </summary>
-		public ReadOnlyCollection<Group> Groups
-		{ get; set; }
+		public ReadOnlyCollection<Group> Groups { get; set; }
 
 		/// <summary>
-		/// Содержит offset, который необходимо передать, для того, чтобы получить следующую часть новостей.
+		/// Содержит offset, который необходимо передать, для того, чтобы получить
+		/// следующую часть новостей.
 		/// </summary>
-		public ulong? NewOffset
-		{ get; set; }
+		public ulong? NewOffset { get; set; }
 
 		/// <summary>
-		/// Содержит start_from, который необходимо передать, для того, чтобы получить следующую часть новостей. Позволяет избавиться от дубликатов, которые могут возникнуть при появлении новых новостей между вызовами этого метода.
+		/// Содержит start_from, который необходимо передать, для того, чтобы получить
+		/// следующую часть новостей. Позволяет
+		/// избавиться от дубликатов, которые могут возникнуть при появлении новых новостей
+		/// между вызовами этого метода.
 		/// </summary>
-		public string NextFrom
-		{ get; set; }
+		public string NextFrom { get; set; }
 	}
 }

@@ -7,14 +7,15 @@ using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Categories.Users
 {
-	public class UserGetTests: BaseTest
+	public class UserGetTests : BaseTest
 	{
 		[Test]
 		public void Get_Dimon_SingleUser()
 		{
 			Url = "https://api.vk.com/method/users.get";
+
 			Json =
-				@"{
+					@"{
                     'response': [
                       {
                         'id': 118312730,
@@ -26,12 +27,12 @@ namespace VkNet.Tests.Categories.Users
                     ]
                   }";
 
-			var users = Api.Users.Get(new List<long>{118312730}, ProfileFields.Sex, NameCase.Nom);
+			var users = Api.Users.Get(userIds: new List<long> { 118312730 }, fields: ProfileFields.Sex, nameCase: NameCase.Nom);
 
-			Assert.That(users, Is.Not.Null);
+			Assert.That(actual: users, expression: Is.Not.Null);
 			var user = users.FirstOrDefault();
-			Assert.That(user, Is.Not.Null);
-			Assert.That(user.Sex, Is.EqualTo(Sex.Deactivated));
+			Assert.That(actual: user, expression: Is.Not.Null);
+			Assert.That(actual: user.Sex, expression: Is.EqualTo(expected: Sex.Deactivated));
 		}
 	}
 }

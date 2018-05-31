@@ -18,19 +18,18 @@ namespace VkNet.Model
 		/// secret в случае, если токен был nohttps.
 		/// </summary>
 		public string Secret { get; set; }
-		
 
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static AccountChangePasswordResult FromJson(VkResponse response)
 		{
 			var item = new AccountChangePasswordResult
 			{
-				Token = response["token"],
-				Secret = response["secret"]
+					Token = response[key: "token"]
+					, Secret = response[key: "secret"]
 			};
 
 			return item;

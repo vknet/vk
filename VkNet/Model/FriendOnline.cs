@@ -23,25 +23,23 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static FriendOnline FromJson(VkResponse response)
 		{
-			if (response.ContainsKey("online"))
+			if (response.ContainsKey(key: "online"))
 			{
 				return new FriendOnline
 				{
-					MobileOnline = response["online_mobile"].ToReadOnlyCollectionOf<long>(x => x),
-					Online = response["online"].ToReadOnlyCollectionOf<long>(x => x)
+						MobileOnline = response[key: "online_mobile"].ToReadOnlyCollectionOf<long>(selector: x => x)
+						, Online = response[key: "online"].ToReadOnlyCollectionOf<long>(selector: x => x)
 				};
 			}
-			else
+
+			return new FriendOnline
 			{
-				return new FriendOnline
-				{
-					Online = response.ToReadOnlyCollectionOf<long>(x => x)
-				};
-			}
+					Online = response.ToReadOnlyCollectionOf<long>(selector: x => x)
+			};
 		}
 	}
 }

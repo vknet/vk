@@ -1,5 +1,4 @@
 using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -16,43 +15,44 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		static ApplicationContent()
 		{
-			RegisterType(typeof(ApplicationContent), "app");
+			RegisterType(type: typeof(ApplicationContent), match: "app");
 		}
 
-        /// <summary>
-        /// �������� ����������.
-        /// </summary>
-        public string Name { get; set; }
+		/// <summary>
+		/// �������� ����������.
+		/// </summary>
+		public string Name { get; set; }
 
-        /// <summary>
-        /// ����� ����������� ��� �������������.
-        /// </summary>
-        public string Photo130 { get; set; }
+		/// <summary>
+		/// ����� ����������� ��� �������������.
+		/// </summary>
+		public string Photo130 { get; set; }
 
-        /// <summary>
-        /// ����� ��������������� �����������.
-        /// </summary>
-        public string Photo604 { get; set; }
+		/// <summary>
+		/// ����� ��������������� �����������.
+		/// </summary>
+		public string Photo604 { get; set; }
 
-		#region ������
+	#region ������
+
 		/// <summary>
 		/// ��������� �� json.
 		/// </summary>
-		/// <param name="response">����� �������.</param>
-		/// <returns></returns>
+		/// <param name="response"> ����� �������. </param>
+		/// <returns> </returns>
 		public static ApplicationContent FromJson(VkResponse response)
-        {
-	        var application = new ApplicationContent
-	        {
-		        Id = response["id"],
-		        Name = response["name"],
-		        Photo130 = response["photo_130"],
-		        Photo604 = response["photo_604"]
-	        };
+		{
+			var application = new ApplicationContent
+			{
+					Id = response[key: "id"]
+					, Name = response[key: "name"]
+					, Photo130 = response[key: "photo_130"]
+					, Photo604 = response[key: "photo_604"]
+			};
 
-	        return application;
-        }
+			return application;
+		}
 
-        #endregion
-    }
+	#endregion
+	}
 }

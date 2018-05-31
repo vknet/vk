@@ -13,8 +13,8 @@
 		/// <summary>
 		/// Преобразовать из JSON
 		/// </summary>
-		/// <param name="response">Ответ от сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ от сервера. </param>
+		/// <returns> </returns>
 		IVkModel FromJson(VkResponse response);
 	}
 }

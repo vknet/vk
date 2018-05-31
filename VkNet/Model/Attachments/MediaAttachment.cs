@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace VkNet.Model.Attachments
 {
-    /// <summary>
-    /// Медиа вложение.
-    /// </summary>
-    [Serializable]
-    public abstract class MediaAttachment
+	/// <summary>
+	/// Медиа вложение.
+	/// </summary>
+	[Serializable]
+	public abstract class MediaAttachment
 	{
 		/// <summary>
 		/// Коллекция вложений
@@ -29,27 +29,27 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public override string ToString()
 		{
-			return $"{MatchType(GetType())}{OwnerId}_{Id}";
+			return $"{MatchType(type: GetType())}{OwnerId}_{Id}";
 		}
 
 		/// <summary>
 		/// Зарегистрировать тип.
 		/// </summary>
-		/// <param name="type">тип вложения.</param>
-		/// <param name="match">Соответствие.</param>
+		/// <param name="type"> тип вложения. </param>
+		/// <param name="match"> Соответствие. </param>
 		protected static void RegisterType(Type type, string match)
 		{
-			Types.Add(type, match);
+			Types.Add(key: type, value: match);
 		}
 
 		/// <summary>
 		/// Соответствие типу.
 		/// </summary>
-		/// <param name="type">Тип вложения.</param>
-		/// <returns></returns>
+		/// <param name="type"> Тип вложения. </param>
+		/// <returns> </returns>
 		private static string MatchType(Type type)
 		{
-			return Types[type];
+			return Types[key: type];
 		}
 	}
 }

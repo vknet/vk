@@ -10,33 +10,33 @@ namespace VkNet.Utils
 	/// <summary>
 	/// Коллекция данных возвращенных от vk.com
 	/// </summary>
-	/// <typeparam name="T">Тип данных.</typeparam>
+	/// <typeparam name="T"> Тип данных. </typeparam>
 	[Serializable]
-	[JsonConverter(typeof(VkCollectionJsonConverter))]
+	[JsonConverter(converterType: typeof(VkCollectionJsonConverter))]
 	public class VkCollection<T> : ReadOnlyCollection<T>, IEnumerable<T>
 	{
-		/// <summary>
-		/// Общее количество элементов.
-		/// </summary>
-		[JsonProperty("count")]
-		public ulong TotalCount { get; private set; }
-
 		/// <inheritdoc />
 		/// <summary>
 		/// Конструктор.
 		/// </summary>
-		/// <param name="totalCount">Общее количество.</param>
-		/// <param name="list">Список элементов.</param>
-		public VkCollection(ulong totalCount, IEnumerable<T> list) : base(list.ToList())
+		/// <param name="totalCount"> Общее количество. </param>
+		/// <param name="list"> Список элементов. </param>
+		public VkCollection(ulong totalCount, IEnumerable<T> list) : base(list: list.ToList())
 		{
 			TotalCount = totalCount;
 		}
 
 		/// <summary>
+		/// Общее количество элементов.
+		/// </summary>
+		[JsonProperty(propertyName: "count")]
+		public ulong TotalCount { get; private set; }
+
+		/// <summary>
 		/// Текущий элемент.
 		/// </summary>
-		/// <param name="index">Индекс.</param>
-		public new T this[int index] => Items[index];
+		/// <param name="index"> Индекс. </param>
+		public new T this[int index] => Items[index: index];
 
 		/// <inheritdoc />
 		/// <summary>
@@ -45,6 +45,9 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Интерфейс T:System
 		/// </returns>
-		public new IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
+		public new IEnumerator<T> GetEnumerator()
+		{
+			return Items.GetEnumerator();
+		}
 	}
 }

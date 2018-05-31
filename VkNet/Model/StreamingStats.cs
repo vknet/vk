@@ -15,14 +15,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// Тип событий
 		/// </summary>
-		[JsonProperty("event_type")]
-		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public StreamingEventType EventType  { get; set; }
+		[JsonProperty(propertyName: "event_type")]
+		[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
+		public StreamingEventType EventType { get; set; }
 
 		/// <summary>
 		/// Значения статистики
 		/// </summary>
-		[JsonProperty("stats")]
+		[JsonProperty(propertyName: "stats")]
 		public ReadOnlyCollection<StreamingStatsItem> Stats { get; set; }
 	}
 }

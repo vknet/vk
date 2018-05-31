@@ -6,7 +6,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <inheritdoc/>
+	/// <inheritdoc />
 	public partial class LeadsCategory : ILeadsCategory
 	{
 		/// <summary>
@@ -14,8 +14,8 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly VkApi _vk;
 
-		/// <inheritdoc/>
-		/// <param name = "api">
+		/// <inheritdoc />
+		/// <param name="api">
 		/// Api vk.com
 		/// </param>
 		public LeadsCategory(VkApi api = null)
@@ -23,86 +23,87 @@ namespace VkNet.Categories
 			_vk = api;
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public Checked CheckUser(CheckUserParams checkUserParams)
 		{
 			var result = new VkParameters
 			{
-				{"lead_id", checkUserParams.LeadId},
-				{"country", checkUserParams.Country},
-				{"test_result", checkUserParams.TestResult},
-				{"test_mode", checkUserParams.TestMode},
-				{"auto_start", checkUserParams.AutoStart},
-				{"age", checkUserParams.Age}
+					{ "lead_id", checkUserParams.LeadId }
+					, { "country", checkUserParams.Country }
+					, { "test_result", checkUserParams.TestResult }
+					, { "test_mode", checkUserParams.TestMode }
+					, { "auto_start", checkUserParams.AutoStart }
+					, { "age", checkUserParams.Age }
 			};
 
-			return _vk.Call<Checked>("leads.checkUser", result);
+			return _vk.Call<Checked>(methodName: "leads.checkUser", parameters: result);
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public LeadsComplete Complete(string vkSid, string secret, string comment)
 		{
-			return _vk.Call<LeadsComplete>("leads.complete",
-				new VkParameters
-				{
-					{"vk_sid", vkSid},
-					{"secret", secret},
-					{"comment", comment}
-				});
+			return _vk.Call<LeadsComplete>(methodName: "leads.complete"
+					, parameters: new VkParameters
+					{
+							{ "vk_sid", vkSid }
+							, { "secret", secret }
+							, { "comment", comment }
+					});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public Lead GetStats(ulong leadId, string secret, string dateStart, string dateEnd)
 		{
-			return _vk.Call<Lead>("leads.getStats",
-				new VkParameters
-				{
-					{"lead_id", leadId},
-					{"secret", secret},
-					{"date_start", dateStart},
-					{"date_end", dateEnd}
-				});
+			return _vk.Call<Lead>(methodName: "leads.getStats"
+					, parameters: new VkParameters
+					{
+							{ "lead_id", leadId }
+							, { "secret", secret }
+							, { "date_start", dateStart }
+							, { "date_end", dateEnd }
+					});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public ReadOnlyCollection<Entry> GetUsers(GetUsersParams getUsersParams)
 		{
 			var result = new VkParameters
 			{
-				{"offer_id", getUsersParams.OfferId},
-				{"secret", getUsersParams.Secret},
-				{"offset", getUsersParams.Offset},
-				{"count", getUsersParams.Count},
-				{"status", getUsersParams.Status},
-				{"reverse", getUsersParams.Reverse}
+					{ "offer_id", getUsersParams.OfferId }
+					, { "secret", getUsersParams.Secret }
+					, { "offset", getUsersParams.Offset }
+					, { "count", getUsersParams.Count }
+					, { "status", getUsersParams.Status }
+					, { "reverse", getUsersParams.Reverse }
 			};
 
-			return _vk.Call<ReadOnlyCollection<Entry>>("leads.getUsers", result);
+			return _vk.Call<ReadOnlyCollection<Entry>>(methodName: "leads.getUsers", parameters: result);
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public MetricHitResponse MetricHit(string data)
 		{
-			return _vk.Call<MetricHitResponse>("leads.metricHit", new VkParameters
-			{
-				{"data", data}
-			});
+			return _vk.Call<MetricHitResponse>(methodName: "leads.metricHit"
+					, parameters: new VkParameters
+					{
+							{ "data", data }
+					});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public Start Start(StartParams startParams)
 		{
 			var result = new VkParameters
 			{
-				{"lead_id", startParams.LeadId},
-				{"secret", startParams.Secret},
-				{"uid", startParams.Uid},
-				{"aid", startParams.Aid},
-				{"test_mode", startParams.TestMode},
-				{"force", startParams.Force}
+					{ "lead_id", startParams.LeadId }
+					, { "secret", startParams.Secret }
+					, { "uid", startParams.Uid }
+					, { "aid", startParams.Aid }
+					, { "test_mode", startParams.TestMode }
+					, { "force", startParams.Force }
 			};
 
-			return _vk.Call<Start>("leads.start", result);
+			return _vk.Call<Start>(methodName: "leads.start", parameters: result);
 		}
 	}
 }

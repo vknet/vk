@@ -1,11 +1,11 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Является опциональным и содержит следующие данные в зависимости от значения поля type:
+	/// Является опциональным и содержит следующие данные в зависимости от значения
+	/// поля type:
 	/// </summary>
 	[Serializable]
 	public class PostSourceData
@@ -38,18 +38,18 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static PostSourceData FromJson(VkResponse response)
 		{
 			return new PostSourceData
-            {
-                ProfileActivity = response["profile_activity"],
-                ProfilePhoto = response["profile_photo"],
-                Comments = response["comments"],
-                Like = response["like"],
-                Poll = response["poll"]
-            };
-        }
+			{
+					ProfileActivity = response[key: "profile_activity"]
+					, ProfilePhoto = response[key: "profile_photo"]
+					, Comments = response[key: "comments"]
+					, Like = response[key: "like"]
+					, Poll = response[key: "poll"]
+			};
+		}
 	}
 }

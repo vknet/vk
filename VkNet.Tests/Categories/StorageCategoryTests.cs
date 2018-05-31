@@ -17,9 +17,9 @@ namespace VkNet.Tests.Categories
 			}";
 
 			Url = "https://api.vk.com/method/storage.get";
-			var result = Api.Storage.Get(new[] {"qwe"});
-			Assert.NotNull(result);
-			Assert.IsNotEmpty(result);
+			var result = Api.Storage.Get(keys: new[] { "qwe" });
+			Assert.NotNull(anObject: result);
+			Assert.IsNotEmpty(collection: result);
 		}
 
 		[Test]
@@ -32,8 +32,8 @@ namespace VkNet.Tests.Categories
 
 			Url = "https://api.vk.com/method/storage.getKeys";
 			var result = Api.Storage.GetKeys();
-			Assert.NotNull(result);
-			Assert.IsNotEmpty(result);
+			Assert.NotNull(anObject: result);
+			Assert.IsNotEmpty(collection: result);
 		}
 
 		[Test]
@@ -45,8 +45,8 @@ namespace VkNet.Tests.Categories
 			}";
 
 			Url = "https://api.vk.com/method/storage.set";
-			var result = Api.Storage.Set("qwe", "qwe");
-			Assert.True(result);
+			var result = Api.Storage.Set(key: "qwe", value: "qwe");
+			Assert.True(condition: result);
 		}
 	}
 }

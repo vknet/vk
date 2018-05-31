@@ -13,20 +13,20 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор комментария
 		/// </summary>
-		[JsonProperty("id")]
+		[JsonProperty(propertyName: "id")]
 		public long Id { get; set; }
 
 		/// <summary>
 		/// Время публикации комментария в формате unixtime
 		/// </summary>
-		[JsonProperty("date")]
-		[JsonConverter(typeof(UnixDateTimeConverter))]
+		[JsonProperty(propertyName: "date")]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime Date { get; set; }
 
 		/// <summary>
 		/// Текст комментария
 		/// </summary>
-		[JsonProperty("text")]
+		[JsonProperty(propertyName: "text")]
 		public string Text { get; set; }
 	}
 }

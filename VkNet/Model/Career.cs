@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -53,20 +52,20 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Career FromJson(VkResponse response)
 		{
 			var career = new Career
 			{
-				GroupId = response["group_id"],
-				Company = response["company"],
-				CountryId = response["country_id"],
-				CityId = response["city_id"],
-				CityName = response["city_name"],
-				From = response["from"],
-				Until = response["until"],
-				Position = response["position"]
+					GroupId = response[key: "group_id"]
+					, Company = response[key: "company"]
+					, CountryId = response[key: "country_id"]
+					, CityId = response[key: "city_id"]
+					, CityName = response[key: "city_name"]
+					, From = response[key: "from"]
+					, Until = response[key: "until"]
+					, Position = response[key: "position"]
 			};
 
 			return career;

@@ -14,60 +14,57 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор пользователя, которому следует отправить запрос.
 		/// </summary>
-		[JsonProperty("user_id")]
-		public ulong UserId
-		{ get; set; }
+		[JsonProperty(propertyName: "user_id")]
+		public ulong UserId { get; set; }
 
 		/// <summary>
 		/// Текст запроса.
 		/// </summary>
-		[JsonProperty("text")]
-		public string Text
-		{ get; set; }
+		[JsonProperty(propertyName: "text")]
+		public string Text { get; set; }
 
 		/// <summary>
 		/// Тип запроса, может принимать значения:.
 		/// </summary>
-		[JsonProperty("type")]
-		public AppRequestType Type
-		{ get; set; }
+		[JsonProperty(propertyName: "type")]
+		public AppRequestType Type { get; set; }
 
 		/// <summary>
 		/// Уникальное в рамках приложения имя для каждого вида отправляемого запроса.
 		/// </summary>
-		[JsonProperty("name")]
-		public string Name
-		{ get; set; }
+		[JsonProperty(propertyName: "name")]
+		public string Name { get; set; }
 
 		/// <summary>
-		/// Строка, которая будет возвращена назад при переходе пользователя по запросу в приложение. Может использоваться для подсчета конверсии.
+		/// Строка, которая будет возвращена назад при переходе пользователя по запросу в
+		/// приложение. Может использоваться для
+		/// подсчета конверсии.
 		/// </summary>
-		[JsonProperty("key")]
-		public string Key
-		{ get; set; }
+		[JsonProperty(propertyName: "key")]
+		public string Key { get; set; }
 
 		/// <summary>
-		/// Запрет на группировку запроса с другими, имеющими тот же name. По умолчанию отключен.
+		/// Запрет на группировку запроса с другими, имеющими тот же name. По умолчанию
+		/// отключен.
 		/// </summary>
-		[JsonProperty("separate")]
-		public bool Separate
-		{ get; set; }
+		[JsonProperty(propertyName: "separate")]
+		public bool Separate { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
-		/// <param name="p">Параметры.</param>
-		/// <returns></returns>
+		/// <param name="p"> Параметры. </param>
+		/// <returns> </returns>
 		public static VkParameters ToVkParameters(AppSendRequestParams p)
 		{
 			var parameters = new VkParameters
 			{
-				{ "user_id", p.UserId },
-				{ "text", p.Text },
-				{ "type", p.Type },
-				{ "name", p.Name },
-				{ "key", p.Key },
-				{ "separate", p.Separate }
+					{ "user_id", p.UserId }
+					, { "text", p.Text }
+					, { "type", p.Type }
+					, { "name", p.Name }
+					, { "key", p.Key }
+					, { "separate", p.Separate }
 			};
 
 			return parameters;

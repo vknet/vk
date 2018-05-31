@@ -17,13 +17,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static PostView FromJson(VkResponse response)
 		{
 			return new PostView
 			{
-				Count = response["count"]
+					Count = response[key: "count"]
 			};
 		}
 	}

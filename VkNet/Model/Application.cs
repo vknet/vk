@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -23,14 +22,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Application FromJson(VkResponse response)
 		{
 			var application = new Application
 			{
-				Store = response["store"],
-				AppId = response["app_id"]
+					Store = response[key: "store"]
+					, AppId = response[key: "app_id"]
 			};
 
 			return application;

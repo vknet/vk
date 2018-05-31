@@ -8,36 +8,36 @@
 		/// <summary>
 		/// The email
 		/// </summary>
-		public static readonly Services Email = RegisterPossibleValue("email");
+		public static readonly Services Email = RegisterPossibleValue(value: "email");
 
 		/// <summary>
 		/// The phone
 		/// </summary>
-		public static readonly Services Phone = RegisterPossibleValue("phone");
+		public static readonly Services Phone = RegisterPossibleValue(value: "phone");
 
 		/// <summary>
 		/// The twitter
 		/// </summary>
-		public static readonly Services Twitter = RegisterPossibleValue("twitter");
+		public static readonly Services Twitter = RegisterPossibleValue(value: "twitter");
 
 		/// <summary>
 		/// The facebook
 		/// </summary>
-		public static readonly Services Facebook = RegisterPossibleValue("facebook");
+		public static readonly Services Facebook = RegisterPossibleValue(value: "facebook");
 
 		/// <summary>
 		/// The odnoklassniki
 		/// </summary>
-		public static readonly Services Odnoklassniki = RegisterPossibleValue("odnoklassniki");
+		public static readonly Services Odnoklassniki = RegisterPossibleValue(value: "odnoklassniki");
 
 		/// <summary>
 		/// The instagram
 		/// </summary>
-		public static readonly Services Instagram = RegisterPossibleValue("instagram");
+		public static readonly Services Instagram = RegisterPossibleValue(value: "instagram");
 
 		/// <summary>
 		/// The google
 		/// </summary>
-		public static readonly Services Google = RegisterPossibleValue("google");
+		public static readonly Services Google = RegisterPossibleValue(value: "google");
 	}
 }

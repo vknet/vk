@@ -11,11 +11,6 @@ namespace VkNet.Model
 	public class CategoryGroup : IVkModel
 	{
 		/// <summary>
-		/// Идентификатор.
-		/// </summary>
-		public long Id { get; set; }
-
-		/// <summary>
 		/// Название категории.
 		/// </summary>
 		public string Name { get; set; }
@@ -36,30 +31,35 @@ namespace VkNet.Model
 		public IEnumerable<Group> PagePreviews { get; set; }
 
 		/// <summary>
-		/// Разобрать из json.
+		/// Идентификатор.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
-		public static CategoryGroup FromJson(VkResponse response)
-		{
-			return new CategoryGroup
-			{
-				Id = response["id"],
-				Name = response["name"],
-				Subcategories = response["subcategories"].ToReadOnlyCollectionOf<CategoryGroup>(o => o),
-				PageCount = response["page_count"],
-				PagePreviews = response["page_previews"].ToReadOnlyCollectionOf<Group>(o => o)
-			};
-		}
+		public long Id { get; set; }
 
 		/// <summary>
 		/// Преобразовать из JSON
 		/// </summary>
-		/// <param name="response">Ответ от сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ от сервера. </param>
+		/// <returns> </returns>
 		IVkModel IVkModel.FromJson(VkResponse response)
 		{
-			return FromJson(response);
+			return FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static CategoryGroup FromJson(VkResponse response)
+		{
+			return new CategoryGroup
+			{
+					Id = response[key: "id"]
+					, Name = response[key: "name"]
+					, Subcategories = response[key: "subcategories"].ToReadOnlyCollectionOf<CategoryGroup>(selector: o => o)
+					, PageCount = response[key: "page_count"]
+					, PagePreviews = response[key: "page_previews"].ToReadOnlyCollectionOf<Group>(selector: o => o)
+			};
 		}
 	}
 }

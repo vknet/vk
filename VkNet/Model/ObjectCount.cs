@@ -12,7 +12,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// количество *** к странице внутри виджета
 		/// </summary>
-		[JsonProperty("count")]
+		[JsonProperty(propertyName: "count")]
 		public long Count { get; set; }
 	}
 }
