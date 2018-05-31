@@ -131,7 +131,7 @@ csharp_force_attribute_style=separate
 csharp_indent_style=tab
 csharp_indent_size=4
 csharp_tab_width=4
-csharp_continuous_indent_multiplier=2
+csharp_continuous_indent_multiplier=1
 
 # Nested Statements
 csharp_indent_nested_usings_stmt=true
@@ -482,3 +482,44 @@ dotnet_style_qualification_for_method=false:warning
 dotnet_style_qualification_for_event=false:warning
 dotnet_style_predefined_type_for_locals_parameters_members=true:warning
 dotnet_style_predefined_type_for_member_access=true:warning
+
+[*.ts]
+# Braces Layout
+js_types_braces=end_of_line
+
+## Line Breaks
+
+# Blank Lines
+js_min_blank_lines_around_fields=1
+js_min_blank_lines_around_types=1
+
+# Line Breaks
+js_wrap_enum_style=line_break
+js_wrap_union_type_usage=chop_if_long
+
+# Place on a New Line
+js_place_each_decorator_on_new_line=true
+js_place_class_decorator_on_the_same_line=false
+js_place_method_decorator_on_the_same_line=false
+js_place_property_decorator_on_the_same_line=false
+js_place_field_decorator_on_the_same_line=false
+
+
+## Other
+
+# Align Multiline Constructs
+js_align_union_type_usage=false
+
+
+## Spaces
+
+# Type Parameters and Arguments
+js_space_before_type_parameters_brackets=false
+js_space_within_type_parameters_brackets=false
+
+# Type Annotations
+js_space_before_colon_in_type_annotation=false
+js_space_after_colon_in_type_annotation=true
+
+# Union and Intersection Types
+js_space_around_pipe_or_amper_in_type_usage=true
