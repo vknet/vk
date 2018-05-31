@@ -35,7 +35,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getAds
         /// </remarks>
-        Task<ReadOnlyCollection<Ad>> GetAdsAsync(AdsGetAdsParams @params);
+        Task<ReadOnlyCollection<AdsAd>> GetAdsAsync(AdsGetAdsParams @params);
 
         /// <summary>
         /// Возвращает список рекламных кабинетов.

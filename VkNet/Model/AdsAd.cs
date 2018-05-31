@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -15,7 +15,7 @@ namespace VkNet.Model
     /// См. описание https://vk.com/dev/ads.getAccounts
     /// </remarks>
     [Serializable]
-    public class Ad
+    public class AdsAd
     {
         /// <summary>
         /// Идентификатор рекламного объявления.
@@ -80,13 +80,66 @@ namespace VkNet.Model
         [JsonProperty("all_limit")]
         public long AllLimit { get; set; }
 
+		/// <summary>
+		/// ID тематики или подраздела тематики объявления.
+		/// </summary>
+		[JsonProperty("category1_id")]
+		public long Category1Id { get; set;	}
+
+		/// <summary>
+		/// ID тематики или подраздела тематики объявления. Дополнительная тематика.
+		/// </summary>
+		[JsonProperty("category2_id")]
+		public long Category2Id { get; set; }
+
+		/// <summary>
+		/// Название объявления.
+		/// </summary>
+		[JsonProperty("name")]
+		public string Name { get; set; }
+
+		/// <summary>
+		/// Cтатус модерации объявления
+		/// </summary>
+		[JsonProperty("approved")]
+		public ModerationStatus ModerationStatus { get; set; }
+
+		/// <summary>
+		/// Объявление является видеорекламой
+		/// </summary>
+		[JsonProperty("video")]
+		public long Video { get; set; }
+
+		/// <summary>
+		/// Включено отображение предупреждения: «Есть противопоказания.Требуется консультация специалиста.»
+		/// </summary>
+		[JsonProperty("disclaimer_medical")]
+		public long DisclaimerMedical { get; set; }
+
+		/// <summary>
+		/// Включено отображение предупреждения: «Необходима консультация специалистов.»
+		/// </summary>
+		[JsonProperty("disclaimer_specialist")]
+		public long DisclaimerSpecialist { get; set;
+		}
+
+		/// <summary>
+		/// Включено отображение предупреждения: «БАД.Не является лекарственным препаратом.»
+		/// </summary>
+		[JsonProperty("disclaimer_supplements")]
+		public long DisclaimerSupplements { get; set; }
+
+		/// <summary>
+		/// Только для ad_format = 9 (Public). Описание событий, собираемых в группы ретаргетинга. Массив объектов, где ключом является id группы ретаргетинга, а значением - массив событий.
+		/// </summary>
+		[JsonProperty("events_retargeting_groups")]
+		public EventsRetargetingGroups EventsRetargetingGroups { get; set; }
 
 
-
-        /// <summary>
-        /// Тип рекламного кабинета.
-        /// </summary>
-        [JsonProperty("account_type")]
+		/// <summary>
+		/// Тип рекламного кабинета.
+		/// </summary>
+		[JsonProperty("account_type")]
         [JsonConverter(typeof(SafetyEnumJsonConverter))]
         public AccountType AccountType { get; set; }
 

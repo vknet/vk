@@ -49,7 +49,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте https://vk.com/dev/ads.getAds
         /// </remarks>
-        ReadOnlyCollection<Ad> GetAds(AdsGetAdsParams @params);
+        ReadOnlyCollection<AdsAd> GetAds(AdsGetAdsParams @params);
 
         // getAdsLayout
         // getAdsTargeting

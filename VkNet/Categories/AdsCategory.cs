@@ -1,4 +1,4 @@
-﻿using VkNet.Abstractions;
+using VkNet.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,9 +53,9 @@ namespace VkNet.Categories
     /// <remarks>
     /// Страница документации ВКонтакте https://vk.com/dev/ads.getAds
     /// </remarks>
-    public ReadOnlyCollection<Ad> GetAds(AdsGetAdsParams @params)
+    public ReadOnlyCollection<AdsAd> GetAds(AdsGetAdsParams @params)
     {
-        return _vk.Call<ReadOnlyCollection<Ad>>("ads.getAds", @params);
+        return _vk.Call<ReadOnlyCollection<AdsAd>>("ads.getAds", @params);
     }
 
     /// <summary>

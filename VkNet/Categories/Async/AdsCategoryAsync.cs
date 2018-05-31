@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -16,7 +16,7 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public async Task<ReadOnlyCollection<Ad>> GetCampaignsAsync(AdsGetAdsParams @params)
+        public async Task<ReadOnlyCollection<AdsAd>> GetAdsAsync(AdsGetAdsParams @params)
         {
             return await TypeHelper.TryInvokeMethodAsync(() => _vk.Ads.GetAds(@params));
         }
