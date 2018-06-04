@@ -21,7 +21,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.add
 		/// </remarks>
-		object Add(PlacesAddParams placesAddParams);
+		long Add(PlacesAddParams placesAddParams);
 
 		/// <summary>
 		/// Отмечает пользователя в указанном месте.

@@ -168,10 +168,10 @@ namespace VkNet
 			{
 				_logger?.Debug(message: "Настройка прокси");
 
-				Browser.Proxy = WebProxy.GetProxy(host: @params.Host
-						, port: @params.Port
-						, proxyLogin: @params.ProxyLogin
-						, proxyPassword: @params.ProxyPassword);
+				Browser.Proxy = WebProxy.GetProxy(host: @params.Host,
+					port: @params.Port,
+					proxyLogin: @params.ProxyLogin,
+					proxyPassword: @params.ProxyPassword);
 
 				RestClient.Proxy = Browser.Proxy;
 			}
@@ -212,7 +212,7 @@ namespace VkNet
 			} else
 			{
 				const string message =
-						"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
+					"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
 
 				_logger?.Error(message: message);
 
@@ -243,14 +243,16 @@ namespace VkNet
 		public async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					Call(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+					Call(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization))
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
 		public async Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					Call<T>(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+					Call<T>(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization))
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -261,12 +263,12 @@ namespace VkNet
 
 			if (!jsonConverters.Any())
 			{
-				return JsonConvert.DeserializeObject<T>(answer
-						, new VkCollectionJsonConverter()
-						, new VkDefaultJsonConverter()
-						, new UnixDateTimeConverter()
-						, new AttachmentJsonConverter()
-						, new StringEnumConverter());
+				return JsonConvert.DeserializeObject<T>(answer,
+					new VkCollectionJsonConverter(),
+					new VkDefaultJsonConverter(),
+					new UnixDateTimeConverter(),
+					new AttachmentJsonConverter(),
+					new StringEnumConverter());
 			}
 
 			return JsonConvert.DeserializeObject<T>(value: answer, converters: jsonConverters);
@@ -292,7 +294,9 @@ namespace VkNet
 				LastInvokeTime = DateTimeOffset.Now;
 
 				var response = RestClient.PostAsync(uri: new Uri(uriString: $"https://api.vk.com/method/{method}"), parameters: @params)
-						.Result;
+					.ConfigureAwait(false)
+					.GetAwaiter()
+					.GetResult();
 
 				answer = response.Value ?? response.Message;
 			}
@@ -339,7 +343,7 @@ namespace VkNet
 		public async Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+				Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc cref="IDisposable" />
@@ -572,7 +576,7 @@ namespace VkNet
 			}
 
 			_logger?.Debug(message:
-					$"Вызов метода {methodName}, с параметрами {string.Join(separator: ",", values: parameters.Select(selector: x => $"{x.Key}={x.Value}"))}");
+				$"Вызов метода {methodName}, с параметрами {string.Join(separator: ",", values: parameters.Select(selector: x => $"{x.Key}={x.Value}"))}");
 
 			string answer;
 
@@ -645,10 +649,10 @@ namespace VkNet
 				}
 				catch (CaptchaNeededException captchaNeededException)
 				{
-					RepeatSolveCaptcha(numberOfRemainingAttemptsToSolveCaptcha: ref numberOfRemainingAttemptsToSolveCaptcha
-							, captchaNeededException: captchaNeededException
-							, captchaSidTemp: ref captchaSidTemp
-							, captchaKeyTemp: ref captchaKeyTemp);
+					RepeatSolveCaptcha(numberOfRemainingAttemptsToSolveCaptcha: ref numberOfRemainingAttemptsToSolveCaptcha,
+						captchaNeededException: captchaNeededException,
+						captchaSidTemp: ref captchaSidTemp,
+						captchaKeyTemp: ref captchaKeyTemp);
 				}
 			} while (numberOfRemainingAttemptsToAuthorize > 0 && !callCompleted);
 
@@ -746,10 +750,10 @@ namespace VkNet
 		/// <param name="expireTime"> Значение таймера </param>
 		private void SetTimer(int expireTime)
 		{
-			_expireTimer = new Timer(callback: AlertExpires
-					, state: null
-					, dueTime: expireTime > 0 ? expireTime : Timeout.Infinite
-					, period: Timeout.Infinite);
+			_expireTimer = new Timer(callback: AlertExpires,
+				state: null,
+				dueTime: expireTime > 0 ? expireTime : Timeout.Infinite,
+				period: Timeout.Infinite);
 		}
 
 		/// <summary>

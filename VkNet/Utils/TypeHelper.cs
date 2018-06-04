@@ -65,8 +65,8 @@ namespace VkNet.Utils
 		{
 			var consoleTarget = new ColoredConsoleTarget
 			{
-					UseDefaultRowHighlightingRules = true
-					, Layout = @"${level} ${longdate} ${logger} ${message}"
+				UseDefaultRowHighlightingRules = true,
+				Layout = @"${level} ${longdate} ${logger} ${message}"
 			};
 
 			var config = new LoggingConfiguration();
@@ -90,17 +90,18 @@ namespace VkNet.Utils
 			var tcs = new TaskCompletionSource<T>();
 
 			Task.Factory.StartNew(action: () =>
-			{
-				try
 				{
-					var result = func.Invoke();
-					tcs.SetResult(result: result);
-				}
-				catch (VkApiException ex)
-				{
-					tcs.SetException(exception: ex);
-				}
-			});
+					try
+					{
+						var result = func.Invoke();
+						tcs.SetResult(result: result);
+					}
+					catch (VkApiException ex)
+					{
+						tcs.SetException(exception: ex);
+					}
+				})
+				.ConfigureAwait(false);
 
 			return tcs.Task;
 		}

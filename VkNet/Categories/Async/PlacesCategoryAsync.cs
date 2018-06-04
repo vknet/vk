@@ -10,7 +10,7 @@ namespace VkNet.Categories
 	public partial class PlacesCategory
 	{
 		/// <inheritdoc />
-		public async Task<object> AddAsync(PlacesAddParams placesAddParams)
+		public async Task<long> AddAsync(PlacesAddParams placesAddParams)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.Add(placesAddParams: placesAddParams));
 		}
@@ -31,7 +31,7 @@ namespace VkNet.Categories
 		public async Task<IEnumerable<object>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Places.GetCheckins(placesGetCheckinsParams: placesGetCheckinsParams));
+				_vk.Places.GetCheckins(placesGetCheckinsParams: placesGetCheckinsParams));
 		}
 
 		/// <inheritdoc />
