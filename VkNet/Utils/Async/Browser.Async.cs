@@ -10,9 +10,7 @@ using VkNet.Model;
 
 namespace VkNet.Utils
 {
-	/// <summary>
-	/// Браузер
-	/// </summary>
+	/// <inheritdoc />
 	public partial class Browser
 	{
 		/// <summary>
@@ -21,13 +19,13 @@ namespace VkNet.Utils
 		/// <param name="methodUrl"> Адрес получения json </param>
 		/// <param name="parameters"> Параметры метода api </param>
 		/// <returns> Строка в формате json </returns>
+		[UsedImplicitly]
 		public async Task<string> GetJsonAsync(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			return WebCall.PostCallAsync(url: methodUrl, parameters: parameters, webProxy: Proxy)
-				.ConfigureAwait(false)
-				.GetAwaiter()
-				.GetResult()
-				.Response;
+			var result = await WebCall.PostCallAsync(url: methodUrl, parameters: parameters, webProxy: Proxy)
+				.ConfigureAwait(false);
+
+			return result.Response;
 		}
 
 		/// <summary>
@@ -35,6 +33,7 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="authParams"> Параметры авторизации </param>
 		/// <returns> Информация об авторизации приложения </returns>
+		[UsedImplicitly]
 		public async Task<VkAuthorization> AuthorizeAsync(IApiAuthParams authParams)
 		{
 			_logger?.Debug(message: "Шаг 1. Открытие диалога авторизации");

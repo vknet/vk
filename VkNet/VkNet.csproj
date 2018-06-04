@@ -14,7 +14,8 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<VersionPrefix>1.35.1</VersionPrefix>
-		<VersionSufix></VersionSufix>
+		<VersionSufix>
+		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
 		<PackageId>VkNet</PackageId>
 		<Description>
@@ -45,6 +46,7 @@
 		<OutputPath>..\Build\Release\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="AsyncFixer" Version="1.1.6"/>
 		<PackageReference Include="HtmlAgilityPack" Version="1.8.4"/>
 		<PackageReference Include="JetBrains.Annotations" Version="11.1.0"/>
 		<PackageReference Include="Newtonsoft.Json" Version="11.0.2"/>
