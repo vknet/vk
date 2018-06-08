@@ -91,13 +91,15 @@ namespace VkNet.Utils
 		/// <param name="code"> Функция возвращающая код двухфакторной авторизации </param>
 		/// <param name="loginFormPostResult"> Ответ сервера vk </param>
 		/// <returns> Ответ сервера vk </returns>
-		private async Task<WebCallResult> FilledTwoFactorFormAsync(Func<string> code, WebCallResult loginFormPostResult)
+		private Task<WebCallResult> FilledTwoFactorFormAsync(Func<string> code, WebCallResult loginFormPostResult)
 		{
 			var codeForm = WebForm.From(result: loginFormPostResult)
 				.WithField(name: "code")
 				.FilledWith(value: code.Invoke());
 
-			return await WebCall.PostAsync(form: codeForm, webProxy: Proxy).ConfigureAwait(false);
+			var task = WebCall.PostAsync(form: codeForm, webProxy: Proxy);
+			task.ConfigureAwait(false);
+			return task;
 		}
 
 		/// <summary>
@@ -109,7 +111,7 @@ namespace VkNet.Utils
 		/// <param name="captchaKey"> Значение капчи </param>
 		/// <param name="authorizeUrlResult"> </param>
 		/// <returns> </returns>
-		private async Task<WebCallResult> FilledLoginFormAsync(string email
+		private Task<WebCallResult> FilledLoginFormAsync(string email
 																, string password
 																, long? captchaSid
 																, string captchaKey
@@ -132,7 +134,9 @@ namespace VkNet.Utils
 					.FilledWith(value: captchaKey);
 			}
 
-			return await WebCall.PostAsync(form: loginForm, webProxy: Proxy).ConfigureAwait(false);
+			var task = WebCall.PostAsync(form: loginForm, webProxy: Proxy);
+			task.ConfigureAwait(false);
+			return task;
 		}
 
 		/// <summary>
@@ -144,7 +148,7 @@ namespace VkNet.Utils
 		/// странице валидации
 		/// </param>
 		/// <returns> Информация об авторизации приложения. </returns>
-		public async Task<VkAuthorization> ValidateAsync(string validateUrl, string phoneNumber)
+		public Task<VkAuthorization> ValidateAsync(string validateUrl, string phoneNumber)
 		{
 			if (string.IsNullOrWhiteSpace(value: validateUrl))
 			{
@@ -156,7 +160,9 @@ namespace VkNet.Utils
 				throw new ArgumentException(message: "Не задан номер телефона!");
 			}
 
-			return await ValidateInternalAsync(validateUrl, phoneNumber).ConfigureAwait(false);
+			var task = ValidateInternalAsync(validateUrl, phoneNumber);
+			task.ConfigureAwait(false);
+			return task;
 		}
 
 		private async Task<VkAuthorization> ValidateInternalAsync(string validateUrl, string phoneNumber)
@@ -224,13 +230,15 @@ namespace VkNet.Utils
 		/// <param name="appId"> id приложения </param>
 		/// <param name="settings"> Настройки приложения </param>
 		/// <returns> </returns>
-		private async Task<WebCallResult> OpenAuthDialogAsync(ulong appId
+		private Task<WebCallResult> OpenAuthDialogAsync(ulong appId
 															, [NotNull]
 															Settings settings)
 		{
 			var url = CreateAuthorizeUrlFor(appId: appId, settings: settings, display: Display.Page);
 
-			return await WebCall.MakeCallAsync(url: url, webProxy: Proxy).ConfigureAwait(false);
+			var task = WebCall.MakeCallAsync(url: url, webProxy: Proxy);
+			task.ConfigureAwait(false);
+			return task;
 		}
 	}
 }

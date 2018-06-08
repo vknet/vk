@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -14,110 +14,110 @@ namespace VkNet.Categories
 	public partial class NewsFeedCategory
 	{
 		/// <inheritdoc />
-		public async Task<NewsFeed> GetAsync(NewsFeedGetParams @params)
+		public Task<NewsFeed> GetAsync(NewsFeedGetParams @params)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.Get(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.Get(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public async Task<NewsFeed> GetRecommendedAsync(NewsFeedGetRecommendedParams @params)
+		public Task<NewsFeed> GetRecommendedAsync(NewsFeedGetRecommendedParams @params)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetRecommended(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetRecommended(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public async Task<NewsFeed> GetCommentsAsync(NewsFeedGetCommentsParams @params)
+		public Task<NewsFeed> GetCommentsAsync(NewsFeedGetCommentsParams @params)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetComments(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetComments(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public async Task<VkCollection<Mention>> GetMentionsAsync(long? ownerId = null
+		public Task<VkCollection<Mention>> GetMentionsAsync(long? ownerId = null
 																, DateTime? startTime = null
 																, DateTime? endTime = null
 																, long? offset = null
 																, long? count = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () =>
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.NewsFeed.GetMentions(ownerId: ownerId, startTime: startTime, endTime: endTime, offset: offset));
 		}
 
 		/// <inheritdoc />
-		public async Task<NewsBannedList> GetBannedAsync()
+		public Task<NewsBannedList> GetBannedAsync()
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetBanned());
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetBanned());
 		}
 
 		/// <inheritdoc />
-		public async Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null, NameCase nameCase = null)
+		public Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null, NameCase nameCase = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetBannedEx(fields: fields, nameCase: nameCase));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetBannedEx(fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
-		public async Task<bool> AddBanAsync(IEnumerable<long> userIds, IEnumerable<long> groupIds)
+		public Task<bool> AddBanAsync(IEnumerable<long> userIds, IEnumerable<long> groupIds)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.AddBan(userIds: userIds, groupIds: groupIds));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.AddBan(userIds: userIds, groupIds: groupIds));
 		}
 
 		/// <inheritdoc />
-		public async Task<bool> DeleteBanAsync(IEnumerable<long> userIds, IEnumerable<long> groupIds)
+		public Task<bool> DeleteBanAsync(IEnumerable<long> userIds, IEnumerable<long> groupIds)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.DeleteBan(userIds: userIds, groupIds: groupIds));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.DeleteBan(userIds: userIds, groupIds: groupIds));
 		}
 
 		/// <inheritdoc />
-		public async Task<bool> IgnoreItemAsync(NewsObjectTypes type, long ownerId, long itemId)
+		public Task<bool> IgnoreItemAsync(NewsObjectTypes type, long ownerId, long itemId)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.IgnoreItem(type: type, ownerId: ownerId, itemId: itemId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.IgnoreItem(type: type, ownerId: ownerId, itemId: itemId));
 		}
 
 		/// <inheritdoc />
-		public async Task<bool> UnignoreItemAsync(NewsObjectTypes type, long ownerId, long itemId)
+		public Task<bool> UnignoreItemAsync(NewsObjectTypes type, long ownerId, long itemId)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () =>
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.NewsFeed.UnignoreItem(type: type, ownerId: ownerId, itemId: itemId));
 		}
 
 		/// <inheritdoc />
-		public async Task<ReadOnlyCollection<NewsSearchResult>> SearchAsync(NewsFeedSearchParams @params)
+		public Task<ReadOnlyCollection<NewsSearchResult>> SearchAsync(NewsFeedSearchParams @params)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.Search(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.Search(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public async Task<VkCollection<NewsUserListItem>> GetListsAsync(IEnumerable<long> listIds, bool? extended = null)
+		public Task<VkCollection<NewsUserListItem>> GetListsAsync(IEnumerable<long> listIds, bool? extended = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetLists(listIds: listIds, extended: extended));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.GetLists(listIds: listIds, extended: extended));
 		}
 
 		/// <inheritdoc />
-		public async Task<long> SaveListAsync(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null)
+		public Task<long> SaveListAsync(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () =>
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.NewsFeed.SaveList(title: title, sourceIds: sourceIds, listId: listId, noReposts: noReposts));
 		}
 
 		/// <inheritdoc />
-		public async Task<bool> DeleteListAsync(long listId)
+		public Task<bool> DeleteListAsync(long listId)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.DeleteList(listId: listId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.NewsFeed.DeleteList(listId: listId));
 		}
 
 		/// <inheritdoc />
-		public async Task<bool> UnsubscribeAsync(CommentObjectType type, long itemId, long? ownerId = null)
+		public Task<bool> UnsubscribeAsync(CommentObjectType type, long itemId, long? ownerId = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () =>
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.NewsFeed.Unsubscribe(type: type, itemId: itemId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
-		public async Task<NewsSuggestions> GetSuggestedSourcesAsync(long? offset = null
+		public Task<NewsSuggestions> GetSuggestedSourcesAsync(long? offset = null
 																	, long? count = null
 																	, bool? shuffle = null
 																	, UsersFields fields = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () =>
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.NewsFeed.GetSuggestedSources(offset: offset, count: count, shuffle: shuffle, fields: fields));
 		}
 	}

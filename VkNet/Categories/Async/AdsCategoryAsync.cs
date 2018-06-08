@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -10,15 +10,15 @@ namespace VkNet.Categories
 	public partial class AdsCategory
 	{
 		/// <inheritdoc />
-		public async Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync()
+		public Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync()
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Ads.GetAccounts());
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Ads.GetAccounts());
 		}
 
 		/// <inheritdoc />
-		public async Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams @params)
+		public Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams @params)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Ads.GetCampaigns(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Ads.GetCampaigns(@params: @params));
 		}
 	}
 }
