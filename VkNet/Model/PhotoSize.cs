@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -13,21 +15,32 @@ namespace VkNet.Model
 		/// <summary>
 		/// Uri копии изображения.
 		/// </summary>
-		public Uri Src { get; set; }
+		[Obsolete("Используйте поле url. Данное поле будет удалено в релизе 2.0.0")]
+		public Uri Src => Url;
+
+		/// <summary>
+		/// Uri копии изображения.
+		/// </summary>
+		[JsonProperty("url")]
+		public Uri Url { get; set; }
 
 		/// <summary>
 		/// Ширина копии в пикселах.
 		/// </summary>
+		[JsonProperty("width")]
 		public ulong Width { get; set; }
 
 		/// <summary>
 		/// Высота копии в пикселах.
 		/// </summary>
+		[JsonProperty("height")]
 		public ulong Height { get; set; }
 
 		/// <summary>
 		/// Обозначение размера и пропорций копии.
 		/// </summary>
+		[JsonProperty("type")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PhotoSizeType Type { get; set; }
 
 		/// <summary>
@@ -39,10 +52,10 @@ namespace VkNet.Model
 		{
 			var giftItem = new PhotoSize
 			{
-					Src = new Uri(uriString: response[key: "src"])
-					, Width = response[key: "width"]
-					, Height = response[key: "height"]
-					, Type = response[key: "type"]
+				Url = response["url"],
+				Width = response[key: "width"],
+				Height = response[key: "height"],
+				Type = response[key: "type"]
 			};
 
 			return giftItem;

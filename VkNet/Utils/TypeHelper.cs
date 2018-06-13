@@ -17,19 +17,6 @@ namespace VkNet.Utils
 	/// </summary>
 	public static class TypeHelper
 	{
-	#if NET40
-
-		/// <summary>
-		/// Получить информацию о типе
-		/// </summary>
-		/// <param name="type"> Тип </param>
-		/// <returns> Тип </returns>
-		public static Type GetTypeInfo(this Type type)
-		{
-			return type;
-		}
-
-	#endif
 		/// <summary>
 		/// DI регистрация зависимостей по умолчанию
 		/// </summary>
@@ -65,8 +52,8 @@ namespace VkNet.Utils
 		{
 			var consoleTarget = new ColoredConsoleTarget
 			{
-					UseDefaultRowHighlightingRules = true
-					, Layout = @"${level} ${longdate} ${logger} ${message}"
+				UseDefaultRowHighlightingRules = true,
+				Layout = @"${level} ${longdate} ${logger} ${message}"
 			};
 
 			var config = new LoggingConfiguration();
@@ -90,17 +77,18 @@ namespace VkNet.Utils
 			var tcs = new TaskCompletionSource<T>();
 
 			Task.Factory.StartNew(action: () =>
-			{
-				try
 				{
-					var result = func.Invoke();
-					tcs.SetResult(result: result);
-				}
-				catch (VkApiException ex)
-				{
-					tcs.SetException(exception: ex);
-				}
-			});
+					try
+					{
+						var result = func.Invoke();
+						tcs.SetResult(result: result);
+					}
+					catch (VkApiException ex)
+					{
+						tcs.SetException(exception: ex);
+					}
+				})
+				.ConfigureAwait(false);
 
 			return tcs.Task;
 		}

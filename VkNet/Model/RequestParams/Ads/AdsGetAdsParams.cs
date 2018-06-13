@@ -9,7 +9,7 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	/// Параметры метода wall.search
+	/// Параметры метода ads.getCampaigns
 	/// </summary>
 	[Serializable]
 	public class AdsGetAdsParams
