@@ -252,7 +252,7 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/fave.getPhotos";
 
 			const string json =
-					@"{
+				@"{
 				response: {
 					count: 1061,
 					items: [{
@@ -261,37 +261,37 @@ namespace VkNet.Tests.Categories
 						owner_id: -66589869,
 						user_id: 100,
 						sizes: [{
-							src: 'http://cs629301.vk.me/v629301456/1caaf/XpHNgelMOc0.jpg',
+							url: 'http://cs629301.vk.me/v629301456/1caaf/XpHNgelMOc0.jpg',
 							width: 75,
 							height: 67,
 							type: 's'
 							}, {
-							src: 'http://cs629301.vab0/khhRkq0uhoo.jpg',
+							url: 'http://cs629301.vab0/khhRkq0uhoo.jpg',
 							width: 130,
 							height: 116,
 							type: 'm'
 							}, {
-							src: 'http://cs629301.vab1/cNehIdjHNXg.jpg',
+							url: 'http://cs629301.vab1/cNehIdjHNXg.jpg',
 							width: 604,
 							height: 537,
 							type: 'x'
 							}, {
-							src: 'http://cs629301.vab2/reFF7eJG23U.jpg',
+							url: 'http://cs629301.vab2/reFF7eJG23U.jpg',
 							width: 130,
 							height: 116,
 							type: 'o'
 							}, {
-							src: 'http://cs629301.vab3/6YYP7c34Vp4.jpg',
+							url: 'http://cs629301.vab3/6YYP7c34Vp4.jpg',
 							width: 200,
 							height: 178,
 							type: 'p'
 							}, {
-							src: 'http://cs629301.vab4/I3fCEQCPuec.jpg',
+							url: 'http://cs629301.vab4/I3fCEQCPuec.jpg',
 							width: 320,
 							height: 285,
 							type: 'q'
 							}, {
-							src: 'http://cs629301.vab5/VtX_ZADIFXg.jpg',
+							url: 'http://cs629301.vab5/VtX_ZADIFXg.jpg',
 							width: 510,
 							height: 453,
 							type: 'r'
@@ -317,8 +317,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: photo.UserId, expression: Is.EqualTo(expected: 100));
 			Assert.That(actual: photos[index: 0].Sizes[index: 0].Height, expression: Is.EqualTo(expected: 67));
 
-			Assert.That(actual: photos[index: 0].Sizes[index: 0].Src
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs629301.vk.me/v629301456/1caaf/XpHNgelMOc0.jpg")));
+			Assert.That(actual: photos[index: 0].Sizes[index: 0].Src,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs629301.vk.me/v629301456/1caaf/XpHNgelMOc0.jpg")));
 
 			Assert.That(actual: photos[index: 0].Sizes[index: 0].Width, expression: Is.EqualTo(expected: 75));
 			Assert.That(actual: photos[index: 0].Sizes[index: 0].Type, expression: Is.EqualTo(expected: PhotoSizeType.S));
@@ -334,7 +334,7 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/fave.getPhotos";
 
 			const string json =
-					@"{
+				@"{
 					'response': {
 					  'count': 3,
 					  'items': [
@@ -380,23 +380,23 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: photo.AlbumId, expression: Is.EqualTo(expected: 136592355));
 			Assert.That(actual: photo.OwnerId, expression: Is.EqualTo(expected: 1));
 
-			Assert.That(actual: photo.Photo75
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/s_47267f71.jpg")));
+			Assert.That(actual: photo.Photo75,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/s_47267f71.jpg")));
 
-			Assert.That(actual: photo.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/m_dc54094a.jpg")));
+			Assert.That(actual: photo.Photo130,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/m_dc54094a.jpg")));
 
-			Assert.That(actual: photo.Photo604
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/x_3216ccc1.jpg")));
+			Assert.That(actual: photo.Photo604,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/x_3216ccc1.jpg")));
 
-			Assert.That(actual: photo.Photo807
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/y_e10ee835.jpg")));
+			Assert.That(actual: photo.Photo807,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/y_e10ee835.jpg")));
 
-			Assert.That(actual: photo.Photo1280
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/z_a8fd75ba.jpg")));
+			Assert.That(actual: photo.Photo1280,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/z_a8fd75ba.jpg")));
 
-			Assert.That(actual: photo.Photo2560
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/w_62aef149.jpg")));
+			Assert.That(actual: photo.Photo2560,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs9591.vk.me/u00001/136592355/w_62aef149.jpg")));
 
 			Assert.That(actual: photo.Text, expression: Is.EqualTo(expected: ""));
 			Assert.That(actual: photo.CreateTime, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1307628890)));
@@ -407,14 +407,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: photo2.OwnerId, expression: Is.EqualTo(expected: -25397178));
 			Assert.That(actual: photo2.UserId, expression: Is.EqualTo(expected: 100));
 
-			Assert.That(actual: photo2.Photo75
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs310923.vk.me/v310923070/c28b/VEtf7pX6MXM.jpg")));
+			Assert.That(actual: photo2.Photo75,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs310923.vk.me/v310923070/c28b/VEtf7pX6MXM.jpg")));
 
-			Assert.That(actual: photo2.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs310923.vk.me/v310923070/c28c/cjCqKn_EGxE.jpg")));
+			Assert.That(actual: photo2.Photo130,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs310923.vk.me/v310923070/c28c/cjCqKn_EGxE.jpg")));
 
-			Assert.That(actual: photo2.Photo604
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs310923.vk.me/v310923070/c28d/IFtj16H-KwI.jpg")));
+			Assert.That(actual: photo2.Photo604,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs310923.vk.me/v310923070/c28d/IFtj16H-KwI.jpg")));
 
 			Assert.That(actual: photo2.Width, expression: Is.EqualTo(expected: 604));
 			Assert.That(actual: photo2.Height, expression: Is.EqualTo(expected: 530));
@@ -429,7 +429,7 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/fave.getPosts";
 
 			const string json =
-					@"{
+				@"{
 					response: {
 						count: 2623,
 						items: [{
@@ -522,9 +522,9 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: wallPost.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1447668333)));
 			Assert.That(actual: wallPost.PostType, expression: Is.EqualTo(expected: PostType.Post));
 
-			Assert.That(actual: wallPost.Text
-					, expression: Is.EqualTo(expected:
-							@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально."));
+			Assert.That(actual: wallPost.Text,
+				expression: Is.EqualTo(expected:
+					@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально."));
 
 			Assert.That(actual: wallPost.PostSource.Type, expression: Is.EqualTo(expected: PostSourceType.Vk));
 			Assert.That(actual: wallPost.Comments.CanPost, expression: Is.EqualTo(expected: true));
@@ -542,21 +542,21 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video.Id, expression: Is.EqualTo(expected: 171514588));
 			Assert.That(actual: video.OwnerId, expression: Is.EqualTo(expected: 235845316));
 
-			Assert.That(actual: video.Title
-					, expression: Is.EqualTo(expected: "Clean Code: Learn to write clean, maintainable and robust code"));
+			Assert.That(actual: video.Title,
+				expression: Is.EqualTo(expected: "Clean Code: Learn to write clean, maintainable and robust code"));
 
 			Assert.That(actual: video.Duration, expression: Is.EqualTo(expected: 2058));
 			Assert.That(actual: video.Views, expression: Is.EqualTo(expected: 1613));
 			Assert.That(actual: video.Comments, expression: Is.EqualTo(expected: 0));
 
-			Assert.That(actual: video.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg")));
+			Assert.That(actual: video.Photo130,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg")));
 
-			Assert.That(actual: video.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg")));
+			Assert.That(actual: video.Photo320,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg")));
 
-			Assert.That(actual: video.Photo640
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg")));
+			Assert.That(actual: video.Photo640,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg")));
 
 			Assert.That(actual: video.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1447535648)));
 			Assert.That(actual: video.AccessKey, expression: Is.EqualTo(expected: "733701ff4d7eb85ed7"));
@@ -569,11 +569,11 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: profile.Sex, expression: Is.EqualTo(expected: Sex.Female));
 			Assert.That(actual: profile.ScreenName, expression: Is.EqualTo(expected: "deadlymanul"));
 
-			Assert.That(actual: profile.PhotoPreviews.Photo50
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg")));
+			Assert.That(actual: profile.PhotoPreviews.Photo50,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg")));
 
-			Assert.That(actual: profile.PhotoPreviews.Photo100
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg")));
+			Assert.That(actual: profile.PhotoPreviews.Photo100,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg")));
 
 			Assert.That(actual: profile.Online, expression: Is.EqualTo(expected: true));
 
@@ -587,14 +587,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: group.IsAdmin, expression: Is.EqualTo(expected: false));
 			Assert.That(actual: group.IsMember, expression: Is.EqualTo(expected: true));
 
-			Assert.That(actual: group.PhotoPreviews.Photo50
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg")));
+			Assert.That(actual: group.PhotoPreviews.Photo50,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg")));
 
-			Assert.That(actual: group.PhotoPreviews.Photo100
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg")));
+			Assert.That(actual: group.PhotoPreviews.Photo100,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg")));
 
-			Assert.That(actual: group.PhotoPreviews.Photo200
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg")));
+			Assert.That(actual: group.PhotoPreviews.Photo200,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg")));
 		}
 
 		[Test]
@@ -603,7 +603,7 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/fave.getPosts";
 
 			const string json =
-					@"{
+				@"{
 					response: {
 						count: 2623,
 						items: [{
@@ -696,9 +696,9 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: wallPost.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1447668333)));
 			Assert.That(actual: wallPost.PostType, expression: Is.EqualTo(expected: PostType.Post));
 
-			Assert.That(actual: wallPost.Text
-					, expression: Is.EqualTo(expected:
-							@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально."));
+			Assert.That(actual: wallPost.Text,
+				expression: Is.EqualTo(expected:
+					@"Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально."));
 
 			Assert.That(actual: wallPost.PostSource.Type, expression: Is.EqualTo(expected: PostSourceType.Vk));
 			Assert.That(actual: wallPost.Comments.CanPost, expression: Is.EqualTo(expected: true));
@@ -716,21 +716,21 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video.Id, expression: Is.EqualTo(expected: 171514588));
 			Assert.That(actual: video.OwnerId, expression: Is.EqualTo(expected: 235845316));
 
-			Assert.That(actual: video.Title
-					, expression: Is.EqualTo(expected: "Clean Code: Learn to write clean, maintainable and robust code"));
+			Assert.That(actual: video.Title,
+				expression: Is.EqualTo(expected: "Clean Code: Learn to write clean, maintainable and robust code"));
 
 			Assert.That(actual: video.Duration, expression: Is.EqualTo(expected: 2058));
 			Assert.That(actual: video.Views, expression: Is.EqualTo(expected: 1613));
 			Assert.That(actual: video.Comments, expression: Is.EqualTo(expected: 0));
 
-			Assert.That(actual: video.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg")));
+			Assert.That(actual: video.Photo130,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg")));
 
-			Assert.That(actual: video.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg")));
+			Assert.That(actual: video.Photo320,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg")));
 
-			Assert.That(actual: video.Photo640
-					, expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg")));
+			Assert.That(actual: video.Photo640,
+				expression: Is.EqualTo(expected: new Uri(uriString: "https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg")));
 
 			Assert.That(actual: video.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1447535648)));
 			Assert.That(actual: video.AccessKey, expression: Is.EqualTo(expected: "733701ff4d7eb85ed7"));
@@ -742,7 +742,7 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/fave.getUsers";
 
 			const string json =
-					@"{
+				@"{
 					'response': {
 					  'count': 2,
 					  'items': [
@@ -773,7 +773,7 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/fave.getVideos";
 
 			const string json =
-					@"{
+				@"{
 					'response': {
 					  'count': 2,
 					  'items': [
@@ -806,11 +806,11 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: video.Views, expression: Is.EqualTo(expected: 215502));
 			Assert.That(actual: video.Comments, expression: Is.EqualTo(expected: 2559));
 
-			Assert.That(actual: video.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
+			Assert.That(actual: video.Photo130,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
 
-			Assert.That(actual: video.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
+			Assert.That(actual: video.Photo320,
+				expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
 		}
 	}
 }

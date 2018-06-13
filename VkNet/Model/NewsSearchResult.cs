@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -73,7 +73,18 @@ namespace VkNet.Model
 		/// <summary>
 		/// Тип записи
 		/// </summary>
+		///
+
+		
+
+
 		public PostType PostType { get; set; }
+
+		/// <summary>
+		///  Идентификатор записи при PostType == reply
+		/// </summary>
+
+		public int? PostId { get; set; } //Будет иметь значение null, кроме случаев при "post_type": "reply" 
 
 		/// <summary>
 		/// Разобрать из json.
@@ -95,6 +106,7 @@ namespace VkNet.Model
 					, Geo = response[key: "geo"]
 					, SignerId = response[key: "signer_id"]
 					, PostType = response[key: "post_type"]
+					, PostId = response[key: "post_id"]   //
 			};
 
 			return newsSearchResult;

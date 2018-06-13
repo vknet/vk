@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -35,7 +35,7 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public TimeSpan Timeout
 		{
-			get => _timeoutSeconds == TimeSpan.MinValue ? TimeSpan.FromSeconds(value: 300) : _timeoutSeconds;
+			get => _timeoutSeconds == TimeSpan.Zero ? TimeSpan.FromSeconds(value: 300) : _timeoutSeconds;
 			set => _timeoutSeconds = value;
 		}
 
@@ -43,16 +43,16 @@ namespace VkNet.Utils
 		public async Task<HttpResponse<string>> GetAsync(Uri uri, VkParameters parameters)
 		{
 			var queries = parameters.Where(predicate: k => !string.IsNullOrWhiteSpace(value: k.Value))
-					.Select(selector: kvp => $"{kvp.Key.ToLowerInvariant()}={kvp.Value}");
+				.Select(selector: kvp => $"{kvp.Key.ToLowerInvariant()}={kvp.Value}");
 
 			var url = new UriBuilder(uri: uri)
 			{
-					Query = string.Join(separator: "&", values: queries)
+				Query = string.Join(separator: "&", values: queries)
 			};
 
 			_logger?.Debug(message: $"GET request: {url.Uri}");
 
-			return await Call(method: httpClient => httpClient.GetAsync(requestUri: url.Uri));
+			return await Call(method: httpClient => httpClient.GetAsync(requestUri: url.Uri)).ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -62,22 +62,22 @@ namespace VkNet.Utils
 			_logger?.Debug(message: $"POST request: {uri}{Environment.NewLine}{Utilities.PreetyPrintJson(json: json)}");
 			HttpContent content = new FormUrlEncodedContent(nameValueCollection: parameters);
 
-			return await Call(method: httpClient => httpClient.PostAsync(requestUri: uri, content: content));
+			return await Call(method: httpClient => httpClient.PostAsync(requestUri: uri, content: content)).ConfigureAwait(false);
 		}
 
 		private async Task<HttpResponse<string>> Call(Func<HttpClient, Task<HttpResponseMessage>> method)
 		{
 			var handler = new HttpClientHandler
 			{
-					UseProxy = false
+				UseProxy = false
 			};
 
 			if (Proxy != null)
 			{
 				handler = new HttpClientHandler
 				{
-						Proxy = Proxy
-						, UseProxy = true
+					Proxy = Proxy,
+					UseProxy = true
 				};
 
 				_logger?.Debug(message: $"Use Proxy: {Proxy}");
@@ -90,18 +90,18 @@ namespace VkNet.Utils
 					client.Timeout = Timeout;
 				}
 
-				var response = await method(arg: client);
+				var response = await method(arg: client).ConfigureAwait(false);
 				var requestUri = response.RequestMessage.RequestUri.ToString();
 
 				if (response.IsSuccessStatusCode)
 				{
-					var json = await response.Content.ReadAsStringAsync();
+					var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 					_logger?.Debug(message: $"Response:{Environment.NewLine}{Utilities.PreetyPrintJson(json: json)}");
 
 					return HttpResponse<string>.Success(httpStatusCode: response.StatusCode, value: json, requestUri: requestUri);
 				}
 
-				var message = await response.Content.ReadAsStringAsync();
+				var message = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
 				return HttpResponse<string>.Fail(httpStatusCode: response.StatusCode, message: message, requestUri: requestUri);
 			}

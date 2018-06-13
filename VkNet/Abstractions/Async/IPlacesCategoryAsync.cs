@@ -22,7 +22,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.add
 		/// </remarks>
-		Task<object> AddAsync(PlacesAddParams placesAddParams);
+		Task<long> AddAsync(PlacesAddParams placesAddParams);
 
 		/// <summary>
 		/// Отмечает пользователя в указанном месте.
