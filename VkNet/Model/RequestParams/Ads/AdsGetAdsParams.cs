@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using VkNet.Utils;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	/// Параметры метода wall.search
+	/// Параметры метода ads.getCampaigns
 	/// </summary>
 	[Serializable]
 	public class AdsGetAdsParams
@@ -64,7 +64,7 @@ namespace VkNet.Model.RequestParams
         /// </summary>
         /// <param name="p">Параметры.</param>
         /// <returns></returns>
-        public static VkParameters ToVkParameters(AdsGetCampaignsParams p)
+        public static VkParameters ToVkParameters(AdsGetAdsParams p)
 		{
 			var parameters = new VkParameters
 			{
