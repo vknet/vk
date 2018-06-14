@@ -64,7 +64,7 @@ namespace VkNet.Model.RequestParams
         /// </summary>
         /// <param name="p">Параметры.</param>
         /// <returns></returns>
-        public static VkParameters ToVkParameters(AdsGetAdsParams p)
+        public static VkParameters ToVkParameters(AdsGetCampaignsParams p)
 		{
 			var parameters = new VkParameters
 			{
