@@ -726,5 +726,31 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(actual: WallFilter.FromJsonString(response: "suggests"), expression: Is.EqualTo(expected: WallFilter.Suggests));
 			Assert.That(actual: WallFilter.FromJsonString(response: "postponed"), expression: Is.EqualTo(expected: WallFilter.Postponed));
 		}
+
+		[Test]
+		public void KeyboardButtonColorTest()
+		{
+			// get test
+			Assert.That(actual: KeyboardButtonColor.Default.ToString(), expression: Is.EqualTo(expected: "default"));
+			Assert.That(actual: KeyboardButtonColor.Negative.ToString(), expression: Is.EqualTo(expected: "negative"));
+			Assert.That(actual: KeyboardButtonColor.Positive.ToString(), expression: Is.EqualTo(expected: "positive"));
+			Assert.That(actual: KeyboardButtonColor.Primary.ToString(), expression: Is.EqualTo(expected: "primary"));
+
+			// parse test
+			Assert.That(actual: KeyboardButtonColor.FromJsonString(response: "default"), expression: Is.EqualTo(expected: KeyboardButtonColor.Default));
+			Assert.That(actual: KeyboardButtonColor.FromJsonString(response: "negative"), expression: Is.EqualTo(expected: KeyboardButtonColor.Negative));
+			Assert.That(actual: KeyboardButtonColor.FromJsonString(response: "positive"), expression: Is.EqualTo(expected: KeyboardButtonColor.Positive));
+			Assert.That(actual: KeyboardButtonColor.FromJsonString(response: "primary"), expression: Is.EqualTo(expected: KeyboardButtonColor.Primary));
+		}
+
+		[Test]
+		public void KeyboardButtonActionTypeTest()
+		{
+			// get test
+			Assert.That(actual: KeyboardButtonActionType.Text.ToString(), expression: Is.EqualTo(expected: "text"));
+
+			// parse test
+			Assert.That(actual: KeyboardButtonActionType.FromJsonString(response: "text"), expression: Is.EqualTo(expected: KeyboardButtonActionType.Text));
+		}
 	}
 }
