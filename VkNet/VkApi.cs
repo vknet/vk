@@ -550,9 +550,13 @@ namespace VkNet
 		/// <inheritdoc />
 		public IPlacesCategory Places { get; set; }
 
-	#endregion
+		///<inheritdoc />
+		public INotesCategory Notes { get; set; }
 
-	#region private
+
+		#endregion
+
+		#region private
 
 		/// <summary>
 		/// Базовое обращение к vk.com
@@ -839,6 +843,8 @@ namespace VkNet
 			Leads = new LeadsCategory(api: this);
 			Streaming = new StreamingCategory(api: this);
 			Places = new PlacesCategory(api: this);
+			Notes = new NotesCategory(api: this);
+
 
 			RequestsPerSecond = 3;
 
