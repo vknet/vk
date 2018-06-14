@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums;
@@ -14,133 +14,133 @@ namespace VkNet.Categories
 	public partial class FriendsCategory
 	{
 		/// <inheritdoc />
-		public Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool skipAuthorization = false)
+		public async Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool skipAuthorization = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Friends.Get(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<long>> GetAppUsersAsync()
+		public async Task<ReadOnlyCollection<long>> GetAppUsersAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetAppUsers());
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetAppUsers());
 		}
 
 		/// <inheritdoc />
-		public Task<FriendOnline> GetOnlineAsync(FriendsGetOnlineParams @params)
+		public async Task<FriendOnline> GetOnlineAsync(FriendsGetOnlineParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetOnline(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetOnline(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<long>> GetMutualAsync(FriendsGetMutualParams @params)
+		public async Task<ReadOnlyCollection<long>> GetMutualAsync(FriendsGetMutualParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetMutual(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetMutual(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync(IEnumerable<long> userIds, bool? needSign = null)
+		public async Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync(IEnumerable<long> userIds, bool? needSign = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.AreFriends(userIds: userIds, needSign: needSign));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.AreFriends(userIds: userIds, needSign: needSign));
 		}
 
 		/// <inheritdoc />
-		public Task<long> AddListAsync(string name, IEnumerable<long> userIds)
+		public async Task<long> AddListAsync(string name, IEnumerable<long> userIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.AddList(name: name, userIds: userIds));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.AddList(name: name, userIds: userIds));
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteListAsync(long listId)
+		public async Task<bool> DeleteListAsync(long listId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.DeleteList(listId: listId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.DeleteList(listId: listId));
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<FriendList>> GetListsAsync(long? userId = null, bool? returnSystem = null)
+		public async Task<VkCollection<FriendList>> GetListsAsync(long? userId = null, bool? returnSystem = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetLists(userId: userId, returnSystem: returnSystem));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetLists(userId: userId, returnSystem: returnSystem));
 		}
 
 		/// <inheritdoc />
-		public Task<bool> EditListAsync(long listId
+		public async Task<bool> EditListAsync(long listId
 											, string name = null
 											, IEnumerable<long> userIds = null
 											, IEnumerable<long> addUserIds = null
 											, IEnumerable<long> deleteUserIds = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Friends.EditList(listId: listId, name: name, userIds: userIds, addUserIds: addUserIds));
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteAllRequestsAsync()
+		public async Task<bool> DeleteAllRequestsAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.DeleteAllRequests());
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.DeleteAllRequests());
 		}
 
 		/// <inheritdoc />
-		public Task<AddFriendStatus> AddAsync(long userId
+		public async Task<AddFriendStatus> AddAsync(long userId
 													, string text = ""
 													, bool? follow = null
 													, long? captchaSid = null
 													, string captchaKey = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Friends.Add(userId: userId, text: text, follow: follow, captchaSid: captchaSid, captchaKey: captchaKey));
 		}
 
 		/// <inheritdoc />
-		public Task<FriendsDeleteResult> DeleteAsync(long userId)
+		public async Task<FriendsDeleteResult> DeleteAsync(long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.Delete(userId: userId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.Delete(userId: userId));
 		}
 
 		/// <inheritdoc />
-		public Task<bool> EditAsync(long userId, IEnumerable<long> listIds)
+		public async Task<bool> EditAsync(long userId, IEnumerable<long> listIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.Edit(userId: userId, listIds: listIds));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.Edit(userId: userId, listIds: listIds));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<long>> GetRecentAsync(long? count = null)
+		public async Task<ReadOnlyCollection<long>> GetRecentAsync(long? count = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetRecent(count: count));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetRecent(count: count));
 		}
 
 		/// <inheritdoc />
-		public Task<GetRequestsResult> GetRequestsAsync(FriendsGetRequestsParams @params)
+		public async Task<GetRequestsResult> GetRequestsAsync(FriendsGetRequestsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetRequests(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetRequests(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<FriendsGetRequestsResult>> GetRequestsExtendedAsync(FriendsGetRequestsParams @params)
+		public async Task<VkCollection<FriendsGetRequestsResult>> GetRequestsExtendedAsync(FriendsGetRequestsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetRequestsExtended(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetRequestsExtended(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter filter = null
+		public async Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter filter = null
 																, long? count = null
 																, long? offset = null
 																, UsersFields fields = null
 																, NameCase nameCase = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Friends.GetSuggestions(filter: filter, count: count, offset: offset, fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<User>> GetByPhonesAsync(IEnumerable<string> phones, ProfileFields fields)
+		public async Task<ReadOnlyCollection<User>> GetByPhonesAsync(IEnumerable<string> phones, ProfileFields fields)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetByPhones(phones: phones, fields: fields));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetByPhones(phones: phones, fields: fields));
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<User>> SearchAsync(FriendsSearchParams @params)
+		public async Task<VkCollection<User>> SearchAsync(FriendsSearchParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.Search(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.Search(@params: @params));
 		}
 	}
 }

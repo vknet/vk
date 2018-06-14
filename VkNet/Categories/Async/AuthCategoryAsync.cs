@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -36,9 +36,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/auth.checkPhone
 		/// </remarks>
-		public Task<bool> CheckPhoneAsync(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
+		public async Task<bool> CheckPhoneAsync(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Auth.CheckPhone(phone: phone, clientSecret: clientSecret, clientId: clientId, authByPhone: authByPhone));
 		}
 
@@ -52,9 +52,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/auth.signup
 		/// </remarks>
-		public Task<string> SignupAsync(AuthSignupParams @params)
+		public async Task<string> SignupAsync(AuthSignupParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Auth.Signup(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Auth.Signup(@params: @params));
 		}
 
 		/// <summary>
@@ -68,9 +68,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/auth.confirm
 		/// </remarks>
-		public Task<AuthConfirmResult> ConfirmAsync(AuthConfirmParams @params)
+		public async Task<AuthConfirmResult> ConfirmAsync(AuthConfirmParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Auth.Confirm(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Auth.Confirm(@params: @params));
 		}
 
 		/// <summary>
@@ -84,9 +84,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/auth.restore
 		/// </remarks>
-		public Task<string> RestoreAsync(string phone, string lastName)
+		public async Task<string> RestoreAsync(string phone, string lastName)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Auth.Restore(phone: phone, lastName: lastName));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Auth.Restore(phone: phone, lastName: lastName));
 		}
 	}
 }

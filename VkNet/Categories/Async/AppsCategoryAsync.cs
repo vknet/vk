@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -24,9 +24,9 @@ namespace VkNet.Categories
 		/// К методу можно делать не более 60 запросов в минуту с одного IP или id.
 		/// Страница документации ВКонтакте http://vk.com/dev/apps.getCatalog
 		/// </remarks>
-		public Task<VkCollection<App>> GetCatalogAsync(AppGetCatalogParams @params, bool skipAuthorization = false)
+		public async Task<VkCollection<App>> GetCatalogAsync(AppGetCatalogParams @params, bool skipAuthorization = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Apps.GetCatalog(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
@@ -41,9 +41,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/apps.get
 		/// </remarks>
-		public Task<AppGetObject> GetAsync(AppGetParams @params, bool skipAuthorization = false)
+		public async Task<AppGetObject> GetAsync(AppGetParams @params, bool skipAuthorization = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.Get(@params: @params, skipAuthorization: skipAuthorization));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.Get(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <summary>
@@ -59,9 +59,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/apps.sendRequest
 		/// </remarks>
-		public Task<long> SendRequestAsync(AppSendRequestParams @params)
+		public async Task<long> SendRequestAsync(AppSendRequestParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.SendRequest(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.SendRequest(@params: @params));
 		}
 
 		/// <summary>
@@ -73,9 +73,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/apps.deleteAppRequests
 		/// </remarks>
-		public Task<bool> DeleteAppRequestsAsync()
+		public async Task<bool> DeleteAppRequestsAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.DeleteAppRequests());
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.DeleteAppRequests());
 		}
 
 		/// <summary>
@@ -106,13 +106,13 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/apps.getFriendsList
 		/// </remarks>
-		public Task<VkCollection<User>> GetFriendsListAsync(AppRequestType type
+		public async Task<VkCollection<User>> GetFriendsListAsync(AppRequestType type
 																, bool? extended = null
 																, long? count = null
 																, long? offset = null
 																, UsersFields fields = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Apps.GetFriendsList(type: type, extended: extended, count: count, offset: offset));
 		}
 
@@ -145,9 +145,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/apps.getLeaderboard
 		/// </remarks>
-		public Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null)
+		public async Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Apps.GetLeaderboard(type: type, global: global, extended: extended));
 		}
 
@@ -167,9 +167,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/apps.getScore
 		/// </remarks>
-		public Task<long> GetScoreAsync(long userId)
+		public async Task<long> GetScoreAsync(long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.GetScore(userId: userId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.GetScore(userId: userId));
 		}
 	}
 }

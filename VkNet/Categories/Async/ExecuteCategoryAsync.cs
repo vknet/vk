@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using VkNet.Abstractions;
 using VkNet.Utils;
 
@@ -24,21 +24,21 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<VkResponse> ExecuteAsync(string code)
+		public async Task<VkResponse> ExecuteAsync(string code)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Execute.Execute(code: code));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Execute.Execute(code: code));
 		}
 
 		/// <inheritdoc />
-		public Task<T> ExecuteAsync<T>(string code)
+		public async Task<T> ExecuteAsync<T>(string code)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Execute.Execute<T>(code: code));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Execute.Execute<T>(code: code));
 		}
 
 		/// <inheritdoc />
-		public Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters)
+		public async Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Execute.StoredProcedure<T>(procedureName: procedureName, vkParameters: vkParameters));
 		}
 	}

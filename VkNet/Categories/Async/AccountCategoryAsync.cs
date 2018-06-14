@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -29,9 +29,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getCounters
 		/// </remarks>
-		public Task<Counters> GetCountersAsync(CountersFilter filter)
+		public async Task<Counters> GetCountersAsync(CountersFilter filter)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetCounters(filter: filter));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetCounters(filter: filter));
 		}
 
 		/// <summary>
@@ -56,9 +56,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setNameInMenu
 		/// </remarks>
-		public Task<bool> SetNameInMenuAsync(string name, long? userId = null)
+		public async Task<bool> SetNameInMenuAsync(string name, long? userId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SetNameInMenu(name: name, userId: userId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SetNameInMenu(name: name, userId: userId));
 		}
 
 		/// <summary>
@@ -75,9 +75,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setOnline
 		/// </remarks>
-		public Task<bool> SetOnlineAsync(bool? voip = null)
+		public async Task<bool> SetOnlineAsync(bool? voip = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SetOnline(voip: voip));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SetOnline(voip: voip));
 		}
 
 		/// <summary>
@@ -89,9 +89,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setOffline
 		/// </remarks>
-		public Task<bool> SetOfflineAsync()
+		public async Task<bool> SetOfflineAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SetOffline());
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SetOffline());
 		}
 
 		/// <summary>
@@ -108,9 +108,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.registerDevice
 		/// </remarks>
-		public Task<bool> RegisterDeviceAsync(AccountRegisterDeviceParams @params)
+		public async Task<bool> RegisterDeviceAsync(AccountRegisterDeviceParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.RegisterDevice(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.RegisterDevice(@params: @params));
 		}
 
 		/// <summary>
@@ -135,9 +135,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.unregisterDevice
 		/// </remarks>
-		public Task<bool> UnregisterDeviceAsync(string deviceId, bool? sandbox = null)
+		public async Task<bool> UnregisterDeviceAsync(string deviceId, bool? sandbox = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.UnregisterDevice(deviceId: deviceId, sandbox: sandbox));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.UnregisterDevice(deviceId: deviceId, sandbox: sandbox));
 		}
 
 		/// <summary>
@@ -163,9 +163,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setSilenceMode
 		/// </remarks>
-		public Task<bool> SetSilenceModeAsync(string deviceId, int? time = null, int? peerId = null, bool? sound = null)
+		public async Task<bool> SetSilenceModeAsync(string deviceId, int? time = null, int? peerId = null, bool? sound = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Account.SetSilenceMode(deviceId: deviceId, time: time, peerId: peerId, sound: sound));
 		}
 
@@ -189,9 +189,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getPushSettings
 		/// </remarks>
-		public Task<AccountPushSettings> GetPushSettingsAsync(string deviceId)
+		public async Task<AccountPushSettings> GetPushSettingsAsync(string deviceId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetPushSettings(deviceId: deviceId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetPushSettings(deviceId: deviceId));
 		}
 
 		/// <summary>
@@ -219,9 +219,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setPushSettings
 		/// </remarks>
-		public Task<bool> SetPushSettingsAsync(string deviceId, PushSettings settings, string key, List<string> value)
+		public async Task<bool> SetPushSettingsAsync(string deviceId, PushSettings settings, string key, List<string> value)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Account.SetPushSettings(deviceId: deviceId, settings: settings, key: key, value: value));
 		}
 
@@ -250,9 +250,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getAppPermissions
 		/// </remarks>
-		public Task<long> GetAppPermissionsAsync(long userId)
+		public async Task<long> GetAppPermissionsAsync(long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetAppPermissions(userId: userId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetAppPermissions(userId: userId));
 		}
 
 		/// <summary>
@@ -282,9 +282,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getActiveOffers
 		/// </remarks>
-		public Task<InformationAboutOffers> GetActiveOffersAsync(ulong? offset = null, ulong? count = null)
+		public async Task<InformationAboutOffers> GetActiveOffersAsync(ulong? offset = null, ulong? count = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetActiveOffers(offset: offset, count: count));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetActiveOffers(offset: offset, count: count));
 		}
 
 		/// <summary>
@@ -301,9 +301,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.banUser
 		/// </remarks>
-		public Task<bool> BanUserAsync(long userId)
+		public async Task<bool> BanUserAsync(long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.BanUser(userId: userId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.BanUser(userId: userId));
 		}
 
 		/// <summary>
@@ -320,9 +320,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.unbanUser
 		/// </remarks>
-		public Task<bool> UnbanUserAsync(long userId)
+		public async Task<bool> UnbanUserAsync(long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.UnbanUser(userId: userId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.UnbanUser(userId: userId));
 		}
 
 		/// <summary>
@@ -345,9 +345,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getBanned
 		/// </remarks>
-		public Task<VkCollection<User>> GetBannedAsync(int? offset = null, int? count = null)
+		public async Task<VkCollection<User>> GetBannedAsync(int? offset = null, int? count = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetBanned(offset: offset, count: count));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetBanned(offset: offset, count: count));
 		}
 
 		/// <summary>
@@ -382,9 +382,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getInfo
 		/// </remarks>
-		public Task<AccountInfo> GetInfoAsync(AccountFields fields = null)
+		public async Task<AccountInfo> GetInfoAsync(AccountFields fields = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetInfo(fields: fields));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetInfo(fields: fields));
 		}
 
 		/// <summary>
@@ -398,9 +398,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setInfo
 		/// </remarks>
-		public Task<bool> SetInfoAsync(string name, string value)
+		public async Task<bool> SetInfoAsync(string name, string value)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SetInfo(name: name, value: value));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SetInfo(name: name, value: value));
 		}
 
 		/// <summary>
@@ -435,12 +435,12 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.changePassword
 		/// </remarks>
-		public Task<AccountChangePasswordResult> ChangePasswordAsync(string oldPassword
+		public async Task<AccountChangePasswordResult> ChangePasswordAsync(string oldPassword
 																			, string newPassword
 																			, string restoreSid = null
 																			, string changePasswordHash = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.ChangePassword(oldPassword: oldPassword
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.ChangePassword(oldPassword: oldPassword
 					, newPassword: newPassword
 					, restoreSid: restoreSid
 					, changePasswordHash: changePasswordHash));
@@ -453,9 +453,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getProfileInfo
 		/// </remarks>
-		public Task<AccountSaveProfileInfoParams> GetProfileInfoAsync()
+		public async Task<AccountSaveProfileInfoParams> GetProfileInfoAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetProfileInfo());
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.GetProfileInfo());
 		}
 
 		/// <summary>
@@ -474,9 +474,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 		/// </remarks>
-		public Task<bool> SaveProfileInfoAsync(int cancelRequestId)
+		public async Task<bool> SaveProfileInfoAsync(int cancelRequestId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SaveProfileInfo(cancelRequestId: cancelRequestId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Account.SaveProfileInfo(cancelRequestId: cancelRequestId));
 		}
 
 		/// <summary>
@@ -489,9 +489,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 		/// </remarks>
-		public Task<bool> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params)
+		public async Task<bool> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Account.SaveProfileInfo(changeNameRequest: out var _, @params: @params));
 		}
 	}

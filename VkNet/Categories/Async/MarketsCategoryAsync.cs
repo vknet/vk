@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
@@ -51,13 +51,13 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.get
 		/// </remarks>
-		public Task<VkCollection<Market>> GetAsync(long ownerId
+		public async Task<VkCollection<Market>> GetAsync(long ownerId
 														, long? albumId = null
 														, int? count = null
 														, int? offset = null
 														, bool extended = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Markets.Get(ownerId: ownerId, albumId: albumId, count: count, offset: offset, extended: extended));
 		}
 
@@ -90,9 +90,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.getById
 		/// </remarks>
-		public Task<VkCollection<Market>> GetByIdAsync(IEnumerable<string> itemIds, bool extended = false)
+		public async Task<VkCollection<Market>> GetByIdAsync(IEnumerable<string> itemIds, bool extended = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetById(itemIds: itemIds, extended: extended));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetById(itemIds: itemIds, extended: extended));
 		}
 
 		/// <summary>
@@ -105,9 +105,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.search
 		/// </remarks>
-		public Task<VkCollection<Market>> SearchAsync(MarketSearchParams @params)
+		public async Task<VkCollection<Market>> SearchAsync(MarketSearchParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Search(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Search(@params: @params));
 		}
 
 		/// <summary>
@@ -137,9 +137,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.getAlbums
 		/// </remarks>
-		public Task<VkCollection<MarketAlbum>> GetAlbumsAsync(long ownerId, int? offset, int? count)
+		public async Task<VkCollection<MarketAlbum>> GetAlbumsAsync(long ownerId, int? offset, int? count)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetAlbums(ownerId: ownerId, offset: offset, count: count));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetAlbums(ownerId: ownerId, offset: offset, count: count));
 		}
 
 		/// <summary>
@@ -166,9 +166,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.getAlbumById
 		/// </remarks>
-		public Task<VkCollection<MarketAlbum>> GetAlbumByIdAsync(long ownerId, IEnumerable<long> albumIds)
+		public async Task<VkCollection<MarketAlbum>> GetAlbumByIdAsync(long ownerId, IEnumerable<long> albumIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetAlbumById(ownerId: ownerId, albumIds: albumIds));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetAlbumById(ownerId: ownerId, albumIds: albumIds));
 		}
 
 		/// <summary>
@@ -181,9 +181,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.createComment
 		/// </remarks>
-		public Task<long> CreateCommentAsync(MarketCreateCommentParams @params)
+		public async Task<long> CreateCommentAsync(MarketCreateCommentParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.CreateComment(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.CreateComment(@params: @params));
 		}
 
 		/// <summary>
@@ -196,9 +196,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.getComments
 		/// </remarks>
-		public Task<VkCollection<MarketComment>> GetCommentsAsync(MarketGetCommentsParams @params)
+		public async Task<VkCollection<MarketComment>> GetCommentsAsync(MarketGetCommentsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetComments(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetComments(@params: @params));
 		}
 
 		/// <summary>
@@ -223,9 +223,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.deleteComment
 		/// </remarks>
-		public Task<bool> DeleteCommentAsync(long ownerId, long commentId)
+		public async Task<bool> DeleteCommentAsync(long ownerId, long commentId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.DeleteComment(ownerId: ownerId, commentId: commentId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.DeleteComment(ownerId: ownerId, commentId: commentId));
 		}
 
 		/// <summary>
@@ -251,9 +251,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.restoreComment
 		/// </remarks>
-		public Task<bool> RestoreCommentAsync(long ownerId, long commentId)
+		public async Task<bool> RestoreCommentAsync(long ownerId, long commentId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.RestoreComment(ownerId: ownerId, commentId: commentId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.RestoreComment(ownerId: ownerId, commentId: commentId));
 		}
 
 		/// <summary>
@@ -288,12 +288,12 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.editComment
 		/// </remarks>
-		public Task<bool> EditCommentAsync(long ownerId
+		public async Task<bool> EditCommentAsync(long ownerId
 												, long commentId
 												, string message
 												, IEnumerable<MediaAttachment> attachments = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Markets.EditComment(ownerId: ownerId, commentId: commentId, message: message, attachments: attachments));
 		}
 
@@ -323,9 +323,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.reportComment
 		/// </remarks>
-		public Task<bool> ReportCommentAsync(long ownerId, long commentId, ReportReason reason)
+		public async Task<bool> ReportCommentAsync(long ownerId, long commentId, ReportReason reason)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Markets.ReportComment(ownerId: ownerId, commentId: commentId, reason: reason));
 		}
 
@@ -355,9 +355,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.report
 		/// </remarks>
-		public Task<bool> ReportAsync(long ownerId, long itemId, ReportReason reason)
+		public async Task<bool> ReportAsync(long ownerId, long itemId, ReportReason reason)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Report(ownerId: ownerId, itemId: itemId, reason: reason));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Report(ownerId: ownerId, itemId: itemId, reason: reason));
 		}
 
 		/// <summary>
@@ -370,9 +370,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.add
 		/// </remarks>
-		public Task<long> AddAsync(MarketProductParams @params)
+		public async Task<long> AddAsync(MarketProductParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Add(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Add(@params: @params));
 		}
 
 		/// <summary>
@@ -385,9 +385,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.edit
 		/// </remarks>
-		public Task<bool> EditAsync(MarketProductParams @params)
+		public async Task<bool> EditAsync(MarketProductParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Edit(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Edit(@params: @params));
 		}
 
 		/// <summary>
@@ -412,9 +412,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.delete
 		/// </remarks>
-		public Task<bool> DeleteAsync(long ownerId, long itemId)
+		public async Task<bool> DeleteAsync(long ownerId, long itemId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Delete(ownerId: ownerId, itemId: itemId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Delete(ownerId: ownerId, itemId: itemId));
 		}
 
 		/// <summary>
@@ -440,9 +440,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.restore
 		/// </remarks>
-		public Task<bool> RestoreAsync(long ownerId, long itemId)
+		public async Task<bool> RestoreAsync(long ownerId, long itemId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Restore(ownerId: ownerId, itemId: itemId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.Restore(ownerId: ownerId, itemId: itemId));
 		}
 
 		/// <summary>
@@ -482,9 +482,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.reorderItems
 		/// </remarks>
-		public Task<bool> ReorderItemsAsync(long ownerId, long albumId, long itemId, long? before, long? after)
+		public async Task<bool> ReorderItemsAsync(long ownerId, long albumId, long itemId, long? before, long? after)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Markets.ReorderItems(ownerId: ownerId, albumId: albumId, itemId: itemId, before: before, after: after));
 		}
 
@@ -519,9 +519,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.reorderAlbums
 		/// </remarks>
-		public Task<bool> ReorderAlbumsAsync(long ownerId, long albumId, long? before = null, long? after = null)
+		public async Task<bool> ReorderAlbumsAsync(long ownerId, long albumId, long? before = null, long? after = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Markets.ReorderAlbums(ownerId: ownerId, albumId: albumId, before: before, after: after));
 		}
 
@@ -556,9 +556,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.addAlbum
 		/// </remarks>
-		public Task<long> AddAlbumAsync(long ownerId, string title, long? photoId = null, bool mainAlbum = false)
+		public async Task<long> AddAlbumAsync(long ownerId, string title, long? photoId = null, bool mainAlbum = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Markets.AddAlbum(ownerId: ownerId, title: title, photoId: photoId, mainAlbum: mainAlbum));
 		}
 
@@ -594,9 +594,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.editAlbum
 		/// </remarks>
-		public Task<bool> EditAlbumAsync(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false)
+		public async Task<bool> EditAlbumAsync(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Markets.EditAlbum(ownerId: ownerId, albumId: albumId, title: title, photoId: photoId, mainAlbum: mainAlbum));
 		}
 
@@ -622,9 +622,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.deleteAlbum
 		/// </remarks>
-		public Task<bool> DeleteAlbumAsync(long ownerId, long albumId)
+		public async Task<bool> DeleteAlbumAsync(long ownerId, long albumId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.DeleteAlbum(ownerId: ownerId, albumId: albumId));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.DeleteAlbum(ownerId: ownerId, albumId: albumId));
 		}
 
 		/// <summary>
@@ -655,9 +655,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.removeFromAlbum
 		/// </remarks>
-		public Task<bool> RemoveFromAlbumAsync(long ownerId, long itemId, IEnumerable<long> albumIds)
+		public async Task<bool> RemoveFromAlbumAsync(long ownerId, long itemId, IEnumerable<long> albumIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Markets.RemoveFromAlbum(ownerId: ownerId, itemId: itemId, albumIds: albumIds));
 		}
 
@@ -689,9 +689,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.addToAlbum
 		/// </remarks>
-		public Task<bool> AddToAlbumAsync(long ownerId, long itemId, IEnumerable<long> albumIds)
+		public async Task<bool> AddToAlbumAsync(long ownerId, long itemId, IEnumerable<long> albumIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Markets.AddToAlbum(ownerId: ownerId, itemId: itemId, albumIds: albumIds));
 		}
 
@@ -715,9 +715,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.getCategories
 		/// </remarks>
-		public Task<VkCollection<MarketCategory>> GetCategoriesAsync(long? count, long? offset)
+		public async Task<VkCollection<MarketCategory>> GetCategoriesAsync(long? count, long? offset)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetCategories(count: count, offset: offset));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Markets.GetCategories(count: count, offset: offset));
 		}
 	}
 }

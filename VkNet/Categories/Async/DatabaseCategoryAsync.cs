@@ -36,12 +36,12 @@ namespace VkNet.Categories
 		/// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getCountries
 		/// </remarks>
-		public Task<VkCollection<Country>> GetCountriesAsync(bool? needAll = null
+		public async Task<VkCollection<Country>> GetCountriesAsync(bool? needAll = null
 																	, IEnumerable<Iso3166> codes = null
 																	, int? count = null
 																	, int? offset = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Database.GetCountries(needAll: needAll, codes: codes, count: count, offset: offset));
 		}
 
@@ -59,9 +59,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getRegions
 		/// </remarks>
-		public Task<VkCollection<Region>> GetRegionsAsync(int countryId, string query = "", int? count = null, int? offset = null)
+		public async Task<VkCollection<Region>> GetRegionsAsync(int countryId, string query = "", int? count = null, int? offset = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Database.GetRegions(countryId: countryId, query: query, count: count, offset: offset));
 		}
 
@@ -73,9 +73,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getStreetsById
 		/// </remarks>
-		public Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(params int[] streetIds)
+		public async Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(params int[] streetIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetStreetsById(streetIds: streetIds));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetStreetsById(streetIds: streetIds));
 		}
 
 		/// <summary>
@@ -86,9 +86,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getCountriesById
 		/// </remarks>
-		public Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(params int[] countryIds)
+		public async Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(params int[] countryIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetCountriesById(countryIds: countryIds));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetCountriesById(countryIds: countryIds));
 		}
 
 		/// <summary>
@@ -109,9 +109,9 @@ namespace VkNet.Categories
 		/// релевантны поисковому запросу.
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getCities
 		/// </remarks>
-		public Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams)
+		public async Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetCities(parameters: getCitiesParams));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetCities(parameters: getCitiesParams));
 		}
 
 		/// <summary>
@@ -124,9 +124,9 @@ namespace VkNet.Categories
 		/// places.getById, places.search, places.getCheckins.
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getCitiesById
 		/// </remarks>
-		public Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(params int[] cityIds)
+		public async Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(params int[] cityIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetCitiesById(cityIds: cityIds));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetCitiesById(cityIds: cityIds));
 		}
 
 		/// <summary>
@@ -150,13 +150,13 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getUniversities
 		/// </remarks>
-		public Task<VkCollection<University>> GetUniversitiesAsync(int countryId
+		public async Task<VkCollection<University>> GetUniversitiesAsync(int countryId
 																		, int cityId
 																		, string query = ""
 																		, int? count = null
 																		, int? offset = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Database.GetUniversities(countryId: countryId, cityId: cityId, query: query, count: count, offset: offset));
 		}
 
@@ -174,9 +174,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getSchools
 		/// </remarks>
-		public Task<VkCollection<School>> GetSchoolsAsync(int cityId, string query = "", int? offset = null, int? count = null)
+		public async Task<VkCollection<School>> GetSchoolsAsync(int cityId, string query = "", int? offset = null, int? count = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Database.GetSchools(cityId: cityId, query: query, offset: offset, count: count));
 		}
 
@@ -196,9 +196,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getFaculties
 		/// </remarks>
-		public Task<VkCollection<Faculty>> GetFacultiesAsync(long universityId, int? count = null, int? offset = null)
+		public async Task<VkCollection<Faculty>> GetFacultiesAsync(long universityId, int? count = null, int? offset = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Database.GetFaculties(universityId: universityId, count: count, offset: offset));
 		}
 
@@ -217,9 +217,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getSchoolClasses
 		/// </remarks>
-		public Task<ReadOnlyCollection<SchoolClass>> GetSchoolClassesAsync(long countryId)
+		public async Task<ReadOnlyCollection<SchoolClass>> GetSchoolClassesAsync(long countryId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Database.GetSchoolClasses(countryId: countryId));
 		}
 
@@ -242,9 +242,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getChairs
 		/// </remarks>
-		public Task<VkCollection<Chair>> GetChairsAsync(long facultyId, int? count = null, int? offset = null)
+		public async Task<VkCollection<Chair>> GetChairsAsync(long facultyId, int? count = null, int? offset = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 					_vk.Database.GetChairs(facultyId: facultyId, count: count, offset: offset));
 		}
 	}

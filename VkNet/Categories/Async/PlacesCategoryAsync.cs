@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model.RequestParams;
@@ -10,40 +10,40 @@ namespace VkNet.Categories
 	public partial class PlacesCategory
 	{
 		/// <inheritdoc />
-		public Task<long> AddAsync(PlacesAddParams placesAddParams)
+		public async Task<long> AddAsync(PlacesAddParams placesAddParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.Add(placesAddParams: placesAddParams));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.Add(placesAddParams: placesAddParams));
 		}
 
 		/// <inheritdoc />
-		public Task<object> CheckinAsync(PlacesCheckinParams placesCheckinParams)
+		public async Task<object> CheckinAsync(PlacesCheckinParams placesCheckinParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.Checkin(placesCheckinParams: placesCheckinParams));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.Checkin(placesCheckinParams: placesCheckinParams));
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<object>> GetByIdAsync(IEnumerable<ulong> places)
+		public async Task<IEnumerable<object>> GetByIdAsync(IEnumerable<ulong> places)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.GetById(places: places));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.GetById(places: places));
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<object>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams)
+		public async Task<IEnumerable<object>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
+			return await TypeHelper.TryInvokeMethodAsync(func: () =>
 				_vk.Places.GetCheckins(placesGetCheckinsParams: placesGetCheckinsParams));
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<object>> GetTypesAsync()
+		public async Task<IEnumerable<object>> GetTypesAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.GetTypes());
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.GetTypes());
 		}
 
 		/// <inheritdoc />
-		public Task<Uri> SearchAsync(PlacesSearchParams placesSearchParams)
+		public async Task<Uri> SearchAsync(PlacesSearchParams placesSearchParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.Search(placesSearchParams: placesSearchParams));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Places.Search(placesSearchParams: placesSearchParams));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -11,51 +11,51 @@ namespace VkNet.Categories
 	public partial class UtilsCategory
 	{
 		/// <inheritdoc />
-		public Task<LinkAccessType> CheckLinkAsync(string url, bool skipAuthorization = true)
+		public async Task<LinkAccessType> CheckLinkAsync(string url, bool skipAuthorization = true)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.CheckLink(url: url, skipAuthorization: skipAuthorization));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.CheckLink(url: url, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
-		public Task<LinkAccessType> CheckLinkAsync(Uri url, bool skipAuthorization = true)
+		public async Task<LinkAccessType> CheckLinkAsync(Uri url, bool skipAuthorization = true)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.CheckLink(url: url, skipAuthorization: skipAuthorization));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.CheckLink(url: url, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
-		public Task<VkObject> ResolveScreenNameAsync(string screenName)
+		public async Task<VkObject> ResolveScreenNameAsync(string screenName)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.ResolveScreenName(screenName: screenName));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.ResolveScreenName(screenName: screenName));
 		}
 
 		/// <inheritdoc />
-		public Task<DateTime> GetServerTimeAsync()
+		public async Task<DateTime> GetServerTimeAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.GetServerTime());
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.GetServerTime());
 		}
 
 		/// <inheritdoc />
-		public Task<ShortLink> GetShortLinkAsync(Uri url, bool isPrivate)
+		public async Task<ShortLink> GetShortLinkAsync(Uri url, bool isPrivate)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.GetShortLink(url: url, isPrivate: isPrivate));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.GetShortLink(url: url, isPrivate: isPrivate));
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteFromLastShortenedAsync(string key)
+		public async Task<bool> DeleteFromLastShortenedAsync(string key)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.DeleteFromLastShortened(key: key));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.DeleteFromLastShortened(key: key));
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<ShortLink>> GetLastShortenedLinksAsync(ulong count = 10, ulong offset = 0)
+		public async Task<VkCollection<ShortLink>> GetLastShortenedLinksAsync(ulong count = 10, ulong offset = 0)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.GetLastShortenedLinks(count: count, offset: offset));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.GetLastShortenedLinks(count: count, offset: offset));
 		}
 
 		/// <inheritdoc />
-		public Task<LinkStatsResult> GetLinkStatsAsync(LinkStatsParams @params)
+		public async Task<LinkStatsResult> GetLinkStatsAsync(LinkStatsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.GetLinkStats(@params: @params));
+			return await TypeHelper.TryInvokeMethodAsync(func: () => _vk.Utils.GetLinkStats(@params: @params));
 		}
 	}
 }
