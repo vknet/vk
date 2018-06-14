@@ -1,5 +1,8 @@
-﻿using System;
+//#define DEBUG_HTTP // Директива для подробного анализа HTTP запросов при возникновении ошибок с авторизацией
+
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -13,6 +16,40 @@ namespace VkNet.Utils
 	/// </summary>
 	internal sealed partial class WebCall : IDisposable
 	{
+		#if DEBUG_HTTP
+
+		const string HTTP_LOG_PATH = "debug_http.log";
+		const bool WRITE_TO_FILE = false; // По умолчанию запись логов в файл отключена
+
+		static internal void LogWebCallRequestInfo(string method, string url, IEnumerable<KeyValuePair<string, string>> parameters, IWebProxy webProxy)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine($"{method} {url} [PROXY: {(webProxy != null)}]");
+			if (parameters != null)
+			{
+				foreach (var p in parameters)
+					sb.AppendLine($"{p.Key}: {p.Value}");
+			}
+			sb.AppendLine();
+			Console.WriteLine($"{nameof(VkApi)} [{nameof(WebCall)}]: " + sb.ToString());
+			if (WRITE_TO_FILE)
+				File.AppendAllText(HTTP_LOG_PATH, $"{DateTime.Now}: " + sb.ToString(), Encoding.UTF8);
+		}
+		static internal void LogWebCallResultDebugInfo(string method, string url, HttpResponseMessage response, WebCallResult res, long executionTimeMS)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine($"{method} {url} - {(int)response.StatusCode} {response.ReasonPhrase} in {executionTimeMS} msec.");
+			foreach (var header in response.Content.Headers)
+				sb.AppendLine($"{header.Key}: {string.Join("; ", header.Value)}");
+			sb.AppendLine(res.Response);
+			sb.AppendLine();
+			Console.WriteLine($"{nameof(VkApi)} [{nameof(WebCall)}]: " + sb.ToString());
+			if (WRITE_TO_FILE)
+				File.AppendAllText(HTTP_LOG_PATH, $"{DateTime.Now}: " + sb.ToString(), Encoding.UTF8);
+		}
+
+		#endif
+
 		/// <summary>
 		/// Получить HTTP запрос.
 		/// </summary>
@@ -36,25 +73,25 @@ namespace VkNet.Utils
 
 			var handler = new HttpClientHandler
 			{
-					CookieContainer = cookies.Container
-					, UseCookies = true
-					, Proxy = webProxy
-					, AllowAutoRedirect = allowAutoRedirect
+				CookieContainer = cookies.Container,
+				UseCookies = true,
+				Proxy = webProxy,
+				AllowAutoRedirect = allowAutoRedirect
 			};
 
 			_request = new HttpClient(handler: handler)
 			{
-					BaseAddress = baseAddress
-					, DefaultRequestHeaders =
+					BaseAddress = baseAddress,
+					DefaultRequestHeaders =
 					{
-							Accept = { MediaTypeWithQualityHeaderValue.Parse(input: "text/html") }
+						Accept = { MediaTypeWithQualityHeaderValue.Parse(input: "text/html") }
 					}
 			};
 
 			_result = new WebCallResult(url: url, cookies: cookies);
 		}
 
-	#region Implementation of IDisposable
+#region Implementation of IDisposable
 
 		/// <summary>
 		/// </summary>
@@ -63,7 +100,7 @@ namespace VkNet.Utils
 			_request?.Dispose();
 		}
 
-	#endregion
+#endregion
 
 		/// <summary>
 		/// Выполнить запрос.
@@ -73,11 +110,22 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		public static WebCallResult MakeCall(string url, IWebProxy webProxy = null)
 		{
+			#if DEBUG_HTTP
+			LogWebCallRequestInfo("GET", url, null, webProxy);
+			var watch = System.Diagnostics.Stopwatch.StartNew();
+			#endif
+
 			using (var call = new WebCall(url: url, cookies: new Cookies(), webProxy: webProxy))
 			{
 				var response = call._request.GetAsync(requestUri: url).Result;
+				var res = call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
 
-				return call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
+				#if DEBUG_HTTP
+				watch.Stop();
+				LogWebCallResultDebugInfo("GET", url, response, res, watch.ElapsedMilliseconds);
+				#endif
+
+				return res;
 			}
 		}
 
@@ -90,12 +138,24 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		public static WebCallResult PostCall(string url, IEnumerable<KeyValuePair<string, string>> parameters, IWebProxy webProxy)
 		{
+			#if DEBUG_HTTP
+			LogWebCallRequestInfo("POST", url, parameters, webProxy);
+			var watch = System.Diagnostics.Stopwatch.StartNew();
+			#endif
+
 			using (var call = new WebCall(url: url, cookies: new Cookies(), webProxy: webProxy))
 			{
-				var request = call._request.PostAsync(requestUri: url, content: new FormUrlEncodedContent(nameValueCollection: parameters))
-						.Result;
+				var response = call._request
+					.PostAsync(requestUri: url, content: new FormUrlEncodedContent(nameValueCollection: parameters))
+					.Result;
+				var res = call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
 
-				return call.MakeRequest(response: request, uri: new Uri(uriString: url), webProxy: webProxy);
+				#if DEBUG_HTTP
+				watch.Stop();
+				LogWebCallResultDebugInfo("POST", url, response, res, watch.ElapsedMilliseconds);
+				#endif
+
+				return res;
 			}
 		}
 
@@ -107,15 +167,26 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		public static WebCallResult Post(WebForm form, IWebProxy webProxy)
 		{
+			#if DEBUG_HTTP
+			LogWebCallRequestInfo("POST", form.ActionUrl, form.GetFormFields(), webProxy);
+			var watch = System.Diagnostics.Stopwatch.StartNew();
+			#endif
+
 			using (var call = new WebCall(url: form.ActionUrl, cookies: form.Cookies, webProxy: webProxy, allowAutoRedirect: false))
 			{
 				SpecifyHeadersForFormRequest(form: form, call: call);
 
-				var request = call._request.PostAsync(requestUri: form.ActionUrl
-								, content: new FormUrlEncodedContent(nameValueCollection: form.GetFormFields()))
-						.Result;
+				var response = call._request
+					.PostAsync(requestUri: form.ActionUrl, content: new FormUrlEncodedContent(nameValueCollection: form.GetFormFields()))
+					.Result;
+				var res = call.MakeRequest(response: response, uri: new Uri(uriString: form.ActionUrl), webProxy: webProxy);
 
-				return call.MakeRequest(response: request, uri: new Uri(uriString: form.ActionUrl), webProxy: webProxy);
+				#if DEBUG_HTTP
+				watch.Stop();
+				LogWebCallResultDebugInfo("POST", form.ActionUrl, response, res, watch.ElapsedMilliseconds);
+				#endif
+
+				return res;
 			}
 		}
 
@@ -127,6 +198,11 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		private WebCallResult RedirectTo(string url, IWebProxy webProxy = null)
 		{
+			#if DEBUG_HTTP
+			LogWebCallRequestInfo("REDIRECT GET", url, null, webProxy);
+			var watch = System.Diagnostics.Stopwatch.StartNew();
+			#endif
+
 			using (var call = new WebCall(url: url, cookies: _result.Cookies, webProxy: webProxy))
 			{
 				var headers = call._request.DefaultRequestHeaders;
@@ -134,8 +210,14 @@ namespace VkNet.Utils
 				headers.Add(name: "ContentType", value: "text/html");
 
 				var response = call._request.GetAsync(requestUri: url).Result;
+				var res = call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
 
-				return call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
+				#if DEBUG_HTTP
+				watch.Stop();
+				LogWebCallResultDebugInfo("REDIRECT GET", url, response, res, watch.ElapsedMilliseconds);
+				#endif
+
+				return res;
 			}
 		}
 
