@@ -1133,6 +1133,5 @@ namespace VkNet.Utils
 		{
 			return AdsGetAdsParams.ToVkParameters(p: p);
 		}
-
 	}
 }
