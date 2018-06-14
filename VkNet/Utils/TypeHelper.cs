@@ -17,6 +17,19 @@ namespace VkNet.Utils
 	/// </summary>
 	public static class TypeHelper
 	{
+	#if NET40
+
+		/// <summary>
+		/// Получить информацию о типе
+		/// </summary>
+		/// <param name="type"> Тип </param>
+		/// <returns> Тип </returns>
+		public static Type GetTypeInfo(this Type type)
+		{
+			return type;
+		}
+
+	#endif
 		/// <summary>
 		/// DI регистрация зависимостей по умолчанию
 		/// </summary>
