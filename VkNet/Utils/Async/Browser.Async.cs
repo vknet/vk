@@ -20,11 +20,12 @@ namespace VkNet.Utils
 		/// <param name="parameters"> Параметры метода api </param>
 		/// <returns> Строка в формате json </returns>
 		[UsedImplicitly]
-		public Task<string> GetJsonAsync(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
+		public async Task<string> GetJsonAsync(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			var task = WebCall.PostCallAsync(url: methodUrl, parameters: parameters, webProxy: Proxy);
-			task.ConfigureAwait(false);
-			return task.ContinueWith(r => r.Result.Response);
+			var result = await WebCall.PostCallAsync(url: methodUrl, parameters: parameters, webProxy: Proxy)
+				.ConfigureAwait(false);
+
+			return result.Response;
 		}
 
 		/// <summary>
@@ -178,7 +179,7 @@ namespace VkNet.Utils
 		/// <param name="webProxy"> Настройки прокси </param>
 		/// <returns> </returns>
 		/// <exception cref="CaptchaNeededException"> </exception>
-		private Task<VkAuthorization> EndAuthorizeAsync(WebCallResult result, IWebProxy webProxy = null)
+		private async Task<VkAuthorization> EndAuthorizeAsync(WebCallResult result, IWebProxy webProxy = null)
 		{
 			if (IsAuthSuccessfull(webCallResult: result))
 			{
