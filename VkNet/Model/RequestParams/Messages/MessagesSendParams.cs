@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
@@ -86,6 +86,13 @@ namespace VkNet.Model.RequestParams
 		public IEnumerable<long> ForwardMessages { get; set; }
 
 		/// <summary>
+		/// Отправляемая клавиатура.
+		/// (Используется для сообщений сообщества с включенной клавиатурой)
+		/// </summary>
+		[JsonProperty(propertyName: "keyboard")]
+		public MessageKeyboard Keyboard { get; set; }
+
+		/// <summary>
 		/// Идентификатор стикера.
 		/// </summary>
 		[JsonProperty(propertyName: "sticker_id")]
@@ -122,6 +129,7 @@ namespace VkNet.Model.RequestParams
 					, { "long", p.Longitude }
 					, { "attachment", p.Attachments }
 					, { "forward_messages", p.ForwardMessages }
+					, { "keyboard" , p.Keyboard!=null ? JsonConvert.SerializeObject(p.Keyboard) : "" }
 					, { "sticker_id", p.StickerId }
 					, { "captcha_sid", p.CaptchaSid }
 					, { "captcha_key", p.CaptchaKey }

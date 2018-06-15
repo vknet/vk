@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
@@ -76,6 +76,9 @@ namespace VkNet.Model
 					, OutRead = response[key: "out_read"]
 					, Out = response[key: "out"]
 					, UpdateTime = response[key: "update_time"]
+					,
+
+					Keyboard = response[key: "keyboard"]
 			};
 
 			return message;
@@ -232,6 +235,17 @@ namespace VkNet.Model
 		public string Photo200 { get; set; }
 
 	#endregion
+
+
+	#region Дополнительные поля в сообщениях сообществ
+
+		/// <summary>
+		/// Клавиатура, присланная ботом
+		/// </summary>
+		public MessageKeyboard Keyboard { get; set; }
+
+	#endregion
+
 
 	#region недокументированные
 
