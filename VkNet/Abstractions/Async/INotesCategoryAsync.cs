@@ -34,7 +34,7 @@ namespace VkNet.Abstractions.Async
 		/// </summary>
 		/// <param name="noteId">идентификатор заметки.</param>
 		/// <returns>После успешного выполнения возвращает true.</returns>
-		Task<bool> DeleteNoteAsync(long noteId);
+		Task<bool> DeleteAsync(long noteId);
 
 		/// <summary>
 		/// Удаляет комментарий к заметке. 
@@ -48,7 +48,7 @@ namespace VkNet.Abstractions.Async
 		/// </summary>
 		/// <param name="editParams">Входные параметры запроса</param>
 		/// <returns>После успешного выполнения возвращает true.</returns>
-		Task<bool> EditNoteAsync(NotesEditParams editParams);
+		Task<bool> EditAsync(NotesEditParams editParams);
 
 		/// <summary>
 		/// Редактирует указанный комментарий у заметки. 
@@ -62,14 +62,14 @@ namespace VkNet.Abstractions.Async
 		/// </summary>
 		/// <param name="notesGetParams">Входные параметры запроса</param>
 		/// <returns>возвращает список объектов заметок</returns>
-		Task<IEnumerable<Note>> GetNotesAsync(NotesGetParams notesGetParams);
+		Task<IEnumerable<Note>> GetAsync(NotesGetParams notesGetParams);
 
 		/// <summary>
 		/// Возвращает заметку по её id. 
 		/// </summary>
 		/// <param name="getByIdParams">Входные параметры запроса</param>
 		/// <returns>Возвращает заметку</returns>
-		Task<Note> GetNoteByIdAsync(NotesGetByIdParams getByIdParams);
+		Task<Note> GetByIdAsync(NotesGetByIdParams getByIdParams);
 
 		/// <summary>
 		/// Возвращает список комментариев к заметке.

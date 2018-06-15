@@ -34,7 +34,7 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="noteId">идентификатор заметки.</param>
 		/// <returns>После успешного выполнения возвращает true.</returns>
-		bool DeleteNote(long noteId);
+		bool Delete(long noteId);
 
 		/// <summary>
 		/// Удаляет комментарий к заметке. 
@@ -48,7 +48,7 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="editParams">Входные параметры запроса</param>
 		/// <returns>После успешного выполнения возвращает true.</returns>
-		bool EditNote(NotesEditParams editParams);
+		bool Edit(NotesEditParams editParams);
 
 		/// <summary>
 		/// Редактирует указанный комментарий у заметки. 
@@ -62,14 +62,14 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="notesGetParams">Входные параметры запроса</param>
 		/// <returns>возвращает список объектов заметок</returns>
-		IEnumerable<Note> GetNotes(NotesGetParams notesGetParams);
+		IEnumerable<Note> Get(NotesGetParams notesGetParams);
 
 		/// <summary>
 		/// Возвращает заметку по её id. 
 		/// </summary>
 		/// <param name="getByIdParams">Входные параметры запроса</param>
 		/// <returns>Возвращает заметку</returns>
-		Note GetNoteById(NotesGetByIdParams getByIdParams);
+		Note GetById(NotesGetByIdParams getByIdParams);
 
 		/// <summary>
 		/// Возвращает список комментариев к заметке.

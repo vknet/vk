@@ -29,9 +29,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteNoteAsync(long noteId)
+		public Task<bool> DeleteAsync(long noteId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Notes.DeleteNote(noteId: noteId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Notes.Delete(noteId: noteId));
 		}
 
 		/// <inheritdoc />
@@ -41,9 +41,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> EditNoteAsync(NotesEditParams editParams)
+		public Task<bool> EditAsync(NotesEditParams editParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Notes.EditNote(editParams: editParams));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Notes.Edit(editParams: editParams));
 		}
 
 		/// <inheritdoc />
@@ -53,15 +53,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<Note> GetNoteByIdAsync(NotesGetByIdParams getByIdParams)
+		public Task<Note> GetByIdAsync(NotesGetByIdParams getByIdParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Notes.GetNoteById(getByIdParams: getByIdParams));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Notes.GetById(getByIdParams: getByIdParams));
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<Note>> GetNotesAsync(NotesGetParams notesGetParams)
+		public Task<IEnumerable<Note>> GetAsync(NotesGetParams notesGetParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Notes.GetNotes(notesGetParams: notesGetParams));
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Notes.Get(notesGetParams: notesGetParams));
 		}
 
 		/// <inheritdoc />

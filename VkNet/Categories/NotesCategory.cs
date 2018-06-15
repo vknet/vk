@@ -51,7 +51,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool DeleteNote(long noteId)
+		public bool Delete(long noteId)
 		{
 			return _vk.Call(methodName: "notes.delete",
 				parameters: new VkParameters
@@ -72,7 +72,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool EditNote(NotesEditParams editParams)
+		public bool Edit(NotesEditParams editParams)
 		{
 			return _vk.Call(methodName: "notes.edit",
 				parameters: new VkParameters
@@ -98,7 +98,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<Note> GetNotes(NotesGetParams notesGetParams)
+		public IEnumerable<Note> Get(NotesGetParams notesGetParams)
 		{
 			return _vk.Call(methodName: "notes.get",
 				parameters: new VkParameters
@@ -112,7 +112,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Note GetNoteById(NotesGetByIdParams getByIdParams)
+		public Note GetById(NotesGetByIdParams getByIdParams)
 		{
 			return _vk.Call(methodName: "notes.getById",
 				parameters: new VkParameters
