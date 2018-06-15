@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums
+namespace VkNet.Enums
 {
     /// <summary>
     /// Тип оплаты
@@ -8,7 +8,7 @@
         /// <summary>
         /// Оплата за переходы
         /// </summary>
-        CPC = 1,
+        CPC = 0,
         /// <summary>
         /// Оплата за показы
         /// </summary>

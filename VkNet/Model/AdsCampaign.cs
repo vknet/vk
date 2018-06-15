@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -86,7 +86,7 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
-		/// Информация о рекламном аккаунте
+		/// Информация о рекламной кампании
 		/// </summary>
 		/// <param name="response"> </param>
 		/// <returns> </returns>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -35,10 +36,16 @@ namespace VkNet.Model
         [JsonProperty("ad_format")]
         public AdFormat AdFormat { get; set; }
 
-        /// <summary>
-        /// Цена за переход в копейках. (если cost_type = 0)
-        /// </summary>
-        [JsonProperty("cpc")]
+		/// <summary>
+		/// Тип оплаты
+		/// </summary>
+		[JsonProperty("cost_type")]
+		public CostType CostType { get; set; }
+
+		/// <summary>
+		/// Цена за переход в копейках. (если cost_type = 0)
+		/// </summary>
+		[JsonProperty("cpc")]
         public long CPC { get; set; }
 
         /// <summary>
@@ -80,6 +87,11 @@ namespace VkNet.Model
         [JsonProperty("all_limit")]
         public long AllLimit { get; set; }
 
+		//"age_restriction": "0",
+		//""create_time"": ""1522074190"",
+		//""update_time"": ""1524917653"",
+		//""day_limit"": ""0"",
+
 		/// <summary>
 		/// ID тематики или подраздела тематики объявления.
 		/// </summary>
@@ -91,6 +103,12 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("category2_id")]
 		public long Category2Id { get; set; }
+
+		/// <summary>
+		/// Cтатус объявления.
+		/// </summary>
+		[JsonProperty("status")]
+		public AdStatus Status { get; set; }
 
 		/// <summary>
 		/// Название объявления.
@@ -132,61 +150,34 @@ namespace VkNet.Model
 		/// <summary>
 		/// Только для ad_format = 9 (Public). Описание событий, собираемых в группы ретаргетинга. Массив объектов, где ключом является id группы ретаргетинга, а значением - массив событий.
 		/// </summary>
-		[JsonProperty("events_retargeting_groups")]
-		public EventsRetargetingGroups EventsRetargetingGroups { get; set; }
-
-
-		/// <summary>
-		/// Тип рекламного кабинета.
-		/// </summary>
-		[JsonProperty("account_type")]
-        [JsonConverter(typeof(SafetyEnumJsonConverter))]
-        public AccountType AccountType { get; set; }
-
-        /// <summary>
-        /// Cтатус рекламного кабинета.
-        /// </summary>
-        [JsonProperty("account_status")]
-        public AccountStatus AccountStatus { get; set; }
-
-        /// <summary>
-        /// Название аккаунта
-        /// </summary>
-        [JsonProperty("account_name")]
-        public string AccountName { get; set; }
-
-        /// <summary>
-        /// Права пользователя в рекламном кабинете.
-        /// </summary>
-        [JsonProperty("access_role")]
-        [JsonConverter(typeof(SafetyEnumJsonConverter))]
-        public AccessRole AccessRole { get; set; }
+		//[JsonProperty("events_retargeting_groups")]
+		//[JsonDictionary()]
+		//public Dictionary<long, IEnumerable<EventsRetargetingGroups>> EventsRetargetingGroups { get; set; }
 
         #region Методы
-        /// <summary>
-        /// Информация о рекламном аккаунте
-        /// </summary>
-        /// <param name="response"></param>
-        /// <returns></returns>
-        public static AdsAccount FromJson(VkResponse response)
-        {
-            if (response["account_id"] == null)
-            {
-                return null;
-            }
+        ///// <summary>
+        ///// Информация об объявлении
+        ///// </summary>
+        ///// <param name="response"></param>
+        ///// <returns></returns>
+        //public static AdsAccount FromJson(VkResponse response)
+        //{
+        //    if (response["account_id"] == null)
+        //    {
+        //        return null;
+        //    }
 
-            var adsaccount = new AdsAccount
-            {
-                AccountId = response["account_id"],
-                AccountType = response["account_type"],
-                AccountStatus = response["account_status"],
-                AccountName = response["account_name"],
-                AccessRole = response["access_role"]
+        //    var adsaccount = new AdsAccount
+        //    {
+        //        AccountId = response["account_id"],
+        //        AccountType = response["account_type"],
+        //        AccountStatus = response["account_status"],
+        //        AccountName = response["account_name"],
+        //        AccessRole = response["access_role"]
+        //    };
 
-            };
-
-            return adsaccount;
-        }
+        //    return adsaccount;
+        //}
         #endregion  
 
     }
