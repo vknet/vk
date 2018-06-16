@@ -247,26 +247,30 @@ namespace VkNet.Tests.Categories
 			Json =
 					@"{
 						""response"": [{
-						""id"": ""42644528"",
 						""campaign_id"": 1009150293,
-						""status"": 1,
-						""approved"": ""2"",
+						""id"": ""42644528"",
+						""status"": 0,
+						""approved"": ""1"",
 						""create_time"": ""1527069558"",
-						""update_time"": ""1528474631"",
+						""update_time"": ""1529160522"",
 						""day_limit"": ""0"",
 						""all_limit"": ""0"",
 						""start_time"": ""0"",
 						""stop_time"": ""0"",
 						""category1_id"": ""285"",
 						""category2_id"": ""0"",
-						""age_restriction"": ""0"",
+						""age_restriction"": ""5"",
 						""name"": ""Сеты шаров на свою группу."",
-						""events_retargeting_groups"": [],
+						""events_retargeting_groups"": {
+						""26897268"": [5, 6]
+						},
 						""cost_type"": 1,
 						""ad_format"": 9,
 						""cpm"": ""23699"",
 						""impressions_limit"": 1,
-						""ad_platform"": ""all""
+						""ad_platform"": ""all"",
+						""ad_platform_no_wall"": 1,
+						""ad_platform_no_ad_network"": 1
 						}, {
 						""id"": ""42333973"",
 						""campaign_id"": 1009150293,
@@ -1194,14 +1198,13 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: ads[index: 38].CPM, expression: Is.EqualTo(expected: 17000));
 			Assert.That(actual: ads[index: 38].ImpressionsLimit, expression: Is.EqualTo(expected: 3));
 			Assert.That(actual: ads[index: 38].AdPlatform, expression: Is.EqualTo(expected: AdPlatform.All));
-			//Assert.That(actual: ads[index: 38].ad, expression: Is.EqualTo(expected: 1));
+			Assert.That(actual: ads[index: 0].AdPlatformNoAdNetwork, expression: Is.EqualTo(expected: true));
+			Assert.That(actual: ads[index: 0].AdPPlatformNoWall, expression: Is.EqualTo(expected: true));
+			Assert.That(actual: ads[index: 38].CreateTime, expression: Is.EqualTo(expected: new DateTime(2018, 3, 26, 14, 23, 10)));
+			Assert.That(actual: ads[index: 38].UpdateTime, expression: Is.EqualTo(expected: new DateTime(2018, 4, 28, 12, 14, 13)));
+			Assert.That(actual: ads[index: 16].DayLimit, expression: Is.EqualTo(expected: 500));
+			Assert.That(actual: ads[index: 0].AgeRestriction, expression: Is.EqualTo(expected: AdAgeRestriction.EighteeenPlus));
 
-			//"age_restriction": "0",
-			//""create_time"": ""1522074190"",
-			//""update_time"": ""1524917653"",
-			//""day_limit"": ""0"",
-			//Assert.That(actual: ads[index: 1].AccountName, expression: Is.EqualTo(expected: "Кабинет агентства"));
-			//Assert.That(actual: ads[index: 1].AccessRole, expression: Is.EqualTo(expected: AccessRole.Manager));
 		}
 	}
 }

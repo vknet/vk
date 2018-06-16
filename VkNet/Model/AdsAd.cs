@@ -79,18 +79,45 @@ namespace VkNet.Model
         /// 1 — для объявления задано ограничение «Не показывать на стенах сообществ».
         /// </summary>
         [JsonProperty("ad_platform_no_wall")]
-        public long AdPPlatformNoWall { get; set; }
+        public bool AdPPlatformNoWall { get; set; }
 
-        /// <summary>
-        /// Общий лимит объявления в рублях. 0 — лимит не задан.
-        /// </summary>
-        [JsonProperty("all_limit")]
+		/// <summary>
+		/// 1 — для объявления задано ограничение «Показывать в рекламной сети».
+		/// </summary>
+		[JsonProperty("ad_platform_no_ad_network")]
+		public bool AdPlatformNoAdNetwork { get; set; }
+
+		/// <summary>
+		/// Общий лимит объявления в рублях. 0 — лимит не задан.
+		/// </summary>
+		[JsonProperty("all_limit")]
         public long AllLimit { get; set; }
 
-		//"age_restriction": "0",
-		//""create_time"": ""1522074190"",
-		//""update_time"": ""1524917653"",
-		//""day_limit"": ""0"",
+		/// <summary>
+		/// Дневной лимит объявления в рублях. 0 — лимит не задан.
+		/// </summary>
+		[JsonProperty("day_limit")]
+		public long DayLimit { get; set; }
+
+		/// <summary>
+		/// Ограничение по возрасту
+		/// </summary>
+		[JsonProperty("age_restriction")]
+		public AdAgeRestriction AgeRestriction { get; set; }
+
+		/// <summary>
+		/// Время создания объявления
+		/// </summary>
+		[JsonProperty(propertyName: "create_time")]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		public DateTime? CreateTime { get; set; }
+
+		/// <summary>
+		/// Время последнего изменения объявления
+		/// </summary>
+		[JsonProperty(propertyName: "update_time")]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		public DateTime? UpdateTime { get; set; }
 
 		/// <summary>
 		/// ID тематики или подраздела тематики объявления.
@@ -152,7 +179,7 @@ namespace VkNet.Model
 		/// </summary>
 		//[JsonProperty("events_retargeting_groups")]
 		//[JsonDictionary()]
-		//public Dictionary<long, IEnumerable<EventsRetargetingGroups>> EventsRetargetingGroups { get; set; }
+		//public Dictionary<long, IEnumerable<EventsRetargetingGroup>> EventsRetargetingGroups { get; set; }
 
         #region Методы
         ///// <summary>

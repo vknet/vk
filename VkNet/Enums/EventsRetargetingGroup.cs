@@ -2,7 +2,7 @@ namespace VkNet.Enums {
 	/// <summary>
 	/// Только для ad_format = 9. Описание событий, собираемых в группы ретаргетинга. Массив объектов, где ключом является id группы ретаргетинга, а значением - массив событий.
 	/// </summary>
-	public enum EventsRetargetingGroups {
+	public enum EventsRetargetingGroup {
 		/// <summary>
 		/// текстовые документы
 		/// </summary>

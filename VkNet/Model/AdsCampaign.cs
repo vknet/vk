@@ -70,14 +70,14 @@ namespace VkNet.Model
 		public DateTime? StopTime { get; set; }
 
 		/// <summary>
-		/// Время создания кампании в формате unixtime
+		/// Время создания кампании
 		/// </summary>
 		[JsonProperty(propertyName: "create_time")]
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
-		/// Время последнего изменения кампании в формате unixtime
+		/// Время последнего изменения кампании
 		/// </summary>
 		[JsonProperty(propertyName: "update_time")]
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
