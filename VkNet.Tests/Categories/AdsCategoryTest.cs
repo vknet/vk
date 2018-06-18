@@ -244,37 +244,7 @@ namespace VkNet.Tests.Categories
 		{
 			Url = "https://api.vk.com/method/ads.getAds";
 
-			Json = @"{
-						""response"": [{
-						""campaign_id"": 1009150293,
-						""id"": ""42644528"",
-						""status"": 0,
-						""approved"": ""1"",
-						""create_time"": ""1527069558"",
-						""update_time"": ""1529160522"",
-						""day_limit"": ""0"",
-						""all_limit"": ""0"",
-						""start_time"": ""0"",
-						""stop_time"": ""0"",
-						""category1_id"": ""285"",
-						""category2_id"": ""0"",
-						""age_restriction"": ""5"",
-						""name"": ""Сеты шаров на свою группу."",
-						""events_retargeting_groups"": {
-						""26422269"": [1, 20, 21],
-						""26897268"": [5, 6]
-						},
-						""cost_type"": 1,
-						""ad_format"": 9,
-						""cpm"": ""23699"",
-						""impressions_limit"": 1,
-						""ad_platform"": ""all"",
-						""ad_platform_no_wall"": 1,
-						""ad_platform_no_ad_network"": 1
-						}]
-                }";
-
-			var Json1 =
+			Json =
 					@"{
 						""response"": [{
 						""campaign_id"": 1009150293,
