@@ -177,9 +177,9 @@ namespace VkNet.Model
 		/// <summary>
 		/// Только для ad_format = 9 (Public). Описание событий, собираемых в группы ретаргетинга. Массив объектов, где ключом является id группы ретаргетинга, а значением - массив событий.
 		/// </summary>
-		//[JsonProperty("events_retargeting_groups")]
-		//[JsonDictionary()]
-		//public Dictionary<long, IEnumerable<EventsRetargetingGroup>> EventsRetargetingGroups { get; set; }
+		[JsonProperty("events_retargeting_groups")]
+		[JsonConverter(converterType: typeof(KeyValuePairConverter))]
+		public Dictionary<long, IEnumerable<EventsRetargetingGroup>> EventsRetargetingGroups { get; set; }
 
         #region Методы
         ///// <summary>
