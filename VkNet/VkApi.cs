@@ -49,7 +49,7 @@ namespace VkNet
 		/// <summary>
 		/// Версия API vk.com.
 		/// </summary>
-		public const string VkApiVersion = "5.78";
+		public IVkApiVersionManager VkApiVersion { get; private set; }
 
 		/// <summary>
 		/// The expire timer lock
@@ -243,9 +243,10 @@ namespace VkNet
 		public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			var task = TypeHelper.TryInvokeMethodAsync(func: () =>
-					Call(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+				Call(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
 
 			task.ConfigureAwait(false);
+
 			return task;
 		}
 
@@ -253,9 +254,10 @@ namespace VkNet
 		public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			var task = TypeHelper.TryInvokeMethodAsync(func: () =>
-					Call<T>(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+				Call<T>(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
 
 			task.ConfigureAwait(false);
+
 			return task;
 		}
 
@@ -553,10 +555,9 @@ namespace VkNet
 		///<inheritdoc />
 		public INotesCategory Notes { get; set; }
 
+	#endregion
 
-		#endregion
-
-		#region private
+	#region private
 
 		/// <summary>
 		/// Базовое обращение к vk.com
@@ -570,7 +571,7 @@ namespace VkNet
 		{
 			if (!parameters.ContainsKey(key: "v"))
 			{
-				parameters.Add(name: "v", value: VkApiVersion);
+				parameters.Add(name: "v", value: VkApiVersion.Version);
 			}
 
 			if (!parameters.ContainsKey(key: "access_token"))
@@ -845,6 +846,7 @@ namespace VkNet
 			Places = new PlacesCategory(api: this);
 			Notes = new NotesCategory(api: this);
 
+			VkApiVersion = serviceProvider.GetRequiredService<IVkApiVersionManager>();
 
 			RequestsPerSecond = 3;
 

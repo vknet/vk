@@ -176,5 +176,14 @@ namespace VkNet.Tests
 			Assert.IsNotNull(callMethod);
 			Assert.IsTrue(callMethod.IsPublic);
 		}
+
+		[Test]
+		public void VersionShouldBeenChanged()
+		{
+			const string zero = "0";
+			Api.VkApiVersion.SetVersion(zero);
+
+			Assert.AreEqual(zero, Api.VkApiVersion.Version);
+		}
 	}
 }

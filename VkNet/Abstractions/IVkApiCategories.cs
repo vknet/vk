@@ -173,5 +173,10 @@ namespace VkNet.Abstractions
 		/// Places
 		/// </summary>
 		IPlacesCategory Places { get; }
+
+		/// <summary>
+		/// Notes
+		/// </summary>
+		INotesCategory Notes { get; set; }
 	}
 }

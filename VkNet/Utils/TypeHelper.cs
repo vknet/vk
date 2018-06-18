@@ -7,8 +7,10 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using VkNet.Abstractions;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 
 namespace VkNet.Utils
 {
@@ -41,6 +43,11 @@ namespace VkNet.Utils
 			if (container.All(predicate: x => x.ServiceType != typeof(IWebProxy)))
 			{
 				container.TryAddScoped<IWebProxy>(implementationFactory: t => null);
+			}
+
+			if (container.All(predicate: x => x.ServiceType != typeof(IVkApiVersionManager)))
+			{
+				container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
 			}
 		}
 
