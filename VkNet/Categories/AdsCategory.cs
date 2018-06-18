@@ -72,5 +72,9 @@ namespace VkNet.Categories
         return _vk.Call<ReadOnlyCollection<AdsCampaign>>("ads.getCampaigns", @params);
     }
 
-  }
+		// ads.getClients https://vk.com/dev/ads.getClients
+		// ads.getBudget https://vk.com/dev/ads.getBudget
+		// ads.getStatistics https://vk.com/dev/ads.getStatistics
+		// ads.getFloodStats https://vk.com/dev/ads.getFloodStats
+	}
 }

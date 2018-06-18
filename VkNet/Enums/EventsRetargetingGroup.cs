@@ -4,36 +4,61 @@ namespace VkNet.Enums {
 	/// </summary>
 	public enum EventsRetargetingGroup {
 		/// <summary>
-		/// текстовые документы
+		/// Просмотр промопоста
 		/// </summary>
-		Text = 1,
+		ViewOfPromoPost = 1,
 		/// <summary>
-		/// архивы
+		/// Переход по ссылке или переход в сообщество
 		/// </summary>
-		Archive,
+		Click,
 		/// <summary>
-		/// gif
+		/// Переход в сообщество
 		/// </summary>
-		Gif,
+		PublicClick,
 		/// <summary>
-		/// изображения
+		/// Подписка на сообщество
 		/// </summary>
-		Image,
+		Subscription,
 		/// <summary>
-		/// аудио
+		/// Отписка от новостей сообщества
 		/// </summary>
-		Audio,
+		PublicNewsUnsubscription,
 		/// <summary>
-		/// видео
+		/// Cкрытие или жалоба
 		/// </summary>
-		Video,
+		HidingOrComplaint,
 		/// <summary>
-		/// электронные книги
+		/// Запуск видео;
 		/// </summary>
-		EBook,
+		VideoStarting = 10,
 		/// <summary>
-		/// неизвестно
+		/// досмотр видео до 3с
 		/// </summary>
-		Undefined
+		Watching3s,
+		/// <summary>
+		/// Досмотр видео до 25%
+		/// </summary>
+		Watching25Perc,
+		/// <summary>
+		/// Досмотр видео до 50%
+		/// </summary>
+		Watching50Perc,
+		/// <summary>
+		/// Досмотр видео до 75%
+		/// </summary>
+		Watching75Perc,
+		/// <summary>
+		/// Досмотр видео до 100%
+		/// </summary>
+		Watching100Perc,
+		/// <summary>
+		/// Лайк продвигаемой записи
+		/// </summary>
+		Like = 20,
+		/// <summary>
+		/// Репост продвигаемой записи
+		/// </summary>
+		Repost
+
 	}
 }

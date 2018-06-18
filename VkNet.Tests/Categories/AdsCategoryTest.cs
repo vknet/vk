@@ -244,6 +244,33 @@ namespace VkNet.Tests.Categories
 		{
 			Url = "https://api.vk.com/method/ads.getAds";
 
+			var Json1 = @"{
+						""response"": [{
+						""campaign_id"": 1009150293,
+						""id"": ""42644528"",
+						""status"": 0,
+						""approved"": ""1"",
+						""create_time"": ""1527069558"",
+						""update_time"": ""1529160522"",
+						""day_limit"": ""0"",
+						""all_limit"": ""0"",
+						""start_time"": ""0"",
+						""stop_time"": ""0"",
+						""category1_id"": ""285"",
+						""category2_id"": ""0"",
+						""age_restriction"": ""5"",
+						""name"": ""Сеты шаров на свою группу."",
+						""events_retargeting_groups"": [],
+						""cost_type"": 1,
+						""ad_format"": 9,
+						""cpm"": ""23699"",
+						""impressions_limit"": 1,
+						""ad_platform"": ""all"",
+						""ad_platform_no_wall"": 1,
+						""ad_platform_no_ad_network"": 1
+						}]
+                }";
+
 			Json =
 					@"{
 						""response"": [{
@@ -335,7 +362,7 @@ namespace VkNet.Tests.Categories
 						""category2_id"": ""0"",
 						""age_restriction"": ""0"",
 						""name"": ""Опрос по своим подписчикам"",
-						""events_retargeting_groups"": [],
+						""events_retargeting_groups"": {},
 						""cost_type"": 1,
 						""ad_format"": 9,
 						""cpm"": ""8000"",
@@ -1184,7 +1211,6 @@ namespace VkNet.Tests.Categories
 			var ads = Api.Ads.GetAds(@params: new AdsGetAdsParams () { AccountId = 1900013324, ClientId = 1604555949, CampaignIds = new List<long>() { 1009150293, 1009400691 } });
 
 			Assert.That(actual: ads.Count, expression: Is.EqualTo(expected: 39));
-
 			Assert.That(actual: ads[index: 38].Id, expression: Is.EqualTo(expected: 41052459));
 			Assert.That(actual: ads[index: 38].CampaignId, expression: Is.EqualTo(expected: 1009150293));
 			Assert.That(actual: ads[index: 38].Status, expression: Is.EqualTo(expected: AdStatus.Deleted));
@@ -1203,8 +1229,10 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: ads[index: 38].CreateTime, expression: Is.EqualTo(expected: new DateTime(2018, 3, 26, 14, 23, 10)));
 			Assert.That(actual: ads[index: 38].UpdateTime, expression: Is.EqualTo(expected: new DateTime(2018, 4, 28, 12, 14, 13)));
 			Assert.That(actual: ads[index: 16].DayLimit, expression: Is.EqualTo(expected: 500));
+			Assert.That(actual: ads[index: 5].EventsRetargetingGroups, expression: Is.EqualTo(expected: null));
 			Assert.That(actual: ads[index: 0].AgeRestriction, expression: Is.EqualTo(expected: AdAgeRestriction.EighteeenPlus));
-
+			Assert.That(actual: ads[index: 38].EventsRetargetingGroups[26422269][0], expression: Is.EqualTo(expected: EventsRetargetingGroup.Click));
+			Assert.That(actual: ads[index: 38].EventsRetargetingGroups[26422269][1], expression: Is.EqualTo(expected: EventsRetargetingGroup.Like));
 		}
 	}
 }

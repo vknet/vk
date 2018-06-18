@@ -122,90 +122,90 @@ namespace VkNet.Model
 		/// <summary>
 		/// ID тематики или подраздела тематики объявления.
 		/// </summary>
-		[JsonProperty("category1_id")]
+		[JsonProperty(propertyName: "category1_id")]
 		public long Category1Id { get; set;	}
 
 		/// <summary>
 		/// ID тематики или подраздела тематики объявления. Дополнительная тематика.
 		/// </summary>
-		[JsonProperty("category2_id")]
+		[JsonProperty(propertyName: "category2_id")]
 		public long Category2Id { get; set; }
 
 		/// <summary>
 		/// Cтатус объявления.
 		/// </summary>
-		[JsonProperty("status")]
+		[JsonProperty(propertyName: "status")]
 		public AdStatus Status { get; set; }
 
 		/// <summary>
 		/// Название объявления.
 		/// </summary>
-		[JsonProperty("name")]
+		[JsonProperty(propertyName: "name")]
 		public string Name { get; set; }
 
 		/// <summary>
 		/// Cтатус модерации объявления
 		/// </summary>
-		[JsonProperty("approved")]
+		[JsonProperty(propertyName: "approved")]
 		public ModerationStatus ModerationStatus { get; set; }
 
 		/// <summary>
 		/// Объявление является видеорекламой
 		/// </summary>
-		[JsonProperty("video")]
+		[JsonProperty(propertyName: "video")]
 		public long Video { get; set; }
 
 		/// <summary>
 		/// Включено отображение предупреждения: «Есть противопоказания.Требуется консультация специалиста.»
 		/// </summary>
-		[JsonProperty("disclaimer_medical")]
+		[JsonProperty(propertyName: "disclaimer_medical")]
 		public long DisclaimerMedical { get; set; }
 
 		/// <summary>
 		/// Включено отображение предупреждения: «Необходима консультация специалистов.»
 		/// </summary>
-		[JsonProperty("disclaimer_specialist")]
+		[JsonProperty(propertyName: "disclaimer_specialist")]
 		public long DisclaimerSpecialist { get; set;
 		}
 
 		/// <summary>
 		/// Включено отображение предупреждения: «БАД.Не является лекарственным препаратом.»
 		/// </summary>
-		[JsonProperty("disclaimer_supplements")]
+		[JsonProperty(propertyName: "disclaimer_supplements")]
 		public long DisclaimerSupplements { get; set; }
 
 		/// <summary>
 		/// Только для ad_format = 9 (Public). Описание событий, собираемых в группы ретаргетинга. Массив объектов, где ключом является id группы ретаргетинга, а значением - массив событий.
 		/// </summary>
-		//[JsonProperty("events_retargeting_groups")]
-		//[JsonDictionary()]
-		//public Dictionary<long, IEnumerable<EventsRetargetingGroup>> EventsRetargetingGroups { get; set; }
+		[JsonProperty("events_retargeting_groups")]
+		[JsonConverter(typeof(ToNullIfArrayConverter<Dictionary<long, List<EventsRetargetingGroup>>>))]
+		public Dictionary<long, List<EventsRetargetingGroup>> EventsRetargetingGroups { get; set; }
 
-        #region Методы
-        ///// <summary>
-        ///// Информация об объявлении
-        ///// </summary>
-        ///// <param name="response"></param>
-        ///// <returns></returns>
-        //public static AdsAccount FromJson(VkResponse response)
-        //{
-        //    if (response["account_id"] == null)
-        //    {
-        //        return null;
-        //    }
+		#region Методы
+		///// <summary>
+		///// Информация об объявлении
+		///// </summary>
+		///// <param name="response"></param>
+		///// <returns></returns>
+		//public static AdsAccount FromJson(VkResponse response)
+		//{
+		//    if (response["account_id"] == null)
+		//    {
+		//        return null;
+		//    }
 
-        //    var adsaccount = new AdsAccount
-        //    {
-        //        AccountId = response["account_id"],
-        //        AccountType = response["account_type"],
-        //        AccountStatus = response["account_status"],
-        //        AccountName = response["account_name"],
-        //        AccessRole = response["access_role"]
-        //    };
+		//    var adsaccount = new AdsAccount
+		//    {
+		//        AccountId = response["account_id"],
+		//        AccountType = response["account_type"],
+		//        AccountStatus = response["account_status"],
+		//        AccountName = response["account_name"],
+		//        AccessRole = response["access_role"]
+		//    };
 
-        //    return adsaccount;
-        //}
-        #endregion  
+		//    return adsaccount;
+		//}
+		#endregion
 
-    }
+	}
 }
