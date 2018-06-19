@@ -523,3 +523,17 @@ js_space_after_colon_in_type_annotation=true
 
 # Union and Intersection Types
 js_space_around_pipe_or_amper_in_type_usage=true
+
+## Razor CSharp
+
+# Line breaks around Razor statements
+html_linebreaks_around_razor_statements=true
+
+# Blank lines around Razor @functions block
+html_blank_lines_around_razor_functions=1
+
+# Blank lines around Razor helpers
+html_blank_lines_around_razor_helpers=1
+
+# Blank lines around Razor sections
+html_blank_lines_around_razor_sections=1

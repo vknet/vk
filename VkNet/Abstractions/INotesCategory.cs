@@ -16,10 +16,10 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="notesAddParams">
 		/// Входные параметры запроса
-		///</param>
+		/// </param>
 		/// <returns>После успешного выполнения возвращает идентификатор созданной заметки (nid).</returns>
 		/// <remarks>
-		///Страница документации ВКонтакте http://vk.com/dev/notifications.get
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
 		/// </remarks>
 		long Add(NotesAddParams notesAddParams);
 
@@ -30,6 +30,9 @@ namespace VkNet.Abstractions
 		/// <returns>
 		/// После успешного выполнения возвращает идентификатор созданного комментария (cid).
 		///</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.createComment
+		/// </remarks>
 		long CreateComment(NotesCreateCommentParams createCommentParams);
 
 		/// <summary>
@@ -37,6 +40,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="noteId">идентификатор заметки.</param>
 		/// <returns>После успешного выполнения возвращает true.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.delete
+		/// </remarks>
 		bool Delete(long noteId);
 
 		/// <summary>
@@ -44,6 +50,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="deleteCommentParams">Входные параметры запроса</param>
 		/// <returns>После успешного выполнения возвращает true. </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.deleteComment
+		/// </remarks>
 		bool DeleteComment(NotesDeleteCommentParams deleteCommentParams);
 
 		/// <summary>
@@ -51,6 +60,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="editParams">Входные параметры запроса</param>
 		/// <returns>После успешного выполнения возвращает true.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.edit
+		/// </remarks>
 		bool Edit(NotesEditParams editParams);
 
 		/// <summary>
@@ -58,6 +70,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="editCommentParams">Входные параметры запроса</param>
 		/// <returns>После успешного выполнения возвращает true.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.editComment
+		/// </remarks>
 		bool EditComment(NotesEditCommentParams editCommentParams);
 
 		/// <summary>
@@ -65,6 +80,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="notesGetParams">Входные параметры запроса</param>
 		/// <returns>возвращает список объектов заметок</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
+		/// </remarks>
 		IEnumerable<Note> Get(NotesGetParams notesGetParams);
 
 		/// <summary>
@@ -72,6 +90,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="getByIdParams">Входные параметры запроса</param>
 		/// <returns>Возвращает заметку</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.getById
+		/// </remarks>
 		Note GetById(NotesGetByIdParams getByIdParams);
 
 		/// <summary>
@@ -79,6 +100,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="getCommentParams">Входные параметры запроса</param>
 		/// <returns>Возвращает массив объектов comment</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.getComments
+		/// </remarks>
 		IEnumerable<CommentNote> GetComments(NotesGetCommentParams getCommentParams);
 
 		/// <summary>
@@ -86,6 +110,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="restoreCommentParams">Входные параметры запроса</param>
 		/// <returns>После успешного выполнения возвращает true</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.restoreComment
+		/// </remarks>
 		bool RestoreComment(NotesRestoreCommentParams restoreCommentParams);
 	}
 }
