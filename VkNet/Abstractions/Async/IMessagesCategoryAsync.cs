@@ -200,6 +200,7 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.get
 		/// </remarks>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		Task<MessagesGetObject> GetAsync(MessagesGetParams @params);
 
 		/// <summary>
@@ -247,6 +248,7 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.searchDialogs
 		/// </remarks>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		Task<SearchDialogsResponse> SearchDialogsAsync(string query, ProfileFields fields = null, uint? limit = null);
 
 		/// <summary>
@@ -475,6 +477,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
 		/// </remarks>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
 
 		/// <summary>
@@ -482,6 +485,7 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="params"> Входные параметры выборки. </param>
 		/// <returns> В случае успеха возвращает список диалогов пользователя </returns>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params);
 
 		/// <summary>
