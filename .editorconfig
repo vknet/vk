@@ -200,7 +200,8 @@ csharp_int_align_switch_sections=false
 #General
 csharp_keep_user_linebreaks=true
 csharp_max_line_length=140
-csharp_wrap_before_comma=false
+wrap_before_comma=false
+resharper_csharp_wrap_before_comma=false
 csharp_special_else_if_treatment=true
 csharp_insert_final_newline=false
 

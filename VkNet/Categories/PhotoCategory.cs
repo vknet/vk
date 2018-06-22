@@ -69,7 +69,7 @@ namespace VkNet.Categories
 		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call(methodName: "photos.getAlbums", parameters: @params, skipAuthorization: skipAuthorization)
-					.ToVkCollectionOf<PhotoAlbum>(selector: x => x);
+				.ToVkCollectionOf<PhotoAlbum>(selector: x => x);
 		}
 
 		/// <summary>
@@ -86,7 +86,7 @@ namespace VkNet.Categories
 		public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call(methodName: "photos.get", parameters: @params, skipAuthorization: skipAuthorization)
-					.ToVkCollectionOf<Photo>(selector: x => x);
+				.ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
 		/// <summary>
@@ -114,8 +114,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "user_id", userId }
-					, { "group_id", groupId }
+				{ "user_id", userId },
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call(methodName: "photos.getAlbumsCount", parameters: parameters);
@@ -180,16 +180,18 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.getById
 		/// </remarks>
-		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos
-												, bool? extended = null
-												, bool? photoSizes = null
-												, bool skipAuthorization = false)
+		public ReadOnlyCollection<Photo> GetById(
+			IEnumerable<string> photos
+			, bool? extended = null
+			, bool? photoSizes = null
+			, bool skipAuthorization = false
+		)
 		{
 			var parameters = new VkParameters
 			{
-					{ "photos", photos }
-					, { "extended", extended }
-					, { "photo_sizes", photoSizes }
+				{ "photos", photos },
+				{ "extended", extended },
+				{ "photo_sizes", photoSizes }
 			};
 
 			VkResponseArray response = _vk.Call(methodName: "photos.getById", parameters: parameters, skipAuthorization: skipAuthorization);
@@ -214,8 +216,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "album_id", albumId }
-					, { "group_id", groupId }
+				{ "album_id", albumId },
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call(methodName: "photos.getUploadServer", parameters: parameters);
@@ -245,7 +247,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
+				{ "owner_id", ownerId }
 			};
 
 			return _vk.Call(methodName: "photos.getOwnerPhotoUploadServer", parameters: parameters);
@@ -282,10 +284,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "chat_id", chatId }
-					, { "crop_x", cropX }
-					, { "crop_y", cropY }
-					, { "crop_width", cropWidth }
+				{ "chat_id", chatId },
+				{ "crop_x", cropX },
+				{ "crop_y", cropY },
+				{ "crop_width", cropWidth }
 			};
 
 			return _vk.Call(methodName: "photos.getChatUploadServer", parameters: parameters);
@@ -321,11 +323,11 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "server", server }
-					, { "hash", hash }
-					, { "photo", photo }
-					, { "captcha_sid", captchaSid }
-					, { "captcha_key", captchaKey }
+				{ "server", server },
+				{ "hash", hash },
+				{ "photo", photo },
+				{ "captcha_sid", captchaSid },
+				{ "captcha_key", captchaKey }
 			};
 
 			return _vk.Call(methodName: "photos.saveOwnerPhoto", parameters: parameters);
@@ -364,12 +366,12 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "user_id", userId }
-					, { "group_id", groupId }
-					, { "photo", photo }
-					, { "caption", caption }
-					, { "server", server }
-					, { "hash", hash }
+				{ "user_id", userId },
+				{ "group_id", groupId },
+				{ "photo", photo },
+				{ "caption", caption },
+				{ "server", server },
+				{ "hash", hash }
 			};
 
 			VkResponseArray responseVk = _vk.Call(methodName: "photos.saveWallPhoto", parameters: parameters);
@@ -397,7 +399,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "group_id", groupId }
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call(methodName: "photos.getWallUploadServer", parameters: parameters);
@@ -444,9 +446,9 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "photo", photo }
-					, { "hash", hash }
-					, { "server", server }
+				{ "photo", photo },
+				{ "hash", hash },
+				{ "server", server }
 			};
 
 			VkResponseArray result = _vk.Call(methodName: "photos.saveMessagesPhoto", parameters: parameters);
@@ -487,19 +489,21 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/photos.getOwnerCoverPhotoUploadServer
 		/// </remarks>
-		public UploadServerInfo GetOwnerCoverPhotoUploadServer(long groupId
-																, long? cropX = null
-																, long? cropY = null
-																, long? cropX2 = 795L
-																, long? cropY2 = 200L)
+		public UploadServerInfo GetOwnerCoverPhotoUploadServer(
+			long groupId
+			, long? cropX = null
+			, long? cropY = null
+			, long? cropX2 = 795L
+			, long? cropY2 = 200L
+		)
 		{
 			var parameters = new VkParameters
 			{
-					{ "group_id", groupId }
-					, { "crop_x", cropX }
-					, { "crop_y", cropY }
-					, { "crop_x2", cropX2 }
-					, { "crop_y2", cropY2 }
+				{ "group_id", groupId },
+				{ "crop_x", cropX },
+				{ "crop_y", cropY },
+				{ "crop_x2", cropX2 },
+				{ "crop_y2", cropY2 }
 			};
 
 			return _vk.Call(methodName: "photos.getOwnerCoverPhotoUploadServer", parameters: parameters);
@@ -528,8 +532,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "photo", photo }
-					, { "hash", hash }
+				{ "photo", photo },
+				{ "hash", hash }
 			};
 
 			return _vk.Call(methodName: "photos.saveOwnerCoverPhoto", parameters: parameters);
@@ -569,9 +573,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "photo_id", photoId }
-					, { "reason", reason }
+				{ "owner_id", ownerId },
+				{ "photo_id", photoId },
+				{ "reason", reason }
 			};
 
 			return _vk.Call(methodName: "photos.report", parameters: parameters);
@@ -611,9 +615,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "comment_id", commentId }
-					, { "reason", reason }
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId },
+				{ "reason", reason }
 			};
 
 			return _vk.Call(methodName: "photos.reportComment", parameters: parameters);
@@ -633,7 +637,7 @@ namespace VkNet.Categories
 		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call(methodName: "photos.search", parameters: @params, skipAuthorization: skipAuthorization)
-					.ToVkCollectionOf<Photo>(selector: x => x);
+				.ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
 		/// <summary>
@@ -680,9 +684,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "photo_id", photoId }
-					, { "access_key", accessKey }
+				{ "owner_id", ownerId },
+				{ "photo_id", photoId },
+				{ "access_key", accessKey }
 			};
 
 			return _vk.Call(methodName: "photos.copy", parameters: parameters);
@@ -735,9 +739,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "target_album_id", targetAlbumId }
-					, { "photo_id", photoId }
+				{ "owner_id", ownerId },
+				{ "target_album_id", targetAlbumId },
+				{ "photo_id", photoId }
 			};
 
 			return _vk.Call(methodName: "photos.move", parameters: parameters);
@@ -771,9 +775,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "photo_id", photoId }
-					, { "album_id", albumId }
+				{ "owner_id", ownerId },
+				{ "photo_id", photoId },
+				{ "album_id", albumId }
 			};
 
 			return _vk.Call(methodName: "photos.makeCover", parameters: parameters);
@@ -813,10 +817,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "album_id", albumId }
-					, { "before", before }
-					, { "after", after }
+				{ "owner_id", ownerId },
+				{ "album_id", albumId },
+				{ "before", before },
+				{ "after", after }
 			};
 
 			return _vk.Call(methodName: "photos.reorderAlbums", parameters: parameters);
@@ -859,10 +863,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "photo_id", photoId }
-					, { "before", before }
-					, { "after", after }
+				{ "owner_id", ownerId },
+				{ "photo_id", photoId },
+				{ "before", before },
+				{ "after", after }
 			};
 
 			return _vk.Call(methodName: "photos.reorderPhotos", parameters: parameters);
@@ -931,8 +935,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "album_id", albumId }
-					, { "group_id", groupId }
+				{ "album_id", albumId },
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call(methodName: "photos.deleteAlbum", parameters: parameters);
@@ -965,8 +969,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "photo_id", photoId }
+				{ "owner_id", ownerId },
+				{ "photo_id", photoId }
 			};
 
 			return _vk.Call(methodName: "photos.delete", parameters: parameters);
@@ -999,8 +1003,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "photo_id", photoId }
+				{ "owner_id", ownerId },
+				{ "photo_id", photoId }
 			};
 
 			return _vk.Call(methodName: "photos.restore", parameters: parameters);
@@ -1037,9 +1041,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "photo_id", photoId }
-					, { "tag_id", tagId }
+				{ "owner_id", ownerId },
+				{ "photo_id", photoId },
+				{ "tag_id", tagId }
 			};
 
 			return _vk.Call(methodName: "photos.confirmTag", parameters: parameters);
@@ -1120,8 +1124,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "comment_id", commentId }
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId }
 			};
 
 			return _vk.Call(methodName: "photos.deleteComment", parameters: parameters);
@@ -1156,8 +1160,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "comment_id", commentId }
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId }
 			};
 
 			return _vk.Call(methodName: "photos.restoreComment", parameters: parameters);
@@ -1205,10 +1209,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "comment_id", commentId }
-					, { "message", message }
-					, { "attachments", attachments }
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId },
+				{ "message", message },
+				{ "attachments", attachments }
 			};
 
 			return _vk.Call(methodName: "photos.editComment", parameters: parameters);
@@ -1256,9 +1260,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "photo_id", photoId }
-					, { "access_key", accessKey }
+				{ "owner_id", ownerId },
+				{ "photo_id", photoId },
+				{ "access_key", accessKey }
 			};
 
 			VkResponseArray response = _vk.Call(methodName: "photos.getTags", parameters: parameters);
@@ -1312,9 +1316,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "photo_id", photoId }
-					, { "tag_id", tagId }
+				{ "owner_id", ownerId },
+				{ "photo_id", photoId },
+				{ "tag_id", tagId }
 			};
 
 			return _vk.Call(methodName: "photos.removeTag", parameters: parameters);
@@ -1344,8 +1348,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "offset", offset }
-					, { "count", count }
+				{ "offset", offset },
+				{ "count", count }
 			};
 
 			return _vk.Call(methodName: "photos.getNewTags", parameters: parameters).ToVkCollectionOf<Photo>(selector: x => x);
@@ -1384,19 +1388,21 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.getMarketUploadServer
 		/// </remarks>
-		public UploadServerInfo GetMarketUploadServer(long groupId
-													, bool? mainPhoto = null
-													, long? cropX = null
-													, long? cropY = null
-													, long? cropWidth = null)
+		public UploadServerInfo GetMarketUploadServer(
+			long groupId
+			, bool? mainPhoto = null
+			, long? cropX = null
+			, long? cropY = null
+			, long? cropWidth = null
+		)
 		{
 			var parameters = new VkParameters
 			{
-					{ "group_id", groupId }
-					, { "main_photo", mainPhoto }
-					, { "crop_x", cropX }
-					, { "crop_y", cropY }
-					, { "crop_width", cropWidth }
+				{ "group_id", groupId },
+				{ "main_photo", mainPhoto },
+				{ "crop_x", cropX },
+				{ "crop_y", cropY },
+				{ "crop_width", cropWidth }
 			};
 
 			return _vk.Call(methodName: "photos.getMarketUploadServer", parameters: parameters);
@@ -1421,7 +1427,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "group_id", groupId }
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call(methodName: "photos.getMarketAlbumUploadServer", parameters: parameters);
@@ -1459,12 +1465,12 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "group_id", groupId }
-					, { "photo", photo }
-					, { "server", server }
-					, { "hash", hash }
-					, { "crop_data", cropData }
-					, { "crop_hash", cropHash }
+				{ "group_id", groupId },
+				{ "photo", photo },
+				{ "server", server },
+				{ "hash", hash },
+				{ "crop_data", cropData },
+				{ "crop_hash", cropHash }
 			};
 
 			return _vk.Call(methodName: "photos.saveMarketPhoto", parameters: parameters).ToReadOnlyCollectionOf<Photo>(selector: x => x);
@@ -1500,14 +1506,14 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "group_id", groupId }
-					, { "photo", photo }
-					, { "server", server }
-					, { "hash", hash }
+				{ "group_id", groupId },
+				{ "photo", photo },
+				{ "server", server },
+				{ "hash", hash }
 			};
 
 			return _vk.Call(methodName: "photos.saveMarketAlbumPhoto", parameters: parameters)
-					.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+				.ToReadOnlyCollectionOf<Photo>(selector: x => x);
 		}
 	}
 }
