@@ -15,13 +15,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<VkCollection<User>> SearchAsync(UserSearchParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Users.Search(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Search(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> IsAppUserAsync(long? userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Users.IsAppUser(userId: userId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>IsAppUser(userId: userId));
 		}
 
 		/// <inheritdoc />
@@ -31,7 +31,7 @@ namespace VkNet.Categories
 															, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Users.Get(userIds: userIds, fields: fields, nameCase: nameCase, skipAuthorization: skipAuthorization));
+					Get(userIds: userIds, fields: fields, nameCase: nameCase, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
@@ -41,7 +41,7 @@ namespace VkNet.Categories
 															, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Users.Get(screenNames: screenNames, fields: fields, nameCase: nameCase, skipAuthorization: skipAuthorization));
+					Get(screenNames: screenNames, fields: fields, nameCase: nameCase, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
@@ -52,7 +52,7 @@ namespace VkNet.Categories
 																	, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Users.GetSubscriptions(userId: userId
+					GetSubscriptions(userId: userId
 							, count: count
 							, offset: offset
 							, fields: fields
@@ -68,7 +68,7 @@ namespace VkNet.Categories
 																, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Users.GetFollowers(userId: userId
+					GetFollowers(userId: userId
 							, count: count
 							, offset: offset
 							, fields: fields
@@ -79,13 +79,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<bool> ReportAsync(long userId, ReportType type, string comment = "")
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Users.Report(userId: userId, type: type, comment: comment));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Report(userId: userId, type: type, comment: comment));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<User>> GetNearbyAsync(UsersGetNearbyParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Users.GetNearby(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetNearby(@params: @params));
 		}
 	}
 }

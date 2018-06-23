@@ -17,12 +17,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class UsersCategory : IUsersCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public UsersCategory(VkApi vk)
+		public UsersCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

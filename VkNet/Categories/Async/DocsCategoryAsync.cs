@@ -19,25 +19,25 @@ namespace VkNet.Categories
 															, DocFilter? type = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Docs.Get(count: count, offset: offset, ownerId: ownerId, type: type));
+					Get(count: count, offset: offset, ownerId: ownerId, type: type));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<Document>> GetByIdAsync(IEnumerable<Document> docs)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Docs.GetById(docs: docs));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetById(docs: docs));
 		}
 
 		/// <inheritdoc />
 		public Task<UploadServerInfo> GetUploadServerAsync(long? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Docs.GetUploadServer(groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetUploadServer(groupId: groupId));
 		}
 
 		/// <inheritdoc />
 		public Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Docs.GetWallUploadServer(groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetWallUploadServer(groupId: groupId));
 		}
 
 		/// <inheritdoc />
@@ -48,13 +48,13 @@ namespace VkNet.Categories
 																, string captchaKey = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Docs.Save(file: file, title: title, tags: tags, captchaSid: captchaSid, captchaKey: captchaKey));
+					Save(file: file, title: title, tags: tags, captchaSid: captchaSid, captchaKey: captchaKey));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> DeleteAsync(long ownerId, long docId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Docs.Delete(ownerId: ownerId, docId: docId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Delete(ownerId: ownerId, docId: docId));
 		}
 
 		/// <inheritdoc />
@@ -65,33 +65,33 @@ namespace VkNet.Categories
 										, string captchaKey = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Docs.Add(ownerId: ownerId, docId: docId, accessKey: accessKey, captchaSid: captchaSid, captchaKey: captchaKey));
+					Add(ownerId: ownerId, docId: docId, accessKey: accessKey, captchaSid: captchaSid, captchaKey: captchaKey));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<DocumentType>> GetTypesAsync(long ownerId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Docs.GetTypes(ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetTypes(ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Document>> SearchAsync(string query, bool searchOwn, long? count = null, long? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Docs.Search(query: query, searchOwn: searchOwn, count: count, offset: offset));
+					Search(query: query, searchOwn: searchOwn, count: count, offset: offset));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> EditAsync(long ownerId, long docId, string title, IEnumerable<string> tags)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Docs.Edit(ownerId: ownerId, docId: docId, title: title, tags: tags));
+					Edit(ownerId: ownerId, docId: docId, title: title, tags: tags));
 		}
 
 		/// <inheritdoc />
 		public Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null, DocMessageType type = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Docs.GetMessagesUploadServer(peerId: peerId, type: type));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetMessagesUploadServer(peerId: peerId, type: type));
 		}
 	}
 }

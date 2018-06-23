@@ -11,12 +11,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class AdsCategory : IAdsCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public AdsCategory(VkApi vk)
+		public AdsCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

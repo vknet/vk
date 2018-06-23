@@ -19,12 +19,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class FriendsCategory : IFriendsCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public FriendsCategory(VkApi vk)
+		public FriendsCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

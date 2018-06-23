@@ -8,18 +8,21 @@ namespace VkNet.Categories
 	/// <inheritdoc />
 	public partial class SearchCategory : ISearchCategory
 	{
-		/// <inheritdoc />
-		public SearchCategory(VkApi vk)
-		{
-			Vk = vk;
-		}
+		/// <summary>
+		/// API.
+		/// </summary>
+		private readonly IVkApiInvoke _vk;
 
-		private VkApi Vk { get; }
+		/// <inheritdoc />
+		public SearchCategory(IVkApiInvoke vk)
+		{
+			_vk = vk;
+		}
 
 		/// <inheritdoc />
 		public VkCollection<SearchHintsItem> GetHints(SearchGetHintsParams @params)
 		{
-			return Vk.Call<VkCollection<SearchHintsItem>>(methodName: "search.getHints", parameters: @params);
+			return _vk.Call<VkCollection<SearchHintsItem>>(methodName: "search.getHints", parameters: @params);
 		}
 	}
 }

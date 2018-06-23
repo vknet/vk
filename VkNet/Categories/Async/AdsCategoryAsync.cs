@@ -12,13 +12,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Ads.GetAccounts());
+			return TypeHelper.TryInvokeMethodAsync(func: GetAccounts);
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Ads.GetCampaigns(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetCampaigns(@params: @params));
 		}
 	}
 }

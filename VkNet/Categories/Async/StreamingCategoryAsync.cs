@@ -13,13 +13,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<StreamingServerUrl> GetServerUrlAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Streaming.GetServerUrl());
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetServerUrl());
 		}
 
 		/// <inheritdoc />
 		public Task<StreamingSettings> GetSettingsAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Streaming.GetSettings());
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetSettings());
 		}
 
 		/// <inheritdoc />
@@ -29,13 +29,13 @@ namespace VkNet.Categories
 																			, DateTime? endTime = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Streaming.GetStats(type: type, interval: interval, startTime: startTime, endTime: endTime));
+					GetStats(type: type, interval: interval, startTime: startTime, endTime: endTime));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Streaming.SetSettings(monthlyTier: monthlyTier));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>SetSettings(monthlyTier: monthlyTier));
 		}
 	}
 }

@@ -15,12 +15,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class DatabaseCategory : IDatabaseCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public DatabaseCategory(VkApi vk)
+		public DatabaseCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

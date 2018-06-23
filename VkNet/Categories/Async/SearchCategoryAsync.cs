@@ -11,7 +11,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<VkCollection<SearchHintsItem>> GetHintsAsync(SearchGetHintsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => Vk.Search.GetHints(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetHints(@params: @params));
 		}
 	}
 }

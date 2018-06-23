@@ -21,13 +21,13 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class MessagesCategory : IMessagesCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы с сообщениями.
 		/// </summary>
 		/// <param name="vk"> API </param>
-		public MessagesCategory(VkApi vk)
+		public MessagesCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

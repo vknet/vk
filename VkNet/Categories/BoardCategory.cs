@@ -10,12 +10,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class BoardCategory : IBoardCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public BoardCategory(VkApi vk)
+		public BoardCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

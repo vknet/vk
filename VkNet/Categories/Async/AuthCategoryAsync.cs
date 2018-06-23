@@ -39,7 +39,7 @@ namespace VkNet.Categories
 		public Task<bool> CheckPhoneAsync(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Auth.CheckPhone(phone: phone, clientSecret: clientSecret, clientId: clientId, authByPhone: authByPhone));
+					CheckPhone(phone: phone, clientSecret: clientSecret, clientId: clientId, authByPhone: authByPhone));
 		}
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<string> SignupAsync(AuthSignupParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Auth.Signup(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Signup(@params: @params));
 		}
 
 		/// <summary>
@@ -70,7 +70,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<AuthConfirmResult> ConfirmAsync(AuthConfirmParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Auth.Confirm(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Confirm(@params: @params));
 		}
 
 		/// <summary>
@@ -86,7 +86,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<string> RestoreAsync(string phone, string lastName)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Auth.Restore(phone: phone, lastName: lastName));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Restore(phone: phone, lastName: lastName));
 		}
 	}
 }

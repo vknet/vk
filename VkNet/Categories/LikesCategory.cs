@@ -14,13 +14,13 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// API для работы с лайками.
 		/// </summary>
 		/// <param name="vk"> The vk. </param>
-		public LikesCategory(VkApi vk)
+		public LikesCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

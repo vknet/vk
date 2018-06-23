@@ -6,21 +6,19 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для работы со статистикой.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class StatsCategory : IStatsCategory
 	{
 		/// <summary>
 		/// API.
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы со статистикой.
 		/// </summary>
 		/// <param name="vk"> API. </param>
-		public StatsCategory(VkApi vk)
+		public StatsCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

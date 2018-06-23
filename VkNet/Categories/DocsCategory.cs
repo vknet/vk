@@ -20,13 +20,13 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.).
 		/// </summary>
 		/// <param name="vk"> API. </param>
-		public DocsCategory(VkApi vk)
+		public DocsCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

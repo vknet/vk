@@ -26,20 +26,20 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<VkResponse> ExecuteAsync(string code)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Execute.Execute(code: code));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Execute(code: code));
 		}
 
 		/// <inheritdoc />
 		public Task<T> ExecuteAsync<T>(string code)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Execute.Execute<T>(code: code));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Execute<T>(code: code));
 		}
 
 		/// <inheritdoc />
 		public Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Execute.StoredProcedure<T>(procedureName: procedureName, vkParameters: vkParameters));
+					StoredProcedure<T>(procedureName: procedureName, vkParameters: vkParameters));
 		}
 	}
 }

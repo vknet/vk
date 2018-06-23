@@ -15,12 +15,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class PhotoCategory : IPhotoCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public PhotoCategory(VkApi vk)
+		public PhotoCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

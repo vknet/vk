@@ -15,32 +15,32 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<PhotoAlbum> CreateAlbumAsync(PhotoCreateAlbumParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.CreateAlbum(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>CreateAlbum(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> EditAlbumAsync(PhotoEditAlbumParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.EditAlbum(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>EditAlbum(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<PhotoAlbum>> GetAlbumsAsync(PhotoGetAlbumsParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.GetAlbums(@params: @params, skipAuthorization: skipAuthorization));
+					GetAlbums(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Photo>> GetAsync(PhotoGetParams @params, bool skipAuthorization = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.Get(@params: @params, skipAuthorization: skipAuthorization));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Get(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
 		public Task<int> GetAlbumsCountAsync(long? userId = null, long? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetAlbumsCount(userId: userId, groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetAlbumsCount(userId: userId, groupId: groupId));
 		}
 
 		/// <inheritdoc />
@@ -50,19 +50,19 @@ namespace VkNet.Categories
 																, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.GetById(photos: photos, extended: extended, photoSizes: photoSizes, skipAuthorization: skipAuthorization));
+					GetById(photos: photos, extended: extended, photoSizes: photoSizes, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
 		public Task<UploadServerInfo> GetUploadServerAsync(long albumId, long? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetUploadServer(albumId: albumId, groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetUploadServer(albumId: albumId, groupId: groupId));
 		}
 
 		/// <inheritdoc />
 		public Task<UploadServerInfo> GetOwnerPhotoUploadServerAsync(long? ownerId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetOwnerPhotoUploadServer(ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetOwnerPhotoUploadServer(ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
@@ -72,14 +72,14 @@ namespace VkNet.Categories
 																	, ulong? cropWidth = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.GetChatUploadServer(chatId: chatId, cropX: cropX, cropY: cropY, cropWidth: cropWidth));
+					GetChatUploadServer(chatId: chatId, cropX: cropX, cropY: cropY, cropWidth: cropWidth));
 		}
 
 		/// <inheritdoc />
 		public Task<Photo> SaveOwnerPhotoAsync(string response, long? captchaSid, string captchaKey)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.SaveOwnerPhoto(response: response, captchaSid: captchaSid, captchaKey: captchaKey));
+					SaveOwnerPhoto(response: response, captchaSid: captchaSid, captchaKey: captchaKey));
 		}
 
 		/// <inheritdoc />
@@ -89,25 +89,25 @@ namespace VkNet.Categories
 																		, string caption = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.SaveWallPhoto(response: response, userId: userId, groupId: groupId, caption: caption));
+					SaveWallPhoto(response: response, userId: userId, groupId: groupId, caption: caption));
 		}
 
 		/// <inheritdoc />
 		public Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetWallUploadServer(groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetWallUploadServer(groupId: groupId));
 		}
 
 		/// <inheritdoc />
 		public Task<UploadServerInfo> GetMessagesUploadServerAsync(long peerId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetMessagesUploadServer(peerId: peerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetMessagesUploadServer(peerId: peerId));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<Photo>> SaveMessagesPhotoAsync(string response)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.SaveMessagesPhoto(response: response));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>SaveMessagesPhoto(response: response));
 		}
 
 		/// <inheritdoc />
@@ -118,147 +118,147 @@ namespace VkNet.Categories
 																				, long? cropY2 = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.GetOwnerCoverPhotoUploadServer(groupId: groupId, cropX: cropX, cropY: cropY, cropX2: cropX2, cropY2: cropY2));
+					GetOwnerCoverPhotoUploadServer(groupId: groupId, cropX: cropX, cropY: cropY, cropX2: cropX2, cropY2: cropY2));
 		}
 
 		/// <inheritdoc />
 		public Task<GroupCover> SaveOwnerCoverPhotoAsync(string response)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.SaveOwnerCoverPhoto(response: response));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>SaveOwnerCoverPhoto(response: response));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> ReportAsync(long ownerId, ulong photoId, ReportReason reason)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.Report(ownerId: ownerId, photoId: photoId, reason: reason));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Report(ownerId: ownerId, photoId: photoId, reason: reason));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> ReportCommentAsync(long ownerId, ulong commentId, ReportReason reason)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.ReportComment(ownerId: ownerId, commentId: commentId, reason: reason));
+					ReportComment(ownerId: ownerId, commentId: commentId, reason: reason));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Photo>> SearchAsync(PhotoSearchParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.Search(@params: @params, skipAuthorization: skipAuthorization));
+					Search(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<Photo>> SaveAsync(PhotoSaveParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.Save(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Save(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<long> CopyAsync(long ownerId, ulong photoId, string accessKey = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.Copy(ownerId: ownerId, photoId: photoId, accessKey: accessKey));
+					Copy(ownerId: ownerId, photoId: photoId, accessKey: accessKey));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> EditAsync(PhotoEditParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.Edit(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Edit(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> MoveAsync(long targetAlbumId, ulong photoId, long? ownerId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.Move(targetAlbumId: targetAlbumId, photoId: photoId, ownerId: ownerId));
+					Move(targetAlbumId: targetAlbumId, photoId: photoId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> MakeCoverAsync(ulong photoId, long? ownerId = null, long? albumId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.MakeCover(photoId: photoId, ownerId: ownerId, albumId: albumId));
+					MakeCover(photoId: photoId, ownerId: ownerId, albumId: albumId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> ReorderAlbumsAsync(long albumId, long? ownerId = null, long? before = null, long? after = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.ReorderAlbums(albumId: albumId, ownerId: ownerId, before: before, after: after));
+					ReorderAlbums(albumId: albumId, ownerId: ownerId, before: before, after: after));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> ReorderPhotosAsync(ulong photoId, long? ownerId = null, long? before = null, long? after = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.ReorderPhotos(photoId: photoId, ownerId: ownerId, before: before, after: after));
+					ReorderPhotos(photoId: photoId, ownerId: ownerId, before: before, after: after));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Photo>> GetAllAsync(PhotoGetAllParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetAll(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetAll(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Photo>> GetUserPhotosAsync(PhotoGetUserPhotosParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetUserPhotos(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetUserPhotos(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> DeleteAlbumAsync(long albumId, long? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.DeleteAlbum(albumId: albumId, groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>DeleteAlbum(albumId: albumId, groupId: groupId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> DeleteAsync(ulong photoId, long? ownerId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.Delete(photoId: photoId, ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Delete(photoId: photoId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> RestoreAsync(ulong photoId, long? ownerId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.Restore(photoId: photoId, ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Restore(photoId: photoId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> ConfirmTagAsync(ulong photoId, ulong tagId, long? ownerId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.ConfirmTag(photoId: photoId, tagId: tagId, ownerId: ownerId));
+					ConfirmTag(photoId: photoId, tagId: tagId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Comment>> GetCommentsAsync(PhotoGetCommentsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetComments(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetComments(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Comment>> GetAllCommentsAsync(PhotoGetAllCommentsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetAllComments(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetAllComments(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<long> CreateCommentAsync(PhotoCreateCommentParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.CreateComment(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>CreateComment(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> DeleteCommentAsync(ulong commentId, long? ownerId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.DeleteComment(commentId: commentId, ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>DeleteComment(commentId: commentId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
 		public Task<long> RestoreCommentAsync(ulong commentId, long? ownerId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.RestoreComment(commentId: commentId, ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>RestoreComment(commentId: commentId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
@@ -268,32 +268,32 @@ namespace VkNet.Categories
 												, IEnumerable<MediaAttachment> attachments = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.EditComment(commentId: commentId, message: message, ownerId: ownerId, attachments: attachments));
+					EditComment(commentId: commentId, message: message, ownerId: ownerId, attachments: attachments));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<Tag>> GetTagsAsync(ulong photoId, long? ownerId = null, string accessKey = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.GetTags(photoId: photoId, ownerId: ownerId, accessKey: accessKey));
+					GetTags(photoId: photoId, ownerId: ownerId, accessKey: accessKey));
 		}
 
 		/// <inheritdoc />
 		public Task<ulong> PutTagAsync(PhotoPutTagParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.PutTag(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>PutTag(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> RemoveTagAsync(ulong tagId, ulong photoId, long? ownerId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.RemoveTag(tagId: tagId, photoId: photoId, ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>RemoveTag(tagId: tagId, photoId: photoId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Photo>> GetNewTagsAsync(uint? offset = null, uint? count = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetNewTags(offset: offset, count: count));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetNewTags(offset: offset, count: count));
 		}
 
 		/// <inheritdoc />
@@ -304,7 +304,7 @@ namespace VkNet.Categories
 																		, long? cropWidth = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Photo.GetMarketUploadServer(groupId: groupId
+					GetMarketUploadServer(groupId: groupId
 							, mainPhoto: mainPhoto
 							, cropX: cropX
 							, cropY: cropY
@@ -314,19 +314,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<UploadServerInfo> GetMarketAlbumUploadServerAsync(long groupId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.GetMarketAlbumUploadServer(groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetMarketAlbumUploadServer(groupId: groupId));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<Photo>> SaveMarketPhotoAsync(long groupId, string response)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.SaveMarketPhoto(groupId: groupId, response: response));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>SaveMarketPhoto(groupId: groupId, response: response));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<Photo>> SaveMarketAlbumPhotoAsync(long groupId, string response)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Photo.SaveMarketAlbumPhoto(groupId: groupId, response: response));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>SaveMarketAlbumPhoto(groupId: groupId, response: response));
 		}
 	}
 }

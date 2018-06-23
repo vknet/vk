@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -16,13 +17,13 @@ namespace VkNet.Categories
 	/// </summary>
 	public class AudioCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы с аудиозаписями.
 		/// </summary>
 		/// <param name="vk"> Api vk.com </param>
-		public AudioCategory(VkApi vk)
+		public AudioCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}
