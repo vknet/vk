@@ -180,10 +180,9 @@ namespace VkNet.Tests
 		[Test]
 		public void VersionShouldBeenChanged()
 		{
-			const string zero = "0";
-			Api.VkApiVersion.SetVersion(zero);
+			Api.VkApiVersion.SetVersion(0,0);
 
-			Assert.AreEqual(zero, Api.VkApiVersion.Version);
+			Assert.AreEqual("0.0", Api.VkApiVersion.Version);
 		}
 	}
 }

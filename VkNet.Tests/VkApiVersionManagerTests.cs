@@ -19,11 +19,10 @@ namespace VkNet.Tests
 		[Test]
 		public void VersionIsChanged()
 		{
-			const string zero = "0";
 			IVkApiVersionManager manager = new VkApiVersionManager();
 
-			manager.SetVersion(zero);
-			Assert.AreEqual(zero, manager.Version);
+			manager.SetVersion(0,0);
+			Assert.AreEqual("0.0", manager.Version);
 		}
 	}
 }
