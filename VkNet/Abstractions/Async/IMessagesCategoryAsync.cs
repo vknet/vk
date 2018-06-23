@@ -696,17 +696,17 @@ namespace VkNet.Abstractions
 		Task<long> JoinChatByInviteLinkAsync(string link);
 
 		/// <summary>
-		/// Помечает диалог как отвеченный либо снимает отметку.
+		/// Помечает беседу как отвеченную либо снимает отметку.
 		/// </summary>
-		/// <param name="peerId"> Идентификатор диалога </param>
-		/// <param name="answered"> флаг, может принимать значения 1 или 0, по умолчанию 1 </param>
+		/// <param name="peerId"> Идентификатор беседы </param>
+		/// <param name="answered"> флаг, может принимать значения <c>true</c> или <c>false</c>, по умолчанию <c>true</c> </param>
 		/// <returns>
-		/// После успешного выполнения возвращает 1.
+		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredConversation
 		/// </remarks>
-		Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true);
+		Task<bool> MarkAsAnsweredConversationAsync(long peerId, bool answered = true);
 
 		/// <summary>
 		/// Помечает беседу как важную либо снимает отметку.
@@ -737,22 +737,38 @@ namespace VkNet.Abstractions
 	#region Obsoleted
 
 		/// <summary>
+		/// Помечает диалог как отвеченный либо снимает отметку.
+		/// </summary>
+		/// <param name="peerId"> Идентификатор диалога </param>
+		/// <param name="answered"> флаг, может принимать значения 1 или 0, по умолчанию 1 </param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
+		/// </remarks>
+		[Obsolete(
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsAnsweredConversationAsync")]
+		Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true);
+
+		/// <summary>
 		/// Помечает диалог как важный либо снимает отметку.
 		/// </summary>
 		/// <param name="peerId"> Идентификатор диалога </param>
 		/// <param name="important">
 		/// <c> true </c>, если сообщения необходимо пометить, как важные;
-		/// <c> 0 </c>, если необходимо снять пометку.положительное число (Положительное
+		/// <c> false </c>, если необходимо снять пометку.положительное число (Положительное
 		/// число).
 		/// </param>
 		/// <returns>
-		/// После успешного выполнения возвращает 1.
+		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/messages.markAsImportantDialog
 		/// </remarks>
-		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
+		[Obsolete(
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsImportantConversationAsync")]
 		Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true);
 
 	#endregion

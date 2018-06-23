@@ -230,6 +230,11 @@ namespace VkNet.Categories
 			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Messages.JoinChatByInviteLink(link: link));
 		}
 
+		public Task<bool> MarkAsAnsweredConversationAsync(long peerId, bool answered = true)
+		{
+			throw new NotImplementedException();
+		}
+
 		/// <inheritdoc />
 		public Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true)
 		{

@@ -698,17 +698,17 @@ namespace VkNet.Abstractions
 		long JoinChatByInviteLink(string link);
 
 		/// <summary>
-		/// Помечает диалог как отвеченный либо снимает отметку.
+		/// Помечает беседу как отвеченную либо снимает отметку.
 		/// </summary>
-		/// <param name="peerId"> Идентификатор диалога </param>
-		/// <param name="answered"> флаг, может принимать значения 1 или 0, по умолчанию 1 </param>
+		/// <param name="peerId"> Идентификатор беседы </param>
+		/// <param name="answered"> флаг, может принимать значения <c>true</c> или <c>false</c>, по умолчанию <c>true</c> </param>
 		/// <returns>
-		/// После успешного выполнения возвращает 1.
+		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredConversation
 		/// </remarks>
-		bool MarkAsAnsweredDialog(long peerId, bool answered = true);
+		bool MarkAsAnsweredConversation(long peerId, bool answered = true);
 
 		/// <summary>
 		/// Помечает беседу как важную либо снимает отметку.
@@ -737,6 +737,21 @@ namespace VkNet.Abstractions
 		bool Edit(MessageEditParams @params);
 
 	#region Obsoleted
+
+		/// <summary>
+		/// Помечает диалог как отвеченный либо снимает отметку.
+		/// </summary>
+		/// <param name="peerId"> Идентификатор диалога </param>
+		/// <param name="answered"> флаг, может принимать значения 1 или 0, по умолчанию 1 </param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
+		/// </remarks>
+		[Obsolete(
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsAnsweredConversation")]
+		bool MarkAsAnsweredDialog(long peerId, bool answered = true);
 
 		/// <summary>
 		/// Помечает диалог как важный либо снимает отметку.
