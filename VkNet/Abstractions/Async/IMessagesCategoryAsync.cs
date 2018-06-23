@@ -124,38 +124,6 @@ namespace VkNet.Abstractions
 		Task<Chat> DeleteChatPhotoAsync(ulong chatId);
 
 		/// <summary>
-		/// Удаляет все личные сообщения в диалоге.
-		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя.
-		/// Если требуется очистить историю беседы, используйте peer_id.
-		/// </param>
-		/// <param name="peerId">
-		/// Идентификатор назначения.
-		/// Для групповой беседы: 2000000000 + id беседы.
-		/// Для сообщества: -id сообщества.
-		/// </param>
-		/// <param name="offset">
-		/// Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются
-		/// все сообщения,
-		/// начиная с первого).
-		/// </param>
-		/// <param name="count">
-		/// Как много сообщений нужно удалить. Обратите внимание что на метод наложено
-		/// ограничение, за один вызов
-		/// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке
-		/// больше - метод нужно вызывать несколько
-		/// раз.
-		/// </param>
-		/// <returns> Признак удалось ли удалить сообщения. </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
-		/// </remarks>
-		Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
-
-		/// <summary>
 		/// Позволяет запретить отправку сообщений от сообщества текущему пользователю.
 		/// </summary>
 		/// <param name="groupId"> Идентификатор сообщества. </param>
@@ -734,7 +702,76 @@ namespace VkNet.Abstractions
 		/// </returns>
 		Task<bool> EditAsync(MessageEditParams @params);
 
+
+		/// <summary>
+		/// Удаляет личные сообщения в беседе.
+		/// </summary>
+		/// <param name="userId">
+		/// Идентификатор пользователя.
+		/// Если требуется очистить историю беседы, используйте peer_id.
+		/// </param>
+		/// <param name="peerId">
+		/// Идентификатор назначения.
+		/// Для групповой беседы: 2000000000 + id беседы.
+		/// Для сообщества: -id сообщества.
+		/// </param>
+		/// <param name="offset">
+		/// Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются
+		/// все сообщения,
+		/// начиная с первого).
+		/// </param>
+		/// <param name="count">
+		/// Как много сообщений нужно удалить. Обратите внимание что на метод наложено
+		/// ограничение, за один вызов
+		/// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке
+		/// больше - метод нужно вызывать несколько
+		/// раз.
+		/// </param>
+		/// <param name="groupId">
+		/// Идентификатор группы
+		/// </param>
+		/// <returns> После успешного выполнения возвращает <c>true</c>.</returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteConversation
+		/// </remarks>
+		Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null);
 	#region Obsoleted
+
+		/// <summary>
+		/// Удаляет все личные сообщения в диалоге.
+		/// </summary>
+		/// <param name="userId">
+		/// Идентификатор пользователя.
+		/// Если требуется очистить историю беседы, используйте peer_id.
+		/// </param>
+		/// <param name="peerId">
+		/// Идентификатор назначения.
+		/// Для групповой беседы: 2000000000 + id беседы.
+		/// Для сообщества: -id сообщества.
+		/// </param>
+		/// <param name="offset">
+		/// Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются
+		/// все сообщения,
+		/// начиная с первого).
+		/// </param>
+		/// <param name="count">
+		/// Как много сообщений нужно удалить. Обратите внимание что на метод наложено
+		/// ограничение, за один вызов
+		/// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке
+		/// больше - метод нужно вызывать несколько
+		/// раз.
+		/// </param>
+		/// <returns> Признак удалось ли удалить сообщения. </returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
+		/// </remarks>
+		[Obsolete(
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте DeleteConversationAsync", true)]
+		Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
 
 		/// <summary>
 		/// Помечает диалог как отвеченный либо снимает отметку.
@@ -748,7 +785,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
 		/// </remarks>
 		[Obsolete(
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsAnsweredConversationAsync")]
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsAnsweredConversationAsync", true)]
 		Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true);
 
 		/// <summary>
@@ -768,7 +805,7 @@ namespace VkNet.Abstractions
 		/// http://vk.com/dev/messages.markAsImportantDialog
 		/// </remarks>
 		[Obsolete(
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsImportantConversationAsync")]
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsImportantConversationAsync", true)]
 		Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true);
 
 	#endregion

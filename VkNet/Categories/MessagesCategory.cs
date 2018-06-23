@@ -159,13 +159,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
+		public bool DeleteConversation(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
 				{ "user_id", userId },
 				{ "offset", offset },
-				{ "peer_id", peerId }
+				{ "peer_id", peerId },
+				{ "group_id", groupId}
 			};
 
 			if (count <= 10000)
@@ -173,7 +174,14 @@ namespace VkNet.Categories
 				parameters.Add(name: "count", nullableValue: count);
 			}
 
-			return _vk.Call(methodName: "messages.deleteDialog", parameters: parameters);
+			return _vk.Call(methodName: "messages.deleteConversation", parameters: parameters);
+		}
+
+		/// <inheritdoc />
+		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
+		{
+
+			return DeleteConversation(userId, peerId, offset, count, null);
 		}
 
 		/// <inheritdoc />

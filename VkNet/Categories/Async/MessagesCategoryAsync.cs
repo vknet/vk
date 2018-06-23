@@ -34,7 +34,7 @@ namespace VkNet.Categories
 		public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds, bool spam, bool deleteForAll)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.Delete(messageIds: messageIds, spam: spam, deleteForAll: deleteForAll));
+				_vk.Messages.Delete(messageIds: messageIds, spam: spam, deleteForAll: deleteForAll));
 		}
 
 		/// <inheritdoc />
@@ -44,10 +44,17 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null,
+												long? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Messages.DeleteConversation(userId, peerId, offset, count, groupId));
+		}
+
+		/// <inheritdoc />
 		public Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.DeleteDialog(userId: userId, peerId: peerId, offset: offset, count: count));
+				_vk.Messages.DeleteDialog(userId: userId, peerId: peerId, offset: offset, count: count));
 		}
 
 		/// <inheritdoc />
@@ -72,14 +79,14 @@ namespace VkNet.Categories
 		public Task<VkCollection<Message>> GetByIdAsync(IEnumerable<ulong> messageIds, uint? previewLength = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.GetById(messageIds: messageIds, previewLength: previewLength));
+				_vk.Messages.GetById(messageIds: messageIds, previewLength: previewLength));
 		}
 
 		/// <inheritdoc />
 		public Task<SearchDialogsResponse> SearchDialogsAsync(string query, ProfileFields fields = null, uint? limit = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.SearchDialogs(query: query, fields: fields, limit: limit));
+				_vk.Messages.SearchDialogs(query: query, fields: fields, limit: limit));
 		}
 
 		/// <inheritdoc />
@@ -110,7 +117,7 @@ namespace VkNet.Categories
 		public Task<bool> MarkAsReadAsync(IEnumerable<long> messageIds, string peerId, long? startMessageId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.MarkAsRead(messageIds: messageIds, peerId: peerId, startMessageId: startMessageId));
+				_vk.Messages.MarkAsRead(messageIds: messageIds, peerId: peerId, startMessageId: startMessageId));
 		}
 
 		/// <inheritdoc />
@@ -129,16 +136,16 @@ namespace VkNet.Categories
 		public Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.GetChat(chatId: chatId, fields: fields, nameCase: nameCase));
+				_vk.Messages.GetChat(chatId: chatId, fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds
-																, ProfileFields fields = null
-																, NameCase nameCase = null)
+															, ProfileFields fields = null
+															, NameCase nameCase = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.GetChat(chatIds: chatIds, fields: fields, nameCase: nameCase));
+				_vk.Messages.GetChat(chatIds: chatIds, fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
@@ -151,7 +158,7 @@ namespace VkNet.Categories
 		public Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.GetChatUsers(chatIds: chatIds, fields: fields, nameCase: nameCase));
+				_vk.Messages.GetChatUsers(chatIds: chatIds, fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
@@ -176,7 +183,7 @@ namespace VkNet.Categories
 		public Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false, uint lpVersion = 2)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.GetLongPollServer(needPts: needPts, lpVersion: lpVersion));
+				_vk.Messages.GetLongPollServer(needPts: needPts, lpVersion: lpVersion));
 		}
 
 		/// <inheritdoc />
@@ -195,7 +202,7 @@ namespace VkNet.Categories
 		public Task<ReadOnlyCollection<long>> MarkAsImportantAsync(IEnumerable<long> messageIds, bool important = true)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.MarkAsImportant(messageIds: messageIds, important: important));
+				_vk.Messages.MarkAsImportant(messageIds: messageIds, important: important));
 		}
 
 		/// <inheritdoc />
@@ -208,7 +215,7 @@ namespace VkNet.Categories
 		public Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.GetHistoryAttachments(@params: @params, nextFrom: out var _));
+				_vk.Messages.GetHistoryAttachments(@params: @params, nextFrom: out var _));
 		}
 
 		/// <inheritdoc />
@@ -221,7 +228,7 @@ namespace VkNet.Categories
 		public Task<bool> IsMessagesFromGroupAllowedAsync(ulong groupId, ulong userId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.IsMessagesFromGroupAllowed(groupId: groupId, userId: userId));
+				_vk.Messages.IsMessagesFromGroupAllowed(groupId: groupId, userId: userId));
 		}
 
 		/// <inheritdoc />
@@ -252,7 +259,7 @@ namespace VkNet.Categories
 		public Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Messages.MarkAsImportantDialog(peerId: peerId, important: important));
+				_vk.Messages.MarkAsImportantDialog(peerId: peerId, important: important));
 		}
 
 		/// <inheritdoc />
