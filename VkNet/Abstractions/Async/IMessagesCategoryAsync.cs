@@ -709,6 +709,34 @@ namespace VkNet.Abstractions
 		Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true);
 
 		/// <summary>
+		/// Помечает беседу как важную либо снимает отметку.
+		/// </summary>
+		/// <param name="peerId"> Идентификатор беседы</param>
+		/// <param name="important">
+		/// <c> true </c>, если сообщения необходимо пометить, как важные;
+		/// <c> false </c>, если необходимо снять пометку. положительное число (Положительное число).
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c>true</c>.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте
+		/// http://vk.com/dev/messages.markAsImportantConversation
+		/// </remarks>
+		Task<bool> MarkAsImportantConversationAsync(long peerId, bool important = true);
+
+		/// <summary>
+		/// Редактирует сообщение.
+		/// </summary>
+		/// <param name="params"> параметры запроса </param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		Task<bool> EditAsync(MessageEditParams @params);
+
+	#region Obsoleted
+
+		/// <summary>
 		/// Помечает диалог как важный либо снимает отметку.
 		/// </summary>
 		/// <param name="peerId"> Идентификатор диалога </param>
@@ -724,15 +752,9 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/messages.markAsImportantDialog
 		/// </remarks>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
 		Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true);
 
-		/// <summary>
-		/// Редактирует сообщение.
-		/// </summary>
-		/// <param name="params"> параметры запроса </param>
-		/// <returns>
-		/// После успешного выполнения возвращает 1.
-		/// </returns>
-		Task<bool> EditAsync(MessageEditParams @params);
+	#endregion
 	}
 }

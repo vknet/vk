@@ -55,8 +55,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "chat_id", chatId }
-					, { "user_id", userId }
+				{ "chat_id", chatId },
+				{ "user_id", userId }
 			};
 
 			return _vk.Call(methodName: "messages.addChatUser", parameters: parameters);
@@ -80,12 +80,12 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool AllowMessagesFromGroup(long groupId, string key)
 		{
-			return _vk.Call(methodName: "messages.allowMessagesFromGroup"
-					, parameters: new VkParameters
-					{
-							{ "group_id", groupId }
-							, { "key", key }
-					});
+			return _vk.Call(methodName: "messages.allowMessagesFromGroup",
+				parameters: new VkParameters
+				{
+					{ "group_id", groupId },
+					{ "key", key }
+				});
 		}
 
 		/// <summary>
@@ -172,8 +172,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "message_ids", messageIds }
-					, { "preview_length", previewLength }
+				{ "message_ids", messageIds },
+				{ "preview_length", previewLength }
 			};
 
 			return _vk.Call(methodName: "messages.getById", parameters: parameters).ToVkCollectionOf<Message>(selector: r => r);
@@ -217,9 +217,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "q", query }
-					, { "fields", fields }
-					, { "limit", limit }
+				{ "q", query },
+				{ "fields", fields },
+				{ "limit", limit }
 			};
 
 			return _vk.Call(methodName: "messages.searchDialogs", parameters: parameters);
@@ -274,8 +274,8 @@ namespace VkNet.Categories
 			if (@params.UserIds != null)
 			{
 				throw new ArgumentException(
-						message: "Для отправки сообщения нескольким пользователям используйте метод SendToUserIds(MessagesSendParams)."
-						, paramName: nameof(@params.Message));
+					message: "Для отправки сообщения нескольким пользователям используйте метод SendToUserIds(MessagesSendParams).",
+					paramName: nameof(@params.Message));
 			}
 
 			return _vk.Call(methodName: "messages.send", parameters: @params);
@@ -299,8 +299,8 @@ namespace VkNet.Categories
 			if (@params.UserIds == null)
 			{
 				throw new ArgumentException(
-						message: "Для отправки сообщения одному пользователю или в беседу используйте метод Send(MessagesSendParams)."
-						, paramName: nameof(@params.Message));
+					message: "Для отправки сообщения одному пользователю или в беседу используйте метод Send(MessagesSendParams).",
+					paramName: nameof(@params.Message));
 			}
 
 			return _vk.Call(methodName: "messages.send", parameters: @params).ToReadOnlyCollectionOf<MessagesSendResult>(selector: x => x);
@@ -340,9 +340,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "user_id", userId }
-					, { "offset", offset }
-					, { "peer_id", peerId }
+				{ "user_id", userId },
+				{ "offset", offset },
+				{ "peer_id", peerId }
 			};
 
 			if (count <= 10000)
@@ -370,9 +370,9 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "message_ids", ids }
-					, { "spam", spam }
-					, { "delete_for_all", deleteForAll }
+				{ "message_ids", ids },
+				{ "spam", spam },
+				{ "delete_for_all", deleteForAll }
 			};
 
 			var response = _vk.Call(methodName: "messages.delete", parameters: parameters);
@@ -401,7 +401,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "message_id", messageId }
+				{ "message_id", messageId }
 			};
 
 			return _vk.Call(methodName: "messages.restore", parameters: parameters);
@@ -434,9 +434,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "message_ids", messageIds }
-					, { "peer_id", peerId }
-					, { "start_message_id", startMessageId }
+				{ "message_ids", messageIds },
+				{ "peer_id", peerId },
+				{ "start_message_id", startMessageId }
 			};
 
 			return _vk.Call(methodName: "messages.markAsRead", parameters: parameters);
@@ -467,9 +467,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "used_id", userId }
-					, { "type", type }
-					, { "peer_id", peerId }
+				{ "used_id", userId },
+				{ "type", type },
+				{ "peer_id", peerId }
 			};
 
 			return _vk.Call(methodName: "messages.setActivity", parameters: parameters);
@@ -495,7 +495,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "user_id", userId }
+				{ "user_id", userId }
 			};
 
 			var response = _vk.Call(methodName: "messages.getLastActivity", parameters: parameters);
@@ -529,12 +529,12 @@ namespace VkNet.Categories
 		/// </remarks>
 		public ChatPreview GetChatPreview(string link, ProfileFields fields)
 		{
-			return _vk.Call(methodName: "messages.getChatPreview"
-					, parameters: new VkParameters
-					{
-							{ "link", link }
-							, { "fields", fields }
-					});
+			return _vk.Call(methodName: "messages.getChatPreview",
+				parameters: new VkParameters
+				{
+					{ "link", link },
+					{ "fields", fields }
+				});
 		}
 
 		/// <summary>
@@ -587,8 +587,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "fields", fields }
-					, { "name_case", nameCase }
+				{ "fields", fields },
+				{ "name_case", nameCase }
 			};
 
 			if (chatIds.Count() > 1)
@@ -602,8 +602,8 @@ namespace VkNet.Categories
 			var response = _vk.Call(methodName: "messages.getChat", parameters: parameters);
 
 			return chatIds.Count() > 1
-					? response.ToReadOnlyCollectionOf<Chat>(selector: c => c)
-					: new ReadOnlyCollection<Chat>(list: new List<Chat> { response });
+				? response.ToReadOnlyCollectionOf<Chat>(selector: c => c)
+				: new ReadOnlyCollection<Chat>(list: new List<Chat> { response });
 		}
 
 		/// <summary>
@@ -632,8 +632,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "user_ids", userIds }
-					, { "title", title }
+				{ "user_ids", userIds },
+				{ "title", title }
 			};
 
 			return _vk.Call(methodName: "messages.createChat", parameters: parameters);
@@ -665,8 +665,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "chat_id", chatId }
-					, { "title", title }
+				{ "chat_id", chatId },
+				{ "title", title }
 			};
 
 			return _vk.Call(methodName: "messages.editChat", parameters: parameters);
@@ -712,9 +712,9 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "chat_ids", collection }
-					, { "fields", fields }
-					, { "name_case", nameCase }
+				{ "chat_ids", collection },
+				{ "fields", fields },
+				{ "name_case", nameCase }
 			};
 
 			var response = _vk.Call(methodName: "messages.getChatUsers", parameters: parameters);
@@ -765,8 +765,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "chat_id", chatId }
-					, { "user_id", userId }
+				{ "chat_id", chatId },
+				{ "user_id", userId }
 			};
 
 			return _vk.Call(methodName: "messages.removeChatUser", parameters: parameters);
@@ -800,8 +800,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "lp_version", lpVersion }
-					, { "need_pts", needPts }
+				{ "lp_version", lpVersion },
+				{ "need_pts", needPts }
 			};
 
 			return _vk.Call(methodName: "messages.getLongPollServer", parameters: parameters);
@@ -856,7 +856,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "chat_id", chatId }
+				{ "chat_id", chatId }
 			};
 
 			var result = _vk.Call(methodName: "messages.deleteChatPhoto", parameters: parameters);
@@ -889,7 +889,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "file", file }
+				{ "file", file }
 			};
 
 			var result = _vk.Call(methodName: "messages.setChatPhoto", parameters: parameters);
@@ -921,8 +921,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "message_ids", messageIds }
-					, { "important", important }
+				{ "message_ids", messageIds },
+				{ "important", important }
 			};
 
 			VkResponseArray result = _vk.Call(methodName: "messages.markAsImportant", parameters: parameters);
@@ -995,12 +995,12 @@ namespace VkNet.Categories
 		/// </remarks>
 		public string GetInviteLink(ulong peerId, bool reset)
 		{
-			return _vk.Call(methodName: "messages.getInviteLink"
-					, parameters: new VkParameters
-					{
-							{ "peer_id", peerId }
-							, { "reset", reset }
-					})[key: "link"];
+			return _vk.Call(methodName: "messages.getInviteLink",
+				parameters: new VkParameters
+				{
+					{ "peer_id", peerId },
+					{ "reset", reset }
+				})[key: "link"];
 		}
 
 		/// <summary>
@@ -1020,12 +1020,12 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool IsMessagesFromGroupAllowed(ulong groupId, ulong userId)
 		{
-			return _vk.Call(methodName: "messages.isMessagesFromGroupAllowed"
-					, parameters: new VkParameters
-					{
-							{ "group_id", groupId }
-							, { "user_id", userId }
-					})[key: "is_allowed"];
+			return _vk.Call(methodName: "messages.isMessagesFromGroupAllowed",
+				parameters: new VkParameters
+				{
+					{ "group_id", groupId },
+					{ "user_id", userId }
+				})[key: "is_allowed"];
 		}
 
 		/// <summary>
@@ -1056,38 +1056,29 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool MarkAsAnsweredDialog(long peerId, bool answered = true)
 		{
-			return _vk.Call(methodName: "messages.markAsAnsweredDialog"
-					, parameters: new VkParameters
-					{
-							{ "peer_id", peerId }
-							, { "answered", answered }
-					});
+			return _vk.Call(methodName: "messages.markAsAnsweredDialog",
+				parameters: new VkParameters
+				{
+					{ "peer_id", peerId },
+					{ "answered", answered }
+				});
 		}
 
-		/// <summary>
-		/// Помечает диалог как важный либо снимает отметку.
-		/// </summary>
-		/// <param name="peerId"> Идентификатор диалога </param>
-		/// <param name="important">
-		/// <c> true </c>, если сообщения необходимо пометить, как важные;
-		/// <c> 0 </c>, если необходимо снять пометку.положительное число (Положительное
-		/// число).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает 1.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// http://vk.com/dev/messages.markAsImportantDialog
-		/// </remarks>
+		/// <inheritdoc />
+		public bool MarkAsImportantConversation(long peerId, bool important = true)
+		{
+			return _vk.Call(methodName: "messages.markAsImportantConversation",
+				parameters: new VkParameters
+				{
+					{ "peer_id", peerId },
+					{ "important", important }
+				});
+		}
+
+		/// <inheritdoc />
 		public bool MarkAsImportantDialog(long peerId, bool important = true)
 		{
-			return _vk.Call(methodName: "messages.markAsImportantDialog"
-					, parameters: new VkParameters
-					{
-							{ "peer_id", peerId }
-							, { "important", important }
-					});
+			return MarkAsImportantConversation(peerId, important);
 		}
 
 		/// <inheritdoc />

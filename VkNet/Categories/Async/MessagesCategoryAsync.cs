@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -233,6 +234,13 @@ namespace VkNet.Categories
 		public Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Messages.MarkAsAnsweredDialog(peerId: peerId, answered: answered));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> MarkAsImportantConversationAsync(long peerId, bool important = true)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				_vk.Messages.MarkAsImportantConversation(peerId: peerId, important: important));
 		}
 
 		/// <inheritdoc />
