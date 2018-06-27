@@ -64,9 +64,21 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public async Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields, ulong? groupId = null)
+		public async Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields,
+																					ulong? groupId = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => GetConversationMembers(peerId, fields, groupId));
+		}
+
+		/// <inheritdoc />
+		public async Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(long peerId,
+																							IEnumerable<ulong> conversationMessageIds,
+																							IEnumerable<string> fields,
+																							bool? extended = null,
+																							ulong? groupId = null)
+		{
+			return await TypeHelper.TryInvokeMethodAsync(() =>
+				GetByConversationMessageId(peerId, conversationMessageIds, fields, extended, groupId));
 		}
 
 		/// <inheritdoc />

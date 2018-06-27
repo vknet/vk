@@ -827,6 +827,41 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields, ulong? groupId = null);
 
+		/// <summary>
+		/// Возвращает сообщения по их идентификаторам в рамках беседы.
+		/// </summary>
+		/// <param name = "peerId">
+		/// Идентификаторы назначений, разделённые запятой.
+		/// Для пользователя:
+		/// id  пользователя.
+		/// Для групповой беседы:
+		/// 2000000000 + id беседы.
+		/// Для сообщества:
+		/// -id сообщества.
+		/// целое число, обязательный параметр
+		/// </param>
+		/// <param name = "conversationMessageIds">
+		/// Идентификаторы сообщений. Максимум 100 идентификаторов. список положительных чисел, разделенных запятыми, обязательный параметр
+		/// </param>
+		/// <param name = "fields">
+		/// Дополнительные поля пользователей и сообществ, которые необходимо вернуть в ответе. список слов, разделенных через запятую
+		/// </param>
+		/// <param name = "extended">
+		/// 1 — возвращать дополнительные поля. флаг, может принимать значения 1 или 0
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов, описывающих  сообщения, в поле items.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getByConversationMessageId
+		/// </remarks>
+		Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(long peerId, IEnumerable<ulong> conversationMessageIds,
+																				IEnumerable<string> fields, bool? extended = null,
+																				ulong? groupId = null);
+
 	#region Obsoleted
 
 		/// <summary>

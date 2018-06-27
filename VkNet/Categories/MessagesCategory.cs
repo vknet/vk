@@ -220,6 +220,22 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public GetByConversationMessageIdResult GetByConversationMessageId(long peerId, IEnumerable<ulong> conversationMessageIds,
+																			IEnumerable<string> fields, bool? extended = null,
+																			ulong? groupId = null)
+		{
+			return _vk.Call<GetByConversationMessageIdResult>("messages.getByConversationMessageId",
+				new VkParameters
+				{
+					{ "peer_id", peerId },
+					{ "conversation_message_ids", conversationMessageIds },
+					{ "fields", fields },
+					{ "extended", extended },
+					{ "group_id", groupId }
+				});
+		}
+
+		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return DeleteConversation(userId, peerId, offset, count, null);
