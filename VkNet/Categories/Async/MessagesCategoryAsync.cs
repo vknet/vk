@@ -64,6 +64,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public async Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields, ulong? groupId = null)
+		{
+			return await TypeHelper.TryInvokeMethodAsync(() => GetConversationMembers(peerId, fields, groupId));
+		}
+
+		/// <inheritdoc />
 		public Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>

@@ -791,6 +791,42 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<GetConversationsResult> GetConversationsAsync(GetConversationsParams getConversationsParams);
 
+		/// <summary>
+		/// Позволяет получить список участников беседы.
+		/// </summary>
+		/// <param name = "peerId">
+		/// Идентификатор назначения.
+		/// Для пользователя:
+		/// id  пользователя.
+		/// Для групповой беседы:
+		/// 2000000000 + id беседы.
+		/// Для сообщества:
+		/// -id сообщества.
+		/// целое число, обязательный параметр
+		/// </param>
+		/// <param name = "fields">
+		/// Дополнительные поля пользователей и сообществ, которые необходимо вернуть в ответе. список слов, разделенных через запятую
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </param>
+		/// <returns>
+		/// Возвращает объет, который содержит следующие поля:
+		/// count
+		/// integerчисло участников беседы. items
+		/// arrayучастники беседы. Массив объектов, каждый из которых содержит поля:
+		/// member_id (integer) — идентификатор участника беседы;
+		/// invited_by (integer) — идентификатор пользователя, который пригласил участника;
+		/// join_date (integer) — дата добавления в беседу;
+		/// is_admin (boolean) — является ли пользователь администратором. profiles
+		/// arrayмассив объектов пользователей. groups
+		/// arrayмассив объектов сообществ.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationMembers
+		/// </remarks>
+		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields, ulong? groupId = null);
+
 	#region Obsoleted
 
 		/// <summary>

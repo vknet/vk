@@ -208,6 +208,18 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields, ulong? groupId = null)
+		{
+			return _vk.Call<GetConversationMembersResult>("messages.getConversationMembers",
+				new VkParameters
+				{
+					{ "peer_id", peerId },
+					{ "fields", fields },
+					{ "group_id", groupId }
+				});
+		}
+
+		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return DeleteConversation(userId, peerId, offset, count, null);
