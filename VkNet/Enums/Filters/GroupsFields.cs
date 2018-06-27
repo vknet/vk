@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums.Filters
+namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Описание дополнительных полей сообщества, используемых в параметре fields
@@ -50,7 +50,7 @@
 		/// <summary>
 		/// Для получения дополнительного поля Group.EndDate
 		/// </summary>
-		public static readonly GroupsFields EndDate = RegisterPossibleValue(mask: 1 << 8, value: "end_date");
+		public static readonly GroupsFields EndDate = RegisterPossibleValue(mask: 1 << 8, value: "finish_date");
 
 		/// <summary>
 		/// Для получения дополнительного поля Group.CanPost
