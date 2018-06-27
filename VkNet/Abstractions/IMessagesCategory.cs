@@ -858,6 +858,33 @@ namespace VkNet.Abstractions
 																	IEnumerable<string> fields,
 																	bool? extended = null, ulong? groupId = null);
 
+		/// <summary>
+		/// Позволяет искать диалоги.
+		/// </summary>
+		/// <param name = "q">
+		/// Поисковой запрос. строка
+		/// </param>
+		/// <param name = "fields">
+		/// Дополнительные поля пользователей и сообществ, которые необходимо вернуть в ответе. список слов, разделенных через запятую
+		/// </param>
+		/// <param name = "count">
+		/// Максимальное число результатов для получения. положительное число, по умолчанию 20
+		/// </param>
+		/// <param name = "extended">
+		/// 1 — возвращать дополнительные поля. флаг, может принимать значения 1 или 0
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </param>
+		/// <returns>
+		/// Возвращает общее число результатов в поле count (integer) и массив объектов диалогов в поле items.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.searchConversations
+		/// </remarks>
+		SearchConversationsResult SearchConversations(string q, IEnumerable<string> fields, ulong? count = null, bool? extended = null,
+												ulong? groupId = null);
+
 	#region Obsoleted
 
 		/// <summary>

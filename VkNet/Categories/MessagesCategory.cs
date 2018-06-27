@@ -236,6 +236,22 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public SearchConversationsResult SearchConversations(string q, IEnumerable<string> fields, ulong? count = null,
+															bool? extended = null,
+															ulong? groupId = null)
+		{
+			return _vk.Call<SearchConversationsResult>("messages.searchConversations",
+				new VkParameters
+				{
+					{ "q", q },
+					{ "fields", fields },
+					{ "count", count },
+					{ "extended", extended },
+					{ "group_id", groupId }
+				});
+		}
+
+		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return DeleteConversation(userId, peerId, offset, count, null);
