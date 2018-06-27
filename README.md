@@ -49,4 +49,4 @@ PM> Install-Package VkNet
 # Помощь проекту
 - [![На счет в банке](https://img.shields.io/badge/Альфа_Банк-donate-CHFCHx.svg)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
 - [![PayPal](https://img.shields.io/badge/PayPal-donate-CHFCHx.svg)](https://www.paypal.me/InyutinMaxim)
-- Так же вы можете помочь проекту `Pull Request`'ом
+- Также вы можете помочь проекту `Pull Request`'ом
