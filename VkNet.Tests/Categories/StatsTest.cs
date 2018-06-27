@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 
@@ -23,237 +24,105 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/stats.get";
 
 			const string json =
-					@"{
+				@"{
 					response: [{
-						day: '2015-11-11',
-						views: 57,
-						visitors: 42,
-						subscribed: 2,
-						unsubscribed: 21,
-						sex: [{
-							visitors: 26,
-							value: 'f'
-							}, {
-							visitors: 16,
-							value: 'm'
-						}],
-						age: [{
-							visitors: 1,
-							value: '12-18'
-							}, {
-							visitors: 2,
-							value: '18-21'
-							}, {
-							visitors: 6,
-							value: '21-24'
-							}, {
-							visitors: 4,
-							value: '24-27'
-							}, {
-							visitors: 1,
-							value: '27-30'
-							}, {
-							visitors: 6,
-							value: '30-35'
-							}, {
-							visitors: 2,
-							value: '35-45'
-							}, {
-							visitors: 12,
-							value: '45-100'
-						}],
-						sex_age: [{
-							visitors: 1,
-							value: 'f;18-21'
-							}, {
-							visitors: 2,
-							value: 'f;21-24'
-							}, {
-							visitors: 2,
-							value: 'f;24-27'
-							}, {
-							visitors: 1,
-							value: 'f;27-30'
-							}, {
-							visitors: 2,
-							value: 'f;30-35'
-							}, {
-							visitors: 11,
-							value: 'f;45-100'
-							}, {
-							visitors: 1,
-							value: 'm;12-18'
-							}, {
-							visitors: 1,
-							value: 'm;18-21'
-							}, {
-							visitors: 4,
-							value: 'm;21-24'
-							}, {
-							visitors: 2,
-							value: 'm;24-27'
-							}, {
-							visitors: 4,
-							value: 'm;30-35'
-							}, {
-							visitors: 2,
-							value: 'm;35-45'
-							}, {
-							visitors: 1,
-							value: 'm;45-100'
-						}],
-						cities: [{
-							visitors: 5,
-							value: 2,
-							name: 'Санкт-Петербург'
-							}, {
-							visitors: 4,
-							value: 1,
-							name: 'Москва'
-							}, {
-							visitors: 2,
-							value: 147,
-							name: 'Тюмень'
-							}, {
-							visitors: 2,
-							value: 158,
-							name: 'Челябинск'
-							}, {
-							visitors: 2,
-							value: 151,
-							name: 'Уфа'
-							}, {
-							visitors: 1,
-							value: 133,
-							name: 'Сочи'
-							}, {
-							visitors: 1,
-							value: 273,
-							name: 'Toronto'
-							}, {
-							visitors: 1,
-							value: 157,
-							name: 'Чебоксары'
-							}, {
-							visitors: 1,
-							value: 3193,
-							name: 'Шымкент'
-							}, {
-							visitors: 1,
-							value: 2001,
-							name: 'Первоуральск'
-							}, {
-							visitors: 1,
-							value: 104,
-							name: 'Омск'
-							}, {
-							visitors: 1,
-							value: 545,
-							name: 'Зеленодольск'
-							}, {
-							visitors: 1,
-							value: 60,
-							name: 'Казань'
-							}, {
-							visitors: 1,
-							value: 468,
-							name: 'Прокопьевск'
-							}, {
-							visitors: 1,
-							value: 314,
-							name: 'Киев'
-							}, {
-							visitors: 1,
-							value: 130,
-							name: 'Смоленск'
-							}, {
-							visitors: 1,
-							value: 1143859,
-							name: 'Тула'
-							}, {
-							visitors: 1,
-							value: 66,
-							name: 'Киров'
-							}, {
-							visitors: 1,
-							value: 9196,
-							name: 'Октябрьский'
-							}, {
-							visitors: 1,
-							value: 503,
-							name: 'Лодейное Поле'
-							}, {
-							visitors: 1,
-							value: 20444,
-							name: 'Кашин'
-							}, {
-							visitors: 1,
-							value: 21856,
-							name: 'Троицк'
-							}, {
-							visitors: 1,
-							value: 326,
-							name: 'Кандалакша'
-						}],
-						countries: [{
-							visitors: 39,
-							value: 1,
-							code: 'RU',
-							name: 'Россия'
-							}, {
-							visitors: 1,
-							value: 9,
-							code: 'US',
-							name: 'США'
-							}, {
-							visitors: 1,
-							value: 10,
-							code: 'CA',
-							name: 'Канада'
-							}, {
-							visitors: 1,
-							value: 4,
-							code: 'KZ',
-							name: 'Казахстан'
-						}]
+						period_from: '2013-09-08',
+						period_to: '2013-09-08',
+						visitors: {
+							views: 3688,
+							visitors: 2768,
+							mobile_views: 130,
+							sex: [
+								{
+									count: 339,
+									value: 'f'
+								},
+								{
+									count: 857,
+									value: 'm'
+								}
+							],
+							age: [
+								{
+									count: 326,
+									value: '12-18'
+								}
+							],
+							sex_age: [
+								{
+									count: 112,
+									value: 'f;12-18'
+								}
+							],
+							countries: [
+								{
+									count: 2372,
+									value: 1,
+									code: 'RU',
+									name: 'Россия'
+								}
+							],
+							cities: [
+								{
+									count: 303,
+									value: 1,
+									name: 'Москва'
+								}
+							]
+						},
+						reach: {
+							reach: 458,
+							reach_subscribers: 119,
+							mobile_reach: 68,
+							sex: [
+								{
+									count: 162,
+									value: 'f'
+								}
+							],
+							age: [
+								{
+									count: 130,
+									value: '12-18'
+								}
+							],
+							sex_age: [
+								{
+									count: 53,
+									value: 'f;12-18'
+								}
+							],
+							countries: [
+								{
+									count: 344,
+									value: 1,
+									code: 'RU',
+									name: 'Россия'
+								}
+							],
+							cities: [
+								{
+									count: 72,
+									value: 1,
+									name: 'Москва'
+								}
+							]
+						},
+						activity: {
+							likes: 8,
+							subscribed: 457,
+							unsubscribed: 193
+						}
 					}]
 				  }";
 
 			var mockedStatsCategory = GetMockedStatsCategory(url: url, json: json);
 
-			var statsPeriods = mockedStatsCategory.GetByApp(appId: 1
-					, dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
+			var statsPeriods = mockedStatsCategory.GetByApp(appId: 1,
+				dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
 
-			Assert.That(actual: statsPeriods[index: 0].Day
-					, expression: Is.EqualTo(expected: new DateTime(year: 2015
-							, month: 11
-							, day: 11
-							, hour: 0
-							, minute: 0
-							, second: 0
-							, kind: DateTimeKind.Utc)));
-
-			Assert.That(actual: statsPeriods[index: 0].Views, expression: Is.EqualTo(expected: 57));
-			Assert.That(actual: statsPeriods[index: 0].Visitors, expression: Is.EqualTo(expected: 42));
-			Assert.That(actual: statsPeriods[index: 0].Subscribed, expression: Is.EqualTo(expected: 2));
-			Assert.That(actual: statsPeriods[index: 0].Unsubscribed, expression: Is.EqualTo(expected: 21));
-			Assert.That(actual: statsPeriods[index: 0].Sex[index: 0].Visitors, expression: Is.EqualTo(expected: 26));
-			Assert.That(actual: statsPeriods[index: 0].Sex[index: 0].Value, expression: Is.EqualTo(expected: @"f"));
-
-			Assert.That(actual: statsPeriods[index: 0].Age[index: 0].Visitors, expression: Is.EqualTo(expected: 1));
-			Assert.That(actual: statsPeriods[index: 0].Age[index: 0].Value, expression: Is.EqualTo(expected: @"12-18"));
-
-			Assert.That(actual: statsPeriods[index: 0].SexAge[index: 0].Visitors, expression: Is.EqualTo(expected: 1));
-			Assert.That(actual: statsPeriods[index: 0].SexAge[index: 0].Value, expression: Is.EqualTo(expected: @"f;18-21"));
-
-			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Visitors, expression: Is.EqualTo(expected: 5));
-			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Value, expression: Is.EqualTo(expected: @"2"));
-			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Name, expression: Is.EqualTo(expected: @"Санкт-Петербург"));
-
-			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Visitors, expression: Is.EqualTo(expected: 39));
-			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Value, expression: Is.EqualTo(expected: @"1"));
-			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Code, expression: Is.EqualTo(expected: @"RU"));
-			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Name, expression: Is.EqualTo(expected: @"Россия"));
+			Assert.NotNull(statsPeriods[index: 0]);
+			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[index: 0].PeriodFrom));
 		}
 
 		[Test]
@@ -262,332 +131,106 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/stats.get";
 
 			const string json =
-					@"{
+				@"{
 					response: [{
-						day: '2015-11-11',
-						views: 810,
-						visitors: 647,
-						reach: 428,
-						reach_subscribers: 106,
-						subscribed: 23,
-						unsubscribed: 17,
-						sex: [{
-							visitors: 319,
-							value: 'f'
-							}, {
-							visitors: 299,
-							value: 'm'
-						}],
-						age: [{
-							visitors: 222,
-							value: '12-18'
-							}, {
-							visitors: 103,
-							value: '18-21'
-							}, {
-							visitors: 67,
-							value: '21-24'
-							}, {
-							visitors: 54,
-							value: '24-27'
-							}, {
-							visitors: 31,
-							value: '27-30'
-							}, {
-							visitors: 26,
-							value: '30-35'
-							}, {
-							visitors: 11,
-							value: '35-45'
-							}, {
-							visitors: 27,
-							value: '45-100'
-						}],
-						sex_age: [{
-							visitors: 137,
-							value: 'f;12-18'
-							}, {
-							visitors: 50,
-							value: 'f;18-21'
-							}, {
-							visitors: 28,
-							value: 'f;21-24'
-							}, {
-							visitors: 19,
-							value: 'f;24-27'
-							}, {
-							visitors: 14,
-							value: 'f;27-30'
-							}, {
-							visitors: 13,
-							value: 'f;30-35'
-							}, {
-							visitors: 6,
-							value: 'f;35-45'
-							}, {
-							visitors: 10,
-							value: 'f;45-100'
-							}, {
-							visitors: 85,
-							value: 'm;12-18'
-							}, {
-							visitors: 53,
-							value: 'm;18-21'
-							}, {
-							visitors: 39,
-							value: 'm;21-24'
-							}, {
-							visitors: 35,
-							value: 'm;24-27'
-							}, {
-							visitors: 17,
-							value: 'm;27-30'
-							}, {
-							visitors: 13,
-							value: 'm;30-35'
-							}, {
-							visitors: 5,
-							value: 'm;35-45'
-							}, {
-							visitors: 17,
-							value: 'm;45-100'
-						}],
-						cities: [{
-							visitors: 31,
-							value: 1,
-							name: 'Москва'
-							}, {
-							visitors: 20,
-							value: 2,
-							name: 'Санкт-Петербург'
-							}, {
-							visitors: 19,
-							value: 314,
-							name: 'Киев'
-							}, {
-							visitors: 16,
-							value: 183,
-							name: 'Алматы'
-							}, {
-							visitors: 12,
-							value: 3193,
-							name: 'Шымкент'
-							}, {
-							visitors: 11,
-							value: 282,
-							name: 'Минск'
-							}, {
-							visitors: 7,
-							value: 73,
-							name: 'Красноярск'
-							}, {
-							visitors: 7,
-							value: 49,
-							name: 'Екатеринбург'
-							}, {
-							visitors: 6,
-							value: 280,
-							name: 'Харьков'
-							}, {
-							visitors: 6,
-							value: 60,
-							name: 'Казань'
-							}, {
-							visitors: 6,
-							value: 110,
-							name: 'Пермь'
-							}, {
-							visitors: 5,
-							value: 706,
-							name: 'Уральск'
-							}, {
-							visitors: 4,
-							value: 1006,
-							name: 'Актау'
-							}, {
-							visitors: 4,
-							value: 37,
-							name: 'Владивосток'
-							}, {
-							visitors: 4,
-							value: 292,
-							name: 'Одесса'
-							}, {
-							visitors: 3,
-							value: 99,
-							name: 'Новосибирск'
-							}, {
-							visitors: 3,
-							value: 730,
-							name: 'Тараз'
-							}, {
-							visitors: 3,
-							value: 61,
-							name: 'Калининград'
-							}, {
-							visitors: 3,
-							value: 1517642,
-							name: 'Кызылорда '
-							}, {
-							visitors: 3,
-							value: 2201,
-							name: 'Кировоград'
-							}, {
-							visitors: 3,
-							value: 143,
-							name: 'Тольятти'
-							}, {
-							visitors: 3,
-							value: 41,
-							name: 'Вологда'
-							}, {
-							visitors: 3,
-							value: 25,
-							name: 'Барнаул'
-							}, {
-							visitors: 3,
-							value: 104,
-							name: 'Омск'
-							}, {
-							visitors: 2,
-							value: 552,
-							name: 'Луганск'
-							}, {
-							visitors: 2,
-							value: 2334,
-							name: 'Белая Церковь'
-						}],
-						countries: [{
-							visitors: 366,
-							value: 1,
-							code: 'RU',
-							name: 'Россия'
-							}, {
-							visitors: 121,
-							value: 4,
-							code: 'KZ',
-							name: 'Казахстан'
-							}, {
-							visitors: 112,
-							value: 2,
-							code: 'UA',
-							name: 'Украина'
-							}, {
-							visitors: 28,
-							value: 3,
-							code: 'BY',
-							name: 'Беларусь'
-							}, {
-							visitors: 3,
-							value: 9,
-							code: 'US',
-							name: 'США'
-							}, {
-							visitors: 2,
-							value: 18,
-							code: 'UZ',
-							name: 'Узбекистан'
-							}, {
-							visitors: 2,
-							value: 192,
-							code: 'TW',
-							name: 'Тайвань'
-							}, {
-							visitors: 2,
-							value: 15,
-							code: 'MD',
-							name: 'Молдова'
-							}, {
-							visitors: 1,
-							value: 160,
-							code: 'PL',
-							name: 'Польша'
-							}, {
-							visitors: 1,
-							value: 200,
-							code: 'TR',
-							name: 'Турция'
-							}, {
-							visitors: 1,
-							value: 226,
-							code: 'KR',
-							name: 'Южная Корея'
-							}, {
-							visitors: 1,
-							value: 65,
-							code: 'DE',
-							name: 'Германия'
-							}, {
-							visitors: 1,
-							value: 17,
-							code: 'TM',
-							name: 'Туркменистан'
-							}, {
-							visitors: 1,
-							value: 218,
-							code: 'SE',
-							name: 'Швеция'
-							}, {
-							visitors: 1,
-							value: 14,
-							code: 'EE',
-							name: 'Эстония'
-							}, {
-							visitors: 1,
-							value: 152,
-							code: 'PK',
-							name: 'Пакистан'
-							}, {
-							visitors: 1,
-							value: 88,
-							code: 'IT',
-							name: 'Италия'
-							}, {
-							visitors: 1,
-							value: 8,
-							code: 'IL',
-							name: 'Израиль'
-						}]
+						period_from: '2013-09-08',
+						period_to: '2013-09-08',
+						visitors: {
+							views: 3688,
+							visitors: 2768,
+							mobile_views: 130,
+							sex: [
+								{
+									count: 339,
+									value: 'f'
+								},
+								{
+									count: 857,
+									value: 'm'
+								}
+							],
+							age: [
+								{
+									count: 326,
+									value: '12-18'
+								}
+							],
+							sex_age: [
+								{
+									count: 112,
+									value: 'f;12-18'
+								}
+							],
+							countries: [
+								{
+									count: 2372,
+									value: 1,
+									code: 'RU',
+									name: 'Россия'
+								}
+							],
+							cities: [
+								{
+									count: 303,
+									value: 1,
+									name: 'Москва'
+								}
+							]
+						},
+						reach: {
+							reach: 458,
+							reach_subscribers: 119,
+							mobile_reach: 68,
+							sex: [
+								{
+									count: 162,
+									value: 'f'
+								}
+							],
+							age: [
+								{
+									count: 130,
+									value: '12-18'
+								}
+							],
+							sex_age: [
+								{
+									count: 53,
+									value: 'f;12-18'
+								}
+							],
+							countries: [
+								{
+									count: 344,
+									value: 1,
+									code: 'RU',
+									name: 'Россия'
+								}
+							],
+							cities: [
+								{
+									count: 72,
+									value: 1,
+									name: 'Москва'
+								}
+							]
+						},
+						activity: {
+							likes: 8,
+							subscribed: 457,
+							unsubscribed: 193
+						}
 					}]
 				  }";
 
 			var mockedStatsCategory = GetMockedStatsCategory(url: url, json: json);
 
-			var statsPeriods = mockedStatsCategory.GetByGroup(groupId: 1
-					, dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
+			var statsPeriods = mockedStatsCategory.GetByGroup(groupId: 1,
+				dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
 
-			Assert.That(actual: statsPeriods[index: 0].Day
-					, expression: Is.EqualTo(expected: new DateTime(year: 2015
-							, month: 11
-							, day: 11
-							, hour: 0
-							, minute: 0
-							, second: 0
-							, kind: DateTimeKind.Utc)));
+			Assert.NotNull(statsPeriods[index: 0]);
 
-			Assert.That(actual: statsPeriods[index: 0].Views, expression: Is.EqualTo(expected: 810));
-			Assert.That(actual: statsPeriods[index: 0].Visitors, expression: Is.EqualTo(expected: 647));
-			Assert.That(actual: statsPeriods[index: 0].Reach, expression: Is.EqualTo(expected: 428));
-			Assert.That(actual: statsPeriods[index: 0].ReachSubscribers, expression: Is.EqualTo(expected: 106));
-			Assert.That(actual: statsPeriods[index: 0].Subscribed, expression: Is.EqualTo(expected: 23));
-			Assert.That(actual: statsPeriods[index: 0].Unsubscribed, expression: Is.EqualTo(expected: 17));
-			Assert.That(actual: statsPeriods[index: 0].Sex[index: 0].Visitors, expression: Is.EqualTo(expected: 319));
-			Assert.That(actual: statsPeriods[index: 0].Sex[index: 0].Value, expression: Is.EqualTo(expected: @"f"));
-
-			Assert.That(actual: statsPeriods[index: 0].Age[index: 0].Visitors, expression: Is.EqualTo(expected: 222));
-			Assert.That(actual: statsPeriods[index: 0].Age[index: 0].Value, expression: Is.EqualTo(expected: @"12-18"));
-
-			Assert.That(actual: statsPeriods[index: 0].SexAge[index: 0].Visitors, expression: Is.EqualTo(expected: 137));
-			Assert.That(actual: statsPeriods[index: 0].SexAge[index: 0].Value, expression: Is.EqualTo(expected: @"f;12-18"));
-
-			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Visitors, expression: Is.EqualTo(expected: 31));
-			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Value, expression: Is.EqualTo(expected: @"1"));
-			Assert.That(actual: statsPeriods[index: 0].Cities[index: 0].Name, expression: Is.EqualTo(expected: @"Москва"));
-
-			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Visitors, expression: Is.EqualTo(expected: 366));
-			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Value, expression: Is.EqualTo(expected: @"1"));
-			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Code, expression: Is.EqualTo(expected: @"RU"));
-			Assert.That(actual: statsPeriods[index: 0].Countries[index: 0].Name, expression: Is.EqualTo(expected: @"Россия"));
+			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[index: 0].PeriodFrom));
 		}
 
 		[Test]
@@ -596,7 +239,7 @@ namespace VkNet.Tests.Categories
 			const string url = "https://api.vk.com/method/stats.trackVisitor";
 
 			const string json =
-					@"{
+				@"{
 					response: 1
 				  }";
 

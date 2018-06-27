@@ -85,9 +85,7 @@ namespace VkNet.Categories
 				parameters.Add(name: "date_to", value: dateTo.Value.ToString(format: "yyyy-MM-dd"));
 			}
 
-			var result = _vk.Call(methodName: "stats.get", parameters: parameters);
-
-			return result.ToReadOnlyCollectionOf<StatsPeriod>(selector: x => x);
+			return _vk.Call<ReadOnlyCollection<StatsPeriod>>(methodName: "stats.get", parameters: parameters);
 		}
 	}
 }

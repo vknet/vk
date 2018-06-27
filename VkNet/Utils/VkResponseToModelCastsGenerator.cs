@@ -1499,18 +1499,6 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator StatsPeriod(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : StatsPeriod.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
 		public static implicit operator StatsStruct(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues ? null : StatsStruct.FromJson(response: response);
@@ -1755,7 +1743,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : AdsAccount.FromJson(response: response);
 		}
-		
+
 		/// <summary>
 		/// Преобразовать из VkResponse
 		/// </summary>
@@ -1767,7 +1755,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : MessageKeyboard.FromJson(response: response);
 		}
-		
+
 		/// <summary>
 		/// Преобразовать из VkResponse
 		/// </summary>
@@ -1779,7 +1767,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : MessageKeyboardButton.FromJson(response: response);
 		}
-		
+
 		/// <summary>
 		/// Преобразовать из VkResponse
 		/// </summary>
