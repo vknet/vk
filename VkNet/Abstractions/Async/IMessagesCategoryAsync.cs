@@ -702,7 +702,6 @@ namespace VkNet.Abstractions
 		/// </returns>
 		Task<bool> EditAsync(MessageEditParams @params);
 
-
 		/// <summary>
 		/// Удаляет личные сообщения в беседе.
 		/// </summary>
@@ -736,7 +735,8 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteConversation
 		/// </remarks>
-		Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null);
+		Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null,
+											long? groupId = null);
 
 		/// <summary>
 		/// Позволяет получить беседу по её идентификатору.
@@ -766,7 +766,31 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationsById
 		/// </remarks>
-		Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null, ulong? groupId = null);
+		Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields,
+																bool? extended = null, ulong? groupId = null);
+
+		/// <summary>
+		/// Возвращает список бесед пользователя.
+		/// </summary>
+		/// <param name = "getConversationsParams">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// Возвращает объект, который содержит следующие поля:
+		/// count
+		/// integerчисло результатов. items
+		/// arrayбеседы. Массив объектов, каждый из которых содержит поля:
+		/// conversation (object) — объект беседы.
+		/// last_message (object) — объект, описывающий последнее сообщение в беседе. unread_count
+		/// integerчисло непрочитанных бесед. profiles
+		/// arrayмассив объектов пользователей. groups
+		/// arrayмассив объектов сообществ.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversations
+		/// </remarks>
+		Task<GetConversationsResult> GetConversationsAsync(GetConversationsParams getConversationsParams);
+
 	#region Obsoleted
 
 		/// <summary>
@@ -800,7 +824,8 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
 		/// </remarks>
 		[Obsolete(
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте DeleteConversationAsync", true)]
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте DeleteConversationAsync",
+			true)]
 		Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
 
 		/// <summary>
@@ -815,7 +840,8 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
 		/// </remarks>
 		[Obsolete(
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsAnsweredConversationAsync", true)]
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsAnsweredConversationAsync",
+			true)]
 		Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true);
 
 		/// <summary>
@@ -835,7 +861,8 @@ namespace VkNet.Abstractions
 		/// http://vk.com/dev/messages.markAsImportantDialog
 		/// </remarks>
 		[Obsolete(
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsImportantConversationAsync", true)]
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsImportantConversationAsync",
+			true)]
 		Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true);
 
 	#endregion

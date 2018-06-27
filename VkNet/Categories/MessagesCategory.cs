@@ -192,6 +192,22 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public GetConversationsResult GetConversations(GetConversationsParams getConversationsParams)
+		{
+			return _vk.Call<GetConversationsResult>("messages.getConversations",
+				new VkParameters
+				{
+					{ "filter", getConversationsParams.Filter },
+					{ "fields", getConversationsParams.Fields },
+					{ "offset", getConversationsParams.Offset },
+					{ "count", getConversationsParams.Count },
+					{ "extended", getConversationsParams.Extended },
+					{ "start_message_id", getConversationsParams.StartMessageId },
+					{ "group_id", getConversationsParams.GroupId }
+				});
+		}
+
+		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return DeleteConversation(userId, peerId, offset, count, null);

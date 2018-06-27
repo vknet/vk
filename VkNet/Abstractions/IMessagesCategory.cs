@@ -762,7 +762,30 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationsById
 		/// </remarks>
-		ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null, ulong? groupId = null);
+		ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null,
+													ulong? groupId = null);
+
+		/// <summary>
+		/// Возвращает список бесед пользователя.
+		/// </summary>
+		/// <param name = "getConversationsParams">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// Возвращает объект, который содержит следующие поля:
+		/// count
+		/// integerчисло результатов. items
+		/// array беседы. Массив объектов, каждый из которых содержит поля:
+		/// conversation (object) — объект беседы.
+		/// last_message (object) — объект, описывающий последнее сообщение в беседе. unread_count
+		/// integer число непрочитанных бесед. profiles
+		/// array массив объектов пользователей. groups
+		/// array массив объектов сообществ.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversations
+		/// </remarks>
+		GetConversationsResult GetConversations(GetConversationsParams getConversationsParams);
 
 	#region Obsoleted
 
