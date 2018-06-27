@@ -14,7 +14,7 @@ namespace VkNet.Model
 	/// Личное сообщение пользователя.
 	/// См. описание http://vk.com/dev/message
 	/// </summary>
-	[DebuggerDisplay(value: "[{UserId}-{Id}] {Body}")]
+	[DebuggerDisplay("[{UserId}-{Id}] {Body}")]
 	[Serializable]
 	public class Message : MediaAttachment
 	{
@@ -23,7 +23,7 @@ namespace VkNet.Model
 		/// </summary>
 		static Message()
 		{
-			RegisterType(type: typeof(Message), match: "message");
+			RegisterType(typeof(Message), "message");
 		}
 
 	#region Методы
@@ -34,51 +34,53 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static Message FromJson(VkResponse response)
 		{
-			if (response.ContainsKey(key: "message"))
+			if (response.ContainsKey("message"))
 			{
-				response = response[key: "message"];
+				response = response["message"];
 			}
 
 			var message = new Message
 			{
-					Unread = response.ContainsKey(key: "unread") ? response[key: "unread"] : 0
-					, Id = response[key: "id"]
-					, UserId = response[key: "user_id"]
-					, Date = response[key: "date"]
-					, ReadState = response[key: "read_state"]
-					, Type = response[key: "out"]
-					, Title = response[key: "title"]
-					, Body = response[key: "body"]
-					, Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x)
-					, Geo = response[key: "geo"]
-					, ForwardedMessages = response[key: "fwd_messages"].ToReadOnlyCollectionOf<Message>(selector: x => x)
-					, Emoji = response[key: "emoji"]
-					, Important = response[key: "important"]
-					, Deleted = response[key: "deleted"]
-					, FromId = response[key: "from_id"]
-					,
+				Unread = response.ContainsKey("unread") ? response["unread"] : 0,
+				Id = response["id"],
+				UserId = response["user_id"],
+				Date = response["date"],
+				PeerId = response["peer_id"],
+				FromId = response["from_id"],
+				Text = response["text"],
+				RandomId = response["random_id"],
+				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
+				Important = response["important"],
+				Geo = response["geo"],
+				Payload = response["payload"],
+				ForwardedMessages = response["fwd_messages"].ToReadOnlyCollectionOf<Message>(x => x),
+				ReadState = response["read_state"],
+				Action = response["action"],
+				Type = response["out"],
+				Title = response["title"],
+				Body = response["body"],
+				Emoji = response["emoji"],
+				Deleted = response["deleted"],
 
-					// дополнительные поля бесед
-					ChatId = response[key: "chat_id"]
-					, ChatActive = response[key: "chat_active"].ToReadOnlyCollectionOf<long>(selector: x => x)
-					, UsersCount = response[key: "users_count"]
-					, AdminId = response[key: "admin_id"]
-					, PhotoPreviews = response
-					, PushSettings = response[key: "push_settings"]
-					, Action = response[key: "action"]
-					, ActionMid = response[key: "action_mid"]
-					, ActionEmail = response[key: "action_email"]
-					, ActionText = response[key: "action_text"]
-					, Photo50 = response[key: "photo_50"]
-					, Photo100 = response[key: "photo_100"]
-					, Photo200 = response[key: "photo_200"]
-					, InRead = response[key: "in_read"]
-					, OutRead = response[key: "out_read"]
-					, Out = response[key: "out"]
-					, UpdateTime = response[key: "update_time"]
-					,
+				// дополнительные поля бесед
+				ChatId = response["chat_id"],
+				ChatActive = response["chat_active"].ToReadOnlyCollectionOf<long>(x => x),
+				UsersCount = response["users_count"],
+				AdminId = response["admin_id"],
+				PhotoPreviews = response,
+				PushSettings = response["push_settings"],
+				ActionMid = response["action_mid"],
+				ActionEmail = response["action_email"],
+				ActionText = response["action_text"],
+				Photo50 = response["photo_50"],
+				Photo100 = response["photo_100"],
+				Photo200 = response["photo_200"],
+				InRead = response["in_read"],
+				OutRead = response["out_read"],
+				Out = response["out"],
+				UpdateTime = response["update_time"],
 
-					Keyboard = response[key: "keyboard"]
+				Keyboard = response["keyboard"]
 			};
 
 			return message;
@@ -97,13 +99,34 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор автора сообщения.
 		/// </summary>
+		[JsonProperty("from_id")]
 		public long? FromId { get; set; }
+
+		/// <summary>
+		/// Идентификатор назначения.
+		/// </summary>
+		[JsonProperty("peer_id")]
+		public long? PeerId { get; set; }
+
+		/// <summary>
+		/// Текст сообщения.
+		/// </summary>
+		[JsonProperty("text")]
+		public string Text { get; set; }
 
 		/// <summary>
 		/// Дата отправки сообщения.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonProperty("date")]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
+
+		/// <summary>
+		/// Сервисное поле для сообщений ботам (полезная нагрузка).
+		/// </summary>
+		[JsonProperty("payload")]
+		public string Payload { get; set; }
+
 
 		/// <summary>
 		/// Статус сообщения (не возвращается для пересланных сообщений).
@@ -114,7 +137,7 @@ namespace VkNet.Model
 		/// тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
 		/// пересланных сообщений).
 		/// </summary>
-		[JsonProperty(propertyName: "out")]
+		[JsonProperty("out")]
 		public bool? Out { get; set; }
 
 		/// <summary>
@@ -130,16 +153,19 @@ namespace VkNet.Model
 		/// <summary>
 		/// Гео данные.
 		/// </summary>
+		[JsonProperty("geo")]
 		public Geo Geo { get; set; }
 
 		/// <summary>
 		/// Массив медиа-вложений (прикреплений).
 		/// </summary>
+		[JsonProperty("attachments")]
 		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Массив пересланных сообщений (если есть).
 		/// </summary>
+		[JsonProperty("fwd_messages")]
 		public ReadOnlyCollection<Message> ForwardedMessages { get; set; }
 
 		/// <summary>
@@ -150,6 +176,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Является ли сообщение важным.
 		/// </summary>
+		[JsonProperty("important")]
 		public bool Important { get; set; }
 
 		/// <summary>
@@ -161,7 +188,7 @@ namespace VkNet.Model
 		/// идентификатор, используемый при отправке сообщения. Возвращается только для
 		/// исходящих сообщений.
 		/// </summary>
-		[JsonProperty(propertyName: "random_id")]
+		[JsonProperty("random_id")]
 		public long RandomId { get; set; }
 
 	#endregion
@@ -201,6 +228,7 @@ namespace VkNet.Model
 		/// и chat_create, chat_title_update,
 		/// chat_invite_user, chat_kick_user
 		/// </remarks>
+		[JsonProperty("action")]
 		public MessageAction Action { get; set; }
 
 		/// <summary>
@@ -236,7 +264,6 @@ namespace VkNet.Model
 
 	#endregion
 
-
 	#region Дополнительные поля в сообщениях сообществ
 
 		/// <summary>
@@ -245,7 +272,6 @@ namespace VkNet.Model
 		public MessageKeyboard Keyboard { get; set; }
 
 	#endregion
-
 
 	#region недокументированные
 
@@ -277,7 +303,7 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "update_time")]
+		[JsonProperty("update_time")]
 		public string UpdateTime { get; set; }
 
 	#endregion

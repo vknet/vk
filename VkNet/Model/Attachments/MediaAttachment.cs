@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace VkNet.Model.Attachments
 {
@@ -17,11 +18,13 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификатор вложенеия.
 		/// </summary>
+		[JsonProperty("id")]
 		public long? Id { get; set; }
 
 		/// <summary>
 		/// Идентификатор владельца вложения.
 		/// </summary>
+		[JsonProperty("owner_id")]
 		public long? OwnerId { get; set; }
 
 		/// <summary>
