@@ -12,7 +12,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с сообщениями.
+	/// Асинхронные Методы для работы с личными сообщениями. Для моментального получения входящих сообщений используйте LongPoll сервер.
 	/// </summary>
 	public interface IMessagesCategoryAsync
 	{
@@ -737,6 +737,36 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteConversation
 		/// </remarks>
 		Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null);
+
+		/// <summary>
+		/// Позволяет получить беседу по её идентификатору.
+		/// </summary>
+		/// <param name = "peerIds">
+		/// Идентификаторы назначений, разделённые запятой.
+		/// Для пользователя:
+		/// id  пользователя.
+		/// Для групповой беседы:
+		/// 2000000000 + id беседы.
+		/// Для сообщества:
+		/// -id сообщества.
+		/// список целых чисел, разделенных запятыми, обязательный параметр
+		/// </param>
+		/// <param name = "fields">
+		/// Дополнительные поля пользователей и сообществ, которые необходимо вернуть в ответе. список слов, разделенных через запятую
+		/// </param>
+		/// <param name = "extended">
+		/// 1 — возвращать дополнительные поля. флаг, может принимать значения 1 или 0
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </param>
+		/// <returns>
+		/// Возвращает общее число результатов в поле count (integer) и массив объектов бесед в поле items.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationsById
+		/// </remarks>
+		Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null, ulong? groupId = null);
 	#region Obsoleted
 
 		/// <summary>

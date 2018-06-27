@@ -166,7 +166,7 @@ namespace VkNet.Categories
 				{ "user_id", userId },
 				{ "offset", offset },
 				{ "peer_id", peerId },
-				{ "group_id", groupId}
+				{ "group_id", groupId }
 			};
 
 			if (count <= 10000)
@@ -178,9 +178,22 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null,
+															ulong? groupId = null)
+		{
+			return _vk.Call<ConversationResultObject>("messages.getConversationsById",
+				new VkParameters
+				{
+					{ "peer_ids", peerIds },
+					{ "fields", fields },
+					{ "extended", extended },
+					{ "group_id", groupId }
+				});
+		}
+
+		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
-
 			return DeleteConversation(userId, peerId, offset, count, null);
 		}
 

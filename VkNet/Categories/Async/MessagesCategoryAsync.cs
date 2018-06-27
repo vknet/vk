@@ -15,19 +15,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<bool> AddChatUserAsync(long chatId, long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>AddChatUser(chatId: chatId, userId: userId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => AddChatUser(chatId: chatId, userId: userId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> AllowMessagesFromGroupAsync(long groupId, string key)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>AllowMessagesFromGroup(groupId: groupId, key: key));
+			return TypeHelper.TryInvokeMethodAsync(func: () => AllowMessagesFromGroup(groupId: groupId, key: key));
 		}
 
 		/// <inheritdoc />
 		public Task<long> CreateChatAsync(IEnumerable<ulong> userIds, string title)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>CreateChat(userIds: userIds, title: title));
+			return TypeHelper.TryInvokeMethodAsync(func: () => CreateChat(userIds: userIds, title: title));
 		}
 
 		/// <inheritdoc />
@@ -40,14 +40,21 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<Chat> DeleteChatPhotoAsync(ulong chatId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>DeleteChatPhoto(messageId: out var _, chatId: chatId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => DeleteChatPhoto(messageId: out var _, chatId: chatId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null,
 												long? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>DeleteConversation(userId, peerId, offset, count, groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => DeleteConversation(userId, peerId, offset, count, groupId));
+		}
+
+		/// <inheritdoc />
+		public async Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields,
+																			bool? extended = null, ulong? groupId = null)
+		{
+			return await TypeHelper.TryInvokeMethodAsync(() => GetConversationsById(peerIds, fields, extended, groupId));
 		}
 
 		/// <inheritdoc />
@@ -60,19 +67,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<bool> DenyMessagesFromGroupAsync(long groupId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>DenyMessagesFromGroup(groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => DenyMessagesFromGroup(groupId: groupId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> EditChatAsync(long chatId, string title)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>EditChat(chatId: chatId, title: title));
+			return TypeHelper.TryInvokeMethodAsync(func: () => EditChat(chatId: chatId, title: title));
 		}
 
 		/// <inheritdoc />
 		public Task<MessagesGetObject> GetAsync(MessagesGetParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Get(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Get(@params: @params));
 		}
 
 		/// <inheritdoc />
@@ -92,25 +99,25 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<VkCollection<Message>> SearchAsync(MessagesSearchParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Search(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Search(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<long> SendAsync(MessagesSendParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Send(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Send(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>SendToUserIds(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => SendToUserIds(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> RestoreAsync(ulong messageId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Restore(messageId: messageId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Restore(messageId: messageId));
 		}
 
 		/// <inheritdoc />
@@ -123,13 +130,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<bool> SetActivityAsync(long userId, long? peerId = null, string type = "typing")
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>SetActivity(userId: userId, peerId: peerId, type: type));
+			return TypeHelper.TryInvokeMethodAsync(func: () => SetActivity(userId: userId, peerId: peerId, type: type));
 		}
 
 		/// <inheritdoc />
 		public Task<LastActivity> GetLastActivityAsync(long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetLastActivity(userId: userId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetLastActivity(userId: userId));
 		}
 
 		/// <inheritdoc />
@@ -151,7 +158,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<ChatPreview> GetChatPreviewAsync(string link, ProfileFields fields)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetChatPreview(link: link, fields: fields));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetChatPreview(link: link, fields: fields));
 		}
 
 		/// <inheritdoc />
@@ -164,19 +171,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetDialogs(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetDialogs(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<MessagesGetObject> GetHistoryAsync(MessagesGetHistoryParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetHistory(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetHistory(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> RemoveChatUserAsync(long chatId, long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>RemoveChatUser(chatId: chatId, userId: userId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => RemoveChatUser(chatId: chatId, userId: userId));
 		}
 
 		/// <inheritdoc />
@@ -189,13 +196,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetLongPollHistory(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetLongPollHistory(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<long> SetChatPhotoAsync(string file)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>SetChatPhoto(messageId: out var _, file: file));
+			return TypeHelper.TryInvokeMethodAsync(func: () => SetChatPhoto(messageId: out var _, file: file));
 		}
 
 		/// <inheritdoc />
@@ -208,7 +215,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<long> SendStickerAsync(MessagesSendStickerParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>SendSticker(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => SendSticker(@params: @params));
 		}
 
 		/// <inheritdoc />
@@ -221,7 +228,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<string> GetInviteLinkAsync(ulong peerId, bool reset)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetInviteLink(peerId: peerId, reset: reset));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetInviteLink(peerId: peerId, reset: reset));
 		}
 
 		/// <inheritdoc />
@@ -234,7 +241,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<long> JoinChatByInviteLinkAsync(string link)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>JoinChatByInviteLink(link: link));
+			return TypeHelper.TryInvokeMethodAsync(func: () => JoinChatByInviteLink(link: link));
 		}
 
 		public Task<bool> MarkAsAnsweredConversationAsync(long peerId, bool answered = true)
@@ -245,7 +252,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>MarkAsAnsweredDialog(peerId: peerId, answered: answered));
+			return TypeHelper.TryInvokeMethodAsync(func: () => MarkAsAnsweredDialog(peerId: peerId, answered: answered));
 		}
 
 		/// <inheritdoc />
@@ -265,7 +272,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<bool> EditAsync(MessageEditParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Edit(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Edit(@params: @params));
 		}
 	}
 }
