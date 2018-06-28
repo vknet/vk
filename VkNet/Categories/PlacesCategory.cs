@@ -87,9 +87,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Uri Search(PlacesSearchParams placesSearchParams)
+		public VkCollection<Place> Search(PlacesSearchParams placesSearchParams)
 		{
-			return _vk.Call<Uri>(methodName: "places.search",
+			return _vk.Call<VkCollection<Place>>(methodName: "places.search",
 				parameters: new VkParameters
 				{
 					{ "q", placesSearchParams.Query },

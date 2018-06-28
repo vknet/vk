@@ -159,6 +159,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.search
 		/// </remarks>
-		Task<Uri> SearchAsync(PlacesSearchParams placesSearchParams);
+		Task<VkCollection<Place>> SearchAsync(PlacesSearchParams placesSearchParams);
 	}
 }

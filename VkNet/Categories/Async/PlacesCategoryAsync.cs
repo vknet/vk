@@ -43,7 +43,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<Uri> SearchAsync(PlacesSearchParams placesSearchParams)
+		public Task<VkCollection<Place>> SearchAsync(PlacesSearchParams placesSearchParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => Search(placesSearchParams: placesSearchParams));
 		}

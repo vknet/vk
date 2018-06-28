@@ -158,6 +158,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.search
 		/// </remarks>
-		Uri Search(PlacesSearchParams placesSearchParams);
+		VkCollection<Place> Search(PlacesSearchParams placesSearchParams);
 	}
 }

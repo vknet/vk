@@ -41,6 +41,7 @@ namespace VkNet.Model
 		/// Идентификатор типа места, информацию о котором можно получить с помощью метода
 		/// DatabaseCategory.GetPlaceTypes
 		/// </summary>
+		[Obsolete("Используйте поле Type", true)]
 		public long? TypeId { get; set; }
 
 		/// <summary>
@@ -102,13 +103,31 @@ namespace VkNet.Model
 		/// Страна, в которой находится место.
 		/// </summary>
 		[JsonProperty("country")]
-		public string Country { get; set; }
+		public long Country { get; set; }
 
 		/// <summary>
 		/// Город, в котором находится место.
 		/// </summary>
 		[JsonProperty("city")]
-		public string City { get; set; }
+		public long City { get; set; }
+
+		/// <summary>
+		/// Расстояние от исходной точки
+		/// </summary>
+		[JsonProperty("distance")]
+		public long Distance { get; set; }
+
+		/// <summary>
+		///
+		/// </summary>
+		[JsonProperty("group_id")]
+		public long? GroupId { get; set; }
+
+		/// <summary>
+		///
+		/// </summary>
+		[JsonProperty("group_photo")]
+		public Uri GroupPhoto { get; set; }
 
 	#region Методы
 
@@ -125,7 +144,7 @@ namespace VkNet.Model
 				Title = response[key: "title"],
 				Latitude = response[key: "latitude"],
 				Longitude = response[key: "longitude"],
-				TypeId = response[key: "type"],
+				Type = response[key: "type"],
 				CountryId = response[key: "country_id"],
 				CityId = response[key: "city_id"],
 				Address = response[key: "address"],
