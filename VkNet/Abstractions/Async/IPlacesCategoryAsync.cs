@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Abstractions
@@ -61,7 +62,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getById
 		/// </remarks>
-		Task<IEnumerable<object>> GetByIdAsync(IEnumerable<ulong> places);
+		Task<IEnumerable<Place>> GetByIdAsync(IEnumerable<ulong> places);
 
 		/// <summary>
 		/// Возвращает список отметок пользователей в местах согласно заданным параметрам.

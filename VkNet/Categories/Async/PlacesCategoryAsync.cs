@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
@@ -22,7 +23,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<object>> GetByIdAsync(IEnumerable<ulong> places)
+		public Task<IEnumerable<Place>> GetByIdAsync(IEnumerable<ulong> places)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => GetById(places: places));
 		}
