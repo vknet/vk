@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 
@@ -61,7 +62,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getById
 		/// </remarks>
-		IEnumerable<Place> GetById(IEnumerable<ulong> places);
+		ReadOnlyCollection<Place> GetById(IEnumerable<ulong> places);
 
 		/// <summary>
 		/// Возвращает список отметок пользователей в местах согласно заданным параметрам.

@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -72,9 +73,17 @@ namespace VkNet.Model
 		public long? Checkins { get; set; }
 
 		/// <summary>
+		/// Дата создания
+		/// </summary>
+		[JsonProperty("created")]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
+		public DateTime? Created { get; set; }
+
+		/// <summary>
 		/// Дата и время последнего обновления
 		/// </summary>
 		[JsonProperty("updated")]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Updated { get; set; }
 
 		/// <summary>
@@ -88,6 +97,18 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("icon")]
 		public Uri Icon { get; set; }
+
+		/// <summary>
+		/// Страна, в которой находится место.
+		/// </summary>
+		[JsonProperty("country")]
+		public string Country { get; set; }
+
+		/// <summary>
+		/// Город, в котором находится место.
+		/// </summary>
+		[JsonProperty("city")]
+		public string City { get; set; }
 
 	#region Методы
 
@@ -115,22 +136,6 @@ namespace VkNet.Model
 
 			return place;
 		}
-
-	#endregion
-
-	#region Поля, установленные экспериментально
-
-		/// <summary>
-		/// Страна, в которой находится место.
-		/// </summary>
-		[JsonProperty("country")]
-		public string Country { get; set; }
-
-		/// <summary>
-		/// Город, в котором находится место.
-		/// </summary>
-		[JsonProperty("city")]
-		public string City { get; set; }
 
 	#endregion
 	}
