@@ -126,7 +126,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getTypes
 		/// </remarks>
-		Task<IEnumerable<object>> GetTypesAsync();
+		Task<ReadOnlyCollection<PlaceType>> GetTypesAsync();
 
 		/// <summary>
 		/// Возвращает список мест, найденных по заданным условиям поиска.

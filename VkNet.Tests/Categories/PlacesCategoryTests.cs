@@ -93,5 +93,24 @@ namespace VkNet.Tests.Categories
 
 			Assert.IsNotEmpty(result);
 		}
+
+		[Test]
+		public void GetTypes()
+		{
+			Url = "https://api.vk.com/method/places.getTypes";
+
+			Json = @"{
+				response: [{
+					id: 1,
+					title: 'Home',
+					icon: 'http://vk.com/images/places/home.png'
+				}]
+			}";
+
+
+			var result = Api.Places.GetTypes();
+
+			Assert.IsNotEmpty(result);
+		}
 	}
 }

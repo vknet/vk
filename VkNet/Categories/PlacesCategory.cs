@@ -81,9 +81,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<object> GetTypes()
+		public ReadOnlyCollection<PlaceType> GetTypes()
 		{
-			return _vk.Call<IEnumerable<object>>(methodName: "places.getTypes", parameters: VkParameters.Empty);
+			return _vk.Call<ReadOnlyCollection<PlaceType>>(methodName: "places.getTypes", parameters: VkParameters.Empty);
 		}
 
 		/// <inheritdoc />

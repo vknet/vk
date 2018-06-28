@@ -37,7 +37,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<object>> GetTypesAsync()
+		public Task<ReadOnlyCollection<PlaceType>> GetTypesAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: GetTypes);
 		}
