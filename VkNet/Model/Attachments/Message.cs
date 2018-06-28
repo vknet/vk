@@ -189,7 +189,7 @@ namespace VkNet.Model
 		/// исходящих сообщений.
 		/// </summary>
 		[JsonProperty("random_id")]
-		public long RandomId { get; set; }
+		public long? RandomId { get; set; }
 
 	#endregion
 

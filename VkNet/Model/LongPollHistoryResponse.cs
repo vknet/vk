@@ -72,17 +72,17 @@ namespace VkNet.Model
 		{
 			var fromJson = new LongPollHistoryResponse
 			{
-					UnreadMessages = response[key: "messages"][key: "count"]
-					, Messages = response[key: "messages"][key: "items"].ToReadOnlyCollectionOf<Message>(selector: x => x)
-					, Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: x => x)
-					, Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: x => x)
-					, NewPts = response[key: "new_pts"]
-					, More = response[key: "more"]
+				UnreadMessages = response[key: "messages"][key: "count"],
+				Messages = response[key: "messages"][key: "items"].ToReadOnlyCollectionOf<Message>(selector: x => x),
+				Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: x => x),
+				Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: x => x),
+				NewPts = response[key: "new_pts"],
+				More = response[key: "more"]
 			};
 
-			VkResponseArray historys = response[key: "history"];
+			VkResponseArray histories = response[key: "history"];
 
-			foreach (var history in historys)
+			foreach (var history in histories)
 			{
 				VkResponseArray item = history;
 				fromJson.History.Add(item: new ReadOnlyCollection<long>(list: item.ToReadOnlyCollectionOf<long>(selector: x => x)));

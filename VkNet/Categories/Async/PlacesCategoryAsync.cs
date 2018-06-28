@@ -12,19 +12,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<long> AddAsync(PlacesAddParams placesAddParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Add(placesAddParams: placesAddParams));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Add(placesAddParams: placesAddParams));
 		}
 
 		/// <inheritdoc />
 		public Task<object> CheckinAsync(PlacesCheckinParams placesCheckinParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Checkin(placesCheckinParams: placesCheckinParams));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Checkin(placesCheckinParams: placesCheckinParams));
 		}
 
 		/// <inheritdoc />
 		public Task<IEnumerable<object>> GetByIdAsync(IEnumerable<ulong> places)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetById(places: places));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetById(places: places));
 		}
 
 		/// <inheritdoc />
@@ -37,13 +37,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<IEnumerable<object>> GetTypesAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetTypes());
+			return TypeHelper.TryInvokeMethodAsync(func: GetTypes);
 		}
 
 		/// <inheritdoc />
 		public Task<Uri> SearchAsync(PlacesSearchParams placesSearchParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Search(placesSearchParams: placesSearchParams));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Search(placesSearchParams: placesSearchParams));
 		}
 	}
 }
