@@ -40,9 +40,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public object Checkin(PlacesCheckinParams placesCheckinParams)
+		public long Checkin(PlacesCheckinParams placesCheckinParams)
 		{
-			return _vk.Call<object>(methodName: "places.checkin",
+			return _vk.Call<long>(methodName: "places.checkin",
 				parameters: new VkParameters
 				{
 					{ "text", placesCheckinParams.Text },

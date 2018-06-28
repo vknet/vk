@@ -20,5 +20,17 @@ namespace VkNet.Tests.Categories
 
 			Assert.AreEqual(6162171, result);
 		}
+		[Test]
+		public void Checkin()
+		{
+			Url = "https://api.vk.com/method/places.checkin";
+			Json = @"{
+				response: 6162171
+			}";
+
+			var result = Api.Places.Checkin(new PlacesCheckinParams());
+
+			Assert.AreEqual(6162171, result);
+		}
 	}
 }

@@ -16,7 +16,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<object> CheckinAsync(PlacesCheckinParams placesCheckinParams)
+		public Task<long> CheckinAsync(PlacesCheckinParams placesCheckinParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => Checkin(placesCheckinParams: placesCheckinParams));
 		}

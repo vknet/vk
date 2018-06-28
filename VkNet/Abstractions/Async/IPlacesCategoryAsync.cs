@@ -36,7 +36,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.checkin
 		/// </remarks>
-		Task<object> CheckinAsync(PlacesCheckinParams placesCheckinParams);
+		Task<long> CheckinAsync(PlacesCheckinParams placesCheckinParams);
 
 		/// <summary>
 		/// Возвращает информацию о местах по их идентификаторам.
