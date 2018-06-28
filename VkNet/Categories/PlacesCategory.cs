@@ -63,9 +63,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<object> GetCheckins(PlacesGetCheckinsParams placesGetCheckinsParams)
+		public VkCollection<Checkin> GetCheckins(PlacesGetCheckinsParams placesGetCheckinsParams)
 		{
-			return _vk.Call<IEnumerable<object>>(methodName: "places.getCheckins",
+			return _vk.Call<VkCollection<Checkin>>(methodName: "places.getCheckins",
 				parameters: new VkParameters
 				{
 					{ "latitude", placesGetCheckinsParams.Latitude },

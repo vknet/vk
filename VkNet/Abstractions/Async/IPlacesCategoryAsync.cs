@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
@@ -113,7 +114,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getCheckins
 		/// </remarks>
-		Task<IEnumerable<object>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams);
+		Task<VkCollection<Checkin>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams);
 
 		/// <summary>
 		/// Возвращает список всех возможных типов мест.

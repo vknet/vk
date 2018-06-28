@@ -30,7 +30,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<object>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams)
+		public Task<VkCollection<Checkin>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
 				GetCheckins(placesGetCheckinsParams: placesGetCheckinsParams));

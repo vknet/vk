@@ -59,5 +59,39 @@ namespace VkNet.Tests.Categories
 
 			Assert.IsNotEmpty(result);
 		}
+
+		[Test]
+		public void GetCheckins()
+		{
+			Url = "https://api.vk.com/method/places.getCheckins";
+
+			Json = @"{
+				response: {
+					count: 68,
+					items: [{
+					id: '973782_2187',
+						user_id: 973782,
+						post_id: 2187,
+						date: 1530002871,
+						latitude: 0,
+						longitude: 0,
+						text: 'text',
+						place_id: 0,
+						place_title: '',
+						place_country: 0,
+						place_city: 0,
+						place_address: '',
+						place_type: 0,
+						place_icon: 'http://vk.com/images/places/place.png',
+						distance: 7062029
+					}]
+				}
+			}";
+
+
+			var result = Api.Places.GetCheckins(new PlacesGetCheckinsParams());
+
+			Assert.IsNotEmpty(result);
+		}
 	}
 }
