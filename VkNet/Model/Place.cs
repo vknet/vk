@@ -91,7 +91,7 @@ namespace VkNet.Model
 		/// Тип
 		/// </summary>
 		[JsonProperty("type")]
-		public long Type { get; set; }
+		public long? Type { get; set; }
 
 		/// <summary>
 		/// Иконка
@@ -103,19 +103,19 @@ namespace VkNet.Model
 		/// Страна, в которой находится место.
 		/// </summary>
 		[JsonProperty("country")]
-		public long Country { get; set; }
+		public long? Country { get; set; }
 
 		/// <summary>
 		/// Город, в котором находится место.
 		/// </summary>
 		[JsonProperty("city")]
-		public long City { get; set; }
+		public long? City { get; set; }
 
 		/// <summary>
 		/// Расстояние от исходной точки
 		/// </summary>
 		[JsonProperty("distance")]
-		public long Distance { get; set; }
+		public long? Distance { get; set; }
 
 		/// <summary>
 		///
