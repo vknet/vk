@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
@@ -35,7 +38,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.checkin
 		/// </remarks>
-		object Checkin(PlacesCheckinParams placesCheckinParams);
+		long Checkin(PlacesCheckinParams placesCheckinParams);
 
 		/// <summary>
 		/// Возвращает информацию о местах по их идентификаторам.
@@ -60,7 +63,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getById
 		/// </remarks>
-		IEnumerable<object> GetById(IEnumerable<ulong> places);
+		ReadOnlyCollection<Place> GetById(IEnumerable<ulong> places);
 
 		/// <summary>
 		/// Возвращает список отметок пользователей в местах согласно заданным параметрам.
@@ -110,7 +113,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getCheckins
 		/// </remarks>
-		IEnumerable<object> GetCheckins(PlacesGetCheckinsParams placesGetCheckinsParams);
+		VkCollection<Checkin> GetCheckins(PlacesGetCheckinsParams placesGetCheckinsParams);
 
 		/// <summary>
 		/// Возвращает список всех возможных типов мест.
@@ -122,7 +125,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getTypes
 		/// </remarks>
-		IEnumerable<object> GetTypes();
+		ReadOnlyCollection<PlaceType> GetTypes();
 
 		/// <summary>
 		/// Возвращает список мест, найденных по заданным условиям поиска.
@@ -155,6 +158,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.search
 		/// </remarks>
-		Uri Search(PlacesSearchParams placesSearchParams);
+		VkCollection<Place> Search(PlacesSearchParams placesSearchParams);
 	}
 }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
@@ -36,7 +39,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.checkin
 		/// </remarks>
-		Task<object> CheckinAsync(PlacesCheckinParams placesCheckinParams);
+		Task<long> CheckinAsync(PlacesCheckinParams placesCheckinParams);
 
 		/// <summary>
 		/// Возвращает информацию о местах по их идентификаторам.
@@ -61,7 +64,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getById
 		/// </remarks>
-		Task<IEnumerable<object>> GetByIdAsync(IEnumerable<ulong> places);
+		Task<ReadOnlyCollection<Place>> GetByIdAsync(IEnumerable<ulong> places);
 
 		/// <summary>
 		/// Возвращает список отметок пользователей в местах согласно заданным параметрам.
@@ -111,7 +114,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getCheckins
 		/// </remarks>
-		Task<IEnumerable<object>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams);
+		Task<VkCollection<Checkin>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams);
 
 		/// <summary>
 		/// Возвращает список всех возможных типов мест.
@@ -123,7 +126,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.getTypes
 		/// </remarks>
-		Task<IEnumerable<object>> GetTypesAsync();
+		Task<ReadOnlyCollection<PlaceType>> GetTypesAsync();
 
 		/// <summary>
 		/// Возвращает список мест, найденных по заданным условиям поиска.
@@ -156,6 +159,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/places.search
 		/// </remarks>
-		Task<Uri> SearchAsync(PlacesSearchParams placesSearchParams);
+		Task<VkCollection<Place>> SearchAsync(PlacesSearchParams placesSearchParams);
 	}
 }
