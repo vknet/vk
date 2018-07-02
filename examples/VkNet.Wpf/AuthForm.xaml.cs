@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Wpf
@@ -8,7 +9,7 @@ namespace VkNet.Wpf
 	/// </summary>
 	public partial class AuthForm : Window
 	{
-		public VkAuthorization Auth { get; set; }
+		public AuthorizationResult Auth { get; set; }
 
 		public string Tfa { get; set; }
 

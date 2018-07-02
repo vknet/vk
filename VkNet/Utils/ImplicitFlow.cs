@@ -38,9 +38,7 @@ namespace VkNet.Utils
 
 		/// <inheritdoc />
 		public ImplicitFlow([CanBeNull]
-							ILogger logger
-							, IWebProxy proxy
-							, HttpClient httpClient, IVkApiVersionManager versionManager)
+							ILogger logger, IWebProxy proxy, HttpClient httpClient, IVkApiVersionManager versionManager)
 		{
 			_logger = logger;
 			_proxy = proxy;

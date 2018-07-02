@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using JetBrains.Annotations;
 using NLog;
+using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -22,11 +23,17 @@ namespace VkNet.Utils
 
 		private IApiAuthParams _authParams;
 
+		/// <summary>
+		/// Менеджер версий VkApi
+		/// </summary>
+		private readonly IVkApiVersionManager _versionManager;
+
 		/// <inheritdoc />
 		public Browser([CanBeNull]
-						ILogger logger)
+						ILogger logger, IVkApiVersionManager versionManager)
 		{
 			_logger = logger;
+			_versionManager = versionManager;
 		}
 
 		/// <inheritdoc />
@@ -63,11 +70,14 @@ namespace VkNet.Utils
 		{
 			var builder = new StringBuilder(value: "https://oauth.vk.com/authorize?");
 
-			builder.AppendFormat(format: "client_id={0}&", arg0: clientId);
-			builder.AppendFormat(format: "scope={0}&", arg0: scope);
+			builder.Append(value: $"client_id={clientId}&");
 			builder.Append(value: "redirect_uri=https://oauth.vk.com/blank.html&");
-			builder.AppendFormat(format: "display={0}&", arg0: display);
-			builder.Append(value: "response_type=token");
+			builder.Append(value: $"display={display}&");
+			builder.Append(value: $"scope={scope}&");
+			builder.Append(value: "response_type=token&");
+			builder.Append(value: $"v={_versionManager.Version}&");
+			builder.Append(value: $"state={state}&");
+			builder.Append(value: "revoke=1");
 
 			return new Uri(builder.ToString());
 		}
@@ -329,7 +339,6 @@ namespace VkNet.Utils
 			return EndAuthorize(result: captcha, webProxy: Proxy);
 		}
 
-		/// <inheritdoc />
 		private VkAuthorization OldValidate(string validateUrl, string phoneNumber)
 		{
 			if (string.IsNullOrWhiteSpace(value: validateUrl))

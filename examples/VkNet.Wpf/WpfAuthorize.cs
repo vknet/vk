@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using JetBrains.Annotations;
+using VkNet.Abstractions;
+using VkNet.Abstractions.Core;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -14,6 +16,18 @@ namespace VkNet.Wpf
 	[UsedImplicitly]
 	public class WpfAuthorize : IBrowser
 	{
+		/// <summary>
+		/// Менеджер версий VkApi
+		/// </summary>
+		private readonly IVkApiVersionManager _versionManager;
+
+		private IApiAuthParams _authParams;
+
+		public WpfAuthorize(IVkApiVersionManager versionManager)
+		{
+			_versionManager = versionManager;
+		}
+
 		/// <inheritdoc />
 		public string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
@@ -21,10 +35,21 @@ namespace VkNet.Wpf
 		}
 
 		/// <inheritdoc />
-		public VkAuthorization Authorize(IApiAuthParams authParams)
+		public void SetAuthParams(IApiAuthParams authParams)
+		{
+			_authParams = authParams;
+		}
+
+		/// <inheritdoc />
+		public IWebProxy Proxy { get; set; }
+
+		/// <inheritdoc />
+		public AuthorizationResult Authorize()
 		{
 			var dlg = new AuthForm();
-			dlg.WebBrowser.Navigate(CreateAuthorizeUrlFor(authParams.ApplicationId, authParams.Settings, Display.Mobile));
+
+			dlg.WebBrowser.Navigate(
+				CreateAuthorizeUrl(_authParams.ApplicationId, _authParams.Settings.ToUInt64(), Display.Mobile, "123456"));
 
 			dlg.WebBrowser.Navigated += (sender, args) =>
 			{
@@ -35,7 +60,14 @@ namespace VkNet.Wpf
 					return;
 				}
 
-				dlg.Auth = result;
+				dlg.Auth = new AuthorizationResult
+				{
+					AccessToken = result.AccessToken,
+					ExpiresIn = result.ExpiresIn,
+					UserId = result.UserId,
+					State = result.State
+				};
+
 				dlg.Close();
 			};
 
@@ -45,35 +77,26 @@ namespace VkNet.Wpf
 		}
 
 		/// <inheritdoc />
-		public VkAuthorization Validate(string validateUrl, string phoneNumber)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <inheritdoc />
-		public IWebProxy Proxy { get; set; }
-
-		/// <summary>
-		/// Построить URL для авторизации.
-		/// </summary>
-		/// <param name="appId"> Идентификатор приложения. </param>
-		/// <param name="settings"> Настройки прав доступа. </param>
-		/// <param name="display"> Вид окна авторизации. </param>
-		/// <returns> Возвращает Uri для авторизации </returns>
-		[NotNull]
-		private static string CreateAuthorizeUrlFor(ulong appId, [NotNull]
-													Settings settings, [NotNull]
-													Display display)
+		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
 			var builder = new StringBuilder(value: "https://oauth.vk.com/authorize?");
 
-			builder.AppendFormat(format: "client_id={0}&", arg0: appId);
-			builder.AppendFormat(format: "scope={0}&", arg0: settings.ToUInt64());
+			builder.Append(value: $"client_id={clientId}&");
 			builder.Append(value: "redirect_uri=https://oauth.vk.com/blank.html&");
-			builder.AppendFormat(format: "display={0}&", arg0: display);
-			builder.Append(value: "response_type=token");
+			builder.Append(value: $"display={display}&");
+			builder.Append(value: $"scope={scope}&");
+			builder.Append(value: "response_type=token&");
+			builder.Append(value: $"v={_versionManager.Version}&");
+			builder.Append(value: $"state={state}&");
+			builder.Append(value: "revoke=1");
 
-			return builder.ToString();
+			return new Uri(builder.ToString());
+		}
+
+		/// <inheritdoc />
+		AuthorizationResult INeedValidationHandler.Validate(string validateUrl, string phoneNumber)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

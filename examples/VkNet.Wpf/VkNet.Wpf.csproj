@@ -121,10 +121,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-	  <Reference Include="VkNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-		  <HintPath>..\packages\VkNet.1.35.1\lib\net45\VkNet.dll</HintPath>
-		  <Private>True</Private>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -174,6 +170,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+	  <ProjectReference Include="..\..\VkNet\VkNet.csproj">
+		  <Project>{1e722528-b833-4231-9b9f-b35a6ff62ba6}</Project>
+		  <Name>VkNet</Name>
+	  </ProjectReference>
     <ProjectReference Include="..\VkNet.Shared\VkNet.Shared.csproj">
       <Project>{646de977-0b6f-4883-a93c-996b8f0f4ab6}</Project>
       <Name>VkNet.Shared</Name>
