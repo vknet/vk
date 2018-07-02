@@ -47,6 +47,11 @@ namespace VkNet.Utils
 		public int ExpiresIn => GetExpiresIn();
 
 		/// <summary>
+		/// Произвольная строка, которая будет возвращена вместе с результатом авторизации.
+		/// </summary>
+		public string State => GetFieldValue(fieldName: "state");
+
+		/// <summary>
 		/// Идентификатор пользователя, у которого работает приложение (от имени которого
 		/// был произведен вход).
 		/// </summary>
@@ -89,8 +94,8 @@ namespace VkNet.Utils
 		private string GetFieldValue(string fieldName)
 		{
 			return _nameValues.ContainsKey(key: fieldName)
-					? _nameValues[key: fieldName]
-					: throw new KeyNotFoundException(message: fieldName);
+				? _nameValues[key: fieldName]
+				: throw new KeyNotFoundException(message: fieldName);
 		}
 
 		/// <summary>
@@ -108,12 +113,12 @@ namespace VkNet.Utils
 			}
 
 			var query = string.IsNullOrWhiteSpace(value: uri.Query)
-					? uri.Fragment.Substring(startIndex: 1)
-					: uri.Query.Substring(startIndex: 1);
+				? uri.Fragment.Substring(startIndex: 1)
+				: uri.Query.Substring(startIndex: 1);
 
 			return query.Split(separator: new[] { '&' }, options: StringSplitOptions.RemoveEmptyEntries)
-					.Select(selector: s => s.Split('='))
-					.ToDictionary(keySelector: s => s[0], elementSelector: s => s[1]);
+				.Select(selector: s => s.Split('='))
+				.ToDictionary(keySelector: s => s[0], elementSelector: s => s[1]);
 		}
 
 		private int GetExpiresIn()

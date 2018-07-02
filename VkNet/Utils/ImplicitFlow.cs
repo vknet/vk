@@ -49,7 +49,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public AuthorizationResult Aurhorize()
+		public AuthorizationResult Authorize()
 		{
 			_logger?.Debug(message: "Валидация данных.");
 			ValidateAuthorizationParameters();

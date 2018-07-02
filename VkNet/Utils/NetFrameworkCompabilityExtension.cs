@@ -1,8 +1,13 @@
-#if NET40
+using JetBrains.Annotations;
 
-// TODO: Если namespace System.Reflection то везде где используется GetTypeInfo() он будет добавлен и Net4.5 будет прозрачно. Хорошее решение - хз ??
+#if NET40
+// ReSharper disable once CheckNamespace
 namespace System.Reflection
 {
+	/// <summary>
+	/// Методы расширения для <see cref="Type"/>
+	/// </summary>
+	[UsedImplicitly]
 	public static class TypesCompabilityExtension
 	{
 		/// <summary>

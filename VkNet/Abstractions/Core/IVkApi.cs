@@ -1,5 +1,6 @@
 using System;
 using JetBrains.Annotations;
+using VkNet.Abstractions.Authorization;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -21,6 +22,11 @@ namespace VkNet.Abstractions
 		/// Браузер.
 		/// </summary>
 		IBrowser Browser { get; set; }
+
+		/// <summary>
+		/// Поток авторизации
+		/// </summary>
+		IAuthorizationFlow AuthorizationFlow { get; set; }
 
 		/// <summary>
 		/// Токен для доступа к методам API

@@ -14,6 +14,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using NLog;
 using VkNet.Abstractions;
+using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Utils;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -79,7 +80,7 @@ namespace VkNet
 	#pragma warning restore S1104 // Fields should not have public accessibility
 
 		/// <inheritdoc />
-		public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null, IBrowser browser = null)
+		public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
 		{
 			var container = new ServiceCollection();
 
@@ -93,9 +94,9 @@ namespace VkNet
 				container.TryAddSingleton(instance: captchaSolver);
 			}
 
-			if (browser != null)
+			if (authorizationFlow != null)
 			{
-				container.TryAddSingleton(instance: browser);
+				container.TryAddSingleton(instance: authorizationFlow);
 			}
 
 			container.RegisterDefaultDependencies();
@@ -132,6 +133,9 @@ namespace VkNet
 
 		/// <inheritdoc />
 		public IBrowser Browser { get; set; }
+
+		/// <inheritdoc />
+		public IAuthorizationFlow AuthorizationFlow { get; set; }
 
 		/// <inheritdoc />
 		public bool IsAuthorized => !string.IsNullOrWhiteSpace(value: AccessToken);
@@ -367,7 +371,7 @@ namespace VkNet
 			LastInvokeTime = DateTimeOffset.Now;
 			var authorization = Browser.Validate(validateUrl: validateUrl, phoneNumber: phoneNumber);
 
-			if (!authorization.IsAuthorized)
+			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
 				const string message = "Не удалось автоматически пройти валидацию!";
 				_logger?.Error(message: message);
@@ -704,7 +708,7 @@ namespace VkNet
 		/// Sets the token properties.
 		/// </summary>
 		/// <param name="authorization"> The authorization. </param>
-		private void SetTokenProperties(VkAuthorization authorization)
+		private void SetTokenProperties(AuthorizationResult authorization)
 		{
 			_logger?.Debug(message: "Установка свойств токена");
 			var expireTime = (Convert.ToInt32(value: authorization.ExpiresIn) - 10) * 1000;
@@ -792,9 +796,10 @@ namespace VkNet
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			var authorization = Browser.Authorize(authParams: authParams);
+			Browser.SetAuthParams(authParams);
+			var authorization = Browser.Authorize();
 
-			if (!authorization.IsAuthorized)
+			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
 				var message = $"Invalid authorization with {authParams.Login} - {authParams.Password}";
 				_logger?.Error(message: message);
@@ -808,6 +813,7 @@ namespace VkNet
 		private void Initialization(IServiceProvider serviceProvider)
 		{
 			Browser = serviceProvider.GetRequiredService<IBrowser>();
+			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			_logger = serviceProvider.GetService<ILogger>();
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();

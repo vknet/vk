@@ -8,6 +8,8 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 using VkNet.Abstractions;
+using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
 using VkNet.Infrastructure;
@@ -28,6 +30,16 @@ namespace VkNet.Utils
 			if (container.All(predicate: x => x.ServiceType != typeof(IBrowser)))
 			{
 				container.TryAddSingleton<IBrowser, Browser>();
+			}
+
+			if (container.All(predicate: x => x.ServiceType != typeof(IAuthorizationFlow)))
+			{
+				container.TryAddSingleton<IAuthorizationFlow, Browser>();
+			}
+
+			if (container.All(predicate: x => x.ServiceType != typeof(INeedValidationHandler)))
+			{
+				container.TryAddSingleton<INeedValidationHandler, Browser>();
 			}
 
 			if (container.All(predicate: x => x.ServiceType != typeof(ILogger)))

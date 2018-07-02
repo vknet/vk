@@ -17,13 +17,15 @@ namespace VkNet.Tests
 		{
 			var browser = new Browser(logger: null);
 
-			var result = browser.Authorize(authParams: new ApiAuthParams
+			browser.SetAuthParams(new ApiAuthParams
 			{
-					ApplicationId = 123
-					, Login = "qwe@qwe.ru"
-					, Password = "pass"
-					, Settings = Settings.All
+				ApplicationId = 123,
+				Login = "qwe@qwe.ru",
+				Password = "pass",
+				Settings = Settings.All
 			});
+
+			var result = browser.Authorize();
 
 			Assert.NotNull(anObject: result);
 		}
