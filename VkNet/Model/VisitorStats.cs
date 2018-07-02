@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Статистика посещений
+	/// </summary>
 	[Serializable]
 	public class VisitorStats
 	{

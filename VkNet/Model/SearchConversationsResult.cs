@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Результат запроса messages.searchConversations
+	/// </summary>
 	[Serializable]
 	public class SearchConversationsResult
 	{

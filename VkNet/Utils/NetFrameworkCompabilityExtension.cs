@@ -1,3 +1,4 @@
+// ReSharper disable once RedundantUsingDirective
 using JetBrains.Annotations;
 
 #if NET40

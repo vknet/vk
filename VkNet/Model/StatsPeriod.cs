@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -18,14 +14,14 @@ namespace VkNet.Model
 		/// Период начала отсчёта в формате YYYY-MM-DD.
 		/// </summary>
 		[JsonProperty("period_from")]
-		[JsonConverter(converterType: typeof(IsoDateTimeConverter))]
+		[JsonConverter(typeof(IsoDateTimeConverter))]
 		public DateTime PeriodFrom { get; set; }
 
 		/// <summary>
 		/// Период окончания отсчёта в формате YYYY-MM-DD.
 		/// </summary>
 		[JsonProperty("period_to")]
-		[JsonConverter(converterType: typeof(IsoDateTimeConverter))]
+		[JsonConverter(typeof(IsoDateTimeConverter))]
 		public DateTime PeriodTo { get; set; }
 
 		/// <summary>
