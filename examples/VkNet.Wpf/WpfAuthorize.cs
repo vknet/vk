@@ -4,8 +4,6 @@ using System.Net;
 using System.Text;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
-using VkNet.Abstractions.Core;
-using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
@@ -94,9 +92,35 @@ namespace VkNet.Wpf
 		}
 
 		/// <inheritdoc />
-		AuthorizationResult INeedValidationHandler.Validate(string validateUrl, string phoneNumber)
+		public AuthorizationResult Validate(string validateUrl, string phoneNumber)
 		{
-			throw new NotImplementedException();
+			var dlg = new AuthForm();
+
+			dlg.WebBrowser.Navigate(validateUrl);
+
+			dlg.WebBrowser.Navigated += (sender, args) =>
+			{
+				var result = VkAuthorization.From(args.Uri.AbsoluteUri);
+
+				if (!result.IsAuthorized)
+				{
+					return;
+				}
+
+				dlg.Auth = new AuthorizationResult
+				{
+					AccessToken = result.AccessToken,
+					ExpiresIn = result.ExpiresIn,
+					UserId = result.UserId,
+					State = result.State
+				};
+
+				dlg.Close();
+			};
+
+			dlg.ShowDialog();
+
+			return dlg.Auth;
 		}
 	}
 }
