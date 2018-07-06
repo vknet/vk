@@ -82,7 +82,7 @@ PM> Install-Package VkNet
 + [Groups.ApproveRequest](/vk/groups/approveRequest/) - Позволяет одобрить заявку в группу от пользователя.
 
 
-## Аудиозаписи
+## Аудиозаписи (исколючены из вк api, все методы считаются устаревшими и не работают)
 + [Audio.Get](/vk/audio/get/) - Возвращает список аудиозаписей пользователя или сообщества.
 + [Audio.GetById](/vk/audio/getById/) - Возвращает информацию об аудиозаписях.
 + [Audio.GetLyrics](/vk/audio/getLyrics/) - Возвращает текст аудиозаписи.
