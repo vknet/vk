@@ -178,5 +178,10 @@ namespace VkNet.Abstractions
 		/// Notes
 		/// </summary>
 		INotesCategory Notes { get; set; }
+
+		/// <summary>
+		/// AppWidgets
+		/// </summary>
+		IAppWidgetsCategory AppWidgets { get; set; }
 	}
 }

@@ -559,6 +559,9 @@ namespace VkNet
 		///<inheritdoc />
 		public INotesCategory Notes { get; set; }
 
+		/// <inheritdoc />
+		public IAppWidgetsCategory AppWidgets { get; set; }
+
 	#endregion
 
 	#region private
@@ -851,6 +854,7 @@ namespace VkNet
 			Streaming = new StreamingCategory(api: this);
 			Places = new PlacesCategory(api: this);
 			Notes = new NotesCategory(api: this);
+			AppWidgets = new AppWidgetsCategory(this);
 
 			VkApiVersion = serviceProvider.GetRequiredService<IVkApiVersionManager>();
 
