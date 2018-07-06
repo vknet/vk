@@ -5,6 +5,7 @@ using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Ads;
 
 namespace VkNet.Tests.Categories
 {
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/ads.getAccounts";
 
 			Json =
-					@"{
+				@"{
                     ""response"": [
                         {
                             ""account_id"": 1603879239,
@@ -61,7 +62,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/ads.getCampaigns";
 
 			Json =
-					@"{
+				@"{
                         ""response"": [{
                         ""id"": 1009088099,
                         ""type"": ""promoted_posts"",
@@ -109,19 +110,10 @@ namespace VkNet.Tests.Categories
                         }]
                 }";
 
-			var campaigns = Api.Ads.GetCampaigns(@params: new AdsGetCampaignsParams
+			var campaigns = Api.Ads.GetCampaigns(1900013324, new List<long>
 			{
-					AccountId = 1900013324
-					, ClientId = 1604555949
-					, IncludeDeleted = true
-					, CampaignIds = new List<long>
-					{
-							1009157560
-							, 1009088099
-							, 1009150293
-							, 1009316667
-					}
-			});
+				1009157560, 1009088099, 1009150293, 1009316667
+			}, 1604555949, true);
 
 			Assert.That(actual: campaigns.Count, expression: Is.EqualTo(expected: 4));
 
@@ -135,7 +127,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/ads.getCampaigns";
 
 			Json =
-					@"{
+				@"{
                     ""response"": [{
                     ""id"": 1007993739,
                     ""type"": ""normal"",
@@ -205,7 +197,7 @@ namespace VkNet.Tests.Categories
                     }]
                 }";
 
-			var campaigns = Api.Ads.GetCampaigns(@params: new AdsGetCampaignsParams { AccountId = 1603879239 });
+			var campaigns = Api.Ads.GetCampaigns(1603879239, new List<long>());
 
 			Assert.That(actual: campaigns.Count, expression: Is.EqualTo(expected: 6));
 
@@ -226,17 +218,17 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: campaigns[index: 3].AllLimit, expression: Is.EqualTo(expected: 200000));
 
 			// Даты
-			Assert.That(actual: campaigns[index: 3].StartTime
-					, expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 10, day: 1, hour: 19, minute: 37, second: 24)));
+			Assert.That(actual: campaigns[index: 3].StartTime,
+				expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 10, day: 1, hour: 19, minute: 37, second: 24)));
 
-			Assert.That(actual: campaigns[index: 3].StopTime
-					, expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 10, day: 1, hour: 19, minute: 56, second: 39)));
+			Assert.That(actual: campaigns[index: 3].StopTime,
+				expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 10, day: 1, hour: 19, minute: 56, second: 39)));
 
-			Assert.That(actual: campaigns[index: 3].CreateTime
-					, expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 09, day: 29, hour: 10, minute: 22, second: 15)));
+			Assert.That(actual: campaigns[index: 3].CreateTime,
+				expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 09, day: 29, hour: 10, minute: 22, second: 15)));
 
-			Assert.That(actual: campaigns[index: 3].UpdateTime
-					, expression: Is.EqualTo(expected: new DateTime(year: 2018, month: 01, day: 23, hour: 17, minute: 02, second: 48)));
+			Assert.That(actual: campaigns[index: 3].UpdateTime,
+				expression: Is.EqualTo(expected: new DateTime(year: 2018, month: 01, day: 23, hour: 17, minute: 02, second: 48)));
 		}
 	}
 }

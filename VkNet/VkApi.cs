@@ -843,7 +843,7 @@ namespace VkNet
 			Execute = new ExecuteCategory(vk: this);
 			PollsCategory = new PollsCategory(vk: this);
 			Search = new SearchCategory(vk: this);
-			Ads = new AdsCategory(vk: this);
+			Ads = new AdsCategory(this);
 			Storage = new StorageCategory(api: this);
 			Notifications = new NotificationsCategory(api: this);
 			Widgets = new WidgetsCategory(api: this);
