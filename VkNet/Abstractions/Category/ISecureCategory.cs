@@ -3,6 +3,7 @@ using VkNet.Abstractions.Category;
 
 namespace VkNet.Abstractions
 {
+	/// <inheritdoc />
 	public interface ISecureCategory : ISecureCategoryAsync
 	{
 		/// <summary>

@@ -193,5 +193,10 @@ namespace VkNet.Abstractions
 		/// Secure
 		/// </summary>
 		ISecureCategory Secure { get; set; }
+
+		/// <summary>
+		/// Stories
+		/// </summary>
+		IStoriesCategory Stories { get; set; }
 	}
 }
