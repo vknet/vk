@@ -209,13 +209,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> GetUploadURLAsync(long adFormat)
+		public async Task<Uri> GetUploadUrlAsync(long adFormat)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => GetUploadURL(adFormat));
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> GetVideoUploadURLAsync()
+		public async Task<Uri> GetVideoUploadUrlAsync()
 		{
 			return await TypeHelper.TryInvokeMethodAsync(GetVideoUploadURL);
 		}

@@ -104,7 +104,7 @@ namespace VkNet.Abstractions.Category
 		/// <summary>
 		/// Позволяет получить адрес для загрузки истории с фотографией.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getPhotoUploadServerParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -186,7 +186,7 @@ namespace VkNet.Abstractions.Category
 		/// <summary>
 		/// Позволяет получить адрес для загрузки видеозаписи в историю.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getVideoUploadServerParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
