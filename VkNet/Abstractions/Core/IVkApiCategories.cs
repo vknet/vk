@@ -188,5 +188,10 @@ namespace VkNet.Abstractions
 		/// Orders
 		/// </summary>
 		IOrdersCategory Orders { get; set; }
+
+		/// <summary>
+		/// Secure
+		/// </summary>
+		ISecureCategory Secure { get; set; }
 	}
 }

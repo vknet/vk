@@ -565,6 +565,9 @@ namespace VkNet
 		/// <inheritdoc />
 		public IOrdersCategory Orders { get; set; }
 
+		/// <inheritdoc />
+		public ISecureCategory Secure { get; set; }
+
 	#endregion
 
 	#region private
@@ -859,6 +862,7 @@ namespace VkNet
 			Notes = new NotesCategory(api: this);
 			AppWidgets = new AppWidgetsCategory(this);
 			Orders = new OrdersCategory(this);
+			Secure = new SecureCategory(this);
 
 			VkApiVersion = serviceProvider.GetRequiredService<IVkApiVersionManager>();
 
