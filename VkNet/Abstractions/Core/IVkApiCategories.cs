@@ -183,5 +183,10 @@ namespace VkNet.Abstractions
 		/// AppWidgets
 		/// </summary>
 		IAppWidgetsCategory AppWidgets { get; set; }
+
+		/// <summary>
+		/// Orders
+		/// </summary>
+		IOrdersCategory Orders { get; set; }
 	}
 }
