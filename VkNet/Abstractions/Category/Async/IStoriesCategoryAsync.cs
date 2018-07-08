@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.RequestParams.Stories;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions.Category
 {
@@ -57,7 +59,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.get
 		/// </remarks>
-		Task<IEnumerable<object>> GetAsync(long? ownerId = null, bool? extended = null);
+		Task<StoryResult> GetAsync(long? ownerId = null, bool? extended = null);
 
 		/// <summary>
 		/// Возвращает список источников историй, скрытых из ленты текущего пользователя.

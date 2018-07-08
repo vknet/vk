@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.RequestParams.Stories;
 using VkNet.Utils;
 
@@ -22,7 +23,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<IEnumerable<object>> GetAsync(long? ownerId = null, bool? extended = null)
+		public async Task<StoryResult> GetAsync(long? ownerId = null, bool? extended = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => Get(ownerId, extended));
 		}
