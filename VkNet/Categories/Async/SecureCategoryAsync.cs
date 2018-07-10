@@ -26,7 +26,7 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<object>> GetSMSHistoryAsync(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null, ulong? limit = null)
+        public async Task<IEnumerable<object>> GetSmsHistoryAsync(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null, ulong? limit = null)
         {
             return await TypeHelper.TryInvokeMethodAsync(() => GetSMSHistory(userId, dateFrom, dateTo, limit));
         }

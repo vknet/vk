@@ -734,7 +734,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msg, expression: Is.Not.Null);
 			Assert.That(actual: msg.Attachments.Count, expression: Is.EqualTo(expected: 1));
 
-			var wall = msg.Attachments[index: 0].Instance as Post;
+			var wall = msg.Attachments[index: 0].Instance as Wall;
 
 			Assert.That(actual: wall, expression: Is.Not.Null);
 			Assert.That(actual: wall.Id, expression: Is.EqualTo(expected: 6194));

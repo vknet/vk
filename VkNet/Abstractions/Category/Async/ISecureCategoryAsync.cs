@@ -89,7 +89,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getSMSHistory
 		/// </remarks>
-		Task<IEnumerable<object>> GetSMSHistoryAsync(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null,
+		Task<IEnumerable<object>> GetSmsHistoryAsync(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null,
 													ulong? limit = null);
 
 		/// <summary>

@@ -81,6 +81,11 @@ namespace VkNet.Model.Attachments
 
 				if (Type == typeof(Post))
 				{
+					return WallPost;
+				}
+
+				if (Type == typeof(Wall))
+				{
 					return Wall;
 				}
 
@@ -238,7 +243,7 @@ namespace VkNet.Model.Attachments
 				case "wall":
 
 				{
-					attachment.Type = typeof(Post);
+					attachment.Type = typeof(Wall);
 					attachment.Wall = response[key: "wall"];
 
 					break;
@@ -371,7 +376,12 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Запись на стене.
 		/// </summary>
-		private Post Wall { get; set; }
+		private Post WallPost { get; set; }
+
+		/// <summary>
+		/// Запись на стене.
+		/// </summary>
+		private Wall Wall { get; set; }
 
 		/// <summary>
 		/// Стикер.

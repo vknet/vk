@@ -68,12 +68,12 @@ namespace VkNet.Utils.JsonConverter
 
 			var vkCollection = typeof(ReadOnlyCollection<>).MakeGenericType(keyType);
 
-			var obj = JObject.Load(reader: reader);
-			var response = obj[propertyName: "response"] ?? obj;
+			var obj = JArray.Load(reader: reader);
+			//var response = obj["response"] ?? obj;
 
-			foreach (var item in response)
+			foreach (var item in obj)
 			{
-				list.Add(value: Attachment.FromJson(response: new VkResponse(token: item) { RawJson = response.ToString() }));
+				list.Add(value: Attachment.FromJson(response: new VkResponse(token: item) { RawJson = item.ToString() }));
 			}
 
 			return Activator.CreateInstance(vkCollection, list);

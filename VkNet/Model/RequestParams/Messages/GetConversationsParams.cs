@@ -26,13 +26,13 @@ namespace VkNet.Model.RequestParams
 		/// Смещение, необходимое для выборки определенного подмножества результатов.
 		/// </summary>
 		[JsonProperty("offset")]
-		public ulong Offset { get; set; }
+		public ulong? Offset { get; set; }
 
 		/// <summary>
 		/// Максимальное число результатов, которые нужно получить.
 		/// </summary>
 		[JsonProperty("count")]
-		public ulong Count { get; set; }
+		public ulong? Count { get; set; }
 
 		/// <summary>
 		/// 1 — возвращать дополнительные поля для пользователей и сообществ.
@@ -44,12 +44,12 @@ namespace VkNet.Model.RequestParams
 		/// Идентификатор сообщения, начиная с которого нужно возвращать беседы.
 		/// </summary>
 		[JsonProperty("start_message_id")]
-		public ulong StartMessageId { get; set; }
+		public ulong? StartMessageId { get; set; }
 
 		/// <summary>
 		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).
 		/// </summary>
 		[JsonProperty("group_id")]
-		public ulong GroupId { get; set; }
+		public ulong? GroupId { get; set; }
 	}
 }

@@ -7,6 +7,7 @@ using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -160,6 +161,7 @@ namespace VkNet.Model
 		/// Массив медиа-вложений (прикреплений).
 		/// </summary>
 		[JsonProperty("attachments")]
+		[JsonConverter(typeof(AttachmentJsonConverter))]
 		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>
