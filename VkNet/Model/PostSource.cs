@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -19,11 +21,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// На данный момент поддерживаются следующие типы источников записи на стене.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PostSourceType Type { get; set; }
 
 		/// <summary>
 		/// Название платформы, если оно доступно: android, iphone, wphone.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public Platform Platform { get; set; }
 
 		/// <summary>

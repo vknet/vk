@@ -231,6 +231,7 @@ namespace VkNet.Model
 		/// chat_invite_user, chat_kick_user
 		/// </remarks>
 		[JsonProperty("action")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public MessageAction Action { get; set; }
 
 		/// <summary>

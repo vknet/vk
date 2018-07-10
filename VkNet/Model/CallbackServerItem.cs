@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -45,6 +46,7 @@ namespace VkNet.Model
 		/// Статус сервера
 		/// </summary>
 		[JsonProperty(propertyName: "status")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public CallbackServerStatus Status { get; set; }
 
 		/// <summary>

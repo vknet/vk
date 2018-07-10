@@ -6,6 +6,7 @@ using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -58,6 +59,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Тип приложения:.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public AppType Type { get; set; }
 
 		/// <summary>

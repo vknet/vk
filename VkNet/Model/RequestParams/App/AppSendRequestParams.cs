@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -27,6 +28,7 @@ namespace VkNet.Model.RequestParams
 		/// Тип запроса, может принимать значения:.
 		/// </summary>
 		[JsonProperty(propertyName: "type")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public AppRequestType Type { get; set; }
 
 		/// <summary>

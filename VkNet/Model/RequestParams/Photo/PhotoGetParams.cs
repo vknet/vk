@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -22,6 +23,7 @@ namespace VkNet.Model.RequestParams
 		/// Идентификатор альбома. Для служебных альбомов используются следующие
 		/// идентификаторы: строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PhotoAlbumType AlbumId { get; set; }
 
 		/// <summary>
@@ -48,6 +50,7 @@ namespace VkNet.Model.RequestParams
 		/// либо только фотографий, на которых он был отмечен. Может принимать значения
 		/// photo, photo_tag.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public FeedType FeedType { get; set; }
 
 		/// <summary>

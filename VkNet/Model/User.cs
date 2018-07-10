@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
@@ -178,6 +179,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Причина блокирования аккаунта
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public Deactivated Deactivated { get; set; }
 
 		/// <summary>

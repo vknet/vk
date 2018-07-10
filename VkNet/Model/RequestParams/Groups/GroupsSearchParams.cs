@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -20,6 +21,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Тип сообщества. Возможные значения: group, page, event. строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public GroupType Type { get; set; }
 
 		/// <summary>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -39,6 +41,7 @@ namespace VkNet.Model.RequestParams
 		/// 20.05.13, market,wall — 01.02.2016.
 		/// строка, по умолчанию photo.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public MediaType MediaType { get; set; }
 
 		/// <summary>

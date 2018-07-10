@@ -1,7 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -27,6 +29,7 @@ namespace VkNet.Model.RequestParams
 		/// сообщества. строка, по умолчанию
 		/// id_asc.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public GroupsSort Sort { get; set; }
 
 		/// <summary>
@@ -65,6 +68,7 @@ namespace VkNet.Model.RequestParams
 		/// администратора сообщества).
 		/// строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public GroupsMemberFilters Filter { get; set; }
 
 		/// <summary>

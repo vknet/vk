@@ -92,6 +92,7 @@ namespace VkNet.Model
 		/// то запись является копией записи с
 		/// чужой стены.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PostType PostType { get; set; }
 
 		/// <summary>

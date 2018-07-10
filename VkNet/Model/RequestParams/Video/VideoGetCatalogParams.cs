@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -44,6 +45,7 @@ namespace VkNet.Model.RequestParams
 		/// id блоков, которые необходимо вернуть в ответе.
 		/// </summary>
 		[JsonProperty(propertyName: "filters")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public VideoCatalogFilters Filters { get; set; }
 
 		/// <summary>

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -61,6 +62,7 @@ namespace VkNet.Model.RequestParams
 		/// старым) строка.
 		/// </summary>
 		[JsonProperty(propertyName: "sort")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public CommentsSort Sort { get; set; }
 
 		/// <summary>

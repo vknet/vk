@@ -5,6 +5,7 @@ using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -17,6 +18,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Тип списка новости, соответствующий одному из значений параметра filters.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NewsTypes Type { get; set; }
 
 		/// <summary>
@@ -39,6 +41,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Находится в записях со стен, содержит тип новости (post или copy).
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PostTypeOrder PostType { get; set; }
 
 		/// <summary>

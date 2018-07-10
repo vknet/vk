@@ -1,7 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -34,6 +36,7 @@ namespace VkNet.Model.RequestParams
 		/// fields)
 		/// строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public FriendsOrder Order { get; set; }
 
 		/// <summary>
@@ -73,6 +76,7 @@ namespace VkNet.Model.RequestParams
 		/// дательный – dat, винительный – acc, творительный – ins, предложный – abl. По
 		/// умолчанию nom. строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NameCase NameCase { get; set; }
 
 		/// <summary>

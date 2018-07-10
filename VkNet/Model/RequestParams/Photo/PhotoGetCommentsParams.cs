@@ -1,7 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -48,6 +50,7 @@ namespace VkNet.Model.RequestParams
 		/// Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к
 		/// старым) строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public CommentsSort Sort { get; set; }
 
 		/// <summary>

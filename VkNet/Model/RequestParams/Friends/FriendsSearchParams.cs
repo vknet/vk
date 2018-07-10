@@ -1,7 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -32,6 +34,7 @@ namespace VkNet.Model.RequestParams
 		/// can_see_all_posts, can_post, universities, domain список строк, разделенных
 		/// через запятую.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public ProfileFields Fields { get; set; }
 
 		/// <summary>
@@ -41,6 +44,7 @@ namespace VkNet.Model.RequestParams
 		/// умолчанию nom. строка, по умолчанию
 		/// Nom.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NameCase NameCase { get; set; }
 
 		/// <summary>

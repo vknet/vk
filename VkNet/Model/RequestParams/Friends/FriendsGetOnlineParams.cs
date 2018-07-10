@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -39,6 +41,7 @@ namespace VkNet.Model.RequestParams
 		/// как друзья сортируются в разделе Мои
 		/// друзья (данный параметр доступен только для Desktop-приложений). строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public FriendsOrder Order { get; set; }
 
 		/// <summary>

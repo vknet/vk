@@ -6,6 +6,7 @@ using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -131,6 +132,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Возвращается в случае, если сообщество удалено или заблокировано
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public Deactivated Deactivated { get; set; }
 
 		/// <summary>
@@ -157,6 +159,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Тип сообщества.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public GroupType Type { get; set; }
 
 		/// <summary>
