@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
+using VkNet.Model;
 using VkNet.Model.RequestParams.Stories;
 using VkNet.Utils;
 
@@ -36,9 +37,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> Get(long? ownerId = null, bool? extended = null)
+		public StoryResult Get(long? ownerId = null, bool? extended = null)
 		{
-			return _vk.Call<IEnumerable<object>>("stories.get", new VkParameters { { "owner_id", ownerId }, { "extended", extended } });
+			return _vk.Call<StoryResult>("stories.get", new VkParameters { { "owner_id", ownerId }, { "extended", extended } });
 		}
 
 		/// <inheritdoc/>
