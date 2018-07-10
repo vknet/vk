@@ -43,7 +43,7 @@ public ReadOnlyCollection<Photo> Get(out int count, PhotoGetParams @params)
 
 ## Пример
 ``` csharp
-var get = _api.Photos.Get(new PhotosGetParams{
+var get = _api.Photos.Get(new PhotoGetParams{
 	
 });
 ```
