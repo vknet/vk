@@ -60,7 +60,7 @@ namespace VkNet.Utils
 			{
 				AccessToken = result.AccessToken,
 				ExpiresIn = result.ExpiresIn,
-				UserId = result.ExpiresIn,
+				UserId = result.UserId,
 				State = result.State
 			};
 		}
@@ -276,17 +276,17 @@ namespace VkNet.Utils
 		{
 			if (UriHasAccessToken(uri: webCallResult.RequestUrl))
 			{
+				_logger?.Debug(message: "Запрос: " + webCallResult.RequestUrl);
+
 				return webCallResult.RequestUrl;
 			}
 
-			_logger?.Debug(message: "Запрос: " + webCallResult.RequestUrl);
-
 			if (UriHasAccessToken(uri: webCallResult.ResponseUrl))
 			{
+				_logger?.Debug(message: "Ответ: " + webCallResult.ResponseUrl);
+
 				return webCallResult.ResponseUrl;
 			}
-
-			_logger?.Debug(message: "Ответ: " + webCallResult.ResponseUrl);
 
 			return null;
 		}

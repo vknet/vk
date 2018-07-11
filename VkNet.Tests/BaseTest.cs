@@ -49,19 +49,6 @@ namespace VkNet.Tests
 		{
 			var browser = new Mock<IBrowser>();
 
-			/*browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url),
-					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Callback(Callback)
-				.Returns(() =>
-				{
-					if (string.IsNullOrWhiteSpace(Json))
-					{
-						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
-					}
-
-					return Json;
-				});*/
-
 			browser.Setup(o => o.Authorize())
 				.Returns(new AuthorizationResult
 				{
