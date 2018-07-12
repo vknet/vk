@@ -190,7 +190,7 @@ namespace VkNet.Model
 		/// страница» — «Только пользователям ВКонтакте».
 		/// Обратите внимание, в этом случае дополнительные поля fields не возвращаются.
 		/// </summary>
-		[JsonProperty(propertyName: "is_hidden_from_feed")]
+		[JsonProperty(propertyName: "hidden")]
 		public bool Hidden { get; set; }
 
 	#endregion
