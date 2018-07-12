@@ -66,7 +66,7 @@ namespace VkNet.Model.RequestParams
 					, { "device_year", p.DeviceYear }
 					, { "device_id", p.DeviceId }
 					, { "system_version", p.SystemVersion }
-					, { "settings", JsonConvert.SerializeObject(p.Settings); }
+					, { "settings", JsonConvert.SerializeObject(p.Settings) }
 					, { "sandbox", p.Sandbox }
 			};
 
