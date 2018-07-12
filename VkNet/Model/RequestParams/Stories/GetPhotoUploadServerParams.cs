@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model.RequestParams.Stories
 {
@@ -17,7 +18,7 @@ namespace VkNet.Model.RequestParams.Stories
 		public string ReplyToStory { get; set; }
 
 		/// <summary>
-		/// Текст ссылки для перехода из истории (только для историй сообществ). Возможные значения:
+		/// Текст ссылки для перехода из истории (только для историй сообществ).
 		/// to_store — «В магазин»;
 		/// vote — «Голосовать»;
 		/// more — «Ещё»;
@@ -41,7 +42,7 @@ namespace VkNet.Model.RequestParams.Stories
 		/// строка
 		/// </summary>
 		[JsonProperty("link_text")]
-		public string LinkText { get; set; }
+		public StoryLinkText LinkText { get; set; }
 
 		/// <summary>
 		/// Адрес ссылки для перехода из истории. Допустимы только внутренние ссылки https://vk.com. строка, максимальная длина 2048

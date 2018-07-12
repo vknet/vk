@@ -57,7 +57,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.get
 		/// </remarks>
-		StoryResult Get(long? ownerId = null, bool? extended = null);
+		StoryResult<IEnumerable<Story>> Get(long? ownerId = null, bool? extended = null);
 
 		/// <summary>
 		/// Возвращает список источников историй, скрытых из ленты текущего пользователя.
@@ -76,7 +76,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getBanned
 		/// </remarks>
-		IEnumerable<object> GetBanned(IEnumerable<string> fields, bool? extended = null);
+		StoryResult<long> GetBanned(bool? extended = null, IEnumerable<string> fields = null);
 
 		/// <summary>
 		/// Возвращает информацию об истории по её идентификатору.
@@ -99,7 +99,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getById
 		/// </remarks>
-		IEnumerable<object> GetById(IEnumerable<string> stories, IEnumerable<string> fields, bool? extended = null);
+		StoryResult<Story> GetById(IEnumerable<string> stories, bool? extended = null, IEnumerable<string> fields = null);
 
 		/// <summary>
 		/// Позволяет получить адрес для загрузки истории с фотографией.
@@ -115,7 +115,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getPhotoUploadServer
 		/// </remarks>
-		Uri GetPhotoUploadServer(GetPhotoUploadServerParams getPhotoUploadServerParams);
+		StoryServerUrl GetPhotoUploadServer(GetPhotoUploadServerParams @params);
 
 		/// <summary>
 		/// Позволяет получить ответы на историю.
@@ -142,7 +142,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getReplies
 		/// </remarks>
-		IEnumerable<object> GetReplies(long ownerId, ulong storyId, string accessKey, IEnumerable<string> fields, bool? extended = null);
+		StoryResult<IEnumerable<Story>> GetReplies(long ownerId, ulong storyId, string accessKey = null, bool? extended = null, IEnumerable<string> fields = null);
 
 		/// <summary>
 		/// Возвращает статистику истории.
@@ -180,7 +180,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getStats
 		/// </remarks>
-		object GetStats(long ownerId, ulong storyId);
+		StoryStatsResult GetStats(long ownerId, ulong storyId);
 
 		/// <summary>
 		/// Позволяет получить адрес для загрузки видеозаписи в историю.
@@ -196,7 +196,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getVideoUploadServer
 		/// </remarks>
-		Uri GetVideoUploadServer(GetVideoUploadServerParams getVideoUploadServerParams);
+		StoryServerUrl GetVideoUploadServer(GetVideoUploadServerParams @params);
 
 		/// <summary>
 		/// Возвращает список пользователей, просмотревших историю.
@@ -222,7 +222,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getViewers
 		/// </remarks>
-		IEnumerable<object> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null, bool? extended = null);
+		VkCollection<User> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null, bool? extended = null);
 
 		/// <summary>
 		/// Скрывает все ответы автора за последние сутки на истории текущего пользователя.
@@ -256,7 +256,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.hideReply
 		/// </remarks>
-		bool HideReply(long ownerId, ulong storyId, string accessKey);
+		bool HideReply(long ownerId, ulong storyId, string accessKey = null);
 
 		/// <summary>
 		/// Позволяет вернуть пользователя или сообщество в список отображаемых историй в ленте.

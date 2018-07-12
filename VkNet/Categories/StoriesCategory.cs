@@ -37,28 +37,28 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public StoryResult Get(long? ownerId = null, bool? extended = null)
+		public StoryResult<IEnumerable<Story>> Get(long? ownerId = null, bool? extended = null)
 		{
-			return _vk.Call<StoryResult>("stories.get", new VkParameters { { "owner_id", ownerId }, { "extended", extended } });
+			return _vk.Call<StoryResult<IEnumerable<Story>>>("stories.get", new VkParameters { { "owner_id", ownerId }, { "extended", extended } });
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetBanned(IEnumerable<string> fields, bool? extended = null)
+		public StoryResult<long> GetBanned(bool? extended = null, IEnumerable<string> fields = null)
 		{
-			return _vk.Call<IEnumerable<object>>("stories.getBanned", new VkParameters { { "fields", fields }, { "extended", extended } });
+			return _vk.Call<StoryResult<long>>("stories.getBanned", new VkParameters { { "fields", fields }, { "extended", extended } });
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetById(IEnumerable<string> stories, IEnumerable<string> fields, bool? extended = null)
+		public StoryResult<Story> GetById(IEnumerable<string> stories, bool? extended = null, IEnumerable<string> fields = null)
 		{
-			return _vk.Call<IEnumerable<object>>("stories.getById",
+			return _vk.Call<StoryResult<Story>>("stories.getById",
 				new VkParameters { { "stories", stories }, { "fields", fields }, { "extended", extended } });
 		}
 
 		/// <inheritdoc/>
-		public Uri GetPhotoUploadServer(GetPhotoUploadServerParams getPhotoUploadServerParams)
+		public StoryServerUrl GetPhotoUploadServer(GetPhotoUploadServerParams getPhotoUploadServerParams)
 		{
-			return _vk.Call<Uri>("stories.getPhotoUploadServer",
+			return _vk.Call<StoryServerUrl>("stories.getPhotoUploadServer",
 				new VkParameters
 				{
 					{ "reply_to_story", getPhotoUploadServerParams.ReplyToStory }, { "link_text", getPhotoUploadServerParams.LinkText },
@@ -68,10 +68,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetReplies(long ownerId, ulong storyId, string accessKey, IEnumerable<string> fields,
-											bool? extended = null)
+		public StoryResult<IEnumerable<Story>> GetReplies(long ownerId, ulong storyId, string accessKey = null, bool? extended = null, IEnumerable<string> fields = null)
 		{
-			return _vk.Call<IEnumerable<object>>("stories.getReplies",
+			return _vk.Call<StoryResult<IEnumerable<Story>>>("stories.getReplies",
 				new VkParameters
 				{
 					{ "owner_id", ownerId }, { "story_id", storyId }, { "access_key", accessKey }, { "fields", fields },
@@ -80,15 +79,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetStats(long ownerId, ulong storyId)
+		public StoryStatsResult GetStats(long ownerId, ulong storyId)
 		{
-			return _vk.Call<object>("stories.getStats", new VkParameters { { "owner_id", ownerId }, { "story_id", storyId } });
+			return _vk.Call<StoryStatsResult>("stories.getStats", new VkParameters { { "owner_id", ownerId }, { "story_id", storyId } });
 		}
 
 		/// <inheritdoc/>
-		public Uri GetVideoUploadServer(GetVideoUploadServerParams getVideoUploadServerParams)
+		public StoryServerUrl GetVideoUploadServer(GetVideoUploadServerParams getVideoUploadServerParams)
 		{
-			return _vk.Call<Uri>("stories.getVideoUploadServer",
+			return _vk.Call<StoryServerUrl>("stories.getVideoUploadServer",
 				new VkParameters
 				{
 					{ "reply_to_story", getVideoUploadServerParams.ReplyToStory }, { "link_text", getVideoUploadServerParams.LinkText },
@@ -98,9 +97,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null, bool? extended = null)
+		public VkCollection<User> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null, bool? extended = null)
 		{
-			return _vk.Call<IEnumerable<object>>("stories.getViewers",
+			return _vk.Call<VkCollection<User>>("stories.getViewers",
 				new VkParameters
 				{
 					{ "owner_id", ownerId }, { "story_id", storyId }, { "count", count }, { "offset", offset }, { "extended", extended }
@@ -114,7 +113,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool HideReply(long ownerId, ulong storyId, string accessKey)
+		public bool HideReply(long ownerId, ulong storyId, string accessKey = null)
 		{
 			return _vk.Call<bool>("stories.hideReply",
 				new VkParameters { { "owner_id", ownerId }, { "story_id", storyId }, { "access_key", accessKey } });
