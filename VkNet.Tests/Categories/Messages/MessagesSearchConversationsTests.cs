@@ -39,8 +39,8 @@ namespace VkNet.Tests.Categories.Messages
 							last_name: 'Иванов',
 							sex: 2,
 							screen_name: 'zerojoker',
-							photo_50: 'https://pp.userap...jMH9T820c.jpg?ava=1',
-							photo_100: 'https://pp.userap...ekLiX8uK4.jpg?ava=1',
+							photo_50: 'https://pp.userapjMH9T820c.jpg?ava=1',
+							photo_100: 'https://pp.userapekLiX8uK4.jpg?ava=1',
 							online: 0
 						}
 					]
