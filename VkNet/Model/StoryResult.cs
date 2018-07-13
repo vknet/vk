@@ -1,13 +1,14 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Ответ stories.get
+	/// Ответ на методы stories
 	/// </summary>
 	[Serializable]
-	public class StoryResult
+	public class StoryResult<T>
 	{
 		/// <summary>
 		/// Число подборок
@@ -16,21 +17,21 @@ namespace VkNet.Model
 		public long Count { get; set; }
 
 		/// <summary>
-		/// Массив подборок историй
+		/// Массив данных
 		/// </summary>
 		[JsonProperty("items")]
-		public Story[][] Items { get; set; }
+		public IEnumerable<T> Items { get; set; }
 
 		/// <summary>
 		/// Профили пользователей
 		/// </summary>
 		[JsonProperty("profiles")]
-		public User Profiles { get; set; }
+		public IEnumerable<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Сообщества
 		/// </summary>
 		[JsonProperty("groups")]
-		public Group Groups { get; set; }
+		public IEnumerable<Group> Groups { get; set; }
 	}
 }

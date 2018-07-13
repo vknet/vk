@@ -752,5 +752,63 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			// parse test
 			Assert.That(actual: KeyboardButtonActionType.FromJsonString(response: "text"), expression: Is.EqualTo(expected: KeyboardButtonActionType.Text));
 		}
+
+		[Test]
+		public void StoryObjectStateTest()
+		{
+			// get test
+			Assert.That(actual: StoryObjectState.Hidden.ToString(), expression: Is.EqualTo(expected: "hidden"));
+			Assert.That(actual: StoryObjectState.On.ToString(), expression: Is.EqualTo(expected: "on"));
+			Assert.That(actual: StoryObjectState.Off.ToString(), expression: Is.EqualTo(expected: "off"));
+
+			// parse test
+			Assert.That(actual: StoryObjectState.FromJsonString(response: "hidden"), expression: Is.EqualTo(expected: StoryObjectState.Hidden));
+			Assert.That(actual: StoryObjectState.FromJsonString(response: "on"), expression: Is.EqualTo(expected: StoryObjectState.On));
+			Assert.That(actual: StoryObjectState.FromJsonString(response: "off"), expression: Is.EqualTo(expected: StoryObjectState.Off));
+		}
+
+		[Test]
+		public void StoryLinkTextTest()
+		{
+			// get test
+			Assert.That(actual: StoryLinkText.Book.ToString(), expression: Is.EqualTo(expected: "book"));
+			Assert.That(actual: StoryLinkText.Buy.ToString(), expression: Is.EqualTo(expected: "buy"));
+			Assert.That(actual: StoryLinkText.Contact.ToString(), expression: Is.EqualTo(expected: "contact"));
+			Assert.That(actual: StoryLinkText.Enroll.ToString(), expression: Is.EqualTo(expected: "enroll"));
+			Assert.That(actual: StoryLinkText.Fill.ToString(), expression: Is.EqualTo(expected: "fill"));
+			Assert.That(actual: StoryLinkText.GoTo.ToString(), expression: Is.EqualTo(expected: "go_to"));
+			Assert.That(actual: StoryLinkText.Install.ToString(), expression: Is.EqualTo(expected: "install"));
+			Assert.That(actual: StoryLinkText.LearnMore.ToString(), expression: Is.EqualTo(expected: "learn_more"));
+			Assert.That(actual: StoryLinkText.More.ToString(), expression: Is.EqualTo(expected: "more"));
+			Assert.That(actual: StoryLinkText.Open.ToString(), expression: Is.EqualTo(expected: "open"));
+			Assert.That(actual: StoryLinkText.Order.ToString(), expression: Is.EqualTo(expected: "order"));
+			Assert.That(actual: StoryLinkText.Play.ToString(), expression: Is.EqualTo(expected: "play"));
+			Assert.That(actual: StoryLinkText.Read.ToString(), expression: Is.EqualTo(expected: "read"));
+			Assert.That(actual: StoryLinkText.Signup.ToString(), expression: Is.EqualTo(expected: "signup"));
+			Assert.That(actual: StoryLinkText.View.ToString(), expression: Is.EqualTo(expected: "view"));
+			Assert.That(actual: StoryLinkText.Vote.ToString(), expression: Is.EqualTo(expected: "vote"));
+			Assert.That(actual: StoryLinkText.Watch.ToString(), expression: Is.EqualTo(expected: "watch"));
+			Assert.That(actual: StoryLinkText.Write.ToString(), expression: Is.EqualTo(expected: "write"));
+
+			// parse test
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "book"), expression: Is.EqualTo(expected: StoryLinkText.Book));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "buy"), expression: Is.EqualTo(expected: StoryLinkText.Buy));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "contact"), expression: Is.EqualTo(expected: StoryLinkText.Contact));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "enroll"), expression: Is.EqualTo(expected: StoryLinkText.Enroll));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "fill"), expression: Is.EqualTo(expected: StoryLinkText.Fill));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "go_to"), expression: Is.EqualTo(expected: StoryLinkText.GoTo));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "install"), expression: Is.EqualTo(expected: StoryLinkText.Install));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "learn_more"), expression: Is.EqualTo(expected: StoryLinkText.LearnMore));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "more"), expression: Is.EqualTo(expected: StoryLinkText.More));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "open"), expression: Is.EqualTo(expected: StoryLinkText.Open));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "order"), expression: Is.EqualTo(expected: StoryLinkText.Order));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "play"), expression: Is.EqualTo(expected: StoryLinkText.Play));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "read"), expression: Is.EqualTo(expected: StoryLinkText.Read));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "signup"), expression: Is.EqualTo(expected: StoryLinkText.Signup));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "view"), expression: Is.EqualTo(expected: StoryLinkText.View));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "vote"), expression: Is.EqualTo(expected: StoryLinkText.Vote));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "watch"), expression: Is.EqualTo(expected: StoryLinkText.Watch));
+			Assert.That(actual: StoryLinkText.FromJsonString(response: "write"), expression: Is.EqualTo(expected: StoryLinkText.Write));
+		}
 	}
 }

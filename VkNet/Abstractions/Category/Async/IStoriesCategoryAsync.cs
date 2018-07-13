@@ -59,7 +59,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.get
 		/// </remarks>
-		Task<StoryResult> GetAsync(long? ownerId = null, bool? extended = null);
+		Task<StoryResult<IEnumerable<Story>>> GetAsync(long? ownerId = null, bool? extended = null);
 
 		/// <summary>
 		/// Возвращает список источников историй, скрытых из ленты текущего пользователя.
@@ -78,7 +78,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getBanned
 		/// </remarks>
-		Task<IEnumerable<object>> GetBannedAsync(IEnumerable<string> fields, bool? extended = null);
+		Task<StoryResult<long>> GetBannedAsync(IEnumerable<string> fields = null, bool? extended = null);
 
 		/// <summary>
 		/// Возвращает информацию об истории по её идентификатору.
@@ -101,12 +101,12 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getById
 		/// </remarks>
-		Task<IEnumerable<object>> GetByIdAsync(IEnumerable<string> stories, IEnumerable<string> fields, bool? extended = null);
+		Task<StoryResult<Story>> GetByIdAsync(IEnumerable<string> stories, bool? extended = null, IEnumerable<string> fields = null);
 
 		/// <summary>
 		/// Позволяет получить адрес для загрузки истории с фотографией.
 		/// </summary>
-		/// <param name = "getPhotoUploadServerParams">
+		/// <param name = "params">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -117,7 +117,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getPhotoUploadServer
 		/// </remarks>
-		Task<Uri> GetPhotoUploadServerAsync(GetPhotoUploadServerParams getPhotoUploadServerParams);
+		Task<StoryServerUrl> GetPhotoUploadServerAsync(GetPhotoUploadServerParams @params);
 
 		/// <summary>
 		/// Позволяет получить ответы на историю.
@@ -144,8 +144,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getReplies
 		/// </remarks>
-		Task<IEnumerable<object>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey, IEnumerable<string> fields,
-												bool? extended = null);
+		Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey = null, bool? extended = null, IEnumerable<string> fields = null);
 
 		/// <summary>
 		/// Возвращает статистику истории.
@@ -183,12 +182,12 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getStats
 		/// </remarks>
-		Task<object> GetStatsAsync(long ownerId, ulong storyId);
+		Task<StoryStatsResult> GetStatsAsync(long ownerId, ulong storyId);
 
 		/// <summary>
 		/// Позволяет получить адрес для загрузки видеозаписи в историю.
 		/// </summary>
-		/// <param name = "getVideoUploadServerParams">
+		/// <param name = "params">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -199,7 +198,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getVideoUploadServer
 		/// </remarks>
-		Task<Uri> GetVideoUploadServerAsync(GetVideoUploadServerParams getVideoUploadServerParams);
+		Task<StoryServerUrl> GetVideoUploadServerAsync(GetVideoUploadServerParams @params);
 
 		/// <summary>
 		/// Возвращает список пользователей, просмотревших историю.
@@ -225,7 +224,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getViewers
 		/// </remarks>
-		Task<IEnumerable<object>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null,
+		Task<VkCollection<User>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null,
 												bool? extended = null);
 
 		/// <summary>
@@ -260,7 +259,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.hideReply
 		/// </remarks>
-		Task<bool> HideReplyAsync(long ownerId, ulong storyId, string accessKey);
+		Task<bool> HideReplyAsync(long ownerId, ulong storyId, string accessKey = null);
 
 		/// <summary>
 		/// Позволяет вернуть пользователя или сообщество в список отображаемых историй в ленте.

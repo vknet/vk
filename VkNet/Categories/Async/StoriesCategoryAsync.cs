@@ -23,50 +23,49 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<StoryResult> GetAsync(long? ownerId = null, bool? extended = null)
+		public async Task<StoryResult<IEnumerable<Story>>> GetAsync(long? ownerId = null, bool? extended = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => Get(ownerId, extended));
 		}
 
 		/// <inheritdoc/>
-		public async Task<IEnumerable<object>> GetBannedAsync(IEnumerable<string> fields, bool? extended = null)
+		public async Task<StoryResult<long>> GetBannedAsync(IEnumerable<string> fields, bool? extended = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetBanned(fields, extended));
+			return await TypeHelper.TryInvokeMethodAsync(() => GetBanned(extended, fields));
 		}
 
 		/// <inheritdoc/>
-		public async Task<IEnumerable<object>> GetByIdAsync(IEnumerable<string> stories, IEnumerable<string> fields, bool? extended = null)
+		public async Task<StoryResult<Story>> GetByIdAsync(IEnumerable<string> stories, bool? extended = null, IEnumerable<string> fields = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetById(stories, fields, extended));
+			return await TypeHelper.TryInvokeMethodAsync(() => GetById(stories, extended, fields));
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> GetPhotoUploadServerAsync(GetPhotoUploadServerParams getPhotoUploadServerParams)
+		public async Task<StoryServerUrl> GetPhotoUploadServerAsync(GetPhotoUploadServerParams getPhotoUploadServerParams)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => GetPhotoUploadServer(getPhotoUploadServerParams));
 		}
 
 		/// <inheritdoc/>
-		public async Task<IEnumerable<object>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey, IEnumerable<string> fields,
-																bool? extended = null)
+		public async Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey = null, bool? extended = null, IEnumerable<string> fields = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetReplies(ownerId, storyId, accessKey, fields, extended));
+			return await TypeHelper.TryInvokeMethodAsync(() => GetReplies(ownerId, storyId, accessKey, extended, fields));
 		}
 
 		/// <inheritdoc/>
-		public async Task<object> GetStatsAsync(long ownerId, ulong storyId)
+		public async Task<StoryStatsResult> GetStatsAsync(long ownerId, ulong storyId)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => GetStats(ownerId, storyId));
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> GetVideoUploadServerAsync(GetVideoUploadServerParams getVideoUploadServerParams)
+		public async Task<StoryServerUrl> GetVideoUploadServerAsync(GetVideoUploadServerParams getVideoUploadServerParams)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => GetVideoUploadServer(getVideoUploadServerParams));
 		}
 
 		/// <inheritdoc/>
-		public async Task<IEnumerable<object>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null,
+		public async Task<VkCollection<User>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null,
 																bool? extended = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => GetViewers(ownerId, storyId, count, offset, extended));
@@ -79,7 +78,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> HideReplyAsync(long ownerId, ulong storyId, string accessKey)
+		public async Task<bool> HideReplyAsync(long ownerId, ulong storyId, string accessKey = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => HideReply(ownerId, storyId, accessKey));
 		}
