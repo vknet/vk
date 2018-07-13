@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams.Stories
 {
@@ -42,6 +43,7 @@ namespace VkNet.Model.RequestParams.Stories
 		/// строка
 		/// </summary>
 		[JsonProperty("link_text")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public StoryLinkText LinkText { get; set; }
 
 		/// <summary>
