@@ -11,9 +11,9 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Все сообщения
 		/// </summary>
-		All = 0
+		All = 0,
 
-		, /// <summary>
+		/// <summary>
 		/// Важные сообщения
 		/// </summary>
 		Important = 8

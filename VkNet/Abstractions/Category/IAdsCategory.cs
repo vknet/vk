@@ -153,7 +153,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Создает аудиторию для ретаргетинга рекламных объявлений на пользователей, которые посетили сайт рекламодателя (просмотрели информации о товаре, зарегистрировались и т.д.).
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "createTargetGroupParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -313,7 +313,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает список рекламных объявлений.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getAdsParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -388,7 +388,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает описания внешнего вида рекламных объявлений.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getAdsLayoutParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -427,7 +427,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает параметры таргетинга рекламных объявлений
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getAdsTargetingParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -498,7 +498,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getCampaigns
 		/// </remarks>
-		ReadOnlyCollection<AdsCampaign> GetCampaigns(long accountId, IEnumerable<long> campaignIds, long? clientId = null, bool? includeDeleted = null);
+		ReadOnlyCollection<AdsCampaign> GetCampaigns(long accountId, IEnumerable<long> campaignIds, long? clientId = null,
+													bool? includeDeleted = null);
 
 		/// <summary>
 		/// Позволяет получить возможные тематики рекламных объявлений.
@@ -541,7 +542,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает демографическую статистику по рекламным объявлениям или кампаниям.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getDemographicsParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -591,7 +592,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает список запросов на поиск похожей аудитории.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getLookalikeRequestsParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -693,7 +694,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает статистику показателей эффективности по рекламным объявлениям, кампаниям, клиентам или всему кабинету.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getStatisticsParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -723,7 +724,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает набор подсказок для различных параметров таргетинга.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getSuggestionsParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -817,7 +818,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает размер целевой аудитории таргетинга, а также рекомендованные значения CPC и CPM.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getTargetingStatsParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -1036,7 +1037,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Редактирует аудиторию ретаргетинга.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "updateTargetGroupParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -1050,7 +1051,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Редактирует пиксель ретаргетинга.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "updateTargetPixelParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
