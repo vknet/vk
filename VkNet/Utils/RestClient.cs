@@ -89,6 +89,8 @@ namespace VkNet.Utils
 				{
 					client.Timeout = Timeout;
 				}
+				
+				client.DefaultRequestHeaders.Add("User-Agent", "VKAndroidApp/5.0.1-1237 (Android 7.1.1; SDK 25; armeabi-v7a; Razer p90; en)");
 
 				var response = await method(arg: client).ConfigureAwait(false);
 				var requestUri = response.RequestMessage.RequestUri.ToString();
