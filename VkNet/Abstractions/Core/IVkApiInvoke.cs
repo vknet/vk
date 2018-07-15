@@ -8,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// TODO: Description
+	/// Вызов методов VkApi
 	/// </summary>
 	public interface IVkApiInvoke
 	{

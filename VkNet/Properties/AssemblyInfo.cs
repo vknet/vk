@@ -9,7 +9,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration(configuration: "")]
 [assembly: AssemblyCompany(company: "VkNet")]
 [assembly: AssemblyProduct(product: "VkNet")]
-[assembly: AssemblyCopyright(copyright: "©  2017")]
+[assembly: AssemblyCopyright(copyright: "©  2018")]
 [assembly: AssemblyTrademark(trademark: "")]
 [assembly: AssemblyCulture(culture: "")]
 [assembly: NeutralResourcesLanguage(cultureName: "ru")]

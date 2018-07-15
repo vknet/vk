@@ -828,6 +828,7 @@ namespace VkNet
 			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			_logger = serviceProvider.GetService<ILogger>();
+
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();
 			Users = new UsersCategory(vk: this);
 			Friends = new FriendsCategory(vk: this);
