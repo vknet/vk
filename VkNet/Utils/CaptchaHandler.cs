@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using NLog;
 using VkNet.Abstractions.Core;
@@ -27,7 +26,7 @@ namespace VkNet.Utils
 		public int MaxCaptchaRecognitionCount { get; set; }
 
 		/// <inheritdoc />
-		public async Task<T> CaptchaHandlerAsync<T>(Func<long?, string, T> action)
+		public T Perform<T>(Func<long?, string, T> action)
 		{
 			var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
 			var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
@@ -40,13 +39,13 @@ namespace VkNet.Utils
 			{
 				try
 				{
-					result = action.Invoke(arg1: captchaSidTemp, arg2: captchaKeyTemp);
+					result = action.Invoke(captchaSidTemp, captchaKeyTemp);
 					numberOfRemainingAttemptsToAuthorize--;
 					callCompleted = true;
 				}
 				catch (CaptchaNeededException captchaNeededException)
 				{
-					RepeatSolveCaptchaAsync<T>(captchaNeededException,
+					RepeatSolveCaptchaAsync(captchaNeededException,
 						ref numberOfRemainingAttemptsToSolveCaptcha,
 						ref captchaSidTemp,
 						ref captchaKeyTemp);
@@ -59,16 +58,17 @@ namespace VkNet.Utils
 				return result;
 			}
 
-			_logger?.Error(message: "Капча ни разу не была распознана верно");
+			_logger?.Error("Капча ни разу не была распознана верно");
 
-			throw new CaptchaNeededException(sid: captchaSidTemp.Value, img: captchaKeyTemp);
+			throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
 		}
 
-		private void RepeatSolveCaptchaAsync<T>(CaptchaNeededException captchaNeededException,
-												ref int numberOfRemainingAttemptsToSolveCaptcha, ref long? captchaSidTemp,
+		private void RepeatSolveCaptchaAsync(CaptchaNeededException captchaNeededException,
+												ref int numberOfRemainingAttemptsToSolveCaptcha,
+												ref long? captchaSidTemp,
 												ref string captchaKeyTemp)
 		{
-			_logger?.Warn(message: "Повторная обработка капчи");
+			_logger?.Warn("Повторная обработка капчи");
 
 			if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
 			{
@@ -81,7 +81,7 @@ namespace VkNet.Utils
 			}
 
 			captchaSidTemp = captchaNeededException.Sid;
-			captchaKeyTemp = _captchaSolver?.Solve(url: captchaNeededException.Img?.AbsoluteUri);
+			captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
 			numberOfRemainingAttemptsToSolveCaptcha--;
 		}
 	}

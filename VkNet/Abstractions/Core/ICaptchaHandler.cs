@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 
 namespace VkNet.Abstractions.Core
 {
@@ -20,6 +19,6 @@ namespace VkNet.Abstractions.Core
 		/// <param name="action"> Действие </param>
 		/// <typeparam name="T"> Тип результата </typeparam>
 		/// <returns> Результат действия </returns>
-		Task<T> CaptchaHandlerAsync<T>(Func<long?, string, T> action);
+		T Perform<T>(Func<long?, string, T> action);
 	}
 }

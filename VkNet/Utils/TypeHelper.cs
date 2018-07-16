@@ -13,6 +13,7 @@ using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
 using VkNet.Infrastructure;
+using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
 {
@@ -70,6 +71,11 @@ namespace VkNet.Utils
 			if (container.All(x => x.ServiceType != typeof(ILanguageService)))
 			{
 				container.TryAddSingleton<ILanguageService, LanguageService>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(ICaptchaSolver)))
+			{
+				container.TryAddSingleton<ICaptchaSolver>(sp => null);
 			}
 		}
 

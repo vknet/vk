@@ -616,16 +616,13 @@ namespace VkNet
 				answer = Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
 			} else
 			{
-				answer = _captchaHandler.CaptchaHandlerAsync(action: (sid, key) =>
-					{
-						parameters.Add(name: "captcha_sid", nullableValue: sid);
-						parameters.Add(name: "captcha_key", value: key);
+				answer = _captchaHandler.Perform(action: (sid, key) =>
+				{
+					parameters.Add(name: "captcha_sid", nullableValue: sid);
+					parameters.Add(name: "captcha_key", value: key);
 
-						return Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
-					})
-					.ConfigureAwait(false)
-					.GetAwaiter()
-					.GetResult();
+					return Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
+				});
 			}
 
 			return answer;
@@ -645,18 +642,15 @@ namespace VkNet
 				BaseAuthorize(authParams: authParams);
 			} else
 			{
-				_captchaHandler.CaptchaHandlerAsync(action: (sid, key) =>
-					{
-						_logger?.Debug(message: "Авторизация с использование капчи.");
-						authParams.CaptchaSid = sid;
-						authParams.CaptchaKey = key;
-						BaseAuthorize(authParams: authParams);
+				_captchaHandler.Perform(action: (sid, key) =>
+				{
+					_logger?.Debug(message: "Авторизация с использование капчи.");
+					authParams.CaptchaSid = sid;
+					authParams.CaptchaKey = key;
+					BaseAuthorize(authParams: authParams);
 
-						return true;
-					})
-					.ConfigureAwait(false)
-					.GetAwaiter()
-					.GetResult();
+					return true;
+				});
 			}
 		}
 
