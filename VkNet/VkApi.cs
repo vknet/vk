@@ -129,11 +129,6 @@ namespace VkNet
 		/// </summary>
 		private string AccessToken { get; set; }
 
-		/// <summary>
-		/// Язык получаемых данных
-		/// </summary>
-		private Language? Language { get; set; }
-
 		/// <inheritdoc />
 		public event VkApiDelegate OnTokenExpires;
 
@@ -158,16 +153,21 @@ namespace VkNet
 		/// <inheritdoc />
 		public ICaptchaSolver CaptchaSolver { get; set; }
 
+		/// <summary>
+		/// Сервис управления языком
+		/// </summary>
+		private ILanguageService _language;
+
 		/// <inheritdoc />
 		public void SetLanguage(Language language)
 		{
-			Language = language;
+			_language.SetLanguage(language);
 		}
 
 		/// <inheritdoc />
 		public Language? GetLanguage()
 		{
-			return Language;
+			return _language.GetLanguage();
 		}
 
 		/// <inheritdoc />
@@ -601,9 +601,9 @@ namespace VkNet
 				parameters.Add(name: "access_token", value: AccessToken);
 			}
 
-			if (!parameters.ContainsKey(key: "lang") && Language.HasValue)
+			if (!parameters.ContainsKey(key: "lang") && _language.GetLanguage().HasValue)
 			{
-				parameters.Add(name: "lang", nullableValue: Language);
+				parameters.Add(name: "lang", nullableValue: _language.GetLanguage());
 			}
 
 			_logger?.Debug(message:
@@ -768,6 +768,7 @@ namespace VkNet
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			_logger = serviceProvider.GetService<ILogger>();
 			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
+			_language = serviceProvider.GetRequiredService<ILanguageService>();
 
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();
 			Users = new UsersCategory(vk: this);
