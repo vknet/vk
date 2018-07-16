@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using NLog;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -61,6 +62,11 @@ namespace VkNet
 		/// Параметры авторизации.
 		/// </summary>
 		private IApiAuthParams _ap;
+
+		/// <summary>
+		/// Обработчик ошибки капчи
+		/// </summary>
+		private ICaptchaHandler _captchaHandler;
 
 		/// <summary>
 		/// Таймер.
@@ -610,13 +616,16 @@ namespace VkNet
 				answer = Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
 			} else
 			{
-				answer = CaptchaHandler(action: (sid, key) =>
-				{
-					parameters.Add(name: "captcha_sid", nullableValue: sid);
-					parameters.Add(name: "captcha_key", value: key);
+				answer = _captchaHandler.CaptchaHandlerAsync(action: (sid, key) =>
+					{
+						parameters.Add(name: "captcha_sid", nullableValue: sid);
+						parameters.Add(name: "captcha_key", value: key);
 
-					return Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
-				});
+						return Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
+					})
+					.ConfigureAwait(false)
+					.GetAwaiter()
+					.GetResult();
 			}
 
 			return answer;
@@ -636,60 +645,19 @@ namespace VkNet
 				BaseAuthorize(authParams: authParams);
 			} else
 			{
-				CaptchaHandler(action: (sid, key) =>
-				{
-					_logger?.Debug(message: "Авторизация с использование капчи.");
-					authParams.CaptchaSid = sid;
-					authParams.CaptchaKey = key;
-					BaseAuthorize(authParams: authParams);
+				_captchaHandler.CaptchaHandlerAsync(action: (sid, key) =>
+					{
+						_logger?.Debug(message: "Авторизация с использование капчи.");
+						authParams.CaptchaSid = sid;
+						authParams.CaptchaKey = key;
+						BaseAuthorize(authParams: authParams);
 
-					return true;
-				});
+						return true;
+					})
+					.ConfigureAwait(false)
+					.GetAwaiter()
+					.GetResult();
 			}
-		}
-
-		/// <summary>
-		/// Обработка капчи
-		/// </summary>
-		/// <param name="action"> Действие </param>
-		/// <typeparam name="T"> Тип результата </typeparam>
-		/// <returns> Результат действия </returns>
-		/// <exception cref="CaptchaNeededException"> Требуется обработка капчи. </exception>
-		private T CaptchaHandler<T>(Func<long?, string, T> action)
-		{
-			var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
-			var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
-			long? captchaSidTemp = null;
-			string captchaKeyTemp = null;
-			var callCompleted = false;
-			var result = default(T);
-
-			do
-			{
-				try
-				{
-					result = action.Invoke(arg1: captchaSidTemp, arg2: captchaKeyTemp);
-					numberOfRemainingAttemptsToAuthorize--;
-					callCompleted = true;
-				}
-				catch (CaptchaNeededException captchaNeededException)
-				{
-					RepeatSolveCaptcha(numberOfRemainingAttemptsToSolveCaptcha: ref numberOfRemainingAttemptsToSolveCaptcha,
-						captchaNeededException: captchaNeededException,
-						captchaSidTemp: ref captchaSidTemp,
-						captchaKeyTemp: ref captchaKeyTemp);
-				}
-			} while (numberOfRemainingAttemptsToAuthorize > 0 && !callCompleted);
-
-			// Повторно выбрасываем исключение, если капча ни разу не была распознана верно
-			if (callCompleted || !captchaSidTemp.HasValue)
-			{
-				return result;
-			}
-
-			_logger?.Error(message: "Капча ни разу не была распознана верно");
-
-			throw new CaptchaNeededException(sid: captchaSidTemp.Value, img: captchaKeyTemp);
 		}
 
 		/// <summary>
@@ -738,35 +706,6 @@ namespace VkNet
 			SetTimer(expireTime: expireTime);
 			AccessToken = accessToken;
 			UserId = userId;
-		}
-
-		/// <summary>
-		/// Повторная обработка капчи
-		/// </summary>
-		/// <param name="numberOfRemainingAttemptsToSolveCaptcha"> </param>
-		/// <param name="captchaNeededException"> </param>
-		/// <param name="captchaSidTemp"> </param>
-		/// <param name="captchaKeyTemp"> </param>
-		private void RepeatSolveCaptcha(ref int numberOfRemainingAttemptsToSolveCaptcha
-										, CaptchaNeededException captchaNeededException
-										, ref long? captchaSidTemp
-										, ref string captchaKeyTemp)
-		{
-			_logger?.Warn(message: "Повторная обработка капчи");
-
-			if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
-			{
-				CaptchaSolver?.CaptchaIsFalse();
-			}
-
-			if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
-			{
-				return;
-			}
-
-			captchaSidTemp = captchaNeededException.Sid;
-			captchaKeyTemp = CaptchaSolver?.Solve(url: captchaNeededException.Img?.AbsoluteUri);
-			numberOfRemainingAttemptsToSolveCaptcha--;
 		}
 
 		/// <summary>
@@ -828,6 +767,7 @@ namespace VkNet
 			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			_logger = serviceProvider.GetService<ILogger>();
+			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();
 			Users = new UsersCategory(vk: this);

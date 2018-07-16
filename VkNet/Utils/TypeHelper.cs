@@ -61,6 +61,11 @@ namespace VkNet.Utils
 			{
 				container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
 			}
+
+			if (container.All(predicate: x => x.ServiceType != typeof(ICaptchaHandler)))
+			{
+				container.TryAddSingleton<ICaptchaHandler, CaptchaHandler>();
+			}
 		}
 
 		/// <summary>

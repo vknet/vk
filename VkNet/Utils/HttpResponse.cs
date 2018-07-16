@@ -60,10 +60,10 @@ namespace VkNet.Utils
 		{
 			return new HttpResponse<TResponse>
 			{
-					Value = value
-					, IsSuccess = true
-					, StatusCode = httpStatusCode
-					, RequestUri = requestUri
+				Value = value,
+				IsSuccess = true,
+				StatusCode = httpStatusCode,
+				RequestUri = requestUri
 			};
 		}
 
@@ -80,9 +80,9 @@ namespace VkNet.Utils
 		{
 			return new HttpResponse<TResponse>
 			{
-					Message = message
-					, StatusCode = httpStatusCode
-					, RequestUri = requestUri
+				Message = message,
+				StatusCode = httpStatusCode,
+				RequestUri = requestUri
 			};
 		}
 	}
