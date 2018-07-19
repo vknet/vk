@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Ads;
 
 namespace VkNet.Abstractions
@@ -63,7 +63,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.checkLink
 		/// </remarks>
-		Uri CheckLink(long accountId, string linkType, string linkUrl, long? campaignId = null);
+		LinkStatus CheckLink(long accountId, AdsLinkType linkType, string linkUrl, long? campaignId = null);
 
 		/// <summary>
 		/// Создает рекламные объявления.

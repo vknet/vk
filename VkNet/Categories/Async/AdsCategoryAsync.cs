@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using VkNet.Abstractions;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Utils;
 
@@ -20,7 +19,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> CheckLinkAsync(long accountId, string linkType, string linkUrl, long? campaignId = null)
+		public async Task<LinkStatus> CheckLinkAsync(long accountId, AdsLinkType linkType, string linkUrl, long? campaignId = null)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => CheckLink(accountId, linkType, linkUrl, campaignId));
 		}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Ads;
@@ -30,36 +31,57 @@ namespace VkNet.Categories
 		public ReadOnlyCollection<object> AddOfficeUsers(long accountId, string data)
 		{
 			return _vk.Call<ReadOnlyCollection<object>>("ads.addOfficeUsers",
-				new VkParameters { { "account_id", accountId }, { "data", data } });
+				new VkParameters
+				{
+					{ "account_id", accountId },
+					{ "data", data }
+				});
 		}
 
 		/// <inheritdoc/>
-		public Uri CheckLink(long accountId, string linkType, string linkUrl, long? campaignId = null)
+		public LinkStatus CheckLink(long accountId, AdsLinkType linkType, string linkUrl, long? campaignId = null)
 		{
-			return _vk.Call<Uri>("ads.checkLink",
+			return _vk.Call<LinkStatus>("ads.checkLink",
 				new VkParameters
-					{ { "account_id", accountId }, { "link_type", linkType }, { "link_url", linkUrl }, { "campaign_id", campaignId } });
+				{
+					{ "account_id", accountId },
+					{ "link_type", linkType },
+					{ "link_url", linkUrl },
+					{ "campaign_id", campaignId }
+				});
 		}
 
 		/// <inheritdoc/>
 		public ReadOnlyCollection<object> CreateAds(long accountId, string data)
 		{
 			return _vk.Call<ReadOnlyCollection<object>>("ads.createAds",
-				new VkParameters { { "account_id", accountId }, { "data", data } });
+				new VkParameters
+				{
+					{ "account_id", accountId },
+					{ "data", data }
+				});
 		}
 
 		/// <inheritdoc/>
 		public ReadOnlyCollection<object> CreateCampaigns(long accountId, string data)
 		{
 			return _vk.Call<ReadOnlyCollection<object>>("ads.createCampaigns",
-				new VkParameters { { "account_id", accountId }, { "data", data } });
+				new VkParameters
+				{
+					{ "account_id", accountId },
+					{ "data", data }
+				});
 		}
 
 		/// <inheritdoc/>
 		public ReadOnlyCollection<object> CreateClients(long accountId, string data)
 		{
 			return _vk.Call<ReadOnlyCollection<object>>("ads.createClients",
-				new VkParameters { { "account_id", accountId }, { "data", data } });
+				new VkParameters
+				{
+					{ "account_id", accountId },
+					{ "data", data }
+				});
 		}
 
 		/// <inheritdoc/>
