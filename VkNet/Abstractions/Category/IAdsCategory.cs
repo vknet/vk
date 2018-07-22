@@ -383,7 +383,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getAds
 		/// </remarks>
-		ReadOnlyCollection<object> GetAds(GetAdsParams getAdsParams);
+		ReadOnlyCollection<Ad> GetAds(GetAdsParams getAdsParams);
 
 		/// <summary>
 		/// Возвращает описания внешнего вида рекламных объявлений.

@@ -98,7 +98,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<ReadOnlyCollection<object>> GetAdsAsync(GetAdsParams getAdsParams)
+		public async Task<ReadOnlyCollection<Ad>> GetAdsAsync(GetAdsParams getAdsParams)
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => GetAds(getAdsParams));
 		}

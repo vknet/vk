@@ -62,7 +62,7 @@
 		<PackageReference Include="NLog" Version="4.5.7"/>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1"/>
 		<PackageReference Include="System.Net.Http" Version="4.3.3"/>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">

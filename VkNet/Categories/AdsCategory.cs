@@ -160,14 +160,18 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetAds(GetAdsParams getAdsParams)
+		public ReadOnlyCollection<Ad> GetAds(GetAdsParams getAdsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getAds",
+			return _vk.Call<ReadOnlyCollection<Ad>>("ads.getAds",
 				new VkParameters
 				{
-					{ "account_id", getAdsParams.AccountId }, { "campaign_ids", getAdsParams.CampaignIds },
-					{ "ad_ids", getAdsParams.AdIds }, { "client_id", getAdsParams.ClientId },
-					{ "include_deleted", getAdsParams.IncludeDeleted }, { "limit", getAdsParams.Limit }, { "offset", getAdsParams.Offset }
+					{ "account_id", getAdsParams.AccountId },
+					{ "campaign_ids", getAdsParams.CampaignIds != null ? "[" + string.Join(",", getAdsParams.CampaignIds) + "]" : null },
+					{ "ad_ids", getAdsParams.AdIds != null ? "[" + string.Join(",", getAdsParams.AdIds) + "]" : null },
+					{ "client_id", getAdsParams.ClientId },
+					{ "include_deleted", getAdsParams.IncludeDeleted },
+					{ "limit", getAdsParams.Limit },
+					{ "offset", getAdsParams.Offset }
 				});
 		}
 

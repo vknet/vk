@@ -384,7 +384,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getAds
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> GetAdsAsync(GetAdsParams getAdsParams);
+		Task<ReadOnlyCollection<Ad>> GetAdsAsync(GetAdsParams getAdsParams);
 
 		/// <summary>
 		/// Возвращает описания внешнего вида рекламных объявлений.

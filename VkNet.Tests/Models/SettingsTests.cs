@@ -10,7 +10,7 @@ namespace VkNet.Tests.Models
 		public void All()
 		{
 			var settings = Settings.All;
-			Assert.AreEqual(expected: 140426719, actual: settings.ToUInt64());
+			Assert.AreEqual(140426719, settings.ToUInt64());
 		}
 
 		[Test]
@@ -18,35 +18,35 @@ namespace VkNet.Tests.Models
 		{
 			Json = "'notify'";
 			var response = GetResponse();
-			Assert.AreEqual(expected: Settings.FromJson(response: response), actual: Settings.Notify);
+			Assert.AreEqual(Settings.FromJson(response), Settings.Notify);
 		}
 
 		[Test]
 		public void Notify_Friends()
 		{
 			var settings = Settings.Notify|Settings.Friends;
-			Assert.AreEqual(expected: 3, actual: settings.ToUInt64());
+			Assert.AreEqual(3, settings.ToUInt64());
 		}
 
 		[Test]
 		public void Notify_Friends_Photos()
 		{
 			var settings = Settings.Notify|Settings.Friends|Settings.Photos;
-			Assert.AreEqual(expected: 7, actual: settings.ToUInt64());
+			Assert.AreEqual(7, settings.ToUInt64());
 		}
 
 		[Test]
 		public void Notify_Friends_Photos_Audio()
 		{
 			var settings = Settings.Notify|Settings.Friends|Settings.Photos|Settings.Audio;
-			Assert.AreEqual(expected: 15, actual: settings.ToUInt64());
+			Assert.AreEqual(15, settings.ToUInt64());
 		}
 
 		[Test]
 		public void Notify_Friends_Photos_Audio_Video()
 		{
 			var settings = Settings.Notify|Settings.Friends|Settings.Photos|Settings.Audio|Settings.Video;
-			Assert.AreEqual(expected: 31, actual: settings.ToUInt64());
+			Assert.AreEqual(31, settings.ToUInt64());
 		}
 
 		[Test]
@@ -59,7 +59,7 @@ namespace VkNet.Tests.Models
 							|Settings.Video
 							|Settings.Pages;
 
-			Assert.AreEqual(expected: 159, actual: settings.ToUInt64());
+			Assert.AreEqual(159, settings.ToUInt64());
 		}
 
 		[Test]
@@ -73,7 +73,7 @@ namespace VkNet.Tests.Models
 							|Settings.Pages
 							|Settings.AddLinkToLeftMenu;
 
-			Assert.AreEqual(expected: 415, actual: settings.ToUInt64());
+			Assert.AreEqual(415, settings.ToUInt64());
 		}
 
 		[Test]
@@ -88,7 +88,7 @@ namespace VkNet.Tests.Models
 							|Settings.AddLinkToLeftMenu
 							|Settings.Status;
 
-			Assert.AreEqual(expected: 1439, actual: settings.ToUInt64());
+			Assert.AreEqual(1439, settings.ToUInt64());
 		}
 
 		[Test]
@@ -104,7 +104,7 @@ namespace VkNet.Tests.Models
 							|Settings.Status
 							|Settings.Notes;
 
-			Assert.AreEqual(expected: 3487, actual: settings.ToUInt64());
+			Assert.AreEqual(3487, settings.ToUInt64());
 		}
 
 		[Test]
@@ -121,7 +121,7 @@ namespace VkNet.Tests.Models
 							|Settings.Notes
 							|Settings.Messages;
 
-			Assert.AreEqual(expected: 7583, actual: settings.ToUInt64());
+			Assert.AreEqual(7583, settings.ToUInt64());
 		}
 
 		[Test]
@@ -139,7 +139,7 @@ namespace VkNet.Tests.Models
 							|Settings.Messages
 							|Settings.Wall;
 
-			Assert.AreEqual(expected: 15775, actual: settings.ToUInt64());
+			Assert.AreEqual(15775, settings.ToUInt64());
 		}
 
 		[Test]
@@ -158,7 +158,7 @@ namespace VkNet.Tests.Models
 							|Settings.Wall
 							|Settings.Ads;
 
-			Assert.AreEqual(expected: 48543, actual: settings.ToUInt64());
+			Assert.AreEqual(48543, settings.ToUInt64());
 		}
 
 		[Test]
@@ -178,7 +178,7 @@ namespace VkNet.Tests.Models
 							|Settings.Ads
 							|Settings.Documents;
 
-			Assert.AreEqual(expected: 179615, actual: settings.ToUInt64());
+			Assert.AreEqual(179615, settings.ToUInt64());
 		}
 
 		[Test]
@@ -199,12 +199,12 @@ namespace VkNet.Tests.Models
 							|Settings.Documents
 							|Settings.Groups;
 
-			Assert.AreEqual(expected: 441759, actual: settings.ToUInt64());
+			Assert.AreEqual(441759, settings.ToUInt64());
 		}
 
 		[Test]
 		public void
-				Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications()
+			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications()
 		{
 			var settings = Settings.Notify
 							|Settings.Friends
@@ -222,12 +222,12 @@ namespace VkNet.Tests.Models
 							|Settings.Groups
 							|Settings.Notifications;
 
-			Assert.AreEqual(expected: 966047, actual: settings.ToUInt64());
+			Assert.AreEqual(966047, settings.ToUInt64());
 		}
 
 		[Test]
 		public void
-				Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats()
+			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats()
 		{
 			var settings = Settings.Notify
 							|Settings.Friends
@@ -246,12 +246,12 @@ namespace VkNet.Tests.Models
 							|Settings.Notifications
 							|Settings.Stats;
 
-			Assert.AreEqual(expected: 2014623, actual: settings.ToUInt64());
+			Assert.AreEqual(2014623, settings.ToUInt64());
 		}
 
 		[Test]
 		public void
-				Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email()
+			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email()
 		{
 			var settings = Settings.Notify
 							|Settings.Friends
@@ -271,12 +271,12 @@ namespace VkNet.Tests.Models
 							|Settings.Stats
 							|Settings.Email;
 
-			Assert.AreEqual(expected: 6208927, actual: settings.ToUInt64());
+			Assert.AreEqual(6208927, settings.ToUInt64());
 		}
 
 		[Test]
 		public void
-				Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email_Market()
+			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email_Market()
 		{
 			var settings = Settings.Notify
 							|Settings.Friends
@@ -297,12 +297,12 @@ namespace VkNet.Tests.Models
 							|Settings.Email
 							|Settings.Market;
 
-			Assert.AreEqual(expected: 140426655, actual: settings.ToUInt64());
+			Assert.AreEqual(140426655, settings.ToUInt64());
 		}
 
 		[Test]
 		public void
-				Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email_Market_AppWidget()
+			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email_Market_AppWidget()
 		{
 			var settings = Settings.Notify
 							|Settings.Friends
@@ -324,7 +324,7 @@ namespace VkNet.Tests.Models
 							|Settings.Market
 							|Settings.AppWidget;
 
-			Assert.AreEqual(expected: 140426719, actual: settings.ToUInt64());
+			Assert.AreEqual(140426719, settings.ToUInt64());
 		}
 
 		[Test]
@@ -332,7 +332,7 @@ namespace VkNet.Tests.Models
 		{
 		#pragma warning disable S1764
 			var settings = Settings.Notify|Settings.Notify;
-			Assert.AreEqual(expected: 1, actual: settings.ToUInt64());
+			Assert.AreEqual(1, settings.ToUInt64());
 		#pragma warning restore S1764
 		}
 
@@ -340,57 +340,56 @@ namespace VkNet.Tests.Models
 		public void SettingsTest()
 		{
 			// get test
-			Assert.That(actual: Settings.Notify.ToString(), expression: Is.EqualTo(expected: "notify"));
-			Assert.That(actual: Settings.Friends.ToString(), expression: Is.EqualTo(expected: "friends"));
-			Assert.That(actual: Settings.Photos.ToString(), expression: Is.EqualTo(expected: "photos"));
-			Assert.That(actual: Settings.Audio.ToString(), expression: Is.EqualTo(expected: "audio"));
-			Assert.That(actual: Settings.Video.ToString(), expression: Is.EqualTo(expected: "video"));
-			Assert.That(actual: Settings.Pages.ToString(), expression: Is.EqualTo(expected: "pages"));
-			Assert.That(actual: Settings.AddLinkToLeftMenu.ToString(), expression: Is.EqualTo(expected: "addlinktoleftmenu"));
-			Assert.That(actual: Settings.Status.ToString(), expression: Is.EqualTo(expected: "status"));
-			Assert.That(actual: Settings.Notes.ToString(), expression: Is.EqualTo(expected: "notes"));
-			Assert.That(actual: Settings.Messages.ToString(), expression: Is.EqualTo(expected: "messages"));
-			Assert.That(actual: Settings.Wall.ToString(), expression: Is.EqualTo(expected: "wall"));
-			Assert.That(actual: Settings.Ads.ToString(), expression: Is.EqualTo(expected: "ads"));
-			Assert.That(actual: Settings.Offline.ToString(), expression: Is.EqualTo(expected: "offline"));
-			Assert.That(actual: Settings.Documents.ToString(), expression: Is.EqualTo(expected: "docs"));
-			Assert.That(actual: Settings.Groups.ToString(), expression: Is.EqualTo(expected: "groups"));
-			Assert.That(actual: Settings.Notifications.ToString(), expression: Is.EqualTo(expected: "notifications"));
-			Assert.That(actual: Settings.Statistic.ToString(), expression: Is.EqualTo(expected: "stats"));
-			Assert.That(actual: Settings.Email.ToString(), expression: Is.EqualTo(expected: "email"));
-			Assert.That(actual: Settings.Market.ToString(), expression: Is.EqualTo(expected: "market"));
+			Assert.That(Settings.Notify.ToString(), Is.EqualTo("notify"));
+			Assert.That(Settings.Friends.ToString(), Is.EqualTo("friends"));
+			Assert.That(Settings.Photos.ToString(), Is.EqualTo("photos"));
+			Assert.That(Settings.Audio.ToString(), Is.EqualTo("audio"));
+			Assert.That(Settings.Video.ToString(), Is.EqualTo("video"));
+			Assert.That(Settings.Pages.ToString(), Is.EqualTo("pages"));
+			Assert.That(Settings.AddLinkToLeftMenu.ToString(), Is.EqualTo("addlinktoleftmenu"));
+			Assert.That(Settings.Status.ToString(), Is.EqualTo("status"));
+			Assert.That(Settings.Notes.ToString(), Is.EqualTo("notes"));
+			Assert.That(Settings.Messages.ToString(), Is.EqualTo("messages"));
+			Assert.That(Settings.Wall.ToString(), Is.EqualTo("wall"));
+			Assert.That(Settings.Ads.ToString(), Is.EqualTo("ads"));
+			Assert.That(Settings.Offline.ToString(), Is.EqualTo("offline"));
+			Assert.That(Settings.Documents.ToString(), Is.EqualTo("docs"));
+			Assert.That(Settings.Groups.ToString(), Is.EqualTo("groups"));
+			Assert.That(Settings.Notifications.ToString(), Is.EqualTo("notifications"));
+			Assert.That(Settings.Statistic.ToString(), Is.EqualTo("stats"));
+			Assert.That(Settings.Email.ToString(), Is.EqualTo("email"));
+			Assert.That(Settings.Market.ToString(), Is.EqualTo("market"));
 
-			Assert.That(actual: Settings.All.ToString()
-					, expression: Is.EqualTo(expected:
-							"addlinktoleftmenu,ads,audio,app_widget,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall"));
+			Assert.That(Settings.All.ToString(),
+				Is.EqualTo(
+					"notify,friends,photos,audio,video,app_widget,pages,addlinktoleftmenu,status,notes,messages,wall,ads,docs,groups,notifications,stats,email,market"));
 
 			// parse test
-			Assert.That(actual: Settings.FromJsonString(val: "notify"), expression: Is.EqualTo(expected: Settings.Notify));
-			Assert.That(actual: Settings.FromJsonString(val: "friends"), expression: Is.EqualTo(expected: Settings.Friends));
-			Assert.That(actual: Settings.FromJsonString(val: "photos"), expression: Is.EqualTo(expected: Settings.Photos));
-			Assert.That(actual: Settings.FromJsonString(val: "audio"), expression: Is.EqualTo(expected: Settings.Audio));
-			Assert.That(actual: Settings.FromJsonString(val: "video"), expression: Is.EqualTo(expected: Settings.Video));
-			Assert.That(actual: Settings.FromJsonString(val: "pages"), expression: Is.EqualTo(expected: Settings.Pages));
+			Assert.That(Settings.FromJsonString("notify"), Is.EqualTo(Settings.Notify));
+			Assert.That(Settings.FromJsonString("friends"), Is.EqualTo(Settings.Friends));
+			Assert.That(Settings.FromJsonString("photos"), Is.EqualTo(Settings.Photos));
+			Assert.That(Settings.FromJsonString("audio"), Is.EqualTo(Settings.Audio));
+			Assert.That(Settings.FromJsonString("video"), Is.EqualTo(Settings.Video));
+			Assert.That(Settings.FromJsonString("pages"), Is.EqualTo(Settings.Pages));
 
-			Assert.That(actual: Settings.FromJsonString(val: "addlinktoleftmenu")
-					, expression: Is.EqualTo(expected: Settings.AddLinkToLeftMenu));
+			Assert.That(Settings.FromJsonString("addlinktoleftmenu"), Is.EqualTo(Settings.AddLinkToLeftMenu));
 
-			Assert.That(actual: Settings.FromJsonString(val: "status"), expression: Is.EqualTo(expected: Settings.Status));
-			Assert.That(actual: Settings.FromJsonString(val: "notes"), expression: Is.EqualTo(expected: Settings.Notes));
-			Assert.That(actual: Settings.FromJsonString(val: "messages"), expression: Is.EqualTo(expected: Settings.Messages));
-			Assert.That(actual: Settings.FromJsonString(val: "wall"), expression: Is.EqualTo(expected: Settings.Wall));
-			Assert.That(actual: Settings.FromJsonString(val: "ads"), expression: Is.EqualTo(expected: Settings.Ads));
-			Assert.That(actual: Settings.FromJsonString(val: "offline"), expression: Is.EqualTo(expected: Settings.Offline));
-			Assert.That(actual: Settings.FromJsonString(val: "docs"), expression: Is.EqualTo(expected: Settings.Documents));
-			Assert.That(actual: Settings.FromJsonString(val: "groups"), expression: Is.EqualTo(expected: Settings.Groups));
-			Assert.That(actual: Settings.FromJsonString(val: "notifications"), expression: Is.EqualTo(expected: Settings.Notifications));
-			Assert.That(actual: Settings.FromJsonString(val: "stats"), expression: Is.EqualTo(expected: Settings.Statistic));
-			Assert.That(actual: Settings.FromJsonString(val: "email"), expression: Is.EqualTo(expected: Settings.Email));
-			Assert.That(actual: Settings.FromJsonString(val: "market"), expression: Is.EqualTo(expected: Settings.Market));
+			Assert.That(Settings.FromJsonString("status"), Is.EqualTo(Settings.Status));
+			Assert.That(Settings.FromJsonString("notes"), Is.EqualTo(Settings.Notes));
+			Assert.That(Settings.FromJsonString("messages"), Is.EqualTo(Settings.Messages));
+			Assert.That(Settings.FromJsonString("wall"), Is.EqualTo(Settings.Wall));
+			Assert.That(Settings.FromJsonString("ads"), Is.EqualTo(Settings.Ads));
+			Assert.That(Settings.FromJsonString("offline"), Is.EqualTo(Settings.Offline));
+			Assert.That(Settings.FromJsonString("docs"), Is.EqualTo(Settings.Documents));
+			Assert.That(Settings.FromJsonString("groups"), Is.EqualTo(Settings.Groups));
+			Assert.That(Settings.FromJsonString("notifications"), Is.EqualTo(Settings.Notifications));
+			Assert.That(Settings.FromJsonString("stats"), Is.EqualTo(Settings.Statistic));
+			Assert.That(Settings.FromJsonString("email"), Is.EqualTo(Settings.Email));
+			Assert.That(Settings.FromJsonString("market"), Is.EqualTo(Settings.Market));
 
-			Assert.That(actual: Settings.FromJsonString(val:
-							"addlinktoleftmenu,ads,audio,app_widget,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall")
-					, expression: Is.EqualTo(expected: Settings.All));
+			Assert.That(Settings.FromJsonString(
+					"addlinktoleftmenu,ads,audio,app_widget,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall"),
+				Is.EqualTo(Settings.All));
 		}
 	}
 }

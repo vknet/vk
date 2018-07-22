@@ -13,35 +13,33 @@ namespace VkNet.Enums.Filters
 	{
 		private static readonly Dictionary<string, ulong> MaskMap = new Dictionary<string, ulong>
 		{
-				{ "notify", 1 }
-				, { "friends", 2 }
-				, { "photos", 4 }
-				, { "audio", 8 }
-				, { "video", 16 }
-				, { "app_widget", 64 }
-				, { "pages", 128 }
-				, { "addlinktoleftmenu", 256 }
-				, { "status", 1024 }
-				, { "notes", 2048 }
-				, { "messages", 4096 }
-				, { "wall", 8192 }
-				, { "ads", 32768 }
-				, { "offline", 65536 }
-				, { "docs", 131072 }
-				, { "groups", 262144 }
-				, { "notifications", 524288 }
-				, { "stats", 1048576 }
-				, { "email", 4194304 }
-				, { "market", 134217728 }
+			{ "notify", 1 },
+			{ "friends", 2 },
+			{ "photos", 4 },
+			{ "audio", 8 },
+			{ "video", 16 },
+			{ "app_widget", 64 },
+			{ "pages", 128 },
+			{ "addlinktoleftmenu", 256 },
+			{ "status", 1024 },
+			{ "notes", 2048 },
+			{ "messages", 4096 },
+			{ "wall", 8192 },
+			{ "ads", 32768 },
+			{ "offline", 65536 },
+			{ "docs", 131072 },
+			{ "groups", 262144 },
+			{ "notifications", 524288 },
+			{ "stats", 1048576 },
+			{ "email", 4194304 },
+			{ "market", 134217728 }
 		};
 
 		private static readonly Dictionary<string, string> Alias = new Dictionary<string, string>
 		{
-				{
-						"all"
-						, string.Join(separator: ","
-								, values: MaskMap.Keys.Where(predicate: x => x != "offline").OrderBy(keySelector: x => x))
-				}
+			{
+				"all", string.Join(separator: ",", values: MaskMap.Keys.Where(predicate: x => x != "offline").OrderBy(keySelector: x => x))
+			}
 		};
 
 		private List<string> _settings;
@@ -167,25 +165,25 @@ namespace VkNet.Enums.Filters
 		/// <summary>
 		/// Доступ ко всем возможным операциям (без Off line и NoHttps).
 		/// </summary>
-		public static Settings All => AddLinkToLeftMenu
-									|Ads
-									|Audio
-									|AppWidget
-									|Documents
-									|Email
+		public static Settings All => Notify
 									|Friends
-									|Groups
-									|Market
-									|Messages
-									|Notes
-									|Notifications
-									|Notify
-									|Pages
 									|Photos
-									|Stats
-									|Status
+									|Audio
 									|Video
-									|Wall;
+									|AppWidget
+									|Pages
+									|AddLinkToLeftMenu
+									|Status
+									|Notes
+									|Messages
+									|Wall
+									|Ads
+									|Documents
+									|Groups
+									|Notifications
+									|Stats
+									|Email
+									|Market;
 
 		private static Settings GetByName(string name)
 		{
@@ -195,8 +193,7 @@ namespace VkNet.Enums.Filters
 			{
 				return new Settings
 				{
-						Mask = MaskMap[key: n]
-						, _settings = new List<string> { n }
+					Mask = MaskMap[key: n], _settings = new List<string> { n }
 				};
 			}
 
