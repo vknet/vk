@@ -4,7 +4,6 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -19,7 +18,7 @@ namespace VkNet.Model
 	public class Message : MediaAttachment
 	{
 		/// <summary>
-		/// Подарок.
+		/// Личное сообщение пользователя.
 		/// </summary>
 		static Message()
 		{
@@ -41,44 +40,42 @@ namespace VkNet.Model
 
 			var message = new Message
 			{
-					Unread = response.ContainsKey(key: "unread") ? response[key: "unread"] : 0
-					, Id = response[key: "id"]
-					, UserId = response[key: "user_id"]
-					, Date = response[key: "date"]
-					, ReadState = response[key: "read_state"]
-					, Type = response[key: "out"]
-					, Title = response[key: "title"]
-					, Body = response[key: "body"]
-					, Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x)
-					, Geo = response[key: "geo"]
-					, ForwardedMessages = response[key: "fwd_messages"].ToReadOnlyCollectionOf<Message>(selector: x => x)
-					, Emoji = response[key: "emoji"]
-					, Important = response[key: "important"]
-					, Deleted = response[key: "deleted"]
-					, FromId = response[key: "from_id"]
-					,
+				Unread = response.ContainsKey(key: "unread") ? response[key: "unread"] : 0,
+				Id = response[key: "id"],
+				UserId = response[key: "user_id"],
+				Date = response[key: "date"],
+				ReadState = response[key: "read_state"],
+				Type = response[key: "out"],
+				Title = response[key: "title"],
+				Body = response[key: "body"],
+				Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x),
+				Geo = response[key: "geo"],
+				ForwardedMessages = response[key: "fwd_messages"].ToReadOnlyCollectionOf<Message>(selector: x => x),
+				Emoji = response[key: "emoji"],
+				Important = response[key: "important"],
+				Deleted = response[key: "deleted"],
+				FromId = response[key: "from_id"],
 
-					// дополнительные поля бесед
-					ChatId = response[key: "chat_id"]
-					, ChatActive = response[key: "chat_active"].ToReadOnlyCollectionOf<long>(selector: x => x)
-					, UsersCount = response[key: "users_count"]
-					, AdminId = response[key: "admin_id"]
-					, PhotoPreviews = response
-					, PushSettings = response[key: "push_settings"]
-					, Action = response[key: "action"]
-					, ActionMid = response[key: "action_mid"]
-					, ActionEmail = response[key: "action_email"]
-					, ActionText = response[key: "action_text"]
-					, Photo50 = response[key: "photo_50"]
-					, Photo100 = response[key: "photo_100"]
-					, Photo200 = response[key: "photo_200"]
-					, InRead = response[key: "in_read"]
-					, OutRead = response[key: "out_read"]
-					, Out = response[key: "out"]
-					, UpdateTime = response[key: "update_time"]
-					,
+				// дополнительные поля бесед
+				ChatId = response[key: "chat_id"],
+				ChatActive = response[key: "chat_active"].ToReadOnlyCollectionOf<long>(selector: x => x),
+				UsersCount = response[key: "users_count"],
+				AdminId = response[key: "admin_id"],
+				PhotoPreviews = response,
+				PushSettings = response[key: "push_settings"],
+				Action = response[key: "action"],
+				ActionMid = response[key: "action_mid"],
+				ActionEmail = response[key: "action_email"],
+				ActionText = response[key: "action_text"],
+				Photo50 = response[key: "photo_50"],
+				Photo100 = response[key: "photo_100"],
+				Photo200 = response[key: "photo_200"],
+				InRead = response[key: "in_read"],
+				OutRead = response[key: "out_read"],
+				Out = response[key: "out"],
+				UpdateTime = response[key: "update_time"],
 
-					Keyboard = response[key: "keyboard"]
+				Keyboard = response[key: "keyboard"]
 			};
 
 			return message;
@@ -201,7 +198,7 @@ namespace VkNet.Model
 		/// и chat_create, chat_title_update,
 		/// chat_invite_user, chat_kick_user
 		/// </remarks>
-		public MessageAction Action { get; set; }
+		public MessageActionObject Action { get; set; }
 
 		/// <summary>
 		/// Идентификатор пользователя (если больше 0) или email (если меньше 0), которого
@@ -236,7 +233,6 @@ namespace VkNet.Model
 
 	#endregion
 
-
 	#region Дополнительные поля в сообщениях сообществ
 
 		/// <summary>
@@ -245,7 +241,6 @@ namespace VkNet.Model
 		public MessageKeyboard Keyboard { get; set; }
 
 	#endregion
-
 
 	#region недокументированные
 
