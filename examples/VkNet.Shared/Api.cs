@@ -3,7 +3,7 @@
 namespace VkNet.Shared
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public class Api
 	{
@@ -22,9 +22,18 @@ namespace VkNet.Shared
 		/// Gets the instance.
 		/// </summary>
 		/// <returns></returns>
-		public static VkApi GetInstance(IServiceCollection collection = null)
+		public static VkApi GetInstance(IServiceCollection collection)
 		{
 			return _instance ?? (_instance = new VkApi(collection));
+		}
+
+		/// <summary>
+		/// Gets the instance.
+		/// </summary>
+		/// <returns></returns>
+		public static VkApi GetInstance()
+		{
+			return _instance ?? (_instance = new VkApi());
 		}
 	}
 }

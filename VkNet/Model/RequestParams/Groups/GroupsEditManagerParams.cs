@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -30,6 +32,7 @@ namespace VkNet.Model.RequestParams
 		/// Если параметр не задан, с пользователя user_id снимаются полномочия
 		/// руководителя. строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public ManagerRole Role { get; set; }
 
 		/// <summary>

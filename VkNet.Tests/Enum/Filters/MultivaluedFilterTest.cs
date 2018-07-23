@@ -79,7 +79,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(actual: GroupsFields.MembersCount.ToString(), expression: Is.EqualTo(expected: "members_count"));
 			Assert.That(actual: GroupsFields.Counters.ToString(), expression: Is.EqualTo(expected: "counters"));
 			Assert.That(actual: GroupsFields.StartDate.ToString(), expression: Is.EqualTo(expected: "start_date"));
-			Assert.That(actual: GroupsFields.EndDate.ToString(), expression: Is.EqualTo(expected: "end_date"));
+			Assert.That(actual: GroupsFields.EndDate.ToString(), expression: Is.EqualTo(expected: "finish_date"));
 			Assert.That(actual: GroupsFields.CanPost.ToString(), expression: Is.EqualTo(expected: "can_post"));
 			Assert.That(actual: GroupsFields.CanSeelAllPosts.ToString(), expression: Is.EqualTo(expected: "can_see_all_posts"));
 			Assert.That(actual: GroupsFields.CanUploadDocuments.ToString(), expression: Is.EqualTo(expected: "can_upload_doc"));
@@ -95,11 +95,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 
 			Assert.That(actual: GroupsFields.All.ToString()
 					, expression: Is.EqualTo(expected:
-							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
+							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
 
 			Assert.That(actual: GroupsFields.AllUndocumented.ToString()
 					, expression: Is.EqualTo(expected:
-							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
+							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
 
 			// parse test
 			Assert.That(actual: GroupsFields.FromJsonString(val: "city"), expression: Is.EqualTo(expected: GroupsFields.CityId));
@@ -116,7 +116,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 
 			Assert.That(actual: GroupsFields.FromJsonString(val: "counters"), expression: Is.EqualTo(expected: GroupsFields.Counters));
 			Assert.That(actual: GroupsFields.FromJsonString(val: "start_date"), expression: Is.EqualTo(expected: GroupsFields.StartDate));
-			Assert.That(actual: GroupsFields.FromJsonString(val: "end_date"), expression: Is.EqualTo(expected: GroupsFields.EndDate));
+			Assert.That(actual: GroupsFields.FromJsonString(val: "finish_date"), expression: Is.EqualTo(expected: GroupsFields.EndDate));
 			Assert.That(actual: GroupsFields.FromJsonString(val: "can_post"), expression: Is.EqualTo(expected: GroupsFields.CanPost));
 
 			Assert.That(actual: GroupsFields.FromJsonString(val: "can_see_all_posts")
@@ -138,11 +138,11 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(actual: GroupsFields.FromJsonString(val: "ban_info"), expression: Is.EqualTo(expected: GroupsFields.BanInfo));
 
 			Assert.That(actual: GroupsFields.FromJsonString(val:
-							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
+							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
 					, expression: Is.EqualTo(expected: GroupsFields.All));
 
 			Assert.That(actual: GroupsFields.FromJsonString(val:
-							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,end_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
+							"activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
 					, expression: Is.EqualTo(expected: GroupsFields.AllUndocumented));
 		}
 

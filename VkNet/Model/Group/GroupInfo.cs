@@ -172,48 +172,48 @@ namespace VkNet.Model
 		/// </summary>
 		public readonly Dictionary<int, string> Subjects = new Dictionary<int, string>
 		{
-				{ 1, "Авто/мото" }
-				, { 2, "Активный отдых" }
-				, { 3, "Бизнес" }
-				, { 4, "Домашние животные" }
-				, { 5, "Здоровье" }
-				, { 6, "Знакомство и общение" }
-				, { 7, "Игры" }
-				, { 8, "ИТ (компьютеры и софт)" }
-				, { 9, "Кино" }
-				, { 10, "Красота и мода" }
-				, { 11, "Кулинария" }
-				, { 12, "Культура и искусство" }
-				, { 13, "Литература" }
-				, { 14, "Мобильная связь и интернет" }
-				, { 15, "Музыка" }
-				, { 16, "Наука и техника" }
-				, { 17, "Недвижимость" }
-				, { 18, "Новости и СМИ" }
-				, { 19, "Безопасность" }
-				, { 20, "Образование" }
-				, { 21, "Обустройство и ремонт" }
-				, { 22, "Политика" }
-				, { 23, "Продукты питания" }
-				, { 24, "Промышленность" }
-				, { 25, "Путешествия" }
-				, { 26, "Работа" }
-				, { 27, "Развлечения" }
-				, { 28, "Религия" }
-				, { 29, "Дом и семья" }
-				, { 30, "Спорт" }
-				, { 31, "Страхование" }
-				, { 32, "Телевидение" }
-				, { 33, "Товары и услуги" }
-				, { 34, "Увлечения и хобби" }
-				, { 35, "Финансы" }
-				, { 36, "Фото" }
-				, { 37, "Эзотерика" }
-				, { 38, "Электроника и бытовая техника" }
-				, { 39, "Эротика" }
-				, { 40, "Юмор" }
-				, { 41, "Общество, гуманитарные науки" }
-				, { 42, "Дизайн и графика" }
+			{ 1, "Авто/мото" },
+			{ 2, "Активный отдых" },
+			{ 3, "Бизнес" },
+			{ 4, "Домашние животные" },
+			{ 5, "Здоровье" },
+			{ 6, "Знакомство и общение" },
+			{ 7, "Игры" },
+			{ 8, "ИТ (компьютеры и софт)" },
+			{ 9, "Кино" },
+			{ 10, "Красота и мода" },
+			{ 11, "Кулинария" },
+			{ 12, "Культура и искусство" },
+			{ 13, "Литература" },
+			{ 14, "Мобильная связь и интернет" },
+			{ 15, "Музыка" },
+			{ 16, "Наука и техника" },
+			{ 17, "Недвижимость" },
+			{ 18, "Новости и СМИ" },
+			{ 19, "Безопасность" },
+			{ 20, "Образование" },
+			{ 21, "Обустройство и ремонт" },
+			{ 22, "Политика" },
+			{ 23, "Продукты питания" },
+			{ 24, "Промышленность" },
+			{ 25, "Путешествия" },
+			{ 26, "Работа" },
+			{ 27, "Развлечения" },
+			{ 28, "Религия" },
+			{ 29, "Дом и семья" },
+			{ 30, "Спорт" },
+			{ 31, "Страхование" },
+			{ 32, "Телевидение" },
+			{ 33, "Товары и услуги" },
+			{ 34, "Увлечения и хобби" },
+			{ 35, "Финансы" },
+			{ 36, "Фото" },
+			{ 37, "Эзотерика" },
+			{ 38, "Электроника и бытовая техника" },
+			{ 39, "Эротика" },
+			{ 40, "Юмор" },
+			{ 41, "Общество, гуманитарные науки" },
+			{ 42, "Дизайн и графика" }
 		};
 
 		/// <summary>
@@ -225,34 +225,34 @@ namespace VkNet.Model
 		{
 			var group = new GroupInfo
 			{
-					Title = response[key: "title"]
-					, Description = response[key: "description"]
-					, Address = response[key: "address"]
-					, Place = response[key: "place"]
-					, Wall = response[key: "wall"]
-					, Photos = response[key: "photos"]
-					, Video = response[key: "video"]
-					, Audio = response[key: "audio"]
-					, Docs = response[key: "docs"]
-					, Topics = response[key: "topics"]
-					, Wiki = response[key: "wiki"]
-					, Access = response[key: "access"]
-					, Subject = response[key: "subject"]
-					, Website = response[key: "website"]
-					, Contacts = response[key: "contacts"]
-					, Places = response[key: "places"]
-					, Events = response[key: "events"]
-					, Links = response[key: "links"]
-					, PublicDate = response[key: "public_date"]
-					, PublicSubcategory = response[key: "public_subcategory"]
-					, PublicCategory = response[key: "public_category"]
-					, EventGroupId = response[key: "event_group_id"]
-					, EventFinishDate = response[key: "event_finish_date"]
-					, EventStartDate = response[key: "event_start_date"]
-					, Rss = response[key: "rss"]
-					, Phone = response[key: "phone"]
-					, Email = response[key: "email"]
-					, ScreenName = response[key: "screen_name"]
+				Title = response[key: "title"],
+				Description = response[key: "description"],
+				Address = response[key: "address"],
+				Place = response[key: "place"],
+				Wall = response[key: "wall"],
+				Photos = response[key: "photos"],
+				Video = response[key: "video"],
+				Audio = response[key: "audio"],
+				Docs = response[key: "docs"],
+				Topics = response[key: "topics"],
+				Wiki = response[key: "wiki"],
+				Access = response[key: "access"],
+				Subject = response[key: "subject"],
+				Website = response[key: "website"],
+				Contacts = response[key: "contacts"],
+				Places = response[key: "places"],
+				Events = response[key: "events"],
+				Links = response[key: "links"],
+				PublicDate = response[key: "public_date"],
+				PublicSubcategory = response[key: "public_subcategory"],
+				PublicCategory = response[key: "public_category"],
+				EventGroupId = response[key: "event_group_id"],
+				EventFinishDate = response[key: "event_finish_date"],
+				EventStartDate = response[key: "event_start_date"],
+				Rss = response[key: "rss"],
+				Phone = response[key: "phone"],
+				Email = response[key: "email"],
+				ScreenName = response[key: "screen_name"]
 			};
 
 			return group;

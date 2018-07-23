@@ -5,6 +5,7 @@ using Newtonsoft.Json.Converters;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -23,6 +24,7 @@ namespace VkNet.Model.RequestParams
 		/// — новые заметки Если параметр не
 		/// задан, то будут получены все возможные списки новостей.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NewsTypes Filters { get; set; }
 
 		/// <summary>

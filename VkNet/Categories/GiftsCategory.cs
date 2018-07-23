@@ -12,13 +12,13 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API.
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы с подарками.
 		/// </summary>
 		/// <param name="vk"> API. </param>
-		public GiftsCategory(VkApi vk)
+		public GiftsCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

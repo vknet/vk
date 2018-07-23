@@ -39,7 +39,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.addChatUser";
 
 			Json =
-					@"{
+				@"{
 					'response': 1
 				  }";
 
@@ -54,12 +54,12 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.CreateChat(userIds: new ulong[]
-							{
-									1
-									, 2
-							}
-							, title: "hi, friends")
-					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					{
+						1,
+						2
+					},
+					title: "hi, friends"),
+				expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -68,16 +68,16 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.createChat";
 
 			Json =
-					@"{
+				@"{
 					'response': 3
 				  }";
 
 			var chatId = Cat.CreateChat(userIds: new ulong[]
-					{
-							5041431
-							, 10657891
-					}
-					, title: "test chat's title");
+				{
+					5041431,
+					10657891
+				},
+				title: "test chat's title");
 
 			Assert.That(actual: chatId, expression: Is.EqualTo(expected: 3));
 		}
@@ -87,8 +87,8 @@ namespace VkNet.Tests.Categories
 		{
 			var cat = new MessagesCategory(vk: new VkApi());
 
-			Assert.That(del: () => cat.Delete(messageIds: new ulong[] { 1 }, spam: false, deleteForAll: false)
-					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(del: () => cat.Delete(messageIds: new ulong[] { 1 }, spam: false, deleteForAll: false),
+				expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -97,7 +97,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.delete";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 					  '4446': 1
 					}
@@ -114,7 +114,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.delete";
 
 			Json =
-					@"{
+				@"{
 					'error': {
 					  'error_code': 1,
 					  'error_msg': 'Unknown error occured',
@@ -139,8 +139,8 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			Assert.That(del: () => Cat.Delete(messageIds: new ulong[] { 999999 }, spam: false, deleteForAll: false)
-					, expr: Throws.InstanceOf<VkApiException>());
+			Assert.That(del: () => Cat.Delete(messageIds: new ulong[] { 999999 }, spam: false, deleteForAll: false),
+				expr: Throws.InstanceOf<VkApiException>());
 		}
 
 		[Test]
@@ -149,7 +149,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.delete";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 					  '4457': 1,
 					  '4464': 1
@@ -157,12 +157,12 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var dict = Cat.Delete(messageIds: new ulong[]
-					{
-							4457
-							, 4464
-					}
-					, spam: false
-					, deleteForAll: false);
+				{
+					4457,
+					4464
+				},
+				spam: false,
+				deleteForAll: false);
 
 			Assert.That(actual: dict.Count, expression: Is.EqualTo(expected: 2));
 			Assert.That(actual: dict[key: 4457], expression: Is.True);
@@ -174,36 +174,6 @@ namespace VkNet.Tests.Categories
 		{
 			var cat = new MessagesCategory(vk: new VkApi());
 			Assert.That(del: () => cat.DeleteDialog(userId: 111), expr: Throws.InstanceOf<AccessTokenInvalidException>());
-		}
-
-		[Test]
-		public void DeleteDialog_UserId_DeleteAllMessages()
-		{
-			Url = "https://api.vk.com/method/messages.deleteDialog";
-
-			Json =
-					@"{
-					'response': 1
-				  }";
-
-			var result = Cat.DeleteDialog(userId: 4460019);
-
-			Assert.That(actual: result, expression: Is.True);
-		}
-
-		[Test]
-		public void DeleteDialog_WithAllInputParams_DeleteTwoMessages()
-		{
-			Url = "https://api.vk.com/method/messages.deleteDialog";
-
-			Json =
-					@"{
-					'response': 1
-				  }";
-
-			var result = Cat.DeleteDialog(userId: 4460019, peerId: null, offset: null, count: 2);
-
-			Assert.That(actual: result, expression: Is.True);
 		}
 
 		[Test]
@@ -219,7 +189,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.editChat";
 
 			Json =
-					@"{
+				@"{
 					'response': 1
 				  }";
 
@@ -240,7 +210,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.get";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 					  'count': 5,
 					  'items': [
@@ -299,7 +269,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.get";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 					  'count': 5,
 					  'items': [
@@ -318,7 +288,7 @@ namespace VkNet.Tests.Categories
 
 			var messages = Cat.Get(@params: new MessagesGetParams
 			{
-					LastMessageId = 30
+				LastMessageId = 30
 			});
 
 			Assert.That(actual: messages.TotalCount, expression: Is.EqualTo(expected: 5));
@@ -349,12 +319,12 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.GetById(messageIds: new ulong[]
-					{
-							1
-							, 3
-							, 5
-					})
-					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+				{
+					1,
+					3,
+					5
+				}),
+				expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -363,7 +333,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getById";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 					  'count': 3,
 					  'items': [{
@@ -398,9 +368,9 @@ namespace VkNet.Tests.Categories
 
 			var msgs = Cat.GetById(messageIds: new ulong[]
 			{
-					1
-					, 3
-					, 5
+				1,
+				3,
+				5
 			});
 
 			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 3));
@@ -412,8 +382,8 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs[index: 2].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
 			Assert.That(actual: msgs[index: 2].Title, expression: Is.EqualTo(expected: "Re(2): Как там зачетная неделя продвигаетсо?)"));
 
-			Assert.That(actual: msgs[index: 2].Body
-					, expression: Is.EqualTo(expected: "Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)"));
+			Assert.That(actual: msgs[index: 2].Body,
+				expression: Is.EqualTo(expected: "Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)"));
 
 			Assert.That(actual: msgs[index: 1].Id, expression: Is.EqualTo(expected: 3));
 			Assert.That(actual: msgs[index: 1].Type, expression: Is.EqualTo(expected: MessageType.Sended));
@@ -436,7 +406,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getById";
 
 			Json =
-					@"{
+				@"{
 					'response': [
 					  1,
 					  {
@@ -455,14 +425,14 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(actual: msg.Id, expression: Is.EqualTo(expected: 1));
 
-			Assert.That(actual: msg.Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2007
-							, month: 12
-							, day: 18
-							, hour: 2
-							, minute: 5
-							, second: 20
-							, kind: DateTimeKind.Utc)));
+			Assert.That(actual: msg.Date,
+				expression: Is.EqualTo(expected: new DateTime(year: 2007,
+					month: 12,
+					day: 18,
+					hour: 2,
+					minute: 5,
+					second: 20,
+					kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msg.Type, expression: Is.EqualTo(expected: MessageType.Received));
 			Assert.That(actual: msg.UserId, expression: Is.EqualTo(expected: 684559));
@@ -484,7 +454,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getChat";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 					  'type': 'chat',
 					  'id': 2,
@@ -514,8 +484,8 @@ namespace VkNet.Tests.Categories
 		{
 			var cat = new MessagesCategory(vk: new VkApi());
 
-			Assert.That(del: () => cat.GetChatUsers(chatIds: new List<long> { 2 }, fields: null, nameCase: null)
-					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(del: () => cat.GetChatUsers(chatIds: new List<long> { 2 }, fields: null, nameCase: null),
+				expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -524,7 +494,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getChatUsers";
 
 			Json =
-					@"{
+				@"{
 					'response': {
                         2: [
 					  4793858,
@@ -544,7 +514,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getChatUsers";
 
 			Json =
-					@"{
+				@"{
 					'response': {
                         2: [{
 						'uid': 4793858,
@@ -612,11 +582,11 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.GetDialogs(@params: new MessagesDialogsGetParams
-					{
-							Count = 0
-							, Offset = 201
-					})
-					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+				{
+					Count = 0,
+					Offset = 201
+				}),
+				expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -626,7 +596,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getDialogs";
 
 			Json =
-					@"{
+				@"{
 					'response': [
 					  18,
 					  {
@@ -643,23 +613,23 @@ namespace VkNet.Tests.Categories
 
 			var msgs = Cat.GetDialogs(@params: new MessagesDialogsGetParams
 			{
-					Count = 77128
-					, Offset = 0
-					, Unread = false
+				Count = 77128,
+				Offset = 0,
+				Unread = false
 			});
 
 			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 18));
 			Assert.That(actual: msgs.Messages.Count, expression: Is.EqualTo(expected: 1));
 			Assert.That(actual: msgs.Messages[index: 0].Id, expression: Is.EqualTo(expected: 2105));
 
-			Assert.That(actual: msgs.Messages[index: 0].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2010
-							, month: 9
-							, day: 25
-							, hour: 19
-							, minute: 17
-							, second: 32
-							, kind: DateTimeKind.Utc)));
+			Assert.That(actual: msgs.Messages[index: 0].Date,
+				expression: Is.EqualTo(expected: new DateTime(year: 2010,
+					month: 9,
+					day: 25,
+					hour: 19,
+					minute: 17,
+					second: 32,
+					kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs.Messages[index: 0].Type, expression: Is.EqualTo(expected: MessageType.Received));
 			Assert.That(actual: msgs.Messages[index: 0].UserId, expression: Is.EqualTo(expected: 77128));
@@ -674,11 +644,11 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.GetHistory(@params: new MessagesGetHistoryParams
-					{
-							Reversed = false
-							, UserId = 1
-					})
-					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+				{
+					Reversed = false,
+					UserId = 1
+				}),
+				expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -755,7 +725,7 @@ namespace VkNet.Tests.Categories
 
 			var msgs = Cat.GetHistory(@params: new MessagesGetHistoryParams
 			{
-					UserId = 7712
+				UserId = 7712
 			});
 
 			// assertions
@@ -764,7 +734,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msg, expression: Is.Not.Null);
 			Assert.That(actual: msg.Attachments.Count, expression: Is.EqualTo(expected: 1));
 
-			var wall = msg.Attachments[index: 0].Instance as Post;
+			var wall = msg.Attachments[index: 0].Instance as Wall;
 
 			Assert.That(actual: wall, expression: Is.Not.Null);
 			Assert.That(actual: wall.Id, expression: Is.EqualTo(expected: 6194));
@@ -822,9 +792,9 @@ namespace VkNet.Tests.Categories
 
 			var msgs = Cat.GetHistory(@params: new MessagesGetHistoryParams
 			{
-					UserId = 7712
-					, Count = 5
-					, Offset = 3
+				UserId = 7712,
+				Count = 5,
+				Offset = 3
 			});
 
 			// asserts
@@ -849,7 +819,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getHistory";
 
 			Json =
-					@"{
+				@"{
 					'response': [
 					  18,
 					  {
@@ -888,14 +858,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs.Messages[index: 2].Id, expression: Is.EqualTo(expected: 2095));
 			Assert.That(actual: msgs.Messages[index: 2].UserId, expression: Is.EqualTo(expected: 4793858));
 
-			Assert.That(actual: msgs.Messages[index: 2].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2010
-							, month: 9
-							, day: 25
-							, hour: 18
-							, minute: 34
-							, second: 4
-							, kind: DateTimeKind.Utc)));
+			Assert.That(actual: msgs.Messages[index: 2].Date,
+				expression: Is.EqualTo(expected: new DateTime(year: 2010,
+					month: 9,
+					day: 25,
+					hour: 18,
+					minute: 34,
+					second: 4,
+					kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs.Messages[index: 2].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
 			Assert.That(actual: msgs.Messages[index: 2].Type, expression: Is.EqualTo(expected: MessageType.Sended));
@@ -907,14 +877,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs.Messages[index: 0].Body, expression: Is.EqualTo(expected: "Таких литовкиных и сычевых"));
 			Assert.That(actual: msgs.Messages[index: 0].UserId, expression: Is.EqualTo(expected: 4793858));
 
-			Assert.That(actual: msgs.Messages[index: 0].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2010
-							, month: 9
-							, day: 25
-							, hour: 18
-							, minute: 24
-							, second: 48
-							, kind: DateTimeKind.Utc)));
+			Assert.That(actual: msgs.Messages[index: 0].Date,
+				expression: Is.EqualTo(expected: new DateTime(year: 2010,
+					month: 9,
+					day: 25,
+					hour: 18,
+					minute: 24,
+					second: 48,
+					kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs.Messages[index: 0].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
 			Assert.That(actual: msgs.Messages[index: 0].Type, expression: Is.EqualTo(expected: MessageType.Sended));
@@ -923,14 +893,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: msgs.Messages[index: 1].Id, expression: Is.EqualTo(expected: 2094));
 			Assert.That(actual: msgs.Messages[index: 1].UserId, expression: Is.EqualTo(expected: 7712));
 
-			Assert.That(actual: msgs.Messages[index: 1].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2010
-							, month: 9
-							, day: 25
-							, hour: 18
-							, minute: 26
-							, second: 56
-							, kind: DateTimeKind.Utc)));
+			Assert.That(actual: msgs.Messages[index: 1].Date,
+				expression: Is.EqualTo(expected: new DateTime(year: 2010,
+					month: 9,
+					day: 25,
+					hour: 18,
+					minute: 26,
+					second: 56,
+					kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs.Messages[index: 1].ReadState, expression: Is.EqualTo(expected: MessageReadState.Readed));
 			Assert.That(actual: msgs.Messages[index: 1].Type, expression: Is.EqualTo(expected: MessageType.Received));
@@ -949,7 +919,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getLastActivity";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 					  'online': 0,
 					  'time': 1344484645
@@ -961,14 +931,14 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: activity.UserId, expression: Is.EqualTo(expected: 77128));
 			Assert.That(actual: activity.IsOnline, expression: Is.False);
 
-			Assert.That(actual: activity.Time
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012
-							, month: 8
-							, day: 9
-							, hour: 3
-							, minute: 57
-							, second: 25
-							, kind: DateTimeKind.Utc)));
+			Assert.That(actual: activity.Time,
+				expression: Is.EqualTo(expected: new DateTime(year: 2012,
+					month: 8,
+					day: 9,
+					hour: 3,
+					minute: 57,
+					second: 25,
+					kind: DateTimeKind.Utc)));
 		}
 
 		[Test]
@@ -977,7 +947,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.getLongPollServer";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 					  'key': '6f4120988efaf3a7d398054b5bb5d019c5844bz3',
 					  'server': 'im46.vk.com/im1858',
@@ -1003,8 +973,8 @@ namespace VkNet.Tests.Categories
 		{
 			var cat = new MessagesCategory(vk: new VkApi());
 
-			Assert.That(del: () => cat.MarkAsRead(messageIds: new List<long> { 1 }, peerId: null)
-					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(del: () => cat.MarkAsRead(messageIds: new List<long> { 1 }, peerId: null),
+				expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -1013,16 +983,16 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.markAsRead";
 
 			Json =
-					@"{
+				@"{
 					'response': 1
 				  }";
 
 			var result = Cat.MarkAsRead(messageIds: new long[]
-					{
-							2
-							, 3
-					}
-					, peerId: null);
+				{
+					2,
+					3
+				},
+				peerId: null);
 
 			Assert.That(actual: result, expression: Is.True);
 		}
@@ -1033,7 +1003,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.markAsRead";
 
 			Json =
-					@"{
+				@"{
 					'response': 1
 				  }";
 
@@ -1055,7 +1025,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.removeChatUser";
 
 			Json =
-					@"{
+				@"{
 					'response': 1
 				  }";
 
@@ -1077,7 +1047,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.restore";
 
 			Json =
-					@"{
+				@"{
 					'response': 1
 				  }";
 
@@ -1092,10 +1062,10 @@ namespace VkNet.Tests.Categories
 			var cat = new MessagesCategory(vk: new VkApi());
 
 			Assert.That(del: () => cat.Search(@params: new MessagesSearchParams
-					{
-							Query = "привет"
-					})
-					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+				{
+					Query = "привет"
+				}),
+				expr: Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -1137,8 +1107,8 @@ namespace VkNet.Tests.Categories
 
 			var msgs = Cat.Search(@params: new MessagesSearchParams
 			{
-					Query = "привет"
-					, Count = 3
+				Query = "привет",
+				Count = 3
 			});
 
 			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 680));
@@ -1146,14 +1116,14 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(actual: msgs[index: 2].Id, expression: Is.EqualTo(expected: 4414));
 
-			Assert.That(actual: msgs[index: 2].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012
-							, month: 7
-							, day: 13
-							, hour: 8
-							, minute: 46
-							, second: 32
-							, kind: DateTimeKind.Utc)));
+			Assert.That(actual: msgs[index: 2].Date,
+				expression: Is.EqualTo(expected: new DateTime(year: 2012,
+					month: 7,
+					day: 13,
+					hour: 8,
+					minute: 46,
+					second: 32,
+					kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs[index: 2].Type, expression: Is.EqualTo(expected: MessageType.Received));
 			Assert.That(actual: msgs[index: 2].UserId, expression: Is.EqualTo(expected: 245242));
@@ -1163,14 +1133,14 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(actual: msgs[index: 1].Id, expression: Is.EqualTo(expected: 4415));
 
-			Assert.That(actual: msgs[index: 1].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012
-							, month: 7
-							, day: 13
-							, hour: 8
-							, minute: 46
-							, second: 48
-							, kind: DateTimeKind.Utc)));
+			Assert.That(actual: msgs[index: 1].Date,
+				expression: Is.EqualTo(expected: new DateTime(year: 2012,
+					month: 7,
+					day: 13,
+					hour: 8,
+					minute: 46,
+					second: 48,
+					kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs[index: 1].Type, expression: Is.EqualTo(expected: MessageType.Sended));
 			Assert.That(actual: msgs[index: 1].UserId, expression: Is.EqualTo(expected: 245242));
@@ -1180,14 +1150,14 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(actual: msgs[index: 0].Id, expression: Is.EqualTo(expected: 4442));
 
-			Assert.That(actual: msgs[index: 0].Date
-					, expression: Is.EqualTo(expected: new DateTime(year: 2012
-							, month: 7
-							, day: 31
-							, hour: 20
-							, minute: 2
-							, second: 52
-							, kind: DateTimeKind.Utc)));
+			Assert.That(actual: msgs[index: 0].Date,
+				expression: Is.EqualTo(expected: new DateTime(year: 2012,
+					month: 7,
+					day: 31,
+					hour: 20,
+					minute: 2,
+					second: 52,
+					kind: DateTimeKind.Utc)));
 
 			Assert.That(actual: msgs[index: 0].Type, expression: Is.EqualTo(expected: MessageType.Received));
 			Assert.That(actual: msgs[index: 0].UserId, expression: Is.EqualTo(expected: 1016149));
@@ -1203,7 +1173,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.search";
 
 			Json =
-					@"{
+				@"{
 					'response': [
 					  0
 					]
@@ -1211,8 +1181,8 @@ namespace VkNet.Tests.Categories
 
 			var msgs = Cat.Search(@params: new MessagesSearchParams
 			{
-					Query = "fsjkadoivhjioashdpfisd"
-					, Count = 3
+				Query = "fsjkadoivhjioashdpfisd",
+				Count = 3
 			});
 
 			Assert.That(actual: msgs.TotalCount, expression: Is.EqualTo(expected: 0));
@@ -1246,7 +1216,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.searchDialogs";
 
 			Json =
-					@"{
+				@"{
 					'response': [
 					  {
 						'type': 'profile',
@@ -1281,7 +1251,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.searchDialogs";
 
 			Json =
-					@"{
+				@"{
 					'response': [
 					  {
 						'type': 'profile',
@@ -1332,7 +1302,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/messages.setActivity";
 
 			Json =
-					@"{
+				@"{
 					'response': 1
 				  }";
 

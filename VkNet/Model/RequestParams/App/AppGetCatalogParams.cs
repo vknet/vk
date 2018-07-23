@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -16,6 +17,7 @@ namespace VkNet.Model.RequestParams
 		/// Способ сортировки приложений
 		/// </summary>
 		[JsonProperty(propertyName: "sort")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public AppSort Sort { get; set; }
 
 		/// <summary>
@@ -36,6 +38,7 @@ namespace VkNet.Model.RequestParams
 		/// используется web.
 		/// </summary>
 		[JsonProperty(propertyName: "platform")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public AppPlatforms Platform { get; set; }
 
 		/// <summary>
@@ -69,6 +72,7 @@ namespace VkNet.Model.RequestParams
 		/// Падеж для склонения имени и фамилии пользователей.
 		/// </summary>
 		[JsonProperty(propertyName: "name_case")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NameCase NameCase { get; set; }
 
 		/// <summary>
@@ -87,6 +91,7 @@ namespace VkNet.Model.RequestParams
 		/// Фильтр.
 		/// </summary>
 		[JsonProperty(propertyName: "filter")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public AppFilter Filter { get; set; }
 
 		/// <summary>

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -27,6 +28,7 @@ namespace VkNet.Model.RequestParams
 		/// Единица времени для подсчета статистики.
 		/// </summary>
 		[JsonProperty(propertyName: "interval")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public LinkStatInterval Interval { get; set; }
 
 		/// <summary>

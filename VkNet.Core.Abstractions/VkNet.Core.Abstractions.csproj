@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
+		<NetStandardImplicitPackageVersion>2.0</NetStandardImplicitPackageVersion>
 	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="NETStandard.Library" Version="2.0.1"/>
-	</ItemGroup>
 </Project>

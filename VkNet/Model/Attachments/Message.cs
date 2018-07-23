@@ -6,6 +6,7 @@ using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -13,7 +14,7 @@ namespace VkNet.Model
 	/// Личное сообщение пользователя.
 	/// См. описание http://vk.com/dev/message
 	/// </summary>
-	[DebuggerDisplay(value: "[{UserId}-{Id}] {Body}")]
+	[DebuggerDisplay("[{UserId}-{Id}] {Body}")]
 	[Serializable]
 	public class Message : MediaAttachment
 	{
@@ -22,7 +23,7 @@ namespace VkNet.Model
 		/// </summary>
 		static Message()
 		{
-			RegisterType(type: typeof(Message), match: "message");
+			RegisterType(typeof(Message), "message");
 		}
 
 	#region Методы
@@ -33,9 +34,9 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static Message FromJson(VkResponse response)
 		{
-			if (response.ContainsKey(key: "message"))
+			if (response.ContainsKey("message"))
 			{
-				response = response[key: "message"];
+				response = response["message"];
 			}
 
 			var message = new Message
@@ -76,6 +77,7 @@ namespace VkNet.Model
 				UpdateTime = response[key: "update_time"],
 
 				Keyboard = response[key: "keyboard"]
+
 			};
 
 			return message;
@@ -94,13 +96,34 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор автора сообщения.
 		/// </summary>
+		[JsonProperty("from_id")]
 		public long? FromId { get; set; }
+
+		/// <summary>
+		/// Идентификатор назначения.
+		/// </summary>
+		[JsonProperty("peer_id")]
+		public long? PeerId { get; set; }
+
+		/// <summary>
+		/// Текст сообщения.
+		/// </summary>
+		[JsonProperty("text")]
+		public string Text { get; set; }
 
 		/// <summary>
 		/// Дата отправки сообщения.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonProperty("date")]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
+
+		/// <summary>
+		/// Сервисное поле для сообщений ботам (полезная нагрузка).
+		/// </summary>
+		[JsonProperty("payload")]
+		public string Payload { get; set; }
+
 
 		/// <summary>
 		/// Статус сообщения (не возвращается для пересланных сообщений).
@@ -111,7 +134,7 @@ namespace VkNet.Model
 		/// тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
 		/// пересланных сообщений).
 		/// </summary>
-		[JsonProperty(propertyName: "out")]
+		[JsonProperty("out")]
 		public bool? Out { get; set; }
 
 		/// <summary>
@@ -127,16 +150,20 @@ namespace VkNet.Model
 		/// <summary>
 		/// Гео данные.
 		/// </summary>
+		[JsonProperty("geo")]
 		public Geo Geo { get; set; }
 
 		/// <summary>
 		/// Массив медиа-вложений (прикреплений).
 		/// </summary>
+		[JsonProperty("attachments")]
+		[JsonConverter(typeof(AttachmentJsonConverter))]
 		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>
 		/// Массив пересланных сообщений (если есть).
 		/// </summary>
+		[JsonProperty("fwd_messages")]
 		public ReadOnlyCollection<Message> ForwardedMessages { get; set; }
 
 		/// <summary>
@@ -147,6 +174,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Является ли сообщение важным.
 		/// </summary>
+		[JsonProperty("important")]
 		public bool Important { get; set; }
 
 		/// <summary>
@@ -158,8 +186,8 @@ namespace VkNet.Model
 		/// идентификатор, используемый при отправке сообщения. Возвращается только для
 		/// исходящих сообщений.
 		/// </summary>
-		[JsonProperty(propertyName: "random_id")]
-		public long RandomId { get; set; }
+		[JsonProperty("random_id")]
+		public long? RandomId { get; set; }
 
 	#endregion
 
@@ -198,6 +226,8 @@ namespace VkNet.Model
 		/// и chat_create, chat_title_update,
 		/// chat_invite_user, chat_kick_user
 		/// </remarks>
+
+    [JsonProperty("action")]
 		public MessageActionObject Action { get; set; }
 
 		/// <summary>
@@ -272,7 +302,7 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "update_time")]
+		[JsonProperty("update_time")]
 		public string UpdateTime { get; set; }
 
 	#endregion

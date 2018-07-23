@@ -1,7 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model;
 
 namespace VkNet.Abstractions.Authorization
 {
@@ -19,7 +18,7 @@ namespace VkNet.Abstractions.Authorization
 	/// https://vk.com/dev/implicit_flow_user
 	/// </remarks>
 	[UsedImplicitly]
-	public interface IImplicitFlow : IAuthorizationFlow<IApiAuthParams>
+	public interface IImplicitFlow : IAuthorizationFlow
 	{
 		/// <summary>
 		/// Построить URL для авторизации.

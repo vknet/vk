@@ -49,59 +49,58 @@ namespace VkNet.Tests
 		{
 			var browser = new Mock<IBrowser>();
 
-			browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url),
-							It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-					.Callback(Callback)
-					.Returns(() =>
-					{
-						if (string.IsNullOrWhiteSpace(Json))
-						{
-							throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
-						}
-
-						return Json;
-					});
-
-			browser.Setup(o => o.Authorize(It.IsAny<IApiAuthParams>()))
-					.Returns(VkAuthorization.From("https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1"));
+			browser.Setup(o => o.Authorize())
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
 
 			browser.Setup(m => m.Validate(It.IsAny<string>(), It.IsAny<string>()))
-					.Returns(VkAuthorization.From("https://oauth.vk.com/blank.html#success=1&access_token=token&user_id=1"));
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
 
 			var restClient = new Mock<IRestClient>();
 
 			restClient.Setup(x =>
-							x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
-									It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-					.Callback(Callback)
-					.Returns(() =>
+					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
+						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+				.Callback(Callback)
+				.Returns(() =>
+				{
+					if (string.IsNullOrWhiteSpace(Json))
 					{
-						if (string.IsNullOrWhiteSpace(Json))
-						{
-							throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
-						}
+						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
+					}
 
-						return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK,
-								Json,
-								Url));
-					});
+					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK,
+						Json,
+						Url));
+				});
 
 			restClient.Setup(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
-							It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-					.Throws<ArgumentException>();
+					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+				.Throws<ArgumentException>();
 
 			Api = new VkApi
 			{
-					Browser = browser.Object,
-					RestClient = restClient.Object
+				Browser = browser.Object,
+				RestClient = restClient.Object
 			};
 
 			Api.Authorize(new ApiAuthParams
 			{
-					ApplicationId = 1,
-					Login = "login",
-					Password = "pass",
-					Settings = Settings.All
+				ApplicationId = 1,
+				Login = "login",
+				Password = "pass",
+				Settings = Settings.All
 			});
 
 			Api.RequestsPerSecond = 100000; // Чтобы тесты быстрее выполнялись

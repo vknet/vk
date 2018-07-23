@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -37,6 +39,7 @@ namespace VkNet.Model.RequestParams
 		/// значения параметра: Если параметр
 		/// не задан, то считается, что он равен all.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public WallFilter Filter { get; set; }
 
 		/// <summary>

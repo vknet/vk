@@ -42,7 +42,7 @@ namespace VkNet.Categories
 																	, int? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Database.GetCountries(needAll: needAll, codes: codes, count: count, offset: offset));
+					GetCountries(needAll: needAll, codes: codes, count: count, offset: offset));
 		}
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace VkNet.Categories
 		public Task<VkCollection<Region>> GetRegionsAsync(int countryId, string query = "", int? count = null, int? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Database.GetRegions(countryId: countryId, query: query, count: count, offset: offset));
+					GetRegions(countryId: countryId, query: query, count: count, offset: offset));
 		}
 
 		/// <summary>
@@ -75,7 +75,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(params int[] streetIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetStreetsById(streetIds: streetIds));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetStreetsById(streetIds: streetIds));
 		}
 
 		/// <summary>
@@ -88,7 +88,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(params int[] countryIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetCountriesById(countryIds: countryIds));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetCountriesById(countryIds: countryIds));
 		}
 
 		/// <summary>
@@ -111,7 +111,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetCities(parameters: getCitiesParams));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetCities(getCitiesParams));
 		}
 
 		/// <summary>
@@ -126,7 +126,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(params int[] cityIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Database.GetCitiesById(cityIds: cityIds));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetCitiesById(cityIds: cityIds));
 		}
 
 		/// <summary>
@@ -157,7 +157,7 @@ namespace VkNet.Categories
 																		, int? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Database.GetUniversities(countryId: countryId, cityId: cityId, query: query, count: count, offset: offset));
+					GetUniversities(countryId: countryId, cityId: cityId, query: query, count: count, offset: offset));
 		}
 
 		/// <summary>
@@ -177,7 +177,7 @@ namespace VkNet.Categories
 		public Task<VkCollection<School>> GetSchoolsAsync(int cityId, string query = "", int? offset = null, int? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Database.GetSchools(cityId: cityId, query: query, offset: offset, count: count));
+					GetSchools(cityId: cityId, query: query, offset: offset, count: count));
 		}
 
 		/// <summary>
@@ -199,7 +199,7 @@ namespace VkNet.Categories
 		public Task<VkCollection<Faculty>> GetFacultiesAsync(long universityId, int? count = null, int? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Database.GetFaculties(universityId: universityId, count: count, offset: offset));
+					GetFaculties(universityId: universityId, count: count, offset: offset));
 		}
 
 		/// <summary>
@@ -220,7 +220,7 @@ namespace VkNet.Categories
 		public Task<ReadOnlyCollection<SchoolClass>> GetSchoolClassesAsync(long countryId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Database.GetSchoolClasses(countryId: countryId));
+					GetSchoolClasses(countryId: countryId));
 		}
 
 		/// <summary>
@@ -245,7 +245,7 @@ namespace VkNet.Categories
 		public Task<VkCollection<Chair>> GetChairsAsync(long facultyId, int? count = null, int? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Database.GetChairs(facultyId: facultyId, count: count, offset: offset));
+					GetChairs(facultyId: facultyId, count: count, offset: offset));
 		}
 	}
 }

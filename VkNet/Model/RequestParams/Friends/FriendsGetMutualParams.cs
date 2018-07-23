@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -38,6 +40,7 @@ namespace VkNet.Model.RequestParams
 		/// random - возвращает друзей в случайном
 		/// порядке. строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public FriendsOrder Order { get; set; }
 
 		/// <summary>

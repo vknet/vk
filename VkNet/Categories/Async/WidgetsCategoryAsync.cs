@@ -11,7 +11,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<VkCollection<Comment>> GetCommentsAsync(GetCommentsParams getComments)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Widgets.GetComments(getCommentsParams: getComments));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetComments(getCommentsParams: getComments));
 		}
 
 		/// <inheritdoc />
@@ -22,7 +22,7 @@ namespace VkNet.Categories
 																, ulong? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Widgets.GetPages(widgetApiId: widgetApiId, order: order, period: period, offset: offset, count: count));
+					GetPages(widgetApiId: widgetApiId, order: order, period: period, offset: offset, count: count));
 		}
 	}
 }

@@ -17,49 +17,49 @@ namespace VkNet.Categories
 		public Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Friends.Get(@params: @params, skipAuthorization: skipAuthorization));
+					Get(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<long>> GetAppUsersAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetAppUsers());
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetAppUsers());
 		}
 
 		/// <inheritdoc />
 		public Task<FriendOnline> GetOnlineAsync(FriendsGetOnlineParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetOnline(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetOnline(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<long>> GetMutualAsync(FriendsGetMutualParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetMutual(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetMutual(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync(IEnumerable<long> userIds, bool? needSign = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.AreFriends(userIds: userIds, needSign: needSign));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>AreFriends(userIds: userIds, needSign: needSign));
 		}
 
 		/// <inheritdoc />
 		public Task<long> AddListAsync(string name, IEnumerable<long> userIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.AddList(name: name, userIds: userIds));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>AddList(name: name, userIds: userIds));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> DeleteListAsync(long listId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.DeleteList(listId: listId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>DeleteList(listId: listId));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<FriendList>> GetListsAsync(long? userId = null, bool? returnSystem = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetLists(userId: userId, returnSystem: returnSystem));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetLists(userId: userId, returnSystem: returnSystem));
 		}
 
 		/// <inheritdoc />
@@ -70,13 +70,13 @@ namespace VkNet.Categories
 											, IEnumerable<long> deleteUserIds = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Friends.EditList(listId: listId, name: name, userIds: userIds, addUserIds: addUserIds));
+					EditList(listId: listId, name: name, userIds: userIds, addUserIds: addUserIds));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> DeleteAllRequestsAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.DeleteAllRequests());
+			return TypeHelper.TryInvokeMethodAsync(func: () =>DeleteAllRequests());
 		}
 
 		/// <inheritdoc />
@@ -87,37 +87,37 @@ namespace VkNet.Categories
 													, string captchaKey = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Friends.Add(userId: userId, text: text, follow: follow, captchaSid: captchaSid, captchaKey: captchaKey));
+					Add(userId: userId, text: text, follow: follow, captchaSid: captchaSid, captchaKey: captchaKey));
 		}
 
 		/// <inheritdoc />
 		public Task<FriendsDeleteResult> DeleteAsync(long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.Delete(userId: userId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Delete(userId: userId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> EditAsync(long userId, IEnumerable<long> listIds)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.Edit(userId: userId, listIds: listIds));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Edit(userId: userId, listIds: listIds));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<long>> GetRecentAsync(long? count = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetRecent(count: count));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetRecent(count: count));
 		}
 
 		/// <inheritdoc />
 		public Task<GetRequestsResult> GetRequestsAsync(FriendsGetRequestsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetRequests(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetRequests(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<FriendsGetRequestsResult>> GetRequestsExtendedAsync(FriendsGetRequestsParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetRequestsExtended(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetRequestsExtended(@params: @params));
 		}
 
 		/// <inheritdoc />
@@ -128,19 +128,19 @@ namespace VkNet.Categories
 																, NameCase nameCase = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Friends.GetSuggestions(filter: filter, count: count, offset: offset, fields: fields, nameCase: nameCase));
+					GetSuggestions(filter: filter, count: count, offset: offset, fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<User>> GetByPhonesAsync(IEnumerable<string> phones, ProfileFields fields)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.GetByPhones(phones: phones, fields: fields));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetByPhones(phones: phones, fields: fields));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<User>> SearchAsync(FriendsSearchParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Friends.Search(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Search(@params: @params));
 		}
 	}
 }

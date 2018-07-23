@@ -17,12 +17,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class WallCategory : IWallCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public WallCategory(VkApi vk)
+		public WallCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

@@ -16,8 +16,7 @@ namespace VkNet.Utils
 	/// </summary>
 	internal sealed partial class WebCall : IDisposable
 	{
-		#if DEBUG_HTTP
-
+	#if DEBUG_HTTP
 		const string HTTP_LOG_PATH = "debug_http.log";
 		const bool WRITE_TO_FILE = false; // По умолчанию запись логов в файл отключена
 
@@ -81,17 +80,17 @@ namespace VkNet.Utils
 
 			_request = new HttpClient(handler: handler)
 			{
-					BaseAddress = baseAddress,
-					DefaultRequestHeaders =
-					{
-						Accept = { MediaTypeWithQualityHeaderValue.Parse(input: "text/html") }
-					}
+				BaseAddress = baseAddress,
+				DefaultRequestHeaders =
+				{
+					Accept = { MediaTypeWithQualityHeaderValue.Parse(input: "text/html") }
+				}
 			};
 
 			_result = new WebCallResult(url: url, cookies: cookies);
 		}
 
-#region Implementation of IDisposable
+	#region Implementation of IDisposable
 
 		/// <summary>
 		/// </summary>
@@ -100,7 +99,7 @@ namespace VkNet.Utils
 			_request?.Dispose();
 		}
 
-#endregion
+	#endregion
 
 		/// <summary>
 		/// Выполнить запрос.
@@ -110,7 +109,7 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		public static WebCallResult MakeCall(string url, IWebProxy webProxy = null)
 		{
-			#if DEBUG_HTTP
+		#if DEBUG_HTTP
 			LogWebCallRequestInfo("GET", url, null, webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 			#endif
@@ -120,7 +119,7 @@ namespace VkNet.Utils
 				var response = call._request.GetAsync(requestUri: url).Result;
 				var res = call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
 
-				#if DEBUG_HTTP
+			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("GET", url, response, res, watch.ElapsedMilliseconds);
 				#endif
@@ -138,7 +137,7 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		public static WebCallResult PostCall(string url, IEnumerable<KeyValuePair<string, string>> parameters, IWebProxy webProxy)
 		{
-			#if DEBUG_HTTP
+		#if DEBUG_HTTP
 			LogWebCallRequestInfo("POST", url, parameters, webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 			#endif
@@ -148,9 +147,10 @@ namespace VkNet.Utils
 				var response = call._request
 					.PostAsync(requestUri: url, content: new FormUrlEncodedContent(nameValueCollection: parameters))
 					.Result;
+
 				var res = call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
 
-				#if DEBUG_HTTP
+			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("POST", url, response, res, watch.ElapsedMilliseconds);
 				#endif
@@ -167,7 +167,7 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		public static WebCallResult Post(WebForm form, IWebProxy webProxy)
 		{
-			#if DEBUG_HTTP
+		#if DEBUG_HTTP
 			LogWebCallRequestInfo("POST", form.ActionUrl, form.GetFormFields(), webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 			#endif
@@ -179,9 +179,10 @@ namespace VkNet.Utils
 				var response = call._request
 					.PostAsync(requestUri: form.ActionUrl, content: new FormUrlEncodedContent(nameValueCollection: form.GetFormFields()))
 					.Result;
+
 				var res = call.MakeRequest(response: response, uri: new Uri(uriString: form.ActionUrl), webProxy: webProxy);
 
-				#if DEBUG_HTTP
+			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("POST", form.ActionUrl, response, res, watch.ElapsedMilliseconds);
 				#endif
@@ -198,7 +199,7 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		private WebCallResult RedirectTo(string url, IWebProxy webProxy = null)
 		{
-			#if DEBUG_HTTP
+		#if DEBUG_HTTP
 			LogWebCallRequestInfo("REDIRECT GET", url, null, webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 			#endif
@@ -212,7 +213,7 @@ namespace VkNet.Utils
 				var response = call._request.GetAsync(requestUri: url).Result;
 				var res = call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
 
-				#if DEBUG_HTTP
+			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("REDIRECT GET", url, response, res, watch.ElapsedMilliseconds);
 				#endif
@@ -246,8 +247,8 @@ namespace VkNet.Utils
 				_result.SaveCookies(cookies: cookies.GetCookies(uri: uri));
 
 				return response.StatusCode == HttpStatusCode.Redirect
-						? RedirectTo(url: response.Headers.Location.AbsoluteUri, webProxy: webProxy)
-						: _result;
+					? RedirectTo(url: response.Headers.Location.AbsoluteUri, webProxy: webProxy)
+					: _result;
 			}
 		}
 

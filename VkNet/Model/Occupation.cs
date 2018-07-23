@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -23,6 +25,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация о текущем роде занятия пользователя.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public OccupationType Type { get; set; }
 
 		/// <summary>

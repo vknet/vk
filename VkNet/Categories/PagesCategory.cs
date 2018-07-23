@@ -17,13 +17,13 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы с wiki.
 		/// </summary>
 		/// <param name="vk"> API. </param>
-		public PagesCategory(VkApi vk)
+		public PagesCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

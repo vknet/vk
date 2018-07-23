@@ -5,6 +5,7 @@ using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -84,6 +85,7 @@ namespace VkNet.Model.RequestParams
 		/// умолчанию nom. строка.
 		/// </summary>
 		[JsonProperty(propertyName: "name_case")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NameCase NameCase { get; set; }
 
 		/// <summary>
@@ -102,7 +104,7 @@ namespace VkNet.Model.RequestParams
 			var parameters = new VkParameters
 			{
 					{ "latitude", p.Latitude.ToString(provider: CultureInfo.InvariantCulture) }
-					, //Vk API не принимает дробные числа с запятой, нужна точка 
+					, //Vk API не принимает дробные числа с запятой, нужна точка
 					{ "longitude", p.Longitude.ToString(provider: CultureInfo.InvariantCulture) }
 					, { "accuracy", p.Accuracy }
 					, { "timeout", p.Timeout }

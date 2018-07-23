@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -24,6 +25,7 @@ namespace VkNet.Model.RequestParams
 		/// android, winphone, web.
 		/// </summary>
 		[JsonProperty(propertyName: "platform")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public AppPlatforms Platform { get; set; }
 
 		/// <summary>
@@ -58,6 +60,7 @@ namespace VkNet.Model.RequestParams
 		/// умолчанию nom.
 		/// </summary>
 		[JsonProperty(propertyName: "name_case")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NameCase NameCase { get; set; }
 
 		/// <summary>

@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -54,6 +55,7 @@ namespace VkNet.Model
 		/// Объект, содержащий информацию о медиавложениях в комментарии. См. описание
 		/// формата медиавложений.
 		/// </summary>
+		[JsonConverter(typeof(AttachmentJsonConverter))]
 		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>

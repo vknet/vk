@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -19,6 +21,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Тип родственника (sibling и т.п.)
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public RelativeType Type { get; set; }
 
 		/// <summary>

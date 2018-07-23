@@ -54,7 +54,7 @@ namespace VkNet.Utils
 		public static long? GetNullableLongId(VkResponse response)
 		{
 			return !string.IsNullOrWhiteSpace(value: response?.ToString())
-					? System.Convert.ToInt64(value: response.ToString())
+					? System.Convert.ToInt64(value: response?.ToString())
 					: (long?) null;
 		}
 

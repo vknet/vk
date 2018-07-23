@@ -16,13 +16,13 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API.
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы с аккаунтом пользователя.
 		/// </summary>
 		/// <param name="vk"> API. </param>
-		public AccountCategory(VkApi vk)
+		public AccountCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

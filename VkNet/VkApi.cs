@@ -14,6 +14,8 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using NLog;
 using VkNet.Abstractions;
+using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -49,7 +51,7 @@ namespace VkNet
 		/// <summary>
 		/// Версия API vk.com.
 		/// </summary>
-		public const string VkApiVersion = "5.78";
+		public IVkApiVersionManager VkApiVersion { get; private set; }
 
 		/// <summary>
 		/// The expire timer lock
@@ -60,6 +62,11 @@ namespace VkNet
 		/// Параметры авторизации.
 		/// </summary>
 		private IApiAuthParams _ap;
+
+		/// <summary>
+		/// Обработчик ошибки капчи
+		/// </summary>
+		private ICaptchaHandler _captchaHandler;
 
 		/// <summary>
 		/// Таймер.
@@ -79,7 +86,7 @@ namespace VkNet
 	#pragma warning restore S1104 // Fields should not have public accessibility
 
 		/// <inheritdoc />
-		public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null, IBrowser browser = null)
+		public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
 		{
 			var container = new ServiceCollection();
 
@@ -93,9 +100,9 @@ namespace VkNet
 				container.TryAddSingleton(instance: captchaSolver);
 			}
 
-			if (browser != null)
+			if (authorizationFlow != null)
 			{
-				container.TryAddSingleton(instance: browser);
+				container.TryAddSingleton(instance: authorizationFlow);
 			}
 
 			container.RegisterDefaultDependencies();
@@ -122,16 +129,14 @@ namespace VkNet
 		/// </summary>
 		private string AccessToken { get; set; }
 
-		/// <summary>
-		/// Язык получаемых данных
-		/// </summary>
-		private Language? Language { get; set; }
-
 		/// <inheritdoc />
 		public event VkApiDelegate OnTokenExpires;
 
 		/// <inheritdoc />
 		public IBrowser Browser { get; set; }
+
+		/// <inheritdoc />
+		public IAuthorizationFlow AuthorizationFlow { get; set; }
 
 		/// <inheritdoc />
 		public bool IsAuthorized => !string.IsNullOrWhiteSpace(value: AccessToken);
@@ -148,16 +153,21 @@ namespace VkNet
 		/// <inheritdoc />
 		public ICaptchaSolver CaptchaSolver { get; set; }
 
+		/// <summary>
+		/// Сервис управления языком
+		/// </summary>
+		private ILanguageService _language;
+
 		/// <inheritdoc />
 		public void SetLanguage(Language language)
 		{
-			Language = language;
+			_language.SetLanguage(language);
 		}
 
 		/// <inheritdoc />
 		public Language? GetLanguage()
 		{
-			return Language;
+			return _language.GetLanguage();
 		}
 
 		/// <inheritdoc />
@@ -243,9 +253,10 @@ namespace VkNet
 		public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			var task = TypeHelper.TryInvokeMethodAsync(func: () =>
-					Call(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+				Call(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
 
 			task.ConfigureAwait(false);
+
 			return task;
 		}
 
@@ -253,9 +264,10 @@ namespace VkNet
 		public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
 			var task = TypeHelper.TryInvokeMethodAsync(func: () =>
-					Call<T>(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+				Call<T>(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
 
 			task.ConfigureAwait(false);
+
 			return task;
 		}
 
@@ -365,7 +377,7 @@ namespace VkNet
 			LastInvokeTime = DateTimeOffset.Now;
 			var authorization = Browser.Validate(validateUrl: validateUrl, phoneNumber: phoneNumber);
 
-			if (!authorization.IsAuthorized)
+			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
 				const string message = "Не удалось автоматически пройти валидацию!";
 				_logger?.Error(message: message);
@@ -550,6 +562,21 @@ namespace VkNet
 		/// <inheritdoc />
 		public IPlacesCategory Places { get; set; }
 
+		///<inheritdoc />
+		public INotesCategory Notes { get; set; }
+
+		/// <inheritdoc />
+		public IAppWidgetsCategory AppWidgets { get; set; }
+
+		/// <inheritdoc />
+		public IOrdersCategory Orders { get; set; }
+
+		/// <inheritdoc />
+		public ISecureCategory Secure { get; set; }
+
+		/// <inheritdoc />
+		public IStoriesCategory Stories { get; set; }
+
 	#endregion
 
 	#region private
@@ -566,7 +593,7 @@ namespace VkNet
 		{
 			if (!parameters.ContainsKey(key: "v"))
 			{
-				parameters.Add(name: "v", value: VkApiVersion);
+				parameters.Add(name: "v", value: VkApiVersion.Version);
 			}
 
 			if (!parameters.ContainsKey(key: "access_token"))
@@ -574,9 +601,9 @@ namespace VkNet
 				parameters.Add(name: "access_token", value: AccessToken);
 			}
 
-			if (!parameters.ContainsKey(key: "lang") && Language.HasValue)
+			if (!parameters.ContainsKey(key: "lang") && _language.GetLanguage().HasValue)
 			{
-				parameters.Add(name: "lang", nullableValue: Language);
+				parameters.Add(name: "lang", nullableValue: _language.GetLanguage());
 			}
 
 			_logger?.Debug(message:
@@ -589,7 +616,7 @@ namespace VkNet
 				answer = Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
 			} else
 			{
-				answer = CaptchaHandler(action: (sid, key) =>
+				answer = _captchaHandler.Perform(action: (sid, key) =>
 				{
 					parameters.Add(name: "captcha_sid", nullableValue: sid);
 					parameters.Add(name: "captcha_key", value: key);
@@ -615,7 +642,7 @@ namespace VkNet
 				BaseAuthorize(authParams: authParams);
 			} else
 			{
-				CaptchaHandler(action: (sid, key) =>
+				_captchaHandler.Perform(action: (sid, key) =>
 				{
 					_logger?.Debug(message: "Авторизация с использование капчи.");
 					authParams.CaptchaSid = sid;
@@ -625,50 +652,6 @@ namespace VkNet
 					return true;
 				});
 			}
-		}
-
-		/// <summary>
-		/// Обработка капчи
-		/// </summary>
-		/// <param name="action"> Действие </param>
-		/// <typeparam name="T"> Тип результата </typeparam>
-		/// <returns> Результат действия </returns>
-		/// <exception cref="CaptchaNeededException"> Требуется обработка капчи. </exception>
-		private T CaptchaHandler<T>(Func<long?, string, T> action)
-		{
-			var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
-			var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
-			long? captchaSidTemp = null;
-			string captchaKeyTemp = null;
-			var callCompleted = false;
-			var result = default(T);
-
-			do
-			{
-				try
-				{
-					result = action.Invoke(arg1: captchaSidTemp, arg2: captchaKeyTemp);
-					numberOfRemainingAttemptsToAuthorize--;
-					callCompleted = true;
-				}
-				catch (CaptchaNeededException captchaNeededException)
-				{
-					RepeatSolveCaptcha(numberOfRemainingAttemptsToSolveCaptcha: ref numberOfRemainingAttemptsToSolveCaptcha,
-						captchaNeededException: captchaNeededException,
-						captchaSidTemp: ref captchaSidTemp,
-						captchaKeyTemp: ref captchaKeyTemp);
-				}
-			} while (numberOfRemainingAttemptsToAuthorize > 0 && !callCompleted);
-
-			// Повторно выбрасываем исключение, если капча ни разу не была распознана верно
-			if (callCompleted || !captchaSidTemp.HasValue)
-			{
-				return result;
-			}
-
-			_logger?.Error(message: "Капча ни разу не была распознана верно");
-
-			throw new CaptchaNeededException(sid: captchaSidTemp.Value, img: captchaKeyTemp);
 		}
 
 		/// <summary>
@@ -699,7 +682,7 @@ namespace VkNet
 		/// Sets the token properties.
 		/// </summary>
 		/// <param name="authorization"> The authorization. </param>
-		private void SetTokenProperties(VkAuthorization authorization)
+		private void SetTokenProperties(AuthorizationResult authorization)
 		{
 			_logger?.Debug(message: "Установка свойств токена");
 			var expireTime = (Convert.ToInt32(value: authorization.ExpiresIn) - 10) * 1000;
@@ -717,35 +700,6 @@ namespace VkNet
 			SetTimer(expireTime: expireTime);
 			AccessToken = accessToken;
 			UserId = userId;
-		}
-
-		/// <summary>
-		/// Повторная обработка капчи
-		/// </summary>
-		/// <param name="numberOfRemainingAttemptsToSolveCaptcha"> </param>
-		/// <param name="captchaNeededException"> </param>
-		/// <param name="captchaSidTemp"> </param>
-		/// <param name="captchaKeyTemp"> </param>
-		private void RepeatSolveCaptcha(ref int numberOfRemainingAttemptsToSolveCaptcha
-										, CaptchaNeededException captchaNeededException
-										, ref long? captchaSidTemp
-										, ref string captchaKeyTemp)
-		{
-			_logger?.Warn(message: "Повторная обработка капчи");
-
-			if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
-			{
-				CaptchaSolver?.CaptchaIsFalse();
-			}
-
-			if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
-			{
-				return;
-			}
-
-			captchaSidTemp = captchaNeededException.Sid;
-			captchaKeyTemp = CaptchaSolver?.Solve(url: captchaNeededException.Img?.AbsoluteUri);
-			numberOfRemainingAttemptsToSolveCaptcha--;
 		}
 
 		/// <summary>
@@ -787,9 +741,10 @@ namespace VkNet
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			var authorization = Browser.Authorize(authParams: authParams);
+			Browser.SetAuthParams(authParams);
+			var authorization = Browser.Authorize();
 
-			if (!authorization.IsAuthorized)
+			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
 				var message = $"Invalid authorization with {authParams.Login} - {authParams.Password}";
 				_logger?.Error(message: message);
@@ -803,8 +758,12 @@ namespace VkNet
 		private void Initialization(IServiceProvider serviceProvider)
 		{
 			Browser = serviceProvider.GetRequiredService<IBrowser>();
+			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			_logger = serviceProvider.GetService<ILogger>();
+			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
+			_language = serviceProvider.GetRequiredService<ILanguageService>();
+
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();
 			Users = new UsersCategory(vk: this);
 			Friends = new FriendsCategory(vk: this);
@@ -832,13 +791,20 @@ namespace VkNet
 			Execute = new ExecuteCategory(vk: this);
 			PollsCategory = new PollsCategory(vk: this);
 			Search = new SearchCategory(vk: this);
-			Ads = new AdsCategory(vk: this);
+			Ads = new AdsCategory(this);
 			Storage = new StorageCategory(api: this);
 			Notifications = new NotificationsCategory(api: this);
 			Widgets = new WidgetsCategory(api: this);
 			Leads = new LeadsCategory(api: this);
 			Streaming = new StreamingCategory(api: this);
 			Places = new PlacesCategory(api: this);
+			Notes = new NotesCategory(api: this);
+			AppWidgets = new AppWidgetsCategory(this);
+			Orders = new OrdersCategory(this);
+			Secure = new SecureCategory(this);
+			Stories = new StoriesCategory(this);
+
+			VkApiVersion = serviceProvider.GetRequiredService<IVkApiVersionManager>();
 
 			RequestsPerSecond = 3;
 

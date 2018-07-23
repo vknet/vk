@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions;
+using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
@@ -12,7 +14,7 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API.
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <inheritdoc />
 		/// <param name="api">
@@ -40,9 +42,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public object Checkin(PlacesCheckinParams placesCheckinParams)
+		public long Checkin(PlacesCheckinParams placesCheckinParams)
 		{
-			return _vk.Call<object>(methodName: "places.checkin",
+			return _vk.Call<long>(methodName: "places.checkin",
 				parameters: new VkParameters
 				{
 					{ "text", placesCheckinParams.Text },
@@ -55,15 +57,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<object> GetById(IEnumerable<ulong> places)
+		public ReadOnlyCollection<Place> GetById(IEnumerable<ulong> places)
 		{
-			return _vk.Call<IEnumerable<object>>(methodName: "places.getById", parameters: new VkParameters { { "places", places } });
+			return _vk.Call<ReadOnlyCollection<Place>>(methodName: "places.getById", parameters: new VkParameters { { "places", places } });
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<object> GetCheckins(PlacesGetCheckinsParams placesGetCheckinsParams)
+		public VkCollection<Checkin> GetCheckins(PlacesGetCheckinsParams placesGetCheckinsParams)
 		{
-			return _vk.Call<IEnumerable<object>>(methodName: "places.getCheckins",
+			return _vk.Call<VkCollection<Checkin>>(methodName: "places.getCheckins",
 				parameters: new VkParameters
 				{
 					{ "latitude", placesGetCheckinsParams.Latitude },
@@ -79,15 +81,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<object> GetTypes()
+		public ReadOnlyCollection<PlaceType> GetTypes()
 		{
-			return _vk.Call<IEnumerable<object>>(methodName: "places.getTypes", parameters: VkParameters.Empty);
+			return _vk.Call<ReadOnlyCollection<PlaceType>>(methodName: "places.getTypes", parameters: VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
-		public Uri Search(PlacesSearchParams placesSearchParams)
+		public VkCollection<Place> Search(PlacesSearchParams placesSearchParams)
 		{
-			return _vk.Call<Uri>(methodName: "places.search",
+			return _vk.Call<VkCollection<Place>>(methodName: "places.search",
 				parameters: new VkParameters
 				{
 					{ "q", placesSearchParams.Query },

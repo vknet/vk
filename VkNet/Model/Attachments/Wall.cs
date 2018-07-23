@@ -6,6 +6,7 @@ using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -91,6 +92,7 @@ namespace VkNet.Model
 		/// то запись является копией записи с
 		/// чужой стены.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PostType PostType { get; set; }
 
 		/// <summary>
@@ -101,6 +103,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация о вложениях записи (фотографии ссылки и т.п.).
 		/// </summary>
+		[JsonConverter(typeof(AttachmentJsonConverter))]
 		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>
@@ -162,37 +165,19 @@ namespace VkNet.Model
 
 			var post = new Wall
 			{
-					Id = response[key: "id"]
-					, OwnerId = response[key: "to_id"]
-					, FromId = response[key: "from_id"]
-					, Date = response[key: "date"]
-					, Text = response[key: "text"]
-					, ReplyOwnerId = response[key: "reply_owner_id"]
-					, ReplyPostId = response[key: "reply_post_id"]
-					, FriendsOnly = response[key: "friends_only"]
-					, Comments = response[key: "comments"]
-					, Likes = response[key: "likes"]
-					, Reposts = response[key: "reposts"]
-					, PostType = response[key: "post_type"]
-					, PostSource = response[key: "post_source"]
-					, Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x)
-					, Geo = response[key: "geo"]
-					, SignerId = response[key: "signer_id"]
-					, CopyPostDate = response[key: "copy_post_date"]
-					, CopyPostType = response[key: "copy_post_type"]
-					, CopyOwnerId = response[key: "copy_owner_id"]
-					, CopyPostId = response[key: "copy_post_id"]
-					, CopyText = response[key: "copy_text"]
-					, CopyHistory = response[key: "copy_history"].ToReadOnlyCollectionOf<Post>(selector: x => x)
-					, IsPinned = response[key: "is_pinned"]
-					, CreatedBy = response[key: "created_by"]
-					, CopyCommenterId = response[key: "copy_commenter_id"]
-					, CopyCommentId = response[key: "copy_comment_id"]
-					, CanDelete = response[key: "can_delete"]
-					, CanEdit = response[key: "can_edit"]
-					, CanPin = response[key: "can_pin"]
-					, Views = response[key: "views"]
-					, MarkedAsAds = response[key: "marked_as_ads"]
+				Id = response[key: "id"], OwnerId = response[key: "to_id"], FromId = response[key: "from_id"], Date = response[key: "date"],
+				Text = response[key: "text"], ReplyOwnerId = response[key: "reply_owner_id"], ReplyPostId = response[key: "reply_post_id"],
+				FriendsOnly = response[key: "friends_only"], Comments = response[key: "comments"], Likes = response[key: "likes"],
+				Reposts = response[key: "reposts"], PostType = response[key: "post_type"], PostSource = response[key: "post_source"],
+				Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x), Geo = response[key: "geo"],
+				SignerId = response[key: "signer_id"], CopyPostDate = response[key: "copy_post_date"],
+				CopyPostType = response[key: "copy_post_type"], CopyOwnerId = response[key: "copy_owner_id"],
+				CopyPostId = response[key: "copy_post_id"], CopyText = response[key: "copy_text"],
+				CopyHistory = response[key: "copy_history"].ToReadOnlyCollectionOf<Post>(selector: x => x),
+				IsPinned = response[key: "is_pinned"], CreatedBy = response[key: "created_by"],
+				CopyCommenterId = response[key: "copy_commenter_id"], CopyCommentId = response[key: "copy_comment_id"],
+				CanDelete = response[key: "can_delete"], CanEdit = response[key: "can_edit"], CanPin = response[key: "can_pin"],
+				Views = response[key: "views"], MarkedAsAds = response[key: "marked_as_ads"]
 			};
 
 			return post;
@@ -208,38 +193,27 @@ namespace VkNet.Model
 		{
 			return new Wall
 			{
-					Id = post.Id
-					, OwnerId = post.OwnerId
-					, FromId = post.FromId
-					, Date = post.Date
-					, Text = post.Text
-					, ReplyOwnerId = post.ReplyOwnerId
-					, ReplyPostId = post.ReplyPostId
-					, FriendsOnly = post.FriendsOnly
-					, Comments = post.Comments
-					, Likes = post.Likes
-					, Reposts = post.Reposts
-					, PostType = post.PostType
-					, PostSource = post.PostSource
-					, Attachments = post.Attachments
-					, Geo = post.Geo
-					, SignerId = post.SignerId
-					, CopyPostDate = post.CopyPostDate
-					, CopyPostType = post.CopyPostType
-					, CopyOwnerId = post.CopyOwnerId
-					, CopyPostId = post.CopyPostId
-					, CopyText = post.CopyText
-					, CopyHistory = post.CopyHistory
-					, IsPinned = post.IsPinned
-					, CreatedBy = post.CreatedBy
-					, CopyCommenterId = post.CopyCommenterId
-					, CopyCommentId = post.CopyCommentId
-					, CanDelete = post.CanDelete
-					, CanEdit = post.CanEdit
-					, CanPin = post.CanPin
-					, Views = post.Views
-					, MarkedAsAds = post.MarkedAsAds
+				Id = post.Id, OwnerId = post.OwnerId, FromId = post.FromId, Date = post.Date, Text = post.Text,
+				ReplyOwnerId = post.ReplyOwnerId, ReplyPostId = post.ReplyPostId, FriendsOnly = post.FriendsOnly, Comments = post.Comments,
+				Likes = post.Likes, Reposts = post.Reposts, PostType = post.PostType, PostSource = post.PostSource,
+				Attachments = post.Attachments, Geo = post.Geo, SignerId = post.SignerId, CopyPostDate = post.CopyPostDate,
+				CopyPostType = post.CopyPostType, CopyOwnerId = post.CopyOwnerId, CopyPostId = post.CopyPostId, CopyText = post.CopyText,
+				CopyHistory = post.CopyHistory, IsPinned = post.IsPinned, CreatedBy = post.CreatedBy,
+				CopyCommenterId = post.CopyCommenterId, CopyCommentId = post.CopyCommentId, CanDelete = post.CanDelete,
+				CanEdit = post.CanEdit, CanPin = post.CanPin, Views = post.Views, MarkedAsAds = post.MarkedAsAds
 			};
+		}
+
+		public static implicit operator Wall(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return !response.HasToken()
+				? null
+				: FromJson(response: response);
 		}
 
 	#region Поля, установленные экспериментально

@@ -14,7 +14,7 @@ namespace VkNet.Categories
 																	, ulong? userId = null
 																	, bool? global = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Storage.Get(keys: keys, userId: userId, global: global));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Get(keys: keys, userId: userId, global: global));
 		}
 
 		/// <inheritdoc />
@@ -24,14 +24,14 @@ namespace VkNet.Categories
 																	, ulong? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Storage.GetKeys(userId: userId, global: global, offset: offset, count: count));
+					GetKeys(userId: userId, global: global, offset: offset, count: count));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> SetAsync(string key, string value = null, ulong? userId = null, bool? global = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Storage.Set(key: key, value: value, userId: userId, global: global));
+					Set(key: key, value: value, userId: userId, global: global));
 		}
 	}
 }

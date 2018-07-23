@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
@@ -20,7 +17,8 @@ namespace VkNet.Model
 		/// <summary>
 		/// Содержит 'text'
 		/// </summary>
-		[JsonProperty(propertyName: "type"), JsonConverter(typeof(SafetyEnumJsonConverter))]
+		[JsonProperty(propertyName: "type")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public KeyboardButtonActionType Type { get; set; } = KeyboardButtonActionType.Text;
 
 		/// <summary>
@@ -35,7 +33,7 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty(propertyName: "label")]
 		public string Label { get; set; }
-		
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -45,10 +43,8 @@ namespace VkNet.Model
 		{
 			return new MessageKeyboardButtonAction
 			{
-				Type = response[key: "type"]
-				,
-				Payload = response[key: "payload"]
-				,
+				Type = response[key: "type"],
+				Payload = response[key: "payload"],
 				Label = response[key: "label"]
 			};
 		}

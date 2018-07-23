@@ -79,14 +79,14 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "q", p.Query }
-					, { "extended", p.Extended }
-					, { "latitude", p.Latitude }
-					, { "longitude", p.Longitude }
-					, { "start_time", p.StartTime }
-					, { "end_time", p.EndTime }
-					, { "start_from", p.StartFrom }
-					, { "fields", p.Fields }
+				{ "q", p.Query },
+				{ "extended", p.Extended },
+				{ "latitude", p.Latitude },
+				{ "longitude", p.Longitude },
+				{ "start_time", p.StartTime },
+				{ "end_time", p.EndTime },
+				{ "start_from", p.StartFrom },
+				{ "fields", p.Fields }
 			};
 
 			if (p.Count <= 200)

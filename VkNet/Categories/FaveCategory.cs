@@ -14,13 +14,13 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы с закладками.
 		/// </summary>
 		/// <param name="vk"> API. </param>
-		public FaveCategory(VkApi vk)
+		public FaveCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

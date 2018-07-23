@@ -9,10 +9,11 @@ namespace VkNet.Tests
 	{
 		private const string Input =
 				"http://oauth.vk.com/blank.html"
-				+ "#access_token=bf81b33c4f88f45c5e2fa3874054c3c7ae1cb0c632583ca3d9d0d949d4123d8c2c4d7069d9066eceaf815"
+				+ "#access_token=token"
 				+ "&expires_in=86400"
 				+ "&user_id=32190123"
-				+ "&email=inyutin_maxim@mail.ru";
+				+ "&email=inyutin_maxim@mail.ru"
+				+ "&state=123456";
 
 		[Test]
 		public void Authorize_InvalidLoginOrPassword_NotAuthorizedAndAuthorizationNotRequired()
@@ -39,7 +40,7 @@ namespace VkNet.Tests
 		{
 			var auth = VkAuthorization.From(uriFragment: Input);
 
-			Assert.AreEqual(expected: "bf81b33c4f88f45c5e2fa3874054c3c7ae1cb0c632583ca3d9d0d949d4123d8c2c4d7069d9066eceaf815"
+			Assert.AreEqual(expected: "token"
 					, actual: auth.AccessToken);
 
 			Assert.AreEqual(expected: 86400, actual: auth.ExpiresIn);

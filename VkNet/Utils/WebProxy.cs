@@ -72,7 +72,7 @@ namespace VkNet.Utils
 
 			return new WebProxy(proxyUri: new Uri(uriString: $"http://{host}:{port.Value}"))
 			{
-					Credentials = GetCredentials(proxyLogin: proxyLogin, proxyPassword: proxyPassword)
+				Credentials = GetCredentials(proxyLogin: proxyLogin, proxyPassword: proxyPassword)
 			};
 		}
 	}

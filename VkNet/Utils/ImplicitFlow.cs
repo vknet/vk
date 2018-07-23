@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using JetBrains.Annotations;
 using NLog;
+using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -30,19 +31,23 @@ namespace VkNet.Utils
 		/// </summary>
 		private readonly IWebProxy _proxy;
 
+		/// <summary>
+		/// Менеджер версий VkApi
+		/// </summary>
+		private readonly IVkApiVersionManager _versionManager;
+
 		/// <inheritdoc />
 		public ImplicitFlow([CanBeNull]
-							ILogger logger
-							, IWebProxy proxy
-							, HttpClient httpClient)
+							ILogger logger, IWebProxy proxy, HttpClient httpClient, IVkApiVersionManager versionManager)
 		{
 			_logger = logger;
 			_proxy = proxy;
 			_httpClient = httpClient;
+			_versionManager = versionManager;
 		}
 
 		/// <inheritdoc />
-		public AuthorizationResult Aurhorize()
+		public AuthorizationResult Authorize()
 		{
 			_logger?.Debug(message: "Валидация данных.");
 			ValidateAuthorizationParameters();
@@ -67,7 +72,7 @@ namespace VkNet.Utils
 			builder.Append(value: $"display={display}&");
 			builder.Append(value: $"scope={scope}&");
 			builder.Append(value: "response_type=token&");
-			builder.Append(value: $"v={VkApi.VkApiVersion}&");
+			builder.Append(value: $"v={_versionManager.Version}&");
 			builder.Append(value: $"state={state}&");
 			builder.Append(value: "revoke=1");
 
@@ -76,10 +81,10 @@ namespace VkNet.Utils
 
 		private Uri OpenAuthDialog()
 		{
-			var authUri = CreateAuthorizeUrl(clientId: AuthorizationParameters.ApplicationId
-					, scope: AuthorizationParameters.Settings.ToUInt64()
-					, display: Display.Mobile
-					, state: "123435");
+			var authUri = CreateAuthorizeUrl(clientId: AuthorizationParameters.ApplicationId,
+				scope: AuthorizationParameters.Settings.ToUInt64(),
+				display: Display.Mobile,
+				state: "123435");
 
 			return null;
 		}

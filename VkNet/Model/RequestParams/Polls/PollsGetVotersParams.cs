@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -67,6 +69,7 @@ namespace VkNet.Model.RequestParams
 		/// дательный – dat, винительный – acc, творительный – ins, предложный – abl. По
 		/// умолчанию nom. строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NameCase NameCase { get; set; }
 
 		/// <summary>

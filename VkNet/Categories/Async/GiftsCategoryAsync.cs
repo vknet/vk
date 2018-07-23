@@ -10,7 +10,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<VkCollection<GiftItem>> GetAsync(long userId, int? count = null, int? offset = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Gifts.Get(userId: userId, count: count, offset: offset));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Get(userId: userId, count: count, offset: offset));
 		}
 	}
 }

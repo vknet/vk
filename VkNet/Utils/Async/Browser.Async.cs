@@ -234,9 +234,9 @@ namespace VkNet.Utils
 															, [NotNull]
 															Settings settings)
 		{
-			var url = CreateAuthorizeUrlFor(appId: appId, settings: settings, display: Display.Page);
+			var url = CreateAuthorizeUrl(appId, settings.ToUInt64(), Display.Page, "123456");
 
-			var task = WebCall.MakeCallAsync(url: url, webProxy: Proxy);
+			var task = WebCall.MakeCallAsync(url: url.ToString(), webProxy: Proxy);
 			task.ConfigureAwait(false);
 			return task;
 		}

@@ -14,13 +14,13 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API.
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы с опросами.
 		/// </summary>
 		/// <param name="vk"> API. </param>
-		public PollsCategory(VkApi vk)
+		public PollsCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

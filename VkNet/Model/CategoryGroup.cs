@@ -54,11 +54,11 @@ namespace VkNet.Model
 		{
 			return new CategoryGroup
 			{
-					Id = response[key: "id"]
-					, Name = response[key: "name"]
-					, Subcategories = response[key: "subcategories"].ToReadOnlyCollectionOf<CategoryGroup>(selector: o => o)
-					, PageCount = response[key: "page_count"]
-					, PagePreviews = response[key: "page_previews"].ToReadOnlyCollectionOf<Group>(selector: o => o)
+				Id = response[key: "id"],
+				Name = response[key: "name"],
+				Subcategories = response[key: "subcategories"].ToReadOnlyCollectionOf<CategoryGroup>(selector: o => o),
+				PageCount = response[key: "page_count"],
+				PagePreviews = response[key: "page_previews"].ToReadOnlyCollectionOf<Group>(selector: o => o)
 			};
 		}
 	}

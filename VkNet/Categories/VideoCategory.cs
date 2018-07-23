@@ -15,12 +15,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class VideoCategory : IVideoCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public VideoCategory(VkApi vk)
+		public VideoCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

@@ -15,14 +15,14 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<WallGetObject> GetAsync(WallGetParams @params, bool skipAuthorization = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.Get(@params: @params, skipAuthorization: skipAuthorization));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Get(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Comment>> GetCommentsAsync(WallGetCommentsParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Wall.GetComments(@params: @params, skipAuthorization: skipAuthorization));
+					GetComments(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
@@ -33,7 +33,7 @@ namespace VkNet.Categories
 													, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Wall.GetById(posts: posts
+					GetById(posts: posts
 							, extended: extended
 							, copyHistoryDepth: copyHistoryDepth
 							, fields: fields
@@ -43,57 +43,57 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<long> PostAsync(WallPostParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.Post(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Post(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<RepostResult> RepostAsync(string @object, string message, long? groupId, bool markAsAds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Wall.Repost(@object: @object, message: message, groupId: groupId, markAsAds: markAsAds));
+					Repost(@object: @object, message: message, groupId: groupId, markAsAds: markAsAds));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> EditAsync(WallEditParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.Edit(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Edit(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> DeleteAsync(long? ownerId = null, long? postId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.Delete(ownerId: ownerId, postId: postId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Delete(ownerId: ownerId, postId: postId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> RestoreAsync(long? ownerId = null, long? postId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.Restore(ownerId: ownerId, postId: postId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Restore(ownerId: ownerId, postId: postId));
 		}
 
 		/// <inheritdoc />
 		public Task<long> CreateCommentAsync(WallCreateCommentParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.CreateComment(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>CreateComment(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> DeleteCommentAsync(long? ownerId, long commentId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.DeleteComment(ownerId: ownerId, commentId: commentId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>DeleteComment(ownerId: ownerId, commentId: commentId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> RestoreCommentAsync(long commentId, long? ownerId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.RestoreComment(commentId: commentId, ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>RestoreComment(commentId: commentId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
 		public Task<WallGetObject> SearchAsync(WallSearchParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Wall.Search(@params: @params, skipAuthorization: skipAuthorization));
+					Search(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
@@ -104,7 +104,7 @@ namespace VkNet.Categories
 														, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Wall.GetReposts(ownerId: ownerId
+					GetReposts(ownerId: ownerId
 							, postId: postId
 							, offset: offset
 							, count: count
@@ -114,13 +114,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<bool> PinAsync(long postId, long? ownerId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.Pin(postId: postId, ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Pin(postId: postId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> UnpinAsync(long postId, long? ownerId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.Unpin(postId: postId, ownerId: ownerId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Unpin(postId: postId, ownerId: ownerId));
 		}
 
 		/// <inheritdoc />
@@ -130,32 +130,32 @@ namespace VkNet.Categories
 												, IEnumerable<MediaAttachment> attachments = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Wall.EditComment(commentId: commentId, message: message, ownerId: ownerId, attachments: attachments));
+					EditComment(commentId: commentId, message: message, ownerId: ownerId, attachments: attachments));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> ReportPostAsync(long ownerId, long postId, ReportReason? reason = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.ReportPost(ownerId: ownerId, postId: postId, reason: reason));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>ReportPost(ownerId: ownerId, postId: postId, reason: reason));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> ReportCommentAsync(long ownerId, long commentId, ReportReason? reason)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Wall.ReportComment(ownerId: ownerId, commentId: commentId, reason: reason));
+					ReportComment(ownerId: ownerId, commentId: commentId, reason: reason));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> EditAdsStealthAsync(EditAdsStealthParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.EditAdsStealth(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>EditAdsStealth(@params: @params));
 		}
 
 		/// <inheritdoc />
 		public Task<long> PostAdsStealthAsync(PostAdsStealthParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Wall.PostAdsStealth(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>PostAdsStealth(@params: @params));
 		}
 	}
 }

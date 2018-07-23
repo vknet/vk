@@ -19,8 +19,7 @@ namespace VkNet.Tests
 		{
 			Api.Authorize(new ApiAuthParams
 			{
-					AccessToken = "token"
-					, UserId = 1
+				AccessToken = "token", UserId = 1
 			});
 
 			Assert.That(Api.UserId, Is.EqualTo(1));
@@ -33,11 +32,9 @@ namespace VkNet.Tests
 			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
 
 			Mock.Get(Api.RestClient)
-					.Setup(m =>
-							m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-					.Returns(Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK
-							, Json
-							, Url)));
+				.Setup(m =>
+					m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+				.Returns(Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url)));
 
 			var start = DateTimeOffset.Now;
 
@@ -56,9 +53,9 @@ namespace VkNet.Tests
 			// Не больше 4 раз, т.к. 4-ый раз вызывается через 1002 мс после первого вызова, а total выходит через 1040 мс
 			// переписать тест, когда придумаю более подходящий метод проверки
 			Mock.Get(Api.RestClient)
-					.Verify(m =>
-									m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>())
-							, Times.AtMost(4));
+				.Verify(m =>
+						m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()),
+					Times.AtMost(4));
 		}
 
 		[Test]
@@ -175,6 +172,14 @@ namespace VkNet.Tests
 			// Assert
 			Assert.IsNotNull(callMethod);
 			Assert.IsTrue(callMethod.IsPublic);
+		}
+
+		[Test]
+		public void VersionShouldBeenChanged()
+		{
+			Api.VkApiVersion.SetVersion(0, 0);
+
+			Assert.AreEqual("0.0", Api.VkApiVersion.Version);
 		}
 	}
 }

@@ -24,7 +24,7 @@ namespace VkNet.Categories
 		public Task<VkCollection<Topic>> GetTopicsAsync(BoardGetTopicsParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Board.GetTopics(@params: @params, skipAuthorization: skipAuthorization));
+					GetTopics(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <summary>
@@ -41,7 +41,7 @@ namespace VkNet.Categories
 		public Task<TopicsFeed> GetCommentsAsync(BoardGetCommentsParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Board.GetComments(@params: @params, skipAuthorization: skipAuthorization));
+					GetComments(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<long> AddTopicAsync(BoardAddTopicParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.AddTopic(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>AddTopic(@params: @params));
 		}
 
 		/// <summary>
@@ -69,7 +69,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> DeleteTopicAsync(BoardTopicParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.DeleteTopic(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>DeleteTopic(@params: @params));
 		}
 
 		/// <summary>
@@ -84,7 +84,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> CloseTopicAsync(BoardTopicParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.CloseTopic(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>CloseTopic(@params: @params));
 		}
 
 		/// <summary>
@@ -99,7 +99,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> OpenTopicAsync(BoardTopicParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.OpenTopic(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>OpenTopic(@params: @params));
 		}
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> FixTopicAsync(BoardTopicParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.FixTopic(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>FixTopic(@params: @params));
 		}
 
 		/// <summary>
@@ -129,7 +129,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> UnFixTopicAsync(BoardTopicParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.UnFixTopic(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>UnFixTopic(@params: @params));
 		}
 
 		/// <summary>
@@ -143,7 +143,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> EditTopicAsync(BoardEditTopicParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.EditTopic(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>EditTopic(@params: @params));
 		}
 
 		/// <summary>
@@ -158,7 +158,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<long> CreateCommentAsync(BoardCreateCommentParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.CreateComment(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>CreateComment(@params: @params));
 		}
 
 		/// <summary>
@@ -173,7 +173,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> DeleteCommentAsync(BoardCommentParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.DeleteComment(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>DeleteComment(@params: @params));
 		}
 
 		/// <summary>
@@ -187,7 +187,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> EditCommentAsync(BoardEditCommentParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.EditComment(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>EditComment(@params: @params));
 		}
 
 		/// <summary>
@@ -201,7 +201,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> RestoreCommentAsync(BoardCommentParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Board.RestoreComment(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>RestoreComment(@params: @params));
 		}
 	}
 }

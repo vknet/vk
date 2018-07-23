@@ -16,13 +16,13 @@ namespace VkNet.Categories
 																		, long? endTime = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Notifications.Get(count: count, startFrom: startFrom, filters: filters, startTime: startTime, endTime: endTime));
+					Get(count: count, startFrom: startFrom, filters: filters, startTime: startTime, endTime: endTime));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> MarkAsViewedAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Notifications.MarkAsViewed());
+			return TypeHelper.TryInvokeMethodAsync(func: () =>MarkAsViewed());
 		}
 	}
 }

@@ -27,7 +27,7 @@ namespace VkNet.Categories
 		public Task<VkCollection<App>> GetCatalogAsync(AppGetCatalogParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Apps.GetCatalog(@params: @params, skipAuthorization: skipAuthorization));
+				GetCatalog(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <summary>
@@ -43,7 +43,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<AppGetObject> GetAsync(AppGetParams @params, bool skipAuthorization = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.Get(@params: @params, skipAuthorization: skipAuthorization));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Get(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<long> SendRequestAsync(AppSendRequestParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.SendRequest(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => SendRequest(@params: @params));
 		}
 
 		/// <summary>
@@ -75,7 +75,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<bool> DeleteAppRequestsAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.DeleteAppRequests());
+			return TypeHelper.TryInvokeMethodAsync(func: () => DeleteAppRequests());
 		}
 
 		/// <summary>
@@ -107,13 +107,13 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте http://vk.com/dev/apps.getFriendsList
 		/// </remarks>
 		public Task<VkCollection<User>> GetFriendsListAsync(AppRequestType type
-																, bool? extended = null
-																, long? count = null
-																, long? offset = null
-																, UsersFields fields = null)
+															, bool? extended = null
+															, long? count = null
+															, long? offset = null
+															, UsersFields fields = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Apps.GetFriendsList(type: type, extended: extended, count: count, offset: offset));
+				GetFriendsList(type: type, extended: extended, count: count, offset: offset));
 		}
 
 		/// <summary>
@@ -148,7 +148,7 @@ namespace VkNet.Categories
 		public Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					_vk.Apps.GetLeaderboard(type: type, global: global, extended: extended));
+				GetLeaderboard(type: type, global: global, extended: extended));
 		}
 
 		/// <summary>
@@ -169,7 +169,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Task<long> GetScoreAsync(long userId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => _vk.Apps.GetScore(userId: userId));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetScore(userId: userId));
 		}
 	}
 }

@@ -11,7 +11,7 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API.
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <inheritdoc />
 		/// <param name="api">

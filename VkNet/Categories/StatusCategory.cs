@@ -10,12 +10,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class StatusCategory : IStatusCategory
 	{
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public StatusCategory(VkApi vk)
+		public StatusCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}

@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -28,6 +30,7 @@ namespace VkNet.Model.RequestParams
 		/// market_comment — комментарий к товару; строка, обязательный параметр (Строка,
 		/// обязательный параметр).
 		/// </remarks>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public LikeObjectType Type { get; set; }
 
 		/// <summary>

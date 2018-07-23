@@ -14,35 +14,15 @@ namespace VkNet.Utils.JsonConverter
 	/// <seealso cref="Newtonsoft.Json.JsonConverter" />
 	public class AttachmentJsonConverter : Newtonsoft.Json.JsonConverter
 	{
-		/// <summary>
-		/// Writes the JSON representation of the object.
-		/// </summary>
-		/// <param name="writer">
-		/// The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write
-		/// to.
-		/// </param>
-		/// <param name="value"> The value. </param>
-		/// <param name="serializer"> The calling serializer. </param>
-		/// <exception cref="NotImplementedException"> </exception>
+		/// <inheritdoc />
+		/// <exception cref="T:System.NotImplementedException"> </exception>
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
 			throw new NotImplementedException();
 		}
 
-		/// <summary>
-		/// Reads the JSON representation of the object.
-		/// </summary>
-		/// <param name="reader">
-		/// The <see cref="T:Newtonsoft.Json.JsonReader" /> to read
-		/// from.
-		/// </param>
-		/// <param name="objectType"> Type of the object. </param>
-		/// <param name="existingValue"> The existing value of object being read. </param>
-		/// <param name="serializer"> The calling serializer. </param>
-		/// <returns>
-		/// The object value.
-		/// </returns>
-		/// <exception cref="TypeAccessException"> </exception>
+		/// <inheritdoc />
+		/// <exception cref="T:System.TypeAccessException"> </exception>
 		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 		{
 			if (!objectType.IsGenericType)
@@ -68,25 +48,17 @@ namespace VkNet.Utils.JsonConverter
 
 			var vkCollection = typeof(ReadOnlyCollection<>).MakeGenericType(keyType);
 
-			var obj = JObject.Load(reader: reader);
-			var response = obj[propertyName: "response"] ?? obj;
+			var obj = JArray.Load(reader: reader);
 
-			foreach (var item in response)
+			foreach (var item in obj)
 			{
-				list.Add(value: Attachment.FromJson(response: new VkResponse(token: item) { RawJson = response.ToString() }));
+				list.Add(value: Attachment.FromJson(response: new VkResponse(token: item) { RawJson = item.ToString() }));
 			}
 
 			return Activator.CreateInstance(vkCollection, list);
 		}
 
-		/// <summary>
-		/// Determines whether this instance can convert the specified object type.
-		/// </summary>
-		/// <param name="objectType"> Type of the object. </param>
-		/// <returns>
-		/// <c> true </c> if this instance can convert the specified object type;
-		/// otherwise, <c> false </c>.
-		/// </returns>
+		/// <inheritdoc />
 		public override bool CanConvert(Type objectType)
 		{
 			return typeof(ReadOnlyCollection<>).IsAssignableFrom(c: objectType);

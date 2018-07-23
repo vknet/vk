@@ -7,8 +7,13 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using VkNet.Abstractions;
+using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
+using VkNet.Infrastructure;
+using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
 {
@@ -23,24 +28,54 @@ namespace VkNet.Utils
 		/// <param name="container"> DI контейнер </param>
 		public static void RegisterDefaultDependencies(this IServiceCollection container)
 		{
-			if (container.All(predicate: x => x.ServiceType != typeof(IBrowser)))
+			if (container.All(x => x.ServiceType != typeof(IBrowser)))
 			{
 				container.TryAddSingleton<IBrowser, Browser>();
 			}
 
-			if (container.All(predicate: x => x.ServiceType != typeof(ILogger)))
+			if (container.All(x => x.ServiceType != typeof(IAuthorizationFlow)))
 			{
-				container.TryAddSingleton(instance: InitLogger());
+				container.TryAddSingleton<IAuthorizationFlow, Browser>();
 			}
 
-			if (container.All(predicate: x => x.ServiceType != typeof(IRestClient)))
+			if (container.All(x => x.ServiceType != typeof(INeedValidationHandler)))
+			{
+				container.TryAddSingleton<INeedValidationHandler, Browser>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(ILogger)))
+			{
+				container.TryAddSingleton(InitLogger());
+			}
+
+			if (container.All(x => x.ServiceType != typeof(IRestClient)))
 			{
 				container.TryAddScoped<IRestClient, RestClient>();
 			}
 
-			if (container.All(predicate: x => x.ServiceType != typeof(IWebProxy)))
+			if (container.All(x => x.ServiceType != typeof(IWebProxy)))
 			{
-				container.TryAddScoped<IWebProxy>(implementationFactory: t => null);
+				container.TryAddScoped<IWebProxy>(t => null);
+			}
+
+			if (container.All(x => x.ServiceType != typeof(IVkApiVersionManager)))
+			{
+				container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(ICaptchaHandler)))
+			{
+				container.TryAddSingleton<ICaptchaHandler, CaptchaHandler>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(ILanguageService)))
+			{
+				container.TryAddSingleton<ILanguageService, LanguageService>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(ICaptchaSolver)))
+			{
+				container.TryAddSingleton<ICaptchaSolver>(sp => null);
 			}
 		}
 
@@ -57,13 +92,13 @@ namespace VkNet.Utils
 			};
 
 			var config = new LoggingConfiguration();
-			config.AddTarget(name: "console", target: consoleTarget);
-			var rule1 = new LoggingRule(loggerNamePattern: "*", minLevel: LogLevel.Trace, target: consoleTarget);
-			config.LoggingRules.Add(item: rule1);
+			config.AddTarget("console", consoleTarget);
+			var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
+			config.LoggingRules.Add(rule1);
 
 			LogManager.Configuration = config;
 
-			return LogManager.GetLogger(name: "VkApi");
+			return LogManager.GetLogger("VkApi");
 		}
 
 		/// <summary>
@@ -76,16 +111,16 @@ namespace VkNet.Utils
 		{
 			var tcs = new TaskCompletionSource<T>();
 
-			Task.Factory.StartNew(action: () =>
+			Task.Factory.StartNew(() =>
 				{
 					try
 					{
 						var result = func.Invoke();
-						tcs.SetResult(result: result);
+						tcs.SetResult(result);
 					}
 					catch (VkApiException ex)
 					{
-						tcs.SetException(exception: ex);
+						tcs.SetException(ex);
 					}
 				})
 				.ConfigureAwait(false);
@@ -102,16 +137,16 @@ namespace VkNet.Utils
 		{
 			var tcs = new TaskCompletionSource<Task>();
 
-			Task.Factory.StartNew(action: () =>
+			Task.Factory.StartNew(() =>
 			{
 				try
 				{
 					func.Invoke();
-					tcs.SetResult(result: null);
+					tcs.SetResult(null);
 				}
 				catch (VkApiException ex)
 				{
-					tcs.SetException(exception: ex);
+					tcs.SetException(ex);
 				}
 			});
 

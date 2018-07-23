@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -25,7 +22,8 @@ namespace VkNet.Model
 		/// <summary>
 		/// Цвет кнопки
 		/// </summary>
-		[JsonProperty(propertyName: "color"), JsonConverter(typeof(SafetyEnumJsonConverter))]
+		[JsonProperty(propertyName: "color")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public KeyboardButtonColor Color { get; set; } = KeyboardButtonColor.Default;
 
 		/// <summary>
@@ -37,8 +35,7 @@ namespace VkNet.Model
 		{
 			return new MessageKeyboardButton
 			{
-				Action = response[key: "action"]
-				,
+				Action = response[key: "action"],
 				Color = response[key: "color"]
 			};
 		}

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -30,6 +31,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// тип элемента.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public VideoCatalogItemType Type { get; set; }
 
 		/// <summary>

@@ -7,6 +7,7 @@ using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -85,6 +86,7 @@ namespace VkNet.Model
 		/// то запись является копией записи с
 		/// чужой стены.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PostType PostType { get; set; }
 
 		/// <summary>
@@ -95,6 +97,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация о вложениях записи (фотографии ссылки и т.п.).
 		/// </summary>
+		[JsonConverter(typeof(AttachmentJsonConverter))]
 		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>

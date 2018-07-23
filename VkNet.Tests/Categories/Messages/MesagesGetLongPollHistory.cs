@@ -10,8 +10,8 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void GetLongPollHistory_ThrowArgumentException()
 		{
-			Assert.That(del: () => Api.Messages.GetLongPollHistory(@params: new MessagesGetLongPollHistoryParams())
-					, expr: Throws.InstanceOf<ArgumentException>());
+			Assert.That(del: () => Api.Messages.GetLongPollHistory(@params: new MessagesGetLongPollHistoryParams()),
+				expr: Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -55,12 +55,12 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.GetLongPollHistory(@params: new MessagesGetLongPollHistoryParams
 			{
-					Ts = 1874397841
-					, PreviewLength = 0
-					, EventsLimit = 1000
-					, MsgsLimit = 200
-					, MaxMsgId = 0
-					, Onlines = true
+				Ts = 1874397841,
+				PreviewLength = 0,
+				EventsLimit = 1000,
+				MsgsLimit = 200,
+				MaxMsgId = 0,
+				Onlines = true
 			});
 
 			Assert.IsNotEmpty(collection: result.Groups);

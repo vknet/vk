@@ -31,7 +31,7 @@ PM> Install-Package VkNet
 
 # План развития проекта
 
-- [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.78.
+- [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.80.
 - [ ] [Недостающие классы и методы](http://bit.ly/2slXKrI)
 - [ ] Обновить документацию проекта
 
@@ -49,4 +49,4 @@ PM> Install-Package VkNet
 # Помощь проекту
 - [![На счет в банке](https://img.shields.io/badge/Альфа_Банк-donate-CHFCHx.svg)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
 - [![PayPal](https://img.shields.io/badge/PayPal-donate-CHFCHx.svg)](https://www.paypal.me/InyutinMaxim)
-- Так же вы можете помочь проекту `Pull Request`'ом
+- Также вы можете помочь проекту `Pull Request`'ом

@@ -15,8 +15,8 @@ namespace VkNet.Tests.Utils
 		{
 			var result = Utilities.SerializeToJson(@object: new User
 			{
-					FirstName = "Maxim"
-					, LastName = "Inyutin"
+				FirstName = "Maxim",
+				LastName = "Inyutin"
 			});
 
 			Assert.AreNotEqual(expected: result, actual: "{}");
@@ -27,22 +27,22 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void JsonConvertWrite()
 		{
-			var vkCollection = new VkCollection<User>(totalCount: 10
-					, list: new List<User>
+			var vkCollection = new VkCollection<User>(totalCount: 10,
+				list: new List<User>
+				{
+					new User
 					{
-							new User
-							{
-									Id = 12
-									, FirstName = "Andrew"
-									, LastName = "Teleshev"
-							}
-							, new User
-							{
-									Id = 13
-									, FirstName = "Даниил"
-									, LastName = "Рыльцов"
-							}
-					});
+						Id = 12,
+						FirstName = "Andrew",
+						LastName = "Teleshev"
+					},
+					new User
+					{
+						Id = 13,
+						FirstName = "Даниил",
+						LastName = "Рыльцов"
+					}
+				});
 
 			var result = Utilities.SerializeToJson(@object: vkCollection);
 			Assert.AreNotEqual(expected: result, actual: "{}");

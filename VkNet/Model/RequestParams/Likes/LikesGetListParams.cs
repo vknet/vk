@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -13,6 +15,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Тип объекта.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public LikeObjectType Type { get; set; }
 
 		/// <summary>
@@ -45,6 +48,7 @@ namespace VkNet.Model.RequestParams
 		/// "Мне нравится" или только тех, которые
 		/// рассказали о нем друзьям. Параметр может принимать следующие значения:строка.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public LikesFilter Filter { get; set; }
 
 		/// <summary>
