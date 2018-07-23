@@ -41,21 +41,26 @@ namespace VkNet.Model
 
 			var message = new Message
 			{
-				Unread = response.ContainsKey(key: "unread") ? response[key: "unread"] : 0,
-				Id = response[key: "id"],
-				UserId = response[key: "user_id"],
-				Date = response[key: "date"],
-				ReadState = response[key: "read_state"],
-				Type = response[key: "out"],
-				Title = response[key: "title"],
-				Body = response[key: "body"],
-				Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x),
-				Geo = response[key: "geo"],
-				ForwardedMessages = response[key: "fwd_messages"].ToReadOnlyCollectionOf<Message>(selector: x => x),
-				Emoji = response[key: "emoji"],
-				Important = response[key: "important"],
-				Deleted = response[key: "deleted"],
-				FromId = response[key: "from_id"],
+				Unread = response.ContainsKey("unread") ? response["unread"] : 0,
+				Id = response["id"],
+				UserId = response["user_id"],
+				Date = response["date"],
+				PeerId = response["peer_id"],
+				FromId = response["from_id"],
+				Text = response["text"],
+				RandomId = response["random_id"],
+				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
+				Important = response["important"],
+				Geo = response["geo"],
+				Payload = response["payload"],
+				ForwardedMessages = response["fwd_messages"].ToReadOnlyCollectionOf<Message>(x => x),
+				ReadState = response["read_state"],
+				Action = response["action"],
+				Type = response["out"],
+				Title = response["title"],
+				Body = response["body"],
+				Emoji = response["emoji"],
+				Deleted = response["deleted"],
 
 				// дополнительные поля бесед
 				ChatId = response[key: "chat_id"],
@@ -63,20 +68,19 @@ namespace VkNet.Model
 				UsersCount = response[key: "users_count"],
 				AdminId = response[key: "admin_id"],
 				PhotoPreviews = response,
-				PushSettings = response[key: "push_settings"],
-				Action = response[key: "action"],
-				ActionMid = response[key: "action_mid"],
-				ActionEmail = response[key: "action_email"],
-				ActionText = response[key: "action_text"],
-				Photo50 = response[key: "photo_50"],
-				Photo100 = response[key: "photo_100"],
-				Photo200 = response[key: "photo_200"],
-				InRead = response[key: "in_read"],
-				OutRead = response[key: "out_read"],
-				Out = response[key: "out"],
-				UpdateTime = response[key: "update_time"],
+				PushSettings = response["push_settings"],
+				ActionMid = response["action_mid"],
+				ActionEmail = response["action_email"],
+				ActionText = response["action_text"],
+				Photo50 = response["photo_50"],
+				Photo100 = response["photo_100"],
+				Photo200 = response["photo_200"],
+				InRead = response["in_read"],
+				OutRead = response["out_read"],
+				Out = response["out"],
+				UpdateTime = response["update_time"],
 
-				Keyboard = response[key: "keyboard"]
+				Keyboard = response["keyboard"]
 
 			};
 
@@ -227,7 +231,7 @@ namespace VkNet.Model
 		/// chat_invite_user, chat_kick_user
 		/// </remarks>
 
-    [JsonProperty("action")]
+		[JsonProperty("action")]
 		public MessageActionObject Action { get; set; }
 
 		/// <summary>
