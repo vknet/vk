@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -54,16 +54,34 @@ namespace VkNet.Model.Attachments
 		public ReadOnlyCollection<PhotoSize> Sizes { get; set; }
 
 		/// <summary>
+		/// Uri фотографии с максимальным размером 50x50px.
+		/// </summary>
+		[JsonProperty("photo_50")]
+		public Uri Photo50 { get; set; }
+
+		/// <summary>
 		/// Uri фотографии с максимальным размером 75x75px.
 		/// </summary>
 		[JsonProperty("photo_75")]
 		public Uri Photo75 { get; set; }
 
 		/// <summary>
+		/// Uri фотографии с максимальным размером 100x100px.
+		/// </summary>
+		[JsonProperty("photo_100")]
+		public Uri Photo100 { get; set; }
+
+		/// <summary>
 		/// Uri фотографии с максимальным размером 130x130px.
 		/// </summary>
 		[JsonProperty("photo_130")]
 		public Uri Photo130 { get; set; }
+
+		/// <summary>
+		/// Uri фотографии с максимальным размером 200x200px.
+		/// </summary>
+		[JsonProperty("photo_200")]
+		public Uri Photo200 { get; set; }
 
 		/// <summary>
 		/// Uri фотографии с максимальным размером 604x604px.
@@ -114,8 +132,11 @@ namespace VkNet.Model.Attachments
 			{
 				Id = response[key: "photo_id"] ?? response[key: "pid"] ?? response[key: "id"],
 				AlbumId = response[key: "album_id"] ?? response[key: "aid"], OwnerId = response[key: "owner_id"],
+				Photo50 = response[key: "photo_50"],
 				Photo75 = response[key: "photo_75"] ?? response[key: "src_small"],
+				Photo100 = response[key: "photo_100"],
 				Photo130 = response[key: "photo_130"] ?? response[key: "src"],
+				Photo200 = response[key: "photo_200"],
 				Photo604 = response[key: "photo_604"] ?? response[key: "src_big"],
 				Photo807 = response[key: "photo_807"] ?? response[key: "src_xbig"],
 				Photo1280 = response[key: "photo_1280"] ?? response[key: "src_xxbig"],
