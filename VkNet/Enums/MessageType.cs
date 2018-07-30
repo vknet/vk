@@ -11,9 +11,9 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Полученное сообщение.
 		/// </summary>
-		Received = 0
+		Received = 0,
 
-		, /// <summary>
+		/// <summary>
 		/// Отправленное сообщение.
 		/// </summary>
 		Sended = 1
