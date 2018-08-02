@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -26,7 +27,7 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<object>> GetAmountAsync(ulong userId, IEnumerable<string> votes)
+        public async Task<IEnumerable<VotesAmount>> GetAmountAsync(ulong userId, IEnumerable<string> votes)
         {
             return await TypeHelper.TryInvokeMethodAsync(() => GetAmount(userId, votes));
         }
@@ -38,13 +39,13 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public async Task<object> GetUserSubscriptionByIdAsync(ulong userId, ulong subscriptionId)
+        public async Task<SubscriptionItem> GetUserSubscriptionByIdAsync(ulong userId, ulong subscriptionId)
         {
             return await TypeHelper.TryInvokeMethodAsync(() => GetUserSubscriptionById(userId, subscriptionId));
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<object>> GetUserSubscriptionsAsync(ulong userId)
+        public async Task<IEnumerable<SubscriptionItem>> GetUserSubscriptionsAsync(ulong userId)
         {
             return await TypeHelper.TryInvokeMethodAsync(() => GetUserSubscriptions(userId));
         }
