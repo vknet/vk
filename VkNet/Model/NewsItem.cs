@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -36,7 +36,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Находится в записях со стен и содержит идентификатор записи на стене владельца.
 		/// </summary>
-		public ulong PostId { get; set; }
+		public ulong? PostId { get; set; }
 
 		/// <summary>
 		/// Находится в записях со стен, содержит тип новости (post или copy).

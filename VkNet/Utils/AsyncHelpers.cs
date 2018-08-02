@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
@@ -43,4 +43,4 @@ namespace VkNet.Utils
 			AsyncContext.Run(action);
 		}
 	}
-}
+}*/
