@@ -58,6 +58,7 @@ namespace VkNet.Model
 		}
 
 		[JsonProperty(propertyName: "trial_expire_time")]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? TrialExpireTime { get; set; }
 
 		[JsonProperty(propertyName: "pending_cancel")]
