@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using VkNet.Abstractions;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -39,9 +40,9 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public IEnumerable<object> GetAmount(ulong userId, IEnumerable<string> votes)
+        public IEnumerable<VotesAmount> GetAmount(ulong userId, IEnumerable<string> votes)
         {
-            return _vk.Call<IEnumerable<object>>("orders.getAmount", new VkParameters{{"user_id", userId}, {"votes", votes}});
+            return _vk.Call<IEnumerable<VotesAmount>>("orders.getAmount", new VkParameters{{"user_id", userId}, {"votes", votes}});
         }
 
         /// <inheritdoc/>
@@ -51,15 +52,15 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public object GetUserSubscriptionById(ulong userId, ulong subscriptionId)
+        public SubscriptionItem GetUserSubscriptionById(ulong userId, ulong subscriptionId)
         {
-            return _vk.Call<object>("orders.getUserSubscriptionById", new VkParameters{{"user_id", userId}, {"subscription_id", subscriptionId}});
+            return _vk.Call<SubscriptionItem>("orders.getUserSubscriptionById", new VkParameters{{"user_id", userId}, {"subscription_id", subscriptionId}});
         }
 
         /// <inheritdoc/>
-        public IEnumerable<object> GetUserSubscriptions(ulong userId)
+        public IEnumerable<SubscriptionItem> GetUserSubscriptions(ulong userId)
         {
-            return _vk.Call<IEnumerable<object>>("orders.getUserSubscriptions", new VkParameters{{"user_id", userId}});
+            return _vk.Call<IEnumerable<SubscriptionItem>>("orders.getUserSubscriptions", new VkParameters{{"user_id", userId}});
         }
 
         /// <inheritdoc/>

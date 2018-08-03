@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model;
 
 namespace VkNet.Abstractions.Category
 {
@@ -104,7 +105,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/orders.getAmount
 		/// </remarks>
-		Task<IEnumerable<object>> GetAmountAsync(ulong userId, IEnumerable<string> votes);
+		Task<IEnumerable<VotesAmount>> GetAmountAsync(ulong userId, IEnumerable<string> votes);
 
 		/// <summary>
 		/// Возвращает информацию об отдельном заказе.
@@ -167,7 +168,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptionById
 		/// </remarks>
-		Task<object> GetUserSubscriptionByIdAsync(ulong userId, ulong subscriptionId);
+		Task<SubscriptionItem> GetUserSubscriptionByIdAsync(ulong userId, ulong subscriptionId);
 
 		/// <summary>
 		/// Получает список активных подписок пользователя.
@@ -199,7 +200,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptions
 		/// </remarks>
-		Task<IEnumerable<object>> GetUserSubscriptionsAsync(ulong userId);
+		Task<IEnumerable<SubscriptionItem>> GetUserSubscriptionsAsync(ulong userId);
 
 		/// <summary>
 		/// Обновляет цену подписки для пользователя.
