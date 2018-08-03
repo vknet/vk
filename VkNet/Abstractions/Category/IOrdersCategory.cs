@@ -27,6 +27,7 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/orders.cancelSubscription
         /// </remarks>
         bool CancelSubscription(ulong userId, ulong subscriptionId, bool? pendingCancel = null);
+
         /// <summary>
         /// Изменяет состояние заказа.
         /// </summary>
@@ -60,6 +61,7 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/orders.changeState
         /// </remarks>
         object ChangeState(ulong orderId, string action, ulong? appOrderId = null, bool? testMode = null);
+
         /// <summary>
         /// Возвращает список заказов.
         /// </summary>
@@ -85,6 +87,7 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/orders.get
         /// </remarks>
         IEnumerable<object> Get(ulong? offset = null, ulong? count = null, bool? testMode = null);
+
         /// <summary>
         /// Возвращает стоимость голосов в валюте пользователя.
         /// </summary>
@@ -126,6 +129,7 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/orders.getById
         /// </remarks>
         IEnumerable<object> GetById(ulong? orderId = null, IEnumerable<ulong> orderIds = null, bool? testMode = null);
+
 		/// <summary>
 		/// Получает информацию о подписке по её идентификатору.
 		/// </summary>
@@ -162,6 +166,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptionById
 		/// </remarks>
 		SubscriptionItem GetUserSubscriptionById(ulong userId, ulong subscriptionId);
+
         /// <summary>
         /// Получает список активных подписок пользователя.
         /// </summary>
@@ -193,6 +198,7 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptions
         /// </remarks>
         IEnumerable<SubscriptionItem> GetUserSubscriptions(ulong userId);
+
         /// <summary>
         /// Обновляет цену подписки для пользователя.
         /// </summary>
