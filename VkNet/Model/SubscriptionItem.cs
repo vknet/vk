@@ -29,7 +29,7 @@ namespace VkNet.Model
 		///  active — подписка активна.
 		/// </summary>
 		[JsonProperty(propertyName: "status")]
-		public string Status { get; set; }
+		public SubscriptionStatus Status { get; set; }
 
 		/// <summary>
 		/// Стоимость подписки
