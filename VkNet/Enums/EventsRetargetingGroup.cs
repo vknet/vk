@@ -43,7 +43,7 @@ namespace VkNet.Enums
 		/// <summary>
 		/// досмотр видео до 3с
 		/// </summary>
-		Watching3s,
+		Watching3S,
 
 		/// <summary>
 		/// Досмотр видео до 25%

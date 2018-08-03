@@ -14,45 +14,45 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> GetAppImagesAsync()
+		public Task<Uri> GetAppImagesAsync()
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetAppImages());
+			return TypeHelper.TryInvokeMethodAsync(GetAppImages);
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> GetGroupImageUploadServerAsync()
+		public Task<Uri> GetGroupImageUploadServerAsync()
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetGroupImageUploadServer());
+			return TypeHelper.TryInvokeMethodAsync(GetGroupImageUploadServer);
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> GetGroupImagesAsync()
+		public Task<Uri> GetGroupImagesAsync()
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetGroupImages());
+			return TypeHelper.TryInvokeMethodAsync(GetGroupImages);
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> GetImagesByIdAsync()
+		public Task<Uri> GetImagesByIdAsync()
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetImagesById());
+			return TypeHelper.TryInvokeMethodAsync(GetImagesById);
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> SaveAppImageAsync(string hash, string image)
+		public Task<Uri> SaveAppImageAsync(string hash, string image)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => SaveAppImage(hash, image));
+			return TypeHelper.TryInvokeMethodAsync(() => SaveAppImage(hash, image));
 		}
 
 		/// <inheritdoc/>
-		public async Task<Uri> SaveGroupImageAsync()
+		public Task<Uri> SaveGroupImageAsync()
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => SaveGroupImage());
+			return TypeHelper.TryInvokeMethodAsync(SaveGroupImage);
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> UpdateAsync()
+		public Task<bool> UpdateAsync()
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => Update());
+			return TypeHelper.TryInvokeMethodAsync(Update);
 		}
 	}
 }

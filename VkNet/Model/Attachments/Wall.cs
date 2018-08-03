@@ -204,6 +204,11 @@ namespace VkNet.Model
 			};
 		}
 
+		/// <summary>
+		/// Неявное приведение типа <see cref="Wall"/> к <see cref="VkResponse"/>
+		/// </summary>
+		/// <param name="response">Ответ от vk</param>
+		/// <returns>Объект <see cref="Wall"/></returns>
 		public static implicit operator Wall(VkResponse response)
 		{
 			if (response == null)

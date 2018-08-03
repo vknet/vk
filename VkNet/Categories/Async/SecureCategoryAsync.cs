@@ -8,63 +8,63 @@ namespace VkNet.Categories
     public partial class SecureCategory
     {
         /// <inheritdoc/>
-        public async Task<object> AddAppEventAsync(ulong userId, ulong activityId, ulong? value = null)
+        public Task<object> AddAppEventAsync(ulong userId, ulong activityId, ulong? value = null)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => AddAppEvent(userId, activityId, value));
+            return TypeHelper.TryInvokeMethodAsync(() => AddAppEvent(userId, activityId, value));
         }
 
         /// <inheritdoc/>
-        public async Task<object> CheckTokenAsync(string token, string ip)
+        public Task<object> CheckTokenAsync(string token, string ip)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => CheckToken(token, ip));
+            return TypeHelper.TryInvokeMethodAsync(() => CheckToken(token, ip));
         }
 
         /// <inheritdoc/>
-        public async Task<object> GetAppBalanceAsync()
+        public Task<object> GetAppBalanceAsync()
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => GetAppBalance());
+            return TypeHelper.TryInvokeMethodAsync(() => GetAppBalance());
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<object>> GetSmsHistoryAsync(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null, ulong? limit = null)
+        public Task<IEnumerable<object>> GetSmsHistoryAsync(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null, ulong? limit = null)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => GetSMSHistory(userId, dateFrom, dateTo, limit));
+            return TypeHelper.TryInvokeMethodAsync(() => GetSmsHistory(userId, dateFrom, dateTo, limit));
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<object>> GetTransactionsHistoryAsync()
+        public Task<IEnumerable<object>> GetTransactionsHistoryAsync()
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => GetTransactionsHistory());
+            return TypeHelper.TryInvokeMethodAsync(() => GetTransactionsHistory());
         }
 
         /// <inheritdoc/>
-        public async Task<object> GetUserLevelAsync(IEnumerable<long> userIds)
+        public Task<object> GetUserLevelAsync(IEnumerable<long> userIds)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => GetUserLevel(userIds));
+            return TypeHelper.TryInvokeMethodAsync(() => GetUserLevel(userIds));
         }
 
         /// <inheritdoc/>
-        public async Task<object> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null, ulong? userId = null)
+        public Task<object> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null, ulong? userId = null)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => SendNotification(message, userIds, userId));
+            return TypeHelper.TryInvokeMethodAsync(() => SendNotification(message, userIds, userId));
         }
 
         /// <inheritdoc/>
-        public async Task<bool> SendSMSNotificationAsync(ulong userId, string message)
+        public Task<bool> SendSmsNotificationAsync(ulong userId, string message)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => SendSMSNotification(userId, message));
+            return TypeHelper.TryInvokeMethodAsync(() => SendSmsNotification(userId, message));
         }
 
         /// <inheritdoc/>
-        public async Task<bool> SetCounterAsync(IEnumerable<string> counters, ulong? userId = null, long? counter = null, bool? increment = null)
+        public Task<bool> SetCounterAsync(IEnumerable<string> counters, ulong? userId = null, long? counter = null, bool? increment = null)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => SetCounter(counters, userId, counter, increment));
+            return TypeHelper.TryInvokeMethodAsync(() => SetCounter(counters, userId, counter, increment));
         }
 
         /// <inheritdoc/>
-        public async Task<bool> SetUserLevelAsync(IEnumerable<string> levels, ulong? userId = null, ulong? level = null)
+        public Task<bool> SetUserLevelAsync(IEnumerable<string> levels, ulong? userId = null, ulong? level = null)
         {
-            return await TypeHelper.TryInvokeMethodAsync(() => SetUserLevel(levels, userId, level));
+            return TypeHelper.TryInvokeMethodAsync(() => SetUserLevel(levels, userId, level));
         }
     }
 }

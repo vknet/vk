@@ -23,7 +23,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор пользователя, которого пригласили или исключили
 		/// (для служебных сообщений с type = chat_invite_user, chat_invite_user_by_link или chat_kick_user).
-		/// Идентификатор пользователя, который закрепил/открепил сообщение для action = chat_pin_message или chat_unpin_message. 
+		/// Идентификатор пользователя, который закрепил/открепил сообщение для action = chat_pin_message или chat_unpin_message.
 		/// </summary>
 		[JsonProperty("member_id")]
 		public long? MemberId { get; set; }
@@ -35,7 +35,7 @@ namespace VkNet.Model
 		public string Text { get; set; }
 
 		/// <summary>
-		/// Email, который пригласили или исключили (для служебных сообщений с type = chat_invite_user или chat_kick_user и отрицательным member_id). 
+		/// Email, который пригласили или исключили (для служебных сообщений с type = chat_invite_user или chat_kick_user и отрицательным member_id).
 		/// </summary>
 		[JsonProperty("email")]
 		public string Email { get; set; }
@@ -46,6 +46,11 @@ namespace VkNet.Model
 		[JsonProperty("photo")]
 		public Photo Photo { get; set; }
 
+		/// <summary>
+		/// Преобразование из <see cref="VkResponse"/> в <see cref="MessageActionObject"/>
+		/// </summary>
+		/// <param name="response">Ответ вк</param>
+		/// <returns></returns>
 		public static MessageActionObject FromJson(VkResponse response)
 		{
 			var action = new MessageActionObject

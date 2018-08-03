@@ -283,7 +283,7 @@ namespace VkNet.Tests.Categories
 
 			var db = GetMockedPagesCategory(url, json);
 
-			var page = db.Save("123", 103292418, 123, 32190123, "Свежие новости");
+			var page = db.Save("123", 123, 32190123, "Свежие новости", 103292418);
 
 			Assert.That(page, Is.EqualTo(50050492));
 		}
@@ -300,7 +300,7 @@ namespace VkNet.Tests.Categories
 
 			var db = GetMockedPagesCategory(url, json);
 
-			var page = db.Save("123", 103292418, 50050492, 32190123);
+			var page = db.Save("123", 50050492, 32190123, "", 103292418);
 
 			Assert.That(page, Is.EqualTo(50050492));
 		}

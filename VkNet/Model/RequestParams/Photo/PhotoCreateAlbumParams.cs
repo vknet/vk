@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -65,18 +66,17 @@ namespace VkNet.Model.RequestParams
 
 			if (p.Title.Length < 2)
 			{
-				throw new System.Exception(message: "Параметр title обязательный, минимальная длина 2 символа");
+				throw new VkApiException(message: "Параметр title обязательный, минимальная длина 2 символа");
 			}
 
 			var parameters = new VkParameters
 			{
-					{ "title", p.Title }
-					, { "group_id", p.GroupId }
-					, { "description", p.Description }
-					, { "privacy_view", string.Join(separator: ",", values: p.PrivacyView) }
-					, { "privacy_comment", string.Join(separator: ",", values: p.PrivacyComment) }
-					, { "upload_by_admins_only", p.UploadByAdminsOnly }
-					, { "comments_disabled", p.CommentsDisabled }
+				{ "title", p.Title },
+				{ "group_id", p.GroupId },
+				{ "description", p.Description },
+				{ "privacy_view", string.Join(separator: ",", values: p.PrivacyView) },
+				{ "privacy_comment", string.Join(separator: ",", values: p.PrivacyComment) },
+				{ "upload_by_admins_only", p.UploadByAdminsOnly }, { "comments_disabled", p.CommentsDisabled }
 			};
 
 			return parameters;

@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Utils;
 
@@ -337,13 +336,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetUploadURL(long adFormat)
+		public Uri GetUploadUrl(long adFormat)
 		{
 			return _vk.Call<Uri>("ads.getUploadURl", new VkParameters { { "ad_format", adFormat } });
 		}
 
 		/// <inheritdoc/>
-		public Uri GetVideoUploadURL()
+		public Uri GetVideoUploadUrl()
 		{
 			return _vk.Call<Uri>("ads.getVideoUploadURl", VkParameters.Empty);
 		}

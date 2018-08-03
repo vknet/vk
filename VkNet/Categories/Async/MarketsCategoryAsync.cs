@@ -137,7 +137,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.getAlbums
 		/// </remarks>
-		public Task<VkCollection<MarketAlbum>> GetAlbumsAsync(long ownerId, int? offset, int? count)
+		public Task<VkCollection<MarketAlbum>> GetAlbumsAsync(long ownerId, int? offset = null, int? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>GetAlbums(ownerId: ownerId, offset: offset, count: count));
 		}

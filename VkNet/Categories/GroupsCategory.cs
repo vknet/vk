@@ -477,7 +477,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public VkCollection<CallbackServerItem> GetCallbackServers(ulong groupId, IEnumerable<ulong> serverIds)
+		public VkCollection<CallbackServerItem> GetCallbackServers(ulong groupId, IEnumerable<ulong> serverIds = null)
 		{
 			var parameters = new VkParameters
 			{

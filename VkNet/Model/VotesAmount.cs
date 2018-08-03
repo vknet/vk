@@ -1,12 +1,11 @@
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using VkNet.Utils;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Количество голосов
+	/// </summary>
 	[Serializable]
     public class VotesAmount
     {

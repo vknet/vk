@@ -8,11 +8,11 @@
 		/// <summary>
 		/// Фото.
 		/// </summary>
-		public static PhotoFeedType Photo = RegisterPossibleValue(value: "photo");
+		public static readonly PhotoFeedType Photo = RegisterPossibleValue(value: "photo");
 
 		/// <summary>
 		/// Тег фото.
 		/// </summary>
-		public static PhotoFeedType PhotoTag = RegisterPossibleValue(value: "photo_tag");
+		public static readonly PhotoFeedType PhotoTag = RegisterPossibleValue(value: "photo_tag");
 	}
 }

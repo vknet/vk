@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using VkNet.Abstractions.Category;
 using VkNet.Model;
@@ -104,7 +103,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Позволяет получить адрес для загрузки истории с фотографией.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getPhotoUploadServerParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -115,7 +114,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getPhotoUploadServer
 		/// </remarks>
-		StoryServerUrl GetPhotoUploadServer(GetPhotoUploadServerParams @params);
+		StoryServerUrl GetPhotoUploadServer(GetPhotoUploadServerParams getPhotoUploadServerParams);
 
 		/// <summary>
 		/// Позволяет получить ответы на историю.
@@ -185,7 +184,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Позволяет получить адрес для загрузки видеозаписи в историю.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "getVideoUploadServerParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -196,7 +195,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getVideoUploadServer
 		/// </remarks>
-		StoryServerUrl GetVideoUploadServer(GetVideoUploadServerParams @params);
+		StoryServerUrl GetVideoUploadServer(GetVideoUploadServerParams getVideoUploadServerParams);
 
 		/// <summary>
 		/// Возвращает список пользователей, просмотревших историю.

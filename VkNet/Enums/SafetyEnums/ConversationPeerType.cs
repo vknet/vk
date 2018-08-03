@@ -2,6 +2,9 @@
 
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// Тип пира беседы
+	/// </summary>
 	[Serializable]
 	public class ConversationPeerType : SafetyEnum<ConversationPeerType>
 	{
@@ -13,16 +16,16 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// Чат.
 		/// </summary>
-		public static readonly ConversationPeerType chat = RegisterPossibleValue("chat");
+		public static readonly ConversationPeerType Chat = RegisterPossibleValue("chat");
 
 		/// <summary>
 		/// Группа.
 		/// </summary>
-		public static readonly ConversationPeerType group = RegisterPossibleValue("group");
+		public static readonly ConversationPeerType Group = RegisterPossibleValue("group");
 
 		/// <summary>
 		/// E-mail.
 		/// </summary>
-		public static readonly ConversationPeerType email = RegisterPossibleValue("email");
+		public static readonly ConversationPeerType Email = RegisterPossibleValue("email");
 	}
 }

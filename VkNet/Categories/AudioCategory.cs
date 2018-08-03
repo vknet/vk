@@ -192,6 +192,7 @@ namespace VkNet.Categories
 		/// Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
 		/// </summary>
 		/// <param name="params"> Критерии поиска </param>
+		/// <exception cref="NullReferenceException"></exception>
 		/// <returns>
 		/// Список объектов класса Audio.
 		/// </returns>
@@ -203,11 +204,6 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Audio> Search(AudioSearchParams @params)
 		{
-			if (string.IsNullOrWhiteSpace(value: @params.Query))
-			{
-				throw new ArgumentNullException(paramName: nameof(@params.Query), message: "Query is null or empty.");
-			}
-
 			return _vk.Call(methodName: "audio.search", parameters: @params).ToVkCollectionOf<Audio>(selector: r => r);
 		}
 
@@ -312,21 +308,6 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long Edit(AudioEditParams @params)
 		{
-			if (@params.Artist == null)
-			{
-				throw new ArgumentNullException(paramName: nameof(@params.Artist), message: "Artist parameter can not be null.");
-			}
-
-			if (@params.Title == null)
-			{
-				throw new ArgumentNullException(paramName: nameof(@params.Title), message: "Title parameter can not be null.");
-			}
-
-			if (@params.Text == null)
-			{
-				throw new ArgumentNullException(paramName: nameof(@params.Text), message: "Text parameter can not be null.");
-			}
-
 			return _vk.Call(methodName: "audio.edit", parameters: @params);
 		}
 

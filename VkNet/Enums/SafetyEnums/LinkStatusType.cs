@@ -1,5 +1,8 @@
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// Тип статуса ссылки
+	/// </summary>
 	public class LinkStatusType : SafetyEnum<LinkStatusType>
 	{
 		/// <summary>

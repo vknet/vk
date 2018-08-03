@@ -3,6 +3,7 @@ using VkNet.Abstractions.Core;
 
 namespace VkNet.Infrastructure
 {
+	/// <inheritdoc />
 	public class TokenManager : ITokenManager
 	{
 		/// <inheritdoc />

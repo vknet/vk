@@ -60,9 +60,9 @@ namespace VkNet.Tests.Categories.Ads
 			Assert.That(ad.Category1Id, Is.EqualTo(285));
 			Assert.That(ad.Category2Id, Is.EqualTo(0));
 			Assert.That(ad.Name, Is.EqualTo("Сеты шаров на свою группу."));
-			Assert.That(ad.CostType, Is.EqualTo(CostType.CPM));
+			Assert.That(ad.CostType, Is.EqualTo(CostType.Cpm));
 			Assert.That(ad.AdFormat, Is.EqualTo(AdFormat.Public));
-			Assert.That(ad.CPM, Is.EqualTo(23699));
+			Assert.That(ad.Cpm, Is.EqualTo(23699));
 			Assert.That(ad.ImpressionsLimit, Is.EqualTo(1));
 			Assert.That(ad.AdPlatform, Is.EqualTo(AdPlatform.All));
 			Assert.That(ad.AdPlatformNoAdNetwork, Is.EqualTo(true));

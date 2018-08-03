@@ -114,8 +114,8 @@ namespace VkNet.Categories
 		public Task<UploadServerInfo> GetOwnerCoverPhotoUploadServerAsync(long groupId
 																				, long? cropX = null
 																				, long? cropY = null
-																				, long? cropX2 = null
-																				, long? cropY2 = null)
+																				, long? cropX2 = 795L
+                                                                                , long? cropY2 = 200L)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
 					GetOwnerCoverPhotoUploadServer(groupId: groupId, cropX: cropX, cropY: cropY, cropX2: cropX2, cropY2: cropY2));

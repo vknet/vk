@@ -8,11 +8,11 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Оплата за переходы
 		/// </summary>
-		CPC = 0,
+		Cpc = 0,
 
 		/// <summary>
 		/// Оплата за показы
 		/// </summary>
-		CPM
+		Cpm
 	}
 }

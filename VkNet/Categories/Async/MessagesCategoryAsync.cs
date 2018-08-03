@@ -51,41 +51,41 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public async Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields,
+		public Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields,
 																			bool? extended = null, ulong? groupId = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetConversationsById(peerIds, fields, extended, groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => GetConversationsById(peerIds, fields, extended, groupId));
 		}
 
 		/// <inheritdoc />
-		public async Task<GetConversationsResult> GetConversationsAsync(GetConversationsParams getConversationsParams)
+		public Task<GetConversationsResult> GetConversationsAsync(GetConversationsParams getConversationsParams)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetConversations(getConversationsParams));
+			return TypeHelper.TryInvokeMethodAsync(() => GetConversations(getConversationsParams));
 		}
 
 		/// <inheritdoc />
-		public async Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields,
+		public Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields,
 																					ulong? groupId = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetConversationMembers(peerId, fields, groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => GetConversationMembers(peerId, fields, groupId));
 		}
 
 		/// <inheritdoc />
-		public async Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(long peerId,
+		public Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(long peerId,
 																							IEnumerable<ulong> conversationMessageIds,
 																							IEnumerable<string> fields,
 																							bool? extended = null,
 																							ulong? groupId = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() =>
+			return TypeHelper.TryInvokeMethodAsync(() =>
 				GetByConversationMessageId(peerId, conversationMessageIds, fields, extended, groupId));
 		}
 
 		/// <inheritdoc />
-		public async Task<SearchConversationsResult> SearchConversationsAsync(string q, IEnumerable<string> fields, ulong? count = null,
+		public Task<SearchConversationsResult> SearchConversationsAsync(string q, IEnumerable<string> fields, ulong? count = null,
 																			bool? extended = null, ulong? groupId = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => SearchConversations(q, fields, count, extended, groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => SearchConversations(q, fields, count, extended, groupId));
 		}
 
 		/// <inheritdoc />
@@ -244,9 +244,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<long> SendStickerAsync(MessagesSendStickerParams @params)
+		public Task<long> SendStickerAsync(MessagesSendStickerParams parameters)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => SendSticker(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: () => SendSticker(@params: parameters));
 		}
 
 		/// <inheritdoc />
@@ -275,6 +275,7 @@ namespace VkNet.Categories
 			return TypeHelper.TryInvokeMethodAsync(func: () => JoinChatByInviteLink(link: link));
 		}
 
+		/// <inheritdoc />
 		public Task<bool> MarkAsAnsweredConversationAsync(long peerId, bool answered = true)
 		{
 			throw new NotImplementedException();
