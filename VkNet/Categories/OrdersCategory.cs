@@ -21,6 +21,7 @@ namespace VkNet.Categories
             _vk = api;
 		}
 
+		/// <inheritdoc/>
 		/// <summary>
 		/// Отменяет подписку.
 		/// </summary>
@@ -48,6 +49,7 @@ namespace VkNet.Categories
             return _vk.Call<bool>("orders.cancelSubscription", new VkParameters{{"user_id", userId}, {"subscription_id", subscriptionId}, {"pending_cancel", pendingCancel}});
         }
 
+		/// <inheritdoc/>
 		/// <summary>
 		/// Изменяет состояние заказа.
 		/// </summary>
@@ -90,6 +92,7 @@ namespace VkNet.Categories
             return _vk.Call<object>("orders.changeState", new VkParameters{{"order_id", orderId}, {"action", action}, {"app_order_id", appOrderId}, {"test_mode", testMode}});
         }
 
+		/// <inheritdoc/>
 		/// <summary>
 		/// Возвращает список заказов.
 		/// </summary>
@@ -124,6 +127,7 @@ namespace VkNet.Categories
             return _vk.Call<IEnumerable<object>>("orders.get", new VkParameters{{"offset", offset}, {"count", count}, {"test_mode", testMode}});
         }
 
+		/// <inheritdoc/>
 		/// <summary>
 		/// Возвращает ненулевые значения счетчиков пользователя.
 		/// </summary>
@@ -146,6 +150,7 @@ namespace VkNet.Categories
             return _vk.Call<IEnumerable<VotesAmount>>("orders.getAmount", new VkParameters{{"user_id", userId}, {"votes", votes}});
         }
 
+		/// <inheritdoc/>
 		/// <summary>
 		/// Возвращает информацию об отдельном заказе.
 		/// </summary>
@@ -180,6 +185,7 @@ namespace VkNet.Categories
             return _vk.Call<IEnumerable<object>>("orders.getById", new VkParameters{{"order_id", orderId}, {"order_ids", orderIds}, {"test_mode", testMode}});
         }
 
+		/// <inheritdoc/>
 		/// <summary>
 		/// Получает информацию о подписке по её идентификатору.
 		/// </summary>
@@ -222,6 +228,7 @@ namespace VkNet.Categories
             return _vk.Call<SubscriptionItem>("orders.getUserSubscriptionById", new VkParameters{{"user_id", userId}, {"subscription_id", subscriptionId}});
         }
 
+		/// <inheritdoc/>
 		/// <summary>
 		/// Получает список активных подписок пользователя.
 		/// </summary>
@@ -263,6 +270,7 @@ namespace VkNet.Categories
             return _vk.Call<IEnumerable<SubscriptionItem>>("orders.getUserSubscriptions", new VkParameters{{"user_id", userId}});
         }
 
+		/// <inheritdoc/>
 		/// <summary>
 		/// Обновляет цену подписки для пользователя.
 		/// </summary>
