@@ -3,7 +3,7 @@ using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Wall
 {
 	public class WallPostTests : BaseTest
 	{

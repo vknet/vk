@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using VkNet.Enums.Filters;
 
-namespace VkNet.Tests.Enum.SafetyEnums
+namespace VkNet.Tests.Enum.Filters
 {
 	[TestFixture]
 	public class MultivaluedFilterTest

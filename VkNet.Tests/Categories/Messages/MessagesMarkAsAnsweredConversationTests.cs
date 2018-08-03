@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories.Messages
                     'response': 1
                   }";
 
-			var result = Api.Messages.MarkAsAnsweredConversation(123, true);
+			var result = Api.Messages.MarkAsAnsweredConversation(123);
 
 			Assert.IsTrue(result);
 		}

@@ -10,7 +10,7 @@ using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Wall
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]

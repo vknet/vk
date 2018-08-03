@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using VkNet.Model.RequestParams.Ads;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model.RequestParams.Ads;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Ads
 {
 	public class AdsGetAdsTests : BaseTest
 	{

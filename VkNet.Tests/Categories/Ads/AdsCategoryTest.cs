@@ -5,7 +5,7 @@ using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]

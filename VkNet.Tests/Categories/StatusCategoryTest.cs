@@ -47,6 +47,7 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var status = GetMockedStatusCategory(url, json);
+			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 			var ex = Assert.Throws<PermissionToPerformThisActionException>(() => status.Get(1));
 			Assert.That(ex.Message, Is.EqualTo("Permission to perform this action is denied"));
 		}

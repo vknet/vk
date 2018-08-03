@@ -38,7 +38,7 @@ namespace VkNet.Tests.Categories.Friends
 			Assert.AreEqual(182, result.TotalCount);
 			var user = result.FirstOrDefault();
 			Assert.NotNull(user);
-			Assert.AreEqual(Sex.Male, user?.Sex);
+			Assert.AreEqual(Sex.Male, user.Sex);
 		}
 
 		[Test]

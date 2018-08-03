@@ -8,12 +8,11 @@ using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
-using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
@@ -734,7 +733,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(msg, Is.Not.Null);
 			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
 
-			var wall = msg.Attachments[0].Instance as Wall;
+			var wall = msg.Attachments[0].Instance as Model.Wall;
 
 			Assert.That(wall, Is.Not.Null);
 			Assert.That(wall.Id, Is.EqualTo(6194));

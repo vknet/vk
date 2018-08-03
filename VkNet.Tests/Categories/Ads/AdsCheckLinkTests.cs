@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
 	public class AdsCheckLinkTests : BaseTest

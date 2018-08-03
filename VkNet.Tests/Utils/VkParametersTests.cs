@@ -9,9 +9,13 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void AddNullableBoolean_FalseValue()
 		{
-			var @params = new VkParameters();
-			bool? nbool = false;
-			@params.Add("NullableBoolean", nbool);
+			var @params = new VkParameters
+			{
+				{
+					"NullableBoolean", false
+				}
+			};
+
 			Assert.That(@params, Does.ContainKey("NullableBoolean"));
 			var val = @params["NullableBoolean"];
 			Assert.That(val, Is.EqualTo("0"));
@@ -20,18 +24,26 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void AddNullableBoolean_NullValue()
 		{
-			var @params = new VkParameters();
-			bool? nbool = null;
-			@params.Add("NullableBoolean", nbool);
+			var @params = new VkParameters
+			{
+				{
+					"NullableBoolean", (bool?) null
+				}
+			};
+
 			Assert.That(@params, Does.Not.ContainKey("NullableBoolean"));
 		}
 
 		[Test]
 		public void AddNullableBoolean_TrueValue()
 		{
-			var @params = new VkParameters();
-			bool? nbool = true;
-			@params.Add("NullableBoolean", nbool);
+			var @params = new VkParameters
+			{
+				{
+					"NullableBoolean", true
+				}
+			};
+
 			Assert.That(@params, Does.ContainKey("NullableBoolean"));
 			var val = @params["NullableBoolean"];
 			Assert.That(val, Is.EqualTo("1"));

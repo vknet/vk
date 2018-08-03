@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace VkNet.Tests.Categories.Messages
+namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	public class PhotoSaveMessagePhotoTests : BaseTest
