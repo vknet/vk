@@ -47,8 +47,8 @@ namespace VkNet.Tests.Categories
             }";
 
 			Url = "https://api.vk.com/method/search.getHints";
-			var result = Api.Search.GetHints(@params: new SearchGetHintsParams());
-			Assert.NotNull(anObject: result);
+			var result = Api.Search.GetHints(new SearchGetHintsParams());
+			Assert.NotNull(result);
 		}
 	}
 }

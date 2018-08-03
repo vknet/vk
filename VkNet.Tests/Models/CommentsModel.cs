@@ -10,7 +10,7 @@ namespace VkNet.Tests.Models
 		public void ShouldHaveField_GroupsCanPost()
 		{
 			var comments = new Comments();
-			Assert.That(actual: comments, expression: Has.Property(name: "GroupsCanPost"));
+			Assert.That(comments, Has.Property("GroupsCanPost"));
 		}
 	}
 }

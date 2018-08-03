@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories
 
 			Url = "https://api.vk.com/method/notifications.markAsViewed";
 			var result = Api.Notifications.MarkAsViewed();
-			Assert.True(condition: result);
+			Assert.True(result);
 		}
 	}
 }

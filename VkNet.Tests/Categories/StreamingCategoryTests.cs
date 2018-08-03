@@ -23,9 +23,9 @@ namespace VkNet.Tests.Categories
 
 			var result = Api.Streaming.GetServerUrl();
 
-			Assert.IsNotNull(anObject: result);
-			Assert.AreEqual(expected: "streaming.vk.com", actual: result.Endpoint);
-			Assert.AreEqual(expected: "be8d29c05546e58cb52420aaf2b9f51f0a440f89", actual: result.Key);
+			Assert.IsNotNull(result);
+			Assert.AreEqual("streaming.vk.com", result.Endpoint);
+			Assert.AreEqual("be8d29c05546e58cb52420aaf2b9f51f0a440f89", result.Key);
 		}
 
 		[Test]
@@ -43,8 +43,8 @@ namespace VkNet.Tests.Categories
 
 			var result = Api.Streaming.GetSettings();
 
-			Assert.IsNotNull(anObject: result);
-			Assert.AreEqual(expected: MonthlyLimit.Tier6, actual: result.MonthlyLimit);
+			Assert.IsNotNull(result);
+			Assert.AreEqual(MonthlyLimit.Tier6, result.MonthlyLimit);
 		}
 
 		[Test]
@@ -72,17 +72,17 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Streaming.GetStats(type: "prepared"
-					, interval: "24h"
-					, startTime: new DateTime(year: 2018, month: 5, day: 1)
-					, endTime: new DateTime(year: 2018, month: 5, day: 20));
+			var result = Api.Streaming.GetStats("prepared"
+					, "24h"
+					, new DateTime(2018, 5, 1)
+					, new DateTime(2018, 5, 20));
 
-			Assert.IsNotEmpty(collection: result);
+			Assert.IsNotEmpty(result);
 
 			var stats = result.FirstOrDefault();
-			Assert.NotNull(anObject: stats);
-			Assert.AreEqual(expected: StreamingEventType.Post, actual: stats.EventType);
-			Assert.IsNotEmpty(collection: stats.Stats);
+			Assert.NotNull(stats);
+			Assert.AreEqual(StreamingEventType.Post, stats.EventType);
+			Assert.IsNotEmpty(stats.Stats);
 		}
 
 		[Test]
@@ -96,9 +96,9 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Streaming.SetSettings(monthlyTier: MonthlyLimit.Tier6);
+			var result = Api.Streaming.SetSettings(MonthlyLimit.Tier6);
 
-			Assert.IsTrue(condition: result);
+			Assert.IsTrue(result);
 		}
 	}
 }

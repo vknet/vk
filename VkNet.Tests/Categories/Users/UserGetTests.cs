@@ -27,12 +27,12 @@ namespace VkNet.Tests.Categories.Users
                     ]
                   }";
 
-			var users = Api.Users.Get(userIds: new List<long> { 118312730 }, fields: ProfileFields.Sex, nameCase: NameCase.Nom);
+			var users = Api.Users.Get(new List<long> { 118312730 }, ProfileFields.Sex, NameCase.Nom);
 
-			Assert.That(actual: users, expression: Is.Not.Null);
+			Assert.That(users, Is.Not.Null);
 			var user = users.FirstOrDefault();
-			Assert.That(actual: user, expression: Is.Not.Null);
-			Assert.That(actual: user.Sex, expression: Is.EqualTo(expected: Sex.Deactivated));
+			Assert.That(user, Is.Not.Null);
+			Assert.That(user.Sex, Is.EqualTo(Sex.Deactivated));
 		}
 	}
 }

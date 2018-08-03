@@ -36,11 +36,11 @@ namespace VkNet.Tests.Utils.JsonConverter
             }";
 
 			Url = "https://api.vk.com/method/friends.getRequests";
-			CommentBoard result = Api.Call(methodName: "friends.getRequests", parameters: VkParameters.Empty);
-			Assert.NotNull(anObject: result);
-			Assert.That(actual: result.Id, expression: Is.EqualTo(expected: 3));
-			Assert.That(actual: result.FromId, expression: Is.EqualTo(expected: 32190123));
-			Assert.IsNotEmpty(collection: result.Attachments);
+			CommentBoard result = Api.Call("friends.getRequests", VkParameters.Empty);
+			Assert.NotNull(result);
+			Assert.That(result.Id, Is.EqualTo(3));
+			Assert.That(result.FromId, Is.EqualTo(32190123));
+			Assert.IsNotEmpty(result.Attachments);
 		}
 	}
 }

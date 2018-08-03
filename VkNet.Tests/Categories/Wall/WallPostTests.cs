@@ -49,7 +49,7 @@ namespace VkNet.Tests.Categories
                  }
                  ";
 
-			Assert.That(code: () => VkErrors.IfErrorThrowException(json: Json), constraint: Throws.TypeOf<NeedValidationException>());
+			Assert.That(() => VkErrors.IfErrorThrowException(Json), Throws.TypeOf<NeedValidationException>());
 		}
 
 		[Test]
@@ -87,7 +87,7 @@ namespace VkNet.Tests.Categories
                    }
                  }";
 
-			Assert.Throws<PostLimitException>(code: () => Api.Wall.Post(@params: new WallPostParams()));
+			Assert.Throws<PostLimitException>(() => Api.Wall.Post(new WallPostParams()));
 		}
 	}
 }

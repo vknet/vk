@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Moq;
 using NUnit.Framework;
 using VkNet.Categories;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
-	[SuppressMessage(category: "ReSharper", checkId: "PublicMembersMustHaveComments")]
+	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class StatsTest : BaseTest
 	{
 		private StatsCategory GetMockedStatsCategory(string url, string json)
@@ -15,7 +14,7 @@ namespace VkNet.Tests.Categories
 			Json = json;
 			Url = url;
 
-			return new StatsCategory(vk: Api);
+			return new StatsCategory(Api);
 		}
 
 		[Test]
@@ -116,13 +115,13 @@ namespace VkNet.Tests.Categories
 					}]
 				  }";
 
-			var mockedStatsCategory = GetMockedStatsCategory(url: url, json: json);
+			var mockedStatsCategory = GetMockedStatsCategory(url, json);
 
-			var statsPeriods = mockedStatsCategory.GetByApp(appId: 1,
-				dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
+			var statsPeriods = mockedStatsCategory.GetByApp(1,
+				new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc));
 
-			Assert.NotNull(statsPeriods[index: 0]);
-			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[index: 0].PeriodFrom));
+			Assert.NotNull(statsPeriods[0]);
+			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
 		}
 
 		[Test]
@@ -223,14 +222,14 @@ namespace VkNet.Tests.Categories
 					}]
 				  }";
 
-			var mockedStatsCategory = GetMockedStatsCategory(url: url, json: json);
+			var mockedStatsCategory = GetMockedStatsCategory(url, json);
 
-			var statsPeriods = mockedStatsCategory.GetByGroup(groupId: 1,
-				dateFrom: new DateTime(year: 2015, month: 11, day: 11, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc));
+			var statsPeriods = mockedStatsCategory.GetByGroup(1,
+				new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc));
 
-			Assert.NotNull(statsPeriods[index: 0]);
+			Assert.NotNull(statsPeriods[0]);
 
-			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[index: 0].PeriodFrom));
+			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
 		}
 
 		[Test]
@@ -243,10 +242,10 @@ namespace VkNet.Tests.Categories
 					response: 1
 				  }";
 
-			var mockedStatsCategory = GetMockedStatsCategory(url: url, json: json);
+			var mockedStatsCategory = GetMockedStatsCategory(url, json);
 			var statsPeriods = mockedStatsCategory.TrackVisitor();
 
-			Assert.That(actual: statsPeriods, expression: Is.True);
+			Assert.That(statsPeriods, Is.True);
 		}
 	}
 }
