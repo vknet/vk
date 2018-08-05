@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using NLog;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Category;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Categories;
@@ -479,7 +480,7 @@ namespace VkNet
 		public IGroupsCategory Groups { get; private set; }
 
 		/// <inheritdoc />
-		public AudioCategory Audio { get; private set; }
+		public IAudioCategory Audio { get; private set; }
 
 		/// <inheritdoc />
 		public IDatabaseCategory Database { get; private set; }

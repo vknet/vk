@@ -1,4 +1,4 @@
-﻿using VkNet.Categories;
+using VkNet.Abstractions.Category;
 
 namespace VkNet.Abstractions
 {
@@ -35,7 +35,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// API для работы с аудио записями.
 		/// </summary>
-		AudioCategory Audio { get; }
+		IAudioCategory Audio { get; }
 
 		/// <summary>
 		/// API для получения справочной информации (страны, города, школы, учебные
