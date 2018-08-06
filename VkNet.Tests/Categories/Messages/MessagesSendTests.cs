@@ -163,29 +163,6 @@ namespace VkNet.Tests.Categories.Messages
 		}
 
 		[Test]
-		public void MessagesSendToUserIds_NoSetUserIdsParam_ArgumentException()
-		{
-			Url = "https://api.vk.com/method/messages.send";
-
-			Json = @"
-            {
-                'response': [{
-                    'peer_id': 32190123,
-                    'message_id': 210525
-                }]
-            }";
-
-			Assert.That(() => Messages.SendToUserIds(new MessagesSendParams
-					{
-							UserId = 7550525
-							, Message = "г. Таганрог, ул. Фрунзе 66А"
-							, Lat = 47.217451
-							, Longitude = 38.922743
-					})
-					, Throws.InstanceOf<ArgumentException>());
-		}
-
-		[Test]
 		public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
 		{
 			Url = "https://api.vk.com/method/messages.send";
