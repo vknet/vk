@@ -50,12 +50,12 @@ namespace VkNet.Utils
 
 			if (container.All(x => x.ServiceType != typeof(IRestClient)))
 			{
-				container.TryAddScoped<IRestClient, RestClient>();
+				container.TryAddSingleton<IRestClient, RestClient>();
 			}
 
 			if (container.All(x => x.ServiceType != typeof(IWebProxy)))
 			{
-				container.TryAddScoped<IWebProxy>(t => null);
+				container.TryAddSingleton<IWebProxy>(t => null);
 			}
 
 			if (container.All(x => x.ServiceType != typeof(IVkApiVersionManager)))
