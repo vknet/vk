@@ -275,11 +275,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId = null)
+		public bool MarkAsRead(string peerId, long? startMessageId = null, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "message_ids", messageIds },
 				{ "peer_id", peerId },
 				{ "start_message_id", startMessageId }
 			};

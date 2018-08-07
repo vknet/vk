@@ -972,7 +972,7 @@ namespace VkNet.Tests.Categories.Messages
 		{
 			var cat = new MessagesCategory(new VkApi());
 
-			Assert.That(() => cat.MarkAsRead(new List<long> { 1 }, null),
+			Assert.That(() => cat.MarkAsRead(null),
 				Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -986,12 +986,7 @@ namespace VkNet.Tests.Categories.Messages
 					'response': 1
 				  }";
 
-			var result = Cat.MarkAsRead(new long[]
-				{
-					2,
-					3
-				},
-				null);
+			var result = Cat.MarkAsRead(null);
 
 			Assert.That(result, Is.True);
 		}
@@ -1006,7 +1001,7 @@ namespace VkNet.Tests.Categories.Messages
 					'response': 1
 				  }";
 
-			var result = Cat.MarkAsRead(new List<long> { 1 }, null);
+			var result = Cat.MarkAsRead(null);
 
 			Assert.That(result, Is.True);
 		}
