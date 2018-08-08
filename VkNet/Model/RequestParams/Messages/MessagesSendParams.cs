@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
+using VkNet.Model.Keyboard;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams

@@ -5,7 +5,7 @@ namespace VkNet.Enums.SafetyEnums
 	/// <summary>
 	/// Цвет кнопки клавиатуры отправляемой ботом.
 	/// </summary>
-	public class KeyboardButtonColor : SafetyEnum<KeyboardButtonColor>
+	public sealed class KeyboardButtonColor : SafetyEnum<KeyboardButtonColor>
 	{
 		/// <summary>
 		/// обычная белая кнопка. #FFFFFF

@@ -64,5 +64,17 @@ namespace VkNet.Model
 
 			return action;
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator MessageActionObject(VkResponse response)
+		{
+			return response.HasToken() ? null : FromJson(response);
+		}
 	}
 }
